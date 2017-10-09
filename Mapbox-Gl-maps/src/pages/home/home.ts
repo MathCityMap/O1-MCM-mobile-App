@@ -10,6 +10,7 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 export class HomePage {
   Coordinates: any;
   watch: any;
+  map: any;
 
   constructor(public navCtrl: NavController, private geolocation: Geolocation) {
   }
@@ -39,10 +40,8 @@ export class HomePage {
     };
 
     this.geolocation.getCurrentPosition(options).then((pos: Geoposition) => {
-
       this.Coordinates = pos.coords;
       console.log(pos);
-
     }, (err: PositionError) => {
       console.log("error : " + err.message);
     });
@@ -51,22 +50,20 @@ export class HomePage {
   executemap() {
     /*Initializing Map*/
     mapboxgl.accessToken = 'pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww';
-    var map = new mapboxgl.Map({
-      style: 'mapbox://styles/mapbox/streets-v9',
-      center: [this.Coordinates.longitude, this.Coordinates.latitude], //[-74.0066, 40.7135],
-      zoom: 16,
-      pitch: 80,
-      minZoom: 7.5, //restrict map zoom - buildings not visible beyond 13
-      maxZoom: 17,
-      container: 'map'
-    });
-
-    this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
-      this.Coordinates = resp.coords;
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+    if (!this.map) {
+      console.log('initial location', this.Coordinates);
+      this.map = new mapboxgl.Map({
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [this.Coordinates.longitude, this.Coordinates.latitude], //[-74.0066, 40.7135],
+        zoom: 16,
+        pitch: 80,
+        minZoom: 7.5, //restrict map zoom - buildings not visible beyond 13
+        maxZoom: 17,
+        container: 'map'
+      });
+    } else {
+      console.log('updated location', this.Coordinates);
+      this.map.flyTo({center: [this.Coordinates.longitude, this.Coordinates.latitude]});
+    }
   }
 }
