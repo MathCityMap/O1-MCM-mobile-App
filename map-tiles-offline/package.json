@@ -27,7 +27,7 @@
         "@ionic/storage": "^2.0.1",
         "async": "^2.5.0",
         "cordova-android": "^6.2.3",
-        "cordova-ios": "^4.4.0",
+        "cordova-ios": "^4.5.0",
         "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-geolocation": "^2.4.3",
@@ -46,7 +46,7 @@
         "zone.js": "0.8.18"
     },
     "devDependencies": {
-        "@ionic/app-scripts": "3.0.0",
+        "@ionic/app-scripts": "^3.0.0",
         "typescript": "2.3.4"
     },
     "description": "An Ionic project",

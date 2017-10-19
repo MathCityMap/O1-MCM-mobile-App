@@ -83,7 +83,7 @@
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/status-bar/-/status-bar-4.3.0.tgz#ddb16861a22c7235c0737ba4e0e5127c9aee4ace"
 
-"@ionic/app-scripts@3.0.0":
+"@ionic/app-scripts@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@ionic/app-scripts/-/app-scripts-3.0.0.tgz#526a7f5315e8c57b4ba498885d41074525a9f070"
   dependencies:
