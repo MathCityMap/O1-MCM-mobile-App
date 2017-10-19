@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component/*, ViewChild, ElementRef*/ } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import L from 'leaflet';
 import { OfflineLayer } from './OfflineLayer';

@@ -48,7 +48,7 @@ export class CacheBtnControl extends L.Control {
         var nbTiles;
         // Might be a good idea to put a limit on the number of tiles that can would be saved
         // calculateNbTiles includes potentially already saved tiles.
-        nbTiles = this.offlineLayer.calculateNbTiles(17);
+        nbTiles = this.offlineLayer.calculateNbTiles(15);
         if (nbTiles === -1) {
             return;
         }

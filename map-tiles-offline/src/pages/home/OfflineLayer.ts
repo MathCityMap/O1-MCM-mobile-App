@@ -10,6 +10,7 @@ export class OfflineLayer extends L.TileLayer {
   _tileImagesStore: ImageStore;
   _minZoomLevel: number;
   _localURL: string;
+  _ownmap: any;
 
   constructor(url, options) {
     var err, imageRetriever, storeName;
@@ -129,9 +130,9 @@ export class OfflineLayer extends L.TileLayer {
   }
 
   // calculateNbTiles includes potentially already saved tiles.
-  calculateNbTiles(zoomLevelLimit) {
+  calculateNbTiles(zoomLevelLimit = null) {
     var count, key, tileImagesToQuery;
-    if (this._map.getZoom() < this._minZoomLevel) {
+    if (this._ownmap.getZoom() < this._minZoomLevel) {
       this._reportError("ZOOM_LEVEL_TOO_LOW");
       return -1;
     }
@@ -155,9 +156,9 @@ export class OfflineLayer extends L.TileLayer {
   // that is why the tiles are recalculated here.
   _getTileImages(zoomLevelLimit) {
     var arrayLength, bounds, i, j, k, l, m, map, maxX, maxY, minX, minY, point, ref, ref1, ref2, ref3, ref4, roundedTileBounds, startingZoom, tileBounds, tileImagesToQuery, tileSize, tilesInScreen, x, y;
-    zoomLevelLimit = zoomLevelLimit || this._map.getMaxZoom();
+    zoomLevelLimit = zoomLevelLimit || this._ownmap.getMaxZoom();
     tileImagesToQuery = {};
-    map = this._map;
+    map = this._ownmap;
     startingZoom = map.getZoom();
     bounds = map.getPixelBounds();
     // Handle both Leaflet 0.7 (_getTileSize) and 1.0
@@ -202,7 +203,7 @@ export class OfflineLayer extends L.TileLayer {
       onError("system is busy.");
       return;
     }
-    if (this._map.getZoom() < this._minZoomLevel) {
+    if (this._ownmap.getZoom() < this._minZoomLevel) {
       this._reportError("ZOOM_LEVEL_TOO_LOW");
       onError("ZOOM_LEVEL_TOO_LOW");
       return;
@@ -308,7 +309,8 @@ export class OfflineLayer extends L.TileLayer {
       y: coords.y,
       z: coords.z || super._getZoomForUrl()
     };
-    if (this._map && !this._map.options.crs.infinite) {
+    
+    if (this._ownmap && !this._ownmap.options.crs.infinite) {
       if (super._globalTileRange !== 'undefined' && (super.globalTileRange != null)) {
         maxY = super._globalTileRange.max.y;
       } else {
@@ -326,5 +328,10 @@ export class OfflineLayer extends L.TileLayer {
 
   on(name, fnc, obj) {
     return super.on(name, fnc, obj);
+  }
+
+  addTo(map) {
+    super.addTo(map);
+    this._ownmap = map;
   }
 }
