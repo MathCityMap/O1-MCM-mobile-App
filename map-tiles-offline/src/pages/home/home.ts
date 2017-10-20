@@ -79,25 +79,19 @@ export class HomePage {
 
     var options = { maxZoom: 18, attribution: mapquestAttrib, subdomains: subDomains, onReady: onReady, onError: onError, storeName: "myStoreName", dbOption: "WebSQL" }
     offlineLayer = new OfflineLayer(mapquestUrl, options)
-
-    // //Add OSM Layer
-    // L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    //   attributions: "SOME TEXT TO OVERLAY",
-    //   maxZoom: 18
-    // }).addTo(this.map);
-    // this.map.locate({
-    //   setView: true,
-    //   maxZoom: 16
-    // }).on('locationfound', (e) => {
-    //   console.log('found you');
-    //   let markerGroup = L.featureGroup();
-    //   let marker: any = L.marker([e.latitude, e.longitude]).on('click', () => {
-    //     alert('Marker clicked');
-    //   })
-    //   markerGroup.addLayer(marker);
-    //   this.map.addLayer(markerGroup);
-    // }).on('locationerror', (error) => {
-    //   alert(error.message);
-    // })
+    this.map.locate({
+      setView: true,
+      maxZoom: 16
+    }).on('locationfound', (e) => {
+      console.log('found you');
+      let markerGroup = L.featureGroup();
+      let marker: any = L.marker([e.latitude, e.longitude]).on('click', () => {
+        alert('Marker clicked');
+      })
+      markerGroup.addLayer(marker);
+      this.map.addLayer(markerGroup);
+    }).on('locationerror', (error) => {
+      alert(error.message);
+    })
   }
 }

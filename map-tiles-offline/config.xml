@@ -87,4 +87,8 @@
     <engine name="android" spec="~6.2.3" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.4" />
     <engine name="ios" spec="~4.5.0" />
+    <plugin name="cordova-fabric-plugin" spec="^1.1.9">
+        <variable name="FABRIC_API_KEY" value="d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64" />
+        <variable name="FABRIC_API_SECRET" value="28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3" />
+    </plugin>
 </widget>
