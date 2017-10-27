@@ -5,6 +5,10 @@ import { OfflineLayer } from './OfflineLayer';
 import { OfflineProgressControl } from './OfflineProgressControl';
 import { CacheBtnControl } from './CacheBtnControl';
 
+import { DB_Handler } from '../../classes/DB_Handler';
+import { Platform } from 'ionic-angular';
+import { DB_Updater } from '../../classes/DB_Updater';
+
 // declare var OfflineLayer, OfflineProgressControl;
 @Component({
   selector: 'page-home',
@@ -15,17 +19,21 @@ export class HomePage {
   map: any;
   center: L.PointTuple;
 
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController, private platform: Platform) { }
 
   ionViewDidEnter() {
     console.log("ionViewDidEnter");
 
     this.center = [48.775556, 9.182778];
     
+    this.platform.ready().then(() => {
+      var test = DB_Handler.getInstance();
+    });
+
+    // test background
+    new DB_Updater().execute("testas");
 
     this.loadMap();
-
-
 
     // var mapquestUrl = 'http://{s}tile.openstreetmap.org/{z}/{x}/{y}.png';
     // var subDomains = ['', 'a.', 'b.', 'c.'];
