@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SQLite } from '@ionic-native/sqlite';
 import { IonicStorageModule } from '@ionic/storage';
+import { Http } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -30,6 +31,7 @@ import { HomePage } from '../pages/home/home';
     SplashScreen,
     Geolocation,
     SQLite,
+    Http,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
