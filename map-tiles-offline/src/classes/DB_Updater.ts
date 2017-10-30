@@ -1,11 +1,19 @@
-import { Helper } from './Helper'
+import { Injectable } from '@angular/core'
 import { Http, Headers, RequestOptions } from '@angular/http'
 import 'rxjs/add/operator/toPromise'
+import * as Collections from 'typescript-collections'
 
+import { DBC } from './DBC'
+import { Helper } from './Helper'
+import { DBC_Plan } from '../classes/DBC_Plan'
+import { DB_Handler } from '../classes/DB_Handler'
+
+@Injectable()
 export class DB_Updater {
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
   onPreExecute() {
     console.log("onPreExecute ran");
+    // Java: displays progress bar
   }
 
   onPostExecute(result?: string) {
@@ -13,123 +21,205 @@ export class DB_Updater {
     if (result) {
       console.log(result);
     }
+
+    // @Override
+    // protected void onPostExecute(String result) {
+    //     // If all tables are updated - start image download of routes
+    //     if (Helper.routeTableUpdate == 1 && Helper.taskTableUpdate == 1 && Helper.relTableUpdate == 1 && Helper.routeTableNeedsUpdate == 1) {
+    //         // System.out.println("Table update finished. Start download of routes images.");
+    //         new ImageDownloaderRoutes(context, false).execute();
+    //     }
+    //     if(Helper.routeTableUpdate == 1 && Helper.taskTableUpdate == 1 && Helper.relTableUpdate == 1 && Helper.routeTableNeedsUpdate == 0){
+    //         new ImageDownloaderRoutes(context, true).execute();
+    //     }
+    //     dialog.dismiss();
+    // }
   }
 
-  async runInBackground(queryAction: string, table: string, action: string): Promise<any> {
+  async execute(queryAction: string, table: string, action: string): Promise<any> {
     console.log("async runInBackground")
-    
+
     let headers = new Headers({
-      'Content-Type' : 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     })
     let options = new RequestOptions({ headers: headers });
-    let data = JSON.stringify({
-      pass: Helper.REQUEST_PASS,
-      action: queryAction
-    })
+    let data = "pass=" + encodeURI(Helper.REQUEST_PASS)
+      + "&action=" + encodeURI(queryAction)
 
     return new Promise<any>((resolve, reject) => {
       this.http.post(Helper.API_URL, data, options)
         .toPromise()
         .then((response) => {
-          console.log('API response: ', response.json())
-          this.onPostExecute()
-          resolve(response.json())
+
+          console.log('API response: ', response.text().substr(0, 255))
+          let resText = response.text()
+          if (resText && resText.length > 0) {
+            let tableRows = response.json()
+            if (action === "update") {
+              this.insertJSONinSQLiteDB(tableRows, DBC.MAP_DB.getValue(table)).then(() => {
+                this.onPostExecute()
+                resolve()
+              })
+            } else if (action === "checkForUpdates") {
+              this.checkForUpdates(tableRows, DBC.MAP_DB.getValue(table)).then(() => {
+                this.onPostExecute()
+                resolve()
+              })
+            }
+          }
         })
         .catch((error) => {
           console.error('API error(status): ', error.status)
           console.error('API error: ', JSON.stringify(error))
-          reject(error.json())
+          reject(JSON.stringify(error))
+          //         // Starte ImageDownloaderRoutes, damit die Listenelemente angezeigt werden
+          //         // Sonst stürzt ab app
+          //         parent.runOnUiThread(new Runnable() {
+          //             @Override
+          //             public void run() {
+          //                 new ImageDownloaderRoutes(context, false).execute();
+          //             }
+          //         });
+          //         e.printStackTrace();
+          //         dialog.dismiss();
+          //         Toast.makeText(context, "Error: Could not finish database update.", Toast.LENGTH_LONG).show();
+          //         return new String("Exception: " + e.getMessage());
         })
     })
   }
 
+  /*
+    Compare online and offline table versions and update if necessary
+  */
+  private async checkForUpdates(data: any, table: DBC_Plan) {
+    let dbHandler = DB_Handler.getInstance()
+    let db = dbHandler.getWritableDatabase()
+    console.log("WAITING FOR offlineVersions")
+    let offlineVersions = await dbHandler.getTableVersions()
+    console.log("OFFLINE versions", offlineVersions)
+    Helper.taskTableUpdate = 0
+    Helper.routeTableUpdate = 0
+    Helper.relTableUpdate = 0
+    Helper.routeTableNeedsUpdate = 0
 
-  // @Override
-  // protected String doInBackground(String... arg0) {
-  //     String queryAction = arg0[0];
-  //     String table = arg0[1];
-  //     String action = arg0[2];
-  //     OutputStreamWriter wr = null;
-  //     BufferedReader reader = null;
-  //     try {
-  //                 /*
-  //                 * POST METHOD
-  //                 * */
-  //         // pass
-  //         String data = URLEncoder.encode("pass", "UTF-8") + "=" + URLEncoder.encode(Helper.REQUEST_PASS, "UTF-8");
-  //         // action (wurde über parameter übergeben
-  //         data += "&" + URLEncoder.encode("action", "UTF-8") + "=" + URLEncoder.encode(queryAction, "UTF-8");
+    // Create structure
+    let onlineVersions = new Collections.Dictionary<string, string>()
+    for (var i = 0; i < data.length; i++) {
+      let row = data[i]
+      let option = row["option"]
+      let value = row["value"]
+      onlineVersions.setValue(option, value)
+    }
 
+    // Compare
+    let sqlUpdateQuery = `UPDATE ${DBC.DATABASE_TABLE_STATE} SET ${DBC.DB_STATE.fields[2]} = ? WHERE ${DBC.DB_STATE.fields[1]} = ?`
+    if (Number(offlineVersions.getValue("version_task")) < Number(onlineVersions.getValue("version_task"))) {
+      // Tasks need update
+      await new DB_Updater(this.http).execute("getTasks", DBC.DATABASE_TABLE_TASK, "update").then(() => {
+        // Update local table
+        console.log("UPDATING version_task VERSION!", onlineVersions.getValue("version_task"))
+        db.executeSql(sqlUpdateQuery,
+          [
+            onlineVersions.getValue("version_task"),
+            "version_task"
+          ]).then(() => {
+            console.log("UPDATED VERSION!", "version_task")
+          })
+      })
+    } else {
+      Helper.taskTableUpdate = 1
+    }
+    if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
+      // Routes need update
+      Helper.routeTableNeedsUpdate = 1
+      await new DB_Updater(this.http).execute("getRoutes", DBC.DATABASE_TABLE_ROUTE, "update").then(() => {
+        // Update local table
+        console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
+        db.executeSql(sqlUpdateQuery,
+          [
+            onlineVersions.getValue("version_route"),
+            "version_route"
+          ]).then(() => {
+            console.log("UPDATED VERSION!", "version_route")
+          })
+      })
+    } else {
+      Helper.routeTableUpdate = 1
+    }
+    if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
+      // Relation needs update
+      await new DB_Updater(this.http).execute("getRelations", DBC.DATABASE_TABLE_REL_ROUTE_TASK, "update").then(() => {
+        // Update local table
+        console.log("UPDATING version_rel_route_task VERSION!", onlineVersions.getValue("version_rel_route_task"))
+        db.executeSql(sqlUpdateQuery,
+          [
+            onlineVersions.getValue("version_rel_route_task"),
+            "version_rel_route_task"
+          ]).then(() => {
+            console.log("UPDATED VERSION!", "version_rel_route_task")
+          })
+      })
+    } else {
+      Helper.relTableUpdate = 1
+    }
+  }
 
-  //         URL url = new URL(Helper.API_URL);
-  //         URLConnection conn = url.openConnection();
+  /*
+    Get Rows in JSON form and a table definition
+    Inserts Data from MYSQL online (represented as JSON) into sqlite database of app
+  */
+  private async insertJSONinSQLiteDB(data: any, table: DBC_Plan) {
+    let sqlInsertQry = `INSERT INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
+    let dbh = DB_Handler.getInstance()
+    let db = dbh.getWritableDatabase()
+    await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
+    // ... to continue
+  }
+  //   private void insertJSONinSQLiteDB(JSONArray data, DBC_Plan table) {
+  //     String sqlInsertQry = "INSERT INTO " + table.getTableName() + " " + table.getFieldsInScopes() + " values " + table.getFieldsPlaceholders() + ";";
+  //     DB_Handler dbh = DB_Handler.getInstance(context);
+  //     SQLiteDatabase db = dbh.getWritableDatabase();
+  //     // Leere Datenbank vor neubefüllen
+  //     db.execSQL("DELETE FROM " + table.getTableName());
 
-  //         // Timeout, falls Verbindung zu schlecht ist
-  //         conn.setConnectTimeout(30000);
-  //         conn.setReadTimeout(30000);
+  //     db.beginTransaction();
+  //     SQLiteStatement stmt = db.compileStatement(sqlInsertQry);
 
-  //         conn.setDoOutput(true);
-  //         wr = new OutputStreamWriter(conn.getOutputStream());
-
-  //         wr.write(data);
-  //         wr.flush();
-  //         reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-  //         StringBuilder sb = new StringBuilder();
-  //         String line = null;
-
-  //         // Read Server Response
-  //         while ((line = reader.readLine()) != null) {
-  //             sb.append(line);
-  //             break;
+  //     for (int i = 0; i < data.length(); i++) {
+  //         try {
+  //             JSONObject row = data.getJSONObject(i);
+  //             for (int n = 1; n <= table.fieldsCount; n++) {
+  //                 // Check which data type is used in table > choose right bind
+  //                 if (table.fieldsType[n - 1].equals("INTEGER")) {
+  //                     // integer
+  //                     stmt.bindLong(n, row.getLong(table.fields[n - 1]));
+  //                 } else if (table.fieldsType[n - 1].equals("VARCHAR") || table.fieldsType[n - 1].equals("TEXT") || table.fieldsType[n - 1].equals("TIMESTAMP")) {
+  //                     stmt.bindString(n, row.getString(table.fields[n - 1]));
+  //                 } else {
+  //                     //System.out.println("Caution: Datatype not Integer, Varchar or Text!");
+  //                 }
+  //             }
+  //             long entryId = stmt.executeInsert();
+  //             stmt.clearBindings();
+  //         } catch (Exception e) {
+  //             e.printStackTrace();
   //         }
-  //         String json_string = sb.toString();
-
-  //         // Convert json_string to array and pass to insert function if action == update
-  //         if (!json_string.equals("") && json_string != null) {
-  //             JSONArray tableRows = new JSONArray(json_string);
-
-  //             if (action.equals("update")) {
-  //                 insertJSONinSQLiteDB(tableRows, DBC.MAP_DB.get(table));
-  //             }
-  //             if (action.equals("checkForUpdates")) {
-  //                 checkForUpdates(tableRows, DBC.MAP_DB.get(table));
-  //             }
-  //         }
-  //         return json_string;
-  //     } catch (Exception e) {
-  //         // Starte ImageDownloaderRoutes, damit die Listenelemente angezeigt werden
-  //         // Sonst stürzt ab app
-  //         parent.runOnUiThread(new Runnable() {
-  //             @Override
-  //             public void run() {
-  //                 new ImageDownloaderRoutes(context, false).execute();
-  //             }
-  //         });
-  //         e.printStackTrace();
-  //         dialog.dismiss();
-  //         Toast.makeText(context, "Error: Could not finish database update.", Toast.LENGTH_LONG).show();
-  //         return new String("Exception: " + e.getMessage());
   //     }
-  //     finally {
-  //         // Close writer + reader
-  //         if(wr != null){
-  //             try{
-  //                 wr.close();
-  //             }
-  //             catch (Exception e){
-  //                 e.printStackTrace();
-  //             }
-  //         }
-  //         if(reader != null){
-  //             try{
-  //                 reader.close();
-  //             }
-  //             catch (Exception e){
-  //                 e.printStackTrace();
-  //             }
-  //         }
+
+  //     db.setTransactionSuccessful();
+  //     db.endTransaction();
+  //     dbh.close();
+
+  //     // Tell parent context that update is finished so it can go on
+  //     if (table.getTableName().equals(DBC.DATABASE_TABLE_TASK)) {
+  //         Helper.taskTableUpdate = 1;
   //     }
+  //     if (table.getTableName().equals(DBC.DATABASE_TABLE_ROUTE)) {
+  //         Helper.routeTableUpdate = 1;
+  //     }
+  //     if (table.getTableName().equals(DBC.DATABASE_TABLE_REL_ROUTE_TASK)) {
+  //         Helper.relTableUpdate = 1;
+  //     }
+  //     //parent.setUpdateProgress(parent.getUpdateProgress() + 25);
   // }
-
 }

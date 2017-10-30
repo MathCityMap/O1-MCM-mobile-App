@@ -5,9 +5,14 @@ import { OfflineLayer } from './OfflineLayer';
 import { OfflineProgressControl } from './OfflineProgressControl';
 import { CacheBtnControl } from './CacheBtnControl';
 
+import { Helper } from '../../classes/Helper'
+import { DBC } from '../../classes/DBC';
 import { DB_Handler } from '../../classes/DB_Handler';
 import { Platform } from 'ionic-angular';
 import { DB_Updater } from '../../classes/DB_Updater';
+
+// import { Http, Headers, RequestOptions } from '@angular/http'
+// import 'rxjs/add/operator/toPromise'
 
 // declare var OfflineLayer, OfflineProgressControl;
 @Component({
@@ -19,42 +24,42 @@ export class HomePage {
   map: any;
   center: L.PointTuple;
 
-  constructor(public navCtrl: NavController, private platform: Platform) { }
+  constructor(public navCtrl: NavController, private platform: Platform, private updater: DB_Updater) { }
 
   ionViewDidEnter() {
+    
     console.log("ionViewDidEnter");
 
-    this.center = [48.775556, 9.182778];
-    
     this.platform.ready().then(() => {
-      var test = DB_Handler.getInstance();
+      console.log('Platform is ready!')
+    /*  var test = DB_Handler.getInstance();
+      console.log('DB_Handler ready:', test.ready);
+*/
+      let dbHandler = DB_Handler.getInstance();
+      dbHandler.initialize().then(() => {
+        this.updater.execute("getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates")
+          .then(result => {
+            console.log('total:',result)
+          })
+      })
+      
+      // test background
+      // this.updater.execute("getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates")
+      // .then(result => {
+      //   console.log('Get response: ', result)
+      // })
+      // .catch(error => {
+      //   console.error('Error response: ', JSON.stringify(error))
+      // })
+
     });
-
-    // test background
-    new DB_Updater().execute("testas");
-
-    this.loadMap();
-
-    // var mapquestUrl = 'http://{s}tile.openstreetmap.org/{z}/{x}/{y}.png';
-    // var subDomains = ['', 'a.', 'b.', 'c.'];
-    // var mapquestAttrib = 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>, <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.';
-    // var onReady = function() {
-    //   console.log("The OfflineLayer is ready to be used");
-    //   console.log("offlineMap:", offlineMap);
-    //   console.log("map:", this.map);
-    //   offlineMap.addTo(this.map);
-    // };
-    // var onError = function(errorType, errorData1, errorData2) {
-    //   console.log(errorType);
-    //   console.log(errorData1);
-    //   console.log(errorData2);
-    // };
-    // var options = { maxZoom: 18, attribution: mapquestAttrib, subdomains: subDomains, onReady: onReady, onError: onError, storeName:"myStoreName", dbOption:"WebSQL"}
-    // var offlineMap = new OfflineLayer(mapquestUrl, options);
-    // console.log(offlineMap);
+    console.log("Doing task after this.updater.execute ran")
+    // this.loadMap();
   }
 
   loadMap() {
+    this.center = [48.775556, 9.182778];
+
     this.map = L.map('map', {
       center: this.center,
       zoom: 13

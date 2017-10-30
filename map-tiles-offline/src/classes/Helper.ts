@@ -23,12 +23,12 @@ export class Helper {
     static readonly DISTANCE_TASK_DISPLAY: number = 50 // in Meters, the max distance to display the task
     static readonly DISTANCE_TASKS_MULTIPLE: number = 15 // in Meters, if tapped on marker, look for near markers in max 10m distance, display multiple select box
     static readonly ENABLE_DISTANCE_CHECK: boolean = false
-    static readonly taskTableUpdate: number = 0
-    static readonly routeTableUpdate: number = 0
-    static readonly relTableUpdate: number = 0
-    static readonly taskTableNeedsUpdate: number = 0
-    static readonly routeTableNeedsUpdate: number = 0
-    static readonly relTableNeedsUpdate: number = 0
+    static taskTableUpdate: number = 0
+    static routeTableUpdate: number = 0
+    static relTableUpdate: number = 0
+    static taskTableNeedsUpdate: number = 0
+    static routeTableNeedsUpdate: number = 0
+    static relTableNeedsUpdate: number = 0
     static readonly routeImageUpdate: number = 0
     static readonly gamification: number = 0 // 0 -> Keine, 1 -> Score, 2 -> Leaderbord, 3 -> Badges
     static readonly max_score: number = 100
@@ -52,7 +52,7 @@ export class Helper {
     GLOBAL VARS #
      */
     static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
-    static readonly API_URL: string = "http://mathcitymap.eu/db_query_post.php"
+    static readonly API_URL: string = "/mcm-api/db_query_post.php"
     static readonly REQUEST_PASS: string = "evilknivel2k16"
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"

@@ -6,7 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SQLite } from '@ionic-native/sqlite';
 import { IonicStorageModule } from '@ionic/storage';
-import { Http } from '@angular/http';
+import { DB_Updater } from '../classes/DB_Updater';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -17,6 +18,7 @@ import { HomePage } from '../pages/home/home';
     HomePage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
@@ -31,7 +33,7 @@ import { HomePage } from '../pages/home/home';
     SplashScreen,
     Geolocation,
     SQLite,
-    Http,
+    DB_Updater,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
