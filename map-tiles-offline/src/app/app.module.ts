@@ -7,7 +7,10 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { SQLite } from '@ionic-native/sqlite';
 import { IonicStorageModule } from '@ionic/storage';
 import { DB_Updater } from '../classes/DB_Updater';
+import { ImageDownloaderRoutes } from '../classes/ImageDownloaderRoutes';
 import { HttpModule } from '@angular/http';
+import { File } from '@ionic-native/file';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -33,7 +36,10 @@ import { HomePage } from '../pages/home/home';
     SplashScreen,
     Geolocation,
     SQLite,
+    File,
+    FileTransfer,
     DB_Updater,
+    ImageDownloaderRoutes,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

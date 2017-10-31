@@ -1,22 +1,14 @@
-
-export class AsyncTask<T> {
-  onPreExecute() { }
-
-  async runInBackground(args: T): Promise<T> {
-    return new Promise<T>(resolve => { resolve(args) })
+export abstract class AsyncTask<T> {
+  abstract onPreExecute()
+  execute(params: T) {
+    console.log("Started execute")
+    this.onPreExecute()
+    this.doInBackground(params)
+      .then(this.onPostExecute)
+      .catch((error: Error) => {
+        console.log(`${this.constructor.name} error`, error.name)
+      })
   }
-
-  onPostExecute(result?: T) { }
-
-  runOnPostExecuteInMainThread(result?: T) {
-    // don't know if we need this
-    this.onPostExecute(result);
-  }
-
-  execute(args: T) {
-    this.onPreExecute();
-    this.runInBackground(args).then(resolve => {
-      this.runOnPostExecuteInMainThread(resolve)
-    })
-  }
+  abstract async doInBackground(params: T)
+  abstract onPostExecute()
 }

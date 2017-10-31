@@ -3,27 +3,25 @@ import { Http, Headers, RequestOptions } from '@angular/http'
 import 'rxjs/add/operator/toPromise'
 import * as Collections from 'typescript-collections'
 
+import { AsyncTask } from './AsyncTask'
 import { DBC } from './DBC'
 import { Helper } from './Helper'
 import { DBC_Plan } from '../classes/DBC_Plan'
 import { DB_Handler } from '../classes/DB_Handler'
 
 @Injectable()
-export class DB_Updater {
-  constructor(private http: Http) { }
+export class DB_Updater extends AsyncTask<string[]> {
+  constructor(private http: Http) {
+    super()
+  }
+
   onPreExecute() {
     console.log("onPreExecute ran");
     // Java: displays progress bar
   }
 
-  onPostExecute(result?: string) {
-    console.log("onPostExecute")
-    if (result) {
-      console.log(result);
-    }
-
-    // @Override
-    // protected void onPostExecute(String result) {
+  onPostExecute() {
+    console.log("onPostExecute ran");
     //     // If all tables are updated - start image download of routes
     //     if (Helper.routeTableUpdate == 1 && Helper.taskTableUpdate == 1 && Helper.relTableUpdate == 1 && Helper.routeTableNeedsUpdate == 1) {
     //         // System.out.println("Table update finished. Start download of routes images.");
@@ -33,10 +31,12 @@ export class DB_Updater {
     //         new ImageDownloaderRoutes(context, true).execute();
     //     }
     //     dialog.dismiss();
-    // }
   }
 
-  async execute(queryAction: string, table: string, action: string): Promise<any> {
+  async doInBackground(params: string[]): Promise<any> {
+    let queryAction = params[0]
+    let table = params[1]
+    let action = params[2]
     console.log("async runInBackground")
 
     let headers = new Headers({
@@ -56,12 +56,10 @@ export class DB_Updater {
             let tableRows = response.json()
             if (action === "update") {
               this.insertJSONinSQLiteDB(tableRows, DBC.MAP_DB.getValue(table)).then(() => {
-                this.onPostExecute()
                 resolve()
               })
             } else if (action === "checkForUpdates") {
               this.checkForUpdates(tableRows, DBC.MAP_DB.getValue(table)).then(() => {
-                this.onPostExecute()
                 resolve()
               })
             }
@@ -70,6 +68,7 @@ export class DB_Updater {
         .catch((error) => {
           console.error('API error(status): ', error.status)
           console.error('API error: ', JSON.stringify(error))
+          
           reject(JSON.stringify(error))
           //         // Starte ImageDownloaderRoutes, damit die Listenelemente angezeigt werden
           //         // Sonst stürzt ab app
@@ -114,50 +113,47 @@ export class DB_Updater {
     let sqlUpdateQuery = `UPDATE ${DBC.DATABASE_TABLE_STATE} SET ${DBC.DB_STATE.fields[2]} = ? WHERE ${DBC.DB_STATE.fields[1]} = ?`
     if (Number(offlineVersions.getValue("version_task")) < Number(onlineVersions.getValue("version_task"))) {
       // Tasks need update
-      await new DB_Updater(this.http).execute("getTasks", DBC.DATABASE_TABLE_TASK, "update").then(() => {
-        // Update local table
-        console.log("UPDATING version_task VERSION!", onlineVersions.getValue("version_task"))
-        db.executeSql(sqlUpdateQuery,
-          [
-            onlineVersions.getValue("version_task"),
-            "version_task"
-          ]).then(() => {
-            console.log("UPDATED VERSION!", "version_task")
-          })
-      })
+      await new DB_Updater(this.http).execute(["getTasks", DBC.DATABASE_TABLE_TASK, "update"])
+      // Update local table
+      console.log("UPDATING version_task VERSION!", onlineVersions.getValue("version_task"))
+      db.executeSql(sqlUpdateQuery,
+        [
+          onlineVersions.getValue("version_task"),
+          "version_task"
+        ]).then(() => {
+          console.log("UPDATED VERSION!", "version_task")
+        })
     } else {
       Helper.taskTableUpdate = 1
     }
     if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
       // Routes need update
       Helper.routeTableNeedsUpdate = 1
-      await new DB_Updater(this.http).execute("getRoutes", DBC.DATABASE_TABLE_ROUTE, "update").then(() => {
-        // Update local table
-        console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
-        db.executeSql(sqlUpdateQuery,
-          [
-            onlineVersions.getValue("version_route"),
-            "version_route"
-          ]).then(() => {
-            console.log("UPDATED VERSION!", "version_route")
-          })
-      })
+      await new DB_Updater(this.http).execute(["getRoutes", DBC.DATABASE_TABLE_ROUTE, "update"])
+      // Update local table
+      console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
+      db.executeSql(sqlUpdateQuery,
+        [
+          onlineVersions.getValue("version_route"),
+          "version_route"
+        ]).then(() => {
+          console.log("UPDATED VERSION!", "version_route")
+        })
     } else {
       Helper.routeTableUpdate = 1
     }
     if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
       // Relation needs update
-      await new DB_Updater(this.http).execute("getRelations", DBC.DATABASE_TABLE_REL_ROUTE_TASK, "update").then(() => {
-        // Update local table
-        console.log("UPDATING version_rel_route_task VERSION!", onlineVersions.getValue("version_rel_route_task"))
-        db.executeSql(sqlUpdateQuery,
-          [
-            onlineVersions.getValue("version_rel_route_task"),
-            "version_rel_route_task"
-          ]).then(() => {
-            console.log("UPDATED VERSION!", "version_rel_route_task")
-          })
-      })
+      await new DB_Updater(this.http).execute(["getRelations", DBC.DATABASE_TABLE_REL_ROUTE_TASK, "update"])
+      // Update local table
+      console.log("UPDATING version_rel_route_task VERSION!", onlineVersions.getValue("version_rel_route_task"))
+      db.executeSql(sqlUpdateQuery,
+        [
+          onlineVersions.getValue("version_rel_route_task"),
+          "version_rel_route_task"
+        ]).then(() => {
+          console.log("UPDATED VERSION!", "version_rel_route_task")
+        })
     } else {
       Helper.relTableUpdate = 1
     }
@@ -185,8 +181,8 @@ export class DB_Updater {
           } else if (table.fieldsType[n - 1] === "VARCHAR"
             || table.fieldsType[n - 1] === "TEXT"
             || table.fieldsType[n - 1] === "TIMESTAMP") {
-              // params.push(n)
-              params.push(row[table.fields[n - 1]])
+            // params.push(n)
+            params.push(row[table.fields[n - 1]])
           } else {
             console.warn("Caution: Datatype not Integer, Varchar or Text!")
           }

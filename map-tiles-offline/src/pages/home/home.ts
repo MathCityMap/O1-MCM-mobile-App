@@ -10,6 +10,7 @@ import { DBC } from '../../classes/DBC';
 import { DB_Handler } from '../../classes/DB_Handler';
 import { Platform } from 'ionic-angular';
 import { DB_Updater } from '../../classes/DB_Updater';
+import { ImageDownloaderRoutes } from '../../classes/ImageDownloaderRoutes';
 
 // import { Http, Headers, RequestOptions } from '@angular/http'
 // import 'rxjs/add/operator/toPromise'
@@ -24,7 +25,7 @@ export class HomePage {
   map: any;
   center: L.PointTuple;
 
-  constructor(public navCtrl: NavController, private platform: Platform, private updater: DB_Updater) { }
+  constructor(public navCtrl: NavController, private platform: Platform, private updater: DB_Updater, private idr: ImageDownloaderRoutes) { }
 
   ionViewDidEnter() {
     
@@ -37,10 +38,11 @@ export class HomePage {
 */
       let dbHandler = DB_Handler.getInstance();
       dbHandler.initialize().then(() => {
-        this.updater.execute("getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates")
-          .then(result => {
-            console.log('total:',result)
-          })
+        // this.updater.execute("getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates")
+        //   .then(result => {
+        //     console.log('total:',result)
+        //   })
+        this.idr.execute(false)
       })
       
       // test background

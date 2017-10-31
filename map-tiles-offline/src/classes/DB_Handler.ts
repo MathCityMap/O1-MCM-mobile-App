@@ -595,6 +595,27 @@ export class DB_Handler {
   //  /*
   //  Wird im ImageDownloader verwendet, dieser benötigt von allen Trails die Infos public und image
 
+  getTrailsImageInfo(): Promise<[string[]]> {
+    return new Promise<[string[]]>((resolve, reject) => {
+      let db = this.mDB
+      this.mDB.executeSql(`SELECT public,image FROM ${DBC.DATABASE_TABLE_ROUTE}`, null)
+        .then(result => {
+          var info: [string[]] = null
+          for (var i = 0; i < result.rows.length; i++) {
+            let item = [result.rows.item(i).public, result.rows.item(i).image]
+            if (info === null) {
+              info = [item]
+            } else {
+              info.push(item)
+            }
+          }
+          resolve(info)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  }
   //   */
   //  public ArrayList<String[]> getTrailsImageInfo(){
   //   // Select * FROM DBC_Task.TABLE_NAME
