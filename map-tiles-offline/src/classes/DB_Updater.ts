@@ -50,7 +50,6 @@ export class DB_Updater {
       this.http.post(Helper.API_URL, data, options)
         .toPromise()
         .then((response) => {
-
           console.log('API response: ', response.text().substr(0, 255))
           let resText = response.text()
           if (resText && resText.length > 0) {
@@ -173,53 +172,39 @@ export class DB_Updater {
     let dbh = DB_Handler.getInstance()
     let db = dbh.getWritableDatabase()
     await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
-    // ... to continue
+    await db.transaction(tr => {
+      for (var i = 0; i < data.length; i++) {
+        let row = data[i]
+        var params = []
+        for (var n = 1; n <= table.fieldsCount; n++) {
+          // Check which data type is used in table > choose right bind
+          if (table.fieldsType[n - 1] === "INTEGER") {
+            // integer
+            // params.push(n)
+            params.push(Number(row[table.fields[n - 1]]))
+          } else if (table.fieldsType[n - 1] === "VARCHAR"
+            || table.fieldsType[n - 1] === "TEXT"
+            || table.fieldsType[n - 1] === "TIMESTAMP") {
+              // params.push(n)
+              params.push(row[table.fields[n - 1]])
+          } else {
+            console.warn("Caution: Datatype not Integer, Varchar or Text!")
+          }
+        }
+        tr.executeSql(sqlInsertQry, params)
+      }
+    }).catch(error => {
+      console.error(`Transaction Error: ${error.toString()}`)
+    })
+
+    if (table.getTableName() === DBC.DATABASE_TABLE_TASK) {
+      Helper.taskTableUpdate = 1
+    } else if (table.getTableName() === DBC.DATABASE_TABLE_ROUTE) {
+      Helper.routeTableUpdate = 1
+    } else if (table.getTableName() === DBC.DATABASE_TABLE_REL_ROUTE_TASK) {
+      Helper.relTableUpdate = 1
+    }
+
+    //parent.setUpdateProgress(parent.getUpdateProgress() + 25);
   }
-  //   private void insertJSONinSQLiteDB(JSONArray data, DBC_Plan table) {
-  //     String sqlInsertQry = "INSERT INTO " + table.getTableName() + " " + table.getFieldsInScopes() + " values " + table.getFieldsPlaceholders() + ";";
-  //     DB_Handler dbh = DB_Handler.getInstance(context);
-  //     SQLiteDatabase db = dbh.getWritableDatabase();
-  //     // Leere Datenbank vor neubefüllen
-  //     db.execSQL("DELETE FROM " + table.getTableName());
-
-  //     db.beginTransaction();
-  //     SQLiteStatement stmt = db.compileStatement(sqlInsertQry);
-
-  //     for (int i = 0; i < data.length(); i++) {
-  //         try {
-  //             JSONObject row = data.getJSONObject(i);
-  //             for (int n = 1; n <= table.fieldsCount; n++) {
-  //                 // Check which data type is used in table > choose right bind
-  //                 if (table.fieldsType[n - 1].equals("INTEGER")) {
-  //                     // integer
-  //                     stmt.bindLong(n, row.getLong(table.fields[n - 1]));
-  //                 } else if (table.fieldsType[n - 1].equals("VARCHAR") || table.fieldsType[n - 1].equals("TEXT") || table.fieldsType[n - 1].equals("TIMESTAMP")) {
-  //                     stmt.bindString(n, row.getString(table.fields[n - 1]));
-  //                 } else {
-  //                     //System.out.println("Caution: Datatype not Integer, Varchar or Text!");
-  //                 }
-  //             }
-  //             long entryId = stmt.executeInsert();
-  //             stmt.clearBindings();
-  //         } catch (Exception e) {
-  //             e.printStackTrace();
-  //         }
-  //     }
-
-  //     db.setTransactionSuccessful();
-  //     db.endTransaction();
-  //     dbh.close();
-
-  //     // Tell parent context that update is finished so it can go on
-  //     if (table.getTableName().equals(DBC.DATABASE_TABLE_TASK)) {
-  //         Helper.taskTableUpdate = 1;
-  //     }
-  //     if (table.getTableName().equals(DBC.DATABASE_TABLE_ROUTE)) {
-  //         Helper.routeTableUpdate = 1;
-  //     }
-  //     if (table.getTableName().equals(DBC.DATABASE_TABLE_REL_ROUTE_TASK)) {
-  //         Helper.relTableUpdate = 1;
-  //     }
-  //     //parent.setUpdateProgress(parent.getUpdateProgress() + 25);
-  // }
 }
