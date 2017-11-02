@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import { File } from '@ionic-native/file'
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-// import { Http, Headers, RequestOptions } from '@angular/http'
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer'
 import { AsyncTask } from './AsyncTask'
 import { Helper } from './Helper'
 import { DB_Handler } from './DB_Handler'

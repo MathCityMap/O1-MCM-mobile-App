@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core'
+import { File } from '@ionic-native/file'
+import { FileTransfer } from '@ionic-native/file-transfer'
 import { Http, Headers, RequestOptions } from '@angular/http'
 import 'rxjs/add/operator/toPromise'
 import * as Collections from 'typescript-collections'
@@ -6,12 +8,13 @@ import * as Collections from 'typescript-collections'
 import { AsyncTask } from './AsyncTask'
 import { DBC } from './DBC'
 import { Helper } from './Helper'
-import { DBC_Plan } from '../classes/DBC_Plan'
-import { DB_Handler } from '../classes/DB_Handler'
+import { DBC_Plan } from './DBC_Plan'
+import { DB_Handler } from './DB_Handler'
+import { ImageDownloaderRoutes } from './ImageDownloaderRoutes'
 
 @Injectable()
 export class DB_Updater extends AsyncTask<string[]> {
-  constructor(private http: Http) {
+  constructor(private http: Http, private transfer: FileTransfer, private file: File) {
     super()
   }
 
@@ -22,6 +25,18 @@ export class DB_Updater extends AsyncTask<string[]> {
 
   onPostExecute() {
     console.log("onPostExecute ran");
+    if (Helper.routeTableUpdate == 1
+      && Helper.taskTableUpdate == 1
+      && Helper.relTableUpdate == 1
+      && Helper.routeTableNeedsUpdate == 1) {
+      new ImageDownloaderRoutes(this.transfer, this.file).execute(false)
+    }
+    if (Helper.routeTableUpdate == 1
+      && Helper.taskTableUpdate == 1
+      && Helper.relTableUpdate == 1
+      && Helper.routeTableNeedsUpdate == 0) {
+      new ImageDownloaderRoutes(this.transfer, this.file).execute(true)
+    }
     //     // If all tables are updated - start image download of routes
     //     if (Helper.routeTableUpdate == 1 && Helper.taskTableUpdate == 1 && Helper.relTableUpdate == 1 && Helper.routeTableNeedsUpdate == 1) {
     //         // System.out.println("Table update finished. Start download of routes images.");
@@ -69,6 +84,8 @@ export class DB_Updater extends AsyncTask<string[]> {
           console.error('API error(status): ', error.status)
           console.error('API error: ', JSON.stringify(error))
           
+          new ImageDownloaderRoutes(this.transfer, this.file).execute(false);
+
           reject(JSON.stringify(error))
           //         // Starte ImageDownloaderRoutes, damit die Listenelemente angezeigt werden
           //         // Sonst stürzt ab app
@@ -113,7 +130,7 @@ export class DB_Updater extends AsyncTask<string[]> {
     let sqlUpdateQuery = `UPDATE ${DBC.DATABASE_TABLE_STATE} SET ${DBC.DB_STATE.fields[2]} = ? WHERE ${DBC.DB_STATE.fields[1]} = ?`
     if (Number(offlineVersions.getValue("version_task")) < Number(onlineVersions.getValue("version_task"))) {
       // Tasks need update
-      await new DB_Updater(this.http).execute(["getTasks", DBC.DATABASE_TABLE_TASK, "update"])
+      await new DB_Updater(this.http, this.transfer, this.file).execute(["getTasks", DBC.DATABASE_TABLE_TASK, "update"])
       // Update local table
       console.log("UPDATING version_task VERSION!", onlineVersions.getValue("version_task"))
       db.executeSql(sqlUpdateQuery,
@@ -129,7 +146,7 @@ export class DB_Updater extends AsyncTask<string[]> {
     if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
       // Routes need update
       Helper.routeTableNeedsUpdate = 1
-      await new DB_Updater(this.http).execute(["getRoutes", DBC.DATABASE_TABLE_ROUTE, "update"])
+      await new DB_Updater(this.http, this.transfer, this.file).execute(["getRoutes", DBC.DATABASE_TABLE_ROUTE, "update"])
       // Update local table
       console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
       db.executeSql(sqlUpdateQuery,
@@ -144,7 +161,7 @@ export class DB_Updater extends AsyncTask<string[]> {
     }
     if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
       // Relation needs update
-      await new DB_Updater(this.http).execute(["getRelations", DBC.DATABASE_TABLE_REL_ROUTE_TASK, "update"])
+      await new DB_Updater(this.http, this.transfer, this.file).execute(["getRelations", DBC.DATABASE_TABLE_REL_ROUTE_TASK, "update"])
       // Update local table
       console.log("UPDATING version_rel_route_task VERSION!", onlineVersions.getValue("version_rel_route_task"))
       db.executeSql(sqlUpdateQuery,

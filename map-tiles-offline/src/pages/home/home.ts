@@ -10,12 +10,7 @@ import { DBC } from '../../classes/DBC';
 import { DB_Handler } from '../../classes/DB_Handler';
 import { Platform } from 'ionic-angular';
 import { DB_Updater } from '../../classes/DB_Updater';
-import { ImageDownloaderRoutes } from '../../classes/ImageDownloaderRoutes';
 
-// import { Http, Headers, RequestOptions } from '@angular/http'
-// import 'rxjs/add/operator/toPromise'
-
-// declare var OfflineLayer, OfflineProgressControl;
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -25,7 +20,7 @@ export class HomePage {
   map: any;
   center: L.PointTuple;
 
-  constructor(public navCtrl: NavController, private platform: Platform, private updater: DB_Updater, private idr: ImageDownloaderRoutes) { }
+  constructor(public navCtrl: NavController, private platform: Platform, private updater: DB_Updater) { }
 
   ionViewDidEnter() {
     
@@ -33,26 +28,10 @@ export class HomePage {
 
     this.platform.ready().then(() => {
       console.log('Platform is ready!')
-    /*  var test = DB_Handler.getInstance();
-      console.log('DB_Handler ready:', test.ready);
-*/
       let dbHandler = DB_Handler.getInstance();
       dbHandler.initialize().then(() => {
-        // this.updater.execute("getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates")
-        //   .then(result => {
-        //     console.log('total:',result)
-        //   })
-        this.idr.execute(false)
+        this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"])
       })
-      
-      // test background
-      // this.updater.execute("getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates")
-      // .then(result => {
-      //   console.log('Get response: ', result)
-      // })
-      // .catch(error => {
-      //   console.error('Error response: ', JSON.stringify(error))
-      // })
 
     });
     console.log("Doing task after this.updater.execute ran")

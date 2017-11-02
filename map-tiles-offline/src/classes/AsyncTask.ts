@@ -4,9 +4,13 @@ export abstract class AsyncTask<T> {
     console.log("Started execute")
     this.onPreExecute()
     this.doInBackground(params)
-      .then(this.onPostExecute)
+      .then(() => {
+        this.onPostExecute()
+      })
       .catch((error: Error) => {
-        console.log(`${this.constructor.name} error`, error.name)
+        console.error(`${this.constructor.name} error`, error.name)
+        console.error(error.stack)
+        this.onPostExecute()
       })
   }
   abstract async doInBackground(params: T)
