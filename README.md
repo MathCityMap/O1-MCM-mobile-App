@@ -1,26 +1,18 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+## Project run instructions
 
-## How to use this template
-
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
-
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
-
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+Run yran to install project dependencies:
 
 ```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
+yarn
 ```
 
-Then, to run it, cd into `myBlank` and run:
-
+to run project on ios emulator run the following command:
 ```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+ionic cordova emulate ios --target="iPhone-7-Plus, 10.3" -lc
 ```
 
-Substitute ios for android if not on a Mac.
+"iPhone-7-Plus" can be substituted by any available phone emulators, but I would strongly recommend do not use version later than 10.3 of iOS as it has bugs with maps displaying on emulators ([app-dev](https://forums.developer.apple.com/thread/83570?tstart=0) got reports on beta release and it still plagues final releases as well)
 
+First time run will take some time as it'll download/install platform dependent native libraries. Following runs will be much quicker. As well this command line will run live-update mode which will output everything that happens to terminal and any changes to the code will be refreshed to emulators (not without limitations)
+
+Note: Project doesn't run on browser as it utilizes SQLite DB
