@@ -138,6 +138,22 @@
     localforage "~1.4.2"
     localforage-cordovasqlitedriver "~1.5.0"
 
+"@types/geojson@*":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-1.0.6.tgz#3e02972728c69248c2af08d60a48cbb8680fffdf"
+
+"@types/leaflet.markercluster@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.0.1.tgz#cd5d6edbbdea86ce9b2340f7355b146860cf330b"
+  dependencies:
+    "@types/leaflet" "*"
+
+"@types/leaflet@*":
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-0.7.31.tgz#c99eaaba8dc7e695868588891f24e441898dfc79"
+  dependencies:
+    "@types/geojson" "*"
+
 "@types/localforage@0.0.30":
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/localforage/-/localforage-0.0.30.tgz#3d60a6bf6dda38e3f8a469611598379f1f649509"
@@ -2001,6 +2017,10 @@ lcid@^1.0.0:
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-1.0.0.tgz#308accafa0bc483a3867b4b6f2b9506251d1b835"
   dependencies:
     invert-kv "^1.0.0"
+
+leaflet.markercluster@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.1.0.tgz#547c480c46422a3c6199c8b757705f0c3afd2090"
 
 leaflet@^1.2.0:
   version "1.2.0"

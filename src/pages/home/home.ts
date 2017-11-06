@@ -1,11 +1,12 @@
-import { Component/*, ViewChild, ElementRef*/ } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import L from 'leaflet';
+import 'leaflet';
+import 'leaflet.markercluster';
 import { OfflineLayer } from './OfflineLayer';
 import { OfflineProgressControl } from './OfflineProgressControl';
 import { CacheBtnControl } from './CacheBtnControl';
 
-import { Helper } from '../../classes/Helper'
+import { Helper } from '../../classes/Helper';
 import { DBC } from '../../classes/DBC';
 import { DB_Handler } from '../../classes/DB_Handler';
 import { Platform } from 'ionic-angular';
@@ -16,39 +17,57 @@ import { DB_Updater } from '../../classes/DB_Updater';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // @ViewChild('map') mapContainer: ElementRef;
+  @ViewChild('map') mapContainer: ElementRef;
   map: any;
   center: L.PointTuple;
 
   constructor(public navCtrl: NavController, private platform: Platform, private updater: DB_Updater) { }
 
   ionViewDidEnter() {
-    
     console.log("ionViewDidEnter");
 
     this.platform.ready().then(() => {
       console.log('Platform is ready!')
       let dbHandler = DB_Handler.getInstance();
       dbHandler.initialize().then(() => {
-        this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"])
+        this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]).then(() => {
+          console.log("updater finished!")
+          let table = DBC.DB_ROUTE;
+          let sqlQry = `SELECT ${table.fields[3]},${table.fields[13]} FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
+          console.log(`SQL QUERY: ${sqlQry}`)
+          let dbh = DB_Handler.getInstance();
+          let db = dbh.getWritableDatabase();
+          db.executeSql(sqlQry, []).then(result => {
+            let markerGroup = L.markerClusterGroup();
+            for (var i = 0; i < result.rows.length; i++) {
+              let row = result.rows.item(i);
+              let center = JSON.parse(row.center);
+              let marker: any = L.marker([center[0], center[1]]).on('click', () => {
+                alert(`Route: ${row.title}`);
+              })
+              markerGroup.addLayer(marker);
+            }
+
+            this.map.addLayer(markerGroup);
+          });
+        })
       })
 
     });
     console.log("Doing task after this.updater.execute ran")
-    // this.loadMap();
+    this.loadMap();
   }
 
   loadMap() {
-    this.center = [48.775556, 9.182778];
+    this.center = [50.1208566,8.66158515]; // Frankfurt-am Main
 
     this.map = L.map('map', {
       center: this.center,
       zoom: 13
     });
 
-    var mapquestUrl = 'http://{s}tile.openstreetmap.org/{z}/{x}/{y}.png';
-
-    var subDomains = ['', 'a.', 'b.', 'c.'];
+    let mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}.png?access_token=${Helper.accessToken}`
+    let subDomains = ['a', 'b', 'c', 'd'];
 
     var mapquestAttrib = 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>, <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.';
     var offlineLayer;
