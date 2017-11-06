@@ -1,10 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import 'leaflet';
+import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import { OfflineLayer } from './OfflineLayer';
-import { OfflineProgressControl } from './OfflineProgressControl';
-import { CacheBtnControl } from './CacheBtnControl';
+import 'leaflet-offline';
+import { tilesDb } from './tilesDb';
 
 import { Helper } from '../../classes/Helper';
 import { DBC } from '../../classes/DBC';
@@ -54,12 +53,12 @@ export class HomePage {
       })
 
     });
-    console.log("Doing task after this.updater.execute ran")
+
     this.loadMap();
   }
 
   loadMap() {
-    this.center = [50.1208566,8.66158515]; // Frankfurt-am Main
+    this.center = [50.1208566, 8.66158515]; // Frankfurt-am Main
 
     this.map = L.map('map', {
       center: this.center,
@@ -68,30 +67,74 @@ export class HomePage {
 
     let mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}.png?access_token=${Helper.accessToken}`
     let subDomains = ['a', 'b', 'c', 'd'];
-
-    var mapquestAttrib = 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>, <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.';
-    var offlineLayer;
     var map = this.map;
-    var onReady = function () {
-      var cacheBtn, progressControls;
-      console.log("The OfflineLayer is ready to be used");
+
+    tilesDb.initialize().then(() => {
+      console.log("Tiles DB Initialized");
+      var offlineLayer = L.tileLayer.offline(mapquestUrl, tilesDb, {
+        attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
+        subdomains: subDomains,
+        minZoom: 10,
+        maxZoom: 18,
+        crossOrigin: true
+      });
+      var offlineControl = L.control.offline(offlineLayer, tilesDb, {
+        saveButtonHtml: '<i class="fa fa-download" aria-hidden="true">Save</i>',
+        removeButtonHtml: '<i class="fa fa-trash" aria-hidden="true">Remove</i>',
+        confirmSavingCallback: function (nTilesToSave, continueSaveTiles) {
+          if (nTilesToSave > 1000) {
+            window.alert('Too much tiles to save: ' + nTilesToSave);
+          } else if (window.confirm('Save ' + nTilesToSave + '?')) {
+            continueSaveTiles();
+          }
+        },
+        confirmRemovalCallback: function (continueRemoveTiles) {
+          if (window.confirm('Remove all the tiles?')) {
+            continueRemoveTiles();
+          }
+        },
+        minZoom: 10,
+        maxZoom: 16
+      });
+
       offlineLayer.addTo(map);
-      cacheBtn = new CacheBtnControl(offlineLayer);
-      map.addControl(cacheBtn);
-      progressControls = new OfflineProgressControl();
-      progressControls.setOfflineLayer(offlineLayer);
-      map.addControl(progressControls);
-    };
+      offlineControl.addTo(map);
 
-    var onError = function (errorType, errorData1, errorData2) {
-      console.log(errorType);
-      console.log(errorData1);
-      return console.log(errorData2);
-    };
+      offlineLayer.on('offline:below-min-zoom-error', function () {
+        alert('Can not save tiles below minimum zoom level.');
+      });
+
+      offlineLayer.on('offline:save-start', function (data) {
+        console.log(data);
+        console.log('Saving ' + data.nTilesToSave + ' tiles.');
+      });
+
+      offlineLayer.on('offline:save-end', function () {
+        alert('All the tiles were saved.');
+      });
+
+      offlineLayer.on('offline:save-error', function (err) {
+        console.error('Error when saving tiles: ' + err);
+      });
+
+      offlineLayer.on('offline:remove-start', function () {
+        console.log('Removing tiles.');
+      });
+
+      offlineLayer.on('offline:remove-end', function () {
+        alert('All the tiles were removed.');
+      });
+
+      offlineLayer.on('offline:remove-error', function (err) {
+        console.error('Error when removing tiles: ' + err);
+      });
+    })
+
+    // var options = { maxZoom: 18, attribution: mapquestAttrib, subdomains: subDomains, onReady: onReady, onError: onError, storeName: "myStoreName", dbOption: "WebSQL" }
+    // offlineLayer = new OfflineLayer(mapquestUrl, options)
 
 
-    var options = { maxZoom: 18, attribution: mapquestAttrib, subdomains: subDomains, onReady: onReady, onError: onError, storeName: "myStoreName", dbOption: "WebSQL" }
-    offlineLayer = new OfflineLayer(mapquestUrl, options)
+
     this.map.locate({
       setView: true,
       maxZoom: 16
