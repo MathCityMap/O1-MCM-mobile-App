@@ -13,8 +13,6 @@ import { DB_Handler } from '../../classes/DB_Handler';
 import { Platform } from 'ionic-angular';
 import { DB_Updater } from '../../classes/DB_Updater';
 
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer'
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -27,7 +25,7 @@ export class HomePage {
   imageObject: any;
   routeText: string;
 
-  constructor(public navCtrl: NavController, private sanitize: DomSanitizer, private transfer: FileTransfer, private platform: Platform, private updater: DB_Updater) { }
+  constructor(public navCtrl: NavController, private platform: Platform, private updater: DB_Updater) { }
 
   ionViewDidEnter() {
     console.log("ionViewDidEnter");
@@ -53,7 +51,6 @@ export class HomePage {
               let row = result.rows.item(i);
               let center = JSON.parse(row.center);
               let marker: any = L.marker([center[0], center[1]]).on('click', () => {
-                const fileTransfer: FileTransferObject = this.transfer.create();
                 let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
                 fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
                   .then(imageData => this.routeImage = imageData, imageError => {
