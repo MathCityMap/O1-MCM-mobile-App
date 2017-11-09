@@ -29,24 +29,6 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private sanitize: DomSanitizer, private transfer: FileTransfer, private platform: Platform, private updater: DB_Updater) { }
 
-
-  private downloadImage(fileTransfer: FileTransferObject, imgFileName: string, outputName: string) {
-    let fileManager = new File();
-    let imageAddress = Helper.WEBSERVER_URL + encodeURI(imgFileName);
-    fileTransfer.download(imageAddress, fileManager.dataDirectory + outputName)
-    .then(entry => {
-      console.log(`Image download from: ${imageAddress}`)
-      console.log(`Image download completed: ${JSON.stringify(this.sanitize.bypassSecurityTrustUrl(entry.toURL()))}`)
-      this.routeImage = this.sanitize.bypassSecurityTrustUrl(entry.toInternalURL());
-      // fileManager.readAsDataURL(entry.toURL()).then(value => this.routeImage = value, reason => this.failInfo = "Fail: " + reason);
-    }, error => {
-      console.error(`Download error URL: [${imgFileName}]`)
-    }).catch(error => {
-      console.error(`Download error URL: [${imgFileName}]`)
-    })
-  }
-
-
   ionViewDidEnter() {
     console.log("ionViewDidEnter");
     this.platform.ready().then(() => {
@@ -71,12 +53,17 @@ export class HomePage {
               let row = result.rows.item(i);
               let center = JSON.parse(row.center);
               let marker: any = L.marker([center[0], center[1]]).on('click', () => {
-                // let imageUrl = fileManager.dataDirectory + row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
-                // this.routeImage = imageUrl;
-                // alert(`Route: ${row.title} ${imageUrl}`);
                 const fileTransfer: FileTransferObject = this.transfer.create();
-                let outputName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
-                this.downloadImage(fileTransfer, row.image, outputName);
+                let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
+                fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
+                  .then(imageData => this.routeImage = imageData, imageError => {
+                    console.error("Error making image DataURL:", imageError);
+                    // TODO: default empty image holder
+                  })
+                  .catch(error => {
+                    console.error("Error making image DataURL:", JSON.stringify(error));
+                    // TODO: default empty image holder
+                  })
                 this.routeText = row.title;
               })
               markerGroup.addLayer(marker);
@@ -164,11 +151,6 @@ export class HomePage {
         console.error('Error when removing tiles: ' + err);
       });
     })
-
-    // var options = { maxZoom: 18, attribution: mapquestAttrib, subdomains: subDomains, onReady: onReady, onError: onError, storeName: "myStoreName", dbOption: "WebSQL" }
-    // offlineLayer = new OfflineLayer(mapquestUrl, options)
-
-
 
     this.map.locate({
       setView: true,
