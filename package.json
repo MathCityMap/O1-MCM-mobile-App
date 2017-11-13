@@ -31,7 +31,8 @@
         "async": "^2.5.0",
         "cordova-android": "^6.2.3",
         "cordova-fabric-plugin": "^1.1.9",
-        "cordova-ios": "^4.5.2",
+        "cordova-ios": "^4.5.3",
+        "cordova-plugin-advanced-http": "~1.6.1",
         "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-file": "~4.3.3",
@@ -61,7 +62,9 @@
     "description": "An Ionic project",
     "cordova": {
         "plugins": {
-            "cordova-plugin-geolocation": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": " "
+            },
             "cordova-plugin-device": {},
             "cordova-plugin-ionic-webview": {},
             "cordova-plugin-splashscreen": {},
@@ -74,7 +77,8 @@
                 "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3"
             },
             "cordova-plugin-file": {},
-            "cordova-plugin-file-transfer": {}
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-advanced-http": {}
         },
         "platforms": [
             "android",
