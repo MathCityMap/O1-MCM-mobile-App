@@ -13,11 +13,17 @@ import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 
 import { MyApp } from './app.component';
+
 import { HomePage } from '../pages/home/home';
+import { MapPage } from '../pages/home/tabs/Map/Map';
+import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
+
 
 @NgModule({
   declarations: [
     MyApp,
+    MapPage,
+    RoutesListPage,
     HomePage
   ],
   imports: [
@@ -29,6 +35,8 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    MapPage,
+    RoutesListPage,
     HomePage
   ],
   providers: [
