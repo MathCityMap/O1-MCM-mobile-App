@@ -282,14 +282,6 @@ export abstract class DBC {
   /*
   DB MAP: Tablename -> DB Instance
    */
-  // Prepare Map
-  // static MAP_DB:  [{ key: string; value: DBC_Plan }] = [
-  //   ,
-  //   { key:  },
-  //   { key:  },
-  //   { key:  },
-  //   { key:  },
-  //   { key: }]
   static MAP_DB: Collections.Dictionary<string, DBC_Plan> = null
 
   static initialize() {
