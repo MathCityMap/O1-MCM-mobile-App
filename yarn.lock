@@ -79,9 +79,9 @@
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/file/-/file-4.3.2.tgz#f666950fb6b8e74f08dded7b1e4aa37ae9ec5312"
 
-"@ionic-native/geolocation@^4.3.1":
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/@ionic-native/geolocation/-/geolocation-4.3.1.tgz#7b722a1a8c5fc518c4b61b6729c3b3a2b0c2d30d"
+"@ionic-native/geolocation@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/geolocation/-/geolocation-4.4.0.tgz#408dc696afc69c4fac1350cec4a2270b1b6d869b"
 
 "@ionic-native/splash-screen@4.3.0":
   version "4.3.0"
@@ -812,9 +812,9 @@ cordova-fabric-plugin@^1.1.9:
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/cordova-fabric-plugin/-/cordova-fabric-plugin-1.1.9.tgz#5bf628f82c86164ee13d155f4807791ea73c100f"
 
-cordova-ios@^4.5.2:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/cordova-ios/-/cordova-ios-4.5.2.tgz#46b410fe2d14b449547c1d617e988aa6d80da37c"
+cordova-ios@^4.5.3:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/cordova-ios/-/cordova-ios-4.5.3.tgz#5d3c2dbe89a6d92e6282d1721c1fdda4bf806a1d"
   dependencies:
     cordova-common "2.1.0"
     ios-sim "^6.1.2"
@@ -824,6 +824,10 @@ cordova-ios@^4.5.2:
     shelljs "^0.5.3"
     xcode "^0.9.0"
     xml-escape "^1.1.0"
+
+cordova-plugin-advanced-http@~1.6.1:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-advanced-http/-/cordova-plugin-advanced-http-1.6.2.tgz#402833527cb8ce6d11ca58a71c3ec0acabd9dee3"
 
 cordova-plugin-compat@^1.2.0:
   version "1.2.0"

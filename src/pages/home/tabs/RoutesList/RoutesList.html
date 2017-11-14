@@ -7,16 +7,15 @@
 </ion-header>
 
 <ion-content>
-  <ion-list [virtualScroll]="items"
-   approxItemHeight="125px">
+  <ion-list [virtualScroll]="items" approxItemHeight="125px">
     <ion-item style="height: 125px" *virtualItem="let item">
-      <!-- <img src="{{item.imgUrl}}" style="width:100px; height:100px"> -->
+      <!-- <img src="{{item.image}}" style="width:100px; height:100px" slide-lazy /> -->
       <span style="float: left; width: 100px; height: 100px">
-      <ion-img [src]="item.image" style="width: 100px; height: 100px;float: left" height="100px" width="100px"></ion-img>
-    </span>
+        <ion-img [src]="item.image" style="width: 100px; height: 100px;float: left" height="100px" width="100px"></ion-img>
+      </span>
       <span style="float: left">
         <h1>{{item.title}}</h1>
-        <p>{{item.country_code}}, {{item.city}}</p>
+        <p>{{item.country_code}}, {{item.city}} | {{item.distance}}m</p>
         <p>From grade: {{item.grade}}</p>
       </span>
     </ion-item>

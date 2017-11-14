@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { File } from '@ionic-native/file';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
@@ -27,9 +28,11 @@ export class MapPage {
   routeText: string;
   offlineLayer: any;
   offlineControl: any;
+  userMarker: any;
 
   constructor(public navCtrl: NavController,
     private platform: Platform,
+    private geolocation: Geolocation,
     private updater: DB_Updater) { }
 
   ionViewDidEnter() {
@@ -164,20 +167,34 @@ export class MapPage {
         });
       });
 
-      this.map.locate({
-        setView: true,
-        maxZoom: 16
-      }).on('locationfound', (e) => {
-        console.log('found you');
-        let markerGroup = L.featureGroup();
-        let marker: any = L.marker([e.latitude, e.longitude]).on('click', () => {
+      this.geolocation.getCurrentPosition()
+      .then(resp => {
+        console.warn('found you');
+        Helper.myLocation = resp;
+        console.log(`Coordinates: ${JSON.stringify(resp)}`);
+        // let markerGroup = L.featureGroup();
+        this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
           alert('Marker clicked');
         })
-        markerGroup.addLayer(marker);
-        this.map.addLayer(markerGroup);
-      }).on('locationerror', (error) => {
-        alert(error.message);
+        // markerGroup.addLayer(marker);
+        // this.map.addLayer(markerGroup);
+        this.userMarker.addTo(this.map);
+        this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
       })
+      .catch(error => {
+        console.error(`Location error: ${JSON.stringify(error)}`);
+      })
+
+      let watch = this.geolocation.watchPosition();
+      watch.subscribe(resp => {
+        if (resp) {
+        Helper.myLocation = resp;
+        console.log(`Coordinates: ${JSON.stringify(resp)}`);
+        const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
+        this.map.panTo(lanlng);
+        this.userMarker.setLatLng(lanlng);
+        }
+      });
     }
   }
 }

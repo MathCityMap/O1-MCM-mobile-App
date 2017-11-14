@@ -12,7 +12,8 @@ interface RouteItem {
   country_code: string,
   city: string,
   image: string,
-  grade: number
+  grade: number,
+  distance: number
 }
 
 @Component({
@@ -50,6 +51,7 @@ export class RoutesListPage {
       for (var i = 0; i < result.rows.length; i++) {
         let row = result.rows.item(i);
         let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
+        let center = JSON.parse(row.center);
         let routeItem: RouteItem = {
           id: new Number(row._id).valueOf(),
           public: new Number(row.public).valueOf(),
@@ -57,7 +59,8 @@ export class RoutesListPage {
           country_code: row.country_code,
           city: row.city,
           image: '', // TODO: empty image handler
-          grade: new Number(row.grade).valueOf()
+          grade: new Number(row.grade).valueOf(),
+          distance: Helper.getDistanceToCenter(center[0], center[1])
         };
         
         items.push(routeItem);
