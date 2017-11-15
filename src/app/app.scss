@@ -29,7 +29,7 @@ ion-header{
   }
   box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
   .toolbar{
-    padding: 12px;
+    padding: 14px;
   }
   .toolbar-background{
   background: color($colors, primary);
@@ -44,7 +44,7 @@ ion-header{
   .logo-img{
     display: inline-block;
     vertical-align: middle;
-    width: 30px;
+    width: 38px;
   }
 }
 
@@ -111,10 +111,10 @@ ion-content, .ion-content, .scroll-content{
 .routes-list{
     background: lightgrey;
   .list{
-    margin: 12px 0px 0px;
+    margin: 10px 0px 0px;
   }
   .item{
-    padding: 0px 12px 12px 0px;
+    padding: 0px 10px 10px 0px;
     box-sizing: border-box;
     background: transparent;
     border: none!important;
@@ -127,17 +127,50 @@ ion-content, .ion-content, .scroll-content{
         background-color: #ffffff;
         .label{
           margin: 0;
+          display: table;
+          width: 100%;
           & > *{
-            display: inline-block;
+            display: table-cell;
             vertical-align: top;
           }
+          .image-container{
+            width: 33%;
+            overflow: hidden;
+            padding: 0;margin: 0;
+          }
           img{
-            width:100px;
-            height:100px;
+            width:100%;
+            display: block;
+            object-fit: cover;
             background-color: grey;
           }
-          .info-box{
+          .info-container{
+            width: 66%;
             padding: 10px;
+            .title{
+              margin-bottom: 10px;
+              h1{
+                font-size: 18px;
+                font-weight: 500;
+                color: color($colors, primary);
+                margin-bottom: 0;
+              }
+              p{
+                margin-bottom: 0;
+              }
+            }
+            p{
+              width: 50%;
+              display: inline-block;
+              margin-bottom: 0px;
+              font-size: 12px;
+              font-weight: 500;
+              color: #444444;
+              &.label{
+                color: #b4b4b4;
+                font-weight: 400;
+              }
+            }
           }
         }
       }
