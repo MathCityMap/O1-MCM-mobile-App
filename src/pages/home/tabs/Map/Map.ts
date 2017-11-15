@@ -8,9 +8,9 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
 
-import { DB_Handler } from '../../../../classes/DB_Handler';
-import { DB_Updater } from '../../../../classes/DB_Updater';
-import { DBC } from '../../../../classes/DBC';
+// import { DB_Handler } from '../../../../classes/DB_Handler';
+// import { DB_Updater } from '../../../../classes/DB_Updater';
+// import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
@@ -32,8 +32,8 @@ export class MapPage {
 
   constructor(public navCtrl: NavController,
     private platform: Platform,
-    private geolocation: Geolocation,
-    private updater: DB_Updater) { }
+    private geolocation: Geolocation/*,
+    private updater: DB_Updater*/) { }
 
   ionViewDidEnter() {
     console.log("ionViewDidEnter:");
@@ -47,52 +47,59 @@ export class MapPage {
 
   markerGroup: any = null;
 
+  fakeMarkers = [
+    {
+      center: [50.1160032, 8.6533159],
+      title: 'Bockenheim Trail für Klasse 9/10',
+    }
+    ,
+    {
+      center: [50.10762995, 8.69866935],
+      title: 'Maine Route'
+    },
+    {
+      center: [50.1183028, 8.6529914],
+      title: 'Platane'
+    },
+    {
+      center: [50.11769565, 8.65083485],
+      title: 'LFB MathCityMap'
+    },
+    {
+      center: [50.1079568, 8.704066],
+      title: 'Im Schatten der EZB'
+    },
+    {
+      center: [50.1180431, 8.65184875],
+      title: 'Bockenheim Trail für Klasse 5/6'
+    },
+    {
+      center: [50.10763685, 8.53414805],
+      title: 'ULB Trail'
+    }
+  ];
+
   initializeMap() {
-    let dbHandler = DB_Handler.getInstance();
+    // let dbHandler = DB_Handler.getInstance();
     if (this.markerGroup != null) {
       console.warn('removing markerGroup');
       this.map.removeLayer(this.markerGroup);
       this.markerGroup = null;
     }
 
-    dbHandler.initialize().then(() => {
-      console.warn('db handler initialized');
-      this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]).then(() => {
-        console.log("updater finished!")
-        let table = DBC.DB_ROUTE;
-        let sqlQry = `SELECT ${table.fields[3]},${table.fields[6]},${table.fields[13]} FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
-        console.log(`SQL QUERY: ${sqlQry}`)
-        let dbh = DB_Handler.getInstance();
-        let db = dbh.getWritableDatabase();
-        let fileManager = new File();
-        db.executeSql(sqlQry, []).then(result => {
-          let markerGroup = L.markerClusterGroup();
-          for (var i = 0; i < result.rows.length; i++) {
-            let row = result.rows.item(i);
-            let center = JSON.parse(row.center);
-            let marker: any = L.marker([center[0], center[1]]).on('click', () => {
-              let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
-              fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
-                .then(imageData => this.routeImage = imageData, imageError => {
-                  console.error("Error making image DataURL:", imageError);
-                  // TODO: default empty image holder
-                })
-                .catch(error => {
-                  console.error("Error making image DataURL:", JSON.stringify(error));
-                  // TODO: default empty image holder
-                })
-              this.routeText = row.title;
-            })
-            markerGroup.addLayer(marker);
-          }
-
-          this.map.addLayer(markerGroup);
-          this.markerGroup = markerGroup;
-        });
+    let markerGroup = L.markerClusterGroup();
+    for (var i = 0; i < this.fakeMarkers.length; i++) {
+      let row: any = this.fakeMarkers[i];
+      let center = row.center;
+      let marker: any = L.marker([center[0], center[1]]).on('click', () => {
+        this.routeImage = "http://writingexercises.co.uk/images2/randomimage/boat.jpg";
+        this.routeText = row.title;
       })
-    }).catch(error => {
-      console.error(`DB_Handler initialization error: ${JSON.stringify(error)}`);
-    })
+      markerGroup.addLayer(marker);
+    }
+
+    this.map.addLayer(markerGroup);
+    this.markerGroup = markerGroup;
   }
 
   loadMap() {
@@ -103,7 +110,8 @@ export class MapPage {
     if (this.map == null) {
       this.map = L.map('map', {
         center: this.center,
-        zoom: 13
+        zoom: 13,
+        maxZoom: 19
       });
       let map = this.map;
       tilesDb.initialize().then(() => {
@@ -168,31 +176,31 @@ export class MapPage {
       });
 
       this.geolocation.getCurrentPosition()
-      .then(resp => {
-        console.warn('found you');
-        Helper.myLocation = resp;
-        console.log(`Coordinates: ${JSON.stringify(resp)}`);
-        // let markerGroup = L.featureGroup();
-        this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
-          alert('Marker clicked');
+        .then(resp => {
+          console.warn('found you');
+          Helper.myLocation = resp;
+          console.log(`Coordinates: ${JSON.stringify(resp)}`);
+          // let markerGroup = L.featureGroup();
+          this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
+            alert('Marker clicked');
+          })
+          // markerGroup.addLayer(marker);
+          // this.map.addLayer(markerGroup);
+          this.userMarker.addTo(this.map);
+          this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
         })
-        // markerGroup.addLayer(marker);
-        // this.map.addLayer(markerGroup);
-        this.userMarker.addTo(this.map);
-        this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
-      })
-      .catch(error => {
-        console.error(`Location error: ${JSON.stringify(error)}`);
-      })
+        .catch(error => {
+          console.error(`Location error: ${JSON.stringify(error)}`);
+        })
 
       let watch = this.geolocation.watchPosition();
       watch.subscribe(resp => {
         if (resp) {
-        Helper.myLocation = resp;
-        console.log(`Coordinates: ${JSON.stringify(resp)}`);
-        const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
-        this.map.panTo(lanlng);
-        this.userMarker.setLatLng(lanlng);
+          Helper.myLocation = resp;
+          console.log(`Coordinates: ${JSON.stringify(resp)}`);
+          const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
+          this.map.panTo(lanlng);
+          this.userMarker.setLatLng(lanlng);
         }
       });
     }
