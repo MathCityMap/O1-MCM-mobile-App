@@ -14,3 +14,133 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+
+
+//============== Global Layout Structure ==============
+
+//HEADER
+
+ion-header{
+  ion-navbar{
+    border: none;
+    border-color: transparent;
+  }
+  box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+  .toolbar{
+    padding: 12px;
+  }
+  .toolbar-background{
+  background: color($colors, primary);
+  }
+  .toolbar-title{
+    color: color($colors, light);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+    overflow: visible;
+  }
+  .logo-img{
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+  }
+}
+
+
+
+//TAB-BAR
+
+.tabs{
+  .tabbar{
+    border-top: 0.55px solid color($colors, primary);
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+    background: color($colors, primary);
+    .tab-button, .tab-button-icon{
+      color: color($colors, light)!important;
+    }
+    .tab-button{
+      padding: 5px 5px 6px;
+    }
+    .has-icon .tab-button-icon, .has-title .tab-button-text{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .tab-button-icon{
+      margin: 0;
+    }
+  }
+}
+
+
+
+//CONTENT
+
+ion-content, .ion-content, .scroll-content{
+  padding: 0!important;
+}
+
+
+
+//MAP
+
+.map{
+  #map{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  #details{
+    width: 100%;
+    height: 20%;
+    position: fixed;
+    bottom: 54px;
+    z-index: 2;
+    background: #ffffff;
+    padding: 5px;
+    visibility: hidden;
+  }
+}
+
+
+
+//ROUTES LIST
+
+.routes-list{
+    background: lightgrey;
+  .list{
+    margin: 12px 0px 0px;
+  }
+  .item{
+    padding: 0px 12px 12px 0px;
+    box-sizing: border-box;
+    background: transparent;
+    border: none!important;
+    .item-inner{
+      margin: 0;padding: 0;
+      border: none;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      .input-wrapper{
+        background-color: #ffffff;
+        .label{
+          margin: 0;
+          & > *{
+            display: inline-block;
+            vertical-align: top;
+          }
+          img{
+            width:100px;
+            height:100px;
+            background-color: grey;
+          }
+          .info-box{
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}
