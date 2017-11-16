@@ -1,24 +1,34 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
+    <div class="logo-bar">
+      <img src="assets/images/logo-mcm-symbol.png" class="logo-img">
+      <ion-title>MathCityMap</ion-title>
+    </div>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="routes-list">
   <ion-list [virtualScroll]="items" approxItemHeight="125px">
-    <ion-item style="height: 125px" *virtualItem="let item">
-      <!-- <img src="{{item.image}}" style="width:100px; height:100px" slide-lazy /> -->
-      <span style="float: left; width: 100px; height: 100px">
+    <ion-item *virtualItem="let item">
+      <div class="image-container">
+          <img src="{{item.image}}" slide-lazy />
+      </div>
+      <!-- <span style="float: left; width: 100px; height: 100px">
         <ion-img [src]="item.image" style="width: 100px; height: 100px;float: left" height="100px" width="100px"></ion-img>
-      </span>
-      <span style="float: left">
+      </span> -->
+      <div class="info-container">
+        <div class="title">
         <h1>{{item.title}}</h1>
-        <p>{{item.country_code}}, {{item.city}} | {{item.distance}}m</p>
-        <p>From grade: {{item.grade}}</p>
-      </span>
+          <p>{{item.city}}, {{item.country_code}}</p>
+        </div>
+        <hr>
+        <div class="distance">
+          <p class="label">Distance</p><p>{{item.distance}}m</p>
+        </div>
+        <div class="grade">
+          <p class="label">From grade</p><p>{{item.grade}}</p>
+        </div>
+      </div>
     </ion-item>
-
   </ion-list>
 </ion-content>

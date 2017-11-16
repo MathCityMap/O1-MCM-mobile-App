@@ -79,9 +79,9 @@
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/file/-/file-4.3.2.tgz#f666950fb6b8e74f08dded7b1e4aa37ae9ec5312"
 
-"@ionic-native/geolocation@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/geolocation/-/geolocation-4.4.0.tgz#408dc696afc69c4fac1350cec4a2270b1b6d869b"
+"@ionic-native/geolocation@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@ionic-native/geolocation/-/geolocation-4.4.2.tgz#583b7636927bd39bf6ce1ba14a1d94b0dfc5db66"
 
 "@ionic-native/splash-screen@4.3.0":
   version "4.3.0"
