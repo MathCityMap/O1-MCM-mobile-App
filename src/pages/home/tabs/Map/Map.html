@@ -10,8 +10,18 @@
 <ion-content padding class="map">
   <div id="map"></div>
   <div id="details" *ngIf="routeDetails">
-    <img *ngIf="routeDetails.imageData" [src]="routeDetails.imageData || '//:0'" height="100px" width="100px" />
-    <div>{{routeDetails.title}}</div>
-    <div>{{routeDetails.city}}, {{routeDetails.country_code}}</div>
+    <div class="image-container">
+      <img *ngIf="routeDetails.imageData" [src]="routeDetails.imageData || '//:0'" />
+    </div>
+    <div class="info-container">
+      <div class="title">
+        <h1>{{routeDetails.title}}</h1>
+        <p>{{routeDetails.city}}, {{routeDetails.country_code}}</p>
+      </div>
+      <hr>
+      <div class="grade">
+        <p class="label">From grade</p><p class="value">{{routeDetails.grade}}</p>
+      </div>
+    </div>
   </div>
 </ion-content>

@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="routes-list">
-  <ion-list [virtualScroll]="items" approxItemHeight="125px">
+  <ion-list [virtualScroll]="items" approxItemHeight="124px">
     <ion-item *virtualItem="let item">
       <div class="image-container">
           <img src="{{item.image}}" slide-lazy />
@@ -18,15 +18,15 @@
       </span> -->
       <div class="info-container">
         <div class="title">
-        <h1>{{item.title}}</h1>
+          <h1>{{item.title}}</h1>
           <p>{{item.city}}, {{item.country_code}}</p>
         </div>
         <hr>
         <div class="distance">
-          <p class="label">Distance</p><p>{{item.distance}}m</p>
+          <p class="label">Distance</p><p class="value">{{item.distance}} m</p>
         </div>
         <div class="grade">
-          <p class="label">From grade</p><p>{{item.grade}}</p>
+          <p class="label">From grade</p><p class="value">{{item.grade}}</p>
         </div>
       </div>
     </ion-item>

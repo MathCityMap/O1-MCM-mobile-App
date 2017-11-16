@@ -88,7 +88,8 @@ export class MapPage {
       center: [50.10763685, 8.53414805],
       title: 'ULB Trail',
       city: 'Frankfurt',
-      country_code: 'DE'
+      country_code: 'DE',
+      grade: '9'
     }
   ];
 
