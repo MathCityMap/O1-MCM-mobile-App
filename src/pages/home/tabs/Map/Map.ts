@@ -54,7 +54,7 @@ export class MapPage {
       this.markerGroup = null;
     }
 
-    dbHandler.initialize().then(() => {
+    dbHandler.ready().then(() => {
       console.warn('db handler initialized');
       this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]).then(() => {
         console.log("updater finished!")
@@ -172,33 +172,35 @@ export class MapPage {
       });
 
       this.geolocation.getCurrentPosition()
-      .then(resp => {
-        console.warn('found you');
-        Helper.myLocation = resp;
-        console.log(`Coordinates: ${JSON.stringify(resp)}`);
-        // let markerGroup = L.featureGroup();
-        this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
-          alert('Marker clicked');
-        })
-        // markerGroup.addLayer(marker);
-        // this.map.addLayer(markerGroup);
-        this.userMarker.addTo(this.map);
-        this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
-      })
-      .catch(error => {
-        console.error(`Location error: ${JSON.stringify(error)}`);
-      })
+        .then(resp => {
+          if (resp && resp.coords) {
+            console.warn('found you');
+            Helper.myLocation = resp;
+            console.log(`Coordinates: ${JSON.stringify(resp)}`);
+            // let markerGroup = L.featureGroup();
+            this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
+              alert('Marker clicked');
+            })
+            // markerGroup.addLayer(marker);
+            // this.map.addLayer(markerGroup);
+            this.userMarker.addTo(this.map);
+            this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
 
-      let watch = this.geolocation.watchPosition();
-      watch.subscribe(resp => {
-        if (resp) {
-        Helper.myLocation = resp;
-        console.log(`Coordinates: ${JSON.stringify(resp)}`);
-        const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
-        this.map.panTo(lanlng);
-        this.userMarker.setLatLng(lanlng);
-        }
-      });
+            let watch = this.geolocation.watchPosition();
+            watch.subscribe(resp => {
+              if (resp) {
+                Helper.myLocation = resp;
+                console.log(`Coordinates: ${JSON.stringify(resp)}`);
+                const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
+                this.map.panTo(lanlng);
+                this.userMarker.setLatLng(lanlng);
+              }
+            });
+          }
+        })
+        .catch(error => {
+          console.error(`Location error: ${JSON.stringify(error)}`);
+        })
     }
   }
 }

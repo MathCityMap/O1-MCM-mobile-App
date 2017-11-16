@@ -6,6 +6,7 @@ export class DB_Handler {
   private static mInstance: DB_Handler = null
   private mSQLite: SQLite = null
   private mDB: SQLiteObject = null
+  private mReady: boolean = false
 
   public static getInstance(): DB_Handler {
     if (this.mInstance === null) {
@@ -17,8 +18,11 @@ export class DB_Handler {
 
   private constructor() { }
 
-  initialize(): Promise<void> {
+  ready(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
+      if (this.mReady) {
+        resolve();
+      }
       this.mSQLite = new SQLite()
       this.mSQLite.create({
         name: 'mcm_db.sqlite3',
@@ -29,6 +33,7 @@ export class DB_Handler {
           console.log('Connected to DB')
           // it's ok to always run onCreate because SQL has IF EXISTS
           this.onCreate().then(() => {
+            this.mReady = true;
             resolve()
           })
         })

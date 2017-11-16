@@ -28,10 +28,13 @@ export class RoutesListPage {
   }
 
   ionViewDidEnter() {
-    this.getItems().then(items => this.items = items);
+    this.getItems().then(items => {
+      this.items = items
+      // alert("got the list")
+    });
   }
 
-  async getItems(): Promise<Array<RouteItem>> {
+  getItems(): Promise<Array<RouteItem>> {
     let items = [];
     console.log("getting items for list")
     let table = DBC.DB_ROUTE;
@@ -44,40 +47,42 @@ export class RoutesListPage {
     let sqlQry = `SELECT * FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
     console.log(`SQL QUERY: ${sqlQry}`)
     let dbh = DB_Handler.getInstance();
-    let db = dbh.getWritableDatabase();
-    let fileManager = new File();
-    db.executeSql(sqlQry, []).then(result => {
+    return new Promise<Array<RouteItem>>((resolve, reject) => {
+      dbh.ready().then(() => {
+        let db = dbh.getWritableDatabase();
+        let fileManager = new File();
+        db.executeSql(sqlQry, []).then(result => {
+          for (var i = 0; i < result.rows.length; i++) {
+            let row = result.rows.item(i);
+            let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
+            let center = JSON.parse(row.center);
+            let routeItem: RouteItem = {
+              id: new Number(row._id).valueOf(),
+              public: new Number(row.public).valueOf(),
+              title: row.title,
+              country_code: row.country_code,
+              city: row.city,
+              image: '', // TODO: empty image handler
+              grade: new Number(row.grade).valueOf(),
+              distance: Helper.getDistanceToCenter(center[0], center[1])
+            };
 
-      for (var i = 0; i < result.rows.length; i++) {
-        let row = result.rows.item(i);
-        let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
-        let center = JSON.parse(row.center);
-        let routeItem: RouteItem = {
-          id: new Number(row._id).valueOf(),
-          public: new Number(row.public).valueOf(),
-          title: row.title,
-          country_code: row.country_code,
-          city: row.city,
-          image: '', // TODO: empty image handler
-          grade: new Number(row.grade).valueOf(),
-          distance: Helper.getDistanceToCenter(center[0], center[1])
-        };
-        
-        items.push(routeItem);
-        fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
-          .then(imageData => {
-            routeItem.image = imageData;
-            console.log(`Assigning image ${JSON.stringify(routeItem.title)}`);
-          }, error => {
-            console.error(`Error getting image ${JSON.stringify(error)}`);
-          })
-          .catch(error => {
-            console.error(`Error getting image ${JSON.stringify(error)}`);
-          })
-      }
+            items.push(routeItem);
+            fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
+              .then(imageData => {
+                routeItem.image = imageData;
+                console.log(`Assigning image ${JSON.stringify(routeItem.title)}`);
+              }, error => {
+                console.error(`Error getting image ${JSON.stringify(error)}`);
+              })
+              .catch(error => {
+                console.error(`Error getting image ${JSON.stringify(error)}`);
+              })
+          }
 
+          resolve(items);
+        })
+      });
     });
-
-    return items;
   }
 }
