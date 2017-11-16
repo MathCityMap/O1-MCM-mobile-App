@@ -23,9 +23,8 @@ export class MapPage {
   @ViewChild('map') mapContainer: ElementRef;
   map: any;
   center: L.PointTuple;
-  routeImage: string;
   imageObject: any;
-  routeText: string;
+  routeDetails: any;
   offlineLayer: any;
   offlineControl: any;
   userMarker: any;
@@ -73,7 +72,7 @@ export class MapPage {
             let marker: any = L.marker([center[0], center[1]]).on('click', () => {
               let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
               fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
-                .then(imageData => this.routeImage = imageData, imageError => {
+                .then(imageData => this.routeDetails.imageData = imageData, imageError => {
                   console.error("Error making image DataURL:", imageError);
                   // TODO: default empty image holder
                 })
@@ -81,7 +80,7 @@ export class MapPage {
                   console.error("Error making image DataURL:", JSON.stringify(error));
                   // TODO: default empty image holder
                 })
-              this.routeText = row.title;
+              this.routeDetails = row;
             })
             markerGroup.addLayer(marker);
           }
@@ -105,6 +104,11 @@ export class MapPage {
         center: this.center,
         zoom: 13
       });
+      this.map.on('click', e => {
+        //check if details open and reset content. for now just reset content
+        this.routeDetails = null;
+        console.log('cleared route details');
+      })
       let map = this.map;
       tilesDb.initialize().then(() => {
         console.log("Tiles DB Initialized");
