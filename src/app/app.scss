@@ -31,8 +31,16 @@ ion-header{
   .toolbar{
     padding: 14px;
   }
+  .logo-bar{
+    display: flex;
+  }
   .toolbar-background{
   background: color($colors, primary);
+  }
+  .title{
+    text-align: center;
+    padding-right: 38px;
+    padding-top: 4px;
   }
   .toolbar-title{
     color: color($colors, light);
@@ -45,6 +53,7 @@ ion-header{
     display: inline-block;
     vertical-align: middle;
     width: 38px;
+    height: 38px;
   }
 }
 
@@ -70,6 +79,11 @@ ion-header{
     .tab-button-icon{
       margin: 0;
     }
+//    selected state
+    .tab-button[aria-selected=true], .tab-button[aria-selected=true] .tab-button-icon{
+      background: color($colors, primary-darker);
+      transition: all, .3s;
+    }
   }
 }
 
@@ -94,13 +108,15 @@ ion-content, .ion-content, .scroll-content{
   }
   #details{
     width: 100%;
-    height: 20%;
     position: fixed;
-    bottom: 54px;
+    bottom: -50%;
     z-index: 2;
     background: #ffffff;
-    padding: 5px;
-    visibility: hidden;
+    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
+  }
+  #details.active{
+    bottom: 56px;
+    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
   }
 }
 
@@ -137,12 +153,16 @@ ion-content, .ion-content, .scroll-content{
             width: 33%;
             overflow: hidden;
             padding: 0;margin: 0;
+            position: relative;
           }
           img{
-            width:100%;
             display: block;
             object-fit: cover;
             background-color: grey;
+            min-height: 140px;
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
           }
           .info-container{
             width: 66%;
