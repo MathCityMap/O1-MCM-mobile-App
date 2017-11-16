@@ -29,10 +29,18 @@ ion-header{
   }
   box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
   .toolbar{
-    padding: 14px;
+    padding: 12px;
+  }
+  .logo-bar{
+    display: flex;
   }
   .toolbar-background{
   background: color($colors, primary);
+  }
+  .title{
+    text-align: center;
+    padding: 8px 38px 0px 0px;
+    position: relative;
   }
   .toolbar-title{
     color: color($colors, light);
@@ -45,6 +53,7 @@ ion-header{
     display: inline-block;
     vertical-align: middle;
     width: 38px;
+    height: 38px;
   }
 }
 
@@ -70,6 +79,11 @@ ion-header{
     .tab-button-icon{
       margin: 0;
     }
+//    selected state
+    .tab-button[aria-selected=true], .tab-button[aria-selected=true] .tab-button-icon{
+      background: color($colors, primary-darker);
+      transition: all, .3s;
+    }
   }
 }
 
@@ -94,13 +108,16 @@ ion-content, .ion-content, .scroll-content{
   }
   #details{
     width: 100%;
-    height: 20%;
     position: fixed;
-    bottom: 54px;
+    bottom: -50%;
     z-index: 2;
     background: #ffffff;
-    padding: 5px;
-    visibility: hidden;
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
+  }
+  #details.open{
+    bottom: 54px;
+    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
   }
 }
 
@@ -114,6 +131,7 @@ ion-content, .ion-content, .scroll-content{
     margin: 10px 0px 0px;
   }
   .item{
+    height: 124px;
     padding: 0px 10px 10px 0px;
     box-sizing: border-box;
     background: transparent;
@@ -125,54 +143,69 @@ ion-content, .ion-content, .scroll-content{
       border-bottom-right-radius: 4px;
       .input-wrapper{
         background-color: #ffffff;
-        .label{
-          margin: 0;
-          display: table;
-          width: 100%;
-          & > *{
-            display: table-cell;
-            vertical-align: top;
-          }
-          .image-container{
-            width: 33%;
-            overflow: hidden;
-            padding: 0;margin: 0;
-          }
-          img{
-            width:100%;
-            display: block;
-            object-fit: cover;
-            background-color: grey;
-          }
-          .info-container{
-            width: 66%;
-            padding: 10px;
-            .title{
-              margin-bottom: 10px;
-              h1{
-                font-size: 18px;
-                font-weight: 500;
-                color: color($colors, primary);
-                margin-bottom: 0;
-              }
-              p{
-                margin-bottom: 0;
-              }
-            }
-            p{
-              width: 50%;
-              display: inline-block;
-              margin-bottom: 0px;
-              font-size: 12px;
-              font-weight: 500;
-              color: #444444;
-              &.label{
-                color: #b4b4b4;
-                font-weight: 400;
-              }
-            }
-          }
-        }
+      }
+    }
+  }
+}
+
+//INFO CARDS LIST & MAP
+
+.label, #details{
+  margin: 0;
+  display: table;
+  width: 100%;
+  & > *{
+    display: table-cell;
+    vertical-align: top;
+  }
+  .image-container{
+    width: 33%;
+    overflow: hidden;
+    padding: 0;margin: 0;
+    position: relative;
+  }
+  img{
+    display: block;
+    object-fit: cover;
+    background-color: grey;
+    min-height: 124px;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    max-width: none;
+    width: 100%;
+  }
+  .info-container{
+    width: 66%;
+    padding: 12px;
+    .title{
+      margin-bottom: 10px;
+      h1{
+        font-size: 18px;
+        font-weight: 500;
+        color: color($colors, primary);
+        margin-bottom: 0;
+        white-space: normal;
+      }
+      p{
+        width: 100%;
+        margin: 0;
+      }
+    }
+    p{
+      width: 50%;
+      display: inline-block;
+      margin: 0;
+      margin-bottom: 0px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #444444;
+      &.label{
+        color: #b4b4b4;
+        font-weight: 400;
+      }
+      &.value{
+        text-align: right;
       }
     }
   }

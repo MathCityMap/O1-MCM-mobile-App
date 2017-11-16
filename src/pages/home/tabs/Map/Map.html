@@ -6,12 +6,22 @@
     </div>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding class="map">
   <div id="map"></div>
-  <div id="details">
-    <img *ngIf="routeDetails && routeDetails.imageData" [src]="routeDetails.imageData || '//:0'" height="100px" width="100px" />
-    <div>{{routeDetails.title}}</div>
-    <div>{{routeDetails.city}},{{routeDetails.country_code</div>
+  <!-- *ngClass="{true: 'open', false: ''}[routeDetails != null]" -->
+  <div id="details" [ngClass]="{'open': routeDetails != null}">
+    <div class="image-container">
+      <img *ngIf="routeDetails && routeDetails.imageData" [src]="routeDetails.imageData || '//:0'" />
+    </div>
+    <div class="info-container">
+      <div class="title" *ngIf="routeDetails">
+        <h1>{{routeDetails.title}}</h1>
+        <p>{{routeDetails.city}}, {{routeDetails.country_code}}</p>
+      </div>
+      <hr>
+      <div class="grade" *ngIf="routeDetails">
+        <p class="label">From grade</p><p class="value">{{routeDetails.grade}}</p>
+      </div>
+    </div>
   </div>
 </ion-content>

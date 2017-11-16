@@ -597,7 +597,6 @@ export class DB_Handler {
 
   getTrailsImageInfo(): Promise<[string[]]> {
     return new Promise<[string[]]>((resolve, reject) => {
-      let db = this.mDB
       this.mDB.executeSql(`SELECT public,image FROM ${DBC.DATABASE_TABLE_ROUTE}`, null)
         .then(result => {
           var info: [string[]] = null
