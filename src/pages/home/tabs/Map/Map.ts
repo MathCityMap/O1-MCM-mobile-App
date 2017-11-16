@@ -27,7 +27,7 @@ export class MapPage {
   offlineLayer: any;
   offlineControl: any;
   userMarker: any;
-  routeDetails: any;
+  routeDetails: any = null;
 
   constructor(public navCtrl: NavController,
     private platform: Platform,
@@ -128,7 +128,7 @@ export class MapPage {
         maxZoom: 19
       })
       this.map.on('click', e => {
-        console.log('clicked!!!');
+        this.routeDetails = null;
       });
       let map = this.map;
       tilesDb.initialize().then(() => {
