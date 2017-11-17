@@ -11,6 +11,7 @@ import { ImageDownloaderRoutes } from '../classes/ImageDownloaderRoutes';
 import { HttpModule } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 import { MyApp } from './app.component';
 
@@ -48,6 +49,7 @@ import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
     FileTransfer,
     DB_Updater,
     ImageDownloaderRoutes,
+    SpinnerDialog,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -30,59 +30,19 @@ export class RoutesListPage {
   }
 
   ionViewDidEnter() {
-    this.task = null;
     if (this.items.length == 0) {
-      // todo smart update of items in the list
       this.getItems().then(items => {
-        this.items = items;
+        this.items = items.sort((a, b) => {
+          if (a.distance > b.distance) {
+            return 1;
+          } else if (a.distance < b.distance) {
+            return -1;
+          }
+
+          return 0;
+        });
         // alert("got the list")
       });
-    }
-
-    let self = this;
-    // try format base64 for missing parts
-    this.task = setInterval(async () => {
-      console.warn("RUNNING TASK!")
-      let cleanImages = true;
-      for (let i = 0; i < self.items.length; i++) {
-        if (self.items[i].image != '') {
-          continue;
-        } else {
-          const j = i;
-          const list = this.items;
-          try {
-            let imageData = await self.fileManager.readAsDataURL(self.fileManager.dataDirectory, self.items[j].imageFileName)
-            self.items[j].image = imageData
-            // .then(imageData => {
-            //   self.items[j].image = imageData;
-            //   console.log(`Assigning image ${JSON.stringify(self.items[j].title)}`);
-            // }, error => {
-            //   cleanImages = false;
-            //   console.error(`1Error getting index:${j} id:${self.items[j].id} image ${JSON.stringify(error)}`);
-            // })
-            // .catch(error => {
-            //   cleanImages = false;
-            //   console.error(`2Error getting index:${j} id:${self.items[j].id} image ${JSON.stringify(error)}`);
-            // })
-          } catch (error) {
-            cleanImages = false;
-            console.error(`Error getting index:${j} id:${self.items[j].id} image ${JSON.stringify(error)}`);
-          }
-        }
-      }
-      if (cleanImages) {
-        console.warn("BREAK TASK!")
-        clearInterval(self.task);
-      }
-
-      console.warn("FINISHED TASK!")
-    }, 2000);
-  }
-
-  ionViewWillLeave() {
-    // this.items = new Array<RouteItem>()
-    if (this.task !== null) {
-      clearInterval(this.task);
     }
   }
 
@@ -120,17 +80,23 @@ export class RoutesListPage {
               imageFileName: imageFileName
             };
 
+            console.log("DEBUG: ", routeItem.image);
+
             items.push(routeItem);
-            this.fileManager.readAsDataURL(this.fileManager.dataDirectory, imageFileName)
-              .then(imageData => {
-                routeItem.image = imageData;
-                console.log(`Assigning image ${JSON.stringify(routeItem.title)}`);
+
+            this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory).then(resp => {
+              this.fileManager.checkFile(resp.nativeURL, imageFileName).then(exists => {
+                if (exists) {
+                  console.log(`File ${routeItem.image} exists!`);
+                  routeItem.image = resp.nativeURL + imageFileName;
+                }
               }, error => {
-                console.error(`1Error getting index:${i} id:${routeItem.id} image ${JSON.stringify(error)}`);
+                console.error("File exists error:", JSON.stringify(error));
               })
-              .catch(error => {
-                console.error(`2Error getting index:${i} id:${routeItem.id} image ${JSON.stringify(error)}`);
-              })
+                .catch(error => console.error("File exists error:", JSON.stringify(error)));
+
+              console.warn(JSON.stringify(resp));
+            })
           }
 
           resolve(items);

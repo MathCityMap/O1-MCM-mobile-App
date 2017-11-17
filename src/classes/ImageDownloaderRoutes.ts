@@ -63,7 +63,7 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
           console.error(`Error downloading image ${task.imgFileName}`)
           callback()
         })
-    }, 3)
+    }, 8)
 
     for (var i = 0; i < trailInfo.length; i++) {
       let info = trailInfo[i];

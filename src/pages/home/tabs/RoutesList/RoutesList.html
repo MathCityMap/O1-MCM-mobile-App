@@ -9,12 +9,11 @@
 
 <ion-content class="routes-list">
     <!-- [virtualScroll]="items" approxItemHeight="124px" -->
-
-  <ion-list>
-      <!-- *virtualItem="let item" -->
-    <ion-item *ngFor="let item of items">
+  <ion-list [virtualScroll]="items" approxItemHeight="124px">
+      <!--  *ngFor="let item of items" -->
+    <ion-item *virtualItem="let item">
       <div class="image-container">
-          <img [src]="item.image"/>
+          <img [src]="item.image" slide-lazy />
       </div>
       <div class="info-container">
         <div class="title">
