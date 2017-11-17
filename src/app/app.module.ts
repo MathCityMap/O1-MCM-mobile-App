@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { ImageResizer } from '@ionic-native/image-resizer';
 
 import { MyApp } from './app.component';
 
@@ -50,6 +51,7 @@ import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
     DB_Updater,
     ImageDownloaderRoutes,
     SpinnerDialog,
+    ImageResizer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

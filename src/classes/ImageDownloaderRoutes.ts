@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { File } from '@ionic-native/file'
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer'
+import { ImageResizer, ImageResizerOptions } from '@ionic-native/image-resizer';
 import { AsyncTask } from './AsyncTask'
 import { Helper } from './Helper'
 import { DB_Handler } from './DB_Handler'
@@ -13,7 +14,7 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
   // protected boolean doNotCheck;
   // protected ProgressDialog dialog;
 
-  constructor(private transfer: FileTransfer, private fileManager: File) {
+  constructor(private transfer: FileTransfer, private fileManager: File, private imageResizer: ImageResizer) {
     super()
   }
 
@@ -47,12 +48,25 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
     let trailInfo = await dbHandler.getTrailsImageInfo()
     let dataDirectory = this.fileManager.dataDirectory
     let fileManager = this.fileManager
+    let imageResizer = this.imageResizer
     this.downloadQueue = async.queue(function (task: any, callback: any) {
       console.log("downloading: " + JSON.stringify(task))
       fileTransfer.download(Helper.WEBSERVER_URL + encodeURI(task.imgFileName), dataDirectory + task.outputName + '.tmp')
         .then(() => {
           fileManager.moveFile(dataDirectory, task.outputName + '.tmp', dataDirectory, task.outputName)
             .then(() => {
+              let options = {
+                uri: dataDirectory + task.outputName,
+                folderName: dataDirectory + 'thumbs/',
+                quality: 90,
+                width: 120,
+                height: 120
+               } as ImageResizerOptions;
+               imageResizer.resize(options).then(image => {
+                 console.log('RESIZED:' + JSON.stringify(image))
+               }, error => {
+                 console.error('RESIZING ERROR: ' + JSON.stringify(error))
+               })
               callback()
             })
             .catch(err => {
@@ -121,4 +135,5 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
   //     dialog.dismiss();
   //     parent.updateFinished();
   // }
+  
 }
