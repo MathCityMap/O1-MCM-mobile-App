@@ -188,11 +188,11 @@ export class MapPage {
 
             let watch = this.geolocation.watchPosition();
             watch.subscribe(resp => {
-              if (resp) {
+              if (resp && resp.coords) {
                 Helper.myLocation = resp;
                 console.log(`Coordinates: ${JSON.stringify(resp)}`);
                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
-                this.map.panTo(lanlng);
+                // this.map.panTo(lanlng);
                 this.userMarker.setLatLng(lanlng);
               }
             });
