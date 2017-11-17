@@ -83,10 +83,6 @@
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/geolocation/-/geolocation-4.4.2.tgz#583b7636927bd39bf6ce1ba14a1d94b0dfc5db66"
 
-"@ionic-native/image-resizer@^4.4.2":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@ionic-native/image-resizer/-/image-resizer-4.4.2.tgz#1e0d4328efff1b6beb6e208487ef12b42bd97cbd"
-
 "@ionic-native/spinner-dialog@^4.4.2":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/spinner-dialog/-/spinner-dialog-4.4.2.tgz#0671409f7b058a9f09c8e065e8ed8403971e3779"
@@ -1750,10 +1746,6 @@ inflight@^1.0.4:
   dependencies:
     once "^1.3.0"
     wrappy "1"
-
-info.protonet.imageresizer@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/info.protonet.imageresizer/-/info.protonet.imageresizer-0.1.1.tgz#a43be699843abde5f0b8599dc825e662e3fc4720"
 
 inherits@2, inherits@2.0.3, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.0, inherits@~2.0.1, inherits@~2.0.3:
   version "2.0.3"
