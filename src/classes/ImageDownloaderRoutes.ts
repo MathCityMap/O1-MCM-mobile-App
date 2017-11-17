@@ -4,6 +4,7 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer'
 import { AsyncTask } from './AsyncTask'
 import { Helper } from './Helper'
 import { DB_Handler } from './DB_Handler'
+import async from 'async'
 
 @Injectable()
 export class ImageDownloaderRoutes extends AsyncTask<boolean> {
@@ -34,16 +35,7 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
     //     new Handler(Looper.getMainLooper()).post(showProgressDialog);
   }
 
-  private downloadImage(fileTransfer: FileTransferObject, imgFileName: string, outputName: string) {
-    fileTransfer.download(Helper.WEBSERVER_URL + encodeURI(imgFileName), this.fileManager.dataDirectory + outputName)
-    .then(entry => {
-      // console.log(`Image download completed: ${entry.toURL()}`)
-    }, error => {
-      console.error(`Download error URL: [${imgFileName}]`)
-    }).catch(error => {
-      console.error(`Download error URL: [${imgFileName}]`)
-    })
-  }
+  private downloadQueue: any = null;
 
   async doInBackground(doNotCheck: boolean) {
     if (doNotCheck) {
@@ -53,6 +45,18 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
     const fileTransfer: FileTransferObject = this.transfer.create();
     let dbHandler = DB_Handler.getInstance()
     let trailInfo = await dbHandler.getTrailsImageInfo()
+    let dataDirectory = this.fileManager.dataDirectory
+    this.downloadQueue = async.queue(function (task: any, callback: any) {
+      console.log("downloading: " + JSON.stringify(task))
+      fileTransfer.download(Helper.WEBSERVER_URL + encodeURI(task.imgFileName), dataDirectory + task.outputName)
+        .then(() => {
+          callback()
+        })
+        .catch(error => {
+          console.error(`Error downloading image ${task.imgFileName}`)
+          callback()
+        })
+    }, 3)
 
     for (var i = 0; i < trailInfo.length; i++) {
       let info = trailInfo[i];
@@ -71,19 +75,31 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
       // let fileExists = await fileManager.checkFile(fileManager.dataDirectory, outputName)
       //   .then((res) => res, (err) => false)
 
-      let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)
+      let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
       let file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false })
         .then((res) => res, (err) => null)
       if (file !== null) {
         file.file(file => {
           if (file.size <= 0) {
             // Path not empty and file does not exist - download from url
-            this.downloadImage(fileTransfer, imgFileName, outputName)
+            this.downloadQueue.push({
+              fileTransfer: fileTransfer,
+              imgFileName: imgFileName,
+              outputName: outputName
+            }, err => {
+              console.log(`Finished downloading ${fileTransfer}`)
+            })
           }
         })
       } else {
         // Path not empty and file does not exist - download from url
-        this.downloadImage(fileTransfer, imgFileName, outputName)
+        this.downloadQueue.push({
+          fileTransfer: fileTransfer,
+          imgFileName: imgFileName,
+          outputName: outputName
+        }, err => {
+          console.log(`Finished downloading ${fileTransfer}`)
+        })
       }
     }
   }

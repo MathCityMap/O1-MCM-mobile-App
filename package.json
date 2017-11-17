@@ -1,5 +1,5 @@
 {
-    "name": "Math City Map",
+    "name": "math-mity-map",
     "version": "0.0.1",
     "author": "Autentek GmbH",
     "homepage": "http://autentek.de/",
@@ -28,7 +28,7 @@
         "@ionic-native/sqlite": "^4.3.2",
         "@ionic-native/status-bar": "4.3.0",
         "@ionic/storage": "^2.0.1",
-        "async": "^2.5.0",
+        "async": "^2.6.0",
         "cordova-android": "^6.2.3",
         "cordova-fabric-plugin": "^1.1.9",
         "cordova-ios": "^4.5.3",
