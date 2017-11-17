@@ -23,13 +23,11 @@ interface RouteItem {
 })
 export class RoutesListPage {
   public items: Array<RouteItem> = new Array<RouteItem>();
-  private task: any;
 
-  constructor(public navCtrl: NavController, private fileManager: File) {
-
-  }
+  constructor(public navCtrl: NavController, private fileManager: File) { }
 
   ionViewDidEnter() {
+
     if (this.items.length == 0) {
       this.getItems().then(items => {
         this.items = items.sort((a, b) => {
@@ -85,10 +83,11 @@ export class RoutesListPage {
             items.push(routeItem);
 
             this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory).then(resp => {
-              this.fileManager.checkFile(resp.nativeURL, imageFileName).then(exists => {
+              const fileName = 'thumb_' + imageFileName
+              this.fileManager.checkFile(resp.nativeURL, fileName).then(exists => {
                 if (exists) {
-                  console.log(`File ${routeItem.image} exists!`);
-                  routeItem.image = resp.nativeURL + imageFileName;
+                  console.log(`File ${fileName} exists!`);
+                  routeItem.image = resp.nativeURL + fileName;
                 }
               }, error => {
                 console.error("File exists error:", JSON.stringify(error));
