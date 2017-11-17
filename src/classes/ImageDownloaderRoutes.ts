@@ -46,11 +46,18 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
     let dbHandler = DB_Handler.getInstance()
     let trailInfo = await dbHandler.getTrailsImageInfo()
     let dataDirectory = this.fileManager.dataDirectory
+    let fileManager = this.fileManager
     this.downloadQueue = async.queue(function (task: any, callback: any) {
       console.log("downloading: " + JSON.stringify(task))
-      fileTransfer.download(Helper.WEBSERVER_URL + encodeURI(task.imgFileName), dataDirectory + task.outputName)
+      fileTransfer.download(Helper.WEBSERVER_URL + encodeURI(task.imgFileName), dataDirectory + task.outputName + '.tmp')
         .then(() => {
-          callback()
+          fileManager.moveFile(dataDirectory, task.outputName + '.tmp', dataDirectory, task.outputName)
+            .then(() => {
+              callback()
+            })
+            .catch(err => {
+              callback()
+            })
         })
         .catch(error => {
           console.error(`Error downloading image ${task.imgFileName}`)

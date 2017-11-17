@@ -14,7 +14,7 @@
       <!-- *virtualItem="let item" -->
     <ion-item *ngFor="let item of items">
       <div class="image-container">
-          <img src="{{item.image}}" slide-lazy />
+          <img [src]="item.image"/>
       </div>
       <div class="info-container">
         <div class="title">

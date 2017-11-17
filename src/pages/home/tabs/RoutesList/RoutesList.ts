@@ -13,7 +13,8 @@ interface RouteItem {
   city: string,
   image: string,
   grade: number,
-  distance: number
+  distance: number,
+  imageFileName: string
 }
 
 @Component({
@@ -22,18 +23,66 @@ interface RouteItem {
 })
 export class RoutesListPage {
   public items: Array<RouteItem> = new Array<RouteItem>();
+  private task: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private fileManager: File) {
 
   }
 
   ionViewDidEnter() {
+    this.task = null;
     if (this.items.length == 0) {
       // todo smart update of items in the list
       this.getItems().then(items => {
         this.items = items;
         // alert("got the list")
       });
+    }
+
+    let self = this;
+    // try format base64 for missing parts
+    this.task = setInterval(async () => {
+      console.warn("RUNNING TASK!")
+      let cleanImages = true;
+      for (let i = 0; i < self.items.length; i++) {
+        if (self.items[i].image != '') {
+          continue;
+        } else {
+          const j = i;
+          const list = this.items;
+          try {
+            let imageData = await self.fileManager.readAsDataURL(self.fileManager.dataDirectory, self.items[j].imageFileName)
+            self.items[j].image = imageData
+            // .then(imageData => {
+            //   self.items[j].image = imageData;
+            //   console.log(`Assigning image ${JSON.stringify(self.items[j].title)}`);
+            // }, error => {
+            //   cleanImages = false;
+            //   console.error(`1Error getting index:${j} id:${self.items[j].id} image ${JSON.stringify(error)}`);
+            // })
+            // .catch(error => {
+            //   cleanImages = false;
+            //   console.error(`2Error getting index:${j} id:${self.items[j].id} image ${JSON.stringify(error)}`);
+            // })
+          } catch (error) {
+            cleanImages = false;
+            console.error(`Error getting index:${j} id:${self.items[j].id} image ${JSON.stringify(error)}`);
+          }
+        }
+      }
+      if (cleanImages) {
+        console.warn("BREAK TASK!")
+        clearInterval(self.task);
+      }
+
+      console.warn("FINISHED TASK!")
+    }, 2000);
+  }
+
+  ionViewWillLeave() {
+    // this.items = new Array<RouteItem>()
+    if (this.task !== null) {
+      clearInterval(this.task);
     }
   }
 
@@ -53,7 +102,7 @@ export class RoutesListPage {
     return new Promise<Array<RouteItem>>((resolve, reject) => {
       dbh.ready().then(() => {
         let db = dbh.getWritableDatabase();
-        let fileManager = new File();
+
         db.executeSql(sqlQry, []).then(result => {
           for (var i = 0; i < result.rows.length; i++) {
             let row = result.rows.item(i);
@@ -67,19 +116,20 @@ export class RoutesListPage {
               city: row.city,
               image: '', // TODO: empty image handler
               grade: new Number(row.grade).valueOf(),
-              distance: Helper.getDistanceToCenter(center[0], center[1])
+              distance: Helper.getDistanceToCenter(center[0], center[1]),
+              imageFileName: imageFileName
             };
 
             items.push(routeItem);
-            fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
+            this.fileManager.readAsDataURL(this.fileManager.dataDirectory, imageFileName)
               .then(imageData => {
                 routeItem.image = imageData;
                 console.log(`Assigning image ${JSON.stringify(routeItem.title)}`);
               }, error => {
-                console.error(`Error getting image ${JSON.stringify(error)}`);
+                console.error(`1Error getting index:${i} id:${routeItem.id} image ${JSON.stringify(error)}`);
               })
               .catch(error => {
-                console.error(`Error getting image ${JSON.stringify(error)}`);
+                console.error(`2Error getting index:${i} id:${routeItem.id} image ${JSON.stringify(error)}`);
               })
           }
 
