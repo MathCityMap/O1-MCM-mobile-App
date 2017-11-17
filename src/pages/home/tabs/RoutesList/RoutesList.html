@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content class="routes-list">
-  <ion-list [virtualScroll]="items" approxItemHeight="124px">
-    <ion-item *virtualItem="let item">
+    <!-- [virtualScroll]="items" approxItemHeight="124px" -->
+
+  <ion-list>
+      <!-- *virtualItem="let item" -->
+    <ion-item *ngFor="let item of items">
       <div class="image-container">
           <img src="{{item.image}}" slide-lazy />
       </div>
-      <!-- <span style="float: left; width: 100px; height: 100px">
-        <ion-img [src]="item.image" style="width: 100px; height: 100px;float: left" height="100px" width="100px"></ion-img>
-      </span> -->
       <div class="info-container">
         <div class="title">
           <h1>{{item.title}}</h1>

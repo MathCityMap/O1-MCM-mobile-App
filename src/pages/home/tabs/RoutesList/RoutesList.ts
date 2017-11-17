@@ -28,10 +28,13 @@ export class RoutesListPage {
   }
 
   ionViewDidEnter() {
-    this.getItems().then(items => {
-      this.items = items
-      // alert("got the list")
-    });
+    if (this.items.length == 0) {
+      // todo smart update of items in the list
+      this.getItems().then(items => {
+        this.items = items;
+        // alert("got the list")
+      });
+    }
   }
 
   getItems(): Promise<Array<RouteItem>> {
