@@ -25,23 +25,25 @@ export class DB_Updater extends AsyncTask<string[]> {
     this.spinner.show(null, "Loading data", true);
   }
 
-  onPostExecute() {
+  async onPostExecute() {
     console.log("onPostExecute ran");
     if (Helper.routeTableUpdate == 1
       && Helper.taskTableUpdate == 1
       && Helper.relTableUpdate == 1
       && Helper.routeTableNeedsUpdate == 1) {
-      new ImageDownloaderRoutes(this.transfer, this.file).execute(false).then(() => {
-        this.spinner.hide()
-      })
+      // new ImageDownloaderRoutes(this.transfer, this.file).execute(false).then(() => {
+        await new ImageDownloaderRoutes(this.transfer, this.file).execute(false)
+        // this.spinner.hide()
+      // })
     }
     if (Helper.routeTableUpdate == 1
       && Helper.taskTableUpdate == 1
       && Helper.relTableUpdate == 1
       && Helper.routeTableNeedsUpdate == 0) {
-      new ImageDownloaderRoutes(this.transfer, this.file).execute(true).then(() => {
-        this.spinner.hide()
-      })
+      // new ImageDownloaderRoutes(this.transfer, this.file).execute(true).then(() => {
+        await new ImageDownloaderRoutes(this.transfer, this.file).execute(true)
+        // this.spinner.hide()
+      // })
     }
     //     // If all tables are updated - start image download of routes
     //     if (Helper.routeTableUpdate == 1 && Helper.taskTableUpdate == 1 && Helper.relTableUpdate == 1 && Helper.routeTableNeedsUpdate == 1) {
@@ -52,6 +54,7 @@ export class DB_Updater extends AsyncTask<string[]> {
     //         new ImageDownloaderRoutes(context, true).execute();
     //     }
     //     dialog.dismiss();
+    this.spinner.hide()
   }
 
   async doInBackground(params: string[]): Promise<any> {
@@ -59,6 +62,10 @@ export class DB_Updater extends AsyncTask<string[]> {
     let table = params[1]
     let action = params[2]
     console.log("async runInBackground")
+    if (!Helper.isOnline) {
+      console.warn("No internet!")
+      return new Promise<any>(resolve => resolve())
+    }
 
     let headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

@@ -14,6 +14,8 @@ import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
+import { MathTask } from '../../../../classes/MathTask';
+
 @Component({
   selector: 'page-map',
   templateUrl: 'Map.html'
@@ -36,6 +38,7 @@ export class MapPage {
 
   ionViewDidEnter() {
     console.log("ionViewDidEnter:");
+
     this.platform.ready().then(() => {
       console.log('Platform is ready!');
       this.initializeMap();
@@ -46,7 +49,7 @@ export class MapPage {
 
   markerGroup: any = null;
 
-  initializeMap() {
+  async initializeMap() {
     let dbHandler = DB_Handler.getInstance();
     if (this.markerGroup != null) {
       console.warn('removing markerGroup');
@@ -96,14 +99,23 @@ export class MapPage {
 
   loadMap() {
     this.center = [50.1208566, 8.66158515]; // Frankfurt-am Main
-    let mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}.png?access_token=${Helper.accessToken}`
+    let mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}.png?&tilesize=256&access_token=${Helper.accessToken}`
     let subDomains = ['a', 'b', 'c', 'd'];
+
+    //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
+    const corner1 = L.latLng(38.4313915,27.1212443)
+    const corner2 = L.latLng(38.4114794,27.1431646)
+    const bounds: L.latLngBounds = L.latLngBounds(corner1, corner2)
+
 
     if (this.map == null) {
       this.map = L.map('map', {
-        center: this.center,
-        zoom: 13
+        // center: this.center,
+        zoom: 20,
+        tileSize: 256
       });
+      this.map.fitBounds(bounds);
+      this.map.setZoom(18);
       this.map.on('click', e => {
         //check if details open and reset content. for now just reset content
         this.routeDetails = null;
@@ -116,7 +128,8 @@ export class MapPage {
           attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
           subdomains: subDomains,
           minZoom: 10,
-          maxZoom: 18,
+          maxZoom: 20,
+          tileSize: 256,
           crossOrigin: true
         });
         let offlineControl = L.control.offline(offlineLayer, tilesDb, {
@@ -135,7 +148,7 @@ export class MapPage {
             }
           },
           minZoom: 10,
-          maxZoom: 16
+          maxZoom: 20
         });
 
         offlineLayer.addTo(map);
@@ -180,20 +193,18 @@ export class MapPage {
             // let markerGroup = L.featureGroup();
             this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
               alert('Marker clicked');
-            })
-            // markerGroup.addLayer(marker);
-            // this.map.addLayer(markerGroup);
-            this.userMarker.addTo(this.map);
-            this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
+            });
+            // this.userMarker.addTo(this.map);
+            // this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
 
             let watch = this.geolocation.watchPosition();
             watch.subscribe(resp => {
               if (resp && resp.coords) {
                 Helper.myLocation = resp;
                 console.log(`Coordinates: ${JSON.stringify(resp)}`);
-                const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
+                // const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                 // this.map.panTo(lanlng);
-                this.userMarker.setLatLng(lanlng);
+                // this.userMarker.setLatLng(lanlng);
               }
             });
           }

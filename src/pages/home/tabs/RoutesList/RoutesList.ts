@@ -28,20 +28,20 @@ export class RoutesListPage {
 
   ionViewDidEnter() {
 
-    if (this.items.length == 0) {
-      this.getItems().then(items => {
-        this.items = items.sort((a, b) => {
-          if (a.distance > b.distance) {
-            return 1;
-          } else if (a.distance < b.distance) {
-            return -1;
-          }
+    // if (this.items.length == 0) {
+    //   this.getItems().then(items => {
+    //     this.items = items.sort((a, b) => {
+    //       if (a.distance > b.distance) {
+    //         return 1;
+    //       } else if (a.distance < b.distance) {
+    //         return -1;
+    //       }
 
-          return 0;
-        });
-        // alert("got the list")
-      });
-    }
+    //       return 0;
+    //     });
+    //     // alert("got the list")
+    //   });
+    // }
   }
 
   getItems(): Promise<Array<RouteItem>> {

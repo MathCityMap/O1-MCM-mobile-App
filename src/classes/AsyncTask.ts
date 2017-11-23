@@ -1,18 +1,23 @@
 export abstract class AsyncTask<T> {
-  abstract onPreExecute()
+  abstract async onPreExecute()
   async execute(params: T) {
     console.log("Started execute")
-    this.onPreExecute()
+    await this.onPreExecute()
+    try {
     await this.doInBackground(params)
-      .then(() => {
-        this.onPostExecute()
-      })
-      .catch((error: Error) => {
-        console.error(`${this.constructor.name} error`, error.name)
-        console.error(error.stack)
-        this.onPostExecute()
-      })
+    } catch (error) {
+      console.error(`${this.constructor.name} error`, error.name)
+      console.error(error.stack)
+    }
+      // .then(() => {
+        await this.onPostExecute()
+      // })
+      // .catch((error: Error) => {
+      //   console.error(`${this.constructor.name} error`, error.name)
+      //   console.error(error.stack)
+      //   this.onPostExecute()
+      // })
   }
   abstract async doInBackground(params: T)
-  abstract onPostExecute()
+  abstract async onPostExecute()
 }

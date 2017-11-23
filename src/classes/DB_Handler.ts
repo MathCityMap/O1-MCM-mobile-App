@@ -49,6 +49,10 @@ export class DB_Handler {
     return this.mDB
   }
 
+  getReadableDatabase(): SQLiteObject {
+    return this.mDB
+  }
+
   private onCreate(): Promise<void> {
     // Create Tables
     let CREATE_STATE_TABLE: string = DBC.DB_STATE.getCreateStatement()
@@ -680,6 +684,16 @@ export class DB_Handler {
   //   cursor.close();
   //   return result;
   //  }
+  async getRouteTaskIds(routeId: string): Promise<Array<string>> {
+    const db = DB_Handler.getInstance().getReadableDatabase()
+    const sqlResult = await db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE route_id = ?`, [routeId])
+    let result = new Array<string>()
+    for (let i = 0; i < sqlResult.rows.length; i++) {
+      result.push(sqlResult.rows.item(i).task_id.toString())
+    }
+
+    return result
+  }
 
   //  /*
   //  @param publicState int - 0 privat, 1 public
