@@ -1,4 +1,14 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Map" tabIcon="map"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Routes" tabIcon="list-box"></ion-tab>
-</ion-tabs>
+<ion-header>
+  <ion-navbar>
+    <div class="logo-bar">
+      <img src="assets/images/logo-mcm-symbol.png" class="logo-img">
+      <ion-title>MathCityMap</ion-title>
+    </div>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-tabs>
+    <ion-tab [root]="tab1Root" tabTitle="Map" tabIcon="map"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="Routes" tabIcon="list-box"></ion-tab>
+  </ion-tabs>
+</ion-content>

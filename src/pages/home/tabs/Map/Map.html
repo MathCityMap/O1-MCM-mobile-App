@@ -1,11 +1,3 @@
-<ion-header>
-  <ion-navbar>
-    <div class="logo-bar">
-      <img src="assets/images/logo-mcm-symbol.png" class="logo-img">
-      <ion-title>MathCityMap</ion-title>
-    </div>
-  </ion-navbar>
-</ion-header>
 <ion-content padding class="map">
   <div id="map"></div>
   <!-- *ngClass="{true: 'open', false: ''}[routeDetails != null]" -->
@@ -21,6 +13,9 @@
       <hr>
       <div class="grade" *ngIf="routeDetails">
         <p class="label">From grade</p><p class="value">{{routeDetails.grade}}</p>
+      </div>
+      <div>
+        <button ion-button (click)="doDownload(routeDetails)" color="dark">Download</button>
       </div>
     </div>
   </div>

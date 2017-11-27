@@ -19,6 +19,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/home/tabs/Map/Map';
 import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
+import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
     MyApp,
     MapPage,
     RoutesListPage,
+    TasksMap,
     HomePage
   ],
   imports: [
@@ -39,6 +41,7 @@ import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
     MyApp,
     MapPage,
     RoutesListPage,
+    TasksMap,
     HomePage
   ],
   providers: [

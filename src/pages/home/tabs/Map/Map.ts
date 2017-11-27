@@ -14,7 +14,10 @@ import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
-import { MathTask } from '../../../../classes/MathTask';
+// import { MathTask } from '../../../../classes/MathTask';
+
+import { TasksMap } from '../TasksMap/TasksMap';
+import { HomePage } from '../../home';
 
 @Component({
   selector: 'page-map',
@@ -62,7 +65,7 @@ export class MapPage {
       this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]).then(() => {
         console.log("updater finished!")
         let table = DBC.DB_ROUTE;
-        let sqlQry = `SELECT ${table.fields[3]},${table.fields[6]},${table.fields[13]} FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
+        let sqlQry = `SELECT * FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
         console.log(`SQL QUERY: ${sqlQry}`)
         let dbh = DB_Handler.getInstance();
         let db = dbh.getWritableDatabase();
@@ -213,5 +216,13 @@ export class MapPage {
           console.error(`Location error: ${JSON.stringify(error)}`);
         })
     }
+  }
+
+  doDownload(route: any): void {
+    console.log(`Route details ${JSON.stringify(route._id)}`);
+    console.log("clicked");
+
+    // this.navCtrl.push(TasksMap, { param1: 'param1', route: route });
+    HomePage.nav.push(TasksMap, { route: route });
   }
 }
