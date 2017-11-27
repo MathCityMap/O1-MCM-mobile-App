@@ -59,22 +59,23 @@ export class RoutesListPage {
     let dbh = DB_Handler.getInstance();
     return new Promise<Array<RouteItem>>((resolve, reject) => {
       dbh.ready().then(() => {
-        let db = dbh.getWritableDatabase();
+        // let db = dbh.getWritableDatabase();
 
-        db.executeSql(sqlQry, []).then(result => {
-          for (var i = 0; i < result.rows.length; i++) {
-            let row = result.rows.item(i);
-            let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
-            let center = JSON.parse(row.center);
+        dbh.getReadyRoutes(1).then(result => {
+        // db.executeSql(sqlQry, []).then(result => {
+          for (var i = 0; i < result.length; i++) {
+            let row = result[i];
+            let imageFileName = row.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
+            // let center = JSON.parse(row.center);
             let routeItem: RouteItem = {
-              id: new Number(row._id).valueOf(),
-              public: new Number(row.public).valueOf(),
-              title: row.title,
-              country_code: row.country_code,
-              city: row.city,
+              id: row.Id,// new Number(row._id).valueOf(),
+              public: new Number(row.getInfo("public")).valueOf(),
+              title: row.Title,
+              country_code: row.getInfo("country_code"),
+              city: row.getInfo("city"),
               image: '', // TODO: empty image handler
-              grade: new Number(row.grade).valueOf(),
-              distance: Helper.getDistanceToCenter(center[0], center[1]),
+              grade: new Number(row.getInfo("grade")).valueOf(),
+              distance: Helper.getDistanceToCenter(row.Center.lat, row.Center.lng),
               imageFileName: imageFileName
             };
 

@@ -1,3 +1,23 @@
+export class MapTile {
+  constructor(private pZoomLevel: number, private pX: number, private pY: number) { }
+
+  get x(): number {
+    return this.pX
+  }
+
+  get y(): number {
+    return this.pY
+  }
+
+  get zoomLevel(): number {
+    return this.pZoomLevel
+  }
+}
+
+export class Point {
+  constructor(public x: number, public y: number) { }
+}
+
 export class Helper {
   /*
     Intents #

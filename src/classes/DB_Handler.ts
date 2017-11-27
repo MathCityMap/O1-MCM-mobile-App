@@ -1,6 +1,8 @@
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite'
 import { DBC } from './DBC'
 import * as Collections from 'typescript-collections'
+import { MathTask } from './MathTask';
+import { MathRoute } from './MathRoute';
 
 export class DB_Handler {
   private static mInstance: DB_Handler = null
@@ -38,8 +40,7 @@ export class DB_Handler {
           })
         })
         .catch(e => {
-          console.log('Error connecting to DB')
-          console.log(e)
+          console.error('Error connecting to DB', JSON.stringify(e))
           reject(e)
         });
     })
@@ -129,8 +130,6 @@ export class DB_Handler {
   getTableVersions(): Promise<Collections.Dictionary<string, string>> {
     return new Promise<Collections.Dictionary<string, string>>((resolve, reject) => {
       let sqlQuery = `SELECT ${DBC.DB_STATE.fields[1]},${DBC.DB_STATE.fields[2]} FROM ${DBC.DATABASE_TABLE_STATE}`
-      console.log('SQL QUERY:', sqlQuery)
-
 
       this.mDB.executeSql(sqlQuery, [])
         .then(result => {
@@ -187,6 +186,18 @@ export class DB_Handler {
   //  }
   //  return false;
   // }
+  isOptionAvailable(optionName: string, value: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      const db = DB_Handler.getInstance().getReadableDatabase()
+      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_STATE} WHERE option=? AND value=?`, [optionName, value]).then(result => {
+        if (result.rows.length == 0) {
+          resolve(false)
+        } else {
+          resolve(true)
+        }
+      }).catch(error => reject(error))
+    })
+  }
 
   //  public String getOptionValue(String optionName){
   //   SQLiteDatabase db = DB_Handler.getInstance(context).getReadableDatabase();
@@ -358,6 +369,48 @@ export class DB_Handler {
   //   }
   //  }
 
+  async getMathTaskById(id: number): Promise<MathTask> {
+    return new Promise<MathTask>((resolve, reject) => {
+      const db = DB_Handler.getInstance().getReadableDatabase()
+      const sqlQry = `SELECT * FROM ${DBC.DATABASE_TABLE_TASK} WHERE _id=?`
+      db.executeSql(sqlQry, [id]).then(result => {
+        if (result.rows.length == 0) {
+          resolve(null)
+        }
+        const item = result.rows.item(0)
+        let t = new MathTask(+item.lat, +item.lon)
+        t.Id = +item._id
+        t.putInfo(DBC.DB_TASK.fields[1], item.user_id)
+        t.putInfo(DBC.DB_TASK.fields[2], item.public)
+        t.putInfo(DBC.DB_TASK.fields[5], item.title)
+        t.putInfo(DBC.DB_TASK.fields[6], item.description)
+        t.putInfo(DBC.DB_TASK.fields[7], item.image)
+        t.putInfo(DBC.DB_TASK.fields[8], item.solution_type)
+        t.putInfo(DBC.DB_TASK.fields[9], item.solution)
+        t.putInfo(DBC.DB_TASK.fields[10], item.hint1)
+        t.putInfo(DBC.DB_TASK.fields[11], item.hint2)
+        t.putInfo(DBC.DB_TASK.fields[12], item.hint3)
+        t.putInfo(DBC.DB_TASK.fields[13], item.assistive_equipment)
+        t.putInfo(DBC.DB_TASK.fields[14], item.author)
+        t.putInfo(DBC.DB_TASK.fields[15], item.mail)
+        t.putInfo(DBC.DB_TASK.fields[16], item.grade)
+        t.putInfo(DBC.DB_TASK.fields[17], item.tags)
+        t.putInfo(DBC.DB_TASK.fields[18], item.timestamp)
+        t.putInfo(DBC.DB_TASK.fields[19], item.solutionsample)
+        t.putInfo(DBC.DB_TASK.fields[20], item.attr)
+        t.putInfo(DBC.DB_TASK.fields[21], item.create_date)
+        t.putInfo(DBC.DB_TASK.fields[22], item.lang_code)
+        resolve(t)
+      }, error => {
+        console.error(`getMathTaskById ERROR:`, JSON.stringify(error))
+        reject(error)
+      }
+      ).catch(error => {
+        console.error(`getMathTaskById ERROR:`, JSON.stringify(error))
+        reject(error)
+      })
+    })
+  }
   //  public MathTask getMathTaskById(int id){
   //   SQLiteDatabase db = DB_Handler.getInstance(context).getReadableDatabase();
   //   Cursor cursor = db.query(DBC.DATABASE_TABLE_TASK, null, "_id = ?", new String[]{Integer.toString(id)}, null, null, null, null);
@@ -466,6 +519,28 @@ export class DB_Handler {
   //   cursor.close();
   //   return mt;
   //  }
+  getMathTasks(): Promise<Array<MathTask>> {
+    const self = this
+    return new Promise<Array<MathTask>>((resolve, reject) => {
+      const db = DB_Handler.getInstance().getReadableDatabase()
+      let mt = new Array<MathTask>()
+      db.executeSql(`SELECT _id FROM ${DBC.DATABASE_TABLE_TASK}`, []).then(result => {
+        let promises = []
+        for (var i = 0; i < result.rows.length; i++) {
+          let id = result.rows.item(i)._id.toString()
+          promises.push(self.getMathTaskById(id).then(task => {
+            mt.push(task)
+          }))
+        }
+        Promise.all(promises).then(() => {
+          resolve(mt)
+        }).catch(error => reject(error))
+      }).catch(error => {
+        console.error(`getMathTasks Error: ${JSON.stringify(error)}`)
+        reject(error)
+      })
+    })
+  }
 
   //  /*
   //   @return Map<String, MathTask> of all available Tasks in the task table
@@ -482,6 +557,19 @@ export class DB_Handler {
 
   //   return result;
   //  }
+  getMathTasksAssociative(): Promise<Collections.Dictionary<string, MathTask>> {
+    return new Promise<Collections.Dictionary<string, MathTask>>((resolve, reject) => {
+      let result = new Collections.Dictionary<string, MathTask>()
+      this.getMathTasks().then(tasks => {
+        tasks.forEach(task => {
+          result.setValue(task.Id.toString(), task)
+        })
+        resolve(result)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }
 
   //  /*
   //  Get MathRoute by code - only id and title
@@ -516,6 +604,7 @@ export class DB_Handler {
   //   return route;
   //  }
 
+
   //  /*
   //   @return ArrayList<MathRoute> of all available routes in route table
   //   */
@@ -540,7 +629,51 @@ export class DB_Handler {
   //   cursor.close();
   //   return mts;
   //  }
+  getMathRoutes(): Promise<Array<MathRoute>> {
+    let mts = new Array<MathRoute>()
+    const self = this
+    return new Promise<Array<MathRoute>>((resolve, reject) => {
+      const db = DB_Handler.getInstance().getReadableDatabase()
+      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_ROUTE}`, []).then(result => {
+        let promises = []
+        for (let i = 0; i < result.rows.length; i++) {
+          let route: MathRoute = self.createMathRouteFromCursor(result.rows.item(i))
+          // smnbmbmsdnf route.downloaded = self.isOptionAvailable(DBC.ON_ROUTE_DATA, route.Id.toString())
+          promises.push(self.isOptionAvailable(DBC.ON_ROUTE_DATA, route.Id.toString()).then(downloaded => {
+            route.downloaded = downloaded
+            mts.push(route)
+          }).catch(error => reject(error)))
+        }
+        Promise.all(promises).then(() => {
+          resolve(mts)
+        }).catch(error => reject(error))
+      }).catch(error => reject(error))
+    })
+  }
 
+  private createMathRouteFromCursor(cursor: any) {
+    let route = new MathRoute(cursor.title)
+    route.Id = +cursor._id
+    route.putInfo(DBC.DB_ROUTE.fields[1], cursor.user_id)
+    route.putInfo(DBC.DB_ROUTE.fields[2], cursor.public)
+    route.putInfo(DBC.DB_ROUTE.fields[3], cursor.title)
+    route.putInfo(DBC.DB_ROUTE.fields[4], cursor.country_code)
+    route.putInfo(DBC.DB_ROUTE.fields[5], cursor.city)
+    route.putInfo(DBC.DB_ROUTE.fields[6], cursor.image)
+    route.putInfo(DBC.DB_ROUTE.fields[7], cursor.code)
+    route.putInfo(DBC.DB_ROUTE.fields[8], cursor.grade)
+    route.putInfo(DBC.DB_ROUTE.fields[9], cursor.tags)
+    route.putInfo(DBC.DB_ROUTE.fields[10], cursor.duration)
+    route.putInfo(DBC.DB_ROUTE.fields[11], cursor.length)
+    route.putInfo(DBC.DB_ROUTE.fields[12], cursor.bounding_box)
+    route.putInfo(DBC.DB_ROUTE.fields[13], cursor.center)
+    route.putInfo(DBC.DB_ROUTE.fields[14], cursor.timestamp)
+    route.putInfo(DBC.DB_ROUTE.fields[15], cursor.description)
+    route.putInfo(DBC.DB_ROUTE.fields[16], cursor.create_date)
+    route.putInfo(DBC.DB_ROUTE.fields[17], cursor.attr)
+
+    return route
+  }
   //  private MathRoute createMathRouteFromCursor(Cursor cursor){
   //   // Read data
   //   int id = cursor.getInt(0);
@@ -600,6 +733,17 @@ export class DB_Handler {
 
   //   return result;
   //  }
+  getMathRoutesAssociative(): Promise<Collections.Dictionary<string, MathRoute>> {
+    return new Promise<Collections.Dictionary<string, MathRoute>>((resolve, reject) => {
+      let result = new Collections.Dictionary<string, MathRoute>()
+      this.getMathRoutes().then(routes => {
+        routes.forEach(mr => {
+          result.setValue(mr.Id.toString(), mr)
+        })
+        resolve(result)
+      }).catch(error => reject(error))
+    })
+  }
 
   //  /*
   //  Wird im ImageDownloader verwendet, dieser benötigt von allen Trails die Infos public und image
@@ -668,6 +812,28 @@ export class DB_Handler {
   //   cursor.close();
   //   return result;
   //  }
+  getRouteTaskRelations(): Promise<Collections.Dictionary<string, Array<string>>> {
+    return new Promise<Collections.Dictionary<string, Array<string>>>((resolve, reject) => {
+      const db = DB_Handler.getInstance().getReadableDatabase()
+      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK}`, []).then(cursor => {
+        let result = new Collections.Dictionary<string, Array<string>>()
+        for (let i = 0; i < cursor.rows.length; i++) {
+          const item = cursor.rows.item(i)
+          let rid = item.route_id.toString()
+          let tid = item.task_id.toString()
+          if (!result.containsKey(rid)) {
+            result.setValue(rid, new Array<string>())
+          }
+          let tmp = result.getValue(rid)
+          tmp.push(tid)
+          result.setValue(rid, tmp)
+          // result.getValue(rid).push(tid)
+        }
+
+        resolve(result)
+      }).catch(error => reject(error))
+    })
+  }
 
   //  public ArrayList<String>  getRouteTaskIds(String routeId){
   //   // SELECT * FROM DBC_Task.TABLE_NAME WHERE route_id = routeId
@@ -684,7 +850,7 @@ export class DB_Handler {
   //   cursor.close();
   //   return result;
   //  }
-  async getRouteTaskIds(routeId: string): Promise<Array<string>> {
+  async getRouteTaskIds(routeId: number): Promise<Array<string>> {
     const db = DB_Handler.getInstance().getReadableDatabase()
     const sqlResult = await db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE route_id = ?`, [routeId])
     let result = new Array<string>()
@@ -708,20 +874,20 @@ export class DB_Handler {
   //    ArrayList<MathRoute> result = new ArrayList<MathRoute>();
 
   //    for(String route_id : rel.keySet()){
-  //  ArrayList<String> task_ids = rel.get(route_id);
-  //  MathRoute r = routes.get(route_id);
+  //      ArrayList<String> task_ids = rel.get(route_id);
+  //      MathRoute r = routes.get(route_id);
 
-  //  if( !r.getInfo("public").equals(Integer.toString(publicState))){
-  //   continue;
-  //  }
+  //      if( !r.getInfo("public").equals(Integer.toString(publicState))){
+  //        continue;
+  //      }
 
-  //  for(String task_id : task_ids){
-  //   r.addTask(tasks.get(task_id));
-  //  }
+  //      for(String task_id : task_ids){
+  //        r.addTask(tasks.get(task_id));
+  //      }
 
-  //  r.makeReady();
-  //  result.add(r);
-  //    }
+  //      r.makeReady();
+  //      result.add(r);
+  //      }
   //    return result;
   //   }
   //   catch(Exception e){
@@ -729,6 +895,44 @@ export class DB_Handler {
   //    return null;
   //   }
   //  }
+  getReadyRoutes(publicState: number): Promise<Array<MathRoute>> {
+    const self = this
+    return new Promise<Array<MathRoute>>((resolve, reject) => {
+      let tasks: Collections.Dictionary<string, MathTask>
+      let routes: Collections.Dictionary<string, MathRoute>
+      let rel: Collections.Dictionary<string, Array<string>>
+
+      let promises = [
+        self.getMathTasksAssociative().then(t => {
+          tasks = t
+        }).catch(error => reject(error)),
+        self.getMathRoutesAssociative().then(r => {
+          routes = r
+        }).catch(error => reject(error)),
+        self.getRouteTaskRelations().then(r => {
+          rel = r
+        }).catch(error => reject(error))
+      ]
+      Promise.all(promises).then(() => {
+        let result = Array<MathRoute>()
+        rel.keys().forEach(rid => {
+          const route_id: string = rid.toString()
+          let task_ids: string[] = rel.getValue(route_id)
+          let r: MathRoute = routes.getValue(route_id)
+          if (r.getInfo("public") == publicState.toString()) {
+            task_ids.forEach(task_id => {
+              r.addTask(tasks.getValue(task_id.toString()))
+            })
+
+            r.makeReady()
+            result.push(r)
+          }
+        })
+
+        resolve(result)
+      })
+    })
+  }
 
   //  public ArrayList<MathRoute> getUnlockedRoutes(){
   //   try{

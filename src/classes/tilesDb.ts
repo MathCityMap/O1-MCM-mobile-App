@@ -14,11 +14,12 @@ export var tilesDb = {
     var self = this;
 
     var promises = [];
-
-    for (var i = 0; i < tileUrls.length; i++) {
+    const totalDownload = tileUrls.length;
+    var doneDownload = 0;
+    for (var i = 0; i < totalDownload; i++) {
       var tileUrl = tileUrls[i];
 
-      (function (i, tileUrl) {
+      (function (i, tileUrl, totalDownload) {
         promises[i] = new Promise(function (resolve, reject) {
           var request = new XMLHttpRequest();
           request.open('GET', tileUrl.url, true);
@@ -26,7 +27,8 @@ export var tilesDb = {
           request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
               if (request.status === 200) {
-                console.log("Progress: ", i);
+                doneDownload++;
+                console.log("Progress: ", i, Math.round((doneDownload) * 100 / totalDownload));
                 resolve(self._saveTile(tileUrl.key, request.response));
               } else {
                 console.log("send request NOT OK");
@@ -39,7 +41,7 @@ export var tilesDb = {
           };
           request.send();
         });
-      })(i, tileUrl);
+      })(i, tileUrl, totalDownload);
     }
 
     return Promise.all(promises);

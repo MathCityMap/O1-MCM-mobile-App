@@ -3,16 +3,16 @@
   <!-- *ngClass="{true: 'open', false: ''}[routeDetails != null]" -->
   <div id="details" [ngClass]="{'open': routeDetails != null}">
     <div class="image-container">
-      <img *ngIf="routeDetails && routeDetails.imageData" [src]="routeDetails.imageData || '//:0'" />
+      <img *ngIf="routeDetails && routeImage" [src]="routeImage || '//:0'" />
     </div>
     <div class="info-container">
       <div class="title" *ngIf="routeDetails">
         <h1>{{routeDetails.title}}</h1>
-        <p>{{routeDetails.city}}, {{routeDetails.country_code}}</p>
+        <p>{{routeDetails.getInfo("city")}}, {{routeDetails.getInfo("country_code")}}</p>
       </div>
       <hr>
       <div class="grade" *ngIf="routeDetails">
-        <p class="label">From grade</p><p class="value">{{routeDetails.grade}}</p>
+        <p class="label">From grade</p><p class="value">{{routeDetails.getInfo("grade")}}</p>
       </div>
       <div>
         <button ion-button (click)="doDownload(routeDetails)" color="dark">Download</button>

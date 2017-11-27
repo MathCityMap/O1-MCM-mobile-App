@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Route name</ion-title>
+    <ion-title><span *ngIf="route">{{route.title}}</span></ion-title>
     <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="options"></ion-icon>
@@ -8,6 +8,6 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding class="has-header">
   <div id="tasks-map" style="width: 100%; height: 100%"></div>
 </ion-content>

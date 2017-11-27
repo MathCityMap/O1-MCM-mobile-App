@@ -9,6 +9,10 @@ import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
+import { MathRoute } from '../../../../classes/MathRoute';
+import { MathTask } from '../../../../classes/MathTask';
+import { File } from '@ionic-native/file';
+
 
 @Component({
   selector: 'page-tasks-map',
@@ -17,16 +21,17 @@ import { tilesDb } from '../../../../classes/tilesDb';
 export class TasksMap {
   @ViewChild('tasks-map') mapContainer: ElementRef;
   private map: any;
-  private route: any;
+  private route: MathRoute;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fileManager: File) { }
 
   ionViewDidEnter() {
     console.log('TasksMap ionViewDidEnter()');
-    this.route = this.navParams.data.route;
-
-    this.loadMap();
-    this.initializeMap();
+    this.route = this.navParams.get('route');
+    this.route.initTasks().then(() => {
+      this.loadMap();
+      this.initializeMap();
+    })
   }
 
   markerGroup: any = null;
@@ -38,49 +43,25 @@ export class TasksMap {
       this.map.removeLayer(this.markerGroup);
       this.markerGroup = null;
     }
+    let map = this.map;
+    let test = this.route.getTasks();
+    test.forEach(task => {
+      let marker: any = L.marker([task.Lat, task.Lon]).on('click', () => {
+        // let imageFileName = task.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
+        // this.fileManager.readAsDataURL(this.fileManager.dataDirectory, imageFileName)
+        //   .then(imageData => this.route.thumbImage = imageData, imageError => {
+        //     console.error("Error making image DataURL:", imageError);
+        //     // TODO: default empty image holder
+        //   })
+        //   .catch(error => {
+        //     console.error("Error making image DataURL:", JSON.stringify(error));
+        //     // TODO: default empty image holder
+        //   })
+        // this.routeDetails = row;
+      })
 
-    dbHandler.ready().then(() => {
-      console.warn('db handler initialized');
-      const table = DBC.DB_TASK;
-      const conTable = DBC.DB_RELROUTETASK;
-      // SELECT t.* FROM mcm_task as t,mcm_rel_route_task rt WHERE rt.task_id=t._id AND rt.route_id=6 AND t.public=1
-      const sqlQry = `SELECT t.* FROM ${table.getTableName()} AS t,${conTable.getTableName()} AS rt WHERE rt.${conTable.fields[2]}=t.${table.fields[0]} AND rt.${conTable.fields[1]}=${this.route._id} AND t.${table.fields[2]}=1`;
-      console.log(`SQL QUERY: ${sqlQry}`)
-      let dbh = DB_Handler.getInstance();
-      let db = dbh.getReadableDatabase();
-      // let fileManager = new File();
-      const map = this.map;
-      db.executeSql(sqlQry, []).then(result => {
-        // let markerGroup = L.layerGroup(); //L.markerClusterGroup();
-        for (var i = 0; i < result.rows.length; i++) {
-          let row = result.rows.item(i);
-
-          let marker: any = L.marker([row.lat, row.lon]).on('click', () => {
-            // let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
-            // fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
-            //   .then(imageData => this.routeDetails.imageData = imageData, imageError => {
-            //     console.error("Error making image DataURL:", imageError);
-            //     // TODO: default empty image holder
-            //   })
-            //   .catch(error => {
-            //     console.error("Error making image DataURL:", JSON.stringify(error));
-            //     // TODO: default empty image holder
-            //   })
-            // this.routeDetails = row;
-          });
-
-          marker.bindPopup(`<h2>${row.title}</h2><p>${row.description}</p>`);
-
-          map.addLayer(marker);
-        }
-        
-        // this.map.addLayer(markerGroup);
-        // this.markerGroup = markerGroup;
-      }).catch(error => {
-        console.error("SQL Error:",JSON.stringify(error));
-      });
-    }).catch(error => {
-      console.error(`DB_Handler initialization error: ${JSON.stringify(error)}`);
+      marker.bindPopup(`<h2>${task.getInfo("title")}</h2><p>${task.getInfo("description")}</p>`);
+      map.addLayer(marker);
     })
   }
 
@@ -92,10 +73,10 @@ export class TasksMap {
     //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
     // const corner1 = L.latLng(38.4313915, 27.1212443)
     // const corner2 = L.latLng(38.4114794, 27.1431646)
-    const bbox = JSON.parse(this.route.bounding_box);
-    const corner1 = bbox[0];
-    const corner2 = bbox[1];
-    const bounds: L.latLngBounds = L.latLngBounds(corner1, corner2)
+    // const bbox = JSON.parse(this.route.bounding_box);
+    // const corner1 = bbox[0];
+    // const corner2 = bbox[1];
+    // const bounds: L.latLngBounds = L.latLngBounds(corner1, corner2)
 
 
     if (this.map == null) {
@@ -103,16 +84,15 @@ export class TasksMap {
         // center: center,
         zoom: 18
       });
-      this.map.fitBounds(bounds);
+      this.map.fitBounds(this.route.ViewBoundingBox);
       // this.map.setZoom(18);
       this.map.on('click', e => {
         //check if details open and reset content. for now just reset content
         // this.routeDetails = null;
-        console.log('cleared route details');
+        console.log('do nothing for now');
       })
       let map = this.map;
       tilesDb.initialize().then(() => {
-        console.log("Tiles DB Initialized");
         let offlineLayer = L.tileLayer.offline(mapquestUrl, tilesDb, {
           attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
           subdomains: subDomains,

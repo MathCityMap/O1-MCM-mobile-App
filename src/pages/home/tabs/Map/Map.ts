@@ -14,10 +14,9 @@ import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
-// import { MathTask } from '../../../../classes/MathTask';
-
 import { TasksMap } from '../TasksMap/TasksMap';
 import { HomePage } from '../../home';
+import { MathRoute } from '../../../../classes/MathRoute';
 
 @Component({
   selector: 'page-map',
@@ -29,7 +28,8 @@ export class MapPage {
   map: any;
   center: L.PointTuple;
   imageObject: any;
-  routeDetails: any;
+  routeDetails: MathRoute;
+  routeImage: string;
   offlineLayer: any;
   offlineControl: any;
   userMarker: any;
@@ -54,6 +54,7 @@ export class MapPage {
 
   async initializeMap() {
     let dbHandler = DB_Handler.getInstance();
+    const map = this.map
     if (this.markerGroup != null) {
       console.warn('removing markerGroup');
       this.map.removeLayer(this.markerGroup);
@@ -64,21 +65,24 @@ export class MapPage {
       console.warn('db handler initialized');
       this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]).then(() => {
         console.log("updater finished!")
-        let table = DBC.DB_ROUTE;
-        let sqlQry = `SELECT * FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
-        console.log(`SQL QUERY: ${sqlQry}`)
-        let dbh = DB_Handler.getInstance();
-        let db = dbh.getWritableDatabase();
+        // let table = DBC.DB_ROUTE;
+        // let sqlQry = `SELECT * FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
+        // console.log(`SQL QUERY: ${sqlQry}`)
+        // let dbh = DB_Handler.getInstance();
+        // let db = dbh.getWritableDatabase();
         let fileManager = new File();
-        db.executeSql(sqlQry, []).then(result => {
+        // db.executeSql(sqlQry, []).then(result => {
+          dbHandler.getReadyRoutes(1).then(result => {
           let markerGroup = L.markerClusterGroup();
-          for (var i = 0; i < result.rows.length; i++) {
-            let row = result.rows.item(i);
-            let center = JSON.parse(row.center);
-            let marker: any = L.marker([center[0], center[1]]).on('click', () => {
-              let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
+          // for (var i = 0; i < result.rows.length; i++) {
+            result.forEach(row => {
+            // let row = result.rows.item(i);
+            // let center = JSON.parse(row.center);
+            let marker: any = L.marker([row.Center.lat, row.Center.lng]).on('click', () => {
+              // let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
+              let imageFileName = row.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
               fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
-                .then(imageData => this.routeDetails.imageData = imageData, imageError => {
+                .then(imageData => this.routeImage = imageData, imageError => {
                   console.error("Error making image DataURL:", imageError);
                   // TODO: default empty image holder
                 })
@@ -89,9 +93,9 @@ export class MapPage {
               this.routeDetails = row;
             })
             markerGroup.addLayer(marker);
-          }
+          }) //for
 
-          this.map.addLayer(markerGroup);
+          map.addLayer(markerGroup);
           this.markerGroup = markerGroup;
         });
       })
@@ -114,7 +118,7 @@ export class MapPage {
     if (this.map == null) {
       this.map = L.map('map', {
         // center: this.center,
-        zoom: 20,
+        zoom: 18,
         tileSize: 256
       });
       this.map.fitBounds(bounds);
@@ -122,6 +126,7 @@ export class MapPage {
       this.map.on('click', e => {
         //check if details open and reset content. for now just reset content
         this.routeDetails = null;
+        this.routeImage = null;
         console.log('cleared route details');
       })
       let map = this.map;
@@ -218,8 +223,8 @@ export class MapPage {
     }
   }
 
-  doDownload(route: any): void {
-    console.log(`Route details ${JSON.stringify(route._id)}`);
+  doDownload(route: MathRoute): void {
+    console.log(`Route details ${JSON.stringify(route.Id)}`);
     console.log("clicked");
 
     // this.navCtrl.push(TasksMap, { param1: 'param1', route: route });
