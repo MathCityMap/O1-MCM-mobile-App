@@ -227,7 +227,8 @@ export class MapPage {
     console.log(`Route details ${JSON.stringify(route.Id)}`);
     console.log("clicked");
 
-    // this.navCtrl.push(TasksMap, { param1: 'param1', route: route });
-    HomePage.nav.push(TasksMap, { route: route });
+    // uncommend this line to switch displaying route (online only mode)
+    // HomePage.nav.push(TasksMap, { route: route });
+    route.downloadMap();
   }
 }

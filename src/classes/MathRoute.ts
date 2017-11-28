@@ -78,7 +78,7 @@ export class MathRoute {
     const northWest = jsonBB[0]
     const southEast = jsonBB[1]
     const south = southEast[0] - padding
-    const north = southEast[0] + padding
+    const north = northWest[0] + padding
     const west = northWest[1] - padding
     const east = southEast[1] + padding
     this.viewBoundingBox = L.latLngBounds([northWest[0], southEast[1]], [southEast[0], northWest[1]])
@@ -378,7 +378,12 @@ export class MathRoute {
       const min_zoom: number = 18
       const max_zoom: number = 19
       const max_tiles = cacheManager.possibleTilesInArea(bbox, min_zoom, max_zoom)
-      console.log(`MAX_TILES: ${max_tiles}`)
+      if (max_tiles < 700) {
+        cacheManager.downloadAreaAsync(bbox, min_zoom, max_zoom)
+      } else {
+        // TODO confirm download
+        cacheManager.downloadAreaAsync(bbox, min_zoom, max_zoom)
+      }
     }
   }
   //     public void downloadMap(final Context context) {
@@ -471,6 +476,58 @@ export class MathRoute {
   //         }
   //     }
 
+  public async deleteData(): Promise<void> {
+    await this.initTasks()
+    let dbh = DB_Handler.getInstance()
+    return new Promise<void>((resolve, reject) => {
+      let promises = []
+      // Delete only, if the number of routes, that use this task and have been
+        // downloaded is 1. So only this route is using it
+      let routeImageFiles = Array<string>()
+      this.getTasks().forEach(t => {
+        promises.push(dbh.getTaskRels(t.Id.toString()).then(taskRels => {
+          if (taskRels == 1) {
+            let imageFile = t.getInfo("image")
+            if (imageFile != "") {
+              imageFile = imageFile.replace("mcm_images/tasks/", "")
+              routeImageFiles.push(imageFile)
+            }
+          }
+        }))
+        Promise.all(promises).then(() => {
+          // TODO:
+  //             File dir = context.getFilesDir();
+  //             File[] imageFiles = dir.listFiles(new FilenameFilter() {
+  //                 @Override
+  //                 public boolean accept(File dir, String filename) {
+  //                     // List only files with .jpg, .png, .gif ending and those
+  //                     // that belong to the given route
+  //                     return (routeImageFiles.contains(filename));
+  //                 }
+  //             });
+  //             for (File f : imageFiles) {
+  //                 context.deleteFile(f.getName());
+  //             }
+  //         // Delete State (reset it)
+  //         dbh.resetRouteDlStateById(Integer.toString(getId()));
+  //         dbh.deleteScore(getId());
+
+  //         RoutesOverviewActivity r = (RoutesOverviewActivity) context;
+  //         if (r != null) {
+  //             //r.refreshPage();
+  //             r.refreshFooter(this);
+  //             if(r.getCurrentTab() == 1){
+  //                 r.refreshList(-1);
+  //             }
+  //         }
+          resolve()
+        }).catch(error => {
+          console.error(`deleteData: Error: ${JSON.stringify(error)}`)
+          reject(error)
+        })
+      })
+    })
+  }
   //     public void deleteData(Context context){
   //         initTasks(context);
   //         DB_Handler dbh = DB_Handler.getInstance(context);

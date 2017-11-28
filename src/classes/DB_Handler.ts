@@ -340,6 +340,34 @@ export class DB_Handler {
 
   //   }
   //  }
+  getTaskRels(taskId: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
+      let db = DB_Handler.getInstance().getWritableDatabase()
+      let result: number = 0
+  
+      db.executeSql(`SELECT route_id, task_id FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE task_id = ?`, [taskId]).then(result => {
+        let promises = []
+        for (let i = 0; i < result.rows.length; i++) {
+          let cursor = result.rows.item(i)
+          let routeId: number = +cursor.route_id
+          promises.push(this.isOptionAvailable(DBC.ON_ROUTE_DATA, routeId.toString()).then(available => {
+            if (available == true) {
+              result++
+            }
+          }))
+        }
+        Promise.all(promises).then(() => {
+          resolve(result)
+        }).catch(error => {
+          console.error(`getTaskRels: Error: ${JSON.stringify(error)}`)
+          reject(error)
+        })
+      }).catch(error => {
+        console.error(`getTaskRels: Error: ${JSON.stringify(error)}`)
+        reject(error)
+      })
+    })
+  }
 
   //  public void resetTaskStateById(String taskId){
   //   SQLiteDatabase db = DB_Handler.getInstance(context).getWritableDatabase();
