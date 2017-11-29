@@ -2,7 +2,7 @@ import * as L from 'leaflet';
 import * as Collections from 'typescript-collections'
 import { MathTask } from './MathTask'
 import { DB_Handler } from './DB_Handler'
-import { Helper } from './Helper';
+import {Helper, MapTile} from './Helper';
 import { CacheManagerMCM } from './CacheManagerMCM';
 
 export class MathRoute {
@@ -362,7 +362,7 @@ export class MathRoute {
   //         dialog.show();
   //     }
 
-  downloadMap() {
+  downloadMap(callback) {
     if (Helper.isOnline) {
       const divElem = document.createElement<'div'>('div')
       divElem.style.width = Helper.windowWidth.toString()
@@ -377,13 +377,8 @@ export class MathRoute {
       const cacheManager = new CacheManagerMCM(mv, this)
       const min_zoom: number = 18
       const max_zoom: number = 19
-      const max_tiles = cacheManager.possibleTilesInArea(bbox, min_zoom, max_zoom)
-      if (max_tiles < 700) {
-        cacheManager.downloadAreaAsync(bbox, min_zoom, max_zoom)
-      } else {
-        // TODO confirm download
-        cacheManager.downloadAreaAsync(bbox, min_zoom, max_zoom)
-      }
+      const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(bbox, min_zoom, max_zoom)
+      return cacheManager.downloadTiles(tiles, callback);
     }
   }
   //     public void downloadMap(final Context context) {

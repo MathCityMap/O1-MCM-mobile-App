@@ -3,10 +3,11 @@ import { NavController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { File } from '@ionic-native/file';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { OnInit } from "@angular/core";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
+import { checkAvailability } from "@ionic-native/core";
 
 import { DB_Handler } from '../../../../classes/DB_Handler';
 import { DB_Updater } from '../../../../classes/DB_Updater';
@@ -22,7 +23,7 @@ import { MathRoute } from '../../../../classes/MathRoute';
   selector: 'page-map',
   templateUrl: 'Map.html'
 })
-export class MapPage {
+export class MapPage implements OnInit {
 
   @ViewChild('map') mapContainer: ElementRef;
   map: any;
@@ -33,6 +34,10 @@ export class MapPage {
   offlineLayer: any;
   offlineControl: any;
   userMarker: any;
+  isFilePluginIsAvailable: boolean;
+  doneDownload: number;
+  totalDownload: number;
+  isDownloading: boolean = false;
 
   constructor(public navCtrl: NavController,
     private platform: Platform,
@@ -41,7 +46,10 @@ export class MapPage {
 
   ionViewDidEnter() {
     console.log("ionViewDidEnter:");
+  }
 
+  ngOnInit() {
+    this.isFilePluginIsAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
     this.platform.ready().then(() => {
       console.log('Platform is ready!');
       this.initializeMap();
@@ -80,16 +88,20 @@ export class MapPage {
             // let center = JSON.parse(row.center);
             let marker: any = L.marker([row.Center.lat, row.Center.lng]).on('click', () => {
               // let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
-              let imageFileName = row.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
-              fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
-                .then(imageData => this.routeImage = imageData, imageError => {
-                  console.error("Error making image DataURL:", imageError);
-                  // TODO: default empty image holder
-                })
-                .catch(error => {
-                  console.error("Error making image DataURL:", JSON.stringify(error));
-                  // TODO: default empty image holder
-                })
+              if (this.isFilePluginIsAvailable) {
+                let imageFileName = row.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
+                fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
+                  .then(imageData => this.routeImage = imageData, imageError => {
+                    console.error("Error making image DataURL:", imageError);
+                    // TODO: default empty image holder
+                  })
+                  .catch(error => {
+                    console.error("Error making image DataURL:", JSON.stringify(error));
+                    // TODO: default empty image holder
+                  })
+              } else {
+                this.routeImage = Helper.WEBSERVER_URL + row.getInfo("image");
+              }
               this.routeDetails = row;
             })
             markerGroup.addLayer(marker);
@@ -203,7 +215,7 @@ export class MapPage {
               alert('Marker clicked');
             });
             // this.userMarker.addTo(this.map);
-            // this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 16);
+            this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
 
             let watch = this.geolocation.watchPosition();
             watch.subscribe(resp => {
@@ -228,7 +240,17 @@ export class MapPage {
     console.log("clicked");
 
     // uncommend this line to switch displaying route (online only mode)
-    // HomePage.nav.push(TasksMap, { route: route });
-    route.downloadMap();
+    //HomePage.nav.push(TasksMap, { route: route });
+    this.isDownloading = true;
+    this.totalDownload = 0;
+    this.doneDownload = 0;
+    const self = this;
+    route.downloadMap(function(doneDownload, totalDownload) {
+        self.doneDownload = doneDownload;
+        self.totalDownload = totalDownload;
+    }).then(() => {
+      this.isDownloading = false;
+      HomePage.nav.push(TasksMap, { route: route })
+    });
   }
 }

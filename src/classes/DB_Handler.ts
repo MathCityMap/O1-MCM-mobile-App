@@ -1,8 +1,38 @@
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite'
+import { SQLite, SQLiteObject, SQLiteDatabaseConfig } from '@ionic-native/sqlite'
 import { DBC } from './DBC'
 import * as Collections from 'typescript-collections'
 import { MathTask } from './MathTask';
 import { MathRoute } from './MathRoute';
+import { checkAvailability } from "@ionic-native/core";
+
+declare var openDatabase: any;
+
+class WebSQLObject extends SQLiteObject {
+  constructor() {
+    super(openDatabase('mcm', '1.0', 'MCM DB', 2 * 1024 * 1024));
+  }
+
+  executeSql(statement: string, params: any): Promise<any> {
+    return new Promise<SQLiteObject>((resolve, reject) => {
+      this._objectInstance.transaction(function (tx) {
+        console.log(statement);
+        tx.executeSql(statement, params, function (tx, results) {
+          resolve(results);
+        }, function (tx, error) {
+          reject(error);
+        });
+      });
+    });
+  }
+}
+
+class WebSQL extends SQLite {
+  create(config: SQLiteDatabaseConfig): Promise<SQLiteObject> {
+    return new Promise<SQLiteObject>((resolve, reject) => {
+      resolve(new WebSQLObject());
+    });
+  }
+}
 
 export class DB_Handler {
   private static mInstance: DB_Handler = null
@@ -25,7 +55,7 @@ export class DB_Handler {
       if (this.mReady) {
         resolve();
       }
-      this.mSQLite = new SQLite()
+      this.mSQLite = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true ? new SQLite() : new WebSQL();
       this.mSQLite.create({
         name: 'mcm_db.sqlite3',
         location: 'default'
@@ -343,7 +373,7 @@ export class DB_Handler {
   getTaskRels(taskId: string): Promise<number> {
     return new Promise<number>((resolve, reject) => {
       let db = DB_Handler.getInstance().getWritableDatabase()
-      let result: number = 0
+      let count: number = 0
   
       db.executeSql(`SELECT route_id, task_id FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE task_id = ?`, [taskId]).then(result => {
         let promises = []
@@ -352,12 +382,12 @@ export class DB_Handler {
           let routeId: number = +cursor.route_id
           promises.push(this.isOptionAvailable(DBC.ON_ROUTE_DATA, routeId.toString()).then(available => {
             if (available == true) {
-              result++
+              count++
             }
           }))
         }
         Promise.all(promises).then(() => {
-          resolve(result)
+          resolve(count)
         }).catch(error => {
           console.error(`getTaskRels: Error: ${JSON.stringify(error)}`)
           reject(error)
@@ -404,31 +434,9 @@ export class DB_Handler {
       db.executeSql(sqlQry, [id]).then(result => {
         if (result.rows.length == 0) {
           resolve(null)
+        } else {
+          resolve(this.getMathTask(result.rows.item(0)))
         }
-        const item = result.rows.item(0)
-        let t = new MathTask(+item.lat, +item.lon)
-        t.Id = +item._id
-        t.putInfo(DBC.DB_TASK.fields[1], item.user_id)
-        t.putInfo(DBC.DB_TASK.fields[2], item.public)
-        t.putInfo(DBC.DB_TASK.fields[5], item.title)
-        t.putInfo(DBC.DB_TASK.fields[6], item.description)
-        t.putInfo(DBC.DB_TASK.fields[7], item.image)
-        t.putInfo(DBC.DB_TASK.fields[8], item.solution_type)
-        t.putInfo(DBC.DB_TASK.fields[9], item.solution)
-        t.putInfo(DBC.DB_TASK.fields[10], item.hint1)
-        t.putInfo(DBC.DB_TASK.fields[11], item.hint2)
-        t.putInfo(DBC.DB_TASK.fields[12], item.hint3)
-        t.putInfo(DBC.DB_TASK.fields[13], item.assistive_equipment)
-        t.putInfo(DBC.DB_TASK.fields[14], item.author)
-        t.putInfo(DBC.DB_TASK.fields[15], item.mail)
-        t.putInfo(DBC.DB_TASK.fields[16], item.grade)
-        t.putInfo(DBC.DB_TASK.fields[17], item.tags)
-        t.putInfo(DBC.DB_TASK.fields[18], item.timestamp)
-        t.putInfo(DBC.DB_TASK.fields[19], item.solutionsample)
-        t.putInfo(DBC.DB_TASK.fields[20], item.attr)
-        t.putInfo(DBC.DB_TASK.fields[21], item.create_date)
-        t.putInfo(DBC.DB_TASK.fields[22], item.lang_code)
-        resolve(t)
       }, error => {
         console.error(`getMathTaskById ERROR:`, JSON.stringify(error))
         reject(error)
@@ -438,6 +446,32 @@ export class DB_Handler {
         reject(error)
       })
     })
+  }
+
+  getMathTask(dbItem: any): MathTask {
+    let t = new MathTask(+dbItem.lat, +dbItem.lon)
+    t.Id = +dbItem._id
+    t.putInfo(DBC.DB_TASK.fields[1], dbItem.user_id)
+    t.putInfo(DBC.DB_TASK.fields[2], dbItem.public)
+    t.putInfo(DBC.DB_TASK.fields[5], dbItem.title)
+    t.putInfo(DBC.DB_TASK.fields[6], dbItem.description)
+    t.putInfo(DBC.DB_TASK.fields[7], dbItem.image)
+    t.putInfo(DBC.DB_TASK.fields[8], dbItem.solution_type)
+    t.putInfo(DBC.DB_TASK.fields[9], dbItem.solution)
+    t.putInfo(DBC.DB_TASK.fields[10], dbItem.hint1)
+    t.putInfo(DBC.DB_TASK.fields[11], dbItem.hint2)
+    t.putInfo(DBC.DB_TASK.fields[12], dbItem.hint3)
+    t.putInfo(DBC.DB_TASK.fields[13], dbItem.assistive_equipment)
+    t.putInfo(DBC.DB_TASK.fields[14], dbItem.author)
+    t.putInfo(DBC.DB_TASK.fields[15], dbItem.mail)
+    t.putInfo(DBC.DB_TASK.fields[16], dbItem.grade)
+    t.putInfo(DBC.DB_TASK.fields[17], dbItem.tags)
+    t.putInfo(DBC.DB_TASK.fields[18], dbItem.timestamp)
+    t.putInfo(DBC.DB_TASK.fields[19], dbItem.solutionsample)
+    t.putInfo(DBC.DB_TASK.fields[20], dbItem.attr)
+    t.putInfo(DBC.DB_TASK.fields[21], dbItem.create_date)
+    t.putInfo(DBC.DB_TASK.fields[22], dbItem.lang_code)
+    return t
   }
   //  public MathTask getMathTaskById(int id){
   //   SQLiteDatabase db = DB_Handler.getInstance(context).getReadableDatabase();
@@ -552,17 +586,11 @@ export class DB_Handler {
     return new Promise<Array<MathTask>>((resolve, reject) => {
       const db = DB_Handler.getInstance().getReadableDatabase()
       let mt = new Array<MathTask>()
-      db.executeSql(`SELECT _id FROM ${DBC.DATABASE_TABLE_TASK}`, []).then(result => {
-        let promises = []
+      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_TASK}`, []).then(result => {
         for (var i = 0; i < result.rows.length; i++) {
-          let id = result.rows.item(i)._id.toString()
-          promises.push(self.getMathTaskById(id).then(task => {
-            mt.push(task)
-          }))
+          mt.push(self.getMathTask(result.rows.item(i)))
         }
-        Promise.all(promises).then(() => {
-          resolve(mt)
-        }).catch(error => reject(error))
+        resolve(mt);
       }).catch(error => {
         console.error(`getMathTasks Error: ${JSON.stringify(error)}`)
         reject(error)

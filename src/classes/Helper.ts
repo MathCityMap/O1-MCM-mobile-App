@@ -78,6 +78,9 @@ export class Helper {
   // public static ProgressDialog updater_dialog = null
   static readonly mapCode: string = "mapbox.streets"
   static readonly accessToken: string = "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww"
+  static readonly mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}.png?&tilesize=256&access_token=${Helper.accessToken}`
+  static readonly subDomains = ['a', 'b', 'c', 'd'];
+
   // public static OnlineTileSourceBase mbTileSource = new XYTileSource("MapBoxSatelliteLabelled",
   //         2, 20, 256, ".png", new String[]{
   //         "http://a.tiles.mapbox.com/v4/" + Helper.mapCode + "/",

@@ -4,6 +4,7 @@ import { DBC } from '../../../../classes/DBC';
 import { DB_Handler } from '../../../../classes/DB_Handler';
 import { File } from '@ionic-native/file';
 import { Helper } from '../../../../classes/Helper';
+import { checkAvailability } from "@ionic-native/core";
 
 interface RouteItem {
   id: number,
@@ -57,6 +58,7 @@ export class RoutesListPage {
     let sqlQry = `SELECT * FROM ${table.getTableName()} WHERE ${table.fields[2]}=1;`;
     console.log(`SQL QUERY: ${sqlQry}`)
     let dbh = DB_Handler.getInstance();
+    const isFilePluginIsAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
     return new Promise<Array<RouteItem>>((resolve, reject) => {
       dbh.ready().then(() => {
         // let db = dbh.getWritableDatabase();
@@ -73,30 +75,30 @@ export class RoutesListPage {
               title: row.Title,
               country_code: row.getInfo("country_code"),
               city: row.getInfo("city"),
-              image: '', // TODO: empty image handler
+              image: isFilePluginIsAvailable ? '' : Helper.WEBSERVER_URL + Helper.REPLACE_ROUTE_IMAGE_PATH + encodeURI(imageFileName),
               grade: new Number(row.getInfo("grade")).valueOf(),
               distance: Helper.getDistanceToCenter(row.Center.lat, row.Center.lng),
               imageFileName: imageFileName
             };
 
-            console.log("DEBUG: ", routeItem.image);
-
             items.push(routeItem);
 
-            this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory).then(resp => {
-              const fileName = 'thumb_' + imageFileName
-              this.fileManager.checkFile(resp.nativeURL, fileName).then(exists => {
-                if (exists) {
-                  console.log(`File ${fileName} exists!`);
-                  routeItem.image = resp.nativeURL + fileName;
-                }
-              }, error => {
-                console.error("File exists error:", JSON.stringify(error));
-              })
-                .catch(error => console.error("File exists error:", JSON.stringify(error)));
+            if (isFilePluginIsAvailable) {
+              this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory).then(resp => {
+                const fileName = 'thumb_' + imageFileName
+                this.fileManager.checkFile(resp.nativeURL, fileName).then(exists => {
+                  if (exists) {
+                    console.log(`File ${fileName} exists!`);
+                    routeItem.image = resp.nativeURL + fileName;
+                  }
+                }, error => {
+                  console.error("File exists error:", JSON.stringify(error));
+                })
+                  .catch(error => console.error("File exists error:", JSON.stringify(error)));
 
-              console.warn(JSON.stringify(resp));
-            })
+                console.warn(JSON.stringify(resp));
+              })
+            }
           }
 
           resolve(items);

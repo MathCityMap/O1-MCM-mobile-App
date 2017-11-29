@@ -1,9 +1,9 @@
-import { Point, MapTile } from './Helper'
+import { Point, MapTile, Helper } from './Helper'
 import { MyMath } from './MyMath'
 import { MathRoute } from './MathRoute'
 import * as L from 'leaflet'
 import { AsyncTask } from './AsyncTask'
-
+import { tilesDb } from "./tilesDb"
 /**
   * Action to perform on a tile within a CacheManagerTask
   * @author F.Fontaine
@@ -423,10 +423,10 @@ export class CacheManagerMCM {
   //   task.addCallback(getDownloadingDialog(ctx, task));
   //   return execute(task);
   // }
-  async downloadAreaAsync(bb: L.latLngBounds, zoomMin: number, zoomMax: number): CacheManagerTask {
+  downloadAreaAsync(bb: L.latLngBounds, zoomMin: number, zoomMax: number) {
     let task = new CacheManagerTask(this, this.getDownloadingAction(), bb, zoomMax, zoomMax)
-    task.addCallback(getDownloadingDialog(task))
-    return execute(task)
+    //task.addCallback(getDownloadingDialog(task))
+    this.execute(task)
   }
 
   // public CacheManagerTask execute(final CacheManagerTask pTask) {
@@ -434,10 +434,21 @@ export class CacheManagerMCM {
   //   mPendingTasks.add(pTask);
   //   return pTask;
   // }
-  execute(pTask: CacheManagerTask): CacheManagerTask {
-    pTask.execute()
-    mPendingTasks.add(pTask)
-    return pTask
+  execute(pTask: CacheManagerTask): void {
+    // pTask.execute()
+    // this.mPendingTasks.add(pTask)
+    // return pTask
+  }
+
+  downloadTiles(tiles: Array<MapTile>, callback: any): Promise<any> {
+    return tilesDb.saveTiles(tiles.map(tile => {
+       let domain = Helper.subDomains[Math.floor(Math.random() * Helper.subDomains.length)];
+       let keyDomain = Helper.subDomains[0];
+       return {
+         key: Helper.mapquestUrl.replace('{s}', keyDomain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)),
+         url: Helper.mapquestUrl.replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y))
+       }
+    }), callback);
   }
 
   //   public CacheManagerAction getDownloadingAction() {
@@ -482,7 +493,7 @@ export class CacheManagerMCM {
         return 10
       },
       tileAction: (pTile: MapTile): boolean => {
-        return !this.loadTile(mTileProvider.getTileSource(), pTile);
+        return false ; //!this.loadTile(mTileProvider.getTileSource(), pTile);
       },
       getActionType: (): string => {
         return "download"
@@ -508,5 +519,6 @@ export class CacheManagerMCM {
   // }
   loadTile(tileSource: any, tile: MapTile): boolean {
     // TODO: 3 integrate tilesDb.ts files DB check and download of tile if needed
+      return false;
   }
 }

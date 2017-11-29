@@ -16,6 +16,9 @@
       </div>
       <div>
         <button ion-button (click)="doDownload(routeDetails)" color="dark">Download</button>
+        <span *ngIf="isDownloading">
+          {{doneDownload}} / {{totalDownload}}
+        </span>
       </div>
     </div>
   </div>

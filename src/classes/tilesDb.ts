@@ -10,7 +10,7 @@ export var tilesDb = {
     return this.storage.get(key);
   },
 
-  saveTiles: function (tileUrls) {
+  saveTiles: function (tileUrls, progressCallback) {
     var self = this;
 
     var promises = [];
@@ -29,6 +29,9 @@ export var tilesDb = {
               if (request.status === 200) {
                 doneDownload++;
                 console.log("Progress: ", i, Math.round((doneDownload) * 100 / totalDownload));
+                if (progressCallback) {
+                  progressCallback(doneDownload, totalDownload);
+                }
                 resolve(self._saveTile(tileUrl.key, request.response));
               } else {
                 console.log("send request NOT OK");

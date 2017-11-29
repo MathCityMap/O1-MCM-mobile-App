@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { File } from '@ionic-native/file'
+import { checkAvailability } from "@ionic-native/core";
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer'
 import { AsyncTask } from './AsyncTask'
 import { Helper } from './Helper'
@@ -42,6 +43,9 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
       return
     }
 
+    if (checkAvailability(FileTransfer.getPluginRef(), null, FileTransfer.getPluginName()) !== true) {
+      return true;
+    }
     const fileTransfer: FileTransferObject = this.transfer.create();
     let dbHandler = DB_Handler.getInstance()
     let trailInfo = await dbHandler.getTrailsImageInfo()
