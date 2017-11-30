@@ -4,6 +4,7 @@ import { MathTask } from './MathTask'
 import { DB_Handler } from './DB_Handler'
 import {Helper, MapTile} from './Helper';
 import { CacheManagerMCM } from './CacheManagerMCM';
+import {DBC} from "./DBC";
 
 export class MathRoute {
 
@@ -362,24 +363,26 @@ export class MathRoute {
   //         dialog.show();
   //     }
 
-  downloadMap(callback) {
+  downloadMap(statusCallback) {
     if (Helper.isOnline) {
-      const divElem = document.createElement<'div'>('div')
-      divElem.style.width = Helper.windowWidth.toString()
-      divElem.style.height = Helper.windowHeight.toString()
-      const corner1 = L.latLng(40.712, -74.227)
-      const corner2 = L.latLng(40.774, -74.125)
-      const bounds: L.latLngBounds = L.latLngBounds(corner1, corner2)
-      let mv = L.map(divElem, {
-        maxBounds: bounds
-      });
-      const bbox: L.latLngBounds = this.boundingBox
-      const cacheManager = new CacheManagerMCM(mv, this)
-      const min_zoom: number = 18
+      const min_zoom: number = 16
       const max_zoom: number = 19
-      const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(bbox, min_zoom, max_zoom)
-      return cacheManager.downloadTiles(tiles, callback);
+      const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(this.boundingBox, min_zoom, max_zoom)
+      return CacheManagerMCM.downloadTiles(tiles, statusCallback).then((value) => {
+        this.downloaded  = true;
+        DB_Handler.getInstance().setOption(DBC.ON_ROUTE_DATA, String(this.Id))
+        return value;
+      });
     }
+  }
+
+  removeDownloadedMap() {
+    const min_zoom: number = 16
+    const max_zoom: number = 19
+    const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(this.boundingBox, min_zoom, max_zoom)
+    CacheManagerMCM.removeDownloadedTiles(tiles);
+    this.downloaded = false;
+    DB_Handler.getInstance().resetRouteDlStateById(String(this.Id));
   }
   //     public void downloadMap(final Context context) {
   //         if(MCMPermission.askPermWrite(context)){
@@ -591,6 +594,7 @@ export class MathRoute {
   //     public void putInfo(String key, String value) {
   //         this.info.put(key, value);
   //     }
+
   putInfo(key: string, value: string) {
     this.info.setValue(key, value)
   }

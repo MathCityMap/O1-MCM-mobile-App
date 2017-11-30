@@ -39,6 +39,8 @@ export class DB_Handler {
   private mSQLite: SQLite = null
   private mDB: SQLiteObject = null
   private mReady: boolean = false
+  private cache = {}
+
 
   public static getInstance(): DB_Handler {
     if (this.mInstance === null) {
@@ -76,14 +78,6 @@ export class DB_Handler {
     })
   }
 
-  getWritableDatabase(): SQLiteObject {
-    return this.mDB
-  }
-
-  getReadableDatabase(): SQLiteObject {
-    return this.mDB
-  }
-
   private onCreate(): Promise<void> {
     // Create Tables
     let CREATE_STATE_TABLE: string = DBC.DB_STATE.getCreateStatement()
@@ -112,6 +106,7 @@ export class DB_Handler {
   }
 
   onUpgrade(oldVersion: number, newVersion: number): Promise<void> {
+    this.cache = {}
     return new Promise<void>((resolve, reject) => {
       Promise.all([
         this.mDB.executeSql("DROP TABLE IF EXISTS " + DBC.DATABASE_TABLE_STATE, null),
@@ -155,6 +150,10 @@ export class DB_Handler {
     }
 
     return result
+  }
+
+  getDB(): SQLiteObject {
+    return this.mDB;
   }
 
   getTableVersions(): Promise<Collections.Dictionary<string, string>> {
@@ -218,8 +217,7 @@ export class DB_Handler {
   // }
   isOptionAvailable(optionName: string, value: string): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      const db = DB_Handler.getInstance().getReadableDatabase()
-      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_STATE} WHERE option=? AND value=?`, [optionName, value]).then(result => {
+      this.mDB.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_STATE} WHERE option=? AND value=?`, [optionName, value]).then(result => {
         if (result.rows.length == 0) {
           resolve(false)
         } else {
@@ -281,6 +279,9 @@ export class DB_Handler {
   //   }
   //  }
 
+  setOption(optionName: String, value: String): void {
+    this.mDB.executeSql(`INSERT INTO ${DBC.DATABASE_TABLE_STATE} (${DBC.DB_STATE.fields[1]},${DBC.DB_STATE.fields[2]}) VALUES (?,?)`, [optionName, value]).catch(error => console.error(error))
+  }
   //  public void updateOption(String optionName, String newValue){
   //   String oldVal = getOptionValue(optionName);
   //   if(oldVal != null){
@@ -342,6 +343,9 @@ export class DB_Handler {
   //   }
   //  }
 
+  resetRouteDlStateById(id: String) {
+    this.mDB.executeSql(`DELETE FROM ${DBC.DATABASE_TABLE_STATE} WHERE option = ? AND value = ?`, [DBC.ON_ROUTE_DATA, id]).catch(error => console.error(error))
+  }
   //  /*
   //  Check the number of routes that use the task with taskId
   //  Use: To not delete images of task, if they belong to more than one route
@@ -372,10 +376,9 @@ export class DB_Handler {
   //  }
   getTaskRels(taskId: string): Promise<number> {
     return new Promise<number>((resolve, reject) => {
-      let db = DB_Handler.getInstance().getWritableDatabase()
       let count: number = 0
-  
-      db.executeSql(`SELECT route_id, task_id FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE task_id = ?`, [taskId]).then(result => {
+
+      this.mDB.executeSql(`SELECT route_id, task_id FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE task_id = ?`, [taskId]).then(result => {
         let promises = []
         for (let i = 0; i < result.rows.length; i++) {
           let cursor = result.rows.item(i)
@@ -429,9 +432,8 @@ export class DB_Handler {
 
   async getMathTaskById(id: number): Promise<MathTask> {
     return new Promise<MathTask>((resolve, reject) => {
-      const db = DB_Handler.getInstance().getReadableDatabase()
       const sqlQry = `SELECT * FROM ${DBC.DATABASE_TABLE_TASK} WHERE _id=?`
-      db.executeSql(sqlQry, [id]).then(result => {
+      this.mDB.executeSql(sqlQry, [id]).then(result => {
         if (result.rows.length == 0) {
           resolve(null)
         } else {
@@ -584,9 +586,8 @@ export class DB_Handler {
   getMathTasks(): Promise<Array<MathTask>> {
     const self = this
     return new Promise<Array<MathTask>>((resolve, reject) => {
-      const db = DB_Handler.getInstance().getReadableDatabase()
       let mt = new Array<MathTask>()
-      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_TASK}`, []).then(result => {
+      this.mDB.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_TASK}`, []).then(result => {
         for (var i = 0; i < result.rows.length; i++) {
           mt.push(self.getMathTask(result.rows.item(i)))
         }
@@ -689,8 +690,7 @@ export class DB_Handler {
     let mts = new Array<MathRoute>()
     const self = this
     return new Promise<Array<MathRoute>>((resolve, reject) => {
-      const db = DB_Handler.getInstance().getReadableDatabase()
-      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_ROUTE}`, []).then(result => {
+      this.mDB.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_ROUTE}`, []).then(result => {
         let promises = []
         for (let i = 0; i < result.rows.length; i++) {
           let route: MathRoute = self.createMathRouteFromCursor(result.rows.item(i))
@@ -870,8 +870,7 @@ export class DB_Handler {
   //  }
   getRouteTaskRelations(): Promise<Collections.Dictionary<string, Array<string>>> {
     return new Promise<Collections.Dictionary<string, Array<string>>>((resolve, reject) => {
-      const db = DB_Handler.getInstance().getReadableDatabase()
-      db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK}`, []).then(cursor => {
+      this.mDB.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK}`, []).then(cursor => {
         let result = new Collections.Dictionary<string, Array<string>>()
         for (let i = 0; i < cursor.rows.length; i++) {
           const item = cursor.rows.item(i)
@@ -907,8 +906,7 @@ export class DB_Handler {
   //   return result;
   //  }
   async getRouteTaskIds(routeId: number): Promise<Array<string>> {
-    const db = DB_Handler.getInstance().getReadableDatabase()
-    const sqlResult = await db.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE route_id = ?`, [routeId])
+    const sqlResult = await this.mDB.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_REL_ROUTE_TASK} WHERE route_id = ?`, [routeId])
     let result = new Array<string>()
     for (let i = 0; i < sqlResult.rows.length; i++) {
       result.push(sqlResult.rows.item(i).task_id.toString())
@@ -954,9 +952,15 @@ export class DB_Handler {
   getReadyRoutes(publicState: number): Promise<Array<MathRoute>> {
     const self = this
     return new Promise<Array<MathRoute>>((resolve, reject) => {
+      const cacheKey = 'getReadyRoutes' + publicState;
+      if (self.cache[cacheKey]) {
+        resolve(self.cache[cacheKey]);
+        return;
+      }
       let tasks: Collections.Dictionary<string, MathTask>
       let routes: Collections.Dictionary<string, MathRoute>
       let rel: Collections.Dictionary<string, Array<string>>
+      let downloadedRouteIds: Array<String>
 
       let promises = [
         self.getMathTasksAssociative().then(t => {
@@ -967,7 +971,10 @@ export class DB_Handler {
         }).catch(error => reject(error)),
         self.getRouteTaskRelations().then(r => {
           rel = r
-        }).catch(error => reject(error))
+        }).catch(error => reject(error)),
+        self.getDownloadedRouteIds().then(r => {
+          downloadedRouteIds = r
+        })
       ]
       Promise.all(promises).then(() => {
         let result = Array<MathRoute>()
@@ -975,6 +982,7 @@ export class DB_Handler {
           const route_id: string = rid.toString()
           let task_ids: string[] = rel.getValue(route_id)
           let r: MathRoute = routes.getValue(route_id)
+          r.downloaded = downloadedRouteIds.indexOf(route_id) >= 0
           if (r.getInfo("public") == publicState.toString()) {
             task_ids.forEach(task_id => {
               r.addTask(tasks.getValue(task_id.toString()))
@@ -984,12 +992,23 @@ export class DB_Handler {
             result.push(r)
           }
         })
-
+        self.cache[cacheKey] = result;
         resolve(result)
       })
     })
   }
 
+  getDownloadedRouteIds(): Promise<Array<String>> {
+    return new Promise<Array<String>>((resolve, reject) => {
+      this.mDB.executeSql(`SELECT DISTINCT(value) FROM ${DBC.DATABASE_TABLE_STATE} WHERE option=?`, [DBC.ON_ROUTE_DATA]).then(result => {
+        const ids = [];
+        for (let i = 0; i < result.rows.length; i++) {
+          ids.push(result.rows.item(i).value);
+        }
+        resolve(ids);
+      }).catch(error => reject(error))
+    });
+  }
   //  public ArrayList<MathRoute> getUnlockedRoutes(){
   //   try{
   //    ArrayList<MathRoute> privateRoutes = getReadyRoutes(0);

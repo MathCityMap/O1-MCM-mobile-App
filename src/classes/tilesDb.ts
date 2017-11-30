@@ -1,9 +1,14 @@
 import { Storage } from '@ionic/storage';
 
+var storageInstance: any;
 export var tilesDb = {
   storage: null,
   initialize: function () {
-    this.storage = new Storage({ name: "mapboxTilesStorage" });
+    if (storageInstance) {
+      this.storage = storageInstance;
+    } else {
+      this.storage = storageInstance = new Storage({ name: "mapboxTilesStorage" });
+    }
     return this.storage.ready();
   },
   getItem: function (key) {
@@ -13,41 +18,54 @@ export var tilesDb = {
   saveTiles: function (tileUrls, progressCallback) {
     var self = this;
 
-    var promises = [];
     const totalDownload = tileUrls.length;
     var doneDownload = 0;
-    for (var i = 0; i < totalDownload; i++) {
-      var tileUrl = tileUrls[i];
-
-      (function (i, tileUrl, totalDownload) {
-        promises[i] = new Promise(function (resolve, reject) {
-          var request = new XMLHttpRequest();
-          request.open('GET', tileUrl.url, true);
-          request.responseType = 'blob';
-          request.onreadystatechange = function () {
-            if (request.readyState === XMLHttpRequest.DONE) {
-              if (request.status === 200) {
-                doneDownload++;
-                console.log("Progress: ", i, Math.round((doneDownload) * 100 / totalDownload));
-                if (progressCallback) {
-                  progressCallback(doneDownload, totalDownload);
-                }
-                resolve(self._saveTile(tileUrl.key, request.response));
+    var currentlyActiveDownloads = 0;
+    var nextIndex = 0;
+    return new Promise(function (resolve, reject) {
+      var spawnNextDownloads;
+      var downloadTile = function (i, tileUrl) {
+        currentlyActiveDownloads++;
+        var request = new XMLHttpRequest();
+        request.open('GET', tileUrl.url, true);
+        request.responseType = 'blob';
+        request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+            if (request.status === 200) {
+              doneDownload++;
+              console.log("Progress: ", i, Math.round((doneDownload) * 100 / totalDownload));
+              self._saveTile(tileUrl.key, request.response);
+              i++;
+              currentlyActiveDownloads--;
+              if (doneDownload == totalDownload) {
+                resolve();
               } else {
-                console.log("send request NOT OK");
-                reject({
-                  status: request.status,
-                  statusText: request.statusText
-                });
+                spawnNextDownloads();
               }
+              if (progressCallback) {
+                progressCallback(doneDownload, totalDownload);
+              }
+            } else {
+              console.log("send request NOT OK");
+              reject({
+                status: request.status,
+                statusText: request.statusText
+              });
             }
-          };
-          request.send();
-        });
-      })(i, tileUrl, totalDownload);
-    }
+          }
+        };
+        request.send();
+      };
 
-    return Promise.all(promises);
+      spawnNextDownloads = function() {
+        while (currentlyActiveDownloads < 3 && nextIndex < totalDownload) {
+          downloadTile(nextIndex, tileUrls[nextIndex]);
+          nextIndex++;
+        }
+      };
+
+      spawnNextDownloads();
+    });
   },
 
   clear: function () {

@@ -440,7 +440,7 @@ export class CacheManagerMCM {
     // return pTask
   }
 
-  downloadTiles(tiles: Array<MapTile>, callback: any): Promise<any> {
+  static downloadTiles(tiles: Array<MapTile>, callback: any): Promise<any> {
     return tilesDb.saveTiles(tiles.map(tile => {
        let domain = Helper.subDomains[Math.floor(Math.random() * Helper.subDomains.length)];
        let keyDomain = Helper.subDomains[0];
@@ -451,6 +451,11 @@ export class CacheManagerMCM {
     }), callback);
   }
 
+  static removeDownloadedTiles(tiles: Array<MapTile>): void {
+    tiles.map(tile => {
+        tilesDb._removeItem(Helper.mapquestUrl.replace('{s}', Helper.subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)))
+    })
+  }
   //   public CacheManagerAction getDownloadingAction() {
   //     return new CacheManagerAction() {
   //         @Override

@@ -18,6 +18,7 @@ import { tilesDb } from '../../../../classes/tilesDb';
 import { TasksMap } from '../TasksMap/TasksMap';
 import { HomePage } from '../../home';
 import { MathRoute } from '../../../../classes/MathRoute';
+import { SpinnerDialog} from "@ionic-native/spinner-dialog";
 
 @Component({
   selector: 'page-map',
@@ -34,7 +35,7 @@ export class MapPage implements OnInit {
   offlineLayer: any;
   offlineControl: any;
   userMarker: any;
-  isFilePluginIsAvailable: boolean;
+  isFilePluginAvailable: boolean;
   doneDownload: number;
   totalDownload: number;
   isDownloading: boolean = false;
@@ -42,14 +43,15 @@ export class MapPage implements OnInit {
   constructor(public navCtrl: NavController,
     private platform: Platform,
     private geolocation: Geolocation,
-    private updater: DB_Updater) { }
+    private updater: DB_Updater,
+    private spinner: SpinnerDialog) { }
 
   ionViewDidEnter() {
     console.log("ionViewDidEnter:");
   }
 
   ngOnInit() {
-    this.isFilePluginIsAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
+    this.isFilePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
     this.platform.ready().then(() => {
       console.log('Platform is ready!');
       this.initializeMap();
@@ -80,6 +82,7 @@ export class MapPage implements OnInit {
         // let db = dbh.getWritableDatabase();
         let fileManager = new File();
         // db.executeSql(sqlQry, []).then(result => {
+        this.spinner.show(null, "Lade Routen", true);
           dbHandler.getReadyRoutes(1).then(result => {
           let markerGroup = L.markerClusterGroup();
           // for (var i = 0; i < result.rows.length; i++) {
@@ -88,7 +91,7 @@ export class MapPage implements OnInit {
             // let center = JSON.parse(row.center);
             let marker: any = L.marker([row.Center.lat, row.Center.lng]).on('click', () => {
               // let imageFileName = row.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
-              if (this.isFilePluginIsAvailable) {
+              if (this.isFilePluginAvailable) {
                 let imageFileName = row.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
                 fileManager.readAsDataURL(fileManager.dataDirectory, imageFileName)
                   .then(imageData => this.routeImage = imageData, imageError => {
@@ -109,32 +112,34 @@ export class MapPage implements OnInit {
 
           map.addLayer(markerGroup);
           this.markerGroup = markerGroup;
+          this.spinner.hide();
         });
       })
     }).catch(error => {
       console.error(`DB_Handler initialization error: ${JSON.stringify(error)}`);
+      this.spinner.hide();
     })
   }
 
   loadMap() {
     this.center = [50.1208566, 8.66158515]; // Frankfurt-am Main
-    let mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}.png?&tilesize=256&access_token=${Helper.accessToken}`
-    let subDomains = ['a', 'b', 'c', 'd'];
+    let mapquestUrl = Helper.mapquestUrl
+    let subDomains = Helper.subDomains
 
     //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
-    const corner1 = L.latLng(38.4313915,27.1212443)
-    const corner2 = L.latLng(38.4114794,27.1431646)
+    const corner1 = L.latLng(52.3905689,13.0644729)
+    const corner2 = L.latLng(52.3513863,13.1632323)
     const bounds: L.latLngBounds = L.latLngBounds(corner1, corner2)
 
 
     if (this.map == null) {
       this.map = L.map('map', {
-        // center: this.center,
-        zoom: 18,
+        center: this.center,
+        zoom: 16,
         tileSize: 256
       });
-      this.map.fitBounds(bounds);
-      this.map.setZoom(18);
+      // this.map.fitBounds(bounds);
+      this.map.setZoom(16);
       this.map.on('click', e => {
         //check if details open and reset content. for now just reset content
         this.routeDetails = null;
@@ -147,10 +152,11 @@ export class MapPage implements OnInit {
         let offlineLayer = L.tileLayer.offline(mapquestUrl, tilesDb, {
           attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
           subdomains: subDomains,
-          minZoom: 10,
+          minZoom: 7,
           maxZoom: 20,
           tileSize: 256,
-          crossOrigin: true
+          crossOrigin: true,
+          detectRetina: true
         });
         let offlineControl = L.control.offline(offlineLayer, tilesDb, {
           saveButtonHtml: '<i class="fa fa-download" aria-hidden="true">Save</i>',
@@ -172,7 +178,7 @@ export class MapPage implements OnInit {
         });
 
         offlineLayer.addTo(map);
-        offlineControl.addTo(map);
+        // offlineControl.addTo(map);
 
         offlineLayer.on('offline:below-min-zoom-error', function () {
           alert('Can not save tiles below minimum zoom level.');
@@ -214,7 +220,7 @@ export class MapPage implements OnInit {
             this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
               alert('Marker clicked');
             });
-            // this.userMarker.addTo(this.map);
+            this.userMarker.addTo(this.map);
             this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
 
             let watch = this.geolocation.watchPosition();
@@ -222,9 +228,9 @@ export class MapPage implements OnInit {
               if (resp && resp.coords) {
                 Helper.myLocation = resp;
                 console.log(`Coordinates: ${JSON.stringify(resp)}`);
-                // const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
+                const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                 // this.map.panTo(lanlng);
-                // this.userMarker.setLatLng(lanlng);
+                this.userMarker.setLatLng(lanlng);
               }
             });
           }
@@ -250,7 +256,15 @@ export class MapPage implements OnInit {
         self.totalDownload = totalDownload;
     }).then(() => {
       this.isDownloading = false;
-      HomePage.nav.push(TasksMap, { route: route })
+      // HomePage.nav.push(TasksMap, { route: route })
     });
+  }
+
+  showRoute(route: MathRoute): void {
+    HomePage.nav.push(TasksMap, { route: route })
+  }
+
+  removeRoute(route: MathRoute): void {
+    route.removeDownloadedMap();
   }
 }

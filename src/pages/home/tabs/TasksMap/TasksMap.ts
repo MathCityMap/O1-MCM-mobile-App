@@ -67,8 +67,8 @@ export class TasksMap {
 
   loadMap() {
     const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
-    let mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}.png?access_token=${Helper.accessToken}`
-    let subDomains = ['a', 'b', 'c', 'd'];
+    let mapquestUrl = Helper.mapquestUrl
+    let subDomains = Helper.subDomains
 
     //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
     // const corner1 = L.latLng(38.4313915, 27.1212443)
@@ -96,12 +96,15 @@ export class TasksMap {
         let offlineLayer = L.tileLayer.offline(mapquestUrl, tilesDb, {
           attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
           subdomains: subDomains,
-          minZoom: 10,
-          maxZoom: 18,
-          crossOrigin: false
+          minZoom: 15,
+          maxZoom: 19,
+          tileSize: 256,
+          crossOrigin: true,
+          detectRetina: true
         });
 
         offlineLayer.addTo(map);
+        this.map.fitBounds(this.route.ViewBoundingBox);
 
         offlineLayer.on('offline:below-min-zoom-error', function () {
           alert('Can not save tiles below minimum zoom level.');

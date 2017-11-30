@@ -121,7 +121,7 @@ export class DB_Updater extends AsyncTask<string[]> {
   */
   private async checkForUpdates(data: any, table: DBC_Plan) {
     let dbHandler = DB_Handler.getInstance()
-    let db = dbHandler.getWritableDatabase()
+    let db = dbHandler.getDB();
     console.log("WAITING FOR offlineVersions")
     let offlineVersions = await dbHandler.getTableVersions()
     console.log("OFFLINE versions", offlineVersions)
@@ -196,7 +196,7 @@ export class DB_Updater extends AsyncTask<string[]> {
   private async insertJSONinSQLiteDB(data: any, table: DBC_Plan) {
     let sqlInsertQry = `INSERT INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
     let dbh = DB_Handler.getInstance()
-    let db = dbh.getWritableDatabase()
+    let db = dbh.getDB();
     await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
     await db.transaction(tr => {
       for (var i = 0; i < data.length; i++) {

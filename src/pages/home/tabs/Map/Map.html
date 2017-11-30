@@ -15,10 +15,12 @@
         <p class="label">From grade</p><p class="value">{{routeDetails.getInfo("grade")}}</p>
       </div>
       <div>
-        <button ion-button (click)="doDownload(routeDetails)" color="dark">Download</button>
+        <button *ngIf="routeDetails && !routeDetails.downloaded" ion-button (click)="doDownload(routeDetails)" color="dark">Download</button>
         <span *ngIf="isDownloading">
           {{doneDownload}} / {{totalDownload}}
         </span>
+        <button *ngIf="routeDetails && routeDetails.downloaded" ion-button (click)="showRoute(routeDetails)" color="dark">Anzeigen</button>
+        <button *ngIf="routeDetails && routeDetails.downloaded" ion-button (click)="removeRoute(routeDetails)" color="dark">Entfernen</button>
       </div>
     </div>
   </div>
