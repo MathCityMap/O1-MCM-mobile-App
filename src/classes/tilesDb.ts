@@ -1,6 +1,7 @@
 import { Storage } from '@ionic/storage';
-
 var storageInstance: any;
+declare var URL: any;
+
 export var tilesDb = {
   storage: null,
   initialize: function () {
@@ -34,17 +35,20 @@ export var tilesDb = {
             if (request.status === 200) {
               doneDownload++;
               console.log("Progress: ", i, Math.round((doneDownload) * 100 / totalDownload));
-              self._saveTile(tileUrl.key, request.response);
-              i++;
-              currentlyActiveDownloads--;
-              if (doneDownload == totalDownload) {
-                resolve();
-              } else {
-                spawnNextDownloads();
-              }
-              if (progressCallback) {
-                progressCallback(doneDownload, totalDownload);
-              }
+              self._saveTile(tileUrl.key, request.response).then(function() {
+                // create URL to make tiles load faster later
+                URL.createObjectURL(request.response);
+                i++;
+                currentlyActiveDownloads--;
+                if (doneDownload == totalDownload) {
+                  resolve();
+                } else {
+                  spawnNextDownloads();
+                }
+                if (progressCallback) {
+                  progressCallback(doneDownload, totalDownload);
+                }
+              });
             } else {
               console.log("send request NOT OK");
               reject({
@@ -58,7 +62,7 @@ export var tilesDb = {
       };
 
       spawnNextDownloads = function() {
-        while (currentlyActiveDownloads < 3 && nextIndex < totalDownload) {
+        while (currentlyActiveDownloads < 5 && nextIndex < totalDownload) {
           downloadTile(nextIndex, tileUrls[nextIndex]);
           nextIndex++;
         }
