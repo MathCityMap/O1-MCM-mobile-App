@@ -22,6 +22,8 @@ import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
 import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
 
 
+import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +36,8 @@ import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
     HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    MCMHeaderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

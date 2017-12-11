@@ -6,6 +6,7 @@ import { MapPage } from './tabs/Map/Map';
 import { RoutesListPage } from './tabs/RoutesList/RoutesList';
 import { Helper } from '../../classes/Helper';
 
+
 @Component({
   templateUrl: 'home.html'
 })
@@ -30,7 +31,7 @@ export class HomePage {
         console.warn('Network disconnected!');
         Helper.isOnline = false;
       });
-  
+
       this.connectSubscription = this.network.onConnect().subscribe(() => {
         console.log('Network connected!');
         Helper.isOnline = true;

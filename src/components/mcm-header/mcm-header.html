@@ -1,0 +1,20 @@
+<ion-header>
+    <!-- Header -->
+    <ion-toolbar hideBackButton>
+        <ion-buttons left>
+            <button class="imprint-button" *ngIf="!showBackButton" ion-button icon-only [navPush]="''">
+                <img src="assets/icons/menu/info.svg"/>
+            </button>
+            <button class="back-button" *ngIf="showBackButton" ion-button icon-only (click)="goBack()">
+                <img src="assets/icons/menu/back.svg"/>
+            </button>
+        </ion-buttons>
+        <ion-title>MathCityMap</ion-title>
+        <ion-buttons end>
+            <button class="settings-button" ion-button menuToggle icon-only [navPush]="''">
+                <img src="assets/icons/menu/settings.svg"/>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+    <!-- end of Header -->
+</ion-header>

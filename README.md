@@ -1,6 +1,6 @@
 ## Project run instructions
 
-Run yran to install project dependencies:
+Run yarn to install project dependencies:
 
 ```bash
 yarn
