@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'NunitoSemibold';
+    src: url('../assets/fonts/nunito/Nunito-SemiBold.ttf')  format('truetype'), /* Safari, Android, iOS */
+  }
+  @font-face {
+    font-family: 'NunitoBold';
+    src: url('../assets/fonts/nunito/Nunito-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+  }
+  @font-face {
+    font-family: 'NunitoExtrabold';
+    src: url('../assets/fonts/nunito/Nunito-ExtraBold.ttf')  format('truetype'), /* Safari, Android, iOS */
+  }
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body{
+    font-family: 'NunitoSemibold', Arial, sans-serif;
+}

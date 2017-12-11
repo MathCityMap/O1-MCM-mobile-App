@@ -3,6 +3,7 @@
 // --------------- Header bar styles --------------
 
 ion-header{
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
     ion-toolbar{
         .toolbar-background{
             background: color($colors, primary);
@@ -12,7 +13,14 @@ ion-header{
       border: none;
       border-color: transparent;
     }
-    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+    .bar-buttons{
+      width: 32px;
+      padding: 3px;
+      button{
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
     .toolbar{
         padding: 25px 12px 10px 12px;
     }
@@ -22,8 +30,10 @@ ion-header{
     .title{
       text-align: center;
       position: relative;
+      padding: 0;
     }
     .toolbar-title{
+      font-family: 'NunitoSemibold', Helvetica, sans-serif;
       color: color($colors, light);
       font-size: 24px;
       font-weight: 500;
