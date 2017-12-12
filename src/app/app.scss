@@ -111,7 +111,9 @@ ion-content, .ion-content, .scroll-content{
   }
 }
 
-//INFO CARDS LIST & MAP
+
+// =============================================
+// ----------- INFO CARDS LIST & MAP -----------
 
 .detail-box{
     background-color: #ffffff;
@@ -200,85 +202,25 @@ ion-content, .ion-content, .scroll-content{
       }
     }
 }
-
-
-
-
-
-/* .label,  #details{
-  display: flex;
-  margin: 0;
-  display: table;
-  width: 100%;
-  padding: 12px;
-  & > *{
-    display: table-cell;
-    vertical-align: top;
-  }
-  .image-container{
-    flex:1;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    position: relative;
-  }
-  img{
-    display: block;
-    object-fit: cover;
-    background-color: grey;
+.map{
+  .detail-box{
+    background-color: #ffffff;
     height: auto;
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-    max-width: none;
-    width: 100%;
+    width: calc( 100% + 6px );
+    padding: 10px;
+    margin: 0;
 
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-  }
-  .info-container{
-    flex:3;
-    padding-left: 15px;
-    .title{
-      margin-bottom: 10px;
-      h1{
-        font-size: 18px;
-        font-weight: 500;
-        color: color($colors, primary);
-        margin-top: 5px;
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-        white-space: normal;
-        border-bottom: 4px dotted color($colors, grey);
-      }
-      p{
-        width: 100%;
-        margin: 0;
-      }
-    }
-    .segmented-box{
-      display: flex;
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
 
-      &>div{
-        flex: 1;
-      }
-    }
-    p{
-      width: 50%;
-      display: inline-block;
-      margin: 0;
-      margin-bottom: 0px;
-      font-size: 12px;
-      font-weight: 500;
-      color: #444444;
-      &.label{
-        color: #b4b4b4;
-        font-weight: 400;
-      }
-      &.value{
-        text-align: right;
-      }
-    }
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    display: flex;
+    align-items: center;
   }
-}*/
+}
