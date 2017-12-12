@@ -2,23 +2,27 @@
     <!-- [virtualScroll]="items" approxItemHeight="124px" -->
   <ion-list>
       <!--  *virtualItem="let item" -->
-    <ion-item *ngFor="let item of items">
-      <div class="image-container">
-          <img [src]="item.image" />
-      </div>
-      <div class="info-container">
-        <div class="title">
-          <h1>{{item.title}}</h1>
+    <div class="detail-box" *ngFor="let item of items">
+        <div class="image-container">
+            <img [src]="item.image" />
+        </div>
+        <div class="text-container">
           <p>{{item.city}}, {{item.country_code}}</p>
-        </div>
-        <hr>
-        <div class="distance">
-          <p class="label">Distance</p><p class="value">{{item.distance}} m</p>
-        </div>
-        <div class="grade">
-          <p class="label">From grade</p><p class="value">{{item.grade}}</p>
+          <h2>{{item.title}}</h2>
+          <div class="segmented-box">
+            <div class="segement distance">
+                <label>Distance</label>
+                <span>{{item.distance}} m</span>
+            </div>
+            <div class="segement grade">
+                <label [ngClass]="{'appear-disabled' : !item.grade}">Grade</label>
+                <span *ngIf="item.grade">{{item.grade}}</span>
+            </div>
+            <div class="segement">
+
+            </div>
+          </div>
         </div>
       </div>
-    </ion-item>
   </ion-list>
 </ion-content>

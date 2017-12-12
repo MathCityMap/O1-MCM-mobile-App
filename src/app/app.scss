@@ -113,46 +113,155 @@ ion-content, .ion-content, .scroll-content{
 
 //INFO CARDS LIST & MAP
 
-.label, #details{
+.detail-box{
+    background-color: #ffffff;
+    height: auto;
+    width: calc( 100% - 10px );
+    padding: 10px;
+    margin-bottom: 10px;
+
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    display: flex;
+    align-items: center;
+
+    .image-container{
+      flex:1;
+      max-width: 180px;
+
+      img{
+        min-width: 100%;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        background-color: color($colors, grey);
+
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+    }
+
+    .text-container{
+      flex: 3;
+      padding-left: 10px;
+
+      p{
+        font-size: 12px;
+        font-weight: 500;
+        color: color($colors, dark-grey);
+        margin: 0;
+      }
+      h2{
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: 500;
+        color: color($colors, primary);
+        margin-top: 5px;
+        margin-bottom: 10px;
+        white-space: normal;
+
+        display            : block;
+        display            : -webkit-box;
+        -webkit-box-orient : vertical;
+        position           : relative;
+        overflow           : hidden;
+        text-overflow      : ellipsis;
+        -webkit-line-clamp : 2;
+        /* lineheight * line-clamp */
+        max-height             : calc(22px * 2);
+      }
+      .segmented-box{
+        border-top: 2px dotted color($colors, grey);
+        margin-top: 10px;
+        padding-top: 10px;
+        display: flex;
+
+        .segement{
+          flex: 1;
+          &:not(:last-of-type){
+            border-right: 2px dotted color($colors, grey);
+            margin-right: 10px;
+            padding-right: 10px;
+          }
+
+          label{
+            display: block;
+            text-transform: uppercase;
+            color: color($colors, grey);
+          }
+          span{
+            display: block;
+          }
+        }
+      }
+    }
+}
+
+
+
+
+
+/* .label,  #details{
+  display: flex;
   margin: 0;
   display: table;
   width: 100%;
+  padding: 12px;
   & > *{
     display: table-cell;
     vertical-align: top;
   }
   .image-container{
-    width: 33%;
+    flex:1;
     overflow: hidden;
-    padding: 0;margin: 0;
+    padding: 0;
+    margin: 0;
     position: relative;
   }
   img{
     display: block;
     object-fit: cover;
     background-color: grey;
-    min-height: 124px;
+    height: auto;
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
     max-width: none;
     width: 100%;
+
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
   }
   .info-container{
-    width: 66%;
-    padding: 12px;
+    flex:3;
+    padding-left: 15px;
     .title{
       margin-bottom: 10px;
       h1{
         font-size: 18px;
         font-weight: 500;
         color: color($colors, primary);
-        margin-bottom: 0;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
         white-space: normal;
+        border-bottom: 4px dotted color($colors, grey);
       }
       p{
         width: 100%;
         margin: 0;
+      }
+    }
+    .segmented-box{
+      display: flex;
+
+      &>div{
+        flex: 1;
       }
     }
     p{
@@ -172,4 +281,4 @@ ion-content, .ion-content, .scroll-content{
       }
     }
   }
-}
+}*/
