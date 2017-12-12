@@ -30,14 +30,20 @@
     box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
     background: color($colors, primary);
     .tab-button, .tab-button-icon{
-      color: color($colors, light)!important;
+      color: color($colors, light);
+      &[aria-selected="false"]{
+        color:rgba(color($colors, light), .4);
+      }
     }
     .tab-button{
       padding: 5px 5px 6px;
+      min-height: 50px;
     }
-    .has-icon .tab-button-icon, .has-title .tab-button-text{
+    .has-icon .tab-button-icon,
+    .has-title .tab-button-text{
       display: inline-block;
       vertical-align: middle;
+      font-size: 16px;
     }
     .tab-button-icon{
       margin: 0;
@@ -60,29 +66,6 @@ ion-content, .ion-content, .scroll-content{
 
 
 
-//MAP
-
-.map{
-  #map{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-  }
-  #details{
-    width: 100%;
-    position: fixed;
-    bottom: -50%;
-    z-index: 2;
-    background: #ffffff;
-    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
-  }
-  #details.open{
-    bottom: 54px;
-    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
-  }
-}
 
 
 
@@ -202,13 +185,37 @@ ion-content, .ion-content, .scroll-content{
       }
     }
 }
+
+//MAP
+
 .map{
+  #map{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  #details{
+    width: 100%;
+    position: fixed;
+    bottom: -50%;
+    z-index: 2;
+    background: #ffffff;
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
+  }
+  #details.open{
+    bottom: 54px;
+    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
+  }
+
   .detail-box{
     background-color: #ffffff;
     height: auto;
     width: calc( 100% + 6px );
     padding: 10px;
     margin: 0;
+    margin-bottom: -4px;
 
     -webkit-border-top-left-radius: 8px;
     -webkit-border-top-right-radius: 8px;
