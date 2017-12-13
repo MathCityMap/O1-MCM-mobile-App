@@ -8,6 +8,10 @@ ion-header{
         .toolbar-background{
             background: color($colors, primary);
         }
+        &.toolbar-ios,
+        &.md-toolbar{
+          height: 10vh;
+        }
     }
     ion-navbar{
       border: none;

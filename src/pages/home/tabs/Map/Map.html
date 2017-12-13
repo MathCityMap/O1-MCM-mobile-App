@@ -1,7 +1,6 @@
-<ion-content padding class="map">
-  <div id="map"></div>
-  <!-- *ngClass="{true: 'open', false: ''}[routeDetails != null]" -->
+<ion-content class="map">
 
+  <div id="map"></div>
 
   <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
       <div class="image-container">
@@ -12,11 +11,11 @@
           <h2>{{routeDetails.title}}</h2>
         <div class="segmented-box">
           <div class="segement distance" *ngIf="routeDetails">
-              <label>Distance</label>
+              <label>{{ "general.distance" | translate }}</label>
               <span>{{routeDetails.getInfo("distance")}} m</span>
           </div>
           <div class="segement grade" *ngIf="routeDetails">
-              <label>Grade</label>
+              <label>{{ "general.grade" | translate }}</label>
               <span>{{routeDetails.getInfo("grade")}}</span>
           </div>
           <div class="segement">
@@ -31,39 +30,4 @@
       </div>
     </div>
 
-
-  <!-- <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
-    <div class="image-container">
-
-    </div>
-    <div class="text-container">
-
-    </div>
-
-    <div class="image-container">
-      <img *ngIf="routeDetails && routeImage" [src]="routeImage || '//:0'" />
-    </div>
-    <div class="info-container">
-      <div class="title" *ngIf="routeDetails">
-        <p>{{routeDetails.getInfo("city")}}, {{routeDetails.getInfo("country_code")}}</p>
-        <h1>{{routeDetails.title}}</h1>
-      </div>
-      <div class="segmented-box">
-          <div class="distance" *ngIf="routeDetails">
-              <p class="label">Distance</p><p class="value">{{routeDetails.getInfo("distance")}}</p>
-            </div>
-          <div class="grade" *ngIf="routeDetails">
-              <p class="label">Grade</p><p class="value">{{routeDetails.getInfo("grade")}}</p>
-            </div>
-            <div>
-              <button *ngIf="routeDetails && !routeDetails.downloaded" ion-button (click)="doDownload(routeDetails)" color="dark">Download</button>
-              <span *ngIf="isDownloading">
-                {{doneDownload}} / {{totalDownload}}
-              </span>
-              <button *ngIf="routeDetails && routeDetails.downloaded" ion-button (click)="showRoute(routeDetails)" color="dark">Anzeigen</button>
-              <button *ngIf="routeDetails && routeDetails.downloaded" ion-button (click)="removeRoute(routeDetails)" color="dark">Entfernen</button>
-            </div>
-      </div>
-    </div>
-  </div> -->
 </ion-content>
