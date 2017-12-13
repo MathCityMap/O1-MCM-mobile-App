@@ -12,7 +12,7 @@
           <div class="segmented-box">
             <div class="segement distance">
                 <label>Distance</label>
-                <span>{{item.distance}} m</span>
+                <span>{{item.distance | distance: ' m'}}</span>
             </div>
             <div class="segement grade">
                 <label [ngClass]="{'appear-disabled' : !item.grade}">Grade</label>

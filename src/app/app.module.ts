@@ -21,16 +21,18 @@ import { MapPage } from '../pages/home/tabs/Map/Map';
 import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
 import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
 
+import { distancePipe } from './pipes/distance.pipe';
 
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
 
 @NgModule({
   declarations: [
     MyApp,
+    distancePipe,
     MapPage,
     RoutesListPage,
     TasksMap,
-    HomePage
+    HomePage,
   ],
   imports: [
     HttpModule,
