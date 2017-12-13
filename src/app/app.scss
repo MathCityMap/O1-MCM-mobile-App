@@ -59,9 +59,8 @@
 
 
 //CONTENT
-
-ion-content, .ion-content, .scroll-content{
-  padding: 0!important;
+.scroll-content{
+  padding-top: 72px;
 }
 
 
@@ -74,7 +73,7 @@ ion-content, .ion-content, .scroll-content{
 .routes-list{
     background: lightgrey;
   .list{
-    margin: 10px 0px 0px;
+/*     margin: 10px 0px 0px; */
   }
   .item{
     height: 124px;

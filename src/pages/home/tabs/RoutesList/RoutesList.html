@@ -11,11 +11,11 @@
           <h2>{{item.title}}</h2>
           <div class="segmented-box">
             <div class="segement distance">
-                <label>Distance</label>
-                <span>{{item.distance | distance: ' m'}}</span>
+                <label>{{ "general.distance" | translate }}</label>
+                <span>{{item.distance | distance: 'm'}}</span>
             </div>
             <div class="segement grade">
-                <label [ngClass]="{'appear-disabled' : !item.grade}">{{ "grade" | translate }}</label>
+                <label [ngClass]="{'appear-disabled' : !item.grade}">{{ "general.grade" | translate }}</label>
                 <span *ngIf="item.grade">{{item.grade}}</span>
             </div>
             <div class="segement">

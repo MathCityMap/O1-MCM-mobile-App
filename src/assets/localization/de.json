@@ -1,4 +1,6 @@
 {
-   "distance": "Entfernung",
-   "grade": "Klasse"
+    "general" : {
+        "distance": "Entfernung",
+        "grade": "Klasse"
+    }
 }
