@@ -15,7 +15,7 @@
                 <span>{{item.distance | distance: ' m'}}</span>
             </div>
             <div class="segement grade">
-                <label [ngClass]="{'appear-disabled' : !item.grade}">Grade</label>
+                <label [ngClass]="{'appear-disabled' : !item.grade}">{{ "grade" | translate }}</label>
                 <span *ngIf="item.grade">{{item.grade}}</span>
             </div>
             <div class="segement">

@@ -21,6 +21,11 @@ import { MapPage } from '../pages/home/tabs/Map/Map';
 import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
 import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
 
+/* Translation */
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { createTranslateLoader } from '../providers/translate-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+
 import { distancePipe } from './pipes/distance.pipe';
 
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
@@ -36,9 +41,17 @@ import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
   ],
   imports: [
     HttpModule,
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     MCMHeaderModule
   ],
   bootstrap: [IonicApp],

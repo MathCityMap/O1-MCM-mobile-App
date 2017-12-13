@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { MCMHeaderComponent } from './mcm-header.component';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 const headerComponents = [
   MCMHeaderComponent
 ]
@@ -12,7 +14,8 @@ const headerComponents = [
     headerComponents
   ],
   imports: [
-    IonicModule
+    IonicModule,
+    TranslateModule,
   ],
   exports: [
     headerComponents
