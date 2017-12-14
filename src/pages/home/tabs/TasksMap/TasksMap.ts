@@ -21,16 +21,30 @@ import { File } from '@ionic-native/file';
 export class TasksMap {
   @ViewChild('tasks-map') mapContainer: ElementRef;
   private map: any;
+  private routeId: number;
   private route: MathRoute;
+  private tasks: MathTask;
+  private showPopup: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fileManager: File) { }
 
   ionViewDidEnter() {
+    console.log(' =========================================================== ', 'this.route', this.route,' =========================================================== ', 'this.tasks', this.tasks,' =========================================================== ');
+
     console.log('TasksMap ionViewDidEnter()');
-    this.route = this.navParams.get('route');
-    this.route.initTasks().then(() => {
-      this.loadMap();
-      this.initializeMap();
+    this.routeId = this.navParams.get('routeId');
+    let that = this;
+    let dbHandler = DB_Handler.getInstance();
+    dbHandler.ready().then(()=>{
+        dbHandler.getMathRouteById(that.routeId).then((mathRoute: MathRoute) => {
+          that.route = mathRoute;
+          that.route.initTasks().then(() => {
+            that.loadMap();
+            that.initializeMap();
+          })
+        }, (error) => {
+          console.error(error);
+        })
     })
   }
 
@@ -47,6 +61,7 @@ export class TasksMap {
     let test = this.route.getTasks();
     test.forEach(task => {
       let marker: any = L.marker([task.Lat, task.Lon]).on('click', () => {
+        console.log('You clicked a marker')
         // let imageFileName = task.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
         // this.fileManager.readAsDataURL(this.fileManager.dataDirectory, imageFileName)
         //   .then(imageData => this.route.thumbImage = imageData, imageError => {
@@ -62,6 +77,7 @@ export class TasksMap {
 
       marker.bindPopup(`<h2>${task.getInfo("title")}</h2><p>${task.getInfo("description")}</p>`);
       map.addLayer(marker);
+      /* this.showPopup = true; */
     })
   }
 

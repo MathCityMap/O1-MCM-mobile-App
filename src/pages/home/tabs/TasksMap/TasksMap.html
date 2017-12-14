@@ -1,4 +1,31 @@
 <mcm-header></mcm-header>
-<ion-content class="has-header">
-  <div id="tasks-map" style="width: 100%; height: 100%"></div>
+<ion-content class="has-header map">
+  <div id="tasks-map" class="map-view"></div>
+
+  <span *ngIf="route">{{route.title}}</span>
+  <span *ngIf="route">{{showPopup}}</span>
+
+  <div id="details" class="detail-box" [ngClass]="{'open': showPopup == true}">
+      <div class="image-container">
+          <img *ngIf="taskDetails && routeImage" [src]="routeImage || '//:0'" />
+      </div>
+      <div class="text-container" *ngIf="taskDetails">
+          <p>task details</p>
+          <h2>task title</h2>
+        <div class="segmented-box">
+          <div class="segement distance" *ngIf="taskDetails">
+              <label>{{ "general.distance" | translate }}</label>
+              <span>entfernung m</span>
+          </div>
+          <div class="segement grade" *ngIf="taskDetails">
+              <label>{{ "general.grade" | translate }}</label>
+              <span>klasse</span>
+          </div>
+          <div class="segement">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
 </ion-content>

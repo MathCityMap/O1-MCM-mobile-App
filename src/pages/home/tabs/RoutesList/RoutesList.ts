@@ -6,6 +6,9 @@ import { File } from '@ionic-native/file';
 import { Helper } from '../../../../classes/Helper';
 import { checkAvailability } from "@ionic-native/core";
 
+import { MathRoute } from '../../../../classes/MathRoute';
+import { TasksMap } from '../TasksMap/TasksMap';
+import { HomePage } from '../../home';
 interface RouteItem {
   id: number,
   public: number,
@@ -106,4 +109,10 @@ export class RoutesListPage {
       });
     });
   }
+
+
+  showRoute(routeId: number): void {
+    HomePage.nav.push(TasksMap, { routeId: routeId })
+  }
+
 }

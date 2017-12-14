@@ -59,8 +59,9 @@
 
 
 //CONTENT
-.scroll-content{
-  padding-top: 10vh;
+.has-header,
+.has-header .scroll-content{
+  padding-top: 11vh;
 }
 
 
@@ -72,9 +73,7 @@
 
 .routes-list{
     background: lightgrey;
-  .list{
-/*     margin: 10px 0px 0px; */
-  }
+
   .item{
     height: 124px;
     padding: 0px 10px 10px 0px;
@@ -184,24 +183,31 @@
 //MAP
 
 .map{
-  #map{
+  .map-view{
     width: 100%;
     height: 100%;
     position: relative;
     z-index: 1;
   }
-  #details{
+  .detail-box{
     width: 100%;
     position: fixed;
-    bottom: -50%;
+    bottom: 54px;
     z-index: 2;
     background: #ffffff;
+
     box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;transition: all 0.5s;
+
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
   }
-  #details.open{
-    bottom: 54px;
-    -webkit-transition: all 0.5s;-moz-transition: all 0.5s;-ms-transition: all 0.5s;-o-transition: all 0.5s;transition: all 0.5s;
+  .detail-box.open{
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
   }
 
   .detail-box{

@@ -4,13 +4,23 @@
 
 ion-header{
     box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+    background: color($colors, primary);
+    &.header-ios{
+      padding-top:20px;
+    }
     ion-toolbar{
         .toolbar-background{
-            background: color($colors, primary);
+          background: color($colors, primary);
         }
-        &.toolbar-ios,
-        &.md-toolbar{
-          height: 10vh;
+        &.toolbar{
+          padding: 10px;
+
+            &.toolbar-ios{
+              height: 8vh;
+            }
+            &.md-toolbar{
+              height: 8vh;
+            }
         }
     }
     ion-navbar{
@@ -28,9 +38,6 @@ ion-header{
     .header-icon {
         width: 30px;
         height: 30px;
-    }
-    .toolbar{
-        padding: 25px 12px 10px 12px;
     }
     .logo-bar{
       display: flex;

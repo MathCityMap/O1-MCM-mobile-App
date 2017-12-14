@@ -261,7 +261,7 @@ export class MapPage implements OnInit {
   }
 
   showRoute(route: MathRoute): void {
-    HomePage.nav.push(TasksMap, { route: route })
+    HomePage.nav.push(TasksMap, { routeId: route.Id })
   }
 
   removeRoute(route: MathRoute): void {

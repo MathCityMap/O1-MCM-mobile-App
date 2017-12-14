@@ -5,12 +5,13 @@
             <button class="imprint-button" *ngIf="!showBackButton" ion-button icon-only [navPush]="''">
                 <img class="header-icon" src="assets/icons/info.svg"/>
             </button>
-            <button class="back-button" *ngIf="showBackButton" ion-button icon-only (click)="goBack()">
+            <button class="mcm-back-button" *ngIf="showBackButton"  ion-button icon-only (click)="goBack()">
                 <img class="header-icon" src="assets/icons/back.svg"/>
             </button>
         </ion-buttons>
-        <ion-title>MathCityMap</ion-title>
-        <ion-title>MathCityMap</ion-title>
+        <ion-title *ngIf="currentpage == 'HomePage'">MathCityMap</ion-title>
+        <!--         <ion-title>{{ route.title }}</ion-title> -->
+        <ion-title *ngIf="currentpage != 'HomePage'">{{ currentpage }}</ion-title>
         <ion-buttons end>
             <button class="settings-button" ion-button icon-only [navPush]="''">
                 <img class="header-icon" src="assets/icons/settings.svg"/>

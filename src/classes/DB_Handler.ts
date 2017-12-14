@@ -707,6 +707,25 @@ export class DB_Handler {
     })
   }
 
+  getMathRouteById(routeId : number): Promise<MathRoute> {
+
+    const self = this
+    return new Promise<MathRoute>((resolve, reject) => {
+      this.mDB.executeSql(`SELECT * FROM ${DBC.DATABASE_TABLE_ROUTE} WHERE _id = ${routeId}`, []).then(result => {
+        let promises = []
+        for (let i = 0; i < result.rows.length; i++) {
+          let route: MathRoute = self.createMathRouteFromCursor(result.rows.item(i))
+          // smnbmbmsdnf route.downloaded = self.isOptionAvailable(DBC.ON_ROUTE_DATA, route.Id.toString())
+          promises.push(self.isOptionAvailable(DBC.ON_ROUTE_DATA, route.Id.toString()).then(downloaded => {
+            route.makeReady();
+            route.downloaded = downloaded
+            resolve(route);
+          }).catch(error => reject(error)))
+        }
+      }).catch(error => reject(error))
+    })
+  }
+
   private createMathRouteFromCursor(cursor: any) {
     let route = new MathRoute(cursor.title)
     route.Id = +cursor._id
