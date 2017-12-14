@@ -59,9 +59,16 @@
 
 
 //CONTENT
-.has-header,
-.has-header .scroll-content{
-  padding-top: 11vh;
+/* .has-header, */
+.has-header{
+  .scroll-content{
+    margin-top: calc(54px);
+  }
+  &.content-ios{
+    .scroll-content{
+      margin-top: calc(54px + 20px);
+    }
+  }
 }
 
 
@@ -71,9 +78,12 @@
 
 //ROUTES LIST
 
-.routes-list{
-    background: lightgrey;
+.list-ios,
+.list-md{
+  margin: 0;
+}
 
+.routes-list{
   .item{
     height: 124px;
     padding: 0px 10px 10px 0px;
@@ -164,16 +174,23 @@
             padding-right: 10px;
           }
 
-          label{
+          >label{
             font-size: 10px;
             display: block;
             text-transform: uppercase;
             color: color($colors, grey);
             margin-bottom: 3px;
           }
-          span{
+          >span{
             display: block;
             font-size: 12px;
+          }
+          >button{
+            width: 30px;
+            height: 30px;
+            padding: 4px;
+            margin: 0;
+            overflow: visible;
           }
         }
       }

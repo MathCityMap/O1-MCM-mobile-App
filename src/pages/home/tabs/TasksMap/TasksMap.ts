@@ -29,8 +29,6 @@ export class TasksMap {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fileManager: File) { }
 
   ionViewDidEnter() {
-    console.log(' =========================================================== ', 'this.route', this.route,' =========================================================== ', 'this.tasks', this.tasks,' =========================================================== ');
-
     console.log('TasksMap ionViewDidEnter()');
     this.routeId = this.navParams.get('routeId');
     let that = this;
@@ -46,6 +44,8 @@ export class TasksMap {
           console.error(error);
         })
     })
+    console.log(' =========================================================== ', 'this.route', this.route,' =========================================================== ', 'this.tasks', this.tasks,' =========================================================== ');
+
   }
 
   markerGroup: any = null;
