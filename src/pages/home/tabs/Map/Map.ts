@@ -20,6 +20,12 @@ import { HomePage } from '../../home';
 import { MathRoute } from '../../../../classes/MathRoute';
 import { SpinnerDialog} from "@ionic-native/spinner-dialog";
 
+import { OrmService } from '../../../../services/orm-service';
+import {User} from '../../../../entity/User';
+import {Route} from '../../../../entity/Route';
+import {State} from '../../../../entity/State';
+import {Task} from '../../../../entity/Task';
+
 @Component({
   selector: 'page-map',
   templateUrl: 'Map.html'
@@ -44,10 +50,31 @@ export class MapPage implements OnInit {
     private platform: Platform,
     private geolocation: Geolocation,
     private updater: DB_Updater,
-    private spinner: SpinnerDialog) { }
+    private spinner: SpinnerDialog,
+    private ormService: OrmService) { }
 
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
     console.log("ionViewDidEnter:");
+
+    // TODO test of type orm
+    const connection = await this.ormService.getConnection();
+    console.log("Inserting a new user into the database...");
+    const user = new User();
+    user.name = "asdf";
+    await connection.manager.save(user);
+    console.log("Saved a new user with id: " + user.id);
+
+    console.log("Loading users from the database...");
+    const users = await connection.manager.find(User);
+
+    console.log("Loaded users: ", users);
+
+    const routes = await connection.manager.find(Route, {relations: ["tasks"]});
+    console.log("number of routes: " + routes.length);
+    const states = await connection.manager.find(State);
+    console.log("number of states: " + states.length);
+    const tasks = await connection.manager.find(Task);
+    console.log("number of tasks: " + tasks.length);
   }
 
   ngOnInit() {

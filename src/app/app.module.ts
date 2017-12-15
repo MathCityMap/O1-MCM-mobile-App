@@ -30,6 +30,8 @@ import { distancePipe } from './pipes/distance.pipe';
 
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
 
+import { OrmService } from '../services/orm-service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -73,6 +75,7 @@ import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
     DB_Updater,
     ImageDownloaderRoutes,
     SpinnerDialog,
+    OrmService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
