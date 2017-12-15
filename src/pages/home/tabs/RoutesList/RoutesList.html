@@ -18,17 +18,17 @@
                 <label [ngClass]="{'appear-disabled' : !item.grade}">{{ "general.grade" | translate }}</label>
                 <span *ngIf="item.grade">{{item.grade}}</span>
             </div>
-            <div class="segement">
+            <div class="segement buttons">
                 <button ion-button icon-only clear>
-                    <img src="../../../../assets/icons/icon_route-info.svg"/>
+                    <img src="./assets/icons/icon_route-info.svg"/>
                 </button>
 
-                <button ion-button icon-only clear>
-                    <img src="../../../../assets/icons/icon_route-download.svg"/>
+                <button ion-button icon-only clear *ngIf="item.downloaded == false">
+                    <img src="./assets/icons/icon_route-download.svg"/>
                 </button>
 
-                <button ion-button icon-only clear>
-                    <img src="../../../../assets/icons/icon_route-delete.svg"/>
+                <button ion-button icon-only clear *ngIf="item.downloaded == true">
+                    <img src="./assets/icons/icon_route-delete.svg"/>
                 </button>
             </div>
           </div>

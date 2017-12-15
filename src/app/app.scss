@@ -185,12 +185,20 @@
             display: block;
             font-size: 12px;
           }
-          >button{
-            width: 30px;
-            height: 30px;
-            padding: 4px;
-            margin: 0;
-            overflow: visible;
+          &.buttons{
+            display: flex;
+            flex-direction: row;
+            >button{
+              width: 30px;
+              height: 30px;
+              padding: 4px;
+              margin: 0;
+              overflow: visible;
+
+              img{
+                object-fit: contain;
+              }
+            }
           }
         }
       }

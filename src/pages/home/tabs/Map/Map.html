@@ -19,7 +19,9 @@
               <span>{{routeDetails.getInfo("grade")}}</span>
           </div>
           <div class="segement">
-              <button *ngIf="routeDetails && !routeDetails.downloaded" ion-button (click)="doDownload(routeDetails)" color="dark">Download</button>
+            <button *ngIf="routeDetails && !routeDetails.downloaded" ion-button icon-only (click)="doDownload(routeDetails)" color="clear">
+                <img src="../../../../assets/icons/icon_route-download.svg"/>
+            </button>
               <span *ngIf="isDownloading">
                 {{doneDownload}} / {{totalDownload}}
               </span>

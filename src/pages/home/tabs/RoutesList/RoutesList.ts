@@ -15,6 +15,7 @@ interface RouteItem {
   title: string,
   country_code: string,
   city: string,
+  downloaded: boolean,
   image: string,
   grade: number,
   distance: number,
@@ -70,6 +71,8 @@ export class RoutesListPage {
         // db.executeSql(sqlQry, []).then(result => {
           for (var i = 0; i < result.length; i++) {
             let row = result[i];
+            console.log(row);
+            console.log(row.downloaded);
             let imageFileName = row.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "");
             // let center = JSON.parse(row.center);
             let routeItem: RouteItem = {
@@ -78,6 +81,7 @@ export class RoutesListPage {
               title: row.Title,
               country_code: row.getInfo("country_code"),
               city: row.getInfo("city"),
+              downloaded: row.downloaded,
               image: isFilePluginIsAvailable ? '' : Helper.WEBSERVER_URL + Helper.REPLACE_ROUTE_IMAGE_PATH + encodeURI(imageFileName),
               grade: new Number(row.getInfo("grade")).valueOf(),
               distance: Helper.getDistanceToCenter(row.Center.lat, row.Center.lng),
