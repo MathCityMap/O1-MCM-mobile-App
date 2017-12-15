@@ -19,7 +19,10 @@ interface RouteItem {
   image: string,
   grade: number,
   distance: number,
-  imageFileName: string
+  imageFileName: string,
+  doneDownload: number,
+  totalDownload: number,
+  isDownloading: boolean,
 }
 
 @Component({
@@ -28,6 +31,7 @@ interface RouteItem {
 })
 export class RoutesListPage {
   public items: Array<RouteItem> = new Array<RouteItem>();
+  private isDownloading = false;
 
   constructor(public navCtrl: NavController, private fileManager: File) { }
 
@@ -114,6 +118,24 @@ export class RoutesListPage {
     });
   }
 
+  doDownload(route: MathRoute): void {
+    console.log(`Route details ${JSON.stringify(route.Id)}`);
+    console.log("clicked");
+
+    // uncommend this line to switch displaying route (online only mode)
+    //HomePage.nav.push(TasksMap, { route: route });
+    this.isDownloading = true;
+    this.totalDownload = 0;
+    this.doneDownload = 0;
+    const self = this;
+    route.downloadMap(function(doneDownload, totalDownload) {
+        self.doneDownload = doneDownload;
+        self.totalDownload = totalDownload;
+    }).then(() => {
+      this.isDownloading = false;
+      // HomePage.nav.push(TasksMap, { route: route })
+    });
+  }
 
   showRoute(routeId: number): void {
     HomePage.nav.push(TasksMap, { routeId: routeId })

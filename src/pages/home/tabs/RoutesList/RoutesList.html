@@ -2,13 +2,13 @@
     <!-- [virtualScroll]="items" approxItemHeight="124px" -->
   <ion-list>
       <!--  *virtualItem="let item" -->
-    <div class="detail-box" *ngFor="let item of items" (click)="showRoute(item.id)">
-        <div class="image-container">
+    <div class="detail-box" *ngFor="let item of items">
+        <div class="image-container" (click)="showRoute(item.id)">
             <img [src]="item.image" />
         </div>
         <div class="text-container">
-          <p>{{item.city}}, {{item.country_code}}</p>
-          <h2>{{item.title}}</h2>
+          <p (click)="showRoute(item.id)">{{item.city}}, {{item.country_code}}</p>
+          <h2 (click)="showRoute(item.id)">{{item.title}}</h2>
           <div class="segmented-box">
             <div class="segement distance">
                 <label>{{ "general.distance" | translate }}</label>

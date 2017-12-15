@@ -18,15 +18,19 @@
               <label>{{ "general.grade" | translate }}</label>
               <span>{{routeDetails.getInfo("grade")}}</span>
           </div>
-          <div class="segement">
-            <button *ngIf="routeDetails && !routeDetails.downloaded" ion-button icon-only (click)="doDownload(routeDetails)" color="clear">
-                <img src="../../../../assets/icons/icon_route-download.svg"/>
+          <div class="segement buttons">
+                <button *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="showRoute(routeDetails)">
+                      <img src="./assets/icons/icon_route-info.svg"/>
+                  </button>
+            <button *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="doDownload(routeDetails)">
+                    <img src="./assets/icons/icon_route-download.svg"/>
             </button>
               <span *ngIf="isDownloading">
                 {{doneDownload}} / {{totalDownload}}
               </span>
-              <button *ngIf="routeDetails && routeDetails.downloaded" ion-button (click)="showRoute(routeDetails)" color="dark">Anzeigen</button>
-              <button *ngIf="routeDetails && routeDetails.downloaded" ion-button (click)="removeRoute(routeDetails)" color="dark">Entfernen</button>
+              <button *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="removeRoute(routeDetails)">
+                    <img src="./assets/icons/icon_route-delete.svg"/>
+                </button>
           </div>
         </div>
       </div>
