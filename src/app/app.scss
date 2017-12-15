@@ -188,6 +188,7 @@
           &.buttons{
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             >button{
               width: 30px;
               height: 30px;
@@ -199,6 +200,11 @@
                 object-fit: contain;
               }
             }
+          }
+          span.downloading{
+              width: 100%;
+              display: block;
+              text-align: center;
           }
         }
       }

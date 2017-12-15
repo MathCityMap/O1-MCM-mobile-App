@@ -20,9 +20,7 @@ interface RouteItem {
   grade: number,
   distance: number,
   imageFileName: string,
-  doneDownload: number,
-  totalDownload: number,
-  isDownloading: boolean,
+  route: MathRoute
 }
 
 @Component({
@@ -31,6 +29,8 @@ interface RouteItem {
 })
 export class RoutesListPage {
   public items: Array<RouteItem> = new Array<RouteItem>();
+  private totalDownload = 0;
+  private doneDownload = 0;
   private isDownloading = false;
 
   constructor(public navCtrl: NavController, private fileManager: File) { }
@@ -89,7 +89,8 @@ export class RoutesListPage {
               image: isFilePluginIsAvailable ? '' : Helper.WEBSERVER_URL + Helper.REPLACE_ROUTE_IMAGE_PATH + encodeURI(imageFileName),
               grade: new Number(row.getInfo("grade")).valueOf(),
               distance: Helper.getDistanceToCenter(row.Center.lat, row.Center.lng),
-              imageFileName: imageFileName
+              imageFileName: imageFileName,
+              route: row
             };
 
             items.push(routeItem);
@@ -119,8 +120,9 @@ export class RoutesListPage {
   }
 
   doDownload(route: MathRoute): void {
-    console.log(`Route details ${JSON.stringify(route.Id)}`);
     console.log("clicked");
+    console.log(route);
+    console.log(`Route details ${JSON.stringify(route.Id)}`);
 
     // uncommend this line to switch displaying route (online only mode)
     //HomePage.nav.push(TasksMap, { route: route });
@@ -141,4 +143,7 @@ export class RoutesListPage {
     HomePage.nav.push(TasksMap, { routeId: routeId })
   }
 
+  removeRoute(route: MathRoute): void {
+    route.removeDownloadedMap();
+  }
 }

@@ -23,14 +23,19 @@
                     <img src="./assets/icons/icon_route-info.svg"/>
                 </button>
 
-                <button ion-button icon-only clear *ngIf="item.downloaded == false">
+                <button ion-button icon-only clear *ngIf="item.downloaded == false"  (click)="doDownload(item.route)">
                     <img src="./assets/icons/icon_route-download.svg"/>
                 </button>
 
-                <button ion-button icon-only clear *ngIf="item.downloaded == true">
+                <button ion-button icon-only clear *ngIf="item.downloaded == true" (click)="removeRoute(item.route)">
                     <img src="./assets/icons/icon_route-delete.svg"/>
                 </button>
+
+                <span *ngIf="isDownloading" class="downloading">
+                  {{doneDownload}} / {{totalDownload}}
+                </span>
             </div>
+
           </div>
         </div>
       </div>
