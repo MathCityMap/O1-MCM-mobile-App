@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController, ViewController  } from 'ionic-angular';
 import { DBC } from '../../../../classes/DBC';
 import { DB_Handler } from '../../../../classes/DB_Handler';
 import { File } from '@ionic-native/file';
@@ -32,8 +32,9 @@ export class RoutesListPage {
   private totalDownload = 0;
   private doneDownload = 0;
   private isDownloading = false;
+  modal: any;
 
-  constructor(public navCtrl: NavController, private fileManager: File) { }
+  constructor(public navCtrl: NavController, private fileManager: File, public modalCtrl: ModalController) { }
 
   ionViewDidEnter() {
 
@@ -146,4 +147,11 @@ export class RoutesListPage {
   removeRoute(route: MathRoute): void {
     route.removeDownloadedMap();
   }
+
+  presentRouteInfoModal() {
+    let routeInfoModal = this.modalCtrl.create(routeInfo, { routeId: routeId });
+    routeInfoModal.present();
+  }
+
+
 }
