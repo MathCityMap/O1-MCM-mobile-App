@@ -147,11 +147,11 @@ export class RoutesListPage {
   removeRoute(route: MathRoute): void {
     route.removeDownloadedMap();
   }
-/*
+
   presentRouteInfoModal() {
     let routeInfoModal = this.modalCtrl.create(routeInfo, { routeId: routeId });
     routeInfoModal.present();
   }
- */
+
 
 }
