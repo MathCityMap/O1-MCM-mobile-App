@@ -38,7 +38,7 @@ export class OrmService {
     };
     const options: BaseConnectionOptions = sqliteAvailable ? sqliteOptions : websqlOptions;
     options.logging = ['error', 'query', 'schema'];
-    options.logging = 'simple-console';
+    options.logger = 'simple-console';
     options.synchronize = false;
     options.entities = [
       User,
