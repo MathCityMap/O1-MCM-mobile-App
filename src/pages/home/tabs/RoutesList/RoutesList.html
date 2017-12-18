@@ -19,7 +19,7 @@
                 <span *ngIf="item.grade">{{item.grade}}</span>
             </div>
             <div class="segement buttons">
-                <button ion-button icon-only clear>
+                <button ion-button icon-only clear (click)="presentRouteInfoModal(item.route)">
                     <img src="./assets/icons/icon_route-info.svg"/>
                 </button>
 

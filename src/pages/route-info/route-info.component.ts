@@ -8,12 +8,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+/* @IonicPage() */
 @Component({
   selector: 'page-route-info',
   templateUrl: 'route-info.html',
 })
-export class RouteInfo {
+export class RouteInfoComponent {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

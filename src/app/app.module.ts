@@ -29,6 +29,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { distancePipe } from './pipes/distance.pipe';
 
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
+import { RouteInfoPageModule } from '../pages/route-info/route-info.module';
 
 import { OrmService } from '../services/orm-service';
 
@@ -54,7 +55,8 @@ import { OrmService } from '../services/orm-service';
         deps: [HttpClient]
       }
     }),
-    MCMHeaderModule
+    MCMHeaderModule,
+    RouteInfoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

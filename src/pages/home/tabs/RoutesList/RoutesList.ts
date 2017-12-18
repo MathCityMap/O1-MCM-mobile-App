@@ -9,6 +9,11 @@ import { checkAvailability } from "@ionic-native/core";
 import { MathRoute } from '../../../../classes/MathRoute';
 import { TasksMap } from '../TasksMap/TasksMap';
 import { HomePage } from '../../home';
+
+
+import { RouteInfoComponent } from '../../../route-info/route-info.component';
+
+
 interface RouteItem {
   id: number,
   public: number,
@@ -148,8 +153,8 @@ export class RoutesListPage {
     route.removeDownloadedMap();
   }
 
-  presentRouteInfoModal() {
-    let routeInfoModal = this.modalCtrl.create(routeInfo, { routeId: routeId });
+  presentRouteInfoModal(route: MathRoute) {
+    let routeInfoModal = this.modalCtrl.create(RouteInfoComponent, { route: route });
     routeInfoModal.present();
   }
 

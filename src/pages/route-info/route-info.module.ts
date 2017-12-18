@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { RouteInfo } from './route-info';
+import { RouteInfoComponent } from './route-info.component';
 
 @NgModule({
   declarations: [
-    RouteInfo,
+    RouteInfoComponent,
   ],
   imports: [
-    IonicPageModule.forChild(RouteInfo),
+    IonicPageModule.forChild(RouteInfoComponent),
   ],
+  exports: [
+    RouteInfoComponent
+  ]
 })
 export class RouteInfoPageModule {}
