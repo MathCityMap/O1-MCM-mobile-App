@@ -23,8 +23,6 @@ $app-direction: ltr;
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 
-
-
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.
@@ -51,20 +49,14 @@ $colors: (
 // iOS only Sass variables can go here
 
 
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
 
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
 
 
 // App Theme
@@ -85,8 +77,40 @@ $colors: (
 @import "ionic.ionicons";
 
 
-// Fonts
+// Own Fonts        (ง •̀_•́)ง
+//
 // --------------------------------------------------
+
 
 @import "roboto";
 @import "noto-sans";
+
+
+// Own Variables    (づ￣ ³￣)づ
+//
+// --------------------------------------------------
+
+
+$global-small-padding:  10px;
+$global-base-padding:   20px;
+$global-large-padding:  40px;
+
+
+// Own Mixins       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
+//
+// --------------------------------------------------
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-shadow($opacity) {
+  -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
+  -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
+  -ms-box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
+}

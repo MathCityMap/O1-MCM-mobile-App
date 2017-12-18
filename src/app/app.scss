@@ -20,7 +20,9 @@
 
 //============== Global Layout Structure ==============
 
-
+*{
+  box-sizing: border-box;
+}
 
 //TAB-BAR
 
@@ -70,7 +72,13 @@
     }
   }
 }
-
+.pattern-bg{
+  .scroll-content{
+    background-image: url('../assets/images/math_pattern.png');
+    background-repeat: round round;
+    background-size: 82px;
+  }
+}
 
 
 
@@ -136,16 +144,9 @@
       padding-left: 15px;
 
       p{
-        font-size: 12px;
-        font-weight: 500;
-        color: color($colors, dark-grey);
         margin: 0;
       }
       h2{
-        font-size: 18px;
-        line-height: 22px;
-        font-weight: 500;
-        color: color($colors, primary);
         margin-top: 5px;
         margin-bottom: 6px;
         white-space: normal;
@@ -212,7 +213,6 @@
 }
 
 //MAP
-
 .map{
   .map-view{
     width: 100%;
@@ -258,4 +258,13 @@
     transform: translateY(0%);
   }
 
+}
+
+/*  =========== card ===========  */
+.card{
+  background-color: #ffffff;
+  @include border-radius(10px);
+  @include box-shadow(0.2);
+  padding: $global-small-padding $global-base-padding;
+  margin: $global-base-padding;
 }
