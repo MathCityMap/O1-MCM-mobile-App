@@ -7,11 +7,17 @@
   <div class="image-box">
     <ion-grid>
       <ion-row>
-        <ion-col></ion-col>
+          <ion-col>
+              <img *ngIf="route.downloaded == false" src="./assets/icons/icon_download-large.svg"/>
+              <img *ngIf="route.downloaded == true" src="./assets/icons/icon_delete-large.svg"/>
+          </ion-col>
         <ion-col>
-          <img src=""/>
+          <img *ngIf="route.Thumb" src="route.Thumb"/>
+          <img *ngIf="!route.Thumb" src="./assets/images/img_default_image.gif"/>
         </ion-col>
-        <ion-col></ion-col>
+        <ion-col>
+            <img *ngIf="route.downloaded == true" src="./assets/icons/icon_play-large.svg"/>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </div>
