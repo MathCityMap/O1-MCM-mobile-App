@@ -2,7 +2,8 @@ import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 /* import { BroadcastService } from '../../services/broadcast-service'; */
-import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { ViewController, modalCtrl } from 'ionic-angular/navigation/view-controller';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 })
 export class MCMHeaderComponent{
     showBackButton = false;
-    constructor(public navCtrl: NavController, public navParams: NavParams, /* public broadcastService: BroadcastService, */ public viewCtrl: ViewController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,/* public broadcastService: BroadcastService, */ public viewCtrl: ViewController, public modalCtrl: ModalController) {
         console.log("MCM header in use");
 /*         broadcastService.historyChanged$.subscribe(canGoBack => {
             this.showBackButton = canGoBack;
@@ -42,7 +43,7 @@ export class MCMHeaderComponent{
     }
 
     closeModal() {
-        this.navCtrl.pop();
+        this.viewCtrl.dismiss(this.modalCtrl);
     }
 
 }
