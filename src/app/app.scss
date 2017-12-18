@@ -189,7 +189,7 @@
           &.buttons{
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             >button{
               width: 30px;
               height: 30px;
@@ -264,13 +264,23 @@
 .card{
   background-color: #ffffff;
   @include border-radius(10px);
-  @include box-shadow(0.2);
+  @include box-shadow(0.3);
   padding: $global-small-padding $global-base-padding;
   margin: $global-base-padding;
 }
-.image-box{
-    img{
-      @include border-radius(50%);
-      @include box-shadow(0.2);
-    }
+
+
+img{
+  &.primary{
+    background-color:  color($colors, primary);
+  }
+  &.danger{
+    background-color:  color($colors, danger);
+  }
+  &.round{
+    @include border-radius(50%);
+  }
+  &.bordered{
+    @include border(6px, solid, white);
+  }
 }

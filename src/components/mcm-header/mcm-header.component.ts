@@ -2,8 +2,7 @@ import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 /* import { BroadcastService } from '../../services/broadcast-service'; */
-import { ViewController, modalCtrl } from 'ionic-angular/navigation/view-controller';
-import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+import { ViewController, ModalController } from 'ionic-angular';
 
 
 @Component({

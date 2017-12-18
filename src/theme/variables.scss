@@ -34,8 +34,8 @@ $app-direction: ltr;
 $colors: (
   primary:        #036d99,
   primary-darker: #035f87,
-  secondary:      #32db64,
-  danger:         #f53d3d,
+  secondary:      #f3b100,
+  danger:         #f25801,
   light:          #ffffff,
   dark:           #222222,
   dark-grey:      #444444,
@@ -109,8 +109,15 @@ $global-large-padding:  40px;
 }
 
 @mixin box-shadow($opacity) {
-  -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
-  -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
-  -ms-box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
-  box-shadow: 0px 0px 3px 0px rgba(0,0,0,$opacity);
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
+  -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
+  -ms-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
+}
+
+@mixin border($width, $style, $color) {
+    -webkit-border: $width $style $color;
+    -moz-border: $width $style $color;
+    -ms-border: $width $style $color;
+    border: $width $style $color;
 }

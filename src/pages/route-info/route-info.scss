@@ -1,3 +1,10 @@
-page-route-info {
-
+.image-box{
+    img{
+        @include box-shadow(0.3);
+        /* fix for android border-radius bug */
+        object-fit: unset;
+    }
+    .button-container{
+        padding: $global-base-padding;
+    }
 }
