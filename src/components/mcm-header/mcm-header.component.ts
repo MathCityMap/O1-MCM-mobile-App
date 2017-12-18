@@ -41,5 +41,8 @@ export class MCMHeaderComponent{
         this.navCtrl.pop();
     }
 
+    closeModal() {
+        this.navCtrl.pop();
+    }
 
 }

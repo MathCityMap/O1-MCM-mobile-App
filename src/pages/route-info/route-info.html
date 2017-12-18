@@ -1,13 +1,18 @@
-
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>routeInfo</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content>
-
+<mcm-header></mcm-header>
+<ion-content class="has-header pattern-bg">
+  <div class="card " *ngIf="route">
+    <p>Location, Country</p>
+    <h2>{{ route.Title }}</h2>
+  </div>
+  <div class="image-box">
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+          <img src=""/>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

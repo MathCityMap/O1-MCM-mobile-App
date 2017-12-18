@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, ViewController  } from 'ionic-angular';
+import { NavController, ModalController  } from 'ionic-angular';
 import { DBC } from '../../../../classes/DBC';
 import { DB_Handler } from '../../../../classes/DB_Handler';
 import { File } from '@ionic-native/file';
@@ -126,8 +126,6 @@ export class RoutesListPage {
   }
 
   doDownload(route: MathRoute): void {
-    console.log("clicked");
-    console.log(route);
     console.log(`Route details ${JSON.stringify(route.Id)}`);
 
     // uncommend this line to switch displaying route (online only mode)
@@ -154,9 +152,9 @@ export class RoutesListPage {
   }
 
   presentRouteInfoModal(route: MathRoute) {
+    console.log('route in RoutesList ', route)
     let routeInfoModal = this.modalCtrl.create(RouteInfoComponent, { route: route });
     routeInfoModal.present();
   }
-
 
 }
