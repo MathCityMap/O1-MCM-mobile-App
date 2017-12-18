@@ -1,1 +1,51 @@
-<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 284"><defs><style>.cls-1,.cls-2{fill:none;stroke-linecap:round;stroke-miterlimit:10;}.cls-1{stroke:#b2b2b2;stroke-width:4px;stroke-dasharray:0 10;}.cls-2{stroke:#f3b100;stroke-width:10px;}</style></defs><title>icon</title><path class="cls-1" d="M290.28,141.83c0,14.56-14,26.73-18.28,39.87-4.43,13.62-.4,31.67-8.65,43s-26.8,13.16-38.25,21.49S206.48,271.54,192.86,276c-13.14,4.27-29-5.13-43.58-5.13s-30.44,9.4-43.58,5.13c-13.62-4.42-20.91-21.51-32.25-29.76s-29.92-10-38.25-21.49-4.22-29.39-8.64-43c-4.27-13.14-18.28-25.31-18.28-39.87s14-26.74,18.28-39.88c4.42-13.62.39-31.67,8.64-43S62,45.78,73.45,37.45,92.08,12.11,105.69,7.69c13.15-4.26,29,5.14,43.59,5.14s30.44-9.4,43.58-5.14c13.62,4.42,20.9,21.51,32.24,29.76s29.92,10,38.25,21.49,4.22,29.39,8.65,43C276.26,115.09,290.28,127.26,290.28,141.83Z"/><line class="cls-2" x1="200.11" y1="113.3" x2="133.42" y2="179.99"/><line class="cls-2" x1="100.11" y1="146.61" x2="133.45" y2="179.96"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 293.5 280" style="enable-background:new 0 0 293.5 280;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#036D99;}
+	.st1{display:none;fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st4{display:none;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st5{fill:#F35800;}
+	.st6{display:none;fill:none;stroke:#FFFFFF;stroke-width:5.52;stroke-miterlimit:10;}
+	.st7{fill:#898989;}
+	.st8{display:none;}
+	.st9{fill:none;stroke:#FFFFFF;stroke-width:1.84;stroke-linecap:round;stroke-miterlimit:10;}
+	.st10{display:inline;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st11{display:inline;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st12{display:inline;fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st13{display:inline;}
+	.st14{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st15{display:inline;fill:#FFFFFF;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st16{opacity:0.5;}
+	.st17{fill:none;stroke:#444444;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st18{fill:#444444;stroke:#444444;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st19{fill:#FFFFFF;stroke:#444444;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st20{fill:#026D99;}
+	.st21{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st22{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st23{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st24{fill:none;stroke:#B2B2B2;stroke-width:4;stroke-linecap:round;stroke-miterlimit:10;stroke-dasharray:0,10;}
+	.st25{fill:none;stroke:#F35800;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st26{fill:none;stroke:#036D99;stroke-width:8;stroke-linecap:round;stroke-miterlimit:10;}
+	.st27{display:inline;fill:none;stroke:#036D99;stroke-width:8;stroke-linecap:round;stroke-miterlimit:10;}
+	.st28{fill:none;stroke:#F3B100;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<g>
+		<path class="st24" d="M288,139.8c0,14.6-14,26.7-18.3,39.9c-4.4,13.6-0.4,31.7-8.6,43c-8.3,11.5-26.8,13.2-38.3,21.5
+			c-11.3,8.2-18.6,25.3-32.2,29.8c-13.1,4.3-29-5.1-43.6-5.1c-14.6,0-30.4,9.4-43.6,5.1c-13.6-4.4-20.9-21.5-32.2-29.8
+			c-11.4-8.3-29.9-10-38.3-21.5c-8.2-11.3-4.2-29.4-8.6-43C20,166.6,6,154.4,6,139.8c0-14.6,14-26.7,18.3-39.9
+			c4.4-13.6,0.4-31.7,8.6-43c8.3-11.5,26.8-13.2,38.3-21.5c11.3-8.2,18.6-25.3,32.2-29.8c13.1-4.3,29,5.1,43.6,5.1
+			c14.6,0,30.4-9.4,43.6-5.1c13.6,4.4,20.9,21.5,32.2,29.8c11.5,8.3,29.9,10,38.3,21.5c8.2,11.3,4.2,29.4,8.6,43
+			C274,113.1,288,125.3,288,139.8z"/>
+	</g>
+	<g>
+		<line class="st28" x1="197.9" y1="111.3" x2="131.2" y2="178"/>
+		<line class="st28" x1="97.9" y1="144.6" x2="131.2" y2="178"/>
+	</g>
+</g>
+</svg>

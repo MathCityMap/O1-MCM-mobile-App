@@ -1,1 +1,52 @@
-<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 86"><defs><style>.cls-1{fill:#036d99;}.cls-2{fill:none;stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:5px;}</style></defs><title>icon</title><g id="_Gruppe_" data-name="&lt;Gruppe&gt;"><path class="cls-1" d="M42.47,78.43a35,35,0,1,1,35-35A35,35,0,0,1,42.47,78.43Z"/><line class="cls-2" x1="42.47" y1="28.57" x2="42.47" y2="46.55"/><line class="cls-2" x1="34.36" y1="57.23" x2="50.58" y2="57.23"/><polyline class="cls-2" points="49.9 40.47 42.47 46.55 35.04 40.47"/></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 83.1 83.1" style="enable-background:new 0 0 83.1 83.1;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#036D99;}
+	.st1{display:none;fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st4{display:none;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st5{fill:#F35800;}
+	.st6{display:none;fill:none;stroke:#FFFFFF;stroke-width:5.52;stroke-miterlimit:10;}
+	.st7{fill:#898989;}
+	.st8{display:none;}
+	.st9{fill:none;stroke:#FFFFFF;stroke-width:1.84;stroke-linecap:round;stroke-miterlimit:10;}
+	.st10{display:inline;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st11{display:inline;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st12{display:inline;fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st13{display:inline;}
+	.st14{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st15{display:inline;fill:#FFFFFF;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st16{opacity:0.5;}
+	.st17{fill:none;stroke:#444444;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st18{fill:#444444;stroke:#444444;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st19{fill:#FFFFFF;stroke:#444444;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st20{fill:#026D99;}
+	.st21{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st22{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st23{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st24{fill:none;stroke:#B2B2B2;stroke-width:4;stroke-linecap:round;stroke-miterlimit:10;stroke-dasharray:0,10;}
+	.st25{fill:none;stroke:#F35800;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st26{fill:none;stroke:#036D99;stroke-width:8;stroke-linecap:round;stroke-miterlimit:10;}
+	.st27{display:inline;fill:none;stroke:#036D99;stroke-width:8;stroke-linecap:round;stroke-miterlimit:10;}
+	.st28{fill:none;stroke:#F3B100;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<g id="XMLID_32_">
+	<g>
+		<g>
+			<g>
+				<path class="st0" d="M41.6,83.1C18.6,83.1,0,64.5,0,41.6C0,18.6,18.6,0,41.6,0s41.6,18.6,41.6,41.6
+					C83.1,64.5,64.5,83.1,41.6,83.1z"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<line class="st2" x1="41.6" y1="23.9" x2="41.6" y2="45.3"/>
+		<line class="st2" x1="31.9" y1="58" x2="51.2" y2="58"/>
+		<polyline class="st2" points="50.4,38 41.6,45.3 32.7,38 		"/>
+	</g>
+</g>
+</svg>

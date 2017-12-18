@@ -268,3 +268,9 @@
   padding: $global-small-padding $global-base-padding;
   margin: $global-base-padding;
 }
+.image-box{
+    img{
+      @include border-radius(50%);
+      @include box-shadow(0.2);
+    }
+}

@@ -1,1 +1,52 @@
-<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50"><defs><style>.cls-1{fill:#036d99;}.cls-2,.cls-3{fill:none;stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;}.cls-2{stroke-width:5px;}.cls-3{stroke-width:6px;}</style><symbol id="detail-info" data-name="detail-info" viewBox="0 0 50 50"><circle class="cls-1" cx="25" cy="25" r="20" transform="translate(-8.79 35.4) rotate(-62.11)"/><path class="cls-1" d="M25,10A15,15,0,1,1,10,25,15,15,0,0,1,25,10M25,0A25,25,0,1,0,50,25,25,25,0,0,0,25,0Z"/><line class="cls-2" x1="20" y1="35.44" x2="29.99" y2="35.44"/><polyline class="cls-2" points="20.45 24.12 25 24.12 25 35.44"/><polygon class="cls-3" points="25 15.4 25 15.4 25 15.4 25 15.4 25 15.4"/></symbol></defs><title>icon</title><use id="detail-info-3" data-name="detail-info" width="50" height="50" transform="translate(1.77 2.23) scale(0.92)" xlink:href="#detail-info"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#036D99;}
+	.st1{display:none;fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st4{display:none;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st5{fill:#F35800;}
+	.st6{display:none;fill:none;stroke:#FFFFFF;stroke-width:5.52;stroke-miterlimit:10;}
+	.st7{fill:#898989;}
+	.st8{display:none;}
+	.st9{fill:none;stroke:#FFFFFF;stroke-width:1.84;stroke-linecap:round;stroke-miterlimit:10;}
+	.st10{display:inline;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+	.st11{display:inline;fill:none;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st12{display:inline;fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st13{display:inline;}
+	.st14{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st15{display:inline;fill:#FFFFFF;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st16{opacity:0.5;}
+	.st17{fill:none;stroke:#444444;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st18{fill:#444444;stroke:#444444;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st19{fill:#FFFFFF;stroke:#444444;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st20{fill:#026D99;}
+	.st21{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st22{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st23{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st24{fill:none;stroke:#B2B2B2;stroke-width:4;stroke-linecap:round;stroke-miterlimit:10;stroke-dasharray:0,10;}
+	.st25{fill:none;stroke:#F35800;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+	.st26{fill:none;stroke:#036D99;stroke-width:8;stroke-linecap:round;stroke-miterlimit:10;}
+	.st27{display:inline;fill:none;stroke:#036D99;stroke-width:8;stroke-linecap:round;stroke-miterlimit:10;}
+	.st28{fill:none;stroke:#F3B100;stroke-width:10;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<symbol  id="detail-info" viewBox="-25 -25 50 50">
+	<g>
+		
+			<ellipse transform="matrix(0.4679 -0.8838 0.8838 0.4679 1.926868e-03 1.217290e-03)" class="st0" cx="0" cy="0" rx="20" ry="20"/>
+		<path class="st0" d="M0,15c8.3,0,15-6.7,15-15S8.3-15,0-15c-8.3,0-15,6.7-15,15S-8.3,15,0,15 M0,25c-13.8,0-25-11.2-25-25
+			s11.2-25,25-25S25-13.8,25,0S13.8,25,0,25L0,25z"/>
+	</g>
+	<g>
+		<path class="st1" d="M20,0c0-11-9-20-20-20c-11,0-20,9-20,20s9,20,20,20C11,20,20,11,20,0z"/>
+		<line class="st2" x1="-5" y1="-10.4" x2="5" y2="-10.4"/>
+		<polyline class="st2" points="-4.6,0.9 0,0.9 0,-10.4 		"/>
+		<polygon class="st3" points="0,9.6 0,9.6 0,9.6 0,9.6 		"/>
+	</g>
+</symbol>
+<use xlink:href="#detail-info"  width="50" height="50" id="XMLID_1_" x="-25" y="-25" transform="matrix(0.96 0 0 -0.96 23.9981 23.9991)" style="overflow:visible;"/>
+</svg>
