@@ -1,6 +1,12 @@
 {
-    "general" : {
-        "distance": "Entfernung",
-        "grade": "Klasse"
-    }
+    "route": "Route",
+    "tasks": "Augaben",
+    "map": "Karte",
+    "list": "Liste",
+    "distance": "Entfernung",
+    "grade": "Klasse",
+    "length": "Länge",
+    "duration": "Dauer",
+    "progress": "Fortschritt",
+    "points": "Punkte"
 }

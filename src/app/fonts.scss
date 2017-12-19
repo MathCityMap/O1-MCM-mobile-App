@@ -23,15 +23,31 @@ body{
     font-family: 'NunitoSemibold', Arial, sans-serif;
 }
 
-p{
-  font-size: 12px;
-  line-height: 1.6;
-  font-weight: 500;
-  color: color($colors, dark-grey);
-}
 h2{
   font-size: 18px;
   line-height: 1.2;
   font-weight: 500;
   color: color($colors, primary);
 }
+p{
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: color($colors, dark-grey);
+}
+label{
+  font-size: 10px;
+  display: block;
+  text-transform: uppercase;
+  color: color($colors, grey);
+  margin-bottom: 3px;
+}
+span{
+  display: block;
+  font-size: 12px;
+}
+
+
+.text-left{text-align:left}
+.text-center{text-align:center}
+.text-right{text-align:right}

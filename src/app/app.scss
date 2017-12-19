@@ -162,45 +162,34 @@
         max-height             : calc(22px * 2);
       }
       .segmented-box{
-        border-top: 2px dotted color($colors, light-grey);
-        margin-top: 6px;
-        padding-top: 10px;
         display: flex;
 
         .segement{
           flex: 1;
-          &:not(:last-of-type){
-            border-right: 2px dotted color($colors, light-grey);
-            margin-right: 10px;
-            padding-right: 10px;
-          }
 
-          >label{
-            font-size: 10px;
-            display: block;
-            text-transform: uppercase;
-            color: color($colors, grey);
-            margin-bottom: 3px;
-          }
-          >span{
-            display: block;
-            font-size: 12px;
-          }
           &.buttons{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             flex-wrap: nowrap;
-            >button{
-              width: 30px;
-              height: 30px;
-              padding: 4px;
-              margin: 0;
-              overflow: visible;
+            >.button-container,
+            >span{
+              min-width: 100%
+            }
+            >.button-container{
+              white-space: nowrap;
+              button{
+                width: 30px;
+                height: 30px;
+                padding: 4px;
+                margin: 0;
+                overflow: visible;
 
-              img{
-                object-fit: contain;
+                img{
+                  object-fit: contain;
+                }
               }
             }
+
           }
           span.downloading{
               width: 100%;
@@ -278,9 +267,30 @@ img{
     background-color:  color($colors, danger);
   }
   &.round{
-    @include border-radius(50%);
+    /* android fix: set to unreachable fixed radius */
+    @include border-radius(1000px);
   }
   &.bordered{
     @include border(6px, solid, white);
   }
+}
+.dotted-border-top{
+  border-top: 2px dotted color($colors, light-grey);
+  margin-top: 6px;
+  padding-top: 10px;
+}
+.dotted-border-left{
+  border-left: 2px dotted color($colors, light-grey);
+  margin-left: 6px;
+  padding-left: 10px;
+}
+.dotted-border-right{
+  border-right: 2px dotted color($colors, light-grey);
+  margin-right: 6px;
+  padding-right: 10px;
+}
+.dotted-border-bottom{
+  border-bottom: 2px dotted color($colors, light-grey);
+  margin-bottom: 6px;
+  padding-bottom: 10px;
 }

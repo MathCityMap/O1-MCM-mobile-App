@@ -8,6 +8,14 @@ ion-header{
     &.header-ios{
       padding-top:20px;
     }
+    $size:  20px;
+    .mcm-modal-close-button.bar-button.bar-button-default {
+        width: $size;
+        height: $size;
+        padding: $global-small-padding;
+        box-sizing: content-box;
+        margin-left: -10px;
+    }
     ion-toolbar{
         .toolbar-background{
           background: color($colors, primary);

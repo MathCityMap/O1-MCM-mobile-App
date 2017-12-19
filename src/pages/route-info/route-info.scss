@@ -1,8 +1,16 @@
+.card.first{
+    padding: $global-large-padding $global-base-padding;
+    margin-top: - $global-base-padding;
+    text-align: center;
+}
+p,
+h2{
+    margin: 0 0 $global-small-padding 0;
+}
 .image-box{
+    margin: -60px 0;
     img{
         @include box-shadow(0.3);
-        /* fix for android border-radius bug */
-        object-fit: unset;
     }
     .button-container{
         padding: $global-base-padding;

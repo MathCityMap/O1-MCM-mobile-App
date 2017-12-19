@@ -11,11 +11,11 @@
           <h2>{{routeDetails.title}}</h2>
         <div class="segmented-box">
           <div class="segement distance" *ngIf="routeDetails">
-              <label>{{ "general.distance" | translate }}</label>
+              <label>{{ "distance" | translate }}</label>
               <span>{{routeDetails.getInfo("distance")}} m</span>
           </div>
           <div class="segement grade" *ngIf="routeDetails">
-              <label>{{ "general.grade" | translate }}</label>
+              <label>{{ "grade" | translate }}</label>
               <span>{{routeDetails.getInfo("grade")}}</span>
           </div>
           <div class="segement buttons">

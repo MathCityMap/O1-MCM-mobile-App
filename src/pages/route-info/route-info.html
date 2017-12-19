@@ -1,9 +1,10 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header pattern-bg">
-  <div class="card " *ngIf="route">
+  <div class="card first" *ngIf="route">
     <p>Location, Country</p>
     <h2>{{ route.Title }}</h2>
   </div>
+
   <div class="image-box">
     <ion-grid>
       <ion-row align-items-center>
@@ -19,6 +20,42 @@
             <img class="primary round" *ngIf="route.downloaded == true" src="./assets/icons/icon_play-large.svg"/>
         </ion-col>
       </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="card text-center">
+    <ion-grid no-padding>
+          <ion-row align-items-center style="margin-bottom: 10px;">
+            <ion-col>
+                <label>Klasse</label>
+                <!-- <label>{{ "distance" | translate }}</label> -->
+                <span>15m</span>
+            </ion-col>
+            <ion-col></ion-col>
+            <ion-col>
+              <label>Aufgaben</label>
+<!--                 <label>{{ "tasks" | translate }}</label> -->
+                <span>3000</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row align-items-center>
+            <ion-col class="dotted-border-right">
+                <label>DISTANCE</label>
+                <!-- <label>{{ "distance" | translate }}</label> -->
+                <span>155m</span>
+            </ion-col>
+            <ion-col>
+                <label>Länge</label>
+                <!-- <label>{{ "distance" | translate }}</label> -->
+                <span>2.6km</span>
+            </ion-col>
+            <ion-col class="dotted-border-left">
+                <label>dauer</label>
+                <!-- <label>{{ "distance" | translate }}</label> -->
+                <span>~ 2h 30min</span>
+            </ion-col>
+          </ion-row>
     </ion-grid>
   </div>
 </ion-content>
