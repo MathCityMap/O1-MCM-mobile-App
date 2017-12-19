@@ -7,7 +7,6 @@ import { Helper } from '../../../../classes/Helper';
 import { checkAvailability } from "@ionic-native/core";
 
 import { MathRoute } from '../../../../classes/MathRoute';
-import { RouteInfo } from '../../../RouteInfo/RouteInfo';
 
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
@@ -15,6 +14,7 @@ import { ImagesService } from '../../../../services/images-service';
 import { DeepLinker } from 'ionic-angular';
 import { Nav } from 'ionic-angular/navigation/nav-interfaces';
 import { HomePage } from '../../home';
+import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
 
 interface RouteItem {
   id: number,

@@ -21,8 +21,6 @@ import { MapPage } from '../pages/home/tabs/Map/Map';
 import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
 import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
 
-import { RouteInfoModule } from '../pages/RouteInfo/RouteInfo.module';
-
 /* Translation */
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { createTranslateLoader } from '../providers/translate-loader';
@@ -30,10 +28,13 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { OrmService } from '../services/orm-service';
 import {ImagesService} from '../services/images-service';
+import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
+import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    RouteInfo
   ],
   imports: [
     HttpModule,
@@ -48,11 +49,12 @@ import {ImagesService} from '../services/images-service';
         deps: [HttpClient]
       }
     }),
-    RouteInfoModule
+    MCMHeaderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    RouteInfo
   ],
   providers: [
     StatusBar,

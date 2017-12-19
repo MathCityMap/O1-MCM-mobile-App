@@ -12,7 +12,7 @@ import { MathRoute } from '../../classes/MathRoute';
 /* @IonicPage() */
 @Component({
   selector: 'route-info',
-  templateUrl: 'RouteInfo.html'
+  templateUrl: 'RouteInfo.html',
 })
 export class RouteInfo {
   route: MathRoute;

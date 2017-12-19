@@ -3,7 +3,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { RoutesListPage } from './RoutesList';
 import { TranslateModule } from '@ngx-translate/core';
 import { MCMHeaderModule } from '../../../../components/mcm-header/mcm-header.module';
-import { RouteInfoModule } from '../../../RouteInfo/RouteInfo.module';
 
 
 @NgModule({
@@ -13,8 +12,7 @@ import { RouteInfoModule } from '../../../RouteInfo/RouteInfo.module';
   imports: [
     IonicPageModule.forChild(RoutesListPage),
     TranslateModule.forChild(),
-    MCMHeaderModule,
-    RouteInfoModule
+    MCMHeaderModule
   ],
 })
 export class RoutesListPageModule {}
