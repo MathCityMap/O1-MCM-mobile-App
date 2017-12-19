@@ -1,7 +1,6 @@
 <ion-content class="routes-list has-header">
-    <!-- [virtualScroll]="items" approxItemHeight="124px" -->
+
   <ion-list>
-      <!--  *virtualItem="let item" -->
     <div class="detail-box" *ngFor="let item of items">
         <div class="image-container" (click)="showRoute(item.id)">
             <img [src]="item.image" />

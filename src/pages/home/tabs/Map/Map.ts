@@ -24,6 +24,8 @@ import {User} from '../../../../entity/User';
 import {Route} from '../../../../entity/Route';
 import {State} from '../../../../entity/State';
 import {Task} from '../../../../entity/Task';
+import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 @IonicPage()
 @Component({
@@ -51,6 +53,7 @@ export class MapPage implements OnInit {
     private geolocation: Geolocation,
     private updater: DB_Updater,
     private spinner: SpinnerDialog,
+    private modalCtrl: ModalController,
     private ormService: OrmService) { }
 
   async ionViewDidEnter() {
@@ -294,4 +297,11 @@ export class MapPage implements OnInit {
   removeRoute(route: MathRoute): void {
     route.removeDownloadedMap();
   }
+
+
+  presentRouteInfoModal(route: MathRoute): void {
+    let routeInfoModal = this.modalCtrl.create(RouteInfo, {route: route});
+    routeInfoModal.present();
+  }
+
 }

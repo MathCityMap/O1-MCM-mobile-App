@@ -3,36 +3,36 @@
   <div id="map" class="map-view"></div>
 
   <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
-      <div class="image-container">
+      <div class="image-container" (click)="showRoute(routeDetails.id)">
           <img *ngIf="routeDetails && routeImage" [src]="routeImage || '//:0'" />
       </div>
       <div class="text-container" *ngIf="routeDetails">
           <p>{{routeDetails.getInfo("city")}}, {{routeDetails.getInfo("country_code")}}</p>
           <h2>{{routeDetails.title}}</h2>
-        <div class="segmented-box">
-          <div class="segement distance" *ngIf="routeDetails">
+        <div class="segmented-box dotted-border-top">
+          <div class="segement dotted-border-right distance">
               <label>{{ "distance" | translate }}</label>
               <span>{{routeDetails.getInfo("distance")}} m</span>
           </div>
-          <div class="segement grade" *ngIf="routeDetails">
+          <div class="segement dotted-border-right grade">
               <label>{{ "grade" | translate }}</label>
               <span>{{routeDetails.getInfo("grade")}}</span>
           </div>
           <div class="segement buttons">
-                <button *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="showRoute(routeDetails)">
-                      <img src="./assets/icons/icon_route-info.svg"/>
-                  </button>
-            <button *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="doDownload(routeDetails)">
-                    <img src="./assets/icons/icon_route-download.svg"/>
-            </button>
-
-              <button *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="removeRoute(routeDetails)">
-                    <img src="./assets/icons/icon_delete.svg"/>
-              </button>
-
-              <span *ngIf="isDownloading" class="downloading">
-                {{doneDownload}} / {{totalDownload}}
-              </span>
+                <div class="button-container">
+                    <button *ngIf="routeDetails" ion-button icon-only clear (click)="presentRouteInfoModal(routeDetails)">
+                        <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
+                    </button>
+                    <button *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="doDownload(routeDetails)">
+                            <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
+                    </button>
+                    <button *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="removeRoute(routeDetails)">
+                            <img class="danger round" src="./assets/icons/icon_delete.svg"/>
+                    </button>
+                </div>
+                <span *ngIf="isDownloading" class="downloading">
+                    {{doneDownload}} / {{totalDownload}}
+                </span>
           </div>
         </div>
       </div>

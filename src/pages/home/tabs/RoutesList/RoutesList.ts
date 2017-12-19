@@ -156,8 +156,7 @@ export class RoutesListPage {
     route.removeDownloadedMap();
   }
 
-  presentRouteInfoModal(route: MathRoute) {
-    console.log('route in RoutesList ', route)
+  presentRouteInfoModal(route: MathRoute): void {
     let routeInfoModal = this.modalCtrl.create(RouteInfo, {route: route});
     routeInfoModal.present();
   }
