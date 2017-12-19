@@ -60,6 +60,26 @@
   </div>
 
   <div class="card">
-
+      <label>Fortschritt</label>
+      <ion-grid no-padding>
+          <ion-row>
+            <ion-col col-auto><span>6 / 14</span></ion-col>
+            <ion-col>
+              <div class="progress-bar">
+                <div class="progress" [ngStyle]="{'width': (100/14)*6+'%'}"></div>
+              </div>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
   </div>
+
+  <div class="card">
+      <label>Werkzeuge</label>
+      <p>Tape, Calculator, Folding Ruler, Level</p>
+
+      <label>Tags</label>
+      <p>Arc length, Arccos, Arch, Arcsin, Arctan, Area, Arithmetic,
+          Cube, Cubic, Curve, Cyclic, Fun</p>
+  </div>
+
 </ion-content>
