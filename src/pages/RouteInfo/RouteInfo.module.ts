@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { RouteInfoComponent } from './route-info.component';
+import { RouteInfo } from './RouteInfo';
 import { MCMHeaderModule } from '../../components/mcm-header/mcm-header.module';
 @NgModule({
   declarations: [
-    RouteInfoComponent,
+    RouteInfo,
   ],
   imports: [
-    IonicPageModule.forChild(RouteInfoComponent),
+    IonicPageModule.forChild(RouteInfo),
     MCMHeaderModule,
   ],
   exports: [
-    RouteInfoComponent
+    RouteInfo
   ]
 })
-export class RouteInfoPageModule {}
+export class RouteInfoModule {}

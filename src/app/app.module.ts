@@ -21,13 +21,12 @@ import { MapPage } from '../pages/home/tabs/Map/Map';
 import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
 import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
 
+import { RouteInfoModule } from '../pages/RouteInfo/RouteInfo.module';
+
 /* Translation */
 import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { createTranslateLoader } from '../providers/translate-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-
-
-// import { RouteInfoPageModule } from '../pages/route-info/route-info.module';
 
 import { OrmService } from '../services/orm-service';
 import {ImagesService} from '../services/images-service';
@@ -48,8 +47,8 @@ import {ImagesService} from '../services/images-service';
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    })
-    // RouteInfoPageModule
+    }),
+    RouteInfoModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

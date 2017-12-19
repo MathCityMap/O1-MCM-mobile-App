@@ -7,8 +7,8 @@ import { Helper } from '../../../../classes/Helper';
 import { checkAvailability } from "@ionic-native/core";
 
 import { MathRoute } from '../../../../classes/MathRoute';
+import { RouteInfo } from '../../../RouteInfo/RouteInfo';
 
-import { RouteInfoComponent } from '../../../route-info/route-info.component';
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { ImagesService } from '../../../../services/images-service';
@@ -158,7 +158,7 @@ export class RoutesListPage {
 
   presentRouteInfoModal(route: MathRoute) {
     console.log('route in RoutesList ', route)
-    let routeInfoModal = this.modalCtrl.create(RouteInfoComponent, {route: route});
+    let routeInfoModal = this.modalCtrl.create(RouteInfo, {route: route});
     routeInfoModal.present();
   }
 

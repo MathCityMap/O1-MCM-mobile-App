@@ -11,10 +11,10 @@ import { MathRoute } from '../../classes/MathRoute';
 
 /* @IonicPage() */
 @Component({
-  selector: 'page-route-info',
-  templateUrl: 'route-info.html',
+  selector: 'route-info',
+  templateUrl: 'RouteInfo.html'
 })
-export class RouteInfoComponent {
+export class RouteInfo {
   route: MathRoute;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
