@@ -1,19 +1,21 @@
 import {Injectable} from "@angular/core";
 import {checkAvailability} from "@ionic-native/core";
 import {SQLite} from '@ionic-native/sqlite'
-import {createConnection, Connection} from "typeorm";
+import {createConnection, Connection, Repository} from "typeorm";
 
 import {InitialMigration1513274191111} from '../migration/1513274191111-InitialMigration';
 import {User} from '../entity/User';
 import {State} from '../entity/State';
 import {Task} from '../entity/Task';
 import {Route} from '../entity/Route';
+import {AddImageUrlAndDownloadedFlagMigration1513679923000} from '../migration/1513679923000-AddImageUrlAndDownloadedFlagMigration';
+import {ImagesService} from './images-service';
 
 @Injectable()
 export class OrmService {
   connection: Connection;
 
-  constructor() {
+  constructor(private imagesService: ImagesService) {
   }
 
   async getConnection(): Promise<Connection> {
@@ -28,7 +30,8 @@ export class OrmService {
       Task
     ];
     const migrations = [
-      InitialMigration1513274191111
+      InitialMigration1513274191111,
+      AddImageUrlAndDownloadedFlagMigration1513679923000
     ];
     if (sqliteAvailable) {
       return this.connection = await createConnection({
@@ -57,5 +60,33 @@ export class OrmService {
         migrations: migrations
       });
     }
+  }
+
+  async getTaskRepository(): Promise<Repository<Task>> {
+    let connection = await this.getConnection();
+    return connection.getRepository(Task);
+  }
+
+  async getRouteRepository(): Promise<Repository<Route>> {
+    let connection = await this.getConnection();
+    return connection.getRepository(Route);
+  }
+
+  private async postProcessRoute(route: Route): Promise<Route> {
+    return route;
+  }
+
+  async getPublicRoutes(): Promise<Route[]> {
+    let repo = await this.getRouteRepository();
+    let result = await repo.find({
+      where: {
+        public: '1'
+      },
+      relations: ["tasks"]
+    });
+    for (let route of result) {
+      await this.postProcessRoute(route);
+    }
+    return result;
   }
 }

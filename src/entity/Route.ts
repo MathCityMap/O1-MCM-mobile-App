@@ -59,5 +59,11 @@ export class Route {
 
   @ManyToMany(type => Task, task => task.routes)
   @JoinTable({name: 'mcm_rel_route_task', joinColumn: {name: 'route_id'}, inverseJoinColumn: {name: 'task_id'}})
-  tasks: Task[]
+  tasks: Task[];
+
+  @Column({name: 'image_url'})
+  imageURL: string;
+
+  @Column({name: 'downloaded'})
+  downloaded: boolean;
 }

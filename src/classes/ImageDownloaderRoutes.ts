@@ -8,32 +8,13 @@ import { DB_Handler } from './DB_Handler'
 import async from 'async'
 
 @Injectable()
-export class ImageDownloaderRoutes extends AsyncTask<boolean> {
+export class ImageDownloaderRoutes {
   // protected Context context;
   // protected RoutesOverviewActivity parent;
   // protected boolean doNotCheck;
   // protected ProgressDialog dialog;
 
   constructor(private transfer: FileTransfer, private fileManager: File) {
-    super()
-  }
-
-  onPreExecute() {
-    console.log("Ran onPreExecute")
-    //     Runnable showProgressDialog = new Runnable() {
-    //         @Override
-    //         public void run() {
-    //             try{
-    //                 if(dialog == null){
-    //                     dialog = new ProgressDialog(context);
-    //                     dialog.setCancelable(false);
-    //                     dialog.setMessage(context.getText(R.string.loading));
-    //                     dialog.show();
-    //                 }
-    //             }catch (Exception e){e.printStackTrace();}
-    //         }
-    //     };
-    //     new Handler(Looper.getMainLooper()).post(showProgressDialog);
   }
 
   private downloadQueue: any = null;
@@ -134,9 +115,6 @@ export class ImageDownloaderRoutes extends AsyncTask<boolean> {
     }
   }
 
-  onPostExecute() {
-    console.log("Ran onPostExecute")
-  }
   // @Override
   // protected void onPostExecute(Void empty) {
   //     // If all tables are updated - start image download of routes

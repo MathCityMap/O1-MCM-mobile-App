@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  * - checks if the value is over o km and if so, then converts m to km and adds the correct unit
 */
 @Pipe({name: 'distance'})
-export class distancePipe implements PipeTransform {
+export class DistancePipe implements PipeTransform {
   transform(value: number, unit: string): string {
 /*     console.log('value', value); */
     if( value > 0 && value < 1000 ){

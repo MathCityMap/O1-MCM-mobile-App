@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController  } from 'ionic-angular';
+import { NavController, ModalController, IonicPage, IonicApp } from 'ionic-angular';
 import { DBC } from '../../../../classes/DBC';
 import { DB_Handler } from '../../../../classes/DB_Handler';
 import { File } from '@ionic-native/file';
@@ -7,12 +7,14 @@ import { Helper } from '../../../../classes/Helper';
 import { checkAvailability } from "@ionic-native/core";
 
 import { MathRoute } from '../../../../classes/MathRoute';
-import { TasksMap } from '../TasksMap/TasksMap';
-import { HomePage } from '../../home';
-
 
 import { RouteInfoComponent } from '../../../route-info/route-info.component';
-
+import { OrmService } from '../../../../services/orm-service';
+import { Route } from '../../../../entity/Route';
+import { ImagesService } from '../../../../services/images-service';
+import { DeepLinker } from 'ionic-angular';
+import { Nav } from 'ionic-angular/navigation/nav-interfaces';
+import { HomePage } from '../../home';
 
 interface RouteItem {
   id: number,
@@ -28,6 +30,7 @@ interface RouteItem {
   route: MathRoute
 }
 
+@IonicPage()
 @Component({
   selector: 'page-routes-list',
   templateUrl: 'RoutesList.html'
@@ -39,7 +42,9 @@ export class RoutesListPage {
   private isDownloading = false;
   modal: any;
 
-  constructor(public navCtrl: NavController, private fileManager: File, public modalCtrl: ModalController) { }
+  constructor(public navCtrl: NavController, private appCtrl: IonicApp, private deepLinker: DeepLinker, private fileManager: File, public modalCtrl: ModalController,
+              private ormService: OrmService) {
+  }
 
   ionViewDidEnter() {
 
@@ -134,17 +139,17 @@ export class RoutesListPage {
     this.totalDownload = 0;
     this.doneDownload = 0;
     const self = this;
-    route.downloadMap(function(doneDownload, totalDownload) {
-        self.doneDownload = doneDownload;
-        self.totalDownload = totalDownload;
+    route.downloadMap(function (doneDownload, totalDownload) {
+      self.doneDownload = doneDownload;
+      self.totalDownload = totalDownload;
     }).then(() => {
       this.isDownloading = false;
       // HomePage.nav.push(TasksMap, { route: route })
     });
   }
 
-  showRoute(routeId: number): void {
-    HomePage.nav.push(TasksMap, { routeId: routeId })
+  async showRoute(routeId: number) {
+    this.navCtrl.parent.parent.setRoot('TasksMap', {routeId: routeId})
   }
 
   removeRoute(route: MathRoute): void {
@@ -153,7 +158,7 @@ export class RoutesListPage {
 
   presentRouteInfoModal(route: MathRoute) {
     console.log('route in RoutesList ', route)
-    let routeInfoModal = this.modalCtrl.create(RouteInfoComponent, { route: route });
+    let routeInfoModal = this.modalCtrl.create(RouteInfoComponent, {route: route});
     routeInfoModal.present();
   }
 

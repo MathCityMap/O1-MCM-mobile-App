@@ -1,4 +1,6 @@
 import * as L from 'leaflet';
+import { checkAvailability } from "@ionic-native/core";
+import { File } from '@ionic-native/file';
 
 export class MapTile {
   constructor(private pZoomLevel: number, private pX: number, private pY: number) { }
@@ -138,6 +140,15 @@ export class Helper {
     return distance;
   }
 
+  private static filePluginFound: Boolean = null;
+
+  public static isFilePluginAvailable(): boolean {
+    if (Helper.filePluginFound != null) {
+      return Helper.filePluginFound.valueOf();
+    }
+    Helper.filePluginFound = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
+    return Helper.filePluginFound.valueOf();
+  }
   // public static JSONArray getJSONArray(String arrString){
   //   try{
   //       JSONArray solutionList;

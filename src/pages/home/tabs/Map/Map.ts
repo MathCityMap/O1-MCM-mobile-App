@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {IonicPage, NavController} from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { File } from '@ionic-native/file';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -15,7 +15,6 @@ import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
-import { TasksMap } from '../TasksMap/TasksMap';
 import { HomePage } from '../../home';
 import { MathRoute } from '../../../../classes/MathRoute';
 import { SpinnerDialog} from "@ionic-native/spinner-dialog";
@@ -26,6 +25,7 @@ import {Route} from '../../../../entity/Route';
 import {State} from '../../../../entity/State';
 import {Task} from '../../../../entity/Task';
 
+@IonicPage()
 @Component({
   selector: 'page-map',
   templateUrl: 'Map.html'
@@ -288,7 +288,7 @@ export class MapPage implements OnInit {
   }
 
   showRoute(route: MathRoute): void {
-    HomePage.nav.push(TasksMap, { routeId: route.Id })
+    HomePage.nav.push('TasksMap', { routeId: route.Id })
   }
 
   removeRoute(route: MathRoute): void {

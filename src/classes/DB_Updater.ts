@@ -32,7 +32,7 @@ export class DB_Updater extends AsyncTask<string[]> {
       && Helper.relTableUpdate == 1
       && Helper.routeTableNeedsUpdate == 1) {
       // new ImageDownloaderRoutes(this.transfer, this.file).execute(false).then(() => {
-        await new ImageDownloaderRoutes(this.transfer, this.file).execute(false)
+        await new ImageDownloaderRoutes(this.transfer, this.file).doInBackground(false)
         // this.spinner.hide()
       // })
     }
@@ -41,7 +41,7 @@ export class DB_Updater extends AsyncTask<string[]> {
       && Helper.relTableUpdate == 1
       && Helper.routeTableNeedsUpdate == 0) {
       // new ImageDownloaderRoutes(this.transfer, this.file).execute(true).then(() => {
-        await new ImageDownloaderRoutes(this.transfer, this.file).execute(true)
+        await new ImageDownloaderRoutes(this.transfer, this.file).doInBackground(true)
         // this.spinner.hide()
       // })
     }
@@ -74,6 +74,8 @@ export class DB_Updater extends AsyncTask<string[]> {
     let data = "pass=" + encodeURI(Helper.REQUEST_PASS)
       + "&action=" + encodeURI(queryAction)
 
+    let response = await this.http.post(Helper.API_URL, data, options);
+
     return new Promise<any>((resolve, reject) => {
       this.http.post(Helper.API_URL, data, options)
         .toPromise()
@@ -97,7 +99,7 @@ export class DB_Updater extends AsyncTask<string[]> {
           console.error('API error(status): ', error.status)
           console.error('API error: ', JSON.stringify(error))
           
-          new ImageDownloaderRoutes(this.transfer, this.file).execute(false);
+          new ImageDownloaderRoutes(this.transfer, this.file).doInBackground(false);
 
           reject(JSON.stringify(error))
           //         // Starte ImageDownloaderRoutes, damit die Listenelemente angezeigt werden

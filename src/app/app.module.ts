@@ -26,21 +26,15 @@ import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { createTranslateLoader } from '../providers/translate-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
-import { distancePipe } from './pipes/distance.pipe';
 
-import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
-import { RouteInfoPageModule } from '../pages/route-info/route-info.module';
+// import { RouteInfoPageModule } from '../pages/route-info/route-info.module';
 
 import { OrmService } from '../services/orm-service';
+import {ImagesService} from '../services/images-service';
 
 @NgModule({
   declarations: [
-    MyApp,
-    distancePipe,
-    MapPage,
-    RoutesListPage,
-    TasksMap,
-    HomePage,
+    MyApp
   ],
   imports: [
     HttpModule,
@@ -54,17 +48,12 @@ import { OrmService } from '../services/orm-service';
         useFactory: (createTranslateLoader),
         deps: [HttpClient]
       }
-    }),
-    MCMHeaderModule,
-    RouteInfoPageModule
+    })
+    // RouteInfoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    MapPage,
-    RoutesListPage,
-    TasksMap,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
@@ -78,6 +67,7 @@ import { OrmService } from '../services/orm-service';
     ImageDownloaderRoutes,
     SpinnerDialog,
     OrmService,
+    ImagesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

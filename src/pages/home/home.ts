@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { Network } from '@ionic-native/network';
-import { NavController, Platform } from 'ionic-angular';
+import {IonicPage, NavController, Platform} from 'ionic-angular';
 
-import { MapPage } from './tabs/Map/Map';
-import { RoutesListPage } from './tabs/RoutesList/RoutesList';
 import { Helper } from '../../classes/Helper';
 
-
+@IonicPage()
 @Component({
   templateUrl: 'home.html'
 })
@@ -14,8 +12,8 @@ export class HomePage {
   private disconnectSubscription: any;
   private connectSubscription: any;
   public static nav: NavController;
-  tab1Root = MapPage;
-  tab2Root = RoutesListPage;
+  tab1Root = 'MapPage';
+  tab2Root = 'RoutesListPage';
 
   constructor(private navCtrl: NavController, private network: Network, private platform: Platform) {
     HomePage.nav = navCtrl;
