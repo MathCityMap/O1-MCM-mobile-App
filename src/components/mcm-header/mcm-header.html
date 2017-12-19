@@ -2,7 +2,7 @@
     <!-- Header -->
     <ion-toolbar hideBackButton>
         <ion-buttons left>
-            <button class="imprint-button" *ngIf="!showBackButton  && currentpage != 'ModalCmp'" ion-button icon-only [navPush]="''">
+            <button class="imprint-button" *ngIf="!showBackButton  && currentpage != 'ModalCmp'" ion-button icon-only [navPush]="'MapPage'">
                 <img class="header-icon" src="assets/icons/info.svg"/>
             </button>
             <button class="mcm-back-button" *ngIf="showBackButton && currentpage != 'ModalCmp'"  ion-button icon-only (click)="goBack()">

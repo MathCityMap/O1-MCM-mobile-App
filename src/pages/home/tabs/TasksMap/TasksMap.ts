@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as L from 'leaflet';
 // import 'leaflet.markercluster';
 import 'leaflet-offline';
@@ -13,7 +13,9 @@ import { MathRoute } from '../../../../classes/MathRoute';
 import { MathTask } from '../../../../classes/MathTask';
 import { File } from '@ionic-native/file';
 
-
+@IonicPage({
+  segment: 'TasksMap/:routeId'
+})
 @Component({
   selector: 'page-tasks-map',
   templateUrl: 'TasksMap.html'
