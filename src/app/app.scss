@@ -231,6 +231,7 @@
     padding: 10px;
     margin: 0;
     margin-bottom: -4px;
+    padding-bottom: $global-large-padding;
 
     -webkit-transform: translateY(100%);
     transform: translateY(100%);
@@ -251,6 +252,9 @@
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;transition: all 0.5s;
 
+    mcm-progress-bar {
+        bottom: $global-small-padding;
+    }
   }
   .detail-box.open{
     -webkit-transform: translateY(0%);
