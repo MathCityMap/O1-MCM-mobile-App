@@ -7,6 +7,8 @@ $progress-height: 6px;
     @include border-radius($progress-height/2);
 
     .progress{
+        width: 0;
+        //prevent initial bug of flull progress bar
         background-color: color($colors, primary);
         height: $progress-height;
         @include border-radius($progress-height/2);
