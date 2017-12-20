@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, IonicPage, IonicApp } from 'ionic-angular';
+import { NavController, ModalController, IonicPage, IonicApp, App } from 'ionic-angular';
 import { DBC } from '../../../../classes/DBC';
 import { DB_Handler } from '../../../../classes/DB_Handler';
 import { File } from '@ionic-native/file';
@@ -42,7 +42,7 @@ export class RoutesListPage {
   private isDownloading = false;
   modal: any;
 
-  constructor(public navCtrl: NavController, private appCtrl: IonicApp, private deepLinker: DeepLinker, private fileManager: File, public modalCtrl: ModalController,
+  constructor(public navCtrl: NavController, private deepLinker: DeepLinker, private fileManager: File, public modalCtrl: ModalController,
               private ormService: OrmService) {
   }
 
@@ -149,7 +149,10 @@ export class RoutesListPage {
   }
 
   async showRoute(routeId: number) {
-    this.navCtrl.parent.parent.setRoot('TasksMap', {routeId: routeId})
+    this.navCtrl.parent.parent.push('TasksMap', {routeId: routeId}, {}, () => {
+      // necessary because of bug which does not update URL
+      this.deepLinker.navChange('forward');
+    });
   }
 
   removeRoute(route: MathRoute): void {
