@@ -1,0 +1,10 @@
+<ion-grid no-padding>
+    <ion-row>
+      <ion-col col-auto><span>{{ currentProgress }} / {{ total }}</span></ion-col>
+      <ion-col>
+        <div class="progress-bar">
+          <div class="progress" [ngStyle]="{'width': progressWidth +'%'}"></div>
+        </div>
+      </ion-col>
+    </ion-row>
+</ion-grid>

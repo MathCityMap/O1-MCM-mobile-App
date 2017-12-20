@@ -16,6 +16,8 @@ import { MathRoute } from '../../classes/MathRoute';
 })
 export class RouteInfo {
   route: MathRoute;
+  total: number = 14;
+  currentProgress: number = 6;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.route = navParams.data.route;

@@ -26,17 +26,3 @@ h2{
         }
     }
 }
-$progress-height: 6px;
-.progress-bar{
-    margin-left: $global-small-padding;
-    background-color: color($colors, grey);
-    height: $progress-height;
-    margin-top: $progress-height/2;
-    @include border-radius($progress-height/2);
-
-    .progress{
-        background-color: color($colors, primary);
-        height: $progress-height;
-        @include border-radius($progress-height/2);
-    }
-}
