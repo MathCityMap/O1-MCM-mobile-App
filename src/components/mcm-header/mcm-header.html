@@ -16,7 +16,7 @@
         <!--         <ion-title>{{ route.title }}</ion-title> -->
         <ion-title *ngIf="currentpage != 'HomePage' && currentpage != 'ModalCmp' ">{{ currentpage }}</ion-title>
         <ion-buttons end>
-            <button class="settings-button" ion-button icon-only  (click)="goToSettings()" *ngIf="currentpage != 'ModalCmp'">
+            <button class="settings-button" ion-button icon-only  (click)="goToSettings()" *ngIf="currentpage != 'ModalCmp' && currentpage != 'SettingsPage' && currentpage != 'InfoPage' ">
                 <img class="header-icon" src="assets/icons/settings.svg"/>
             </button>
         </ion-buttons>
