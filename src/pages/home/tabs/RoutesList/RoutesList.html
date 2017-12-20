@@ -33,9 +33,7 @@
                     </button>
                 </div>
 
-                <span *ngIf="isDownloading" class="downloading">
-                    {{doneDownload}} / {{totalDownload}}
-                </span>
+                <mcm-progress-bar *ngIf="item == activeDownload" [total]="totalDownload" [currentProgress]="doneDownload" ></mcm-progress-bar>
             </div>
 
           </div>

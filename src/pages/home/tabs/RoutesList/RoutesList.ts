@@ -15,6 +15,7 @@ import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
 })
 export class RoutesListPage {
   public items: Route[] = [];
+  public activeDownload: Route = null;
   private totalDownload = 0;
   private doneDownload = 0;
   private isDownloading = false;
@@ -56,7 +57,7 @@ export class RoutesListPage {
     console.log(`Route details ${JSON.stringify(route)}`);
 
     // uncommend this line to switch displaying route (online only mode)
-    this.isDownloading = true;
+    this.activeDownload = route;
     this.totalDownload = 0;
     this.doneDownload = 0;
     const self = this;
@@ -64,7 +65,7 @@ export class RoutesListPage {
       self.doneDownload = doneDownload;
       self.totalDownload = totalDownload;
     });
-    this.isDownloading = false;
+    this.activeDownload = null;
   }
 
   async showRoute(routeId: number) {
