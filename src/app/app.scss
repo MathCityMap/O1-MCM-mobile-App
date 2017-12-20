@@ -115,11 +115,13 @@
 // ----------- INFO CARDS LIST & MAP -----------
 
 .detail-box{
+    position: relative;
     background-color: #ffffff;
     height: auto;
     width: 100%;
     padding: 20px 15px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
 
     .image-container{
@@ -199,6 +201,13 @@
           }
         }
       }
+    }
+
+    mcm-progress-bar{
+      padding: $global-base-padding 0 0 0;
+      min-width: calc(100% - 150px);
+      position: absolute;
+      bottom: 0;
     }
 }
 

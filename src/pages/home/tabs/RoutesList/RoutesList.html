@@ -33,11 +33,12 @@
                     </button>
                 </div>
 
-                <mcm-progress-bar *ngIf="item == activeDownload" [total]="totalDownload" [currentProgress]="doneDownload" ></mcm-progress-bar>
             </div>
 
           </div>
+          <mcm-progress-bar *ngIf="item == activeDownload" [total]="totalDownload" [currentProgress]="doneDownload" ></mcm-progress-bar>
         </div>
+
       </div>
   </ion-list>
 </ion-content>
