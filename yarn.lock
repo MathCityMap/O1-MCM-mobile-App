@@ -154,6 +154,16 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-2.0.0.tgz#9c16d07cd070c67ada270a2e940281eb826b3f43"
 
+"@types/geojson@*":
+  version "7946.0.0"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.0.tgz#e8bc74e8183d966455f82023f0c72e1072a952d0"
+
+"@types/leaflet@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.2.3.tgz#b21da59fa9f446c8efedefbd343496ccea5933b4"
+  dependencies:
+    "@types/geojson" "*"
+
 "@types/localforage@0.0.30":
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/localforage/-/localforage-0.0.30.tgz#3d60a6bf6dda38e3f8a469611598379f1f649509"

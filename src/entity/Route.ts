@@ -1,5 +1,7 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable} from "typeorm";
-import {Task} from './Task';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import { Task } from './Task';
+import { Helper } from '../classes/Helper';
+import { LatLng, LatLngBounds } from 'leaflet';
 
 @Entity('mcm_route')
 export class Route {
@@ -66,4 +68,56 @@ export class Route {
 
   @Column({name: 'downloaded'})
   downloaded: boolean;
+
+  getImageURL(): string {
+    return this.imageURL ? this.imageURL : Helper.WEBSERVER_URL + this.image;
+  }
+
+  private boundingBoxLatLng: LatLngBounds = null;
+  private viewBoundingBoxLatLng: LatLngBounds = null;
+  private centerLatLng: LatLng = null;
+  private distance: number = null;
+
+  private calcBoundingBoxAndCenter() {
+    const padding: number = 0.0015;
+    const jsonBB = JSON.parse(this.boundingBox);
+    const jsonCenter = JSON.parse(this.center);
+    const northWest = jsonBB[0];
+    const southEast = jsonBB[1];
+    const south = southEast[0] - padding;
+    const north = northWest[0] + padding;
+    const west = northWest[1] - padding;
+    const east = southEast[1] + padding;
+    this.viewBoundingBoxLatLng = new LatLngBounds([northWest[0], southEast[1]], [southEast[0], northWest[1]]);
+    this.boundingBoxLatLng = new LatLngBounds([[north, east], [south, west]]);
+    this.centerLatLng = new LatLng(jsonCenter[0], jsonCenter[1]);
+  }
+
+  getBoundingBoxLatLng(): LatLngBounds {
+    if (!this.boundingBoxLatLng) {
+      this.calcBoundingBoxAndCenter();
+    }
+    return this.boundingBoxLatLng;
+  }
+
+  getViewBoundingBoxLatLng(): LatLngBounds {
+    if (!this.viewBoundingBoxLatLng) {
+      this.calcBoundingBoxAndCenter();
+    }
+    return this.viewBoundingBoxLatLng;
+  }
+
+  getCenterLatLng(): LatLng {
+    if (!this.centerLatLng) {
+      this.calcBoundingBoxAndCenter();
+    }
+    return this.centerLatLng;
+  }
+
+  getDistance(): number {
+    if (Helper.myLocation != null && this.distance == null) {
+      this.distance = Helper.getDistanceToCenterByLatLng(this.getCenterLatLng());
+    }
+    return this.distance;
+  }
 }

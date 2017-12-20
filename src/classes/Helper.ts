@@ -1,4 +1,5 @@
 import * as L from 'leaflet';
+import { LatLng } from 'leaflet';
 import { checkAvailability } from "@ionic-native/core";
 import { File } from '@ionic-native/file';
 
@@ -16,10 +17,6 @@ export class MapTile {
   get zoomLevel(): number {
     return this.pZoomLevel
   }
-}
-
-export class Point {
-  constructor(public x: number, public y: number) { }
 }
 
 export class Helper {
@@ -116,6 +113,9 @@ export class Helper {
   static windowWidth: number = 0
   static windowHeight: number = 0
 
+  public static getDistanceToCenterByLatLng(latLng: LatLng): number {
+    return Helper.getDistanceToCenter(latLng.lat, latLng.lng);
+  }
 
   public static getDistanceToCenter(lat2: number, lon2: number): number {
     let distance = -1;
