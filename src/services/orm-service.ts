@@ -1,19 +1,23 @@
-import {Injectable} from "@angular/core";
-import {checkAvailability} from "@ionic-native/core";
-import {SQLite} from '@ionic-native/sqlite'
-import {createConnection, Connection, Repository} from "typeorm";
+import { Injectable } from "@angular/core";
+import { checkAvailability } from "@ionic-native/core";
+import { SQLite } from '@ionic-native/sqlite'
+import { createConnection, Connection, Repository } from "typeorm";
 
-import {InitialMigration1513274191111} from '../migration/1513274191111-InitialMigration';
-import {User} from '../entity/User';
-import {State} from '../entity/State';
-import {Task} from '../entity/Task';
-import {Route} from '../entity/Route';
-import {AddImageUrlAndDownloadedFlagMigration1513679923000} from '../migration/1513679923000-AddImageUrlAndDownloadedFlagMigration';
-import {ImagesService} from './images-service';
+import { InitialMigration1513274191111 } from '../migration/1513274191111-InitialMigration';
+import { User } from '../entity/User';
+import { State } from '../entity/State';
+import { Task } from '../entity/Task';
+import { Route } from '../entity/Route';
+import { AddImageUrlAndDownloadedFlagMigration1513679923000 } from '../migration/1513679923000-AddImageUrlAndDownloadedFlagMigration';
+import { ImagesService } from './images-service';
+import { CacheManagerMCM } from '../classes/CacheManagerMCM';
+import { Helper } from '../classes/Helper';
 
 @Injectable()
 export class OrmService {
   connection: Connection;
+  private min_zoom: number = 16;
+  private max_zoom: number = 19;
 
   constructor(private imagesService: ImagesService) {
   }
@@ -76,6 +80,12 @@ export class OrmService {
     return route;
   }
 
+  public async findRouteById(id: number): Promise<Route> {
+    let repo = await this.getRouteRepository();
+    let route = await repo.findOneById(id, {relations: ["tasks"]});
+    return await this.postProcessRoute(route);
+  }
+
   async getPublicRoutes(): Promise<Route[]> {
     let repo = await this.getRouteRepository();
     let result = await repo.find({
@@ -88,5 +98,19 @@ export class OrmService {
       await this.postProcessRoute(route);
     }
     return result;
+  }
+
+  async downloadRoute(route: Route, statusCallback) {
+    await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
+    route.downloaded = true;
+    const repo = await this.getRouteRepository();
+    await repo.save(route);
+  }
+
+  async removeDownloadedRoute(route: Route) {
+    CacheManagerMCM.removeDownloadedTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
+    route.downloaded = false;
+    const repo = await this.getRouteRepository();
+    await repo.save(route);
   }
 }

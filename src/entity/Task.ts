@@ -16,11 +16,11 @@ export class Task {
   @Column({length: 1})
   public: string;
 
-  @Column({length: 64})
-  lat: string;
+  @Column()
+  lat: number;
 
-  @Column({length: 64})
-  lon: string;
+  @Column()
+  lon: number;
 
   @Column()
   title: string;

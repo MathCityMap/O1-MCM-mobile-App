@@ -3,10 +3,10 @@
   <ion-list>
     <div class="detail-box" *ngFor="let item of items">
         <div class="image-container" (click)="showRoute(item.id)">
-            <img [src]="item.image" />
+            <img [src]="item.getImageURL()" />
         </div>
         <div class="text-container">
-          <p (click)="showRoute(item.id)">{{item.city}}, {{item.country_code}}</p>
+          <p (click)="showRoute(item.id)">{{item.city}}, {{item.countryCode}}</p>
           <h2 (click)="showRoute(item.id)">{{item.title}}</h2>
           <div class="segmented-box dotted-border-top">
             <div class="segement dotted-border-right distance">
@@ -20,15 +20,15 @@
             </div>
             <div class="segement buttons">
                 <div class="button-container">
-                    <button ion-button icon-only clear (click)="presentRouteInfoModal(item.route)">
+                    <button ion-button icon-only clear (click)="presentRouteInfoModal(item)">
                         <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
                     </button>
 
-                    <button ion-button icon-only clear *ngIf="item.downloaded == false"  (click)="doDownload(item.route)">
+                    <button ion-button icon-only clear *ngIf="!item.downloaded"  (click)="doDownload(item)">
                         <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
                     </button>
 
-                    <button ion-button icon-only clear *ngIf="item.downloaded == true" (click)="removeRoute(item.route)">
+                    <button ion-button icon-only clear *ngIf="!!item.downloaded" (click)="removeRoute(item)">
                         <img class="danger round" src="./assets/icons/icon_delete.svg"/>
                     </button>
                 </div>

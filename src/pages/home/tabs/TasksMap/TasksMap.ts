@@ -4,14 +4,11 @@ import * as L from 'leaflet';
 // import 'leaflet.markercluster';
 import 'leaflet-offline';
 
-import { DB_Handler } from '../../../../classes/DB_Handler';
-import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
-import { MathRoute } from '../../../../classes/MathRoute';
-import { MathTask } from '../../../../classes/MathTask';
-import { File } from '@ionic-native/file';
+import { OrmService } from '../../../../services/orm-service';
+import { Route } from '../../../../entity/Route';
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -24,45 +21,31 @@ export class TasksMap {
   @ViewChild('tasks-map') mapContainer: ElementRef;
   private map: any;
   private routeId: number;
-  private route: MathRoute;
-  private tasks: MathTask;
+  private route: Route;
   private showPopup: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fileManager: File) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private ormService: OrmService) { }
 
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
     console.log('TasksMap ionViewDidEnter()');
     this.routeId = this.navParams.get('routeId');
-    let that = this;
-    let dbHandler = DB_Handler.getInstance();
-    dbHandler.ready().then(()=>{
-        dbHandler.getMathRouteById(that.routeId).then((mathRoute: MathRoute) => {
-          that.route = mathRoute;
-          that.route.initTasks().then(() => {
-            that.loadMap();
-            that.initializeMap();
-          })
-        }, (error) => {
-          console.error(error);
-        })
-    })
-    console.log(' =========================================================== ', 'this.route', this.route,' =========================================================== ', 'this.tasks', this.tasks,' =========================================================== ');
-
+    this.route = await this.ormService.findRouteById(this.routeId);
+    this.loadMap();
+    this.initializeMap();
   }
 
   markerGroup: any = null;
 
   async initializeMap() {
-    let dbHandler = DB_Handler.getInstance();
     if (this.markerGroup != null) {
       console.warn('removing markerGroup');
       this.map.removeLayer(this.markerGroup);
       this.markerGroup = null;
     }
     let map = this.map;
-    let test = this.route.getTasks();
+    let test = this.route.tasks;
     test.forEach(task => {
-      let marker: any = L.marker([task.Lat, task.Lon]).on('click', () => {
+      let marker: any = L.marker([task.lat, task.lon]).on('click', () => {
         console.log('You clicked a marker')
         // let imageFileName = task.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
         // this.fileManager.readAsDataURL(this.fileManager.dataDirectory, imageFileName)
@@ -77,7 +60,7 @@ export class TasksMap {
         // this.routeDetails = row;
       })
 
-      marker.bindPopup(`<h2>${task.getInfo("title")}</h2><p>${task.getInfo("description")}</p>`);
+      marker.bindPopup(`<h2>${task.title}</h2><p>${task.description}</p>`);
       map.addLayer(marker);
       /* this.showPopup = true; */
     })
@@ -102,7 +85,7 @@ export class TasksMap {
         // center: center,
         zoom: 18
       });
-      this.map.fitBounds(this.route.ViewBoundingBox);
+      this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
       // this.map.setZoom(18);
       this.map.on('click', e => {
         //check if details open and reset content. for now just reset content
@@ -111,7 +94,7 @@ export class TasksMap {
       })
       let map = this.map;
       tilesDb.initialize().then(() => {
-        let offlineLayer = L.tileLayer.offline(mapquestUrl, tilesDb, {
+        let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
           attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
           subdomains: subDomains,
           minZoom: 15,
@@ -122,7 +105,7 @@ export class TasksMap {
         });
 
         offlineLayer.addTo(map);
-        this.map.fitBounds(this.route.ViewBoundingBox);
+        this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
 
         offlineLayer.on('offline:below-min-zoom-error', function () {
           alert('Can not save tiles below minimum zoom level.');

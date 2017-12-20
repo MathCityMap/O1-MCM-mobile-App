@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 /* import { BroadcastService } from '../../services/broadcast-service'; */
-import { ViewController, ModalController } from 'ionic-angular';
+import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
 import { SettingsPage } from '../../pages/settings/settings';
 
 
@@ -13,7 +13,7 @@ import { SettingsPage } from '../../pages/settings/settings';
 })
 export class MCMHeaderComponent{
     showBackButton = false;
-    constructor(public navCtrl: NavController, public navParams: NavParams,/* public broadcastService: BroadcastService, */ public viewCtrl: ViewController, public modalCtrl: ModalController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,/* public broadcastService: BroadcastService, */ public viewCtrl: ViewController, public modalCtrl: ModalController, private deepLinker: DeepLinker) {
         console.log("MCM header in use");
 /*         broadcastService.historyChanged$.subscribe(canGoBack => {
             this.showBackButton = canGoBack;
@@ -49,7 +49,10 @@ export class MCMHeaderComponent{
     }
 
     goBack(){
-        this.navCtrl.pop();
+        this.navCtrl.pop({}, () => {
+          // necessary because of bug which does not update URL
+          this.deepLinker.navChange('back');
+        });
     }
 
     closeModal() {

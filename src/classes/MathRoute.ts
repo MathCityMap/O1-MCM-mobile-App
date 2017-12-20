@@ -5,6 +5,7 @@ import { DB_Handler } from './DB_Handler'
 import {Helper, MapTile} from './Helper';
 import { CacheManagerMCM } from './CacheManagerMCM';
 import {DBC} from "./DBC";
+import { LatLng, LatLngBounds } from 'leaflet';
 
 export class MathRoute {
 
@@ -23,9 +24,9 @@ export class MathRoute {
   //     protected boolean ready = false;
   //     public boolean downloaded = false;
   protected tasks: Array<MathTask> = new Array<MathTask>()
-  protected boundingBox: L.latLngBounds = null
-  protected viewBoundingBox: L.latLngBounds = null
-  protected center: L.latLng = null
+  protected boundingBox: LatLngBounds = null
+  protected viewBoundingBox: LatLngBounds = null
+  protected center: LatLng = null
   protected ready: boolean = false
   downloaded: boolean = false
   thumbImage: string = ''
@@ -363,27 +364,6 @@ export class MathRoute {
   //         dialog.show();
   //     }
 
-  downloadMap(statusCallback) {
-    if (Helper.isOnline) {
-      const min_zoom: number = 16
-      const max_zoom: number = 19
-      const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(this.boundingBox, min_zoom, max_zoom)
-      return CacheManagerMCM.downloadTiles(tiles, statusCallback).then((value) => {
-        this.downloaded  = true;
-        DB_Handler.getInstance().setOption(DBC.ON_ROUTE_DATA, String(this.Id))
-        return value;
-      });
-    }
-  }
-
-  removeDownloadedMap() {
-    const min_zoom: number = 16
-    const max_zoom: number = 19
-    const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(this.boundingBox, min_zoom, max_zoom)
-    CacheManagerMCM.removeDownloadedTiles(tiles);
-    this.downloaded = false;
-    DB_Handler.getInstance().resetRouteDlStateById(String(this.Id));
-  }
   //     public void downloadMap(final Context context) {
   //         if(MCMPermission.askPermWrite(context)){
   //             Helper.routeToDownload = this;

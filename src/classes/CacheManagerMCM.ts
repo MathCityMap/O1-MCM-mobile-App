@@ -1,9 +1,10 @@
-import { Point, MapTile, Helper } from './Helper'
+import { MapTile, Helper } from './Helper'
 import { MyMath } from './MyMath'
 import { MathRoute } from './MathRoute'
 import * as L from 'leaflet'
 import { AsyncTask } from './AsyncTask'
 import { tilesDb } from "./tilesDb"
+import { LatLngBounds, Point } from 'leaflet';
 /**
   * Action to perform on a tile within a CacheManagerTask
   * @author F.Fontaine
@@ -104,7 +105,7 @@ export class CacheManagerTask extends AsyncTask<any> {
     private mAction: CacheManagerAction,
     private mTiles: Array<MapTile>,
     pZoomMin: number, pZoomMax: number) {
-    super()
+    super();
     this.mZoomMin = Math.max(pZoomMin, this.mManager.MinZoomLevel)
     this.mZoomMax = Math.min(pZoomMax, mManager.MaxZoomLevel)
   }
@@ -307,7 +308,7 @@ export class CacheManagerMCM {
   //   public int possibleTilesInArea(final BoundingBox pBB, final int pZoomMin, final int pZoomMax) {
   //     return getTilesCoverage(pBB, pZoomMin, pZoomMax).size();
   // }
-  possibleTilesInArea(pBB: L.latLngBounds, pZoomMin: number, pZoomMax: number): number {
+  possibleTilesInArea(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number): number {
     return CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax).length
   }
 
@@ -320,7 +321,7 @@ export class CacheManagerMCM {
   // }
   // return result;
   // }
-  static getTilesCoverageMinMaxZoom(pBB: L.latLngBounds, pZoomMin: number, pZoomMax: number): Array<MapTile> {
+  static getTilesCoverageMinMaxZoom(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number): Array<MapTile> {
     let result = new Array<MapTile>()
     for (let zoomLevel = pZoomMin; zoomLevel <= pZoomMax; zoomLevel++) {
       console.log(`Calculating ZOOM: ${zoomLevel}`)
@@ -361,7 +362,7 @@ export class CacheManagerMCM {
   //     }
   //     return result;
   // }
-  static getTilesCoverageZoom(pBB: L.latLngBounds, pZoomLevel: number): Array<MapTile> {
+  static getTilesCoverageZoom(pBB: LatLngBounds, pZoomLevel: number): Array<MapTile> {
     let result = new Array<MapTile>()
     let mapTileUpperBound = 1 << pZoomLevel
     console.log(`shift attributes ${mapTileUpperBound}`)
@@ -400,13 +401,13 @@ export class CacheManagerMCM {
   //     final int x = (int) Math.floor((aLon + 180) / 360 * (1 << zoom));
   //     return new Point(x, y);
   // }
-  static getMapTileFromCoordinates(aLat: number, aLon: number, zoom: number): L.point {
+  static getMapTileFromCoordinates(aLat: number, aLon: number, zoom: number): Point {
     const z = 1 << zoom
     const y: number = Math.floor((1 - Math.log(Math.tan(aLat * Math.PI / 180) + 1 / Math.cos(aLat * Math.PI / 180)) / Math.PI) / 2 * z)
     const x: number = Math.floor((aLon + 180) / 360 * z)
     console.log(`aLat: ${aLat} aLon: ${aLon} zoom: ${zoom} => x: ${x} y: ${y}`)
 
-    return L.point(x, y)
+    return new Point(x, y)
   }
 
   /**
@@ -423,11 +424,11 @@ export class CacheManagerMCM {
   //   task.addCallback(getDownloadingDialog(ctx, task));
   //   return execute(task);
   // }
-  downloadAreaAsync(bb: L.latLngBounds, zoomMin: number, zoomMax: number) {
-    let task = new CacheManagerTask(this, this.getDownloadingAction(), bb, zoomMax, zoomMax)
-    //task.addCallback(getDownloadingDialog(task))
-    this.execute(task)
-  }
+  // downloadAreaAsync(bb: LatLngBounds, zoomMin: number, zoomMax: number) {
+  //   let task = new CacheManagerTask(this, this.getDownloadingAction(), bb, zoomMax, zoomMax)
+  //   //task.addCallback(getDownloadingDialog(task))
+  //   this.execute(task)
+  // }
 
   // public CacheManagerTask execute(final CacheManagerTask pTask) {
   //   pTask.execute();
@@ -440,7 +441,9 @@ export class CacheManagerMCM {
     // return pTask
   }
 
-  static downloadTiles(tiles: Array<MapTile>, callback: any): Promise<any> {
+  static async downloadTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number, callback: any): Promise<any> {
+    const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
+    await tilesDb.initialize();
     return tilesDb.saveTiles(tiles.map(tile => {
        let domain = Helper.subDomains[Math.floor(Math.random() * Helper.subDomains.length)];
        let keyDomain = Helper.subDomains[0];
@@ -451,7 +454,9 @@ export class CacheManagerMCM {
     }), callback);
   }
 
-  static removeDownloadedTiles(tiles: Array<MapTile>): void {
+  static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
+    const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
+    await tilesDb.initialize();
     tiles.map(tile => {
         tilesDb._removeItem(Helper.mapquestUrl.replace('{s}', Helper.subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)))
     })
