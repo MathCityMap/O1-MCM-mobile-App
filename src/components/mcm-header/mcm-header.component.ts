@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 /* import { BroadcastService } from '../../services/broadcast-service'; */
 import { ViewController, ModalController } from 'ionic-angular';
+import { SettingsPage } from '../../pages/settings/settings';
 
 
 @Component({
@@ -35,6 +36,16 @@ export class MCMHeaderComponent{
             this.navCtrl.popToRoot();
 /*             this.broadcastService.historyChanged(this.navCtrl.canGoBack()); */
         });
+    }
+
+   goToInfo() {
+        // Let's navigate to info/imprint
+        this.navCtrl.push('InfoPage');
+    }
+
+   goToSettings() {
+        // Let's navigate to settings
+        this.navCtrl.push('SettingsPage');
     }
 
     goBack(){
