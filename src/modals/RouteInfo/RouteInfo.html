@@ -8,7 +8,7 @@
   <div class="image-box">
     <ion-grid>
       <ion-row align-items-center>
-          <ion-col col-3 class="button-container">
+          <ion-col col-4 class="button-container">
               <img class="primary round" *ngIf="route.downloaded == false" src="./assets/icons/icon_download-large.svg"/>
               <img class="danger round" *ngIf="route.downloaded == true" src="./assets/icons/icon_delete-large.svg"/>
           </ion-col>
@@ -16,7 +16,7 @@
           <img *ngIf="route.Thumb" src="route.Thumb" class="round bordered" />
           <img *ngIf="!route.Thumb" src="./assets/images/img_default_image.gif" class="round bordered" />
         </ion-col>
-        <ion-col col-3 class="button-container">
+        <ion-col col-4 class="button-container">
             <img class="primary round" *ngIf="route.downloaded == true" src="./assets/icons/icon_play-large.svg"/>
         </ion-col>
       </ion-row>

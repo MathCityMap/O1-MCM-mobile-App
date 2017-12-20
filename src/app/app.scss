@@ -256,6 +256,10 @@
   @include box-shadow(0.3);
   padding: $global-small-padding $global-base-padding;
   margin: $global-base-padding;
+
+  >p:last-of-type{
+    margin-bottom: 0;
+  }
 }
 
 
