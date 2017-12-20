@@ -5,19 +5,19 @@
   <span *ngIf="route">{{route.title}}</span>
   <span *ngIf="route">{{showPopup}}</span>
 
-  <div id="details" class="detail-box" [ngClass]="{'open': showPopup == true}">
+  <div id="details" class="detail-box" [ngClass]="{'open': selectedTask}">
       <div class="image-container">
-          <img *ngIf="taskDetails && routeImage" [src]="routeImage || '//:0'" />
+          <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'" />
       </div>
-      <div class="text-container" *ngIf="taskDetails">
+      <div class="text-container" *ngIf="selectedTask">
           <p>task details</p>
-          <h2>task title</h2>
+          <h2>{{selectedTask.title}}</h2>
         <div class="segmented-box">
-          <div class="segement distance" *ngIf="taskDetails">
+          <div class="segement distance">
               <ion-label>{{ "t_distance" | translate }}</ion-label>
               <span>entfernung m</span>
           </div>
-          <div class="segement grade" *ngIf="taskDetails">
+          <div class="segement grade">
               <ion-label>{{ "r_level" | translate }}</ion-label>
               <span>klasse</span>
           </div>

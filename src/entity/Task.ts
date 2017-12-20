@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToMany} from "typeorm";
 import {Route} from "./Route";
+import { Helper } from '../classes/Helper';
 
 @Entity('mcm_task')
 export class Task {
@@ -78,4 +79,12 @@ export class Task {
 
   @ManyToMany(type => Route, route => route.tasks)
   routes: Route[]
+
+  getImageURL(): string {
+    return Helper.WEBSERVER_URL + this.image;
+  }
+
+  getHint1() {
+    return JSON.parse(this.hint1);
+  }
 }

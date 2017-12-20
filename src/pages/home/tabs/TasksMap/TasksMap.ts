@@ -9,6 +9,7 @@ import { tilesDb } from '../../../../classes/tilesDb';
 
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
+import { Task } from '../../../../entity/Task';
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -23,6 +24,7 @@ export class TasksMap {
   private routeId: number;
   private route: Route;
   private showPopup: boolean = false;
+  private selectedTask: Task;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ormService: OrmService) { }
 
@@ -47,6 +49,9 @@ export class TasksMap {
     test.forEach(task => {
       let marker: any = L.marker([task.lat, task.lon]).on('click', () => {
         console.log('You clicked a marker')
+        this.selectedTask = task;
+        console.log(task);
+        console.log(task.getHint1());
         // let imageFileName = task.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
         // this.fileManager.readAsDataURL(this.fileManager.dataDirectory, imageFileName)
         //   .then(imageData => this.route.thumbImage = imageData, imageError => {
@@ -60,7 +65,7 @@ export class TasksMap {
         // this.routeDetails = row;
       })
 
-      marker.bindPopup(`<h2>${task.title}</h2><p>${task.description}</p>`);
+/*       marker.bindPopup(`<h2>${task.title}</h2><p>${task.description}</p>`); */
       map.addLayer(marker);
       /* this.showPopup = true; */
     })
@@ -90,7 +95,7 @@ export class TasksMap {
       this.map.on('click', e => {
         //check if details open and reset content. for now just reset content
         // this.routeDetails = null;
-        console.log('do nothing for now');
+        this.selectedTask = null;
       })
       let map = this.map;
       tilesDb.initialize().then(() => {
