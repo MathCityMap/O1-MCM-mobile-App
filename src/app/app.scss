@@ -163,6 +163,7 @@
       }
       .segmented-box{
         display: flex;
+        align-items: center;
 
         .segement{
           flex: 1;
@@ -256,9 +257,38 @@
   @include box-shadow(0.3);
   padding: $global-small-padding $global-base-padding;
   margin: $global-base-padding;
+  position: relative;
+  z-index: -1;
 
   >p:last-of-type{
     margin-bottom: 0;
+  }
+  &.has-button-on-the-edge{
+    margin-bottom: $global-base-padding*1.5;
+    padding-bottom: $global-base-padding*1.5;
+  }
+  button{
+    &.on-the-edge{
+      position: absolute;
+      right: $global-base-padding;
+      bottom: -$global-base-padding;
+    }
+  }
+  .item,
+  ion-select{
+    width:100%;
+    max-width:100%;
+    padding-left: 0;
+
+    .select-icon .select-icon-inner,
+    .select-md .select-icon .select-icon-inner{
+      border: 0 solid!important;
+      content: url(../assets/icons/icon_dropdown-arrow.svg);
+      width: 20px;
+      height: 20px;
+      top: 0;
+      left: 0;
+    }
   }
 }
 

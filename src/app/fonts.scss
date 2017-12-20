@@ -35,13 +35,14 @@ p{
   font-weight: 500;
   color: color($colors, dark-grey);
 }
-ion-label{
+ion-label,
+ion-label.label-ios,
+ion-label.label-md{
   font-size: 10px;
   display: block;
   text-transform: uppercase;
   color: color($colors, grey);
-  margin-bottom: 5px;
-  margin-top: 0;
+  margin: 0 0 5px 0;
 }
 span{
   display: block;

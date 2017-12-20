@@ -10,16 +10,20 @@ h2{
 .image-box{
     margin: -60px 0;
     padding: 0 $global-base-padding;
-    button{
-        margin: 0;
-    }
+    z-index: 1;
     img{
         @include box-shadow(0.3);
         width: 100%;
     }
     .button-container{
-        padding: $global-base-padding;
+        padding: $global-small-padding;
         max-width: 75px;
+        button{
+            margin: 0;
+            padding: $global-small-padding;
+            min-width: 55px;
+            min-height: 58px;
+        }
     }
 }
 $progress-height: 6px;
