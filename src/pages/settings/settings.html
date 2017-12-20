@@ -2,17 +2,21 @@
 <ion-content class="has-header pattern-bg">
 
     <div class="card">
-      <label>Sprache</label>
-
+      <ion-label>Sprache</ion-label>
+      <ion-select [(ngModel)]="language">
+        <ion-option value="de" selected>Deutsch</ion-option>
+        <ion-option value="en">English</ion-option>
+        <ion-option value="it">Italienisch</ion-option>
+      </ion-select>
     </div>
 
     <div class="card">
-      <label>Daten zurücksetzen</label>
+      <ion-label>Daten zurücksetzen</ion-label>
       <p>Alle gespeicherten App Daten unwiederruflich löschen.</p>
     </div>
 
     <div class="card">
-      <label>Konsole</label>
+      <ion-label>Konsole</ion-label>
       <p>Tippe zusätzliche Benuzter Kommandos hier ein.</p>
     </div>
 
