@@ -49,6 +49,16 @@ span{
   font-size: 12px;
 }
 
+input{
+  &.text-input-ios,
+  &.text-input-md{
+    font-size: 12px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: color($colors, dark-grey);
+  }
+}
+
 
 .text-left{text-align:left}
 .text-center{text-align:center}

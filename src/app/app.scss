@@ -112,6 +112,31 @@
 
 
 // =============================================
+// ------------------ INPUTS -------------------
+
+ion-item{
+  &.item-input{
+    min-height: 0;
+  }
+  &.itemt-ios,
+  &.item-md {
+      .item-inner {
+        padding: 0;
+        height: 30px;
+      }
+  }
+
+}
+input{
+  &.text-input-ios,
+  &.text-input-md{
+    width: 100%;
+    margin: 5px 0 5px 0px;
+  }
+}
+
+
+// =============================================
 // ----------- INFO CARDS LIST & MAP -----------
 
 .detail-box{
@@ -231,7 +256,7 @@
     padding: 10px;
     margin: 0;
     margin-bottom: -4px;
-    padding-bottom: $global-large-padding;
+    padding-bottom: $global-large-padding*.75;
 
     -webkit-transform: translateY(100%);
     transform: translateY(100%);
@@ -342,5 +367,15 @@ img{
   padding-bottom: 10px;
 }
 
+
+/*  ========== buttons =========  */
+button{
+  &[disabled],
+  &[disabled= true]{
+    img{
+      background-color: color($colors, grey);
+    }
+  }
+}
 
 
