@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
+
+import { TranslateModule } from '@ngx-translate/core';
 import { MCMHeaderModule } from '../../components/mcm-header/mcm-header.module';
 
 @NgModule({
@@ -9,7 +11,8 @@ import { MCMHeaderModule } from '../../components/mcm-header/mcm-header.module';
   ],
   imports: [
     IonicPageModule.forChild(HomePage),
-    MCMHeaderModule
+    MCMHeaderModule,
+    TranslateModule
   ],
 })
 export class HomePageModule {}
