@@ -9,9 +9,11 @@
     <ion-grid>
       <ion-row align-items-center>
           <ion-col col-4 class="button-container">
-              <button ion-button icon-only clear>
-                  <img class="primary round" *ngIf="route.downloaded == false" src="./assets/icons/icon_download-large.svg"/>
-                  <img class="danger round" *ngIf="route.downloaded == true" src="./assets/icons/icon_delete-large.svg"/>
+              <button ion-button icon-only clear *ngIf="!route.downloaded" (click)="doDownload(item)">
+                  <img class="primary round" src="./assets/icons/icon_download-large.svg"/>
+              </button>
+              <button ion-button icon-only clear *ngIf="route.downloaded" (click)="removeRoute(item)">
+                  <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
               </button>
           </ion-col>
         <ion-col>
@@ -19,8 +21,8 @@
           <img *ngIf="!route.Thumb" src="./assets/images/img_default_image.gif" class="round bordered" />
         </ion-col>
         <ion-col col-4 class="button-container">
-            <button ion-button icon-only clear>
-              <img class="primary round" *ngIf="route.downloaded == true" src="./assets/icons/icon_play-large.svg"/>
+            <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="showRoute(route.id)">
+              <img class="primary round" src="./assets/icons/icon_play-large.svg"/>
             </button>
         </ion-col>
       </ion-row>
@@ -39,7 +41,7 @@
             <ion-col>
               <ion-label>Aufgaben</ion-label>
                 <!-- <ion-label>{{ "tasks" | translate }}</ion-label> -->
-                <span>3000</span>
+                <span>{{ totalTasks }}</span>
             </ion-col>
           </ion-row>
 
@@ -65,7 +67,7 @@
 
   <div class="card">
       <ion-label>Fortschritt</ion-label>
-      <mcm-progress-bar [total]="total" [currentProgress]="currentProgress" ></mcm-progress-bar>
+      <mcm-progress-bar [total]="totalTasks" [currentProgress]="currentProgress" ></mcm-progress-bar>
   </div>
 
   <div class="card">
