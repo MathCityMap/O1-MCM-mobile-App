@@ -36,7 +36,7 @@ export class MCMHeaderComponent{
         else if( this.currentpage == 'SettingsPage' ){ return 'action_settings' }
         else if(  this.currentpage == 'ModalCmp' ){ return 'DER ROUTENNAME' }
         else if(  this.currentpage == 'TasksMap' ){ return 'DER ROUTENNAME' }
-        else if( this.currentpage == '' ){ return 'DER TASKNAME' }
+        else if( this.currentpage == 'TaskDetail' ){ return 'DER TASKNAME' }
     }
 
     ngOnInit(){

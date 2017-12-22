@@ -1,18 +1,25 @@
-<!--
-  Generated template for the TaskDetailPage page.
+<mcm-header></mcm-header>
+<ion-content class="has-header pattern-bg">
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>taskDetail</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
+    <div class="card has-button-on-the-edge">
+      <ion-label>{{ "title_activity_task_view" | translate }}</ion-label>
+      <p>task.text</p>
+      <ion-label>{{ "task_answer" | translate }}</ion-label>
+      <ion-item>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+      <div class="on-the-edge-container">
+          <button class="hint" ion-button icon-only clear [disabled]="false">
+              <img class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
+          </button>
+          <button class="hint" ion-button icon-only clear [disabled]="false">
+              <img class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+          </button>
+          <button class="hint" ion-button icon-only clear [disabled]="true">
+              <img class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
+          </button>
+          <button ion-button small round >{{ "btn_check_answer" | translate }}</button>
+      </div>
+    </div>
 
 </ion-content>

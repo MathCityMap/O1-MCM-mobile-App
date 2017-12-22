@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { TaskDetailPage } from './task-detail';
+import { TranslateModule } from '@ngx-translate/core';
+import { MCMHeaderModule } from '../../components/mcm-header/mcm-header.module';
+import { TaskDetail } from './task-detail';
+
+
 
 @NgModule({
   declarations: [
-    TaskDetailPage,
+    TaskDetail,
   ],
   imports: [
-    IonicPageModule.forChild(TaskDetailPage),
+    IonicPageModule.forChild(TaskDetail),
+    TranslateModule,
+    MCMHeaderModule,
   ],
 })
 export class TaskDetailPageModule {}

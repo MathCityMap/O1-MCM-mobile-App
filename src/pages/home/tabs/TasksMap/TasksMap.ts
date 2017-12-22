@@ -26,7 +26,11 @@ export class TasksMap {
   private showPopup: boolean = false;
   private selectedTask: Task;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private ormService: OrmService) { }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private ormService: OrmService
+  ) { }
 
   async ionViewDidEnter() {
     console.log('TasksMap ionViewDidEnter()');
@@ -52,22 +56,8 @@ export class TasksMap {
         this.selectedTask = task;
         console.log(task);
         console.log(task.getHint1());
-        // let imageFileName = task.getInfo("image").replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
-        // this.fileManager.readAsDataURL(this.fileManager.dataDirectory, imageFileName)
-        //   .then(imageData => this.route.thumbImage = imageData, imageError => {
-        //     console.error("Error making image DataURL:", imageError);
-        //     // TODO: default empty image holder
-        //   })
-        //   .catch(error => {
-        //     console.error("Error making image DataURL:", JSON.stringify(error));
-        //     // TODO: default empty image holder
-        //   })
-        // this.routeDetails = row;
       })
-
-/*       marker.bindPopup(`<h2>${task.title}</h2><p>${task.description}</p>`); */
       map.addLayer(marker);
-      /* this.showPopup = true; */
     })
   }
 
@@ -143,4 +133,10 @@ export class TasksMap {
       });
     }
   }
+
+  async gototask(routeId: number) {
+    console.log('routeId', routeId);
+    this.navCtrl.push('TaskDetail', {routeId: routeId});
+  }
+
 }

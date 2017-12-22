@@ -312,6 +312,22 @@ input{
       bottom: -$global-base-padding;
     }
   }
+  .on-the-edge-container{
+    position: absolute;
+    right: $global-base-padding;
+    bottom: -$global-base-padding;
+
+    text-align: right;
+
+    button{
+      .hint{
+        padding: $global-small-padding;
+      }
+      img{
+        min-width: 28px;
+      }
+    }
+  }
   .item,
   ion-select{
     width:100%;
