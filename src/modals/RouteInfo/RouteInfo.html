@@ -17,8 +17,9 @@
               </button>
           </ion-col>
         <ion-col>
-          <img *ngIf="route.Thumb" src="route.Thumb" class="round bordered" />
-          <img *ngIf="!route.Thumb" src="./assets/images/img_default_image.gif" class="round bordered" />
+          <img [src]="route.getImageURL()" class="round bordered" />
+          <!-- TODO: show default image when no image found -->
+          <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
         </ion-col>
         <ion-col col-4 class="button-container">
             <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="showRoute(route.id)">

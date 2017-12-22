@@ -4,6 +4,8 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 /* import { BroadcastService } from '../../services/broadcast-service'; */
 import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
 import { SettingsPage } from '../../pages/settings/settings';
+import { Route } from '../../entity/Route';
+import { Task } from '../../entity/Task';
 
 
 @Component({
@@ -12,7 +14,11 @@ import { SettingsPage } from '../../pages/settings/settings';
 
 })
 export class MCMHeaderComponent{
-    showBackButton = false;
+    showBackButton: boolean = false;
+    private route: Route;
+    private task: Task;
+
+
     constructor(public navCtrl: NavController, public navParams: NavParams,/* public broadcastService: BroadcastService, */ public viewCtrl: ViewController, public modalCtrl: ModalController, private deepLinker: DeepLinker) {
         console.log("MCM header in use");
 /*         broadcastService.historyChanged$.subscribe(canGoBack => {
@@ -21,7 +27,17 @@ export class MCMHeaderComponent{
         }); */
     }
 
-    currentpage = this.viewCtrl.name
+    private currentpage: string = this.viewCtrl.name;
+
+    retriveTitle(): string{
+        console.log('currentpage ',this.currentpage);
+        if( this.currentpage == 'HomePage' ){ return 'title_activity_main' }
+        else if( this.currentpage == 'InfoPage' ){ return 'about_mcm_title' }
+        else if( this.currentpage == 'SettingsPage' ){ return 'action_settings' }
+        else if(  this.currentpage == 'ModalCmp' ){ return 'DER ROUTENNAME' }
+        else if(  this.currentpage == 'TasksMap' ){ return 'DER ROUTENNAME' }
+        else if( this.currentpage == '' ){ return 'DER TASKNAME' }
+    }
 
     ngOnInit(){
         this.showBackButton = this.navCtrl.canGoBack();
@@ -58,5 +74,7 @@ export class MCMHeaderComponent{
     closeModal() {
         this.viewCtrl.dismiss(this.modalCtrl);
     }
+
+
 
 }
