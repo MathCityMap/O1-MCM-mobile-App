@@ -30,7 +30,7 @@ export class MCMHeaderComponent{
     private currentpage: string = this.viewCtrl.name;
 
     retriveTitle(): string{
-        console.log('currentpage ',this.currentpage);
+        /* console.log('currentpage ',this.currentpage); */
         if( this.currentpage == 'HomePage' ){ return 'title_activity_main' }
         else if( this.currentpage == 'InfoPage' ){ return 'about_mcm_title' }
         else if( this.currentpage == 'SettingsPage' ){ return 'action_settings' }
@@ -47,7 +47,7 @@ export class MCMHeaderComponent{
     }
 
     goToDashboard(){
-        console.log("popToRoot");
+/*         console.log("popToRoot"); */
         this.navCtrl.setRoot('DashboardPage').then(() =>{
             this.navCtrl.popToRoot();
 /*             this.broadcastService.historyChanged(this.navCtrl.canGoBack()); */

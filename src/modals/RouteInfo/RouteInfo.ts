@@ -38,14 +38,14 @@ export class RouteInfo {
   }
 
   async doDownload(route: Route) {
-    console.log(`Route details ${JSON.stringify(route)}`);
+    console.log(`Route details ${JSON.stringify(this.route)}`);
 
     // uncommend this line to switch displaying route (online only mode)
-    this.activeDownload = route;
+    this.activeDownload = this.route;
     this.totalDownload = 0;
     this.doneDownload = 0;
     const self = this;
-    await this.ormService.downloadRoute(route, function (doneDownload, totalDownload) {
+    await this.ormService.downloadRoute(self.route, function (doneDownload, totalDownload) {
       self.doneDownload = doneDownload;
       self.totalDownload = totalDownload;
     });
@@ -62,13 +62,13 @@ export class RouteInfo {
   }
 
   removeRoute(route: Route): void {
-    console.log('ORM route', route);
-/*     this.ormService.removeDownloadedRoute(route); */
+    console.log('ORM route', this.route);
+    this.ormService.removeDownloadedRoute(this.route);
   }
 
   ionViewDidLoad() {
     console.log('route',this.route);
-    console.log('-------------------', this.totalTasks);
+/*     console.log('-------------------', this.totalTasks); */
   }
 
 }
