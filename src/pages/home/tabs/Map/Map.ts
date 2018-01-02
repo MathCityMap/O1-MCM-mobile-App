@@ -73,6 +73,10 @@ export class MapPage implements OnInit {
 
   async initializeMap() {
     let dbHandler = DB_Handler.getInstance();
+    await dbHandler.ready();
+    console.warn('db handler initialized');
+
+    await this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]);
     const map = this.map
     if (this.markerGroup != null) {
       console.warn('removing markerGroup');
