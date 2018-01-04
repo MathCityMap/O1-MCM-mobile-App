@@ -7,22 +7,25 @@ import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { DeepLinker } from 'ionic-angular';
 import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
+import { BroadcastService } from '../../../../services/broadcast-service';
+import { MCMProgressBarPopupComponent } from '../../../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { BasicRouteFunction } from '../BasicRouteFunction/BasicRouteFunction';
 
 @IonicPage()
 @Component({
   selector: 'page-routes-list',
   templateUrl: 'RoutesList.html'
 })
-export class RoutesListPage {
+export class RoutesListPage extends BasicRouteFunction{
   public items: Route[] = [];
   public activeDownload: Route = null;
-  private totalDownload = 0;
-  private doneDownload = 0;
-  private isDownloading = false;
+
   modal: any;
 
-  constructor(public navCtrl: NavController, private deepLinker: DeepLinker, public modalCtrl: ModalController,
-              private ormService: OrmService, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, private deepLinker: DeepLinker, modalCtrl: ModalController,
+              broadcastService: BroadcastService,
+              ormService: OrmService, private geolocation: Geolocation) {
+                super(modalCtrl, ormService, broadcastService);
   }
 
   async ionViewDidEnter() {
@@ -54,18 +57,7 @@ export class RoutesListPage {
   }
 
   async doDownload(route: Route) {
-    console.log(`Route details ${JSON.stringify(route)}`);
-
-    // uncommend this line to switch displaying route (online only mode)
-    this.activeDownload = route;
-    this.totalDownload = 0;
-    this.doneDownload = 0;
-    const self = this;
-    await this.ormService.downloadRoute(route, function (doneDownload, totalDownload) {
-      self.doneDownload = doneDownload;
-      self.totalDownload = totalDownload;
-    });
-    this.activeDownload = null;
+    super.doDownload(route);
   }
 
   async showRoute(routeId: number) {

@@ -27,13 +27,14 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { LatLngBounds } from 'leaflet';
 import { MCMProgressBarPopupComponent } from '../../../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
 import { BroadcastService } from '../../../../services/broadcast-service';
+import { BasicRouteFunction } from '../BasicRouteFunction/BasicRouteFunction';
 
 @IonicPage()
 @Component({
   selector: 'page-map',
   templateUrl: 'Map.html'
 })
-export class MapPage implements OnInit {
+export class MapPage extends BasicRouteFunction implements OnInit {
 
   @ViewChild('map') mapContainer: ElementRef;
   map: any;
@@ -44,19 +45,19 @@ export class MapPage implements OnInit {
   offlineControl: any;
   userMarker: any;
   isFilePluginAvailable: boolean;
-  doneDownload: number;
-  totalDownload: number;
-  isDownloading: boolean = false;
+
 
   constructor(public navCtrl: NavController,
     private platform: Platform,
     private geolocation: Geolocation,
     private updater: DB_Updater,
     private spinner: SpinnerDialog,
-    private modalCtrl: ModalController,
-    private ormService: OrmService,
+    modalCtrl: ModalController,
+    ormService: OrmService,
     private deepLinker: DeepLinker,
-    private broadcastService: BroadcastService) { }
+    broadcastService: BroadcastService) {
+      super(modalCtrl, ormService, broadcastService);
+    }
 
   async ionViewDidEnter() {
     console.log("ionViewDidEnter:");
@@ -220,23 +221,7 @@ export class MapPage implements OnInit {
   }
 
   async doDownload(route: Route) {
-    console.log(`doDownload ${JSON.stringify(route.id)}`);
-
-    // uncommend this line to switch displaying route (online only mode)
-    this.isDownloading = true;
-
-    this.totalDownload = 0;
-    this.doneDownload = 0;
-    let downloadModal = this.modalCtrl.create(MCMProgressBarPopupComponent,  {total: this.totalDownload, done: this.doneDownload}, {showBackdrop: true, enableBackdropDismiss: false});
-    downloadModal.present();
-    const self = this;
-    await this.ormService.downloadRoute(route, function (doneDownload, totalDownload) {
-      self.broadcastService.downloadProgressChanged(totalDownload, doneDownload);
-      self.doneDownload = doneDownload;
-      self.totalDownload = totalDownload;
-    });
-    this.isDownloading = false;
-    downloadModal.dismiss();
+    super.doDownload(route);
   }
 
   showRoute(routeId: number): void {

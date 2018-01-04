@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
+import { MCMProgressBarPopupComponent } from '../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+import { BroadcastService } from '../../services/broadcast-service';
+import { BasicRouteFunction } from '../../pages/home/tabs/BasicRouteFunction/BasicRouteFunction';
 
 /**
  * Generated class for the RouteInfoPage page.
@@ -16,12 +20,10 @@ import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
   selector: 'route-info',
   templateUrl: 'RouteInfo.html',
 })
-export class RouteInfo {
+export class RouteInfo extends BasicRouteFunction{
   public activeDownload: Route = null;
   private route: Route;
-  private totalDownload = 0;
-  private doneDownload = 0;
-  private isDownloading = false;
+
 
   private totalTasks: number;
   private currentProgress: number = 5;
@@ -31,25 +33,16 @@ export class RouteInfo {
     public navCtrl: NavController,
     public navParams: NavParams,
     private deepLinker: DeepLinker,
-    private ormService: OrmService) {
-
+    ormService: OrmService,
+    modalCtrl: ModalController,
+    broadcastService: BroadcastService) {
+      super(modalCtrl, ormService, broadcastService);
     this.route = navParams.data.route;
     this.totalTasks = this.route.tasks.length;
   }
 
   async doDownload(route: Route) {
-    console.log(`Route details ${JSON.stringify(this.route)}`);
-
-    // uncommend this line to switch displaying route (online only mode)
-    this.activeDownload = this.route;
-    this.totalDownload = 0;
-    this.doneDownload = 0;
-    const self = this;
-    await this.ormService.downloadRoute(self.route, function (doneDownload, totalDownload) {
-      self.doneDownload = doneDownload;
-      self.totalDownload = totalDownload;
-    });
-    this.activeDownload = null;
+    super.doDownload(route);
   }
 
   async showRoute(routeId: number) {

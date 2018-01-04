@@ -3,17 +3,17 @@
     <div class="card first" *ngIf="route">
     <p>{{ route.city }}, {{ route.countryCode }}</p>
     <h1>{{ route.title }}</h1>
-    <mcm-progress-bar *ngIf="route == activeDownload" [total]="totalDownload" [currentProgress]="doneDownload" ></mcm-progress-bar>
+
     </div>
 
     <div class="image-box">
         <ion-grid>
             <ion-row align-items-center>
                 <ion-col col-4 class="button-container">
-                    <button ion-button icon-only clear *ngIf="!route.downloaded" (click)="doDownload(item)">
+                    <button ion-button icon-only clear *ngIf="!route.downloaded" (click)="doDownload(route)">
                     <img class="primary round" src="./assets/icons/icon_download-large.svg"/>
                     </button>
-                    <button ion-button icon-only clear *ngIf="route.downloaded" (click)="removeRoute(item)">
+                    <button ion-button icon-only clear *ngIf="route.downloaded" (click)="removeRoute(route)">
                     <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
                     </button>
                 </ion-col>
