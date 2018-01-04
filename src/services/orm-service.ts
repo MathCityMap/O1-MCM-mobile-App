@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
-import { SQLite } from '@ionic-native/sqlite'
+import { SQLite } from '@ionic-native/sqlite';
 import { createConnection, Connection, Repository } from "typeorm";
 
 import { InitialMigration1513274191111 } from '../migration/1513274191111-InitialMigration';
