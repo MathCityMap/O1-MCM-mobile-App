@@ -134,9 +134,9 @@ export class TasksMap {
     }
   }
 
-  async gototask(taskId: number) {
+  async gototask(taskId: number, taskName: string) {
     console.log('taskId', taskId);
-    this.navCtrl.push('TaskDetail', {taskId: taskId});
+    this.navCtrl.push('TaskDetail', {taskId: taskId, taskTitle: taskName});
   }
 
 }

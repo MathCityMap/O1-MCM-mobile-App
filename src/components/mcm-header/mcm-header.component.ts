@@ -34,9 +34,18 @@ export class MCMHeaderComponent{
         if( this.currentpage == 'HomePage' ){ return 'title_activity_main' }
         else if( this.currentpage == 'InfoPage' ){ return 'about_mcm_title' }
         else if( this.currentpage == 'SettingsPage' ){ return 'action_settings' }
-        else if(  this.currentpage == 'ModalCmp' ){ return 'DER ROUTENNAME' }
-        else if(  this.currentpage == 'TasksMap' ){ return 'DER ROUTENNAME' }
-        else if( this.currentpage == 'TaskDetail' ){ return 'DER TASKNAME' }
+        else if(  this.currentpage == 'ModalCmp' ){
+            return 'title_activity_main' }
+        else if(  this.currentpage == 'TasksMap' ){
+            if(this.navParams && this.navParams.data.routeTitle){
+                return this.navParams.data.routeTitle;
+            }
+            return 'DER ROUTENNAME' }
+        else if( this.currentpage == 'TaskDetail' ){
+            if(this.navParams && this.navParams.data.taskTitle){
+                return this.navParams.data.taskTitle;
+            }
+            return 'DER TASKNAME' }
     }
 
     ngOnInit(){

@@ -2,12 +2,12 @@
 
   <ion-list>
     <div class="detail-box" *ngFor="let item of items">
-        <div class="image-container" (click)="showRoute(item.id)">
+        <div class="image-container" (click)="showRoute(item.id, item.title)">
             <img [src]="item.getImageURL()" />
         </div>
         <div class="text-container">
-          <p (click)="showRoute(item.id)">{{item.city}}, {{item.countryCode}}</p>
-          <h2 (click)="showRoute(item.id)">{{item.title}}</h2>
+          <p (click)="showRoute(item.id, item.title)">{{item.city}}, {{item.countryCode}}</p>
+          <h2 (click)="showRoute(item.id, item.title)">{{item.title}}</h2>
           <div class="segmented-box dotted-border-top">
             <div class="segement dotted-border-right distance">
                 <ion-label>{{ "t_distance" | translate }}</ion-label>

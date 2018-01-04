@@ -60,8 +60,8 @@ export class RoutesListPage extends BasicRouteFunction{
     super.doDownload(route);
   }
 
-  async showRoute(routeId: number) {
-    this.navCtrl.parent.parent.push('TasksMap', {routeId: routeId}, {}, () => {
+  async showRoute(routeId: number, routeTitle: string) {
+    this.navCtrl.parent.parent.push('TasksMap', {routeId: routeId, routeTitle: routeTitle}, {}, () => {
       // necessary because of bug which does not update URL
       this.deepLinker.navChange('forward');
     });
