@@ -90,7 +90,7 @@ export class OrmService {
     return await this.postProcessRoute(route);
   }
 
-    public async findTaskById(id: number): Promise<Route> {
+    public async findTaskById(id: number): Promise<Task> {
     let repo = await this.getTaskRepository();
     let task = await repo.findOneById(id);
     return await this.postProcessTask(task);
