@@ -25,6 +25,8 @@ import {Task} from '../../../../entity/Task';
 import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { LatLngBounds } from 'leaflet';
+import { MCMProgressBarPopupComponent } from '../../../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { BroadcastService } from '../../../../services/broadcast-service';
 
 @IonicPage()
 @Component({
@@ -53,7 +55,8 @@ export class MapPage implements OnInit {
     private spinner: SpinnerDialog,
     private modalCtrl: ModalController,
     private ormService: OrmService,
-    private deepLinker: DeepLinker) { }
+    private deepLinker: DeepLinker,
+    private broadcastService: BroadcastService) { }
 
   async ionViewDidEnter() {
     console.log("ionViewDidEnter:");
@@ -221,14 +224,19 @@ export class MapPage implements OnInit {
 
     // uncommend this line to switch displaying route (online only mode)
     this.isDownloading = true;
+
     this.totalDownload = 0;
     this.doneDownload = 0;
+    let downloadModal = this.modalCtrl.create(MCMProgressBarPopupComponent,  {total: this.totalDownload, done: this.doneDownload}, {showBackdrop: true, enableBackdropDismiss: false});
+    downloadModal.present();
     const self = this;
     await this.ormService.downloadRoute(route, function (doneDownload, totalDownload) {
+      self.broadcastService.downloadProgressChanged(totalDownload, doneDownload);
       self.doneDownload = doneDownload;
       self.totalDownload = totalDownload;
     });
     this.isDownloading = false;
+    downloadModal.dismiss();
   }
 
   showRoute(routeId: number): void {

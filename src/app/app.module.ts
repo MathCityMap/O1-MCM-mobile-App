@@ -30,11 +30,14 @@ import { OrmService } from '../services/orm-service';
 import {ImagesService} from '../services/images-service';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
+import { MCMProgressBarPopupComponent } from '../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { BroadcastService } from '../services/broadcast-service';
 
 @NgModule({
   declarations: [
     MyApp,
-    RouteInfo
+    RouteInfo,
+    MCMProgressBarPopupComponent
   ],
   imports: [
     HttpModule,
@@ -54,7 +57,8 @@ import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    RouteInfo
+    RouteInfo,
+    MCMProgressBarPopupComponent
   ],
   providers: [
     StatusBar,
@@ -69,6 +73,7 @@ import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
     SpinnerDialog,
     OrmService,
     ImagesService,
+    BroadcastService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
