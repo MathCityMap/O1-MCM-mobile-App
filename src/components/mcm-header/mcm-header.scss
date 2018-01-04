@@ -26,7 +26,7 @@ ion-header{
             &.toolbar-ios{
               height: 54px;
             }
-            &.md-toolbar{
+            &.toolbar-md{
               height: 54px;
             }
         }
@@ -56,7 +56,7 @@ ion-header{
       padding: 0;
     }
     .toolbar-title{
-      font-family: 'NunitoSemibold', Helvetica, sans-serif;
+      font-family: 'NunitoBold', Helvetica, sans-serif;
       color: color($colors, light);
       font-size: 24px;
       font-weight: 500;

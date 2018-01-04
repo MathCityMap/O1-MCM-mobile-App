@@ -132,5 +132,13 @@
     "language_tr":"Türkçe",
     "language_it":"Italiano",
     "settings_console":"Console",
-    "toast_looking4updates":"Searching for new updates."
+    "toast_looking4updates":"Searching for new updates.",
+
+
+
+    "sidefact_label":"Wusstest du schon?..",
+    "sidefact_tag":"Side Fact",
+    "solution_sample":"Musterlösung"
+
+
  }

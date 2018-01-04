@@ -1,83 +1,83 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header pattern-bg">
-  <div class="card first" *ngIf="route">
+    <div class="card first" *ngIf="route">
     <p>{{ route.city }}, {{ route.countryCode }}</p>
-    <h2>{{ route.title }}</h2>
+    <h1>{{ route.title }}</h1>
     <mcm-progress-bar *ngIf="route == activeDownload" [total]="totalDownload" [currentProgress]="doneDownload" ></mcm-progress-bar>
-  </div>
+    </div>
 
-  <div class="image-box">
-    <ion-grid>
-      <ion-row align-items-center>
-          <ion-col col-4 class="button-container">
-              <button ion-button icon-only clear *ngIf="!route.downloaded" (click)="doDownload(item)">
-                  <img class="primary round" src="./assets/icons/icon_download-large.svg"/>
-              </button>
-              <button ion-button icon-only clear *ngIf="route.downloaded" (click)="removeRoute(item)">
-                  <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
-              </button>
-          </ion-col>
-        <ion-col>
-          <img [src]="route.getImageURL()" class="round bordered" />
-          <!-- TODO: show default image when no image found -->
-          <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
-        </ion-col>
-        <ion-col col-4 class="button-container">
-            <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="showRoute(route.id)">
-              <img class="primary round" src="./assets/icons/icon_play-large.svg"/>
-            </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+    <div class="image-box">
+        <ion-grid>
+            <ion-row align-items-center>
+                <ion-col col-4 class="button-container">
+                    <button ion-button icon-only clear *ngIf="!route.downloaded" (click)="doDownload(item)">
+                    <img class="primary round" src="./assets/icons/icon_download-large.svg"/>
+                    </button>
+                    <button ion-button icon-only clear *ngIf="route.downloaded" (click)="removeRoute(item)">
+                    <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <img [src]="route.getImageURL()" class="round bordered" />
+                    <!-- TODO: show default image when no image found -->
+                    <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
+                </ion-col>
+                <ion-col col-4 class="button-container">
+                    <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="showRoute(route.id)">
+                    <img class="primary round" src="./assets/icons/icon_play-large.svg"/>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 
-  <div class="card text-center">
-    <ion-grid no-padding>
-          <ion-row align-items-center style="margin-bottom: 10px;">
-            <ion-col>
-                <ion-label>{{ "r_level_short" | translate }}</ion-label>
-                <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                <span>{{ route.grade }}</span>
-            </ion-col>
-            <ion-col></ion-col>
-            <ion-col>
-              <ion-label>{{ "r_tasks" | translate }}</ion-label>
-                <!-- <ion-label>{{ "tasks" | translate }}</ion-label> -->
-                <span>{{ totalTasks }}</span>
-            </ion-col>
-          </ion-row>
+    <div class="card text-center basic-info">
+        <ion-grid no-padding>
+            <ion-row align-items-center>
+                <ion-col>
+                    <ion-label>{{ "r_level_short" | translate }}</ion-label>
+                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
+                    <span>{{ route.grade }}</span>
+                </ion-col>
+                <ion-col></ion-col>
+                <ion-col>
+                    <ion-label>{{ "r_tasks" | translate }}</ion-label>
+                    <!-- <ion-label>{{ "tasks" | translate }}</ion-label> -->
+                    <span>{{ totalTasks }}</span>
+                </ion-col>
+            </ion-row>
 
-          <ion-row align-items-center>
-            <ion-col class="dotted-border-right">
-                <ion-label>{{ "t_distance" | translate }}</ion-label>
-                <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                <span> ??? </span>
-            </ion-col>
-            <ion-col>
-                <ion-label>Länge</ion-label>
-                <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                <span>{{ route.distance | distance }}</span>
-            </ion-col>
-            <ion-col class="dotted-border-left">
-                <ion-label>dauer</ion-label>
-                <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                <span>{{ route.duration }}</span>
-            </ion-col>
-          </ion-row>
-    </ion-grid>
-  </div>
+            <ion-row align-items-center>
+                <ion-col class="dotted-border-right">
+                    <ion-label>{{ "t_distance" | translate }}</ion-label>
+                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
+                    <span> ??? </span>
+                </ion-col>
+                <ion-col>
+                    <ion-label>Länge</ion-label>
+                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
+                    <span>{{ route.distance | distance }}</span>
+                </ion-col>
+                <ion-col class="dotted-border-left">
+                    <ion-label>dauer</ion-label>
+                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
+                    <span>{{ route.duration }}</span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 
-  <div class="card">
-      <ion-label>Fortschritt</ion-label>
-      <mcm-progress-bar [total]="totalTasks" [currentProgress]="currentProgress" ></mcm-progress-bar>
-  </div>
+    <div class="card">
+        <ion-label>Fortschritt</ion-label>
+        <mcm-progress-bar [total]="totalTasks" [currentProgress]="currentProgress" ></mcm-progress-bar>
+    </div>
 
-  <div class="card">
-      <ion-label>{{ 'r_equip' | translate }}</ion-label>
-      <p>Tape, Calculator, Folding Ruler, Level</p>
+    <div class="card">
+        <ion-label>{{ 'r_equip' | translate }}</ion-label>
+        <p>Tape, Calculator, Folding Ruler, Level</p>
 
-      <ion-label>{{ 'r_tags' | translate }}</ion-label>
-      <p>{{ route.tags }}</p>
-  </div>
+        <ion-label>{{ 'r_tags' | translate }}</ion-label>
+        <p>{{ route.tags }}</p>
+    </div>
 
 </ion-content>

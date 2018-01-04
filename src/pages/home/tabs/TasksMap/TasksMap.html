@@ -1,26 +1,26 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header map">
-  <div id="tasks-map" class="map-view"></div>
+    <div id="tasks-map" class="map-view"></div>
 
-  <div id="details" class="detail-box" [ngClass]="{'open': selectedTask}">
-      <div class="image-container">
-          <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'" />
-      </div>
-      <div class="text-container" *ngIf="selectedTask">
-          <p>task nummer</p>
-          <h2>{{selectedTask.title}}</h2>
-        <div class="segmented-box dotted-border-top">
-          <div class="segement distance">
-              <ion-label>{{ "g_max_points" | translate }}</ion-label>
-              <span>???</span>
-          </div>
-          <div class="segement buttons">
-            <button ion-button small round (click)="gototask(selectedTask.id)">{{ 'alert_show_task' | translate }}</button>
-            <button ion-button small round >{{ 'select_entry_point' | translate }}</button>
-            <button ion-button small round color="danger">{{ 'skipTask' | translate }}</button>
-          </div>
+    <div id="details" class="detail-box" [ngClass]="{'open': selectedTask}">
+    <div class="image-container">
+        <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'" />
+    </div>
+    <div class="text-container" *ngIf="selectedTask">
+    <p>#task nummer</p>
+    <h2>{{selectedTask.title}}</h2>
+    <div class="segmented-box dotted-border-top">
+        <div class="segement distance">
+            <ion-label>{{ "g_max_points" | translate }}</ion-label>
+            <span>???</span>
         </div>
-      </div>
+        <div class="segement buttons">
+            <button ion-button small round (click)="gototask(selectedTask.id)">{{ 'alert_show_task' | translate }}</button>
+            <!--<button ion-button small round >{{ 'select_entry_point' | translate }}</button>-->
+            <!--<button ion-button small round color="danger">{{ 'skipTask' | translate }}</button>-->
+        </div>
+    </div>
+    </div>
     </div>
 
 </ion-content>

@@ -1,25 +1,59 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header pattern-bg">
+    <div class="task-header">
+        <div class="image-container">
+            <img *ngIf="task" [src]="task.getImageURL()" />
+        </div>
+        <div class="transition"></div>
+    </div>
+    <div class="task-content">
+    <div class="card task has-button-on-the-edge">
+        <div class="head">
+        <ion-label>{{ "title_activity_task_view" | translate }}</ion-label>
+            <span class="tag points">100 MP</span>
+        </div>
+        <p *ngIf="task">{{task.description}}</p>
+        <ion-label>{{ "task_answer" | translate }}</ion-label>
+        <ion-item>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <div class="on-the-edge-container">
+            <button class="hint" ion-button icon-only clear [disabled]="false">
+                <img class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
+            </button>
+            <button class="hint" ion-button icon-only clear [disabled]="false">
+                <img class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+            </button>
+            <button class="hint" ion-button icon-only clear [disabled]="true">
+                <img class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
+            </button>
+            <button ion-button small round >{{ "btn_check_answer" | translate }}</button>
+        </div>
+    </div>
+
+    <div class="card secondary">
+        <div class="head">
+            <ion-label>{{ "sidefact_label" | translate }}</ion-label>
+            <span class="tag secondary">{{ "sidefact_tag" | translate }}</span>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+    </div>
 
     <div class="card has-button-on-the-edge">
-      <ion-label>{{ "title_activity_task_view" | translate }}</ion-label>
-      <p>task.text</p>
-      <ion-label>{{ "task_answer" | translate }}</ion-label>
-      <ion-item>
-          <ion-input type="text"></ion-input>
-      </ion-item>
-      <div class="on-the-edge-container">
-          <button class="hint" ion-button icon-only clear [disabled]="false">
-              <img class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
-          </button>
-          <button class="hint" ion-button icon-only clear [disabled]="false">
-              <img class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
-          </button>
-          <button class="hint" ion-button icon-only clear [disabled]="true">
-              <img class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
-          </button>
-          <button ion-button small round >{{ "btn_check_answer" | translate }}</button>
-      </div>
+        <ion-label>{{ "solution_sample" | translate }}</ion-label>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        <div class="on-the-edge-container">
+            <button ion-button small round class="solution">{{ "btn_check_answer" | translate }}</button>
+        </div>
+    </div>
+
+    <div class="card secondary">
+        <ion-label>{{ "author" | translate }}</ion-label>
+        <p *ngIf="task">
+            {{task.author}}<br>
+            {{task.mail}}
+        </p>
+    </div>
     </div>
 
 </ion-content>

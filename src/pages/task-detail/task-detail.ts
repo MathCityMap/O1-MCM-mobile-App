@@ -13,7 +13,9 @@ import { Task } from '../../entity/Task';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+    segment: 'TasksDetail/:taskId'
+})
 @Component({
   selector: 'page-task-detail',
   templateUrl: 'task-detail.html',
@@ -33,8 +35,8 @@ export class TaskDetail {
 
   async ionViewDidEnter() {
     console.log('TasksMap ionViewDidEnter()');
-    this.routeId = this.navParams.get('routeId');
-    this.route = await this.ormService.findRouteById(this.routeId);
+    this.taskId = this.navParams.get('taskId');
+    this.task = await this.ormService.findTaskById(this.taskId);
     console.log('-----------------------------------------------------',this.route);
   }
 

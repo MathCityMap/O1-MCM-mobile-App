@@ -1,3 +1,87 @@
-page-task-detail {
-
+page-task-detail{
+    .task-header{
+//        position: fixed;
+        position: relative;
+        display: block;
+        z-index: 0;
+//        max-height: 50vh;
+        .image-container{
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            img{
+//                object-fit: cover;
+//                max-width: unset;
+            }
+            &:before{
+                content: '';
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+    .transition{
+        content: '';
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #e5e5e5 70%, rgba(255, 255, 255, 0) 100%);
+        height: 200px;
+        width: 100%;
+        display: block;
+        position: absolute;
+        bottom: -58px;
+    }
+    .task-content{
+//        transform: translateY(40vh);
+        display: block;
+        position: relative;
+//        background-image: url(../assets/images/math_pattern.png);
+//        background-repeat: round round;
+//        background-size: 82px;
+    }
+    .card{
+        z-index: 2;
+        &.task{
+            margin-top: -40px;
+            padding-top: $global-large-padding*0.5;
+            p{
+                margin-bottom: $global-base-padding;
+            }
+        }
+        .head{
+            display: flex;
+            align-items: center;
+            margin-bottom: $global-base-padding;
+            ion-label{
+                margin: 0;
+            }
+            .tag{
+                font-family: 'NunitoBold', Arial, sans-serif;
+                border-width: 1px;
+                border-color: #B2B2B2;
+                border-radius: 12px;
+                height: 24px;
+                font-size: 12px;
+                padding: 0 12px;
+                line-height: 2;
+                color: #B2B2B2;
+                &.points{
+                    border-style: solid;
+                }
+                &.secondary{
+                    border-width: 2px;
+                    border-style: dotted;
+                    line-height: 1.8;
+                }
+            }
+        }
+        &.secondary{
+            background-color: color($colors, light-grey);
+            border: 2px dotted;
+            border-color: color($colors, grey);
+            box-shadow: none;
+            p{
+            color: color($colors, grey);
+            }
+        }
+    }
 }

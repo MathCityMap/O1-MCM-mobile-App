@@ -1,23 +1,43 @@
-.card.first{
-    padding: $global-large-padding $global-base-padding;
-    margin-top: - $global-base-padding;
-    text-align: center;
+.card{
+    &.first{
+        padding: $global-small-padding*1.5 $global-base-padding;
+        margin-top: 0;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        text-align: center;
+    }
+    &.basic-info{
+        ion-row:first-of-type{
+            margin-bottom: $global-small-padding;
+            ion-col:first-of-type{
+                margin-right: 10px;
+                padding-right: 10px!important;
+            }
+            ion-col:last-of-type{
+                margin-left: 10px;
+                padding-left: 10px!important;
+
+            }
+        }
+    }
 }
-p,
-h2{
+p, h1{
     margin: 0 0 $global-small-padding 0;
 }
 .image-box{
-    margin: -60px 0;
+    margin: -40px 0 -55px;
     padding: 0 $global-base-padding;
     z-index: 1;
+    .grid{
+        padding: 0;
+    }
     img{
-        @include box-shadow(0.3);
+        @include box-shadow(0.2);
         width: 100%;
     }
     .button-container{
-        padding: $global-small-padding;
-        max-width: 75px;
+        padding: $global-small-padding $global-small-padding $global-base-padding;
+        max-width: 70px;
         button{
             margin: 0;
             padding: $global-small-padding;
