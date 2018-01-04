@@ -9,6 +9,10 @@ page-task-detail{
             position: relative;
             width: 100%;
             overflow: hidden;
+            max-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             img{
 //                object-fit: cover;
 //                max-width: unset;
@@ -21,6 +25,7 @@ page-task-detail{
             }
         }
     }
+
     .transition{
         content: '';
         background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #e5e5e5 70%, rgba(255, 255, 255, 0) 100%);

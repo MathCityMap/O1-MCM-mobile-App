@@ -110,7 +110,7 @@
     "t_show_hint":"Show hint",
     "t_skip":"Skip this task",
     "t_skip_msg":"Do you want to continue with the next task?",
-    "g_max_points":"max. points",
+    "g_max_points":"points",
     "g_name":"Enter a player name \/ group name.",
     "g_name_taken":"This name is already in use. Please try another one.",
     "g_new_player":"New Player",

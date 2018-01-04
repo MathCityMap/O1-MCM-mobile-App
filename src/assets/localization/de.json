@@ -8,6 +8,12 @@
     "no_data": "k.A.",
     "select_entry_point":"Als Startpunkt wählen",
 
+    "sidefact_label":"Wusstest du schon?..",
+    "sidefact_tag":"Side Fact",
+    "solution_sample":"Musterlösung",
+
+
+
     "app_name":"Math-City-Map",
     "action_settings":"Einstellungen",
     "title_activity_main":"MathCityMap",
@@ -42,6 +48,7 @@
     "rdl_complete_with_error":"Download abgeschlossen mit",
     "rdl_title_img":"Lade Bilddaten herunter",
     "main_settings_delCache":"App-Daten löschen",
+
     "main_settings_distanceCheck":"Distanzcheck",
     "route_detail_settings_delCache":"Routen-Daten löschen",
     "route_detail_settings_resetTasks":"Aufgaben zurücksetzen",
@@ -119,7 +126,7 @@
     "t_skip_msg":"Möchtest du mit der nächsten Aufgabe fortfahren?",
     "alert_congrats":"Herzlichen Glückwunsch!",
     "alert_congrats_msg":"Du hast alle Aufgaben der Route '###TITLE###' erfolgreich gelöst!",
-    "g_max_points":"Max. Punkte",
+    "g_max_points":"Punkte",
     "g_name_error":"Der Name muss eine Länge zwischen 3 und 13 Zeichen besitzen.",
     "language_en":"English",
     "language_de":"Deutsch",
@@ -132,13 +139,5 @@
     "language_tr":"Türkçe",
     "language_it":"Italiano",
     "settings_console":"Console",
-    "toast_looking4updates":"Searching for new updates.",
-
-
-
-    "sidefact_label":"Wusstest du schon?..",
-    "sidefact_tag":"Side Fact",
-    "solution_sample":"Musterlösung"
-
-
+    "toast_looking4updates":"Searching for new updates."
  }
