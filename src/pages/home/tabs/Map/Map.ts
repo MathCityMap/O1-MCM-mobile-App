@@ -54,9 +54,9 @@ export class MapPage extends BasicRouteFunction implements OnInit {
     private spinner: SpinnerDialog,
     modalCtrl: ModalController,
     ormService: OrmService,
-    private deepLinker: DeepLinker,
+    deepLinker: DeepLinker,
     broadcastService: BroadcastService) {
-      super(modalCtrl, ormService, broadcastService);
+      super(modalCtrl, ormService, broadcastService, navCtrl, deepLinker);
     }
 
   async ionViewDidEnter() {
@@ -220,25 +220,11 @@ export class MapPage extends BasicRouteFunction implements OnInit {
     }
   }
 
-  async doDownload(route: Route) {
-    super.doDownload(route);
-  }
-
-  showRoute(routeId: number, routeTitle: string): void {
-    this.navCtrl.parent.parent.push('TasksMap', {routeId: routeId, routeTitle: routeTitle}, {}, () => {
-      // necessary because of bug which does not update URL
-      this.deepLinker.navChange('forward');
-    });
-  }
-
   removeRoute(route: Route): void {
     this.ormService.removeDownloadedRoute(route);
   }
 
 
-  presentRouteInfoModal(route: Route): void {
-    let routeInfoModal = this.modalCtrl.create(RouteInfo, {route: route});
-    routeInfoModal.present();
-  }
+
 
 }

@@ -7,6 +7,7 @@ import { MCMProgressBarPopupComponent } from '../../components/mcm-progress-bar-
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { BroadcastService } from '../../services/broadcast-service';
 import { BasicRouteFunction } from '../../pages/home/tabs/BasicRouteFunction/BasicRouteFunction';
+import { ViewController } from 'ionic-angular/navigation/view-controller';
 
 /**
  * Generated class for the RouteInfoPage page.
@@ -32,11 +33,12 @@ export class RouteInfo extends BasicRouteFunction{
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private deepLinker: DeepLinker,
+    deepLinker: DeepLinker,
     ormService: OrmService,
     modalCtrl: ModalController,
-    broadcastService: BroadcastService) {
-      super(modalCtrl, ormService, broadcastService);
+    broadcastService: BroadcastService,
+    private viewCtrl: ViewController) {
+      super(modalCtrl, ormService, broadcastService, navCtrl, deepLinker);
     this.route = navParams.data.route;
     this.totalTasks = this.route.tasks.length;
   }
@@ -45,13 +47,8 @@ export class RouteInfo extends BasicRouteFunction{
     super.doDownload(route);
   }
 
-  async showRoute(routeId: number, routeTitle:string) {
-    console.log('routeId', routeId);
-    this.navCtrl.push('TasksMap', {routeId: routeId, routeTitle: routeTitle});
-    /* this.navCtrl.parent.parent.push('TasksMap', {routeId: routeId}, {}, () => {
-      // necessary because of bug which does not update URL
-      this.deepLinker.navChange('forward');
-    });*/
+  showRoute(routeId: number, routeTitle:string) {
+    this.viewCtrl.dismiss({showRoute: true, routeId: routeId, routeTitle:routeTitle});
   }
 
   removeRoute(route: Route): void {

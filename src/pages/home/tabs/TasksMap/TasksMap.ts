@@ -10,6 +10,7 @@ import { tilesDb } from '../../../../classes/tilesDb';
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { Task } from '../../../../entity/Task';
+import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -29,7 +30,8 @@ export class TasksMap {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private ormService: OrmService
+    private ormService: OrmService,
+    private deepLinker: DeepLinker
   ) { }
 
   async ionViewDidEnter() {
@@ -135,7 +137,10 @@ export class TasksMap {
 
   async gototask(taskId: number, taskName: string) {
     console.log('taskId', taskId);
-    this.navCtrl.push('TaskDetail', {taskId: taskId, taskTitle: taskName});
+    this.navCtrl.push('TaskDetail', {taskId: taskId, taskTitle: taskName}, {}, () => {
+      // necessary because of bug which does not update URL
+      this.deepLinker.navChange('forward');
+    });
   }
 
 }
