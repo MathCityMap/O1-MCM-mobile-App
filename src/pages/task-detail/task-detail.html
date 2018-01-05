@@ -18,13 +18,13 @@
             <ion-input type="text"></ion-input>
         </ion-item>
         <div class="on-the-edge-container">
-            <button class="hint" ion-button icon-only clear [disabled]="false">
+            <button class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
                 <img class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
             </button>
-            <button class="hint" ion-button icon-only clear [disabled]="false">
+            <button class="hint" ion-button (click)="showHint(2)" icon-only clear [disabled]="false">
                 <img class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
             </button>
-            <button class="hint" ion-button icon-only clear [disabled]="true">
+            <button class="hint" ion-button (click)="showHint(3)" icon-only clear [disabled]="true">
                 <img class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
             </button>
             <button ion-button small round >{{ "btn_check_answer" | translate }}</button>
