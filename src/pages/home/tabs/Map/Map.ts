@@ -25,7 +25,7 @@ import {Task} from '../../../../entity/Task';
 import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { LatLngBounds } from 'leaflet';
-import { MCMProgressBarPopupComponent } from '../../../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { MCMDownloadProgressPopupComponent } from '../../../../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BroadcastService } from '../../../../services/broadcast-service';
 import { BasicRouteFunction } from '../BasicRouteFunction/BasicRouteFunction';
 

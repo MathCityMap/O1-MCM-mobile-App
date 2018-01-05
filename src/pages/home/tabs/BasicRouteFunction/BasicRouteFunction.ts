@@ -7,7 +7,7 @@ import { OrmService } from "../../../../services/orm-service";
 import { DeepLinker } from "ionic-angular/navigation/deep-linker";
 import { BroadcastService } from "../../../../services/broadcast-service";
 import { Route } from "../../../../entity/Route";
-import { MCMProgressBarPopupComponent } from "../../../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component";
+import { MCMDownloadProgressPopupComponent } from "../../../../components/mcm-download-progress-popup/mcm-download-progress-popup.component";
 import { RouteInfo } from "../../../../modals/RouteInfo/RouteInfo";
 
 export class BasicRouteFunction{
@@ -30,7 +30,7 @@ export class BasicRouteFunction{
 
         this.totalDownload = 0;
         this.doneDownload = 0;
-        let downloadModal = this.modalCtrl.create(MCMProgressBarPopupComponent,  {total: this.totalDownload, done: this.doneDownload}, {showBackdrop: true, enableBackdropDismiss: false});
+        let downloadModal = this.modalCtrl.create(MCMDownloadProgressPopupComponent,  {total: this.totalDownload, done: this.doneDownload}, {showBackdrop: true, enableBackdropDismiss: false});
         downloadModal.present();
         const self = this;
         await this.ormService.downloadRoute(route, function (doneDownload, totalDownload) {

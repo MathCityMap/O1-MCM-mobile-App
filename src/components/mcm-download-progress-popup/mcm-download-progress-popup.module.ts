@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
-import { MCMProgressBarPopupComponent } from './mcm-progress-bar-popup.component';
+import { MCMDownloadProgressPopupComponent } from './mcm-download-progress-popup.component';
 
 @NgModule({
   declarations: [
 
-      MCMProgressBarPopupComponent
+      MCMDownloadProgressPopupComponent
   ],
   imports: [
 /*     IonicModule.forRoot(MCMProgressBarComponent) */
   ],
   exports: [
-    MCMProgressBarPopupComponent
+    MCMDownloadProgressPopupComponent
   ]
 })
-export class MCMProgressBarPopupModule {}
+export class MCMDownloadProgressPopupModule {}

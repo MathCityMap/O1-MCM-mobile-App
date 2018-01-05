@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
-import { MCMProgressBarPopupComponent } from '../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { MCMDownloadProgressPopupComponent } from '../../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { BroadcastService } from '../../services/broadcast-service';
 import { BasicRouteFunction } from '../../pages/home/tabs/BasicRouteFunction/BasicRouteFunction';

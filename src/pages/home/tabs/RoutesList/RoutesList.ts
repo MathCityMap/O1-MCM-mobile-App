@@ -8,7 +8,7 @@ import { Route } from '../../../../entity/Route';
 import { DeepLinker } from 'ionic-angular';
 import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
 import { BroadcastService } from '../../../../services/broadcast-service';
-import { MCMProgressBarPopupComponent } from '../../../../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { MCMDownloadProgressPopupComponent } from '../../../../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BasicRouteFunction } from '../BasicRouteFunction/BasicRouteFunction';
 
 @IonicPage()

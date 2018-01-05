@@ -30,7 +30,7 @@ import { OrmService } from '../services/orm-service';
 import {ImagesService} from '../services/images-service';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
-import { MCMProgressBarPopupComponent } from '../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
+import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
 
@@ -38,7 +38,7 @@ import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
   declarations: [
     MyApp,
     RouteInfo,
-    MCMProgressBarPopupComponent,
+    MCMDownloadProgressPopupComponent,
     MCMIconModal
   ],
   imports: [
@@ -60,7 +60,7 @@ import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
   entryComponents: [
     MyApp,
     RouteInfo,
-    MCMProgressBarPopupComponent,
+    MCMDownloadProgressPopupComponent,
     MCMIconModal
   ],
   providers: [
