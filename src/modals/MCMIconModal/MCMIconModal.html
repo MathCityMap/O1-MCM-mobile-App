@@ -1,4 +1,4 @@
-<div class="modal card hint has-button-on-the-edge">
+<div class="modal card has-button-on-the-edge" [ngClass]="{'hint': modalType == 1,'negative': modalType == 2, 'positive': modalType == 3}">
     <h2>{{title | translate}}</h2>
     <img *ngIf="modalType == 1" src="./assets/icons/icon_popup-hint.svg"/>
     <img *ngIf="modalType == 2" src="./assets/icons/icon_wrong-answer.svg"/>
