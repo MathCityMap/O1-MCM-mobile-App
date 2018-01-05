@@ -77,6 +77,12 @@ export class OrmService {
   }
 
   private async postProcessRoute(route: Route): Promise<Route> {
+    let position: number = 1;
+    route.tasks.forEach(task => {
+        task.position = position;
+        position++;
+    })
+
     return route;
   }
 

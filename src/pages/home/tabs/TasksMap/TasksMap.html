@@ -7,7 +7,7 @@
             <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'" />
         </div>
         <div class="text-container" *ngIf="selectedTask">
-            <p>#task nummer</p>
+            <p>#{{selectedTask.position}}</p>
             <h2>{{selectedTask.title}}</h2>
             <div class="segmented-box dotted-border-top">
                 <div class="segement distance">
