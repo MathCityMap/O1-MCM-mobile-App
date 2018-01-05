@@ -209,6 +209,10 @@ input{
             .segement{
                 flex: 1;
 
+                ion-label, ion-label.label-ios, ion-label.label-md{
+                    margin-bottom: 5px;
+                }
+
                 &.buttons{
                     display: flex;
                     flex-direction: column;
@@ -315,6 +319,9 @@ input{
     margin: $global-base-padding;
     position: relative;
     z-index: -1;
+    ion-label, ion-label.label-ios, ion-label.label-md{
+        margin-bottom: $global-small-padding*0.8;
+    }
     >p:last-of-type{
         margin-bottom: 0;
     }
@@ -405,7 +412,9 @@ img{
 
 button{
     &[disabled],
-    &[disabled= true]{
+    &[disabled= true]
+    a[disabled], [ion-button][disabled]{
+        opacity: 1!important;
         img{
             background-color: color($colors, grey);
         }
@@ -451,7 +460,6 @@ ion-modal {
 
     //REAL MODALS
     .modal.card{
-//        transform: translateY(-20px);
         h2{
             font-family: 'NunitoExtrabold', Arial, sans-serif;
             font-size: 15px;
@@ -467,8 +475,7 @@ ion-modal {
             }
         }
 
-        //HINTs®
-        &.hint{
+        &.hint, &.positive, &.negative{
             padding-top: $global-large-padding;
             padding-bottom: $global-large-padding;
             text-align: center;
@@ -481,10 +488,36 @@ ion-modal {
             }
             .highlight{
                 display: inline-block;
-                font-family: 'NunitoExtrabold', Arial, sans-serif;
-                color: color($colors, primary);
+                font-family: 'NunitoExtrabold', Arial, sans-serif
             }
         }
+
+        //HINTs®
+        &.hint{
+            h2, .highlight{
+                color: color($colors, primary);
+            }
+            button{
+                background-color: color($colors, primary);
+            }
+        }
+        &.positive{
+            h2, .highlight{
+                color: color($colors, secondary);
+            }
+            button{
+                background-color: color($colors, secondary);
+            }
+        }
+        &.negative{
+            h2, .highlight{
+                color: color($colors, danger);
+            }
+            button{
+                background-color: color($colors, danger);
+            }
+        }
+
     }
 
 }

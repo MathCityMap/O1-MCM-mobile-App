@@ -55,7 +55,7 @@ page-task-detail{
         .head{
             display: flex;
             align-items: center;
-            margin-bottom: $global-base-padding;
+            margin-bottom: $global-base-padding*0.75;
             ion-label{
                 margin: 0;
             }
@@ -86,6 +86,37 @@ page-task-detail{
             box-shadow: none;
             p{
             color: color($colors, grey);
+            }
+        }
+
+
+        //EVALUATION
+
+        &.evaluation{
+            z-index: 1;
+            margin: -34px $global-base-padding*1.3 $global-base-padding;
+            padding: $global-base-padding*1.5 $global-base-padding*0.7 $global-base-padding*0.7;
+            border-top-right-radius: 0px;
+            border-top-left-radius: 0px;
+            .head{
+                margin-bottom: 0;
+            }
+            ion-label{
+                font-family: 'NunitoBold', Arial, sans-serif;
+                text-transform: uppercase;
+                color: #ffffff;
+                letter-spacing: 1px;
+            }
+            .points{
+                font-family: 'NunitoExtrabold', Arial, sans-serif;
+                color: color($colors, secondary);
+                background-color: #ffffff;
+                border-color: color($colors, secondary);
+                box-shadow: 0 0 1px 1px #ffffff;
+            }
+
+            &.positive{
+                background-color: color($colors, secondary);
             }
         }
     }

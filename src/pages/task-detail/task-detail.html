@@ -10,7 +10,7 @@
     <div class="card task has-button-on-the-edge">
         <div class="head">
         <ion-label>{{ "title_activity_task_view" | translate }}</ion-label>
-            <span class="tag points">100 MP</span>
+            <!--<span class="tag points">100 MP</span>-->
         </div>
         <p *ngIf="task">{{task.description}}</p>
         <ion-label>{{ "task_answer" | translate }}</ion-label>
@@ -35,21 +35,24 @@
             <button ion-button small round (click)="checkResult()">{{ "btn_check_answer" | translate }}</button>
         </div>
     </div>
-
-    <div class="card secondary">
+    <div class="card evaluation positive">
         <div class="head">
-            <ion-label>{{ "sidefact_label" | translate }}</ion-label>
-            <span class="tag secondary">{{ "sidefact_tag" | translate }}</span>
+            <ion-label>{{ "solution_good" | translate }}</ion-label>
+            <!--<span class="tag points">+ 800000 MP</span>-->
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
     </div>
 
-    <div class="card has-button-on-the-edge">
+    <!--<div class="card secondary sidefact">-->
+        <!--<div class="head">-->
+            <!--<ion-label>{{ "sidefact_label" | translate }}</ion-label>-->
+            <!--<span class="tag secondary">{{ "sidefact_tag" | translate }}</span>-->
+        <!--</div>-->
+        <!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>-->
+    <!--</div>-->
+
+    <div class="card">
         <ion-label>{{ "solution_sample" | translate }}</ion-label>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-        <div class="on-the-edge-container">
-            <button ion-button small round class="solution">{{ "btn_check_answer" | translate }}</button>
-        </div>
+        <p *ngIf="task">{{ task.solutionSample }}</p>
     </div>
 
     <div class="card secondary">
