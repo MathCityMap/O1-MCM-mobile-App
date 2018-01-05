@@ -137,7 +137,7 @@ export class TasksMap {
 
   async gototask(taskId: number, taskName: string) {
     console.log('taskId', taskId);
-    this.navCtrl.push('TaskDetail', {taskId: taskId, taskTitle: taskName}, {}, () => {
+    this.navCtrl.push('TaskDetail', {taskId: taskId, taskTitle: taskName, routeId: this.routeId}, {}, () => {
       // necessary because of bug which does not update URL
       this.deepLinker.navChange('forward');
     });

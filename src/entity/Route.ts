@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToOne } from "typeorm";
 import { Task } from './Task';
 import { Helper } from '../classes/Helper';
 import { LatLng, LatLngBounds } from 'leaflet';
+import { Score } from "./Score";
 
 @Entity('mcm_route')
 export class Route {
@@ -69,6 +70,9 @@ export class Route {
   @Column({name: 'downloaded'})
   downloaded: boolean;
 
+  @OneToOne(type => Score, score => score.route)
+  score: Score;
+
   getImageURL(): string {
     return this.imageURL ? this.imageURL : Helper.WEBSERVER_URL + this.image;
   }
@@ -77,6 +81,12 @@ export class Route {
   private viewBoundingBoxLatLng: LatLngBounds = null;
   private centerLatLng: LatLng = null;
   private distance: number = null;
+
+  constructor(){
+    if(!this.score){
+      this.score = new Score();
+    }
+  }
 
   private calcBoundingBoxAndCenter() {
     const padding: number = 0.0015;

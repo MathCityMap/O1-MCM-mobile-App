@@ -15,19 +15,24 @@
         <p *ngIf="task">{{task.description}}</p>
         <ion-label>{{ "task_answer" | translate }}</ion-label>
         <ion-item>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [ngModel]="userResult"></ion-input>
         </ion-item>
-        <div class="on-the-edge-container">
+        <div class="on-the-edge-container" *ngIf="taskDetails">
             <button class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
-                <img class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
+                <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+                <img *ngIf="taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
             </button>
-            <button class="hint" ion-button (click)="showHint(2)" icon-only clear [disabled]="false">
-                <img class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+            <button class="hint" ion-button (click)="showHint(2)" icon-only clear [disabled]="!taskDetails.hint1">
+                <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+                <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
+                <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
             </button>
-            <button class="hint" ion-button (click)="showHint(3)" icon-only clear [disabled]="true">
-                <img class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
+            <button class="hint" ion-button (click)="showHint(3)" icon-only clear [disabled]="!taskDetails.hint2">
+                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
+                <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
             </button>
-            <button ion-button small round >{{ "btn_check_answer" | translate }}</button>
+            <button ion-button small round (click)="checkResult()">{{ "btn_check_answer" | translate }}</button>
         </div>
     </div>
 
