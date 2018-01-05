@@ -1,11 +1,10 @@
-<div class="mcmModalWrapper">
-
-    <span>{{title | translate}}</span>
+<div class="modal card hint has-button-on-the-edge">
+    <h2>{{title | translate}}</h2>
     <img *ngIf="modalType == 1" src="./assets/icons/icon_popup-hint.svg"/>
     <img *ngIf="modalType == 2" src="./assets/icons/icon_wrong-answer.svg"/>
     <img *ngIf="modalType == 3" src="./assets/icons/icon_popup-right-answer.svg"/>
 
-    <span>{{message | translate}}</span>
+    <p><span class="highlight">"</span> {{message | translate}}<span class="highlight">"</span></p>
     <div class="on-the-edge-container">
         <button ion-button small round (click)="dismiss()">{{ "alert_close" | translate }}</button>
     </div>

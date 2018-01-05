@@ -1,4 +1,3 @@
-
 <div class="modal card has-button-on-the-edge">
     <div class="head">
         <h2>{{"rdl_title_map" | translate}}</h2>
@@ -14,10 +13,10 @@
             </ion-row>
             <ion-row>
                 <ion-col col-6>
-                    <span *ngIf="total != 0">{{((100/total)*currentProgress).toFixed(0)}}%</span>
+                    <p *ngIf="total != 0">{{((100/total)*currentProgress).toFixed(0)}}%</p>
                 </ion-col>
                 <ion-col col-6 text-right>
-                    <span class="progress-files">{{ currentProgress }} / {{ total }}</span>
+                    <p class="progress-files">{{ currentProgress }} / {{ total }}</p>
                 </ion-col>
             </ion-row>
         </ion-grid>

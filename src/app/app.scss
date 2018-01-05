@@ -451,18 +451,38 @@ ion-modal {
 
     //REAL MODALS
     .modal.card{
-        transform: translateY(-10vh);
+//        transform: translateY(-20px);
         h2{
             font-family: 'NunitoExtrabold', Arial, sans-serif;
             font-size: 15px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin: 0 0 $global-base-padding;;
+            margin: 0 0 $global-small-padding;
         }
-        span{
+        p, .highlight{
             font-size: 14px;
+            line-height: 1.6;
             &.progress-files{
                 color: color($colors, grey);
+            }
+        }
+
+        //HINTs®
+        &.hint{
+            padding-top: $global-large-padding;
+            padding-bottom: $global-large-padding;
+            text-align: center;
+            img{
+                width: 130px;
+                margin: $global-base-padding 0;
+            }
+            p{
+                margin: $global-small-padding 0;
+            }
+            .highlight{
+                display: inline-block;
+                font-family: 'NunitoExtrabold', Arial, sans-serif;
+                color: color($colors, primary);
             }
         }
     }
