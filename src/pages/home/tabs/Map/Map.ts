@@ -56,7 +56,7 @@ export class MapPage extends BasicRouteFunction implements OnInit {
     ormService: OrmService,
     private deepLinker: DeepLinker,
     broadcastService: BroadcastService) {
-      super(modalCtrl, ormService, broadcastService, navCtrl);
+      super(modalCtrl, ormService, broadcastService);
     }
 
   async ionViewDidEnter() {
