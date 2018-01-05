@@ -5,6 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {TranslateService} from '@ngx-translate/core';
 
+
+export enum MCMModalType {
+  hint =1 ,
+  error = 2,
+  success = 3
+}
 @Component({
   templateUrl: 'app.html'
 })

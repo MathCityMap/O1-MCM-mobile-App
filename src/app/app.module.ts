@@ -32,12 +32,14 @@ import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
 import { MCMProgressBarPopupComponent } from '../components/mcm-progress-bar-popup/mcm-progress-bar-popup.component';
 import { BroadcastService } from '../services/broadcast-service';
+import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
 
 @NgModule({
   declarations: [
     MyApp,
     RouteInfo,
-    MCMProgressBarPopupComponent
+    MCMProgressBarPopupComponent,
+    MCMIconModal
   ],
   imports: [
     HttpModule,
@@ -58,7 +60,8 @@ import { BroadcastService } from '../services/broadcast-service';
   entryComponents: [
     MyApp,
     RouteInfo,
-    MCMProgressBarPopupComponent
+    MCMProgressBarPopupComponent,
+    MCMIconModal
   ],
   providers: [
     StatusBar,

@@ -86,7 +86,28 @@ export class Task {
     return Helper.WEBSERVER_URL + this.image;
   }
 
-  getHint1() {
-    return JSON.parse(this.hint1);
+  getHint(index: number) {
+    var hint: string;
+    switch (index){
+      case 1:
+        if(JSON.parse(this.hint1).length >=2){
+          hint = JSON.parse(this.hint1)[1];
+        }
+        break;
+      case 2:
+        if(JSON.parse(this.hint2).length >=2){
+          hint = JSON.parse(this.hint2)[1];
+        }
+        break;
+      case 3:
+        if(JSON.parse(this.hint3).length >=2){
+          hint = JSON.parse(this.hint3)[1];
+        }
+        break;
+      default:
+        return hint;
+    }
+    return hint;
+
   }
 }

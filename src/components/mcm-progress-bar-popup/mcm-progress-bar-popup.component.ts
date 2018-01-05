@@ -17,8 +17,5 @@ export class MCMProgressBarPopupComponent{
 
         });
     }
-    ionViewDidLoad() {
-        console.log('juhuuuu');
-    /*     console.log('-------------------', this.totalTasks); */
-      }
+
 }

@@ -55,7 +55,6 @@ export class TasksMap {
         console.log('You clicked a marker')
         this.selectedTask = task;
         console.log(task);
-        console.log(task.getHint1());
       })
       map.addLayer(marker);
     })
