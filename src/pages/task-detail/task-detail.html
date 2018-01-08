@@ -18,16 +18,16 @@
             <ion-input type="text" [ngModel]="userResult"></ion-input>
         </ion-item>
         <div class="on-the-edge-container" *ngIf="taskDetails">
-            <button class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
+            <button *ngIf="task.getHint(1) != ''" class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
                 <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
                 <img *ngIf="taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
             </button>
-            <button class="hint" ion-button (click)="showHint(2)" icon-only clear [disabled]="!taskDetails.hint1">
+            <button *ngIf="task.getHint(2) != ''" class="hint" ion-button (click)="showHint(2)" icon-only clear [disabled]="!taskDetails.hint1">
                 <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
                 <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
             </button>
-            <button class="hint" ion-button (click)="showHint(3)" icon-only clear [disabled]="!taskDetails.hint2">
+            <button *ngIf="task.getHint(3) != ''" class="hint" ion-button (click)="showHint(3)" icon-only clear [disabled]="!taskDetails.hint2">
                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="primary round" src="./assets/icons/icon_hint-activated-used.svg"/>
                 <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>

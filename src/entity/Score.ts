@@ -10,13 +10,8 @@ export class Score {
     @Column({name: 'user_id'})
     userId: number;
 
-    @OneToOne(type => Route, route => route.score, {
-        cascadeInsert: true,
-        cascadeUpdate: true,
-        cascadeRemove: true
-    })
-    @JoinColumn({name: 'route_id'})
-    route: Route;
+    @Column({name: 'route_id'})
+    routeId: number;
 
     @Column()
     score: number;
@@ -47,13 +42,15 @@ export class Score {
     }
 
     addTaskDetailsForTask(allTaskDetails: Array<TaskDetails>, detailsToSave: TaskDetails) : Array<TaskDetails>{
-        allTaskDetails.forEach(details => {
+        for(let i = 0; i < allTaskDetails.length; i++){
+            let details = allTaskDetails[i];
             if(detailsToSave.taskId == details.taskId){
                 //already in array -> replace
-                details = detailsToSave;
+                allTaskDetails[i] = detailsToSave;
+                this.setTaskDetails(allTaskDetails);
                 return allTaskDetails;
             }
-        })
+        }
         allTaskDetails.push(detailsToSave);
         this.setTaskDetails(allTaskDetails);
         return allTaskDetails;

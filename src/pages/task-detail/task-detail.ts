@@ -8,6 +8,8 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { MCMIconModal } from '../../modals/MCMIconModal/MCMIconModal';
 import { MCMModalType } from '../../app/app.component';
 import { TaskDetails } from '../../entity/TaskDetails';
+import { User } from '../../entity/User';
+import { Score } from '../../entity/Score';
 
 
 /**
@@ -30,7 +32,9 @@ export class TaskDetail {
   private taskId: number;
   private task: Task;
   private taskDetails: TaskDetails;
+  private score: Score;
   private userResult: string;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -45,12 +49,15 @@ export class TaskDetail {
     this.routeId = this.navParams.get('routeId');
     this.task = await this.ormService.findTaskById(this.taskId);
     this.route = await this.ormService.findRouteById(this.routeId);
-
-    this.taskDetails = this.route.score.getTaskDetailsForTask(this.taskId);
+    this.score = this.route.getScore();
+    this.taskDetails = this.score.getTaskDetailsForTask(this.taskId);
+    this.score.score = 0;
+    console.log(this.taskDetails);
   }
 
   async ionViewWillLeave() {
-  //  await this.ormService.insertOrUpdateTaskDetails(this.route.score, this.taskDetails);
+    console.log(this.taskDetails);
+    await this.ormService.insertOrUpdateTaskDetails(this.score, this.taskDetails);
   }
 
   showHint(index: number){
@@ -76,7 +83,7 @@ export class TaskDetail {
   }
 
   checkResult(){
-    let modal;
+    var modal;
     console.log(this.task.solutionType);
     if(this.task.solutionType == "value"){
       if(this.userResult == this.task.solution){
@@ -92,6 +99,7 @@ export class TaskDetail {
             break;
         }
         modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
+        modal.present();
       }else {
         let message = "";
         switch (this.taskDetails.tries){
@@ -104,15 +112,18 @@ export class TaskDetail {
           case 4:
             message = 'alert_false_answer_2';
             break;
-          case 5:
+          default:
             message = 't_skip_msg';
             break;
         }
+        this.taskDetails.tries++;
         modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error}, {showBackdrop: true, enableBackdropDismiss: true});
+        modal.present();
+
       }
     }
-    this.taskDetails.tries++;
-    modal.present();
+
+
   }
 
 }

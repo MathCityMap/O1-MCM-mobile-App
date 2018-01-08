@@ -20,17 +20,17 @@ export class TaskDetails{
 
     public getTaskDetailAsJSON() : string{
         return JSON.stringify({
-            taskId: this.taskId,
+            taskId: +this.taskId, //use '+' to parse to number
             solved: this.solved,
             solvedLow: this.solvedLow,
             hint1: this.hint1,
             hint2: this.hint2,
             hint3: this.hint3,
-            tries: this.tries,
+            tries: +this.tries, //use '+' to parse to number
             answer: this.answer,
-            timeFirstOpen: this.timeFirstOpen,
-            timeSolved: this.timeSolved,
-            score: this.score,
+            timeFirstOpen: +this.timeFirstOpen, //use '+' to parse to number
+            timeSolved: +this.timeSolved, //use '+' to parse to number
+            score: +this.score, //use '+' to parse to number
             penalty: this.penalty
         });
     }
@@ -47,7 +47,7 @@ export class TaskDetails{
         let flags = JSON.parse(jsonArray);
         let taskDetails: Array<TaskDetails> = [];
         for(let i = 0; i < flags.length; i++){
-            taskDetails.push(this.getTaskDetailsByTask[i])
+            taskDetails.push(this.getTaskDetailsByTask(flags[i]));
         }
         return taskDetails;
     }
@@ -56,8 +56,9 @@ export class TaskDetails{
         let flags = JSON.parse(jsonArray);
 
         for(let i = 0; i < flags.length; i++){
-            if(flags[i].taskId == taskId){
-                return this.getTaskDetailsByTask(flags[i]);
+            let detail = this.getTaskDetailsByTask(flags[i]);
+            if(detail.taskId == taskId){
+                return detail;
             }
         }
         let detail = new TaskDetails();

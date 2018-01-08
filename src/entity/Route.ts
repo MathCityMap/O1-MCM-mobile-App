@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToOne, JoinColumn } from "typeorm";
 import { Task } from './Task';
 import { Helper } from '../classes/Helper';
 import { LatLng, LatLngBounds } from 'leaflet';
@@ -60,6 +60,7 @@ export class Route {
   @Column()
   attr: string;
 
+
   @ManyToMany(type => Task, task => task.routes)
   @JoinTable({name: 'mcm_rel_route_task', joinColumn: {name: 'route_id'}, inverseJoinColumn: {name: 'task_id'}})
   tasks: Task[];
@@ -70,8 +71,7 @@ export class Route {
   @Column({name: 'downloaded'})
   downloaded: boolean;
 
-  @OneToOne(type => Score, score => score.route)
-  score: Score;
+  private score: Score;
 
   getImageURL(): string {
     return this.imageURL ? this.imageURL : Helper.WEBSERVER_URL + this.image;
@@ -83,9 +83,7 @@ export class Route {
   private distance: number = null;
 
   constructor(){
-    if(!this.score){
-      this.score = new Score();
-    }
+
   }
 
   private calcBoundingBoxAndCenter() {
@@ -101,6 +99,14 @@ export class Route {
     this.viewBoundingBoxLatLng = new LatLngBounds([northWest[0], southEast[1]], [southEast[0], northWest[1]]);
     this.boundingBoxLatLng = new LatLngBounds([[north, east], [south, west]]);
     this.centerLatLng = new LatLng(jsonCenter[0], jsonCenter[1]);
+  }
+
+  setScore(score: Score){
+    this.score = score;
+  }
+
+  getScore() : Score{
+    return this.score;
   }
 
   getBoundingBoxLatLng(): LatLngBounds {
