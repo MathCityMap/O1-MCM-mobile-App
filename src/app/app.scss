@@ -117,20 +117,48 @@
 
 // =============================================
 // ------------------ INPUTS -------------------
-
+.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+    box-shadow: none;
+    border-bottom-color: color($colors, light-grey);;
+}
 ion-item{
     &.item-input{
         min-height: 0;
     }
-    &.itemt-ios,
-    &.item-md {
-        .item-inner {
+    &.item-ios,
+    &.item-md{
+        .item-inner{
             padding: 0;
-            height: 30px;
         }
     }
-
 }
+
+//CHECKBOXES
+ion-list{
+    .itemt-ios.item-block.item-checkbox, .item-md.item-block.item-checkbox{
+        min-height: 34px;
+        &:last-of-type{
+            margin-bottom: $global-small-padding;
+        }
+        ion-checkbox{
+            margin: 0 16px 0 0;
+        }
+        .item-inner{
+            padding: 0;
+            padding-right: 0px;
+            border-bottom: 0px solid #dedede;
+            ion-label{
+                margin: 0;
+                color: initial;
+                text-transform: none;
+                font-size: 12px;
+
+            }
+        }
+    }
+}
+
 input{
     &.text-input-ios,
     &.text-input-md{

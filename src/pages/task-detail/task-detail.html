@@ -18,14 +18,12 @@
             <ion-input *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
             <ion-input *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
         </ion-item>
-        <ion-item *ngIf="task && task.solutionType == 'multiple_choice' && task.solution && task.solution.length > 0">
+        <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && task.solution && task.solution.length > 0">
              <ion-item *ngFor="let item of multipleChoiceList; let i = index" >
-                <ion-label tappable>{{item}}
-                </ion-label>
-                <ion-checkbox red item-right (ionChange)="checkboxChanged($event, i)">
-                </ion-checkbox>
+                <ion-checkbox (ionChange)="checkboxChanged($event, i)"></ion-checkbox>
+                <ion-label tappable>{{item}}</ion-label>
            </ion-item>
-        </ion-item>
+        </ion-list>
         <div class="on-the-edge-container" *ngIf="taskDetails">
             <button *ngIf="task.getHint(1) != ''" class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
                 <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
