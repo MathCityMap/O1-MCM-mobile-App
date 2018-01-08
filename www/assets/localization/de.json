@@ -2,8 +2,19 @@
 {
     "map": "Karte",
     "list": "Liste",
+    "r_level_short": "Klasse",
+    "r_tasks": "Aufgaben",
     "progress": "Fortschritt",
     "no_data": "k.A.",
+    "select_entry_point":"Als Startpunkt wählen",
+
+    "sidefact_label":"Wusstest du schon?..",
+    "sidefact_tag":"Side Fact",
+    "solution_sample":"Musterlösung",
+
+    "solution_good":"Gute Lösung!",
+
+
 
 
     "app_name":"Math-City-Map",
@@ -19,9 +30,9 @@
     "task_answer_hint":"Lösung eingeben",
     "btn_check_answer":"Prüfen",
     "btn_task_solved":"Aufgabe gelöst",
-    "btn_hint1":"Hinweis 1",
-    "btn_hint2":"Hinweis 2",
-    "btn_hint3":"Hinweis 3",
+    "btn_hint1":"Hinweis #1",
+    "btn_hint2":"Hinweis #2",
+    "btn_hint3":"Hinweis #3",
     "btn_dl":"Download",
     "btn_show":"Anzeigen",
     "author":"Autor: ",
@@ -40,6 +51,7 @@
     "rdl_complete_with_error":"Download abgeschlossen mit",
     "rdl_title_img":"Lade Bilddaten herunter",
     "main_settings_delCache":"App-Daten löschen",
+
     "main_settings_distanceCheck":"Distanzcheck",
     "route_detail_settings_delCache":"Routen-Daten löschen",
     "route_detail_settings_resetTasks":"Aufgaben zurücksetzen",
@@ -117,7 +129,7 @@
     "t_skip_msg":"Möchtest du mit der nächsten Aufgabe fortfahren?",
     "alert_congrats":"Herzlichen Glückwunsch!",
     "alert_congrats_msg":"Du hast alle Aufgaben der Route '###TITLE###' erfolgreich gelöst!",
-    "g_max_points":"Max. Punkte",
+    "g_max_points":"Punkte",
     "g_name_error":"Der Name muss eine Länge zwischen 3 und 13 Zeichen besitzen.",
     "language_en":"English",
     "language_de":"Deutsch",
