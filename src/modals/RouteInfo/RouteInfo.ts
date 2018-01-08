@@ -27,7 +27,7 @@ export class RouteInfo extends BasicRouteFunction{
 
 
   private totalTasks: number;
-  private currentProgress: number = 5;
+  private currentProgress = 0;
 
 
   constructor(
@@ -39,8 +39,18 @@ export class RouteInfo extends BasicRouteFunction{
     broadcastService: BroadcastService,
     private viewCtrl: ViewController) {
       super(modalCtrl, ormService, broadcastService, navCtrl, deepLinker);
-    this.route = navParams.data.route;
+
+
+
+  }
+
+  async ionViewDidEnter(){
+    let routeId = this.navParams.get('routeId');
+    this.route = await this.ormService.findRouteById(routeId);
     this.totalTasks = this.route.tasks.length;
+    let score = this.route.getScore();
+    this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+    console.log(this.currentProgress);
   }
 
   async doDownload(route: Route) {

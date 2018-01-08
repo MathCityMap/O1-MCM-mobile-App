@@ -51,7 +51,7 @@ export class BasicRouteFunction{
 
     presentRouteInfoModal(route: Route): void {
         let self = this;
-        let routeInfoModal = this.modalCtrl.create(RouteInfo, {route: route});
+        let routeInfoModal = this.modalCtrl.create(RouteInfo, {routeId: route.id});
         routeInfoModal.onDidDismiss(data => {
           if(data.showRoute){
             self.showRoute(data.routeId, data.routeTitle);

@@ -203,7 +203,11 @@ export class TaskDetail {
           }
           let modal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, solution: solution, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
           modal.onDidDismiss((data) =>{
-
+            console.log(data);
+              if(data && data.showMap){
+                let currentTaskIndex = this.route.tasks.indexOf(this.task);
+                this.navCtrl.pop();
+              }
           })
           modal.present();
 
@@ -222,6 +226,7 @@ export class TaskDetail {
             break;
           default:
             message = 't_skip_msg';
+            this.score.addFailedTask(this.task.id);
             break;
         }
         this.taskDetails.tries++;
