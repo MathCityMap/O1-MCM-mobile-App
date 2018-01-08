@@ -33,13 +33,14 @@ import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
+import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
 
 @NgModule({
   declarations: [
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal
+    MCMIconModal, MCMInputModal
   ],
   imports: [
     HttpModule,
@@ -61,7 +62,7 @@ import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal
+    MCMIconModal, MCMInputModal
   ],
   providers: [
     StatusBar,

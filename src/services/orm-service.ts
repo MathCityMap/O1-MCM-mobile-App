@@ -74,6 +74,11 @@ export class OrmService {
     return connection.getRepository(Task);
   }
 
+  async getStateRepository(): Promise<Repository<State>> {
+    let connection = await this.getConnection();
+    return connection.getRepository(State);
+  }
+
   async getScoreRepository(): Promise<Repository<Score>> {
     let connection = await this.getConnection();
     return connection.getRepository(Score);
@@ -84,8 +89,23 @@ export class OrmService {
     return connection.getRepository(Route);
   }
 
+  async getUserRepository(): Promise<Repository<User>> {
+    let connection = await this.getConnection();
+    return connection.getRepository(User);
+  }
+
   private async postProcessRoute(route: Route): Promise<Route> {
     let position: number = 1;
+    let score = await this.findScoreByRoute(route.id);
+    if(!score){
+      score = new Score();
+      let activeUser = await this.getActiveUser();
+      if(activeUser){
+        score.userId = activeUser.id;
+      }
+      score.routeId = route.id;
+    }
+    route.setScore(score);
     if(route.tasks){
       route.tasks.forEach(task => {
           task.position = position;
@@ -101,16 +121,25 @@ export class OrmService {
     return task;
   }
 
+  private async postProcessUser(user: User): Promise<User> {
+    return user;
+  }
+
   private async postProcessScore(score: Score): Promise<Score> {
     return score;
   }
 
   public async findRouteById(id: number): Promise<Route> {
     let repo = await this.getRouteRepository();
-    let route = await repo.findOneById(id, {relations: ["tasks", "score"]});
+    let route = await repo.findOneById(id, {relations: ["tasks"]});
     return await this.postProcessRoute(route);
   }
 
+  public async findScoreByRoute(id: number): Promise<Score> {
+    let repo = await this.getScoreRepository();
+    let score = await repo.findOne({where: {routeId: id}});
+    return await this.postProcessScore(score);
+  }
 
   public async getAllTasks(){
     let repo = await this.getTaskRepository();
@@ -139,20 +168,63 @@ export class OrmService {
     return await this.postProcessTask(task);
   }
 
-  public async insertOrUpdateTaskDetails(score: Score, detailsToSave: TaskDetails) {
+
+
+  async insertOrUpdateTaskDetails(score: Score, detailsToSave: TaskDetails) {
     let repo = await this.getScoreRepository();
     score.addTaskDetailsForTask(score.getTaskDetails(), detailsToSave);
-    if(score.id){
-      let existingScore = await repo.findOneById(score.id);
-      if(existingScore){
-          await repo.save(score);
-          return;
-      }
-    }
-    repo.insert(score);
-    return;
+    let user = await this.getActiveUser();
+    score.userId = user.id;
+
+    await repo.save(score);
+
+
   }
 
+  async setNewActiveUser(userName: string) : Promise<User>{
+    let repo = await this.getUserRepository();
+    let user = new User();
+    user.name = userName;
+
+    await this.setActiveUser(userName);
+    await repo.save(user);
+    return user;
+  }
+
+  async setActiveUser(userName: string) {
+    let repo = await this.getStateRepository();
+    let state: State = await repo.findOne({where: {option: 'active_user'}})
+    if(!state){
+      state = new State();
+      state.option = "active_user";
+    }
+    state.value = userName;
+    await repo.save(state);
+  }
+
+  async getActiveUser() : Promise<User>{
+    let repo = await this.getStateRepository();
+    let state = await repo.findOne({where: {option: 'active_user'}});
+    let user = null;
+    if(state && state.value){
+      user = await this.getUserByName(state.value);
+    }
+    return user;
+  }
+
+  async checkUsername(userName: string): Promise<boolean>{
+      let user = await this.getUserByName(userName);
+      if(user){
+        return true;
+      }
+      return false;
+  }
+
+  private async getUserByName(userName: string) : Promise<User>{
+    let repo = await this.getUserRepository();
+    let user = await repo.findOne({where:{name: userName}});
+    return this.postProcessUser(user);
+  }
 
   async getPublicRoutes(): Promise<Route[]> {
     let repo = await this.getRouteRepository();

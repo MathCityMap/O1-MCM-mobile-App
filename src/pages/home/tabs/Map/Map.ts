@@ -28,6 +28,7 @@ import { LatLngBounds } from 'leaflet';
 import { MCMDownloadProgressPopupComponent } from '../../../../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BroadcastService } from '../../../../services/broadcast-service';
 import { BasicRouteFunction } from '../BasicRouteFunction/BasicRouteFunction';
+import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
 
 @IonicPage()
 @Component({
@@ -61,17 +62,28 @@ export class MapPage extends BasicRouteFunction implements OnInit {
 
   async ionViewDidEnter() {
     console.log("ionViewDidEnter:");
+    let activeUser = await this.ormService.getActiveUser();
+    if(!activeUser){
+      let userModal = this.modalCtrl.create(MCMInputModal);
+      userModal.present();
+    }
+
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.isFilePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
     this.platform.ready().then(() => {
       console.log('Platform is ready!');
       this.initializeMap();
+
+
     });
 
     this.loadMap();
+
+
   }
+
 
   markerGroup: any = null;
 
