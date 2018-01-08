@@ -17,10 +17,10 @@ export class Score {
     score: number;
 
     @Column({name: 'tasks_solved'})
-    tasksSolved: string;
+    private tasksSolved: string = '[]';
 
     @Column({name: 'tasks_solved_low'})
-    tasksSolvedLow: string;
+    private tasksSolvedLow: string = '[]';
 
     @Column({name: 'task_details'})
     private taskDetails: string = '[]';
@@ -30,6 +30,28 @@ export class Score {
 
     @Column()
     distance: number;
+
+
+
+
+    setTasksSolved(taskIds: Array<number>){
+        this.tasksSolved = JSON.stringify(taskIds);
+    }
+
+    addSolvedTask(taskId: number){
+        let idList = this.getTasksSolved();
+        idList.push(taskId);
+        this.setTasksSolved(idList);
+    }
+
+    getTasksSolved() : Array<number>{
+        let ids: Array<number> = [];
+        let jsonIds = JSON.parse(this.tasksSolved);
+        jsonIds.forEach(id => {
+            ids.push(+id);
+        });
+        return ids;
+    }
 
     getTaskDetails(): Array<TaskDetails> {
         let taskDetails : TaskDetails = new TaskDetails();
