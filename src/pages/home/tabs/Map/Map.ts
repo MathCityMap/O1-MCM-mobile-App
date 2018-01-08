@@ -62,11 +62,7 @@ export class MapPage extends BasicRouteFunction implements OnInit {
 
   async ionViewDidEnter() {
     console.log("ionViewDidEnter:");
-    let activeUser = await this.ormService.getActiveUser();
-    if(!activeUser){
-      let userModal = this.modalCtrl.create(MCMInputModal);
-      userModal.present();
-    }
+
 
   }
 
@@ -111,6 +107,11 @@ export class MapPage extends BasicRouteFunction implements OnInit {
     map.addLayer(markerGroup);
     this.markerGroup = markerGroup;
     this.spinner.hide();
+    let activeUser = await this.ormService.getActiveUser();
+    if(!activeUser){
+      let userModal = this.modalCtrl.create(MCMInputModal);
+      userModal.present();
+    }
   }
 
   loadMap() {
