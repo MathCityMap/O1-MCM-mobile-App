@@ -43,8 +43,12 @@ export class MCMIconModal{
         this.param = {solution: params.data.solution};
     }
 
-    dismiss(){
-        this.viewCtrl.dismiss();
+    dismiss(backToMap?: boolean){
+        if(backToMap){
+            this.viewCtrl.dismiss({showMap: true});
+        }else{
+            this.viewCtrl.dismiss();
+        }
     }
 
 }
