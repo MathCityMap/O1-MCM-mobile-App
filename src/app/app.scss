@@ -223,7 +223,7 @@ input{
                     }
                     >.button-container{
                         white-space: nowrap;
-                        button{
+                        button.dot{
                             width: 30px;
                             height: 30px;
                             padding: 4px;
@@ -236,6 +236,12 @@ input{
                             img{
                                 object-fit: contain;
                             }
+                        }
+                        button.button-round-ios.button-small-ios, button.button-round-md.button-small-md{
+                            max-height: 24px;
+                            padding: 0 15px;
+                            margin: 0;
+                            box-shadow: none;
                         }
                     }
 
@@ -352,6 +358,7 @@ input{
             }
         }
     }
+
     .item,
     ion-select{
         width:100%;
@@ -385,11 +392,15 @@ img{
     &.bordered{
         @include border(3px, solid, white);
     }
+    &.used{
+        opacity: 0.5;
+    }
 }
 .dotted-border-top{
     border-top: 2px dotted color($colors, light-grey);
     margin-top: 6px;
-    padding-top: 10px;
+    padding-top: 8px;
+    
 }
 .dotted-border-left{
     border-left: 2px dotted color($colors, light-grey);
@@ -404,7 +415,7 @@ img{
 .dotted-border-bottom{
     border-bottom: 2px dotted color($colors, light-grey);
     margin-bottom: 6px;
-    padding-bottom: 10px;
+    padding-bottom: 6px;
 }
 
 

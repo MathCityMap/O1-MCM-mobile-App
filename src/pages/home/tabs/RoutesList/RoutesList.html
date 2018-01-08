@@ -20,15 +20,15 @@
             </div>
             <div class="segement buttons">
                 <div class="button-container text-right">
-                    <button ion-button icon-only clear (click)="presentRouteInfoModal(item)">
+                    <button ion-button icon-only clear class="dot" (click)="presentRouteInfoModal(item)">
                         <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
                     </button>
 
-                    <button ion-button icon-only clear *ngIf="!item.downloaded" (click)="doDownload(item)">
+                    <button ion-button icon-only clear class="dot" *ngIf="!item.downloaded" (click)="doDownload(item)">
                         <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
                     </button>
 
-                    <button ion-button icon-only clear *ngIf="!!item.downloaded" (click)="removeRoute(item)">
+                    <button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">
                         <img class="danger round" src="./assets/icons/icon_delete.svg"/>
                     </button>
                 </div>
