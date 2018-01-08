@@ -33,9 +33,11 @@ export class TaskDetail {
   private task: Task;
   private taskDetails: TaskDetails;
   private score: Score;
-  private userResult: string;
 
   private multipleChoiceList: Array<string> = [];
+  private multipleChoiceSolutionList: Array<string> = [];
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -59,8 +61,9 @@ export class TaskDetail {
       this.taskDetails.timeFirstOpen = new Date().getTime();
     }
     console.log(this.task.solutionType);
+    console.log(this.task.getSolution());
     if(this.task.solutionType == 'multiple_choice'){
-      let solutionList = this.task.getSolutionList();
+      let solutionList = this.task.getSolutionOptionList();
       if(solutionList.length > 1){
         this.multipleChoiceList = solutionList[0];
       }
@@ -72,6 +75,17 @@ export class TaskDetail {
   async ionViewWillLeave() {
     console.log(this.taskDetails);
     await this.ormService.insertOrUpdateTaskDetails(this.score, this.taskDetails);
+  }
+
+  checkboxChanged(event: any, index: number){
+    console.log(index);
+    console.log(event.checked);
+    if(event.checked){
+      this.multipleChoiceSolutionList.push(""+index);
+    }else{
+      var i = this.multipleChoiceSolutionList.indexOf(""+index);
+      this.multipleChoiceSolutionList.splice(i, 1);
+    }
   }
 
   showHint(index: number){
@@ -100,21 +114,49 @@ export class TaskDetail {
     var modal;
     console.log(this.task.solutionType);
     if(this.task.solutionType == "value"){
-      if(this.userResult == this.task.solution){
-        let message = "";
-        switch (this.taskDetails.tries){
-          case 0:
-            message = 'alert_right_answer_1';
-            break;
-          case 1:
-          case 2:
-          case 3:
-            message = 'alert_right_answer_2';
-            break;
-        }
-        modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
-        modal.present();
+      if(this.taskDetails.answer == this.task.getSolution()){
+        this.taskSolved('solved', this.taskDetails.answer, 0);
       }else {
+        this.taskSolved('', this.taskDetails.answer, 0);
+
+      }
+    } else if(this.task.solutionType == "multiple_choice"){
+      console.log(this.multipleChoiceSolutionList);
+      let modal = this.modalCtrl.create(MCMIconModal, {message: 'to be implemented', modalType: MCMModalType.hint}, {showBackdrop: true, enableBackdropDismiss: true});
+      modal.present();
+    } else if(this.task.solutionType == "range"){
+      let modal = this.modalCtrl.create(MCMIconModal, {message: 'to be implemented', modalType: MCMModalType.hint}, {showBackdrop: true, enableBackdropDismiss: true});
+      modal.present();
+    }
+  }
+
+  taskSolved (solved: string, solution: string, scoreVal: number){
+      if(solved == 'solved' || solved == 'solved_low'){
+          if(solved == 'solved'){
+            this.taskDetails.solved = true;
+            this.score.addSolvedTask(this.task.id);
+          }
+          if(solved == 'solved_low'){
+            this.taskDetails.solvedLow = true;
+            this.score.addSolvedTask(this.task.id);
+          }
+
+          let message = "";
+          switch (this.taskDetails.tries){
+            case 0:
+              message = 'alert_right_answer_1';
+              break;
+            case 1:
+            case 2:
+            case 3:
+              message = 'alert_right_answer_2';
+              break;
+          }
+          let modal = this.modalCtrl.create(MCMIconModal,  {message: message, solution: solution, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
+          modal.present();
+
+          this.taskDetails.timeSolved = new Date().getTime();
+      }else{
         let message = "";
         switch (this.taskDetails.tries){
           case 0:
@@ -131,13 +173,9 @@ export class TaskDetail {
             break;
         }
         this.taskDetails.tries++;
-        modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error}, {showBackdrop: true, enableBackdropDismiss: true});
+        let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error}, {showBackdrop: true, enableBackdropDismiss: true});
         modal.present();
-
       }
-    }
-
-
   }
 
 }

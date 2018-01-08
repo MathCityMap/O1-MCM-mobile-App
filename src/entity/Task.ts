@@ -1,6 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToMany} from "typeorm";
 import {Route} from "./Route";
 import { Helper } from '../classes/Helper';
+import { error } from "util";
 
 @Entity('mcm_task')
 export class Task {
@@ -36,7 +37,7 @@ export class Task {
   solutionType: string;
 
   @Column()
-  solution: string;
+  private solution: string;
 
   @Column()
   hint1: string;
@@ -72,7 +73,7 @@ export class Task {
   attr: string;
 
   @Column({name: 'solutionsample'})
-  solutionSample: string
+  private solutionSample: string
 
   @Column({name: 'lang_code'})
   langCode: string
@@ -86,9 +87,36 @@ export class Task {
     return Helper.WEBSERVER_URL + this.image;
   }
 
-  getSolutionList() :Array<any>{
+  getSolutionOptionList() :Array<any>{
       return JSON.parse(this.solution);
   }
+
+  getSolution() : string{
+    let solution = JSON.parse(this.solution);
+    if(this.solutionType != 'multiple_choice'){
+      return solution[0];
+    }else{
+      console.error('use getMultipleCoiceSolutions() to get solution for multiple choice tasks');
+      return "";
+    }
+  }
+
+  getMultipleCoiceSolutions() : Array<string>{
+    let solution = JSON.parse(this.solution);
+    if(this.solutionType == 'multiple_choice'){
+      let temp = JSON.parse(solution[1])
+      return temp;
+    }
+  }
+
+  getSolutionSample() : string{
+    let sample = JSON.parse(this.solutionSample);
+    if(sample.length > 0){
+      return sample[0];
+    }
+    return this.getSolution();
+  }
+
   getHint(index: number) {
     var hint: string;
     switch (index){
