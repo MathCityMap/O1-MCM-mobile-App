@@ -23,13 +23,13 @@ node_modules/
 tmp/
 temp/
 hooks/
-platforms/
-plugins/
-plugins/android.json
-plugins/ios.json
-www/
+www/build/
 $RECYCLE.BIN/
 
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+platforms/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata
+platforms/ios/Math City Map.xcodeproj/xcuserdata
+platforms/ios/Math City Map.xcworkspace/xcuserdata
+platforms/android/CordovaLib/build

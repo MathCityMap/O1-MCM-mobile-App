@@ -1,0 +1,61 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-fabric-plugin": {
+            "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
+            "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3",
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-advanced-http": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-native-spinner": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-custom-config": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        }
+    }
+}

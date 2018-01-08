@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+</style>
+<symbol  id="settings" viewBox="-20 -20 40 40">
+	<g id="Ebene_1_Kopie_2_">
+		<path class="st0" d="M17.1,3.7c-1.1,0.4-2,1.2-2.5,2.3l0,0c-0.5,1.1-0.4,2.3,0.1,3.4l1.3,2.8L12.2,16l-2.8-1.3
+			c-1.1-0.5-2.3-0.5-3.4-0.1l0,0C5,15.1,4.1,16,3.7,17.1l-1,2.9h-5.4l-1-2.9c-0.4-1.1-1.2-2-2.3-2.5l0,0c-1.1-0.5-2.3-0.4-3.4,0.1
+			l-2.8,1.3l-3.8-3.8l1.3-2.8c0.5-1.1,0.5-2.3,0.1-3.4v0C-15.1,5-16,4.1-17.1,3.7l-2.9-1v-5.4l2.9-1c1.1-0.4,2-1.2,2.5-2.3v0
+			c0.5-1.1,0.4-2.3-0.1-3.4l-1.3-2.8l3.8-3.8l2.8,1.3c1.1,0.5,2.3,0.5,3.4,0.1v0c1.1-0.5,1.9-1.3,2.3-2.5l1-2.9h5.4l1,2.9
+			c0.4,1.1,1.3,2,2.4,2.5v0c1.1,0.4,2.3,0.4,3.4-0.1l2.8-1.3l3.8,3.8l-1.3,2.8c-0.5,1.1-0.5,2.3-0.1,3.4v0C15.1-5,16-4.1,17.1-3.7
+			l2.9,1v5.4L17.1,3.7z M0-7.2C-4-7.2-7.2-4-7.2,0S-4,7.2,0,7.2S7.2,4,7.2,0S4-7.2,0-7.2z"/>
+	</g>
+</symbol>
+<use xlink:href="#settings"  width="40" height="40" id="XMLID_30_" x="-20" y="-20" transform="matrix(1 0 0 -1 25 25)" style="overflow:visible;"/>
+</svg>
