@@ -39,6 +39,9 @@ export class Route {
   @Column()
   tags: string;
 
+  @Column()
+  length: string;
+
   @Column({length: 64})
   duration: string;
 

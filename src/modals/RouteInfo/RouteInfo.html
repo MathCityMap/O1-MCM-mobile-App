@@ -51,12 +51,12 @@
                 <ion-col class="dotted-border-right">
                     <ion-label>{{ "t_distance" | translate }}</ion-label>
                     <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                    <span> ??? </span>
+                    <span> {{route.distance | distance: 'm'}} </span>
                 </ion-col>
                 <ion-col>
                     <ion-label>Länge</ion-label>
                     <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                    <span>{{ route.distance | distance }}</span>
+                    <span>{{ route.length }}</span>
                 </ion-col>
                 <ion-col class="dotted-border-left">
                     <ion-label>dauer</ion-label>
