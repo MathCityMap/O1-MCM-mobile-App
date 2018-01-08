@@ -33,3 +33,5 @@ platforms/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata
 platforms/ios/Math City Map.xcodeproj/xcuserdata
 platforms/ios/Math City Map.xcworkspace/xcuserdata
 platforms/android/CordovaLib/build
+platforms/ios/Math City Map.xcarchive
+platforms/android/assets/www/build
