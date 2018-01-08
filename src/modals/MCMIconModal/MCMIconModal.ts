@@ -13,6 +13,7 @@ export class MCMIconModal{
 
     title: string;
     message: string;
+    param: any;
     modalType: MCMModalType;
 
     constructor(params: NavParams, private viewCtrl: ViewController) {
@@ -33,6 +34,7 @@ export class MCMIconModal{
                         break;
                     case MCMModalType.success:
                         this.title = "alert_right_answer_title";
+                        this.param = {solution: params.data.solution};
                         break;
                 }
             }

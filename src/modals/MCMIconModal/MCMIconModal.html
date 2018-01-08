@@ -4,7 +4,8 @@
     <img *ngIf="modalType == 2" src="./assets/icons/icon_wrong-answer.svg"/>
     <img *ngIf="modalType == 3" src="./assets/icons/icon_popup-right-answer.svg"/>
 
-    <p>{{message | translate}}</p>
+
+    <p>{{message | translate: param}}</p>
     <div class="on-the-edge-container">
         <button ion-button small round (click)="dismiss()">{{ "alert_close" | translate }}</button>
     </div>
