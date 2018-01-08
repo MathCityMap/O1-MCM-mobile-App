@@ -93,15 +93,24 @@ export class TaskDetail {
     let message = this.task.getHint(index);
     switch (index){
       case 1:
-        this.taskDetails.hint1 = true;
+        if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
+          //only update if task is not solved
+          this.taskDetails.hint1 = true;
+        }
         title = 'btn_hint1';
         break;
       case 2:
-        this.taskDetails.hint2 = true;
+        if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
+          //only update if task is not solved
+          this.taskDetails.hint2 = true;
+        }
         title = 'btn_hint2';
         break;
       case 3:
-        this.taskDetails.hint3 = true;
+        if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
+          //only update if task is not solved
+          this.taskDetails.hint3 = true;
+        }
         title = 'btn_hint3';
         break;
     }
@@ -125,34 +134,77 @@ export class TaskDetail {
       let modal = this.modalCtrl.create(MCMIconModal, {message: 'to be implemented', modalType: MCMModalType.hint}, {showBackdrop: true, enableBackdropDismiss: true});
       modal.present();
     } else if(this.task.solutionType == "range"){
-      let modal = this.modalCtrl.create(MCMIconModal, {message: 'to be implemented', modalType: MCMModalType.hint}, {showBackdrop: true, enableBackdropDismiss: true});
-      modal.present();
+      let solutionList = this.task.getSolutionList();
+      let von = solutionList[0];
+      let bis = solutionList[1];
+      let answer = +this.taskDetails.answer;
+      if(answer >= von && answer <= bis){
+        this.taskSolved('solved', this.taskDetails.answer, 0);
+      }else{
+        if(solutionList.length == 4){
+          //oranges intervall (solvedLow)
+          let vonLow = solutionList[2];
+          let bisLow = solutionList[3];
+          if(answer >= vonLow && answer <= bisLow){
+            this.taskSolved('solved_low', this.taskDetails.answer, 0);
+          }else{
+            this.taskSolved('', '', 0);
+          }
+        }else{
+          this.taskSolved('', '', 0);
+        }
+      }
+
     }
   }
 
   taskSolved (solved: string, solution: string, scoreVal: number){
       if(solved == 'solved' || solved == 'solved_low'){
+          let message = "";
+          let title = "";
           if(solved == 'solved'){
+            title = 'alert_right_answer_title';
             this.taskDetails.solved = true;
             this.score.addSolvedTask(this.task.id);
+            switch (this.taskDetails.tries){
+              case 0:
+                message = 'alert_right_answer_1';
+                break;
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+                message = 'alert_right_answer_2';
+                break;
+              case 5:
+                message = 'alert_right_answer_3';
+                break;
+
+            }
           }
           if(solved == 'solved_low'){
+            title = 'alert_right_answer_title_low';
             this.taskDetails.solvedLow = true;
-            this.score.addSolvedTask(this.task.id);
+            this.score.addSolvedTaskLow(this.task.id);
+            switch (this.taskDetails.tries){
+              case 0:
+                message = 'alert_right_answer_1_low';
+                break;
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+                message = 'alert_right_answer_2_low';
+                break;
+              case 5:
+                message = 'alert_right_answer_3_low';
+                break;
+            }
           }
+          let modal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, solution: solution, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
+          modal.onDidDismiss((data) =>{
 
-          let message = "";
-          switch (this.taskDetails.tries){
-            case 0:
-              message = 'alert_right_answer_1';
-              break;
-            case 1:
-            case 2:
-            case 3:
-              message = 'alert_right_answer_2';
-              break;
-          }
-          let modal = this.modalCtrl.create(MCMIconModal,  {message: message, solution: solution, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
+          })
           modal.present();
 
           this.taskDetails.timeSolved = new Date().getTime();

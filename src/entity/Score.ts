@@ -53,6 +53,25 @@ export class Score {
         return ids;
     }
 
+    setTasksSolvedLow(taskIds: Array<number>){
+        this.tasksSolvedLow = JSON.stringify(taskIds);
+    }
+
+    addSolvedTaskLow(taskId: number){
+        let idList = this.getTasksSolvedLow();
+        idList.push(taskId);
+        this.setTasksSolvedLow(idList);
+    }
+
+    getTasksSolvedLow() : Array<number>{
+        let ids: Array<number> = [];
+        let jsonIds = JSON.parse(this.tasksSolvedLow);
+        jsonIds.forEach(id => {
+            ids.push(+id);
+        });
+        return ids;
+    }
+
     getTaskDetails(): Array<TaskDetails> {
         let taskDetails : TaskDetails = new TaskDetails();
         return taskDetails.getAllTaskDetails(this.taskDetails);

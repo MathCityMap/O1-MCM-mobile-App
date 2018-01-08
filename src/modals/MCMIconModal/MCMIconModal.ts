@@ -34,12 +34,13 @@ export class MCMIconModal{
                         break;
                     case MCMModalType.success:
                         this.title = "alert_right_answer_title";
-                        this.param = {solution: params.data.solution};
+
                         break;
                 }
             }
             this.message = params.data.message;
         }
+        this.param = {solution: params.data.solution};
     }
 
     dismiss(){

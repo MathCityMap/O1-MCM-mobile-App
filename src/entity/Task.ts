@@ -109,10 +109,22 @@ export class Task {
     }
   }
 
+  getSolutionList() : Array<number>{
+    let solution = JSON.parse(this.solution);
+    let results: Array<number> = [];
+    solution.forEach(element => {
+      results.push(+element);
+    });
+    return results;
+  }
+
   getSolutionSample() : string{
-    let sample = JSON.parse(this.solutionSample);
-    if(sample.length > 0){
-      return sample[0];
+    if(this.solutionSample){
+
+      let sample = JSON.parse(this.solutionSample);
+      if(sample.length > 0){
+        return sample[0];
+      }
     }
     return this.getSolution();
   }
