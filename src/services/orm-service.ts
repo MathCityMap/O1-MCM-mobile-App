@@ -4,6 +4,8 @@ import { SQLite } from '@ionic-native/sqlite';
 import { createConnection, Connection, Repository } from "typeorm";
 
 import { InitialMigration1513274191111 } from '../migration/1513274191111-InitialMigration';
+import { FailedTaskMigration1515428187000 } from '../migration/1515428187000-failedTaskMigration';
+
 import { User } from '../entity/User';
 import { State } from '../entity/State';
 import { Task } from '../entity/Task';
@@ -38,7 +40,8 @@ export class OrmService {
     ];
     const migrations = [
       InitialMigration1513274191111,
-      AddImageUrlAndDownloadedFlagMigration1513679923000
+      AddImageUrlAndDownloadedFlagMigration1513679923000,
+      FailedTaskMigration1515428187000
     ];
     if (sqliteAvailable) {
       return this.connection = await createConnection({

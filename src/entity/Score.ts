@@ -22,6 +22,9 @@ export class Score {
     @Column({name: 'tasks_solved_low'})
     private tasksSolvedLow: string = '[]';
 
+    @Column({name: 'tasks_failed'})
+    private tasksFailed: string = '[]';
+
     @Column({name: 'task_details'})
     private taskDetails: string = '[]';
 
@@ -47,6 +50,25 @@ export class Score {
     getTasksSolved() : Array<number>{
         let ids: Array<number> = [];
         let jsonIds = JSON.parse(this.tasksSolved);
+        jsonIds.forEach(id => {
+            ids.push(+id);
+        });
+        return ids;
+    }
+
+    setTasksFailed(taskIds: Array<number>){
+        this.tasksFailed = JSON.stringify(taskIds);
+    }
+
+    addFailedTask(taskId: number){
+        let idList = this.getTasksFailed();
+        idList.push(taskId);
+        this.setTasksFailed(idList);
+    }
+
+    getTasksFailed() : Array<number>{
+        let ids: Array<number> = [];
+        let jsonIds = JSON.parse(this.tasksFailed);
         jsonIds.forEach(id => {
             ids.push(+id);
         });
