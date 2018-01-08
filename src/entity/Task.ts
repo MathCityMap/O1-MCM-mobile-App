@@ -86,6 +86,9 @@ export class Task {
     return Helper.WEBSERVER_URL + this.image;
   }
 
+  getSolutionList() :Array<any>{
+      return JSON.parse(this.solution);
+  }
   getHint(index: number) {
     var hint: string;
     switch (index){

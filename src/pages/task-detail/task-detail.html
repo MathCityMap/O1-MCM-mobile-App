@@ -14,8 +14,16 @@
         </div>
         <p *ngIf="task">{{task.description}}</p>
         <ion-label>{{ "task_answer" | translate }}</ion-label>
-        <ion-item>
+        <ion-item *ngIf="task && task.solutionType != 'multiple_choice'">
             <ion-input type="text" [ngModel]="userResult"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="task && task.solutionType == 'multiple_choice' && task.solution && task.solution.length > 0">
+             <ion-item *ngFor="let item of multipleChoiceList trackBy $index" >
+                <ion-label tappable>{{item}}
+                </ion-label>
+                <ion-checkbox red item-right [(ngModel)]="item.checked">
+                </ion-checkbox>
+           </ion-item>
         </ion-item>
         <div class="on-the-edge-container" *ngIf="taskDetails">
             <button *ngIf="task.getHint(1) != ''" class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
@@ -35,7 +43,7 @@
             <button ion-button small round (click)="checkResult()">{{ "btn_check_answer" | translate }}</button>
         </div>
     </div>
-    <div class="card evaluation positive">
+    <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
         <div class="head">
             <ion-label>{{ "solution_good" | translate }}</ion-label>
             <!--<span class="tag points">+ 800000 MP</span>-->
@@ -52,7 +60,7 @@
 
     <div class="card">
         <ion-label>{{ "solution_sample" | translate }}</ion-label>
-        <p *ngIf="task">{{ task.solutionSample }}</p>
+        <p *ngIf="task && taskDetails && (taskDetails.solved || taskDetails.solvedLow)">{{ task.solutionSample }}</p>
     </div>
 
     <div class="card secondary">

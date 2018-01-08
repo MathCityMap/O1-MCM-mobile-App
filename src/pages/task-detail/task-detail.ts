@@ -35,6 +35,8 @@ export class TaskDetail {
   private score: Score;
   private userResult: string;
 
+  private multipleChoiceList: Array<string> = [];
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -53,6 +55,18 @@ export class TaskDetail {
     this.taskDetails = this.score.getTaskDetailsForTask(this.taskId);
     this.score.score = 0;
     console.log(this.taskDetails);
+    if(this.taskDetails.timeFirstOpen == 0){
+      this.taskDetails.timeFirstOpen = new Date().getTime();
+    }
+    console.log(this.task.solutionType);
+    if(this.task.solutionType == 'multiple_choice'){
+      let solutionList = this.task.getSolutionList();
+      if(solutionList.length > 1){
+        this.multipleChoiceList = solutionList[0];
+      }
+
+    }
+
   }
 
   async ionViewWillLeave() {
