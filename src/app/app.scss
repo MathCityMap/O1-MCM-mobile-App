@@ -136,24 +136,29 @@ ion-item{
 
 //CHECKBOXES
 ion-list{
-    .itemt-ios.item-block.item-checkbox, .item-md.item-block.item-checkbox{
+    & > *{
+        border: none!important;
+    }
+    &.list-ios, &.list-md{
+        .item-ios .item-block.item-checkbox, .item-md .item-block.item-checkbox{
         min-height: 34px;
-        &:last-of-type{
-            margin-bottom: $global-small-padding;
-        }
-        ion-checkbox{
-            margin: 0 16px 0 0;
-        }
-        .item-inner{
-            padding: 0;
-            padding-right: 0px;
-            border-bottom: 0px solid #dedede;
-            ion-label{
-                margin: 0;
-                color: initial;
-                text-transform: none;
-                font-size: 12px;
+            &:last-of-type{
+                margin-bottom: $global-small-padding;
+            }
+            ion-checkbox{
+                margin: 0 16px 0 0;
+            }
+            .item-inner{
+                padding: 0;
+                padding-right: 0px;
+                border-bottom: 0px solid #dedede;
+                ion-label{
+                    margin: 0;
+                    color: initial;
+                    text-transform: none;
+                    font-size: 12px;
 
+                }
             }
         }
     }
