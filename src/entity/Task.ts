@@ -88,7 +88,21 @@ export class Task {
   }
 
   getSolutionOptionList() :Array<any>{
+    if(this.solutionType == 'multiple_choice'){
+      let multipleChoiceSolutionList = [];
+      let temp = JSON.parse(this.solution);
+
+      temp[0].forEach(element => {
+        multipleChoiceSolutionList.push({userChecked: false, rightAnswer: false, value: element});
+      });
+      temp[1].forEach(element => {
+        multipleChoiceSolutionList[element].rightAnswer = true;
+      });
+      console.log(multipleChoiceSolutionList);
+      return multipleChoiceSolutionList;
+    }else{
       return JSON.parse(this.solution);
+    }
   }
 
   getSolution() : string{
@@ -96,18 +110,21 @@ export class Task {
     if(this.solutionType != 'multiple_choice'){
       return solution[0];
     }else{
-      console.error('use getMultipleCoiceSolutions() to get solution for multiple choice tasks');
-      return "";
+      let solutionArray = this.getSolutionOptionList();
+      let solutionText = "";
+      for(let i = 0; i < solutionArray.length; i++){
+        if(solutionArray[i].rightAnswer){
+          if(solutionText != ""){
+            solutionText = solutionText + ", ";
+          }
+          solutionText = solutionText + solutionArray[i].value;
+        }
+      }
+      return solutionText;
     }
   }
 
-  getMultipleCoiceSolutions() : Array<string>{
-    let solution = JSON.parse(this.solution);
-    if(this.solutionType == 'multiple_choice'){
-      let temp = JSON.parse(solution[1])
-      return temp;
-    }
-  }
+
 
   getSolutionList() : Array<number>{
     let solution = JSON.parse(this.solution);

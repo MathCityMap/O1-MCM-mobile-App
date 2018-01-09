@@ -34,8 +34,7 @@ export class TaskDetail {
   private taskDetails: TaskState;
   private score: Score;
 
-  private multipleChoiceList: Array<string> = [];
-  private multipleChoiceSolutionList: Array<string> = [];
+  private multipleChoiceList: Array<any> = [];
 
 
 
@@ -63,11 +62,11 @@ export class TaskDetail {
     console.log(this.task.solutionType);
     console.log(this.task.getSolution());
     if(this.task.solutionType == 'multiple_choice'){
-      let solutionList = this.task.getSolutionOptionList();
-      if(solutionList.length > 1){
-        this.multipleChoiceList = solutionList[0];
+      if(this.taskDetails.solved || this.taskDetails.solvedLow){
+        this.multipleChoiceList = this.taskDetails.answerMultipleChoice;
+      }else{
+        this.multipleChoiceList = this.task.getSolutionOptionList();
       }
-
     }
 
   }
@@ -77,16 +76,6 @@ export class TaskDetail {
     await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
   }
 
-  checkboxChanged(event: any, index: number){
-    console.log(index);
-    console.log(event.checked);
-    if(event.checked){
-      this.multipleChoiceSolutionList.push(""+index);
-    }else{
-      var i = this.multipleChoiceSolutionList.indexOf(""+index);
-      this.multipleChoiceSolutionList.splice(i, 1);
-    }
-  }
 
   showHint(index: number){
     let title = "";
@@ -127,12 +116,27 @@ export class TaskDetail {
         this.taskSolved('solved', this.taskDetails.answer, 0);
       }else {
         this.taskSolved('', this.taskDetails.answer, 0);
-
       }
     } else if(this.task.solutionType == "multiple_choice"){
-      console.log(this.multipleChoiceSolutionList);
-      let modal = this.modalCtrl.create(MCMIconModal, {message: 'to be implemented', modalType: MCMModalType.hint}, {showBackdrop: true, enableBackdropDismiss: true});
-      modal.present();
+      console.log(this.multipleChoiceList);
+      let taskSuccess = true;
+      for (let i = 0; i < this.multipleChoiceList.length; i++){
+        let item = this.multipleChoiceList[i];
+        console.log(item);
+        console.log(item.userChecked != item.rightAnswer);
+        if(item.userChecked != item.rightAnswer){
+            taskSuccess = false;
+            console.log('found wrong answer');
+            break;
+        }
+      };
+      this.taskDetails.answerMultipleChoice = this.multipleChoiceList;
+      console.log(taskSuccess);
+      if(taskSuccess){
+        this.taskSolved('solved', this.task.getSolution(), 0);
+      }else{
+        this.taskSolved('', '', 0);
+      }
     } else if(this.task.solutionType == "range"){
       let solutionList = this.task.getSolutionList();
       let von = solutionList[0];

@@ -13,6 +13,7 @@ export class TaskState{
     hint3: boolean = false;
     tries: number = 0;
     answer: string = "";
+    answerMultipleChoice: Array<any> = [];
     timeFirstOpen: number = 0;
     timeSolved: number = 0;
     score: number = 0;
@@ -28,6 +29,7 @@ export class TaskState{
             hint3: this.hint3,
             tries: +this.tries, //use '+' to parse to number
             answer: this.answer,
+            answerMultipleChoice: this.answerMultipleChoice,
             timeFirstOpen: +this.timeFirstOpen, //use '+' to parse to number
             timeSolved: +this.timeSolved, //use '+' to parse to number
             score: +this.score, //use '+' to parse to number
@@ -80,6 +82,7 @@ export class TaskState{
         this.hint3 = flags.hint3;
         this.tries = flags.tries;
         this.answer = flags.answer;
+        this.answerMultipleChoice = flags.answerMultipleChoice;
         this.timeFirstOpen = flags.timeFirstOpen;
         this.timeSolved = flags.timeSolved;
         this.score = flags.score;
