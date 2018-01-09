@@ -51,7 +51,7 @@
                 <ion-col class="dotted-border-right">
                     <ion-label>{{ "t_distance" | translate }}</ion-label>
                     <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                    <span *ngIf="route"> {{route.distance | distance: 'm'}} </span>
+                    <span *ngIf="route"> {{route.getDistance() | distance: 'm'}} </span>
                 </ion-col>
                 <ion-col>
                     <ion-label>Länge</ion-label>
