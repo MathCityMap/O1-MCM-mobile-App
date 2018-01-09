@@ -57,8 +57,10 @@ export class RouteInfo extends BasicRouteFunction{
     super.doDownload(route);
   }
 
-  showRoute(routeId: number, routeTitle:string) {
-    this.viewCtrl.dismiss({showRoute: true, routeId: routeId, routeTitle:routeTitle});
+  showRoute(route: Route) {
+    if(route.downloaded){
+      this.viewCtrl.dismiss({showRoute: true, route: route});
+    }
   }
 
   removeRoute(route: Route): void {

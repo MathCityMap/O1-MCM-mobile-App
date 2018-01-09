@@ -42,11 +42,15 @@ export class BasicRouteFunction{
         downloadModal.dismiss();
     }
 
-    showRoute(routeId: number, routeTitle: string): void {
-        this.navCtrl.parent.parent.push('TasksMap', {routeId: routeId, routeTitle: routeTitle}, {}, () => {
-          // necessary because of bug which does not update URL
-          this.deepLinker.navChange('forward');
-        });
+    showRoute(route: Route): void {
+        if(route.downloaded){
+            this.navCtrl.parent.parent.push('TasksMap', {routeId: route.id, routeTitle: route.title}, {}, () => {
+              // necessary because of bug which does not update URL
+              this.deepLinker.navChange('forward');
+            });
+        }else{
+            this.presentRouteInfoModal(route);
+        }
       }
 
     presentRouteInfoModal(route: Route): void {
@@ -54,7 +58,7 @@ export class BasicRouteFunction{
         let routeInfoModal = this.modalCtrl.create(RouteInfo, {routeId: route.id});
         routeInfoModal.onDidDismiss(data => {
           if(data.showRoute){
-            self.showRoute(data.routeId, data.routeTitle);
+            self.showRoute(data.route);
           }
         })
         routeInfoModal.present();

@@ -57,8 +57,8 @@ export class RoutesListPage extends BasicRouteFunction{
   }
 
 
-  showRoute(routeId: number, routeTitle: string) {
-    super.showRoute(routeId, routeTitle);
+  showRoute(route: Route) {
+    super.showRoute(route);
   }
 
   removeRoute(route: Route): void {

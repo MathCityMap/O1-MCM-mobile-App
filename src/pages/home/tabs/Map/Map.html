@@ -3,7 +3,7 @@
   <div id="map" class="map-view"></div>
 
   <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
-      <div class="image-container" (click)="showRoute(routeDetails.id, routeDetails.title)">
+      <div class="image-container" (click)="showRoute(routeDetails)">
           <img *ngIf="routeDetails" [src]="routeDetails.getImageURL() || '//:0'" />
       </div>
       <div class="text-container" *ngIf="routeDetails">
