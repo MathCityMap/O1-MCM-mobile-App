@@ -74,7 +74,7 @@
 
     <div class="card">
         <ion-label>{{ 'r_equip' | translate }}</ion-label>
-        <p *ngIf="route">Tape, Calculator, Folding Ruler, Level</p>
+        <p *ngIf="route">{{route.getAssistiveEquipment()}}</p>
 
         <ion-label>{{ 'r_tags' | translate }}</ion-label>
         <p *ngIf="route">{{ route.tags }}</p>

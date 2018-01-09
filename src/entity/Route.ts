@@ -112,6 +112,25 @@ export class Route {
     return this.score;
   }
 
+  getAssistiveEquipment() : string{
+    let equipment = "";
+    if(this.tasks){
+      for(let i = 0; i < this.tasks.length; i++){
+        let equipmentArray =  this.tasks[i].getAssistiveEquipment();
+        for(let j = 0; j < equipmentArray.length; j++){
+            if(equipment.indexOf(equipmentArray[j]) == -1){
+              if(equipment != ""){
+                equipment = equipment + ", ";
+              }
+              equipment = equipment + equipmentArray[j];
+            }
+        }
+      }
+    }
+
+    return equipment;
+  }
+
   getBoundingBoxLatLng(): LatLngBounds {
     if (!this.boundingBoxLatLng) {
       this.calcBoundingBoxAndCenter();

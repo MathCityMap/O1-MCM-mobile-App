@@ -49,7 +49,7 @@ export class Task {
   hint3: string;
 
   @Column({name: 'assistive_equipment'})
-  assistiveEquipment: string;
+  private assistiveEquipment: string;
 
   @Column()
   author: string;
@@ -144,6 +144,18 @@ export class Task {
       }
     }
     return this.getSolution();
+  }
+
+  getAssistiveEquipment() : Array<string>{
+    if(this.assistiveEquipment){
+      let json = JSON.parse(this.assistiveEquipment);
+      if(json == null){
+        return new Array<string>();
+      }
+      return json;
+    }else{
+      return new Array<string>();
+    }
   }
 
   getHint(index: number) {
