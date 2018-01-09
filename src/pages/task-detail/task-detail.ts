@@ -7,7 +7,7 @@ import { Task } from '../../entity/Task';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { MCMIconModal } from '../../modals/MCMIconModal/MCMIconModal';
 import { MCMModalType } from '../../app/app.component';
-import { TaskDetails } from '../../entity/TaskDetails';
+import { TaskState } from '../../entity/TaskState';
 import { User } from '../../entity/User';
 import { Score } from '../../entity/Score';
 
@@ -31,7 +31,7 @@ export class TaskDetail {
   private routeId: number;
   private taskId: number;
   private task: Task;
-  private taskDetails: TaskDetails;
+  private taskDetails: TaskState;
   private score: Score;
 
   private multipleChoiceList: Array<string> = [];
@@ -54,7 +54,7 @@ export class TaskDetail {
     this.task = await this.ormService.findTaskById(this.taskId);
     this.route = await this.ormService.findRouteById(this.routeId);
     this.score = this.route.getScore();
-    this.taskDetails = this.score.getTaskDetailsForTask(this.taskId);
+    this.taskDetails = this.score.getTaskStateForTask(this.taskId);
     this.score.score = 0;
     console.log(this.taskDetails);
     if(this.taskDetails.timeFirstOpen == 0){
@@ -74,7 +74,7 @@ export class TaskDetail {
 
   async ionViewWillLeave() {
     console.log(this.taskDetails);
-    await this.ormService.insertOrUpdateTaskDetails(this.score, this.taskDetails);
+    await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
   }
 
   checkboxChanged(event: any, index: number){

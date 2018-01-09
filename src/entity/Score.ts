@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
 import { Route } from "./Route";
-import { TaskDetails } from "./TaskDetails";
+import { TaskState } from "./TaskState";
 
 @Entity ('mcm_score')
 export class Score {
@@ -94,33 +94,33 @@ export class Score {
         return ids;
     }
 
-    getTaskDetails(): Array<TaskDetails> {
-        let taskDetails : TaskDetails = new TaskDetails();
-        return taskDetails.getAllTaskDetails(this.taskDetails);
+    getTaskState(): Array<TaskState> {
+        let taskDetails : TaskState = new TaskState();
+        return taskDetails.getAllTaskState(this.taskDetails);
     }
 
-    getTaskDetailsForTask(taskId: number): TaskDetails {
-        let taskDetails : TaskDetails = new TaskDetails();
+    getTaskStateForTask(taskId: number): TaskState {
+        let taskDetails : TaskState = new TaskState();
         return taskDetails.findDetailsForTask(taskId, this.taskDetails);
     }
 
-    addTaskDetailsForTask(allTaskDetails: Array<TaskDetails>, detailsToSave: TaskDetails) : Array<TaskDetails>{
-        for(let i = 0; i < allTaskDetails.length; i++){
-            let details = allTaskDetails[i];
+    addTaskStateForTask(allTaskStates: Array<TaskState>, detailsToSave: TaskState) : Array<TaskState>{
+        for(let i = 0; i < allTaskStates.length; i++){
+            let details = allTaskStates[i];
             if(detailsToSave.taskId == details.taskId){
                 //already in array -> replace
-                allTaskDetails[i] = detailsToSave;
-                this.setTaskDetails(allTaskDetails);
-                return allTaskDetails;
+                allTaskStates[i] = detailsToSave;
+                this.setTaskState(allTaskStates);
+                return allTaskStates;
             }
         }
-        allTaskDetails.push(detailsToSave);
-        this.setTaskDetails(allTaskDetails);
-        return allTaskDetails;
+        allTaskStates.push(detailsToSave);
+        this.setTaskState(allTaskStates);
+        return allTaskStates;
     }
 
-    setTaskDetails(taskDetails: Array<TaskDetails>){
-        this.taskDetails = TaskDetails.getTaskDetailsAsJSONArray(taskDetails);
+    setTaskState(taskDetails: Array<TaskState>){
+        this.taskDetails = TaskState.getTaskStateAsJSONArray(taskDetails);
     }
 
 }

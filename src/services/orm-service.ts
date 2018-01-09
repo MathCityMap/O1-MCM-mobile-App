@@ -15,7 +15,7 @@ import { ImagesService } from './images-service';
 import { CacheManagerMCM } from '../classes/CacheManagerMCM';
 import { Helper } from '../classes/Helper';
 import { Score } from "../entity/Score";
-import { TaskDetails } from "../entity/TaskDetails";
+import { TaskState } from "../entity/TaskState";
 
 @Injectable()
 export class OrmService {
@@ -173,9 +173,9 @@ export class OrmService {
 
 
 
-  async insertOrUpdateTaskDetails(score: Score, detailsToSave: TaskDetails) {
+  async insertOrUpdateTaskState(score: Score, detailsToSave: TaskState) {
     let repo = await this.getScoreRepository();
-    score.addTaskDetailsForTask(score.getTaskDetails(), detailsToSave);
+    score.addTaskStateForTask(score.getTaskState(), detailsToSave);
     let user = await this.getActiveUser();
     score.userId = user.id;
 

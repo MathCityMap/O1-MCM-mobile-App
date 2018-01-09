@@ -1,5 +1,5 @@
 
-export class TaskDetails{
+export class TaskState{
 
     constructor(){
 
@@ -35,7 +35,7 @@ export class TaskDetails{
         });
     }
 
-    public static getTaskDetailsAsJSONArray(taskDetails: Array<TaskDetails>) : string{
+    public static getTaskStateAsJSONArray(taskDetails: Array<TaskState>) : string{
         let result: Array<any> = [];
         taskDetails.forEach(details => {
             result.push(details.getTaskDetailAsJSON());
@@ -43,25 +43,25 @@ export class TaskDetails{
         return JSON.stringify(result);
     }
 
-    public getAllTaskDetails(jsonArray: string) : Array<TaskDetails>{
+    public getAllTaskState(jsonArray: string) : Array<TaskState>{
         let flags = JSON.parse(jsonArray);
-        let taskDetails: Array<TaskDetails> = [];
+        let taskDetails: Array<TaskState> = [];
         for(let i = 0; i < flags.length; i++){
-            taskDetails.push(this.getTaskDetailsByTask(flags[i]));
+            taskDetails.push(this.getTaskStateByTask(flags[i]));
         }
         return taskDetails;
     }
 
-    public findDetailsForTask(taskId: number, jsonArray: string) : TaskDetails{
+    public findDetailsForTask(taskId: number, jsonArray: string) : TaskState{
         let flags = JSON.parse(jsonArray);
 
         for(let i = 0; i < flags.length; i++){
-            let detail = this.getTaskDetailsByTask(flags[i]);
+            let detail = this.getTaskStateByTask(flags[i]);
             if(detail.taskId == taskId){
                 return detail;
             }
         }
-        let detail = new TaskDetails();
+        let detail = new TaskState();
         detail.taskId = taskId;
         return detail;
     }
@@ -70,7 +70,7 @@ export class TaskDetails{
 
 
 
-    public getTaskDetailsByTask(jsonObject: string) : TaskDetails{
+    public getTaskStateByTask(jsonObject: string) : TaskState{
         let flags = JSON.parse(jsonObject);
         this.taskId = flags.taskId;
         this.solved = flags.solved;
