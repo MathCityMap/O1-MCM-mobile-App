@@ -13,12 +13,13 @@
 
 
 
-h1, h2, h3, h4, h5, h6, body{
+h1, h2, h3, h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
+    -webkit-font-smoothing: antialiased;
     font-family: 'NunitoSemibold', Arial, sans-serif;
 }
 
 h1{
-    font-size: 22px;
+    font-size: 24px;
     line-height: 1.2;
     font-weight: 500;
     color: color($colors, primary);
@@ -30,7 +31,7 @@ h2{
     color: color($colors, primary);
 }
 p{
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.6;
     font-weight: 500;
     color: color($colors, dark-grey);
@@ -38,7 +39,7 @@ p{
 ion-label,
 ion-label.label-ios,
 ion-label.label-md{
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: color($colors, grey);
@@ -53,7 +54,7 @@ span{
 input{
     &.text-input-ios,
     &.text-input-md{
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.6;
         font-weight: 500;
         color: color($colors, dark-grey);

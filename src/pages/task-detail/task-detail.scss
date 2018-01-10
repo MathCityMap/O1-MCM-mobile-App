@@ -49,7 +49,7 @@ page-task-detail{
             margin-top: -20px;
             padding-top: $global-large-padding*0.5;
             p{
-                margin-bottom: $global-base-padding;
+                margin-bottom: $global-base-padding*1.5;
             }
         }
         .head{
@@ -77,6 +77,11 @@ page-task-detail{
                     border-style: dotted;
                     line-height: 1.8;
                 }
+            }
+        }
+        .answer{
+            ion-label, ion-label.label-ios, ion-label.label-md {
+                margin-bottom: 4px;
             }
         }
         &.secondary{

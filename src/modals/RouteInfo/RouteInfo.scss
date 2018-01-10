@@ -5,6 +5,9 @@
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         text-align: center;
+        p{
+            margin-bottom: 4px;
+        }
     }
     &.basic-info{
         ion-row:first-of-type{
@@ -16,12 +19,17 @@
             ion-col:last-of-type{
                 margin-left: 10px;
                 padding-left: 10px!important;
-
             }
+        }
+        ion-label, ion-label.label-ios, ion-label.label-md{
+            margin-bottom: 4px;
         }
     }
 }
-p, h1{
+p{
+    margin: 0 0 $global-base-padding 0;
+}
+h1{
     margin: 0 0 $global-small-padding 0;
 }
 .image-box{
