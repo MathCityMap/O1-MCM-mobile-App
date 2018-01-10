@@ -30,13 +30,21 @@ export class BasicRouteFunction{
 
         this.totalDownload = 0;
         this.doneDownload = 0;
-        let downloadModal = this.modalCtrl.create(MCMDownloadProgressPopupComponent,  {total: this.totalDownload, done: this.doneDownload}, {showBackdrop: true, enableBackdropDismiss: false});
+        let cancelHasBeenClicked = false;
+        let downloadModal = this.modalCtrl.create(MCMDownloadProgressPopupComponent, {
+          total: this.totalDownload,
+          done: this.doneDownload,
+          cancelCallback: () => {
+            cancelHasBeenClicked = true;
+          }
+        }, {showBackdrop: true, enableBackdropDismiss: false});
         downloadModal.present();
         const self = this;
         await this.ormService.downloadRoute(route, function (doneDownload, totalDownload) {
             self.broadcastService.downloadProgressChanged(totalDownload, doneDownload);
             self.doneDownload = doneDownload;
             self.totalDownload = totalDownload;
+            return cancelHasBeenClicked;
         });
         this.isDownloading = false;
         downloadModal.dismiss();

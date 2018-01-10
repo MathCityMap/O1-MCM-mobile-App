@@ -243,10 +243,15 @@ export class OrmService {
   }
 
   async downloadRoute(route: Route, statusCallback) {
-    await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
-    route.downloaded = true;
-    const repo = await this.getRouteRepository();
-    await repo.save(route);
+    try {
+      await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
+      route.downloaded = true;
+      const repo = await this.getRouteRepository();
+      await repo.save(route);
+    } catch (e) {
+      console.log("download failed or was aborted");
+      console.log(e);
+    }
   }
 
   async removeDownloadedRoute(route: Route) {

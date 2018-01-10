@@ -444,14 +444,23 @@ export class CacheManagerMCM {
   static async downloadTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number, callback: any): Promise<any> {
     const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
     await tilesDb.initialize();
-    return tilesDb.saveTiles(tiles.map(tile => {
+    let tilesUrls = tiles.map(tile => {
        let domain = Helper.subDomains[Math.floor(Math.random() * Helper.subDomains.length)];
        let keyDomain = Helper.subDomains[0];
        return {
          key: Helper.mapquestUrl.replace('{s}', keyDomain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)),
          url: Helper.mapquestUrl.replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y))
        }
-    }), callback);
+    });
+    try {
+      await tilesDb.saveTiles(tilesUrls, callback);
+    } catch (e) {
+      console.log("remove already added tiles because download failed or was aborted");
+      tilesUrls.map(item => {
+        tilesDb._removeItem(item.key);
+      });
+      throw e;
+    }
   }
 
   static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
