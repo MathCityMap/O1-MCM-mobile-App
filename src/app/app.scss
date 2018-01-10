@@ -454,7 +454,7 @@ img{
 }
 
 
-/*  ========== buttons =========  */
+/*  ========== Buttons =========  */
 
 button{
     &[disabled],
@@ -487,6 +487,36 @@ button{
             background-color: color($colors, secondary-dark);
         }
     }
+}
+
+
+/*  ========== FAB Buttons =========  */
+
+.fab-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.ion-md-icon-restart:before,
+.ion-ios-icon-restart:before{
+    background-image: url(../assets/icons/icon_restart.svg);
+    background-size: 22px 22px;
+    display: inline-block;
+    width: 22px;
+    height: 20px;
+    content:"";
+}
+
+.ion-md-icon-starting-point:before,
+.ion-ios-starting-point:before{
+    background-image: url(../assets/icons/icon_starting-point.svg);
+    background-size: 22px 22px;
+    display: inline-block;
+    width: 22px;
+    height: 20px;
+    content:"";
+
 }
 
 
