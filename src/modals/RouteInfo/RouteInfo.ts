@@ -8,6 +8,7 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { BroadcastService } from '../../services/broadcast-service';
 import { BasicRouteFunction } from '../../pages/home/tabs/BasicRouteFunction/BasicRouteFunction';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { Score } from '../../entity/Score';
 
 /**
  * Generated class for the RouteInfoPage page.
@@ -47,8 +48,9 @@ export class RouteInfo extends BasicRouteFunction{
   async ionViewDidEnter(){
     let routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(routeId);
+    let user = await this.ormService.getActiveUser();
     this.totalTasks = this.route.tasks.length;
-    let score = this.route.getScore();
+    let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
     console.log(this.currentProgress);
   }

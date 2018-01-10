@@ -16,14 +16,19 @@ import { CacheManagerMCM } from '../classes/CacheManagerMCM';
 import { Helper } from '../classes/Helper';
 import { Score } from "../entity/Score";
 import { TaskState } from "../entity/TaskState";
+import { Task2Route } from '../entity/Task2Route';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class OrmService {
   connection: Connection;
   private min_zoom: number = 16;
   private max_zoom: number = 19;
+  private cachedPublicRoutes: Route[];
 
-  constructor(private imagesService: ImagesService) {
+  constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
+              private translateService: TranslateService) {
   }
 
   async getConnection(): Promise<Connection> {
@@ -36,7 +41,8 @@ export class OrmService {
       Route,
       State,
       Task,
-      Score
+      Score,
+      Task2Route
     ];
     const migrations = [
       InitialMigration1513274191111,
@@ -98,24 +104,13 @@ export class OrmService {
   }
 
   private async postProcessRoute(route: Route): Promise<Route> {
-    let position: number = 1;
-    let score = await this.findScoreByRoute(route.id);
-    if(!score){
-      score = new Score();
-      let activeUser = await this.getActiveUser();
-      if(activeUser){
-        score.userId = activeUser.id;
-      }
-      score.routeId = route.id;
+    if (route.task2Routes) {
+      route.task2Routes.sort((a, b) => a.id - b.id);
+      route.tasks = route.task2Routes.map((value, index)=> {
+        value.task.position = index + 1;
+        return value.task;
+      });
     }
-    route.setScore(score);
-    if(route.tasks){
-      route.tasks.forEach(task => {
-          task.position = position;
-          position++;
-      })
-    }
-
 
     return route;
   }
@@ -134,7 +129,7 @@ export class OrmService {
 
   public async findRouteById(id: number): Promise<Route> {
     let repo = await this.getRouteRepository();
-    let route = await repo.findOneById(id, {relations: ["tasks"]});
+    let route = await repo.findOneById(id);
     return await this.postProcessRoute(route);
   }
 
@@ -230,17 +225,21 @@ export class OrmService {
   }
 
   async getPublicRoutes(): Promise<Route[]> {
+    if (this.cachedPublicRoutes) {
+      return this.cachedPublicRoutes;
+    }
+    this.spinner.show(null, this.translateService.instant('toast_routes_loading'), true);
     let repo = await this.getRouteRepository();
     let result = await repo.find({
       where: {
         public: '1'
-      },
-      relations: ["tasks"]
+      }
     });
     for (let route of result) {
       await this.postProcessRoute(route);
     }
-    return result;
+    this.spinner.hide();
+    return this.cachedPublicRoutes = result;
   }
 
   async downloadRoute(route: Route, statusCallback) {

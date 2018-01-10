@@ -95,8 +95,6 @@ export class MapPage extends BasicRouteFunction implements OnInit {
       this.map.removeLayer(this.markerGroup);
       this.markerGroup = null;
     }
-
-    this.spinner.show(null, "Lade Routen", true);
     const routes = await this.ormService.getPublicRoutes();
     let markerGroup = (L as any).markerClusterGroup();
     for (let route of routes) {
@@ -106,7 +104,6 @@ export class MapPage extends BasicRouteFunction implements OnInit {
     }
     map.addLayer(markerGroup);
     this.markerGroup = markerGroup;
-    this.spinner.hide();
     let activeUser = await this.ormService.getActiveUser();
     if(!activeUser){
       let userModal = this.modalCtrl.create(MCMInputModal);

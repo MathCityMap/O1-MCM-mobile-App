@@ -10,6 +10,8 @@ import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
 import { BroadcastService } from '../../../../services/broadcast-service';
 import { MCMDownloadProgressPopupComponent } from '../../../../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BasicRouteFunction } from '../BasicRouteFunction/BasicRouteFunction';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -24,21 +26,28 @@ export class RoutesListPage extends BasicRouteFunction{
 
   constructor(public navCtrl: NavController, deepLinker: DeepLinker, modalCtrl: ModalController,
               broadcastService: BroadcastService,
-              ormService: OrmService, private geolocation: Geolocation) {
+              ormService: OrmService, private geolocation: Geolocation, private spinner: SpinnerDialog,
+              private translateService: TranslateService) {
                 super(modalCtrl, ormService, broadcastService, navCtrl, deepLinker);
   }
 
   async ionViewDidEnter() {
+
     if (this.items.length === 0) {
       this.items = await this.ormService.getPublicRoutes();
     }
     if (Helper.myLocation) {
       this.sortItemsByDistance();
     } else {
-      const position = await this.geolocation.getCurrentPosition();
-      if (position && position.coords) {
-        Helper.myLocation = position;
-        this.sortItemsByDistance();
+      try {
+        const position = await this.geolocation.getCurrentPosition();
+        if (position && position.coords) {
+          Helper.myLocation = position;
+          this.sortItemsByDistance();
+        }
+      } catch (e) {
+        console.log("could not obtain position");
+        console.log(e);
       }
     }
   }

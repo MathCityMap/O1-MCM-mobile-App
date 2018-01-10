@@ -1,8 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToOne, JoinColumn } from "typeorm";
+import {
+  Entity, PrimaryGeneratedColumn, Column, OneToMany
+} from "typeorm";
 import { Task } from './Task';
 import { Helper } from '../classes/Helper';
 import { LatLng, LatLngBounds } from 'leaflet';
 import { Score } from "./Score";
+import { Task2Route } from './Task2Route';
+import { User } from './User';
 
 @Entity('mcm_route')
 export class Route {
@@ -63,10 +67,10 @@ export class Route {
   @Column()
   attr: string;
 
-
-  @ManyToMany(type => Task, task => task.routes)
-  @JoinTable({name: 'mcm_rel_route_task', joinColumn: {name: 'route_id'}, inverseJoinColumn: {name: 'task_id'}})
   tasks: Task[];
+
+  @OneToMany(type => Task2Route, task2Route => task2Route.route, {eager: true})
+  task2Routes: Task2Route[];
 
   @Column({name: 'image_url'})
   imageURL: string;
@@ -74,7 +78,16 @@ export class Route {
   @Column({name: 'downloaded'})
   downloaded: boolean;
 
-  private score: Score;
+  @OneToMany(type => Score, score => score.route, {eager: true})
+  scores: Score[];
+
+  getScoreForUser(user: User): Score {
+    let userScore = this.scores.filter(value => value.userId == user.id);
+    let score = userScore.length > 0 ? userScore[0] : new Score();
+    score.userId = user.id;
+    score.route = this;
+    return score;
+  }
 
   getImageURL(): string {
     return this.imageURL ? this.imageURL : Helper.WEBSERVER_URL + this.image;
@@ -102,14 +115,6 @@ export class Route {
     this.viewBoundingBoxLatLng = new LatLngBounds([northWest[0], southEast[1]], [southEast[0], northWest[1]]);
     this.boundingBoxLatLng = new LatLngBounds([[north, east], [south, west]]);
     this.centerLatLng = new LatLng(jsonCenter[0], jsonCenter[1]);
-  }
-
-  setScore(score: Score){
-    this.score = score;
-  }
-
-  getScore() : Score{
-    return this.score;
   }
 
   getAssistiveEquipment() : string{

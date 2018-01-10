@@ -1,7 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from "typeorm";
 import {Route} from "./Route";
 import { Helper } from '../classes/Helper';
 import { error } from "util";
+import { Task2Route } from './Task2Route';
 
 @Entity('mcm_task')
 export class Task {
@@ -82,6 +83,9 @@ export class Task {
 
   @ManyToMany(type => Route, route => route.tasks)
   routes: Route[]
+
+  @OneToMany(type => Task2Route, task2Route => task2Route.task)
+  task2Routes: Task2Route[];
 
   getImageURL(): string {
     return Helper.WEBSERVER_URL + this.image;

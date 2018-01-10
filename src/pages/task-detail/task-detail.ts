@@ -52,7 +52,7 @@ export class TaskDetail {
     this.routeId = this.navParams.get('routeId');
     this.task = await this.ormService.findTaskById(this.taskId);
     this.route = await this.ormService.findRouteById(this.routeId);
-    this.score = this.route.getScore();
+    this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.taskDetails = this.score.getTaskStateForTask(this.taskId);
     this.score.score = 0;
     console.log(this.taskDetails);

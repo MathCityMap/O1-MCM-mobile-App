@@ -35,3 +35,5 @@ platforms/ios/Math City Map.xcworkspace/xcuserdata
 platforms/android/CordovaLib/build
 platforms/ios/Math City Map.xcarchive
 platforms/android/assets/www/build
+*.lock
+*.bin

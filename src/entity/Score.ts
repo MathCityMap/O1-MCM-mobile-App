@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne } from "typeorm";
 import { Route } from "./Route";
 import { TaskState } from "./TaskState";
 
@@ -10,8 +10,9 @@ export class Score {
     @Column({name: 'user_id'})
     userId: number;
 
-    @Column({name: 'route_id'})
-    routeId: number;
+    @ManyToOne(type => Route, route => route.scores)
+    @JoinColumn({name: 'route_id', referencedColumnName: 'id'})
+    route: Route;
 
     @Column()
     score: number;
