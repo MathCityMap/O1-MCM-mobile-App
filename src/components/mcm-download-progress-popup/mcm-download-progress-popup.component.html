@@ -7,16 +7,16 @@
             <ion-row>
                 <ion-col>
                     <div class="progress-bar progress-download">
-                        <div class="progress" [ngStyle]="{'width': ((100/total)*currentProgress) +'%'}"></div>
+                        <div class="progress" [ngStyle]="{'width': ((100/data.total)*data.currentProgress) +'%'}"></div>
                     </div>
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col col-6>
-                    <p *ngIf="total != 0">{{((100/total)*currentProgress).toFixed(0)}}%</p>
+                    <p *ngIf="data.total != 0">{{((100/data.total)*data.currentProgress).toFixed(0)}}%</p>
                 </ion-col>
                 <ion-col col-6 text-right>
-                    <p class="progress-files">{{ currentProgress }} / {{ total }}</p>
+                    <p class="progress-files">{{ data.currentProgress }} / {{ data.total }}</p>
                 </ion-col>
             </ion-row>
         </ion-grid>

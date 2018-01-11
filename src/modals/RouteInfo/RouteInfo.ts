@@ -1,29 +1,15 @@
-import { Input, ViewChild, Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
-import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
-import { MCMDownloadProgressPopupComponent } from '../../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
-import { ModalController } from 'ionic-angular/components/modal/modal-controller';
-import { BroadcastService } from '../../services/broadcast-service';
-import { BasicRouteFunction } from '../../pages/home/tabs/BasicRouteFunction/BasicRouteFunction';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { Score } from '../../entity/Score';
+import { ModalsService } from '../../services/modals-service';
 
-/**
- * Generated class for the RouteInfoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-/* @IonicPage() */
 @Component({
   selector: 'route-info',
   templateUrl: 'RouteInfo.html',
 })
-export class RouteInfo extends BasicRouteFunction{
-  public activeDownload: Route = null;
+export class RouteInfo {
   private route: Route;
 
 
@@ -32,23 +18,14 @@ export class RouteInfo extends BasicRouteFunction{
 
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
-    deepLinker: DeepLinker,
-    ormService: OrmService,
-    modalCtrl: ModalController,
-    broadcastService: BroadcastService,
+    private ormService: OrmService,
     private viewCtrl: ViewController) {
-      super(modalCtrl, ormService, broadcastService, navCtrl, deepLinker);
-
-
-
   }
 
   async ionViewDidEnter(){
     let routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(routeId);
-    let user = await this.ormService.getActiveUser();
     this.totalTasks = this.route.tasks.length;
     let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
@@ -56,7 +33,9 @@ export class RouteInfo extends BasicRouteFunction{
   }
 
   async doDownload(route: Route) {
-    super.doDownload(route);
+    // retrieve modalsService via viewCtrl.data to avoid circular dependency
+    let modalsService: ModalsService = this.viewCtrl.data.modalsService;
+    modalsService.doDownload(route);
   }
 
   showRoute(route: Route) {

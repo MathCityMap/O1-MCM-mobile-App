@@ -13,7 +13,6 @@ import { Route } from '../entity/Route';
 import { AddImageUrlAndDownloadedFlagMigration1513679923000 } from '../migration/1513679923000-AddImageUrlAndDownloadedFlagMigration';
 import { ImagesService } from './images-service';
 import { CacheManagerMCM } from '../classes/CacheManagerMCM';
-import { Helper } from '../classes/Helper';
 import { Score } from "../entity/Score";
 import { TaskState } from "../entity/TaskState";
 import { Task2Route } from '../entity/Task2Route';

@@ -8,14 +8,9 @@ import { ViewController } from 'ionic-angular';
 /*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMDownloadProgressPopupComponent{
-    total = 0;
-    currentProgress = 0;
-    constructor(private broadcastService: BroadcastService, public viewCtrl: ViewController) {
-        broadcastService.downloadProgress$.subscribe(progressObject => {
-            this.currentProgress = progressObject.done;
-            this.total = progressObject.total;
-
-        });
+    data = null;
+    constructor(private viewCtrl: ViewController) {
+        this.data = viewCtrl.data;
     }
 
     onCancelClick() {

@@ -29,23 +29,24 @@ export class MCMHeaderComponent{
 
     private currentpage: string = this.viewCtrl.name;
 
-    retriveTitle(): string{
+    retriveTitle(): string {
         /* console.log('currentpage ',this.currentpage); */
-        if( this.currentpage == 'HomePage' ){ return 'title_activity_main' }
-        else if( this.currentpage == 'InfoPage' ){ return 'about_mcm_title' }
-        else if( this.currentpage == 'SettingsPage' ){ return 'action_settings' }
-        else if(  this.currentpage == 'ModalCmp' ){
-            return 'title_activity_main' }
-        else if(  this.currentpage == 'TasksMap' ){
-            if(this.navParams && this.navParams.data.routeTitle){
-                return this.navParams.data.routeTitle;
-            }
-            return 'DER ROUTENNAME' }
-        else if( this.currentpage == 'TaskDetail' ){
-            if(this.navParams && this.navParams.data.taskTitle){
-                return this.navParams.data.taskTitle;
-            }
-            return 'DER TASKNAME' }
+        if (this.navParams && this.navParams.data.headerTitle) {
+            return this.navParams.data.headerTitle;
+        }
+        if (this.currentpage == 'HomePage') {
+            return 'title_activity_main'
+        }
+        if (this.currentpage == 'InfoPage') {
+            return 'about_mcm_title'
+        }
+        if (this.currentpage == 'SettingsPage') {
+            return 'action_settings'
+        }
+        if (this.currentpage == 'ModalCmp') {
+            return 'title_activity_main'
+        }
+        return this.currentpage;
     }
 
     ngOnInit(){

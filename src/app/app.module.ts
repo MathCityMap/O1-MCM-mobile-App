@@ -13,13 +13,9 @@ import { HttpModule } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { ModalsService } from '../services/modals-service';
 
 import { MyApp } from './app.component';
-
-import { HomePage } from '../pages/home/home';
-import { MapPage } from '../pages/home/tabs/Map/Map';
-import { RoutesListPage } from '../pages/home/tabs/RoutesList/RoutesList';
-import { TasksMap } from '../pages/home/tabs/TasksMap/TasksMap';
 
 /* Translation */
 import {HttpClientModule, HttpClient} from '@angular/common/http';
@@ -78,6 +74,7 @@ import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
     OrmService,
     ImagesService,
     BroadcastService,
+    ModalsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

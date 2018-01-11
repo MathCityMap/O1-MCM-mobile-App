@@ -3,7 +3,7 @@
   <div id="map" class="map-view"></div>
 
   <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
-      <div class="image-container" (click)="showRoute(routeDetails)">
+      <div class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)">
           <img *ngIf="routeDetails" [src]="routeDetails.getImageURL() || '//:0'" />
       </div>
       <div class="text-container" *ngIf="routeDetails">
@@ -20,10 +20,10 @@
           </div>
           <div class="segement buttons">
                 <div class="button-container">
-                    <button class="dot" *ngIf="routeDetails" ion-button icon-only clear (click)="presentRouteInfoModal(routeDetails)">
+                    <button class="dot" *ngIf="routeDetails" ion-button icon-only clear (click)="modalsService.presentRouteInfoModal(routeDetails, navCtrl)">
                         <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
                     </button>
-                    <button class="dot" *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="doDownload(routeDetails)">
+                    <button class="dot" *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="modalsService.doDownload(routeDetails)">
                             <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
                     </button>
                     <button class="dot" *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="removeRoute(routeDetails)">
