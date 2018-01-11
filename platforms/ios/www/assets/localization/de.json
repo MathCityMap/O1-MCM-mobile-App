@@ -12,7 +12,7 @@
     "sidefact_tag":"Side Fact",
     "solution_sample":"Musterlösung",
 
-    "solution_good":"Gute Lösung!",
+    "solution_good":"Glückwunsch!",
 
 
 
@@ -35,7 +35,7 @@
     "btn_hint3":"Hinweis #3",
     "btn_dl":"Download",
     "btn_show":"Anzeigen",
-    "author":"Autor: ",
+    "author":"Autor",
     "mail":"E-Mail: ",
     "title_activity_task_view":"Aufgabe",
     "title_activity_route_detail":"Route",

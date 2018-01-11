@@ -55,8 +55,8 @@
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
-    <name>Math City Map</name>
-    <description>Math City Map</description>
+    <name>MathCityMap</name>
+    <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
     <content src="index.html" />
     <access origin="*" />

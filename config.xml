@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="de.autentek.mathcitymap" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Math City Map</name>
-    <description>Math City Map</description>
+    <name>MathCityMap</name>
+    <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
     <content src="index.html" />
     <access origin="*" />
