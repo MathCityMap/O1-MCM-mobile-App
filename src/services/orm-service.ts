@@ -18,6 +18,7 @@ import { TaskState } from "../entity/TaskState";
 import { Task2Route } from '../entity/Task2Route';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { Platform } from 'ionic-angular';
 
 @Injectable()
 export class OrmService {
@@ -27,13 +28,14 @@ export class OrmService {
   private cachedPublicRoutes: Route[];
 
   constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
-              private translateService: TranslateService) {
+              private translateService: TranslateService, private platform: Platform) {
   }
 
   async getConnection(): Promise<Connection> {
     if (this.connection) {
       return this.connection;
     }
+    await this.platform.ready();
     const sqliteAvailable = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true;
     const entities = [
       User,
