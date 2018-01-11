@@ -1,6 +1,4 @@
-import { Component,Input, Inject} from '@angular/core';
-import { NavParams } from 'ionic-angular/navigation/nav-params';
-import { MCMModalType } from '../../app/app.component';
+import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { OrmService } from '../../services/orm-service';
 

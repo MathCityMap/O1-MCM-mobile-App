@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { DeepLinker, IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { File } from '@ionic-native/file';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -15,27 +15,19 @@ import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
-import { SpinnerDialog} from "@ionic-native/spinner-dialog";
-
 import { OrmService } from '../../../../services/orm-service';
-import {User} from '../../../../entity/User';
 import {Route} from '../../../../entity/Route';
-import {State} from '../../../../entity/State';
-import {Task} from '../../../../entity/Task';
-import { RouteInfo } from '../../../../modals/RouteInfo/RouteInfo';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { LatLngBounds } from 'leaflet';
-import { MCMDownloadProgressPopupComponent } from '../../../../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
-import { BroadcastService } from '../../../../services/broadcast-service';
-import { BasicRouteFunction } from '../BasicRouteFunction/BasicRouteFunction';
 import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
+import { ModalsService } from '../../../../services/modals-service';
 
 @IonicPage()
 @Component({
   selector: 'page-map',
   templateUrl: 'Map.html'
 })
-export class MapPage extends BasicRouteFunction implements OnInit {
+export class MapPage implements OnInit {
 
   @ViewChild('map') mapContainer: ElementRef;
   map: any;
@@ -48,22 +40,17 @@ export class MapPage extends BasicRouteFunction implements OnInit {
   isFilePluginAvailable: boolean;
 
 
-  constructor(public navCtrl: NavController,
-    private platform: Platform,
-    private geolocation: Geolocation,
-    private updater: DB_Updater,
-    private spinner: SpinnerDialog,
-    modalCtrl: ModalController,
-    ormService: OrmService,
-    deepLinker: DeepLinker,
-    broadcastService: BroadcastService) {
-      super(modalCtrl, ormService, broadcastService, navCtrl, deepLinker);
+    constructor(private platform: Platform,
+                private geolocation: Geolocation,
+                private updater: DB_Updater,
+                private ormService: OrmService,
+                private modalCtrl: ModalController,
+                public modalsService: ModalsService,
+                public navCtrl: NavController) {
     }
 
   async ionViewDidEnter() {
     console.log("ionViewDidEnter:");
-
-
   }
 
   async ngOnInit() {

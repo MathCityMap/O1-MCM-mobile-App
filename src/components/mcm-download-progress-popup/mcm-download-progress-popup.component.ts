@@ -1,5 +1,6 @@
 import { Component,Input, Inject} from '@angular/core';
 import { BroadcastService } from '../../services/broadcast-service';
+import { ViewController } from 'ionic-angular';
 
 @Component({
     selector: 'mcm-download-progress-popup',
@@ -7,14 +8,14 @@ import { BroadcastService } from '../../services/broadcast-service';
 /*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMDownloadProgressPopupComponent{
-    total = 0;
-    currentProgress = 0;
-    constructor(private broadcastService: BroadcastService) {
+    data = null;
+    constructor(private viewCtrl: ViewController) {
+        this.data = viewCtrl.data;
+    }
 
-        broadcastService.downloadProgress$.subscribe(progressObject => {
-            this.currentProgress = progressObject.done;
-            this.total = progressObject.total;
-
-        });
+    onCancelClick() {
+        if (this.viewCtrl.data.cancelCallback) {
+            this.viewCtrl.data.cancelCallback();
+        }
     }
 }

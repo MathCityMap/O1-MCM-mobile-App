@@ -23,6 +23,7 @@ export var tilesDb = {
     var doneDownload = 0;
     var currentlyActiveDownloads = 0;
     var nextIndex = 0;
+    var downloadWasAborted = false;
     return new Promise(function (resolve, reject) {
       var spawnNextDownloads;
       var downloadTile = function (i, tileUrl) {
@@ -32,7 +33,7 @@ export var tilesDb = {
         request.responseType = 'blob';
         request.onreadystatechange = function () {
           if (request.readyState === XMLHttpRequest.DONE) {
-            if (request.status === 200) {
+            if (request.status === 200 && !downloadWasAborted) {
               doneDownload++;
               console.log("Progress: ", i, Math.round((doneDownload) * 100 / totalDownload));
               self._saveTile(tileUrl.key, request.response).then(function() {
@@ -45,11 +46,15 @@ export var tilesDb = {
                 } else {
                   spawnNextDownloads();
                 }
-                if (progressCallback) {
-                  progressCallback(doneDownload, totalDownload);
+                if (progressCallback && !downloadWasAborted) {
+                  if (progressCallback(doneDownload, totalDownload)) {
+                    downloadWasAborted = true;
+                    console.log("download was aborted");
+                    reject("download was aborted");
+                  }
                 }
               });
-            } else {
+            } else if (!downloadWasAborted) {
               console.log("send request NOT OK");
               reject({
                 status: request.status,
@@ -62,6 +67,9 @@ export var tilesDb = {
       };
 
       spawnNextDownloads = function() {
+        if (downloadWasAborted) {
+          return;
+        }
         while (currentlyActiveDownloads < 5 && nextIndex < totalDownload) {
           downloadTile(nextIndex, tileUrls[nextIndex]);
           nextIndex++;
@@ -86,4 +94,5 @@ export var tilesDb = {
   _removeItem: function (key) {
     return this.storage.remove(key);
   }
+
 };

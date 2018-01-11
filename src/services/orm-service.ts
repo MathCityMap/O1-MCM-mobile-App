@@ -13,12 +13,12 @@ import { Route } from '../entity/Route';
 import { AddImageUrlAndDownloadedFlagMigration1513679923000 } from '../migration/1513679923000-AddImageUrlAndDownloadedFlagMigration';
 import { ImagesService } from './images-service';
 import { CacheManagerMCM } from '../classes/CacheManagerMCM';
-import { Helper } from '../classes/Helper';
 import { Score } from "../entity/Score";
 import { TaskState } from "../entity/TaskState";
 import { Task2Route } from '../entity/Task2Route';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { Platform } from 'ionic-angular';
 
 @Injectable()
 export class OrmService {
@@ -28,13 +28,14 @@ export class OrmService {
   private cachedPublicRoutes: Route[];
 
   constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
-              private translateService: TranslateService) {
+              private translateService: TranslateService, private platform: Platform) {
   }
 
   async getConnection(): Promise<Connection> {
     if (this.connection) {
       return this.connection;
     }
+    await this.platform.ready();
     const sqliteAvailable = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true;
     const entities = [
       User,
@@ -243,10 +244,15 @@ export class OrmService {
   }
 
   async downloadRoute(route: Route, statusCallback) {
-    await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
-    route.downloaded = true;
-    const repo = await this.getRouteRepository();
-    await repo.save(route);
+    try {
+      await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
+      route.downloaded = true;
+      const repo = await this.getRouteRepository();
+      await repo.save(route);
+    } catch (e) {
+      console.log("download failed or was aborted");
+      console.log(e);
+    }
   }
 
   async removeDownloadedRoute(route: Route) {
