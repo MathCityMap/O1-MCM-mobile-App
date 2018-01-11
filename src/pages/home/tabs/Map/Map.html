@@ -3,6 +3,11 @@
   <div id="map" class="map-view"></div>
 
   <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
+    <div class="fab-container">
+        <ion-fab right bottom>
+            <button ion-fab color="primary"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+        </ion-fab>
+    </div>
       <div class="image-container" (click)="showRoute(routeDetails)">
           <img *ngIf="routeDetails" [src]="routeDetails.getImageURL() || '//:0'" />
       </div>

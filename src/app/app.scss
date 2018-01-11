@@ -458,9 +458,10 @@ img{
 
 button{
     &[disabled],
-    &[disabled= true]
+    &[disabled= true],
     a[disabled], [ion-button][disabled]{
         opacity: 1!important;
+        background-color: color($colors, grey);
         img{
             background-color: color($colors, grey);
         }
@@ -494,29 +495,70 @@ button{
 
 .fab-container{
     position: absolute;
-    top: 0;
+    top: -4px;
     right: 0;
 }
 
+ion-fab-list{
+    margin: 44px 0;
+    .fab-in-list{
+        margin: 4px 0;
+    }
+}
+
+.ion-md-icon-add-privateroute:before,
+.ion-ios-icon-add-privateroute:before{
+    background-image: url(../assets/icons/icon_add-privateroute.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"";
+    margin-top: 4px;
+
+}
+
+.ion-md-close:before,
+.ion-ios-close:before{
+    background-image: url(../assets/icons/icon_close-modal.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 20px;
+    content:"";
+}
 .ion-md-icon-restart:before,
 .ion-ios-icon-restart:before{
     background-image: url(../assets/icons/icon_restart.svg);
     background-size: 22px 22px;
-    display: inline-block;
     width: 22px;
-    height: 20px;
+    height: 22px;
     content:"";
+    vertical-align: middle;
 }
-
 .ion-md-icon-starting-point:before,
 .ion-ios-starting-point:before{
     background-image: url(../assets/icons/icon_starting-point.svg);
     background-size: 22px 22px;
-    display: inline-block;
+    width: 22px;
+    height: 22px;
+    content:"";
+    vertical-align: middle;
+}
+.ion-md-icon-visibility:before,
+.ion-ios-icon-visibility:before{
+    background-image: url(../assets/icons/icon_visibility.svg);
+    background-size: 22px 22px;
     width: 22px;
     height: 20px;
     content:"";
-
+}
+.ion-md-icon-track-gps:before,
+.ion-ios-track-gps:before{
+    background-image: url(../assets/icons/icon_track-gps.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"";
+    margin-top: 4px;
 }
 
 
