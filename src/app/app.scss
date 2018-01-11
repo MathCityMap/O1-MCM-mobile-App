@@ -457,11 +457,17 @@ img{
 /*  ========== Buttons =========  */
 
 button{
-    &[disabled],
-    &[disabled= true],
-    a[disabled], [ion-button][disabled]{
+    &[disabled].button-default,
+    &[disabled= true].button-default{
         opacity: 1!important;
         background-color: color($colors, grey);
+        img{
+            background-color: color($colors, grey);
+        }
+    }
+    &[disabled].button-clear,
+    &[disabled= true].button-clear{
+        opacity: 1!important;
         img{
             background-color: color($colors, grey);
         }
@@ -497,6 +503,9 @@ button{
     position: absolute;
     top: -4px;
     right: 0;
+}
+.fixed-content ion-fab[bottom]{
+    bottom: 14px;
 }
 
 ion-fab-list{
