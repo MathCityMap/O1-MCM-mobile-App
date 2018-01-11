@@ -22,7 +22,8 @@ const headerComponents = [
     TranslateModule,
   ],
   exports: [
-    headerComponents
+    headerComponents,
+    TranslateModule
   ]
 })
 export class MCMHeaderModule {

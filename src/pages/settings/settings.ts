@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
-  selector: 'page-settings',
-  templateUrl: 'settings.html',
+    selector: 'page-settings',
+    templateUrl: 'settings.html',
 })
 export class SettingsPage {
+    language: string;
+    availableLanguages = ["en", "de", "fr", "pt", "es", "sk", "in", "zh", "tr", "it"];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService) {
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad SettingsPage');
+        this.language = this.translateService.currentLang;
+    }
 
+    onChangeLanguage(language) {
+        this.translateService.use(language);
+    }
 }
