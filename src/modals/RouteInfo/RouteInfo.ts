@@ -8,7 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { CenteredTask } from '../CenteredTask/CenteredTask';
 import { Task } from '../../entity/Task';
-import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+import { NavController } from "ionic-angular/navigation/nav-controller";
+
+
 
 @Component({
   selector: 'route-info',
@@ -27,7 +29,7 @@ export class RouteInfo {
     private ormService: OrmService,
     private viewCtrl: ViewController,
     public alertCtrl: AlertController,
-    public modalCtrl: ModalController,
+    public navCtrl: NavController,
     public translateService: TranslateService) {
   }
 
@@ -35,6 +37,7 @@ export class RouteInfo {
     let routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(routeId);
     this.totalTasks = this.route.tasks.length;
+    this.navCtrl = this.navParams.get('navCtrl');
     let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
     console.log(this.currentProgress);
@@ -48,18 +51,9 @@ export class RouteInfo {
 
 showRoute(route: Route, selectedTask: Task) {
     if(route.downloaded){
-      this.viewCtrl.dismiss({showRoute: true, route: route, selectedTask: selectedTask});
+      this.viewCtrl.dismiss({showRoute: false});
     }
-  }
-
-  showTaskList(route: Route){
-    let self = this;
-    let testModal = this.modalCtrl.create(CenteredTask, {route: route, tasks: route.tasks});
-     testModal.onDidDismiss(data => {
-            this.showRoute(data.route, data.selectedTask);
-        })
-    testModal.present();
-  }
+  } 
 
   removeRoute(route: Route): void {
     console.log('ORM route', this.route);
@@ -71,26 +65,6 @@ showRoute(route: Route, selectedTask: Task) {
 /*     console.log('-------------------', this.totalTasks); */
   }
 
-  alertList() {
-    let confirm = this.alertCtrl.create({
-      title: 'Select a start point',
-      message: 'Do you want to start from a certain task?',
-      buttons: [
-        {
-          text: 'No',
-          handler: () => {
-            this.showRoute(this.route, null);
-          }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.showTaskList(this.route);
-          }
-        }
-      ]
-    });
-    confirm.present()
-  }
+  
 
 }

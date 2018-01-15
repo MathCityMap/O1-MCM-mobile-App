@@ -20,7 +20,8 @@ export class RoutesListPage {
 
     modal: any;
 
-    constructor(private ormService: OrmService, private geolocation: Geolocation,
+    constructor(private ormService: OrmService, 
+                private geolocation: Geolocation,
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
                 private dbUpdater: DB_Updater,

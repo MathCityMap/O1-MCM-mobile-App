@@ -23,7 +23,7 @@
                     <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
                 </ion-col>
                 <ion-col col-4 class="button-container">
-                    <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="alertList()">
+                    <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="this.viewCtrl.data.modalsService.alertList(route, this.navCtrl, this)">
                     <img class="primary round" src="./assets/icons/icon_play-large.svg"/>
                     </button>
                 </ion-col>

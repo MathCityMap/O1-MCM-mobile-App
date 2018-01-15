@@ -9,6 +9,8 @@ import { Injectable } from '@angular/core';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 import { Task } from '../entity/Task';
+import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class ModalsService {
@@ -16,6 +18,7 @@ export class ModalsService {
     constructor(
         public modalCtrl: ModalController,
         public ormService: OrmService,
+        public alertCtrl: AlertController,
         public deepLinker: DeepLinker) { }
 
     async doDownload(route: Route) {
@@ -53,9 +56,11 @@ export class ModalsService {
 
     presentRouteInfoModal(route: Route, navCtrl: NavController): void {
         let self = this;
-        let routeInfoModal = this.modalCtrl.create(RouteInfo, {routeId: route.id, modalsService: this});
+        //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
+        let routeInfoModal = this.modalCtrl.create(RouteInfo, {routeId: route.id, modalsService: this, navCtrl: navCtrl});
         routeInfoModal.onDidDismiss(data => {
           if(data.showRoute){
+            //will probably never showRoute;
             self.showRoute(data.route, navCtrl, data.selectedTask);
           }
         })
@@ -69,4 +74,37 @@ export class ModalsService {
             modal.present();
         });
     }
+
+    presentTaskListModal(route: Route, navCtrl: NavController, fromRouteInfo: RouteInfo): void {
+    let self = this;
+    let testModal = this.modalCtrl.create(CenteredTask, {route: route, tasks: route.tasks, modalsService: this, fromRouteInfo: fromRouteInfo});
+     testModal.onDidDismiss(data => {
+       if(data.route!=null && navCtrl!= null) this.showRoute(data.route, navCtrl, data.selectedTask);   
+        })
+    testModal.present();
+    }
+
+    alertList(route: Route, navCtrl: NavController, fromRouteInfo: RouteInfo) {
+      console.log("MYROUUUUUUTE: " + route.city);
+    let confirm = this.alertCtrl.create({
+      title: 'Select a start point',
+      message: 'Do you want to start from a certain task?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            if(fromRouteInfo!=null) fromRouteInfo.showRoute(route, null);
+            this.showRoute(route, navCtrl, null);
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.presentTaskListModal(route, navCtrl, fromRouteInfo);
+          }
+        }
+      ]
+    });
+    confirm.present()
+  }
 }
