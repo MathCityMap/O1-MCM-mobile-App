@@ -48,8 +48,9 @@ import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+
+      }, useDefaultLang: true
     }),
     MCMHeaderModule
   ],

@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SettingsPage {
     language: string;
-    availableLanguages = ["en", "de", "fr", "pt", "es", "sk", "in", "zh", "tr", "it"];
+    availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh"];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService) {
     }

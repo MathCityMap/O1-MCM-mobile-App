@@ -4,7 +4,7 @@
     <div class="card">
       <ion-label>Sprache</ion-label>
       <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">
-        <ion-option *ngFor="let lang of availableLanguages" [value]="lang">{{'language_' + lang | translate}}</ion-option>
+        <ion-option *ngFor="let lang of availableLanguages" [value]="lang">{{'a_language_' + lang | translate}}</ion-option>
       </ion-select>
     </div>
 

@@ -35,16 +35,16 @@ export class MCMHeaderComponent{
             return this.navParams.data.headerTitle;
         }
         if (this.currentpage == 'HomePage') {
-            return 'title_activity_main'
+            return 'a_title_activity_main'
         }
         if (this.currentpage == 'InfoPage') {
-            return 'about_mcm_title'
+            return 'a_about_mcm_title'
         }
         if (this.currentpage == 'SettingsPage') {
-            return 'action_settings'
+            return 'a_action_settings'
         }
         if (this.currentpage == 'ModalCmp') {
-            return 'title_activity_main'
+            return 'a_title_activity_main'
         }
         return this.currentpage;
     }
