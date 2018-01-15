@@ -86,21 +86,21 @@ export class TaskDetail {
           //only update if task is not solved
           this.taskDetails.hint1 = true;
         }
-        title = 'btn_hint1';
+        title = 'a_btn_hint1';
         break;
       case 2:
         if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
           //only update if task is not solved
           this.taskDetails.hint2 = true;
         }
-        title = 'btn_hint2';
+        title = 'a_btn_hint2';
         break;
       case 3:
         if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
           //only update if task is not solved
           this.taskDetails.hint3 = true;
         }
-        title = 'btn_hint3';
+        title = 'a_btn_hint3';
         break;
     }
 

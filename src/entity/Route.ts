@@ -7,6 +7,7 @@ import { LatLng, LatLngBounds } from 'leaflet';
 import { Score } from "./Score";
 import { Task2Route } from './Task2Route';
 import { User } from './User';
+import { TranslateService } from '@ngx-translate/core';
 
 @Entity('mcm_route')
 export class Route {
@@ -120,17 +121,18 @@ export class Route {
     this.centerLatLng = new LatLng(jsonCenter[0], jsonCenter[1]);
   }
 
-  getAssistiveEquipment() : string{
+  getAssistiveEquipment(translateService: TranslateService) : string{
     let equipment = "";
     if(this.tasks){
       for(let i = 0; i < this.tasks.length; i++){
         let equipmentArray =  this.tasks[i].getAssistiveEquipment();
         for(let j = 0; j < equipmentArray.length; j++){
-            if(equipment.indexOf(equipmentArray[j]) == -1){
+            let translation = translateService.instant(equipmentArray[j]);
+            if(equipment.indexOf(translation) == -1){
               if(equipment != ""){
                 equipment = equipment + ", ";
               }
-              equipment = equipment + equipmentArray[j];
+              equipment = equipment + translation;
             }
         }
       }

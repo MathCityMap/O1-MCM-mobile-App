@@ -20,11 +20,11 @@
           <h2 (click)="modalsService.alertList(item, navCtrl)">{{item.title}}</h2>
           <div class="segmented-box dotted-border-top">
             <div class="segement dotted-border-right distance">
-                <ion-label>{{ "t_distance" | translate }}</ion-label>
+                <ion-label>{{ "a_t_distance" | translate }}</ion-label>
                 <span>{{item.distance | distance: 'm'}}</span>
             </div>
             <div class="segement dotted-border-right grade">
-                <ion-label [ngClass]="{'appear-disabled' : !item.grade}">{{ "r_level_short" | translate }}</ion-label>
+                <ion-label [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_r_level" | translate }}</ion-label>
                 <span *ngIf="item.grade">{{item.grade}}</span>
                 <span *ngIf="!item.grade">{{ "no_data" | translate }}</span>
             </div>
