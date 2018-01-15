@@ -1,0 +1,21 @@
+<mcm-header></mcm-header>
+
+
+<ion-content class="has-header pattern-bg">
+    <div class="card first" *ngIf="route">
+    <p>{{ route.city }}, {{ route.countryCode }}</p>
+    <h1>{{ route.title }}</h1>
+
+    </div>
+        <ion-list>
+            <ion-list-header text-center>Tasks</ion-list-header>
+            <div class="detail-box" *ngFor="let item of tasks">
+                <button ion-item (click) = "showRoute(route, item)">
+                    <ion-avatar item-start>
+                        <img [src]="item.getImageURL()"/>
+                    </ion-avatar>
+                    <h2>{{item.title}}</h2>
+                </button>
+            </div>
+        </ion-list>
+</ion-content>

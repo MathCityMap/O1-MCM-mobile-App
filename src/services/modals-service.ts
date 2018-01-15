@@ -7,6 +7,8 @@ import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-pr
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
 import { Injectable } from '@angular/core';
 
+import { Task } from '../entity/Task';
+
 @Injectable()
 export class ModalsService {
 
@@ -37,9 +39,9 @@ export class ModalsService {
         downloadModal.dismiss();
     }
 
-    showRoute(route: Route, navCtrl: NavController): void {
+    showRoute(route: Route, navCtrl: NavController, selectedTask: Task): void {
         if(route.downloaded){
-            navCtrl.parent.parent.push('TasksMap', {routeId: route.id, headerTitle: route.title}, {}, () => {
+            navCtrl.parent.parent.push('TasksMap', {routeId: route.id, headerTitle: route.title, selectedTask: selectedTask}, {}, () => {
               // necessary because of bug which does not update URL
               this.deepLinker.navChange('forward');
             });
@@ -53,7 +55,7 @@ export class ModalsService {
         let routeInfoModal = this.modalCtrl.create(RouteInfo, {routeId: route.id, modalsService: this});
         routeInfoModal.onDidDismiss(data => {
           if(data.showRoute){
-            self.showRoute(data.route, navCtrl);
+            self.showRoute(data.route, navCtrl, data.selectedTask);
           }
         })
         routeInfoModal.present();

@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, AlertController } from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ModalsService } from '../../services/modals-service';
+
+import { CenteredTask } from '../CenteredTask/CenteredTask';
+import { Task } from '../../entity/Task';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 @Component({
   selector: 'route-info',
@@ -20,7 +24,9 @@ export class RouteInfo {
   constructor(
     public navParams: NavParams,
     private ormService: OrmService,
-    private viewCtrl: ViewController) {
+    private viewCtrl: ViewController,
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController) {
   }
 
   async ionViewDidEnter(){
@@ -38,10 +44,19 @@ export class RouteInfo {
     modalsService.doDownload(route);
   }
 
-  showRoute(route: Route) {
+showRoute(route: Route, selectedTask: Task) {
     if(route.downloaded){
-      this.viewCtrl.dismiss({showRoute: true, route: route});
+      this.viewCtrl.dismiss({showRoute: true, route: route, selectedTask: selectedTask});
     }
+  }
+
+  showTaskList(route: Route){
+    let self = this;
+    let testModal = this.modalCtrl.create(CenteredTask, {route: route, tasks: route.tasks});
+     testModal.onDidDismiss(data => {
+            this.showRoute(data.route, data.selectedTask);
+        })
+    testModal.present();
   }
 
   removeRoute(route: Route): void {
@@ -52,6 +67,28 @@ export class RouteInfo {
   ionViewDidLoad() {
     console.log('route',this.route);
 /*     console.log('-------------------', this.totalTasks); */
+  }
+
+  alertList() {
+    let confirm = this.alertCtrl.create({
+      title: 'Select a start point',
+      message: 'Do you want to start from a certain task?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            this.showRoute(this.route, null);
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.showTaskList(this.route);
+          }
+        }
+      ]
+    });
+    confirm.present()
   }
 
 }

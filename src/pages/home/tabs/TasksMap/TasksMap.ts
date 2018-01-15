@@ -38,6 +38,7 @@ export class TasksMap {
     console.log('TasksMap ionViewDidEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
+    this.selectedTask = this.navParams.get("selectedTask");
     await this.loadMap();
     this.initializeMap();
   }
@@ -131,6 +132,9 @@ export class TasksMap {
           offlineLayer.on('offline:remove-error', function (err) {
               console.error('Error when removing tiles: ' + err);
           });
+
+                    //centers map in the selected task
+          if(this.selectedTask != null) this.map.panTo( [this.selectedTask.lat, this.selectedTask.lon] );
       }
   }
 

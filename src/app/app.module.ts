@@ -31,12 +31,15 @@ import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
 import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
 
+import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
+
 @NgModule({
   declarations: [
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal
+    MCMIconModal, MCMInputModal,
+    CenteredTask
   ],
   imports: [
     HttpModule,
@@ -59,7 +62,8 @@ import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal
+    MCMIconModal, MCMInputModal,
+    CenteredTask
   ],
   providers: [
     StatusBar,
