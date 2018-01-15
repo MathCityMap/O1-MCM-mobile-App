@@ -19,13 +19,13 @@ import { Task2Route } from '../entity/Task2Route';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
+import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
 
 @Injectable()
 export class OrmService {
   connection: Connection;
   private min_zoom: number = 16;
   private max_zoom: number = 19;
-  private cachedPublicRoutes: Route[];
 
   constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
               private translateService: TranslateService, private platform: Platform) {
@@ -48,7 +48,8 @@ export class OrmService {
     const migrations = [
       InitialMigration1513274191111,
       AddImageUrlAndDownloadedFlagMigration1513679923000,
-      FailedTaskMigration1515428187000
+      FailedTaskMigration1515428187000,
+      AddUnlockedColumn1516037215000
     ];
     if (sqliteAvailable) {
       return this.connection = await createConnection({
@@ -105,7 +106,7 @@ export class OrmService {
   }
 
   private async postProcessRoute(route: Route): Promise<Route> {
-    if (route.task2Routes) {
+    if (route && route.task2Routes) {
       route.task2Routes.sort((a, b) => a.id - b.id);
       route.tasks = route.task2Routes.map((value, index)=> {
         value.task.position = index + 1;
@@ -134,7 +135,13 @@ export class OrmService {
     return await this.postProcessRoute(route);
   }
 
-  public async findScoreByRoute(id: number): Promise<Score> {
+    public async findRouteByCode(code: string): Promise<Route> {
+        let repo = await this.getRouteRepository();
+        let route = await repo.findOne({where: {code: code}});
+        return await this.postProcessRoute(route);
+    }
+
+    public async findScoreByRoute(id: number): Promise<Score> {
     let repo = await this.getScoreRepository();
     let score = await repo.findOne({where: {routeId: id}});
     return await this.postProcessScore(score);
@@ -225,10 +232,7 @@ export class OrmService {
     return this.postProcessUser(user);
   }
 
-  async getPublicRoutes(): Promise<Route[]> {
-    if (this.cachedPublicRoutes) {
-      return this.cachedPublicRoutes;
-    }
+  async getVisibleRoutes(): Promise<Route[]> {
     this.spinner.show(null, this.translateService.instant('toast_routes_loading'), true);
     let repo = await this.getRouteRepository();
     let result = await repo.find({
@@ -236,11 +240,16 @@ export class OrmService {
         public: '1'
       }
     });
+    result = result.concat(await repo.find({
+        where: {
+            unlocked: '1'
+        }
+    }));
     for (let route of result) {
       await this.postProcessRoute(route);
     }
     this.spinner.hide();
-    return this.cachedPublicRoutes = result;
+    return result;
   }
 
   async downloadRoute(route: Route, statusCallback) {

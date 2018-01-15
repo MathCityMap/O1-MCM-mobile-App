@@ -6,6 +6,7 @@ import { Route } from '../entity/Route';
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
 import { Injectable } from '@angular/core';
+import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 import { Task } from '../entity/Task';
 
@@ -59,5 +60,13 @@ export class ModalsService {
           }
         })
         routeInfoModal.present();
+    }
+
+    showAddRouteByCodeModal(): Promise<Route> {
+        return new Promise<Route>((success) => {
+            let modal = this.modalCtrl.create(MCMRouteByCodeModal);
+            modal.onDidDismiss(success);
+            modal.present();
+        });
     }
 }

@@ -64,6 +64,7 @@ export class DB_Handler {
       })
         .then((db: SQLiteObject) => {
           this.mDB = db
+          this.mReady = true;
           console.log('Connected to DB')
           // it's ok to always run onCreate because SQL has IF EXISTS
           this.onCreate().then(() => {

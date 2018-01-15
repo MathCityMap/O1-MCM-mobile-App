@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, ModalController, NavController } from 'ionic-angular';
 import { Helper } from '../../../../classes/Helper';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -8,6 +8,7 @@ import { Route } from '../../../../entity/Route';
 import { ModalsService } from '../../../../services/modals-service';
 import { DB_Updater } from '../../../../classes/DB_Updater';
 import { DBC } from '../../../../classes/DBC';
+import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 @IonicPage()
 @Component({
@@ -22,13 +23,14 @@ export class RoutesListPage {
     constructor(private ormService: OrmService, private geolocation: Geolocation,
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
-                private dbUpdater: DB_Updater) {
+                private dbUpdater: DB_Updater,
+                private modalCtrl: ModalController) {
     }
 
     async ionViewDidEnter() {
 
         if (this.items.length === 0) {
-            this.items = await this.ormService.getPublicRoutes();
+            this.items = await this.ormService.getVisibleRoutes();
         }
         this.sortItems();
         if (!Helper.myLocation) {
@@ -68,6 +70,16 @@ export class RoutesListPage {
 
     async doRefresh(refresher) {
         await this.dbUpdater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]);
+        this.items = await this.ormService.getVisibleRoutes();
+        await this.ionViewDidEnter();
         refresher.complete();
+    }
+
+    async addRouteByCode() {
+        let route = await this.modalsService.showAddRouteByCodeModal();
+        if (route) {
+            this.items.push(route);
+            this.ionViewDidEnter();
+        }
     }
 }

@@ -30,6 +30,7 @@ import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-pr
 import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
 import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
+import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 
@@ -38,7 +39,7 @@ import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal,
+    MCMIconModal, MCMInputModal, MCMRouteByCodeModal,
     CenteredTask
   ],
   imports: [
@@ -62,7 +63,7 @@ import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal,
+    MCMIconModal, MCMInputModal, MCMRouteByCodeModal,
     CenteredTask
   ],
   providers: [

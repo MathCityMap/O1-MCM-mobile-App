@@ -22,7 +22,7 @@ export class MCMInputModal{
         console.log(this.userName);
         let usernameExists = await this.ormService.checkUsername(this.userName);
         if(usernameExists){
-            this.errorMessage = 'g_name_taken';
+            this.errorMessage = 'a_g_name_taken';
         }else{
             await this.ormService.setNewActiveUser(this.userName);
         }

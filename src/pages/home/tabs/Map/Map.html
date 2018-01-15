@@ -5,7 +5,7 @@
   <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
     <div class="fab-container">
         <ion-fab right bottom>
-            <button ion-fab color="primary"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+            <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
         </ion-fab>
     </div>
       <div class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)">

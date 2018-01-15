@@ -1,12 +1,12 @@
 <div class="modal card has-button-on-the-edge">
-    <h2>{{'g_new_player' | translate}}</h2>
+    <h2>{{'a_g_new_player' | translate}}</h2>
 
-    <p>{{'g_name' | translate}}</p>
+    <p>{{'a_g_name' | translate}}</p>
     <ion-item>
         <ion-input type="text" [(ngModel)]="userName"></ion-input>
     </ion-item>
     <span *ngIf="errorMessage"></span>
     <div class="on-the-edge-container">
-        <button ion-button small round (click)="saveUser()">{{ "g_ok" | translate }}</button>
+        <button ion-button small round (click)="saveUser()">{{ "a_g_ok" | translate }}</button>
     </div>
 </div>

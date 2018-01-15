@@ -82,7 +82,7 @@ export class MapPage implements OnInit {
       this.map.removeLayer(this.markerGroup);
       this.markerGroup = null;
     }
-    const routes = await this.ormService.getPublicRoutes();
+    const routes = await this.ormService.getVisibleRoutes();
     let markerGroup = (L as any).markerClusterGroup();
     for (let route of routes) {
       markerGroup.addLayer(L.marker(route.getCenterLatLng()).on('click', () => {
@@ -197,7 +197,7 @@ export class MapPage implements OnInit {
               alert('Marker clicked');
             });
             this.userMarker.addTo(this.map);
-            // this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
+            this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
 
             let watch = this.geolocation.watchPosition();
             watch.subscribe(resp => {
@@ -221,7 +221,14 @@ export class MapPage implements OnInit {
     this.ormService.removeDownloadedRoute(route);
   }
 
-
+    async addRouteByCode() {
+        let route = await this.modalsService.showAddRouteByCodeModal();
+        if (route) {
+            this.markerGroup.addLayer(L.marker(route.getCenterLatLng()).on('click', () => {
+                this.routeDetails = route;
+            }));
+        }
+    }
 
 
 }
