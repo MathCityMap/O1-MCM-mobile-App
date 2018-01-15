@@ -68,6 +68,8 @@ export class RoutesListPage {
 
     async doRefresh(refresher) {
         await this.dbUpdater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]);
+        this.items = await this.ormService.getPublicRoutes();
+        await this.ionViewDidEnter();
         refresher.complete();
     }
 }

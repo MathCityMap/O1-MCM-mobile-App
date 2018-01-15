@@ -4,6 +4,7 @@ import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ModalsService } from '../../services/modals-service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'route-info',
@@ -20,7 +21,8 @@ export class RouteInfo {
   constructor(
     public navParams: NavParams,
     private ormService: OrmService,
-    private viewCtrl: ViewController) {
+    private viewCtrl: ViewController,
+    public translateService: TranslateService) {
   }
 
   async ionViewDidEnter(){

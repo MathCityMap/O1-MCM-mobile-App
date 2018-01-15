@@ -27,13 +27,13 @@ export class MCMIconModal{
             }else{
                 switch (this.modalType){
                     case MCMModalType.hint:
-                        this.title = "btn_hint1";
+                        this.title = "a_btn_hint1";
                         break;
                     case MCMModalType.error:
-                        this.title = "alert_false_answer_title";
+                        this.title = "a_alert_false_answer_title";
                         break;
                     case MCMModalType.success:
-                        this.title = "alert_right_answer_title";
+                        this.title = "a_alert_right_answer_title";
 
                         break;
                 }

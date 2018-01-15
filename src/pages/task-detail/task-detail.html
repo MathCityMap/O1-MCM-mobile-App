@@ -9,12 +9,12 @@
     <div class="task-content">
     <div class="card task has-button-on-the-edge">
         <div class="head">
-            <ion-label>{{ "title_activity_task_view" | translate }}</ion-label>
+            <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
             <!--<span class="tag points">100 MP</span>-->
         </div>
         <p *ngIf="task">{{task.description}}</p>
         <div class="answer">
-            <ion-label>{{ "task_answer" | translate }}</ion-label>
+            <ion-label>{{ "a_task_answer" | translate }}</ion-label>
             <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
                 <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
                 <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
@@ -41,7 +41,7 @@
                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
                 <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
             </button>
-            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow)" [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer" (click)="checkResult()">{{ "btn_check_answer" | translate }}</button>
+            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow)" [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer" (click)="checkResult()">{{ "a_btn_check_answer" | translate }}</button>
         </div>
     </div>
     <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
