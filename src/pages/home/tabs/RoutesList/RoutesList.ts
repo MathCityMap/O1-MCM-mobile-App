@@ -6,6 +6,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { ModalsService } from '../../../../services/modals-service';
+import { DB_Updater } from '../../../../classes/DB_Updater';
+import { DBC } from '../../../../classes/DBC';
 
 @IonicPage()
 @Component({
@@ -19,7 +21,8 @@ export class RoutesListPage {
 
     constructor(private ormService: OrmService, private geolocation: Geolocation,
                 public navCtrl: NavController,
-                public modalsService: ModalsService) {
+                public modalsService: ModalsService,
+                private dbUpdater: DB_Updater) {
     }
 
     async ionViewDidEnter() {
@@ -63,5 +66,8 @@ export class RoutesListPage {
         this.ormService.removeDownloadedRoute(route);
     }
 
-
+    async doRefresh(refresher) {
+        await this.dbUpdater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]);
+        refresher.complete();
+    }
 }

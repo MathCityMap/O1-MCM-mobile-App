@@ -1,4 +1,11 @@
 <ion-content class="routes-list has-header">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+                refreshingText="{{'a_toast_update_start' | translate}}"
+        >
+        </ion-refresher-content>
+    </ion-refresher>
+
     <ion-fab right bottom>
         <button ion-fab color="primary"><ion-icon name="icon-add-privateroute"></ion-icon></button>
     </ion-fab>

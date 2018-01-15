@@ -67,11 +67,11 @@
 //CONTENT
 
 .has-header{
-    .scroll-content{
+    .scroll-content, ion-refresher {
         margin-top: calc(54px);
     }
     &.content-ios{
-        .scroll-content{
+        .scroll-content, ion-refresher {
             margin-top: calc(54px + 20px);
         }
     }

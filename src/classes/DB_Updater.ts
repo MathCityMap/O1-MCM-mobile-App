@@ -123,6 +123,7 @@ export class DB_Updater extends AsyncTask<string[]> {
   */
   private async checkForUpdates(data: any, table: DBC_Plan) {
     let dbHandler = DB_Handler.getInstance()
+    await dbHandler.ready();
     let db = dbHandler.getDB();
     console.log("WAITING FOR offlineVersions")
     let offlineVersions = await dbHandler.getTableVersions()
