@@ -4,6 +4,7 @@ import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ModalsService } from '../../services/modals-service';
+import { TranslateService } from '@ngx-translate/core';
 
 import { CenteredTask } from '../CenteredTask/CenteredTask';
 import { Task } from '../../entity/Task';
@@ -26,7 +27,8 @@ export class RouteInfo {
     private ormService: OrmService,
     private viewCtrl: ViewController,
     public alertCtrl: AlertController,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public translateService: TranslateService) {
   }
 
   async ionViewDidEnter(){
