@@ -52,6 +52,10 @@ export var tilesDb = {
                     console.log("download was aborted");
                     reject("download was aborted");
                   }
+                  if (doneDownload == totalDownload) {
+                    // make sure not to send events after method already resolved promise
+                    progressCallback = null;
+                  }
                 }
               });
             } else if (!downloadWasAborted) {
@@ -70,7 +74,7 @@ export var tilesDb = {
         if (downloadWasAborted) {
           return;
         }
-        while (currentlyActiveDownloads < 5 && nextIndex < totalDownload) {
+        while (currentlyActiveDownloads < 8 && nextIndex < totalDownload) {
           downloadTile(nextIndex, tileUrls[nextIndex]);
           nextIndex++;
         }

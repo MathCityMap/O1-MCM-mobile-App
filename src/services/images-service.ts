@@ -2,15 +2,51 @@ import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { File } from '@ionic-native/file';
 import { Platform } from 'ionic-angular';
-
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import async from 'async'
+import { Helper } from '../classes/Helper';
 
 @Injectable()
 export class ImagesService {
 
     private nativeBaseURL: string;
     private isInitialized = false;
+    private downloadQueue: any = null;
 
-    constructor(private fileManager: File, private platform: Platform) {
+    constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer) {
+    }
+
+    private saveThumb(newFileName: string, base64: string, fileManager: File) {
+        console.log("saving thumbnail to " + newFileName);
+        // var url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+        fetch(base64)
+            .then(res => {
+                res.blob().then(blob => {
+                    fileManager.writeFile(fileManager.dataDirectory, newFileName, blob, {replace: true}).then(val => {
+                        console.warn("Written")
+                    }, error => console.error("Write error: " + JSON.stringify(error)))
+                        .catch(error => console.error("Write error: " + JSON.stringify(error)))
+                }, error => console.error("Blob error: " + JSON.stringify(error)))
+                    .catch(error => console.error("Blob error: " + JSON.stringify(error)))
+            })
+            .then(blob => console.log(blob))
+    }
+
+    private resizedataURL(datas: any, wantedWidth: number, wantedHeight: number): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+            let img = document.createElement('img')
+            img.onload = () => {
+                var canvas = document.createElement('canvas')
+                var ctx = canvas.getContext('2d')
+                canvas.width = wantedWidth
+                canvas.height = wantedHeight
+                ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight)
+                const dataURI = canvas.toDataURL()
+                resolve(dataURI)
+            };
+
+            img.src = datas;
+        })
     }
 
     async getNativeBaseURL(): Promise<string> {
@@ -29,4 +65,130 @@ export class ImagesService {
         this.isInitialized = true;
         return this.nativeBaseURL;
     }
+
+    async downloadURLs(urls: string[], createThumbs: boolean, progressCallback: DownloadProgressCallback = null): Promise<any> {
+        let promiseError;
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        let dataDirectory = this.fileManager.dataDirectory;
+        let fileManager = this.fileManager;
+        let resizedataURL = this.resizedataURL;
+        let saveThumb = this.saveThumb;
+        let totalDownload = 0;
+        let alreadyDownloaded = 0;
+        let that = this;
+        this.downloadQueue = async.queue(function (task: any, continueCallback: any) {
+            console.log("downloading: " + JSON.stringify(task));
+            function callback() {
+                alreadyDownloaded++;
+                console.log("download progress: " + alreadyDownloaded + "/" + totalDownload);
+                if (progressCallback) {
+                    if (progressCallback(alreadyDownloaded, totalDownload)) {
+                        // user aborted download process
+                        let success = this.downloadQueue.drain;
+                        this.downloadQueue.kill();
+                        promiseError("user canceled download");
+                    }
+                }
+                continueCallback();
+
+            }
+            fileTransfer.download(Helper.WEBSERVER_URL + encodeURI(task.imgFileName), dataDirectory + task.outputName)
+                .then(() => {
+                    if (!createThumbs) {
+                        callback();
+                        return;
+                    }
+                    fileManager.readAsDataURL(dataDirectory, task.outputName)
+                        .then(dataURI => {
+                            resizedataURL(dataURI, 120, 120)
+                                .then(resizedBase64 => {
+                                    saveThumb(that.getLocalThumbFileName(task.imgFileName), resizedBase64, fileManager)
+                                    callback()
+                                })
+                                .catch(error => {
+                                    console.error("saveThumb error " + JSON.stringify(error))
+                                    callback()
+                                });
+                        }, error => {
+                            console.error("readAsDataURL error: " + JSON.stringify(error))
+                            callback();
+                        })
+                        .catch(error => {
+                            console.error("readAsDataURL error: " + JSON.stringify(error))
+                            callback();
+                        })
+                })
+                .catch(error => {
+                    console.error(`Error downloading image ${task.imgFileName}`)
+                    callback();
+                })
+        }, 8);
+
+        this.downloadQueue.pause();
+        for (var i = 0; i < urls.length; i++) {
+            let imgFileName = urls[i]
+            // No image in task
+            if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
+                continue
+            }
+
+
+            let outputName = this.getLocalFileName(imgFileName);
+            let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
+            let file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false })
+                .then((res) => res, (err) => null)
+            if (file !== null) {
+                file.file(file => {
+                    if (file.size <= 0) {
+                        // Path not empty and file does not exist - download from url
+                        totalDownload++;
+                        this.downloadQueue.push({
+                            fileTransfer: fileTransfer,
+                            imgFileName: imgFileName,
+                            outputName: outputName
+                        }, err => {
+                            console.log(`Finished downloading ${fileTransfer}`)
+                        });
+                    }
+                })
+            } else {
+                // Path not empty and file does not exist - download from url
+                totalDownload++;
+                this.downloadQueue.push({
+                    fileTransfer: fileTransfer,
+                    imgFileName: imgFileName,
+                    outputName: outputName
+                }, err => {
+                    console.log(`Finished downloading ${fileTransfer}`)
+                })
+            }
+        }
+        if (progressCallback) {
+            progressCallback(0, totalDownload);
+        }
+        this.downloadQueue.resume();
+        if (totalDownload == 0) {
+            return;
+        }
+        return new Promise<any>((success, error) => {
+            promiseError = error;
+            this.downloadQueue.drain = () => {
+                console.log("download queue is empty");
+                success();
+            }
+        });
+    }
+
+    getLocalFileName(imgPath: string) : string {
+        return imgPath.replace(/\/| /g, '_');
+    }
+
+    getLocalThumbFileName(imgPath: string) : string {
+        return 'thumb_' + this.getLocalFileName(imgPath);
+    }
+}
+
+
+export interface DownloadProgressCallback {
+    (alreadyDownloaded: number, totalDownload: number): boolean
 }

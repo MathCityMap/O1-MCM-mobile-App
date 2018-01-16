@@ -112,14 +112,23 @@ export class OrmService {
       route.task2Routes.sort((a, b) => a.id - b.id);
       route.tasks = route.task2Routes.map((value, index)=> {
         value.task.position = index + 1;
+        value.task.imagesService = this.imagesService;
         return value.task;
       });
+    }
+
+    if (route) {
+      route.imagesService = this.imagesService;
     }
 
     return route;
   }
 
   private async postProcessTask(task: Task): Promise<Task> {
+    if (task)
+    {
+      task.imagesService = this.imagesService;
+    }
     return task;
   }
 
@@ -256,7 +265,10 @@ export class OrmService {
 
   async downloadRoute(route: Route, statusCallback) {
     try {
+      statusCallback(0, 0, 'a_rdl_title_map');
       await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
+      statusCallback(0, 0, 'a_rdl_title_img');
+      await this.imagesService.downloadURLs(route.tasks.map(task => task.image), false, statusCallback)
       route.downloaded = true;
       const repo = await this.getRouteRepository();
       await repo.save(route);

@@ -12,10 +12,12 @@ import { DBC_Plan } from './DBC_Plan'
 import { DB_Handler } from './DB_Handler'
 import { ImageDownloaderRoutes } from './ImageDownloaderRoutes'
 import { SpinnerDialog } from '@ionic-native/spinner-dialog'
+import { ImagesService } from '../services/images-service';
 
 @Injectable()
 export class DB_Updater extends AsyncTask<string[]> {
-  constructor(private http: Http, private transfer: FileTransfer, private file: File, private spinner: SpinnerDialog) {
+  constructor(private http: Http, private transfer: FileTransfer, private file: File, private spinner: SpinnerDialog,
+              private imagesService: ImagesService) {
     super()
   }
 
@@ -31,7 +33,7 @@ export class DB_Updater extends AsyncTask<string[]> {
       && Helper.relTableUpdate == 1
       && Helper.routeTableNeedsUpdate == 1) {
       // new ImageDownloaderRoutes(this.transfer, this.file).execute(false).then(() => {
-        await new ImageDownloaderRoutes(this.transfer, this.file).doInBackground(false)
+        await new ImageDownloaderRoutes(this.imagesService).doInBackground(false)
         // this.spinner.hide()
       // })
     }
@@ -40,7 +42,7 @@ export class DB_Updater extends AsyncTask<string[]> {
       && Helper.relTableUpdate == 1
       && Helper.routeTableNeedsUpdate == 0) {
       // new ImageDownloaderRoutes(this.transfer, this.file).execute(true).then(() => {
-        await new ImageDownloaderRoutes(this.transfer, this.file).doInBackground(true)
+        await new ImageDownloaderRoutes(this.imagesService).doInBackground(true)
         // this.spinner.hide()
       // })
     }
@@ -97,7 +99,7 @@ export class DB_Updater extends AsyncTask<string[]> {
           console.error('API error(status): ', error.status)
           console.error('API error: ', JSON.stringify(error))
           
-          new ImageDownloaderRoutes(this.transfer, this.file).doInBackground(false);
+          new ImageDownloaderRoutes(this.imagesService).doInBackground(false);
 
           reject(JSON.stringify(error))
           //         // Starte ImageDownloaderRoutes, damit die Listenelemente angezeigt werden
@@ -144,7 +146,7 @@ export class DB_Updater extends AsyncTask<string[]> {
     let sqlUpdateQuery = `UPDATE ${DBC.DATABASE_TABLE_STATE} SET ${DBC.DB_STATE.fields[2]} = ? WHERE ${DBC.DB_STATE.fields[1]} = ?`
     if (Number(offlineVersions.getValue("version_task")) < Number(onlineVersions.getValue("version_task"))) {
       // Tasks need update
-      await new DB_Updater(this.http, this.transfer, this.file, this.spinner).execute(["getTasks", DBC.DATABASE_TABLE_TASK, "update"])
+      await new DB_Updater(this.http, this.transfer, this.file, this.spinner, this.imagesService).execute(["getTasks", DBC.DATABASE_TABLE_TASK, "update"])
       // Update local table
       console.log("UPDATING version_task VERSION!", onlineVersions.getValue("version_task"))
       db.executeSql(sqlUpdateQuery,
@@ -160,7 +162,7 @@ export class DB_Updater extends AsyncTask<string[]> {
     if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
       // Routes need update
       Helper.routeTableNeedsUpdate = 1
-      await new DB_Updater(this.http, this.transfer, this.file, this.spinner).execute(["getRoutes", DBC.DATABASE_TABLE_ROUTE, "update"])
+      await new DB_Updater(this.http, this.transfer, this.file, this.spinner, this.imagesService).execute(["getRoutes", DBC.DATABASE_TABLE_ROUTE, "update"])
       // Update local table
       console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
       db.executeSql(sqlUpdateQuery,
@@ -175,7 +177,7 @@ export class DB_Updater extends AsyncTask<string[]> {
     }
     if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
       // Relation needs update
-      await new DB_Updater(this.http, this.transfer, this.file, this.spinner).execute(["getRelations", DBC.DATABASE_TABLE_REL_ROUTE_TASK, "update"])
+      await new DB_Updater(this.http, this.transfer, this.file, this.spinner, this.imagesService).execute(["getRelations", DBC.DATABASE_TABLE_REL_ROUTE_TASK, "update"])
       // Update local table
       console.log("UPDATING version_rel_route_task VERSION!", onlineVersions.getValue("version_rel_route_task"))
       db.executeSql(sqlUpdateQuery,

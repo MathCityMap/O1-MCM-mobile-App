@@ -13,7 +13,7 @@
   <ion-list>
     <div class="detail-box" *ngFor="let item of items">
         <div class="image-container" (click)="modalsService.alertList(item, navCtrl)">
-            <img [src]="item.getImageURL()" />
+            <img [src]="item.getThumbURL()" />
         </div>
         <div class="text-container">
           <p (click)="modalsService.alertList(item, navCtrl)">{{item.city}}, {{item.countryCode}}</p>
