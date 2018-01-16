@@ -34,8 +34,6 @@ export class MapPage implements OnInit {
   center: L.PointTuple;
   imageObject: any;
   routeDetails: Route;
-  offlineLayer: any;
-  offlineControl: any;
   userMarker: any;
   isFilePluginAvailable: boolean;
 
@@ -102,26 +100,34 @@ export class MapPage implements OnInit {
     this.center = [50.1208566, 8.66158515]; // Frankfurt-am Main
     let mapquestUrl = Helper.mapquestUrl
     let subDomains = Helper.subDomains
-
-    //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
-    const corner1 = L.latLng(52.3905689,13.0644729)
-    const corner2 = L.latLng(52.3513863,13.1632323)
-    const bounds: LatLngBounds = L.latLngBounds(corner1, corner2)
-
-
+    let keepPositionBecauseOfReload = false;
     if (this.map == null) {
       this.map = (L as any).map('map', {
         center: this.center,
         zoom: 16,
         tileSize: 256
       });
-      // this.map.fitBounds(bounds);
-      this.map.setZoom(16);
+        if (window.location.search && window.location.search.indexOf('pos=') > -1) {
+            keepPositionBecauseOfReload = true;
+            let startIndex = window.location.search.indexOf('pos=') + 4;
+            let bboxString = window.location.search.substring(startIndex).split("&|/")[0];
+            let coords = bboxString.split(",").map(parseFloat);
+            const bounds: LatLngBounds = L.latLngBounds(L.latLng(coords[1], coords[0]), L.latLng(coords[3], coords[2]));
+            this.map.fitBounds(bounds);
+        }
       this.map.on('click', e => {
         //check if details open and reset content. for now just reset content
         this.routeDetails = null;
         console.log('cleared route details');
-      })
+      });
+      this.map.on('moveend', event => {
+        let bounds : LatLngBounds = this.map.getBounds();
+          window.history.replaceState(
+              {} ,
+              "Title",
+              `${window.location.origin}?pos=${bounds.toBBoxString()}/${window.location.hash}`
+          );
+      });
       let map = this.map;
       tilesDb.initialize().then(() => {
         console.log("Tiles DB Initialized");
@@ -134,56 +140,8 @@ export class MapPage implements OnInit {
           crossOrigin: true,
           detectRetina: true
         });
-        let offlineControl = (L.control as any).offline(offlineLayer, tilesDb, {
-          saveButtonHtml: '<i class="fa fa-download" aria-hidden="true">Save</i>',
-          removeButtonHtml: '<i class="fa fa-trash" aria-hidden="true">Remove</i>',
-          confirmSavingCallback: function (nTilesToSave, continueSaveTiles) {
-            if (nTilesToSave > 1000) {
-              window.alert('Too much tiles to save: ' + nTilesToSave);
-            } else if (window.confirm('Save ' + nTilesToSave + '?')) {
-              continueSaveTiles();
-            }
-          },
-          confirmRemovalCallback: function (continueRemoveTiles) {
-            if (window.confirm('Remove all the tiles?')) {
-              continueRemoveTiles();
-            }
-          },
-          minZoom: 10,
-          maxZoom: 20
-        });
 
         offlineLayer.addTo(map);
-        // offlineControl.addTo(map);
-
-        offlineLayer.on('offline:below-min-zoom-error', function () {
-          alert('Can not save tiles below minimum zoom level.');
-        });
-
-        offlineLayer.on('offline:save-start', function (data) {
-          console.log(data);
-          console.log('Saving ' + data.nTilesToSave + ' tiles.');
-        });
-
-        offlineLayer.on('offline:save-end', function () {
-          alert('All the tiles were saved.');
-        });
-
-        offlineLayer.on('offline:save-error', function (err) {
-          console.error('Error when saving tiles: ' + err);
-        });
-
-        offlineLayer.on('offline:remove-start', function () {
-          console.log('Removing tiles.');
-        });
-
-        offlineLayer.on('offline:remove-end', function () {
-          alert('All the tiles were removed.');
-        });
-
-        offlineLayer.on('offline:remove-error', function (err) {
-          console.error('Error when removing tiles: ' + err);
-        });
       });
 
       this.geolocation.getCurrentPosition()
@@ -197,7 +155,9 @@ export class MapPage implements OnInit {
               alert('Marker clicked');
             });
             this.userMarker.addTo(this.map);
-            this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
+            if (!keepPositionBecauseOfReload) {
+                this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
+            }
 
             let watch = this.geolocation.watchPosition();
             watch.subscribe(resp => {
