@@ -8,6 +8,7 @@ import { Score } from "./Score";
 import { Task2Route } from './Task2Route';
 import { User } from './User';
 import { TranslateService } from '@ngx-translate/core';
+import { ImagesService } from '../services/images-service';
 
 @Entity('mcm_route')
 export class Route {
@@ -73,9 +74,6 @@ export class Route {
   @OneToMany(type => Task2Route, task2Route => task2Route.route, {eager: true})
   task2Routes: Task2Route[];
 
-  @Column({name: 'image_url'})
-  imageURL: string;
-
   @Column({name: 'downloaded'})
   downloaded: boolean;
 
@@ -85,6 +83,7 @@ export class Route {
     @OneToMany(type => Score, score => score.route, {eager: true})
   scores: Score[];
 
+
   getScoreForUser(user: User): Score {
     let userScore = this.scores.filter(value => value.userId == user.id);
     let score = userScore.length > 0 ? userScore[0] : new Score();
@@ -93,8 +92,16 @@ export class Route {
     return score;
   }
 
+  private cachedImageURL: string;
   getImageURL(): string {
-    return this.imageURL ? this.imageURL : Helper.WEBSERVER_URL + this.image;
+    if (this.cachedImageURL) {
+      return this.cachedImageURL;
+    }
+    if (Helper.NATIVE_BASE_URL) {
+        return this.cachedImageURL = Helper.NATIVE_BASE_URL + 'thumb_' + this.image.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, '');
+    } else {
+        return this.cachedImageURL = Helper.WEBSERVER_URL + this.image;
+    }
   }
 
   private boundingBoxLatLng: LatLngBounds = null;

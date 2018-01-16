@@ -20,6 +20,7 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
+import { Helper } from '../classes/Helper';
 
 @Injectable()
 export class OrmService {
@@ -36,6 +37,7 @@ export class OrmService {
       return this.connection;
     }
     await this.platform.ready();
+    Helper.NATIVE_BASE_URL = await this.imagesService.getNativeBaseURL();
     const sqliteAvailable = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true;
     const entities = [
       User,
@@ -232,8 +234,8 @@ export class OrmService {
     return this.postProcessUser(user);
   }
 
-  async getVisibleRoutes(): Promise<Route[]> {
-    this.spinner.show(null, this.translateService.instant('toast_routes_loading'), true);
+  async getVisibleRoutes(showSpinner = true): Promise<Route[]> {
+    if (showSpinner) this.spinner.show(null, this.translateService.instant('a_toast_routes_loading'), true);
     let repo = await this.getRouteRepository();
     let result = await repo.find({
       where: {
@@ -248,7 +250,7 @@ export class OrmService {
     for (let route of result) {
       await this.postProcessRoute(route);
     }
-    this.spinner.hide();
+    if (showSpinner) this.spinner.hide();
     return result;
   }
 

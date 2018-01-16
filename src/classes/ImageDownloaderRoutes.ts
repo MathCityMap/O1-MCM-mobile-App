@@ -85,6 +85,7 @@ export class ImageDownloaderRoutes {
         continue
       }
 
+
       let outputName = imgFileName.replace(Helper.REPLACE_ROUTE_IMAGE_PATH, "")
       let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
       let file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false })

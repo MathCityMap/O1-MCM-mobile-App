@@ -149,6 +149,9 @@ export class Helper {
     Helper.filePluginFound = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
     return Helper.filePluginFound.valueOf();
   }
+
+  public static NATIVE_BASE_URL: string = null;
+
   // public static JSONArray getJSONArray(String arrString){
   //   try{
   //       JSONArray solutionList;

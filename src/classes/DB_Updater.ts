@@ -22,7 +22,6 @@ export class DB_Updater extends AsyncTask<string[]> {
   onPreExecute() {
     console.log("onPreExecute ran");
     // Java: displays progress bar
-    this.spinner.show(null, "Loading data", true);
   }
 
   async onPostExecute() {
@@ -54,7 +53,6 @@ export class DB_Updater extends AsyncTask<string[]> {
     //         new ImageDownloaderRoutes(context, true).execute();
     //     }
     //     dialog.dismiss();
-    this.spinner.hide()
   }
 
   async doInBackground(params: string[]): Promise<any> {

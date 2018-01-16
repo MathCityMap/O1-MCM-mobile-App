@@ -71,7 +71,7 @@ export class RoutesListPage {
 
     async doRefresh(refresher) {
         await this.dbUpdater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]);
-        this.items = await this.ormService.getVisibleRoutes();
+        this.items = await this.ormService.getVisibleRoutes(false);
         await this.ionViewDidEnter();
         refresher.complete();
     }
