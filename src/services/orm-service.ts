@@ -265,6 +265,19 @@ export class OrmService {
         return result;
     }
 
+    async getDownloadedRoutes(): Promise<Route[]> {
+        let repo = await this.getRouteRepository();
+        let result = await repo.find({
+            where: {
+                downloaded: '1'
+            }
+        });
+        for (let route of result) {
+            await this.postProcessRoute(route);
+        }
+        return result;
+    }
+
     async downloadRoute(route: Route, statusCallback) {
         try {
             statusCallback(0, 0, 'a_rdl_title_map');

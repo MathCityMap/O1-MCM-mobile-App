@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { OrmService } from '../../services/orm-service';
 
 @IonicPage()
 @Component({
@@ -11,7 +13,8 @@ export class SettingsPage {
     language: string;
     availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh"];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService,
+                private spinner: SpinnerDialog, private ormService: OrmService) {
     }
 
     ionViewDidLoad() {
@@ -21,5 +24,14 @@ export class SettingsPage {
 
     onChangeLanguage(language) {
         this.translateService.use(language);
+    }
+
+    async deleteAppData() {
+        this.spinner.show(null, this.translateService.instant('a_main_settings_delCache'), true);
+        let routes = await this.ormService.getDownloadedRoutes();
+        for (let route of routes) {
+            await this.ormService.removeDownloadedRoute(route);
+        }
+        this.spinner.hide();
     }
 }
