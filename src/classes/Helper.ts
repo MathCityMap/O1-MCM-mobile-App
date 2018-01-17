@@ -130,7 +130,7 @@ export class Helper {
   }
 
   public static safeJsonDecode(str: string): any {
-    return JSON.parse(str);
+    return JSON.parse(str.replace(/(?:\r\n|\r|\n)/g, '\\n'));
   }
 
   public static NATIVE_BASE_URL: string = null;

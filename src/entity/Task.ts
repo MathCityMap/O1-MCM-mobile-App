@@ -112,7 +112,7 @@ export class Task {
     getSolutionOptionList(): Array<any> {
         if (this.solutionType == 'multiple_choice') {
             let multipleChoiceSolutionList = [];
-            let temp = JSON.parse(this.solution);
+            let temp = Helper.safeJsonDecode(this.solution);
 
             temp[0].forEach(element => {
                 multipleChoiceSolutionList.push({userChecked: false, rightAnswer: false, value: element});
@@ -123,12 +123,12 @@ export class Task {
             console.log(multipleChoiceSolutionList);
             return multipleChoiceSolutionList;
         } else {
-            return JSON.parse(this.solution);
+            return Helper.safeJsonDecode(this.solution);
         }
     }
 
     getSolution(): string {
-        let solution = JSON.parse(this.solution);
+        let solution = Helper.safeJsonDecode(this.solution);
         if (this.solutionType != 'multiple_choice') {
             return solution[0];
         } else {
@@ -148,7 +148,7 @@ export class Task {
 
 
     getSolutionList(): Array<number> {
-        let solution = JSON.parse(this.solution);
+        let solution = Helper.safeJsonDecode(this.solution);
         let results: Array<number> = [];
         solution.forEach(element => {
             results.push(+element);
@@ -159,7 +159,7 @@ export class Task {
     getSolutionSample(): string {
         if (this.solutionSample) {
 
-            let sample = JSON.parse(this.solutionSample);
+            let sample = Helper.safeJsonDecode(this.solutionSample);
             if (sample.length > 0) {
                 return sample[0];
             }
@@ -169,7 +169,7 @@ export class Task {
 
     getAssistiveEquipment(): Array<string> {
         if (this.assistiveEquipment) {
-            let json = JSON.parse(this.assistiveEquipment);
+            let json = Helper.safeJsonDecode(this.assistiveEquipment);
             if (json == null) {
                 return new Array<string>();
             }
