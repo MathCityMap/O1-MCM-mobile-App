@@ -24,127 +24,126 @@ import { Helper } from '../classes/Helper';
 
 @Injectable()
 export class OrmService {
-  connection: Connection;
-  private min_zoom: number = 16;
-  private max_zoom: number = 19;
+    connection: Connection;
+    private min_zoom: number = 16;
+    private max_zoom: number = 19;
 
-  constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
-              private translateService: TranslateService, private platform: Platform) {
-  }
-
-  async getConnection(): Promise<Connection> {
-    if (this.connection) {
-      return this.connection;
-    }
-    await this.platform.ready();
-    Helper.NATIVE_BASE_URL = await this.imagesService.getNativeBaseURL();
-    const sqliteAvailable = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true;
-    const entities = [
-      User,
-      Route,
-      State,
-      Task,
-      Score,
-      Task2Route
-    ];
-    const migrations = [
-      InitialMigration1513274191111,
-      AddImageUrlAndDownloadedFlagMigration1513679923000,
-      FailedTaskMigration1515428187000,
-      AddUnlockedColumn1516037215000
-    ];
-    if (sqliteAvailable) {
-      return this.connection = await createConnection({
-        type: 'cordova',
-        location: 'default',
-        database: 'mcm_db.sqlite3',
-        logging: ['error', 'query', 'schema'],
-        logger: 'simple-console',
-        synchronize: false,
-        entities: entities,
-        migrationsRun: true,
-        migrations: migrations
-      });
-    } else {
-      return this.connection = await createConnection({
-        type: 'websql',
-        version: '1.0',
-        description: 'MCM DB',
-        size: 2 * 1024 * 1024,
-        database: 'mcm',
-        logging: ['error', 'query', 'schema'],
-        logger: 'simple-console',
-        synchronize: false,
-        entities: entities,
-        migrationsRun: true,
-        migrations: migrations
-      });
-    }
-  }
-
-  async getTaskRepository(): Promise<Repository<Task>> {
-    let connection = await this.getConnection();
-    return connection.getRepository(Task);
-  }
-
-  async getStateRepository(): Promise<Repository<State>> {
-    let connection = await this.getConnection();
-    return connection.getRepository(State);
-  }
-
-  async getScoreRepository(): Promise<Repository<Score>> {
-    let connection = await this.getConnection();
-    return connection.getRepository(Score);
-  }
-
-  async getRouteRepository(): Promise<Repository<Route>> {
-    let connection = await this.getConnection();
-    return connection.getRepository(Route);
-  }
-
-  async getUserRepository(): Promise<Repository<User>> {
-    let connection = await this.getConnection();
-    return connection.getRepository(User);
-  }
-
-  private async postProcessRoute(route: Route): Promise<Route> {
-    if (route && route.task2Routes) {
-      route.task2Routes.sort((a, b) => a.id - b.id);
-      route.tasks = route.task2Routes.map((value, index)=> {
-        value.task.position = index + 1;
-        value.task.imagesService = this.imagesService;
-        return value.task;
-      });
+    constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
+                private translateService: TranslateService, private platform: Platform) {
     }
 
-    if (route) {
-      route.imagesService = this.imagesService;
+    async getConnection(): Promise<Connection> {
+        if (this.connection) {
+            return this.connection;
+        }
+        await this.platform.ready();
+        Helper.NATIVE_BASE_URL = await this.imagesService.getNativeBaseURL();
+        const sqliteAvailable = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true;
+        const entities = [
+            User,
+            Route,
+            State,
+            Task,
+            Score,
+            Task2Route
+        ];
+        const migrations = [
+            InitialMigration1513274191111,
+            AddImageUrlAndDownloadedFlagMigration1513679923000,
+            FailedTaskMigration1515428187000,
+            AddUnlockedColumn1516037215000
+        ];
+        if (sqliteAvailable) {
+            return this.connection = await createConnection({
+                type: 'cordova',
+                location: 'default',
+                database: 'mcm_db.sqlite3',
+                logging: ['error', 'query', 'schema'],
+                logger: 'simple-console',
+                synchronize: false,
+                entities: entities,
+                migrationsRun: true,
+                migrations: migrations
+            });
+        } else {
+            return this.connection = await createConnection({
+                type: 'websql',
+                version: '1.0',
+                description: 'MCM DB',
+                size: 2 * 1024 * 1024,
+                database: 'mcm',
+                logging: ['error', 'query', 'schema'],
+                logger: 'simple-console',
+                synchronize: false,
+                entities: entities,
+                migrationsRun: true,
+                migrations: migrations
+            });
+        }
     }
 
-    return route;
-  }
-
-  private async postProcessTask(task: Task): Promise<Task> {
-    if (task)
-    {
-      task.imagesService = this.imagesService;
+    async getTaskRepository(): Promise<Repository<Task>> {
+        let connection = await this.getConnection();
+        return connection.getRepository(Task);
     }
-    return task;
-  }
 
-  private async postProcessUser(user: User): Promise<User> {
-    return user;
-  }
+    async getStateRepository(): Promise<Repository<State>> {
+        let connection = await this.getConnection();
+        return connection.getRepository(State);
+    }
 
-  private async postProcessScore(score: Score): Promise<Score> {
-    return score;
-  }
+    async getScoreRepository(): Promise<Repository<Score>> {
+        let connection = await this.getConnection();
+        return connection.getRepository(Score);
+    }
 
-  public async findRouteById(id: number): Promise<Route> {
-    let repo = await this.getRouteRepository();
-    let route = await repo.findOneById(id);
-    return await this.postProcessRoute(route);
-  }
+    async getRouteRepository(): Promise<Repository<Route>> {
+        let connection = await this.getConnection();
+        return connection.getRepository(Route);
+    }
+
+    async getUserRepository(): Promise<Repository<User>> {
+        let connection = await this.getConnection();
+        return connection.getRepository(User);
+    }
+
+    private async postProcessRoute(route: Route): Promise<Route> {
+        if (route && route.task2Routes) {
+            route.task2Routes.sort((a, b) => a.id - b.id);
+            route.tasks = route.task2Routes.map((value, index) => {
+                value.task.position = index + 1;
+                value.task.imagesService = this.imagesService;
+                return value.task;
+            });
+        }
+
+        if (route) {
+            route.imagesService = this.imagesService;
+        }
+
+        return route;
+    }
+
+    private async postProcessTask(task: Task): Promise<Task> {
+        if (task) {
+            task.imagesService = this.imagesService;
+        }
+        return task;
+    }
+
+    private async postProcessUser(user: User): Promise<User> {
+        return user;
+    }
+
+    private async postProcessScore(score: Score): Promise<Score> {
+        return score;
+    }
+
+    public async findRouteById(id: number): Promise<Route> {
+        let repo = await this.getRouteRepository();
+        let route = await repo.findOneById(id);
+        return await this.postProcessRoute(route);
+    }
 
     public async findRouteByCode(code: string): Promise<Route> {
         let repo = await this.getRouteRepository();
@@ -153,139 +152,151 @@ export class OrmService {
     }
 
     public async findScoreByRoute(id: number): Promise<Score> {
-    let repo = await this.getScoreRepository();
-    let score = await repo.findOne({where: {routeId: id}});
-    return await this.postProcessScore(score);
-  }
-
-  public async getAllTasks(){
-    let repo = await this.getTaskRepository();
-    let tasks = await repo.find({relations: ["routes"]});
-    var solutionTypes :Array<string> = [];
-    tasks.forEach(task =>{
-      if(solutionTypes.indexOf(task.solutionType) == -1){
-          solutionTypes.push(task.solutionType);
-      }
-      if(task.solutionType == "gps" && task.public == "1"){
-
-        task.routes.forEach(route =>{
-          if(route.public == "1"){
-            console.log(route);
-            console.log(task);
-          }
-        });
-      }
-
-    })
-
-  }
-  public async findTaskById(id: number): Promise<Task> {
-    let repo = await this.getTaskRepository();
-    let task = await repo.findOneById(id);
-    return await this.postProcessTask(task);
-  }
-
-
-
-  async insertOrUpdateTaskState(score: Score, detailsToSave: TaskState) {
-    let repo = await this.getScoreRepository();
-    score.addTaskStateForTask(score.getTaskState(), detailsToSave);
-    let user = await this.getActiveUser();
-    score.userId = user.id;
-
-    await repo.save(score);
-
-
-  }
-
-  async setNewActiveUser(userName: string) : Promise<User>{
-    let repo = await this.getUserRepository();
-    let user = new User();
-    user.name = userName;
-
-    await this.setActiveUser(userName);
-    await repo.save(user);
-    return user;
-  }
-
-  async setActiveUser(userName: string) {
-    let repo = await this.getStateRepository();
-    let state: State = await repo.findOne({where: {option: 'active_user'}})
-    if(!state){
-      state = new State();
-      state.option = "active_user";
+        let repo = await this.getScoreRepository();
+        let score = await repo.findOne({where: {routeId: id}});
+        return await this.postProcessScore(score);
     }
-    state.value = userName;
-    await repo.save(state);
-  }
 
-  async getActiveUser() : Promise<User>{
-    let repo = await this.getStateRepository();
-    let state = await repo.findOne({where: {option: 'active_user'}});
-    let user = null;
-    if(state && state.value){
-      user = await this.getUserByName(state.value);
+    public async getAllTasks() {
+        let repo = await this.getTaskRepository();
+        let tasks = await repo.find({relations: ["routes"]});
+        var solutionTypes: Array<string> = [];
+        tasks.forEach(task => {
+            if (solutionTypes.indexOf(task.solutionType) == -1) {
+                solutionTypes.push(task.solutionType);
+            }
+            if (task.solutionType == "gps" && task.public == "1") {
+
+                task.routes.forEach(route => {
+                    if (route.public == "1") {
+                        console.log(route);
+                        console.log(task);
+                    }
+                });
+            }
+
+        })
+
     }
-    return user;
-  }
 
-  async checkUsername(userName: string): Promise<boolean>{
-      let user = await this.getUserByName(userName);
-      if(user){
-        return true;
-      }
-      return false;
-  }
+    public async findTaskById(id: number): Promise<Task> {
+        let repo = await this.getTaskRepository();
+        let task = await repo.findOneById(id);
+        return await this.postProcessTask(task);
+    }
 
-  private async getUserByName(userName: string) : Promise<User>{
-    let repo = await this.getUserRepository();
-    let user = await repo.findOne({where:{name: userName}});
-    return this.postProcessUser(user);
-  }
 
-  async getVisibleRoutes(showSpinner = true): Promise<Route[]> {
-    if (showSpinner) this.spinner.show(null, this.translateService.instant('a_toast_routes_loading'), true);
-    let repo = await this.getRouteRepository();
-    let result = await repo.find({
-      where: {
-        public: '1'
-      }
-    });
-    result = result.concat(await repo.find({
-        where: {
-            unlocked: '1'
+    async insertOrUpdateTaskState(score: Score, detailsToSave: TaskState) {
+        let repo = await this.getScoreRepository();
+        score.addTaskStateForTask(score.getTaskState(), detailsToSave);
+        let user = await this.getActiveUser();
+        score.userId = user.id;
+
+        await repo.save(score);
+
+
+    }
+
+    async setNewActiveUser(userName: string): Promise<User> {
+        let repo = await this.getUserRepository();
+        let user = new User();
+        user.name = userName;
+
+        await this.setActiveUser(userName);
+        await repo.save(user);
+        return user;
+    }
+
+    async setActiveUser(userName: string) {
+        let repo = await this.getStateRepository();
+        let state: State = await repo.findOne({where: {option: 'active_user'}})
+        if (!state) {
+            state = new State();
+            state.option = "active_user";
         }
-    }));
-    for (let route of result) {
-      await this.postProcessRoute(route);
+        state.value = userName;
+        await repo.save(state);
     }
-    if (showSpinner) this.spinner.hide();
-    return result;
-  }
 
-  async downloadRoute(route: Route, statusCallback) {
-    try {
-      statusCallback(0, 0, 'a_rdl_title_map');
-      await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
-      statusCallback(0, 0, 'a_rdl_title_img');
-      await this.imagesService.downloadURLs(route.tasks.map(task => task.image), true, statusCallback)
-      route.downloaded = true;
-      const repo = await this.getRouteRepository();
-      await repo.save(route);
-    } catch (e) {
-      console.log("download failed or was aborted");
-      if (e.message) {
-        console.log(e.message);
-      }
-      console.log(e);
+    async getActiveUser(): Promise<User> {
+        let repo = await this.getStateRepository();
+        let state = await repo.findOne({where: {option: 'active_user'}});
+        let user = null;
+        if (state && state.value) {
+            user = await this.getUserByName(state.value);
+        }
+        return user;
     }
-  }
 
-  async removeDownloadedRoute(route: Route) {
-    CacheManagerMCM.removeDownloadedTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
-    this.imagesService.removeDownloadedURLs(route.tasks.map(task => task.image));
-    route.downloaded = false;
-    const repo = await this.getRouteRepository();
-    await repo.save(route);
-  }
+    async checkUsername(userName: string): Promise<boolean> {
+        let user = await this.getUserByName(userName);
+        if (user) {
+            return true;
+        }
+        return false;
+    }
+
+    private async getUserByName(userName: string): Promise<User> {
+        let repo = await this.getUserRepository();
+        let user = await repo.findOne({where: {name: userName}});
+        return this.postProcessUser(user);
+    }
+
+    async getVisibleRoutes(showSpinner = true, compareFn = null): Promise<Route[]> {
+        if (showSpinner) this.spinner.show(null, this.translateService.instant('a_toast_routes_loading'), true);
+        let repo = await this.getRouteRepository();
+        let result = await repo.find({
+            where: {
+                public: '1'
+            }
+        });
+        result = result.concat(await repo.find({
+            where: {
+                unlocked: '1'
+            }
+        }));
+        for (let route of result) {
+            await this.postProcessRoute(route);
+        }
+        if (compareFn) {
+            result.sort(compareFn);
+        }
+        if (showSpinner) this.spinner.hide();
+        return result;
+    }
+
+    async downloadRoute(route: Route, statusCallback) {
+        try {
+            statusCallback(0, 0, 'a_rdl_title_map');
+            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
+            statusCallback(0, 0, 'a_rdl_title_img');
+            await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(route.tasks), false, statusCallback);
+            route.downloaded = true;
+            const repo = await this.getRouteRepository();
+            await repo.save(route);
+        } catch (e) {
+            console.log("download failed or was aborted");
+            if (e.message) {
+                console.log(e.message);
+            }
+            console.log(e);
+            await this.removeDownloadedRoute(route);
+        }
+    }
+
+    private getDownloadImagesForTasks(tasks: Task[]) {
+        let result = [];
+        tasks.map(task => task.getImagesForDownload()).map(images => {
+            result = result.concat(images);
+        })
+        return result;
+    }
+
+    async removeDownloadedRoute(route: Route) {
+        CacheManagerMCM.removeDownloadedTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
+        this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(route.tasks), false);
+        route.downloaded = false;
+        const repo = await this.getRouteRepository();
+        await repo.save(route);
+    }
 }

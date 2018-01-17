@@ -53,10 +53,13 @@ export class DB_Updater {
       Compare online and offline table versions and update if necessary
     */
     public async checkForUpdates() {
-        let data = await this.invokeApi('getVersions');
         let dbHandler = DB_Handler.getInstance()
         await dbHandler.ready();
         let db = dbHandler.getDB();
+        let data = await this.invokeApi('getVersions');
+        if (!data) {
+            return;
+        }
         console.log("WAITING FOR offlineVersions")
         let offlineVersions = await dbHandler.getTableVersions()
         console.log("OFFLINE versions", offlineVersions)

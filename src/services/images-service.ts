@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
-import { File } from '@ionic-native/file';
+import { File, FileEntry } from '@ionic-native/file';
 import { Platform } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
@@ -86,7 +86,7 @@ export class ImagesService {
                 if (progressCallback) {
                     if (progressCallback(alreadyDownloaded, totalDownload)) {
                         // user aborted download process
-                        this.downloadQueue.kill();
+                        that.downloadQueue.kill();
                         promiseError("user canceled download");
                     }
                 }
@@ -123,7 +123,7 @@ export class ImagesService {
                     console.error(`Error downloading image ${task.imgFileName}`)
                     callback();
                 })
-        }, 8);
+        }, 1);
 
         let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
         for (var i = 0; i < urls.length; i++) {
@@ -183,7 +183,7 @@ export class ImagesService {
         return 'thumb_' + this.getLocalFileName(imgPath);
     }
 
-    async removeDownloadedURLs(urls: string[]): Promise<any> {
+    async removeDownloadedURLs(urls: string[], removeThumbs = true): Promise<any> {
         let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)
         for (var i = 0; i < urls.length; i++) {
             let imgFileName = urls[i]
@@ -194,24 +194,35 @@ export class ImagesService {
 
 
             let outputName = this.getLocalFileName(imgFileName);
-            let file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false });
-            if (file !== null) {
-                file.remove(() => {
-                    console.log("deleted file " + outputName);
-                }, (error) => {
-                    console.error("Could not delete file " + outputName + ": " + error);
-                })
+            let file;
+            try {
+                file = await this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false});
+                if (file !== null) {
+                    await this.deleteFile(file);
+                }
+                console.log("deleted file " + outputName);
+            } catch (e) {
+                console.log("Could not delete file " + outputName + ": " + e);
             }
-            outputName = this.getLocalThumbFileName(imgFileName);
-            file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false });
-            if (file !== null) {
-                file.remove(() => {
+            if (removeThumbs) {
+                outputName = this.getLocalThumbFileName(imgFileName);
+                try {
+                    file = await this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false});
+                    if (file !== null) {
+                        await this.deleteFile(file);
+                    }
                     console.log("deleted file " + outputName);
-                }, (error) => {
-                    console.error("Could not delete file " + outputName + ": " + error);
-                })
+                } catch (e) {
+                    console.log("Could not delete file " + outputName + ": " + e);
+                }
             }
         }
+    }
+
+    deleteFile(fileEntry: FileEntry): Promise<void> {
+        return new Promise<void>((success, error) => {
+            fileEntry.remove(success, error);
+        });
     }
 }
 
