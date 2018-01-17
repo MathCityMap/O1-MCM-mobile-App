@@ -268,18 +268,22 @@ export class OrmService {
       statusCallback(0, 0, 'a_rdl_title_map');
       await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
       statusCallback(0, 0, 'a_rdl_title_img');
-      await this.imagesService.downloadURLs(route.tasks.map(task => task.image), false, statusCallback)
+      await this.imagesService.downloadURLs(route.tasks.map(task => task.image), true, statusCallback)
       route.downloaded = true;
       const repo = await this.getRouteRepository();
       await repo.save(route);
     } catch (e) {
       console.log("download failed or was aborted");
+      if (e.message) {
+        console.log(e.message);
+      }
       console.log(e);
     }
   }
 
   async removeDownloadedRoute(route: Route) {
     CacheManagerMCM.removeDownloadedTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
+    this.imagesService.removeDownloadedURLs(route.tasks.map(task => task.image));
     route.downloaded = false;
     const repo = await this.getRouteRepository();
     await repo.save(route);

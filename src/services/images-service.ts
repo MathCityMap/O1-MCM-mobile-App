@@ -23,7 +23,6 @@ export class ImagesService {
             .then(res => {
                 res.blob().then(blob => {
                     fileManager.writeFile(fileManager.dataDirectory, newFileName, blob, {replace: true}).then(val => {
-                        console.warn("Written")
                     }, error => console.error("Write error: " + JSON.stringify(error)))
                         .catch(error => console.error("Write error: " + JSON.stringify(error)))
                 }, error => console.error("Blob error: " + JSON.stringify(error)))
@@ -73,9 +72,12 @@ export class ImagesService {
         let fileManager = this.fileManager;
         let resizedataURL = this.resizedataURL;
         let saveThumb = this.saveThumb;
-        let totalDownload = 0;
+        let totalDownload = urls.length;
         let alreadyDownloaded = 0;
         let that = this;
+        if (progressCallback) {
+            progressCallback(alreadyDownloaded, totalDownload);
+        }
         this.downloadQueue = async.queue(function (task: any, continueCallback: any) {
             console.log("downloading: " + JSON.stringify(task));
             function callback() {
@@ -84,7 +86,6 @@ export class ImagesService {
                 if (progressCallback) {
                     if (progressCallback(alreadyDownloaded, totalDownload)) {
                         // user aborted download process
-                        let success = this.downloadQueue.drain;
                         this.downloadQueue.kill();
                         promiseError("user canceled download");
                     }
@@ -124,7 +125,7 @@ export class ImagesService {
                 })
         }, 8);
 
-        this.downloadQueue.pause();
+        let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
         for (var i = 0; i < urls.length; i++) {
             let imgFileName = urls[i]
             // No image in task
@@ -134,14 +135,12 @@ export class ImagesService {
 
 
             let outputName = this.getLocalFileName(imgFileName);
-            let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
             let file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false })
                 .then((res) => res, (err) => null)
             if (file !== null) {
                 file.file(file => {
                     if (file.size <= 0) {
                         // Path not empty and file does not exist - download from url
-                        totalDownload++;
                         this.downloadQueue.push({
                             fileTransfer: fileTransfer,
                             imgFileName: imgFileName,
@@ -149,11 +148,15 @@ export class ImagesService {
                         }, err => {
                             console.log(`Finished downloading ${fileTransfer}`)
                         });
+                    } else {
+                        alreadyDownloaded++;
+                        if (progressCallback) {
+                            progressCallback(alreadyDownloaded, totalDownload);
+                        }
                     }
                 })
             } else {
                 // Path not empty and file does not exist - download from url
-                totalDownload++;
                 this.downloadQueue.push({
                     fileTransfer: fileTransfer,
                     imgFileName: imgFileName,
@@ -163,19 +166,12 @@ export class ImagesService {
                 })
             }
         }
-        if (progressCallback) {
-            progressCallback(0, totalDownload);
-        }
-        this.downloadQueue.resume();
-        if (totalDownload == 0) {
+        if (this.downloadQueue.length() === 0) {
             return;
         }
         return new Promise<any>((success, error) => {
             promiseError = error;
-            this.downloadQueue.drain = () => {
-                console.log("download queue is empty");
-                success();
-            }
+            this.downloadQueue.drain = success;
         });
     }
 
@@ -185,6 +181,37 @@ export class ImagesService {
 
     getLocalThumbFileName(imgPath: string) : string {
         return 'thumb_' + this.getLocalFileName(imgPath);
+    }
+
+    async removeDownloadedURLs(urls: string[]): Promise<any> {
+        let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)
+        for (var i = 0; i < urls.length; i++) {
+            let imgFileName = urls[i]
+            // No image in task
+            if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
+                continue
+            }
+
+
+            let outputName = this.getLocalFileName(imgFileName);
+            let file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false });
+            if (file !== null) {
+                file.remove(() => {
+                    console.log("deleted file " + outputName);
+                }, (error) => {
+                    console.error("Could not delete file " + outputName + ": " + error);
+                })
+            }
+            outputName = this.getLocalThumbFileName(imgFileName);
+            file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false });
+            if (file !== null) {
+                file.remove(() => {
+                    console.log("deleted file " + outputName);
+                }, (error) => {
+                    console.error("Could not delete file " + outputName + ": " + error);
+                })
+            }
+        }
     }
 }
 
