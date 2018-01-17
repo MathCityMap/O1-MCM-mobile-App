@@ -32,13 +32,17 @@ export class ModalsService {
           cancelCallback: () => {
             console.log("cancel has been clicked");
             cancelHasBeenClicked = true;
-          }
+          },
+          titleKey: 'a_rdl_title_map'
         };
         let downloadModal = this.modalCtrl.create(MCMDownloadProgressPopupComponent, data, {showBackdrop: true, enableBackdropDismiss: false});
         downloadModal.present();
-        await this.ormService.downloadRoute(route, function (doneDownload, totalDownload) {
+        await this.ormService.downloadRoute(route, function (doneDownload, totalDownload, titleKey) {
           data.total = totalDownload;
           data.currentProgress = doneDownload;
+          if (titleKey) {
+              data.titleKey = titleKey;
+          }
           return cancelHasBeenClicked;
         });
         downloadModal.dismiss();

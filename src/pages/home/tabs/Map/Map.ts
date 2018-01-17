@@ -9,9 +9,7 @@ import 'leaflet.markercluster';
 import 'leaflet-offline';
 import { checkAvailability } from "@ionic-native/core";
 
-import { DB_Handler } from '../../../../classes/DB_Handler';
 import { DB_Updater } from '../../../../classes/DB_Updater';
-import { DBC } from '../../../../classes/DBC';
 import { Helper } from '../../../../classes/Helper';
 import { tilesDb } from '../../../../classes/tilesDb';
 
@@ -78,11 +76,7 @@ export class MapPage implements OnInit {
 
     async initializeMap() {
         this.spinner.show(null, this.translateService.instant('a_toast_update_start'));
-        let dbHandler = DB_Handler.getInstance();
-        await dbHandler.ready();
-        console.warn('db handler initialized');
-
-        await this.updater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]);
+        await this.updater.checkForUpdates();
         const map = this.map
         if (this.markerGroup != null) {
             console.warn('removing markerGroup');

@@ -29,17 +29,15 @@ export class RoutesListPage {
     }
 
     async ionViewDidEnter() {
-
         if (this.items.length === 0) {
-            this.items = await this.ormService.getVisibleRoutes();
+            this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
         }
-        this.sortItems();
         if (!Helper.myLocation) {
             try {
                 const position = await this.geolocation.getCurrentPosition();
                 if (position && position.coords) {
                     Helper.myLocation = position;
-                    this.sortItems();
+                    this.items.sort(this.compareFunction);
                 }
             } catch (e) {
                 console.log("could not obtain position");
@@ -48,21 +46,19 @@ export class RoutesListPage {
         }
     }
 
-    sortItems() {
-        this.items.sort((a, b) => {
-            if (a.downloaded && !b.downloaded)
-                return -1;
-            if (!a.downloaded && b.downloaded)
-                return 1;
-            const distA = a.getDistance();
-            const distB = b.getDistance();
-            if (distA > distB) {
-                return 1;
-            } else if (distA < distB) {
-                return -1;
-            }
-            return a.title.localeCompare(b.title);
-        });
+    private compareFunction(a: Route, b: Route) {
+        if (a.downloaded && !b.downloaded)
+            return -1;
+        if (!a.downloaded && b.downloaded)
+            return 1;
+        const distA = a.getDistance();
+        const distB = b.getDistance();
+        if (distA > distB) {
+            return 1;
+        } else if (distA < distB) {
+            return -1;
+        }
+        return a.title.localeCompare(b.title);
     }
 
     removeRoute(route: Route): void {
@@ -70,8 +66,8 @@ export class RoutesListPage {
     }
 
     async doRefresh(refresher) {
-        await this.dbUpdater.execute(["getVersions", DBC.DATABASE_TABLE_STATE, "checkForUpdates"]);
-        this.items = await this.ormService.getVisibleRoutes(false);
+        await this.dbUpdater.checkForUpdates();
+        this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
         await this.ionViewDidEnter();
         refresher.complete();
     }

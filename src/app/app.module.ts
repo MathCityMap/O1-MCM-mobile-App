@@ -8,7 +8,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { SQLite } from '@ionic-native/sqlite';
 import { IonicStorageModule } from '@ionic/storage';
 import { DB_Updater } from '../classes/DB_Updater';
-import { ImageDownloaderRoutes } from '../classes/ImageDownloaderRoutes';
 import { HttpModule } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
@@ -81,7 +80,6 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     File,
     FileTransfer,
     DB_Updater,
-    ImageDownloaderRoutes,
     SpinnerDialog,
     OrmService,
     ImagesService,

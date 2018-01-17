@@ -1,7 +1,5 @@
 import * as L from 'leaflet';
 import { LatLng } from 'leaflet';
-import { checkAvailability } from "@ionic-native/core";
-import { File } from '@ionic-native/file';
 
 export class MapTile {
   constructor(private pZoomLevel: number, private pX: number, private pY: number) { }
@@ -42,12 +40,6 @@ export class Helper {
   static readonly DISTANCE_TASK_DISPLAY: number = 50 // in Meters, the max distance to display the task
   static readonly DISTANCE_TASKS_MULTIPLE: number = 15 // in Meters, if tapped on marker, look for near markers in max 10m distance, display multiple select box
   static readonly ENABLE_DISTANCE_CHECK: boolean = false
-  static taskTableUpdate: number = 0
-  static routeTableUpdate: number = 0
-  static relTableUpdate: number = 0
-  static taskTableNeedsUpdate: number = 0
-  static routeTableNeedsUpdate: number = 0
-  static relTableNeedsUpdate: number = 0
   static readonly routeImageUpdate: number = 0
   static readonly gamification: number = 0 // 0 -> Keine, 1 -> Score, 2 -> Leaderbord, 3 -> Badges
   static readonly max_score: number = 100
@@ -95,14 +87,11 @@ export class Helper {
   //         return str
   //     }
   // }
-  // public static MathRoute activeRoute = null
-  // public static MathTask activeTask = null
   // public static User user = null
   // public static Map<String, String> aiNamesMap = new HashMap<String, String>()
   // public static Map<String, ArrayList<Integer>> oldScoreMap = new HashMap<String, ArrayList<Integer>>()
   static readonly phone_id: string = ""
   static readonly phone_name: string = ""
-  // public static MathRoute routeToDownload = null
   // public static Location myLocation = null
   public static myLocation: any = null;
   static readonly myAzimuth: number = 0.0
@@ -140,14 +129,8 @@ export class Helper {
     return distance;
   }
 
-  private static filePluginFound: Boolean = null;
-
-  public static isFilePluginAvailable(): boolean {
-    if (Helper.filePluginFound != null) {
-      return Helper.filePluginFound.valueOf();
-    }
-    Helper.filePluginFound = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
-    return Helper.filePluginFound.valueOf();
+  public static safeJsonDecode(str: string): any {
+    return JSON.parse(str.replace(/(?:\r\n|\r|\n)/g, '\\n'));
   }
 
   public static NATIVE_BASE_URL: string = null;
