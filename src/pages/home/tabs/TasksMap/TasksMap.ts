@@ -12,6 +12,8 @@ import { Route } from '../../../../entity/Route';
 import { Task } from '../../../../entity/Task';
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
+import {gpsService} from  '../../../../services/gps-service';
+
 @IonicPage({
   segment: 'TasksMap/:routeId'
 })
@@ -31,7 +33,8 @@ export class TasksMap {
     public navCtrl: NavController,
     public navParams: NavParams,
     private ormService: OrmService,
-    private deepLinker: DeepLinker
+    private deepLinker: DeepLinker,
+    private gpsService: gpsService
   ) { }
 
   async ionViewDidEnter() {
@@ -61,6 +64,7 @@ export class TasksMap {
       })
       this.map.addLayer(markerGroup);
       this.markerGroup = markerGroup;
+      this.gpsService.isLocationOn();
   }
 
   async loadMap() {

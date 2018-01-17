@@ -12,6 +12,7 @@ import { Task } from '../entity/Task';
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { AlertController } from 'ionic-angular';
 
+
 @Injectable()
 export class ModalsService {
 
@@ -85,7 +86,6 @@ export class ModalsService {
     }
 
     alertList(route: Route, navCtrl: NavController, fromRouteInfo: RouteInfo) {
-      console.log("MYROUUUUUUTE: " + route.city);
     let confirm = this.alertCtrl.create({
       title: 'Select a start point',
       message: 'Do you want to start from a certain task?',
@@ -108,3 +108,4 @@ export class ModalsService {
     confirm.present()
   }
 }
+

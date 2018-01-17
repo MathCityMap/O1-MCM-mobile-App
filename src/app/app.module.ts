@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { Diagnostic } from '@ionic-native/diagnostic';
 import { ModalsService } from '../services/modals-service';
 
 import { MyApp } from './app.component';
@@ -33,6 +34,9 @@ import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
+import { gpsService } from '../services/gps-service';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +75,8 @@ import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
     SplashScreen,
     Network,
     Geolocation,
+    Diagnostic,
+    LocationAccuracy,
     SQLite,
     File,
     FileTransfer,
@@ -81,6 +87,8 @@ import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
     ImagesService,
     BroadcastService,
     ModalsService,
+    gpsService,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

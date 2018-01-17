@@ -24,6 +24,8 @@ import { ModalsService } from '../../../../services/modals-service';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 
+import {gpsService} from  '../../../../services/gps-service';
+
 @IonicPage()
 @Component({
     selector: 'page-map',
@@ -48,11 +50,13 @@ export class MapPage implements OnInit {
                 public modalsService: ModalsService,
                 public navCtrl: NavController,
                 private spinner: SpinnerDialog,
-                private translateService: TranslateService) {
+                private translateService: TranslateService,
+                private gpsService: gpsService) {
     }
 
     async ionViewDidEnter() {
         console.log("ionViewDidEnter:");
+        this.gpsService.isLocationOn();
     }
 
     async ngOnInit() {

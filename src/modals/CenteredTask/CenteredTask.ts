@@ -6,6 +6,8 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { Task } from '../../entity/Task';
 import { ModalsService } from '../../services/modals-service';
 import { RouteInfo } from '../RouteInfo/RouteInfo';
+
+
 /**
  * Generated class for the RouteInfoPage page.
  *

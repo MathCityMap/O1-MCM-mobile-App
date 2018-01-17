@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { File } from '@ionic-native/file';
 import { Platform } from 'ionic-angular';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 
 @Injectable()
@@ -10,7 +11,7 @@ export class ImagesService {
     private nativeBaseURL: string;
     private isInitialized = false;
 
-    constructor(private fileManager: File, private platform: Platform) {
+    constructor(private diagnostic: Diagnostic, private fileManager: File, private platform: Platform) {
     }
 
     async getNativeBaseURL(): Promise<string> {

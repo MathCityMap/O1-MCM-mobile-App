@@ -343,6 +343,22 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "id": "cordova.plugins.diagnostic.Diagnostic",
+        "file": "plugins/cordova.plugins.diagnostic/www/ios/diagnostic.js",
+        "pluginId": "cordova.plugins.diagnostic",
+        "clobbers": [
+            "cordova.plugins.diagnostic"
+        ]
+    },
+    {
+        "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
+        "file": "plugins/cordova-plugin-request-location-accuracy/www/ios/RequestLocationAccuracy.js",
+        "pluginId": "cordova-plugin-request-location-accuracy",
+        "clobbers": [
+            "cordova.plugins.locationAccuracy"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -362,7 +378,9 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-sqlite-storage": "2.0.4",
     "ionic-plugin-keyboard": "2.2.1",
-    "cordova-custom-config": "4.0.2"
+    "cordova-custom-config": "4.0.2",
+    "cordova.plugins.diagnostic": "3.9.1",
+    "cordova-plugin-request-location-accuracy": "2.2.2"
 };
 // BOTTOM OF METADATA
 });
