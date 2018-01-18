@@ -12,12 +12,12 @@
 
   <ion-list>
     <div class="detail-box" *ngFor="let item of items">
-        <div class="image-container" (click)="modalsService.alertList(item, navCtrl)">
+        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)">
             <img [src]="item.getThumbURL()" />
         </div>
         <div class="text-container">
-          <p (click)="modalsService.alertList(item, navCtrl)">{{item.city}}, {{item.countryCode}}</p>
-          <h2 (click)="modalsService.alertList(item, navCtrl)">{{item.title}}</h2>
+          <p (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}}</p>
+          <h2 (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>
           <div class="segmented-box dotted-border-top">
             <div class="segement dotted-border-right distance">
                 <ion-label>{{ "a_t_distance" | translate }}</ion-label>

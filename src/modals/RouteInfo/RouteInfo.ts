@@ -37,7 +37,6 @@ export class RouteInfo {
     let routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(routeId);
     this.totalTasks = this.route.tasks.length;
-    this.navCtrl = this.navParams.get('navCtrl');
     let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
     console.log(this.currentProgress);
@@ -49,9 +48,9 @@ export class RouteInfo {
     modalsService.doDownload(route);
   }
 
-showRoute(route: Route, selectedTask: Task) {
+  showRoute(route: Route) {
     if(route.downloaded){
-      this.viewCtrl.dismiss({showRoute: false});
+      this.viewCtrl.dismiss({showRoute: true});
     }
   } 
 

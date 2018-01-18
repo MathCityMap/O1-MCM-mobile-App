@@ -167,41 +167,41 @@ export class TaskDetail {
           let message = "";
           let title = "";
           if(solved == 'solved'){
-            title = 'alert_right_answer_title';
+            title = 'a_alert_right_answer_title';
             this.taskDetails.solved = true;
             this.score.addSolvedTask(this.task.id);
             switch (this.taskDetails.tries){
               case 0:
-                message = 'alert_right_answer_1';
+                message = 'a_alert_right_answer_1';
                 break;
               case 1:
               case 2:
               case 3:
               case 4:
-                message = 'alert_right_answer_2';
+                message = 'a_alert_right_answer_2';
                 break;
               case 5:
-                message = 'alert_right_answer_3';
+                message = 'a_alert_right_answer_3';
                 break;
 
             }
           }
           if(solved == 'solved_low'){
-            title = 'alert_right_answer_title_low';
+            title = 'a_alert_right_answer_title_low';
             this.taskDetails.solvedLow = true;
             this.score.addSolvedTaskLow(this.task.id);
             switch (this.taskDetails.tries){
               case 0:
-                message = 'alert_right_answer_1_low';
+                message = 'a_alert_right_answer_1_low';
                 break;
               case 1:
               case 2:
               case 3:
               case 4:
-                message = 'alert_right_answer_2_low';
+                message = 'a_alert_right_answer_2_low';
                 break;
               case 5:
-                message = 'alert_right_answer_3_low';
+                message = 'a_alert_right_answer_3_low';
                 break;
             }
           }

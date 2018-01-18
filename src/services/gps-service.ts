@@ -15,7 +15,8 @@ export class gpsService {
          public platform : Platform,
          private locationAcc : LocationAccuracy) { }
 
-      public isLocationOn(){
+      public async isLocationOn(){
+         await this.platform.ready();
         console.log("platform: " + this.platform.platforms());
 
           //if the platform is not browser

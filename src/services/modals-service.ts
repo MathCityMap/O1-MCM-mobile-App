@@ -11,63 +11,97 @@ import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCod
 import { Task } from '../entity/Task';
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { AlertController } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Injectable()
 export class ModalsService {
 
-    constructor(
-        public modalCtrl: ModalController,
-        public ormService: OrmService,
-        public alertCtrl: AlertController,
-        public deepLinker: DeepLinker) { }
+    constructor(public modalCtrl: ModalController,
+                public ormService: OrmService,
+                public alertCtrl: AlertController,
+                public deepLinker: DeepLinker,
+                public translateService: TranslateService) {
+    }
 
     async doDownload(route: Route) {
         console.log(`doDownload ${JSON.stringify(route.id)}`);
 
         let cancelHasBeenClicked = false;
         let data = {
-          total: 0,
-          currentProgress: 0,
-          cancelCallback: () => {
-            console.log("cancel has been clicked");
-            cancelHasBeenClicked = true;
-          },
-          titleKey: 'a_rdl_title_map'
+            total: 0,
+            currentProgress: 0,
+            cancelCallback: () => {
+                console.log("cancel has been clicked");
+                cancelHasBeenClicked = true;
+            },
+            titleKey: 'a_rdl_title_map'
         };
-        let downloadModal = this.modalCtrl.create(MCMDownloadProgressPopupComponent, data, {showBackdrop: true, enableBackdropDismiss: false});
+        let downloadModal = this.modalCtrl.create(MCMDownloadProgressPopupComponent, data, {
+            showBackdrop: true,
+            enableBackdropDismiss: false
+        });
         downloadModal.present();
         await this.ormService.downloadRoute(route, function (doneDownload, totalDownload, titleKey) {
-          data.total = totalDownload;
-          data.currentProgress = doneDownload;
-          if (titleKey) {
-              data.titleKey = titleKey;
-          }
-          return cancelHasBeenClicked;
+            data.total = totalDownload;
+            data.currentProgress = doneDownload;
+            if (titleKey) {
+                data.titleKey = titleKey;
+            }
+            return cancelHasBeenClicked;
         });
         downloadModal.dismiss();
     }
 
-    showRoute(route: Route, navCtrl: NavController, selectedTask: Task): void {
-        if(route.downloaded){
-            navCtrl.parent.parent.push('TasksMap', {routeId: route.id, headerTitle: route.title, selectedTask: selectedTask}, {}, () => {
-              // necessary because of bug which does not update URL
-              this.deepLinker.navChange('forward');
+    showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
+        if (route.downloaded) {
+            let confirm = this.alertCtrl.create({
+                title: this.translateService.instant('a_guided_trail_title'),
+                message: this.translateService.instant('a_guided_trail'),
+                buttons: [
+                    {
+                        text: this.translateService.instant('no'),
+                        handler: () => {
+                            this.navigateToRoute(route, navCtrl, null);
+                        }
+                    },
+                    {
+                        text: this.translateService.instant('yes'),
+                        handler: () => {
+                            this.presentTaskListModal(route, navCtrl);
+                        }
+                    }
+                ]
             });
-        }else{
+            confirm.present();
+        } else {
             this.presentRouteInfoModal(route, navCtrl);
         }
-      }
+    }
+
+    private navigateToRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
+        navCtrl.parent.parent.push('TasksMap', {
+            routeId: route.id,
+            headerTitle: route.title,
+            selectedTask: selectedTask
+        }, {}, () => {
+            // necessary because of bug which does not update URL
+            this.deepLinker.navChange('forward');
+        });
+    }
 
     presentRouteInfoModal(route: Route, navCtrl: NavController): void {
         let self = this;
         //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
-        let routeInfoModal = this.modalCtrl.create(RouteInfo, {routeId: route.id, modalsService: this, navCtrl: navCtrl});
+        let routeInfoModal = this.modalCtrl.create(RouteInfo, {
+            routeId: route.id,
+            modalsService: this
+        });
         routeInfoModal.onDidDismiss(data => {
-          if(data.showRoute){
-            //will probably never showRoute;
-            self.showRoute(data.route, navCtrl, data.selectedTask);
-          }
+            if (data.showRoute) {
+                //will probably never showRoute;
+                self.showRoute(route, navCtrl);
+            }
         })
         routeInfoModal.present();
     }
@@ -80,36 +114,17 @@ export class ModalsService {
         });
     }
 
-    presentTaskListModal(route: Route, navCtrl: NavController, fromRouteInfo: RouteInfo): void {
-    let self = this;
-    let testModal = this.modalCtrl.create(CenteredTask, {route: route, tasks: route.tasks, modalsService: this, fromRouteInfo: fromRouteInfo});
-     testModal.onDidDismiss(data => {
-       if(data.route!=null && navCtrl!= null) this.showRoute(data.route, navCtrl, data.selectedTask);   
+    presentTaskListModal(route: Route, navCtrl: NavController): void {
+        let self = this;
+        let testModal = this.modalCtrl.create(CenteredTask, {
+            route: route,
+            tasks: route.tasks,
+            modalsService: this
+        });
+        testModal.onDidDismiss(data => {
+            if (data.route != null && navCtrl != null) this.navigateToRoute(data.route, navCtrl, data.selectedTask);
         })
-    testModal.present();
+        testModal.present();
     }
-
-    alertList(route: Route, navCtrl: NavController, fromRouteInfo: RouteInfo) {
-    let confirm = this.alertCtrl.create({
-      title: 'Select a start point',
-      message: 'Do you want to start from a certain task?',
-      buttons: [
-        {
-          text: 'No',
-          handler: () => {
-            if(fromRouteInfo!=null) fromRouteInfo.showRoute(route, null);
-            this.showRoute(route, navCtrl, null);
-          }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.presentTaskListModal(route, navCtrl, fromRouteInfo);
-          }
-        }
-      ]
-    });
-    confirm.present()
-  }
 }
 
