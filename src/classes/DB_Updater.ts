@@ -10,10 +10,11 @@ import { DBC_Plan } from './DBC_Plan'
 import { DB_Handler } from './DB_Handler'
 import { ImagesService } from '../services/images-service';
 import { checkAvailability } from '@ionic-native/core';
+import { OrmService } from '../services/orm-service';
 
 @Injectable()
 export class DB_Updater {
-    constructor(private http: Http, private imagesService: ImagesService) {
+    constructor(private http: Http, private imagesService: ImagesService, private ormService: OrmService) {
     }
 
     private invokeApi(queryAction: string): Promise<any> {
@@ -89,6 +90,10 @@ export class DB_Updater {
 
         }
         if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
+            // load routes with flags which need to be restored
+            let downloadedRoutes = await this.ormService.getDownloadedRoutes();
+            let unlockedRoutes = await this.ormService.getUnlockedRoutes();
+
             // Routes need update
             await this.insertJSONinSQLiteDB(await this.invokeApi('getRoutes'), DBC.DB_ROUTE);
             await this.updateRouteImages();
@@ -99,6 +104,17 @@ export class DB_Updater {
                     onlineVersions.getValue("version_route"),
                     "version_route"
                 ]);
+            let routesToSave = [];
+            for (let oldRoute of downloadedRoutes.concat(unlockedRoutes)) {
+                let newRoute = await this.ormService.findRouteById(oldRoute.id);
+                if (newRoute) {
+                    newRoute.downloaded = oldRoute.downloaded;
+                    newRoute.unlocked = oldRoute.unlocked;
+                    routesToSave.push(newRoute);
+                }
+            }
+            let repo = await this.ormService.getRouteRepository();
+            await repo.save(routesToSave);
             console.log("UPDATED VERSION!", "version_route")
         }
         if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
