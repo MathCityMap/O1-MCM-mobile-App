@@ -47,15 +47,18 @@ export class ImagesService {
         })
     }
 
+    isFilePluginAvailable() {
+        return checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
+    }
+
     async getNativeBaseURL(): Promise<string> {
         if (this.isInitialized) {
             return this.nativeBaseURL;
         }
         await this.platform.ready();
 
-        let filePluginIsAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
         let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-        if (filePluginIsAvailable && !isLoadedViaHttp) {
+        if (this.isFilePluginAvailable() && !isLoadedViaHttp) {
             // if loaded via http (for live reload during development), local URLs cannot be accessed
             let directory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory);
             this.nativeBaseURL = directory.nativeURL;
@@ -65,6 +68,9 @@ export class ImagesService {
     }
 
     async downloadURLs(urls: string[], createThumbs: boolean, progressCallback: DownloadProgressCallback = null): Promise<any> {
+        if (!this.isFilePluginAvailable()) {
+            return;
+        }
         let promiseError;
         const fileTransfer: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
@@ -183,6 +189,9 @@ export class ImagesService {
     }
 
     async removeDownloadedURLs(urls: string[], removeThumbs = true): Promise<any> {
+        if (!this.isFilePluginAvailable()) {
+            return;
+        }
         let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)
         for (var i = 0; i < urls.length; i++) {
             let imgFileName = urls[i]
