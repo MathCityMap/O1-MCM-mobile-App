@@ -1,21 +1,22 @@
 page-task-detail{
     .task-header{
-//        position: fixed;
         position: relative;
         display: block;
         z-index: 0;
-//        max-height: 50vh;
         .image-container{
             position: relative;
             width: 100%;
             overflow: hidden;
-            max-height: 65vh;
+            max-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             img{
 //                object-fit: cover;
 //                max-width: unset;
+                &:first-of-type{
+                    position: fixed;
+                }
             }
             &:before{
                 content: '';
@@ -28,17 +29,18 @@ page-task-detail{
 
     .transition{
         content: '';
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #e5e5e5 70%, rgba(255, 255, 255, 0) 100%);
-        height: 200px;
+        background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
+        height: 100px;
+
         width: 100%;
         display: block;
         position: absolute;
-        bottom: -58px;
+        bottom: -50px;
     }
     .task-content{
-//        transform: translateY(40vh);
         display: block;
         position: relative;
+        background: linear-gradient(to bottom, rgba(229, 229, 229, 0) 50px, rgba(229, 229, 229, 1) 51px);
 //        background-image: url(../assets/images/math_pattern.png);
 //        background-repeat: round round;
 //        background-size: 82px;
@@ -46,7 +48,7 @@ page-task-detail{
     .card{
         z-index: 2;
         &.task{
-            margin-top: -20px;
+            margin-top: -15%;
             padding-top: $global-large-padding*0.5;
             p{
                 margin-bottom: $global-base-padding*1.5;

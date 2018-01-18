@@ -76,13 +76,17 @@
         }
     }
 }
-.pattern-bg{
-    .scroll-content{
-        background-image: url('../assets/images/math_pattern.png');
-        background-repeat: round round;
-        background-size: 82px;
-    }
+.content-md, .content-ios{
+    background-color: color($colors, light-grey);
 }
+
+//.pattern-bg{
+//    .scroll-content{
+//        background-image: url('../assets/images/math_pattern.png');
+//        background-repeat: round round;
+//        background-size: 82px;
+//    }
+//}
 
 
 
@@ -121,7 +125,7 @@
 .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
     box-shadow: none;
-    border-bottom-color: color($colors, light-grey);;
+    border-bottom-color: color($colors, light-grey);
 }
 ion-item{
     &.item-input{
