@@ -74,7 +74,7 @@ export var tilesDb = {
         if (downloadWasAborted) {
           return;
         }
-        while (currentlyActiveDownloads < 8 && nextIndex < totalDownload) {
+        while (currentlyActiveDownloads < 4 && nextIndex < totalDownload) {
           downloadTile(nextIndex, tileUrls[nextIndex]);
           nextIndex++;
         }

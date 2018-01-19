@@ -8,12 +8,16 @@ import { Helper } from '../classes/Helper';
 
 @Injectable()
 export class ImagesService {
-
+    public static INSTANCE: ImagesService;
     private nativeBaseURL: string;
     private isInitialized = false;
     private downloadQueue: any = null;
+    private offlineImageUrlCache = {};
+    private offlineThumbnailUrlCache = {};
 
     constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer) {
+        ImagesService.INSTANCE = this;
+        this.init();
     }
 
     private saveThumb(newFileName: string, base64: string, fileManager: File) {
@@ -51,7 +55,7 @@ export class ImagesService {
         return checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
     }
 
-    async getNativeBaseURL(): Promise<string> {
+    async init(): Promise<string> {
         if (this.isInitialized) {
             return this.nativeBaseURL;
         }
@@ -128,7 +132,7 @@ export class ImagesService {
                     console.error(`Error downloading image ${task.imgFileName}`)
                     callback();
                 })
-        }, 1);
+        }, 4);
 
         let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
         for (var i = 0; i < urls.length; i++) {
@@ -186,6 +190,17 @@ export class ImagesService {
 
     getLocalThumbFileName(imgPath: string) : string {
         return 'thumb_' + this.getLocalFileName(imgPath);
+    }
+
+    getOfflineURL(imgPath: string, asThumbNail: boolean = false) : string {
+        if (asThumbNail) {
+            return this.offlineThumbnailUrlCache[imgPath] ? this.offlineThumbnailUrlCache[imgPath]
+                : this.offlineThumbnailUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath) : Helper.WEBSERVER_URL + imgPath);
+        }
+        return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
+            : this.offlineImageUrlCache[imgPath] =
+                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath) : Helper.WEBSERVER_URL + imgPath);
     }
 
     async removeDownloadedURLs(urls: string[], removeThumbs = true): Promise<any> {

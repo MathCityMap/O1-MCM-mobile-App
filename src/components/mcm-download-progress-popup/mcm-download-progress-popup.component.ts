@@ -1,5 +1,4 @@
-import { Component,Input, Inject} from '@angular/core';
-import { BroadcastService } from '../../services/broadcast-service';
+import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 
 @Component({

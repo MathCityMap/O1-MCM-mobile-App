@@ -52,8 +52,8 @@ export class MapPage implements OnInit {
                 private gpsService: gpsService) {
     }
 
-    async ionViewDidEnter() {
-        console.log("ionViewDidEnter:");
+    async ionViewWillEnter() {
+        console.log("ionViewWillEnter:");
         this.gpsService.isLocationOn();
     }
 
@@ -67,8 +67,6 @@ export class MapPage implements OnInit {
         });
 
         this.loadMap();
-
-
     }
 
 

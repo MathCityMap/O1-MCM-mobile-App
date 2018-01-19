@@ -9,6 +9,7 @@ import { Task2Route } from './Task2Route';
 import { User } from './User';
 import { TranslateService } from '@ngx-translate/core';
 import { ImagesService } from '../services/images-service';
+import { OrmService } from '../services/orm-service';
 
 @Entity('mcm_route')
 export class Route {
@@ -71,6 +72,23 @@ export class Route {
 
     tasks: Task[];
 
+    async getTasks(): Promise<Task[]> {
+        if (this.tasks) {
+            return this.tasks;
+        }
+        if (this.task2Routes) {
+            this.task2Routes.sort((a, b) => a.id - b.id);
+            this.tasks = this.task2Routes.map((value, index) => {
+                value.task.position = index + 1;
+                return value.task;
+            });
+        } else {
+            // relation was not loaded yet -> reload route to get tasks
+            this.tasks = await (await OrmService.INSTANCE.findRouteById(this.id)).getTasks();
+        }
+        return this.tasks;
+    }
+
     @OneToMany(type => Task2Route, task2Route => task2Route.route, {eager: true})
     task2Routes: Task2Route[];
 
@@ -83,8 +101,6 @@ export class Route {
     @OneToMany(type => Score, score => score.route, {eager: true})
     scores: Score[];
 
-    imagesService: ImagesService;
-
     getScoreForUser(user: User): Score {
         let userScore = this.scores.filter(value => value.userId == user.id);
         let score = userScore.length > 0 ? userScore[0] : new Score();
@@ -93,38 +109,18 @@ export class Route {
         return score;
     }
 
-    private cachedImageURL: string;
     getImageURL(): string {
-        if (this.cachedImageURL) {
-            return this.cachedImageURL;
-        }
-        if (Helper.NATIVE_BASE_URL) {
-            return this.cachedImageURL = Helper.NATIVE_BASE_URL + this.imagesService.getLocalFileName(this.image);
-        } else {
-            return this.cachedImageURL = Helper.WEBSERVER_URL + this.image;
-        }
+        return ImagesService.INSTANCE.getOfflineURL(this.image);
     }
 
-    private cachedThumbURL: string;
     getThumbURL(): string {
-        if (this.cachedThumbURL) {
-            return this.cachedThumbURL;
-        }
-        if (Helper.NATIVE_BASE_URL) {
-            return this.cachedThumbURL = Helper.NATIVE_BASE_URL + this.imagesService.getLocalThumbFileName(this.image);
-        } else {
-            return this.cachedThumbURL = this.getImageURL();
-        }
+        return ImagesService.INSTANCE.getOfflineURL(this.image, true);
     }
 
     private boundingBoxLatLng: LatLngBounds = null;
     private viewBoundingBoxLatLng: LatLngBounds = null;
     private centerLatLng: LatLng = null;
     private distance: number = null;
-
-    constructor() {
-
-    }
 
     private calcBoundingBoxAndCenter() {
         const padding: number = 0.0015;

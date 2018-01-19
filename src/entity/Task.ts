@@ -1,7 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Route } from "./Route";
 import { Helper } from '../classes/Helper';
-import { error } from "util";
 import { Task2Route } from './Task2Route';
 import { ImagesService } from '../services/images-service';
 
@@ -88,19 +87,8 @@ export class Task {
     @OneToMany(type => Task2Route, task2Route => task2Route.task)
     task2Routes: Task2Route[];
 
-    imagesService: ImagesService
-
-    private cachedImageURL: string;
-
     getImageURL(): string {
-        if (this.cachedImageURL) {
-            return this.cachedImageURL;
-        }
-        if (Helper.NATIVE_BASE_URL) {
-            return this.cachedImageURL = Helper.NATIVE_BASE_URL + this.imagesService.getLocalFileName(this.image);
-        } else {
-            return this.cachedImageURL = Helper.WEBSERVER_URL + this.image;
-        }
+        return ImagesService.INSTANCE.getOfflineURL(this.image);
     }
 
     getImagesForDownload(): string[] {

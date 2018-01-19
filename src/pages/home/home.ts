@@ -19,7 +19,7 @@ export class HomePage {
     HomePage.nav = navCtrl;
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.platform.ready().then(() => {
       Helper.isOnline = navigator.onLine;
       console.warn(`Connection status: ${Helper.isOnline}`);

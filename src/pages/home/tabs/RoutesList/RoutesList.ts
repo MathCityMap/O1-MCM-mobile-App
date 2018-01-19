@@ -28,7 +28,7 @@ export class RoutesListPage {
                 private modalCtrl: ModalController) {
     }
 
-    async ionViewDidEnter() {
+    async ionViewWillEnter() {
         if (this.items.length === 0) {
             this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
         }
@@ -68,7 +68,7 @@ export class RoutesListPage {
     async doRefresh(refresher) {
         await this.dbUpdater.checkForUpdates();
         this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
-        await this.ionViewDidEnter();
+        await this.ionViewWillEnter();
         refresher.complete();
     }
 
@@ -76,7 +76,7 @@ export class RoutesListPage {
         let route = await this.modalsService.showAddRouteByCodeModal();
         if (route) {
             this.items.push(route);
-            this.ionViewDidEnter();
+            this.ionViewWillEnter();
         }
     }
 }

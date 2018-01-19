@@ -37,8 +37,8 @@ export class TasksMap {
     private gpsService: gpsService
   ) { }
 
-  async ionViewDidEnter() {
-    console.log('TasksMap ionViewDidEnter()');
+  async ionViewWillEnter() {
+    console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
     this.selectedTask = this.navParams.get("selectedTask");
@@ -48,7 +48,7 @@ export class TasksMap {
 
   markerGroup: any = null;
 
-  initializeMap() {
+  async initializeMap() {
       if (this.markerGroup != null) {
           console.warn('removing markerGroup');
           this.map.removeLayer(this.markerGroup);
@@ -57,7 +57,7 @@ export class TasksMap {
       let markerGroup = (L as any).markerClusterGroup({
           maxClusterRadius: 40
       });
-      this.route.tasks.forEach(task => {
+      (await this.route.getTasks()).forEach(task => {
           markerGroup.addLayer(L.marker([task.lat, task.lon]).on('click', () => {
               this.selectedTask = task;
           }));

@@ -100,7 +100,7 @@ export class ModalsService {
         routeInfoModal.onDidDismiss(data => {
             if (data.showRoute) {
                 //will probably never showRoute;
-                self.showRoute(route, navCtrl);
+                self.showRoute(data.route, navCtrl);
             }
         })
         routeInfoModal.present();
@@ -114,11 +114,10 @@ export class ModalsService {
         });
     }
 
-    presentTaskListModal(route: Route, navCtrl: NavController): void {
-        let self = this;
+    async presentTaskListModal(route: Route, navCtrl: NavController) {
         let testModal = this.modalCtrl.create(CenteredTask, {
             route: route,
-            tasks: route.tasks,
+            tasks: await route.getTasks(),
             modalsService: this
         });
         testModal.onDidDismiss(data => {

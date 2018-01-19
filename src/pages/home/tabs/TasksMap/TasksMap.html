@@ -32,7 +32,7 @@
             </ion-fab>
         </div>
         <div class="image-container">
-            <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'" />
+            <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'" (click)="gototask(selectedTask.id, selectedTask.title)" />
         </div>
         <div class="text-container" *ngIf="selectedTask">
             <p>#{{selectedTask.position}}</p>

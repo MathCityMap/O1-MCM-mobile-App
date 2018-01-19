@@ -1,11 +1,5 @@
-import {
-  Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToOne, JoinColumn,
-  OneToMany, ManyToOne
-} from "typeorm";
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Task } from './Task';
-import { Helper } from '../classes/Helper';
-import { LatLng, LatLngBounds } from 'leaflet';
-import { Score } from "./Score";
 import { Route } from './Route';
 
 @Entity('mcm_rel_route_task')

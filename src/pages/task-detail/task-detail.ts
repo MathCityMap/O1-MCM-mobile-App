@@ -46,8 +46,8 @@ export class TaskDetail {
   ){  }
 
 
-  async ionViewDidEnter() {
-    console.log('TasksMap ionViewDidEnter()');
+  async ionViewWillEnter() {
+    console.log('TasksMap ionViewWillEnter()');
     this.taskId = this.navParams.get('taskId');
     this.routeId = this.navParams.get('routeId');
     this.task = await this.ormService.findTaskById(this.taskId);

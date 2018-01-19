@@ -21,8 +21,6 @@ import { RouteInfo } from '../RouteInfo/RouteInfo';
 })
 export class CenteredTask{
   public route: Route;
-  private totalTasks: number;
-  private currentProgress = 0;
 
   public tasks: Task[] = [];
 
@@ -37,9 +35,9 @@ export class CenteredTask{
     this.viewCtrl.dismiss({route: route, selectedTask: selectedTask});
   }
 
-  ionViewDidEnter() {
+  async ionViewWillEnter() {
   	this.route = this.navParams.get('route');
-  	this.tasks = this.route.tasks;
+  	this.tasks = await this.route.getTasks();
 /*     console.log('-------------------', this.totalTasks); */
   }
 

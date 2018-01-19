@@ -133,8 +133,6 @@ export class Helper {
     return JSON.parse(str.replace(/(?:\r\n|\r|\n)/g, '\\n'));
   }
 
-  public static NATIVE_BASE_URL: string = null;
-
   // public static JSONArray getJSONArray(String arrString){
   //   try{
   //       JSONArray solutionList;

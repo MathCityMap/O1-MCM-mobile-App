@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { SQLite } from '@ionic-native/sqlite';
-import { createConnection, Connection, Repository } from "typeorm";
+import { Connection, createConnection, Repository } from "typeorm";
 
 import { InitialMigration1513274191111 } from '../migration/1513274191111-InitialMigration';
 import { FailedTaskMigration1515428187000 } from '../migration/1515428187000-failedTaskMigration';
@@ -20,16 +20,17 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
-import { Helper } from '../classes/Helper';
 
 @Injectable()
 export class OrmService {
     connection: Connection;
     private min_zoom: number = 16;
     private max_zoom: number = 19;
+    public static INSTANCE: OrmService;
 
     constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
                 private translateService: TranslateService, private platform: Platform) {
+        OrmService.INSTANCE = this;
     }
 
     async getConnection(): Promise<Connection> {
@@ -37,7 +38,6 @@ export class OrmService {
             return this.connection;
         }
         await this.platform.ready();
-        Helper.NATIVE_BASE_URL = await this.imagesService.getNativeBaseURL();
         const sqliteAvailable = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true;
         const entities = [
             User,
@@ -107,54 +107,19 @@ export class OrmService {
         return connection.getRepository(User);
     }
 
-    private async postProcessRoute(route: Route): Promise<Route> {
-        if (route && route.task2Routes) {
-            route.task2Routes.sort((a, b) => a.id - b.id);
-            route.tasks = route.task2Routes.map((value, index) => {
-                value.task.position = index + 1;
-                value.task.imagesService = this.imagesService;
-                return value.task;
-            });
-        }
-
-        if (route) {
-            route.imagesService = this.imagesService;
-        }
-
-        return route;
-    }
-
-    private async postProcessTask(task: Task): Promise<Task> {
-        if (task) {
-            task.imagesService = this.imagesService;
-        }
-        return task;
-    }
-
-    private async postProcessUser(user: User): Promise<User> {
-        return user;
-    }
-
-    private async postProcessScore(score: Score): Promise<Score> {
-        return score;
-    }
-
     public async findRouteById(id: number): Promise<Route> {
         let repo = await this.getRouteRepository();
-        let route = await repo.findOneById(id);
-        return await this.postProcessRoute(route);
+        return await repo.findOneById(id);
     }
 
     public async findRouteByCode(code: string): Promise<Route> {
         let repo = await this.getRouteRepository();
-        let route = await repo.findOne({where: {code: code}});
-        return await this.postProcessRoute(route);
+        return await repo.findOne({where: {code: code}});
     }
 
     public async findScoreByRoute(id: number): Promise<Score> {
         let repo = await this.getScoreRepository();
-        let score = await repo.findOne({where: {routeId: id}});
-        return await this.postProcessScore(score);
+        return await repo.findOne({where: {routeId: id}});
     }
 
     public async getAllTasks() {
@@ -181,8 +146,7 @@ export class OrmService {
 
     public async findTaskById(id: number): Promise<Task> {
         let repo = await this.getTaskRepository();
-        let task = await repo.findOneById(id);
-        return await this.postProcessTask(task);
+        return await repo.findOneById(id);
     }
 
 
@@ -238,26 +202,14 @@ export class OrmService {
 
     private async getUserByName(userName: string): Promise<User> {
         let repo = await this.getUserRepository();
-        let user = await repo.findOne({where: {name: userName}});
-        return this.postProcessUser(user);
+        return await repo.findOne({where: {name: userName}});
     }
 
     async getVisibleRoutes(showSpinner = true, compareFn = null): Promise<Route[]> {
         if (showSpinner) this.spinner.show(null, this.translateService.instant('a_toast_routes_loading'), true);
         let repo = await this.getRouteRepository();
-        let result = await repo.find({
-            where: {
-                public: '1'
-            }
-        });
-        result = result.concat(await repo.find({
-            where: {
-                unlocked: '1'
-            }
-        }));
-        for (let route of result) {
-            await this.postProcessRoute(route);
-        }
+        let connection = await this.getConnection();
+        let result = await repo.createQueryBuilder('r').where('r.public = 1').orWhere('r.unlocked = 1').getMany();
         if (compareFn) {
             result.sort(compareFn);
         }
@@ -272,9 +224,6 @@ export class OrmService {
                 downloaded: '1'
             }
         });
-        for (let route of result) {
-            await this.postProcessRoute(route);
-        }
         return result;
     }
 
@@ -285,9 +234,6 @@ export class OrmService {
                 unlocked: '1'
             }
         });
-        for (let route of result) {
-            await this.postProcessRoute(route);
-        }
         return result;
     }
 
@@ -296,7 +242,7 @@ export class OrmService {
             statusCallback(0, 0, 'a_rdl_title_map');
             await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
             statusCallback(0, 0, 'a_rdl_title_img');
-            await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(route.tasks), false, statusCallback);
+            await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(await route.getTasks()), false, statusCallback);
             route.downloaded = true;
             const repo = await this.getRouteRepository();
             await repo.save(route);
@@ -314,13 +260,13 @@ export class OrmService {
         let result = [];
         tasks.map(task => task.getImagesForDownload()).map(images => {
             result = result.concat(images);
-        })
+        });
         return result;
     }
 
     async removeDownloadedRoute(route: Route) {
         CacheManagerMCM.removeDownloadedTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
-        this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(route.tasks), false);
+        this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         route.downloaded = false;
         const repo = await this.getRouteRepository();
         await repo.save(route);
