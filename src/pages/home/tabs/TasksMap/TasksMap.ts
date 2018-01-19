@@ -26,7 +26,6 @@ export class TasksMap {
   private map: any;
   private routeId: number;
   private route: Route;
-  private showPopup: boolean = false;
   private selectedTask: Task;
 
   constructor(

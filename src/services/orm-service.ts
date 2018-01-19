@@ -208,7 +208,6 @@ export class OrmService {
     async getVisibleRoutes(showSpinner = true, compareFn = null): Promise<Route[]> {
         if (showSpinner) this.spinner.show(null, this.translateService.instant('a_toast_routes_loading'), true);
         let repo = await this.getRouteRepository();
-        let connection = await this.getConnection();
         let result = await repo.createQueryBuilder('r').where('r.public = 1').orWhere('r.unlocked = 1').getMany();
         if (compareFn) {
             result.sort(compareFn);

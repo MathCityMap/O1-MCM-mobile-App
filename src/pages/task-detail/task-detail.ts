@@ -8,7 +8,6 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { MCMIconModal } from '../../modals/MCMIconModal/MCMIconModal';
 import { MCMModalType } from '../../app/app.component';
 import { TaskState } from '../../entity/TaskState';
-import { User } from '../../entity/User';
 import { Score } from '../../entity/Score';
 
 
@@ -109,7 +108,6 @@ export class TaskDetail {
   }
 
   checkResult(){
-    var modal;
     console.log(this.task.solutionType);
     if(this.task.solutionType == "value"){
       if(this.taskDetails.answer == this.task.getSolution()){
