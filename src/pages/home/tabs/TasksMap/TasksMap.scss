@@ -2,7 +2,7 @@ page-tasks-map {
     .map .detail-box {
         bottom: 0;
         &.top{
-            padding: 10px 16px;
+            padding: 10px 16px 8px;
             top: 0;
             bottom: auto;
             position: absolute;
@@ -14,8 +14,12 @@ page-tasks-map {
             transform: none;
             .text-container{
                 padding-left: 0;
-                .ranking-row{
-                    margin-left: 60px;
+                .ranking{
+
+                    &.above:before{
+                        content: url(../assets/icons/icon_up.svg);
+
+                    }
                 }
                 .col{
                     padding: 0;

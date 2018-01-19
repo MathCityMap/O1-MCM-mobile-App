@@ -39,17 +39,33 @@ export class MapPage implements OnInit {
     userMarker: any;
     isFilePluginAvailable: boolean;
 
-
-    constructor(private platform: Platform,
-                private geolocation: Geolocation,
-                private updater: DB_Updater,
-                private ormService: OrmService,
-                private modalCtrl: ModalController,
-                public modalsService: ModalsService,
-                public navCtrl: NavController,
-                private spinner: SpinnerDialog,
-                private translateService: TranslateService,
-                private gpsService: gpsService) {
+    userPositionIcon;
+    publicRouteIconAvailable;
+    privateRouteIconAvailable;
+    publicRouteIconOpen;
+    privateRouteIconOpen;
+    //Marker for Progress
+    publicRouteIconDownloaded;
+    privateRouteIconDownloaded;
+    constructor(
+        private platform: Platform,
+        private geolocation: Geolocation,
+        private updater: DB_Updater,
+        private ormService: OrmService,
+        private modalCtrl: ModalController,
+        public modalsService: ModalsService,
+        public navCtrl: NavController,
+        private spinner: SpinnerDialog,
+        private translateService: TranslateService,
+        private gpsService: gpsService) {
+            this.userPositionIcon = L.icon({iconUrl:'../../../../assets/icons/icon_mapposition.png' , iconSize: [38, 41], className:['marker'], shadowUrl: '../../../../assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+            this.publicRouteIconAvailable = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-available.png', iconSize: [35, 48], className:['marker'], shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.privateRouteIconAvailable = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-private-available.png', iconSize: [35, 48], className:['marker'], shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.publicRouteIconOpen = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-open.png', iconSize: [35, 48], className:['marker'], shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.privateRouteIconOpen = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-private-open.png', iconSize: [35, 48], className:['marker'], shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            //Marker for Progress
+            this.publicRouteIconDownloaded = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-done.png', iconSize: [35, 48], className:['marker'], shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.privateRouteIconDownloaded = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-private-done.png', iconSize: [35, 48], className:['marker'], shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
     }
 
     async ionViewWillEnter() {
@@ -85,7 +101,13 @@ export class MapPage implements OnInit {
         const routes = await this.ormService.getVisibleRoutes();
         let markerGroup = (L as any).markerClusterGroup();
         for (let route of routes) {
-            markerGroup.addLayer(L.marker(route.getCenterLatLng()).on('click', () => {
+            let icon;
+            if(route.public){
+                icon = this.publicRouteIconOpen;
+            }else{
+                icon = this.privateRouteIconOpen;
+            }
+            markerGroup.addLayer(L.marker(route.getCenterLatLng(), {icon: icon}).on('click', () => {
                 this.routeDetails = route;
             }));
         }
@@ -157,7 +179,8 @@ export class MapPage implements OnInit {
                         Helper.myLocation = resp;
                         console.log(`Coordinates: ${JSON.stringify(resp)}`);
                         // let markerGroup = L.featureGroup();
-                        this.userMarker = L.circleMarker([resp.coords.latitude, resp.coords.longitude]).on('click', () => {
+
+                        this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
                             alert('Marker clicked');
                         });
                         this.userMarker.addTo(this.map);
@@ -190,7 +213,7 @@ export class MapPage implements OnInit {
     async addRouteByCode() {
         let route = await this.modalsService.showAddRouteByCodeModal();
         if (route) {
-            this.markerGroup.addLayer(L.marker(route.getCenterLatLng()).on('click', () => {
+            this.markerGroup.addLayer(L.marker(route.getCenterLatLng(), {icon: this.privateRouteIcon}).on('click', () => {
                 this.routeDetails = route;
             }));
         }
