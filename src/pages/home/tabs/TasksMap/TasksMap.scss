@@ -2,7 +2,7 @@ page-tasks-map {
     .map .detail-box {
         bottom: 0;
         &.top{
-            padding: 10px 16px 8px;
+            padding: 14px 16px 3px;
             top: 0;
             bottom: auto;
             position: absolute;
@@ -14,11 +14,32 @@ page-tasks-map {
             transform: none;
             .text-container{
                 padding-left: 0;
-                .ranking{
+                .ranking-row{
+                    display: flex;
+                    align-items: baseline;
+                    &:before{
+                        background-repeat: no-repeat;
+                        background-size: 12px auto;
+                        width: 12px;
+                        height: 8px;
+                        content: "";
+                        margin-right: 30px;
+                    }
+                    &.above:before, &.below:before{
+                        background-image: url(../assets/icons/icon_up.svg);
+                    }
+                    &.below:before{
+                        -webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-ms-transform: rotate(180deg);-o-transform: rotate(180deg);transform: rotate(180deg);
+                    }
+                    .ranking{
+                        flex: 1;
+                        margin-bottom: 3px;
+                        padding-bottom: 3px;
 
-                    &.above:before{
-                        content: url(../assets/icons/icon_up.svg);
+                        &.current p{
+                            color: color($colors, primary);
 
+                        }
                     }
                 }
                 .col{

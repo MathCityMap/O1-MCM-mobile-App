@@ -1,21 +1,13 @@
-<mcm-header></mcm-header>
+<div class="modal card task-select has-button-on-the-edge">
+    <h2>{{ 'a_startAt' | translate}}</h2>
 
-
-<ion-content class="has-header pattern-bg">
-    <div class="card first" *ngIf="route">
-    <p>{{ route.city }}, {{ route.countryCode }}</p>
-    <h1>{{ route.title }}</h1>
-
+    <div class="modal-content">
+        <div class="dotted-border-bottom"  *ngFor="let item of tasks" (click) = "showRoute(route, item)">
+            {{item.position}}. {{item.title}}
+        </div>
     </div>
-        <ion-list>
-            <ion-list-header text-center>Tasks</ion-list-header>
-            <div class="detail-box" *ngFor="let item of tasks">
-                <button ion-item (click) = "showRoute(route, item)">
-                    <ion-avatar item-start>
-                        <img [src]="item.getImageURL()"/>
-                    </ion-avatar>
-                    <h2>{{item.position}}. {{item.title}}</h2>
-                </button>
-            </div>
-        </ion-list>
-</ion-content>
+
+    <div class="on-the-edge-container">
+        <button ion-button small round (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>
+    </div>
+</div>

@@ -100,6 +100,8 @@
     .list-md{
         margin: 0;
         padding: 0px;
+        padding-bottom: 50px;
+        background-color: #ffffff;
     }
     .item{
         height: 124px;
@@ -567,7 +569,7 @@ ion-fab-list{
     vertical-align: middle;
 }
 .ion-md-icon-starting-point:before,
-.ion-ios-starting-point:before{
+.ion-ios-icon-starting-point:before{
     background-image: url(../assets/icons/icon_starting-point.svg);
     background-size: 22px 22px;
     width: 22px;
@@ -584,7 +586,7 @@ ion-fab-list{
     content:"";
 }
 .ion-md-icon-track-gps:before,
-.ion-ios-track-gps:before{
+.ion-ios-icon-track-gps:before{
     background-image: url(../assets/icons/icon_track-gps.svg);
     background-size: 22px 22px;
     width: 22px;
@@ -610,6 +612,10 @@ ion-modal {
             flex-direction: column;
             justify-content: center;
         }
+        .modal-content{
+            max-height: 70vh;
+            overflow: scroll;
+        }
     }
 
     //REAL MODALS
@@ -619,7 +625,7 @@ ion-modal {
             font-size: 15px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin: 0 0 $global-small-padding;
+            margin: 0 0 $global-base-padding;
         }
         p, .highlight{
             font-size: 14px;
@@ -672,6 +678,13 @@ ion-modal {
             }
         }
 
+    }
+
+    .task-select{
+        .dotted-border-bottom{
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
     }
 
 }
