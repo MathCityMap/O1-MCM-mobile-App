@@ -356,6 +356,12 @@
   "a_guided_trail_title": "选择起点",
   "a_about_mcm_title": "关于数学城市地图",
   "a_about_mcm": "数学城市地图是法兰克福大学数学与信息科学教育学院MATIS 1工作团队的一个项目。\\n 在我们的网址（www.mathcitymap.eu）上有数学城市地图的网页入口，并且有以pdf格式输出的功能。简单注册之后，您便可在“入口”界面生成您自己的任务和路径，并在手机App的帮助下展开活动。所有数学城市地图的产品都是免费的。\\n\\n 责任人：\\n Matthias Ludwig\\n Iwan Gurjanow\\n Joerg Zender\\n\\n 数学城市地图使用的图片材料来源于 https://icons8.com:\\n https://icons8.com/web-app/5682/marker\\n https://icons8.com/web-app/2969/settings-filled\\n https://icons8.com/web-app/13114/cancel\\n https://icons8.com/web-app/5575/plus\\n https://icons8.com/web-app/16570/exit\\n https://icons8.com/web-app/5663/worldwide-location\\n https://icons8.com/web-app/5594/key \\n https://icons8.com/web-app/6269/waypoint-map\\n https://icons8.com/web-app/13115/ok\\n",
+
+  "a_about_mcm_project": "数学城市地图是法兰克福大学数学与信息科学教育学院MATIS 1工作团队的一个项目。",
+  "a_about_mcm_portal": "在我们的网址（www.mathcitymap.eu）上有数学城市地图的网页入口，并且有以pdf格式输出的功能。简单注册之后，您便可在“入口”界面生成您自己的任务和路径，并在手机App的帮助下展开活动。所有数学城市地图的产品都是免费的。",
+  "a_about_mcm_responsibility_title": "责任人",
+  "a_about_mcm_responsibility": "Matthias Ludwig, Iwan Gurjanow, Joerg Zender",
+
   "a_alert_right_answer_1_low": "你一下子就解决了问题。\\n你的答案 \\'###L###\\' 是ok的。",
   "a_alert_right_answer_2_low": "你的答案 \\'###L###\\' 是ok的。",
   "a_alert_right_answer_3_low": "虽然你看起来像是猜的，但是你的答案 \\'###L###\\' 是ok的。",

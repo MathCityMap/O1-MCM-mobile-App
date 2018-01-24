@@ -22,7 +22,11 @@ import { ModalsService } from '../../../../services/modals-service';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 
+
+
 import {gpsService} from  '../../../../services/gps-service';
+import 'rxjs/add/operator/filter'
+import 'leaflet-rotatedmarker'
 
 @IonicPage()
 @Component({
@@ -39,6 +43,8 @@ export class MapPage implements OnInit {
     userMarker: any;
     isFilePluginAvailable: boolean;
 
+    prevPos: any;
+
     userPositionIcon;
     publicRouteIconAvailable;
     privateRouteIconAvailable;
@@ -47,6 +53,8 @@ export class MapPage implements OnInit {
     //Marker for Progress
     publicRouteIconDownloaded;
     privateRouteIconDownloaded;
+
+
     constructor(
         private platform: Platform,
         private geolocation: Geolocation,
@@ -58,15 +66,17 @@ export class MapPage implements OnInit {
         private spinner: SpinnerDialog,
         private translateService: TranslateService,
         private gpsService: gpsService) {
-            this.userPositionIcon = L.icon({iconUrl:'../../../../assets/icons/icon_mapposition.png' , iconSize: [38, 41], className:'marker', shadowUrl: '../../../../assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-            this.publicRouteIconAvailable = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-available.png', iconSize: [35, 48], className:'marker', shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.privateRouteIconAvailable = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-private-available.png', iconSize: [35, 48], className:'marker', shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.publicRouteIconOpen = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-open.png', iconSize: [35, 48], className:'marker', shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.privateRouteIconOpen = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-private-open.png', iconSize: [35, 48], className:'marker', shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+            this.publicRouteIconAvailable = L.icon({iconUrl:'./assets/icons/icon_routemarker-available.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.privateRouteIconAvailable = L.icon({iconUrl:'./assets/icons/icon_routemarker-private-available.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.publicRouteIconOpen = L.icon({iconUrl:'./assets/icons/icon_routemarker-open.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.privateRouteIconOpen = L.icon({iconUrl:'./assets/icons/icon_routemarker-private-open.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
             //Marker for Progress
-            this.publicRouteIconDownloaded = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-done.png', iconSize: [35, 48], className:'marker', shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.privateRouteIconDownloaded = L.icon({iconUrl:'../../../../assets/icons/icon_routemarker-private-done.png', iconSize: [35, 48], className:'marker', shadowUrl: '../../../../assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.publicRouteIconDownloaded = L.icon({iconUrl:'./assets/icons/icon_routemarker-done.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.privateRouteIconDownloaded = L.icon({iconUrl:'./assets/icons/icon_routemarker-private-done.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
     }
+
+
 
     async ionViewWillEnter() {
         console.log("ionViewWillEnter:");
@@ -83,6 +93,13 @@ export class MapPage implements OnInit {
         });
 
         this.loadMap();
+
+      //  const subscription = this.geolocation.watchPosition()
+      //                        //.filter((p) => p.coords !== undefined) //Filter Out Errors
+      //                        .subscribe(position => {
+  	//	console.log("############################################## " + position.coords.longitude + ' ' + position.coords.latitude);
+	//		});
+	    //this.map.locate({watch:true, setView:true});
     }
 
 
@@ -118,6 +135,8 @@ export class MapPage implements OnInit {
             let userModal = this.modalCtrl.create(MCMInputModal);
             userModal.present();
         }
+
+        
     }
 
     loadMap() {
@@ -126,6 +145,8 @@ export class MapPage implements OnInit {
         let mapquestUrl = Helper.mapquestUrl
         let subDomains = Helper.subDomains
         let keepPositionBecauseOfReload = false;
+
+        
         if (this.map == null) {
             this.map = (L as any).map('map', {
                 center: this.center,
@@ -171,7 +192,6 @@ export class MapPage implements OnInit {
 
                 offlineLayer.addTo(map);
             });
-
             this.geolocation.getCurrentPosition()
                 .then(resp => {
                     if (resp && resp.coords) {
@@ -188,14 +208,34 @@ export class MapPage implements OnInit {
                             this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
                         }
 
-                        let watch = this.geolocation.watchPosition();
+                        let watch = this.geolocation.watchPosition({
+                                      enableHighAccuracy: true,
+                                      timeout: 3000,
+                                      maximumAge: 500
+                                        });
                         watch.subscribe(resp => {
+
+                        	
                             if (resp && resp.coords) {
                                 Helper.myLocation = resp;
                                 console.log(`Coordinates: ${JSON.stringify(resp)}`);
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                                 // this.map.panTo(lanlng);
                                 this.userMarker.setLatLng(lanlng);
+                                
+                                //Check if it needs to move the map (in case the user is outside the threshold bounds)
+                                let freeBounds = L.bounds(L.point(this.map.getSize().x * 0.2, this.map.getSize().y * 0.2),
+                                                   L.point(this.map.getSize().x * 0.8, this.map.getSize().y * 0.8));
+                                let newPos = Helper.followUser(freeBounds, this.map.latLngToContainerPoint(lanlng), this.map.getZoom());
+                                if(newPos!= null) {
+                                    this.map.panTo(this.map.containerPointToLatLng(newPos));
+                                }
+                                //Rotate the user marker
+                                if(this.prevPos!=null) {
+                                	let angle = Helper.getAngle(this.prevPos, resp.coords);
+                                	this.userMarker.setRotationAngle(angle);
+                                    }
+                                this.prevPos = resp.coords;
                             }
                         });
                     }
@@ -205,6 +245,7 @@ export class MapPage implements OnInit {
                 })
         }
     }
+
 
     removeRoute(route: Route): void {
         this.ormService.removeDownloadedRoute(route);
@@ -218,6 +259,8 @@ export class MapPage implements OnInit {
             }));
         }
     }
+
+
 
 
 }

@@ -143,4 +143,47 @@ export class Helper {
   //       return null;
   //   }
   // }
+
+  public static getAngle(prev: any, curr: any){
+    // angle in degrees
+    let angle = Math.atan2(curr.latitude - prev.latitude, prev.longitude - curr.longitude) * 180 / Math.PI +270;
+    return angle;
+  }
+
+  public static followUser(bounds: L.Bounds, userPoint: L.Point, zoom: number){
+    let center = bounds.getCenter();
+
+    let dif: any;
+    let newCenter: any;
+
+    if(!bounds.contains(userPoint)){
+
+      switch (true) {
+
+        case (userPoint.x > bounds.getTopRight().x):
+          dif = userPoint.x - bounds.getTopRight().x;
+          newCenter = L.point(center.x + dif, center.y);
+          return newCenter;
+
+        case (userPoint.y > bounds.getBottomLeft().y):
+          dif = bounds.getBottomLeft().y - userPoint.y;
+          newCenter = L.point(center.x, center.y - dif);
+          return newCenter;
+
+        case (userPoint.x < bounds.getBottomLeft().x):
+          dif = bounds.getBottomLeft().x - userPoint.x;
+          newCenter = L.point(center.x - dif, center.y);
+          return newCenter;
+
+        case (userPoint.y < bounds.getTopRight().y):
+          dif = bounds.getTopRight().y - userPoint.y;
+          newCenter = L.point(center.x, center.y - dif);
+          return newCenter;
+        
+        default:
+          return null;
+      }
+    }
+  }  
+
 }

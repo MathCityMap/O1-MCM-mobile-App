@@ -3,7 +3,7 @@
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content original-src="index.html" src="http://192.168.1.66:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -108,4 +108,6 @@
     <allow-navigation href="http://192.168.1.66:8100" />
     <plugin name="cordova.plugins.diagnostic" spec="~3.9.1" />
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.2" />
+    <allow-navigation href="http://194.210.221.147:8100" />
+    <allow-navigation href="http://194.210.223.55:8100" />
 </widget>

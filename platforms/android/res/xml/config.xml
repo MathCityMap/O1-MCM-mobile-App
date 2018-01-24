@@ -56,7 +56,7 @@
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content original-src="index.html" src="http://192.168.1.66:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -68,6 +68,8 @@
     <allow-navigation href="*" />
     <allow-navigation href="http://10.0.1.51:8100" />
     <allow-navigation href="http://192.168.1.66:8100" />
+    <allow-navigation href="http://194.210.221.147:8100" />
+    <allow-navigation href="http://194.210.223.55:8100" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />

@@ -356,6 +356,12 @@
   "a_guided_trail_title": "Pilih titik awal",
   "a_about_mcm_title": "Tentang MathCityMap",
   "a_about_mcm": "MathCityMap adalah sebuah proyek dari kelompok Kerja MATIS 1 Institut Pendidikan Matematika dan Informatika Goethe-University Frankfurt am Main.\\n\nwww.mathcitymap.eu adalah portal MathCityMap dengan fitur PDF-export yang terintegrasi. Setelah registrasi singkat, anda dapat membuat dan mengedit tugas secara mandiri, yang kemudian dapat digunakan dengan menggunakan aplikasi. Semua produk MathCityMap adalah gratis.\n\\n\\n\nPenanggung jawab:\\n\nMatthias Ludwig\\n\nIwan Gurjanow\\n\nJoerg Zender\\n\nAdi Nur Cahyono (MathCityMap di Indonesia)\\n\n\\n\n\nMathCityMap nutzt Bildmaterial von https://icons8.com:\\n\nhttps://icons8.com/web-app/5682/marker\\n\nhttps://icons8.com/web-app/2969/settings-filled\\n\nhttps://icons8.com/web-app/13114/cancel\\n\nhttps://icons8.com/web-app/5575/plus\\n\nhttps://icons8.com/web-app/16570/exit\\n\nhttps://icons8.com/web-app/5663/worldwide-location\\n\nhttps://icons8.com/web-app/5594/key \\n\nhttps://icons8.com/web-app/6269/waypoint-map\\n\nhttps://icons8.com/web-app/13115/ok\\n",
+
+  "a_about_mcm_project": "MathCityMap adalah sebuah proyek dari kelompok Kerja MATIS 1 Institut Pendidikan Matematika dan Informatika Goethe-University Frankfurt am Main.",
+  "a_about_mcm_portal": "www.mathcitymap.eu adalah portal MathCityMap dengan fitur PDF-export yang terintegrasi. Setelah registrasi singkat, anda dapat membuat dan mengedit tugas secara mandiri, yang kemudian dapat digunakan dengan menggunakan aplikasi. Semua produk MathCityMap adalah gratis.",
+  "a_about_mcm_responsibility_title": "Penanggung jawab",
+  "a_about_mcm_responsibility": "Matthias Ludwig, Iwan Gurjanow, Joerg Zender",
+
   "a_alert_right_answer_1_low": "Anda telah memecahkan masalah dengan benar pertama kalinya.\\nJawaban anda \\'###L###\\' adalah baik.",
   "a_alert_right_answer_2_low": "Jawaban anda \\'###L###\\' adalah baik.",
   "a_alert_right_answer_3_low": "Anda tampaknya telah menjawab, dan jawaban Anda \\'###L###\\' adalah baik.",
