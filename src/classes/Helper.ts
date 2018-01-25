@@ -158,30 +158,30 @@ export class Helper {
 
     if(!bounds.contains(userPoint)){
 
-      switch (true) {
+      
 
-        case (userPoint.x > bounds.getTopRight().x):
+       if(userPoint.x > bounds.getTopRight().x){
           dif = userPoint.x - bounds.getTopRight().x;
           newCenter = L.point(center.x + dif, center.y);
           return newCenter;
-
-        case (userPoint.y > bounds.getBottomLeft().y):
+        }
+        else if(userPoint.y > bounds.getBottomLeft().y){
           dif = bounds.getBottomLeft().y - userPoint.y;
           newCenter = L.point(center.x, center.y - dif);
           return newCenter;
-
-        case (userPoint.x < bounds.getBottomLeft().x):
+        }
+       else if(userPoint.x < bounds.getBottomLeft().x){
           dif = bounds.getBottomLeft().x - userPoint.x;
           newCenter = L.point(center.x - dif, center.y);
           return newCenter;
-
-        case (userPoint.y < bounds.getTopRight().y):
+        }
+        else if(userPoint.y < bounds.getTopRight().y){
           dif = bounds.getTopRight().y - userPoint.y;
           newCenter = L.point(center.x, center.y - dif);
           return newCenter;
-        
-        default:
-          return null;
+        }       
+       else return null;
+          
       }
     }
   }  
