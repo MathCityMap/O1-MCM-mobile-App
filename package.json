@@ -63,6 +63,7 @@
     "ios-sim": "6.1.2",
     "leaflet": "1.2.0",
     "leaflet-offline": "1.1.0",
+    "leaflet-rotatedmarker": "^0.2.0",
     "leaflet.markercluster": "1.1.0",
     "rxjs": "5.4.3",
     "sw-toolbox": "3.6.0",
