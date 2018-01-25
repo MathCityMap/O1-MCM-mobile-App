@@ -25,7 +25,7 @@
             </div>
             <div class="segement dotted-border-right grade">
                 <ion-label [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_r_level" | translate }}</ion-label>
-                <span *ngIf="item.grade">{{item.grade}}</span>
+                <span *ngIf="item.grade">{{item.grade}}+</span>
                 <span *ngIf="!item.grade">{{ "no_data" | translate }}</span>
             </div>
             <div class="segement buttons">

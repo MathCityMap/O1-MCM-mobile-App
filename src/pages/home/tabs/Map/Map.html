@@ -13,7 +13,7 @@
       </div>
       <div class="text-container" *ngIf="routeDetails">
           <p>{{routeDetails.city}}, {{routeDetails.countryCode}}</p>
-          <h2>{{routeDetails.title}}</h2>
+          <h2 (click)="modalsService.showRoute(routeDetails, navCtrl)">{{routeDetails.title}}</h2>
         <div class="segmented-box dotted-border-top">
           <div class="segement dotted-border-right distance">
               <ion-label>{{ "a_t_distance" | translate }}</ion-label>
@@ -21,7 +21,7 @@
           </div>
           <div class="segement dotted-border-right grade">
               <ion-label>{{ "a_r_level" | translate }}</ion-label>
-              <span>{{routeDetails.grade}}</span>
+              <span>{{routeDetails.grade}}+</span>
           </div>
           <div class="segement buttons">
                 <div class="button-container">

@@ -27,6 +27,7 @@ export class MyApp {
     });
     translate.setDefaultLang('en');
     translate.use('de');
+    statusBar.backgroundColorByHexString('#035f87'); // set status bar color
   }
 
 }
