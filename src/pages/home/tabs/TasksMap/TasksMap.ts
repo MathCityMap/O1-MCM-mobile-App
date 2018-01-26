@@ -10,6 +10,7 @@ import { tilesDb } from '../../../../classes/tilesDb';
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { Task } from '../../../../entity/Task';
+import { Score } from '../../entity/Score';
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
 import {gpsService} from  '../../../../services/gps-service';
@@ -27,6 +28,8 @@ export class TasksMap {
   private routeId: number;
   private route: Route;
   private selectedTask: Task;
+  private taskDetails: TaskState;
+  private score: Score;
 
     taskOpenIcon;
     taskSkippedIcon;
@@ -52,6 +55,9 @@ export class TasksMap {
     console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
+    let user = await this.ormService.getActiveUser();
+    this.score = this.route.getScoreForUser(user);
+    console.log(this.score);
     this.selectedTask = this.navParams.get("selectedTask");
     await this.loadMap();
     this.initializeMap();
@@ -69,7 +75,13 @@ export class TasksMap {
           maxClusterRadius: 30
       });
       (await this.route.getTasks()).forEach(task => {
-          markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: this.taskOpenIcon}).on('click', () => {
+            let icon = this.taskOpenIcon;
+            if(this.score.getTasksSolved().indexOf(task.id) > -1){
+                icon = this.taskDoneIcon;
+            }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
+                icon = this.taskFailedIcon;
+            }
+          markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
               this.selectedTask = task;
           }));
       })

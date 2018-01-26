@@ -25,8 +25,8 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 import {gpsService} from  '../../../../services/gps-service';
-import 'rxjs/add/operator/filter'
-import 'leaflet-rotatedmarker'
+import 'rxjs/add/operator/filter';
+import 'leaflet-rotatedmarker';
 
 @IonicPage()
 @Component({
