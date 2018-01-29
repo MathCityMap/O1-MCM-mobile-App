@@ -10,11 +10,12 @@ import { tilesDb } from '../../../../classes/tilesDb';
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { Task } from '../../../../entity/Task';
-import { Score } from '../../entity/Score';
+import { Score } from '../../../../entity/Score';
+import { TaskState } from '../../../../entity/TaskState';
+
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
 import {gpsService} from  '../../../../services/gps-service';
-
 @IonicPage({
   segment: 'TasksMap/:routeId'
 })
