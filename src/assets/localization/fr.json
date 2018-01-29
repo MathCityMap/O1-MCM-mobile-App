@@ -359,7 +359,7 @@
   "a_about_mcm_project": "MathCityMap est un projet du groupe de travail MATIS I (IDMI Université Goethe de Francfort).",
   "a_about_mcm_portal": "MCM comprend un portal web et un application pour mobile. Après une inscription rapide sur le site, le portail web de MathCityMap (www.mathcitymap.eu) offre à ses utilisateurs la possibilité de créer leurs propres épreuves ou parcours auxquels il est ensuite possible d\\'accéder depuis l\\'application mobile. Par ailleurs, les parcours peuvent aussi être téléchargés au format PDF depuis le portail web. Tous les outils de MathCityMap sont gratuits.",
   "a_about_mcm_responsibility_title": "Responsables du projet",
-  "a_about_mcm_responsibility": "Matthias Ludwig, Iwan Gurjanow, Joerg Zender",
+  "a_about_mcm_responsibility": "Matthias Ludwig,<br/>Iwan Gurjanow,<br/>Joerg Zender",
 
   "a_alert_right_answer_1_low": "Vous avez passé l\\'épreuve du premier coup.\\nVotre réponse \\'###L###\\' est acceptable.",
   "a_alert_right_answer_2_low": "Votre réponse \\'###L###\\' est acceptable.",
