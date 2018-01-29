@@ -83,6 +83,7 @@ export class TasksMap {
             }
           markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
               this.selectedTask = task;
+              this.map.panTo( [this.selectedTask.lat, this.selectedTask.lon] );
           }));
       })
       this.map.addLayer(markerGroup);
