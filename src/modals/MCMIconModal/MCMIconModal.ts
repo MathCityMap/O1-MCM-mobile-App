@@ -39,8 +39,9 @@ export class MCMIconModal{
                         break;
                 }
             }
-            this.type = params.data.type;
+
             this.message = params.data.message;
+            this.type = params.data.type;
         }
         this.param = {solution: params.data.solution};
     }

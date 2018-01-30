@@ -175,6 +175,15 @@ export class Task {
         return null;
     }
 
+    hasHintMessage(index: number){
+        let hint = this.getHint(index);
+        if( !hint ) return;
+        else{
+            if( hint.value ) return true;
+            else return false;
+        }
+    }
+
     getHintObject(index: number): Hint {
         let hint: string;
         switch (index) {
