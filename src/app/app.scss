@@ -671,6 +671,9 @@ ion-modal {
             img{
                 width: 130px;
                 margin: $global-base-padding 0;
+                &.full-width{
+                    width:100%;
+                }
             }
             p{
                 margin: $global-small-padding 0;

@@ -170,7 +170,7 @@ export class Task {
     getHint(index: number) {
         let hint = this.getHintObject(index);
         if (hint) {
-            return hint.value;
+            return hint;
         }
         return null;
     }

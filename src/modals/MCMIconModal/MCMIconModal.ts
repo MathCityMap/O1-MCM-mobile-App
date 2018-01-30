@@ -12,6 +12,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 export class MCMIconModal{
 
     title: string;
+    type: string;
     message: string;
     param: any;
     modalType: MCMModalType;
@@ -38,6 +39,7 @@ export class MCMIconModal{
                         break;
                 }
             }
+            this.type = params.data.type;
             this.message = params.data.message;
         }
         this.param = {solution: params.data.solution};

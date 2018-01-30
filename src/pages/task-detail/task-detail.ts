@@ -78,7 +78,10 @@ export class TaskDetail {
 
   showHint(index: number){
     let title = "";
-    let message = this.task.getHint(index);
+/*     console.log(" ===============================  ", this.task.getImagesForDownload() );
+    console.log(" ===============================  ", this.task.getHint(index) ); */
+    let type: string = this.task.getHint(index).type;
+    let message: string = this.task.getHint(index).value;
     switch (index){
       case 1:
         if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
@@ -103,7 +106,12 @@ export class TaskDetail {
         break;
     }
 
-    let hintModal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, modalType: MCMModalType.hint}, {showBackdrop: true, enableBackdropDismiss: true});
+    let hintModal = this.modalCtrl.create(MCMIconModal,  {
+      title: title,
+      type: type,
+      message: message,
+      modalType: MCMModalType.hint
+    }, {showBackdrop: true, enableBackdropDismiss: true});
     hintModal.present();
   }
 
@@ -207,7 +215,7 @@ export class TaskDetail {
           modal.onDidDismiss((data) =>{
             console.log(data);
               if(data && data.showMap){
-                let currentTaskIndex = this.route.tasks.indexOf(this.task);
+/*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
                 this.navCtrl.pop();
               }
           })
