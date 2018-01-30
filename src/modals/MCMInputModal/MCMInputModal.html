@@ -1,15 +1,19 @@
 <div class="modal card has-button-on-the-edge">
-    <h2>{{'a_g_new_player' | translate}}</h2>
+    <form #formCtrl="ngForm">
 
-    <div class="modal-content">
-        <p>{{'a_g_name' | translate}}</p>
-        <ion-item>
-            <ion-input type="text" [(ngModel)]="userName"></ion-input>
-        </ion-item>
-        <span *ngIf="errorMessage"></span>
-    </div>
+        <h2>{{'a_g_new_player' | translate}}</h2>
 
-    <div class="on-the-edge-container">
-        <button ion-button small round (click)="saveUser()">{{ "a_g_ok" | translate }}</button>
-    </div>
+        <div class="modal-content">
+            <p>{{'a_g_name' | translate}}</p>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="userName" name="username" required ngControl="passwordCtrl"></ion-input>
+            </ion-item>
+            <span *ngIf="errorMessage"></span>
+        </div>
+
+        <div class="on-the-edge-container">
+            <button ion-button small round (click)="saveUser()" [disabled]="!formCtrl.form.valid">{{ "a_g_ok" | translate }}</button>
+        </div>
+
+    </form>
 </div>
