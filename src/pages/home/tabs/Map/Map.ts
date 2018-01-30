@@ -118,14 +118,16 @@ export class MapPage implements OnInit {
         const routes = await this.ormService.getVisibleRoutes();
         let markerGroup = (L as any).markerClusterGroup();
         for (let route of routes) {
+            let latLng = route.getCenterLatLng()
             let icon;
             if(route.public){
                 icon = this.publicRouteIconOpen;
             }else{
                 icon = this.privateRouteIconOpen;
             }
-            markerGroup.addLayer(L.marker(route.getCenterLatLng(), {icon: icon}).on('click', () => {
+            markerGroup.addLayer(L.marker(latLng, {icon: icon}).on('click', () => {
                 this.routeDetails = route;
+                this.map.panTo( latLng );
             }));
         }
         map.addLayer(markerGroup);
