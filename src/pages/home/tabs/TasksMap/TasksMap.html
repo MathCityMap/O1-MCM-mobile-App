@@ -38,12 +38,12 @@
                 </ion-fab-list>
             </ion-fab>
         </div>
-        <div class="image-container">
-            <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'" (click)="gototask(selectedTask.id, selectedTask.title)" />
+        <div class="image-container" (click)="gototask(selectedTask.id, selectedTask.title)">
+            <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'"/>
         </div>
         <div class="text-container" *ngIf="selectedTask">
-            <p>#{{selectedTask.position}}</p>
-            <h2>{{selectedTask.title}}</h2>
+            <p (click)="gototask(selectedTask.id, selectedTask.title)">#{{selectedTask.position}}</p>
+            <h2 (click)="gototask(selectedTask.id, selectedTask.title)">{{selectedTask.title}}</h2>
             <div class="segmented-box dotted-border-top">
                 <!--<div class="segement distance">-->
                     <!--<ion-label>{{ "g_max_points" | translate }}</ion-label>-->
