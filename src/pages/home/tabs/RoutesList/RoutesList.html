@@ -1,9 +1,6 @@
 <ion-content class="routes-list has-header">
     <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content
-                refreshingText="{{'a_toast_update_start' | translate}}"
-        >
-        </ion-refresher-content>
+        <ion-refresher-content refreshingText="{{'a_toast_update_start' | translate}}"></ion-refresher-content>
     </ion-refresher>
 
     <ion-fab right bottom>
@@ -12,9 +9,7 @@
 
   <ion-list>
     <div class="detail-box" *ngFor="let item of items">
-        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)">
-            <img [src]="item.getThumbURL()" />
-        </div>
+        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngStyle]="{'background-image' : 'url(\\''+ item.getThumbURL() +'\\')'}" ></div>
         <div class="text-container">
           <p (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}}</p>
           <h2 (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>
