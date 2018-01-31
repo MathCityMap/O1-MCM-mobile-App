@@ -13,7 +13,7 @@
         <a *ngIf=" modalType == 1 && type == 'video' " [href]="message">{{ message }}</a>
 
         <!-- text hint -->
-        <p *ngIf=" modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3">{{message | translate: param}}</p>
+        <p *ngIf=" modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
     </div>
 
     <div class="on-the-edge-container">

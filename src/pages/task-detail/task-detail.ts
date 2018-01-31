@@ -42,7 +42,9 @@ export class TaskDetail {
     public navParams: NavParams,
     private ormService: OrmService,
     private modalCtrl: ModalController
-  ){  }
+  ){
+
+   }
 
 
   async ionViewWillEnter() {
@@ -228,14 +230,14 @@ export class TaskDetail {
           case 0:
           case 1:
           case 2:
-            message = 'alert_false_answer_1';
+            message = 'a_alert_false_answer_1';
             break;
           case 3:
           case 4:
-            message = 'alert_false_answer_2';
+            message = 'a_alert_false_answer_2';
             break;
           default:
-            message = 't_skip_msg';
+            message = 'a_t_skip_msg';
             this.score.addFailedTask(this.task.id);
             break;
         }

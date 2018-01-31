@@ -26,6 +26,7 @@ import { OrmService } from '../services/orm-service';
 import {ImagesService} from '../services/images-service';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
 import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
+import { LinkyModule } from 'angular-linky';
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
@@ -59,7 +60,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
       }, useDefaultLang: true
     }),
-    MCMHeaderModule
+    MCMHeaderModule,
+    LinkyModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -162,6 +162,10 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-2.0.0.tgz#9c16d07cd070c67ada270a2e940281eb826b3f43"
 
+"@types/autolinker@^0.24.28":
+  version "0.24.28"
+  resolved "https://registry.yarnpkg.com/@types/autolinker/-/autolinker-0.24.28.tgz#37976f20c6e0abde283784fdc6b91cc6cb90e8dc"
+
 "@types/geojson@*":
   version "7946.0.0"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.0.tgz#e8bc74e8183d966455f82023f0c72e1072a952d0"
@@ -269,6 +273,13 @@ android-versions@^1.2.2:
   resolved "https://registry.yarnpkg.com/android-versions/-/android-versions-1.2.2.tgz#9db84b5684c585a4c34152d7b7c1fdf1f56db97b"
   dependencies:
     semver "^5.4.1"
+
+angular-linky@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/angular-linky/-/angular-linky-1.2.2.tgz#275426df49e39b759d8ccdf01c178e69cb67d868"
+  dependencies:
+    "@types/autolinker" "^0.24.28"
+    autolinker "^1.1.0"
 
 ansi-escapes@^1.1.0:
   version "1.4.0"
@@ -453,6 +464,10 @@ async@~0.9.0:
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
+
+autolinker@^1.1.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/autolinker/-/autolinker-1.6.0.tgz#bad376b7ad8e415f22f102fc0f37f640e64f1cbf"
 
 autoprefixer@7.1.1:
   version "7.1.1"

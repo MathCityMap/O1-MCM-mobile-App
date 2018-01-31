@@ -16,6 +16,7 @@ export class MCMIconModal{
     message: string;
     param: any;
     modalType: MCMModalType;
+    linkyOptions: any;
 
     constructor(params: NavParams, private viewCtrl: ViewController) {
         if(!params.data.modalType){
@@ -44,6 +45,14 @@ export class MCMIconModal{
             this.type = params.data.type;
         }
         this.param = {solution: params.data.solution};
+
+        this.linkyOptions = {
+            replaceFn : function( match ) {
+                console.log( "href = ", match.getAnchorHref() );
+                console.log( "text = ", match.getAnchorText() );
+                return '<a href="'+match.getAnchorHref()+'">' + match.getAnchorText() + '</a>';
+            }
+        }
     }
 
     dismiss(backToMap?: boolean){
