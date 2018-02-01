@@ -16,6 +16,7 @@ import { TaskState } from '../../../../entity/TaskState';
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
 import {gpsService} from  '../../../../services/gps-service';
+import { ModalsService } from '../../../../services/modals-service';
 @IonicPage({
   segment: 'TasksMap/:routeId'
 })
@@ -43,7 +44,8 @@ export class TasksMap {
     public navParams: NavParams,
     private ormService: OrmService,
     private deepLinker: DeepLinker,
-    private gpsService: gpsService
+    private gpsService: gpsService,
+    private modalService: ModalsService
   ) {
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
       this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
@@ -162,9 +164,28 @@ export class TasksMap {
               console.error('Error when removing tiles: ' + err);
           });
 
-                    //centers map in the selected task
-          if(this.selectedTask != null) this.map.panTo( [this.selectedTask.lat, this.selectedTask.lon] );
+          //centers map in the selected task
+          if(this.selectedTask != null){
+            this.centerSelectedTask(this.selectedTask)
+            /* todo: show only selectedTask */
+          }
       }
+  }
+
+  centerSelectedTask(selectedTask){
+    this.map.panTo( [selectedTask.lat, selectedTask.lon] );
+  }
+
+  selectStartPoint(){
+    /* open the damn modal again */
+    let _this = this;
+    this.modalService.presentTaskListModal(this.route, this.navCtrl, function(selectedTask: Task){
+            console.log("back in tasksMap");
+            _this.selectedTask = selectedTask;
+            _this.centerSelectedTask(_this.selectedTask)
+    });
+    /* this.showOnlyCurrentlySelectedTadk(); */
+    /*   */
   }
 
   async gototask(taskId: number, taskName: string) {

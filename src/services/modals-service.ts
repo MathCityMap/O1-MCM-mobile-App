@@ -12,6 +12,7 @@ import { Task } from '../entity/Task';
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
 
 
 @Injectable()
@@ -68,7 +69,7 @@ export class ModalsService {
                     {
                         text: this.translateService.instant('yes'),
                         handler: () => {
-                            this.presentTaskListModal(route, navCtrl);
+                            this.presentTaskListModal(route, navCtrl, null);
                         }
                     }
                 ]
@@ -114,14 +115,18 @@ export class ModalsService {
         });
     }
 
-    async presentTaskListModal(route: Route, navCtrl: NavController) {
+    async presentTaskListModal(route: Route, navCtrl: NavController, callback: any ) {
         let testModal = this.modalCtrl.create(CenteredTask, {
             route: route,
             tasks: await route.getTasks(),
             modalsService: this
         });
         testModal.onDidDismiss(data => {
-            if (data && data.route != null && navCtrl != null) this.navigateToRoute(data.route, navCtrl, data.selectedTask);
+            /* coming from List/Map View */
+            if (data && data.route != null && navCtrl != null && !callback) this.navigateToRoute(data.route, navCtrl, data.selectedTask);
+            /* already on taskMap */
+            else if(data && data.selectedTask != null && navCtrl != null && callback) callback(data.selectedTask);
+   /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
         })
         testModal.present();
     }
