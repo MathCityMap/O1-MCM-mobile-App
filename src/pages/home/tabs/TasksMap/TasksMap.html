@@ -38,9 +38,7 @@
                 </ion-fab-list>
             </ion-fab>
         </div>
-        <div class="image-container" (click)="gototask(selectedTask.id, selectedTask.title)">
-            <img *ngIf="selectedTask" [src]="selectedTask.getImageURL() || '//:0'"/>
-        </div>
+        <div *ngIf="selectedTask" class="image-container" (click)="gototask(selectedTask.id, selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ selectedTask.getImageURL()  +'\\')'}" ></div>
         <div class="text-container" *ngIf="selectedTask">
             <p (click)="gototask(selectedTask.id, selectedTask.title)">#{{selectedTask.position}}</p>
             <h2 (click)="gototask(selectedTask.id, selectedTask.title)">{{selectedTask.title}}</h2>

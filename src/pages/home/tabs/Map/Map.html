@@ -8,8 +8,9 @@
             <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
         </ion-fab>
     </div>
-      <div class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)">
-          <img *ngIf="routeDetails" [src]="routeDetails.getImageURL() || '//:0'" />
+
+      <div *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)"[ngStyle]="{'background-image' : 'url(\\''+ routeDetails.getImageURL() +'\\')'}" >
+
       </div>
       <div class="text-container" *ngIf="routeDetails">
           <p>{{routeDetails.city}}, {{routeDetails.countryCode}}</p>
