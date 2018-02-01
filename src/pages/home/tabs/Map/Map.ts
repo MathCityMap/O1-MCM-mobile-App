@@ -230,7 +230,7 @@ export class MapPage implements OnInit {
                                                    L.point(this.map.getSize().x * 0.8, this.map.getSize().y * 0.8));
                                 let newPos = Helper.followUser(freeBounds, this.map.latLngToContainerPoint(lanlng), this.map.getZoom());
                                 if(newPos!= null) {
-                                    this.map.panTo(this.map.containerPointToLatLng(newPos));
+                                    //this.map.panTo(this.map.containerPointToLatLng(newPos));
                                 }
                                 //Rotate the user marker
                                 if(this.prevPos!=null) {
