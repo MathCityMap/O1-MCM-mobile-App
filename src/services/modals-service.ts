@@ -121,7 +121,7 @@ export class ModalsService {
             modalsService: this
         });
         testModal.onDidDismiss(data => {
-            if (data.route != null && navCtrl != null) this.navigateToRoute(data.route, navCtrl, data.selectedTask);
+            if (data && data.route != null && navCtrl != null) this.navigateToRoute(data.route, navCtrl, data.selectedTask);
         })
         testModal.present();
     }

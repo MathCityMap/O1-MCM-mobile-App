@@ -39,4 +39,8 @@ export class CenteredTask{
 /*     console.log('-------------------', this.totalTasks); */
   }
 
+  cancel(){
+    this.viewCtrl.dismiss();
+  }
+
 }
