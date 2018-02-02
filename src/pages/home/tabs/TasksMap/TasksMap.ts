@@ -29,9 +29,14 @@ export class TasksMap {
   private map: any;
   private routeId: number;
   private route: Route;
+  private taskList: Task[];
+  private selectedTaskIndex: number;
   private selectedTask: Task;
+
   private taskDetails: TaskState;
   private score: Score;
+  private skippedTaskIds: number[] = [];;
+
 
     taskOpenIcon;
     taskSkippedIcon;
@@ -69,29 +74,44 @@ export class TasksMap {
   markerGroup: any = null;
 
   async initializeMap() {
-      if (this.markerGroup != null) {
-          console.warn('removing markerGroup');
-          this.map.removeLayer(this.markerGroup);
-          this.markerGroup = null;
-      }
-      let markerGroup = (L as any).markerClusterGroup({
-          maxClusterRadius: 30
-      });
-      (await this.route.getTasks()).forEach(task => {
-            let icon = this.taskOpenIcon;
-            if(this.score.getTasksSolved().indexOf(task.id) > -1){
-                icon = this.taskDoneIcon;
-            }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
-                icon = this.taskFailedIcon;
-            }
-          markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
-              this.selectedTask = task;
-              this.map.panTo( [this.selectedTask.lat, this.selectedTask.lon] );
-          }));
-      })
-      this.map.addLayer(markerGroup);
-      this.markerGroup = markerGroup;
+      this.redrawMarker();
       this.gpsService.isLocationOn();
+  }
+
+  async redrawMarker(){
+    if (this.markerGroup != null) {
+        console.warn('removing markerGroup');
+        this.map.removeLayer(this.markerGroup);
+        this.markerGroup = null;
+    }
+    let markerGroup = (L as any).markerClusterGroup({
+        maxClusterRadius: 30
+    });
+    if(!this.taskList){
+        this.taskList = await this.route.getTasks();
+    }
+
+    for(let i = 0; i < this.taskList.length; i++){
+        let task: Task = this.taskList[i];
+        let icon = this.taskOpenIcon;
+        if(this.selectedTask && this.selectedTask.id == task.id && !this.selectedTaskIndex){
+            this.selectedTaskIndex = i;
+        }
+        if(this.score.getTasksSolved().indexOf(task.id) > -1){
+            icon = this.taskDoneIcon;
+        }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
+            icon = this.taskFailedIcon;
+        }else if(this.skippedTaskIds.indexOf(task.id) > -1){
+          icon = this.taskSkippedIcon;
+      }
+      markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
+          this.selectedTaskIndex = i;
+          this.selectedTask = task;
+          this.map.panTo( [task.lat, task.lon] );
+      }));
+    }
+    this.map.addLayer(markerGroup);
+    this.markerGroup = markerGroup;
   }
 
   async loadMap() {
@@ -119,6 +139,7 @@ export class TasksMap {
               //check if details open and reset content. for now just reset content
               // this.routeDetails = null;
               this.selectedTask = null;
+              this.selectedTaskIndex = null;
           })
           let map = this.map;
           await tilesDb.initialize();
@@ -166,14 +187,27 @@ export class TasksMap {
 
           //centers map in the selected task
           if(this.selectedTask != null){
-            this.centerSelectedTask(this.selectedTask)
+            this.centerSelectedTask()
             /* todo: show only selectedTask */
           }
       }
   }
 
-  centerSelectedTask(selectedTask){
-    this.map.panTo( [selectedTask.lat, selectedTask.lon] );
+  centerSelectedTask(){
+    this.map.panTo( [this.selectedTask.lat, this.selectedTask.lon] );
+  }
+
+  skipTask(task: Task){
+    this.skippedTaskIds.push(task.id);
+    if(this.selectedTaskIndex + 1 < this.taskList.length){
+        this.selectedTaskIndex++;
+    }else{
+        this.selectedTaskIndex = 0;
+    }
+    this.selectedTask = this.taskList[this.selectedTaskIndex];
+    this.redrawMarker();
+    this.centerSelectedTask();
+
   }
 
   selectStartPoint(){
@@ -182,7 +216,7 @@ export class TasksMap {
     this.modalService.presentTaskListModal(this.route, this.navCtrl, function(selectedTask: Task){
             console.log("back in tasksMap");
             _this.selectedTask = selectedTask;
-            _this.centerSelectedTask(_this.selectedTask)
+            _this.centerSelectedTask()
     });
     /* this.showOnlyCurrentlySelectedTadk(); */
     /*   */
