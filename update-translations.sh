@@ -12,7 +12,9 @@ for n in $(find . -name *.xml)
   do
   lang=$(echo $n | sed -e "s/.*\(..\)\/strings.xml/\1/")
   echo $n
-  $basedir/node_modules/.bin/xml2json $n | jq '.resources.string | map({"key": .name | tostring, "value": .["$t"]}) | from_entries' | sed -e "s/\\\\\\\\n/\\\\n/g" | sed -e "s/\\\\\\\\'/'/g"> $basedir/src/assets/localization/$lang.json
+  $basedir/node_modules/.bin/xml2json $n | jq '.resources.string | map({"key": .name | tostring, "value": .["$t"]}) | from_entries' \
+          | sed -e "s/\\\\\\\\n/\\\\n/g" | sed -e "s/\\\\\\\\'/'/g" \
+          | sed -e "s/###\([^#]*\)###/{{\1}}/g" > $basedir/src/assets/localization/$lang.json
 done
 # add missing english keys from german file
 jq -s '.[0] * .[1]' $basedir/src/assets/localization/de.json $basedir/src/assets/localization/en.json > $basedir/src/assets/localization/en.tmp.json
