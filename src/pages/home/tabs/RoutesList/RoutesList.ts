@@ -47,12 +47,12 @@ export class RoutesListPage {
     }
 
     private compareFunction(a: Route, b: Route) {
+        const distA = a.getDistance();
+        const distB = b.getDistance();
         if (a.downloaded && !b.downloaded)
             return -1;
         if (!a.downloaded && b.downloaded)
             return 1;
-        const distA = a.getDistance();
-        const distB = b.getDistance();
         if (distA > distB) {
             return 1;
         } else if (distA < distB) {
