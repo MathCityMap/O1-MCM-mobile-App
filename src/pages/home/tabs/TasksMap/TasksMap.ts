@@ -87,9 +87,8 @@ export class TasksMap {
     let markerGroup = (L as any).markerClusterGroup({
         maxClusterRadius: 30
     });
-    if(!this.taskList){
-        this.taskList = await this.route.getTasks();
-    }
+
+    this.taskList = await this.route.getTasks();
 
     for(let i = 0; i < this.taskList.length; i++){
         let task: Task = this.taskList[i];
@@ -98,9 +97,9 @@ export class TasksMap {
             this.selectedTaskIndex = i;
         }
         if(this.score.getTasksSolved().indexOf(task.id) > -1){
-            icon = this.taskDoneIcon;
+            icon = this.taskDonePerfectIcon;
         }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
-            icon = this.taskFailedIcon;
+            icon = this.taskDoneIcon;
         }else if(this.skippedTaskIds.indexOf(task.id) > -1){
           icon = this.taskSkippedIcon;
       }

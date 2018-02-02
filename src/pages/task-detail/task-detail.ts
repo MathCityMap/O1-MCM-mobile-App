@@ -72,10 +72,7 @@ export class TaskDetail {
 
   }
 
-  async ionViewWillLeave() {
-    console.log(this.taskDetails);
-    await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
-  }
+
 
 
   showHint(index: number){
@@ -107,7 +104,7 @@ export class TaskDetail {
         title = 'a_btn_hint3';
         break;
     }
-
+    this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
     let hintModal = this.modalCtrl.create(MCMIconModal,  {
       title: title,
       type: type,
@@ -245,6 +242,7 @@ export class TaskDetail {
         let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error}, {showBackdrop: true, enableBackdropDismiss: true});
         modal.present();
       }
+      this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
   }
 
 }
