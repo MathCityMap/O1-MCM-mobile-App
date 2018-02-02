@@ -304,8 +304,8 @@
   "a_btn_show": "Anzeigen",
   "a_author": "Autor",
   "a_mail": "E-Mail",
-  "a_title_activity_task_view": "Aufgabe:",
-  "a_title_activity_route_detail": "Trail:",
+  "a_title_activity_task_view": "Aufgabe",
+  "a_title_activity_route_detail": "Trail",
   "a_r_about": "Über diesen Trail",
   "a_r_place": "Ort",
   "a_r_level": "Klassenstufe",
@@ -359,10 +359,6 @@
   "a_guided_trail": "Möchtest du von einer bestimmten Aufgabe starten?",
   "a_guided_trail_title": "Startpunkt wählen",
   "a_about_mcm_title": "Über MathCityMap",
-  "a_about_mcm_project": "MathCityMap ist ein Projekt der Arbeitsgruppe MATIS 1 des Instituts für Didaktik der Mathematik und Informatik der Goethe-Universität Frankfurt am Main.",
-  "a_about_mcm_portal": "Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos.",
-  "a_about_mcm_responsibility_title": "Verantwortliche Personen",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
   "a_about_mcm": "MathCityMap ist ein Projekt der Arbeitsgruppe MATIS 1 des Instituts für Didaktik der Mathematik und Informatik der Goethe-Universität Frankfurt am Main.\n Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos. \n\n Verantwortliche Personen:\n Matthias Ludwig\n Iwan Gurjanow\n Joerg Zender\n\n  MathCityMap nutzt Bildmaterial von https://icons8.com:\n https://icons8.com/web-app/5682/marker\n https://icons8.com/web-app/2969/settings-filled\n https://icons8.com/web-app/13114/cancel\n https://icons8.com/web-app/5575/plus\n https://icons8.com/web-app/16570/exit\n https://icons8.com/web-app/5663/worldwide-location\n https://icons8.com/web-app/5594/key \n https://icons8.com/web-app/6269/waypoint-map\n https://icons8.com/web-app/13115/ok\n",
   "a_alert_right_answer_1_low": "Du hast die Aufgabe auf Anhieb gelöst.\nDeine Lösung '###L###' ist ok.",
   "a_alert_right_answer_2_low": "Deine Lösung '###L###' ist ok.",
@@ -427,5 +423,9 @@
   "a_not_in_axixbb": "Punkte können nur innerhalb des Koordinatensystems platziert werden.",
   "a_not_in_radius": "Punkte dürfen maximal 300 Meter entfernt vom Aufgabenstandort platziert werden.",
   "a_language_it": "Italiano",
-  "p_t_side_facts": "Über das Objekt"
+  "p_t_side_facts": "Über das Objekt",
+  "a_about_mcm_project": "MathCityMap ist ein Projekt der Arbeitsgruppe MATIS 1 des Instituts für Didaktik der Mathematik und Informatik der Goethe-Universität Frankfurt am Main.",
+  "a_about_mcm_portal": "Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos.",
+  "a_about_mcm_responsibility_title": "Verantwortliche Personen",
+  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender"
 }

@@ -300,7 +300,7 @@
   "a_btn_show": "Montrer",
   "a_author": "Auteur",
   "a_mail": "E-Mail",
-  "a_title_activity_task_view": "Epreuve:",
+  "a_title_activity_task_view": "Epreuve",
   "a_title_activity_route_detail": "Parcours:",
   "a_r_about": "A propos de ce parcours",
   "a_r_place": "Lieu",
@@ -354,10 +354,6 @@
   "a_cancelStartAt": "Montrer toutes les épreuves",
   "a_guided_trail": "Souhaitez-vous démarrer par une épreuve en particulier ?",
   "a_guided_trail_title": "Choisissez un point de départ",
-  "a_about_mcm_project": "MathCityMap est un projet du groupe de travail MATIS I (IDMI Université Goethe de Francfort).",
-  "a_about_mcm_portal": "MCM comprend un portal web et un application pour mobile. Après une inscription rapide sur le site, le portail web de MathCityMap (www.mathcitymap.eu) offre à ses utilisateurs la possibilité de créer leurs propres épreuves ou parcours auxquels il est ensuite possible d\\'accéder depuis l\\'application mobile. Par ailleurs, les parcours peuvent aussi être téléchargés au format PDF depuis le portail web. Tous les outils de MathCityMap sont gratuits.",
-  "a_about_mcm_responsibility_title": "Responsables du projet",
-    "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
   "a_about_mcm": "MathCityMap est un projet du groupe de travail MATIS I (IDMI Université Goethe de Francfort).\n MCM comprend un portal web et un application pour mobile. Après une inscription rapide sur le site, le portail web de MathCityMap (www.mathcitymap.eu) offre à ses utilisateurs la possibilité de créer leurs propres épreuves ou parcours auxquels il est ensuite possible d'accéder depuis l'application mobile. Par ailleurs, les parcours peuvent aussi être téléchargés au format PDF depuis le portail web. Tous les outils de MathCityMap sont gratuits. \n\n Responsables du projet :\n Matthias Ludwig\n Iwan Gurjanow\n Joerg Zender\n\n  MathCityMap emploie des images de https://icons8.com:\n https://icons8.com/web-app/5682/marker\n https://icons8.com/web-app/2969/settings-filled\n https://icons8.com/web-app/13114/cancel\n https://icons8.com/web-app/5575/plus\n https://icons8.com/web-app/16570/exit\n https://icons8.com/web-app/5663/worldwide-location\n https://icons8.com/web-app/5594/key \n https://icons8.com/web-app/6269/waypoint-map\n https://icons8.com/web-app/13115/ok\n",
   "a_alert_right_answer_1_low": "Vous avez passé l'épreuve du premier coup.\nVotre réponse '###L###' est acceptable.",
   "a_alert_right_answer_2_low": "Votre réponse '###L###' est acceptable.",
@@ -405,5 +401,8 @@
   "a_sides": "Côtés",
   "a_t_select_trail": "Sélectionnez un parcours mathématique",
   "a_settings_language": "Langue",
-  "a_about_mcm_title": "A propos de MathCityMap"
+  "a_about_mcm_title": "A propos de MathCityMap",
+  "a_about_mcm_responsibility_title": "Responsables du projet",
+  "a_about_mcm_portal": "MCM comprend un portal web et un application pour mobile. Après une inscription rapide sur le site, le portail web de MathCityMap (www.mathcitymap.eu) offre à ses utilisateurs la possibilité de créer leurs propres épreuves ou parcours auxquels il est ensuite possible d'accéder depuis l'application mobile. Par ailleurs, les parcours peuvent aussi être téléchargés au format PDF depuis le portail web. Tous les outils de MathCityMap sont gratuits.",
+  "a_about_mcm_project": "MathCityMap est un projet du groupe de travail MATIS I (IDMI Université Goethe de Francfort)."
 }

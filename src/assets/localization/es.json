@@ -398,12 +398,11 @@
   "a_alert_continue": "Continuar",
   "a_toast_no_routes_near_you": "No se hallaron rutas cercanas.",
   "a_language_code": "es",
-  "a_about_mcm_project": "MathCityMap es un proyecto del grupo de trabajo MATIS I (IDMI, Goethe-University Frankfurt Main).",
-  "a_about_mcm_portal": "MCM consiste en una app y un portal web. Después de una breve inscripción el portal web MathCityMap ofrece a los usuarios la posibilidad de crear misiones y rutas propias, a las que más tarde se puede acceder desde la app. Además las rutas pueden descargarse como un archivo PDF desde el portal web. Todas las herramientas de MathCityMap son gratuitas.",
-  "a_about_mcm_responsibility_title": "Personas responsables",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
   "a_about_mcm": "MathCityMap es un proyecto del grupo de trabajo MATIS I (IDMI, Goethe-University Frankfurt Main).\n MCM consiste en una app y un portal web. Después de una breve inscripción el portal web MathCityMap ofrece a los usuarios la posibilidad de crear misiones y rutas propias, a las que más tarde se puede acceder desde la app. Además las rutas pueden descargarse como un archivo PDF desde el portal web. Todas las herramientas de MathCityMap son gratuitas. \n\n Personas responsables:\n Matthias Ludwig\n Iwan Gurjanow\n Joerg Zender\n\n  MathCityMap utiliza imágenes de https://icons8.com:\n https://icons8.com/web-app/5682/marker\n https://icons8.com/web-app/2969/settings-filled\n https://icons8.com/web-app/13114/cancel\n https://icons8.com/web-app/5575/plus\n https://icons8.com/web-app/16570/exit\n https://icons8.com/web-app/5663/worldwide-location\n https://icons8.com/web-app/5594/key \n https://icons8.com/web-app/6269/waypoint-map\n https://icons8.com/web-app/13115/ok\n",
   "a_t_s_outer_range": "Respuesta moderada",
   "a_r_no_routes_update": "¿Quieres actualizar la lista de rutas?",
-  "a_alert_bigmap_msg": "This route is large (###TILES### tiles). The download could take some minutes. Do you want to continue?"
+  "a_alert_bigmap_msg": "This route is large (###TILES### tiles). The download could take some minutes. Do you want to continue?",
+  "a_about_mcm_portal": "MCM consiste en una app y un portal web. Después de una breve inscripción el portal web MathCityMap ofrece a los usuarios la posibilidad de crear misiones y rutas propias, a las que más tarde se puede acceder desde la app. Además las rutas pueden descargarse como un archivo PDF desde el portal web. Todas las herramientas de MathCityMap son gratuitas.",
+  "a_about_mcm_project": "MathCityMap es un proyecto del grupo de trabajo MATIS I (IDMI, Goethe-University Frankfurt Main).",
+  "a_about_mcm_responsibility_title": "Personas responsables"
 }
