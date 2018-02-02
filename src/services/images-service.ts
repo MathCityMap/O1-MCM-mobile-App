@@ -136,7 +136,7 @@ export class ImagesService {
 
         let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
         for (var i = 0; i < urls.length; i++) {
-            let imgFileName = urls[i]
+            let imgFileName = urls[i];
             // No image in task
             if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
                 continue
