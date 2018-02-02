@@ -11,7 +11,6 @@ import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { Task } from '../../../../entity/Task';
 import { Score } from '../../../../entity/Score';
-import { TaskState } from '../../../../entity/TaskState';
 
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
@@ -30,12 +29,14 @@ export class TasksMap {
   private routeId: number;
   private route: Route;
   private taskList: Task[];
-  private selectedTaskIndex: number;
-  private selectedTask: Task;
 
-  private taskDetails: TaskState;
+  private state: State = {
+      selectedTask: null,
+      isShowingAllTasks: false,
+      visibleTasks : {},
+      skippedTaskIds: []
+  };
   private score: Score;
-  private skippedTaskIds: number[] = [];;
 
 
     taskOpenIcon;
@@ -66,7 +67,21 @@ export class TasksMap {
     let user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(user);
     console.log(this.score);
-    this.selectedTask = this.navParams.get("selectedTask");
+    if (this.navParams.data.tasksMapState) {
+        this.state = this.navParams.data.tasksMapState;
+    } else {
+        // attach state to navParams so that state is restored when moving back in history (from task detail view)
+        this.state = this.navParams.data.tasksMapState = {
+            selectedTask: this.navParams.get("selectedTask"),
+            isShowingAllTasks: false,
+            visibleTasks: {},
+            skippedTaskIds: []
+        };
+        this.state.isShowingAllTasks = !this.state.selectedTask;
+        if (this.state.selectedTask) {
+            this.state.visibleTasks[this.state.selectedTask.position] = true;
+        }
+    }
     await this.loadMap();
     this.initializeMap();
   }
@@ -92,20 +107,19 @@ export class TasksMap {
 
     for(let i = 0; i < this.taskList.length; i++){
         let task: Task = this.taskList[i];
-        let icon = this.taskOpenIcon;
-        if(this.selectedTask && this.selectedTask.id == task.id && !this.selectedTaskIndex){
-            this.selectedTaskIndex = i;
+        if (!this.state.isShowingAllTasks && !this.state.visibleTasks[task.position]) {
+            continue;
         }
+        let icon = this.taskOpenIcon;
         if(this.score.getTasksSolved().indexOf(task.id) > -1){
             icon = this.taskDonePerfectIcon;
         }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
             icon = this.taskDoneIcon;
-        }else if(this.skippedTaskIds.indexOf(task.id) > -1){
+        }else if(this.state.skippedTaskIds.indexOf(task.id) > -1){
           icon = this.taskSkippedIcon;
       }
       markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
-          this.selectedTaskIndex = i;
-          this.selectedTask = task;
+          this.state.selectedTask = task;
           this.map.panTo( [task.lat, task.lon] );
       }));
     }
@@ -137,8 +151,7 @@ export class TasksMap {
           this.map.on('click', e => {
               //check if details open and reset content. for now just reset content
               // this.routeDetails = null;
-              this.selectedTask = null;
-              this.selectedTaskIndex = null;
+              this.state.selectedTask = null;
           })
           let map = this.map;
           await tilesDb.initialize();
@@ -185,7 +198,7 @@ export class TasksMap {
           });
 
           //centers map in the selected task
-          if(this.selectedTask != null){
+          if(this.state.selectedTask != null){
             this.centerSelectedTask()
             /* todo: show only selectedTask */
           }
@@ -193,17 +206,14 @@ export class TasksMap {
   }
 
   centerSelectedTask(){
-    this.map.panTo( [this.selectedTask.lat, this.selectedTask.lon] );
+    this.map.panTo( [this.state.selectedTask.lat, this.state.selectedTask.lon] );
   }
 
   skipTask(task: Task){
-    this.skippedTaskIds.push(task.id);
-    if(this.selectedTaskIndex + 1 < this.taskList.length){
-        this.selectedTaskIndex++;
-    }else{
-        this.selectedTaskIndex = 0;
-    }
-    this.selectedTask = this.taskList[this.selectedTaskIndex];
+    this.state.skippedTaskIds.push(task.id);
+    // task.position == index + 1
+    this.state.selectedTask = this.taskList[task.position % this.taskList.length];
+    this.state.visibleTasks[this.state.selectedTask.position] = true;
     this.redrawMarker();
     this.centerSelectedTask();
 
@@ -214,11 +224,24 @@ export class TasksMap {
     let _this = this;
     this.modalService.presentTaskListModal(this.route, this.navCtrl, function(selectedTask: Task){
             console.log("back in tasksMap");
-            _this.selectedTask = selectedTask;
-            _this.centerSelectedTask()
+            _this.state.selectedTask = selectedTask;
+            _this.state.visibleTasks = {};
+            _this.state.visibleTasks[selectedTask.position] = true;
+            _this.state.isShowingAllTasks = false;
+            _this.centerSelectedTask();
+            _this.redrawMarker();
     });
     /* this.showOnlyCurrentlySelectedTadk(); */
     /*   */
+  }
+
+  showAllTasks() {
+      this.state.isShowingAllTasks = true;
+      this.redrawMarker();
+  }
+
+  resetTasks() {
+      alert('Resetting tasks is not yet implemented');
   }
 
   async gototask(taskId: number, taskName: string) {
@@ -229,4 +252,10 @@ export class TasksMap {
     });
   }
 
+}
+interface State {
+    selectedTask: Task;
+    isShowingAllTasks: boolean;
+    visibleTasks: any;
+    skippedTaskIds: number[];
 }

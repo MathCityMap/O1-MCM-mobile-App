@@ -26,27 +26,27 @@
         <!--</div>-->
     <!--</div>-->
 
-    <div id="details" class="detail-box" [ngClass]="{'open': selectedTask}">
+    <div id="details" class="detail-box" [ngClass]="{'open': state.selectedTask}">
         <div class="fab-container">
             <ion-fab right bottom>
                 <button ion-fab color="primary"><ion-icon name="more"></ion-icon></button>
                 <ion-fab-list side="top">
-                    <button ion-fab>
+                    <button ion-fab (click)="resetTasks()">
                         <ion-icon name="icon-restart"></ion-icon>
                     </button>
-                    <button ion-fab (click)="selectStartPoint()">
+                    <button [hidden]="!state.isShowingAllTasks" ion-fab (click)="selectStartPoint()">
                         <ion-icon name="icon-starting-point"></ion-icon>
                     </button>
-                    <button ion-fab>
+                    <button [hidden]="state.isShowingAllTasks" ion-fab (click)="showAllTasks()">
                         <ion-icon name="icon-visibility"></ion-icon>
                     </button>
                 </ion-fab-list>
             </ion-fab>
         </div>
-        <div *ngIf="selectedTask" class="image-container" (click)="gototask(selectedTask.id, selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ selectedTask.getImageURL()  +'\\')'}" ></div>
-        <div class="text-container" *ngIf="selectedTask">
-            <p (click)="gototask(selectedTask.id, selectedTask.title)">#{{selectedTask.position}}</p>
-            <h2 (click)="gototask(selectedTask.id, selectedTask.title)">{{selectedTask.title}}</h2>
+        <div *ngIf="state.selectedTask" class="image-container" (click)="gototask(state.selectedTask.id, state.selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ state.selectedTask.getImageURL()  +'\\')'}" ></div>
+        <div class="text-container" *ngIf="state.selectedTask">
+            <p (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</p>
+            <h2 (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>
             <div class="segmented-box dotted-border-top">
                 <!--<div class="segement distance">-->
                     <!--<ion-label>{{ "g_max_points" | translate }}</ion-label>-->
@@ -54,13 +54,13 @@
                 <!--</div>-->
                 <div class="segement buttons">
                     <div class="button-container text-right">
-                        <button ion-button icon-only clear class="dot" (click)="skipTask(selectedTask)">
+                        <button ion-button icon-only clear class="dot" (click)="skipTask(state.selectedTask)">
                             <img class="danger round" src="./assets/icons/icon_skip.svg"/>
                         </button>
-                        <!--<button ion-button icon-only clear (click)="gototask(selectedTask.id, selectedTask.title)">-->
+                        <!--<button ion-button icon-only clear (click)="gototask(state.selectedTask.id, state.selectedTask.title)">-->
                             <!--<img class="primary round" src="./assets/icons/icon_play-large.svg"/>-->
                         <!--</button>-->
-                        <button ion-button small round (click)="gototask(selectedTask.id, selectedTask.title)">{{ 'a_alert_show_task' | translate }}</button>
+                        <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{ 'a_alert_show_task' | translate }}</button>
                     </div>
                     <!--<button ion-button small round >{{ 'select_entry_point' | translate }}</button>-->
                     <!--<button ion-button small round color="danger">{{ 'skipTask' | translate }}</button>-->
