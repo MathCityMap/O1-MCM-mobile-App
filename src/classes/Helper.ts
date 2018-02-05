@@ -150,15 +150,13 @@ export class Helper {
     return angle;
   }
 
-  public static followUser(bounds: L.Bounds, userPoint: L.Point, zoom: number){
+  /*public static followUser(bounds: L.Bounds, userPoint: L.Point, zoom: number){
     let center = bounds.getCenter();
 
     let dif: any;
     let newCenter: any;
 
     if(!bounds.contains(userPoint)){
-
-      
 
        if(userPoint.x > bounds.getTopRight().x){
           dif = userPoint.x - bounds.getTopRight().x;
@@ -184,4 +182,5 @@ export class Helper {
           
       }
     }
+    */
   }  

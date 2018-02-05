@@ -16,6 +16,9 @@ import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
 import {gpsService} from  '../../../../services/gps-service';
 import { ModalsService } from '../../../../services/modals-service';
+import { Geolocation } from '@ionic-native/geolocation';
+import 'leaflet-rotatedmarker';
+
 @IonicPage({
   segment: 'TasksMap/:routeId'
 })
@@ -45,14 +48,20 @@ export class TasksMap {
     taskDonePerfectIcon;
     taskFailedIcon;
 
+    userPositionIcon;
+    userMarker: any;
+    prevPos: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private ormService: OrmService,
     private deepLinker: DeepLinker,
     private gpsService: gpsService,
-    private modalService: ModalsService
+    private modalService: ModalsService,
+    private geolocation: Geolocation
   ) {
+      this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
       this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
       this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
@@ -164,6 +173,40 @@ export class TasksMap {
               crossOrigin: true,
               detectRetina: true
           });
+
+          this.geolocation.getCurrentPosition()
+                .then(resp => {
+                    if (resp && resp.coords) {
+                        console.warn('found you');
+                        Helper.myLocation = resp;
+                        console.log(`Coordinates: ${JSON.stringify(resp)}`);
+                        // let markerGroup = L.featureGroup();
+
+                        this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
+                            alert('Marker clicked');
+                        });
+                        this.userMarker.addTo(this.map);
+
+                        let watch = this.geolocation.watchPosition();
+                        watch.subscribe(resp => {  
+                            if (resp && resp.coords) {
+                                Helper.myLocation = resp;
+                                console.log(`Coordinates: ${JSON.stringify(resp)}`);
+                                const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
+                                this.userMarker.setLatLng(lanlng);   
+                                //Rotate the user marker
+                                if(this.prevPos!=null) {
+                                  let angle = Helper.getAngle(this.prevPos, resp.coords);
+                                  this.userMarker.setRotationAngle(angle);
+                                    }
+                                this.prevPos = resp.coords;
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error(`Location error: ${JSON.stringify(error)}`);
+                })
 
           offlineLayer.addTo(map);
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());

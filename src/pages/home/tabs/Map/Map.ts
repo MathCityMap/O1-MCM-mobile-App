@@ -93,13 +93,6 @@ export class MapPage implements OnInit {
         });
 
         this.loadMap();
-
-      //  const subscription = this.geolocation.watchPosition()
-      //                        //.filter((p) => p.coords !== undefined) //Filter Out Errors
-      //                        .subscribe(position => {
-  	//	console.log("############################################## " + position.coords.longitude + ' ' + position.coords.latitude);
-	//		});
-	    //this.map.locate({watch:true, setView:true});
     }
 
 
@@ -210,11 +203,7 @@ export class MapPage implements OnInit {
                             this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
                         }
 
-                        let watch = this.geolocation.watchPosition({
-                                      enableHighAccuracy: true,
-                                      timeout: 3000,
-                                      maximumAge: 500
-                                        });
+                        let watch = this.geolocation.watchPosition();
                         watch.subscribe(resp => {
 
                         	
@@ -226,12 +215,14 @@ export class MapPage implements OnInit {
                                 this.userMarker.setLatLng(lanlng);
                                 
                                 //Check if it needs to move the map (in case the user is outside the threshold bounds)
-                                let freeBounds = L.bounds(L.point(this.map.getSize().x * 0.2, this.map.getSize().y * 0.2),
+                                /*let freeBounds = L.bounds(L.point(this.map.getSize().x * 0.2, this.map.getSize().y * 0.2),
                                                    L.point(this.map.getSize().x * 0.8, this.map.getSize().y * 0.8));
                                 let newPos = Helper.followUser(freeBounds, this.map.latLngToContainerPoint(lanlng), this.map.getZoom());
                                 if(newPos!= null) {
                                     //this.map.panTo(this.map.containerPointToLatLng(newPos));
-                                }
+                                }*/
+
+
                                 //Rotate the user marker
                                 if(this.prevPos!=null) {
                                 	let angle = Helper.getAngle(this.prevPos, resp.coords);
