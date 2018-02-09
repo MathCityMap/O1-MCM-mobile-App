@@ -9,7 +9,7 @@
 
   <ion-list>
     <div class="detail-box" *ngFor="let item of items">
-        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngStyle]="{'background-image' : 'url(\\''+ item.getThumbURL() +'\\')'}" ></div>
+        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded}" [ngStyle]="{'background-image' : 'url(\\''+ item.getThumbURL() +'\\')'}" ></div>
         <div class="text-container">
           <p (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}}</p>
           <h2 (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>

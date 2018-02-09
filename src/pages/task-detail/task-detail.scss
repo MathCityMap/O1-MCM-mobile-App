@@ -12,10 +12,13 @@ page-task-detail{
             flex-direction: column;
             justify-content: center;
             img{
+                opacity: 0;
 //                object-fit: cover;
 //                max-width: unset;
                 &:first-of-type{
                     position: fixed;
+                    opacity: 1;
+
                 }
             }
             &:before{
