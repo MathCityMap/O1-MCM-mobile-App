@@ -397,6 +397,9 @@ input{
     margin: $global-base-padding;
     position: relative;
     z-index: -1;
+    &.modal {
+        z-index: 10000;
+    }
     ion-label, ion-label.label-ios, ion-label.label-md{
         margin-bottom: $global-small-padding*0.8;
     }
