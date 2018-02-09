@@ -312,6 +312,14 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
+        "file": "plugins/cordova-plugin-request-location-accuracy/www/ios/RequestLocationAccuracy.js",
+        "pluginId": "cordova-plugin-request-location-accuracy",
+        "clobbers": [
+            "cordova.plugins.locationAccuracy"
+        ]
+    },
+    {
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "pluginId": "cordova-plugin-splashscreen",
@@ -336,15 +344,6 @@ module.exports = [
         ]
     },
     {
-        "id": "ionic-plugin-keyboard.keyboard",
-        "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
-        "pluginId": "ionic-plugin-keyboard",
-        "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
-    },
-    {
         "id": "cordova.plugins.diagnostic.Diagnostic",
         "file": "plugins/cordova.plugins.diagnostic/www/ios/diagnostic.js",
         "pluginId": "cordova.plugins.diagnostic",
@@ -353,17 +352,19 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
-        "file": "plugins/cordova-plugin-request-location-accuracy/www/ios/RequestLocationAccuracy.js",
-        "pluginId": "cordova-plugin-request-location-accuracy",
+        "id": "ionic-plugin-keyboard.keyboard",
+        "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
+        "pluginId": "ionic-plugin-keyboard",
         "clobbers": [
-            "cordova.plugins.locationAccuracy"
-        ]
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "cordova-custom-config": "4.0.2",
     "cordova-fabric-plugin": "1.1.9",
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-file": "4.3.3",
@@ -373,14 +374,13 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
+    "cordova-plugin-request-location-accuracy": "2.2.2",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-sqlite-storage": "2.0.4",
-    "ionic-plugin-keyboard": "2.2.1",
-    "cordova-custom-config": "4.0.2",
     "cordova.plugins.diagnostic": "3.9.1",
-    "cordova-plugin-request-location-accuracy": "2.2.2"
+    "ionic-plugin-keyboard": "2.2.1"
 };
 // BOTTOM OF METADATA
 });
