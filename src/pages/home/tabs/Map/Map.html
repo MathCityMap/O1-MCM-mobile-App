@@ -1,45 +1,36 @@
 <ion-content class="map has-header">
 
-  <div id="map" class="map-view"></div>
+    <div id="map" class="map-view"></div>
 
-  <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
-    <div class="fab-container">
-        <ion-fab right bottom>
-            <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
-        </ion-fab>
-    </div>
-
-      <div *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)"[ngStyle]="{'background-image' : 'url(\\''+ routeDetails.getImageURL() +'\\')'}" >
-
-      </div>
-      <div class="text-container" *ngIf="routeDetails">
-          <p>{{routeDetails.city}}, {{routeDetails.countryCode}}</p>
-          <h2 (click)="modalsService.showRoute(routeDetails, navCtrl)">{{routeDetails.title}}</h2>
-        <div class="segmented-box dotted-border-top">
-          <div class="segement dotted-border-right distance">
-              <ion-label>{{ "a_t_distance" | translate }}</ion-label>
-              <span>{{routeDetails.getDistance() | distance: 'm'}}</span>
-          </div>
-          <div class="segement dotted-border-right grade">
-              <ion-label>{{ "a_t_grade" | translate }}</ion-label>
-              <span>{{routeDetails.grade}}+</span>
-          </div>
-          <div class="segement buttons">
-                <div class="button-container">
+    <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
+        <div class="fab-container">
+            <ion-fab right bottom>
+                <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+            </ion-fab>
+        </div>
+        <div *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)"[ngStyle]="{'background-image' : 'url(\\''+ routeDetails.getImageURL() +'\\')'}" ></div>
+        <div class="text-container" *ngIf="routeDetails">
+            <div class="segmented-box">
+                <div class="segement distance title">
+                    <h2 (click)="modalsService.showRoute(routeDetails, navCtrl)">{{routeDetails.title}}</h2>
+                    <p>{{routeDetails.city}}, {{routeDetails.countryCode}} <span>({{routeDetails.getDistance() | distance: 'm'}})</span></p>
+                    <div>
+                        <span>{{ "a_from_grade" | translate }} {{routeDetails.grade}}</span>
+                    </div>
+                </div>
+                <div class="segement buttons info">
                     <button class="dot" *ngIf="routeDetails" ion-button icon-only clear (click)="modalsService.presentRouteInfoModal(routeDetails, navCtrl)">
-                        <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
+                    <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
                     </button>
                     <button class="dot" *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="modalsService.doDownload(routeDetails)">
-                            <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
+                    <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
                     </button>
                     <button class="dot" *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="removeRoute(routeDetails)">
-                            <img class="danger round" src="./assets/icons/icon_delete.svg"/>
+                    <img class="danger round" src="./assets/icons/icon_delete.svg"/>
                     </button>
                 </div>
             </div>
         </div>
-
-      </div>
     </div>
 
 </ion-content>

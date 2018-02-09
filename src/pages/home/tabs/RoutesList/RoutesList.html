@@ -8,39 +8,63 @@
     </ion-fab>
 
   <ion-list>
-    <div class="detail-box" *ngFor="let item of items">
+    <div class="detail-box dotted-border-bottom" *ngFor="let item of items">
         <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded}" [ngStyle]="{'background-image' : 'url(\\''+ item.getThumbURL() +'\\')'}" ></div>
         <div class="text-container">
-          <p (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}}</p>
-          <h2 (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>
-          <div class="segmented-box dotted-border-top">
-            <div class="segement dotted-border-right distance">
-                <ion-label>{{ "a_t_distance" | translate }}</ion-label>
-                <span>{{item.distance | distance: 'm'}}</span>
-            </div>
-            <div class="segement dotted-border-right grade">
-                <ion-label [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_t_grade" | translate }}</ion-label>
-                <span *ngIf="item.grade">{{item.grade}}+</span>
-                <span *ngIf="!item.grade">{{ "no_data" | translate }}</span>
-            </div>
-            <div class="segement buttons">
-                <div class="button-container text-right">
-                    <button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">
-                        <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
-                    </button>
-
-                    <button ion-button icon-only clear class="dot" *ngIf="!item.downloaded" (click)="modalsService.doDownload(item)">
-                        <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
-                    </button>
-
-                    <button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">
-                        <img class="danger round" src="./assets/icons/icon_delete.svg"/>
-                    </button>
+            <div class="segmented-box">
+                <div class="title segement">
+                    <h2 class="item-text-wrap" (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>
+                    <p (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}} <span>({{item.distance | distance: 'm'}})</span></p>
+                    <div>
+                        <span [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_from_grade" | translate }}</span>
+                        <span *ngIf="item.grade">{{item.grade}}</span>
+                        <span *ngIf="!item.grade">{{ "no_data" | translate }}</span>
+                    </div>
                 </div>
+                <div class="segement buttons info">
+                    <!--<div class="button-container text-right">-->
+                        <button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">
+                            <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
+                        </button>
+                        <button ion-button icon-only clear class="dot" *ngIf="!item.downloaded" (click)="modalsService.doDownload(item)">
+                            <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
+                        </button>
 
+                        <button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">
+                            <img class="danger round" src="./assets/icons/icon_delete.svg"/>
+                        </button>
+                    <!--</div>-->
+                </div>
             </div>
+          <!--<div class="segmented-box">-->
+            <!--&lt;!&ndash;<div class="segement dotted-border-right distance">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ion-label>{{ "a_t_distance" | translate }}</ion-label>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span>{{item.distance | distance: 'm'}}</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="segement grade">-->
+                <!--&lt;!&ndash;<ion-label [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_t_grade" | translate }} <span *ngIf="item.grade">{{item.grade}}</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span *ngIf="!item.grade">{{ "no_data" | translate }}</span></ion-label>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span *ngIf="item.grade">{{item.grade}}</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;<span *ngIf="!item.grade">{{ "no_data" | translate }}</span>&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="segement buttons">-->
+                <!--<div class="button-container text-right">-->
+                    <!--&lt;!&ndash;<button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<img class="primary round" src="./assets/icons/icon_route-info.svg"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</button>&ndash;&gt;-->
 
-          </div>
+                    <!--<button ion-button icon-only clear class="dot" *ngIf="!item.downloaded" (click)="modalsService.doDownload(item)">-->
+                        <!--<img class="primary round" src="./assets/icons/icon_route-download.svg"/>-->
+                    <!--</button>-->
+
+                    <!--<button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">-->
+                        <!--<img class="danger round" src="./assets/icons/icon_delete.svg"/>-->
+                    <!--</button>-->
+                <!--</div>-->
+
+            <!--</div>-->
+
+          <!--</div>-->
         </div>
 
       </div>

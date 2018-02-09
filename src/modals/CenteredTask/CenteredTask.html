@@ -1,9 +1,10 @@
 <div class="modal card task-select has-button-on-the-edge">
-    <h2>{{ 'a_startAt' | translate}}</h2>
+    <h2 *ngIf="route">{{route.title}}</h2>
+    <p *ngIf="route">{{ 'a_startAt' | translate}}</p>
 
     <div class="modal-content">
         <div class="dotted-border-bottom"  *ngFor="let item of tasks" (click) = "showRoute(route, item)">
-            {{item.position}}. {{item.title}}
+            #{{item.position}} {{item.title}}
         </div>
     </div>
 

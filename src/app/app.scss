@@ -95,7 +95,7 @@
 //ROUTES LIST
 
 
-.routes-list{
+.routes-list, #map{
     .list-ios,
     .list-md{
         margin: 0;
@@ -117,6 +117,11 @@
             .input-wrapper{
                 background-color: #ffffff;
             }
+        }
+    }
+    .text-container{
+        span{
+            display: inline-block;
         }
     }
 }
@@ -187,7 +192,7 @@ input{
     background-color: #ffffff;
     height: auto;
     width: 100%;
-    padding: 16px 10px 10px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -195,8 +200,8 @@ input{
     .image-container {
         background-color: #b2b2b2;
 
-        width: 22vw;
-        height: 22vw;
+        width: 20vw;
+        height: 20vw;
 
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
@@ -217,22 +222,26 @@ input{
 
     .text-container{
         flex: 5;
-        max-width: calc(78vw - 20px);
+        max-width: calc(80vw - 20px);
         padding-left: 16px;
 
         p{
             margin: 0;
+            display: inline-block;
+            span{
+                display: inline-block;
+            }
         }
         span{
             color: color($colors, dark-grey);
         }
         h2{
             margin-top: 0px;
-            margin-bottom: 6px;
-            white-space: normal;
+            margin-bottom: -4px;
+            width: 100%;
 
-            display            : block;
-            display            : -webkit-box;
+            white-space: nowrap;
+            display            : inline-block;
             -webkit-box-orient : vertical;
             position           : relative;
             overflow           : hidden;
@@ -243,32 +252,44 @@ input{
         }
         .segmented-box{
             display: flex;
-            align-items: center;
+            align-items: stretch;
             .segement{
                 flex: 1;
+                &.title{
+                    overflow: hidden;
+                    padding-right: 10px;
+                }
                 ion-label, ion-label.label-ios, ion-label.label-md{
                     margin-bottom: 0px;
+                    span{
+                        display: inline-block;
+                    }
                 }
                 &.buttons{
                     display: flex;
                     flex-direction: column;
                     flex-wrap: nowrap;
+                    &.info{
+                        flex: none;
+                        justify-content: space-between;
+                    }
                     >.button-container,
                     >span{
                         min-width: 100%
                     }
-                    >.button-container{
+//                    >.button-container{
                         white-space: nowrap;
                         button.dot{
-                            width: 30px;
-                            height: 30px;
-                            padding: 4px;
-                            margin: 0;
+                            min-width: unset;
+                            width: 22px;
+                            height: 22px;
+//                            padding: 4px;
+                            margin: 0px;
                             overflow: visible;
                             &:last-of-type{
-                                margin-right: -4px;
+//                                margin-right: -4px;
+//                                margin-bottom: 0;
                             }
-
                             img{
                                 object-fit: contain;
                             }
@@ -279,7 +300,7 @@ input{
                             margin: 0;
                             box-shadow: none;
                         }
-                    }
+//                    }
 
                 }
                 span.downloading{
@@ -479,9 +500,7 @@ img{
     }
 }
 .dotted-border-top{
-    border-top: 2px dotted color($colors, light-grey);
-    margin-top: 6px;
-    padding-top: 8px;
+    border-top: 2px dotted color($colors, light-grey)!important;
 }
 .dotted-border-left{
     border-left: 2px dotted color($colors, light-grey);
@@ -494,9 +513,7 @@ img{
     padding-right: 10px!important;
 }
 .dotted-border-bottom{
-    border-bottom: 2px dotted color($colors, light-grey);
-    margin-bottom: 6px;
-    padding-bottom: 6px;
+    border-bottom: 2px dotted color($colors, light-grey)!important;
 }
 
 
@@ -706,15 +723,20 @@ ion-modal {
                 background-color: color($colors, danger);
             }
         }
-
-    }
-
-    .task-select{
-        .dotted-border-bottom{
-            padding-bottom: 10px;
-            margin-bottom: 10px;
+        &.task-select{
+            h2{
+                margin: 0 0 8px;
+            }
+            p{
+                margin-bottom: 15px;
+            }
+            .dotted-border-bottom{
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
         }
     }
+
 
 }
 
