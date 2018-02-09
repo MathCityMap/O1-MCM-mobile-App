@@ -32,7 +32,7 @@ h2{
     color: color($colors, primary);
 }
 p{
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.6;
     font-weight: 500;
     color: color($colors, dark-grey);
@@ -40,7 +40,7 @@ p{
 ion-label,
 ion-label.label-ios,
 ion-label.label-md{
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: color($colors, grey);
@@ -49,7 +49,7 @@ ion-label.label-md{
 }
 span{
     display: block;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 input{

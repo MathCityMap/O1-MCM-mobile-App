@@ -63,7 +63,7 @@ export class TasksMap {
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-      this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+      this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], className:'marker'});
       this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
       this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
       this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
