@@ -385,7 +385,7 @@
   "a_t_skip_msg": "Möchtest du mit der nächsten Aufgabe fortfahren?",
   "a_alert_congrats": "Herzlichen Glückwunsch!",
   "a_alert_congrats_msg": "Du hast alle Aufgaben des Trails '{{TITLE}}' erfolgreich gelöst!",
-  "a_g_max_points": "Max. Punkte",
+  "a_g_max_points": "Punkte",
   "a_g_name_error": "Der Name muss eine Länge zwischen 3 und 13 Zeichen besitzen.",
   "a_t_list": "Liste",
   "a_alert_bigmap_msg": "Dieser Trail ist sehr groß ({{TILES}} tiles). Der Download könnte einige Minuten dauern. Möchtest Du fortfahren?",

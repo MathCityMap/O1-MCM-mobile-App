@@ -95,7 +95,7 @@
 //ROUTES LIST
 
 
-.routes-list, #map{
+.routes-list, .map-view{
     .list-ios,
     .list-md{
         margin: 0;
@@ -228,6 +228,7 @@ input{
         p{
             margin: 0;
             display: inline-block;
+            line-height: 1.4;
             span{
                 display: inline-block;
             }
@@ -236,7 +237,7 @@ input{
             color: color($colors, dark-grey);
         }
         h2{
-            margin-top: 0px;
+            margin-top: 2px;
             margin-bottom: -4px;
             width: 100%;
 
@@ -253,6 +254,12 @@ input{
         .segmented-box{
             display: flex;
             align-items: stretch;
+            &.bottom{
+                align-items: center;
+            }
+            &:not(:first-child){
+                margin-top: 2px;
+            }
             .segement{
                 flex: 1;
                 &.title{
@@ -273,6 +280,10 @@ input{
                         flex: none;
                         justify-content: space-between;
                     }
+                    &.skip{
+                        flex: none;
+                        justify-content: flex-end;
+                    }
                     >.button-container,
                     >span{
                         min-width: 100%
@@ -281,8 +292,8 @@ input{
                         white-space: nowrap;
                         button.dot{
                             min-width: unset;
-                            width: 22px;
-                            height: 22px;
+                            width: 24px;
+                            height: 24px;
 //                            padding: 4px;
                             margin: 0px;
                             overflow: visible;
@@ -335,7 +346,7 @@ input{
         align-items: center;
         background: #ffffff;
         height: auto;
-        padding: 10px;
+        padding: 12px 10px;
         margin: 0;
         margin-bottom: -4px;
 
@@ -538,7 +549,7 @@ button{
     &.button-round-ios.button-small-ios,
     &.button-round-md.button-small-md{
         font-family: 'NunitoExtrabold', Arial, sans-serif;
-        line-height: 1;
+        line-height: 1.4;
         text-transform: none;
         min-width: 90px;
         padding: 0 15px;

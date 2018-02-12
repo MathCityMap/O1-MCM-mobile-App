@@ -21,12 +21,12 @@ page-task-detail{
 
                 }
             }
-            &:before{
-                content: '';
-                display: block;
-                height: 100%;
-                width: 100%;
-            }
+//            &:before{
+//                content: '';
+//                display: block;
+//                height: 100%;
+//                width: 100%;
+//            }
         }
     }
 
@@ -55,6 +55,7 @@ page-task-detail{
             padding-top: $global-large-padding*0.5;
             p{
                 margin-bottom: $global-base-padding*1.5;
+                font-size: 16px;
             }
         }
         .head{

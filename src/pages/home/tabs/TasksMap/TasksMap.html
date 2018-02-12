@@ -2,7 +2,7 @@
 <ion-content class="has-header map">
     <div id="tasks-map" class="map-view"></div>
 
-    <!--RANKING TABLE FOR FUTUTRE GAMIFIKATION INTEGRATION-->
+    <!--TODO RANKING TABLE FOR FUTUTRE GAMIFICATION INTEGRATION-->
     <!--<div id="ranking" class="detail-box top">-->
         <!--<div class="text-container">-->
             <!--<div class="ranking-row above">-->
@@ -37,33 +37,32 @@
                     <button [hidden]="!state.isShowingAllTasks" ion-fab (click)="selectStartPoint()">
                         <ion-icon name="icon-starting-point"></ion-icon>
                     </button>
-                    <button [hidden]="state.isShowingAllTasks" ion-fab (click)="showAllTasks()">
+                    <button color="danger" [hidden]="state.isShowingAllTasks" ion-fab (click)="showAllTasks()">
                         <ion-icon name="icon-visibility"></ion-icon>
                     </button>
                 </ion-fab-list>
             </ion-fab>
         </div>
-        <div *ngIf="state.selectedTask" class="image-container" (click)="gototask(state.selectedTask.id, state.selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ state.selectedTask.getImageURL()  +'\\')'}" ></div>
+        <div class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ state.selectedTask.getImageURL()  +'\\')'}" ></div>
         <div class="text-container" *ngIf="state.selectedTask">
-            <p (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</p>
-            <h2 (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>
-            <div class="segmented-box dotted-border-top">
-                <!--<div class="segement distance">-->
-                    <!--<ion-label>{{ "g_max_points" | translate }}</ion-label>-->
-                    <!--<span>???</span>-->
-                <!--</div>-->
+            <div class="segmented-box">
+                <div class="title segement">
+                    <span (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</span>
+                    <h2 (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>
+                </div>
+                <div class="segement buttons skip">
+                    <button ion-button icon-only clear class="dot" (click)="skipTask(state.selectedTask)">
+                        <img class="danger round" src="./assets/icons/icon_skip.svg"/>
+                    </button>
+                </div>
+            </div>
+            <div class="segmented-box bottom">
+                <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
+                <!--<span class="segement">??? {{ "a_g_max_points" | translate }}</span>-->
                 <div class="segement buttons">
-                    <div class="button-container text-right">
-                        <button ion-button icon-only clear class="dot" (click)="skipTask(state.selectedTask)">
-                            <img class="danger round" src="./assets/icons/icon_skip.svg"/>
-                        </button>
-                        <!--<button ion-button icon-only clear (click)="gototask(state.selectedTask.id, state.selectedTask.title)">-->
-                            <!--<img class="primary round" src="./assets/icons/icon_play-large.svg"/>-->
-                        <!--</button>-->
+                    <div class="text-right">
                         <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{ 'a_alert_show_task' | translate }}</button>
                     </div>
-                    <!--<button ion-button small round >{{ 'select_entry_point' | translate }}</button>-->
-                    <!--<button ion-button small round color="danger">{{ 'skipTask' | translate }}</button>-->
                 </div>
             </div>
         </div>

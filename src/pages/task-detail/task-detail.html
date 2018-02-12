@@ -11,13 +11,14 @@
     <div class="card task has-button-on-the-edge">
         <div class="head">
             <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
+            <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
             <!--<span class="tag points">100 MP</span>-->
         </div>
         <p *ngIf="task">{{task.description}}</p>
         <div class="answer">
             <ion-label>{{ "a_task_answer" | translate }}</ion-label>
             <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
-                <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
+                <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
                 <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
             </ion-item>
             <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList">
@@ -49,6 +50,7 @@
     <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
         <div class="head">
             <ion-label>{{ "solution_good" | translate }}</ion-label>
+            <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
             <!--<span class="tag points">+ 100 MP</span>-->
         </div>
     </div>
