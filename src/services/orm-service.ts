@@ -237,11 +237,18 @@ export class OrmService {
     }
 
     async downloadRoute(route: Route, statusCallback) {
+        let alreadyDownloadedUrls = [];
         try {
             statusCallback(0, 0, 'a_rdl_title_map');
-            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, statusCallback);
+            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, (done, total, url) => {
+                alreadyDownloadedUrls.push(url);
+                return statusCallback(done, total);
+            });
             statusCallback(0, 0, 'a_rdl_title_img');
-            await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(await route.getTasks()), false, statusCallback);
+            await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(await route.getTasks()), false, (done, total, url) => {
+                alreadyDownloadedUrls.push(url);
+                return statusCallback(done, total);
+            });
             route.downloaded = true;
             const repo = await this.getRouteRepository();
             await repo.save(route);
@@ -251,8 +258,21 @@ export class OrmService {
                 console.log(e.message);
             }
             console.log(e);
-            await this.removeDownloadedRoute(route);
+            await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
         }
+    }
+
+    getTileURLs(route: Route) {
+        return CacheManagerMCM.getTileURLs(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
+    }
+
+    getTileURLsAsObject(route: Route) {
+        let tiles = this.getTileURLs(route);
+        let result = {};
+        for (let tile of tiles) {
+            result[tile] = true;
+        }
+        return result;
     }
 
     private getDownloadImagesForTasks(tasks: Task[]) {
@@ -264,7 +284,7 @@ export class OrmService {
     }
 
     async removeDownloadedRoute(route: Route) {
-        CacheManagerMCM.removeDownloadedTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
+        // this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         route.downloaded = false;
         const repo = await this.getRouteRepository();

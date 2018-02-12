@@ -5,7 +5,7 @@ import { DeepLinker } from "ionic-angular/navigation/deep-linker";
 import { Route } from '../entity/Route';
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 import { Task } from '../entity/Task';
@@ -29,7 +29,7 @@ export class ModalsService {
         console.log(`doDownload ${JSON.stringify(route.id)}`);
 
         let cancelHasBeenClicked = false;
-        let data = {
+        let data: any = {
             total: 0,
             currentProgress: 0,
             cancelCallback: () => {
@@ -49,6 +49,11 @@ export class ModalsService {
             if (titleKey) {
                 data.titleKey = titleKey;
             }
+
+            if (data.updateView) {
+                data.updateView();
+            }
+            // make sure that updated values are bound to DOM
             return cancelHasBeenClicked;
         });
         downloadModal.dismiss();

@@ -18,6 +18,7 @@ import {gpsService} from  '../../../../services/gps-service';
 import { ModalsService } from '../../../../services/modals-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import 'leaflet-rotatedmarker';
+import { ImagesService } from '../../../../services/images-service';
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -59,7 +60,8 @@ export class TasksMap {
     private deepLinker: DeepLinker,
     private gpsService: gpsService,
     private modalService: ModalsService,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private imagesService: ImagesService
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
@@ -206,7 +208,20 @@ export class TasksMap {
                 })
                 .catch(error => {
                     console.error(`Location error: ${JSON.stringify(error)}`);
-                })
+                });
+
+          const tiles = this.ormService.getTileURLsAsObject(this.route);
+          let that = this;
+          offlineLayer.getTileUrl = function (coords) {
+              var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
+              var dbStorageKey = this._getStorageKey(url);
+
+              if (tiles[dbStorageKey]) {
+                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
+              }
+              return Promise.resolve(url);
+
+          };
 
           offlineLayer.addTo(map);
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());

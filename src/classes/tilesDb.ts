@@ -1,102 +1,64 @@
 import { Storage } from '@ionic/storage';
+import { ImagesService } from '../services/images-service';
+
 var storageInstance: any;
 declare var URL: any;
 
 export var tilesDb = {
-  storage: null,
-  initialize: function () {
-    if (storageInstance) {
-      this.storage = storageInstance;
-    } else {
-      this.storage = storageInstance = new Storage({ name: "mapboxTilesStorage" });
-    }
-    return this.storage.ready();
-  },
-  getItem: function (key) {
-    return this.storage.get(key);
-  },
+    storage: null,
+    initialize: function () {
+        if (storageInstance) {
+            this.storage = storageInstance;
+        } else {
+            this.storage = storageInstance = new Storage({name: "mapboxTilesStorage"});
+        }
+        return this.storage.ready();
+    },
+    getItem: function (key) {
+        return Promise.resolve(null);
+    },
 
-  saveTiles: function (tileUrls, progressCallback) {
-    var self = this;
+    saveTiles: function (tileUrls, progressCallback) {
+        let urlToKey = {};
+        tileUrls.map(element => urlToKey[element.url] = element.key);
+        return ImagesService.INSTANCE.downloadURLs(tileUrls.map(element => element.url), false, (done, total, url) => {
+            // tilesDb._saveTile(urlToKey[url]);
+            return progressCallback(done, total);
+        }, true);
+    },
 
-    const totalDownload = tileUrls.length;
-    var doneDownload = 0;
-    var currentlyActiveDownloads = 0;
-    var nextIndex = 0;
-    var downloadWasAborted = false;
-    return new Promise(function (resolve, reject) {
-      var spawnNextDownloads;
-      var downloadTile = function (i, tileUrl) {
-        currentlyActiveDownloads++;
-        var request = new XMLHttpRequest();
-        request.open('GET', tileUrl.url, true);
-        request.responseType = 'blob';
-        request.onreadystatechange = function () {
-          if (request.readyState === XMLHttpRequest.DONE) {
-            if (request.status === 200 && !downloadWasAborted) {
-              doneDownload++;
-              console.log("Progress: ", i, Math.round((doneDownload) * 100 / totalDownload));
-              self._saveTile(tileUrl.key, request.response).then(function() {
-                // create URL to make tiles load faster later
-                URL.createObjectURL(request.response);
-                i++;
-                currentlyActiveDownloads--;
-                if (doneDownload == totalDownload) {
-                  resolve();
-                } else {
-                  spawnNextDownloads();
+    clear: function () {
+        return this.storage.clear();
+    },
+
+    _saveTile: async function (key) {
+        let count = await this.storage.get(key);
+        if (!count) {
+            count = 1;
+        } else {
+            count++;
+        }
+        await this.storage.set(key, count);
+    },
+
+    removeItems: async function (keys) {
+        let promises = [];
+        for (let key of keys) {
+            promises.push(this.storage.get(key));
+        }
+        Promise.all(promises).then(counts => {
+            let urlsToRemove = [];
+            for (var i = 0; i < counts.length; i++) {
+                let count = counts[i];
+                let key = keys[i];
+                if (count > 1) {
+                    this.storage.set(key, count - 1);
+                } else if (count === 1) {
+                    this.storage.remove(key);
+                    urlsToRemove.push(key);
                 }
-                if (progressCallback && !downloadWasAborted) {
-                  if (progressCallback(doneDownload, totalDownload)) {
-                    downloadWasAborted = true;
-                    console.log("download was aborted");
-                    reject("download was aborted");
-                  }
-                  if (doneDownload == totalDownload) {
-                    // make sure not to send events after method already resolved promise
-                    progressCallback = null;
-                  }
-                }
-              });
-            } else if (!downloadWasAborted) {
-              console.log("send request NOT OK");
-              reject({
-                status: request.status,
-                statusText: request.statusText
-              });
             }
-          }
-        };
-        request.send();
-      };
-
-      spawnNextDownloads = function() {
-        if (downloadWasAborted) {
-          return;
-        }
-        while (currentlyActiveDownloads < 4 && nextIndex < totalDownload) {
-          downloadTile(nextIndex, tileUrls[nextIndex]);
-          nextIndex++;
-        }
-      };
-
-      spawnNextDownloads();
-    });
-  },
-
-  clear: function () {
-    return this.storage.clear();
-  },
-
-  _saveTile: function (key, value) {
-    var self = this;
-    return this._removeItem(key).then(function () {
-      return self.storage.set(key, value);
-    });
-  },
-
-  _removeItem: function (key) {
-    return this.storage.remove(key);
-  }
-
+            ImagesService.INSTANCE.removeDownloadedURLs(urlsToRemove, false);
+        });
+    }
 };

@@ -71,11 +71,12 @@ export class ImagesService {
         return this.nativeBaseURL;
     }
 
-    async downloadURLs(urls: string[], createThumbs: boolean, progressCallback: DownloadProgressCallback = null): Promise<any> {
+    async downloadURLs(urls: string[], createThumbs: boolean, progressCallback: DownloadProgressCallback = null,
+                       skipCheckForExistingFiles: boolean = false): Promise<any> {
         if (!this.isFilePluginAvailable()) {
             return;
         }
-        let promiseError;
+        let promiseError = null;
         const fileTransfer: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
         let fileManager = this.fileManager;
@@ -84,25 +85,23 @@ export class ImagesService {
         let totalDownload = urls.length;
         let alreadyDownloaded = 0;
         let that = this;
-        if (progressCallback) {
-            progressCallback(alreadyDownloaded, totalDownload);
-        }
         this.downloadQueue = async.queue(function (task: any, continueCallback: any) {
-            console.log("downloading: " + JSON.stringify(task));
             function callback() {
                 alreadyDownloaded++;
                 console.log("download progress: " + alreadyDownloaded + "/" + totalDownload);
                 if (progressCallback) {
-                    if (progressCallback(alreadyDownloaded, totalDownload)) {
+                    if (progressCallback(alreadyDownloaded, totalDownload, task.imgFileName)) {
                         // user aborted download process
                         that.downloadQueue.kill();
                         promiseError("user canceled download");
+                        return;
                     }
                 }
                 continueCallback();
-
             }
-            fileTransfer.download(Helper.WEBSERVER_URL + encodeURI(task.imgFileName), dataDirectory + task.outputName)
+            let url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
+                : Helper.WEBSERVER_URL + encodeURI(task.imgFileName);
+            fileTransfer.download(url, dataDirectory + task.outputName)
                 .then(() => {
                     if (!createThumbs) {
                         callback();
@@ -132,7 +131,12 @@ export class ImagesService {
                     console.error(`Error downloading image ${task.imgFileName}`)
                     callback();
                 })
-        }, 4);
+        }, 8);
+
+        let promise = new Promise<any>((success, error) => {
+            promiseError = error;
+            this.downloadQueue.drain = success;
+        });
 
         let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
         for (var i = 0; i < urls.length; i++) {
@@ -144,9 +148,10 @@ export class ImagesService {
 
 
             let outputName = this.getLocalFileName(imgFileName);
-            let file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false })
-                .then((res) => res, (err) => null)
-            if (file !== null) {
+            let file;
+            if (!skipCheckForExistingFiles &&
+                null !== (file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false })
+                    .then((res) => res, (err) => null))) {
                 file.file(file => {
                     if (file.size <= 0) {
                         // Path not empty and file does not exist - download from url
@@ -155,12 +160,13 @@ export class ImagesService {
                             imgFileName: imgFileName,
                             outputName: outputName
                         }, err => {
-                            console.log(`Finished downloading ${fileTransfer}`)
+                            console.log(`Finished downloading ${outputName}`)
                         });
                     } else {
                         alreadyDownloaded++;
                         if (progressCallback) {
-                            progressCallback(alreadyDownloaded, totalDownload);
+                            console.log(`Already downloaded: ${outputName}`)
+                            progressCallback(alreadyDownloaded, totalDownload, imgFileName);
                         }
                     }
                 })
@@ -171,21 +177,27 @@ export class ImagesService {
                     imgFileName: imgFileName,
                     outputName: outputName
                 }, err => {
-                    console.log(`Finished downloading ${fileTransfer}`)
+                    console.log(`Finished downloading ${outputName}`)
                 })
             }
         }
         if (this.downloadQueue.length() === 0) {
             return;
         }
-        return new Promise<any>((success, error) => {
-            promiseError = error;
-            this.downloadQueue.drain = success;
-        });
+        return promise;
     }
 
     getLocalFileName(imgPath: string) : string {
-        return imgPath.replace(/\/| /g, '_');
+        if (imgPath.indexOf('http') === 0) {
+            // strip hostname
+            imgPath = imgPath.substring(imgPath.indexOf('/', 9) + 1);
+            let queryIndex = imgPath.indexOf('?');
+            if (queryIndex > 0) {
+                // strip query
+                imgPath = imgPath.substring(0, queryIndex);
+            }
+        }
+        return imgPath.replace(/\/| |@/g, '_');
     }
 
     getLocalThumbFileName(imgPath: string) : string {
@@ -196,11 +208,13 @@ export class ImagesService {
         if (asThumbNail) {
             return this.offlineThumbnailUrlCache[imgPath] ? this.offlineThumbnailUrlCache[imgPath]
                 : this.offlineThumbnailUrlCache[imgPath] =
-                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath) : Helper.WEBSERVER_URL + imgPath);
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
+                        : imgPath.indexOf('http') !== 0 ? Helper.WEBSERVER_URL + imgPath : imgPath);
         }
         return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
             : this.offlineImageUrlCache[imgPath] =
-                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath) : Helper.WEBSERVER_URL + imgPath);
+                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath)
+                    : imgPath.indexOf('http') !== 0 ? Helper.WEBSERVER_URL + imgPath : imgPath);
     }
 
     async removeDownloadedURLs(urls: string[], removeThumbs = true): Promise<any> {
@@ -218,38 +232,22 @@ export class ImagesService {
 
             let outputName = this.getLocalFileName(imgFileName);
             let file;
-            try {
-                file = await this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false});
-                if (file !== null) {
-                    await this.deleteFile(file);
-                }
-                console.log("deleted file " + outputName);
-            } catch (e) {
-                console.log("Could not delete file " + outputName + ": " + e);
-            }
+            this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false}).then(file => {
+                file.remove(() => console.log("deleted file " + outputName),
+                    () => console.log("could not delete file " + outputName))
+            }, () => console.log("could not delete file " + outputName));
             if (removeThumbs) {
                 outputName = this.getLocalThumbFileName(imgFileName);
-                try {
-                    file = await this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false});
-                    if (file !== null) {
-                        await this.deleteFile(file);
-                    }
-                    console.log("deleted file " + outputName);
-                } catch (e) {
-                    console.log("Could not delete file " + outputName + ": " + e);
-                }
+                this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false}).then(file => {
+                    file.remove(() => console.log("deleted file " + outputName),
+                        () => console.log("could not delete file " + outputName))
+                }, () => console.log("could not delete file " + outputName));
             }
         }
-    }
-
-    deleteFile(fileEntry: FileEntry): Promise<void> {
-        return new Promise<void>((success, error) => {
-            fileEntry.remove(success, error);
-        });
     }
 }
 
 
 export interface DownloadProgressCallback {
-    (alreadyDownloaded: number, totalDownload: number): boolean
+    (alreadyDownloaded: number, totalDownload: number, url: string): boolean
 }

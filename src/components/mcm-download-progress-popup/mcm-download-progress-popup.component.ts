@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 
 @Component({
@@ -8,8 +8,12 @@ import { ViewController } from 'ionic-angular';
 })
 export class MCMDownloadProgressPopupComponent{
     data = null;
-    constructor(private viewCtrl: ViewController) {
+    constructor(private viewCtrl: ViewController, private changeDetectorRef: ChangeDetectorRef) {
         this.data = viewCtrl.data;
+        this.data.updateView = () => {
+            // make sure that angular detects changes
+            changeDetectorRef.detectChanges();
+        }
     }
 
     onCancelClick() {

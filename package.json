@@ -81,7 +81,7 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": " "
+        "GEOLOCATION_USAGE_DESCRIPTION": "MathCityMap would like to know your position to show distance to available routes."
       },
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
