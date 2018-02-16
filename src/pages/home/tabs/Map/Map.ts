@@ -102,7 +102,7 @@ export class MapPage implements OnInit {
     markerGroup: any = null;
 
     async initializeMap() {
-        this.spinner.show(null, this.translateService.instant('a_toast_update_start'));
+        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
         await this.updater.checkForUpdates();
         const map = this.map
         if (this.markerGroup != null) {
