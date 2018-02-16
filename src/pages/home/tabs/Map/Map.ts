@@ -27,6 +27,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {gpsService} from  '../../../../services/gps-service';
 import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @IonicPage()
 @Component({
@@ -65,6 +66,7 @@ export class MapPage implements OnInit {
         public navCtrl: NavController,
         private spinner: SpinnerDialog,
         private translateService: TranslateService,
+        private splashScreen: SplashScreen,
         private gpsService: gpsService) {
             this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
             this.publicRouteIconAvailable = L.icon({iconUrl:'./assets/icons/icon_routemarker-available.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
@@ -87,6 +89,7 @@ export class MapPage implements OnInit {
         this.isFilePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
         this.platform.ready().then(() => {
             console.log('Platform is ready!');
+            this.splashScreen.hide();
             this.initializeMap();
 
 
