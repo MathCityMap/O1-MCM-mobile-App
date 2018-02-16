@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, IonicPage, ModalController, NavController } from 'ionic-angular';
 import { Helper } from '../../../../classes/Helper';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -16,6 +16,7 @@ import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMR
     templateUrl: 'RoutesList.html'
 })
 export class RoutesListPage {
+    @ViewChild(Content) content: Content;
     public items: Route[] = [];
 
     modal: any;
@@ -24,8 +25,7 @@ export class RoutesListPage {
                 private geolocation: Geolocation,
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
-                private dbUpdater: DB_Updater,
-                private modalCtrl: ModalController) {
+                private dbUpdater: DB_Updater) {
     }
 
     async ionViewWillEnter() {
@@ -61,8 +61,10 @@ export class RoutesListPage {
         return a.title.localeCompare(b.title);
     }
 
-    removeRoute(route: Route): void {
-        this.ormService.removeDownloadedRoute(route);
+    async removeRoute(route: Route) {
+        await this.ormService.removeDownloadedRoute(route);
+        this.items.sort(this.compareFunction);
+        this.scrollTo(route);
     }
 
     async doRefresh(refresher) {
@@ -75,8 +77,36 @@ export class RoutesListPage {
     async addRouteByCode() {
         let route = await this.modalsService.showAddRouteByCodeModal();
         if (route) {
-            this.items.push(route);
-            this.ionViewWillEnter();
+            let alreadyAdded = false;
+            for (let i = 0; !alreadyAdded && i < this.items.length; i++) {
+                if (this.items[i].id == route.id) {
+                    // route has been added twice
+                    alreadyAdded = true;
+                }
+            }
+            if (!alreadyAdded) {
+                this.items.push(route);
+                this.items.sort(this.compareFunction);
+            }
+            this.scrollTo(route);
         }
     }
+
+    async doDownload(route: Route) {
+        if (await this.modalsService.doDownload(route)) {
+            this.items.sort(this.compareFunction);
+            this.scrollTo(route);
+        }
+   }
+
+   scrollTo(route: Route) {
+        let that = this;
+        setTimeout(function() {
+            let element = document.getElementById('route-item-' + route.id);
+            if (element) {
+                that.content.scrollTo(0, element.offsetTop);
+            }
+
+        }, 300);
+   }
 }

@@ -103,6 +103,9 @@ export class Helper {
   static windowHeight: number = 0
 
   public static getDistanceToCenterByLatLng(latLng: LatLng): number {
+    if (!latLng) {
+      return 0;
+    }
     return Helper.getDistanceToCenter(latLng.lat, latLng.lng);
   }
 

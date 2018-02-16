@@ -126,6 +126,9 @@ export class Route {
         const padding: number = 0.0015;
         const jsonBB = JSON.parse(this.boundingBox);
         const jsonCenter = JSON.parse(this.center);
+        if (!jsonBB) {
+            return;
+        }
         const northWest = jsonBB[0];
         const southEast = jsonBB[1];
         const south = southEast[0] - padding;
