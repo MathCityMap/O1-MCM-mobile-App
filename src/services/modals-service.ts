@@ -62,13 +62,7 @@ export class ModalsService {
 
     showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
         if (route.downloaded) {
-            this.showDialog('a_guided_trail_title', 'a_guided_trail',
-                'no', () => {
-                    this.navigateToRoute(route, navCtrl, null);
-                },
-                'yes', () => {
-                    this.presentTaskListModal(route, navCtrl, null);
-                });
+            this.navigateToRoute(route, navCtrl, null);
         } else {
             this.presentRouteInfoModal(route, navCtrl);
         }

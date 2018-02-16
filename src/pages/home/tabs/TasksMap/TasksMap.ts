@@ -92,6 +92,14 @@ export class TasksMap {
         if (this.state.selectedTask) {
             this.state.visibleTasks[this.state.selectedTask.position] = true;
         }
+        const that = this;
+        setTimeout(function() {
+            that.modalService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                'no', () => {},
+                'yes', () => {
+                    that.selectStartPoint();
+                });
+        }, 500);
     }
     await this.loadMap();
     this.initializeMap();
