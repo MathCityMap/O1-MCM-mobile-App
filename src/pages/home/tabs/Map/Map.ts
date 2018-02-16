@@ -43,6 +43,7 @@ export class MapPage implements OnInit {
     routeDetails: Route;
     userMarker: any;
     isFilePluginAvailable: boolean;
+    routes: Route[];
 
     prevPos: any;
 
@@ -104,37 +105,45 @@ export class MapPage implements OnInit {
     async initializeMap() {
         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
         await this.updater.checkForUpdates();
-        const map = this.map
-        if (this.markerGroup != null) {
-            console.warn('removing markerGroup');
-            this.map.removeLayer(this.markerGroup);
-            this.markerGroup = null;
-        }
+        this.routes = await this.ormService.getVisibleRoutes();
+        this.redrawMarker();
         this.spinner.hide();
-        const routes = await this.ormService.getVisibleRoutes();
-        let markerGroup = (L as any).markerClusterGroup();
-        for (let route of routes) {
-            let latLng = route.getCenterLatLng()
-            let icon;
-            if(route.public){
-                icon = this.publicRouteIconOpen;
-            }else{
-                icon = this.privateRouteIconOpen;
-            }
-            markerGroup.addLayer(L.marker(latLng, {icon: icon}).on('click', () => {
-                this.routeDetails = route;
-                this.map.panTo( latLng );
-            }));
-        }
-        map.addLayer(markerGroup);
-        this.markerGroup = markerGroup;
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
             let userModal = this.modalCtrl.create(MCMInputModal);
             userModal.present();
         }
+    }
 
-        
+    redrawMarker() {
+        const map = this.map;
+        if (this.markerGroup != null) {
+            console.warn('removing markerGroup');
+            this.map.removeLayer(this.markerGroup);
+            this.markerGroup = null;
+        }
+        let markerGroup = (L as any).markerClusterGroup({
+            maxClusterRadius: 30
+        });
+        for (let route of this.routes) {
+            let latLng = route.getCenterLatLng()
+            let icon;
+            if(route.public == "1"){
+                icon = this.publicRouteIconOpen;
+            }else{
+                icon = this.privateRouteIconOpen;
+            }
+            markerGroup.addLayer(L.marker(latLng, {icon: icon}).on('click', () => {
+                if (this.routeDetails == route) {
+                    this.modalsService.showRoute(route, this.navCtrl);
+                } else {
+                    this.routeDetails = route;
+                    this.map.panTo( latLng );
+                }
+            }));
+        }
+        map.addLayer(markerGroup);
+        this.markerGroup = markerGroup;
     }
 
     loadMap() {
@@ -250,9 +259,19 @@ export class MapPage implements OnInit {
     async addRouteByCode() {
         let route = await this.modalsService.showAddRouteByCodeModal();
         if (route) {
-            this.markerGroup.addLayer(L.marker(route.getCenterLatLng(), {icon: this.privateRouteIconAvailable}).on('click', () => {
-                this.routeDetails = route;
-            }));
+            let alreadyAdded = false;
+            for (let i = 0; !alreadyAdded && i < this.routes.length; i++) {
+                if (this.routes[i].id == route.id) {
+                    // route has been added twice
+                    alreadyAdded = true;
+                }
+            }
+            if (!alreadyAdded) {
+                this.routes.push(route);
+            }
+            this.redrawMarker();
+            this.map.panTo(route.getCenterLatLng(), 8);
+            this.routeDetails = route;
         }
     }
 
