@@ -130,8 +130,12 @@ export class TasksMap {
           icon = this.taskSkippedIcon;
       }
       markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
-          this.state.selectedTask = task;
-          this.map.panTo( [task.lat, task.lon] );
+          if (this.state.selectedTask == task) {
+              this.gototask(task.id, task.title);
+          } else {
+              this.state.selectedTask = task;
+              this.map.panTo( [task.lat, task.lon] );
+          }
       }));
     }
     this.map.addLayer(markerGroup);
