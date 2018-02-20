@@ -79,6 +79,31 @@ export class TaskDetail{
           this.taskDetailMap = new TaskDetailMap(this.geolocation, this.task, this.route);
           this.taskDetailMap.loadMap();
 
+          // Insert predefined points / axis
+          let gpsType = this.task.getSolutionGpsValue("task");
+          if(gpsType != null){
+              let points = [];
+              if(gpsType == "centerTwo"){
+                  points = [
+                      this.task.getSolutionGpsValue("point1"),
+                      this.task.getSolutionGpsValue("point2")
+                  ];
+              }
+              if(gpsType == "centerThree"){
+                  points = [
+                      this.task.getSolutionGpsValue("point1"),
+                      this.task.getSolutionGpsValue("point2"),
+                      this.task.getSolutionGpsValue("point3")
+                  ];
+              }
+              if(points.length > 0){
+                  this.taskDetailMap.insertPreDefinedPoints(points);
+              }
+              if(gpsType == "linearFx"){
+                  this.taskDetailMap.insertAxis(this.task.getSolutionGpsValue("point1"), this.task.getSolutionGpsValue("point2"));
+              }
+          }
+
           // Init Buttons for positioning markers
           let buttonCount = this.task.getSolutionGpsValue("points");
           if(buttonCount != null){

@@ -35,10 +35,14 @@ export class TaskDetailMap{
     taskDetails: Task;
     userMarker: any;
     pointMarkers: Array<Marker> = [];
-
-    prevPos: any;
-
     userPositionIcon;
+    pointIcon;
+    preDefinedPointIcon;
+
+    // Axis setting
+    AXIS_LENGTH: number = 100;
+    MARK_DISTANCE: number = 10;
+    MARK_LENGTH: number = 3;
 
     constructor(
         private geolocation: Geolocation,
@@ -46,6 +50,8 @@ export class TaskDetailMap{
         private route: Route
     ) {
         this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+        this.pointIcon = L.icon({iconUrl:"./assets/icons/icon_taskmarker-open.png" , iconSize: [35, 48], className:'marker'});
+        this.preDefinedPointIcon = L.icon({iconUrl:"./assets/icons/icon_taskmarker-failed.png" , iconSize: [35, 48], className:'marker'});
         this.taskDetails = task;
         this.routeDetails = route;
         // Init Marker Array
@@ -59,18 +65,18 @@ export class TaskDetailMap{
      */
     setMarker(index: number){
         //TODO: Check if new location is within the task radius
+        console.log("Click Button " + index);
         if(Helper.myLocation != null){
             let locationLatLng = new L.LatLng(Helper.myLocation.coords.latitude, Helper.myLocation.coords.longitude);
             if(this.pointMarkers[index] == null){
                 let label = String.fromCharCode("A".charCodeAt(0) + index);
-                let newMarker = L.marker(locationLatLng, {icon: this.userPositionIcon, label: label});
+                let newMarker = L.marker(locationLatLng, {icon: this.pointIcon});
                 newMarker.addTo(this.map);
                 this.pointMarkers[index] = newMarker;
             }
             else{
                 this.pointMarkers[index].setLatLng(locationLatLng);
             }
-            this.map.invalidate();
         }
     }
 
@@ -100,6 +106,36 @@ export class TaskDetailMap{
         else{
             return null;
         }
+    }
+
+    /*
+    Insert predefined points (by author) as related points for the task (centerTwo, centerThree)
+     */
+    insertPreDefinedPoints(points: Array<Array<number>>){
+        for(let i = 0; i < points.length; i++){
+            let preDefinedPoint = L.marker(new L.LatLng(points[i][0], points[i][1]), {icon: this.preDefinedPointIcon});
+            preDefinedPoint.addTo(this.map);
+        }
+    }
+
+    /*
+    Draws an axis (x-Axis and y-Axis) starting at origin.
+    The direction for the x-Axis is defined by origin and dPoing
+    The length of the axis is default to 100m, every 10m there is a short line indicating the 10 meters
+     */
+    insertAxis(origin: Array<number>, dPoint: Array<number>){
+        /*
+        var aCoor = a.getLatLng();
+        var bCoor = b.getLatLng();
+        var bearingAB = L.GeometryUtil.bearing(aCoor, bCoor);
+        var disAB = L.GeometryUtil.distance(gpsMap, aCoor, bCoor);
+        if (disAB < 100) {
+            bCoor = L.GeometryUtil.destination(aCoor, bearingAB, 100);
+        }
+        var yCoor = L.GeometryUtil.destination(aCoor, bearingAB - 90, 100);
+
+        axis = L.polyline([yCoor, aCoor, bCoor], {color: 'red'}).addTo(gpsMap);
+        */
     }
 
     markerGroup: any = null;
@@ -150,6 +186,16 @@ export class TaskDetailMap{
                 tileSize: 256,
                 maxBounds: this.routeDetails.getBoundingBoxLatLng()
             });
+
+            /* For testing - sets users position to click event
+            this.map.on('click', function(e){
+                if(Helper.myLocation == null){
+                    let myl = {coords:{latitude:null, longitude:null}};
+                    Helper.myLocation = myl;
+                }
+                Helper.myLocation.coords.latitude = e.latlng.lat;
+                Helper.myLocation.coords.longitude = e.latlng.lng;
+            });*/
 
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
