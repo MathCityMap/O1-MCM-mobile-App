@@ -53,6 +53,8 @@ export class TasksMap {
     userMarker: any;
     prevPos: any;
 
+    currentScore: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -72,6 +74,7 @@ export class TasksMap {
   }
 
   async ionViewWillEnter() {
+
     console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
@@ -100,6 +103,7 @@ export class TasksMap {
   markerGroup: any = null;
 
   async initializeMap() {
+      this.currentScore = this.score.score;
       this.redrawMarker();
       this.gpsService.isLocationOn();
   }

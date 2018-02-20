@@ -55,7 +55,7 @@ export class TaskDetail {
     this.route = await this.ormService.findRouteById(this.routeId);
     this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.taskDetails = this.score.getTaskStateForTask(this.taskId);
-    this.score.score = 0;
+    if(this.score.score == null) this.score.score = 0;
     console.log(this.taskDetails);
     if(this.taskDetails.timeFirstOpen == 0){
       this.taskDetails.timeFirstOpen = new Date().getTime();
@@ -118,6 +118,7 @@ export class TaskDetail {
     console.log(this.task.solutionType);
     if(this.task.solutionType == "value"){
       if(this.taskDetails.answer == this.task.getSolution()){
+        this.CalculateScore("value", "solved");
         this.taskSolved('solved', this.taskDetails.answer, 0);
       }else {
         this.taskSolved('', this.taskDetails.answer, 0);
@@ -138,6 +139,7 @@ export class TaskDetail {
       this.taskDetails.answerMultipleChoice = this.multipleChoiceList;
       console.log(taskSuccess);
       if(taskSuccess){
+        this.CalculateScore("multiple_choice", "solved");
         this.taskSolved('solved', this.task.getSolution(), 0);
       }else{
         this.taskSolved('', '', 0);
@@ -148,6 +150,7 @@ export class TaskDetail {
       let bis = solutionList[1];
       let answer = +this.taskDetails.answer;
       if(answer >= von && answer <= bis){
+        this.CalculateScore("range", "solved");
         this.taskSolved('solved', this.taskDetails.answer, 0);
       }else{
         if(solutionList.length == 4){
@@ -155,6 +158,7 @@ export class TaskDetail {
           let vonLow = solutionList[2];
           let bisLow = solutionList[3];
           if(answer >= vonLow && answer <= bisLow){
+            this.CalculateScore("range", "solved_low");
             this.taskSolved('solved_low', this.taskDetails.answer, 0);
           }else{
             this.taskSolved('', '', 0);
@@ -243,6 +247,63 @@ export class TaskDetail {
         modal.present();
       }
       this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+  }
+
+  CalculateScore (solutionType: string, solved: string) {
+    if(solutionType == "value"){
+      if(this.taskDetails.tries > 0){
+        let tempScore = 100 - ((this.taskDetails.tries - 1) * 10);
+        this.score.score +=(tempScore > 10 ? tempScore : 10);
+      } 
+      else this.score.score += 100;
+    }
+
+    if(solutionType == "multiple_choice"){
+      if(this.taskDetails.tries > 0){
+         let tempScore = 75 - ((this.taskDetails.tries - 1) * 10);
+         this.score.score +=(tempScore > 10 ? tempScore : 10);
+       }
+      else this.score.score += 75;
+    }
+     if(solutionType == "range"){
+       if(solved == "solved"){
+          if(this.taskDetails.tries > 0){
+            let tempScore = 100 - ((this.taskDetails.tries - 1) * 10);
+           this.score.score +=(tempScore > 10 ? tempScore : 10);
+           }
+          else this.score.score += 100;
+       }
+       else if(solved == "solved_low"){
+           let solutionList = this.task.getSolutionList();
+
+           //if the orange interval is below the green
+           if(+this.taskDetails.answer < solutionList[0]){
+              if(this.taskDetails.tries > 0) {
+                let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * 10);
+                this.score.score +=(tempScore > 10 ? tempScore : 10);
+              }
+              else this.score.score += this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer);
+          }
+           else {
+             if (this.taskDetails.tries > 0) {
+               let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * 10);
+               this.score.score += (tempScore > 10 ? tempScore : 10);
+             }
+             else this.score.score += this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer);
+           }
+       }
+     }
+     console.log("FinalScore: " + this.score.score);
+  }
+
+  CalculateOrangeScore(borderLeft: number, borderRight: number, value: number): number{
+    let intervalLenght = Math.abs(borderRight-borderLeft);
+    console.log("borderRight " + borderRight + "  BorderLeft " + borderLeft);
+    let xVal = (Math.abs(value - borderLeft)/intervalLenght) * 100;
+    let score = Math.round(xVal);
+
+    if(score < 10) return 10;
+    else return score;
   }
 
 }
