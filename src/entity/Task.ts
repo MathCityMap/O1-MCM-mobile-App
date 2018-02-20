@@ -74,10 +74,10 @@ export class Task {
     attr: string;
 
     @Column({name: 'solutionsample'})
-    private solutionSample: string
+    private solutionSample: string;
 
     @Column({name: 'lang_code'})
-    langCode: string
+    langCode: string;
 
     position: number;
 
@@ -93,7 +93,14 @@ export class Task {
 
     getImagesForDownload(): string[] {
         let result = [];
+        // Add title image
         result.push(this.image);
+        // Add sample solution image if available
+        let sampleSolutionImg = this.getSolutionSampleImgSrc();
+        if(sampleSolutionImg != ""){
+            result.push(sampleSolutionImg);
+        }
+        // Add hint images
         return result.concat(this.getHints().filter(hint => hint.type == 'image').map(hint => hint.value));
     }
 
@@ -134,7 +141,6 @@ export class Task {
         }
     }
 
-
     getSolutionList(): Array<number> {
         let solution = Helper.safeJsonDecode(this.solution);
         let results: Array<number> = [];
@@ -144,15 +150,48 @@ export class Task {
         return results;
     }
 
+    /*
+    Returns details of gps task.
+    Keys:
+    task - type of gps task (e.g. centerTwo, centerThree, linearFx, square, lineNoDirection, lineDirection, triangle)
+    points - the number of points the user has to place to solve the task (also number of buttons to display on map)
+    setPoints - the number of points the author had to define in the web portal. The system needs to validate the solution
+    against these points.
+    point1 (point2, point3 ... etc.) - depending on the number of 'setPoints' there are [lat, lon] arrays saved behind the keys
+     */
+    getSolutionGpsValue(key: string): any {
+        if(this.solutionType == "gps"){
+            let solution = Helper.safeJsonDecode(this.solution);
+            return solution[key];
+        }
+        else{
+            return null;
+        }
+    }
+
     getSolutionSample(): string {
         if (this.solutionSample) {
-
             let sample = Helper.safeJsonDecode(this.solutionSample);
             if (sample.length > 0) {
                 return sample[0];
             }
         }
         return this.getSolution();
+    }
+
+    /*
+    Returns the src of sample solution image if provided, empty string if not
+     */
+    getSolutionSampleImgSrc(): string {
+        if(this.solutionSample){
+            let sample = Helper.safeJsonDecode(this.solutionSample);
+            if(sample.length > 0){
+                return sample[1]
+            }
+        }
+        else{
+            return "";
+        }
     }
 
     getAssistiveEquipment(): Array<string> {

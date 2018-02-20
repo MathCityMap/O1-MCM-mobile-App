@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { OrmService } from '../../services/orm-service';
 import { Route } from '../../entity/Route';
@@ -9,6 +10,7 @@ import { MCMIconModal } from '../../modals/MCMIconModal/MCMIconModal';
 import { MCMModalType } from '../../app/app.component';
 import { TaskState } from '../../entity/TaskState';
 import { Score } from '../../entity/Score';
+import { TaskDetailMap } from './task-detail-map';
 
 
 /**
@@ -25,7 +27,7 @@ import { Score } from '../../entity/Score';
   selector: 'page-task-detail',
   templateUrl: 'task-detail.html',
 })
-export class TaskDetail {
+export class TaskDetail{
   private route: Route;
   private routeId: number;
   private taskId: number;
@@ -35,13 +37,16 @@ export class TaskDetail {
 
   private multipleChoiceList: Array<any> = [];
 
-
+    // For GPS - tasks
+    private taskDetailMap : TaskDetailMap;
+    private gpsTaskButtonLabels: Array<string> = [];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private ormService: OrmService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private geolocation: Geolocation
   ){
 
    }
@@ -69,9 +74,25 @@ export class TaskDetail {
         this.multipleChoiceList = this.task.getSolutionOptionList();
       }
     }
+      // Init task detail map, if task is gps task
+      if(this.task.solutionType == "gps"){
+          this.taskDetailMap = new TaskDetailMap(this.geolocation, this.task, this.route);
+          this.taskDetailMap.loadMap();
 
+          // Init Buttons for positioning markers
+          let buttonCount = this.task.getSolutionGpsValue("points");
+          if(buttonCount != null){
+              buttonCount = parseInt(buttonCount);
+          }
+          else{
+              buttonCount = 0;
+          }
+          let startCharCode = "A".charCodeAt(0);
+          for(let i = 0; i < buttonCount; i++){
+              this.gpsTaskButtonLabels[i] = String.fromCharCode(startCharCode + i);
+          }
+      }
   }
-
 
 
 

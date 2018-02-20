@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { OrmService } from '../../services/orm-service';
 
@@ -9,13 +9,19 @@ import { OrmService } from '../../services/orm-service';
 /*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMInputModal{
-
+    @ViewChild('input') input;
 
     userName: string;
     errorMessage: string;
 
     constructor(private ormService: OrmService, private viewCtrl: ViewController) {
 
+    }
+
+    ionViewDidEnter() {
+        setTimeout(() => {
+            this.input.setFocus();
+        }, 150);
     }
 
     async saveUser(){

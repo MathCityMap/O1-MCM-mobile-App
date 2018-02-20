@@ -6,7 +6,7 @@
         <div class="modal-content">
             <p>{{'a_g_name' | translate}}</p>
             <ion-item>
-                <ion-input type="text" [(ngModel)]="userName" name="username" required ngControl="passwordCtrl"></ion-input>
+                <ion-input #input type="text" [(ngModel)]="userName" name="username" required ngControl="passwordCtrl"></ion-input>
             </ion-item>
             <span *ngIf="errorMessage"></span>
         </div>

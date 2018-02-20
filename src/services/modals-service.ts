@@ -25,7 +25,7 @@ export class ModalsService {
                 public translateService: TranslateService) {
     }
 
-    async doDownload(route: Route) {
+    async doDownload(route: Route): Promise<boolean> {
         console.log(`doDownload ${JSON.stringify(route.id)}`);
 
         let cancelHasBeenClicked = false;
@@ -57,32 +57,37 @@ export class ModalsService {
             return cancelHasBeenClicked;
         });
         downloadModal.dismiss();
+        return !cancelHasBeenClicked;
     }
 
     showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
         if (route.downloaded) {
-            let confirm = this.alertCtrl.create({
-                title: this.translateService.instant('a_guided_trail_title'),
-                message: this.translateService.instant('a_guided_trail'),
-                buttons: [
-                    {
-                        text: this.translateService.instant('no'),
-                        handler: () => {
-                            this.navigateToRoute(route, navCtrl, null);
-                        }
-                    },
-                    {
-                        text: this.translateService.instant('yes'),
-                        handler: () => {
-                            this.presentTaskListModal(route, navCtrl, null);
-                        }
-                    }
-                ]
-            });
-            confirm.present();
+            this.navigateToRoute(route, navCtrl, null);
         } else {
             this.presentRouteInfoModal(route, navCtrl);
         }
+    }
+
+    async showDialog(titleKey: string, messageKey: string,
+                     button1Key?: string, button1Handler?: () => void,
+                     button2Key?: string, button2Handler?: () => void) {
+        button1Key = button1Key || this.translateService.instant('a_g_ok');
+        let buttons = [{
+            text: this.translateService.instant(button1Key),
+            handler: button1Handler
+        }];
+        if (button2Key && button2Handler) {
+            buttons.push({
+                text: this.translateService.instant(button2Key),
+                handler: button2Handler
+            })
+        }
+        let confirm = this.alertCtrl.create({
+            title: titleKey ? this.translateService.instant(titleKey) : null,
+            message: messageKey ? this.translateService.instant(messageKey) : null,
+            buttons: buttons
+        });
+        return confirm.present();
     }
 
     private navigateToRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
@@ -113,14 +118,20 @@ export class ModalsService {
     }
 
     showAddRouteByCodeModal(): Promise<Route> {
+        let that = this;
         return new Promise<Route>((success) => {
             let modal = this.modalCtrl.create(MCMRouteByCodeModal);
-            modal.onDidDismiss(success);
+            modal.onDidDismiss(function(route: Route) {
+                if (route) {
+                    that.showDialog(null, that.translateService.instant('a_private_route_added', {'T' : route.title}));
+                }
+                success(route);
+            });
             modal.present();
         });
     }
 
-    async presentTaskListModal(route: Route, navCtrl: NavController, callback: any ) {
+    async presentTaskListModal(route: Route, navCtrl: NavController, callback: any) {
         let testModal = this.modalCtrl.create(CenteredTask, {
             route: route,
             tasks: await route.getTasks(),
@@ -130,8 +141,8 @@ export class ModalsService {
             /* coming from List/Map View */
             if (data && data.route != null && navCtrl != null && !callback) this.navigateToRoute(data.route, navCtrl, data.selectedTask);
             /* already on taskMap */
-            else if(data && data.selectedTask != null && navCtrl != null && callback) callback(data.selectedTask);
-   /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
+            else if (data && data.selectedTask != null && navCtrl != null && callback) callback(data.selectedTask);
+            /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
         })
         testModal.present();
     }
