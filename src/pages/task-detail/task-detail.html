@@ -9,7 +9,7 @@
         </div>
 	    <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
 		    <ion-fab right>
-			    <button *ngFor="let item of gpsTaskButtonLabels" ion-fab color="primary" (click)="taskDetailMap.setMarker($index)"><ion-icon name="{{item}}">{{item}}</ion-icon></button>
+			    <button *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab color="primary" (click)="taskDetailMap.setMarker(i)"><ion-icon name="{{item}}">{{item}}</ion-icon></button>
 		    </ion-fab>
 	    </div>
         <div class="transition"></div>
