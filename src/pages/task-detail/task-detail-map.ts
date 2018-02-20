@@ -11,6 +11,7 @@ import { OnInit } from "@angular/core";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
+import 'leaflet-geometryutil'
 
 import { Helper } from '../../classes/Helper';
 import { tilesDb } from '../../classes/tilesDb';
@@ -34,15 +35,25 @@ export class TaskDetailMap{
     routeDetails: Route;
     taskDetails: Task;
     userMarker: any;
+    prevPos: any;
     pointMarkers: Array<Marker> = [];
     userPositionIcon;
     pointIcon;
     preDefinedPointIcon;
+    linearFxGraph:L.polyline = null;
 
     // Axis setting
-    AXIS_LENGTH: number = 100;
+    AXIS_LENGTH: number = 110;
+    ARROW_LENGTH: number = 6;
+    ARROW_DEGREE: number = 25;
     MARK_DISTANCE: number = 10;
     MARK_LENGTH: number = 3;
+    LINEAR_FX_EXTEND: number = 100;
+    axisPoints = {
+        origin: null,
+        x: null,
+        y: null
+    };
 
     constructor(
         private geolocation: Geolocation,
@@ -76,6 +87,9 @@ export class TaskDetailMap{
             }
             else{
                 this.pointMarkers[index].setLatLng(locationLatLng);
+            }
+            if(this.taskDetails.getSolutionGpsValue("task") == "linearFx"){
+                this.drawlinearFxGraph();
             }
         }
     }
@@ -124,18 +138,83 @@ export class TaskDetailMap{
     The length of the axis is default to 100m, every 10m there is a short line indicating the 10 meters
      */
     insertAxis(origin: Array<number>, dPoint: Array<number>){
+        // Draw axis with arrows at the end
+        let aCoor = new L.LatLng(origin[0], origin[1]);
+        let bCoor = new L.LatLng(dPoint[0], dPoint[1]);
+        let bearingAB = L.GeometryUtil.bearing(aCoor, bCoor);
+        let disAB = L.GeometryUtil.distance(this.map, aCoor, bCoor);
+        bCoor = L.GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH); // Override bCoor with a point that is 100 meter in right direction
         /*
-        var aCoor = a.getLatLng();
-        var bCoor = b.getLatLng();
-        var bearingAB = L.GeometryUtil.bearing(aCoor, bCoor);
-        var disAB = L.GeometryUtil.distance(gpsMap, aCoor, bCoor);
-        if (disAB < 100) {
-            bCoor = L.GeometryUtil.destination(aCoor, bearingAB, 100);
+        if (disAB < this.AXIS_LENGTH) {
+            bCoor = L.GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH);
         }
-        var yCoor = L.GeometryUtil.destination(aCoor, bearingAB - 90, 100);
-
-        axis = L.polyline([yCoor, aCoor, bCoor], {color: 'red'}).addTo(gpsMap);
         */
+        let yCoor = L.GeometryUtil.destination(aCoor, bearingAB - 90, this.AXIS_LENGTH);
+        let xArrowUp = L.GeometryUtil.destination(bCoor, bearingAB - 180 + this.ARROW_DEGREE, this.ARROW_LENGTH);
+        let xArrowDown = L.GeometryUtil.destination(bCoor, bearingAB + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
+        let yArrowUp = L.GeometryUtil.destination(yCoor, bearingAB - 90 - 180 + this.ARROW_DEGREE, this.ARROW_LENGTH);
+        let yArrowDown = L.GeometryUtil.destination(yCoor, bearingAB - 90 + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
+        L.polyline([yArrowUp, yCoor, yArrowDown, yCoor, aCoor, bCoor, xArrowUp, bCoor, xArrowDown], {color: 'red'}).addTo(this.map);
+
+        this.axisPoints.origin = aCoor;
+        this.axisPoints.x = bCoor;
+        this.axisPoints.y = yCoor;
+
+        // Insert "X" and "Y" at end of axis
+        new L.marker(bCoor, {opacity: 0
+        }).bindTooltip("X", {
+            permanent: true,
+            direction: 'center',
+            className: 'axis-label'
+        }).addTo(this.map);
+        new L.marker(yCoor, {opacity: 0
+        }).bindTooltip("Y", {
+            permanent: true,
+            direction: 'center',
+            className: 'axis-label'
+        }).addTo(this.map);
+
+        // Draw markers every MARKER_DISTANCE meters to indicate the dimensions
+        // Add 50m and 100m to axis
+        for(let i = 1; i < (this.AXIS_LENGTH) / this.MARK_DISTANCE; i++){
+            let coordOnXAxis = L.GeometryUtil.destination(aCoor, bearingAB, this.MARK_DISTANCE * i);
+            let coordOnYAxis = L.GeometryUtil.destination(aCoor, bearingAB - 90, this.MARK_DISTANCE * i);
+            let innerPointX = L.GeometryUtil.destination(coordOnXAxis, bearingAB - 90, this.MARK_LENGTH);
+            let innerPointY = L.GeometryUtil.destination(coordOnYAxis, bearingAB, this.MARK_LENGTH);
+            L.polyline([coordOnXAxis, innerPointX], {color: 'red'}).addTo(this.map);
+            L.polyline([coordOnYAxis, innerPointY], {color: 'red'}).addTo(this.map);
+
+            if(i == 5 || i == 10){
+                let xLabelCoord = L.GeometryUtil.destination(coordOnXAxis, bearingAB + 90, this.MARK_DISTANCE);
+                let yLabelCoord = L.GeometryUtil.destination(coordOnYAxis, -bearingAB, this.MARK_DISTANCE);
+                new L.marker(xLabelCoord, {opacity: 0
+                }).bindTooltip(i * 10 + ' m', {
+                    permanent: true,
+                    direction: 'center',
+                    className: 'axis-label'
+                }).addTo(this.map);
+
+                new L.marker(yLabelCoord, {opacity: 0
+                }).bindTooltip(i * 10 + ' m', {
+                    permanent: true,
+                    direction: 'center',
+                    className: 'axis-label'
+                }).addTo(this.map);
+            }
+        }
+    }
+
+    drawlinearFxGraph(){
+        if(this.areAllPointsSet()){
+            let points = this.getPoints();
+            if(this.linearFxGraph != null){
+                this.map.removeLayer(this.linearFxGraph);
+            }
+            let bearing = L.GeometryUtil.bearing(points[0], points[1]);
+            let pointA = L.GeometryUtil.destination(points[0], bearing, (-1) * this.LINEAR_FX_EXTEND);
+            let pointB = L.GeometryUtil.destination(points[1], bearing, this.LINEAR_FX_EXTEND);
+            this.linearFxGraph = L.polyline([pointA, pointB], {color: 'blue'}).addTo(this.map);
+        }
     }
 
     markerGroup: any = null;
@@ -187,15 +266,14 @@ export class TaskDetailMap{
                 maxBounds: this.routeDetails.getBoundingBoxLatLng()
             });
 
-            /* For testing - sets users position to click event
+            /* For testing - sets users position to click event */
             this.map.on('click', function(e){
                 if(Helper.myLocation == null){
-                    let myl = {coords:{latitude:null, longitude:null}};
-                    Helper.myLocation = myl;
+                    Helper.myLocation = {coords:{latitude:null, longitude:null}};
                 }
                 Helper.myLocation.coords.latitude = e.latlng.lat;
                 Helper.myLocation.coords.longitude = e.latlng.lng;
-            });*/
+            });
 
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
