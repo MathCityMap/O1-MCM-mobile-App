@@ -94,6 +94,7 @@ export class Helper {
   static readonly phone_name: string = ""
   // public static Location myLocation = null
   public static myLocation: any = null;
+  public static testLocation: any = null;
   static readonly myAzimuth: number = 0.0
   // public static HashMap<String, int[]> routeStates = new HashMap<String, int[]>()
   // public static GoogleApiClient googleApiClient

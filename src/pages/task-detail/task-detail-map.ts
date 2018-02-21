@@ -15,7 +15,6 @@ import 'leaflet-geometryutil';
 
 import { Helper } from '../../classes/Helper';
 import { tilesDb } from '../../classes/tilesDb';
-
 import { OrmService } from '../../services/orm-service';
 import { Route } from '../../entity/Route';
 import { Task } from '../../entity/Task';
@@ -36,33 +35,50 @@ export class TaskDetailMap{
     taskDetails: Task;
     userMarker: any;
     prevPos: any;
-    pointMarkers: Array<Marker> = [];
     userPositionIcon;
-    pointIcon;
     preDefinedPointIcon;
-    linearFxGraph:L.Polyline = null;
+
+    // Markers (set by user) settings
+    pointMarkers: Array<Marker> = [];
+    pointIcon;
+    ALLOWED_DISTANCE_TO_TASK: number = 300;
 
     // Axis setting
     AXIS_LENGTH: number = 110;
     ARROW_LENGTH: number = 6;
     ARROW_DEGREE: number = 25;
     MARK_DISTANCE: number = 10;
-    MARK_LENGTH: number = 3;
+    MARK_LENGTH: number = 1.5;
     LINEAR_FX_EXTEND: number = 100;
     axisPoints = {
         origin: null,
         x: null,
-        y: null 
+        y: null
     };
+    linearFxGraph:L.Polyline = null;
 
     constructor(
         private geolocation: Geolocation,
         private task: Task,
         private route: Route
     ) {
-        this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-        this.pointIcon = L.icon({iconUrl:"./assets/icons/icon_taskmarker-open.png" , iconSize: [35, 48], className:'marker'});
-        this.preDefinedPointIcon = L.icon({iconUrl:"./assets/icons/icon_taskmarker-failed.png" , iconSize: [35, 48], className:'marker'});
+        this.userPositionIcon = L.icon({
+            iconUrl:"./assets/icons/icon_mapposition.png" ,
+            iconSize: [38, 41],
+            className:'marker'
+        });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+        this.pointIcon = L.icon({
+            iconUrl:"./assets/icons/icon_taskmarker-open.png" ,
+            iconSize: [35, 48],
+            iconAnchor: [17, 48],
+            className:'marker'
+        });
+        this.preDefinedPointIcon = L.icon({
+            iconUrl:"./assets/icons/icon_taskmarker-failed.png" ,
+            iconSize: [35, 48],
+            iconAnchor: [17, 48],
+            className:'marker'
+        });
         this.taskDetails = task;
         this.routeDetails = route;
         // Init Marker Array
@@ -75,10 +91,19 @@ export class TaskDetailMap{
     Place or move marker on map depending on index (button click)
      */
     setMarker(index: number){
-        //TODO: Check if new location is within the task radius
-        console.log("Click Button " + index);
-        if(Helper.myLocation != null){
-            let locationLatLng = new L.LatLng(Helper.myLocation.coords.latitude, Helper.myLocation.coords.longitude);
+        let testing = true; // TODO change this
+        var location;
+        if(testing){
+            location = Helper.testLocation;
+        }
+        else{
+            location = Helper.myLocation;
+        }
+        if(location != null){
+            let locationLatLng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+            if(!this.markerCanBeSet(locationLatLng)){
+                return;
+            }
             if(this.pointMarkers[index] == null){
                 let label = String.fromCharCode("A".charCodeAt(0) + index);
                 let newMarker = L.marker(locationLatLng, {icon: this.pointIcon});
@@ -89,7 +114,52 @@ export class TaskDetailMap{
                 this.pointMarkers[index].setLatLng(locationLatLng);
             }
             if(this.taskDetails.getSolutionGpsValue("task") == "linearFx"){
-                this.drawlinearFxGraph();
+                this.insertLinearFxGraph();
+            }
+            console.log("Marker placed");
+        }
+    }
+
+    markerCanBeSet(clickLatLng: L.LatLng): boolean{
+        // Markers need to be placed within a certain radius from the task
+        /*
+        Note: (L as any).GeometryUtil.distance seems to return the distance in pixels? the bigger the zoom the higher the distance
+        For realistic distance in meters use (L as any).GeometryUtil.length(latlng1, latlng2)
+         */
+        let distanceToTask = (L as any).GeometryUtil.length([new L.LatLng(this.taskDetails.lat, this.taskDetails.lon), clickLatLng]);
+        if(distanceToTask > this.ALLOWED_DISTANCE_TO_TASK){
+            // TODO: Display note / message why marker cannot be set
+            console.log("Marker cannot be placed: Out of range.");
+            return false;
+        }
+        else{
+            if(this.taskDetails.getSolutionGpsValue("task") == "linearFx"){
+                // Markers can only be placed inside drawn axis
+                // Inside = the distance of the placed marker to all four "sides" of the axis must be smaller than AXIS_LENGTH
+                let xy = (L as any).GeometryUtil.destination(this.axisPoints.x, (L as any).GeometryUtil.bearing(this.axisPoints.origin, this.axisPoints.y), this.AXIS_LENGTH);
+
+                let closestOnX = (L as any).GeometryUtil.closestOnSegment(this.map, clickLatLng, this.axisPoints.origin, this.axisPoints.x);
+                let closestOnY = (L as any).GeometryUtil.closestOnSegment(this.map, clickLatLng, this.axisPoints.origin, this.axisPoints.y);
+                let closestOnXY = (L as any).GeometryUtil.closestOnSegment(this.map, clickLatLng, this.axisPoints.x, xy);
+                let closestOnYX = (L as any).GeometryUtil.closestOnSegment(this.map, clickLatLng, this.axisPoints.y, xy);
+                let distanceX = (L as any).GeometryUtil.length([closestOnX, clickLatLng]);
+                let distanceY = (L as any).GeometryUtil.length([closestOnY, clickLatLng]);
+                let distanceXY = (L as any).GeometryUtil.length([closestOnXY, clickLatLng]);
+                let distanceYX = (L as any).GeometryUtil.length([closestOnYX, clickLatLng]);
+                if(
+                    distanceX <= this.AXIS_LENGTH && // Distance to Segment origin - x
+                    distanceY <= this.AXIS_LENGTH && // Distance to Segment origin - y
+                    distanceXY <= this.AXIS_LENGTH && // Distance to Segment x - xy
+                    distanceYX <= this.AXIS_LENGTH // Distance to Segment y - xy
+                ) return true;
+                else{
+                    // TODO: Display note / message why marker cannot be set
+                    console.log("Marker cannot be placed: Not in axis");
+                    return false;
+                }
+            }
+            else{
+                return true;
             }
         }
     }
@@ -146,7 +216,7 @@ export class TaskDetailMap{
         bCoor = (L as any).GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH); // Override bCoor with a point that is 100 meter in right direction
         /*
         if (disAB < this.AXIS_LENGTH) {
-            bCoor = L.GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH);
+            bCoor = (L as any).GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH);
         }
         */
         let yCoor = (L as any).GeometryUtil.destination(aCoor, bearingAB - 90, this.AXIS_LENGTH);
@@ -154,57 +224,77 @@ export class TaskDetailMap{
         let xArrowDown = (L as any).GeometryUtil.destination(bCoor, bearingAB + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
         let yArrowUp = (L as any).GeometryUtil.destination(yCoor, bearingAB - 90 - 180 + this.ARROW_DEGREE, this.ARROW_LENGTH);
         let yArrowDown = (L as any).GeometryUtil.destination(yCoor, bearingAB - 90 + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
-        L.polyline([yArrowUp, yCoor, yArrowDown, yCoor, aCoor, bCoor, xArrowUp, bCoor, xArrowDown], {color: 'red'}).addTo(this.map);
+        L.polyline([yArrowUp, yCoor, yArrowDown, yCoor, aCoor, bCoor, xArrowUp, bCoor, xArrowDown], {color: 'red', opacity: 0.7}).addTo(this.map);
 
         this.axisPoints.origin = aCoor;
         this.axisPoints.x = bCoor;
         this.axisPoints.y = yCoor;
 
         // Insert "X" and "Y" at end of axis
-        L.marker(bCoor, {opacity: 0
-        }).bindTooltip("X", {
-            permanent: true,
-            direction: 'center',
-            className: 'axis-label'
+
+        (L as any).marker((L as any).GeometryUtil.destination(bCoor, bearingAB, this.MARK_LENGTH*3), {rotationAngle:(bearingAB - 90), icon: this.getLabeledIcon("X", "axis-label", "x")
         }).addTo(this.map);
-        L.marker(yCoor, {opacity: 0
-        }).bindTooltip("Y", {
-            permanent: true,
-            direction: 'center',
-            className: 'axis-label'
+        (L as any).marker((L as any).GeometryUtil.destination(yCoor, bearingAB - 90, this.MARK_LENGTH*3), {rotationAngle:(bearingAB - 90), icon: this.getLabeledIcon("Y", "axis-label", "y")
         }).addTo(this.map);
 
         // Draw markers every MARKER_DISTANCE meters to indicate the dimensions
+        // origin marker
+        L.polyline([(L as any).GeometryUtil.destination(aCoor, bearingAB + 135, this.MARK_LENGTH), (L as any).GeometryUtil.destination(aCoor, bearingAB - 45, this.MARK_LENGTH*1.5)], {color: 'red', weight: 2, opacity: 0.7}).addTo(this.map);
+        // 0 m label at origin
+        (L as any).marker((L as any).GeometryUtil.destination(aCoor, bearingAB + 135, this.MARK_LENGTH*2), {
+            icon: this.getLabeledIcon('0 m', "axis-label", "y"),
+            rotationAngle:(bearingAB - 90)
+        }).addTo(this.map);
         // Add 50m and 100m to axis
         for(let i = 1; i < (this.AXIS_LENGTH) / this.MARK_DISTANCE; i++){
+            var markerWidth = 2;
+            if(i == 5 || i == 10){
+                markerWidth = 4;
+            }
+
             let coordOnXAxis = (L as any).GeometryUtil.destination(aCoor, bearingAB, this.MARK_DISTANCE * i);
             let coordOnYAxis = (L as any).GeometryUtil.destination(aCoor, bearingAB - 90, this.MARK_DISTANCE * i);
             let innerPointX = (L as any).GeometryUtil.destination(coordOnXAxis, bearingAB - 90, this.MARK_LENGTH);
+            let outerPointX = (L as any).GeometryUtil.destination(coordOnXAxis, bearingAB - 90, -this.MARK_LENGTH);
             let innerPointY = (L as any).GeometryUtil.destination(coordOnYAxis, bearingAB, this.MARK_LENGTH);
-            L.polyline([coordOnXAxis, innerPointX], {color: 'red'}).addTo(this.map);
-            L.polyline([coordOnYAxis, innerPointY], {color: 'red'}).addTo(this.map);
+            let outerPointY = (L as any).GeometryUtil.destination(coordOnYAxis, bearingAB, -this.MARK_LENGTH);
+            L.polyline([outerPointX, innerPointX], {color: 'red', weight: markerWidth, opacity: 0.7}).addTo(this.map);
+            L.polyline([outerPointY, innerPointY], {color: 'red', weight: markerWidth, opacity: 0.7}).addTo(this.map);
 
             if(i == 5 || i == 10){
-                let xLabelCoord = (L as any).GeometryUtil.destination(coordOnXAxis, bearingAB + 90, this.MARK_DISTANCE);
-                let yLabelCoord = (L as any).GeometryUtil.destination(coordOnYAxis, -bearingAB, this.MARK_DISTANCE);
-                L.marker(xLabelCoord, {opacity: 0
-                }).bindTooltip(i * 10 + ' m', {
-                    permanent: true,
-                    direction: 'center',
-                    className: 'axis-label'
+                let xLabelCoord = (L as any).GeometryUtil.destination(coordOnXAxis, bearingAB + 90, this.MARK_LENGTH*3);
+                let yLabelCoord = (L as any).GeometryUtil.destination(coordOnYAxis, -bearingAB, this.MARK_LENGTH*3);
+                (L as any).marker(xLabelCoord, {
+                    icon: this.getLabeledIcon(i * 10 + ' m', "axis-label", "x"),
+                    rotationAngle:(bearingAB - 90)
                 }).addTo(this.map);
-
-                L.marker(yLabelCoord, {opacity: 0
-                }).bindTooltip(i * 10 + ' m', {
-                    permanent: true,
-                    direction: 'center',
-                    className: 'axis-label'
+                (L as any).marker(yLabelCoord, {
+                    icon: this.getLabeledIcon(i * 10 + ' m', "axis-label", "y"),
+                    rotationAngle:(bearingAB - 90)
                 }).addTo(this.map);
             }
         }
     }
 
-    drawlinearFxGraph(){
+    getLabeledIcon(labelText: string, labelClass: string, axis: string):L.DivIcon{
+        var iconSize, iconAnchor;
+        if(axis == "x"){
+            iconSize = [40,20];
+            iconAnchor = [0, 10];
+        }
+        else{
+            iconSize = [40,20];
+            iconAnchor = [40, -30];
+        }
+
+        return L.divIcon({
+            className: labelClass,
+            html: labelText,
+            iconSize: iconSize,
+        });
+    }
+
+    insertLinearFxGraph(){
         if(this.areAllPointsSet()){
             let points = this.getPoints();
             if(this.linearFxGraph != null){
@@ -219,39 +309,6 @@ export class TaskDetailMap{
 
     markerGroup: any = null;
 
-    redrawMarker() {
-        /*
-        const map = this.map;
-        if (this.markerGroup != null) {
-            console.warn('removing markerGroup');
-            this.map.removeLayer(this.markerGroup);
-            this.markerGroup = null;
-        }
-        let markerGroup = (L as any).markerClusterGroup({
-            maxClusterRadius: 30
-        });
-        for (let route of this.routes) {
-            let latLng = route.getCenterLatLng()
-            let icon;
-            if(route.public == "1"){
-                icon = this.publicRouteIconOpen;
-            }else{
-                icon = this.privateRouteIconOpen;
-            }
-            markerGroup.addLayer(L.marker(latLng, {icon: icon}).on('click', () => {
-                if (this.routeDetails == route) {
-                    this.modalsService.showRoute(route, this.navCtrl);
-                } else {
-                    this.routeDetails = route;
-                    this.map.panTo( latLng );
-                }
-            }));
-        }
-        map.addLayer(markerGroup);
-        this.markerGroup = markerGroup;
-        */
-    }
-
     loadMap() {
         this.center = [this.taskDetails.lat, this.taskDetails.lon]; // Center at task's position
         let mapquestUrl = Helper.mapquestUrl;
@@ -261,18 +318,18 @@ export class TaskDetailMap{
             this.map = (L as any).map('gpsTaskMap', {
                 center: this.center,
                 zoom: 19,
-                zoomControl: false,
+                //zoomControl: false,
                 tileSize: 256,
                 maxBounds: this.routeDetails.getBoundingBoxLatLng()
             });
 
             /* For testing - sets users position to click event */
             this.map.on('click', function(e){
-                if(Helper.myLocation == null){
-                    Helper.myLocation = {coords:{latitude:null, longitude:null}};
+                if(Helper.testLocation == null){
+                    Helper.testLocation = {coords:{latitude:null, longitude:null}};
                 }
-                Helper.myLocation.coords.latitude = e.latlng.lat;
-                Helper.myLocation.coords.longitude = e.latlng.lng;
+                Helper.testLocation.coords.latitude = e.latlng.lat;
+                Helper.testLocation.coords.longitude = e.latlng.lng;
             });
 
             tilesDb.initialize().then(() => {
