@@ -56,7 +56,7 @@
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content original-src="index.html" src="http://194.210.223.30:8100" />
+    <content original-src="index.html" src="http://194.210.223.59:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -71,6 +71,7 @@
     <allow-navigation href="http://194.210.221.147:8100" />
     <allow-navigation href="http://194.210.223.55:8100" />
     <allow-navigation href="http://194.210.223.30:8100" />
+    <allow-navigation href="http://194.210.223.59:8100" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -99,6 +100,7 @@
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="30000" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.DeviceDefault" />
 </widget>

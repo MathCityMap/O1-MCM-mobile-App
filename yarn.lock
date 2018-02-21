@@ -3116,6 +3116,12 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+leaflet-geometryutil@0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/leaflet-geometryutil/-/leaflet-geometryutil-0.7.2.tgz#b30e07f0d71940dcbc0ed9dea2b303e585012a80"
+  dependencies:
+    leaflet "^0.7.0"
+
 leaflet-offline@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/leaflet-offline/-/leaflet-offline-1.1.0.tgz#ab8860bc79fb1868e7275b672da4deb02222460b"
@@ -3133,6 +3139,10 @@ leaflet.markercluster@1.1.0:
 leaflet@1.2.0, leaflet@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.2.0.tgz#fd5d93d9cb00091f5f8a69206d0d6744c1c82697"
+
+leaflet@^0.7.0:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-0.7.7.tgz#1e352ba54e63d076451fa363c900890cb2cf75ee"
 
 level-blobs@^0.1.7:
   version "0.1.7"

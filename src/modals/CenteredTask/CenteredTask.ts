@@ -34,7 +34,7 @@ export class CenteredTask{
   }
 
   async ionViewWillEnter() {
-  	this.route = this.navParams.get('route');
+  	this.route = this.navParams.get('route') ;
   	this.tasks = await this.route.getTasks();
 /*     console.log('-------------------', this.totalTasks); */
   }

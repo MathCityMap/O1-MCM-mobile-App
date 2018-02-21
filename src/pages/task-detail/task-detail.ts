@@ -35,6 +35,10 @@ export class TaskDetail{
   private taskDetails: TaskState;
   private score: Score;
 
+  private minScore: number;
+  private penalty: number;
+  private maxScore: number;
+
   private multipleChoiceList: Array<any> = [];
 
     // For GPS - tasks
@@ -53,6 +57,7 @@ export class TaskDetail{
 
 
   async ionViewWillEnter() {
+
     console.log('TasksMap ionViewWillEnter()');
     this.taskId = this.navParams.get('taskId');
     this.routeId = this.navParams.get('routeId');
@@ -60,6 +65,12 @@ export class TaskDetail{
     this.route = await this.ormService.findRouteById(this.routeId);
     this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.taskDetails = this.score.getTaskStateForTask(this.taskId);
+
+    //Temporary attribution of the scores, later they should come from the server, associated with each task
+    this.maxScore = 100;
+    this.penalty = 10;
+    this.minScore = 10;
+
     if(this.score.score == null) this.score.score = 0;
     console.log(this.taskDetails);
     if(this.taskDetails.timeFirstOpen == 0){
@@ -298,26 +309,26 @@ export class TaskDetail{
   CalculateScore (solutionType: string, solved: string) {
     if(solutionType == "value"){
       if(this.taskDetails.tries > 0){
-        let tempScore = 100 - ((this.taskDetails.tries - 1) * 10);
-        this.score.score +=(tempScore > 10 ? tempScore : 10);
+        let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+        this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } 
-      else this.score.score += 100;
+      else this.score.score += this.maxScore;
     }
 
     if(solutionType == "multiple_choice"){
       if(this.taskDetails.tries > 0){
-         let tempScore = 75 - ((this.taskDetails.tries - 1) * 10);
-         this.score.score +=(tempScore > 10 ? tempScore : 10);
+         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
        }
-      else this.score.score += 75;
+      else this.score.score += this.maxScore;
     }
      if(solutionType == "range"){
        if(solved == "solved"){
           if(this.taskDetails.tries > 0){
-            let tempScore = 100 - ((this.taskDetails.tries - 1) * 10);
-           this.score.score +=(tempScore > 10 ? tempScore : 10);
+            let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+           this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
            }
-          else this.score.score += 100;
+          else this.score.score += this.maxScore;
        }
        else if(solved == "solved_low"){
            let solutionList = this.task.getSolutionList();
@@ -325,15 +336,15 @@ export class TaskDetail{
            //if the orange interval is below the green
            if(+this.taskDetails.answer < solutionList[0]){
               if(this.taskDetails.tries > 0) {
-                let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * 10);
-                this.score.score +=(tempScore > 10 ? tempScore : 10);
+                let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
+                this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
               }
               else this.score.score += this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer);
           }
            else {
              if (this.taskDetails.tries > 0) {
-               let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * 10);
-               this.score.score += (tempScore > 10 ? tempScore : 10);
+               let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
+               this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
              }
              else this.score.score += this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer);
            }
@@ -345,10 +356,10 @@ export class TaskDetail{
   CalculateOrangeScore(borderLeft: number, borderRight: number, value: number): number{
     let intervalLenght = Math.abs(borderRight-borderLeft);
     console.log("borderRight " + borderRight + "  BorderLeft " + borderLeft);
-    let xVal = (Math.abs(value - borderLeft)/intervalLenght) * 100;
+    let xVal = (Math.abs(value - borderLeft)/intervalLenght) * this.maxScore;
     let score = Math.round(xVal);
 
-    if(score < 10) return 10;
+    if(score < this.minScore) return this.minScore;
     else return score;
   }
 

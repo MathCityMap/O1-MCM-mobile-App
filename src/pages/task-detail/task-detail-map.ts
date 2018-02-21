@@ -11,7 +11,7 @@ import { OnInit } from "@angular/core";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
-import 'leaflet-geometryutil'
+import 'leaflet-geometryutil';
 
 import { Helper } from '../../classes/Helper';
 import { tilesDb } from '../../classes/tilesDb';
@@ -40,7 +40,7 @@ export class TaskDetailMap{
     userPositionIcon;
     pointIcon;
     preDefinedPointIcon;
-    linearFxGraph:L.polyline = null;
+    linearFxGraph:L.Polyline = null;
 
     // Axis setting
     AXIS_LENGTH: number = 110;
@@ -52,7 +52,7 @@ export class TaskDetailMap{
     axisPoints = {
         origin: null,
         x: null,
-        y: null
+        y: null 
     };
 
     constructor(
@@ -141,19 +141,19 @@ export class TaskDetailMap{
         // Draw axis with arrows at the end
         let aCoor = new L.LatLng(origin[0], origin[1]);
         let bCoor = new L.LatLng(dPoint[0], dPoint[1]);
-        let bearingAB = L.GeometryUtil.bearing(aCoor, bCoor);
-        let disAB = L.GeometryUtil.distance(this.map, aCoor, bCoor);
-        bCoor = L.GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH); // Override bCoor with a point that is 100 meter in right direction
+        let bearingAB = (L as any).GeometryUtil.bearing(aCoor, bCoor);
+        let disAB = (L as any).GeometryUtil.distance(this.map, aCoor, bCoor);
+        bCoor = (L as any).GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH); // Override bCoor with a point that is 100 meter in right direction
         /*
         if (disAB < this.AXIS_LENGTH) {
             bCoor = L.GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH);
         }
         */
-        let yCoor = L.GeometryUtil.destination(aCoor, bearingAB - 90, this.AXIS_LENGTH);
-        let xArrowUp = L.GeometryUtil.destination(bCoor, bearingAB - 180 + this.ARROW_DEGREE, this.ARROW_LENGTH);
-        let xArrowDown = L.GeometryUtil.destination(bCoor, bearingAB + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
-        let yArrowUp = L.GeometryUtil.destination(yCoor, bearingAB - 90 - 180 + this.ARROW_DEGREE, this.ARROW_LENGTH);
-        let yArrowDown = L.GeometryUtil.destination(yCoor, bearingAB - 90 + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
+        let yCoor = (L as any).GeometryUtil.destination(aCoor, bearingAB - 90, this.AXIS_LENGTH);
+        let xArrowUp = (L as any).GeometryUtil.destination(bCoor, bearingAB - 180 + this.ARROW_DEGREE, this.ARROW_LENGTH);
+        let xArrowDown = (L as any).GeometryUtil.destination(bCoor, bearingAB + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
+        let yArrowUp = (L as any).GeometryUtil.destination(yCoor, bearingAB - 90 - 180 + this.ARROW_DEGREE, this.ARROW_LENGTH);
+        let yArrowDown = (L as any).GeometryUtil.destination(yCoor, bearingAB - 90 + 180 - this.ARROW_DEGREE, this.ARROW_LENGTH);
         L.polyline([yArrowUp, yCoor, yArrowDown, yCoor, aCoor, bCoor, xArrowUp, bCoor, xArrowDown], {color: 'red'}).addTo(this.map);
 
         this.axisPoints.origin = aCoor;
@@ -161,13 +161,13 @@ export class TaskDetailMap{
         this.axisPoints.y = yCoor;
 
         // Insert "X" and "Y" at end of axis
-        new L.marker(bCoor, {opacity: 0
+        L.marker(bCoor, {opacity: 0
         }).bindTooltip("X", {
             permanent: true,
             direction: 'center',
             className: 'axis-label'
         }).addTo(this.map);
-        new L.marker(yCoor, {opacity: 0
+        L.marker(yCoor, {opacity: 0
         }).bindTooltip("Y", {
             permanent: true,
             direction: 'center',
@@ -177,24 +177,24 @@ export class TaskDetailMap{
         // Draw markers every MARKER_DISTANCE meters to indicate the dimensions
         // Add 50m and 100m to axis
         for(let i = 1; i < (this.AXIS_LENGTH) / this.MARK_DISTANCE; i++){
-            let coordOnXAxis = L.GeometryUtil.destination(aCoor, bearingAB, this.MARK_DISTANCE * i);
-            let coordOnYAxis = L.GeometryUtil.destination(aCoor, bearingAB - 90, this.MARK_DISTANCE * i);
-            let innerPointX = L.GeometryUtil.destination(coordOnXAxis, bearingAB - 90, this.MARK_LENGTH);
-            let innerPointY = L.GeometryUtil.destination(coordOnYAxis, bearingAB, this.MARK_LENGTH);
+            let coordOnXAxis = (L as any).GeometryUtil.destination(aCoor, bearingAB, this.MARK_DISTANCE * i);
+            let coordOnYAxis = (L as any).GeometryUtil.destination(aCoor, bearingAB - 90, this.MARK_DISTANCE * i);
+            let innerPointX = (L as any).GeometryUtil.destination(coordOnXAxis, bearingAB - 90, this.MARK_LENGTH);
+            let innerPointY = (L as any).GeometryUtil.destination(coordOnYAxis, bearingAB, this.MARK_LENGTH);
             L.polyline([coordOnXAxis, innerPointX], {color: 'red'}).addTo(this.map);
             L.polyline([coordOnYAxis, innerPointY], {color: 'red'}).addTo(this.map);
 
             if(i == 5 || i == 10){
-                let xLabelCoord = L.GeometryUtil.destination(coordOnXAxis, bearingAB + 90, this.MARK_DISTANCE);
-                let yLabelCoord = L.GeometryUtil.destination(coordOnYAxis, -bearingAB, this.MARK_DISTANCE);
-                new L.marker(xLabelCoord, {opacity: 0
+                let xLabelCoord = (L as any).GeometryUtil.destination(coordOnXAxis, bearingAB + 90, this.MARK_DISTANCE);
+                let yLabelCoord = (L as any).GeometryUtil.destination(coordOnYAxis, -bearingAB, this.MARK_DISTANCE);
+                L.marker(xLabelCoord, {opacity: 0
                 }).bindTooltip(i * 10 + ' m', {
                     permanent: true,
                     direction: 'center',
                     className: 'axis-label'
                 }).addTo(this.map);
 
-                new L.marker(yLabelCoord, {opacity: 0
+                L.marker(yLabelCoord, {opacity: 0
                 }).bindTooltip(i * 10 + ' m', {
                     permanent: true,
                     direction: 'center',
@@ -210,9 +210,9 @@ export class TaskDetailMap{
             if(this.linearFxGraph != null){
                 this.map.removeLayer(this.linearFxGraph);
             }
-            let bearing = L.GeometryUtil.bearing(points[0], points[1]);
-            let pointA = L.GeometryUtil.destination(points[0], bearing, (-1) * this.LINEAR_FX_EXTEND);
-            let pointB = L.GeometryUtil.destination(points[1], bearing, this.LINEAR_FX_EXTEND);
+            let bearing = (L as any).GeometryUtil.bearing(points[0], points[1]);
+            let pointA = (L as any).GeometryUtil.destination(points[0], bearing, (-1) * this.LINEAR_FX_EXTEND);
+            let pointB = (L as any).GeometryUtil.destination(points[1], bearing, this.LINEAR_FX_EXTEND);
             this.linearFxGraph = L.polyline([pointA, pointB], {color: 'blue'}).addTo(this.map);
         }
     }
