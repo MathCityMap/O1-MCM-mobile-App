@@ -186,7 +186,7 @@ export class Task {
         if(this.solutionSample){
             let sample = Helper.safeJsonDecode(this.solutionSample);
             if(sample.length > 0){
-                return sample[1]
+                return (sample[1] != null) ? sample[1] : "";
             }
         }
         else{
