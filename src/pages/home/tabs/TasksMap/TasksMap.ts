@@ -175,7 +175,8 @@ export class TasksMap {
       if (this.map == null) {
           this.map = L.map('tasks-map', {
               // center: center,
-              zoom: 18
+              zoom: 18,
+              maxBounds: this.route.getBoundingBoxLatLng()
           });
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
           // this.map.setZoom(18);
