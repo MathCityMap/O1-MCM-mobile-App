@@ -114,6 +114,10 @@ export class TasksMap {
       this.currentScore = this.score.score;
       this.redrawMarker();
       this.gpsService.isLocationOn();
+      // This should fix the gray tiles and missing marker issue on android
+      if(this.map != null){
+          this.map.invalidateSize();
+      }
   }
 
   async redrawMarker(){
