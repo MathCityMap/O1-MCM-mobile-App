@@ -18,9 +18,12 @@ import {gpsService} from  '../../../../services/gps-service';
 import { ModalsService } from '../../../../services/modals-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import 'leaflet-rotatedmarker';
+import 'conic-gradient';
+
 import { ImagesService } from '../../../../services/images-service';
 import { Storage } from '@ionic/storage';
 
+declare var ConicGradient: any;
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -57,6 +60,13 @@ export class TasksMap {
     prevPos: any;
 
     currentScore: any;
+    clusterClass2Color = {
+        open: '#036D99',
+        skipped: '#B2B2B2',
+        done: '#F3B100',
+        donePerfect: '#4CAF50',
+        failed: '#E62B25',
+    };
 
   constructor(
     public navCtrl: NavController,
@@ -71,10 +81,15 @@ export class TasksMap {
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+      this.taskOpenIcon.clusterClass = 'open';
       this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], className:'marker'});
+      this.taskSkippedIcon.clusterClass = 'skipped';
       this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+      this.taskDoneIcon.clusterClass = 'done';
       this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+      this.taskDonePerfectIcon.clusterClass = 'donePerfect';
       this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+      this.taskFailedIcon.clusterClass = 'failed';
   }
 
   async ionViewWillEnter() {
@@ -124,7 +139,7 @@ export class TasksMap {
 
   markerGroup: any = null;
 
-  async initializeMap() {
+   async initializeMap() {
       this.currentScore = this.score.score;
       this.redrawMarker();
       this.gpsService.isLocationOn();
@@ -160,8 +175,58 @@ export class TasksMap {
         this.map.removeLayer(this.markerGroup);
         this.markerGroup = null;
     }
+    let that = this;
     let markerGroup = (L as any).markerClusterGroup({
-        maxClusterRadius: 30
+        maxClusterRadius: 30,
+        iconCreateFunction: function (cluster) {
+            let childCount = cluster.getChildCount();
+            let markers = cluster.getAllChildMarkers();
+            let className = 'marker-cluster marker-cluster-';
+            if (childCount < 10) {
+                className += 'small';
+            } else if (childCount < 100) {
+                className += 'medium';
+            } else {
+                className += 'large';
+            }
+            let classOccurrences = {};
+            let numberOfColoredMarkers = 0;
+            markers.map(marker => {
+                // append all cluster classes from child markers to class name
+                if (marker.options.icon.clusterClass && className.indexOf(marker.options.icon.clusterClass) === -1) {
+                    className += ' ' + marker.options.icon.clusterClass;
+                }
+                if (marker.options.icon.clusterClass) {
+                    numberOfColoredMarkers++;
+                    if (classOccurrences[marker.options.icon.clusterClass]) {
+                        classOccurrences[marker.options.icon.clusterClass] += 1;
+                    } else {
+                        classOccurrences[marker.options.icon.clusterClass] = 1;
+                    }
+                }
+            });
+            let stops = '';
+            let alreadyFilledPercentage = 0;
+            Object.keys(classOccurrences).map(key => {
+               let n = classOccurrences[key];
+               let percentage = Math.round(n / numberOfColoredMarkers * 100);
+               if (alreadyFilledPercentage > 0) {
+                   stops += ', ';
+               }
+               alreadyFilledPercentage += percentage;
+               stops += `${that.clusterClass2Color[key]} 0 ${alreadyFilledPercentage}%`
+            });
+
+            let gradient = new ConicGradient({
+                stops: stops,
+                size: 24
+            });
+            return new L.DivIcon({
+                html: `<div style="background-image: url(${gradient.png})"><span>${childCount}</span></div>`,
+                className: className,
+                iconSize: new L.Point(40, 40)
+            });
+        },
     });
 
     this.taskList = await this.route.getTasks();
