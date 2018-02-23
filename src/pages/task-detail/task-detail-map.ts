@@ -320,7 +320,8 @@ export class TaskDetailMap{
                 zoom: 19,
                 //zoomControl: false,
                 tileSize: 256,
-                maxBounds: this.routeDetails.getBoundingBoxLatLng()
+                maxBounds: this.routeDetails.getBoundingBoxLatLng(),
+                trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
 
             /* For testing - sets users position to click event */

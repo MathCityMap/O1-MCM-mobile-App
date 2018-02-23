@@ -158,7 +158,8 @@ export class MapPage implements OnInit {
             this.map = (L as any).map('map', {
                 center: this.center,
                 zoom: 16,
-                tileSize: 256
+                tileSize: 256,
+                trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
             if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
                 keepPositionBecauseOfReload = true;
