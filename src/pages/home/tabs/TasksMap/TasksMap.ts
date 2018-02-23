@@ -19,7 +19,8 @@ import { ModalsService } from '../../../../services/modals-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import 'leaflet-rotatedmarker';
 import { ImagesService } from '../../../../services/images-service';
-import {TaskState} from "../../../../entity/TaskState";
+import { Storage } from '@ionic/storage';
+
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -43,7 +44,7 @@ export class TasksMap {
       selectedStartTask: false
   };
   private score: Score;
-
+  private stateKey: string = "savedMapStateByRoute";
 
     taskOpenIcon;
     taskSkippedIcon;
@@ -65,7 +66,8 @@ export class TasksMap {
     private gpsService: gpsService,
     private modalService: ModalsService,
     private geolocation: Geolocation,
-    private imagesService: ImagesService
+    private imagesService: ImagesService,
+    private storage: Storage
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
@@ -90,27 +92,31 @@ export class TasksMap {
             this.goToNextTask(this.state.selectedTask);
         }
     } else {
-        // attach state to navParams so that state is restored when moving back in history (from task detail view)
-        this.state = this.navParams.data.tasksMapState = {
-            selectedTask: this.navParams.get("selectedTask"),
-            isShowingAllTasks: false,
-            visibleTasks: {},
-            skippedTaskIds: [],
-            selectedStartTask: false
-        };
-        this.state.isShowingAllTasks = !this.state.selectedTask;
-        if (this.state.selectedTask) {
-            this.state.visibleTasks[this.state.selectedTask.position] = true;
+        this.state = await this.getMapStateFromLocalStorage();
+        console.log('mapState ',this.state);
+        if( !this.state){
+            // attach state to navParams so that state is restored when moving back in history (from task detail view)
+            this.state = this.navParams.data.tasksMapState = {
+                selectedTask: this.navParams.get("selectedTask"),
+                isShowingAllTasks: false,
+                visibleTasks: {},
+                skippedTaskIds: [],
+                selectedStartTask: false
+            };
+            this.state.isShowingAllTasks = !this.state.selectedTask;
+            if (this.state.selectedTask) {
+                this.state.visibleTasks[this.state.selectedTask.position] = true;
+            }
+            const that = this;
+            setTimeout(function() {
+                that.modalService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                    'no', () => {},
+                    'yes', () => {
+                        that.selectStartPoint();
+                        that.state.selectedStartTask = true;
+                    });
+            }, 500);
         }
-        const that = this;
-        setTimeout(function() {
-            that.modalService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                'no', () => {},
-                'yes', () => {
-                    that.selectStartPoint();
-                    that.state.selectedStartTask = true;
-                });
-        }, 500);
     }
     await this.loadMap();
     this.initializeMap();
@@ -127,6 +133,26 @@ export class TasksMap {
           this.map.invalidateSize();
       }
   }
+
+  async getMapStateFromLocalStorage(){
+      let mapState = await this.storage.get(this.stateKey);
+      if(mapState && mapState[this.routeId]){
+          let state = mapState[this.routeId];
+          state.selectedTask = this.navParams.get("selectedTask");
+          return state;
+      }
+      return null;
+  }
+
+  async ionViewWillLeave(){
+      let mapState = await this.storage.get(this.stateKey);
+      if(!mapState){
+          mapState = {};
+      }
+      mapState[this.routeId] = this.state;
+      this.storage.set(this.stateKey, mapState);
+  }
+
 
   async redrawMarker(){
     if (this.markerGroup != null) {
