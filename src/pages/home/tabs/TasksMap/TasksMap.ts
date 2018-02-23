@@ -39,7 +39,8 @@ export class TasksMap {
       selectedTask: null,
       isShowingAllTasks: false,
       visibleTasks : {},
-      skippedTaskIds: []
+      skippedTaskIds: [],
+      selectedStartTask: false
   };
   private score: Score;
 
@@ -82,15 +83,20 @@ export class TasksMap {
     let user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(user);
     console.log(this.score);
+    
     if (this.navParams.data.tasksMapState) {
         this.state = this.navParams.data.tasksMapState;
+        if(this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1)){
+            this.goToNextTask(this.state.selectedTask);
+        }
     } else {
         // attach state to navParams so that state is restored when moving back in history (from task detail view)
         this.state = this.navParams.data.tasksMapState = {
             selectedTask: this.navParams.get("selectedTask"),
             isShowingAllTasks: false,
             visibleTasks: {},
-            skippedTaskIds: []
+            skippedTaskIds: [],
+            selectedStartTask: false
         };
         this.state.isShowingAllTasks = !this.state.selectedTask;
         if (this.state.selectedTask) {
@@ -102,6 +108,7 @@ export class TasksMap {
                 'no', () => {},
                 'yes', () => {
                     that.selectStartPoint();
+                    that.state.selectedStartTask = true;
                 });
         }, 500);
     }
@@ -289,8 +296,10 @@ export class TasksMap {
     this.map.panTo( [this.state.selectedTask.lat, this.state.selectedTask.lon] );
   }
 
-  skipTask(task: Task){
-    this.state.skippedTaskIds.push(task.id);
+  goToNextTask(task: Task, skip?: boolean){
+    if(skip){
+        this.state.skippedTaskIds.push(task.id);
+    }
     // task.position == index + 1
     this.state.selectedTask = this.taskList[task.position % this.taskList.length];
     this.state.visibleTasks[this.state.selectedTask.position] = true;
@@ -345,4 +354,5 @@ interface State {
     isShowingAllTasks: boolean;
     visibleTasks: any;
     skippedTaskIds: number[];
+    selectedStartTask: boolean;
 }

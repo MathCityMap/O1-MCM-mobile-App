@@ -62,7 +62,7 @@
                     <h2 (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>
                 </div>
                 <div class="segement buttons skip">
-                    <button ion-button icon-only clear class="dot" (click)="skipTask(state.selectedTask)">
+                    <button ion-button icon-only clear class="dot" (click)="goToNextTask(state.selectedTask, true)">
                         <img class="danger round" src="./assets/icons/icon_skip.svg"/>
                     </button>
                 </div>
