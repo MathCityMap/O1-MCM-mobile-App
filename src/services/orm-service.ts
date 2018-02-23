@@ -157,8 +157,11 @@ export class OrmService {
         score.userId = user.id;
 
         await repo.save(score);
+    }
 
-
+    async deleteUserScore(score: Score) {
+        let repo = await this.getScoreRepository();
+        await repo.deleteById(score.id);
     }
 
     async setNewActiveUser(userName: string): Promise<User> {

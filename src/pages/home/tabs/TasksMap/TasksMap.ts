@@ -19,6 +19,7 @@ import { ModalsService } from '../../../../services/modals-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import 'leaflet-rotatedmarker';
 import { ImagesService } from '../../../../services/images-service';
+import {TaskState} from "../../../../entity/TaskState";
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -320,7 +321,14 @@ export class TasksMap {
   }
 
   resetTasks() {
-      alert('Resetting tasks is not yet implemented');
+      this.modalService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
+          'no', () => {},
+          'yes', () => {
+              this.ormService.deleteUserScore(this.score).then( ()=> {
+                  this.score = new Score();
+                  this.redrawMarker();
+              });
+          });
   }
 
   async gototask(taskId: number, taskName: string) {
