@@ -44,7 +44,7 @@ export class MCMIconModal{
             this.message = params.data.message;
             this.type = params.data.type;
         }
-        this.param = {solution: params.data.solution};
+        this.param = {L: params.data.solution};
 
         this.linkyOptions = {
             replaceFn : function( match ) {
