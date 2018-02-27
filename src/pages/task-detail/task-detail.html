@@ -2,7 +2,8 @@
 <ion-content class="has-header pattern-bg">
     <div class="task-header">
         <div *ngIf="task && task.solutionType!='gps'" class="image-container">
-            <img *ngIf="task" [src]="task.getImageURL()" />
+            <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" />
+            <!-- image mirror is needed to give the following content a spacing according to the image dimension -->
             <img *ngIf="task" [src]="task.getImageURL()" />
         </div>
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap" style="width:100%; height: 60vh;">
@@ -58,8 +59,8 @@
                         </ion-col>
                         <ion-col>
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow)" [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer" (click)="checkResult()">
-                                    {{ "a_btn_check_answer" | translate }}
-                                </button>
+                                {{ "a_btn_check_answer" | translate }}
+                            </button>
                         </ion-col>
                         <ion-col>
                             <button class="hint" ion-button (click)="showSampleSolution()" icon-only clear>
@@ -67,6 +68,9 @@
                             </button>
                             <button class="hint" ion-button (click)="closeDetails(true)" icon-only clear>
                                 <img class="danger round" src="./assets/icons/icon_skip.svg"/>
+                            </button>
+                            <button class="hint" ion-button (click)="goToNext()" icon-only clear>
+                                <img class="primary round" src="./assets/icons/icon_skip.svg"/>
                             </button>
                         </ion-col>
                     </ion-row>
