@@ -83,16 +83,16 @@
             </div>
         </div>
 
-        <!-- <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)"> -->
-        <div class="card evaluation" *ngIf="true"
+<!--        <pre>taskDetails {{ taskDetails | json }}</pre> -->
+        <div class="card evaluation" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed)"
         [ngClass]="{'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }">
             <div class="head">
-                <ion-label *ngIf="taskDetails && !taskDetails.failed">{{ "a_alert_congrats" | translate }}</ion-label>
-                <ion-label *ngIf="taskDetails && taskDetails.failed">{{ "good_luck_next_time" | translate }}</ion-label>
+                <ion-label *ngIf="taskDetails?.solved || taskDetails?.solvedLow">{{ "a_alert_congrats" | translate }}</ion-label>
+                <ion-label *ngIf="taskDetails?.failed">{{ "a_alert_congrats" | translate }}</ion-label>
                 <span class="tag points" *ngIf="taskDetails && taskDetails.score && taskDetails.score > 0">+ {{taskDetails.score}} MP</span>
+                <span class="tag points" *ngIf="taskDetails && taskDetails.score && taskDetails.score == 0"> 0 MP</span>
             </div>
         </div>
-
 
         <div class="card" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
             <ion-label>{{ "solution_sample" | translate }}</ion-label>
@@ -106,6 +106,6 @@
             </p>
         </div>
     </div>
-    
+
 
 </ion-content>

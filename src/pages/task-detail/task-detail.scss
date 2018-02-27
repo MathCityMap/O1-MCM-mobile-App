@@ -95,6 +95,7 @@ page-task-detail{
         //EVALUATION
 
         &.evaluation{
+            color: #ffffff;
             z-index: 1;
             margin: -34px $global-base-padding*1.3 $global-base-padding;
             padding: $global-base-padding*1.5 $global-base-padding*0.7 $global-base-padding*0.7;
@@ -111,20 +112,30 @@ page-task-detail{
             }
             .points{
                 font-family: 'NunitoExtrabold', Arial, sans-serif;
-                color: color($colors, secondary);
                 background-color: #ffffff;
-                border-color: color($colors, secondary);
                 box-shadow: 0 0 1px 1px #ffffff;
             }
 
             &.perfect{
                 background-color: color($colors, success);
+                .points{
+                    color: color($colors, success);
+                    border-color: color($colors, success);
+                }
             }
             &.good{
                 background-color: color($colors, secondary);
+                .points{
+                    color: color($colors, secondary);
+                    border-color: color($colors, secondary);
+                }
             }
             &.failed{
                 background-color: color($colors, error);
+                .points{
+                    color: color($colors, error);
+                    border-color: color($colors, error);
+                }
             }
         }
     }
