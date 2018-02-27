@@ -259,6 +259,7 @@ export class TaskDetail{
   showSolutionSample(){
       if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
           this.score.addFailedTask(this.task.id);
+          this.taskDetails.score = 0;
           this.taskDetails.failed = true;
           this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
       }
