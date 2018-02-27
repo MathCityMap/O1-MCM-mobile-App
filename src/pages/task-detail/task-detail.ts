@@ -258,7 +258,20 @@ export class TaskDetail{
           this.taskDetails.failed = true;
           this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
       }
-      let modal = this.modalCtrl.create(MCMIconModal,  {title: 't_samplesolution', message: this.task.getSolutionSample(), modalType: MCMModalType.success,
+      let solutionSample = this.task.getSolutionSample();
+      let messages = [];
+      if(solutionSample.length == 0){
+          messages = [
+              'a_msg_no_solutionsample',
+              this.task.getSolution()
+          ]
+      }else{
+          messages.push(solutionSample);
+      }
+      let modal = this.modalCtrl.create(MCMIconModal,  {title: 't_samplesolution',
+          imageUrl: this.task.getSolutionSampleImgSrc(),
+          messages: messages,
+          modalType: MCMModalType.sampleSolution,
           buttons: [
               {
                   title: 'a_alert_close',

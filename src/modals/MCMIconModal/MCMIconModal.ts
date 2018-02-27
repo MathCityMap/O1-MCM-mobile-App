@@ -13,7 +13,9 @@ export class MCMIconModal{
 
     title: string;
     type: string;
+    imageUrl: string;
     message: string;
+    messages: string[];
     param: any;
     modalType: MCMModalType;
     linkyOptions: any;
@@ -42,6 +44,8 @@ export class MCMIconModal{
             }
 
             this.message = params.data.message;
+            this.messages = params.data.messages;
+            this.imageUrl = params.data.imageUrl;
             this.type = params.data.type;
         }
         this.param = {L: params.data.solution};

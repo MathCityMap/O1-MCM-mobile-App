@@ -9,7 +9,8 @@ import {TranslateService} from '@ngx-translate/core';
 export enum MCMModalType {
   hint =1 ,
   error = 2,
-  success = 3
+  success = 3,
+  sampleSolution = 4
 }
 @Component({
   templateUrl: 'app.html'
