@@ -95,12 +95,12 @@ export class MapPage implements OnInit, OnDestroy {
         this.platform.ready().then(() => {
             console.log('Platform is ready!');
             this.splashScreen.hide();
+            this.loadMap();
             this.initializeMap();
 
 
         });
 
-        this.loadMap();
     }
 
     ngOnDestroy() {
