@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { OrmService } from '../../services/orm-service';
@@ -44,13 +44,15 @@ export class TaskDetail{
     // For GPS - tasks
     private taskDetailMap : TaskDetailMap;
     private gpsTaskButtonLabels: Array<string> = [];
+    shownHints: number[] = [];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private ormService: OrmService,
     private modalCtrl: ModalController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private deepLinker: DeepLinker
   ){
 
    }
@@ -66,10 +68,13 @@ export class TaskDetail{
     this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.taskDetails = this.score.getTaskStateForTask(this.taskId);
 
+    console.log(this.route.attr);
+
     //Temporary attribution of the scores, later they should come from the server, associated with each task
     this.maxScore = 100;
     this.penalty = 10;
     this.minScore = 10;
+
 
     if(this.score.score == null) this.score.score = 0;
     console.log(this.taskDetails);
@@ -133,40 +138,59 @@ export class TaskDetail{
 
 
   showHint(index: number){
+      let needUpdate: boolean = false;
     let title = "";
 /*     console.log(" ===============================  ", this.task.getImagesForDownload() );
     console.log(" ===============================  ", this.task.getHint(index) ); */
     let type: string = this.task.getHint(index).type;
     let message: string = this.task.getHint(index).value;
+    if(this.shownHints.indexOf(index) == -1){
+        this.shownHints.push(index);
+    }
     switch (index){
       case 1:
-        if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
+        if(!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed){
           //only update if task is not solved
           this.taskDetails.hint1 = true;
+          needUpdate= true;
         }
         title = 'a_btn_hint1';
         break;
       case 2:
-        if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
+        if(!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed){
           //only update if task is not solved
           this.taskDetails.hint2 = true;
+          needUpdate= true;
         }
         title = 'a_btn_hint2';
         break;
       case 3:
-        if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
+        if(!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed){
           //only update if task is not solved
           this.taskDetails.hint3 = true;
+          needUpdate= true;
         }
         title = 'a_btn_hint3';
         break;
     }
-    this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+    if(needUpdate){
+        this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+    }
+
     let hintModal = this.modalCtrl.create(MCMIconModal,  {
       title: title,
       type: type,
       message: message,
-      modalType: MCMModalType.hint
+      modalType: MCMModalType.hint,
+      buttons: [
+          {
+              title: 'a_alert_close',
+              callback: function(){
+                  hintModal.dismiss();
+              }
+          }
+      ]
+
     }, {showBackdrop: true, enableBackdropDismiss: true});
     hintModal.present();
   }
@@ -192,7 +216,7 @@ export class TaskDetail{
             console.log('found wrong answer');
             break;
         }
-      };
+      }
       this.taskDetails.answerMultipleChoice = this.multipleChoiceList;
       console.log(taskSuccess);
       if(taskSuccess){
@@ -228,7 +252,60 @@ export class TaskDetail{
     }
   }
 
+  showSolutionSample(){
+      if(!this.taskDetails.solved && !this.taskDetails.solvedLow){
+          this.score.addFailedTask(this.task.id);
+          this.taskDetails.failed = true;
+          this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+      }
+      let modal = this.modalCtrl.create(MCMIconModal,  {title: 't_samplesolution', message: this.task.getSolutionSample(), modalType: MCMModalType.success,
+          buttons: [
+              {
+                  title: 'a_alert_close',
+                  callback: function(){
+                      modal.dismiss();
+                  }
+              }
+          ]}, {showBackdrop: true, enableBackdropDismiss: true});
+      modal.onDidDismiss((data) =>{
+          console.log(data);
+      });
+      modal.present();
+  }
+
+
+  closeDetails(skip?: boolean){
+      this.navCtrl.pop({}, () => {
+          if(this.navParams.get('goToNextTaskById')){
+              let goToNextTaskById = this.navParams.get('goToNextTaskById');
+              goToNextTaskById(this.task.id, skip);
+          }
+          // necessary because of bug which does not update URL
+          this.deepLinker.navChange('back');
+      });
+  }
+
+
+  getNextAvailableHint(){
+
+      if(this.shownHints.indexOf(1) == -1 && this.task.hasHintMessage(1) || !this.task.hasHintMessage(2)){
+            console.log("next hint: #"+ 1);
+          return 1;
+      }else if(this.shownHints.indexOf(2) == -1 && this.task.hasHintMessage(2) || !this.task.hasHintMessage(3)){
+          console.log("next hint: #"+ 2);
+          return 2;
+      }else if(this.shownHints.indexOf(3) == -1 && this.task.hasHintMessage(3)){
+          console.log("next hint: #"+ 3);
+          return 3;
+      }
+      console.log("next hint: #"+ 4);
+      return 4;
+
+  }
+
+
   taskSolved (solved: string, solution: string, scoreVal: number){
+      let that = this;
       if(solved == 'solved' || solved == 'solved_low'){
           let message = "";
           let title = "";
@@ -271,36 +348,108 @@ export class TaskDetail{
                 break;
             }
           }
-          let modal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, solution: solution, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
+          let that = this;
+          let modal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, solution: solution, modalType: MCMModalType.success, buttons: [
+                  {
+                      title: 't_samplesolution',
+                      callback: function(){
+                          modal.dismiss().then(() =>{
+                              that.showSolutionSample();
+                          });
+                      }
+                  }, {
+                      title: 'pdf_next_task',
+                      callback: function(){
+                          modal.dismiss().then(() =>{
+                              that.closeDetails(false);
+                          });
+                      }
+                  }
+              ]}, {showBackdrop: true, enableBackdropDismiss: true});
           modal.onDidDismiss((data) =>{
             console.log(data);
               if(data && data.showMap){
 /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
                 this.navCtrl.pop();
               }
-          })
+          });
           modal.present();
 
           this.taskDetails.timeSolved = new Date().getTime();
       }else{
         let message = "";
+        let buttons;
         switch (this.taskDetails.tries){
           case 0:
           case 1:
-          case 2:
             message = 'a_alert_false_answer_1';
+            buttons = [
+                {
+                    title: 'a_alert_close',
+                    callback: function(){
+                        modal.dismiss();
+                    }
+                }
+            ];
             break;
+          case 2:
           case 3:
           case 4:
             message = 'a_alert_false_answer_2';
+
+              buttons = [
+                  {
+                      title: 'a_t_show_hint',
+                      callback: function(){
+                          modal.dismiss().then(() => {
+                              let index = 1;
+                              //number of tries already increased
+                              if(that.taskDetails.tries == 4){
+                                  let temp = that.getNextAvailableHint();
+                                  if(temp < 2) index = temp;
+                                  else index = 2;
+                              }else if(that.taskDetails.tries == 5){
+                                  let temp = that.getNextAvailableHint();
+                                  if(temp < 3) index = temp;
+                                  else index = 3;
+                              }
+                              console.log("tries" +that.taskDetails.tries );
+                              console.log("show hint #" +index);
+                              that.showHint(index);
+                          });
+                      }
+                  },{
+                      title: 'a_alert_close',
+                      callback: function(){
+                          modal.dismiss();
+                      }
+                  }
+              ];
             break;
           default:
             message = 'a_t_skip_msg';
-            this.score.addFailedTask(this.task.id);
+             buttons = [
+                  {
+                      title: 't_samplesolution',
+                      callback: function(){
+                          modal.dismiss().then(() =>{
+                              that.showSolutionSample();
+                          });
+                      }
+                  }, {
+                  title: 'pdf_next_task',
+                  callback: function(){
+                      modal.dismiss().then(() =>{
+                          that.closeDetails(true);
+                      });
+                  }
+              }
+              ];
+
             break;
         }
         this.taskDetails.tries++;
-        let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error}, {showBackdrop: true, enableBackdropDismiss: true});
+        let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error, buttons: buttons}, {showBackdrop: true, enableBackdropDismiss: true});
         modal.present();
       }
       this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
@@ -310,25 +459,37 @@ export class TaskDetail{
     if(solutionType == "value"){
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-        this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
+        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+        this.score.score += this.taskDetails.score;
       } 
-      else this.score.score += this.maxScore;
+      else {
+          this.taskDetails.score = this.maxScore;
+          this.score.score += this.taskDetails.score;
+      }
     }
 
     if(solutionType == "multiple_choice"){
       if(this.taskDetails.tries > 0){
          let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
+          this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+          this.score.score += this.taskDetails.score;
        }
-      else this.score.score += this.maxScore;
+      else {
+          this.taskDetails.score = this.maxScore;
+          this.score.score += this.taskDetails.score;
+      }
     }
      if(solutionType == "range"){
        if(solved == "solved"){
           if(this.taskDetails.tries > 0){
             let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-           this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
-           }
-          else this.score.score += this.maxScore;
+            this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+            this.score.score += this.taskDetails.score;
+          }
+          else {
+              this.taskDetails.score = this.maxScore;
+              this.score.score += this.taskDetails.score;
+          }
        }
        else if(solved == "solved_low"){
            let solutionList = this.task.getSolutionList();
@@ -337,16 +498,24 @@ export class TaskDetail{
            if(+this.taskDetails.answer < solutionList[0]){
               if(this.taskDetails.tries > 0) {
                 let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
               }
-              else this.score.score += this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer);
+              else {
+                  this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer);
+                  this.score.score += this.taskDetails.score;
+              }
           }
            else {
              if (this.taskDetails.tries > 0) {
                let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
-               this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+               this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+               this.score.score += this.taskDetails.score;
              }
-             else this.score.score += this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer);
+             else {
+               this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], +this.taskDetails.answer);
+               this.score.score += this.taskDetails.score;
+             }
            }
        }
      }

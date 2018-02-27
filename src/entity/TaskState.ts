@@ -8,6 +8,7 @@ export class TaskState{
     taskId: number;
     solved: boolean = false;
     solvedLow: boolean = false;
+    failed: boolean = false;
     hint1: boolean = false;
     hint2: boolean = false;
     hint3: boolean = false;
@@ -24,6 +25,7 @@ export class TaskState{
             taskId: +this.taskId, //use '+' to parse to number
             solved: this.solved,
             solvedLow: this.solvedLow,
+            failed: this.failed,
             hint1: this.hint1,
             hint2: this.hint2,
             hint3: this.hint3,
@@ -77,6 +79,7 @@ export class TaskState{
         this.taskId = flags.taskId;
         this.solved = flags.solved;
         this.solvedLow = flags.solvedLow;
+        this.failed = flags.failed;
         this.hint1 = flags.hint1;
         this.hint2 = flags.hint2;
         this.hint3 = flags.hint3;

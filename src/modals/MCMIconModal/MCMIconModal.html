@@ -17,7 +17,8 @@
     </div>
 
     <div class="on-the-edge-container">
-        <button *ngIf="modalType == 3" ion-button small round (click)="dismiss(true)">{{ "a_alert_back2map" | translate }}</button>
-        <button ion-button small round (click)="dismiss()">{{ "a_alert_close" | translate }}</button>
+        <div *ngFor="let button of buttons">
+            <button ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
+        </div>
     </div>
 </div>

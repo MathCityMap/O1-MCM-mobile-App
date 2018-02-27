@@ -3,7 +3,7 @@
     <div id="tasks-map" class="map-view"></div>
 
     <!--TODO RANKING TABLE FOR FUTUTRE GAMIFICATION INTEGRATION-->
-    <!--<div id="ranking" class="detail-box top">-->
+    <!--<div *ngIf="currentScore && currentScore > 0" id="ranking" class="detail-box top">-->
         <!--<div class="text-container">-->
             <!--<div class="ranking-row above">-->
                 <!--<ion-row class="ranking dotted-border-bottom">-->
@@ -13,8 +13,8 @@
             <!--</div>-->
             <!--<div class="ranking-row">-->
                 <!--<ion-row class="ranking current dotted-border-bottom">-->
-                    <!--<ion-col><p>Teamname</p></ion-col>-->
-                    <!--<ion-col><p text-right>100 MP</p></ion-col>-->
+                    <!--<ion-col><p>{{user.name}}</p></ion-col>-->
+                    <!--<ion-col><p text-right>{{currentScore}} MP</p></ion-col>-->
                 <!--</ion-row>-->
             <!--</div>-->
             <!--<div class="ranking-row below">-->
@@ -25,10 +25,10 @@
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
-<ion-fab right top>
+<ion-fab *ngIf="currentScore && currentScore > 0" right top>
                 <button ion-fab >{{currentScore}}</button>
             </ion-fab>
-    <ion-content> 
+    <ion-content>
 </ion-content>
 
 
@@ -60,11 +60,6 @@
                 <div class="title segement">
                     <span (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</span>
                     <h2 (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>
-                </div>
-                <div class="segement buttons skip">
-                    <button ion-button icon-only clear class="dot" (click)="goToNextTask(state.selectedTask, true)">
-                        <img class="danger round" src="./assets/icons/icon_skip.svg"/>
-                    </button>
                 </div>
             </div>
             <div class="segmented-box bottom">

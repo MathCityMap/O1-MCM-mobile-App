@@ -48,6 +48,7 @@ export class TasksMap {
   };
   private score: Score;
   private stateKey: string = "savedMapStateByRoute";
+  private taskToSkip: Task= null;
 
     taskOpenIcon;
     taskSkippedIcon;
@@ -61,6 +62,7 @@ export class TasksMap {
 
     currentScore: any;
 
+    user = null;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -85,22 +87,27 @@ export class TasksMap {
       this.taskFailedIcon.clusterColor = '#E62B25';
   }
 
+
   async ionViewWillEnter() {
 
     console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
-    let user = await this.ormService.getActiveUser();
-    this.score = this.route.getScoreForUser(user);
+    this.user = await this.ormService.getActiveUser();
+    this.score = this.route.getScoreForUser(this.user);
     console.log(this.score);
-    
+    console.log(this.taskToSkip);
     if (this.navParams.data.tasksMapState) {
         this.state = this.navParams.data.tasksMapState;
-        if(this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1)){
-            this.goToNextTask(this.state.selectedTask);
+        if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
+            this.goToNextTask(this.state.selectedTask, true);
         }
     } else {
         this.state = await this.getMapStateFromLocalStorage();
+        if(this.taskToSkip){
+            this.goToNextTask(this.taskToSkip, true);
+            this.taskToSkip = null;
+        }
         console.log('mapState ',this.state);
         if( !this.state){
             // attach state to navParams so that state is restored when moving back in history (from task detail view)
@@ -145,7 +152,8 @@ export class TasksMap {
       }
   }
 
-  async getMapStateFromLocalStorage(){
+
+    async getMapStateFromLocalStorage(){
       let mapState = await this.storage.get(this.stateKey);
       if(mapState && mapState[this.routeId]){
           let state = mapState[this.routeId];
@@ -163,6 +171,8 @@ export class TasksMap {
       mapState[this.routeId] = this.state;
       this.storage.set(this.stateKey, mapState);
   }
+
+
 
 
   async redrawMarker(){
@@ -233,6 +243,8 @@ export class TasksMap {
             icon = this.taskDonePerfectIcon;
         }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
             icon = this.taskDoneIcon;
+        }else  if(this.score.getTasksFailed().indexOf(task.id) > -1){
+            icon = this.taskFailedIcon;
         }else if(this.state.skippedTaskIds.indexOf(task.id) > -1){
           icon = this.taskSkippedIcon;
       }
@@ -379,6 +391,15 @@ export class TasksMap {
     this.map.panTo( [this.state.selectedTask.lat, this.state.selectedTask.lon] );
   }
 
+  goToNextTaskById(taskId: number, skip?: boolean){
+      this.taskList.forEach(task => {
+            if(task.id == taskId){
+                this.goToNextTask(task, skip);
+                return;
+            }
+      });
+  }
+
   goToNextTask(task: Task, skip?: boolean){
     if(skip){
         this.state.skippedTaskIds.push(task.id);
@@ -425,7 +446,10 @@ export class TasksMap {
 
   async gototask(taskId: number, taskName: string) {
     console.log('taskId', taskId);
-    this.navCtrl.push('TaskDetail', {taskId: taskId, headerTitle: taskName, routeId: this.routeId}, {}, () => {
+    let that = this;
+    this.navCtrl.push('TaskDetail', {taskId: taskId, headerTitle: taskName, routeId: this.routeId, goToNextTaskById: function(taskIdToSkip: number, skip?: boolean){
+            that.goToNextTaskById(taskIdToSkip, skip);
+        }}, {}, () => {
       // necessary because of bug which does not update URL
       this.deepLinker.navChange('forward');
     });

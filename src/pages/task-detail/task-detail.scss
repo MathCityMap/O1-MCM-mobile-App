@@ -13,20 +13,11 @@ page-task-detail{
             justify-content: center;
             img{
                 opacity: 0;
-//                object-fit: cover;
-//                max-width: unset;
-                &:first-of-type{
+                &.image-mirror{
                     position: fixed;
                     opacity: 1;
-
                 }
             }
-//            &:before{
-//                content: '';
-//                display: block;
-//                height: 100%;
-//                width: 100%;
-//            }
         }
     }
 
@@ -126,8 +117,14 @@ page-task-detail{
                 box-shadow: 0 0 1px 1px #ffffff;
             }
 
-            &.positive{
+            &.perfect{
+                background-color: color($colors, success);
+            }
+            &.good{
                 background-color: color($colors, secondary);
+            }
+            &.failed{
+                background-color: color($colors, error);
             }
         }
     }

@@ -17,13 +17,13 @@ export class MCMIconModal{
     param: any;
     modalType: MCMModalType;
     linkyOptions: any;
-
+    buttons: any[];
     constructor(params: NavParams, private viewCtrl: ViewController) {
         if(!params.data.modalType){
             console.warn("Please provide the modalType!");
         }else{
             this.modalType = params.data.modalType;
-
+            this.buttons = params.data.buttons;
             if(params.data.title){
                 this.title = params.data.title;
             }else{
