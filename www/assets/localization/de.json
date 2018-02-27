@@ -317,7 +317,6 @@
   "a_rdl_complete_with_error": "Download abgeschlossen mit",
   "a_rdl_title_img": "Lade Bilddaten herunter",
   "a_main_settings_delCache": "App-Daten löschen",
-  "a_main_settings_delCache_confirm": "Wirklich alle heruntergeladenen Trails, Kartendaten und Bilder löschen?",
   "a_main_settings_distanceCheck": "Distanzcheck",
   "a_route_detail_settings_delCache": "Trail-Daten löschen",
   "a_route_detail_settings_resetTasks": "Aufgaben zurücksetzen",
@@ -408,7 +407,6 @@
   "a_sides": "Seiten",
   "a_t_select_trail": "Wähle einen Mathtrail aus",
   "a_language_en": "English",
-  "a_language_el": "Griechisch",
   "a_settings_language": "Sprache",
   "a_language_de": "Deutsch",
   "a_language_in": "Indonesia",
@@ -430,5 +428,9 @@
   "a_about_mcm_portal": "Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos.",
   "a_about_mcm_responsibility_title": "Verantwortliche Personen",
   "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
-  "a_route_detail_settings_resetTasks_msg": "Möchtest du diese Aufgabe zurücksetzen?"
+  "a_route_detail_settings_resetTasks_msg": "Möchtest du diese Aufgabe zurücksetzen?",
+  "good_luck_next_time": "Viel Glück fürs nächste Mal!",
+  "a_main_settings_delCache_confirm": "Wirklich alle heruntergeladenen Trails, Kartendaten und Bilder löschen?",
+  "a_language_el": "Griechisch",
+  "p_wrzd_segment_meters": "Strecke s in Metern*"
 }
