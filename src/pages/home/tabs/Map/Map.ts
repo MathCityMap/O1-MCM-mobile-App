@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { File } from '@ionic-native/file';
@@ -28,13 +28,14 @@ import {gpsService} from  '../../../../services/gps-service';
 import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
     selector: 'page-map',
     templateUrl: 'Map.html'
 })
-export class MapPage implements OnInit {
+export class MapPage implements OnInit, OnDestroy {
 
     @ViewChild('map') mapContainer: ElementRef;
     map: any;
@@ -52,7 +53,7 @@ export class MapPage implements OnInit {
     privateRouteIcon;
     downloadedRouteIcon;
     doneRouteIcon;
-
+    eventSubscription: Subscription;
 
     constructor(
         private platform: Platform,
@@ -71,6 +72,12 @@ export class MapPage implements OnInit {
             this.privateRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-private.png', iconSize: [35, 48], className:'marker'});
             this.downloadedRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-downloaded.png', iconSize: [35, 48], className:'marker'});
             this.doneRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-done.png', iconSize: [35, 48], className:'marker'});
+            this.eventSubscription = this.ormService.eventEmitter.subscribe((event) => {
+                if (this.markerGroup) {
+                    this.redrawMarker();
+                    this.routeDetails = null;
+                }
+            });
     }
 
 
@@ -94,6 +101,10 @@ export class MapPage implements OnInit {
         });
 
         this.loadMap();
+    }
+
+    ngOnDestroy() {
+        this.eventSubscription.unsubscribe();
     }
 
 

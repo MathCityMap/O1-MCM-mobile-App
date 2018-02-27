@@ -71,7 +71,7 @@ export class ModalsService {
     async showDialog(titleKey: string, messageKey: string,
                      button1Key?: string, button1Handler?: () => void,
                      button2Key?: string, button2Handler?: () => void) {
-        button1Key = button1Key || this.translateService.instant('a_g_ok');
+        button1Key = button1Key || 'a_g_ok';
         let buttons = [{
             text: this.translateService.instant(button1Key),
             handler: button1Handler

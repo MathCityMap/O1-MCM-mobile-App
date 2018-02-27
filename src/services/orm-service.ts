@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { SQLite } from '@ionic-native/sqlite';
 import { Connection, createConnection, Repository } from "typeorm";
@@ -20,6 +20,8 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
+import { Broadcaster } from 'typeorm/subscriber/Broadcaster';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class OrmService {
@@ -27,7 +29,9 @@ export class OrmService {
     private min_zoom: number = 16;
     private max_zoom: number = 19;
     public static INSTANCE: OrmService;
+    public static EVENT_ROUTES_CHANGED = 'EVENT_ROUTES_CHANGED';
     private visibleRoutesCache : Route[];
+    public eventEmitter = new Subject<String>();
 
     constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
                 private translateService: TranslateService, private platform: Platform) {
@@ -314,8 +318,10 @@ export class OrmService {
         return result;
     }
 
-    async removeDownloadedRoute(route: Route) {
-        // this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
+    async removeDownloadedRoute(route: Route, removeTiles = false) {
+        if (removeTiles) {
+            await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
+        }
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         route.downloaded = false;
         const repo = await this.getRouteRepository();
@@ -328,6 +334,14 @@ export class OrmService {
         (await this.getRouteRepository()).save(route);
         this.imagesService.downloadURLs([route.image], true);
         this.updateRouteInCache(route);
+    }
+
+    async removeAllDownloadedData() {
+        let routes = await this.getDownloadedRoutes();
+        for (let route of routes) {
+            await this.removeDownloadedRoute(route, true);
+        }
+        this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
     }
 
     private updateRouteInCache(routeToUpdate: Route) {

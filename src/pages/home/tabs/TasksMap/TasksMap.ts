@@ -63,6 +63,7 @@ export class TasksMap {
     currentScore: any;
 
     user = null;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -86,7 +87,6 @@ export class TasksMap {
       this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], className:'marker'});
       this.taskFailedIcon.clusterColor = '#E62B25';
   }
-
 
   async ionViewWillEnter() {
 
@@ -176,12 +176,14 @@ export class TasksMap {
 
 
   async redrawMarker(){
+    if (!this.map) {
+      return;
+    }
     if (this.markerGroup != null) {
         console.warn('removing markerGroup');
         this.map.removeLayer(this.markerGroup);
         this.markerGroup = null;
     }
-    let that = this;
     let markerGroup = (L as any).markerClusterGroup({
         maxClusterRadius: 30,
         iconCreateFunction: function (cluster) {
@@ -414,15 +416,15 @@ export class TasksMap {
 
   selectStartPoint(){
     /* open the damn modal again */
-    let _this = this;
+    let that = this;
     this.modalService.presentTaskListModal(this.route, this.navCtrl, function(selectedTask: Task){
             console.log("back in tasksMap");
-            _this.state.selectedTask = selectedTask;
-            _this.state.visibleTasks = {};
-            _this.state.visibleTasks[selectedTask.position] = true;
-            _this.state.isShowingAllTasks = false;
-            _this.centerSelectedTask();
-            _this.redrawMarker();
+            that.state.selectedTask = selectedTask;
+            that.state.visibleTasks = {};
+            that.state.visibleTasks[selectedTask.position] = true;
+            that.state.isShowingAllTasks = false;
+            that.centerSelectedTask();
+            that.redrawMarker();
     });
     /* this.showOnlyCurrentlySelectedTadk(); */
     /*   */

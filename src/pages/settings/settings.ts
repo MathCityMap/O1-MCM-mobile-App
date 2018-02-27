@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { OrmService } from '../../services/orm-service';
+import { ModalsService } from '../../services/modals-service';
 
 @IonicPage()
 @Component({
@@ -11,10 +12,10 @@ import { OrmService } from '../../services/orm-service';
 })
 export class SettingsPage {
     language: string;
-    availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh"];
+    availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el"];
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService,
-                private spinner: SpinnerDialog, private ormService: OrmService) {
+                private spinner: SpinnerDialog, private ormService: OrmService, private modalsService: ModalsService) {
     }
 
     ionViewDidLoad() {
@@ -26,12 +27,13 @@ export class SettingsPage {
         this.translateService.use(language);
     }
 
-    async deleteAppData() {
-        this.spinner.show(null, this.translateService.instant('a_main_settings_delCache'), true);
-        let routes = await this.ormService.getDownloadedRoutes();
-        for (let route of routes) {
-            await this.ormService.removeDownloadedRoute(route);
-        }
-        this.spinner.hide();
+    deleteAppData() {
+        this.modalsService.showDialog('a_main_settings_delCache', 'a_main_settings_delCache_confirm',
+            'no', () => {},
+            'yes', async () => {
+                this.spinner.show(null, this.translateService.instant('a_main_settings_delCache'), true);
+                await this.ormService.removeAllDownloadedData();
+                this.spinner.hide();
+        });
     }
 }
