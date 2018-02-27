@@ -1,22 +1,17 @@
 page-task-detail {
+    ion-content{
+        background-size: contain;
+        background-position: top left;
+        background-repeat: no-repeat;
+    }
     .task-header {
         position: relative;
         display: block;
         z-index: 0;
         .image-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
             max-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             img {
                 opacity: 0;
-                &.image-mirror {
-                    position: fixed;
-                    opacity: 1;
-                }
             }
         }
     }

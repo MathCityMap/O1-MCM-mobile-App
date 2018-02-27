@@ -1,17 +1,16 @@
 <mcm-header></mcm-header>
-<ion-content class="has-header pattern-bg">
+<ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" >
     <div class="task-header">
         <div *ngIf="task && task.solutionType!='gps'" class="image-container">
             <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" />
             <!-- image mirror is needed to give the following content a spacing according to the image dimension -->
-            <img *ngIf="task" [src]="task.getImageURL()" />
         </div>
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap" style="width:100%; height: 60vh;">
         </div>
         <div class="transition"></div>
     </div>
-    <div class="task-content">
 
+    <div class="task-content">
         <div class="card task has-button-on-the-edge">
             <!-- fab buttons for task map -->
             <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
