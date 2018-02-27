@@ -708,17 +708,19 @@ ion-modal {
             }
         }
 
+        img{
+            width: 100px;
+            display: block;
+            margin: $global-base-padding auto;
+            &.full-width{
+                width:100%;
+            }
+        }
+
         &.hint, &.positive, &.negative{
             padding-top: $global-large-padding;
             padding-bottom: $global-large-padding;
             text-align: center;
-            img{
-                width: 100px;
-                margin: $global-base-padding 0;
-                &.full-width{
-                    width:100%;
-                }
-            }
             p{
                 margin: $global-small-padding 0;
             }
