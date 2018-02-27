@@ -1,7 +1,20 @@
+.platform-ios{
+    page-task-detail{
+        ion-content{
+            background-position: 0 74px ;
+        }
+    }
+}
+.platform-android{
+    page-task-detail{
+        ion-content{
+            background-position: 0 54px ;
+        }
+    }
+}
 page-task-detail {
     ion-content{
         background-size: contain;
-        background-position: top left;
         background-repeat: no-repeat;
     }
     .task-header {
