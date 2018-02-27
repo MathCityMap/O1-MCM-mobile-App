@@ -29,9 +29,7 @@ export class RoutesListPage {
     }
 
     async ionViewWillEnter() {
-        if (this.items.length === 0) {
-            this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
-        }
+        this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
         if (!Helper.myLocation) {
             try {
                 const position = await this.geolocation.getCurrentPosition();
@@ -69,8 +67,7 @@ export class RoutesListPage {
 
     async doRefresh(refresher) {
         await this.dbUpdater.checkForUpdates();
-        this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
-        await this.ionViewWillEnter();
+        this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
         refresher.complete();
     }
 

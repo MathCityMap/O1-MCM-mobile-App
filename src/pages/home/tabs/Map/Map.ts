@@ -48,13 +48,10 @@ export class MapPage implements OnInit {
     prevPos: any;
 
     userPositionIcon;
-    publicRouteIconAvailable;
-    privateRouteIconAvailable;
-    publicRouteIconOpen;
-    privateRouteIconOpen;
-    //Marker for Progress
-    publicRouteIconDownloaded;
-    privateRouteIconDownloaded;
+    publicRouteIcon;
+    privateRouteIcon;
+    downloadedRouteIcon;
+    doneRouteIcon;
 
 
     constructor(
@@ -70,13 +67,10 @@ export class MapPage implements OnInit {
         private splashScreen: SplashScreen,
         private gpsService: gpsService) {
             this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-            this.publicRouteIconAvailable = L.icon({iconUrl:'./assets/icons/icon_routemarker-available.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.privateRouteIconAvailable = L.icon({iconUrl:'./assets/icons/icon_routemarker-private-available.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.publicRouteIconOpen = L.icon({iconUrl:'./assets/icons/icon_routemarker-open.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.privateRouteIconOpen = L.icon({iconUrl:'./assets/icons/icon_routemarker-private-open.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            //Marker for Progress
-            this.publicRouteIconDownloaded = L.icon({iconUrl:'./assets/icons/icon_routemarker-done.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-            this.privateRouteIconDownloaded = L.icon({iconUrl:'./assets/icons/icon_routemarker-private-done.png', iconSize: [35, 48], className:'marker', shadowUrl: './assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+            this.publicRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-public.png', iconSize: [35, 48], className:'marker'});
+            this.privateRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-private.png', iconSize: [35, 48], className:'marker'});
+            this.downloadedRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-downloaded.png', iconSize: [35, 48], className:'marker'});
+            this.doneRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-done.png', iconSize: [35, 48], className:'marker'});
     }
 
 
@@ -84,6 +78,9 @@ export class MapPage implements OnInit {
     async ionViewWillEnter() {
         console.log("ionViewWillEnter:");
         this.gpsService.isLocationOn();
+        if (this.markerGroup) {
+            this.redrawMarker();
+        }
     }
 
     async ngOnInit() {
@@ -128,10 +125,12 @@ export class MapPage implements OnInit {
         for (let route of this.routes) {
             let latLng = route.getCenterLatLng()
             let icon;
-            if(route.public == "1"){
-                icon = this.publicRouteIconOpen;
+            if (route.downloaded) {
+                icon = this.downloadedRouteIcon;
+            } else if(route.public == "1"){
+                icon = this.publicRouteIcon;
             }else{
-                icon = this.privateRouteIconOpen;
+                icon = this.privateRouteIcon;
             }
             markerGroup.addLayer(L.marker(latLng, {icon: icon}).on('click', () => {
                 if (this.routeDetails == route) {
@@ -253,8 +252,19 @@ export class MapPage implements OnInit {
     }
 
 
-    removeRoute(route: Route): void {
-        this.ormService.removeDownloadedRoute(route);
+    async removeRoute() {
+        await this.ormService.removeDownloadedRoute(this.routeDetails);
+        this.redrawMarker();
+    }
+
+    async doDownload() {
+        await this.modalsService.doDownload(this.routeDetails);
+        this.redrawMarker();
+    }
+
+    async presentRouteInfoModal() {
+        this.routeDetails = await this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl);
+        this.redrawMarker();
     }
 
     async addRouteByCode() {

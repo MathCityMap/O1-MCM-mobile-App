@@ -60,13 +60,6 @@ export class TasksMap {
     prevPos: any;
 
     currentScore: any;
-    clusterClass2Color = {
-        open: '#036D99',
-        skipped: '#B2B2B2',
-        done: '#F3B100',
-        donePerfect: '#4CAF50',
-        failed: '#E62B25',
-    };
 
   constructor(
     public navCtrl: NavController,
@@ -80,16 +73,16 @@ export class TasksMap {
     private storage: Storage
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-      this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-      this.taskOpenIcon.clusterClass = 'open';
+      this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker'});
+      this.taskOpenIcon.clusterColor = '#036D99';
       this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], className:'marker'});
-      this.taskSkippedIcon.clusterClass = 'skipped';
-      this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-      this.taskDoneIcon.clusterClass = 'done';
-      this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-      this.taskDonePerfectIcon.clusterClass = 'donePerfect';
-      this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-      this.taskFailedIcon.clusterClass = 'failed';
+      this.taskSkippedIcon.clusterColor = '#B2B2B2';
+      this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], className:'marker'});
+      this.taskDoneIcon.clusterColor = '#F3B100';
+      this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], className:'marker'});
+      this.taskDonePerfectIcon.clusterColor = '#4CAF50';
+      this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], className:'marker'});
+      this.taskFailedIcon.clusterColor = '#E62B25';
   }
 
   async ionViewWillEnter() {
@@ -134,7 +127,10 @@ export class TasksMap {
         }
     }
     await this.loadMap();
-    this.initializeMap();
+    setTimeout(async () => {
+        // adding markers immediately after map initialization caused marker cluster problems -> use timeout
+        this.initializeMap();
+    }, 100);
   }
 
   markerGroup: any = null;
@@ -189,32 +185,28 @@ export class TasksMap {
             } else {
                 className += 'large';
             }
-            let classOccurrences = {};
+            let colorOccurrences = {};
             let numberOfColoredMarkers = 0;
             markers.map(marker => {
-                // append all cluster classes from child markers to class name
-                if (marker.options.icon.clusterClass && className.indexOf(marker.options.icon.clusterClass) === -1) {
-                    className += ' ' + marker.options.icon.clusterClass;
-                }
-                if (marker.options.icon.clusterClass) {
+                if (marker.options.icon.clusterColor) {
                     numberOfColoredMarkers++;
-                    if (classOccurrences[marker.options.icon.clusterClass]) {
-                        classOccurrences[marker.options.icon.clusterClass] += 1;
+                    if (colorOccurrences[marker.options.icon.clusterColor]) {
+                        colorOccurrences[marker.options.icon.clusterColor] += 1;
                     } else {
-                        classOccurrences[marker.options.icon.clusterClass] = 1;
+                        colorOccurrences[marker.options.icon.clusterColor] = 1;
                     }
                 }
             });
             let stops = '';
             let alreadyFilledPercentage = 0;
-            Object.keys(classOccurrences).map(key => {
-               let n = classOccurrences[key];
+            Object.keys(colorOccurrences).map(color => {
+               let n = colorOccurrences[color];
                let percentage = Math.round(n / numberOfColoredMarkers * 100);
                if (alreadyFilledPercentage > 0) {
                    stops += ', ';
                }
                alreadyFilledPercentage += percentage;
-               stops += `${that.clusterClass2Color[key]} 0 ${alreadyFilledPercentage}%`
+               stops += `${color} 0 ${alreadyFilledPercentage}%`
             });
 
             let gradient = new ConicGradient({

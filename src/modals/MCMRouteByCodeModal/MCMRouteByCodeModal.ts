@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { OrmService } from '../../services/orm-service';
-import { ImagesService } from '../../services/images-service';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class MCMRouteByCodeModal {
     code: string;
     showError: boolean;
 
-    constructor(private ormService: OrmService, private viewCtrl: ViewController, private imagesService: ImagesService) {
+    constructor(private ormService: OrmService, private viewCtrl: ViewController) {
 
     }
 
@@ -34,10 +33,7 @@ export class MCMRouteByCodeModal {
         if (!route) {
             this.showError = true;
         } else {
-            let repo = await this.ormService.getRouteRepository();
-            route.unlocked = true;
-            await repo.save(route);
-            this.imagesService.downloadURLs([route.image], true);
+            await this.ormService.unlockRoute(route);
             this.viewCtrl.dismiss(route);
         }
     }

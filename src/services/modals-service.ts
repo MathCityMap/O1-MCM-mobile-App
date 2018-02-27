@@ -60,11 +60,11 @@ export class ModalsService {
         return !cancelHasBeenClicked;
     }
 
-    showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
+    async showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null) {
         if (route.downloaded) {
             this.navigateToRoute(route, navCtrl, null);
         } else {
-            this.presentRouteInfoModal(route, navCtrl);
+            await this.presentRouteInfoModal(route, navCtrl);
         }
     }
 
@@ -101,20 +101,28 @@ export class ModalsService {
         });
     }
 
-    presentRouteInfoModal(route: Route, navCtrl: NavController): void {
+    presentRouteInfoModal(route: Route, navCtrl: NavController): Promise<Route> {
         let self = this;
-        //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
-        let routeInfoModal = this.modalCtrl.create(RouteInfo, {
-            routeId: route.id,
-            modalsService: this
+        return new Promise(success => {
+            //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
+            let data = {
+                routeId: route.id,
+                modalsService: this,
+                route: null
+            };
+            let routeInfoModal = this.modalCtrl.create(RouteInfo, data);
+            routeInfoModal.onDidDismiss(result => {
+                if (result.showRoute) {
+                    //will probably never showRoute;
+                    self.showRoute(result.route, navCtrl);
+                    success(result.route);
+                } else {
+                    // route is set by RouteInfo
+                    success(data.route);
+                }
+            });
+            routeInfoModal.present();
         });
-        routeInfoModal.onDidDismiss(data => {
-            if (data.showRoute) {
-                //will probably never showRoute;
-                self.showRoute(data.route, navCtrl);
-            }
-        })
-        routeInfoModal.present();
     }
 
     showAddRouteByCodeModal(): Promise<Route> {
