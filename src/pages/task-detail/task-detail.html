@@ -28,12 +28,12 @@
             <div class="answer">
                 <ion-label>{{ "a_task_answer" | translate }}</ion-label>
                 <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
-                    <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || !taskDetails.failed)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
-                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || !taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList">
                     <ion-item *ngFor="let item of multipleChoiceList; let i = index">
-                        <ion-checkbox [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || !taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
+                        <ion-checkbox [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
                         <ion-label tappable>{{item.value}}</ion-label>
                     </ion-item>
                 </ion-list>
@@ -66,7 +66,7 @@
                         </ion-col>
                         <ion-col>
                             <button class="hint" ion-button icon-only clear (click)="showSolutionSample()"
-                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || !taskDetails.failed)">
+                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
                                 <img class="primary round" src="./assets/icons/icon_show_sample_salution.svg"/>
                             </button>
                             <!-- skip task -->

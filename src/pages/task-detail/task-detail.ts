@@ -41,10 +41,10 @@ export class TaskDetail{
 
   private multipleChoiceList: Array<any> = [];
 
-    // For GPS - tasks
-    private taskDetailMap : TaskDetailMap;
-    private gpsTaskButtonLabels: Array<string> = [];
-    shownHints: number[] = [];
+  // For GPS - tasks
+  private taskDetailMap : TaskDetailMap;
+  private gpsTaskButtonLabels: Array<string> = [];
+  shownHints: number[] = [];
 
   constructor(
     public navCtrl: NavController,
@@ -132,6 +132,10 @@ export class TaskDetail{
           for(let i = 0; i < buttonCount; i++){
               this.gpsTaskButtonLabels[i] = String.fromCharCode(startCharCode + i);
           }
+      }
+
+      if(this.taskDetails.skipped){
+          this.taskDetails.newTries = 0;
       }
   }
 
@@ -291,6 +295,8 @@ export class TaskDetail{
       this.navCtrl.pop({}, () => {
           if(this.navParams.get('goToNextTaskById')){
               let goToNextTaskById = this.navParams.get('goToNextTaskById');
+              this.taskDetails.skipped = true;
+              this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
               goToNextTaskById(this.task.id, skip);
           }
           // necessary because of bug which does not update URL
@@ -302,16 +308,12 @@ export class TaskDetail{
   getNextAvailableHint(){
 
       if(this.shownHints.indexOf(1) == -1 && this.task.hasHintMessage(1) || !this.task.hasHintMessage(2)){
-            console.log("next hint: #"+ 1);
           return 1;
       }else if(this.shownHints.indexOf(2) == -1 && this.task.hasHintMessage(2) || !this.task.hasHintMessage(3)){
-          console.log("next hint: #"+ 2);
           return 2;
       }else if(this.shownHints.indexOf(3) == -1 && this.task.hasHintMessage(3)){
-          console.log("next hint: #"+ 3);
           return 3;
       }
-      console.log("next hint: #"+ 4);
       return 4;
 
   }
@@ -320,6 +322,7 @@ export class TaskDetail{
   taskSolved (solved: string, solution: string, scoreVal: number){
       let that = this;
       if(solved == 'solved' || solved == 'solved_low'){
+          this.taskDetails.skipped = false;
           let message = "";
           let title = "";
           if(solved == 'solved'){
@@ -392,7 +395,12 @@ export class TaskDetail{
       }else{
         let message = "";
         let buttons;
-        switch (this.taskDetails.tries){
+        let tries = this.taskDetails.tries;
+        if(this.taskDetails.skipped){
+            tries = this.taskDetails.newTries;
+        }
+
+        switch (tries){
           case 0:
           case 1:
             message = 'a_alert_false_answer_1';
@@ -417,17 +425,15 @@ export class TaskDetail{
                           modal.dismiss().then(() => {
                               let index = 1;
                               //number of tries already increased
-                              if(that.taskDetails.tries == 4){
+                              if(tries == 4){
                                   let temp = that.getNextAvailableHint();
                                   if(temp < 2) index = temp;
                                   else index = 2;
-                              }else if(that.taskDetails.tries == 5){
+                              }else if(tries == 5){
                                   let temp = that.getNextAvailableHint();
                                   if(temp < 3) index = temp;
                                   else index = 3;
                               }
-                              console.log("tries" +that.taskDetails.tries );
-                              console.log("show hint #" +index);
                               that.showHint(index);
                           });
                       }
@@ -462,6 +468,9 @@ export class TaskDetail{
             break;
         }
         this.taskDetails.tries++;
+      if(this.taskDetails.skipped){
+          this.taskDetails.newTries++;
+      }
         let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error, buttons: buttons}, {showBackdrop: true, enableBackdropDismiss: true});
         modal.present();
       }
