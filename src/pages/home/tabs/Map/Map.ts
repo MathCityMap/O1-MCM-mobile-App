@@ -191,7 +191,7 @@ export class MapPage implements OnInit {
                 let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
                     attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
                     subdomains: subDomains,
-                    minZoom: 7,
+                    minZoom: 4,
                     maxZoom: 20,
                     tileSize: 256,
                     crossOrigin: true,
