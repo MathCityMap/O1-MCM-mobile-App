@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { OrmService } from '../../services/orm-service';
@@ -45,12 +45,14 @@ export class TaskDetail{
     private taskDetailMap : TaskDetailMap;
     private gpsTaskButtonLabels: Array<string> = [];
 
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private ormService: OrmService,
     private modalCtrl: ModalController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private deepLinker: DeepLinker
   ){
 
    }
@@ -66,10 +68,13 @@ export class TaskDetail{
     this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.taskDetails = this.score.getTaskStateForTask(this.taskId);
 
+    console.log(this.route.attr);
+
     //Temporary attribution of the scores, later they should come from the server, associated with each task
     this.maxScore = 100;
     this.penalty = 10;
     this.minScore = 10;
+
 
     if(this.score.score == null) this.score.score = 0;
     console.log(this.taskDetails);
@@ -238,6 +243,34 @@ export class TaskDetail{
     }
   }
 
+  showSolutionSample(){
+      let modal = this.modalCtrl.create(MCMIconModal,  {title: 't_samplesolution', message: this.task.getSolutionSample(), modalType: MCMModalType.success,
+          buttons: [
+              {
+                  title: 'a_alert_close',
+                  callback: function(){
+                      modal.dismiss();
+                  }
+              }
+          ]}, {showBackdrop: true, enableBackdropDismiss: true});
+      modal.onDidDismiss((data) =>{
+          console.log(data);
+      });
+      modal.present();
+  }
+
+
+  closeDetails(skip?: boolean){
+      this.navCtrl.pop({}, () => {
+          if(this.navParams.get('goToNextTaskById')){
+              let goToNextTaskById = this.navParams.get('goToNextTaskById');
+              goToNextTaskById(this.task.id, skip);
+          }
+          // necessary because of bug which does not update URL
+          this.deepLinker.navChange('back');
+      });
+  }
+
   taskSolved (solved: string, solution: string, scoreVal: number){
       if(solved == 'solved' || solved == 'solved_low'){
           let message = "";
@@ -354,25 +387,37 @@ export class TaskDetail{
     if(solutionType == "value"){
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-        this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
+        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+        this.score.score += this.taskDetails.score;
       } 
-      else this.score.score += this.maxScore;
+      else {
+          this.taskDetails.score = this.maxScore;
+          this.score.score += this.taskDetails.score;
+      }
     }
 
     if(solutionType == "multiple_choice"){
       if(this.taskDetails.tries > 0){
          let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
+          this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+          this.score.score += this.taskDetails.score;
        }
-      else this.score.score += this.maxScore;
+      else {
+          this.taskDetails.score = this.maxScore;
+          this.score.score += this.taskDetails.score;
+      }
     }
      if(solutionType == "range"){
        if(solved == "solved"){
           if(this.taskDetails.tries > 0){
             let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-           this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
-           }
-          else this.score.score += this.maxScore;
+            this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+            this.score.score += this.taskDetails.score;
+          }
+          else {
+              this.taskDetails.score = this.maxScore;
+              this.score.score += this.taskDetails.score;
+          }
        }
        else if(solved == "solved_low"){
            let solutionList = this.task.getSolutionList();
@@ -381,16 +426,24 @@ export class TaskDetail{
            if(+this.taskDetails.answer < solutionList[0]){
               if(this.taskDetails.tries > 0) {
                 let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
               }
-              else this.score.score += this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer);
+              else {
+                  this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer);
+                  this.score.score += this.taskDetails.score;
+              }
           }
            else {
              if (this.taskDetails.tries > 0) {
                let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
-               this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+               this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+               this.score.score += this.taskDetails.score;
              }
-             else this.score.score += this.CalculateOrangeScore(solutionList[3], solutionList[1], + this.taskDetails.answer);
+             else {
+               this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], +this.taskDetails.answer);
+               this.score.score += this.taskDetails.score;
+             }
            }
        }
      }

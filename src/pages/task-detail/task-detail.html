@@ -18,8 +18,7 @@
     <div class="card task has-button-on-the-edge">
         <div class="head">
             <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-            <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
-            <!--<span class="tag points">100 MP</span>-->
+            <span class="tag points">{{maxScore}} MP</span>
         </div>
         <p *ngIf="task">{{task.description}}</p>
         <div class="answer">
@@ -35,6 +34,9 @@
                </ion-item>
             </ion-list>
         </div>
+        <button ion-button small round icon-only class="dot" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" (click)="showSolutionSample()">
+            <ion-icon name="ios-checkmark" class="danger round"></ion-icon>
+        </button>
         <div class="on-the-edge-container" *ngIf="taskDetails">
             <button *ngIf="task && task.hasHintMessage(1)" class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
                 <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
@@ -52,13 +54,16 @@
                 <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
             </button>
             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow)" [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer" (click)="checkResult()">{{ "a_btn_check_answer" | translate }}</button>
+            <button ion-button small icon-only clear class="dot" (click)="closeDetails(true)">
+                <img class="danger round" src="./assets/icons/icon_skip.svg"/>
+            </button>
+
         </div>
     </div>
     <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
         <div class="head">
-            <ion-label>{{ "solution_good" | translate }}</ion-label>
-            <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
-            <!--<span class="tag points">+ 100 MP</span>-->
+            <ion-label>{{ "a_alert_congrats" | translate }}</ion-label>
+            <span class="tag points" *ngIf="taskDetails && taskDetails.score && taskDetails.score > 0">+ {{taskDetails.score}} MP</span>
         </div>
     </div>
 
