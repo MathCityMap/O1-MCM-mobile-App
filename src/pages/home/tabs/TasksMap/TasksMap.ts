@@ -22,6 +22,7 @@ import 'conic-gradient';
 
 import { ImagesService } from '../../../../services/images-service';
 import { Storage } from '@ionic/storage';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 declare var ConicGradient: any;
 
@@ -73,7 +74,8 @@ export class TasksMap {
     private modalService: ModalsService,
     private geolocation: Geolocation,
     private imagesService: ImagesService,
-    private storage: Storage
+    private storage: Storage,
+    private spinner: SpinnerDialog
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker'});
@@ -89,7 +91,6 @@ export class TasksMap {
   }
 
   async ionViewWillEnter() {
-
     console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
@@ -136,7 +137,8 @@ export class TasksMap {
     await this.loadMap();
     setTimeout(async () => {
         // adding markers immediately after map initialization caused marker cluster problems -> use timeout
-        this.initializeMap();
+        await this.initializeMap();
+        this.spinner.hide();
     }, 100);
   }
 
@@ -209,24 +211,31 @@ export class TasksMap {
                     }
                 }
             });
-            let stops = '';
-            let alreadyFilledPercentage = 0;
-            Object.keys(colorOccurrences).map(color => {
-               let n = colorOccurrences[color];
-               let percentage = Math.round(n / numberOfColoredMarkers * 100);
-               if (alreadyFilledPercentage > 0) {
-                   stops += ', ';
-               }
-               alreadyFilledPercentage += percentage;
-               stops += `${color} 0 ${alreadyFilledPercentage}%`
-            });
+            let style;
+            let colors = Object.keys(colorOccurrences);
+            if (colors.length == 1) {
+                style=`background-color: ${colors[0]}`;
+            } else {
+                let stops = '';
+                let alreadyFilledPercentage = 0;
+                colors.map(color => {
+                    let n = colorOccurrences[color];
+                    let percentage = Math.round(n / numberOfColoredMarkers * 100);
+                    if (alreadyFilledPercentage > 0) {
+                        stops += ', ';
+                    }
+                    alreadyFilledPercentage += percentage;
+                    stops += `${color} 0 ${alreadyFilledPercentage}%`
+                });
 
-            let gradient = new ConicGradient({
-                stops: stops,
-                size: 24
-            });
+                let gradient = new ConicGradient({
+                    stops: stops,
+                    size: 24
+                });
+                style=`background-image: url(${gradient.png})`;
+            }
             return new L.DivIcon({
-                html: `<div style="background-image: url(${gradient.png})"><span>${childCount}</span></div>`,
+                html: `<div style="${style}"><span>${childCount}</span></div>`,
                 className: className,
                 iconSize: new L.Point(40, 40)
             });

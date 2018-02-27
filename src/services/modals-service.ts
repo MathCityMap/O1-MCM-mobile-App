@@ -13,6 +13,7 @@ import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 
 @Injectable()
@@ -22,7 +23,8 @@ export class ModalsService {
                 public ormService: OrmService,
                 public alertCtrl: AlertController,
                 public deepLinker: DeepLinker,
-                public translateService: TranslateService) {
+                public translateService: TranslateService,
+                private spinner: SpinnerDialog) {
     }
 
     async doDownload(route: Route): Promise<boolean> {
@@ -91,14 +93,17 @@ export class ModalsService {
     }
 
     private navigateToRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
-        navCtrl.parent.parent.push('TasksMap', {
-            routeId: route.id,
-            headerTitle: route.title,
-            selectedTask: selectedTask
-        }, {}, () => {
-            // necessary because of bug which does not update URL
-            this.deepLinker.navChange('forward');
-        });
+        this.spinner.show(null, null, false);
+        setTimeout(() => {
+            navCtrl.parent.parent.push('TasksMap', {
+                routeId: route.id,
+                headerTitle: route.title,
+                selectedTask: selectedTask
+            }, {}, () => {
+                // necessary because of bug which does not update URL
+                this.deepLinker.navChange('forward');
+            });
+        }, 100);
     }
 
     presentRouteInfoModal(route: Route, navCtrl: NavController): Promise<Route> {
