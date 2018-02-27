@@ -38,9 +38,6 @@
                     </ion-item>
                 </ion-list>
             </div>
-            <button ion-button small round icon-only class="dot" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" (click)="showSolutionSample()">
-                <ion-icon name="ios-checkmark" class="danger round"></ion-icon>
-            </button>
 
             <div class="on-the-edge-container" *ngIf="taskDetails">
                 <ion-grid no-padding>
@@ -67,7 +64,7 @@
                             </button>
                         </ion-col>
                         <ion-col>
-                            <button class="hint" ion-button (click)="showSampleSolution()" icon-only clear>
+                            <button class="hint" ion-button icon-only clear *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" (click)="showSolutionSample()">
                                 <img class="danger round" src="./assets/icons/icon_show_sample_salution.svg"/>
                             </button>
                             <button class="hint" ion-button (click)="closeDetails(true)" icon-only clear>
