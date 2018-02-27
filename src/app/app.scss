@@ -799,3 +799,8 @@ $progress-height: 6px;
         @include border-radius($progress-height/2);
     }
 }
+
+//overwrite implicit ionic styling for tabs on ios devices
+.ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child .scroll-content{
+    padding-top: 0!important;
+}
