@@ -4274,6 +4274,10 @@ postcss@^6.0.1:
     source-map "^0.6.1"
     supports-color "^4.4.0"
 
+prefixfree@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/prefixfree/-/prefixfree-1.0.0.tgz#82b0edbbac107f2a3e2dc569d6c3df4035cd7910"
+
 prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
