@@ -162,11 +162,21 @@ export class TaskDetail{
         break;
     }
     this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+
     let hintModal = this.modalCtrl.create(MCMIconModal,  {
       title: title,
       type: type,
       message: message,
-      modalType: MCMModalType.hint
+      modalType: MCMModalType.hint,
+      buttons: [
+          {
+              title: 'a_alert_close',
+              callback: function(){
+                  hintModal.dismiss();
+              }
+          }
+      ]
+
     }, {showBackdrop: true, enableBackdropDismiss: true});
     hintModal.present();
   }
@@ -271,7 +281,24 @@ export class TaskDetail{
                 break;
             }
           }
-          let modal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, solution: solution, modalType: MCMModalType.success}, {showBackdrop: true, enableBackdropDismiss: true});
+          let that = this;
+          let modal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, solution: solution, modalType: MCMModalType.success, buttons: [
+                  {
+                      title: 't_samplesolution',
+                      callback: function(){
+                          modal.dismiss().then(() =>{
+                              that.showSolutionSample();
+                          });
+                      }
+                  }, {
+                      title: 'pdf_next_task',
+                      callback: function(){
+                          modal.dismiss().then(() =>{
+                              that.closeDetails(false);
+                          });
+                      }
+                  }
+              ]}, {showBackdrop: true, enableBackdropDismiss: true});
           modal.onDidDismiss((data) =>{
             console.log(data);
               if(data && data.showMap){
@@ -300,7 +327,24 @@ export class TaskDetail{
             break;
         }
         this.taskDetails.tries++;
-        let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error}, {showBackdrop: true, enableBackdropDismiss: true});
+        let that = this;
+        let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error, buttons: [
+                {
+                    title: 't_samplesolution',
+                    callback: function(){
+                        modal.dismiss().then(() =>{
+                            that.showSolutionSample();
+                        });
+                    }
+                }, {
+                    title: 'pdf_next_task',
+                    callback: function(){
+                        modal.dismiss().then(() =>{
+                            that.closeDetails(false);
+                        });
+                    }
+                }
+            ]}, {showBackdrop: true, enableBackdropDismiss: true});
         modal.present();
       }
       this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
