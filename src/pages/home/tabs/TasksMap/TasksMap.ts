@@ -252,6 +252,8 @@ export class TasksMap {
             icon = this.taskDonePerfectIcon;
         }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
             icon = this.taskDoneIcon;
+        }else  if(this.score.getTasksFailed().indexOf(task.id) > -1){
+            icon = this.taskFailedIcon;
         }else if(this.state.skippedTaskIds.indexOf(task.id) > -1){
           icon = this.taskSkippedIcon;
       }
