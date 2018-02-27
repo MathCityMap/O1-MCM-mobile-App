@@ -713,7 +713,7 @@ ion-modal {
             padding-bottom: $global-large-padding;
             text-align: center;
             img{
-                width: 130px;
+                width: 100px;
                 margin: $global-base-padding 0;
                 &.full-width{
                     width:100%;
@@ -763,6 +763,11 @@ ion-modal {
             .dotted-border-bottom{
                 padding-bottom: 10px;
                 margin-bottom: 10px;
+            }
+        }
+        .on-the-edge-container{
+            button{
+                margin-left: $global-base-padding;
             }
         }
     }

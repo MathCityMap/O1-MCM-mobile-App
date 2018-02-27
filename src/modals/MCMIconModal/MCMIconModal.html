@@ -30,8 +30,8 @@
     </div>
 
     <div class="on-the-edge-container">
-        <div *ngFor="let button of buttons">
-            <button ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
+        <div>
+            <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
         </div>
     </div>
 </div>
