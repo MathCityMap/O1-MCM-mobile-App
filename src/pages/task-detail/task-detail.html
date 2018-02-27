@@ -10,7 +10,9 @@
         </div>
         <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
             <ion-fab right>
-                <button *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab color="primary" (click)="taskDetailMap.setMarker(i)"><ion-icon name="{{item}}">{{item}}</ion-icon></button>
+                <button *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab color="primary" (click)="taskDetailMap.setMarker(i)">
+                    <ion-icon name="{{item}}">{{item}}</ion-icon>
+                </button>
             </ion-fab>
         </div>
         <div class="transition"></div>
@@ -36,8 +38,8 @@
                 </ion-list>
             </div>
             <button ion-button small round icon-only class="dot" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" (click)="showSolutionSample()">
-            <ion-icon name="ios-checkmark" class="danger round"></ion-icon>
-        </button>
+                <ion-icon name="ios-checkmark" class="danger round"></ion-icon>
+            </button>
             <div class="on-the-edge-container" *ngIf="taskDetails">
                 <ion-grid no-padding>
                     <ion-row>
@@ -75,12 +77,14 @@
                         </ion-col>
                     </ion-row>
                 </ion-grid>
-
-
             </div>
         </div>
-        <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
+
+        <!-- <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)"> -->
+        <div class="card evaluation" *ngIf="true"
+        [ngClass]="{'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }">
             <div class="head">
+                <pre>taskDetails {{ taskDetails | json }}</pre>
                 <ion-label>{{ "a_alert_congrats" | translate }}</ion-label>
                 <span class="tag points" *ngIf="taskDetails && taskDetails.score && taskDetails.score > 0">+ {{taskDetails.score}} MP</span>
             </div>
