@@ -2,7 +2,7 @@
 <ion-content class="has-header pattern-bg">
 
     <div class="card">
-      <ion-label>{{'a_settings_language' | translate}}</ion-label>
+      <ion-label>{{'a_settings_language' | translate}}{{language != 'en' ? ' / LANGUAGE' : ''}}</ion-label>
       <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">
         <ion-option *ngFor="let lang of availableLanguages" [value]="lang">{{'a_language_' + lang | translate}}</ion-option>
       </ion-select>
