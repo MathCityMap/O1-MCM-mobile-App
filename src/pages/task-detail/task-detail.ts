@@ -474,7 +474,7 @@ export class TaskDetail{
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
         this.score.score += this.taskDetails.score;
-      } 
+      }
       else {
           this.taskDetails.score = this.maxScore;
           this.score.score += this.taskDetails.score;
@@ -545,4 +545,7 @@ export class TaskDetail{
     else return score;
   }
 
+  setFabColor(index){
+   return 'fab-color-'+(index+1);
+  }
 }

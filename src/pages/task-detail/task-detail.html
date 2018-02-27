@@ -8,18 +8,18 @@
         </div>
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap" style="width:100%; height: 60vh;">
         </div>
-        <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
-            <ion-fab right>
-                <button *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab color="primary" (click)="taskDetailMap.setMarker(i)">
-                    <ion-icon name="{{item}}">{{item}}</ion-icon>
-                </button>
-            </ion-fab>
-        </div>
         <div class="transition"></div>
     </div>
     <div class="task-content">
 
         <div class="card task has-button-on-the-edge">
+            <!-- fab buttons for task map -->
+            <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
+                    <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">
+                        <ion-icon name="{{item}}">{{item}}</ion-icon>
+                    </button>
+            </div>
+            <!-- // fab buttons for task map -->
             <div class="head">
                 <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
                 <span class="tag points">{{maxScore}} MP</span>
