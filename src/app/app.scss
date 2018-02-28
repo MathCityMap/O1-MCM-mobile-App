@@ -781,7 +781,9 @@ ion-modal {
         .on-the-edge-container{
             white-space: nowrap;
             button{
-                margin-left: $global-base-padding;
+                &:not(:first-of-type){
+                    margin-left: $global-small-padding;
+                }
             }
         }
     }
