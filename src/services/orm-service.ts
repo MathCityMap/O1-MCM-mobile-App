@@ -347,8 +347,7 @@ export class OrmService {
         this.updateRouteInCache(route);
     }
 
-    async markRouteAsCompleted(route: Route) {
-        route.completed = true;
+    async saveAndFireChangedEvent(route: Route) {
         (await this.getRouteRepository()).save(route);
         this.updateRouteInCache(route);
         this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);

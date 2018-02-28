@@ -110,9 +110,9 @@ export class TasksMap {
               {
                   title: 'a_alert_close',
                   callback: function(){
-                      modal.dismiss().then(() =>{
-                          that.ormService.markRouteAsCompleted(that.route);
-
+                      modal.dismiss().then(() => {
+                          that.route.completed = true;
+                          that.ormService.saveAndFireChangedEvent(that.route);
                       });
                   }
               }
@@ -484,9 +484,11 @@ export class TasksMap {
       this.modalService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
           'no', () => {},
           'yes', () => {
-              this.ormService.deleteUserScore(this.score).then( ()=> {
+              this.ormService.deleteUserScore(this.score).then( async ()=> {
                   this.score = new Score();
                   this.state.skippedTaskIds = [];
+                  this.route.completed = false;
+                  await this.ormService.saveAndFireChangedEvent(this.route);
                   this.redrawMarker();
               });
           });
