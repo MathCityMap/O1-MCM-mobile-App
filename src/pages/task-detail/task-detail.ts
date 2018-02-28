@@ -369,13 +369,16 @@ export class TaskDetail{
           this.taskDetails.skipped = false;
           let message = "";
           let title = "";
+          let solutions = null;
+          if (this.task.solutionType == "gps") solutions = solution.split("#");
           if(solved == 'solved'){
             title = 'a_alert_right_answer_title';
             this.taskDetails.solved = true;
             this.score.addSolvedTask(this.task.id);
             switch (this.taskDetails.tries){
               case 0:
-                message = 'a_alert_right_answer_1';
+              if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                else message = 'a_alert_right_answer_1';
                 break;
               case 1:
               case 2:
@@ -413,6 +416,7 @@ export class TaskDetail{
               title: title,
               message: message,
               solution: solution,
+              solutions: solutions,
               modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
               buttons: [
                   {
@@ -520,8 +524,11 @@ export class TaskDetail{
       if(this.taskDetails.skipped){
           this.taskDetails.newTries++;
       }
+      	let solutions = null;
+      	if (this.task.solutionType == "gps") solutions = solution.split("#");
         let modal = this.modalCtrl.create(MCMIconModal,  {
             message: message,
+            solutions: solutions,
             modalType: MCMModalType.error,
             buttons: buttons
         }, {
@@ -634,7 +641,7 @@ export class TaskDetail{
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
         }
     } else {
-      this.taskSolved('', '', 0);
+      this.taskSolved('', Math.round(currDistance).toString(), 0);
     }
   }
 
@@ -680,7 +687,7 @@ export class TaskDetail{
      }
 
      if(bearingSolution == 2 && lenghtSolution == 2){
-      this.taskSolved("solved", Math.round(currDistance).toString(), 0);
+      this.taskSolved("solved", Math.round(currDistance).toString()+"#"+Math.round(currBearing-angle).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -688,14 +695,14 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
      }
      else if (bearingSolution > 0 && lenghtSolution > 0){
-      this.taskSolved("solved_low", Math.round(currDistance).toString(), 0);
+      this.taskSolved("solved_low", Math.round(currDistance).toString()+"#"+Math.round(currBearing-angle).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
 
      } else {
-        this.taskSolved('', '', 0);
+        this.taskSolved('', Math.round(currDistance).toString()+"#"+Math.round(currBearing-angle).toString(), 0);
       }
   }
 
@@ -721,7 +728,7 @@ export class TaskDetail{
 
     //check conditions
     if(allGreen){
-      this.taskSolved("solved", " ", 0);
+      this.taskSolved("solved", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -729,13 +736,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (allOrange){
-      this.taskSolved("solved_low", " ", 0);
+      this.taskSolved("solved_low", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', '', 0);
+    else this.taskSolved('', edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString(), 0);
   }
 
   CalculateSquare (pointA: L.Marker, pointB: L.Marker, pointC: L.Marker, pointD: L.Marker, distance: number){
@@ -772,7 +779,8 @@ export class TaskDetail{
 
     //check conditions
     if(allGreen && diagonalSolution == 2){
-      this.taskSolved("solved", " ", 0);
+      this.taskSolved("solved", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString()+"#"
+      							+edgesLength[3].toString()+"#"+diag1+"#"+diag2, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -780,13 +788,15 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (allOrange && diagonalSolution > 0){
-      this.taskSolved("solved_low", " ", 0);
+      this.taskSolved("solved_low", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString()+"#"
+      							   +edgesLength[3].toString()+"#"+diag1+"#"+diag2, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', '', 0);
+    else this.taskSolved('', edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString()+"#"
+    						+edgesLength[3].toString()+"#"+diag1+"#"+diag2, 0);
   }
 
   CalculateCenterTwoP(pointA: L.LatLng, pointB: L.LatLng, currPosition: L.Marker){
@@ -801,7 +811,7 @@ export class TaskDetail{
     let tempOrange = 10;
 
     if(delta < tempGreen){
-       this.taskSolved("solved", " ", 0);
+       this.taskSolved("solved", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -809,13 +819,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (delta < tempOrange){
-      this.taskSolved("solved_low", " ", 0);
+      this.taskSolved("solved_low", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', '', 0);
+    else this.taskSolved('', Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString(), 0);
   }
 
 
@@ -835,7 +845,7 @@ export class TaskDetail{
     let tempOrange = 10;
 
     if(deltaAB < tempGreen && deltaBC < tempGreen) {
-      this.taskSolved("solved", " ", 0);
+      this.taskSolved("solved", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString()+"#"+Math.round(distanceC).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -843,13 +853,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if(deltaAB < tempOrange && deltaBC < tempOrange) {
-      this.taskSolved("solved_low", " ", 0);
+      this.taskSolved("solved_low", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString()+"#"+Math.round(distanceC).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', '', 0);
+    else this.taskSolved('', Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString()+"#"+Math.round(distanceC).toString(), 0);
   }
 
   CalculateLinearFx(c0: L.LatLng, c1: L.LatLng, a: L.LatLng, b: L.LatLng, slope: number, yValue: number){
@@ -903,7 +913,7 @@ export class TaskDetail{
     else if(yInMeters > yValue - tempYOrange && yInMeters < yValue + tempYOrange) solutionY = 1;
 
     if (solutionSlope == 2 && solutionY == 2){
-      this.taskSolved("solved", " ", 0);
+      this.taskSolved("solved", Math.round(m).toString()+"#"+Math.round(yValue).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -911,13 +921,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (solutionSlope>0 && solutionY>0) {
-      this.taskSolved("solved_low", " ", 0);
+      this.taskSolved("solved_low", Math.round(m).toString()+"#"+Math.round(yValue).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', '', 0);
+    else this.taskSolved('', Math.round(m).toString()+"#"+Math.round(yValue).toString(), 0);
   }
 
   //Possibly add this to the MyMath class
@@ -943,4 +953,38 @@ export class TaskDetail{
         return conditionalBackgroundImageStyles;
       }else return;
    }
+
+  SetMessage(type: string){
+  	let result = "";
+  	switch (type) {
+  		case "lineNoDirection":
+  			result = "a_line_no_direction_distance";
+  			break;
+
+  		case "line":
+  			result = "a_line_direction_distance";
+  			break;
+
+  		case "triangle":
+  			result = "a_triangle_distances";
+  			break;
+
+  		case "square":
+  			result = "a_square_distances";
+  			break;
+
+  		case "centerTwo":
+  			result = "a_center_two_distances";
+  			break;
+
+  		case "centerThree":
+  			result = "a_center_three_distances";
+  			break;
+
+  		case "linearFx":
+  			result = "a_linearFx_info";
+  			break;
+  	}
+  	return result;
+  }
 }

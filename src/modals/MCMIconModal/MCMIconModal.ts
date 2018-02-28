@@ -67,7 +67,11 @@ export class MCMIconModal{
                 }
             }
         }
-        if(params.data.solution){
+
+        if(params.data.solutions){
+            this.param = {L: params.data.solutions[0], K: params.data.solutions[1]};
+        }
+        else if(params.data.solution){
             this.param = {L: params.data.solution};
         }
         if(params.data.param){
