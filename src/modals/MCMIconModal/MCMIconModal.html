@@ -17,15 +17,13 @@
 
     </div>
     <div class="modal-content" *ngIf="modalType == 4">
-        <img *ngIf="!imageUrl" src="./assets/icons/icon_popup-right-answer.svg"/>
+        <img *ngIf="!imageUrl && modalType != 4" src="./assets/icons/icon_popup-right-answer.svg"/>
 
         <!-- image hint -->
         <img class="full-width" *ngIf="imageUrl" [src]="'https://mathcitymap.eu/'+imageUrl"/>
 
-        <div *ngFor="let message of messages">
-            <!-- text hint -->
-            <p [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
-        </div>
+        <!-- text hint -->
+        <p *ngFor="let message of messages" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>
 
