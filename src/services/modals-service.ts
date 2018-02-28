@@ -103,7 +103,7 @@ export class ModalsService {
                 // necessary because of bug which does not update URL
                 this.deepLinker.navChange('forward');
             });
-        }, 100);
+        }, 10);
     }
 
     presentRouteInfoModal(route: Route, navCtrl: NavController): Promise<Route> {
