@@ -1,80 +1,107 @@
 <mcm-header></mcm-header>
-<ion-content class="has-header pattern-bg">
+<ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" >
     <div class="task-header">
         <div *ngIf="task && task.solutionType!='gps'" class="image-container">
-            <img *ngIf="task" [src]="task.getImageURL()" />
-            <img *ngIf="task" [src]="task.getImageURL()" />
+            <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" />
+            <!-- image mirror is needed to give the following content a spacing according to the image dimension -->
         </div>
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap" style="width:100%; height: 60vh;">
         </div>
-	    <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
-		    <ion-fab right>
-			    <button *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab color="primary" (click)="taskDetailMap.setMarker(i)"><ion-icon name="{{item}}">{{item}}</ion-icon></button>
-		    </ion-fab>
-	    </div>
         <div class="transition"></div>
     </div>
+
     <div class="task-content">
-    <div class="card task has-button-on-the-edge">
-        <div class="head">
-            <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-            <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
-            <!--<span class="tag points">100 MP</span>-->
-        </div>
-        <p *ngIf="task">{{task.description}}</p>
-        <div class="answer">
-            <ion-label>{{ "a_task_answer" | translate }}</ion-label>
-            <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
-                <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
-                <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
-            </ion-item>
-            <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList">
-                 <ion-item *ngFor="let item of multipleChoiceList; let i = index" >
-                    <ion-checkbox [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow)"  [(ngModel)]="item.userChecked"></ion-checkbox>
-                    <ion-label tappable>{{item.value}}</ion-label>
-               </ion-item>
-            </ion-list>
-        </div>
-        <div class="on-the-edge-container" *ngIf="taskDetails">
-            <button *ngIf="task && task.hasHintMessage(1)" class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
-                <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
-                <img *ngIf="taskDetails.hint1" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
-            </button>
-            <button *ngIf="task && task.hasHintMessage(2)" class="hint" ion-button (click)="showHint(2)" icon-only clear [disabled]="!taskDetails.hint1">
-                <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
-                <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
-                <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
-            </button>
+        <div class="card task has-button-on-the-edge">
+            <!-- fab buttons for task map -->
+            <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
+                    <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">
+                        <ion-icon name="{{item}}">{{item}}</ion-icon>
+                    </button>
+            </div>
+            <!-- // fab buttons for task map -->
+            <div class="head">
+                <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
+                <span class="tag points">{{maxScore}} MP</span>
+            </div>
+            <p *ngIf="task">{{task.description}}</p>
+            <div class="answer">
+                <ion-label>{{ "a_task_answer" | translate }}</ion-label>
+                <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
+                    <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
+                </ion-item>
+                <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList">
+                    <ion-item *ngFor="let item of multipleChoiceList; let i = index">
+                        <ion-checkbox [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
+                        <ion-label tappable>{{item.value}}</ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
 
-            <button *ngIf="task && task.hasHintMessage(3)" class="hint" ion-button (click)="showHint(3)" icon-only clear [disabled]="!taskDetails.hint2">
-                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
-                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
-                <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
-            </button>
-            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow)" [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">{{ "a_btn_check_answer" | translate }}</button>
+            <div class="on-the-edge-container" *ngIf="taskDetails">
+                <ion-grid no-padding>
+                    <ion-row>
+                        <ion-col>
+                            <button *ngIf="task && task.hasHintMessage(1)" class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
+                                <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+                                <img *ngIf="taskDetails.hint1" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
+                            </button>
+                            <button *ngIf="task && task.hasHintMessage(2)" class="hint" ion-button (click)="showHint(2)" icon-only clear [disabled]="!taskDetails.hint1">
+                                <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
+                                <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
+                            </button>
+                            <button *ngIf="task && task.hasHintMessage(3)" class="hint" ion-button (click)="showHint(3)" icon-only clear [disabled]="!taskDetails.hint2">
+                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
+                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
+                                <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
+                            </button>
+                        </ion-col>
+                        <ion-col>
+                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
+                            [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">
+                                {{ "a_btn_check_answer" | translate }}
+                            </button>
+                        </ion-col>
+                        <ion-col>
+                            <button class="hint" ion-button icon-only clear (click)="showSolutionSample()"
+                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+                                <img class="primary round" src="./assets/icons/icon_show_sample_salution.svg"/>
+                            </button>
+                            <!-- skip task -->
+                            <button class="hint" ion-button icon-only clear (click)="closeDetails(true)"
+                            *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                                <img class="danger round" src="./assets/icons/icon_skip.svg"/>
+                            </button>
+                            <!-- show next task -->
+                            <button class="hint" ion-button icon-only clear (click)="closeDetails(false)"
+                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+                                <img class="primary round" src="./assets/icons/icon_skip.svg"/>
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+            </div>
+        </div>
+
+       <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->
+        <div class="card evaluation" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed)"
+        [ngClass]="{'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }">
+            <div class="head">
+                <ion-label *ngIf="taskDetails?.solved || taskDetails?.solvedLow">{{ "a_alert_congrats" | translate }}</ion-label>
+                <ion-label *ngIf="taskDetails?.failed">{{ "good_luck_next_time" | translate }}</ion-label>
+                <span class="tag points" *ngIf="taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}} MP</span>
+            </div>
+        </div>
+
+        <div class="card secondary">
+            <ion-label>{{ "author" | translate }}</ion-label>
+            <p *ngIf="task">
+                {{task.author}}<br> {{task.mail}}
+            </p>
         </div>
     </div>
-    <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
-        <div class="head">
-            <ion-label>{{ "solution_good" | translate }}</ion-label>
-            <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
-            <!--<span class="tag points">+ 100 MP</span>-->
-        </div>
-    </div>
 
-
-    <div class="card" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
-        <ion-label>{{ "solution_sample" | translate }}</ion-label>
-        <p *ngIf="task">{{ task.getSolutionSample() }}</p>
-    </div>
-
-    <div class="card secondary">
-        <ion-label>{{ "author" | translate }}</ion-label>
-        <p *ngIf="task">
-            {{task.author}}<br>
-            {{task.mail}}
-        </p>
-    </div>
-    </div>
 
 </ion-content>

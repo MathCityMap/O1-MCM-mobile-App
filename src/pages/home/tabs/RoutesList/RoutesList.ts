@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { Content, IonicPage, ModalController, NavController } from 'ionic-angular';
 import { Helper } from '../../../../classes/Helper';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -9,29 +9,36 @@ import { ModalsService } from '../../../../services/modals-service';
 import { DB_Updater } from '../../../../classes/DB_Updater';
 import { DBC } from '../../../../classes/DBC';
 import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
     selector: 'page-routes-list',
     templateUrl: 'RoutesList.html'
 })
-export class RoutesListPage {
+export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
     public items: Route[] = [];
 
     modal: any;
+    private eventSubscription: Subscription;
 
     constructor(private ormService: OrmService, 
                 private geolocation: Geolocation,
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
                 private dbUpdater: DB_Updater) {
+        this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
+            this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
+        });
+    }
+
+    ngOnDestroy() {
+        this.eventSubscription.unsubscribe();
     }
 
     async ionViewWillEnter() {
-        if (this.items.length === 0) {
-            this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
-        }
+        this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
         if (!Helper.myLocation) {
             try {
                 const position = await this.geolocation.getCurrentPosition();
@@ -69,8 +76,7 @@ export class RoutesListPage {
 
     async doRefresh(refresher) {
         await this.dbUpdater.checkForUpdates();
-        this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
-        await this.ionViewWillEnter();
+        this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
         refresher.complete();
     }
 

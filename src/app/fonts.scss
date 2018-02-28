@@ -37,6 +37,17 @@ p{
     font-weight: 500;
     color: color($colors, dark-grey);
 }
+.alert-md,
+.alert-ios {
+    .alert-message,
+    .alert-input-group{
+        font-size: 16px;
+    }
+    .alert-button .button-inner,
+    button span{
+        font-size: 18px;
+    }
+}
 ion-label,
 ion-label.label-ios,
 ion-label.label-md{

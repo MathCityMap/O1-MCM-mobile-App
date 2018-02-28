@@ -19,13 +19,13 @@
                     </div>
                 </div>
                 <div class="segement buttons info">
-                    <button class="dot" *ngIf="routeDetails" ion-button icon-only clear (click)="modalsService.presentRouteInfoModal(routeDetails, navCtrl)">
+                    <button class="dot" *ngIf="routeDetails" ion-button icon-only clear (click)="presentRouteInfoModal()">
                     <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
                     </button>
-                    <button class="dot" *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="modalsService.doDownload(routeDetails)">
+                    <button class="dot" *ngIf="routeDetails && !routeDetails.downloaded"  ion-button icon-only clear (click)="doDownload()">
                     <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
                     </button>
-                    <button class="dot" *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="removeRoute(routeDetails)">
+                    <button class="dot" *ngIf="routeDetails && routeDetails.downloaded" ion-button icon-only clear (click)="removeRoute()">
                     <img class="danger round" src="./assets/icons/icon_delete.svg"/>
                     </button>
                 </div>

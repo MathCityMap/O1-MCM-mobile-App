@@ -13,17 +13,19 @@ export class MCMIconModal{
 
     title: string;
     type: string;
+    imageUrl: string;
     message: string;
+    messages: string[];
     param: any;
     modalType: MCMModalType;
     linkyOptions: any;
-
+    buttons: any[];
     constructor(params: NavParams, private viewCtrl: ViewController) {
         if(!params.data.modalType){
             console.warn("Please provide the modalType!");
         }else{
             this.modalType = params.data.modalType;
-
+            this.buttons = params.data.buttons;
             if(params.data.title){
                 this.title = params.data.title;
             }else{
@@ -42,6 +44,8 @@ export class MCMIconModal{
             }
 
             this.message = params.data.message;
+            this.messages = params.data.messages;
+            this.imageUrl = params.data.imageUrl;
             this.type = params.data.type;
         }
         this.param = {L: params.data.solution};

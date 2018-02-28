@@ -3,42 +3,45 @@
     <div id="tasks-map" class="map-view"></div>
 
     <!--TODO RANKING TABLE FOR FUTUTRE GAMIFICATION INTEGRATION-->
-    <!--<div id="ranking" class="detail-box top">-->
-        <!--<div class="text-container">-->
-            <!--<div class="ranking-row above">-->
-                <!--<ion-row class="ranking dotted-border-bottom">-->
-                    <!--<ion-col><p>Teamname</p></ion-col>-->
-                    <!--<ion-col col-auto><p text-right>150 MP</p></ion-col>-->
-                <!--</ion-row>-->
-            <!--</div>-->
-            <!--<div class="ranking-row">-->
-                <!--<ion-row class="ranking current dotted-border-bottom">-->
-                    <!--<ion-col><p>Teamname</p></ion-col>-->
-                    <!--<ion-col><p text-right>100 MP</p></ion-col>-->
-                <!--</ion-row>-->
-            <!--</div>-->
-            <!--<div class="ranking-row below">-->
-                <!--<ion-row class="ranking">-->
-                    <!--<ion-col><p>Teamname</p></ion-col>-->
-                    <!--<ion-col><p text-right>70 MP</p></ion-col>-->
-                <!--</ion-row>-->
-            <!--</div>-->
-        <!--</div>-->
+    <!--<div *ngIf="currentScore && currentScore > 0" id="ranking" class="detail-box top">-->
+    <!--<div class="text-container">-->
+    <!--<div class="ranking-row above">-->
+    <!--<ion-row class="ranking dotted-border-bottom">-->
+    <!--<ion-col><p>Teamname</p></ion-col>-->
+    <!--<ion-col col-auto><p text-right>150 MP</p></ion-col>-->
+    <!--</ion-row>-->
     <!--</div>-->
-<ion-fab right top>
-                <button ion-fab >{{currentScore}}</button>
-            </ion-fab>
-    <ion-content> 
-</ion-content>
+    <!--<div class="ranking-row">-->
+    <!--<ion-row class="ranking current dotted-border-bottom">-->
+    <!--<ion-col><p>{{user.name}}</p></ion-col>-->
+    <!--<ion-col><p text-right>{{currentScore}} MP</p></ion-col>-->
+    <!--</ion-row>-->
+    <!--</div>-->
+    <!--<div class="ranking-row below">-->
+    <!--<ion-row class="ranking">-->
+    <!--<ion-col><p>Teamname</p></ion-col>-->
+    <!--<ion-col><p text-right>70 MP</p></ion-col>-->
+    <!--</ion-row>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
 
+
+    <div *ngIf="currentScore && currentScore > 0" id="ranking" class="detail-box ranking">
+        <ion-grid no-padding>
+            <ion-row class="ranking current dotted-border-bottom">
+                <ion-col>
+                    {{user.name}}
+                </ion-col>
+                <ion-col>
+                    {{currentScore}} MP
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
 
     <div id="details" class="detail-box" [ngClass]="{'open': state.selectedTask}">
         <div class="fab-container">
-
-
-            
-
-
             <ion-fab right bottom>
                 <button ion-fab color="primary"><ion-icon name="more"></ion-icon></button>
                 <ion-fab-list side="top">
@@ -54,17 +57,12 @@
                 </ion-fab-list>
             </ion-fab>
         </div>
-        <div class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ state.selectedTask.getImageURL()  +'\\')'}" ></div>
+        <div class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ state.selectedTask.getImageURL()  +'\\')'}"></div>
         <div class="text-container" *ngIf="state.selectedTask">
             <div class="segmented-box">
                 <div class="title segement">
                     <span (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</span>
                     <h2 (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>
-                </div>
-                <div class="segement buttons skip">
-                    <button ion-button icon-only clear class="dot" (click)="goToNextTask(state.selectedTask, true)">
-                        <img class="danger round" src="./assets/icons/icon_skip.svg"/>
-                    </button>
                 </div>
             </div>
             <div class="segmented-box bottom">

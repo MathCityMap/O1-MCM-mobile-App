@@ -459,17 +459,36 @@ input{
     .on-the-edge-container{
         position: absolute;
         right: $global-base-padding;
-        bottom: -$global-base-padding;
+        bottom: -14px;
+        width: calc( 100% - 40px);
 
         text-align: right;
 
         button{
+            margin: 0;
             .hint{
                 padding: $global-small-padding;
             }
             img{
                 min-width: 28px;
+                width: 28px;
             }
+        }
+        .grid {
+            .row{
+                text-align: center;
+                &>.col:first-of-type{
+                    text-align: left;
+                }
+                &>.col:last-of-type{
+                    text-align: right;
+                }
+                *>*{
+                    height: 28px;
+                }
+            }
+            white-space: nowrap;
+            width: 100%;
         }
     }
 
@@ -689,17 +708,19 @@ ion-modal {
             }
         }
 
+        img{
+            width: 100px;
+            display: block;
+            margin: $global-base-padding auto;
+            &.full-width{
+                width:100%;
+            }
+        }
+
         &.hint, &.positive, &.negative{
             padding-top: $global-large-padding;
             padding-bottom: $global-large-padding;
             text-align: center;
-            img{
-                width: 130px;
-                margin: $global-base-padding 0;
-                &.full-width{
-                    width:100%;
-                }
-            }
             p{
                 margin: $global-small-padding 0;
             }
@@ -746,6 +767,11 @@ ion-modal {
                 margin-bottom: 10px;
             }
         }
+        .on-the-edge-container{
+            button{
+                margin-left: $global-base-padding;
+            }
+        }
     }
 
 
@@ -774,4 +800,9 @@ $progress-height: 6px;
         height: $progress-height;
         @include border-radius($progress-height/2);
     }
+}
+
+//overwrite implicit ionic styling for tabs on ios devices
+.ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child .scroll-content{
+    padding-top: 0!important;
 }

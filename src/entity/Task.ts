@@ -176,7 +176,7 @@ export class Task {
                 return sample[0];
             }
         }
-        return this.getSolution();
+        return "";
     }
 
     /*

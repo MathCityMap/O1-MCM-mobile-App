@@ -37,11 +37,19 @@ $colors: (
   secondary:      #f3b100,
   secondary-dark: #D9A000,
   danger:         #f25801,
+  error:          #E62B25,
+  success:        #4CAF50,
   light:          #ffffff,
   dark:           #222222,
   dark-grey:      #3d3d3d,
-  grey:           #737373,
+  grey:         #737373,
+  mid-grey:       #b2b2b2,
   light-grey:     #e5e5e5,
+
+  fab-color-1:    #29B0E5,
+  fab-color-2:    #1595C1,
+  fab-color-3:    #036D99,
+  fab-color-4:    #034562,
 );
 
 
@@ -124,4 +132,11 @@ $fab-list-button-background-color: color($colors, primary-darker);
     -moz-border: $width $style $color;
     -ms-border: $width $style $color;
     border: $width $style $color;
+}
+
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -moz-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
 }

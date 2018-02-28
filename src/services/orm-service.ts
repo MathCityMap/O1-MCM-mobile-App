@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { SQLite } from '@ionic-native/sqlite';
 import { Connection, createConnection, Repository } from "typeorm";
@@ -20,6 +20,8 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
+import { Broadcaster } from 'typeorm/subscriber/Broadcaster';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class OrmService {
@@ -27,6 +29,9 @@ export class OrmService {
     private min_zoom: number = 16;
     private max_zoom: number = 19;
     public static INSTANCE: OrmService;
+    public static EVENT_ROUTES_CHANGED = 'EVENT_ROUTES_CHANGED';
+    private visibleRoutesCache : Route[];
+    public eventEmitter = new Subject<String>();
 
     constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
                 private translateService: TranslateService, private platform: Platform) {
@@ -208,15 +213,41 @@ export class OrmService {
         return await repo.findOne({where: {name: userName}});
     }
 
-    async getVisibleRoutes(showSpinner = true, compareFn = null): Promise<Route[]> {
+    async getVisibleRoutes(showSpinner = true, compareFn = null, forceUpdateFromDb = false): Promise<Route[]> {
         if (showSpinner) this.spinner.show(null, this.translateService.instant('a_toast_routes_loading'), true);
+        if (!forceUpdateFromDb && this.visibleRoutesCache) {
+            return new Promise<Route[]>(success => {
+                setTimeout(() => {
+                    if (compareFn) {
+                        this.visibleRoutesCache.sort(compareFn);
+                    }
+                    if (showSpinner) {
+                        setTimeout(() => {
+                            this.spinner.hide();
+                        }, 100);
+                    }
+                    success(this.visibleRoutesCache);
+                }, 100);
+            });
+        }
         let repo = await this.getRouteRepository();
         let result = await repo.createQueryBuilder('r').where('r.public = 1').orWhere('r.unlocked = 1').getMany();
         if (compareFn) {
             result.sort(compareFn);
         }
-        if (showSpinner) this.spinner.hide();
-        return result;
+        if (!this.visibleRoutesCache) {
+            this.visibleRoutesCache = result;
+        } else {
+            // add objects to existing array (because it is referenced by views)
+            this.visibleRoutesCache.splice(0, this.visibleRoutesCache.length);
+            result.map(route => this.visibleRoutesCache.push(route));
+        }
+        if (showSpinner) {
+            setTimeout(() => {
+                this.spinner.hide();
+            }, 100);
+        }
+        return this.visibleRoutesCache;
     }
 
     async getDownloadedRoutes(): Promise<Route[]> {
@@ -255,6 +286,7 @@ export class OrmService {
             route.downloaded = true;
             const repo = await this.getRouteRepository();
             await repo.save(route);
+            this.updateRouteInCache(route);
         } catch (e) {
             console.log("download failed or was aborted");
             if (e.message) {
@@ -286,11 +318,40 @@ export class OrmService {
         return result;
     }
 
-    async removeDownloadedRoute(route: Route) {
-        // this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
+    async removeDownloadedRoute(route: Route, removeTiles = false) {
+        if (removeTiles) {
+            await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
+        }
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         route.downloaded = false;
         const repo = await this.getRouteRepository();
         await repo.save(route);
+        this.updateRouteInCache(route);
+    }
+
+    async unlockRoute(route: Route) {
+        route.unlocked = true;
+        (await this.getRouteRepository()).save(route);
+        this.imagesService.downloadURLs([route.image], true);
+        this.updateRouteInCache(route);
+    }
+
+    async removeAllDownloadedData() {
+        let routes = await this.getDownloadedRoutes();
+        for (let route of routes) {
+            await this.removeDownloadedRoute(route, true);
+        }
+        this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
+    }
+
+    private updateRouteInCache(routeToUpdate: Route) {
+        if (this.visibleRoutesCache) {
+            for (let i = 0; i < this.visibleRoutesCache.length; i++) {
+                if (this.visibleRoutesCache[i].id == routeToUpdate.id) {
+                    this.visibleRoutesCache[i] = routeToUpdate;
+                    break;
+                }
+            }
+        }
     }
 }

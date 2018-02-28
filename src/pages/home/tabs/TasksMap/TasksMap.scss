@@ -1,51 +1,50 @@
 page-tasks-map {
     .map .detail-box {
         bottom: 0;
-        &.top{
-            padding: 14px 16px 3px;
-            top: 0;
+        &.ranking{
+            padding: 14px 16px 10px;
             bottom: auto;
-            position: absolute;
+            position: fixed;
+            left:60px;
+            right:60px;
+            width: calc( 100% - 120px) ;
             border-top-left-radius: 0px;
             border-top-right-radius: 0px;
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
             -webkit-transform: none;
             transform: none;
-            .text-container{
-                padding-left: 0;
-                .ranking-row{
-                    display: flex;
-                    align-items: baseline;
-                    &:before{
-                        background-repeat: no-repeat;
-                        background-size: 12px auto;
-                        width: 12px;
-                        height: 8px;
-                        content: "";
-                        margin-right: 30px;
-                    }
-                    &.above:before, &.below:before{
-                        background-image: url(../assets/icons/icon_up.svg);
-                    }
-                    &.below:before{
-                        -webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-ms-transform: rotate(180deg);-o-transform: rotate(180deg);transform: rotate(180deg);
-                    }
-                    .ranking{
-                        flex: 1;
-                        margin-bottom: 3px;
-                        padding-bottom: 3px;
+            .ranking{
+                flex: 1;
+                margin-bottom: 3px;
+                padding-bottom: 3px;
 
-                        &.current p{
-                            color: color($colors, primary);
+                &.current p{
+                    color: color($colors, primary);
 
-                        }
-                    }
-                }
-                .col{
-                    padding: 0;
                 }
             }
+            .col{
+                padding: 0;
+                color: color($colors, primary);
+                &:last-of-type{
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+.platform-ios{
+    .map .detail-box {
+        &.ranking{
+            top: 74px;
+        }
+    }
+}
+.platform-android{
+    .map .detail-box {
+        &.ranking{
+            top: 56px;
         }
     }
 }

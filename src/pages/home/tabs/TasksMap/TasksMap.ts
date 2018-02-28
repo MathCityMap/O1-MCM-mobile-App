@@ -18,9 +18,13 @@ import {gpsService} from  '../../../../services/gps-service';
 import { ModalsService } from '../../../../services/modals-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import 'leaflet-rotatedmarker';
+import 'conic-gradient';
+
 import { ImagesService } from '../../../../services/images-service';
 import { Storage } from '@ionic/storage';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
+declare var ConicGradient: any;
 
 @IonicPage({
   segment: 'TasksMap/:routeId'
@@ -45,6 +49,7 @@ export class TasksMap {
   };
   private score: Score;
   private stateKey: string = "savedMapStateByRoute";
+  private taskToSkip: Task= null;
 
     taskOpenIcon;
     taskSkippedIcon;
@@ -58,6 +63,8 @@ export class TasksMap {
 
     currentScore: any;
 
+    user = null;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -67,32 +74,41 @@ export class TasksMap {
     private modalService: ModalsService,
     private geolocation: Geolocation,
     private imagesService: ImagesService,
-    private storage: Storage
+    private storage: Storage,
+    private spinner: SpinnerDialog
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-      this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+      this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker'});
+      this.taskOpenIcon.clusterColor = '#036D99';
       this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], className:'marker'});
-      this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-      this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
-      this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], className:'marker', shadowUrl: 'assets/icons/icon_taskmarker-shadow.png', shadowSize: [35, 48]});
+      this.taskSkippedIcon.clusterColor = '#B2B2B2';
+      this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], className:'marker'});
+      this.taskDoneIcon.clusterColor = '#F3B100';
+      this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], className:'marker'});
+      this.taskDonePerfectIcon.clusterColor = '#4CAF50';
+      this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], className:'marker'});
+      this.taskFailedIcon.clusterColor = '#E62B25';
   }
 
   async ionViewWillEnter() {
-
     console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
-    let user = await this.ormService.getActiveUser();
-    this.score = this.route.getScoreForUser(user);
+    this.user = await this.ormService.getActiveUser();
+    this.score = this.route.getScoreForUser(this.user);
     console.log(this.score);
-    
+    console.log(this.taskToSkip);
     if (this.navParams.data.tasksMapState) {
         this.state = this.navParams.data.tasksMapState;
-        if(this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1)){
-            this.goToNextTask(this.state.selectedTask);
+        if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
+            this.goToNextTask(this.state.selectedTask, true);
         }
     } else {
         this.state = await this.getMapStateFromLocalStorage();
+        if(this.taskToSkip){
+            this.goToNextTask(this.taskToSkip, true);
+            this.taskToSkip = null;
+        }
         console.log('mapState ',this.state);
         if( !this.state){
             // attach state to navParams so that state is restored when moving back in history (from task detail view)
@@ -119,12 +135,16 @@ export class TasksMap {
         }
     }
     await this.loadMap();
-    this.initializeMap();
+    setTimeout(async () => {
+        // adding markers immediately after map initialization caused marker cluster problems -> use timeout
+        await this.initializeMap();
+        this.spinner.hide();
+    }, 100);
   }
 
   markerGroup: any = null;
 
-  async initializeMap() {
+   async initializeMap() {
       this.currentScore = this.score.score;
       this.redrawMarker();
       this.gpsService.isLocationOn();
@@ -134,7 +154,8 @@ export class TasksMap {
       }
   }
 
-  async getMapStateFromLocalStorage(){
+
+    async getMapStateFromLocalStorage(){
       let mapState = await this.storage.get(this.stateKey);
       if(mapState && mapState[this.routeId]){
           let state = mapState[this.routeId];
@@ -154,14 +175,71 @@ export class TasksMap {
   }
 
 
+
+
   async redrawMarker(){
+    if (!this.map) {
+      return;
+    }
     if (this.markerGroup != null) {
         console.warn('removing markerGroup');
         this.map.removeLayer(this.markerGroup);
         this.markerGroup = null;
     }
     let markerGroup = (L as any).markerClusterGroup({
-        maxClusterRadius: 30
+        maxClusterRadius: 30,
+        iconCreateFunction: function (cluster) {
+            let childCount = cluster.getChildCount();
+            let markers = cluster.getAllChildMarkers();
+            let className = 'marker-cluster marker-cluster-';
+            if (childCount < 10) {
+                className += 'small';
+            } else if (childCount < 100) {
+                className += 'medium';
+            } else {
+                className += 'large';
+            }
+            let colorOccurrences = {};
+            let numberOfColoredMarkers = 0;
+            markers.map(marker => {
+                if (marker.options.icon.clusterColor) {
+                    numberOfColoredMarkers++;
+                    if (colorOccurrences[marker.options.icon.clusterColor]) {
+                        colorOccurrences[marker.options.icon.clusterColor] += 1;
+                    } else {
+                        colorOccurrences[marker.options.icon.clusterColor] = 1;
+                    }
+                }
+            });
+            let style;
+            let colors = Object.keys(colorOccurrences);
+            if (colors.length == 1) {
+                style=`background-color: ${colors[0]}`;
+            } else {
+                let stops = '';
+                let alreadyFilledPercentage = 0;
+                colors.map(color => {
+                    let n = colorOccurrences[color];
+                    let percentage = Math.round(n / numberOfColoredMarkers * 100);
+                    if (alreadyFilledPercentage > 0) {
+                        stops += ', ';
+                    }
+                    alreadyFilledPercentage += percentage;
+                    stops += `${color} 0 ${alreadyFilledPercentage}%`
+                });
+
+                let gradient = new ConicGradient({
+                    stops: stops,
+                    size: 24
+                });
+                style=`background-image: url(${gradient.png})`;
+            }
+            return new L.DivIcon({
+                html: `<div style="${style}"><span>${childCount}</span></div>`,
+                className: className,
+                iconSize: new L.Point(40, 40)
+            });
+        },
     });
 
     this.taskList = await this.route.getTasks();
@@ -176,6 +254,8 @@ export class TasksMap {
             icon = this.taskDonePerfectIcon;
         }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
             icon = this.taskDoneIcon;
+        }else  if(this.score.getTasksFailed().indexOf(task.id) > -1){
+            icon = this.taskFailedIcon;
         }else if(this.state.skippedTaskIds.indexOf(task.id) > -1){
           icon = this.taskSkippedIcon;
       }
@@ -322,6 +402,15 @@ export class TasksMap {
     this.map.panTo( [this.state.selectedTask.lat, this.state.selectedTask.lon] );
   }
 
+  goToNextTaskById(taskId: number, skip?: boolean){
+      this.taskList.forEach(task => {
+            if(task.id == taskId){
+                this.goToNextTask(task, skip);
+                return;
+            }
+      });
+  }
+
   goToNextTask(task: Task, skip?: boolean){
     if(skip){
         this.state.skippedTaskIds.push(task.id);
@@ -336,15 +425,15 @@ export class TasksMap {
 
   selectStartPoint(){
     /* open the damn modal again */
-    let _this = this;
+    let that = this;
     this.modalService.presentTaskListModal(this.route, this.navCtrl, function(selectedTask: Task){
             console.log("back in tasksMap");
-            _this.state.selectedTask = selectedTask;
-            _this.state.visibleTasks = {};
-            _this.state.visibleTasks[selectedTask.position] = true;
-            _this.state.isShowingAllTasks = false;
-            _this.centerSelectedTask();
-            _this.redrawMarker();
+            that.state.selectedTask = selectedTask;
+            that.state.visibleTasks = {};
+            that.state.visibleTasks[selectedTask.position] = true;
+            that.state.isShowingAllTasks = false;
+            that.centerSelectedTask();
+            that.redrawMarker();
     });
     /* this.showOnlyCurrentlySelectedTadk(); */
     /*   */
@@ -368,7 +457,10 @@ export class TasksMap {
 
   async gototask(taskId: number, taskName: string) {
     console.log('taskId', taskId);
-    this.navCtrl.push('TaskDetail', {taskId: taskId, headerTitle: taskName, routeId: this.routeId}, {}, () => {
+    let that = this;
+    this.navCtrl.push('TaskDetail', {taskId: taskId, headerTitle: taskName, routeId: this.routeId, goToNextTaskById: function(taskIdToSkip: number, skip?: boolean){
+            that.goToNextTaskById(taskIdToSkip, skip);
+        }}, {}, () => {
       // necessary because of bug which does not update URL
       this.deepLinker.navChange('forward');
     });

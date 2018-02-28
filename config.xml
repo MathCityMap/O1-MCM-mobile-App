@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.autentek.mathcitymap" version="0.0.11" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.autentek.mathcitymap" version="0.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content original-src="index.html" src="http://194.210.223.59:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -111,4 +111,6 @@
     <engine name="ios" spec="~4.3.1" />
     <allow-navigation href="http://194.210.223.30:8100" />
     <allow-navigation href="http://194.210.223.59:8100" />
+    <allow-navigation href="http://192.168.12.29:8101" />
+    <allow-navigation href="http://192.168.12.29:8100" />
 </widget>

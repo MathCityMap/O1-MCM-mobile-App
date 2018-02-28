@@ -385,7 +385,7 @@
   "a_t_skip_msg": "Möchtest du mit der nächsten Aufgabe fortfahren?",
   "a_alert_congrats": "Herzlichen Glückwunsch!",
   "a_alert_congrats_msg": "Du hast alle Aufgaben des Trails '{{TITLE}}' erfolgreich gelöst!",
-  "a_g_max_points": "Punkte",
+  "a_g_max_points": "Max. Punkte",
   "a_g_name_error": "Der Name muss eine Länge zwischen 3 und 13 Zeichen besitzen.",
   "a_t_list": "Liste",
   "a_alert_bigmap_msg": "Dieser Trail ist sehr groß ({{TILES}} tiles). Der Download könnte einige Minuten dauern. Möchtest Du fortfahren?",
@@ -427,5 +427,10 @@
   "a_about_mcm_project": "MathCityMap ist ein Projekt der Arbeitsgruppe MATIS 1 des Instituts für Didaktik der Mathematik und Informatik der Goethe-Universität Frankfurt am Main.",
   "a_about_mcm_portal": "Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos.",
   "a_about_mcm_responsibility_title": "Verantwortliche Personen",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender"
+  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
+  "a_route_detail_settings_resetTasks_msg": "Möchtest du diese Aufgabe zurücksetzen?",
+  "good_luck_next_time": "Viel Glück fürs nächste Mal!",
+  "a_main_settings_delCache_confirm": "Wirklich alle heruntergeladenen Trails, Kartendaten und Bilder löschen?",
+  "a_language_el": "Griechisch",
+  "p_wrzd_segment_meters": "Strecke s in Metern*"
 }

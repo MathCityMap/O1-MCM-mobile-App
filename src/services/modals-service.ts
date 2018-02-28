@@ -13,6 +13,7 @@ import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 
 @Injectable()
@@ -22,7 +23,8 @@ export class ModalsService {
                 public ormService: OrmService,
                 public alertCtrl: AlertController,
                 public deepLinker: DeepLinker,
-                public translateService: TranslateService) {
+                public translateService: TranslateService,
+                private spinner: SpinnerDialog) {
     }
 
     async doDownload(route: Route): Promise<boolean> {
@@ -60,18 +62,18 @@ export class ModalsService {
         return !cancelHasBeenClicked;
     }
 
-    showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
+    async showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null) {
         if (route.downloaded) {
             this.navigateToRoute(route, navCtrl, null);
         } else {
-            this.presentRouteInfoModal(route, navCtrl);
+            await this.presentRouteInfoModal(route, navCtrl);
         }
     }
 
     async showDialog(titleKey: string, messageKey: string,
                      button1Key?: string, button1Handler?: () => void,
                      button2Key?: string, button2Handler?: () => void) {
-        button1Key = button1Key || this.translateService.instant('a_g_ok');
+        button1Key = button1Key || 'a_g_ok';
         let buttons = [{
             text: this.translateService.instant(button1Key),
             handler: button1Handler
@@ -91,30 +93,41 @@ export class ModalsService {
     }
 
     private navigateToRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
-        navCtrl.parent.parent.push('TasksMap', {
-            routeId: route.id,
-            headerTitle: route.title,
-            selectedTask: selectedTask
-        }, {}, () => {
-            // necessary because of bug which does not update URL
-            this.deepLinker.navChange('forward');
-        });
+        this.spinner.show(null, null, false);
+        setTimeout(() => {
+            navCtrl.parent.parent.push('TasksMap', {
+                routeId: route.id,
+                headerTitle: route.title,
+                selectedTask: selectedTask
+            }, {}, () => {
+                // necessary because of bug which does not update URL
+                this.deepLinker.navChange('forward');
+            });
+        }, 100);
     }
 
-    presentRouteInfoModal(route: Route, navCtrl: NavController): void {
+    presentRouteInfoModal(route: Route, navCtrl: NavController): Promise<Route> {
         let self = this;
-        //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
-        let routeInfoModal = this.modalCtrl.create(RouteInfo, {
-            routeId: route.id,
-            modalsService: this
+        return new Promise(success => {
+            //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
+            let data = {
+                routeId: route.id,
+                modalsService: this,
+                route: null
+            };
+            let routeInfoModal = this.modalCtrl.create(RouteInfo, data);
+            routeInfoModal.onDidDismiss(result => {
+                if (result.showRoute) {
+                    //will probably never showRoute;
+                    self.showRoute(result.route, navCtrl);
+                    success(result.route);
+                } else {
+                    // route is set by RouteInfo
+                    success(data.route);
+                }
+            });
+            routeInfoModal.present();
         });
-        routeInfoModal.onDidDismiss(data => {
-            if (data.showRoute) {
-                //will probably never showRoute;
-                self.showRoute(data.route, navCtrl);
-            }
-        })
-        routeInfoModal.present();
     }
 
     showAddRouteByCodeModal(): Promise<Route> {
