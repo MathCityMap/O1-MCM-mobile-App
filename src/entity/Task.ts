@@ -258,6 +258,48 @@ export class Task {
         }
         return result;
     }
+
+    isAttrObject(): boolean{
+        if(this.attr == null){
+            return false;
+        }
+        try {
+            JSON.parse(this.attr);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
+    hasSideFacts(): boolean{
+        // make sure the attr field is available (old tasks dont have one)
+        if(!this.isAttrObject()){
+            return false;
+        }
+        let attr = Helper.safeJsonDecode(this.attr);
+        if(attr.hasOwnProperty('side_facts')){
+            let side_facts = attr.side_facts;
+            if(side_facts.hasOwnProperty('text')){
+               return side_facts.text != "";
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    getSideFactsText(): String{
+        if(this.hasSideFacts()){
+            let attr = Helper.safeJsonDecode(this.attr);
+            return attr.side_facts.text;
+        }
+        else{
+            return "";
+        }
+    }
 }
 
 export interface Hint {

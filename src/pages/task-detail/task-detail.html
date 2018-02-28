@@ -94,7 +94,12 @@
                 <span class="tag points" *ngIf="taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}} MP</span>
             </div>
         </div>
-
+	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">
+		    <ion-label>{{ "p_t_side_facts" | translate }}</ion-label>
+		    <p *ngIf="task">
+			    {{task.getSideFactsText()}}
+		    </p>
+	    </div>
         <div class="card secondary">
             <ion-label>{{ "author" | translate }}</ion-label>
             <p *ngIf="task">
