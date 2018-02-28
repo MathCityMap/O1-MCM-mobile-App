@@ -946,7 +946,7 @@ export class TaskDetail{
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', Math.round(m).toString()+"#"+Math.round(yValue).toString(), 0);
+    else this.taskSolved('', m.toFixed(2).toString()+"#"+Math.round(yInMeters).toString(), 0);
   }
 
   //Possibly add this to the MyMath class

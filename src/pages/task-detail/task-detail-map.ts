@@ -324,7 +324,7 @@ export class TaskDetailMap{
                 trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
 
-            /* For testing - sets users position to click event */
+            /* For testing - sets users position to click event, comment in for local testing
             this.map.on('click', function(e){
                 if(Helper.testLocation == null){
                     Helper.testLocation = {coords:{latitude:null, longitude:null}};
@@ -332,6 +332,7 @@ export class TaskDetailMap{
                 Helper.testLocation.coords.latitude = e.latlng.lat;
                 Helper.testLocation.coords.longitude = e.latlng.lng;
             });
+             */
 
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
