@@ -1,10 +1,11 @@
-<div class="modal card has-button-on-the-edge" [ngClass]="{'hint': modalType == 1,'negative': modalType == 2, 'positive': modalType == 3}">
+<div class="modal card has-button-on-the-edge" [ngClass]="{'hint': modalType == 1,'negative': modalType == 2, 'solved': modalType == 3, 'solved-low': modalType == 5}">
     <h2>{{title | translate}}</h2>
 
      <div class="modal-content" *ngIf="modalType != 4">
         <img *ngIf="modalType == 1 && type != 'image' " src="./assets/icons/icon_popup-hint.svg"/>
         <img *ngIf="modalType == 2" src="./assets/icons/icon_wrong-answer.svg"/>
         <img *ngIf="modalType == 3" src="./assets/icons/icon_popup-right-answer.svg"/>
+        <img *ngIf="modalType == 5" src="./assets/icons/icon_popup-nearly-right-answer.svg"/>
 
         <!-- image hint -->
         <img class="full-width" *ngIf=" type == 'image' " [src]="'https://mathcitymap.eu/'+message"/>
@@ -13,7 +14,7 @@
         <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="325" [height]="243"></youtube-player>
 
         <!-- text hint -->
-        <p *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
+        <p *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>
     <div class="modal-content" *ngIf="modalType == 4">

@@ -739,7 +739,7 @@ ion-modal {
                 background-color: color($colors, primary);
             }
         }
-        &.positive{
+        &.solved{
             h2, .highlight{
                 color: color($colors, success);
             }
@@ -747,12 +747,20 @@ ion-modal {
                 background-color: color($colors, success);
             }
         }
-        &.negative{
+        &.solved-low{
             h2, .highlight{
-                color: color($colors, danger);
+                color: color($colors, secondary);
             }
             button{
-                background-color: color($colors, danger);
+                background-color: color($colors, secondary);
+            }
+        }
+        &.negative{
+            h2, .highlight{
+                color: color($colors, error);
+            }
+            button{
+                background-color: color($colors, error);
             }
         }
         &.task-select{

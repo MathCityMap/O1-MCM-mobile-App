@@ -263,7 +263,7 @@ export class TaskDetail{
         case "lineNoDirection":
           this.CalculateLine(this.taskDetailMap.pointMarkers[0], this.taskDetailMap.pointMarkers[1], +this.task.getSolutionGpsValue("length"));
           break;
-        
+
         case "line":
           this.CalculateLineDirection(this.taskDetailMap.pointMarkers[0], this.taskDetailMap.pointMarkers[1], +this.task.getSolutionGpsValue("length"), +this.task.getSolutionGpsValue("direction"));
           break;
@@ -409,7 +409,12 @@ export class TaskDetail{
             }
           }
           let that = this;
-          let modal = this.modalCtrl.create(MCMIconModal,  {title: title, message: message, solution: solution, modalType: MCMModalType.success, buttons: [
+          let modal = this.modalCtrl.create(MCMIconModal,  {
+              title: title,
+              message: message,
+              solution: solution,
+              modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
+              buttons: [
                   {
                       title: 't_samplesolution',
                       callback: function(){
@@ -515,7 +520,14 @@ export class TaskDetail{
       if(this.taskDetails.skipped){
           this.taskDetails.newTries++;
       }
-        let modal = this.modalCtrl.create(MCMIconModal,  {message: message, modalType: MCMModalType.error, buttons: buttons}, {showBackdrop: true, enableBackdropDismiss: true});
+        let modal = this.modalCtrl.create(MCMIconModal,  {
+            message: message,
+            modalType: MCMModalType.error,
+            buttons: buttons
+        }, {
+            showBackdrop: true,
+            enableBackdropDismiss: true
+        });
         modal.present();
       }
       this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
@@ -693,7 +705,7 @@ export class TaskDetail{
     let edgesLength = [(L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]),
                        (L as any).GeometryUtil.length([pointB.getLatLng(), pointC.getLatLng()]),
                        (L as any).GeometryUtil.length([pointC.getLatLng(), pointA.getLatLng()])];
-  
+
     let tempGreen = 10;
     let tempOrange = 20;
 
@@ -732,7 +744,7 @@ export class TaskDetail{
                        (L as any).GeometryUtil.length([pointB.getLatLng(), pointC.getLatLng()]),
                        (L as any).GeometryUtil.length([pointC.getLatLng(), pointD.getLatLng()]),
                        (L as any).GeometryUtil.length([pointD.getLatLng(), pointA.getLatLng()])];
-  
+
     let diag1 = (L as any).GeometryUtil.length([pointA.getLatLng(), pointC.getLatLng()]);
     let diag2 = (L as any).GeometryUtil.length([pointB.getLatLng(), pointD.getLatLng()]);
 
@@ -921,7 +933,8 @@ export class TaskDetail{
 
   getIonContentStyles(){
       if(this.task && this.task.solutionType!='gps'){
-        let conditionalBackgroundImageStyles = {'background-image':  'url("'+ this.task.getImageURL() +'")'};
+        let result = this.task.getImageURL();
+        let conditionalBackgroundImageStyles = {'background-image':  'url(" '+ result +' ")'};
         return conditionalBackgroundImageStyles;
       }else return;
    }
