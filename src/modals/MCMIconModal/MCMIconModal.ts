@@ -37,9 +37,11 @@ export class MCMIconModal{
                     case MCMModalType.error:
                         this.title = "a_alert_false_answer_title";
                         break;
-                    case MCMModalType.success:
+                    case MCMModalType.solved:
                         this.title = "a_alert_right_answer_title";
-
+                        break;
+                    case MCMModalType.solvedLow:
+                        this.title = "a_alert_right_answer_title_low";
                         break;
                 }
             }
