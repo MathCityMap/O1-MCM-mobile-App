@@ -2,7 +2,7 @@
     <h2>{{title | translate}}</h2>
 
      <div class="modal-content" *ngIf="modalType != 4">
-        <img *ngIf="modalType == 1 && type != 'image' " src="./assets/icons/icon_popup-hint.svg"/>
+        <img *ngIf="modalType == 1 && type != 'image' && type != 'video'" src="./assets/icons/icon_popup-hint.svg"/>
         <img *ngIf="modalType == 2" src="./assets/icons/icon_wrong-answer.svg"/>
         <img *ngIf="modalType == 3" src="./assets/icons/icon_popup-right-answer.svg"/>
         <img *ngIf="modalType == 5" src="./assets/icons/icon_popup-nearly-right-answer.svg"/>
