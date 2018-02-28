@@ -922,9 +922,15 @@ export class TaskDetail{
   }
 
   //Possibly add this to the MyMath class
-  getDistanceToLine(p: L.LatLng, start: L.LatLng, final: L.LatLng){
-    if ((L as any).GeometryUtil.length([p, start]) < (L as any).GeometryUtil.length([p, final])) return (L as any).GeometryUtil.length([p, start]);
-    else return (L as any).GeometryUtil.length([p, final]);
+  getDistanceToLine(p: L.LatLng, start: L.LatLng, final: L.LatLng): number{
+      let map = this.taskDetailMap.getMap();
+      if(map != null){
+          let closestOnLine = (L as any).GeometryUtil.closestOnSegment(map, p, start, final);
+          return (L as any).GeometryUtil.length([p, closestOnLine]);
+      }
+      else{
+          return 0;
+      }
   }
 
   setFabColor(index){

@@ -397,5 +397,9 @@ export class TaskDetailMap{
                 })
         }
     }
+
+    getMap():L.Map{
+        return this.map;
+    }
 }
 
