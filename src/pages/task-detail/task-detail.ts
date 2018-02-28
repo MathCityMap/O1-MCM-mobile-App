@@ -336,8 +336,10 @@ export class TaskDetail{
       this.navCtrl.pop({}, () => {
           if(this.navParams.get('goToNextTaskById')){
               let goToNextTaskById = this.navParams.get('goToNextTaskById');
-              this.taskDetails.skipped = true;
-              this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+              if(skip){
+                  this.taskDetails.skipped = true;
+                  this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+              }
               goToNextTaskById(this.task.id, skip);
           }
           // necessary because of bug which does not update URL

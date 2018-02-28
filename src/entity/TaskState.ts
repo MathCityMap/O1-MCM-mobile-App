@@ -80,22 +80,23 @@ export class TaskState{
 
     public getTaskStateByTask(jsonObject: string) : TaskState{
         let flags = JSON.parse(jsonObject);
-        this.taskId = flags.taskId;
-        this.solved = flags.solved;
-        this.solvedLow = flags.solvedLow;
-        this.skipped = flags.skipped;
-        this.failed = flags.failed;
-        this.hint1 = flags.hint1;
-        this.hint2 = flags.hint2;
-        this.hint3 = flags.hint3;
-        this.tries = flags.tries;
-        this.newTries = flags.newTries;
-        this.answer = flags.answer;
-        this.answerMultipleChoice = flags.answerMultipleChoice;
-        this.timeFirstOpen = flags.timeFirstOpen;
-        this.timeSolved = flags.timeSolved;
-        this.score = flags.score;
-        this.penalty = flags.penalty;
-        return this;
+        let taskState = new TaskState();
+        taskState.taskId = flags.taskId;
+        taskState.solved = flags.solved;
+        taskState.solvedLow = flags.solvedLow;
+        taskState.skipped = flags.skipped;
+        taskState.failed = flags.failed;
+        taskState.hint1 = flags.hint1;
+        taskState.hint2 = flags.hint2;
+        taskState.hint3 = flags.hint3;
+        taskState.tries = flags.tries;
+        taskState.newTries = flags.newTries;
+        taskState.answer = flags.answer;
+        taskState.answerMultipleChoice = flags.answerMultipleChoice;
+        taskState.timeFirstOpen = flags.timeFirstOpen;
+        taskState.timeSolved = flags.timeSolved;
+        taskState.score = flags.score;
+        taskState.penalty = flags.penalty;
+        return taskState;
     }
 }
