@@ -621,14 +621,14 @@ export class TaskDetail{
     let tempOrange = 20;
 
     if(currDistance > (distance - tempGreen) && currDistance < (distance + tempGreen)){
-      this.taskSolved("solved", currDistance, 0);
+      this.taskSolved("solved", Math.round(currDistance).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
         }
         else this.score.score += this.maxScore;
     } else if (currDistance > (distance - tempOrange) && currDistance < (distance + tempOrange)){
-      this.taskSolved("solved_low", currDistance, 0);
+      this.taskSolved("solved_low", Math.round(currDistance).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -646,7 +646,6 @@ export class TaskDetail{
 
      let lenghtSolution = 0;
      let bearingSolution = 0;
-     console.log(this.taskDetailMap.pointMarkers[1].getLatLng() + " FIRST MARKER");
      let currDistance = (L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]);
      let currBearing = (L as any).GeometryUtil.bearing(pointA.getLatLng(), pointB.getLatLng());
      if (currBearing < 0) currBearing += 360;
@@ -681,7 +680,7 @@ export class TaskDetail{
      }
 
      if(bearingSolution == 2 && lenghtSolution == 2){
-      this.taskSolved("solved", currDistance, 0);
+      this.taskSolved("solved", Math.round(currDistance).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -689,7 +688,7 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
      }
      else if (bearingSolution > 0 && lenghtSolution > 0){
-      this.taskSolved("solved_low", currDistance, 0);
+      this.taskSolved("solved_low", Math.round(currDistance).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
