@@ -14,6 +14,7 @@ export class MCMIconModal{
     title: string;
     type: string;
     imageUrl: string;
+    videoId: string;
     message: string;
     messages: string[];
     param: any;
@@ -47,6 +48,12 @@ export class MCMIconModal{
             this.messages = params.data.messages;
             this.imageUrl = params.data.imageUrl;
             this.type = params.data.type;
+            if (this.type == 'video' && this.message) {
+                let parts = this.message.split('v=');
+                if (parts.length == 2) {
+                    this.videoId = parts[1];
+                }
+            }
         }
         this.param = {L: params.data.solution};
 

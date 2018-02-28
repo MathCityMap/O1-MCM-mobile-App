@@ -32,6 +32,7 @@ import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
 import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import { YoutubePlayerModule } from 'ngx-youtube-player';
 
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { gpsService } from '../services/gps-service';
@@ -61,7 +62,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
       }, useDefaultLang: true
     }),
     MCMHeaderModule,
-    LinkyModule
+    LinkyModule,
+    YoutubePlayerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
