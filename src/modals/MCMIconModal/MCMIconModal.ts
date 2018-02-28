@@ -2,6 +2,7 @@ import { Component,Input, Inject} from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { MCMModalType } from '../../app/app.component';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { Platform } from 'ionic-angular';
 
 
 @Component({
@@ -21,7 +22,16 @@ export class MCMIconModal{
     modalType: MCMModalType;
     linkyOptions: any;
     buttons: any[];
-    constructor(params: NavParams, private viewCtrl: ViewController) {
+
+    windowWith: number;
+    videoWith: number;
+    videoHeight: number;
+
+    constructor(params: NavParams, private viewCtrl: ViewController, platform: Platform) {
+        this.windowWith = platform.width();
+        this.videoWith = this.windowWith - 80;
+        this.videoHeight = this.videoWith * 0.7476923077;
+
         if(!params.data.modalType){
             console.warn("Please provide the modalType!");
         }else{

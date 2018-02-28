@@ -11,7 +11,7 @@
         <img class="full-width" *ngIf=" type == 'image' " [src]="'https://mathcitymap.eu/'+message"/>
 
         <!-- video hint -->
-        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="325" [height]="243"></youtube-player>
+        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>
 
         <!-- text hint -->
         <p *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
