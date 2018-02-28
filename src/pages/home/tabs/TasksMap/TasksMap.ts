@@ -211,7 +211,8 @@ export class TasksMap {
                     }
                 }
             });
-            let style;
+            let style = '';
+            let img = '';
             let colors = Object.keys(colorOccurrences);
             if (colors.length == 1) {
                 style=`background-color: ${colors[0]}`;
@@ -232,10 +233,10 @@ export class TasksMap {
                     stops: stops,
                     size: 24
                 });
-                style=`background-image: url(${gradient.png})`;
+                img=`<img src="${gradient.png}"></img>`;
             }
             return new L.DivIcon({
-                html: `<div style="${style}"><span>${childCount}</span></div>`,
+                html: `<div style="${style}">${img}<span>${childCount}</span></div>`,
                 className: className,
                 iconSize: new L.Point(40, 40)
             });

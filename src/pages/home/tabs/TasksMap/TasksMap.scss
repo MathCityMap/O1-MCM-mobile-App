@@ -33,16 +33,31 @@ page-tasks-map {
             }
         }
     }
+
+    .marker-cluster {
+        img {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            @include border-radius(15px);
+            width: 30px;
+            height: 30px;
+        }
+        span {
+            position: absolute;
+            width: 24px;
+        }
+    }
 }
 .platform-ios{
-    .map .detail-box {
+    page-tasks-map .map .detail-box {
         &.ranking{
             top: 74px;
         }
     }
 }
 .platform-android{
-    .map .detail-box {
+    page-tasks-map .map .detail-box {
         &.ranking{
             top: 56px;
         }
