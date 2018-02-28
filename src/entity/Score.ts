@@ -44,7 +44,9 @@ export class Score {
 
     addSolvedTask(taskId: number){
         let idList = this.getTasksSolved();
-        idList.push(taskId);
+        if(idList.indexOf(taskId) == -1){
+            idList.push(taskId);
+        }
         this.setTasksSolved(idList);
     }
 
@@ -63,7 +65,9 @@ export class Score {
 
     addFailedTask(taskId: number){
         let idList = this.getTasksFailed();
-        idList.push(taskId);
+        if(idList.indexOf(taskId) == -1){
+            idList.push(taskId);
+        }
         this.setTasksFailed(idList);
     }
 
@@ -82,7 +86,9 @@ export class Score {
 
     addSolvedTaskLow(taskId: number){
         let idList = this.getTasksSolvedLow();
-        idList.push(taskId);
+        if(idList.indexOf(taskId) == -1){
+            idList.push(taskId);
+        }
         this.setTasksSolvedLow(idList);
     }
 
