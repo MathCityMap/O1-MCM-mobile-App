@@ -137,7 +137,11 @@ export class MapPage implements OnInit, OnDestroy {
             let latLng = route.getCenterLatLng()
             let icon;
             if (route.downloaded) {
-                icon = this.downloadedRouteIcon;
+                if (route.completed) {
+                    icon = this.doneRouteIcon;
+                } else {
+                    icon = this.downloadedRouteIcon;
+                }
             } else if(route.public == "1"){
                 icon = this.publicRouteIcon;
             }else{

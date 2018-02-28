@@ -347,6 +347,13 @@ export class OrmService {
         this.updateRouteInCache(route);
     }
 
+    async markRouteAsCompleted(route: Route) {
+        route.completed = true;
+        (await this.getRouteRepository()).save(route);
+        this.updateRouteInCache(route);
+        this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
+    }
+
     async removeAllDownloadedData() {
         let routes = await this.getDownloadedRoutes();
         for (let route of routes) {
