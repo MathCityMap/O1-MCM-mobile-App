@@ -67,7 +67,12 @@ export class MCMIconModal{
                 }
             }
         }
-        this.param = {L: params.data.solution};
+        if(params.data.solution){
+            this.param = {L: params.data.solution};
+        }
+        if(params.data.param){
+            this.param = params.data.param;
+        }
 
         this.linkyOptions = {
             replaceFn : function( match ) {

@@ -23,6 +23,9 @@ import 'conic-gradient';
 import { ImagesService } from '../../../../services/images-service';
 import { Storage } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import {MCMModalType} from "../../../../app/app.component";
+import {MCMIconModal} from "../../../../modals/MCMIconModal/MCMIconModal";
+import {ModalController} from "ionic-angular/components/modal/modal-controller";
 
 declare var ConicGradient: any;
 
@@ -75,7 +78,8 @@ export class TasksMap {
     private geolocation: Geolocation,
     private imagesService: ImagesService,
     private storage: Storage,
-    private spinner: SpinnerDialog
+    private spinner: SpinnerDialog,
+    private modalCtrl: ModalController
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], className:'marker'});
@@ -90,14 +94,39 @@ export class TasksMap {
       this.taskFailedIcon.clusterColor = '#E62B25';
   }
 
+  isTrailCompleted(){
+      return this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length;
+  }
+
+  showTrailCompletedAlert(){
+      let that = this;
+      let modal = this.modalCtrl.create(MCMIconModal,  {
+          title: 'a_alert_congrats',
+          message: 'a_alert_congrats_msg',
+          modalType: MCMModalType.solved,
+          param: {TITLE: this.route.title},
+          buttons: [
+              {
+                  title: 'a_alert_close',
+                  callback: function(){
+                      modal.dismiss().then(() =>{
+                          that.ormService.markRouteAsCompleted(that.route);
+
+                      });
+                  }
+              }
+          ]}, {showBackdrop: true, enableBackdropDismiss: true});
+      modal.present();
+  }
+
   async ionViewWillEnter() {
     console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
-    console.log(this.score);
-    console.log(this.taskToSkip);
+
+
     if (this.navParams.data.tasksMapState) {
         this.state = this.navParams.data.tasksMapState;
         if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
@@ -139,7 +168,11 @@ export class TasksMap {
         // adding markers immediately after map initialization caused marker cluster problems -> use timeout
         await this.initializeMap();
         this.spinner.hide();
+        if(this.isTrailCompleted() && !this.route.completed){
+            this.showTrailCompletedAlert();
+        }
     }, 100);
+
   }
 
   markerGroup: any = null;
