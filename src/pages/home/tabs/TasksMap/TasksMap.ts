@@ -451,6 +451,7 @@ export class TasksMap {
           'yes', () => {
               this.ormService.deleteUserScore(this.score).then( ()=> {
                   this.score = new Score();
+                  this.state.skippedTaskIds = [];
                   this.redrawMarker();
               });
           });
