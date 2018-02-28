@@ -37,3 +37,4 @@ platforms/ios/Math City Map.xcarchive
 platforms/android/assets/www/build
 *.lock
 *.bin
+platforms/ios/MathCityMap.xcodeproj/xcuserdata

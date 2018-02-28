@@ -87,6 +87,10 @@
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/geolocation/-/geolocation-4.4.2.tgz#583b7636927bd39bf6ce1ba14a1d94b0dfc5db66"
 
+"@ionic-native/globalization@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@ionic-native/globalization/-/globalization-4.5.3.tgz#543e3a80b8621e22d2c8f767861f37c66b5d895d"
+
 "@ionic-native/location-accuracy@^4.5.2":
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/location-accuracy/-/location-accuracy-4.5.2.tgz#af4f9a23cb53555f9033aac4b904fbb3a42faae7"

@@ -113,4 +113,5 @@
     <allow-navigation href="http://194.210.223.59:8100" />
     <allow-navigation href="http://192.168.12.29:8101" />
     <allow-navigation href="http://192.168.12.29:8100" />
+    <plugin name="cordova-plugin-globalization" spec="~1.0.9" />
 </widget>

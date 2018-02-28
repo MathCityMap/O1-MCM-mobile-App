@@ -25,6 +25,7 @@
     "@ionic-native/file": "4.3.2",
     "@ionic-native/file-transfer": "4.3.2",
     "@ionic-native/geolocation": "4.4.2",
+    "@ionic-native/globalization": "^4.5.3",
     "@ionic-native/location-accuracy": "^4.5.2",
     "@ionic-native/network": "4.4.2",
     "@ionic-native/spinner-dialog": "4.4.2",
