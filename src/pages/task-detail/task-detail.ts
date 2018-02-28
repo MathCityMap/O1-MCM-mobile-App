@@ -918,7 +918,7 @@ export class TaskDetail{
 
   getIonContentStyles(){
       if(this.task && this.task.solutionType!='gps'){
-        let conditionalBackgroundImageStyles = {'background-image':  'url('+ this.task.getImageURL() +')'};
+        let conditionalBackgroundImageStyles = {'background-image':  'url("'+ this.task.getImageURL() +'")'};
         return conditionalBackgroundImageStyles;
       }else return;
    }
