@@ -89,8 +89,8 @@
         <div class="card evaluation" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed)"
         [ngClass]="{'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }">
             <div class="head">
-                <ion-label *ngIf="taskDetails?.solved || taskDetails?.solvedLow">{{ "a_alert_congrats" | translate }}</ion-label>
-                <ion-label *ngIf="taskDetails?.failed">{{ "good_luck_next_time" | translate }}</ion-label>
+                <ion-label *ngIf="taskDetails?.solved || taskDetails?.solvedLow" text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>
+                <ion-label *ngIf="taskDetails?.failed" text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>
                 <span class="tag points" *ngIf="taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}} MP</span>
             </div>
         </div>

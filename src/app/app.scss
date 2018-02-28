@@ -741,10 +741,10 @@ ion-modal {
         }
         &.positive{
             h2, .highlight{
-                color: color($colors, secondary);
+                color: color($colors, success);
             }
             button{
-                background-color: color($colors, secondary);
+                background-color: color($colors, success);
             }
         }
         &.negative{
@@ -768,6 +768,7 @@ ion-modal {
             }
         }
         .on-the-edge-container{
+            white-space: nowrap;
             button{
                 margin-left: $global-base-padding;
             }
