@@ -3,7 +3,7 @@
     <p *ngIf="route">{{ 'a_startAt' | translate}}</p>
 
     <div class="modal-content">
-        <div class="dotted-border-bottom"  *ngFor="let item of tasks" (click) = "showRoute(route, item)">
+        <div tappable class="dotted-border-bottom"  *ngFor="let item of tasks" (click) = "showRoute(route, item)">
             #{{item.position}} {{item.title}}
         </div>
     </div>
