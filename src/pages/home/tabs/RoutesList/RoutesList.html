@@ -9,7 +9,7 @@
 
   <ion-list>
     <div tappable class="detail-box dotted-border-bottom" *ngFor="let item of items" [id]="'route-item-' + item.id">
-        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded}" [ngStyle]="{'background-image' : 'url(\\''+ item.getThumbURL() +'\\')'}" ></div>
+        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}" [ngStyle]="{'background-image' : 'url(\\''+ item.getThumbURL() +'\\')'}" ></div>
         <div class="text-container">
             <div class="segmented-box">
                 <div class="title segement">

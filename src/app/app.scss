@@ -216,6 +216,9 @@ input{
         &.downloaded{
             border: 2px solid #ffffff;
             box-shadow: 0px 0px 0px 2px #a6a6a6;
+            &.completed {
+                box-shadow: 0px 0px 0px 2px #4caf50;
+            }
         }
     }
 
