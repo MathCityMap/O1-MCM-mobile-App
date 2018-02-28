@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Platform } from 'ionic-angular';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { checkAvailability } from "@ionic-native/core";
 
 
 import { AlertController } from 'ionic-angular';
@@ -20,7 +21,8 @@ export class gpsService {
         console.log("platform: " + this.platform.platforms());
 
           //if the platform is not browser
-          if(this.platform.is("android"))    
+          if(this.platform.is("android") &&
+              checkAvailability(LocationAccuracy.getPluginRef(), null, LocationAccuracy.getPluginName()))
             this.diagnostic.isLocationEnabled().then((enabled) => {
               //if the location is off
               if(!enabled) this.turnLocationOn();
