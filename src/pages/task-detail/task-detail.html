@@ -21,7 +21,7 @@
             <!-- // fab buttons for task map -->
             <div class="head">
                 <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-                <span class="tag points">{{maxScore}} MP</span>
+                <span class="tag points" *ngIf="!gamificationIsDisabled">{{maxScore}} MP</span>
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
@@ -91,7 +91,7 @@
             <div class="head">
                 <ion-label *ngIf="taskDetails?.solved || taskDetails?.solvedLow" text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>
                 <ion-label *ngIf="taskDetails?.failed" text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>
-                <span class="tag points" *ngIf="taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}} MP</span>
+                <span class="tag points" *ngIf="!gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}} MP</span>
             </div>
         </div>
 	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">

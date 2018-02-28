@@ -38,6 +38,7 @@ export class TaskDetail{
   private task: Task;
   private taskDetails: TaskState;
   private score: Score;
+  private gamificationIsDisabled = false;
 
   private minScore: number;
   private penalty: number;
@@ -74,7 +75,7 @@ export class TaskDetail{
     this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.taskDetails = this.score.getTaskStateForTask(this.taskId);
 
-    console.log(this.route.attr);
+    this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
     //Temporary attribution of the scores, later they should come from the server, associated with each task
     this.maxScore = 100;

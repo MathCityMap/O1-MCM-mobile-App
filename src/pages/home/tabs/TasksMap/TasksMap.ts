@@ -53,6 +53,7 @@ export class TasksMap {
   private score: Score;
   private stateKey: string = "savedMapStateByRoute";
   private taskToSkip: Task= null;
+  private gamificationIsDisabled = false;
 
     taskOpenIcon;
     taskSkippedIcon;
@@ -123,6 +124,7 @@ export class TasksMap {
     console.log('TasksMap ionViewWillEnter()');
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
+    this.gamificationIsDisabled = this.route.isGamificationDisabled();
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
 

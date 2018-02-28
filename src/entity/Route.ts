@@ -190,4 +190,15 @@ export class Route {
         }
         return this.distance;
     }
+
+    getAttributes(): any {
+        if (!this.attr) {
+            return {};
+        }
+        return Helper.safeJsonDecode(this.attr);
+    }
+
+    isGamificationDisabled() {
+        return this.getAttributes().gamification === "0";
+    }
 }
