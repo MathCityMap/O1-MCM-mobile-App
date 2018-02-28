@@ -474,11 +474,11 @@ export class TaskDetail{
                           modal.dismiss().then(() => {
                               let index = 1;
                               //number of tries already increased
-                              if(tries == 4){
+                              if(tries == 3){
                                   let temp = that.getNextAvailableHint();
                                   if(temp < 2) index = temp;
                                   else index = 2;
-                              }else if(tries == 5){
+                              }else if(tries == 4){
                                   let temp = that.getNextAvailableHint();
                                   if(temp < 3) index = temp;
                                   else index = 3;
