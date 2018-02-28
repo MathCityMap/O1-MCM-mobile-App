@@ -25,10 +25,10 @@
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
-                <ion-label>{{ "a_task_answer" | translate }}</ion-label>
+                <ion-label *ngIf ="task && task.solutionType != 'gps'">{{ "a_task_answer" | translate }}</ion-label>
                 <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
-                    <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
-                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList">
                     <ion-item *ngFor="let item of multipleChoiceList; let i = index">
