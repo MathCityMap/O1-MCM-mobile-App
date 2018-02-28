@@ -93,6 +93,7 @@ export class DB_Updater {
             // load routes with flags which need to be restored
             let downloadedRoutes = await this.ormService.getDownloadedRoutes();
             let unlockedRoutes = await this.ormService.getUnlockedRoutes();
+            let completedRoutes = await this.ormService.getCompletedRoutes();
 
             // Routes need update
             await this.insertJSONinSQLiteDB(await this.invokeApi('getRoutes'), DBC.DB_ROUTE);
@@ -105,11 +106,18 @@ export class DB_Updater {
                     "version_route"
                 ]);
             let routesToSave = [];
-            for (let oldRoute of downloadedRoutes.concat(unlockedRoutes)) {
+            let alreadyVisitedIds = {};
+            for (let oldRoute of downloadedRoutes.concat(unlockedRoutes).concat(completedRoutes)) {
+                if (alreadyVisitedIds[oldRoute.id]) {
+                    // this id has already been visited
+                    continue;
+                }
                 let newRoute = await this.ormService.findRouteById(oldRoute.id);
                 if (newRoute) {
                     newRoute.downloaded = oldRoute.downloaded;
                     newRoute.unlocked = oldRoute.unlocked;
+                    newRoute.completed = oldRoute.completed;
+                    alreadyVisitedIds[oldRoute.id] = true;
                     routesToSave.push(newRoute);
                 }
             }

@@ -98,6 +98,9 @@ export class Route {
     @Column({name: 'unlocked'})
     unlocked: boolean;
 
+    @Column({name: 'completed'})
+    completed: boolean;
+
     @OneToMany(type => Score, score => score.route, {eager: true})
     scores: Score[];
 

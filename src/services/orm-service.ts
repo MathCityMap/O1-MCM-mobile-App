@@ -20,7 +20,7 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Platform } from 'ionic-angular';
 import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
-import { Broadcaster } from 'typeorm/subscriber/Broadcaster';
+import { AddCompletedColumn1519817905000 } from '../migration/1519817905000-AddCompletedColumn';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
@@ -56,7 +56,8 @@ export class OrmService {
             InitialMigration1513274191111,
             AddImageUrlAndDownloadedFlagMigration1513679923000,
             FailedTaskMigration1515428187000,
-            AddUnlockedColumn1516037215000
+            AddUnlockedColumn1516037215000,
+            AddCompletedColumn1519817905000
         ];
         if (sqliteAvailable) {
             return this.connection = await createConnection({
@@ -265,6 +266,16 @@ export class OrmService {
         let result = await repo.find({
             where: {
                 unlocked: '1'
+            }
+        });
+        return result;
+    }
+
+    async getCompletedRoutes(): Promise<Route[]> {
+        let repo = await this.getRouteRepository();
+        let result = await repo.find({
+            where: {
+                completed: '1'
             }
         });
         return result;
