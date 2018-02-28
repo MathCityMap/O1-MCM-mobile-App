@@ -69,7 +69,27 @@ export class MCMIconModal{
         }
 
         if(params.data.solutions){
-            this.param = {L: params.data.solutions[0], K: params.data.solutions[1]};
+            let sol = params.data.solutions as Array<string>;
+            console.log(sol.length + "TTTTT");
+            switch (sol.length) {
+                case 1:
+                    this.param = {L: params.data.solutions[0]};
+                    break;
+
+                case 2:
+                     this.param = {L: params.data.solutions[0], K: params.data.solutions[1]};
+                    break;
+
+                case 3:
+                     this.param = {L: params.data.solutions[0], K: params.data.solutions[1], J: params.data.solutions[2]};
+                    break;
+
+
+                case 4:
+                     this.param = {L: params.data.solutions[0], K: params.data.solutions[1], J: params.data.solutions[2],
+                                   H: params.data.solutions[3]};
+                    break;
+            }
         }
         else if(params.data.solution){
             this.param = {L: params.data.solution};

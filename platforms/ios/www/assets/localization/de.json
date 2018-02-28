@@ -355,6 +355,7 @@
   "a_language_code": "de",
   "a_startAt": "Starte von …",
   "a_skipTask": "Überspringe Aufgabe",
+  "a_skipTask_confirm": "Möchtest du diese Aufgabe überspringen?",
   "a_cancelStartAt": "Zeige alle Aufgaben",
   "a_guided_trail": "Möchtest du von einer bestimmten Aufgabe starten?",
   "a_guided_trail_title": "Startpunkt wählen",
@@ -428,9 +429,17 @@
   "a_about_mcm_portal": "Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos.",
   "a_about_mcm_responsibility_title": "Verantwortliche Personen",
   "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
-  "a_route_detail_settings_resetTasks_msg": "Möchtest du diese Aufgabe zurücksetzen?",
+  "a_route_detail_settings_resetTasks_msg": "Möchtest du alle Aufgaben in dieser Route zurücksetzen?",
   "good_luck_next_time": "Viel Glück fürs nächste Mal!",
   "a_main_settings_delCache_confirm": "Wirklich alle heruntergeladenen Trails, Kartendaten und Bilder löschen?",
   "a_language_el": "Griechisch",
-  "p_wrzd_segment_meters": "Strecke s in Metern*"
+  "p_wzrd_segment_meters": "Strecke s in Metern*",
+  "p_wzrd_time_seconds": "Benötigte Zeit t in Sekunden*",
+  "p_wzrd_escalator_velocity_m_s": "Geschwindigkeit in m/s",
+  "p_wzrd_escalator_velocity_km_h": "Geschwindigkeit in km/h",
+  "p_wzrd_escalator": "Rolltreppe",
+  "p_wzrd_velocity": "Geschwindigkeit",
+  "current_progress": "Fortschritt",
+  "a_did_you_know": "Schon gewusst?",
+  "center_two_distances": "Your distance to point A is: '{{L}}'  and to point B is: '{{K}}'"
 }

@@ -14,6 +14,7 @@ import { TaskDetailMap } from './task-detail-map';
 
 import * as L from 'leaflet';
 import 'leaflet-geometryutil';
+import { ModalsService } from '../../services/modals-service';
 
 
 /**
@@ -37,6 +38,7 @@ export class TaskDetail{
   private task: Task;
   private taskDetails: TaskState;
   private score: Score;
+  private gamificationIsDisabled = false;
 
   private minScore: number;
   private penalty: number;
@@ -56,7 +58,8 @@ export class TaskDetail{
     private ormService: OrmService,
     private modalCtrl: ModalController,
     private geolocation: Geolocation,
-    private deepLinker: DeepLinker
+    private deepLinker: DeepLinker,
+    private modalsService: ModalsService
   ){
 
    }
@@ -72,7 +75,7 @@ export class TaskDetail{
     this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
     this.taskDetails = this.score.getTaskStateForTask(this.taskId);
 
-    console.log(this.route.attr);
+    this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
     //Temporary attribution of the scores, later they should come from the server, associated with each task
     this.maxScore = 100;
@@ -348,6 +351,13 @@ export class TaskDetail{
       });
   }
 
+  confirmSkippingTask() {
+      this.modalsService.showDialog('a_skipTask', 'a_skipTask_confirm',
+          'no', () => {},
+          'yes', async () => {
+              this.closeDetails(true);
+          });
+  }
 
   getNextAvailableHint(){
 
@@ -370,7 +380,9 @@ export class TaskDetail{
           let message = "";
           let title = "";
           let solutions = null;
-          if (this.task.solutionType == "gps") solutions = solution.split("#");
+          if (this.task.solutionType == "gps") {
+          	solutions = solution.split("#");
+          }
           if(solved == 'solved'){
             title = 'a_alert_right_answer_title';
             this.taskDetails.solved = true;
@@ -384,10 +396,12 @@ export class TaskDetail{
               case 2:
               case 3:
               case 4:
-                message = 'a_alert_right_answer_2';
+               if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                else message = 'a_alert_right_answer_2';
                 break;
               case 5:
-                message = 'a_alert_right_answer_3';
+               if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                else message = 'a_alert_right_answer_3';
                 break;
 
             }
@@ -398,16 +412,19 @@ export class TaskDetail{
             this.score.addSolvedTaskLow(this.task.id);
             switch (this.taskDetails.tries){
               case 0:
-                message = 'a_alert_right_answer_1_low';
+               if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                else message = 'a_alert_right_answer_1_low';
                 break;
               case 1:
               case 2:
               case 3:
               case 4:
-                message = 'a_alert_right_answer_2_low';
+               if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+               else message = 'a_alert_right_answer_2_low';
                 break;
               case 5:
-                message = 'a_alert_right_answer_3_low';
+               if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+               else message = 'a_alert_right_answer_3_low';
                 break;
             }
           }
@@ -456,7 +473,8 @@ export class TaskDetail{
         switch (tries){
           case 0:
           case 1:
-            message = 'a_alert_false_answer_1';
+           if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+           else message = 'a_alert_false_answer_1';
             buttons = [
                 {
                     title: 'a_alert_close',
@@ -469,7 +487,8 @@ export class TaskDetail{
           case 2:
           case 3:
           case 4:
-            message = 'a_alert_false_answer_2';
+           if (this.task.solutionType == "gps")  message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+            else message = 'a_alert_false_answer_2';
 
               buttons = [
                   {
@@ -728,7 +747,7 @@ export class TaskDetail{
 
     //check conditions
     if(allGreen){
-      this.taskSolved("solved", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString(), 0);
+      this.taskSolved("solved", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+"#"+Math.round(edgesLength[2]).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -736,13 +755,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (allOrange){
-      this.taskSolved("solved_low", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString(), 0);
+      this.taskSolved("solved_low", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+"#"+Math.round(edgesLength[2]).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString(), 0);
+    else this.taskSolved('', Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+"#"+Math.round(edgesLength[2]).toString(), 0);
   }
 
   CalculateSquare (pointA: L.Marker, pointB: L.Marker, pointC: L.Marker, pointD: L.Marker, distance: number){
@@ -779,8 +798,8 @@ export class TaskDetail{
 
     //check conditions
     if(allGreen && diagonalSolution == 2){
-      this.taskSolved("solved", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString()+"#"
-      							+edgesLength[3].toString()+"#"+diag1+"#"+diag2, 0);
+      this.taskSolved("solved", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+
+      							"#"+Math.round(edgesLength[2]).toString()+"#"+Math.round(edgesLength[3]).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -788,15 +807,15 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (allOrange && diagonalSolution > 0){
-      this.taskSolved("solved_low", edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString()+"#"
-      							   +edgesLength[3].toString()+"#"+diag1+"#"+diag2, 0);
+      this.taskSolved("solved_low", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+
+      							"#"+Math.round(edgesLength[2]).toString()+"#"+Math.round(edgesLength[3]).toString(), 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', edgesLength[0].toString()+"#"+edgesLength[1].toString()+"#"+edgesLength[2].toString()+"#"
-    						+edgesLength[3].toString()+"#"+diag1+"#"+diag2, 0);
+    else this.taskSolved('', Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+
+      					"#"+Math.round(edgesLength[2]).toString()+"#"+Math.round(edgesLength[3]).toString(), 0);
   }
 
   CalculateCenterTwoP(pointA: L.LatLng, pointB: L.LatLng, currPosition: L.Marker){

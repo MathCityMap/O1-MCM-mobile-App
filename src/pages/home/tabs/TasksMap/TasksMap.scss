@@ -5,6 +5,7 @@ page-tasks-map {
             padding: 14px 16px 10px;
             bottom: auto;
             position: fixed;
+            top: 56px;
             left:60px;
             right:60px;
             width: calc( 100% - 120px) ;
@@ -24,7 +25,7 @@ page-tasks-map {
 
                 }
             }
-            .col{
+            .col ion-label{
                 padding: 0;
                 color: color($colors, primary);
                 &:last-of-type{
@@ -56,6 +57,7 @@ page-tasks-map {
         }
     }
 }
+.md,
 .platform-android{
     page-tasks-map .map .detail-box {
         &.ranking{
