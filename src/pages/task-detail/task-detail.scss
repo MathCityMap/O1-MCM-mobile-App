@@ -5,7 +5,8 @@
         }
     }
 }
-.platform-android{
+.platform-android,
+.md{
     page-task-detail{
         ion-content{
             background-position: 0 54px ;
@@ -22,7 +23,7 @@ page-task-detail {
         display: block;
         z-index: 0;
         .image-container {
-            max-height: 60vh;
+            max-height: 80vh;
             img {
                 opacity: 0;
             }
@@ -38,6 +39,7 @@ page-task-detail {
         bottom: -50px;
     }
     .task-content {
+        padding-bottom: 1px;
         display: block;
         position: relative;
         background: linear-gradient(to bottom, rgba(229, 229, 229, 0) 50px, rgba(229, 229, 229, 1) 51px);
