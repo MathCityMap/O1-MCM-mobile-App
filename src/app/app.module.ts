@@ -14,6 +14,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { ModalsService } from '../services/modals-service';
+import { LanguageService } from '../services/language-service';
+import { Globalization } from '@ionic-native/globalization';
 
 import { MyApp } from './app.component';
 
@@ -90,7 +92,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     BroadcastService,
     ModalsService,
     gpsService,
-
+    LanguageService,
+    Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

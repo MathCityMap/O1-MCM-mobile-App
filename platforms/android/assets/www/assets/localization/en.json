@@ -428,9 +428,17 @@
   "a_about_mcm_portal": "MCM consists of an app and a web portal. After a short registration the MathCityMap web portal (www.mathcitymap.eu) offers users the possibility to create own tasks and trails, which later on can be accessed from the app. Furthermore trails can be downloaded as a PDF-file from the web portal. All MathCityMap tools are free.",
   "a_about_mcm_responsibility_title": "Responsible persons",
   "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
-  "a_route_detail_settings_resetTasks_msg": "Do you want to reset this task?",
+  "a_route_detail_settings_resetTasks_msg": "Do you want to reset all tasks in this trail?",
   "good_luck_next_time": "Good luck next time...",
   "a_main_settings_delCache_confirm": "Do you really want to remove all downloaded trails, map data and images?",
   "a_language_el": "Greek",
-  "p_wrzd_segment_meters": "Strecke s in Metern*"
+  "p_wzrd_segment_meters": "Segment s in meters*",
+  "p_wzrd_time_seconds": "Needed time t in seconds*",
+  "p_wzrd_escalator_velocity_m_s": "Velocity in m/s",
+  "p_wzrd_escalator_velocity_km_h": "Velocity in km/h",
+  "p_wzrd_escalator": "Escalator",
+  "p_wzrd_velocity": "Velocity",
+  "current_progress": "Progress",
+  "a_did_you_know": "Did you already know?",
+  "center_two_distances": "Your distance to point A is: '{{L}}' and to point B is: '{{K}}'"
 }
