@@ -355,6 +355,7 @@
   "a_language_code": "de",
   "a_startAt": "Starte von …",
   "a_skipTask": "Überspringe Aufgabe",
+  "a_skipTask_confirm": "Möchtest du diese Aufgabe überspringen?",
   "a_cancelStartAt": "Zeige alle Aufgaben",
   "a_guided_trail": "Möchtest du von einer bestimmten Aufgabe starten?",
   "a_guided_trail_title": "Startpunkt wählen",

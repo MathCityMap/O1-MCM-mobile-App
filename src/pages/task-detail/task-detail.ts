@@ -14,6 +14,7 @@ import { TaskDetailMap } from './task-detail-map';
 
 import * as L from 'leaflet';
 import 'leaflet-geometryutil';
+import { ModalsService } from '../../services/modals-service';
 
 
 /**
@@ -56,7 +57,8 @@ export class TaskDetail{
     private ormService: OrmService,
     private modalCtrl: ModalController,
     private geolocation: Geolocation,
-    private deepLinker: DeepLinker
+    private deepLinker: DeepLinker,
+    private modalsService: ModalsService
   ){
 
    }
@@ -348,6 +350,13 @@ export class TaskDetail{
       });
   }
 
+  confirmSkippingTask() {
+      this.modalsService.showDialog('a_skipTask', 'a_skipTask_confirm',
+          'no', () => {},
+          'yes', async () => {
+              this.closeDetails(true);
+          });
+  }
 
   getNextAvailableHint(){
 
