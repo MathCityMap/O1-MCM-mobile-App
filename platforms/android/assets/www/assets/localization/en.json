@@ -355,6 +355,7 @@
   "a_language_code": "en",
   "a_startAt": "Start at …",
   "a_skipTask": "Skip active task",
+  "a_skipTask_confirm": "Do you want to skip this task?",
   "a_cancelStartAt": "Show all tasks",
   "a_guided_trail": "Do you want to start from a certain task?",
   "a_guided_trail_title": "Select a start point",

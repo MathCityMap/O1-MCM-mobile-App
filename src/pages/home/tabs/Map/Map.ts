@@ -1,6 +1,5 @@
 import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { Platform } from 'ionic-angular';
 import { File } from '@ionic-native/file';
 import { Geolocation } from '@ionic-native/geolocation';
 import { OnInit } from "@angular/core";
@@ -29,6 +28,7 @@ import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Subscription } from 'rxjs/Subscription';
+import { LanguageService } from '../../../../services/language-service';
 
 @IonicPage()
 @Component({
@@ -56,7 +56,6 @@ export class MapPage implements OnInit, OnDestroy {
     eventSubscription: Subscription;
 
     constructor(
-        private platform: Platform,
         private geolocation: Geolocation,
         private updater: DB_Updater,
         private ormService: OrmService,
@@ -66,7 +65,8 @@ export class MapPage implements OnInit, OnDestroy {
         private spinner: SpinnerDialog,
         private translateService: TranslateService,
         private splashScreen: SplashScreen,
-        private gpsService: gpsService) {
+        private gpsService: gpsService,
+        private languageService: LanguageService) {
             this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
             this.publicRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-public.png', iconSize: [35, 48], className:'marker'});
             this.privateRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-private.png', iconSize: [35, 48], className:'marker'});
@@ -92,7 +92,7 @@ export class MapPage implements OnInit, OnDestroy {
 
     async ngOnInit() {
         this.isFilePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
-        this.platform.ready().then(() => {
+        this.languageService.initialize().then(() => {
             console.log('Platform is ready!');
             this.splashScreen.hide();
             this.loadMap();
