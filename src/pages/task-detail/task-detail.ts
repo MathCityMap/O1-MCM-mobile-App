@@ -499,7 +499,7 @@ export class TaskDetail{
                           });
                       }
                   }, {
-                  title: 'pdf_next_task',
+                  title: 'a_skipTask',
                   callback: function(){
                       modal.dismiss().then(() =>{
                           that.closeDetails(true);
