@@ -307,6 +307,7 @@ export class TaskDetail{
       if(solutionSample.length == 0){
           messages = [
               'a_msg_no_solutionsample',
+              'p_t_solution',
               this.task.getSolution()
           ]
       }else{
