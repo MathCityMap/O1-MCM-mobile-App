@@ -51,7 +51,7 @@
                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
                 <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
             </button>
-            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow)" [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer" (click)="checkResult()">{{ "a_btn_check_answer" | translate }}</button>
+            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow)" [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">{{ "a_btn_check_answer" | translate }}</button>
         </div>
     </div>
     <div class="card evaluation positive" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow)">
