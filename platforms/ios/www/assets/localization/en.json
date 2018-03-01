@@ -355,7 +355,6 @@
   "a_language_code": "en",
   "a_startAt": "Start at …",
   "a_skipTask": "Skip active task",
-  "a_skipTask_confirm": "Do you want to skip this task?",
   "a_cancelStartAt": "Show all tasks",
   "a_guided_trail": "Do you want to start from a certain task?",
   "a_guided_trail_title": "Select a start point",
@@ -441,5 +440,12 @@
   "p_wzrd_velocity": "Velocity",
   "current_progress": "Progress",
   "a_did_you_know": "Did you already know?",
-  "center_two_distances": "Your distance to point A is: '{{L}}' and to point B is: '{{K}}'"
+  "a_center_two_distances": "Your distance to point A is: '{{L}}' and to point B is: '{{K}}'",
+  "a_skipTask_confirm": "Do you want to skip this task?",
+  "a_line_no_direction_distance": "You walked  '{{L}}' meters.",
+  "a_line_direction_distance": "You walked '{{L}}' meters, and '{{K}}' º away from the right direction.",
+  "a_triangle_distances": "The distance between the points is: AB:'{{L}}'m, BC:'{{K}}'m , CA:'{{J}}'m",
+  "a_square_distances": "The distance between the points is: AB:'{{L}}'m, BC:'{{K}}'m , CD:'{{J}}'m, DA:'{{H}}'m",
+  "a_center_three_distances": "Your distance the points is A: '{{L}}', B:'{{K}}', C:'{{J}}'",
+  "a_linearFx_info": "The slope and Y you indicated are: m:'{{L}}' , y: '{{K}}'"
 }
