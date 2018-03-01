@@ -91,7 +91,7 @@ export class TaskDetailMap{
     Place or move marker on map depending on index (button click)
      */
     setMarker(index: number){
-        let testing = true; // TODO change this
+        let testing = false; // TODO change this
         var location;
         if(testing){
             location = Helper.testLocation;
@@ -324,7 +324,7 @@ export class TaskDetailMap{
                 trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
 
-            /* For testing - sets users position to click event, comment in for local testing
+            /* For testing - sets users position to click event, comment in for local testing*/
             this.map.on('click', function(e){
                 if(Helper.testLocation == null){
                     Helper.testLocation = {coords:{latitude:null, longitude:null}};
@@ -332,7 +332,7 @@ export class TaskDetailMap{
                 Helper.testLocation.coords.latitude = e.latlng.lat;
                 Helper.testLocation.coords.longitude = e.latlng.lng;
             });
-             */
+
 
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
@@ -363,7 +363,7 @@ export class TaskDetailMap{
                         });
                         this.userMarker.addTo(this.map);
 
-                        let watch = this.geolocation.watchPosition();
+                        let watch = this.geolocation.watchPosition({enableHighAccuracy:true});
                         watch.subscribe(resp => {
 
 
