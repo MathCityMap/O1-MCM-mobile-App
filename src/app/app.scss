@@ -820,3 +820,7 @@ $progress-height: 6px;
 .ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child .scroll-content{
     padding-top: 0!important;
 }
+
+.marker.userPosition {
+    transition: all 2s linear;
+}
