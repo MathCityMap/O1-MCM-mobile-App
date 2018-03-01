@@ -223,8 +223,9 @@ export class MapPage implements OnInit, OnDestroy {
                         // let markerGroup = L.featureGroup();
 
                         this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
-                            alert('Marker clicked');
+                            //alert('Marker clicked');
                         });
+                        this.userMarker.setRotationOrigin('center center');
                         this.userMarker.addTo(this.map);
                         if (!keepPositionBecauseOfReload) {
                             this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);

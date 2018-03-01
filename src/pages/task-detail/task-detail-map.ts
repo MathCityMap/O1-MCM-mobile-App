@@ -359,8 +359,9 @@ export class TaskDetailMap{
                         // let markerGroup = L.featureGroup();
 
                         this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
-                            alert('Marker clicked');
+                            //alert('Marker clicked');
                         });
+                        this.userMarker.setRotationOrigin('center center');
                         this.userMarker.addTo(this.map);
 
                         let watch = this.geolocation.watchPosition({enableHighAccuracy:true});
