@@ -360,7 +360,9 @@ export class TasksMap {
                         });
                         this.userMarker.addTo(this.map);
 
-                        let watch = this.geolocation.watchPosition({enableHighAccuracy:true});
+                        let watch = this.geolocation.watchPosition({
+                            enableHighAccuracy: true
+                        });
                         watch.subscribe(resp => {  
                             if (resp && resp.coords) {
                                 Helper.myLocation = resp;

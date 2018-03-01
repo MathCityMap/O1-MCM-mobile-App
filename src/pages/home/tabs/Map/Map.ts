@@ -230,7 +230,9 @@ export class MapPage implements OnInit, OnDestroy {
                             this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
                         }
 
-                        let watch = this.geolocation.watchPosition({enableHighAccuracy:true});
+                        let watch = this.geolocation.watchPosition({
+                            enableHighAccuracy: true
+                        });
                         watch.subscribe(resp => {
 
                         	
