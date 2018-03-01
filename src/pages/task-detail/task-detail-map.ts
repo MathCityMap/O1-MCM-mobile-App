@@ -91,7 +91,7 @@ export class TaskDetailMap{
     Place or move marker on map depending on index (button click)
      */
     setMarker(index: number){
-        let testing = false; // TODO change this
+        let testing = false; // Note: Change this to true locally for testing GPS tasks!
         var location;
         if(testing){
             location = Helper.testLocation;
