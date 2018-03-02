@@ -112,7 +112,12 @@ export class MapPage implements OnInit, OnDestroy {
 
     async initializeMap() {
         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-        await this.updater.checkForUpdates();
+        try {
+            await this.updater.checkForUpdates();
+        } catch (e) {
+            console.error('caught error while checking for updates:');
+            console.error(e);
+        }
         this.routes = await this.ormService.getVisibleRoutes();
         this.redrawMarker();
         this.spinner.hide();
@@ -169,10 +174,10 @@ export class MapPage implements OnInit, OnDestroy {
 
         
         if (this.map == null) {
-            this.map = (L as any).map('map', {
+            this.map = L.map('map', {
+                attributionControl: false,
                 center: this.center,
                 zoom: 16,
-                tileSize: 256,
                 trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
             if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
@@ -188,6 +193,7 @@ export class MapPage implements OnInit, OnDestroy {
                 this.routeDetails = null;
                 console.log('cleared route details');
             });
+            L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
             if (isLoadedViaHttp) {
                 // when loaded via http (for development), keep track of map position
                 this.map.on('moveend', event => {
@@ -203,7 +209,7 @@ export class MapPage implements OnInit, OnDestroy {
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
                 let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-                    attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
+                    attribution: '&copy; mapbox.com',
                     subdomains: subDomains,
                     minZoom: 4,
                     maxZoom: 20,

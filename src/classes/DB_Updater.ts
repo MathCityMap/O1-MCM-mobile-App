@@ -39,6 +39,8 @@ export class DB_Updater {
                     if (resText && resText.length > 0) {
                         let tableRows = response.json()
                         resolve(tableRows);
+                    } else {
+                        reject('no response from server');
                     }
                 })
                 .catch((error) => {

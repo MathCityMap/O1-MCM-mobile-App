@@ -75,7 +75,12 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async doRefresh(refresher) {
-        await this.dbUpdater.checkForUpdates();
+        try {
+            await this.dbUpdater.checkForUpdates();
+        } catch (e) {
+            console.error('caught error while checking for updates:');
+            console.error(e);
+        }
         this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
         refresher.complete();
     }

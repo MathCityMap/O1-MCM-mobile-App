@@ -51,10 +51,10 @@ export class DB_Handler {
   private constructor() { }
 
   ready(): Promise<void> {
+    if (this.mReady) {
+      return Promise.resolve();
+    }
     return new Promise<void>((resolve, reject) => {
-      if (this.mReady) {
-        resolve();
-      }
       this.mSQLite = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true ? new SQLite() : new WebSQL();
       this.mSQLite.create({
         name: 'mcm_db.sqlite3',

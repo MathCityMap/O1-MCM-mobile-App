@@ -99,6 +99,7 @@ export class ImagesService {
                 }
                 continueCallback();
             }
+            console.log('Starting download task for ' + task.outputName);
             let url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
                 : Helper.WEBSERVER_URL + encodeURI(task.imgFileName);
             fileTransfer.download(url, dataDirectory + task.outputName)
@@ -172,6 +173,7 @@ export class ImagesService {
                 })
             } else {
                 // Path not empty and file does not exist - download from url
+                console.log(`Adding to download queue: ${outputName}`);
                 this.downloadQueue.push({
                     fileTransfer: fileTransfer,
                     imgFileName: imgFileName,

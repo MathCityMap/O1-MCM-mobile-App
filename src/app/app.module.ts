@@ -34,11 +34,10 @@ import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
 import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
-import { YoutubePlayerModule } from 'ngx-youtube-player';
-
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { gpsService } from '../services/gps-service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ngx-youtube-player.module';
 
 
 @NgModule({

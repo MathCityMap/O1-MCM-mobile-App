@@ -324,10 +324,12 @@ export class TasksMap {
 
       if (this.map == null) {
           this.map = L.map('tasks-map', {
-              // center: center,
+              attributionControl: false,
               zoom: 18,
+              trackResize: false, // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
               maxBounds: this.route.getBoundingBoxLatLng()
           });
+          L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
           // this.map.setZoom(18);
           this.map.on('click', e => {
@@ -338,7 +340,7 @@ export class TasksMap {
           let map = this.map;
           await tilesDb.initialize();
           let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-              attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
+              attribution: '&copy; mapbox.com',
               subdomains: subDomains,
               minZoom: 15,
               maxZoom: 21,
