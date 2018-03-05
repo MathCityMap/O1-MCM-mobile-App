@@ -68,31 +68,15 @@ export class MCMIconModal{
             }
         }
 
-        if(params.data.solutions){
-            let sol = params.data.solutions as Array<string>;
-            console.log(sol.length + "TTTTT");
-            switch (sol.length) {
-                case 1:
-                    this.param = {L: params.data.solutions[0]};
-                    break;
-
-                case 2:
-                     this.param = {L: params.data.solutions[0], K: params.data.solutions[1]};
-                    break;
-
-                case 3:
-                     this.param = {L: params.data.solutions[0], K: params.data.solutions[1], J: params.data.solutions[2]};
-                    break;
-
-
-                case 4:
-                     this.param = {L: params.data.solutions[0], K: params.data.solutions[1], J: params.data.solutions[2],
-                                   H: params.data.solutions[3]};
-                    break;
+        if(params.data.solution){
+            let sol = params.data.solution as Array<string>;
+            let L: any; let K: any; let J: any; let H: any;
+            let variables = ["L", "K", "J", "H"];
+            this.param = {};
+            for(let i = 0; i < sol.length; i++){
+                let currVar = variables[i];
+                this.param[currVar] = params.data.solution[i];
             }
-        }
-        else if(params.data.solution){
-            this.param = {L: params.data.solution};
         }
         if(params.data.param){
             this.param = params.data.param;

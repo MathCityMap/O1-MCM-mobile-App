@@ -208,12 +208,13 @@ export class TaskDetail{
 
   checkResult(){
     console.log(this.task.solutionType);
+    let solution = [this.taskDetails.answer];
     if(this.task.solutionType == "value"){
       if(this.taskDetails.answer == this.task.getSolution()){
         this.CalculateScore("value", "solved");
-        this.taskSolved('solved', this.taskDetails.answer, 0);
+        this.taskSolved('solved',solution , 0);
       }else {
-        this.taskSolved('', this.taskDetails.answer, 0);
+        this.taskSolved('', solution, 0);
       }
     } else if(this.task.solutionType == "multiple_choice"){
       console.log(this.multipleChoiceList);
@@ -230,33 +231,37 @@ export class TaskDetail{
       }
       this.taskDetails.answerMultipleChoice = this.multipleChoiceList;
       console.log(taskSuccess);
+      let solution = [this.task.getSolution()]
       if(taskSuccess){
         this.CalculateScore("multiple_choice", "solved");
-        this.taskSolved('solved', this.task.getSolution(), 0);
+        this.taskSolved('solved', solution, 0);
       }else{
-        this.taskSolved('', '', 0);
+        this.taskSolved('', [''], 0);
       }
     } else if(this.task.solutionType == "range"){
       let solutionList = this.task.getSolutionList();
       let von = solutionList[0];
       let bis = solutionList[1];
       let answer = +this.taskDetails.answer;
+      let solution = [this.taskDetails.answer];
       if(answer >= von && answer <= bis){
         this.CalculateScore("range", "solved");
-        this.taskSolved('solved', this.taskDetails.answer, 0);
+        //DEBUG:LOG PAREI AQUI
+        this.taskSolved('solved', solution, 0);
       }else{
         if(solutionList.length == 4){
           //oranges intervall (solvedLow)
           let vonLow = solutionList[2];
           let bisLow = solutionList[3];
+          let solution = [this.taskDetails.answer];
           if(answer >= vonLow && answer <= bisLow){
             this.CalculateScore("range", "solved_low");
-            this.taskSolved('solved_low', this.taskDetails.answer, 0);
+            this.taskSolved('solved_low', solution, 0);
           }else{
-            this.taskSolved('', '', 0);
+            this.taskSolved('', [''], 0);
           }
         }else{
-          this.taskSolved('', '', 0);
+          this.taskSolved('', [''], 0);
         }
       }
     }  else if (this.task.solutionType == "gps"){
@@ -373,15 +378,13 @@ export class TaskDetail{
   }
 
 
-  taskSolved (solved: string, solution: string, scoreVal: number){
+  taskSolved (solved: string, solution: string[], scoreVal: number){
       let that = this;
       if(solved == 'solved' || solved == 'solved_low'){
           this.taskDetails.skipped = false;
           let message = "";
           let title = "";
-          let solutions = null;
           if (this.task.solutionType == "gps") {
-          	solutions = solution.split("#");
           }
           if(solved == 'solved'){
             title = 'a_alert_right_answer_title';
@@ -433,7 +436,6 @@ export class TaskDetail{
               title: title,
               message: message,
               solution: solution,
-              solutions: solutions,
               modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
               buttons: [
                   {
@@ -543,11 +545,9 @@ export class TaskDetail{
       if(this.taskDetails.skipped){
           this.taskDetails.newTries++;
       }
-      	let solutions = null;
-      	if (this.task.solutionType == "gps") solutions = solution.split("#");
         let modal = this.modalCtrl.create(MCMIconModal,  {
             message: message,
-            solutions: solutions,
+            solution: solution,
             modalType: MCMModalType.error,
             buttons: buttons
         }, {
@@ -642,25 +642,25 @@ export class TaskDetail{
   CalculateLine(pointA: L.Marker, pointB: L.Marker, distance: number){
     let currDistance = (L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]);
     let lenghtSolution = 0;
-
+	let solution = [Math.round(currDistance).toString()];
     let tempGreen = 10;
     let tempOrange = 20;
 
     if(currDistance > (distance - tempGreen) && currDistance < (distance + tempGreen)){
-      this.taskSolved("solved", Math.round(currDistance).toString(), 0);
-      if(this.taskDetails.tries > 0){
+      this.taskSolved("solved", solution, 0);
+    	if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
         }
         else this.score.score += this.maxScore;
     } else if (currDistance > (distance - tempOrange) && currDistance < (distance + tempOrange)){
-      this.taskSolved("solved_low", Math.round(currDistance).toString(), 0);
+      this.taskSolved("solved_low", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
         }
     } else {
-      this.taskSolved('', Math.round(currDistance).toString(), 0);
+      this.taskSolved('', solution, 0);
     }
   }
 
@@ -705,8 +705,9 @@ export class TaskDetail{
          else bearingSolution = 0;
      }
 
+     let solution = [Math.round(currDistance).toString(), Math.round(currBearing-angle).toString()];
      if(bearingSolution == 2 && lenghtSolution == 2){
-      this.taskSolved("solved", Math.round(currDistance).toString()+"#"+Math.round(currBearing-angle).toString(), 0);
+      this.taskSolved("solved", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -714,14 +715,14 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
      }
      else if (bearingSolution > 0 && lenghtSolution > 0){
-      this.taskSolved("solved_low", Math.round(currDistance).toString()+"#"+Math.round(currBearing-angle).toString(), 0);
+      this.taskSolved("solved_low", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
 
      } else {
-        this.taskSolved('', Math.round(currDistance).toString()+"#"+Math.round(currBearing-angle).toString(), 0);
+        this.taskSolved('', solution, 0);
       }
   }
 
@@ -745,9 +746,10 @@ export class TaskDetail{
       else {allOrange = false; allGreen = false;}
     }
 
+    let solution = [Math.round(edgesLength[0]).toString(), Math.round(edgesLength[1]).toString(), Math.round(edgesLength[2]).toString()];
     //check conditions
     if(allGreen){
-      this.taskSolved("solved", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+"#"+Math.round(edgesLength[2]).toString(), 0);
+      this.taskSolved("solved", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -755,13 +757,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (allOrange){
-      this.taskSolved("solved_low", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+"#"+Math.round(edgesLength[2]).toString(), 0);
+      this.taskSolved("solved_low", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+"#"+Math.round(edgesLength[2]).toString(), 0);
+    else this.taskSolved('', solution, 0);
   }
 
   CalculateSquare (pointA: L.Marker, pointB: L.Marker, pointC: L.Marker, pointD: L.Marker, distance: number){
@@ -796,10 +798,11 @@ export class TaskDetail{
     else if (Math.abs(diag1-diag2) < tempOrange) diagonalSolution = 1;
     else diagonalSolution = 0;
 
+    let solution = [Math.round(edgesLength[0]).toString(), Math.round(edgesLength[1]).toString(),
+    			    Math.round(edgesLength[2]).toString(), Math.round(edgesLength[3]).toString()];
     //check conditions
     if(allGreen && diagonalSolution == 2){
-      this.taskSolved("solved", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+
-      							"#"+Math.round(edgesLength[2]).toString()+"#"+Math.round(edgesLength[3]).toString(), 0);
+      this.taskSolved("solved",solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -807,15 +810,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (allOrange && diagonalSolution > 0){
-      this.taskSolved("solved_low", Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+
-      							"#"+Math.round(edgesLength[2]).toString()+"#"+Math.round(edgesLength[3]).toString(), 0);
+      this.taskSolved("solved_low", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', Math.round(edgesLength[0]).toString()+"#"+Math.round(edgesLength[1]).toString()+
-      					"#"+Math.round(edgesLength[2]).toString()+"#"+Math.round(edgesLength[3]).toString(), 0);
+    else this.taskSolved('', solution, 0);
   }
 
   CalculateCenterTwoP(pointA: L.LatLng, pointB: L.LatLng, currPosition: L.Marker){
@@ -829,8 +830,9 @@ export class TaskDetail{
     let tempGreen = 5;
     let tempOrange = 10;
 
+    let solution = [Math.round(distanceA).toString(), Math.round(distanceB).toString()];
     if(delta < tempGreen){
-       this.taskSolved("solved", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString(), 0);
+       this.taskSolved("solved", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -838,13 +840,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (delta < tempOrange){
-      this.taskSolved("solved_low", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString(), 0);
+      this.taskSolved("solved_low", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString(), 0);
+    else this.taskSolved('', solution, 0);
   }
 
 
@@ -859,12 +861,12 @@ export class TaskDetail{
     let deltaAB = Math.abs(distanceA - distanceB);
     let deltaBC = Math.abs(distanceB - distanceC);
 
-    let solution : number;
     let tempGreen = 5;
     let tempOrange = 10;
 
+    let solution = [Math.round(distanceA).toString(), Math.round(distanceB).toString(), Math.round(distanceC).toString()]
     if(deltaAB < tempGreen && deltaBC < tempGreen) {
-      this.taskSolved("solved", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString()+"#"+Math.round(distanceC).toString(), 0);
+      this.taskSolved("solved", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -872,14 +874,16 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if(deltaAB < tempOrange && deltaBC < tempOrange) {
-      this.taskSolved("solved_low", Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString()+"#"+Math.round(distanceC).toString(), 0);
+      this.taskSolved("solved_low", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', Math.round(distanceA).toString()+"#"+Math.round(distanceB).toString()+"#"+Math.round(distanceC).toString(), 0);
+    else this.taskSolved('', solution, 0);
   }
+
+
 
   CalculateLinearFx(c0: L.LatLng, c1: L.LatLng, a: L.LatLng, b: L.LatLng, slope: number, yValue: number){
 
@@ -925,6 +929,9 @@ export class TaskDetail{
     let solutionSlope = 0;
     let solutionY = 0;
 
+    let solution = [Math.round(m).toString(), Math.round(yValue).toString()];
+    let solutionFail = [m.toFixed(2).toString(), Math.round(yInMeters).toString()];
+
     if (m > slope - tempMGreen && m < slope + tempMGreen) solutionSlope = 2;
     else if (m > slope - tempMOrange && m < slope + tempMOrange) solutionSlope = 1;
 
@@ -932,7 +939,7 @@ export class TaskDetail{
     else if(yInMeters > yValue - tempYOrange && yInMeters < yValue + tempYOrange) solutionY = 1;
 
     if (solutionSlope == 2 && solutionY == 2){
-      this.taskSolved("solved", Math.round(m).toString()+"#"+Math.round(yValue).toString(), 0);
+      this.taskSolved("solved", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
@@ -940,13 +947,13 @@ export class TaskDetail{
         else this.score.score += this.maxScore;
     }
     else if (solutionSlope>0 && solutionY>0) {
-      this.taskSolved("solved_low", Math.round(m).toString()+"#"+Math.round(yValue).toString(), 0);
+      this.taskSolved("solved_low", solution, 0);
       if(this.taskDetails.tries > 0){
         let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
         this.score.score +=(tempScore > this.minScore ? tempScore : this.minScore);
       } else this.score.score += this.orangeScore;
     }
-    else this.taskSolved('', m.toFixed(2).toString()+"#"+Math.round(yInMeters).toString(), 0);
+    else this.taskSolved('', solutionFail, 0);
   }
 
   //Possibly add this to the MyMath class
