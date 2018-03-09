@@ -32,10 +32,10 @@ export class LanguageService {
             });
         }
         return new Promise(async success => {
-            this.initializeListeners.push(success);
-            await this.platform.ready();
             let defaultLang = 'en';
             this.translateService.setDefaultLang(defaultLang);
+            this.initializeListeners.push(success);
+            await this.platform.ready();
             let lang = await this.storage.get(LanguageService.STORAGE_KEY);
             if (!lang && checkAvailability(Globalization.getPluginRef(), null, Globalization.getPluginName()) === true) {
                 // no previous language found -> get device language
