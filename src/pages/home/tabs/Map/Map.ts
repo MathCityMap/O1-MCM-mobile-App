@@ -67,7 +67,7 @@ export class MapPage implements OnInit, OnDestroy {
         private splashScreen: SplashScreen,
         private gpsService: gpsService,
         private languageService: LanguageService) {
-            this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [38, 41], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+            this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
             this.publicRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-public.png', iconSize: [35, 48], className:'marker'});
             this.privateRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-private.png', iconSize: [35, 48], className:'marker'});
             this.downloadedRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-downloaded.png', iconSize: [35, 48], className:'marker'});
