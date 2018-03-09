@@ -104,26 +104,6 @@ export class DB_Handler {
 
   }
 
-  onUpgrade(oldVersion: number, newVersion: number): Promise<void> {
-    this.cache = {}
-    return new Promise<void>((resolve, reject) => {
-      Promise.all([
-        this.mDB.executeSql("DROP TABLE IF EXISTS " + DBC.DATABASE_TABLE_STATE, null),
-        this.mDB.executeSql("DROP TABLE IF EXISTS " + DBC.DATABASE_TABLE_TASK, null),
-        this.mDB.executeSql("DROP TABLE IF EXISTS " + DBC.DATABASE_TABLE_ROUTE, null),
-        this.mDB.executeSql("DROP TABLE IF EXISTS " + DBC.DATABASE_TABLE_REL_ROUTE_TASK, null),
-        this.mDB.executeSql("DROP TABLE IF EXISTS " + DBC.DATABASE_TABLE_USERS, null),
-        this.mDB.executeSql("DROP TABLE IF EXISTS " + DBC.DATABASE_TABLE_SCORE, null),
-      ]).then(() => {
-        this.onCreate().then(() => {
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
-      }).catch((error) => { reject(error) })
-    })
-  }
-
   protected initTableVersions(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       let sql = `INSERT INTO ${DBC.DATABASE_TABLE_STATE} (${DBC.DB_STATE.fields[1]},${DBC.DB_STATE.fields[2]}) VALUES (?,?)`
@@ -163,7 +143,7 @@ export class DB_Handler {
         .then(result => {
           console.log("TABLE VERSIONS:", result.rows.length)
           // console.log(JSON.stringify(result.rows.item(1).option))
-          if (result.rows.length == 0) {
+          if (result.rows.length < 3) {
             console.warn("ZERO RESULTS: call initTableVersions")
             this.initTableVersions().then(() => {
               console.log("RECEIVED RESULTS, REPEATING SQL")

@@ -111,21 +111,24 @@ export class MapPage implements OnInit, OnDestroy {
     markerGroup: any = null;
 
     async initializeMap() {
-        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-        try {
-            await this.updater.checkForUpdates();
-        } catch (e) {
-            console.error('caught error while checking for updates:');
-            console.error(e);
+        let activeUser = await this.ormService.getActiveUser();
+        if (!activeUser) {
+            let userModal = this.modalCtrl.create(MCMInputModal);
+            await userModal.present();
+        }
+        let online = await this.modalsService.showNoInternetModalIfOffline();
+        if (online) {
+            this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+            try {
+                await this.updater.checkForUpdates();
+            } catch (e) {
+                console.error('caught error while checking for updates:');
+                console.error(e);
+            }
         }
         this.routes = await this.ormService.getVisibleRoutes();
         this.redrawMarker();
         this.spinner.hide();
-        let activeUser = await this.ormService.getActiveUser();
-        if (!activeUser) {
-            let userModal = this.modalCtrl.create(MCMInputModal);
-            userModal.present();
-        }
     }
 
     redrawMarker() {

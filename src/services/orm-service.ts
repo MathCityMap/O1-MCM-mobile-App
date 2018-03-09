@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { SQLite } from '@ionic-native/sqlite';
 import { Connection, createConnection, Repository } from "typeorm";
@@ -22,6 +22,7 @@ import { Platform } from 'ionic-angular';
 import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
 import { AddCompletedColumn1519817905000 } from '../migration/1519817905000-AddCompletedColumn';
 import { Subject } from 'rxjs/Subject';
+import { DB_Handler } from '../classes/DB_Handler';
 
 @Injectable()
 export class OrmService {
@@ -43,6 +44,7 @@ export class OrmService {
             return this.connection;
         }
         await this.platform.ready();
+        await DB_Handler.getInstance().ready();
         const sqliteAvailable = checkAvailability(SQLite.getPluginRef(), null, SQLite.getPluginName()) === true;
         const entities = [
             User,

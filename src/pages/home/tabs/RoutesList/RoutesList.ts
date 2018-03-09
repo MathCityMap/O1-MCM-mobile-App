@@ -76,13 +76,16 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async doRefresh(refresher) {
-        try {
-            await this.dbUpdater.checkForUpdates();
-        } catch (e) {
-            console.error('caught error while checking for updates:');
-            console.error(e);
+        let online = await this.modalsService.showNoInternetModalIfOffline();
+        if (online){
+            try {
+                await this.dbUpdater.checkForUpdates();
+            } catch (e) {
+                console.error('caught error while checking for updates:');
+                console.error(e);
+            }
+            this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
         }
-        this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
         refresher.complete();
     }
 

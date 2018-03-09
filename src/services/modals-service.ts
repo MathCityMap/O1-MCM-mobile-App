@@ -14,6 +14,8 @@ import { AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { Network } from '@ionic-native/network';
+import { Helper } from '../classes/Helper';
 
 
 @Injectable()
@@ -24,10 +26,14 @@ export class ModalsService {
                 public alertCtrl: AlertController,
                 public deepLinker: DeepLinker,
                 public translateService: TranslateService,
-                private spinner: SpinnerDialog) {
+                private spinner: SpinnerDialog,
+                private network: Network) {
     }
 
     async doDownload(route: Route): Promise<boolean> {
+        if (!await this.showNoInternetModalIfOffline()) {
+            return;
+        }
         console.log(`doDownload ${JSON.stringify(route.id)}`);
 
         let cancelHasBeenClicked = false;
@@ -158,6 +164,15 @@ export class ModalsService {
             /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
         })
         testModal.present();
+    }
+
+    async showNoInternetModalIfOffline() : Promise<boolean> {
+        if (Helper.isOnline) {
+            return true;
+        } else {
+            await this.showDialog(null, 'a_toast_need_internet_for_update');
+            return false;
+        }
     }
 }
 
