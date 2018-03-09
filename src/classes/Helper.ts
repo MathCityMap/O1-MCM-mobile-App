@@ -99,7 +99,7 @@ export class Helper {
   // public static HashMap<String, int[]> routeStates = new HashMap<String, int[]>()
   // public static GoogleApiClient googleApiClient
   static readonly REQUEST_LOCATION: number = 199
-  static isOnline = false
+  public static isOnline = false
   static windowWidth: number = 0
   static windowHeight: number = 0
 

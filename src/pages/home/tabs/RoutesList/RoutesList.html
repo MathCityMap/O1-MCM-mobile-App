@@ -26,7 +26,7 @@
                         <button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">
                             <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
                         </button>
-                        <button ion-button icon-only clear class="dot" *ngIf="!item.downloaded" (click)="doDownload(item)">
+                        <button ion-button icon-only clear class="dot" *ngIf="!item.downloaded && helper.isOnline" (click)="doDownload(item)">
                             <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
                         </button>
 

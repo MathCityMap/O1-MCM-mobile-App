@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
     public items: Route[] = [];
+    public helper = Helper;
 
     modal: any;
     private eventSubscription: Subscription;
