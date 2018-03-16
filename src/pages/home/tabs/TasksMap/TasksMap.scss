@@ -65,3 +65,7 @@ page-tasks-map {
         }
     }
 }
+
+.leaflet-marker-icon.marker.userPosition{
+    z-index: 10!important;
+}
