@@ -52,7 +52,7 @@ import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ng
     HttpModule,
     HttpClientModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {mode: 'md'}),
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
