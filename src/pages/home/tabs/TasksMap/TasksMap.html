@@ -57,7 +57,7 @@
                 </ion-fab-list>
             </ion-fab>
         </div>
-        <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)" [ngStyle]="{'background-image' : 'url(\\''+ state.selectedTask.getImageURL()  +'\\')'}"></div>
+        <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)" [ngStyle]="{'background-image' : 'url('+ state.selectedTask.getSingleQuotedImageURL() +')'}"></div>
         <div class="text-container" *ngIf="state.selectedTask">
             <div class="segmented-box">
                 <div class="title segement">

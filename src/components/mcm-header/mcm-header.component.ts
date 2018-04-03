@@ -34,6 +34,7 @@ export class MCMHeaderComponent{
         if (this.navParams && this.navParams.data.headerTitle) {
             return this.navParams.data.headerTitle;
         }
+        // make sure to exclude class names from UglifyJS to avoid name mangling (see config/uglifyjs.config.js)
         if (this.currentpage == 'HomePage') {
             return 'a_title_activity_main'
         }

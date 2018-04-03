@@ -54,6 +54,8 @@ export class OrmService {
             Score,
             Task2Route
         ];
+
+        // make sure to exclude Migration class names from UglifyJS to avoid name mangling (see config/uglifyjs.config.js)
         const migrations = [
             InitialMigration1513274191111,
             AddImageUrlAndDownloadedFlagMigration1513679923000,

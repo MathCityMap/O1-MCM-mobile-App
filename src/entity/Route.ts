@@ -116,8 +116,16 @@ export class Route {
         return ImagesService.INSTANCE.getOfflineURL(this.image);
     }
 
+    getSingleQuotedImageURL(): string {
+        return `'${this.getImageURL()}'`;
+    }
+
     getThumbURL(): string {
         return ImagesService.INSTANCE.getOfflineURL(this.image, true);
+    }
+
+    getSingleQuotedThumbURL(): string {
+        return `'${this.getThumbURL()}'`;
     }
 
     private boundingBoxLatLng: LatLngBounds = null;

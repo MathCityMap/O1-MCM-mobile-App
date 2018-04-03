@@ -91,6 +91,10 @@ export class Task {
         return ImagesService.INSTANCE.getOfflineURL(this.image);
     }
 
+    getSingleQuotedImageURL(): string {
+        return `'${this.getImageURL()}'`;
+    }
+
     getImagesForDownload(): string[] {
         let result = [];
         // Add title image
