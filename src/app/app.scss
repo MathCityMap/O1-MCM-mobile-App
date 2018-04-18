@@ -741,6 +741,7 @@ ion-modal {
             text-align: center;
             p{
                 margin: $global-small-padding 0;
+                white-space: pre-line;
             }
             .highlight{
                 display: inline-block;

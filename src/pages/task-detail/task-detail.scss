@@ -55,6 +55,7 @@ page-task-detail {
             p {
                 margin-bottom: $global-base-padding*1.5;
                 font-size: 16px;
+        		white-space: pre-line;
             }
         }
         .head {
