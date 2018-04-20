@@ -342,7 +342,7 @@ export class TaskDetail{
 
 
   closeDetails(skip?: boolean){
-      this.navCtrl.pop({}, () => {
+    //This guaratees that the state is updated before the map opens and gets the information.
           if(this.navParams.get('goToNextTaskById')){
               let goToNextTaskById = this.navParams.get('goToNextTaskById');
               if(skip){
@@ -353,6 +353,7 @@ export class TaskDetail{
           }
           // necessary because of bug which does not update URL
           this.deepLinker.navChange('back');
+      this.navCtrl.pop({}, () => {
       });
   }
 

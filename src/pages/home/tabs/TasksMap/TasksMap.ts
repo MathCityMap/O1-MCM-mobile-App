@@ -66,7 +66,6 @@ export class TasksMap {
     prevPos: any;
 
     currentScore: any;
-
     user = null;
 
   constructor(
@@ -200,13 +199,17 @@ export class TasksMap {
       return null;
   }
 
-  async ionViewWillLeave(){
+  async saveMapStateToLocalStorage(){
       let mapState = await this.storage.get(this.stateKey);
       if(!mapState){
           mapState = {};
       }
       mapState[this.routeId] = this.state;
       this.storage.set(this.stateKey, mapState);
+  }
+
+  async ionViewWillLeave(){
+    this.saveMapStateToLocalStorage();
   }
 
 
@@ -453,15 +456,17 @@ export class TasksMap {
   }
 
   goToNextTask(task: Task, skip?: boolean){
+   //  setTimeout(async () => {
     if(skip){
         this.state.skippedTaskIds.push(task.id);
     }
     // task.position == index + 1
     this.state.selectedTask = this.taskList[task.position % this.taskList.length];
     this.state.visibleTasks[this.state.selectedTask.position] = true;
-    this.redrawMarker();
+    //this.redrawMarker();
     this.centerSelectedTask();
-
+    this.saveMapStateToLocalStorage();
+   // }, 200);
   }
 
   selectStartPoint(){
