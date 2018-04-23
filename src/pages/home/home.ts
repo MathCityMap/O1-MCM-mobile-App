@@ -12,8 +12,8 @@ export class HomePage {
   private disconnectSubscription: any;
   private connectSubscription: any;
   public static nav: NavController;
-  tab1Root = 'MapPage';
-  tab2Root = 'RoutesListPage';
+  tab1Root = 'RoutesListPage';
+  tab2Root = 'MapPage';
 
   constructor(private navCtrl: NavController, private network: Network, private platform: Platform) {
     HomePage.nav = navCtrl;
