@@ -637,7 +637,7 @@ ion-fab-list{
     background-size: 21px 21px;
     width: 22px;
     height: 21px;
-    content:"";
+    content:"" !important;
     margin-top: 4px;
 
 }
@@ -648,7 +648,7 @@ ion-fab-list{
     background-size: 22px 22px;
     width: 22px;
     height: 20px;
-    content:"";
+    content:"" !important;
 }
 .ion-md-icon-restart:before,
 .ion-ios-icon-restart:before{
@@ -656,7 +656,7 @@ ion-fab-list{
     background-size: 22px 22px;
     width: 22px;
     height: 22px;
-    content:"";
+    content:"" !important;
     vertical-align: middle;
 }
 .ion-md-icon-starting-point:before,
@@ -665,7 +665,7 @@ ion-fab-list{
     background-size: 22px 22px;
     width: 22px;
     height: 22px;
-    content:"";
+    content:"" !important;
     vertical-align: middle;
 }
 .ion-md-icon-visibility:before,
@@ -674,7 +674,7 @@ ion-fab-list{
     background-size: 22px 22px;
     width: 22px;
     height: 20px;
-    content:"";
+    content:"" !important;
 }
 .ion-md-icon-track-gps:before,
 .ion-ios-icon-track-gps:before{
@@ -682,7 +682,7 @@ ion-fab-list{
     background-size: 22px 22px;
     width: 22px;
     height: 22px;
-    content:"";
+    content:"" !important;
     margin-top: 4px;
 }
 
