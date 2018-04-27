@@ -27,9 +27,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       // statusBar.styleDefault();
       // statusBar.show();
-        splashScreen.hide();
     });
-    languageService.initialize();
+    languageService.initialize().then(() => splashScreen.hide());
     statusBar.backgroundColorByHexString('#035f87'); // set status bar color
   }
 

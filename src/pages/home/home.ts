@@ -3,6 +3,8 @@ import { Network } from '@ionic-native/network';
 import {IonicPage, NavController, Platform} from 'ionic-angular';
 
 import { Helper } from '../../classes/Helper';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { LanguageService } from '../../services/language-service';
 
 @IonicPage()
 @Component({
@@ -15,7 +17,8 @@ export class HomePage {
   tab1Root = 'RoutesListPage';
   tab2Root = 'MapPage';
 
-  constructor(private navCtrl: NavController, private network: Network, private platform: Platform) {
+  constructor(private navCtrl: NavController, private network: Network, private platform: Platform,
+              private splashScreen: SplashScreen, private languageService: LanguageService) {
     HomePage.nav = navCtrl;
   }
 
@@ -34,6 +37,11 @@ export class HomePage {
         console.log('Network connected!');
         Helper.isOnline = true;
       });
+        this.languageService.initialize().then(() => {
+            console.log('Platform is ready!');
+            this.splashScreen.hide();
+        });
+
     })
   }
 

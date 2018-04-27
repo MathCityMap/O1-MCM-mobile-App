@@ -26,7 +26,6 @@ import { TranslateService } from '@ngx-translate/core';
 import {gpsService} from  '../../../../services/gps-service';
 import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { Subscription } from 'rxjs/Subscription';
 import { LanguageService } from '../../../../services/language-service';
 
@@ -64,7 +63,6 @@ export class MapPage implements OnInit, OnDestroy {
         public navCtrl: NavController,
         private spinner: SpinnerDialog,
         private translateService: TranslateService,
-        private splashScreen: SplashScreen,
         private gpsService: gpsService,
         private languageService: LanguageService) {
             this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
@@ -93,12 +91,8 @@ export class MapPage implements OnInit, OnDestroy {
     async ngOnInit() {
         this.isFilePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
         this.languageService.initialize().then(() => {
-            console.log('Platform is ready!');
-            this.splashScreen.hide();
             this.loadMap();
             this.initializeMap();
-
-
         });
 
     }
@@ -113,18 +107,18 @@ export class MapPage implements OnInit, OnDestroy {
     async initializeMap() {
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
+            let online = await this.modalsService.showNoInternetModalIfOffline();
+            if (online) {
+                this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+                try {
+                    await this.updater.checkForUpdates();
+                } catch (e) {
+                    console.error('caught error while checking for updates:');
+                    console.error(e);
+                }
+            }
             let userModal = this.modalCtrl.create(MCMInputModal);
             await userModal.present();
-        }
-        let online = await this.modalsService.showNoInternetModalIfOffline();
-        if (online) {
-            this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-            try {
-                await this.updater.checkForUpdates();
-            } catch (e) {
-                console.error('caught error while checking for updates:');
-                console.error(e);
-            }
         }
         this.routes = await this.ormService.getVisibleRoutes();
         this.redrawMarker();

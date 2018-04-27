@@ -10,6 +10,9 @@ import { DB_Updater } from '../../../../classes/DB_Updater';
 import { DBC } from '../../../../classes/DBC';
 import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 import { Subscription } from 'rxjs/Subscription';
+import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -28,6 +31,9 @@ export class RoutesListPage implements OnDestroy {
                 private geolocation: Geolocation,
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
+                private modalCtrl: ModalController,
+                private spinner: SpinnerDialog,
+                private translateService: TranslateService,
                 private dbUpdater: DB_Updater) {
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
@@ -39,6 +45,21 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async ionViewWillEnter() {
+        let activeUser = await this.ormService.getActiveUser();
+        if (!activeUser) {
+            let online = await this.modalsService.showNoInternetModalIfOffline();
+            if (online) {
+                this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+                try {
+                    await this.dbUpdater.checkForUpdates();
+                } catch (e) {
+                    console.error('caught error while checking for updates:');
+                    console.error(e);
+                }
+            }
+            let userModal = this.modalCtrl.create(MCMInputModal);
+            await userModal.present();
+        }
         this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
         if (!Helper.myLocation) {
             try {
