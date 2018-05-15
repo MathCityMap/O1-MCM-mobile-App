@@ -4,7 +4,7 @@ import { DBC_Plan } from './DBC_Plan'
 
 export abstract class DBC {
   static readonly DATABASE_NAME: string = "mcm_app"
-  static readonly DATABASE_VERSION: number = 31
+  static readonly DATABASE_VERSION: number = 32
 
   // // Table names (For table definitions look at the corresponding classes DBC_tablename)
   static readonly DATABASE_TABLE_STATE: string = "mcm_state"
@@ -79,7 +79,8 @@ export abstract class DBC {
       "solutionsample",
       "attr",
       "create_date",
-      "lang_code"
+      "lang_code",
+      //  "visible",
     ],
     [
       "INTEGER",
@@ -104,7 +105,8 @@ export abstract class DBC {
       "TEXT",
       "TEXT",
       "TIMESTAMP",
-      "VARCHAR"
+      "VARCHAR",
+      //  "INTEGER"
     ],
     [
       "PRIMARY KEY AUTOINCREMENT",
@@ -129,7 +131,8 @@ export abstract class DBC {
       "NOT NULL",
       "",
       "NOT NULL",
-      "(2)"
+      "(2)",
+      //  "(1) NOT NULL DEFAULT 1"
     ]
   )
 
@@ -154,7 +157,8 @@ export abstract class DBC {
       "timestamp",
       "description",
       "create_date",
-      "attr"
+      "attr",
+      //  "lang_code",
     ],
     [
       "INTEGER",
@@ -174,7 +178,8 @@ export abstract class DBC {
       "TIMESTAMP",
       "TEXT",
       "TIMESTAMP",
-      "TEXT"
+      "TEXT",
+      //  "VARCHAR"
     ],
     [
       "PRIMARY KEY AUTOINCREMENT",
@@ -194,7 +199,8 @@ export abstract class DBC {
       "NOT NULL DEFAULT CURRENT_TIMESTAMP",
       "",
       "NOT NULL",
-      "TEXT"
+      "",
+      //  "(2)"
     ]
   )
 

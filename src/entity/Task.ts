@@ -79,6 +79,11 @@ export class Task {
     @Column({name: 'lang_code'})
     langCode: string;
 
+    /*
+    @Column()
+    visible: number;
+    */
+
     position: number;
 
     @ManyToMany(type => Route, route => route.tasks)

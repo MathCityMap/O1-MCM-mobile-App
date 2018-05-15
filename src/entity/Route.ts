@@ -70,6 +70,11 @@ export class Route {
     @Column()
     attr: string;
 
+    /*
+    @Column({name: 'lang_code'})
+    langCode: string;
+    */
+
     tasks: Task[];
 
     async getTasks(): Promise<Task[]> {
@@ -103,6 +108,15 @@ export class Route {
 
     @OneToMany(type => Score, score => score.route, {eager: true})
     scores: Score[];
+
+    async getTaskCount(): Promise<number>{
+        if (this.task2Routes) {
+            return this.task2Routes.length;
+        } else {
+            // relation was not loaded yet -> reload route to get tasks
+            await (await OrmService.INSTANCE.findRouteById(this.id)).getTaskCount();
+        }
+    }
 
     getScoreForUser(user: User): Score {
         let userScore = this.scores.filter(value => value.userId == user.id);

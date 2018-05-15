@@ -165,9 +165,10 @@ export class DB_Handler {
   }
 
   //  Wird im ImageDownloader verwendet, dieser benötigt von allen Trails die Infos public und image
+  // 15.05.18 - Select only public trails
   getTrailsImageInfo(): Promise<[string[]]> {
     return new Promise<[string[]]>((resolve, reject) => {
-      this.mDB.executeSql(`SELECT public,image FROM ${DBC.DATABASE_TABLE_ROUTE}`, null)
+      this.mDB.executeSql(`SELECT public,image FROM ${DBC.DATABASE_TABLE_ROUTE} WHERE public = 1`, null)
         .then(result => {
           var info: [string[]] = null
           for (var i = 0; i < result.rows.length; i++) {

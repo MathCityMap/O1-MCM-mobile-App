@@ -11,13 +11,14 @@ import { DB_Handler } from './DB_Handler'
 import { ImagesService } from '../services/images-service';
 import { checkAvailability } from '@ionic-native/core';
 import { OrmService } from '../services/orm-service';
+import {Route} from "../entity/Route";
 
 @Injectable()
 export class DB_Updater {
     constructor(private http: Http, private imagesService: ImagesService, private ormService: OrmService) {
     }
 
-    private invokeApi(queryAction: string): Promise<any> {
+    private invokeApi(queryAction: string, postparams?: string): Promise<any> {
         if (!Helper.isOnline) {
             console.warn("No internet!")
             return new Promise<any>(resolve => resolve())
@@ -29,6 +30,9 @@ export class DB_Updater {
         let options = new RequestOptions({headers: headers});
         let data = "pass=" + encodeURI(Helper.REQUEST_PASS)
             + "&action=" + encodeURI(queryAction)
+        if(postparams !== undefined){
+            data += postparams;
+        }
 
         return new Promise<any>((resolve, reject) => {
             this.http.post(Helper.API_URL, data, options)
@@ -54,12 +58,13 @@ export class DB_Updater {
 
     /*
       Compare online and offline table versions and update if necessary
+      14.05.2018 - Do not sync the tasks table anymore! (Gurjanow)
     */
     public async checkForUpdates() {
         let dbHandler = DB_Handler.getInstance()
         await dbHandler.ready();
         let db = dbHandler.getDB();
-        let data = await this.invokeApi('getVersions');
+        let data = await this.invokeApi('getVersionsV2'); // Gets table versions for mcm_route and mcm_rel_route_task
         if (!data) {
             return;
         }
@@ -78,19 +83,6 @@ export class DB_Updater {
 
         // Compare
         let sqlUpdateQuery = `UPDATE ${DBC.DATABASE_TABLE_STATE} SET ${DBC.DB_STATE.fields[2]} = ? WHERE ${DBC.DB_STATE.fields[1]} = ?`
-        if (Number(offlineVersions.getValue("version_task")) < Number(onlineVersions.getValue("version_task"))) {
-            // Tasks need update
-            await this.insertJSONinSQLiteDB(await this.invokeApi('getTasks'), DBC.DB_TASK);
-            // Update local table
-            console.log("UPDATING version_task VERSION!", onlineVersions.getValue("version_task"))
-            await db.executeSql(sqlUpdateQuery,
-                [
-                    onlineVersions.getValue("version_task"),
-                    "version_task"
-                ]);
-            console.log("UPDATED VERSION!", "version_task")
-
-        }
         if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
             // load routes with flags which need to be restored
             let downloadedRoutes = await this.ormService.getDownloadedRoutes();
@@ -99,6 +91,9 @@ export class DB_Updater {
 
             // Routes need update
             await this.insertJSONinSQLiteDB(await this.invokeApi('getRoutes'), DBC.DB_ROUTE);
+            /*
+            TODO: updateRouteImages muss losgelöst von der Datenbankaktualisierung stattfinden!
+             */
             await this.updateRouteImages();
             // Update local table
             console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
@@ -125,7 +120,7 @@ export class DB_Updater {
             }
             let repo = await this.ormService.getRouteRepository();
             await repo.save(routesToSave);
-            console.log("UPDATED VERSION!", "version_route")
+            console.log("UPDATED VERSION!", "version_route");
         }
         if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
             // Relation needs update
@@ -147,9 +142,12 @@ export class DB_Updater {
     */
     private async insertJSONinSQLiteDB(data: any, table: DBC_Plan) {
         let sqlInsertQry = `INSERT INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
+        let sqlReplaceIntoQry = `REPLACE INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
         let dbh = DB_Handler.getInstance()
         let db = dbh.getDB();
-        await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
+        if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
+            await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
+        }
         await db.transaction(tr => {
             for (var i = 0; i < data.length; i++) {
                 let row = data[i]
@@ -169,7 +167,13 @@ export class DB_Updater {
                         console.warn("Caution: Datatype not Integer, Varchar or Text!")
                     }
                 }
-                tr.executeSql(sqlInsertQry, params)
+                if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
+                    tr.executeSql(sqlInsertQry, params)
+                }
+                else{
+                    // For tasks: Replace rows when refreshing the trail
+                    tr.executeSql(sqlReplaceIntoQry, params)
+                }
             }
         }).catch(error => {
             console.error(`Transaction Error: ${error.toString()}`)
@@ -187,9 +191,6 @@ export class DB_Updater {
         let images = [];
         for (var i = 0; i < trailInfo.length; i++) {
             let info = trailInfo[i];
-            if (info[0] === "0") {
-                continue
-            }
 
             let imgFileName = info[1]
             // No image in task
@@ -199,5 +200,27 @@ export class DB_Updater {
             images.push(imgFileName);
         }
         await this.imagesService.downloadURLs(images, true);
+    }
+
+    /*
+    Gets table data for a given route via API call "downloadTrail"
+     */
+    public async downloadRouteTasksData(route: Route, lang_code: string){
+        let user_id = 0;
+        let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
+        await this.insertJSONinSQLiteDB(await this.invokeApi('downloadTrail', postparams), DBC.DB_TASK);
+        // refresh the tasks
+        route.tasks = await (await OrmService.INSTANCE.findRouteById(route.id)).getTasks();
+    }
+
+    /*
+     Gets table data updates for a given route via API call "updateTrail"
+     */
+    public async updateRouteTasksData(route_id: number, lang_code: string){
+        if(Helper.isOnline){
+            let user_id = 0;
+            let postparams = "&route_id=" + route_id + "&user_id=" + user_id + "&lang_code=" + lang_code;
+            await this.insertJSONinSQLiteDB(await this.invokeApi('updateTrail', postparams), DBC.DB_TASK);
+        }
     }
 }

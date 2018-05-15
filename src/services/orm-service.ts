@@ -23,6 +23,9 @@ import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUn
 import { AddCompletedColumn1519817905000 } from '../migration/1519817905000-AddCompletedColumn';
 import { Subject } from 'rxjs/Subject';
 import { DB_Handler } from '../classes/DB_Handler';
+import {AddVisibleColumn1526306624000} from "../migration/1526306624000-AddVisibleColumn";
+import {AddLangCodeColumn1526306730000} from "../migration/1526306730000-AddLangCodeColumn";
+import {DB_Updater} from "../classes/DB_Updater";
 
 @Injectable()
 export class OrmService {
@@ -61,7 +64,9 @@ export class OrmService {
             AddImageUrlAndDownloadedFlagMigration1513679923000,
             FailedTaskMigration1515428187000,
             AddUnlockedColumn1516037215000,
-            AddCompletedColumn1519817905000
+            AddCompletedColumn1519817905000,
+            // AddVisibleColumn1526306624000, // this update throws errors on Android: java.sql.SQLException: sqlite3_prepare_v2 failure: duplicate column name: visible - although no visible column is in mcm_task table
+            // AddLangCodeColumn1526306730000 // same as above
         ];
         if (sqliteAvailable) {
             return this.connection = await createConnection({
@@ -285,9 +290,11 @@ export class OrmService {
         return result;
     }
 
-    async downloadRoute(route: Route, statusCallback) {
+    async downloadRoute(route: Route, statusCallback, dbUpdater: DB_Updater) {
         let alreadyDownloadedUrls = [];
         try {
+            // 15.04.18 - get data rows for route tasks from online DB first
+            await dbUpdater.downloadRouteTasksData(route, this.translateService.instant("a_language_code"));
             statusCallback(0, 0, 'a_rdl_title_map');
             await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, (done, total, url) => {
                 alreadyDownloadedUrls.push(url);
