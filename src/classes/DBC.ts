@@ -80,7 +80,7 @@ export abstract class DBC {
       "attr",
       "create_date",
       "lang_code",
-      //  "visible",
+      "visible",
     ],
     [
       "INTEGER",
@@ -106,7 +106,7 @@ export abstract class DBC {
       "TEXT",
       "TIMESTAMP",
       "VARCHAR",
-      //  "INTEGER"
+      "INTEGER"
     ],
     [
       "PRIMARY KEY AUTOINCREMENT",
@@ -132,7 +132,7 @@ export abstract class DBC {
       "",
       "NOT NULL",
       "(2)",
-      //  "(1) NOT NULL DEFAULT 1"
+      "(1) NOT NULL DEFAULT 1"
     ]
   )
 
@@ -158,7 +158,7 @@ export abstract class DBC {
       "description",
       "create_date",
       "attr",
-      //  "lang_code",
+      "lang_code",
     ],
     [
       "INTEGER",
@@ -179,7 +179,7 @@ export abstract class DBC {
       "TEXT",
       "TIMESTAMP",
       "TEXT",
-      //  "VARCHAR"
+      "VARCHAR"
     ],
     [
       "PRIMARY KEY AUTOINCREMENT",
@@ -200,7 +200,7 @@ export abstract class DBC {
       "",
       "NOT NULL",
       "",
-      //  "(2)"
+      "(2)"
     ]
   )
 
