@@ -3,6 +3,7 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { MCMModalType } from '../../app/app.component';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { Platform } from 'ionic-angular';
+import { ImagesService } from '../../services/images-service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class MCMIconModal{
     videoWith: number;
     videoHeight: number;
 
-    constructor(params: NavParams, private viewCtrl: ViewController, platform: Platform) {
+    constructor(params: NavParams, private viewCtrl: ViewController, platform: Platform, public imagesService: ImagesService) {
         this.windowWith = platform.width();
         this.videoWith = this.windowWith - 80;
         this.videoHeight = this.videoWith * 0.7476923077;
