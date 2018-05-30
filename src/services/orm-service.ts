@@ -65,8 +65,8 @@ export class OrmService {
             FailedTaskMigration1515428187000,
             AddUnlockedColumn1516037215000,
             AddCompletedColumn1519817905000,
-            AddVisibleColumn1526306624000, // this update throws errors on Android: java.sql.SQLException: sqlite3_prepare_v2 failure: duplicate column name: visible - although no visible column is in mcm_task table
-            AddLangCodeColumn1526306730000 // same as above
+            AddVisibleColumn1526306624000,
+            AddLangCodeColumn1526306730000
         ];
         if (sqliteAvailable) {
             return this.connection = await createConnection({
