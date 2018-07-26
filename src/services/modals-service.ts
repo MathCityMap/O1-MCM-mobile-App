@@ -3,20 +3,21 @@ import { ModalController } from "ionic-angular/components/modal/modal-controller
 import { OrmService } from './orm-service';
 import { DeepLinker } from "ionic-angular/navigation/deep-linker";
 import { Route } from '../entity/Route';
+import { Score} from "../entity/Score";
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
-import { ChangeDetectorRef, Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable, state} from '@angular/core';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 import { Task } from '../entity/Task';
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { AlertController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
-import { TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
+import { TaskMapState, TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { Network } from '@ionic-native/network';
 import { Helper } from '../classes/Helper';
-import {DB_Updater} from "../classes/DB_Updater";
+import { DB_Updater } from "../classes/DB_Updater";
 
 
 @Injectable()
@@ -154,9 +155,11 @@ export class ModalsService {
         });
     }
 
-    async presentTaskListModal(route: Route, navCtrl: NavController, callback: any) {
+    async presentTaskListModal(route: Route, score: Score, state: TaskMapState, navCtrl: NavController, callback: any) {
         let testModal = this.modalCtrl.create(CenteredTask, {
             route: route,
+            score: score,
+            state: state,
             tasks: await route.getTasks(),
             modalsService: this
         });
@@ -166,7 +169,7 @@ export class ModalsService {
             /* already on taskMap */
             else if (data && data.selectedTask != null && navCtrl != null && callback) callback(data.selectedTask);
             /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
-        })
+        });
         testModal.present();
     }
 
