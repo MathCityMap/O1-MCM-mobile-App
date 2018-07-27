@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TaskMapState, TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { Network } from '@ionic-native/network';
-import { Helper } from '../classes/Helper';
+import { ConnectionQuality, Helper } from '../classes/Helper';
 import { DB_Updater } from "../classes/DB_Updater";
 
 
@@ -30,7 +30,8 @@ export class ModalsService {
                 public translateService: TranslateService,
                 private spinner: SpinnerDialog,
                 private network: Network,
-                private dbUpdater: DB_Updater) {
+                private dbUpdater: DB_Updater,
+                private helper: Helper) {
     }
 
     async doDownload(route: Route): Promise<boolean> {
@@ -101,6 +102,16 @@ export class ModalsService {
             buttons: buttons
         });
         return confirm.present();
+    }
+
+    showYesNoDialog(titleKey: string, messageKey: string,
+                    yesKey?: string,
+                    noKey?: string): Promise<boolean> {
+        yesKey = yesKey || 'yes';
+        noKey = noKey || 'no';
+        return new Promise<boolean>((resolve, reject) => {
+            this.showDialog(titleKey, messageKey, yesKey, () => resolve(true), noKey, () => resolve(false));
+        });
     }
 
     private navigateToRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
@@ -175,7 +186,13 @@ export class ModalsService {
 
     async showNoInternetModalIfOffline() : Promise<boolean> {
         if (Helper.isOnline) {
-            return true;
+            let quality = await this.helper.checkConnection();
+            if (quality == ConnectionQuality.FAST) {
+                return true;
+            } else {
+                return await this.showYesNoDialog('a_slow_connection_title',
+                    'a_slow_connection', 'a_alert_continue', 'a_alert_cancel');
+            }
         } else {
             await this.showDialog(null, 'a_toast_need_internet_for_update');
             return false;

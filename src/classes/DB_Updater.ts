@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { FileTransfer } from '@ionic-native/file-transfer'
-import { Http, Headers, RequestOptions } from '@angular/http'
 import 'rxjs/add/operator/toPromise'
 import * as Collections from 'typescript-collections'
 
@@ -11,49 +10,11 @@ import { DB_Handler } from './DB_Handler'
 import { ImagesService } from '../services/images-service';
 import { checkAvailability } from '@ionic-native/core';
 import { OrmService } from '../services/orm-service';
-import {Route} from "../entity/Route";
+import { Route } from "../entity/Route";
 
 @Injectable()
 export class DB_Updater {
-    constructor(private http: Http, private imagesService: ImagesService, private ormService: OrmService) {
-    }
-
-    private invokeApi(queryAction: string, postparams?: string): Promise<any> {
-        if (!Helper.isOnline) {
-            console.warn("No internet!")
-            return new Promise<any>(resolve => resolve())
-        }
-
-        let headers = new Headers({
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        })
-        let options = new RequestOptions({headers: headers});
-        let data = "pass=" + encodeURI(Helper.REQUEST_PASS)
-            + "&action=" + encodeURI(queryAction)
-        if(postparams !== undefined){
-            data += postparams;
-        }
-
-        return new Promise<any>((resolve, reject) => {
-            this.http.post(Helper.API_URL, data, options)
-                .toPromise()
-                .then((response) => {
-                    console.log('API response: ', response.text().substr(0, 255))
-                    let resText = response.text()
-                    if (resText && resText.length > 0) {
-                        let tableRows = response.json()
-                        resolve(tableRows);
-                    } else {
-                        reject('no response from server');
-                    }
-                })
-                .catch((error) => {
-                    console.error('API error(status): ', error.status)
-                    console.error('API error: ', JSON.stringify(error))
-
-                    reject(JSON.stringify(error))
-                })
-        })
+    constructor(private imagesService: ImagesService, private ormService: OrmService, private helper: Helper) {
     }
 
     /*
@@ -64,7 +25,7 @@ export class DB_Updater {
         let dbHandler = DB_Handler.getInstance()
         await dbHandler.ready();
         let db = dbHandler.getDB();
-        let data = await this.invokeApi('getVersionsV2'); // Gets table versions for mcm_route and mcm_rel_route_task
+        let data = await this.helper.invokeApi('getVersionsV2'); // Gets table versions for mcm_route and mcm_rel_route_task
         if (!data) {
             return;
         }
@@ -90,7 +51,7 @@ export class DB_Updater {
             let completedRoutes = await this.ormService.getCompletedRoutes();
 
             // Routes need update
-            await this.insertJSONinSQLiteDB(await this.invokeApi('getRoutes'), DBC.DB_ROUTE);
+            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRoutes'), DBC.DB_ROUTE);
             /*
             TODO: updateRouteImages muss losgelöst von der Datenbankaktualisierung stattfinden!
              */
@@ -124,7 +85,7 @@ export class DB_Updater {
         }
         if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
             // Relation needs update
-            await this.insertJSONinSQLiteDB(await this.invokeApi('getRelations'), DBC.DB_RELROUTETASK);
+            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRelations'), DBC.DB_RELROUTETASK);
             // Update local table
             console.log("UPDATING version_rel_route_task VERSION!", onlineVersions.getValue("version_rel_route_task"))
             await db.executeSql(sqlUpdateQuery,
@@ -208,7 +169,7 @@ export class DB_Updater {
     public async downloadRouteTasksData(route: Route, lang_code: string){
         let user_id = 0;
         let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-        await this.insertJSONinSQLiteDB(await this.invokeApi('downloadTrail', postparams), DBC.DB_TASK);
+        await this.insertJSONinSQLiteDB(await this.helper.invokeApi('downloadTrail', postparams), DBC.DB_TASK);
         // refresh the tasks
         route.tasks = await (await OrmService.INSTANCE.findRouteById(route.id)).getTasks();
     }
@@ -220,7 +181,7 @@ export class DB_Updater {
         if(Helper.isOnline){
             let user_id = 0;
             let postparams = "&route_id=" + route_id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-            await this.insertJSONinSQLiteDB(await this.invokeApi('updateTrail', postparams), DBC.DB_TASK);
+            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('updateTrail', postparams), DBC.DB_TASK);
         }
     }
 }
