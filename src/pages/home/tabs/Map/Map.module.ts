@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MapPage } from './Map';
 import { TranslateModule } from '@ngx-translate/core';
-import { MCMHeaderModule } from '../../../../components/mcm-header/mcm-header.module';
+import { ComponentsModule } from '../../../../components/components.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,7 @@ import { MCMHeaderModule } from '../../../../components/mcm-header/mcm-header.mo
   imports: [
     IonicPageModule.forChild(MapPage),
     TranslateModule.forChild(),
-    MCMHeaderModule
+    ComponentsModule
   ],
   exports: [
     MapPage

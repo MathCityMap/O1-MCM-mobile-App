@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { SettingsPage } from './settings';
-import { MCMHeaderModule } from '../../components/mcm-header/mcm-header.module';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,7 @@ import { MCMHeaderModule } from '../../components/mcm-header/mcm-header.module';
   ],
   imports: [
     IonicPageModule.forChild(SettingsPage),
-    MCMHeaderModule
+    ComponentsModule
   ],
 })
 export class SettingsPageModule {}

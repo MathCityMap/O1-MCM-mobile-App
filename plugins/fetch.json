@@ -145,5 +145,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com-sarriaroman-photoviewer": {
+        "source": {
+            "type": "registry",
+            "id": "com-sarriaroman-photoviewer"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

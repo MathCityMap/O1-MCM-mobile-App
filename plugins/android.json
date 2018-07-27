@@ -59,6 +59,9 @@
         },
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
         }
     },
     "dependent_plugins": {}
