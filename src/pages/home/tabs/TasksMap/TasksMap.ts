@@ -14,7 +14,7 @@ import { Score } from '../../../../entity/Score';
 
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
-import {gpsService} from  '../../../../services/gps-service';
+import { gpsService} from  '../../../../services/gps-service';
 import { ModalsService } from '../../../../services/modals-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import 'leaflet-rotatedmarker';
@@ -23,9 +23,9 @@ import 'conic-gradient';
 import { ImagesService } from '../../../../services/images-service';
 import { Storage } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import {MCMModalType} from "../../../../app/app.component";
-import {MCMIconModal} from "../../../../modals/MCMIconModal/MCMIconModal";
-import {ModalController} from "ionic-angular/components/modal/modal-controller";
+import { MCMModalType } from "../../../../app/app.component";
+import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
+import { ModalController} from "ionic-angular/components/modal/modal-controller";
 
 declare var ConicGradient: any;
 
@@ -43,7 +43,7 @@ export class TasksMap {
   private route: Route;
   private taskList: Task[];
 
-  private state: State = {
+  private state: TaskMapState = {
       selectedTask: null,
       isShowingAllTasks: false,
       visibleTasks : {},
@@ -289,6 +289,8 @@ export class TasksMap {
             continue;
         }
         let icon = this.taskOpenIcon;
+
+        let removeTaskFromSkippedArray = true;
         if(this.score.getTasksSolved().indexOf(task.id) > -1){
             icon = this.taskDonePerfectIcon;
         }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
@@ -297,6 +299,11 @@ export class TasksMap {
             icon = this.taskFailedIcon;
         }else if(this.state.skippedTaskIds.indexOf(task.id) > -1){
           icon = this.taskSkippedIcon;
+          removeTaskFromSkippedArray = false;
+      }
+      if (removeTaskFromSkippedArray && this.state.skippedTaskIds.indexOf(task.id) > -1) {
+            // remove task from skipped array
+            this.state.skippedTaskIds.splice(this.state.skippedTaskIds.indexOf(task.id), 1);
       }
       markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
           if (this.state.selectedTask == task) {
@@ -369,12 +376,12 @@ export class TasksMap {
                         let watch = this.geolocation.watchPosition({
                             enableHighAccuracy: true
                         });
-                        watch.subscribe(resp => {  
+                        watch.subscribe(resp => {
                             if (resp && resp.coords) {
                                 Helper.myLocation = resp;
                                 console.log(`Coordinates: ${JSON.stringify(resp)}`);
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
-                                this.userMarker.setLatLng(lanlng);   
+                                this.userMarker.setLatLng(lanlng);
                                 //Rotate the user marker
                                 if(this.prevPos!=null) {
                                   let angle = Helper.getAngle(this.prevPos, resp.coords);
@@ -472,7 +479,7 @@ export class TasksMap {
   selectStartPoint(){
     /* open the damn modal again */
     let that = this;
-    this.modalService.presentTaskListModal(this.route, this.navCtrl, function(selectedTask: Task){
+    this.modalService.presentTaskListModal(this.route, this.score, this.state, this.navCtrl, function(selectedTask: Task){
             console.log("back in tasksMap");
             that.state.selectedTask = selectedTask;
             that.state.visibleTasks = {};
@@ -516,7 +523,7 @@ export class TasksMap {
   }
 
 }
-interface State {
+export interface TaskMapState {
     selectedTask: Task;
     isShowingAllTasks: boolean;
     visibleTasks: any;
