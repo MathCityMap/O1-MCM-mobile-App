@@ -60,6 +60,9 @@
         },
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
         }
     },
     "dependent_plugins": {

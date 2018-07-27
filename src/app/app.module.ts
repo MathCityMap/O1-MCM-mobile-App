@@ -27,7 +27,6 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { OrmService } from '../services/orm-service';
 import {ImagesService} from '../services/images-service';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
-import { MCMHeaderModule } from '../components/mcm-header/mcm-header.module';
 import { LinkyModule } from 'angular-linky';
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BroadcastService } from '../services/broadcast-service';
@@ -38,6 +37,7 @@ import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { gpsService } from '../services/gps-service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ngx-youtube-player.module';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -62,7 +62,7 @@ import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ng
 
       }, useDefaultLang: true
     }),
-    MCMHeaderModule,
+    ComponentsModule,
     LinkyModule,
     YoutubePlayerModule
   ],

@@ -75,6 +75,10 @@
                         {
                             "xml": "<feature name=\"Globalization\"><param name=\"ios-package\" value=\"CDVGlobalization\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PhotoViewer\"><param name=\"ios-package\" value=\"PhotoViewer\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -218,6 +222,9 @@
         },
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
         }
     },
     "dependent_plugins": {},
@@ -597,6 +604,14 @@
             "clobbers": [
                 "navigator.globalization"
             ]
+        },
+        {
+            "id": "com-sarriaroman-photoviewer.PhotoViewer",
+            "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+            "pluginId": "com-sarriaroman-photoviewer",
+            "clobbers": [
+                "PhotoViewer"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -617,6 +632,7 @@
         "cordova-sqlite-storage": "2.0.4",
         "cordova.plugins.diagnostic": "3.9.1",
         "ionic-plugin-keyboard": "2.2.1",
-        "cordova-plugin-globalization": "1.0.9"
+        "cordova-plugin-globalization": "1.0.9",
+        "com-sarriaroman-photoviewer": "1.1.18"
     }
 }

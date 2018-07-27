@@ -67,6 +67,10 @@
                         {
                             "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PhotoViewer\"><param name=\"android-package\" value=\"com.sarriaroman.PhotoViewer.PhotoViewer\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -108,6 +112,14 @@
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ],
@@ -118,6 +130,10 @@
                         },
                         {
                             "xml": "<receiver android:name=\"cordova.plugins.Diagnostic$NFCStateChangedReceiver\"><intent-filter><action android:name=\"android.nfc.action.ADAPTER_STATE_CHANGED\" /></intent-filter></receiver>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:name=\"com.sarriaroman.PhotoViewer.PhotoActivity\" android:theme=\"@android:style/Theme.Holo.NoActionBar.Fullscreen\" />",
                             "count": 1
                         }
                     ]
@@ -192,6 +208,9 @@
         },
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
         }
     },
     "dependent_plugins": {},
@@ -553,6 +572,14 @@
             "clobbers": [
                 "navigator.globalization"
             ]
+        },
+        {
+            "id": "com-sarriaroman-photoviewer.PhotoViewer",
+            "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+            "pluginId": "com-sarriaroman-photoviewer",
+            "clobbers": [
+                "PhotoViewer"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -572,6 +599,7 @@
         "cordova-custom-config": "4.0.2",
         "cordova.plugins.diagnostic": "3.9.1",
         "cordova-plugin-request-location-accuracy": "2.2.2",
-        "cordova-plugin-globalization": "1.0.9"
+        "cordova-plugin-globalization": "1.0.9",
+        "com-sarriaroman-photoviewer": "1.1.18"
     }
 }
