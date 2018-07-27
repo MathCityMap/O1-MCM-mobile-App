@@ -4,6 +4,8 @@ import { Route } from '../../entity/Route';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 
 import { Task } from '../../entity/Task';
+import { Score } from "../../entity/Score";
+import { State } from "../../entity/State";
 
 
 /**
@@ -19,9 +21,12 @@ import { Task } from '../../entity/Task';
 })
 export class CenteredTask{
   public route: Route;
+  public score: Score;
+  public state: State;
 
   public tasks: Task[] = [];
 
+  // public mustBeColored: boolean;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,7 +39,9 @@ export class CenteredTask{
   }
 
   async ionViewWillEnter() {
-  	this.route = this.navParams.get('route') ;
+  	this.route = this.navParams.get('route');
+  	this.score = this.navParams.get('score');
+  	//this.state = this.navParams.get('state');
   	this.tasks = await this.route.getTasks();
 /*     console.log('-------------------', this.totalTasks); */
   }
@@ -42,5 +49,4 @@ export class CenteredTask{
   cancel(){
     this.viewCtrl.dismiss();
   }
-
 }
