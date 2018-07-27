@@ -1,5 +1,6 @@
 import * as L from 'leaflet';
 import { LatLng } from 'leaflet';
+import { checkAvailability, IonicNativePlugin } from '@ionic-native/core';
 
 export class MapTile {
   constructor(private pZoomLevel: number, private pX: number, private pY: number) { }
@@ -187,4 +188,7 @@ export class Helper {
       }
     }
     */
+    public static isPluginAvailable(plugin: any) {
+        return !!checkAvailability(plugin.getPluginRef(), null, plugin.getPluginName());
+    }
   }  

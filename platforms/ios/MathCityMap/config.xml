@@ -64,10 +64,13 @@
     <feature name="Globalization">
         <param name="ios-package" value="CDVGlobalization" />
     </feature>
+    <feature name="PhotoViewer">
+        <param name="ios-package" value="PhotoViewer" />
+    </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.0.1.22:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -86,6 +89,8 @@
     <allow-navigation href="http://192.168.12.29:8101" />
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
+    <allow-navigation href="http://10.0.1.22:8100" />
+    <allow-navigation href="http://10.0.1.22:8101" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -145,7 +150,4 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="30000" />
-    <feature name="PhotoViewer">
-        <param name="ios-package" value="PhotoViewer" />
-    </feature>
 </widget>

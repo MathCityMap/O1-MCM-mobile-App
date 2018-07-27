@@ -211,12 +211,16 @@ export class ImagesService {
             return this.offlineThumbnailUrlCache[imgPath] ? this.offlineThumbnailUrlCache[imgPath]
                 : this.offlineThumbnailUrlCache[imgPath] =
                     (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
-                        : imgPath.indexOf('http') !== 0 ? Helper.WEBSERVER_URL + imgPath : imgPath);
+                        : this.getOnlineURL(imgPath));
         }
         return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
             : this.offlineImageUrlCache[imgPath] =
                 (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath)
-                    : imgPath.indexOf('http') !== 0 ? Helper.WEBSERVER_URL + imgPath : imgPath);
+                    : this.getOnlineURL(imgPath));
+    }
+
+    getOnlineURL(imgPath: string) {
+        return imgPath.indexOf('http') !== 0 ? Helper.WEBSERVER_URL + imgPath : imgPath;
     }
 
     async removeDownloadedURLs(urls: string[], removeThumbs = true): Promise<any> {

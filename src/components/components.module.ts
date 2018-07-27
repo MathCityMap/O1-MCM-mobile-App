@@ -7,6 +7,7 @@ import { MCMHeaderComponent } from './mcm-header/mcm-header.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DistancePipe } from '.././app/pipes/distance.pipe';
 import { MCMProgressBarComponent } from './mcm-progress-bar/mcm-progress-bar.component';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 const components = [
     MCMHeaderComponent,
@@ -19,7 +20,8 @@ const components = [
 	declarations: components,
 	imports: [IonicModule,
         TranslateModule],
-	exports: [components, TranslateModule]
+	exports: [components, TranslateModule],
+    providers: [PhotoViewer]
 })
 export class ComponentsModule {
 

@@ -210,7 +210,7 @@
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "com-sarriaroman-photoviewer": {
-            "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {},

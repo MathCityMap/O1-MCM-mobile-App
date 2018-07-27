@@ -1,4 +1,2 @@
 <!-- Generated template for the McmImageComponent component -->
-<div>
-  {{text}}
-</div>
+<img [src]="imageUrl" [ngClass]="{'full-width': fullWidth}" (click)="onClick($event)"/>

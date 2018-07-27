@@ -8,7 +8,7 @@
         <img *ngIf="modalType == 5" src="./assets/icons/icon_popup-nearly-right-answer.svg"/>
 
         <!-- image hint -->
-        <img class="full-width" *ngIf=" type == 'image' " [src]="imagesService.getOfflineURL(message)"/>
+        <mcm-image *ngIf=" type == 'image' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
 
         <!-- video hint -->
         <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>
@@ -21,7 +21,7 @@
         <img *ngIf="!imageUrl && modalType != 4" src="./assets/icons/icon_popup-right-answer.svg"/>
 
         <!-- image hint -->
-        <img class="full-width" *ngIf="imageUrl" [src]="imagesService.getOfflineURL(imageUrl)"/>
+        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
 
         <!-- text hint -->
         <p *ngFor="let message of messages" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
