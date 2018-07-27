@@ -840,3 +840,21 @@ $progress-height: 6px;
 .marker.userPosition {
     transition: all 2s linear;
 }
+
+/*  ========== Color Changing by Tasks Status in List View ========== */
+
+span.tasksSolvedColor {
+    color: #4CAF50;
+}
+
+span.tasksFailedColor {
+    color: #E62B25;
+}
+
+span.taskSolvedLowColor {
+    color: #F3B100;
+}
+
+span.tasksSkippedColor {
+    color: #B2B2B2;
+}
