@@ -20,12 +20,12 @@ import { Globalization } from '@ionic-native/globalization';
 import { MyApp } from './app.component';
 
 /* Translation */
-import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from '../providers/translate-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 import { OrmService } from '../services/orm-service';
-import {ImagesService} from '../services/images-service';
+import { ImagesService } from '../services/images-service';
 import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
 import { LinkyModule } from 'angular-linky';
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
@@ -33,6 +33,7 @@ import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
 import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import { MCMTermsAndConditionsModal } from "../modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { gpsService } from '../services/gps-service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
@@ -45,7 +46,7 @@ import { ComponentsModule } from '../components/components.module';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal, MCMRouteByCodeModal,
+    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal,
     CenteredTask
   ],
   imports: [
@@ -71,7 +72,7 @@ import { ComponentsModule } from '../components/components.module';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal, MCMRouteByCodeModal,
+    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal,
     CenteredTask
   ],
   providers: [
