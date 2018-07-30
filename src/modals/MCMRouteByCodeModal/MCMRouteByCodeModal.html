@@ -1,5 +1,24 @@
+<!--<div class="modal card has-button-on-the-edge">-->
+    <!--<h2>{{'a_private_route_add_title' | translate}}</h2>-->
+
+    <!--<div class="modal-content">-->
+        <!--<p>{{'a_add_private_route_placeholder' | translate}}</p>-->
+        <!--<ion-item>-->
+            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->
+        <!--</ion-item>-->
+        <!--<span *ngIf="showError">-->
+            <!--{{ 'a_private_route_failed' | translate }}-->
+        <!--</span>-->
+    <!--</div>-->
+
+    <!--<div class="on-the-edge-container">-->
+        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->
+        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->
+    <!--</div>-->
+<!--</div>-->
+
 <div class="modal card has-button-on-the-edge">
-    <h2>{{'a_private_route_add_title' | translate}}</h2>
+    <h2>{{'a_private_trail_or_session_add_title' | translate}}</h2>
 
     <div class="modal-content">
         <p>{{'a_add_private_route_placeholder' | translate}}</p>
@@ -13,6 +32,7 @@
 
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>
-        <button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>
+        <button ion-button small round >{{ "a_private_trail_or_session_qr" | translate }}</button>
+        <button ion-button small round (click)="addTrailOrSessionByCode()">{{ "a_private_trail_or_session_add" | translate }}</button>
     </div>
 </div>

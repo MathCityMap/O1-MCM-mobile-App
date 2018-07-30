@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { OrmService } from '../../services/orm-service';
+import { ModalController } from "ionic-angular/components/modal/modal-controller";
+import { MCMTermsAndConditionsModal } from "../MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 
 
 @Component({
     selector: 'mcm-route-by-code-modal',
-    templateUrl:'./MCMRouteByCodeModal.html',
+    templateUrl:'./MCMRouteByCodeModal.html'
 /*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMRouteByCodeModal {
@@ -14,7 +16,7 @@ export class MCMRouteByCodeModal {
     code: string;
     showError: boolean;
 
-    constructor(private ormService: OrmService, private viewCtrl: ViewController) {
+    constructor(public modalCtrl: ModalController, private ormService: OrmService, private viewCtrl: ViewController) {
 
     }
 
@@ -28,13 +30,18 @@ export class MCMRouteByCodeModal {
         this.viewCtrl.dismiss();
     }
 
-    async addRouteByCode() {
-        let route = await this.ormService.findRouteByCode(this.code);
+
+    async addTrailOrSessionByCode() {
+        let modal = this.modalCtrl.create(MCMTermsAndConditionsModal);
+        this.cancel();
+        modal.present();
+        /*let route = await this.ormService.findRouteByCode(this.code);
         if (!route) {
             this.showError = true;
         } else {
             await this.ormService.unlockRoute(route);
             this.viewCtrl.dismiss(route);
-        }
+        }*/
     }
+
 }
