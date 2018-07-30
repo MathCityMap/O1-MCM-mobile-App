@@ -23,7 +23,7 @@
     <div class="modal-content">
         <p>{{'a_add_private_route_placeholder' | translate}}</p>
         <ion-item>
-            <ion-input #input type="text" [(ngModel)]="code"></ion-input>
+            <ion-input #input type="text" [(ngModel)]="code" maxlength="5"></ion-input>
         </ion-item>
         <span *ngIf="showError">
             {{ 'a_private_route_failed' | translate }}
@@ -33,6 +33,6 @@
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>
         <button ion-button small round >{{ "a_private_trail_or_session_qr" | translate }}</button>
-        <button ion-button small round (click)="addTrailOrSessionByCode()">{{ "a_private_trail_or_session_add" | translate }}</button>
+        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>
     </div>
 </div>

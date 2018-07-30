@@ -4,9 +4,11 @@
 
     <div class="modal-content">
         <!-- TODO replace and translate-->
-        <p>Placeholder</p>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
         <ion-item>
-            <ion-input #input type="text" [(ngModel)]="tacCheckbox"></ion-input>
+            <!-- TODO translate -->
+            <ion-label>Accept terms & conditions</ion-label>
+            <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>
         </ion-item>
         <span *ngIf="showError">
             {{ 'a_private_route_failed' | translate }}
@@ -15,6 +17,6 @@
 
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>
-        <button ion-button small round >{{ "a_private_route_add" | translate }}</button>
+        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_private_terms_and_conditions_next" | translate }}</button>
     </div>
 </div>

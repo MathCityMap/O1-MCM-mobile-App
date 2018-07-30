@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { OrmService } from '../../services/orm-service';
+import { ModalController } from "ionic-angular";
+import { MCMJoinSessionModal } from "../MCMJoinSessionModal/MCMJoinSessionModal";
 
 
 @Component({
@@ -10,30 +11,26 @@ import { OrmService } from '../../services/orm-service';
 export class MCMTermsAndConditionsModal {
     @ViewChild('input') input;
 
-    //tacCheckbox: boolean;
+    tacCheckbox: boolean = false;
     showError: boolean;
 
-    constructor(private ormService: OrmService, private viewCtrl: ViewController) {
+    constructor(public modalCtrl: ModalController, private viewCtrl: ViewController) {
 
     }
 
-    ionViewDidEnter() {
-        setTimeout(() => {
-            this.input.setFocus();
-        }, 150);
-    }
+    // ionViewDidEnter() {
+    //     setTimeout(() => {
+    //         this.input.setFocus();
+    //     }, 150);
+    // }
 
     cancel() {
         this.viewCtrl.dismiss();
     }
 
-    // async addRouteByCode() {
-    //     let route = await this.ormService.findRouteByCode(this.tacCode);
-    //     if (!route) {
-    //         this.showError = true;
-    //     } else {
-    //         await this.ormService.unlockRoute(route);
-    //         this.viewCtrl.dismiss(route);
-    //     }
-    // }
+    async addJoinSession() {
+        let modal = this.modalCtrl.create(MCMJoinSessionModal);
+        this.cancel();
+        modal.present();
+    }
 }
