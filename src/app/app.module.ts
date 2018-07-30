@@ -39,6 +39,7 @@ import { gpsService } from '../services/gps-service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ngx-youtube-player.module';
 import { ComponentsModule } from '../components/components.module';
+import { Helper } from '../classes/Helper';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { ComponentsModule } from '../components/components.module';
     ModalsService,
     gpsService,
     LanguageService,
+    Helper,
     Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

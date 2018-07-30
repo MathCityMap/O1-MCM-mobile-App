@@ -35,6 +35,7 @@ export class RoutesListPage implements OnDestroy {
                 private spinner: SpinnerDialog,
                 private translateService: TranslateService,
                 private dbUpdater: DB_Updater) {
+
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
         });
@@ -102,8 +103,7 @@ export class RoutesListPage implements OnDestroy {
             try {
                 await this.dbUpdater.checkForUpdates();
             } catch (e) {
-                console.error('caught error while checking for updates:');
-                console.error(e);
+                console.error('caught error while checking for updates:', e);
             }
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
         }

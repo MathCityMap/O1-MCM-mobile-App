@@ -3,7 +3,7 @@
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content original-src="index.html" src="http://10.0.1.22:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -93,6 +93,7 @@
     <allow-navigation href="http://192.168.12.29:8101" />
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
+    <allow-navigation href="http://10.0.1.22:8100" />
     <engine name="android" spec="6.2.3" />
     <engine name="ios" spec="4.4.0" />
     <plugin name="cordova-custom-config" spec="4.0.2" />
@@ -117,7 +118,5 @@
     <plugin name="cordova-sqlite-storage" spec="2.0.4" />
     <plugin name="cordova.plugins.diagnostic" spec="~3.9.1" />
     <plugin name="ionic-plugin-keyboard" spec="2.2.1" />
-    <allow-navigation href="http://10.0.1.22:8100" />
     <plugin name="com-sarriaroman-photoviewer" spec="~1.1.18" />
-    <allow-navigation href="http://10.0.1.22:8101" />
 </widget>
