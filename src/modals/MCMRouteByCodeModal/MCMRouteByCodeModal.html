@@ -32,7 +32,6 @@
 
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>
-        <button ion-button small round >{{ "a_private_trail_or_session_qr" | translate }}</button>
         <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>
     </div>
 </div>

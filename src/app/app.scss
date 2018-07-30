@@ -137,14 +137,12 @@
 .item-md.item-block .item-inner,
 .item-ios.item-block .item-inner{
     border-bottom-color: color($colors, grey);
-    -webkit-box-shadow: inset 0 -1px 0 0 color($colors, grey);
-    box-shadow: inset 0 -1px 0 0 color($colors, grey);
+    box-shadow: inset 0 0 0 0 color($colors, grey);
 }
 .item-ios.item-input.item-input-has-focus .item-inner,
 .item-ios.item-input.input-has-focus .item-inner {
     border-bottom-color: color($colors, primary);
-    -webkit-box-shadow: inset 0 -1px 0 0 color($colors, primary);
-    box-shadow: inset 0 -1px 0 0 color($colors, primary);
+    box-shadow: inset 0 0 0 0 color($colors, primary);
 }
 .item-ios.item-block .item-inner {
     border-bottom-width: 1px;
@@ -167,25 +165,27 @@ ion-list{
         border: none!important;
     }
     &.list-ios, &.list-md{
-        .item-ios.item-block.item-checkbox, .item-md.item-block.item-checkbox{
-        min-height: 34px;
-            &:last-of-type{
-                margin-bottom: $global-small-padding;
-            }
-            ion-checkbox{
-                margin: 0 16px 0 0;
-            }
-            .item-inner{
-                padding: 0;
-                padding-right: 0px;
-                border-bottom: 0px solid #dedede;
-                ion-label{
-                    margin: 0;
-                    color: initial;
-                    text-transform: none;
-                    font-size: 12px;
-                }
-            }
+    }
+}
+
+.item-ios.item-block.item-checkbox, .item-md.item-block.item-checkbox{
+    min-height: 34px;
+    &:last-of-type{
+        margin-bottom: $global-small-padding;
+    }
+    ion-checkbox{
+        margin: 0 16px 0 0;
+    }
+    .item-inner{
+        padding: 0;
+        padding-right: 0px;
+        border-bottom: 0px solid #dedede;
+        box-shadow: none;
+        ion-label{
+            margin: 0;
+            color: initial;
+            text-transform: none;
+            font-size: 16px;
         }
     }
 }
@@ -711,6 +711,7 @@ ion-modal {
 
     //REAL MODALS
     .modal.card{
+        padding-top: 30px;
         h2{
             font-family: 'NunitoExtrabold', Arial, sans-serif;
             font-size: 18px;
@@ -733,6 +734,11 @@ ion-modal {
             &.full-width{
                 width:100%;
             }
+        }
+        .terms{
+            font-size: 14px;
+            line-height: 1.3;
+            max-height: 50vh;
         }
 
         &.hint, &.positive, &.negative{

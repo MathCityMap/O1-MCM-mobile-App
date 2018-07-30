@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+// import { OrmService } from '../../services/orm-service';
 import { ModalController } from "ionic-angular/components/modal/modal-controller";
 import { MCMTermsAndConditionsModal } from "../MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 
@@ -16,15 +17,15 @@ export class MCMRouteByCodeModal {
     codeInput: boolean = false;
     showError: boolean;
 
-    constructor(public modalCtrl: ModalController, private viewCtrl: ViewController) {
+    constructor(/*private ormService: OrmService,*/ public modalCtrl: ModalController, private viewCtrl: ViewController) {
 
     }
 
-    // ionViewDidEnter() {
-    //     setTimeout(() => {
-    //         this.input.setFocus();
-    //     }, 150);
-    // }
+    ionViewDidEnter() {
+        setTimeout(() => {
+            this.input.setFocus();
+        }, 150);
+    }
 
     cancel() {
         this.viewCtrl.dismiss();
@@ -41,9 +42,18 @@ export class MCMRouteByCodeModal {
     }
 
     async addTrailOrSessionByCode() {
+        /*let route = await this.ormService.findRouteByCode(this.code);
+        if (!route) {
+            this.showError = true;
+        } else {
+            await this.ormService.unlockRoute(route);
+            this.viewCtrl.dismiss(route);
+        }*/
         let modal = this.modalCtrl.create(MCMTermsAndConditionsModal);
         this.cancel();
         modal.present();
+
+
     }
 
 }
