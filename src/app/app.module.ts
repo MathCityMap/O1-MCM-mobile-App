@@ -35,6 +35,7 @@ import { MCMInputModal } from '../modals/MCMInputModal/MCMInputModal';
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 import { MCMTermsAndConditionsModal } from "../modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 import { MCMJoinSessionModal } from "../modals/MCMJoinSessionModal/MCMJoinSessionModal";
+import { MCMSessionFinishedModal } from "../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
 import { gpsService } from '../services/gps-service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
@@ -49,7 +50,7 @@ import { Helper } from '../classes/Helper';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal,
+    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
     CenteredTask
   ],
   imports: [
@@ -75,7 +76,7 @@ import { Helper } from '../classes/Helper';
     MyApp,
     RouteInfo,
     MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal,
+    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
     CenteredTask
   ],
   providers: [
