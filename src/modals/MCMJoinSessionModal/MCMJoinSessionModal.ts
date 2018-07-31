@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { OrmService } from '../../services/orm-service';
 
 
 @Component({
@@ -10,30 +9,29 @@ import { OrmService } from '../../services/orm-service';
 export class MCMJoinSessionModal {
     @ViewChild('input') input;
 
-    //tacCheckbox: boolean;
+    teamName: string;
+    teamMemberNames: string;
+    teamMemberArray: string[] = [];
     showError: boolean;
 
-    constructor(private ormService: OrmService, private viewCtrl: ViewController) {
+    constructor(private viewCtrl: ViewController) {
 
     }
 
-    ionViewDidEnter() {
-        setTimeout(() => {
-            this.input.setFocus();
-        }, 150);
-    }
+    // ionViewDidEnter() {
+    //     setTimeout(() => {
+    //         this.input.setFocus();
+    //     }, 150);
+    // }
 
     cancel() {
         this.viewCtrl.dismiss();
     }
 
-    // async addRouteByCode() {
-    //     let route = await this.ormService.findRouteByCode(this.tacCode);
-    //     if (!route) {
-    //         this.showError = true;
-    //     } else {
-    //         await this.ormService.unlockRoute(route);
-    //         this.viewCtrl.dismiss(route);
-    //     }
-    // }
+    addTeamMemberName(name: string) {
+        console.log(name);
+        this.teamMemberArray.push(name);
+        this.teamMemberNames = '';
+    }
+
 }

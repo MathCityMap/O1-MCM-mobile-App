@@ -333,6 +333,7 @@
   "a_add_private_route_placeholder": "Gib den Code für deinen privaten Trail oder Session ein:",
   "a_private_route_added_title": "Trail hinzugefügt",
   "a_private_trail_or_session_add": "Hinzufügen",
+  "a_private_trail_or_session_enter": "Start",
   "a_private_trail_or_session_add_title": "Trail oder Session via Code hinzufügen",
   "a_private_route_added": "Der Trail mit dem Titel '{{T}}' wurde erfolgreich hinzugefügt.",
   "a_private_terms_and_conditions_next": "Weiter",
