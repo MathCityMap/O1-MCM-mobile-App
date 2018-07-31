@@ -136,7 +136,7 @@
 }
 .item-md.item-block .item-inner,
 .item-ios.item-block .item-inner{
-    border-bottom-color: color($colors, grey);
+    border-bottom-color: color($colors, light-grey);
     box-shadow: inset 0 0 0 0 color($colors, grey);
 }
 .item-ios.item-input.item-input-has-focus .item-inner,
@@ -717,20 +717,26 @@ ion-modal {
             font-size: 18px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin: 0 0 $global-base-padding;
+            margin: 0 0 $global-small-padding;
         }
         p, .highlight{
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.4;
             &.progress-files{
                 color: color($colors, grey);
             }
         }
 
+        ion-label, ion-label.label-ios, ion-label.label-md{
+            margin-bottom: 4px;
+        }
+
         img{
-            width: 100px;
             display: block;
-            margin: $global-base-padding auto;
+            &.head-icon{
+                width: 100px;
+                margin: $global-base-padding auto;
+            }
             &.full-width{
                 width:100%;
             }
@@ -748,7 +754,25 @@ ion-modal {
             h2{
                 text-align: center;
             }
+            p.main-text{
+                text-align: center;
+            }
         }
+
+        //Dynamic Inputs
+        .input-container{
+            margin-top: 14px;
+        }
+        .input-main, .input-secondary{
+            display: flex;
+            img{
+                margin-left: 15px;
+            }
+            ion-item{
+                margin-bottom: 6px;
+            }
+        }
+
 
         &.hint, &.positive, &.negative{
             padding-top: $global-large-padding;

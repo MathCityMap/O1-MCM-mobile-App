@@ -476,5 +476,8 @@
 
   "terms_and_conditions_title": "Terms & Conditions",
   "terms_and_conditions_checkbox": "Accept terms & conditions",
-  "a_terms_and_conditions_continue": "Continue"
+  "a_terms_and_conditions_continue": "Continue",
+
+  "a_team_name": "Team name",
+  "a_team_members": "Team members"
 }

@@ -2,21 +2,29 @@
     <div class="modal-content">
         <img class="head-icon" src="./assets/icons/icon_popup-session-join.svg"/>
         <h2>"Session Name"</h2>
-        <p class="terms">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-        <ion-list>
+        <p class="main-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+
+            <ion-label>{{ "a_team_name" | translate }}</ion-label>
             <ion-item>
-                <ion-input #input type="text" placeholder="Team Name" [(ngModel)]="teamName"></ion-input>
+                <ion-input #input type="text" [(ngModel)]="teamName"></ion-input>
             </ion-item>
-            <ion-item *ngFor="let teamMember of teamMemberArray">
-                <ion-input value="{{ teamMember}}"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input #input type="text" placeholder="Team Member Name" [(ngModel)]="teamMemberNames"></ion-input>
-            </ion-item>
-            <button>
-                <ion-icon name="add" (click)="addTeamMemberName(teamMemberNames)" ></ion-icon>
-            </button>
-        </ion-list>
+
+            <div class="input-container">
+                <ion-label>{{ "a_team_members" | translate }}</ion-label>
+                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray">
+                    <ion-item>
+                        <ion-input value="{{ teamMember}}"></ion-input>
+                    </ion-item>
+                    <img class="" src="./assets/icons/remove.svg"/>
+                </div>
+                <div class="input-main">
+                    <ion-item>
+                        <ion-input #input type="text" [(ngModel)]="teamMemberNames"></ion-input>
+                    </ion-item>
+                    <img class="" src="./assets/icons/add.svg" (click)="addTeamMemberName(teamMemberNames)" />
+                </div>
+            </div>
+
         <span *ngIf="showError">
             {{ 'a_private_route_failed' | translate }}
         </span>

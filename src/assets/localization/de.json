@@ -478,5 +478,8 @@
 
   "terms_and_conditions": "Nutzungsbedingungen",
   "terms_and_conditions_checkbox": "Nutzungsbedingungen akzeptieren",
-  "a_terms_and_conditions_continue": "Weiter"
+  "a_terms_and_conditions_continue": "Weiter",
+
+  "a_team_name": "Teamname",
+  "a_team_members": "Teammitglieder"
 }
