@@ -336,9 +336,8 @@
   "a_private_trail_or_session_enter": "Start",
   "a_private_trail_or_session_add_title": "Trail oder Session via Code hinzufügen",
   "a_private_route_added": "Der Trail mit dem Titel '{{T}}' wurde erfolgreich hinzugefügt.",
-  "a_private_terms_and_conditions_next": "Weiter",
   "a_private_route_failed_title": "Trail Hinzufügen fehlgeschlagen",
-  "a_private_route_failed": "Es konnte keine Route mit dem angegebenen Code gefunden werden. Aktualisieren Sie ggfs. die Daten.",
+  "a_private_route_failed": "Es konnte keine Route/Session mit dem angegebenen Code gefunden werden. Aktualisieren Sie ggfs. die Daten.",
   "a_alert_caution": "Achtung!",
   "a_main_map_traffic": "Für die Onlinekarte wird eine aktive Internetverbindung benötigt. Es kann zu einem hohen Datenverbrauch kommen.",
   "a_alert_continue": "Fortfahren",
@@ -470,5 +469,10 @@
   "a_slow_connection_title": "Slow connection!",
   "a_slow_connection": "There is a problem with your internet connection.",
   "a_retry": "Retry",
-  "a_offline_mode": "Offline mode"
+  "a_offline_mode": "Offline mode",
+
+
+  "terms_and_conditions": "Nutzungsbedingungen",
+  "terms_and_conditions_checkbox": "Nutzungsbedingungen akzeptieren",
+  "a_terms_and_conditions_continue": "Weiter"
 }

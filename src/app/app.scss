@@ -741,6 +741,15 @@ ion-modal {
             max-height: 50vh;
         }
 
+        &.icon{
+            img.head-icon{
+
+            }
+            h2{
+                text-align: center;
+            }
+        }
+
         &.hint, &.positive, &.negative{
             padding-top: $global-large-padding;
             padding-bottom: $global-large-padding;

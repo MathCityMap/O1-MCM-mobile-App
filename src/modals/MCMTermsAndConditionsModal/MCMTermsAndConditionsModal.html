@@ -1,13 +1,12 @@
 <div class="modal card has-button-on-the-edge">
     <!-- TODO translate -->
-    <h2>Terms and Conditions</h2>
+    <h2>{{ 'terms_and_conditions_title' | translate }}</h2>
 
     <div class="modal-content">
         <!-- TODO replace and translate-->
         <p class="terms">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
         <ion-item>
-            <!-- TODO translate -->
-            <ion-label>Accept terms & conditions</ion-label>
+            <ion-label>{{ 'terms_and_conditions_checkbox' | translate }}</ion-label>
             <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>
         </ion-item>
         <span *ngIf="showError">
@@ -17,6 +16,6 @@
 
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>
-        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_private_terms_and_conditions_next" | translate }}</button>
+        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_terms_and_conditions_continue" | translate }}</button>
     </div>
 </div>
