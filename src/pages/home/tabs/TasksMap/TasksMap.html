@@ -48,6 +48,9 @@
                     <button color="danger" ion-fab (click)="resetTasks()">
                         <ion-icon name="icon-restart"></ion-icon>
                     </button>
+                    <button ion-fab (click)="sessionFinished()">
+                        <ion-icon name="icon-restart"></ion-icon>
+                    </button>
                     <button [hidden]="!state.isShowingAllTasks" ion-fab (click)="selectStartPoint()">
                         <ion-icon name="icon-starting-point"></ion-icon>
                     </button>

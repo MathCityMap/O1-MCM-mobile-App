@@ -1,0 +1,23 @@
+<div class="modal card has-button-on-the-edge">
+    <h2>{{'a_private_session_finished_title' | translate}}</h2>
+
+    <div class="modal-content">
+        <p>{{'a_private_session_finished_text' | translate}}</p>
+        <ion-list>
+            <ion-item>
+                <!-- TODO Points and Tasks -->
+                <ion-input #input type="text" placeholder="Punkte" [(ngModel)]="earnedPoints"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input #input type="text" placeholder="Aufgaben" [(ngModel)]="finishedTasks"></ion-input>
+            </ion-item>
+        </ion-list>
+        <span *ngIf="showError">
+            {{ 'a_private_route_failed' | translate }}
+        </span>
+    </div>
+
+    <div class="on-the-edge-container">
+        <button ion-button small round (click)="backToStart()">{{ "a_g_ok" | translate }}</button>
+    </div>
+</div>

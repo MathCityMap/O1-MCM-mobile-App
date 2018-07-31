@@ -26,6 +26,8 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { MCMModalType } from "../../../../app/app.component";
 import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
 import { ModalController} from "ionic-angular/components/modal/modal-controller";
+import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
+
 
 declare var ConicGradient: any;
 
@@ -509,6 +511,11 @@ export class TasksMap {
                   this.redrawMarker();
               });
           });
+  }
+
+  async sessionFinished() {
+      let modal = this.modalCtrl.create(MCMSessionFinishedModal);
+      modal.present();
   }
 
   async gototask(taskId: number, taskName: string) {
