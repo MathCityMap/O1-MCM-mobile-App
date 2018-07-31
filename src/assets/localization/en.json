@@ -330,12 +330,11 @@
   "a_alert_false_answer_1": "Try again!",
   "a_alert_false_answer_2": "Try to take a hint.",
   "a_alert_back2map": "Go to map",
-  "a_add_private_route_placeholder": "Enter code or scan QR-code for your trail or group session:",
+  "a_add_private_route_placeholder": "Enter code for your trail or group session:",
   "a_private_route_added_title": "Trail added",
   "a_private_trail_or_session_add": "Add",
+  "a_private_trail_or_session_add_title": "Private trail or session",
   "a_private_trail_or_session_enter": "Enter",
-  "a_private_trail_or_session_add_title": "Add trail or session via code",
-  "a_private_terms_and_conditions_next": "Next",
   "a_private_route_added": "Trail with title '{{T}}' was successfully added.",
   "a_private_route_failed_title": "Adding trail failed",
   "a_private_route_failed": "There was no match for the given code. Maybe you need to update the app.",
@@ -472,5 +471,10 @@
   "a_slow_connection_title": "Slow connection!",
   "a_slow_connection": "There is a problem with your internet connection.",
   "a_retry": "Retry",
-  "a_offline_mode": "Offline mode"
+  "a_offline_mode": "Offline mode",
+
+
+  "terms_and_conditions_title": "Terms & Conditions",
+  "terms_and_conditions_checkbox": "Accept terms & conditions",
+  "a_terms_and_conditions_continue": "Continue"
 }
