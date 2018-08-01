@@ -11,11 +11,11 @@
 
             <div class="input-container">
                 <ion-label>{{ "a_team_members" | translate }}</ion-label>
-                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray">
+                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">
                     <ion-item>
-                        <ion-input value="{{ teamMember}}"></ion-input>
+                        <ion-input value="{{ teamMember }}"></ion-input>
                     </ion-item>
-                    <img class="" src="./assets/icons/remove.svg"/>
+                    <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>
                 </div>
                 <div class="input-main">
                     <ion-item>

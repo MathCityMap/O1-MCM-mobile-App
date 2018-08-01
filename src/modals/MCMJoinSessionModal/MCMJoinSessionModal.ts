@@ -29,9 +29,12 @@ export class MCMJoinSessionModal {
     }
 
     addTeamMemberName(name: string) {
-        console.log(name);
         this.teamMemberArray.push(name);
         this.teamMemberNames = '';
+    }
+
+    removeTeamMemberName(index: number) {
+        this.teamMemberArray.splice(index,1);
     }
 
 }
