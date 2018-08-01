@@ -73,4 +73,8 @@ export class MCMJoinSessionModal {
         this.teamMemberArray.splice(index,1);
     }
 
+    start() {
+        console.log('test');
+    }
+
 }
