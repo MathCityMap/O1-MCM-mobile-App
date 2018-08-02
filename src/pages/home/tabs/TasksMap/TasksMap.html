@@ -28,8 +28,8 @@
 
 
     <div *ngIf="!gamificationIsDisabled && currentScore && currentScore > 0" id="ranking" class="detail-box ranking">
-        <ion-grid no-padding>
-            <ion-row class="ranking current dotted-border-bottom">
+        <ion-grid no-padding class="ranking">
+            <ion-row class="current">
                 <ion-col>
                     <ion-label>{{user.name}}</ion-label>
                 </ion-col>
@@ -51,7 +51,7 @@
                     <button color="danger" ion-fab (click)="sessionFinished()">
                         <ion-icon name="log-out"></ion-icon>
                     </button>
-                    <button ion-fab>
+                    <button ion-fab (click)="goToMyPage()">
                         <ion-icon name="chatbubbles"></ion-icon>
                     </button>
                 </ion-fab-list>

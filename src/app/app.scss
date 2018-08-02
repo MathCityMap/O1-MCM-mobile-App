@@ -735,10 +735,9 @@ ion-modal {
             display: block;
             &.head-icon{
                 width: 35vw;
-                margin: $global-base-padding auto $global-base-padding*1.5;
+                margin: 0;
                 position: absolute;
                 top: -14vw;
-                margin: 0;
                 right: 50%;
                 transform: translateX(50%);
                 border: 24px solid #ffffff;
@@ -757,7 +756,12 @@ ion-modal {
         }
 
         &.icon{
-            padding-top: 120px!important;
+            padding-top: 36vw!important;
+            margin-top: calc(14vw + 20px);
+            .modal-content{
+                max-height: 60vh;
+                overflow: scroll;
+            }
             img.head-icon{
 
             }
@@ -776,7 +780,7 @@ ion-modal {
         .input-main, .input-secondary{
             display: flex;
             img{
-                margin-left: 15px;
+                margin-left: 12px;
             }
             ion-item{
                 margin-bottom: 6px;
