@@ -330,15 +330,7 @@
   "a_alert_false_answer_1": "Versuch's nochmal!",
   "a_alert_false_answer_2": "Vielleicht hilft ein Hinweis?",
   "a_alert_back2map": "Zur Karte",
-  "a_add_private_route_placeholder": "Gib den Code für deinen privaten Trail oder Session ein:",
   "a_private_route_added_title": "Trail hinzugefügt",
-  "a_private_trail_or_session_add": "Hinzufügen",
-  "a_private_trail_or_session_enter": "Start",
-  "a_private_trail_or_session_add_title": "Trail oder Session via Code hinzufügen",
-  "a_private_session_finished_title": "Session beendet",
-  "a_private_session_finished_text": "Gut gemacht! Dies ist die Verabschiedungsnachricht. Bis zum nächsten Mal.",
-  "a_private_session_earned_points": "Erreichte Punkte",
-  "a_private_session_finished_tasks": "Gemeisterte Aufgaben",
   "a_private_route_added": "Der Trail mit dem Titel '{{T}}' wurde erfolgreich hinzugefügt.",
   "a_private_route_failed_title": "Trail Hinzufügen fehlgeschlagen",
   "a_private_route_failed": "Es konnte keine Route/Session mit dem angegebenen Code gefunden werden. Aktualisieren Sie ggfs. die Daten.",
@@ -476,10 +468,19 @@
   "a_offline_mode": "Offline mode",
 
 
+  "a_private_trail_or_session_add_title": "Trail oder Session via Code hinzufügen",
+  "a_add_private_route_placeholder": "Gib den Code für deinen privaten Trail oder Session ein:",
+  "a_private_trail_or_session_add": "Hinzufügen",
+
   "terms_and_conditions_title": "Nutzungsbedingungen",
   "terms_and_conditions_checkbox": "Nutzungsbedingungen akzeptieren",
   "a_terms_and_conditions_continue": "Weiter",
 
   "a_team_name": "Teamname",
-  "a_team_members": "Teammitglieder"
+  "a_team_members": "Teammitglieder",
+  "a_session_enter": "Start",
+
+  "a_private_session_finished_title": "Session abgeschlossen",
+  "a_private_session_earned_points": "Erreichte Punkte",
+  "a_private_session_finished_tasks": "Gemeisterte Aufgaben",
 }

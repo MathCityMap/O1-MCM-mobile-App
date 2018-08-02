@@ -15,23 +15,6 @@ page-tasks-map {
             border-bottom-right-radius: 8px;
             -webkit-transform: none;
             transform: none;
-            .ranking{
-                flex: 1;
-                margin-bottom: 3px;
-                padding-bottom: 3px;
-
-                &.current p{
-                    color: color($colors, primary);
-
-                }
-            }
-            .col ion-label{
-                padding: 0;
-                color: color($colors, primary);
-                &:last-of-type{
-                    text-align: right;
-                }
-            }
         }
     }
 
@@ -68,4 +51,25 @@ page-tasks-map {
 
 .leaflet-marker-icon.marker.userPosition{
     z-index: 10!important;
+}
+
+
+.ranking{
+    flex: 1;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+
+    &.current p{
+        color: color($colors, primary);
+
+    }
+}
+.col {
+    ion-label{
+        padding: 0;
+        color: color($colors, dark-grey);
+    }
+    &:last-of-type{
+        text-align: right;
+    }
 }

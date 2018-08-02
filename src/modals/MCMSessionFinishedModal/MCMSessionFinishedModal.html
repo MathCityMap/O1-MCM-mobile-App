@@ -1,20 +1,27 @@
-<div class="modal card has-button-on-the-edge">
-    <h2>{{'a_private_session_finished_title' | translate}}</h2>
+<div class="modal card icon has-button-on-the-edge">
 
     <div class="modal-content">
-        <p>{{'a_private_session_finished_text' | translate}}</p>
-        <ion-list>
-            <ion-item>
-                <!-- TODO Points and Tasks -->
-                <ion-input #input type="text" placeholder="Punkte" [(ngModel)]="earnedPoints"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input #input type="text" placeholder="Aufgaben" [(ngModel)]="finishedTasks"></ion-input>
-            </ion-item>
-        </ion-list>
-        <span *ngIf="showError">
-            {{ 'a_private_route_failed' | translate }}
-        </span>
+        <img class="head-icon" src="./assets/icons/icon_popup-session-finished.svg"/>
+        <h2>{{'a_private_session_finished_title' | translate}}</h2>
+        <p class="main-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+        <ion-grid no-padding>
+            <ion-row class="table ranking dotted-border-bottom">
+                <ion-col>
+                    <ion-label>Earned Points</ion-label>
+                </ion-col>
+                <ion-col col-auto>
+                    <ion-label>100 MP</ion-label>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ranking dotted-border-bottom">
+                <ion-col>
+                    <ion-label>Finished Tasks</ion-label>
+                </ion-col>
+                <ion-col col-auto>
+                    <ion-label>5 / 10</ion-label>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </div>
 
     <div class="on-the-edge-container">
