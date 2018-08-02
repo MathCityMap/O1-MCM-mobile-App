@@ -27,6 +27,7 @@ import { MCMModalType } from "../../../../app/app.component";
 import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
 import { ModalController} from "ionic-angular/components/modal/modal-controller";
 import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
+import { ChatPage } from "../../../chat/chat";
 
 
 declare var ConicGradient: any;
@@ -529,7 +530,17 @@ export class TasksMap {
     });
   }
 
+    async navigateToChat() {
+        console.log('showChat');
+
+        this.navCtrl.push(ChatPage, {
+            val: 'chatseite'
+        });
+
+    }
+
 }
+
 export interface TaskMapState {
     selectedTask: Task;
     isShowingAllTasks: boolean;

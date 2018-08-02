@@ -198,5 +198,6 @@ export class ModalsService {
             return false;
         }
     }
+
 }
 

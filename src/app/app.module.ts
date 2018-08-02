@@ -42,7 +42,7 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ngx-youtube-player.module';
 import { ComponentsModule } from '../components/components.module';
 import { Helper } from '../classes/Helper';
-
+import { ChatPage } from "../pages/chat/chat";
 
 
 @NgModule({
@@ -51,7 +51,8 @@ import { Helper } from '../classes/Helper';
     RouteInfo,
     MCMDownloadProgressPopupComponent,
     MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
-    CenteredTask
+    CenteredTask,
+    ChatPage
   ],
   imports: [
     HttpModule,
@@ -77,7 +78,8 @@ import { Helper } from '../classes/Helper';
     RouteInfo,
     MCMDownloadProgressPopupComponent,
     MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
-    CenteredTask
+    CenteredTask,
+    ChatPage
   ],
   providers: [
     StatusBar,
