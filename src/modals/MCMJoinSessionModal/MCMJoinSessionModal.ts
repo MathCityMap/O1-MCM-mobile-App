@@ -19,23 +19,24 @@ export class MCMJoinSessionModal {
 
     }
 
-    // ionViewDidEnter() {
-    //     setTimeout(() => {
-    //         this.input.setFocus();
-    //     }, 150);
-    // }
+    ionViewDidEnter() {
+        setTimeout(() => {
+            this.input.setFocus();
+        }, 150);
+    }
 
     cancel() {
         this.viewCtrl.dismiss();
     }
 
-    start() {
-        console.log(this.teamName);
-        if(this.teamMemberNames != null && this.teamMemberNames != "") {
-            this.teamMemberArray.push(this.teamMemberNames);
-        }
-        console.log(this.teamMemberArray);
-    }
+    // TODO Needs rework by Filip
+    // start() {
+    //     console.log(this.teamName);
+    //     if(this.teamMemberNames != null && this.teamMemberNames != "") {
+    //         this.teamMemberArray.push(this.teamMemberNames);
+    //     }
+    //     console.log(this.teamMemberArray);
+    // }
 
     checkInputField() {
         if(this.teamName != "" && this.teamName != null){
@@ -76,5 +77,4 @@ export class MCMJoinSessionModal {
     start() {
         console.log('test');
     }
-
 }
