@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="20px" height="20px" viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+	 width="18px" height="18px" viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;stroke:#036D99;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
 </style>
 <title>remove</title>
 <g id="Ebene_2">
 	<g id="final-design">
-		<line class="st0" x1="4" y1="16" x2="16" y2="4"/>
-		<line class="st0" x1="16" y1="16" x2="4" y2="4"/>
+		<line class="st0" x1="4" y1="14" x2="14" y2="4"/>
+		<line class="st0" x1="14" y1="14" x2="4" y2="4"/>
 	</g>
 </g>
 </svg>

@@ -54,22 +54,39 @@ page-tasks-map {
 }
 
 
-.ranking{
-    flex: 1;
-    margin-bottom: 3px;
-    padding-bottom: 3px;
+.ranking, .table{
+    .row{
+        flex: 1;
+        padding: 3px 0;
+        &.current p{
+            color: color($colors, primary);
 
-    &.current p{
-        color: color($colors, primary);
+        }
+        .col {
+            ion-label{
+                padding: 0;
+                color: color($colors, dark-grey);
+            }
+            &:last-of-type{
+                text-align: right;
+            }
 
+        }
     }
 }
-.col {
-    ion-label{
-        padding: 0;
-        color: color($colors, dark-grey);
+.table{
+    margin-top: 30px;
+    .row{
+        &:not(:first-child) {
+            border-top: 2px dotted color($colors, light-grey);
+        }
     }
-    &:last-of-type{
-        text-align: right;
+    .col {
+        ion-label{
+            margin-top: 4px;
+            font-family: 'NunitoBold', Arail, sans-serif;
+            font-size: 15px;
+            text-transform: none;
+        }
     }
 }
