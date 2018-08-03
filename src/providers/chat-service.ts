@@ -45,6 +45,7 @@ export class ChatService {
         }, Math.random() * 1800)
     }
 
+    // TODO change function for database
     getMsgList(): Observable<ChatMessage[]> {
         const msgListUrl = '../assets/mock/msg-list.json';
         return this.http.get<any>(msgListUrl)
