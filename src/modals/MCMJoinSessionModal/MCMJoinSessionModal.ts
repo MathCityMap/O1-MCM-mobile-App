@@ -45,13 +45,7 @@ export class MCMJoinSessionModal {
                 this.codeInput = true;
             }
             else if(this.teamMemberArray.length != 0) {
-                //Funktioniert, wenn sich Array-Einträge dynamisch anpassen, bei Neubennenung 
-                if (this.teamMemberArray.some(function (element) {if (element != "" && element != undefined) {return true;} else {return false;}})) {
-                    this.codeInput = true;
-                }
-                else {
-                    this.codeInput = false;
-                }
+                this.codeInput = true;
             }
             else {
                 this.codeInput = false;
