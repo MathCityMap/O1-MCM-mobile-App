@@ -29,14 +29,15 @@ export class MCMJoinSessionModal {
         this.viewCtrl.dismiss();
     }
 
-    // TODO Needs rework by Filip
-    // start() {
-    //     console.log(this.teamName);
-    //     if(this.teamMemberNames != null && this.teamMemberNames != "") {
-    //         this.teamMemberArray.push(this.teamMemberNames);
-    //     }
-    //     console.log(this.teamMemberArray);
-    // }
+    start() {
+        console.log(this.teamName);
+        if(this.teamMemberNames != null && this.teamMemberNames != "") {
+            this.teamMemberArray.push(this.teamMemberNames);
+            this.teamMemberNames = "";
+        }
+        console.log(this.teamMemberArray);
+        this.cancel();
+     }
 
     checkInputField() {
         if(this.teamName != "" && this.teamName != null){
@@ -66,15 +67,15 @@ export class MCMJoinSessionModal {
 
 
     addTeamMemberName(name: string) {
-        this.teamMemberArray.push(name);
-        this.teamMemberNames = '';
+        if(this.teamMemberNames != "" && this.teamMemberNames != null) {
+            this.teamMemberArray.push(name);
+            this.teamMemberNames = '';
+        }
     }
 
     removeTeamMemberName(index: number) {
         this.teamMemberArray.splice(index,1);
     }
 
-    start() {
-        console.log('test');
-    }
+
 }

@@ -13,7 +13,7 @@
                 <ion-label>{{ "a_team_members" | translate }}</ion-label>
                 <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">
                     <ion-item>
-                        <ion-input value="{{ teamMember }}"></ion-input>
+                        <ion-input [disabled]="true" value="{{ teamMember }}"></ion-input>
                     </ion-item>
                     <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>
                 </div>
