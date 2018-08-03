@@ -43,6 +43,7 @@ import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ng
 import { ComponentsModule } from '../components/components.module';
 import { Helper } from '../classes/Helper';
 import { ChatPage } from "../pages/chat/chat";
+import { ChatService } from "../providers/chat-service";
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import { ChatPage } from "../pages/chat/chat";
     gpsService,
     LanguageService,
     Helper,
+    ChatService,
     Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
