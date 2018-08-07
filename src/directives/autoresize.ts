@@ -18,10 +18,11 @@ export class Autoresize {
     adjust(): void {
         let ta = this.element.nativeElement;
         if(ta){
-            ta.style.overflow = "hidden";
+            ta.style.overflow = "visible";
             ta.style.height = "auto";
-            ta.style.height = ta.scrollHeight + "px";
+            ta.style.height = (ta.scrollHeight - 20) + "px";
         }
     }
+
 
 }

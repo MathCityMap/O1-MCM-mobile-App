@@ -1,11 +1,4 @@
 <mcm-header></mcm-header>
-<!--<ion-header>-->
-
-<!--<ion-navbar>-->
-<!--<ion-title>{{toUser.name}}</ion-title>-->
-<!--</ion-navbar>-->
-
-<!--</ion-header>-->
 
 <ion-content class="has-header">
     <div class="message-wrap">
@@ -13,6 +6,7 @@
              class="message"
              [class.left]=" msg.userId === toUser.id "
              [class.right]=" msg.userId === user.id ">
+            <!--TODO Remove user-image from data-->
             <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->
             <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
             <div class="msg-detail">
@@ -21,8 +15,9 @@
                 </div>
                 <div class="msg-info">
                     <p>
-                        <!-- TODO Time Format -->
+                        <!--TODO Remove user from data-->
                         <!--{{msg.userName}}&nbsp;&nbsp;-->
+                        <!-- TODO Time Format -->
                         &nbsp;{{msg.time | date:'medium' }}</p>
                 </div>
             </div>
@@ -36,7 +31,7 @@
                 autoresize
                 id="textarea"
                 #chat_input
-                placeholder="Text Input"
+                placeholder="Type a math message"
                 [(ngModel)]="editorMsg"
                 (keyup.enter)="sendMsg()"
                 (focusin)="onFocus()">
@@ -48,8 +43,8 @@
             <img src="./assets/icons/photo.svg"/>
         </button>
     </div>
-    <button class="send" ion-button round icon-only item-right (click)="sendMsg()">
-        <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+    <button class="send" no-padding ion-button round item-right (click)="sendMsg()">
+        <img src="./assets/icons/send.svg"/>
     </button>
 </ion-footer>
 
