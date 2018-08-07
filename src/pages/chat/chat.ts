@@ -100,7 +100,7 @@ export class ChatPage {
 
         this.pushNewMsg(newMsg);
         this.editorMsg = '';
-
+        this.setToDefaultHeight();
         if (!this.showEmojiPicker) {
             this.focus();
         }
@@ -151,6 +151,12 @@ export class ChatPage {
     private setTextareaScroll() {
         const textarea =this.messageInput.nativeElement;
         textarea.scrollTop = textarea.scrollHeight;
+    }
+
+    setToDefaultHeight() {
+        if(this.messageInput.nativeElement){
+            this.messageInput.nativeElement.style.height = '40px';
+        }
     }
 }
 

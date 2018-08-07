@@ -44,6 +44,8 @@ import { ComponentsModule } from '../components/components.module';
 import { Helper } from '../classes/Helper';
 import { ChatPage } from "../pages/chat/chat";
 import { ChatService } from "../providers/chat-service";
+import {Autoresize} from "../directives/autoresize";
+
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { ChatService } from "../providers/chat-service";
     MCMDownloadProgressPopupComponent,
     MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
     CenteredTask,
-    ChatPage
+    ChatPage,
+    Autoresize
   ],
   imports: [
     HttpModule,

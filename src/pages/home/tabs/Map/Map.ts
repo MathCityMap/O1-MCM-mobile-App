@@ -66,10 +66,10 @@ export class MapPage implements OnInit, OnDestroy {
         private gpsService: gpsService,
         private languageService: LanguageService) {
             this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-            this.publicRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-public.png', iconSize: [35, 48], iconAnchor: [17, 42], className:'marker'});
-            this.privateRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-private.png', iconSize: [35, 48], iconAnchor: [17, 42], className:'marker'});
-            this.downloadedRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-downloaded.png', iconSize: [35, 48], iconAnchor: [17, 42], className:'marker'});
-            this.doneRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-done.png', iconSize: [35, 48], iconAnchor: [17, 42], className:'marker'});
+            this.publicRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-public.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+            this.privateRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-private.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+            this.downloadedRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-downloaded.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+            this.doneRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-done.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
             this.eventSubscription = this.ormService.eventEmitter.subscribe((event) => {
                 if (this.markerGroup) {
                     this.redrawMarker();
