@@ -5,6 +5,7 @@ import { ModalController } from "ionic-angular/components/modal/modal-controller
 import { MCMTermsAndConditionsModal } from "../MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 
 
+
 @Component({
     selector: 'mcm-route-by-code-modal',
     templateUrl:'./MCMRouteByCodeModal.html'
@@ -34,25 +35,17 @@ export class MCMRouteByCodeModal {
     checkInputField() {
         let len = 5;
         if(this.code.length == len){
-            this.codeInput = true;
+            return this.codeInput = true;
         } else {
-            this.codeInput = false;
+            return this.codeInput = false;
         }
-        return this.codeInput;
     }
 
     async addTrailOrSessionByCode() {
-        /*let route = await this.ormService.findRouteByCode(this.code);
-        if (!route) {
-            this.showError = true;
-        } else {
-            await this.ormService.unlockRoute(route);
-            this.viewCtrl.dismiss(route);
-        }*/
+        // TODO getSessionByCode
         let modal = this.modalCtrl.create(MCMTermsAndConditionsModal);
         this.cancel();
         modal.present();
-
 
     }
 

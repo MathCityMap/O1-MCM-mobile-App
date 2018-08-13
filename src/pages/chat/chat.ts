@@ -65,6 +65,7 @@ export class ChatPage {
         this.scrollToBottom();
     }
 
+    // TODO getUserMessages
     /**
      * @name getMsg
      * @returns {Promise<ChatMessage[]>}
@@ -79,6 +80,7 @@ export class ChatPage {
             });
     }
 
+    // TODO sendMessageToUser/sendMessageToUsers
     /**
      * @name sendMsg
      */

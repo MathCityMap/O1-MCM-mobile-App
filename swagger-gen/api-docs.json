@@ -1,0 +1,277 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "MathCityMap API",
+        "description": "API for MathCityMap project",
+        "termsOfService": "",
+        "version": "0.1"
+    },
+    "paths": {
+        "/session": {
+            "post": {
+                "tags": [
+                    "session"
+                ],
+                "summary": "Create a Session",
+                "operationId": "createSession",
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/{trail_id}/upcoming": {
+            "get": {
+                "tags": [
+                    "session"
+                ],
+                "summary": "Get upcoming Session by Trail ID",
+                "operationId": "getUpcomingSessions",
+                "parameters": [
+                    {
+                        "name": "trail_id",
+                        "in": "path",
+                        "description": "Trail ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/{session_id}": {
+            "get": {
+                "tags": [
+                    "session"
+                ],
+                "summary": "Get session by ID",
+                "operationId": "getSession",
+                "parameters": [
+                    {
+                        "name": "session_id",
+                        "in": "path",
+                        "description": "Session ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/find/{code}": {
+            "get": {
+                "tags": [
+                    "session"
+                ],
+                "summary": "Get session by Code",
+                "operationId": "getSessionByCode",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "Code",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/{session_id}/users": {
+            "get": {
+                "tags": [
+                    "session"
+                ],
+                "summary": "Get Users by Session",
+                "operationId": "getSessionUsers",
+                "parameters": [
+                    {
+                        "name": "session_id",
+                        "in": "path",
+                        "description": "Session ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/message/user": {
+            "post": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Send a Message to User",
+                "operationId": "sendMessageToUser",
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/message/all": {
+            "post": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Send a Message to Users",
+                "operationId": "sendMessageToUsers",
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/{session_id}/message/{user_id}": {
+            "get": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Get Chat",
+                "operationId": "getChat",
+                "parameters": [
+                    {
+                        "name": "session_id",
+                        "in": "path",
+                        "description": "Session ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/getUserMessagesCreated/{session_id}/{user_id}": {
+            "get": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Get User Message Created",
+                "operationId": "getUserMessageCreated",
+                "parameters": [
+                    {
+                        "name": "session_id",
+                        "in": "path",
+                        "description": "Session ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        },
+        "/session/getUserMessagesReceived/{session_id}/{user_id}": {
+            "get": {
+                "tags": [
+                    "chat"
+                ],
+                "summary": "Get User Message Received",
+                "operationId": "getUserMessageReceived",
+                "parameters": [
+                    {
+                        "name": "session_id",
+                        "in": "path",
+                        "description": "Session ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of FeedItems",
+                        "$ref": "#/definitions/Session"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Session": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "trail_id": {
+                    "type": "integer"
+                },
+                "author_user_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "starts_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "ends_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "has_leaderboard": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

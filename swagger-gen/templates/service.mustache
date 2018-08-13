@@ -1,0 +1,36 @@
+/* tslint:disable */
+import { Injectable } from '@angular/core';
+import {
+  HttpClient, HttpRequest, HttpResponse, 
+  HttpHeaders, HttpParams } from '@angular/common/http';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators/map';
+import { filter } from 'rxjs/operators/filter';
+
+{{#serviceDependencies}}import { {{modelName}} } from '../models/{{modelFile}}';
+{{/serviceDependencies}}
+
+{{{serviceComments}}}
+@Injectable()
+export class {{serviceClass}} extends BaseService {
+  constructor(
+    config: ApiConfiguration,
+    http: HttpClient
+  ) {
+    super(config, http);
+  }
+{{#serviceOperations}}
+{{>operationResponse}}
+{{>operationBody}}
+{{/serviceOperations}}
+}
+
+export module {{serviceClass}} {
+{{#serviceOperations}}{{#operationParamsClass}}  export interface {{operationParamsClass}} {
+{{#operationParameters}}    {{paramVar}}{{^paramRequired}}?{{/paramRequired}}: {{paramType}};
+{{/operationParameters}}
+  }
+{{/operationParamsClass}}{{/serviceOperations}}
+}
