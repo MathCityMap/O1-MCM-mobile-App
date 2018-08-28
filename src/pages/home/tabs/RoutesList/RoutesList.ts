@@ -7,8 +7,6 @@ import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { ModalsService } from '../../../../services/modals-service';
 import { DB_Updater } from '../../../../classes/DB_Updater';
-import { DBC } from '../../../../classes/DBC';
-import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 import { Subscription } from 'rxjs/Subscription';
 import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
@@ -111,7 +109,7 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async addRouteByCode() {
-        let route = await this.modalsService.showAddRouteByCodeModal();
+        let route = await this.modalsService.showAddRouteByCodeModal(this.navCtrl);
         if (route) {
             let alreadyAdded = false;
             for (let i = 0; !alreadyAdded && i < this.items.length; i++) {

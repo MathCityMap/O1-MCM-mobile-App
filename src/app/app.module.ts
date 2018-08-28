@@ -43,8 +43,9 @@ import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ng
 import { ComponentsModule } from '../components/components.module';
 import { Helper } from '../classes/Helper';
 import { ChatPage } from "../pages/chat/chat";
-import { ChatService } from "../providers/chat-service";
 import {Autoresize} from "../directives/autoresize";
+import { ApiModule } from './api/api.module';
+import { ChatAndSessionService } from '../services/chat-and-session-service';
 
 
 
@@ -74,7 +75,8 @@ import {Autoresize} from "../directives/autoresize";
     }),
     ComponentsModule,
     LinkyModule,
-    YoutubePlayerModule
+    YoutubePlayerModule,
+    ApiModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -104,7 +106,7 @@ import {Autoresize} from "../directives/autoresize";
     gpsService,
     LanguageService,
     Helper,
-    ChatService,
+    ChatAndSessionService,
     Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

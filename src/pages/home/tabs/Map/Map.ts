@@ -289,7 +289,7 @@ export class MapPage implements OnInit, OnDestroy {
     }
 
     async addRouteByCode() {
-        let route = await this.modalsService.showAddRouteByCodeModal();
+        let route = await this.modalsService.showAddRouteByCodeModal(this.navCtrl);
         if (route) {
             let alreadyAdded = false;
             for (let i = 0; !alreadyAdded && i < this.routes.length; i++) {

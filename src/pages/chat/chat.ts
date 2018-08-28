@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { Events, Content } from 'ionic-angular';
-import { ChatService, ChatMessage, UserInfo } from "../../providers/chat-service";
+import { ChatAndSessionService, ChatMessage, UserInfo } from "../../services/chat-and-session-service";
 
 @IonicPage()
 @Component({
@@ -19,7 +19,7 @@ export class ChatPage {
     showEmojiPicker = false;
 
     constructor(navParams: NavParams,
-                private chatService: ChatService,
+                private chatService: ChatAndSessionService,
                 private events: Events,) {
         // Get the navParams toUserId parameter
         this.toUser = {

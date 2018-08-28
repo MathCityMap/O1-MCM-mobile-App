@@ -1,5 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { NavController, NavParams } from 'ionic-angular';
+import { Session } from '../../app/api/models/session';
+import { OrmService } from '../../services/orm-service';
+import { ModalsService } from '../../services/modals-service';
 
 
 @Component({
@@ -14,9 +18,12 @@ export class MCMJoinSessionModal {
     teamMemberArray: string[] = [];
     showError: boolean;
     codeInput: boolean = false;
+    session: Session;
+    navCtrl: NavController;
 
-    constructor(private viewCtrl: ViewController) {
-
+    constructor(private viewCtrl: ViewController, private navParams: NavParams, private ormService: OrmService) {
+        this.session = navParams.data.session;
+        this.navCtrl = navParams.data.navCtrl;
     }
 
     ionViewDidEnter() {
@@ -29,14 +36,18 @@ export class MCMJoinSessionModal {
         this.viewCtrl.dismiss();
     }
 
-    start() {
+    async start() {
         console.log(this.teamName);
         if(this.teamMemberNames != null && this.teamMemberNames != "") {
             this.teamMemberArray.push(this.teamMemberNames);
             this.teamMemberNames = "";
         }
         console.log(this.teamMemberArray);
+        console.log(this.session);
+        let route = await this.ormService.findRouteById(this.session.trail_id);
+        console.log(route);
         this.cancel();
+        // this.modalsService.showRoute(route, this.navCtrl)
      }
 
     checkInputField() {

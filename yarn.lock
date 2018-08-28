@@ -11,59 +11,59 @@
     typescript "^2.3.3"
     webpack-sources "^1.0.1"
 
-"@angular/common@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.4.3.tgz#f92ac68b02bec5f0e6d3603a843294dc96c96074"
+"@angular/common@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.4.4.tgz#ae0a818aaa0c6a3f0901e7b80bd94e1c22eb9365"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/compiler-cli@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-4.4.3.tgz#183af81f141186b8d660b06429592d40b7540a4a"
+"@angular/compiler-cli@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-4.4.4.tgz#063080a497d9175396825050222c717da184f6cf"
   dependencies:
-    "@angular/tsc-wrapped" "4.4.3"
+    "@angular/tsc-wrapped" "4.4.4"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
-"@angular/compiler@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.4.3.tgz#8f01163dad7db3408497d99d387554b6b185ad66"
+"@angular/compiler@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.4.4.tgz#326eb0029d9a3541aaca124def9adc51c36f2b41"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/core@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.4.3.tgz#e71d2b07beaacbab48ab7f51d4e2286ea5d70e15"
+"@angular/core@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.4.4.tgz#bd37ecf54158f97489996c9386bd222f80a32f5c"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/forms@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-4.4.3.tgz#25b41bbab58bf1da872411c8517c10d7c5373d8e"
+"@angular/forms@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-4.4.4.tgz#4db3790509b6b10f1db8a7c1b7f52187cf64cfd4"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/http@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.4.3.tgz#b557ed24144aacc44b136cd477e84d2f57808903"
+"@angular/http@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.4.4.tgz#667faf616bb624168eafae6ee92e5eba23a9d1f2"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser-dynamic@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.4.3.tgz#e41ddd8252432775310eab5940cdd8df0618f084"
+"@angular/platform-browser-dynamic@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.4.4.tgz#c3c9eb854a528556a07054127932e527fa932e14"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.4.3.tgz#23f9a45bd3dc7f44d97877fbf8e6032decfc9dcb"
+"@angular/platform-browser@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.4.4.tgz#a3898e2e7ba9d84ffa0d47144c6971179c75aee6"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/tsc-wrapped@4.4.3":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.4.3.tgz#2d3f38210a1d4db03fc86dcf1e095812b85cd119"
+"@angular/tsc-wrapped@4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-4.4.4.tgz#9841821e55616b826ca160250fe85e15fc74ffc3"
   dependencies:
     tsickle "^0.21.0"
 
@@ -357,15 +357,15 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argparse@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
-  dependencies:
-    sprintf-js "~1.0.2"
-
 argparse@^1.0.7:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.9.tgz#73d83bc263f86e97f8cc4f6bae1b0e90a7d22c86"
+  dependencies:
+    sprintf-js "~1.0.2"
+
+argparse@^1.0.9:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
   dependencies:
     sprintf-js "~1.0.2"
 
@@ -2825,9 +2825,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-ionic-angular@3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/ionic-angular/-/ionic-angular-3.7.1.tgz#63571213b3194ef41d42d4e43c7a7721d085a262"
+ionic-angular@3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/ionic-angular/-/ionic-angular-3.8.0.tgz#c88faaeb5693e1053f90ff77b6df5f3bdfda93a2"
 
 ionic-plugin-keyboard@2.2.1:
   version "2.2.1"
@@ -3044,7 +3044,7 @@ js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@^3.12.0:
+js-yaml@^3.10.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
   dependencies:
@@ -3074,14 +3074,14 @@ json-parse-better-errors@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.1.tgz#50183cd1b2d25275de069e9e71b467ac9eab973a"
 
-json-schema-ref-parser@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/json-schema-ref-parser/-/json-schema-ref-parser-5.1.2.tgz#c9cdaec76ea894f71eb3776c3b3291dfa62e56c9"
+json-schema-ref-parser@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/json-schema-ref-parser/-/json-schema-ref-parser-4.1.1.tgz#f7900efc15f693432d4ac6519dc1ee09c01aa40b"
   dependencies:
     call-me-maybe "^1.0.1"
     debug "^3.1.0"
-    js-yaml "^3.12.0"
-    ono "^4.0.5"
+    js-yaml "^3.10.0"
+    ono "^4.0.3"
 
 json-schema-traverse@^0.3.0:
   version "0.3.1"
@@ -3637,9 +3637,9 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-mustache@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/mustache/-/mustache-2.3.1.tgz#ef5db3c0d11f1640e9baa47f4e65ba0c3fcd82b9"
+mustache@^2.3.0:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-2.3.2.tgz#a6d4d9c3f91d13359ab889a812954f9230a3d0c5"
 
 mute-stream@0.0.5:
   version "0.0.5"
@@ -3671,13 +3671,13 @@ nested-error-stacks@^1.0.0:
   dependencies:
     inherits "~2.0.1"
 
-ng-swagger-gen@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ng-swagger-gen/-/ng-swagger-gen-1.2.0.tgz#dce7a7f6cafabea29e2371c915335c58d05c131f"
+ng-swagger-gen@0.11.4:
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/ng-swagger-gen/-/ng-swagger-gen-0.11.4.tgz#46c7f94717b63f9ebdf2c35b2e5277a002c60763"
   dependencies:
-    argparse "^1.0.10"
-    json-schema-ref-parser "^5.1.2"
-    mustache "^2.3.1"
+    argparse "^1.0.9"
+    json-schema-ref-parser "^4.1.1"
+    mustache "^2.3.0"
 
 ngx-youtube-player@^0.1.0:
   version "0.1.0"
@@ -4073,7 +4073,7 @@ onetime@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
 
-ono@^4.0.5:
+ono@^4.0.3:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ono/-/ono-4.0.6.tgz#b865214e07dacf6e6dc7f1d498c7fba42a810ff5"
   dependencies:
@@ -4986,9 +4986,9 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
-rxjs@5.4.3:
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.3.tgz#0758cddee6033d68e0fd53676f0f3596ce3d483f"
+rxjs@5.5.2:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.2.tgz#28d403f0071121967f18ad665563255d54236ac3"
   dependencies:
     symbol-observable "^1.0.1"
 

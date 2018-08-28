@@ -17,12 +17,14 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
         },
-        "/session/{trail_id}/upcoming": {
+        "/session/{trailId}/upcoming": {
             "get": {
                 "tags": [
                     "session"
@@ -31,7 +33,7 @@
                 "operationId": "getUpcomingSessions",
                 "parameters": [
                     {
-                        "name": "trail_id",
+                        "name": "trailId",
                         "in": "path",
                         "description": "Trail ID",
                         "required": true,
@@ -41,12 +43,14 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
         },
-        "/session/{session_id}": {
+        "/session/{sessionId}": {
             "get": {
                 "tags": [
                     "session"
@@ -55,7 +59,7 @@
                 "operationId": "getSession",
                 "parameters": [
                     {
-                        "name": "session_id",
+                        "name": "sessionId",
                         "in": "path",
                         "description": "Session ID",
                         "required": true,
@@ -65,7 +69,9 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
@@ -89,12 +95,14 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
         },
-        "/session/{session_id}/users": {
+        "/session/{sessionId}/users": {
             "get": {
                 "tags": [
                     "session"
@@ -103,7 +111,7 @@
                 "operationId": "getSessionUsers",
                 "parameters": [
                     {
-                        "name": "session_id",
+                        "name": "sessionId",
                         "in": "path",
                         "description": "Session ID",
                         "required": true,
@@ -113,7 +121,9 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
@@ -128,7 +138,9 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
@@ -143,12 +155,14 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
         },
-        "/session/{session_id}/message/{user_id}": {
+        "/session/{sessionId}/message/{selfUserId}/{otherUserId}": {
             "get": {
                 "tags": [
                     "chat"
@@ -157,16 +171,23 @@
                 "operationId": "getChat",
                 "parameters": [
                     {
-                        "name": "session_id",
+                        "name": "sessionId",
                         "in": "path",
                         "description": "Session ID",
                         "required": true,
                         "type": "integer"
                     },
                     {
-                        "name": "user_id",
+                        "name": "selfUserId",
                         "in": "path",
-                        "description": "User ID",
+                        "description": "Self User ID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "otherUserId",
+                        "in": "path",
+                        "description": "Other User ID",
                         "required": true,
                         "type": "integer"
                     }
@@ -174,12 +195,14 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
         },
-        "/session/getUserMessagesCreated/{session_id}/{user_id}": {
+        "/session/getUserMessagesCreated/{sessionId}/{userId}": {
             "get": {
                 "tags": [
                     "chat"
@@ -188,14 +211,14 @@
                 "operationId": "getUserMessageCreated",
                 "parameters": [
                     {
-                        "name": "session_id",
+                        "name": "sessionId",
                         "in": "path",
                         "description": "Session ID",
                         "required": true,
                         "type": "integer"
                     },
                     {
-                        "name": "user_id",
+                        "name": "userId",
                         "in": "path",
                         "description": "User ID",
                         "required": true,
@@ -205,12 +228,14 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
         },
-        "/session/getUserMessagesReceived/{session_id}/{user_id}": {
+        "/session/getUserMessagesReceived/{sessionId}/{userId}": {
             "get": {
                 "tags": [
                     "chat"
@@ -219,14 +244,14 @@
                 "operationId": "getUserMessageReceived",
                 "parameters": [
                     {
-                        "name": "session_id",
+                        "name": "sessionId",
                         "in": "path",
                         "description": "Session ID",
                         "required": true,
                         "type": "integer"
                     },
                     {
-                        "name": "user_id",
+                        "name": "userId",
                         "in": "path",
                         "description": "User ID",
                         "required": true,
@@ -236,13 +261,130 @@
                 "responses": {
                     "200": {
                         "description": "Returns a list of FeedItems",
-                        "$ref": "#/definitions/Session"
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
                     }
                 }
             }
         }
     },
     "definitions": {
+        "Event": {
+            "properties": {
+                "id": {},
+                "session_user": {
+                    "$ref": "#/definitions/SessionUser"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "string"
+                },
+                "lat": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "lon": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "trail_id": {
+                    "type": "integer"
+                },
+                "task_id": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Media": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "message": {
+                    "$ref": "#/definitions/Message"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Message": {
+            "properties": {
+                "id": {},
+                "author": {
+                    "$ref": "#/definitions/SessionUser"
+                },
+                "session": {
+                    "$ref": "#/definitions/Session"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "messagecol": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "MessageRecipient": {
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "message": {
+                    "$ref": "#/definitions/Message"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/SessionUser"
+                },
+                "message_read": {
+                    "type": "boolean"
+                },
+                "delivered": {
+                    "type": "boolean"
+                },
+                "deleted": {
+                    "type": "boolean"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "Session": {
             "properties": {
                 "id": {
@@ -270,6 +412,66 @@
                 },
                 "has_leaderboard": {
                     "type": "boolean"
+                },
+                "welcome_message": {
+                    "type": "string"
+                },
+                "goodbye_message": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "SessionUser": {
+            "properties": {
+                "id": {},
+                "wp_user_id": {
+                    "type": "integer"
+                },
+                "team_name": {
+                    "type": "string"
+                },
+                "team_members": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "deleted": {
+                    "type": "boolean"
+                },
+                "last_active_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "lat": {
+                    "type": "number",
+                    "format": "float"
+                },
+                "lon": {
+                    "type": "number",
+                    "format": "float"
+                },
+                "unread_messages": {
+                    "type": "integer"
                 }
             }
         }

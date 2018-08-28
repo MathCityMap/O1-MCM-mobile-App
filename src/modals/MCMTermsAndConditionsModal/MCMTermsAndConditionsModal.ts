@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { ModalController } from "ionic-angular";
+import { ModalController, NavController, NavParams } from "ionic-angular";
 import { MCMJoinSessionModal } from "../MCMJoinSessionModal/MCMJoinSessionModal";
+import { Session } from '../../app/api/models/session';
 
 
 @Component({
@@ -13,23 +14,20 @@ export class MCMTermsAndConditionsModal {
 
     tacCheckbox: boolean = false;
     showError: boolean;
+    session: Session;
+    navCtrl: NavController
 
-    constructor(public modalCtrl: ModalController, private viewCtrl: ViewController) {
-
+    constructor(private navParams: NavParams, public modalCtrl: ModalController, private viewCtrl: ViewController) {
+        this.session = this.navParams.data.session;
+        this.navCtrl = this.navParams.data.navCtrl;
     }
-
-    // ionViewDidEnter() {
-    //     setTimeout(() => {
-    //         this.input.setFocus();
-    //     }, 150);
-    // }
 
     cancel() {
         this.viewCtrl.dismiss();
     }
 
     async addJoinSession() {
-        let modal = this.modalCtrl.create(MCMJoinSessionModal);
+        let modal = this.modalCtrl.create(MCMJoinSessionModal, {session: this.session, navCtrl: this.navCtrl});
         this.cancel();
         modal.present();
     }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+import { Session } from '../app/api/models/session';
 
 export class ChatMessage {
     messageId: string;
@@ -21,7 +22,8 @@ export class UserInfo {
 }
 
 @Injectable()
-export class ChatService {
+export class ChatAndSessionService {
+    private activeSession: Session;
 
     constructor(private http: HttpClient,
                 private events: Events) {
@@ -64,5 +66,13 @@ export class ChatService {
         return new Promise(resolve => resolve(userInfo));
     }
 
+    setActiveSession(session: Session) {
+        // TODO persist active session
+        this.activeSession = session;
+    }
+
+    getActiveSession(): Session {
+        return this.activeSession;
+    }
 }
 
