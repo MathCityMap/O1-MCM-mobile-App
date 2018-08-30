@@ -28,6 +28,8 @@ import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
 import { ModalController} from "ionic-angular/components/modal/modal-controller";
 import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
 import { ChatPage } from "../../../chat/chat";
+import { ChatAndSessionService } from '../../../../services/chat-and-session-service';
+import { Session } from '../../../../app/api/models/session';
 
 
 declare var ConicGradient: any;
@@ -70,6 +72,7 @@ export class TasksMap {
 
     currentScore: any;
     user = null;
+    private session: Session;
 
   constructor(
     public navCtrl: NavController,
@@ -82,7 +85,8 @@ export class TasksMap {
     private imagesService: ImagesService,
     private storage: Storage,
     private spinner: SpinnerDialog,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private chatAndSessionService: ChatAndSessionService
   ) {
       this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
@@ -129,6 +133,11 @@ export class TasksMap {
     this.gamificationIsDisabled = this.route.isGamificationDisabled();
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
+
+    this.session = this.chatAndSessionService.getActiveSession();
+    if (this.session) {
+        console.log('found active session: ' + this.session.code);
+    }
 
 
     if (this.navParams.data.tasksMapState) {

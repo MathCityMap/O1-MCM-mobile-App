@@ -28,6 +28,7 @@ import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { Subscription } from 'rxjs/Subscription';
 import { LanguageService } from '../../../../services/language-service';
+import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 @IonicPage()
 @Component({
@@ -289,7 +290,7 @@ export class MapPage implements OnInit, OnDestroy {
     }
 
     async addRouteByCode() {
-        let route = await this.modalsService.showAddRouteByCodeModal(this.navCtrl);
+        let route = await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
         if (route) {
             let alreadyAdded = false;
             for (let i = 0; !alreadyAdded && i < this.routes.length; i++) {

@@ -66,9 +66,12 @@ export class ChatAndSessionService {
         return new Promise(resolve => resolve(userInfo));
     }
 
-    setActiveSession(session: Session) {
+    setActiveSession(session: Session, teamName: string, teamMembers: string[]) {
         // TODO persist active session
         this.activeSession = session;
+        console.log(session);
+        console.log(teamName);
+        console.log(teamMembers);
     }
 
     getActiveSession(): Session {

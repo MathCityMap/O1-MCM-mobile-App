@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Session } from '../../app/api/models/session';
 import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
+import { ChatAndSessionService } from '../../services/chat-and-session-service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class MCMJoinSessionModal {
     session: Session;
     navCtrl: NavController;
 
-    constructor(private viewCtrl: ViewController, private navParams: NavParams, private ormService: OrmService) {
+    constructor(private viewCtrl: ViewController, private navParams: NavParams, private ormService: OrmService,
+                private modalsService: ModalsService, private sessionService: ChatAndSessionService) {
         this.session = navParams.data.session;
         this.navCtrl = navParams.data.navCtrl;
     }
@@ -37,17 +39,14 @@ export class MCMJoinSessionModal {
     }
 
     async start() {
-        console.log(this.teamName);
         if(this.teamMemberNames != null && this.teamMemberNames != "") {
             this.teamMemberArray.push(this.teamMemberNames);
             this.teamMemberNames = "";
         }
-        console.log(this.teamMemberArray);
-        console.log(this.session);
         let route = await this.ormService.findRouteById(this.session.trail_id);
-        console.log(route);
+        this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
         this.cancel();
-        // this.modalsService.showRoute(route, this.navCtrl)
+        this.modalsService.showRoute(route, this.navCtrl)
      }
 
     checkInputField() {

@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 @IonicPage()
 @Component({
@@ -109,7 +110,7 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async addRouteByCode() {
-        let route = await this.modalsService.showAddRouteByCodeModal(this.navCtrl);
+        let route = await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
         if (route) {
             let alreadyAdded = false;
             for (let i = 0; !alreadyAdded && i < this.items.length; i++) {

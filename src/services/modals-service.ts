@@ -152,20 +152,6 @@ export class ModalsService {
         });
     }
 
-    showAddRouteByCodeModal(navCtrl: NavController): Promise<Route> {
-        let that = this;
-        return new Promise<Route>((success) => {
-            let modal = this.modalCtrl.create(MCMRouteByCodeModal, {navCtrl: navCtrl});
-            modal.onDidDismiss(function(route: Route) {
-                if (route) {
-                    that.showDialog(null, that.translateService.instant('a_private_route_added', {'T' : route.title}));
-                }
-                success(route);
-            });
-            modal.present();
-        });
-    }
-
     async presentTaskListModal(route: Route, score: Score, state: TaskMapState, navCtrl: NavController, callback: any) {
         let testModal = this.modalCtrl.create(CenteredTask, {
             route: route,

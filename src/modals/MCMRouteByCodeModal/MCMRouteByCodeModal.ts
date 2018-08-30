@@ -4,7 +4,10 @@ import { ModalController } from "ionic-angular/components/modal/modal-controller
 import { MCMTermsAndConditionsModal } from "../MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 import { SessionService } from '../../app/api/services/session.service';
 import { OrmService } from '../../services/orm-service';
-import { NavController, NavParams } from 'ionic-angular';
+import { Modal, NavController, NavParams } from 'ionic-angular';
+import { Route } from '../../entity/Route';
+import { TranslateService } from '@ngx-translate/core';
+import { ModalsService } from '../../services/modals-service';
 
 
 
@@ -66,6 +69,20 @@ export class MCMRouteByCodeModal {
             await this.ormService.unlockRoute(route);
             this.viewCtrl.dismiss(route);
         }
+    }
+
+    public static async show(navCtrl: NavController, modalCtrl: ModalController,
+                                          translateService: TranslateService, modalsService: ModalsService): Promise<Route> {
+        return new Promise<Route>((success) => {
+            let modal = modalCtrl.create(MCMRouteByCodeModal, {navCtrl: navCtrl});
+            modal.onDidDismiss(function (route: Route) {
+                if (route) {
+                    modalsService.showDialog(null, translateService.instant('a_private_route_added', {'T': route.title}));
+                }
+                success(route);
+            });
+            modal.present();
+        });
     }
 
 }
