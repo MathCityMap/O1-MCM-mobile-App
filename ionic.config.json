@@ -7,8 +7,8 @@
   },
   "proxies": [
     {
-      "path": "/mcm-api",
-      "proxyUrl": "http://mathcitymap.eu/"
+      "path": "/session",
+      "proxyUrl": "http://mcm-api.local.autentek.de/session"
     }
   ]
 }
