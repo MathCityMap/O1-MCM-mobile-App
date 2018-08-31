@@ -3,6 +3,7 @@ import { Events } from 'ionic-angular';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Session } from '../app/api/models/session';
+import { Storage } from "@ionic/storage";
 
 export class ChatMessage {
     messageId: string;
@@ -23,10 +24,12 @@ export class UserInfo {
 
 @Injectable()
 export class ChatAndSessionService {
-    private activeSession: Session;
 
-    constructor(private http: HttpClient,
-                private events: Events) {
+    private static STORAGE_KEY = 'ChatAndSessionService.activeSession';
+
+        constructor(private http: HttpClient,
+                private events: Events,
+                private storage: Storage) {
     }
 
     mockNewMsg(msg) {
@@ -66,16 +69,20 @@ export class ChatAndSessionService {
         return new Promise(resolve => resolve(userInfo));
     }
 
-    setActiveSession(session: Session, teamName: string, teamMembers: string[]) {
+    async setActiveSession(session: Session, teamName: string, teamMembers: string[]) {
         // TODO persist active session
-        this.activeSession = session;
+        await this.storage.set(ChatAndSessionService.STORAGE_KEY, session);
         console.log(session);
         console.log(teamName);
         console.log(teamMembers);
     }
 
-    getActiveSession(): Session {
-        return this.activeSession;
+    async getActiveSession(): Promise<Session> {
+        return this.storage.get(ChatAndSessionService.STORAGE_KEY);
+    }
+
+    async exitActiveSession(){
+        this.storage.remove(ChatAndSessionService.STORAGE_KEY);
     }
 }
 

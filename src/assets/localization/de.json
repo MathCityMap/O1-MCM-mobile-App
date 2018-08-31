@@ -483,4 +483,6 @@
   "a_private_session_finished_title": "Session abgeschlossen",
   "a_private_session_earned_points": "Erreichte Punkte",
   "a_private_session_finished_tasks": "Gemeisterte Aufgaben",
+  "a_private_session_quit": "Session beenden",
+  "a_private_session_quit_text": "Soll die Session wirklich beendet werden?"
 }

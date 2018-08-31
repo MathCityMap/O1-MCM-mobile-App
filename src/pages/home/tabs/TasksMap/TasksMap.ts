@@ -30,6 +30,8 @@ import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedMod
 import { ChatPage } from "../../../chat/chat";
 import { ChatAndSessionService } from '../../../../services/chat-and-session-service';
 import { Session } from '../../../../app/api/models/session';
+import {RoutesListPage} from "../RoutesList/RoutesList";
+import {HomePage} from "../../home";
 
 
 declare var ConicGradient: any;
@@ -134,9 +136,11 @@ export class TasksMap {
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
 
-    this.session = this.chatAndSessionService.getActiveSession();
+    this.session = await this.chatAndSessionService.getActiveSession();
     if (this.session) {
         console.log('found active session: ' + this.session.code);
+    } else {
+        console.log('no active session found');
     }
 
 
@@ -151,7 +155,7 @@ export class TasksMap {
             this.goToNextTask(this.taskToSkip, true);
             this.taskToSkip = null;
         }
-        console.log('mapState ',this.state);
+        console.debug('mapState ',this.state);
         if( !this.state){
             // attach state to navParams so that state is restored when moving back in history (from task detail view)
             this.state = this.navParams.data.tasksMapState = {
@@ -376,7 +380,7 @@ export class TasksMap {
                     if (resp && resp.coords) {
                         console.warn('found you');
                         Helper.myLocation = resp;
-                        console.log(`Coordinates: ${JSON.stringify(resp)}`);
+                        console.debug(`Coordinates: ${JSON.stringify(resp)}`);
                         // let markerGroup = L.featureGroup();
 
                         this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
@@ -391,7 +395,7 @@ export class TasksMap {
                         watch.subscribe(resp => {
                             if (resp && resp.coords) {
                                 Helper.myLocation = resp;
-                                console.log(`Coordinates: ${JSON.stringify(resp)}`);
+                                console.debug(`Coordinates: ${JSON.stringify(resp)}`);
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                                 this.userMarker.setLatLng(lanlng);
                                 //Rotate the user marker
@@ -429,8 +433,8 @@ export class TasksMap {
           });
 
           offlineLayer.on('offline:save-start', function (data) {
-              console.log(data);
-              console.log('Saving ' + data.nTilesToSave + ' tiles.');
+              console.debug(data);
+              console.debug('Saving ' + data.nTilesToSave + ' tiles.');
           });
 
           offlineLayer.on('offline:save-end', function () {
@@ -442,7 +446,7 @@ export class TasksMap {
           });
 
           offlineLayer.on('offline:remove-start', function () {
-              console.log('Removing tiles.');
+              console.debug('Removing tiles.');
           });
 
           offlineLayer.on('offline:remove-end', function () {
@@ -492,7 +496,7 @@ export class TasksMap {
     /* open the damn modal again */
     let that = this;
     this.modalService.presentTaskListModal(this.route, this.score, this.state, this.navCtrl, function(selectedTask: Task){
-            console.log("back in tasksMap");
+            console.debug("back in tasksMap");
             that.state.selectedTask = selectedTask;
             that.state.visibleTasks = {};
             that.state.visibleTasks[selectedTask.position] = true;
@@ -524,12 +528,18 @@ export class TasksMap {
   }
 
   async sessionFinished() {
-      let modal = this.modalCtrl.create(MCMSessionFinishedModal);
-      modal.present();
+       this.modalService.showDialog('a_private_session_quit', 'a_private_session_quit_text',
+           'no', () => {},
+           'yes', () => {
+               let modal = this.modalCtrl.create(MCMSessionFinishedModal);
+               modal.present();
+               this.chatAndSessionService.exitActiveSession();
+               this.session = null;
+           });
   }
 
   async gototask(taskId: number, taskName: string) {
-    console.log('taskId', taskId);
+    console.debug('taskId', taskId);
     let that = this;
     this.navCtrl.push('TaskDetail', {taskId: taskId, headerTitle: taskName, routeId: this.routeId, goToNextTaskById: function(taskIdToSkip: number, skip?: boolean){
             that.goToNextTaskById(taskIdToSkip, skip);
@@ -540,7 +550,7 @@ export class TasksMap {
   }
 
     async navigateToChat() {
-        console.log('showChat');
+        console.debug('showChat');
 
         this.navCtrl.push(ChatPage, {
             val: 'chatseite'

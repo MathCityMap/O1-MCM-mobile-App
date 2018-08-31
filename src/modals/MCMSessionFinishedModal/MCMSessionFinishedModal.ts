@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { NavController } from "ionic-angular";
+import { HomePage } from "../../pages/home/home";
 
 
 @Component({
@@ -11,7 +13,8 @@ export class MCMSessionFinishedModal {
 
     showError: boolean;
 
-    constructor(private viewCtrl: ViewController) {
+    constructor(private viewCtrl: ViewController,
+                private navCtrl: NavController) {
 
     }
 
@@ -25,8 +28,8 @@ export class MCMSessionFinishedModal {
         this.viewCtrl.dismiss();
     }
 
-    // TODO kein cancel sondern zur Startseite
     backToStart() {
+        this.navCtrl.push(HomePage);
         this.cancel();
     }
 
