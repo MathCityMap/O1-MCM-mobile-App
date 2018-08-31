@@ -8,11 +8,11 @@ export class CacheManagerMCM {
     static getTilesCoverageMinMaxZoom(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number): Array<MapTile> {
         let result = new Array<MapTile>()
         for (let zoomLevel = pZoomMin; zoomLevel <= pZoomMax; zoomLevel++) {
-            console.log(`Calculating ZOOM: ${zoomLevel}`)
+            console.debug(`Calculating ZOOM: ${zoomLevel}`)
             let resultForZoom = CacheManagerMCM.getTilesCoverageZoom(pBB, zoomLevel)
-            console.log(`Result.size: ${resultForZoom.length}`)
+            console.debug(`Result.size: ${resultForZoom.length}`)
             result = result.concat(resultForZoom)
-            console.log(`Result.concat.size: ${result.length}`)
+            console.debug(`Result.concat.size: ${result.length}`)
         }
 
         return result
@@ -21,24 +21,24 @@ export class CacheManagerMCM {
     static getTilesCoverageZoom(pBB: LatLngBounds, pZoomLevel: number): Array<MapTile> {
         let result = new Array<MapTile>()
         let mapTileUpperBound = 1 << pZoomLevel
-        console.log(`shift attributes ${mapTileUpperBound}`)
-        console.log(`south: ${pBB.getSouth()} east: ${pBB.getEast()}`)
-        console.log(`north: ${pBB.getNorth()} west: ${pBB.getWest()}`)
+        console.debug(`shift attributes ${mapTileUpperBound}`)
+        console.debug(`south: ${pBB.getSouth()} east: ${pBB.getEast()}`)
+        console.debug(`north: ${pBB.getNorth()} west: ${pBB.getWest()}`)
         const lowerRight = CacheManagerMCM.getMapTileFromCoordinates(pBB.getSouth(), pBB.getEast(), pZoomLevel)
         const upperLeft = CacheManagerMCM.getMapTileFromCoordinates(pBB.getNorth(), pBB.getWest(), pZoomLevel)
-        console.log(`lowerRight ${lowerRight} upperLeft ${upperLeft}`)
+        console.debug(`lowerRight ${lowerRight} upperLeft ${upperLeft}`)
         let width = lowerRight.x - upperLeft.x + 1
         if (width <= 0) {
             width += mapTileUpperBound
         }
 
-        console.log(`Width: ${width} ${typeof width}`)
+        console.debug(`Width: ${width} ${typeof width}`)
 
         let height = lowerRight.y - upperLeft.y + 1
         if (height <= 0) {
             height += mapTileUpperBound
         }
-        console.log(`Height: ${height} ${typeof height}`)
+        console.debug(`Height: ${height} ${typeof height}`)
 
         for (let i = 0; i < width; i++) {
             for (let j = 0; j < height; j++) {
@@ -47,7 +47,7 @@ export class CacheManagerMCM {
                 result.push(new MapTile(pZoomLevel, x, y))
             }
         }
-        console.log(`Result.length = ${result.length}`)
+        console.debug(`Result.length = ${result.length}`)
 
         return result
     }
@@ -56,7 +56,7 @@ export class CacheManagerMCM {
         const z = 1 << zoom
         const y: number = Math.floor((1 - Math.log(Math.tan(aLat * Math.PI / 180) + 1 / Math.cos(aLat * Math.PI / 180)) / Math.PI) / 2 * z)
         const x: number = Math.floor((aLon + 180) / 360 * z)
-        console.log(`aLat: ${aLat} aLon: ${aLon} zoom: ${zoom} => x: ${x} y: ${y}`)
+        console.debug(`aLat: ${aLat} aLon: ${aLon} zoom: ${zoom} => x: ${x} y: ${y}`)
 
         return new Point(x, y)
     }
@@ -71,7 +71,7 @@ export class CacheManagerMCM {
         try {
             await ImagesService.INSTANCE.downloadURLs(tilesUrls, false, callback, true);
         } catch (e) {
-            console.log("remove already added tiles because download failed or was aborted");
+            console.debug("remove already added tiles because download failed or was aborted");
             throw e;
         }
     }

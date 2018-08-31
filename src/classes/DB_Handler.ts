@@ -13,7 +13,7 @@ class WebSQLObject extends SQLiteObject {
   executeSql(statement: string, params: any): Promise<any> {
     return new Promise<SQLiteObject>((resolve, reject) => {
       this._objectInstance.transaction(function (tx) {
-        console.log(statement);
+        console.debug(statement);
         tx.executeSql(statement, params, function (tx, results) {
           resolve(results);
         }, function (tx, error) {
