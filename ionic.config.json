@@ -9,6 +9,10 @@
     {
       "path": "/session",
       "proxyUrl": "http://mcm-api.local.autentek.de/session"
+    },
+    {
+      "path": "/sessionUser",
+      "proxyUrl": "http://mcm-api.local.autentek.de/sessionUser"
     }
   ]
 }

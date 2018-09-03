@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
 
 import { OrmService } from '../../services/orm-service';
 import { Route } from '../../entity/Route';
@@ -15,6 +14,7 @@ import { TaskDetailMap } from './task-detail-map';
 import * as L from 'leaflet';
 import 'leaflet-geometryutil';
 import { ModalsService } from '../../services/modals-service';
+import { GpsService } from '../../services/gps-service';
 
 
 /**
@@ -57,9 +57,9 @@ export class TaskDetail{
     public navParams: NavParams,
     private ormService: OrmService,
     private modalCtrl: ModalController,
-    private geolocation: Geolocation,
     private deepLinker: DeepLinker,
-    private modalsService: ModalsService
+    private modalsService: ModalsService,
+    private gpsService: GpsService,
   ){
 
    }
@@ -100,7 +100,7 @@ export class TaskDetail{
     }
       // Init task detail map, if task is gps task
       if(this.task.solutionType == "gps"){
-          this.taskDetailMap = new TaskDetailMap(this.geolocation, this.task, this.route);
+          this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService);
           this.taskDetailMap.loadMap();
           // Insert predefined points / axis
           let gpsType = this.task.getSolutionGpsValue("task");

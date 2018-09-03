@@ -65,7 +65,6 @@ export class RoutesListPage implements OnDestroy {
             try {
                 const position = await this.geolocation.getCurrentPosition();
                 if (position && position.coords) {
-                    Helper.myLocation = position;
                     this.items.sort(this.compareFunction);
                 }
             } catch (e) {

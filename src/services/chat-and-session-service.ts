@@ -8,6 +8,9 @@ import { SessionService } from '../app/api/services/session.service';
 import { SessionUser } from '../app/api/models/session-user';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subject } from 'rxjs/Subject';
+import { GpsService } from './gps-service';
+import { Subscription } from 'rxjs/Subscription';
+import { SessionUserService } from '../app/api/services/session-user.service';
 
 export class ChatMessage {
     messageId: string;
@@ -33,21 +36,26 @@ export class SessionInfo {
 
 @Injectable()
 export class ChatAndSessionService {
-
+    private static POSITION_PUSH_INTERVAL_IN_SECS = 15;
     private static STORAGE_KEY_SESSION = 'ChatAndSessionService.activeSession';
 
     private subject = new ReplaySubject<SessionInfo>(1);
+    private positionSubscription: Subscription;
+    private lastPositionPush: number = 0;
+    private lastPositionPushLatency: number = 0;
 
     constructor(private http: HttpClient,
                 private events: Events,
                 private storage: Storage,
-                private sessionService: SessionService) {
+                private sessionService: SessionService,
+                private sessionUserService: SessionUserService,
+                private gpsService: GpsService) {
         this.init();
     }
 
     async init() {
         let sessionInfo = await this.getActiveSession();
-        this.subject.next(sessionInfo);
+        this.subscribeForAndSendEvents(sessionInfo);
     }
 
     mockNewMsg(msg) {
@@ -98,25 +106,54 @@ export class ChatAndSessionService {
             sessionUser: sessionUser
         };
         await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
-
-        this.subject.next(sessionInfo);
-
-        console.log(session);
-        console.log(teamName);
-        console.log(teamMembers);
+        this.subscribeForAndSendEvents(sessionInfo);
     }
 
     async getActiveSession(): Promise<SessionInfo> {
         return this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
     }
 
-    async exitActiveSession(){
+    async exitActiveSession() {
         await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
-        this.subject.next(null);
+        this.subscribeForAndSendEvents(null);
     }
 
     getSubject(): Subject<SessionInfo> {
         return this.subject;
+    }
+
+    private subscribeForAndSendEvents(sessionInfo: SessionInfo) {
+        this.subject.next(sessionInfo);
+        if (sessionInfo) {
+            if (this.positionSubscription) {
+                this.positionSubscription.unsubscribe();
+            }
+            console.info("ChatAndSessionService: subscribe for watchPosition()");
+            this.positionSubscription = this.gpsService.watchPosition().subscribe(async next => {
+                let currentTimestamp = new Date().getTime();
+                if (next && next.coords
+                    && currentTimestamp - ChatAndSessionService.POSITION_PUSH_INTERVAL_IN_SECS * 1000 > this.lastPositionPush) {
+                    this.lastPositionPush = currentTimestamp;
+                    console.log(`Pushing location for session user: ${next.coords.latitude}, ${next.coords.longitude}`);
+                    try {
+                        await this.sessionUserService.updatePosition({
+                            userToken: sessionInfo.sessionUser.token,
+                            latitude: next.coords.latitude,
+                            longitude: next.coords.longitude
+                        }).toPromise();
+                    } catch (e) {
+                        console.error('Could not push position', e);
+                    }
+                    this.lastPositionPushLatency = new Date().getTime() - currentTimestamp;
+                }
+            });
+        } else {
+            if (this.positionSubscription) {
+                console.info("ChatAndSessionService: unsubscribe from watchPosition()");
+                this.positionSubscription.unsubscribe();
+                this.positionSubscription = null;
+            }
+        }
     }
 }
 
