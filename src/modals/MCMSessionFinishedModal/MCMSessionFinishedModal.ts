@@ -29,7 +29,7 @@ export class MCMSessionFinishedModal {
     }
 
     backToStart() {
-        this.navCtrl.push(HomePage);
+        this.navCtrl.popToRoot();
         this.cancel();
     }
 
