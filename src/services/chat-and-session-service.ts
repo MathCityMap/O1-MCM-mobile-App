@@ -6,6 +6,8 @@ import { Session } from '../app/api/models/session';
 import { Storage } from "@ionic/storage";
 import { SessionService } from '../app/api/services/session.service';
 import { SessionUser } from '../app/api/models/session-user';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Subject } from 'rxjs/Subject';
 
 export class ChatMessage {
     messageId: string;
@@ -24,16 +26,28 @@ export class UserInfo {
     avatar?: string;
 }
 
+export class SessionInfo {
+    session: Session;
+    sessionUser: SessionUser;
+}
+
 @Injectable()
 export class ChatAndSessionService {
 
     private static STORAGE_KEY_SESSION = 'ChatAndSessionService.activeSession';
-    private static STORAGE_KEY_SESSIONUSER = 'ChatAndSessionService.activeSessionUser';
+
+    private subject = new ReplaySubject<SessionInfo>(1);
 
     constructor(private http: HttpClient,
                 private events: Events,
                 private storage: Storage,
                 private sessionService: SessionService) {
+        this.init();
+    }
+
+    async init() {
+        let sessionInfo = await this.getActiveSession();
+        this.subject.next(sessionInfo);
     }
 
     mockNewMsg(msg) {
@@ -79,24 +93,30 @@ export class ChatAndSessionService {
             sessionId: session.id,
             request: {teamName: teamName, teamMembers: teamMembers}
         }).toPromise();
-        await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSIONUSER, sessionUser);
-        await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, session);
+        let sessionInfo = {
+            session: session,
+            sessionUser: sessionUser
+        };
+        await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
+
+        this.subject.next(sessionInfo);
 
         console.log(session);
         console.log(teamName);
         console.log(teamMembers);
     }
 
-    async getActiveSession(): Promise<Session> {
+    async getActiveSession(): Promise<SessionInfo> {
         return this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
     }
 
-    async getActiveSessionUser(): Promise<SessionUser> {
-        return this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSIONUSER);
+    async exitActiveSession(){
+        await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
+        this.subject.next(null);
     }
 
-    async exitActiveSession(){
-        this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
+    getSubject(): Subject<SessionInfo> {
+        return this.subject;
     }
 }
 

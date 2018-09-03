@@ -43,7 +43,7 @@
     <div id="details" class="detail-box" [ngClass]="{'open': state.selectedTask}">
 
         <!--FAB in session mode-->
-        <div class="fab-container" *ngIf="session != null">
+        <div class="fab-container" *ngIf="sessionInfo != null">
             <ion-fab right bottom>
                 <button ion-fab color="primary"><ion-icon name="more"></ion-icon></button>
                 <ion-fab-list side="top">
@@ -59,7 +59,7 @@
         </div>
 
         <!--FAB in normal mode-->
-        <div class="fab-container" *ngIf="session == null">
+        <div class="fab-container" *ngIf="sessionInfo == null">
             <ion-fab right bottom>
                 <button ion-fab color="primary"><ion-icon name="more"></ion-icon></button>
                 <ion-fab-list side="top">

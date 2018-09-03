@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
@@ -32,6 +32,7 @@ import { ChatAndSessionService } from '../../../../services/chat-and-session-ser
 import { Session } from '../../../../app/api/models/session';
 import {RoutesListPage} from "../RoutesList/RoutesList";
 import {HomePage} from "../../home";
+import { Subscription } from 'rxjs/Subscription';
 
 
 declare var ConicGradient: any;
@@ -43,8 +44,8 @@ declare var ConicGradient: any;
   selector: 'page-tasks-map',
   templateUrl: 'TasksMap.html'
 })
-export class TasksMap {
-  @ViewChild('tasks-map') mapContainer: ElementRef;
+export class TasksMap implements OnInit, OnDestroy {
+    @ViewChild('tasks-map') mapContainer: ElementRef;
   private map: any;
   private routeId: number;
   private route: Route;
@@ -74,7 +75,8 @@ export class TasksMap {
 
     currentScore: any;
     user = null;
-    private session: Session;
+    private sessionInfo: Session;
+    private sessionSubscription: Subscription;
 
   constructor(
     public navCtrl: NavController,
@@ -136,14 +138,6 @@ export class TasksMap {
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
 
-    this.session = await this.chatAndSessionService.getActiveSession();
-    if (this.session) {
-        console.log('found active session: ' + this.session.code);
-    } else {
-        console.log('no active session found');
-    }
-
-
     if (this.navParams.data.tasksMapState) {
         this.state = this.navParams.data.tasksMapState;
         if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
@@ -191,6 +185,24 @@ export class TasksMap {
     }, 100);
 
   }
+
+    ngOnInit() {
+        this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(next => {
+            if (next && next.session) {
+                console.log('active session: ' + next.session.code);
+            } else {
+                console.log('no active session');
+            }
+            this.sessionInfo = next;
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.sessionSubscription) {
+            this.sessionSubscription.unsubscribe();
+            this.sessionSubscription = null;
+        }
+    }
 
   markerGroup: any = null;
 
@@ -534,7 +546,6 @@ export class TasksMap {
                let modal = this.modalCtrl.create(MCMSessionFinishedModal);
                modal.present();
                this.chatAndSessionService.exitActiveSession();
-               this.session = null;
            });
   }
 
