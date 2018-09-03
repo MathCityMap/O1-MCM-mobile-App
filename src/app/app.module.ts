@@ -37,7 +37,7 @@ import { MCMTermsAndConditionsModal } from "../modals/MCMTermsAndConditionsModal
 import { MCMJoinSessionModal } from "../modals/MCMJoinSessionModal/MCMJoinSessionModal";
 import { MCMSessionFinishedModal } from "../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
 import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
-import { gpsService } from '../services/gps-service';
+import { GpsService } from '../services/gps-service';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ngx-youtube-player.module';
 import { ComponentsModule } from '../components/components.module';
@@ -103,7 +103,7 @@ import { ChatAndSessionService } from '../services/chat-and-session-service';
     ImagesService,
     BroadcastService,
     ModalsService,
-    gpsService,
+    GpsService,
     LanguageService,
     Helper,
     ChatAndSessionService,

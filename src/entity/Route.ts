@@ -10,6 +10,7 @@ import { User } from './User';
 import { TranslateService } from '@ngx-translate/core';
 import { ImagesService } from '../services/images-service';
 import { OrmService } from '../services/orm-service';
+import { GpsService } from '../services/gps-service';
 
 @Entity('mcm_route')
 export class Route {
@@ -207,8 +208,8 @@ export class Route {
     }
 
     getDistance(): number {
-        if (Helper.myLocation != null && this.distance == null) {
-            this.distance = Helper.getDistanceToCenterByLatLng(this.getCenterLatLng());
+        if (GpsService.INSTANCE.getLastPosition() && this.distance == null) {
+            this.distance = Helper.INSTANCE.getDistanceToCenterByLatLng(this.getCenterLatLng());
         }
         return this.distance;
     }

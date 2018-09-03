@@ -14,9 +14,8 @@ import { Score } from '../../../../entity/Score';
 
 import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
 
-import { gpsService} from  '../../../../services/gps-service';
+import { GpsService} from  '../../../../services/gps-service';
 import { ModalsService } from '../../../../services/modals-service';
-import { Geolocation } from '@ionic-native/geolocation';
 import 'leaflet-rotatedmarker';
 import 'conic-gradient';
 
@@ -30,8 +29,6 @@ import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedMod
 import { ChatPage } from "../../../chat/chat";
 import { ChatAndSessionService } from '../../../../services/chat-and-session-service';
 import { Session } from '../../../../app/api/models/session';
-import {RoutesListPage} from "../RoutesList/RoutesList";
-import {HomePage} from "../../home";
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -77,15 +74,15 @@ export class TasksMap implements OnInit, OnDestroy {
     user = null;
     private sessionInfo: Session;
     private sessionSubscription: Subscription;
+    private watchSubscription: Subscription;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private ormService: OrmService,
     private deepLinker: DeepLinker,
-    private gpsService: gpsService,
+    private gpsService: GpsService,
     private modalService: ModalsService,
-    private geolocation: Geolocation,
     private imagesService: ImagesService,
     private storage: Storage,
     private spinner: SpinnerDialog,
@@ -202,6 +199,11 @@ export class TasksMap implements OnInit, OnDestroy {
             this.sessionSubscription.unsubscribe();
             this.sessionSubscription = null;
         }
+        if (this.watchSubscription) {
+            this.watchSubscription.unsubscribe();
+            this.watchSubscription = null;
+        }
+
     }
 
   markerGroup: any = null;
@@ -387,12 +389,10 @@ export class TasksMap implements OnInit, OnDestroy {
               detectRetina: true
           });
 
-          this.geolocation.getCurrentPosition()
+          this.gpsService.getCurrentPosition()
                 .then(resp => {
                     if (resp && resp.coords) {
-                        console.warn('found you');
-                        Helper.myLocation = resp;
-                        console.debug(`Coordinates: ${JSON.stringify(resp)}`);
+                        console.debug('found you');
                         // let markerGroup = L.featureGroup();
 
                         this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
@@ -401,13 +401,11 @@ export class TasksMap implements OnInit, OnDestroy {
                         this.userMarker.setRotationOrigin('center center');
                         this.userMarker.addTo(this.map);
 
-                        let watch = this.geolocation.watchPosition({
-                            enableHighAccuracy: true
-                        });
-                        watch.subscribe(resp => {
+                        if (this.watchSubscription) {
+                            this.watchSubscription.unsubscribe();
+                        }
+                        this.watchSubscription = this.gpsService.watchPosition().subscribe(resp => {
                             if (resp && resp.coords) {
-                                Helper.myLocation = resp;
-                                console.debug(`Coordinates: ${JSON.stringify(resp)}`);
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                                 this.userMarker.setLatLng(lanlng);
                                 //Rotate the user marker

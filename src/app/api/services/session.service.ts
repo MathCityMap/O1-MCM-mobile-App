@@ -76,7 +76,7 @@ export class SessionService extends BaseService {
 
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/session/${trailId}/upcoming`,
+      this.rootUrl + `/sessions/${trailId}/upcoming`,
       __body,
       {
         headers: __headers,

@@ -2,7 +2,7 @@
  * Created by Iwan Gurjanow on 19.02.2018.
  */
 
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import { File } from '@ionic-native/file';
@@ -22,11 +22,12 @@ import { LatLngBounds } from 'leaflet';
 import { Marker } from 'leaflet';
 import { TranslateService } from '@ngx-translate/core';
 
-import {gpsService} from  '../../services/gps-service';
+import {GpsService} from  '../../services/gps-service';
 import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
+import { Subscription } from 'rxjs/Subscription';
 
-export class TaskDetailMap{
+export class TaskDetailMap implements OnDestroy {
 
     @ViewChild('gpsTaskMap') mapContainer: ElementRef;
     map: any;
@@ -56,11 +57,12 @@ export class TaskDetailMap{
         y: null
     };
     linearFxGraph:L.Polyline = null;
+    private watchSubscription: Subscription;
 
     constructor(
-        private geolocation: Geolocation,
         private task: Task,
-        private route: Route
+        private route: Route,
+        private gpsService: GpsService
     ) {
         this.userPositionIcon = L.icon({
             iconUrl:"./assets/icons/icon_mapposition.png" ,
@@ -84,6 +86,13 @@ export class TaskDetailMap{
         // Init Marker Array
         for(let i = 0; i < parseInt(this.task.getSolutionGpsValue("points")); i++){
             this.pointMarkers[i] = null;
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.watchSubscription) {
+            this.watchSubscription.unsubscribe();
+            this.watchSubscription = null;
         }
     }
 
@@ -350,12 +359,10 @@ export class TaskDetailMap{
             });
 
             /* User's Location */
-            this.geolocation.getCurrentPosition()
+            this.gpsService.getCurrentPosition()
                 .then(resp => {
                     if (resp && resp.coords) {
                         console.warn('found you');
-                        Helper.myLocation = resp;
-                        console.log(`Coordinates: ${JSON.stringify(resp)}`);
                         // let markerGroup = L.featureGroup();
 
                         this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
@@ -364,13 +371,13 @@ export class TaskDetailMap{
                         this.userMarker.setRotationOrigin('center center');
                         this.userMarker.addTo(this.map);
 
-                        let watch = this.geolocation.watchPosition({enableHighAccuracy:true});
-                        watch.subscribe(resp => {
+                        if (this.watchSubscription) {
+                            this.watchSubscription.unsubscribe();
+                        }
+                        this.watchSubscription = this.gpsService.watchPosition().subscribe(resp => {
 
 
                             if (resp && resp.coords) {
-                                Helper.myLocation = resp;
-                                console.log(`Coordinates: ${JSON.stringify(resp)}`);
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                                 // this.map.panTo(lanlng);
                                 this.userMarker.setLatLng(lanlng);

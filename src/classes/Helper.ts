@@ -3,6 +3,7 @@ import { LatLng } from 'leaflet';
 import { checkAvailability } from '@ionic-native/core';
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
+import { GpsService } from '../services/gps-service';
 
 export class MapTile {
     constructor(private pZoomLevel: number, private pX: number, private pY: number) {
@@ -30,6 +31,7 @@ export enum ConnectionQuality {
 
 @Injectable()
 export class Helper {
+    public static INSTANCE: Helper;
     /*
       Intents #
        */
@@ -115,22 +117,23 @@ export class Helper {
     static windowWidth: number = 0
     static windowHeight: number = 0
 
-    constructor(private http: Http) {
-
+    constructor(private http: Http, private gpsService: GpsService) {
+        Helper.INSTANCE = this;
     }
 
-    public static getDistanceToCenterByLatLng(latLng: LatLng): number {
+    public getDistanceToCenterByLatLng(latLng: LatLng): number {
         if (!latLng) {
             return 0;
         }
-        return Helper.getDistanceToCenter(latLng.lat, latLng.lng);
+        return this.getDistanceToCenter(latLng.lat, latLng.lng);
     }
 
-    public static getDistanceToCenter(lat2: number, lon2: number): number {
+    public getDistanceToCenter(lat2: number, lon2: number): number {
         let distance = -1;
-        if (Helper.myLocation != null) {
-            let lat1 = new Number(Helper.myLocation.coords.latitude).valueOf();
-            let lon1 = new Number(Helper.myLocation.coords.longitude).valueOf();
+        let location = this.gpsService.getLastPosition();
+        if (location && location.coords) {
+            let lat1 = new Number(location.coords.latitude).valueOf();
+            let lon1 = new Number(location.coords.longitude).valueOf();
             let R = 6371e3; // metres
             let p = Math.PI / 180;
             let φ1 = lat1 * p;

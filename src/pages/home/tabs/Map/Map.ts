@@ -1,7 +1,6 @@
 import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { File } from '@ionic-native/file';
-import { Geolocation } from '@ionic-native/geolocation';
 import { OnInit } from "@angular/core";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
@@ -23,7 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 
 
-import {gpsService} from  '../../../../services/gps-service';
+import {GpsService} from  '../../../../services/gps-service';
 import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { Subscription } from 'rxjs/Subscription';
@@ -54,9 +53,9 @@ export class MapPage implements OnInit, OnDestroy {
     downloadedRouteIcon;
     doneRouteIcon;
     eventSubscription: Subscription;
+    private watchSubscription: Subscription;
 
     constructor(
-        private geolocation: Geolocation,
         private updater: DB_Updater,
         private ormService: OrmService,
         private modalCtrl: ModalController,
@@ -64,7 +63,7 @@ export class MapPage implements OnInit, OnDestroy {
         public navCtrl: NavController,
         private spinner: SpinnerDialog,
         private translateService: TranslateService,
-        private gpsService: gpsService,
+        private gpsService: GpsService,
         private languageService: LanguageService) {
             this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
             this.publicRouteIcon = L.icon({iconUrl:'./assets/icons/icon_routemarker-public.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
@@ -99,7 +98,14 @@ export class MapPage implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.eventSubscription.unsubscribe();
+        if (this.eventSubscription) {
+            this.eventSubscription.unsubscribe();
+            this.eventSubscription = null;
+        }
+        if (this.watchSubscription) {
+            this.watchSubscription.unsubscribe();
+            this.watchSubscription = null;
+        }
     }
 
 
@@ -218,12 +224,10 @@ export class MapPage implements OnInit, OnDestroy {
 
                 offlineLayer.addTo(map);
             });
-            this.geolocation.getCurrentPosition()
+            this.gpsService.getCurrentPosition()
                 .then(resp => {
                     if (resp && resp.coords) {
                         console.warn('found you');
-                        Helper.myLocation = resp;
-                        console.log(`Coordinates: ${JSON.stringify(resp)}`);
                         // let markerGroup = L.featureGroup();
 
                         this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
@@ -235,15 +239,13 @@ export class MapPage implements OnInit, OnDestroy {
                             this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
                         }
 
-                        let watch = this.geolocation.watchPosition({
-                            enableHighAccuracy: true
-                        });
-                        watch.subscribe(resp => {
+                        if (this.watchSubscription) {
+                            this.watchSubscription.unsubscribe();
+                        }
+                        this.watchSubscription = this.gpsService.watchPosition().subscribe(resp => {
 
                         	
                             if (resp && resp.coords) {
-                                Helper.myLocation = resp;
-                                console.log(`Coordinates: ${JSON.stringify(resp)}`);
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                                 // this.map.panTo(lanlng);
                                 this.userMarker.setLatLng(lanlng);
