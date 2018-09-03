@@ -4,6 +4,7 @@ import { ApiConfiguration } from './api-configuration';
 
 import { SessionService } from './services/session.service';
 import { ChatService } from './services/chat.service';
+import { SessionUserService } from './services/session-user.service';
 
 /**
  * Module that provides instances for all API services
@@ -19,7 +20,8 @@ import { ChatService } from './services/chat.service';
   providers: [
     ApiConfiguration,
    SessionService,
-   ChatService
+   ChatService,
+   SessionUserService
   ],
 })
 export class ApiModule { }

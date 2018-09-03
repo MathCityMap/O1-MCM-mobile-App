@@ -194,6 +194,49 @@ export class SessionService extends BaseService {
   }
 
   /**
+   * @param sessionId Session ID
+   * @return Returns a list of FeedItems
+   */
+
+  getSessionUsersResponse(sessionId: number): Observable<HttpResponse<Session>> {
+    let __params = new HttpParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/session/${sessionId}/users`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: Session = null;
+        _body = _resp.body as Session
+        return _resp.clone({body: _body}) as HttpResponse<Session>;
+      })
+    );
+  }
+
+
+  /**
+   * @param sessionId Session ID
+   * @return Returns a list of FeedItems
+   */
+
+  getSessionUsers(sessionId: number): Observable<Session> {
+    return this.getSessionUsersResponse(sessionId).pipe(
+      map(_r => (<any>_r).body)
+    );
+  }
+
+  /**
    * @param params The `SessionService.JoinSessionParams` containing the following parameters:
    *
    * - `sessionId`: The session ID to join
@@ -243,49 +286,6 @@ export class SessionService extends BaseService {
 
   joinSession(params: SessionService.JoinSessionParams): Observable<SessionUser> {
     return this.joinSessionResponse(params).pipe(
-      map(_r => (<any>_r).body)
-    );
-  }
-
-  /**
-   * @param sessionId Session ID
-   * @return Returns a list of FeedItems
-   */
-
-  getSessionUsersResponse(sessionId: number): Observable<HttpResponse<Session>> {
-    let __params = new HttpParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      "GET",
-      this.rootUrl + `/session/${sessionId}/users`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: Session = null;
-        _body = _resp.body as Session
-        return _resp.clone({body: _body}) as HttpResponse<Session>;
-      })
-    );
-  }
-
-
-  /**
-   * @param sessionId Session ID
-   * @return Returns a list of FeedItems
-   */
-
-  getSessionUsers(sessionId: number): Observable<Session> {
-    return this.getSessionUsersResponse(sessionId).pipe(
       map(_r => (<any>_r).body)
     );
   }}
