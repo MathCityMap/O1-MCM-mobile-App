@@ -30,8 +30,6 @@ import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedMod
 import { ChatPage } from "../../../chat/chat";
 import { ChatAndSessionService } from '../../../../services/chat-and-session-service';
 import { Session } from '../../../../app/api/models/session';
-import {RoutesListPage} from "../RoutesList/RoutesList";
-import {HomePage} from "../../home";
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -77,6 +75,8 @@ export class TasksMap implements OnInit, OnDestroy {
     user = null;
     private sessionInfo: Session;
     private sessionSubscription: Subscription;
+
+    private countdownActiveSession: string;
 
   constructor(
     public navCtrl: NavController,
@@ -194,6 +194,7 @@ export class TasksMap implements OnInit, OnDestroy {
                 console.log('no active session');
             }
             this.sessionInfo = next;
+            this.sessionTime();
         });
     }
 
@@ -560,14 +561,38 @@ export class TasksMap implements OnInit, OnDestroy {
     });
   }
 
-    async navigateToChat() {
-        console.debug('showChat');
+  async navigateToChat() {
+      console.debug('showChat');
 
-        this.navCtrl.push(ChatPage, {
-            val: 'chatseite'
-        });
+      this.navCtrl.push(ChatPage, {
+          val: 'chatseite'
+      });
 
-    }
+  }
+
+  sessionTime() {
+      let startTimeInUnix = new Date(this.sessionInfo.session.starts_at).getTime() / 1000;
+      let endTimeInUnix = new Date(this.sessionInfo.session.ends_at).getTime() / 1000;
+
+      let time = endTimeInUnix - startTimeInUnix;
+
+      let sec_num = parseInt(time.toString(), 10);
+      let hours = Math.floor(sec_num / 3600);
+      let minutes = Math.floor(sec_num - (hours * 3600)) / 60;
+      let seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+      let hoursString = '';
+      let minutesString = '';
+      let secondsString = '';
+
+      hoursString = (hours < 10) ? "0" + hours : hours.toString();
+      minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
+      secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
+
+      this.countdownActiveSession =  hoursString + ':' + minutesString + ':' + secondsString;
+
+  }
+
 
 }
 
