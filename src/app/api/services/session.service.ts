@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
 import { Session } from '../models/session';
+import { SessionUser } from '../models/session-user';
+import { JoinSessionRequest } from '../models/join-session-request';
 
 
 @Injectable()
@@ -192,6 +194,60 @@ export class SessionService extends BaseService {
   }
 
   /**
+   * @param params The `SessionService.JoinSessionParams` containing the following parameters:
+   *
+   * - `sessionId`: The session ID to join
+   *
+   * - `request`: Join Session Request
+   *
+   * @return Returns a SessionUser object
+   */
+
+  joinSessionResponse(params: SessionService.JoinSessionParams): Observable<HttpResponse<SessionUser>> {
+    let __params = new HttpParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    __body = params.request;
+    let req = new HttpRequest<any>(
+      "POST",
+      this.rootUrl + `/session/join/${params.sessionId}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: SessionUser = null;
+        _body = _resp.body as SessionUser
+        return _resp.clone({body: _body}) as HttpResponse<SessionUser>;
+      })
+    );
+  }
+
+
+  /**
+   * @param params The `SessionService.JoinSessionParams` containing the following parameters:
+   *
+   * - `sessionId`: The session ID to join
+   *
+   * - `request`: Join Session Request
+   *
+   * @return Returns a SessionUser object
+   */
+
+  joinSession(params: SessionService.JoinSessionParams): Observable<SessionUser> {
+    return this.joinSessionResponse(params).pipe(
+      map(_r => (<any>_r).body)
+    );
+  }
+
+  /**
    * @param sessionId Session ID
    * @return Returns a list of FeedItems
    */
@@ -235,4 +291,8 @@ export class SessionService extends BaseService {
   }}
 
 export module SessionService {
+  export interface JoinSessionParams {
+    sessionId: number;
+    request: JoinSessionRequest;
+  }
 }
