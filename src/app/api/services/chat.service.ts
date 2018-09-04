@@ -10,7 +10,6 @@ import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
 import { Session } from '../models/session';
-import { Message } from '../models/message';
 
 
 @Injectable()
@@ -266,49 +265,6 @@ export class ChatService extends BaseService {
 
   getUserMessageReceived(params: ChatService.GetUserMessageReceivedParams): Observable<Session> {
     return this.getUserMessageReceivedResponse(params).pipe(
-      map(_r => (<any>_r).body)
-    );
-  }
-
-  /**
-   * @param userToken The session user's token
-   * @return Returns a list of messages
-   */
-
-  getMessagesResponse(userToken: string): Observable<HttpResponse<Message[]>> {
-    let __params = new HttpParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      "GET",
-      this.rootUrl + `/sessionUser/${userToken}/messages`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      filter(_r => _r instanceof HttpResponse),
-      map(_r => {
-        let _resp = _r as HttpResponse<any>;
-        let _body: Message[] = null;
-        _body = _resp.body as Message[]
-        return _resp.clone({body: _body}) as HttpResponse<Message[]>;
-      })
-    );
-  }
-
-
-  /**
-   * @param userToken The session user's token
-   * @return Returns a list of messages
-   */
-
-  getMessages(userToken: string): Observable<Message[]> {
-    return this.getMessagesResponse(userToken).pipe(
       map(_r => (<any>_r).body)
     );
   }}
