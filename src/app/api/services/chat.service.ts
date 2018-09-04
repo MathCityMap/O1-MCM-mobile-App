@@ -275,7 +275,7 @@ export class ChatService extends BaseService {
    * @return Returns a list of messages
    */
 
-  getMessagesResponse(userToken: string): Observable<HttpResponse<Array&lt;Message&gt;>> {
+  getMessagesResponse(userToken: string): Observable<HttpResponse<Message[]>> {
     let __params = new HttpParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -294,9 +294,9 @@ export class ChatService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Array&lt;Message&gt; = null;
-        _body = _resp.body as Array&lt;Message&gt;
-        return _resp.clone({body: _body}) as HttpResponse<Array&lt;Message&gt;>;
+        let _body: Message[] = null;
+        _body = _resp.body as Message[]
+        return _resp.clone({body: _body}) as HttpResponse<Message[]>;
       })
     );
   }
@@ -307,7 +307,7 @@ export class ChatService extends BaseService {
    * @return Returns a list of messages
    */
 
-  getMessages(userToken: string): Observable<Array&lt;Message&gt;> {
+  getMessages(userToken: string): Observable<Message[]> {
     return this.getMessagesResponse(userToken).pipe(
       map(_r => (<any>_r).body)
     );
