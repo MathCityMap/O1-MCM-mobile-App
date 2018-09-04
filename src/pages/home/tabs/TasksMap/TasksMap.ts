@@ -27,7 +27,7 @@ import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
 import { ModalController} from "ionic-angular/components/modal/modal-controller";
 import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
 import { ChatPage } from "../../../chat/chat";
-import { ChatAndSessionService } from '../../../../services/chat-and-session-service';
+import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-and-session-service';
 import { Session } from '../../../../app/api/models/session';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -72,7 +72,7 @@ export class TasksMap implements OnInit, OnDestroy {
 
     currentScore: any;
     user = null;
-    private sessionInfo: Session;
+    private sessionInfo: SessionInfo;
     private sessionSubscription: Subscription;
     private watchSubscription: Subscription;
 
@@ -564,9 +564,10 @@ export class TasksMap implements OnInit, OnDestroy {
   async navigateToChat() {
       console.debug('showChat');
 
-      this.navCtrl.push(ChatPage, {
-          val: 'chatseite'
-      });
+    this.navCtrl.push(ChatPage, {
+        val: 'chatseite',
+        headerTitle: this.sessionInfo.session.name
+    });
 
   }
 
@@ -592,8 +593,6 @@ export class TasksMap implements OnInit, OnDestroy {
       this.countdownActiveSession =  hoursString + ':' + minutesString + ':' + secondsString;
 
   }
-
-
 }
 
 export interface TaskMapState {
