@@ -76,7 +76,7 @@ export class TasksMap implements OnInit, OnDestroy {
     private sessionSubscription: Subscription;
     private watchSubscription: Subscription;
 
-    private countdownActiveSession: string;
+    private countdownActiveSession: number;
 
   constructor(
     public navCtrl: NavController,
@@ -573,28 +573,30 @@ export class TasksMap implements OnInit, OnDestroy {
 
     private sessionTime(session) {
        console.log(this);
-       // if (!this.sessionInfo || !session) {
-       //      return;
-       //  }
+       if (!session) {
+            return;
+        }
         let startTimeInUnix = new Date(session.starts_at).getTime() / 1000;
         let endTimeInUnix = new Date(session.ends_at).getTime() / 1000;
 
         let time = endTimeInUnix - startTimeInUnix;
 
-        let sec_num = parseInt(time.toString(), 10);
-        let hours = Math.floor(sec_num / 3600);
-        let minutes = Math.floor(sec_num - (hours * 3600)) / 60;
-        let seconds = sec_num - (hours * 3600) - (minutes * 60);
+        this.countdownActiveSession = time / 60;
 
-        let hoursString = '';
-        let minutesString = '';
-        let secondsString = '';
-
-        hoursString = (hours < 10) ? "0" + hours : hours.toString();
-        minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
-        secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-
-        this.countdownActiveSession = hoursString + ':' + minutesString + ':' + secondsString;
+        // let sec_num = parseInt(time.toString(), 10);
+        // let hours = Math.floor(sec_num / 3600);
+        // let minutes = Math.floor(sec_num - (hours * 3600)) / 60;
+        // let seconds = sec_num - (hours * 3600) - (minutes * 60);
+        //
+        // let hoursString = '';
+        // let minutesString = '';
+        // let secondsString = '';
+        //
+        // hoursString = (hours < 10) ? "0" + hours : hours.toString();
+        // minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
+        // secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
+        //
+        // this.countdownActiveSession = hoursString + ':' + minutesString + ':' + secondsString;
 
     }
 }
