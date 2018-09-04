@@ -3,5 +3,5 @@
 
 export class JoinSessionRequest {
     teamName?: string;
-    teamMembers?: Array&lt;string&gt;;
+    teamMembers?: string[];
 }
