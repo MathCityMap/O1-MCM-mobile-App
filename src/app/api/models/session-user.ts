@@ -5,7 +5,7 @@ export class SessionUser {
     last_active_at?: string;
     id?: any;
     team_name?: string;
-    team_members_array?: Array&lt;string&gt;;
+    team_members_array?: string[];
     token?: string;
     deleted?: boolean;
     wp_user_id?: number;
