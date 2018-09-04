@@ -28,7 +28,8 @@ export class MCMSessionFinishedModal {
     }
 
     backToStart() {
-        this.navCtrl.popToRoot();
+        // this.navCtrl.push(HomePage); // Fehler wenn man die gleiche Route danach wieder aufruft
+        this.navCtrl.popToRoot(); // Springt nicht zur HomePage
         this.cancel();
     }
 
