@@ -189,11 +189,11 @@ export class TasksMap implements OnInit, OnDestroy {
         this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(next => {
             if (next && next.session) {
                 console.log('active session: ' + next.session.code);
+                this.sessionTime();
             } else {
                 console.log('no active session');
             }
             this.sessionInfo = next;
-            this.sessionTime();
         });
     }
 
