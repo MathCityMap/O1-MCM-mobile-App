@@ -20,7 +20,6 @@ export class MCMHeaderComponent{
 
 
     constructor(public navCtrl: NavController, public navParams: NavParams,/* public broadcastService: BroadcastService, */ public viewCtrl: ViewController, public modalCtrl: ModalController, private deepLinker: DeepLinker) {
-        console.log("MCM header in use");
 /*         broadcastService.historyChanged$.subscribe(canGoBack => {
             this.showBackButton = canGoBack;
             console.log(this.showBackButton);
