@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { NavController } from "ionic-angular";
-
+import { NavController} from "ionic-angular";
+import {HomePage} from "../../pages/home/home";
+import { App } from "ionic-angular";
 
 @Component({
     selector: 'mcm-session-finished-modal',
@@ -13,7 +14,8 @@ export class MCMSessionFinishedModal {
     showError: boolean;
 
     constructor(private viewCtrl: ViewController,
-                private navCtrl: NavController) {
+                private navCtrl: NavController,
+                private appCtrl: App) {
 
     }
 
@@ -23,13 +25,12 @@ export class MCMSessionFinishedModal {
     //     }, 150);
     // }
 
-    cancel() {
+     cancel() {
         this.viewCtrl.dismiss();
     }
 
-    backToStart() {
-        // this.navCtrl.push(HomePage); // Fehler wenn man die gleiche Route danach wieder aufruft
-        this.navCtrl.popToRoot(); // Springt nicht zur HomePage
+     backToStart() {
+        this.appCtrl.getRootNav().popToRoot(HomePage);
         this.cancel();
     }
 
