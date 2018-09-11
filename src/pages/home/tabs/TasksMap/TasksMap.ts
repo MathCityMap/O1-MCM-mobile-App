@@ -28,7 +28,6 @@ import { ModalController} from "ionic-angular/components/modal/modal-controller"
 import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
 import { ChatPage } from "../../../chat/chat";
 import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-and-session-service';
-import { Session } from '../../../../app/api/models/session';
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -76,7 +75,13 @@ export class TasksMap implements OnInit, OnDestroy {
     private sessionSubscription: Subscription;
     private watchSubscription: Subscription;
 
-    private countdownActiveSession: number;
+    private countdownOrTimerForSession: number;
+    private countdownBeforeSession: boolean = false;
+    private startInterval: boolean = false;
+    private showCountdownOrTimer: boolean = false;
+    private refreshIntervalId: any = null;
+    private showSessionEnds: boolean = false;
+    private taskBlocked: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -186,15 +191,23 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
     ngOnInit() {
-        this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(next => {
-            if (next && next.session) {
-                console.log('active session: ' + next.session.code);
-                this.sessionTime(next.session);
-            } else {
-                console.log('no active session');
-            }
-            this.sessionInfo = next;
-        });
+
+          this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(next => {
+                if (next && next.session) {
+                    console.log('active session: ' + next.session.code);
+                    this.sessionTime(next.session);
+                    if (this.startInterval == true) {
+                        this.refreshIntervalId = setInterval(() => {
+                            this.sessionTime(next.session);
+                        }, 15000)
+                    }
+                    console.log('IntervalId', this.refreshIntervalId);
+                } else {
+                    console.log('no active session');
+                }
+                this.sessionInfo = next;
+            });
+
     }
 
     ngOnDestroy() {
@@ -572,31 +585,45 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
     private sessionTime(session) {
-       console.log(this);
-       if (!session) {
+        console.log(this);
+        if (!session) {
+            this.startInterval = false;
             return;
         }
+
+        let currentTime = new Date();
+        let currentTimeUnix = Math.floor(currentTime.getTime() / 1000);
         let startTimeInUnix = new Date(session.starts_at).getTime() / 1000;
         let endTimeInUnix = new Date(session.ends_at).getTime() / 1000;
+        let countdown = startTimeInUnix - currentTimeUnix;
+        let countdownInMin = Math.floor(countdown / 60);
+        let timerInMin = Math.floor((endTimeInUnix -currentTimeUnix) / 60);
 
-        let time = endTimeInUnix - startTimeInUnix;
-
-        this.countdownActiveSession = time / 60;
-
-        // let sec_num = parseInt(time.toString(), 10);
-        // let hours = Math.floor(sec_num / 3600);
-        // let minutes = Math.floor(sec_num - (hours * 3600)) / 60;
-        // let seconds = sec_num - (hours * 3600) - (minutes * 60);
-        //
-        // let hoursString = '';
-        // let minutesString = '';
-        // let secondsString = '';
-        //
-        // hoursString = (hours < 10) ? "0" + hours : hours.toString();
-        // minutesString = (minutes < 10) ? "0" + minutes : minutes.toString();
-        // secondsString = (seconds < 10) ? "0" + seconds : seconds.toString();
-        //
-        // this.countdownActiveSession = hoursString + ':' + minutesString + ':' + secondsString;
+        if (currentTimeUnix > (startTimeInUnix - 3600) && currentTimeUnix < endTimeInUnix) {
+            console.log('C1: Springt in die Funktion');
+            this.startInterval = true;
+            if (currentTimeUnix < startTimeInUnix && currentTimeUnix < endTimeInUnix) {
+                console.log('C1: Countdown vor Start', countdownInMin);
+                this.showCountdownOrTimer = true;
+                this.countdownBeforeSession = true;
+                this.countdownOrTimerForSession = countdownInMin;
+                this.taskBlocked = true;
+            }
+            if (currentTimeUnix > startTimeInUnix && currentTimeUnix < endTimeInUnix ) {
+                console.log('C1: Timer ', timerInMin);
+                this.showCountdownOrTimer = true;
+                this.countdownOrTimerForSession = timerInMin;
+                this.countdownBeforeSession = false;
+            }
+        } else {
+            this.startInterval = false;
+            console.log('C1: Session ist abgelaufen');
+            console.log('IntervalId', this.refreshIntervalId);
+            clearInterval(this.refreshIntervalId);
+            this.showSessionEnds = true;
+            this.taskBlocked = false;
+            return;
+        }
 
     }
 }
