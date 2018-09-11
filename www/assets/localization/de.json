@@ -486,5 +486,6 @@
   "a_private_session_quit": "Session beenden",
   "a_private_session_quit_text": "Soll die Session wirklich beendet werden?",
   "a_private_session_countdown": "Session startet in: ",
-  "a_private_session_timer": "Session endet in: "
+  "a_private_session_timer": "Session endet in: ",
+  "a_private_session_ends": "Session ist abgelaufen!"
 }
