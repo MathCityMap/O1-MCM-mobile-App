@@ -561,6 +561,7 @@ export class TasksMap implements OnInit, OnDestroy {
                modal.present();
                this.chatAndSessionService.exitActiveSession();
            });
+      clearInterval(this.refreshIntervalId);
   }
 
   async gototask(taskId: number, taskName: string) {
