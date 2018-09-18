@@ -1,7 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { Events, Content } from 'ionic-angular';
-import { ChatAndSessionService, ChatMessage, UserInfo } from "../../services/chat-and-session-service";
+import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../services/chat-and-session-service";
+import { SessionUser } from "../../app/api/models/session-user";
+import {Session} from "../../app/api/models/session";
 
 @IonicPage()
 @Component({
@@ -14,6 +16,9 @@ export class ChatPage {
     @ViewChild('chat_input') messageInput: ElementRef;
     msgList: ChatMessage[] = [];
     user: UserInfo;
+    sessionInfo: SessionInfo;
+    sessionUser: SessionUser;
+    session: Session;
     toUser: UserInfo;
     editorMsg = '';
     showEmojiPicker = false;
@@ -21,16 +26,27 @@ export class ChatPage {
     constructor(navParams: NavParams,
                 private chatService: ChatAndSessionService,
                 private events: Events,) {
-        // Get the navParams toUserId parameter
+
+        // TODO sender, receiver(s) is handlet automaticly from session parameters.
+        // teams, which are *not* admin of a session, get as receiver the admin
+        // the admin of a sessionget as recivers *all* users from a session
+        // TODO gui should have an option to select a team as active receiver.
         this.toUser = {
             id: navParams.get('toUserId'),
             name: navParams.get('toUserName')
         };
-        // Get mock user information
+
         this.chatService.getUserInfo()
             .then((res) => {
                 this.user = res
             });
+
+        // TODO Does chat.ts need access to all session objects? refactor!
+        this.chatService.getActiveSession().then((res : SessionInfo) => {
+           this.sessionUser = res.sessionUser;
+           this.session = res.session;
+           this.sessionInfo = res;
+        });
     }
 
     ionViewWillLeave() {
@@ -65,22 +81,26 @@ export class ChatPage {
         this.scrollToBottom();
     }
 
-    // TODO getUserMessages
     /**
      * @name getMsg
      * @returns {Promise<ChatMessage[]>}
      */
     getMsg() {
-        // Get mock message list
-        return this.chatService
-            .getMsgList()
-            .subscribe(res => {
-                this.msgList = res;
-                this.scrollToBottom();
-            });
+        let chatMsgs : Array<any> = [];
+        this.chatService.getReceivers().forEach(receiver => {
+            chatMsgs.push(this.chatService
+                .getMsgList(this.sessionInfo, receiver.token).toPromise()
+                .then(res => {
+                    this.msgList = res;
+                    this.scrollToBottom();
+                }));
+        });
+
+        Promise.all(chatMsgs).then(() => {
+            console.log('received all messages!');
+        });
     }
 
-    // TODO sendMessageToUser/sendMessageToUsers
     /**
      * @name sendMsg
      */
@@ -107,7 +127,7 @@ export class ChatPage {
             this.focus();
         }
 
-        this.chatService.sendMsg(newMsg)
+        this.chatService.sendMsg(newMsg, this.sessionInfo)
             .then(() => {
                 let index = this.getMsgIndexById(id);
                 if (index !== -1) {
@@ -123,12 +143,18 @@ export class ChatPage {
     pushNewMsg(msg: ChatMessage) {
         const userId = this.user.id,
             toUserId = this.toUser.id;
-        // Verify user relationships
-        if (msg.userId === userId && msg.toUserId === toUserId) {
-            this.msgList.push(msg);
-        } else if (msg.toUserId === userId && msg.userId === toUserId) {
-            this.msgList.push(msg);
+
+        // check if msg already displayed
+        if(this.getMsgIndexById(msg.messageId) >= 0) {
+            return;
         }
+
+        // Verify user relationships
+        if (!(msg.userId === userId || msg.toUserId === userId)) {
+            return;
+        }
+
+        this.msgList.push(msg);
         this.scrollToBottom();
     }
 
