@@ -5,7 +5,7 @@
   }}{{#operationParameters}}{{paramVar}}{{^paramRequired}}?{{/paramRequired}}: {{paramType
   }}{{^paramIsLast}},
     {{/paramIsLast}}{{/operationParameters}}{{/operationParamsClass
-    }}): Observable<{{operationResultType}}> {
+    }}): Observable<{{&operationResultType}}> {
     return this.{{operationName}}Response({{#operationParamsClass
     }}params{{/operationParamsClass}}{{^operationParamsClass
     }}{{#operationParameters}}{{paramVar}}{{^paramIsLast}}, {{/paramIsLast
