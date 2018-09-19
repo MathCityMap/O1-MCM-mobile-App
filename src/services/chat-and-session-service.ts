@@ -28,6 +28,7 @@ export class ChatMessage {
 export class UserInfo {
     id: string;
     name?: string;
+    token: string;
     avatar?: string;
 }
 
@@ -74,8 +75,8 @@ export class ChatAndSessionService {
      */
     static getChatMessage(msg: SessionChatMessageResponse, sessionUser : SessionUser): ChatMessage {
         // TODO Think about this flip of ids, is it neccessary?
-        const userId  = msg.senderId == sessionUser.id ? msg.senderId : msg.receiverId;
-        const toUserId = msg.receiverId == sessionUser.id ? msg.receiverId : msg.senderId;
+        const userId  = msg.senderId == sessionUser.token ? msg.senderId : msg.receiverId;
+        const toUserId = msg.receiverId == sessionUser.token ? msg.receiverId : msg.senderId;
 
         return {
             messageId: msg.messageId,
@@ -140,6 +141,7 @@ export class ChatAndSessionService {
         const userInfo: UserInfo = {
             id: sessionInfo.sessionUser.id,
             name: sessionInfo.sessionUser.team_name,
+            token: sessionInfo.sessionUser.token,
             avatar: './assets/user.jpg' // FIXME User Avatar
         };
         return new Promise<UserInfo>(resolve => resolve(userInfo));
@@ -197,26 +199,20 @@ export class ChatAndSessionService {
                         // TODO put this into own subscriber
 
                         // receive all chats ...
-                        // let chatMsgs : Array<any> = [];
-                        //
-                        // this.receivers.forEach(receiver => {
-                        //     console.log(this.receivers);
-                        //     console.log(receiver);
-                        //     chatMsgs.push(this.getMsgList(sessionInfo, receiver.token).toPromise().then((messages) => {
-                        //         console.info("ChatAndSessionService: Messages received", messages);
-                        //
-                        //
-                        //         // foreach msg -> publish new event
-                        //         messages.forEach((msg : ChatMessage) => {
-                        //             console.log("ChatAndSessionService: messages received", msg, this);
-                        //             this.events.publish('chat:received', msg);
-                        //         });
-                        //     }));
-                        // });
-                        //
-                        // Promise.all(chatMsgs).then(() => {
-                        //     console.log('all chats received');
-                        // })
+                        let chatMsgs : Array<any> = [];
+
+                        this.receivers.forEach(receiver => {
+                            chatMsgs.push(this.getMsgList(sessionInfo, receiver.token).toPromise().then((messages) => {
+                                // foreach msg -> publish new event
+                                messages.forEach((msg : ChatMessage) => {
+                                    this.events.publish('chat:received', msg);
+                                });
+                            }));
+                        });
+
+                        Promise.all(chatMsgs).then(() => {
+                            console.log('all chats received');
+                        })
 
                     } catch (e) {
                         console.error("ChatAndSessionService: Could not push position", e);

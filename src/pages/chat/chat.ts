@@ -31,9 +31,11 @@ export class ChatPage {
         // teams, which are *not* admin of a session, get as receiver the admin
         // the admin of a sessionget as recivers *all* users from a session
         // TODO gui should have an option to select a team as active receiver.
+        let defaultReceiver : SessionUser = this.chatService.getReceivers()[0];
         this.toUser = {
-            id: navParams.get('toUserId'),
-            name: navParams.get('toUserName')
+            id: defaultReceiver.id,
+            name: defaultReceiver.team_name,
+            token: defaultReceiver.token
         };
 
         this.chatService.getUserInfo()
@@ -111,10 +113,10 @@ export class ChatPage {
         const id = Date.now().toString();
         let newMsg: ChatMessage = {
             messageId: Date.now().toString(),
-            userId: this.user.id,
+            userId: this.user.token,
             userName: this.user.name,
             userAvatar: this.user.avatar,
-            toUserId: this.toUser.id,
+            toUserId: this.toUser.token,
             time: Date.now(),
             message: this.editorMsg,
             status: 'pending'
@@ -141,8 +143,8 @@ export class ChatPage {
      * @param msg
      */
     pushNewMsg(msg: ChatMessage) {
-        const userId = this.user.id,
-            toUserId = this.toUser.id;
+        const userId = this.user.token,
+            toUserId = this.toUser.token;
 
         // check if msg already displayed
         if(this.getMsgIndexById(msg.messageId) >= 0) {
@@ -153,6 +155,12 @@ export class ChatPage {
         if (!(msg.userId === userId || msg.toUserId === userId)) {
             return;
         }
+
+        // TODO refactor so, that these variables are never undefined!
+        // currently, these can be undefined.
+        console.log("msg.userId: ", msg.userId);
+        console.log("toUser.token: ", this.toUser.token);
+        console.log("user.token: ", this.user.token);
 
         this.msgList.push(msg);
         this.scrollToBottom();
