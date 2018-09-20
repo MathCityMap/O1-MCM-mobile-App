@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Events } from 'ionic-angular';
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs/Rx";
 import { Session } from '../app/api/models/session';
 import { Storage } from "@ionic/storage";
 import { SessionService } from '../app/api/services/session.service';
@@ -11,8 +11,9 @@ import { GpsService } from './gps-service';
 import { Subscription } from 'rxjs/Subscription';
 import { SessionUserService } from '../app/api/services/session-user.service';
 import { SessionChatMessageResponse } from "../app/api/models/session-chat-message-response";
-import {SessionChatService} from "../app/api/services/session-chat.service";
-import {SessionChatResponse} from "../app/api/models/session-chat-response";
+import { SessionChatService } from "../app/api/services/session-chat.service";
+import { SessionChatResponse } from "../app/api/models/session-chat-response";
+import { Geoposition } from "@ionic-native/geolocation";
 
 export class ChatMessage {
     messageId: string;
@@ -41,10 +42,13 @@ export class SessionInfo {
 @Injectable()
 export class ChatAndSessionService {
     private static POSITION_PUSH_INTERVAL_IN_SECS = 15;
+    private static CHAT_PULL_INTERVAL_IN_SECS = 15;
     private static STORAGE_KEY_SESSION = 'ChatAndSessionService.activeSession';
 
     private subject = new ReplaySubject<SessionInfo>(1);
+    private timer = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000).timeInterval();
     private positionSubscription: Subscription;
+    private chatSubscription: Subscription;
     private lastPositionPush: number = 0;
     private lastPositionPushLatency: number = 0;
 
@@ -63,31 +67,28 @@ export class ChatAndSessionService {
 
     async init() {
         let sessionInfo = await this.getActiveSession();
-        let receivers = await this.determineDefaulltReceivers(sessionInfo);
+        let receivers = await this.determineDefaultReceivers(sessionInfo);
         this.setReceivers(receivers);
         this.subscribeForAndSendEvents(sessionInfo);
     }
 
     /**
-     * Converts api Message to ChatMessage
+     * Converts api SessionChatMessageResponse to ChatMessage
      * @param msg
      * @param sessionUser
      */
     static getChatMessage(msg: SessionChatMessageResponse, sessionUser : SessionUser): ChatMessage {
-        // TODO Think about this flip of ids, is it neccessary?
-        const userId  = msg.senderId == sessionUser.token ? msg.senderId : msg.receiverId;
-        const toUserId = msg.receiverId == sessionUser.token ? msg.receiverId : msg.senderId;
-
-        return {
+        let chatMessage = {
             messageId: msg.messageId,
-            userId: userId, // if author id eq current user
+            userId: msg.senderId, // if author id eq current user
             userName: msg.username, // team user name
             userAvatar: './assets/to-user.jpg', // TODO User Avatar
-            toUserId: toUserId, // toUserId (depends if this is written  or received
+            toUserId: msg.receiverId, // toUserId (depends if this is written  or received
             time: Date.parse(msg.time),
             message: msg.message,
             status: msg.status
         };
+        return chatMessage;
     }
 
     /**
@@ -112,6 +113,23 @@ export class ChatAndSessionService {
         );
     }
 
+    getNewMsgs(sessionInfo : SessionInfo, receiverToken : string): Observable<ChatMessage[]> {
+        let params : SessionChatService.GetNewMessagesParams = {
+            sessionCode: sessionInfo.session.code,
+            senderToken: sessionInfo.sessionUser.token,
+            receiverToken: receiverToken
+        };
+        return this.sessionChatService.getNewMessages(params).map(
+            (newMessages : SessionChatMessageResponse[]) : ChatMessage[] => {
+                let chatMessages : ChatMessage[] = [];
+                newMessages.forEach((msg : SessionChatMessageResponse) => {
+                    chatMessages.push(ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser));
+                });
+                return chatMessages;
+            }
+        );
+    }
+
     /**
      * Sends a message to all receivers
      *
@@ -122,17 +140,21 @@ export class ChatAndSessionService {
      */
     sendMsg(msg: ChatMessage, sessionInfo: SessionInfo) {
         let msgsSend : Array<any> = [];
+        console.log("Sending chat message: ", msg);
         this.receivers.forEach(receiver => {
             msgsSend.push(this.sessionChatService.sendMessageToUser({
                 receiverToken: receiver.token,
                 senderToken: sessionInfo.sessionUser.token,
                 sessionCode: sessionInfo.session.code,
                 chatMessage: msg // FIXME ChatMessage convert to SessionChatMessageRequest (msg = string)
-            }).toPromise());
+            }).toPromise().then((msg : SessionChatMessageResponse) => {
+                return ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser);
+            }));
         });
 
-        return Promise.all(msgsSend).then(msgs => {
+        return Promise.all(msgsSend).then((msgs : ChatMessage[]) => {
             console.info("New Chat Messages were send: [".concat( msgs.length.toString() , "]"));
+            return msgs;
         });
     }
 
@@ -178,65 +200,68 @@ export class ChatAndSessionService {
         this.subject.next(sessionInfo);
         if (sessionInfo) {
             if (this.positionSubscription) {
-                console.info("ChatAndSessionService: Unsubscribe watchPosition subscription ...");
                 this.positionSubscription.unsubscribe();
             }
-            console.info("ChatAndSessionService: subscribe for watchPosition()");
-            this.positionSubscription = this.gpsService.watchPosition().subscribe(async next => {
+
+            if(this.chatSubscription) {
+                this.chatSubscription.unsubscribe();
+            }
+
+            this.positionSubscription = this.gpsService.watchPosition().subscribe(async (geoposition : Geoposition) => {
                 let currentTimestamp = new Date().getTime();
-                if (next && next.coords
+                if (geoposition && geoposition.coords
                     && currentTimestamp - ChatAndSessionService.POSITION_PUSH_INTERVAL_IN_SECS * 1000 > this.lastPositionPush) {
                     this.lastPositionPush = currentTimestamp;
-                    console.log("ChatAndSessionService: Pushing location for session user", next.coords.latitude, next.coords.longitude);
                     try {
                         await this.sessionUserService.updatePosition({
                             sessionCode: sessionInfo.session.code,
                             userToken: sessionInfo.sessionUser.token,
-                            latitude: next.coords.latitude,
-                            longitude: next.coords.longitude
+                            latitude: geoposition.coords.latitude,
+                            longitude: geoposition.coords.longitude
                         }).toPromise();
-
-                        // TODO put this into own subscriber
-
-                        // receive all chats ...
-                        let chatMsgs : Array<any> = [];
-
-                        this.receivers.forEach(receiver => {
-                            chatMsgs.push(this.getMsgList(sessionInfo, receiver.token).toPromise().then((messages) => {
-                                // foreach msg -> publish new event
-                                messages.forEach((msg : ChatMessage) => {
-                                    this.events.publish('chat:received', msg);
-                                });
-                            }));
-                        });
-
-                        Promise.all(chatMsgs).then(() => {
-                            console.log('all chats received');
-                        })
-
                     } catch (e) {
                         console.error("ChatAndSessionService: Could not push position", e);
                     }
                     this.lastPositionPushLatency = new Date().getTime() - currentTimestamp;
                 }
             });
+
+            this.chatSubscription = this.timer.subscribe(tick => {
+                let chatMsgs : Array<any> = [];
+                console.log("check for new msgs ...");
+                this.receivers.forEach(receiver => {
+                    chatMsgs.push(this.getNewMsgs(sessionInfo, receiver.token).toPromise().then((messages) => {
+                        // foreach msg -> publish new event
+                        messages.forEach((msg : ChatMessage) => {
+                            // console.log("chat msgs received: ", msg);
+                            this.events.publish('chat:received', msg);
+                        });
+                    }));
+                });
+            });
+
+            // use rxjs timer for recurring checks
+
         } else {
             if (this.positionSubscription) {
-                console.info("ChatAndSessionService: unsubscribe from watchPosition()");
                 this.positionSubscription.unsubscribe();
                 this.positionSubscription = null;
+            }
+
+            // TODO i think this type of code is a little bit confusing. refactor to subscribe/unsubscribe methods.
+            if(this.chatSubscription) {
+                this.chatSubscription.unsubscribe();
+                this.chatSubscription = null;
             }
         }
     }
 
-    private async determineDefaulltReceivers(sessionInfo : SessionInfo) : Promise<SessionUser[]> {
+    private async determineDefaultReceivers(sessionInfo : SessionInfo) : Promise<SessionUser[]> {
         let receivers : SessionUser[] = [];
         if(!sessionInfo.sessionUser.wp_user_id || sessionInfo.sessionUser.wp_user_id <= 0) {
             let admin : SessionUser = await this.sessionService.getSessionAdmin(sessionInfo.session.code).toPromise().then(res => {
-                console.log("Admin is geladen!", res);
                 return res;
             });
-            console.log("Admin ist:", admin);
             receivers.push(admin);
         } else {
             let users: SessionUser[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)

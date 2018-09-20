@@ -150,6 +150,66 @@ export class SessionChatService extends BaseService {
 
 
   /**
+   * @param params The `SessionChatService.GetNewMessagesParams` containing the following parameters:
+   *
+   * - `sessionCode`: The session code
+   *
+   * - `senderToken`: The senders token
+   *
+   * - `receiverToken`: The receiver token
+   *
+   * @return Returns new (unread) msgs for sender
+   */
+
+  getNewMessagesResponse(params: SessionChatService.GetNewMessagesParams): Observable<HttpResponse<Array<SessionChatMessageResponse>>> {
+    let __params = new HttpParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+
+
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/session/${params.sessionCode}/chat/${params.senderToken}/${params.receiverToken}/new`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: Array<SessionChatMessageResponse> = null;
+        _body = _resp.body as Array<SessionChatMessageResponse>
+        return _resp.clone({body: _body}) as HttpResponse<Array<SessionChatMessageResponse>>;
+      })
+    );
+  }
+
+
+  /**
+   * @param params The `SessionChatService.GetNewMessagesParams` containing the following parameters:
+   *
+   * - `sessionCode`: The session code
+   *
+   * - `senderToken`: The senders token
+   *
+   * - `receiverToken`: The receiver token
+   *
+   * @return Returns new (unread) msgs for sender
+   */
+
+  getNewMessages(params: SessionChatService.GetNewMessagesParams): Observable<Array<SessionChatMessageResponse>> {
+    return this.getNewMessagesResponse(params).pipe(
+      map(_r => (<any>_r).body)
+    );
+  }
+
+
+  /**
    * @param params The `SessionChatService.SendMessageToUsersParams` containing the following parameters:
    *
    * - `sessionCode`: The session code
@@ -157,9 +217,11 @@ export class SessionChatService extends BaseService {
    * - `senderToken`: The senders token
    *
    * - `chatMessage`: The message
+   *
+   * @return Returns sended chat messages
    */
 
-  sendMessageToUsersResponse(params: SessionChatService.SendMessageToUsersParams): Observable<HttpResponse<void>> {
+  sendMessageToUsersResponse(params: SessionChatService.SendMessageToUsersParams): Observable<HttpResponse<Array<SessionChatMessageResponse>>> {
     let __params = new HttpParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -173,16 +235,16 @@ export class SessionChatService extends BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'text'
+        responseType: 'json'
       });
 
     return this.http.request<any>(req).pipe(
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: void = null;
-
-        return _resp.clone({body: _body}) as HttpResponse<void>;
+        let _body: Array<SessionChatMessageResponse> = null;
+        _body = _resp.body as Array<SessionChatMessageResponse>
+        return _resp.clone({body: _body}) as HttpResponse<Array<SessionChatMessageResponse>>;
       })
     );
   }
@@ -196,9 +258,11 @@ export class SessionChatService extends BaseService {
    * - `senderToken`: The senders token
    *
    * - `chatMessage`: The message
+   *
+   * @return Returns sended chat messages
    */
 
-  sendMessageToUsers(params: SessionChatService.SendMessageToUsersParams): Observable<void> {
+  sendMessageToUsers(params: SessionChatService.SendMessageToUsersParams): Observable<Array<SessionChatMessageResponse>> {
     return this.sendMessageToUsersResponse(params).pipe(
       map(_r => (<any>_r).body)
     );
@@ -216,6 +280,11 @@ export module SessionChatService {
     senderToken: string;
     receiverToken: string;
     chatMessage: SessionChatMessageRequest;
+  }
+  export interface GetNewMessagesParams {
+    sessionCode: string;
+    senderToken: string;
+    receiverToken: string;
   }
   export interface SendMessageToUsersParams {
     sessionCode: string;

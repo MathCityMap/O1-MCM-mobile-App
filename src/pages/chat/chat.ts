@@ -40,7 +40,7 @@ export class ChatPage {
 
         this.chatService.getUserInfo()
             .then((res) => {
-                this.user = res
+                this.user = res;
             });
 
         // TODO Does chat.ts need access to all session objects? refactor!
@@ -110,9 +110,8 @@ export class ChatPage {
         if (!this.editorMsg.trim()) return;
 
         // Mock message
-        const id = Date.now().toString();
         let newMsg: ChatMessage = {
-            messageId: Date.now().toString(),
+            messageId: null,
             userId: this.user.token,
             userName: this.user.name,
             userAvatar: this.user.avatar,
@@ -122,7 +121,8 @@ export class ChatPage {
             status: 'pending'
         };
 
-        this.pushNewMsg(newMsg);
+        console.log("new message: ", newMsg);
+
         this.editorMsg = '';
         this.setToDefaultHeight();
         if (!this.showEmojiPicker) {
@@ -130,11 +130,16 @@ export class ChatPage {
         }
 
         this.chatService.sendMsg(newMsg, this.sessionInfo)
-            .then(() => {
-                let index = this.getMsgIndexById(id);
-                if (index !== -1) {
-                    this.msgList[index].status = 'success';
-                }
+            .then((msgs : ChatMessage[]) => {
+                msgs.forEach((msg : ChatMessage) => {
+                    let index = this.getMsgIndexById(msg.messageId);
+                    if (msg.messageId && index !== -1) {
+                        this.msgList[index].status = 'success';
+                    } else {
+                        msg.status = 'success';
+                        this.pushNewMsg(msg);
+                    }
+                });
             })
     }
 
@@ -143,10 +148,10 @@ export class ChatPage {
      * @param msg
      */
     pushNewMsg(msg: ChatMessage) {
-        const userId = this.user.token,
-            toUserId = this.toUser.token;
+        let userId = this.user.token;
 
         // check if msg already displayed
+
         if(this.getMsgIndexById(msg.messageId) >= 0) {
             return;
         }
@@ -156,14 +161,9 @@ export class ChatPage {
             return;
         }
 
-        // TODO refactor so, that these variables are never undefined!
-        // currently, these can be undefined.
-        console.log("msg.userId: ", msg.userId);
-        console.log("toUser.token: ", this.toUser.token);
-        console.log("user.token: ", this.user.token);
-
         this.msgList.push(msg);
         this.scrollToBottom();
+        console.log("scroll to bottm and display msg: " + msg.messageId);
     }
 
     getMsgIndexById(id: string) {
@@ -172,7 +172,7 @@ export class ChatPage {
 
     scrollToBottom() {
         setTimeout(() => {
-            if (this.content.scrollToBottom) {
+            if (this.content && this.content.scrollToBottom) {
                 this.content.scrollToBottom();
             }
         }, 400)
