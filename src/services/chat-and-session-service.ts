@@ -67,8 +67,6 @@ export class ChatAndSessionService {
 
     async init() {
         let sessionInfo = await this.getActiveSession();
-        let receivers = await this.determineDefaultReceivers(sessionInfo);
-        this.setReceivers(receivers);
         this.subscribeForAndSendEvents(sessionInfo);
     }
 
@@ -256,7 +254,7 @@ export class ChatAndSessionService {
         }
     }
 
-    private async determineDefaultReceivers(sessionInfo : SessionInfo) : Promise<SessionUser[]> {
+    public async determineDefaultReceivers(sessionInfo : SessionInfo) : Promise<SessionUser[]> {
         let receivers : SessionUser[] = [];
         if(!sessionInfo.sessionUser.wp_user_id || sessionInfo.sessionUser.wp_user_id <= 0) {
             let admin : SessionUser = await this.sessionService.getSessionAdmin(sessionInfo.session.code).toPromise().then(res => {
@@ -280,7 +278,7 @@ export class ChatAndSessionService {
         return Promise.all(receivers);
     }
 
-    private setReceivers(receivers : SessionUser[]) : void {
+    public setReceivers(receivers : SessionUser[]) : void {
         this.receivers = receivers;
     }
 
