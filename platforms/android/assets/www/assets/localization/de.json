@@ -469,11 +469,11 @@
 
 
   "a_private_trail_or_session_add_title": "Trail oder Session via Code hinzufügen",
-  "a_add_private_route_placeholder": "Gib den Code für deinen privaten Trail oder Session ein:",
+  "a_add_private_route_or_session_placeholder": "Gib den Code für deinen privaten Trail oder Session ein:",
   "a_private_trail_or_session_add": "Hinzufügen",
 
-  "terms_and_conditions_title": "Nutzungsbedingungen",
-  "terms_and_conditions_checkbox": "Nutzungsbedingungen akzeptieren",
+  "a_terms_and_conditions_title": "Nutzungsbedingungen",
+  "a_terms_and_conditions_checkbox": "Nutzungsbedingungen akzeptieren",
   "a_terms_and_conditions_continue": "Weiter",
 
   "a_team_name": "Teamname",
@@ -483,4 +483,9 @@
   "a_private_session_finished_title": "Session abgeschlossen",
   "a_private_session_earned_points": "Erreichte Punkte",
   "a_private_session_finished_tasks": "Gemeisterte Aufgaben",
+  "a_private_session_quit": "Session beenden",
+  "a_private_session_quit_text": "Soll die Session wirklich beendet werden?",
+  "a_private_session_countdown": "Session startet in: ",
+  "a_private_session_timer": "Session endet in: ",
+  "a_private_session_ends": "Session ist abgelaufen!"
 }

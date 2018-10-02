@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		015030AE05E44C9C9F6A0F79 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 4854EED6611B4D1790ED5099 /* CDVViewController+SplashScreen.m */; };
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
@@ -12,6 +13,7 @@
 		055B39EB175A42D4B51A4A15 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87320607D69849C9978F050C /* Contacts.framework */; };
 		0A149B0C208544BF99B045D1 /* CDVConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = AE88C6F0307B4BC487C8B498 /* CDVConnection.m */; };
 		1017B1457F7E4493813ADEC9 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3615BA520606464A8F168D7F /* AFSecurityPolicy.m */; };
+		10493E11DDE746B18CD56E48 /* PhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4325B1AE7945E2A34FAEDC /* PhotoViewer.m */; };
 		13D8C4984CEC4B12BEF9DC3D /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4C2209CA99468BAD64C470 /* CDVFile.m */; };
 		156D44EF5B6F49D68AC6EA3D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8134E4724E4D0F88992574 /* UserNotifications.framework */; };
 		187D1CC43B9142C79A21554B /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8ADCEB59C14FD2BDF8F669 /* CDVLocation.m */; };
@@ -57,7 +59,6 @@
 		E8505721CB1F464380BEF30D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F5CF65026D4AF5B7409389 /* SystemConfiguration.framework */; };
 		EEF4810728934E01AF7AD1A4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327EC71F88954F1B966B2E85 /* CoreTelephony.framework */; };
 		F35A61654E88414CA07F8C5A /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9054B19D16A4C39A1BECB5B /* CoreBluetooth.framework */; };
-		10493E11DDE746B18CD56E48 /* PhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4325B1AE7945E2A34FAEDC /* PhotoViewer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		4854EED6611B4D1790ED5099 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; };
 		4B300A1750474485820F7FE9 /* FabricPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = FabricPlugin.m; path = "cordova-fabric-plugin/FabricPlugin.m"; sourceTree = "<group>"; };
 		4E0B743A1BA546678B4A8471 /* CDVFileTransfer.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVFileTransfer.h; path = "cordova-plugin-file-transfer/CDVFileTransfer.h"; sourceTree = "<group>"; };
+		4E4325B1AE7945E2A34FAEDC /* PhotoViewer.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = PhotoViewer.m; path = "com-sarriaroman-photoviewer/PhotoViewer.m"; sourceTree = "<group>"; };
 		4F2EFD77C4A14EC0B1E22FC0 /* IonicKeyboard.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = IonicKeyboard.m; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; };
 		5171DB87F20B4E438FAF7636 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = AFURLResponseSerialization.h; path = "cordova-plugin-advanced-http/AFURLResponseSerialization.h"; sourceTree = "<group>"; };
 		533CC23143774A9F8C8A9950 /* CDVGlobalization.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVGlobalization.m; path = "cordova-plugin-globalization/CDVGlobalization.m"; sourceTree = "<group>"; };
@@ -169,7 +171,6 @@
 		F7D17B5CC1EF40189A271C58 /* CordovaHttpPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CordovaHttpPlugin.h; path = "cordova-plugin-advanced-http/CordovaHttpPlugin.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = MathCityMap/config.xml; sourceTree = "<group>"; };
 		FFC27567BA8F402BAF48326E /* CDVAssetLibraryFilesystem.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVAssetLibraryFilesystem.m; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.m"; sourceTree = "<group>"; };
-		4E4325B1AE7945E2A34FAEDC /* PhotoViewer.m */ = {isa = PBXFileReference; name = "PhotoViewer.m"; path = "com-sarriaroman-photoviewer/PhotoViewer.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -567,7 +568,7 @@
 				INFOPLIST_FILE = "MathCityMap/MathCityMap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.unifrankfurt.mathcitymap;
+				PRODUCT_BUNDLE_IDENTIFIER = de.autentek.mathcitymap;
 				PRODUCT_NAME = MathCityMap;
 				PROVISIONING_PROFILE = "f8f41914-0938-4560-91c7-421b9813ee16";
 				PROVISIONING_PROFILE_SPECIFIER = "Development Wildcard";
@@ -600,10 +601,10 @@
 				INFOPLIST_FILE = "MathCityMap/MathCityMap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.unifrankfurt.mathcitymap;
+				PRODUCT_BUNDLE_IDENTIFIER = de.autentek.mathcitymap;
 				PRODUCT_NAME = MathCityMap;
-				PROVISIONING_PROFILE = "85c22c44-4e8b-410a-97cd-c9e72b3578d7";
-				PROVISIONING_PROFILE_SPECIFIER = "MathCityMap App Store";
+				PROVISIONING_PROFILE = "73045ad0-b42b-412c-8aab-7c90eb3fb6cf";
+				PROVISIONING_PROFILE_SPECIFIER = "MathCityMap Hybrid Profile";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

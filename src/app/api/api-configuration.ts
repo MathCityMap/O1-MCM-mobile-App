@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class ApiConfiguration {
-  rootUrl: string = "" // http://localhost/;
+  rootUrl: string = "http://api.mathcitymap.eu/public/index.php" // http://localhost/;
   // rootUrl: string = "http://api-mcm.local.autentek.de"
 }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.autentek.mathcitymap" version="2.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.autentek.mathcitymap" version="2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="FabricPlugin">
         <param name="android-package" value="com.sarriaroman.fabric.FabricPlugin" />
         <param name="onload" value="true" />
@@ -62,7 +62,7 @@
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content original-src="index.html" src="http://10.0.1.48:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -82,7 +82,6 @@
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
-    <allow-navigation href="http://10.0.1.48:8101" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
