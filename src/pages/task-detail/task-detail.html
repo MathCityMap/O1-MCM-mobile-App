@@ -1,5 +1,5 @@
 <mcm-header></mcm-header>
-<ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" >
+<ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
     <div class="task-header">
         <div *ngIf="task && task.solutionType!='gps'" class="image-container">
             <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" />
@@ -30,9 +30,12 @@
                     <ion-input (keyup.enter)="checkResult()"
                                [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')"
                                *ngIf="task.solutionType != 'text'"
-                               type="number"
-                               step="0.01"
-                               [(ngModel)]="taskDetails.answer">
+                               type="text"
+                               (tap)="setKeyboardOn(true)"
+                               [ngModelOptions]="{standalone: true}"
+                               readonly="true"
+                               [(ngModel)]="taskDetails.answer"
+                    >
                     </ion-input>
                     <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
@@ -44,7 +47,7 @@
                 </ion-list>
             </div>
 
-            <div class="on-the-edge-container" *ngIf="taskDetails">
+            <div class="on-the-edge-container" *ngIf="taskDetails" id="on-the-edge-container">
                 <ion-grid no-padding>
                     <ion-row>
                         <ion-col>
@@ -65,7 +68,7 @@
                         </ion-col>
                         <ion-col>
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
-                            [disabled]="!isDecimal(taskDetails.answer) || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">
+                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">
                                 {{ "a_btn_check_answer" | translate }}
                             </button>
                         </ion-col>
@@ -113,6 +116,5 @@
             </p>
         </div>
     </div>
-
 
 </ion-content>
