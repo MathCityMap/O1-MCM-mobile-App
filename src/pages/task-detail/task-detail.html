@@ -9,7 +9,7 @@
         </div>
         <div class="transition"></div>
     </div>
-    <div class="task-content">
+    <div class="task-content" id="scroll-anchor">
         <div class="card task has-button-on-the-edge">
             <!-- fab buttons for task map -->
             <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
@@ -23,7 +23,7 @@
                 <span class="tag points" *ngIf="!gamificationIsDisabled">{{maxScore}} MP</span>
             </div>
             <p *ngIf="task">{{task.description}}</p>
-            <div class="answer" id="answer-anchor">
+            <div class="answer">
                 <ion-label *ngIf ="task && task.solutionType != 'gps'">{{ "a_task_answer" | translate }}</ion-label>
                 <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->

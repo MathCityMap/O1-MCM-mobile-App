@@ -82,16 +82,17 @@ export class TaskDetail {
         // Here we add the clicked key value to the string
         this.keyboardSubscriptions.add(
             CustomKeyBoard.onCKClick.subscribe((key) => {
-                if (key === "C") {
-                    this.taskDetails.answer = "";
+                if(this.taskDetails.timeSolved == 0 && !this.taskDetails.failed){
+                    if (key === "C") {
+                        this.taskDetails.answer = "";
+                    }
+                    else if (key === "✔") { // ✔
+                        this.checkResult();
+                    }
+                    else {
+                        this.taskDetails.answer += key;
+                    }
                 }
-                else if (key === "OK") { // ✔
-                    this.checkResult();
-                }
-                else {
-                    this.taskDetails.answer += key;
-                }
-
             },
                 err => {console.log(err);},
                 () => {console.log('onCKClick subscribed.');}
@@ -137,8 +138,10 @@ export class TaskDetail {
         this.route = await this.ormService.findRouteById(this.routeId);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.taskId);
-        // Do not display last entered answer
-        this.taskDetails.answer = "";
+        if(this.taskDetails.timeSolved == 0){
+            // Do not display last entered answer
+            this.taskDetails.answer = "";
+        }
 
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
@@ -226,13 +229,10 @@ export class TaskDetail {
     // Show keyboard
     public setKeyboardOn(state) {
         let that = this;
-        //
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
-                let offSetTop = document.getElementById('answer-anchor').offsetTop;
-                let content = document.getElementsByClassName('scroll-content')[0];
-                console.log(offSetTop);
-                that.content.scrollTo(0, offSetTop);
+                // Scroll input field into view (may happen that the field is hidden by keyboard)
+                that.content.scrollTo(0, document.getElementById('scroll-anchor').offsetTop);
             });
         }
     }
