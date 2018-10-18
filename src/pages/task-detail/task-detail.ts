@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {OrmService} from '../../services/orm-service';
 import {Route} from '../../entity/Route';
@@ -34,6 +34,9 @@ import {Subscription} from "rxjs/Subscription";
     templateUrl: 'task-detail.html',
 })
 export class TaskDetail {
+    @ViewChild(Content) content: Content;
+
+
     // Keyboard open
     private keyboardOpen;
     private route: Route;
@@ -222,15 +225,14 @@ export class TaskDetail {
     }
     // Show keyboard
     public setKeyboardOn(state) {
+        let that = this;
         //
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
                 let offSetTop = document.getElementById('answer-anchor').offsetTop;
                 let content = document.getElementsByClassName('scroll-content')[0];
-                content.scrollTo({
-                    top: offSetTop,
-                    behavior: "smooth"
-                });
+                console.log(offSetTop);
+                that.content.scrollTo(0, offSetTop);
             });
         }
     }
