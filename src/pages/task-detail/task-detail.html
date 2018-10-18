@@ -23,7 +23,7 @@
                 <span class="tag points" *ngIf="!gamificationIsDisabled">{{maxScore}} MP</span>
             </div>
             <p *ngIf="task">{{task.description}}</p>
-            <div class="answer">
+            <div class="answer" id="answer-anchor">
                 <ion-label *ngIf ="task && task.solutionType != 'gps'">{{ "a_task_answer" | translate }}</ion-label>
                 <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
@@ -47,7 +47,7 @@
                 </ion-list>
             </div>
 
-            <div class="on-the-edge-container" *ngIf="taskDetails" id="on-the-edge-container">
+            <div class="on-the-edge-container" *ngIf="taskDetails">
                 <ion-grid no-padding>
                     <ion-row>
                         <ion-col>

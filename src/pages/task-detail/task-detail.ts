@@ -225,8 +225,12 @@ export class TaskDetail {
         //
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
-                let taskCard = document.getElementById('on-the-edge-container');
-                taskCard.scrollIntoView();
+                let offSetTop = document.getElementById('answer-anchor').offsetTop;
+                let content = document.getElementsByClassName('scroll-content')[0];
+                content.scrollTo({
+                    top: offSetTop,
+                    behavior: "smooth"
+                });
             });
         }
     }
