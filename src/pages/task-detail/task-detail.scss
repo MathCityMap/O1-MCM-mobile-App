@@ -164,3 +164,12 @@ page-task-detail {
         }
     }
 }
+
+.mcm-keyboard-open{
+    .scroll-content{
+        margin-bottom: 33vh;
+
+        //transform: translateY(-33vh);
+        //transition: margin 0.5s ease;
+    }
+}

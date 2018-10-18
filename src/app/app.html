@@ -1,1 +1,6 @@
 <ion-nav [root]="rootPage"></ion-nav>
+<custom-keyboard [keysTab]="keysTab"
+                 (keyClick)="keyClick($event)"
+                 [colNb]=4
+                 class="kb-light">
+</custom-keyboard>

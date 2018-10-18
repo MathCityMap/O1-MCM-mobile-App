@@ -1,0 +1,143 @@
+$kb-key-height: 50px;
+$kb-toolbar-height: 30px;
+$kb-key-font-size: 24px;
+
+// Light theme
+$kb-key-text-light: #444;
+$kb-border-light: #ddd;
+$kb-bg-light: #eee !default;
+
+// Dark theme
+$kb-key-text-dark: #eee;
+$kb-border-dark: #333;
+$kb-bg-dark: #444 !default;
+
+
+custom-keyboard {
+	position: absolute;
+    left: 0; right: 0;
+    bottom: 0;
+	font-size: $kb-key-font-size;
+    transition: transform linear 100ms;
+    transform: translate3d(0,100%,0);
+    margin: 0 auto;
+
+    // center keyboard (if not full width)
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+	
+    // Toolbar
+	.kb-toolbar {
+        height: $kb-toolbar-height;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    // Keys row
+    .kb-row {
+        display: flex;
+        flex-direction: row;
+        
+        // Keys Cells
+        .kb-key-cell {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            height: $kb-key-height;
+            
+            // Key
+            .kb-key {
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                position: absolute;
+                line-height: $kb-key-height;
+                display: block;
+                margin: 0 auto;
+                -webkit-transition: all 100ms ease-out;
+                -moz-transition: all 100ms ease-out;
+                -o-transition: all 100ms ease-out;
+                -ms-transition: all 100ms ease-out;
+                transition: all 100ms ease-out;
+            }
+        }
+    }
+
+    &.visible {
+        transform: translate3d(0,0,0);
+    }
+
+    // Default color theme (ligth)
+    .kb-toolbar {
+        background-color: $kb-border-light;
+        border: none;
+
+        .icon {
+            flex: 1;
+            color: $kb-key-text-light;
+        }
+    }
+
+    .kb-key {
+        background: $kb-bg-light;
+        color: $kb-key-text-light;
+            
+        &:active {
+            background: darken($kb-bg-light, 15%);
+        }
+    }
+
+    // Light theme
+    &.kb-light {
+
+        .kb-toolbar {
+            background-color: $kb-border-light;
+            border: none;
+
+            .icon {
+                flex: 1;
+                color: $kb-key-text-light;
+            }
+        }
+
+        .kb-key {
+            background: $kb-bg-light;
+            color: $kb-key-text-light;
+                
+            &:active {
+                background: darken($kb-bg-light, 15%);
+            }
+        }
+    }
+
+    // Dark theme
+    &.kb-dark {
+
+        .kb-toolbar {
+            background-color: $kb-border-dark;
+            border: none;
+
+            .icon {
+                flex: 1;
+                color: $kb-key-text-dark;
+            }
+        }
+
+        .kb-key {
+            background: $kb-bg-dark;
+            color: $kb-key-text-dark;
+                
+            &:active {
+                background: darken($kb-bg-dark, 20%);
+            }
+        }
+    }
+}
+

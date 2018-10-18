@@ -16,6 +16,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { ModalsService } from '../services/modals-service';
 import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
+import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 
 import { MyApp } from './app.component';
 
@@ -56,7 +57,8 @@ import { ChatPageModule } from '../pages/chat/chat.module';
         MCMDownloadProgressPopupComponent,
         MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
         CenteredTask,
-        Autoresize
+        Autoresize,
+        CustomKeyBoard
     ],
     imports: [
         HttpModule,
@@ -84,7 +86,8 @@ import { ChatPageModule } from '../pages/chat/chat.module';
         RouteInfo,
         MCMDownloadProgressPopupComponent,
         MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
-        CenteredTask
+        CenteredTask,
+        CustomKeyBoard
     ],
     providers: [
         StatusBar,

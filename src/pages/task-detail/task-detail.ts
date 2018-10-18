@@ -10,11 +10,13 @@ import {MCMModalType} from '../../app/app.component';
 import {TaskState} from '../../entity/TaskState';
 import {Score} from '../../entity/Score';
 import {TaskDetailMap} from './task-detail-map';
+import {CustomKeyBoard} from '../../components/customKeyBoard/custom-keyboard';
 
 import * as L from 'leaflet';
 import 'leaflet-geometryutil';
 import {ModalsService} from '../../services/modals-service';
 import {GpsService} from '../../services/gps-service';
+import {Subscription} from "rxjs/Subscription";
 
 
 /**
@@ -32,6 +34,8 @@ import {GpsService} from '../../services/gps-service';
     templateUrl: 'task-detail.html',
 })
 export class TaskDetail {
+    // Keyboard open
+    private keyboardOpen;
     private route: Route;
     private routeId: number;
     private taskId: number;
@@ -52,6 +56,8 @@ export class TaskDetail {
     private gpsTaskButtonLabels: Array<string> = [];
     shownHints: number[] = [];
 
+    private keyboardSubscriptions : Subscription = new Subscription();
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -64,9 +70,63 @@ export class TaskDetail {
 
     }
 
+    /*
+        Custom Keyboard subscribe
+         */
+    private subscribeCKEvents(){
+
+        // Subscribe to the click event observable
+        // Here we add the clicked key value to the string
+        this.keyboardSubscriptions.add(
+            CustomKeyBoard.onCKClick.subscribe((key) => {
+                if (key === "C") {
+                    this.taskDetails.answer = "";
+                }
+                else if (key === "OK") { // ✔
+                    this.checkResult();
+                }
+                else {
+                    this.taskDetails.answer += key;
+                }
+
+            },
+                err => {console.log(err);},
+                () => {console.log('onCKClick subscribed.');}
+            )
+        );
+
+
+        // Subscribe to the delete event observable
+        // Here we delete the last character of the string
+        this.keyboardSubscriptions.add(
+            CustomKeyBoard.onDeleteClick.subscribe(
+                () => {
+                    this.taskDetails.answer = this.taskDetails.answer.slice(0, this.taskDetails.answer.length - 1);
+                },
+                err => {console.log(err)},
+                () => {console.log('onDeleteClick subscribed.');}
+            )
+        );
+
+        this.keyboardSubscriptions.add(
+            CustomKeyBoard.onCKHide.subscribe(
+                () => {
+                    this.setKeyboardOn(false);
+                },
+                err => {console.log(err)},
+                () => {console.log('onCKHide subscribed.');}
+            )
+        );
+    }
+
+    /*
+    Custom Keyboard unsubscribe
+     */
+    private unsubscribeCKEvents(){
+        this.keyboardSubscriptions.unsubscribe();
+    }
 
     async ionViewWillEnter() {
-
         console.log('TasksMap ionViewWillEnter()');
         this.taskId = this.navParams.get('taskId');
         this.routeId = this.navParams.get('routeId');
@@ -74,6 +134,8 @@ export class TaskDetail {
         this.route = await this.ormService.findRouteById(this.routeId);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.taskId);
+        // Do not display last entered answer
+        this.taskDetails.answer = "";
 
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
@@ -144,6 +206,39 @@ export class TaskDetail {
         if (this.taskDetails.skipped) {
             this.taskDetails.newTries = 0;
         }
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value'){
+            this.subscribeCKEvents();
+        }
+    }
+
+    async ionViewWillLeave(){
+        // Hide keyboard if still visible
+        if(CustomKeyBoard.isVisible()){
+            CustomKeyBoard.hide();
+        }
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value'){
+            this.unsubscribeCKEvents();
+        }
+    }
+    // Show keyboard
+    public setKeyboardOn(state) {
+        //
+        if (state && this.task.solutionType != "gps") {
+            CustomKeyBoard.show(function(){
+                let taskCard = document.getElementById('on-the-edge-container');
+                taskCard.scrollIntoView();
+            });
+        }
+    }
+
+    public hideKeyboard() {
+        if (CustomKeyBoard.isVisible()) {
+            CustomKeyBoard.hide();
+        }
+    }
+
+    public keyboardVisible() {
+        return CustomKeyBoard.isVisible();
     }
 
     /*
@@ -213,7 +308,7 @@ export class TaskDetail {
     }
 
     checkResult() {
-        if(!this.isDecimal(this.taskDetails.answer)){
+        if ((this.task.solutionType == 'range' || this.task.solutionType == 'value') && !this.isDecimal(this.taskDetails.answer)) {
             return;
         }
         console.log(this.task.solutionType);
