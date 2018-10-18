@@ -551,6 +551,8 @@ export class TaskDetail {
                 message: message,
                 solution: solution,
                 modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
+                gamificationEnabled: !this.gamificationIsDisabled,
+                score: "+" + this.taskDetails.score,
                 buttons: [
                     {
                         title: 't_samplesolution',
@@ -664,6 +666,8 @@ export class TaskDetail {
                 message: message,
                 solution: solution,
                 modalType: MCMModalType.error,
+                gamificationEnabled: !this.gamificationIsDisabled,
+                score: this.taskDetails.tries > 1 ? '-10' : '0',
                 buttons: buttons
             }, {
                 showBackdrop: true,
@@ -749,6 +753,20 @@ export class TaskDetail {
 
         if (score < this.minScore) return this.minScore;
         else return score;
+    }
+
+    private possibleScore(){
+        if(this.taskDetails){
+            if(this.taskDetails.tries == 0){
+                return this.maxScore;
+            }
+            else{
+                return this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+            }
+        }
+        else{
+            return this.maxScore
+        }
     }
 
 
