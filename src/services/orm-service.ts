@@ -31,7 +31,7 @@ import { ModalsService } from './modals-service';
 @Injectable()
 export class OrmService {
     connection: Connection;
-    private min_zoom: number = 16;
+    private min_zoom: number = 14;
     private max_zoom: number = 19;
     public static INSTANCE: OrmService;
     public static EVENT_ROUTES_CHANGED = 'EVENT_ROUTES_CHANGED';
@@ -342,6 +342,10 @@ export class OrmService {
     }
 
     async removeDownloadedRoute(route: Route, removeTiles = false) {
+        // Reset route before removing
+        let user = await this.getActiveUser();
+        route = await this.findRouteById(route.id);
+        await this.deleteUserScore(route.getScoreForUser(user));
         if (removeTiles) {
             await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
         }
