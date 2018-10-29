@@ -13,10 +13,14 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { LazyLoadImageDirective } from 'ng-lazyload-image';
+
 @IonicPage()
 @Component({
     selector: 'page-routes-list',
-    templateUrl: 'RoutesList.html'
+    templateUrl: 'RoutesList.html',
+
 })
 export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
