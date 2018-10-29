@@ -31,7 +31,7 @@
                                [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')"
                                *ngIf="task.solutionType != 'text'"
                                type="text"
-                               (tap)="setKeyboardOn(true)"
+                               (focus)="setKeyboardOn(true)"
                                [ngModelOptions]="{standalone: true}"
                                readonly="true"
                                [(ngModel)]="taskDetails.answer"
