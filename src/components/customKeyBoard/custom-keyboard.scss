@@ -61,11 +61,11 @@ custom-keyboard {
                 line-height: $kb-key-height;
                 display: block;
                 margin: 0 auto;
-                -webkit-transition: all 100ms ease-out;
-                -moz-transition: all 100ms ease-out;
-                -o-transition: all 100ms ease-out;
-                -ms-transition: all 100ms ease-out;
-                transition: all 100ms ease-out;
+                -webkit-transition: all 50ms ease-out;
+                -moz-transition: all 50ms ease-out;
+                -o-transition: all 50ms ease-out;
+                -ms-transition: all 50ms ease-out;
+                transition: all 50ms ease-out;
             }
         }
     }
