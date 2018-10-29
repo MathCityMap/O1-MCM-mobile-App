@@ -102,7 +102,7 @@
             },
             {
               "xml": "<string>MathCityMap would like to know your position to show distance to available routes.</string>",
-              "count": 2
+              "count": 3
             }
           ],
           "NSLocationAlwaysAndWhenInUseUsageDescription": [
