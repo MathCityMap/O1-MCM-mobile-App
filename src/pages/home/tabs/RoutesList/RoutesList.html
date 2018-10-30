@@ -1,4 +1,4 @@
-<ion-content class="routes-list has-header">
+<ion-content #container class="routes-list has-header">
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content refreshingText="{{'a_toast_update_start' | translate}}"></ion-refresher-content>
     </ion-refresher>
@@ -9,7 +9,9 @@
 
   <ion-list>
     <div tappable class="detail-box dotted-border-bottom" *ngFor="let item of items" [id]="'route-item-' + item.id">
-        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}" [ngStyle]="{'background-image' : 'url('+ item.getSingleQuotedThumbURL() +')'}" ></div>
+        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}">
+        	<img [lazyLoad] = item.getThumbURL() [scrollObservable]="container.ionScroll" />
+    	</div>
         <div class="text-container">
             <div class="segmented-box">
                 <div class="title segement">

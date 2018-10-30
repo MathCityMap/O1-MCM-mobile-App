@@ -43,6 +43,7 @@
     "android-versions": "^1.2.2",
     "angular-linky": "^1.2.2",
     "async": "2.6.0",
+    "com-sarriaroman-photoviewer": "~1.1.18",
     "conic-gradient": "^1.0.0",
     "cordova": "6",
     "cordova-android": "6.2.3",
@@ -74,14 +75,14 @@
     "leaflet-offline": "1.1.0",
     "leaflet-rotatedmarker": "^0.2.0",
     "leaflet.markercluster": "1.1.0",
+    "ng-lazyload-image": "^3.4.2",
     "ngx-youtube-player": "^0.1.0",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
     "typeorm": "0.1.6",
     "typescript-collections": "1.2.5",
     "xml2json-cli": "^1.1.1",
-    "zone.js": "0.8.18",
-    "com-sarriaroman-photoviewer": "~1.1.18"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.0",
