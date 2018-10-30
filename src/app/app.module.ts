@@ -1,5 +1,3 @@
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -51,7 +49,6 @@ import { ChatAndSessionService } from '../services/chat-and-session-service';
 
 
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -80,8 +77,6 @@ import { ChatAndSessionService } from '../services/chat-and-session-service';
     LinkyModule,
     YoutubePlayerModule,
     ApiModule
-
-
   ],
   bootstrap: [IonicApp],
   entryComponents: [

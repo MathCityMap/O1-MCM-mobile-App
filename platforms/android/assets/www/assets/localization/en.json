@@ -482,10 +482,5 @@
 
   "a_private_session_finished_title": "Session finished",
   "a_private_session_earned_points": "Earned Points",
-  "a_private_session_finished_tasks": "Finished Tasks",
-  "a_private_session_quit": "Quit Session",
-  "a_private_session_quit_text": "Do you really want to quit the Session?",
-  "a_private_session_countdown": "Session starts in: ",
-  "a_private_session_timer": "Session ends in: ",
-  "a_private_session_ends": "Session has ended!"
+  "a_private_session_finished_tasks": "Finished Tasks"
 }
