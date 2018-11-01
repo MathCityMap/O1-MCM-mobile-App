@@ -8,7 +8,6 @@ import { Score } from "./Score";
 import { Task2Route } from './Task2Route';
 import { User } from './User';
 import { TranslateService } from '@ngx-translate/core';
-import { ImagesService } from '../services/images-service';
 import { OrmService } from '../services/orm-service';
 import { GpsService } from '../services/gps-service';
 
@@ -128,19 +127,7 @@ export class Route {
     }
 
     getImageURL(): string {
-        return ImagesService.INSTANCE.getOfflineURL(this.image);
-    }
-
-    getSingleQuotedImageURL(): string {
-        return `'${this.getImageURL()}'`;
-    }
-
-    getThumbURL(): string {
-        return ImagesService.INSTANCE.getOfflineURL(this.image, true);
-    }
-
-    getSingleQuotedThumbURL(): string {
-        return `'${this.getThumbURL()}'`;
+        return this.image;
     }
 
     private boundingBoxLatLng: LatLngBounds = null;

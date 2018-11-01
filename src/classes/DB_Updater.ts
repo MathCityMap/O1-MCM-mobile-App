@@ -52,10 +52,7 @@ export class DB_Updater {
 
             // Routes need update
             await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRoutes'), DBC.DB_ROUTE);
-            /*
-            TODO: updateRouteImages muss losgelöst von der Datenbankaktualisierung stattfinden!
-             */
-            await this.updateRouteImages();
+
             // Update local table
             console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
             await db.executeSql(sqlUpdateQuery,
@@ -139,28 +136,6 @@ export class DB_Updater {
         }).catch(error => {
             console.error(`Transaction Error: ${error.toString()}`)
         })
-    }
-
-    private async updateRouteImages() {
-        if (checkAvailability(FileTransfer.getPluginRef(), null, FileTransfer.getPluginName()) !== true) {
-            return true;
-        }
-        let dbHandler = DB_Handler.getInstance()
-        await dbHandler.ready();
-        let trailInfo = await dbHandler.getTrailsImageInfo()
-
-        let images = [];
-        for (var i = 0; i < trailInfo.length; i++) {
-            let info = trailInfo[i];
-
-            let imgFileName = info[1]
-            // No image in task
-            if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
-                continue
-            }
-            images.push(imgFileName);
-        }
-        await this.imagesService.downloadURLs(images, true);
     }
 
     /*
