@@ -1,7 +1,7 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { Content, IonicPage, ModalController, NavController } from 'ionic-angular';
-import { Helper } from '../../../../classes/Helper';
-import { Geolocation } from '@ionic-native/geolocation';
+import { ConnectionQuality, Helper } from '../../../../classes/Helper';
+import { timeout } from 'promise-timeout';
 
 import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
@@ -12,6 +12,7 @@ import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import { GpsService } from '../../../../services/gps-service';
 
 @IonicPage()
 @Component({
@@ -21,19 +22,25 @@ import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMR
 export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
     public items: Route[] = [];
-    public helper = Helper;
+    public filteredItems: Route[] = [];
 
     modal: any;
     private eventSubscription: Subscription;
+    /**
+     * How many elements shall be loaded each time the list is scrolled to the end.
+     * @type {number}
+     */
+    private infiniteScrollBlockSize = 20;
 
-    constructor(private ormService: OrmService, 
-                private geolocation: Geolocation,
+    constructor(private ormService: OrmService,
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
                 private modalCtrl: ModalController,
                 private spinner: SpinnerDialog,
                 private translateService: TranslateService,
-                private dbUpdater: DB_Updater) {
+                private dbUpdater: DB_Updater,
+                public helper: Helper,
+                private gpsService: GpsService) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
@@ -47,6 +54,7 @@ export class RoutesListPage implements OnDestroy {
     async ionViewWillEnter() {
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
+            // initial app start
             let online = await this.modalsService.showNoInternetModalIfOffline();
             if (online) {
                 this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
@@ -59,19 +67,30 @@ export class RoutesListPage implements OnDestroy {
             }
             let userModal = this.modalCtrl.create(MCMInputModal);
             await userModal.present();
-        }
-        this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
-        if (!Helper.myLocation) {
-            try {
-                const position = await this.geolocation.getCurrentPosition();
-                if (position && position.coords) {
-                    this.items.sort(this.compareFunction);
+        } else {
+            // we need to check for updates
+            let quality = await this.helper.checkConnection();
+            if (quality == ConnectionQuality.FAST || quality == ConnectionQuality.SLOW) {
+                this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+                try {
+                    await this.dbUpdater.checkForUpdates();
+                } catch (e) {
+                    console.error('caught error while checking for updates:');
+                    console.error(e);
                 }
+            }
+        }
+        if (!this.gpsService.getLastPosition()) {
+            // try to get position
+            try {
+                await timeout(this.gpsService.getCurrentPosition(), 3000);
             } catch (e) {
                 console.log("could not obtain position");
                 console.log(e);
             }
         }
+        this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
+        this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
     }
 
     private compareFunction(a: Route, b: Route) {
@@ -97,7 +116,7 @@ export class RoutesListPage implements OnDestroy {
 
     async doRefresh(refresher) {
         let online = await this.modalsService.showNoInternetModalIfOffline();
-        if (online){
+        if (online) {
             try {
                 await this.dbUpdater.checkForUpdates();
             } catch (e) {
@@ -131,16 +150,29 @@ export class RoutesListPage implements OnDestroy {
             this.items.sort(this.compareFunction);
             this.scrollTo(route);
         }
-   }
+    }
 
-   scrollTo(route: Route) {
+    scrollTo(route: Route) {
         let that = this;
-        setTimeout(function() {
+        setTimeout(function () {
             let element = document.getElementById('route-item-' + route.id);
             if (element) {
                 that.content.scrollTo(0, element.offsetTop);
             }
 
         }, 300);
-   }
+    }
+
+    doInfinite(infiniteScroll) {
+        if (this.items.length > this.filteredItems.length) {
+            console.info(`Add ${this.infiniteScrollBlockSize} list items ...`);
+            let itemsToAdd = this.items.slice(this.filteredItems.length, this.filteredItems.length + this.infiniteScrollBlockSize);
+            itemsToAdd.forEach(item => this.filteredItems.push(item));
+        } else {
+            console.info('End of list reached');
+        }
+        setTimeout(() => {
+            infiniteScroll.complete();
+        }, 2000);
+    }
 }

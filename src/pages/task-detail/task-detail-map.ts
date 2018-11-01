@@ -106,7 +106,7 @@ export class TaskDetailMap implements OnDestroy {
             location = Helper.testLocation;
         }
         else{
-            location = Helper.myLocation;
+            location = this.gpsService.getLastPosition();
         }
         if(location != null){
             let locationLatLng = new L.LatLng(location.coords.latitude, location.coords.longitude);
