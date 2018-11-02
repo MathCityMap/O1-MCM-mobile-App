@@ -321,7 +321,7 @@ export class OrmService {
     }
 
     getTileURLs(route: Route) {
-        return CacheManagerMCM.getTileURLs(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom);
+        return CacheManagerMCM.getTileURLs(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom);
     }
 
     getTileURLsAsObject(route: Route) {
