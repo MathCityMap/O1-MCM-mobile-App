@@ -1,5 +1,5 @@
 <mcm-header></mcm-header>
-<ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" >
+<ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
     <div class="task-header">
         <div *ngIf="task && task.solutionType!='gps'" class="image-container">
             <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" />
@@ -9,8 +9,7 @@
         </div>
         <div class="transition"></div>
     </div>
-
-    <div class="task-content">
+    <div class="task-content" id="scroll-anchor">
         <div class="card task has-button-on-the-edge">
             <!-- fab buttons for task map -->
             <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
@@ -21,13 +20,23 @@
             <!-- // fab buttons for task map -->
             <div class="head">
                 <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-                <span class="tag points" *ngIf="!gamificationIsDisabled">{{maxScore}} MP</span>
+                <span class="tag points" *ngIf="!gamificationIsDisabled">{{possibleScore()}} MP</span>
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
                 <ion-label *ngIf ="task && task.solutionType != 'gps'">{{ "a_task_answer" | translate }}</ion-label>
                 <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
-                    <ion-input (keyup.enter)="checkResult()" [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')" *ngIf="task.solutionType != 'text'" type="number" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
+                    <ion-input (keyup.enter)="checkResult()"
+                               [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')"
+                               *ngIf="task.solutionType != 'text'"
+                               type="text"
+                               (focus)="setKeyboardOn(true)"
+                               [ngModelOptions]="{standalone: true}"
+                               readonly="true"
+                               [(ngModel)]="taskDetails.answer"
+                    >
+                    </ion-input>
                     <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList">
@@ -59,7 +68,7 @@
                         </ion-col>
                         <ion-col>
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
-                            [disabled]="task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">
+                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">
                                 {{ "a_btn_check_answer" | translate }}
                             </button>
                         </ion-col>
@@ -107,6 +116,5 @@
             </p>
         </div>
     </div>
-
 
 </ion-content>

@@ -29,7 +29,7 @@ export class {{serviceClass}} extends BaseService {
 
 export module {{serviceClass}} {
 {{#serviceOperations}}{{#operationParamsClass}}  export interface {{operationParamsClass}} {
-{{#operationParameters}}    {{paramVar}}{{^paramRequired}}?{{/paramRequired}}: {{paramType}};
+{{#operationParameters}}    {{paramVar}}{{^paramRequired}}?{{/paramRequired}}: {{&paramType}};
 {{/operationParameters}}
   }
 {{/operationParamsClass}}{{/serviceOperations}}

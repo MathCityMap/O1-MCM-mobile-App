@@ -6,6 +6,7 @@
         <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/icon_popup-right-answer.svg"/>
         <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/icon_popup-nearly-right-answer.svg"/>
         <h2>{{title | translate}}</h2>
+         <h2 *ngIf="gamificationEnabled && score != '0'">{{score}} MP</h2>
 
         <!-- image hint -->
         <mcm-image *ngIf=" type == 'image' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>

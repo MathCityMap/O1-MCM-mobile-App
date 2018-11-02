@@ -79,6 +79,14 @@
                         {
                             "xml": "<feature name=\"PhotoViewer\"><param name=\"ios-package\" value=\"PhotoViewer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Badge\"><param name=\"ios-package\" value=\"APPBadge\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"LocalNotification\"><param name=\"ios-package\" value=\"APPLocalNotification\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -99,6 +107,10 @@
                         {
                             "xml": "<string>This app requires access to your location when the screen is on and the app is displayed.</string>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<string>MathCityMap would like to know your position to show distance to available routes.</string>",
+                            "count": 5
                         }
                     ],
                     "NSLocationAlwaysAndWhenInUseUsageDescription": [
@@ -225,6 +237,12 @@
         },
         "com-sarriaroman-photoviewer": {
             "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        },
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-local-notification": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {},
@@ -612,6 +630,40 @@
             "clobbers": [
                 "PhotoViewer"
             ]
+        },
+        {
+            "id": "cordova-plugin-badge.Badge",
+            "file": "plugins/cordova-plugin-badge/www/badge.js",
+            "pluginId": "cordova-plugin-badge",
+            "clobbers": [
+                "cordova.plugins.notification.badge"
+            ]
+        },
+        {
+            "id": "cordova-plugin-local-notification.LocalNotification",
+            "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+            "pluginId": "cordova-plugin-local-notification",
+            "clobbers": [
+                "cordova.plugins.notification.local"
+            ]
+        },
+        {
+            "id": "cordova-plugin-local-notification.LocalNotification.Core",
+            "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
+            "pluginId": "cordova-plugin-local-notification",
+            "clobbers": [
+                "cordova.plugins.notification.local.core",
+                "plugin.notification.local.core"
+            ]
+        },
+        {
+            "id": "cordova-plugin-local-notification.LocalNotification.Util",
+            "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
+            "pluginId": "cordova-plugin-local-notification",
+            "merges": [
+                "cordova.plugins.notification.local.core",
+                "plugin.notification.local.core"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -633,6 +685,8 @@
         "cordova.plugins.diagnostic": "3.9.1",
         "ionic-plugin-keyboard": "2.2.1",
         "cordova-plugin-globalization": "1.0.9",
-        "com-sarriaroman-photoviewer": "1.1.18"
+        "com-sarriaroman-photoviewer": "1.1.18",
+        "cordova-plugin-badge": "0.8.7",
+        "cordova-plugin-local-notification": "0.9.0-beta.2"
     }
 }

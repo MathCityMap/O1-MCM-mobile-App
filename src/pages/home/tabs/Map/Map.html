@@ -2,13 +2,14 @@
 
     <div id="map" class="map-view"></div>
 
-    <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}">
+    <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s">
         <div class="fab-container">
             <ion-fab right bottom>
                 <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
             </ion-fab>
         </div>
-        <div tappable *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)" [ngClass]="{'downloaded' : routeDetails && routeDetails.downloaded}" [ngStyle]="{'background-image' : 'url('+ routeDetails.getSingleQuotedImageURL() +')'}" ></div>
+        <div tappable *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)" [ngClass]="{'downloaded' : routeDetails && routeDetails.downloaded}"
+             [attr.data-async-background-src]="routeDetails.getImageURL()"></div>
         <div class="text-container" *ngIf="routeDetails">
             <div class="segmented-box">
                 <div class="segement distance title">

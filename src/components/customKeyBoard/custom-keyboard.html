@@ -1,0 +1,17 @@
+<div (window:resize)="onWindowResize($event)" class="center" [style.width]="width">
+
+	<!-- Keyboard toolbar (Hide & delete buttons) -->
+	<div class="kb-toolbar">
+		<span style="font-size:unset"><ion-icon name="arrow-dropdown" (tap)="hideClick($event)"></ion-icon></span>
+		<span style="font-size:unset"><ion-icon name="backspace" (tap)="deleteClick($event)"></ion-icon></span>
+	</div>
+
+	<!-- Keys -->
+	<div class="kb-row" [style.zoom]="zoom" *ngFor="let n of m_main_rows">
+		<div class="kb-key-cell" *ngFor="let m of m_main_cols">
+			<div class="kb-key" (tap)="cKClick($event, keysTab[n + m])">
+				{{keysTab[n + m]}}
+			</div>
+		</div>
+	</div>
+</div>

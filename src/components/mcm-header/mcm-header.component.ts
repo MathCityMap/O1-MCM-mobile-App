@@ -6,6 +6,7 @@ import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
 import { SettingsPage } from '../../pages/settings/settings';
 import { Route } from '../../entity/Route';
 import { Task } from '../../entity/Task';
+import {CustomKeyBoard} from "../customKeyBoard/custom-keyboard";
 
 
 @Component({

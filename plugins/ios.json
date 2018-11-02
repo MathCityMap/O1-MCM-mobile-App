@@ -63,10 +63,16 @@
         },
         "com-sarriaroman-photoviewer": {
             "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        },
+        "cordova-plugin-local-notification": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-badge": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     }

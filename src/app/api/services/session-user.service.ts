@@ -9,7 +9,6 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
-import { Message } from '../models/message';
 
 
 @Injectable()
@@ -27,6 +26,8 @@ export class SessionUserService extends BaseService {
    *
    * - `userToken`: The session user's token
    *
+   * - `sessionCode`: The session code
+   *
    * - `longitude`: The session user's longitude
    *
    * - `latitude`: The session user's latitude
@@ -41,9 +42,10 @@ export class SessionUserService extends BaseService {
 
 
 
+
     let req = new HttpRequest<any>(
-      "POST",
-      this.rootUrl + `/sessionUser/${params.userToken}/updatePosition/${params.latitude}/${params.longitude}`,
+      "PUT",
+      this.rootUrl + `/session/${params.sessionCode}/user/${params.userToken}/position/${params.latitude}/${params.longitude}`,
       __body,
       {
         headers: __headers,
@@ -68,6 +70,8 @@ export class SessionUserService extends BaseService {
    *
    * - `userToken`: The session user's token
    *
+   * - `sessionCode`: The session code
+   *
    * - `longitude`: The session user's longitude
    *
    * - `latitude`: The session user's latitude
@@ -81,19 +85,26 @@ export class SessionUserService extends BaseService {
     );
   }
 
+
   /**
-   * @param userToken The session user's token
-   * @return Returns a list of messages
+   * @param params The `SessionUserService.GetSessionUserByTokenParams` containing the following parameters:
+   *
+   * - `userToken`: The session user's token
+   *
+   * - `sessionCode`: The session code
+   *
+   * @return Returns requested sessionUser
    */
 
-  getMessagesResponse(userToken: string): Observable<HttpResponse<Message[]>> {
+  getSessionUserByTokenResponse(params: SessionUserService.GetSessionUserByTokenParams): Observable<HttpResponse<any>> {
     let __params = new HttpParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/sessionUser/${userToken}/messages`,
+      this.rootUrl + `/session/${params.sessionCode}/user/${params.userToken}`,
       __body,
       {
         headers: __headers,
@@ -105,29 +116,40 @@ export class SessionUserService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Message[] = null;
-        _body = _resp.body as Message[]
-        return _resp.clone({body: _body}) as HttpResponse<Message[]>;
+        let _body: any = null;
+
+        return _resp.clone({body: _body}) as HttpResponse<any>;
       })
     );
   }
 
 
   /**
-   * @param userToken The session user's token
-   * @return Returns a list of messages
+   * @param params The `SessionUserService.GetSessionUserByTokenParams` containing the following parameters:
+   *
+   * - `userToken`: The session user's token
+   *
+   * - `sessionCode`: The session code
+   *
+   * @return Returns requested sessionUser
    */
 
-  getMessages(userToken: string): Observable<Message[]> {
-    return this.getMessagesResponse(userToken).pipe(
+  getSessionUserByToken(params: SessionUserService.GetSessionUserByTokenParams): Observable<any> {
+    return this.getSessionUserByTokenResponse(params).pipe(
       map(_r => (<any>_r).body)
     );
-  }}
+  }
+}
 
 export module SessionUserService {
   export interface UpdatePositionParams {
     userToken: string;
+    sessionCode: string;
     longitude: number;
     latitude: number;
+  }
+  export interface GetSessionUserByTokenParams {
+    userToken: string;
+    sessionCode: string;
   }
 }

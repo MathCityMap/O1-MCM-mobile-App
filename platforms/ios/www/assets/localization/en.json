@@ -330,10 +330,7 @@
   "a_alert_false_answer_1": "Try again!",
   "a_alert_false_answer_2": "Try to take a hint.",
   "a_alert_back2map": "Go to map",
-  "a_add_private_route_placeholder": "Enter code",
   "a_private_route_added_title": "Trail added",
-  "a_private_route_add": "Add",
-  "a_private_route_add_title": "Add trail via code",
   "a_private_route_added": "Trail with title '{{T}}' was successfully added.",
   "a_private_route_failed_title": "Adding trail failed",
   "a_private_route_failed": "There was no match for the given code. Maybe you need to update the app.",
@@ -468,5 +465,29 @@
   "a_slow_connection_title": "Slow connection!",
   "a_slow_connection": "There is a problem with your internet connection.",
   "a_retry": "Retry",
-  "a_offline_mode": "Offline mode"
+  "a_offline_mode": "Offline mode",
+
+  "a_private_trail_or_session_add_title": "Private trail or session",
+  "a_add_private_route_or_session_placeholder": "Enter code for your trail or group session:",
+  "a_private_trail_or_session_add": "Add",
+
+
+  "a_terms_and_conditions_title": "Terms & Conditions",
+  "a_terms_and_conditions_checkbox": "Accept terms & conditions",
+  "a_terms_and_conditions_continue": "Continue",
+
+  "a_team_name": "Team name",
+  "a_team_members": "Team members",
+  "a_session_enter": "Enter",
+
+  "a_private_session_finished_title": "Session finished",
+  "a_private_session_earned_points": "Earned Points",
+  "a_private_session_finished_tasks": "Finished Tasks",
+  "a_private_session_quit": "Quit Session",
+  "a_private_session_quit_text": "Do you really want to quit the Session?",
+  "a_private_session_countdown": "Session starts in: ",
+  "a_private_session_timer": "Session ends in: ",
+  "a_private_session_ends": "Session has ended!",
+  "a_chat_type_message": "Type message",
+  "a_chat_reply": "Reply"
 }

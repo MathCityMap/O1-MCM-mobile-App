@@ -29,7 +29,6 @@ export class ModalsService {
                 public deepLinker: DeepLinker,
                 public translateService: TranslateService,
                 private spinner: SpinnerDialog,
-                private network: Network,
                 private dbUpdater: DB_Updater,
                 private helper: Helper) {
     }
@@ -171,7 +170,7 @@ export class ModalsService {
     }
 
     async showNoInternetModalIfOffline() : Promise<boolean> {
-        if (Helper.isOnline) {
+        if (this.helper.isOnline) {
             let quality = await this.helper.checkConnection();
             if (quality == ConnectionQuality.FAST) {
                 return true;

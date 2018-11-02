@@ -17,8 +17,8 @@
                     <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
                     </button>
                 </ion-col>
-                <ion-col>
-                    <img [src]="route.getImageURL()" class="round bordered" />
+                <ion-col lazy-load-images>
+                    <img src="./assets/images/img_default_image.gif" [attr.data-async-src]="route.getImageURL()" class="round bordered lazy" />
                     <!-- TODO: show default image when no image found -->
                     <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
                 </ion-col>

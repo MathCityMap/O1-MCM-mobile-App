@@ -23,6 +23,8 @@ export class MCMIconModal{
     modalType: MCMModalType;
     linkyOptions: any;
     buttons: any[];
+    gamificationEnabled: boolean = false;
+    score: string;
 
     windowWith: number;
     videoWith: number;
@@ -81,6 +83,12 @@ export class MCMIconModal{
         }
         if(params.data.param){
             this.param = params.data.param;
+        }
+        if(params.data.gamificationEnabled){
+            this.gamificationEnabled = params.data.gamificationEnabled;
+        }
+        if(params.data.score){
+            this.score = params.data.score;
         }
 
         this.linkyOptions = {

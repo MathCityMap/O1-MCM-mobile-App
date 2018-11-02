@@ -4,6 +4,8 @@ import { checkAvailability } from '@ionic-native/core';
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { GpsService } from '../services/gps-service';
+import { Network } from '@ionic-native/network';
+import { Platform } from 'ionic-angular';
 
 export class MapTile {
     constructor(private pZoomLevel: number, private pX: number, private pY: number) {
@@ -107,20 +109,38 @@ export class Helper {
     static readonly phone_id: string = ""
     static readonly phone_name: string = ""
     // public static Location myLocation = null
-    public static myLocation: any = null;
     public static testLocation: any = null;
     static readonly myAzimuth: number = 0.0
     // public static HashMap<String, int[]> routeStates = new HashMap<String, int[]>()
     // public static GoogleApiClient googleApiClient
     static readonly REQUEST_LOCATION: number = 199
-    public static isOnline = false
+    public isOnline: boolean = false;
     static windowWidth: number = 0
     static windowHeight: number = 0
 
-    constructor(private http: Http, private gpsService: GpsService) {
+    constructor(private http: Http, private gpsService: GpsService, private network: Network,
+                private platform: Platform) {
         Helper.INSTANCE = this;
+        // noinspection JSIgnoredPromiseFromCall
+        this.init();
     }
 
+    private async init() {
+        await this.platform.ready();
+        this.isOnline = navigator.onLine;
+        console.info(`Connection status: ${this.isOnline}`);
+        Helper.windowWidth = this.platform.width();
+        Helper.windowHeight = this.platform.height();
+        this.network.onDisconnect().subscribe(() => {
+            console.info('Network disconnected!');
+            this.isOnline = false;
+        });
+
+        this.network.onConnect().subscribe(() => {
+            console.info('Network connected!');
+            this.isOnline = true;
+        });
+    }
     public getDistanceToCenterByLatLng(latLng: LatLng): number {
         if (!latLng) {
             return 0;
@@ -211,7 +231,7 @@ export class Helper {
     }
 
     public invokeApi(queryAction: string, postparams?: string, timeoutInSecs: number = 30): Promise<any> {
-        if (!Helper.isOnline) {
+        if (!this.isOnline) {
             console.warn("No internet!")
             return new Promise<any>(resolve => resolve())
         }
@@ -265,7 +285,7 @@ export class Helper {
     }
 
     public async checkConnection(): Promise<ConnectionQuality> {
-        if (!Helper.isOnline) {
+        if (!this.isOnline) {
             return ConnectionQuality.NONE;
         }
         try {

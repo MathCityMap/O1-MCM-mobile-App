@@ -11,43 +11,22 @@ import { LanguageService } from '../../services/language-service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  private disconnectSubscription: any;
-  private connectSubscription: any;
   public static nav: NavController;
   tab1Root = 'RoutesListPage';
   tab2Root = 'MapPage';
 
-  constructor(private navCtrl: NavController, private network: Network, private platform: Platform,
+  constructor(private navCtrl: NavController, private platform: Platform,
               private splashScreen: SplashScreen, private languageService: LanguageService) {
     HomePage.nav = navCtrl;
   }
 
   ionViewWillEnter() {
     this.platform.ready().then(() => {
-      Helper.isOnline = navigator.onLine;
-      console.warn(`Connection status: ${Helper.isOnline}`);
-      Helper.windowWidth = this.platform.width();
-      Helper.windowHeight = this.platform.height();
-      this.disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-        console.warn('Network disconnected!');
-        Helper.isOnline = false;
-      });
-
-      this.connectSubscription = this.network.onConnect().subscribe(() => {
-        console.log('Network connected!');
-        Helper.isOnline = true;
-      });
         this.languageService.initialize().then(() => {
             console.log('Platform is ready!');
             this.splashScreen.hide();
         });
 
     })
-  }
-
-  ionViewDidLeave() {
-    this.disconnectSubscription.unsubscribe();
-    this.connectSubscription.unsubscribe();
-    console.log("Unsubscribing from network events!")
   }
 }

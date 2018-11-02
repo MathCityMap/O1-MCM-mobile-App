@@ -94,6 +94,8 @@ ext {
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "cordova-fabric-plugin/starter-build-extras.gradle"
 apply from: "com-sarriaroman-photoviewer/mathcitymap-photoviewer.gradle"
+apply from: "cordova-plugin-badge/mathcitymap-badge.gradle"
+apply from: "cordova-plugin-local-notification/mathcitymap-localnotification.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()

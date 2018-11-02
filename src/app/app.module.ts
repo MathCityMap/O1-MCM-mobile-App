@@ -16,6 +16,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { ModalsService } from '../services/modals-service';
 import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
+import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 
 import { MyApp } from './app.component';
 
@@ -42,73 +43,77 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { YoutubePlayerModule } from '../components/ngx-youtube-player/modules/ngx-youtube-player.module';
 import { ComponentsModule } from '../components/components.module';
 import { Helper } from '../classes/Helper';
-import { ChatPage } from "../pages/chat/chat";
-import {Autoresize} from "../directives/autoresize";
+import { Autoresize } from "../directives/autoresize";
 import { ApiModule } from './api/api.module';
 import { ChatAndSessionService } from '../services/chat-and-session-service';
-
+import { ChatPage } from '../pages/chat/chat';
+import { ChatPageModule } from '../pages/chat/chat.module';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 @NgModule({
-  declarations: [
-    MyApp,
-    RouteInfo,
-    MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
-    CenteredTask,
-    ChatPage,
-    Autoresize
-  ],
-  imports: [
-    HttpModule,
-    HttpClientModule,
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient],
+    declarations: [
+        MyApp,
+        RouteInfo,
+        MCMDownloadProgressPopupComponent,
+        MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
+        CenteredTask,
+        Autoresize,
+        CustomKeyBoard
+    ],
+    imports: [
+        HttpModule,
+        HttpClientModule,
+        BrowserModule,
+        IonicModule.forRoot(MyApp),
+        IonicStorageModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [HttpClient],
 
-      }, useDefaultLang: true
-    }),
-    ComponentsModule,
-    LinkyModule,
-    YoutubePlayerModule,
-    ApiModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    RouteInfo,
-    MCMDownloadProgressPopupComponent,
-    MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
-    CenteredTask,
-    ChatPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    Network,
-    Geolocation,
-    Diagnostic,
-    LocationAccuracy,
-    SQLite,
-    File,
-    FileTransfer,
-    DB_Updater,
-    SpinnerDialog,
-    OrmService,
-    ImagesService,
-    BroadcastService,
-    ModalsService,
-    GpsService,
-    LanguageService,
-    Helper,
-    ChatAndSessionService,
-    Globalization,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+            }, useDefaultLang: true
+        }),
+        ComponentsModule,
+        LinkyModule,
+        YoutubePlayerModule,
+        ApiModule,
+        ChatPageModule
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        RouteInfo,
+        MCMDownloadProgressPopupComponent,
+        MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
+        CenteredTask,
+        CustomKeyBoard
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        Network,
+        Geolocation,
+        Diagnostic,
+        LocationAccuracy,
+        SQLite,
+        File,
+        FileTransfer,
+        DB_Updater,
+        SpinnerDialog,
+        OrmService,
+        ImagesService,
+        BroadcastService,
+        ModalsService,
+        GpsService,
+        LanguageService,
+        Helper,
+        ChatAndSessionService,
+        LocalNotifications,
+        Globalization,
+        {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ]
 })
-export class AppModule {}
+export class AppModule {
+}

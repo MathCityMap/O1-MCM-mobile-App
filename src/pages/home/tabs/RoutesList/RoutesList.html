@@ -1,4 +1,4 @@
-<ion-content class="routes-list has-header">
+<ion-content #container class="routes-list has-header">
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content refreshingText="{{'a_toast_update_start' | translate}}"></ion-refresher-content>
     </ion-refresher>
@@ -7,9 +7,11 @@
         <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
     </ion-fab>
 
-  <ion-list>
-    <div tappable class="detail-box dotted-border-bottom" *ngFor="let item of items" [id]="'route-item-' + item.id">
-        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}" [ngStyle]="{'background-image' : 'url('+ item.getSingleQuotedThumbURL() +')'}" ></div>
+  <ion-list lazy-load-images image-size="s">
+    <div tappable class="detail-box dotted-border-bottom" *ngFor="let item of filteredItems" [id]="'route-item-' + item.id">
+        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}">
+        	<img [attr.data-async-src]="item.getImageURL()" />
+    	</div>
         <div class="text-container">
             <div class="segmented-box">
                 <div class="title segement">
@@ -69,4 +71,9 @@
 
       </div>
   </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="35%">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
 </ion-content>

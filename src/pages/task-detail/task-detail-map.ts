@@ -106,7 +106,7 @@ export class TaskDetailMap implements OnDestroy {
             location = Helper.testLocation;
         }
         else{
-            location = Helper.myLocation;
+            location = this.gpsService.getLastPosition();
         }
         if(location != null){
             let locationLatLng = new L.LatLng(location.coords.latitude, location.coords.longitude);
@@ -326,8 +326,8 @@ export class TaskDetailMap implements OnDestroy {
         if (this.map == null) {
             this.map = (L as any).map('gpsTaskMap', {
                 center: this.center,
-                zoom: 19,
-                //zoomControl: false,
+                zoom: 18,
+                zoomControl: true,
                 tileSize: 256,
                 maxBounds: this.routeDetails.getBoundingBoxLatLng(),
                 trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
@@ -348,7 +348,7 @@ export class TaskDetailMap implements OnDestroy {
                 let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
                     attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
                     subdomains: subDomains,
-                    minZoom: 18,
+                    minZoom: 14,
                     maxZoom: 20,
                     tileSize: 256,
                     crossOrigin: true,

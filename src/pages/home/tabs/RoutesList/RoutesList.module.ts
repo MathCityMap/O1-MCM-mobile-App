@@ -4,7 +4,6 @@ import { RoutesListPage } from './RoutesList';
 import { TranslateModule } from '@ngx-translate/core';
 import { ComponentsModule } from '../../../../components/components.module';
 
-
 @NgModule({
   declarations: [
     RoutesListPage,

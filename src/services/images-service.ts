@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
-import { File, FileEntry } from '@ionic-native/file';
+import { DirectoryEntry, File, FileEntry } from '@ionic-native/file';
 import { Platform } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
@@ -14,6 +14,9 @@ export class ImagesService {
     private downloadQueue: any = null;
     private offlineImageUrlCache = {};
     private offlineThumbnailUrlCache = {};
+    private lazyLoadedImagesCache = {};
+    private filePluginAvailable: boolean;
+    private dataDirectory: DirectoryEntry;
 
     constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer) {
         ImagesService.INSTANCE = this;
@@ -52,7 +55,7 @@ export class ImagesService {
     }
 
     isFilePluginAvailable() {
-        return checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
+        return this.filePluginAvailable;
     }
 
     async init(): Promise<string> {
@@ -61,11 +64,13 @@ export class ImagesService {
         }
         await this.platform.ready();
 
-        let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-        if (this.isFilePluginAvailable() && !isLoadedViaHttp) {
-            // if loaded via http (for live reload during development), local URLs cannot be accessed
-            let directory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory);
-            this.nativeBaseURL = directory.nativeURL;
+        this.filePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true
+        if (this.filePluginAvailable) {
+            this.dataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory);
+            let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
+            if (!isLoadedViaHttp) {
+                this.nativeBaseURL = this.dataDirectory.nativeURL;
+            }
         }
         this.isInitialized = true;
         return this.nativeBaseURL;
@@ -88,7 +93,10 @@ export class ImagesService {
         this.downloadQueue = async.queue(function (task: any, continueCallback: any) {
             function callback() {
                 alreadyDownloaded++;
-                console.log("download progress: " + alreadyDownloaded + "/" + totalDownload);
+                console.log(`download progress: ${alreadyDownloaded}/${totalDownload} - ${task.imgFileName}`);
+                if (task.callback) {
+                    task.callback(alreadyDownloaded, totalDownload, task.imgFileName);
+                }
                 if (progressCallback) {
                     if (progressCallback(alreadyDownloaded, totalDownload, task.imgFileName)) {
                         // user aborted download process
@@ -139,7 +147,6 @@ export class ImagesService {
             this.downloadQueue.drain = success;
         });
 
-        let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(dataDirectory)
         for (var i = 0; i < urls.length; i++) {
             let imgFileName = urls[i];
             // No image in task
@@ -151,7 +158,7 @@ export class ImagesService {
             let outputName = this.getLocalFileName(imgFileName);
             let file;
             if (!skipCheckForExistingFiles &&
-                null !== (file = await this.fileManager.getFile(resolvedDataDirectory, outputName, { create: false })
+                null !== (file = await this.fileManager.getFile(this.dataDirectory, outputName, { create: false })
                     .then((res) => res, (err) => null))) {
                 file.file(file => {
                     if (file.size <= 0) {
@@ -159,8 +166,9 @@ export class ImagesService {
                         this.downloadQueue.push({
                             fileTransfer: fileTransfer,
                             imgFileName: imgFileName,
-                            outputName: outputName
-                        }, err => {
+                            outputName: outputName,
+                            callback: urls.length == 1 ? progressCallback : null
+                        }, () => {
                             console.log(`Finished downloading ${outputName}`)
                         });
                     } else {
@@ -170,6 +178,16 @@ export class ImagesService {
                             progressCallback(alreadyDownloaded, totalDownload, imgFileName);
                         }
                     }
+                }, error => {
+                    // file could not be read
+                    this.downloadQueue.push({
+                        fileTransfer: fileTransfer,
+                        imgFileName: imgFileName,
+                        outputName: outputName,
+                        callback: urls.length == 1 ? progressCallback : null
+                    }, () => {
+                        console.log(`Finished downloading ${outputName}`)
+                    });
                 })
             } else {
                 // Path not empty and file does not exist - download from url
@@ -177,8 +195,9 @@ export class ImagesService {
                 this.downloadQueue.push({
                     fileTransfer: fileTransfer,
                     imgFileName: imgFileName,
-                    outputName: outputName
-                }, err => {
+                    outputName: outputName,
+                    callback: urls.length == 1 ? progressCallback : null
+                }, () => {
                     console.log(`Finished downloading ${outputName}`)
                 })
             }
@@ -224,10 +243,9 @@ export class ImagesService {
     }
 
     async removeDownloadedURLs(urls: string[], removeThumbs = true): Promise<any> {
-        if (!this.isFilePluginAvailable()) {
+        if (!this.dataDirectory) {
             return;
         }
-        let resolvedDataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)
         for (var i = 0; i < urls.length; i++) {
             let imgFileName = urls[i]
             // No image in task
@@ -238,18 +256,46 @@ export class ImagesService {
 
             let outputName = this.getLocalFileName(imgFileName);
             let file;
-            this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false}).then(file => {
+            this.fileManager.getFile(this.dataDirectory, outputName, {create: false}).then(file => {
                 file.remove(() => console.log("deleted file " + outputName),
                     () => console.log("could not delete file " + outputName))
             }, () => console.log("could not delete file " + outputName));
             if (removeThumbs) {
                 outputName = this.getLocalThumbFileName(imgFileName);
-                this.fileManager.getFile(resolvedDataDirectory, outputName, {create: false}).then(file => {
+                this.fileManager.getFile(this.dataDirectory, outputName, {create: false}).then(file => {
                     file.remove(() => console.log("deleted file " + outputName),
                         () => console.log("could not delete file " + outputName))
                 }, () => console.log("could not delete file " + outputName));
             }
         }
+    }
+
+    /**
+     *
+     * @param {string} imgPath
+     * @param {string} imageSize 's', 'thumb', 'xl' or 'xxl'
+     * @returns {Promise<string>}
+     */
+    async getAsyncImageURL(imgPath: string, imageSize: string): Promise<string> {
+        if (imageSize) {
+            let lastSlashIndex = imgPath.lastIndexOf('/');
+            imgPath = imgPath.substring(0, lastSlashIndex) + '/' + imageSize + imgPath.substring(lastSlashIndex);
+        }
+        if (this.lazyLoadedImagesCache[imgPath]) {
+            return this.lazyLoadedImagesCache[imgPath];
+        }
+        if (this.dataDirectory) {
+            // we need to check for downloaded files
+            await new Promise(success => {
+                this.downloadURLs([imgPath], false, (alreadyDownloaded, totalDownload, url) => {
+                    if (url == imgPath) {
+                        success();
+                    }
+                    return false;
+                }, false);
+            });
+        }
+        return this.lazyLoadedImagesCache[imgPath] = this.getOfflineURL(imgPath);
     }
 }
 
