@@ -70,6 +70,10 @@ export class Helper {
     static readonly p_third_try: number = 10
     static readonly studie: boolean = false
     static readonly updated_once: boolean = false
+    // Map Settings (also which tiles to download)
+    static readonly min_zoom: number = 15
+    static readonly max_zoom: number = 20
+
     /*
     SETTINGS END ###
      */

@@ -348,8 +348,8 @@ export class TaskDetailMap implements OnDestroy {
                 let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
                     attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
                     subdomains: subDomains,
-                    minZoom: 14,
-                    maxZoom: 20,
+                    minZoom: Helper.min_zoom,
+                    maxZoom: Helper.max_zoom,
                     tileSize: 256,
                     crossOrigin: true,
                     detectRetina: true

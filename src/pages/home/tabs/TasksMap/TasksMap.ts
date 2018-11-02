@@ -403,8 +403,8 @@ export class TasksMap implements OnInit, OnDestroy {
           let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
               attribution: '&copy; mapbox.com',
               subdomains: subDomains,
-              minZoom: 15,
-              maxZoom: 21,
+              minZoom: Helper.min_zoom,
+              maxZoom: Helper.max_zoom,
               tileSize: 256,
               crossOrigin: true,
               detectRetina: true

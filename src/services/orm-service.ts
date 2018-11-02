@@ -27,12 +27,12 @@ import {AddVisibleColumn1526306624000} from "../migration/1526306624000-AddVisib
 import {AddLangCodeColumn1526306730000} from "../migration/1526306730000-AddLangCodeColumn";
 import {DB_Updater} from "../classes/DB_Updater";
 import { ModalsService } from './modals-service';
+import {Helper} from "../classes/Helper";
+
 
 @Injectable()
 export class OrmService {
     connection: Connection;
-    private min_zoom: number = 14;
-    private max_zoom: number = 19;
     public static INSTANCE: OrmService;
     public static EVENT_ROUTES_CHANGED = 'EVENT_ROUTES_CHANGED';
     private visibleRoutesCache : Route[];
@@ -297,7 +297,7 @@ export class OrmService {
             // 15.04.18 - get data rows for route tasks from online DB first
             await dbUpdater.downloadRouteTasksData(route, this.translateService.instant("a_language_code"));
             statusCallback(0, 0, 'a_rdl_title_map');
-            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), this.min_zoom, this.max_zoom, (done, total, url) => {
+            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
                 alreadyDownloadedUrls.push(url);
                 return statusCallback(done, total);
             });
