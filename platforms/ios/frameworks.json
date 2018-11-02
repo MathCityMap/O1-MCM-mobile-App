@@ -4,7 +4,7 @@
     "SystemConfiguration.framework": 3,
     "Security.framework": 2,
     "libz.tbd": 1,
-    "CoreLocation.framework": 3,
+    "CoreLocation.framework": 4,
     "CoreTelephony.framework": 1,
     "CoreBluetooth.framework": 1,
     "CoreMotion.framework": 1,
@@ -13,5 +13,5 @@
     "AddressBook.framework": 1,
     "EventKit.framework": 1,
     "Contacts.framework": 1,
-    "UserNotifications.framework": 1
+    "UserNotifications.framework": 2
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { Events, Content } from 'ionic-angular';
 import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../services/chat-and-session-service";
@@ -22,10 +22,13 @@ export class ChatPage {
     toUser: UserInfo;
     editorMsg = '';
     showEmojiPicker = false;
+    isScrolledToBottom = true;
+    private scrollEndSubscription: any;
 
     constructor(navParams: NavParams,
                 private chatService: ChatAndSessionService,
-                private events: Events,) {
+                private events: Events,
+                private changeDetector: ChangeDetectorRef) {
 
         this.chatService.getUserInfo()
             .then((res) => {
@@ -57,6 +60,11 @@ export class ChatPage {
     ionViewWillLeave() {
         // unsubscribe
         this.events.unsubscribe('chat:received');
+        if (this.scrollEndSubscription) {
+            this.scrollEndSubscription.unsubscribe();
+            this.scrollEndSubscription = null;
+        }
+        this.chatService.setUserSeesNewMessages(false);
     }
 
     ionViewDidEnter() {
@@ -66,13 +74,24 @@ export class ChatPage {
         // Subscribe to received  new message events
         this.events.subscribe('chat:received', msg => {
             this.pushNewMsg(msg);
-        })
+        });
+        this.scrollEndSubscription = this.content.ionScrollEnd.subscribe(event => {
+            if (!event || !event.scrollElement) return;
+            let height = event.scrollElement.children[0].scrollHeight;
+            let scrolledToBottom = height - event.scrollHeight - event.scrollTop < 0;
+
+            if (this.isScrolledToBottom != scrolledToBottom) {
+                console.debug(`isScrolledToBottom: ${scrolledToBottom}`);
+                this.chatService.setUserSeesNewMessages(scrolledToBottom);
+            }
+            this.isScrolledToBottom = scrolledToBottom;
+        });
+        this.chatService.setUserSeesNewMessages(true);
     }
 
     onFocus() {
         this.showEmojiPicker = false;
         this.content.resize();
-        this.scrollToBottom();
     }
 
     switchEmojiPicker() {
@@ -102,14 +121,14 @@ export class ChatPage {
         });
 
         Promise.all(chatMsgs).then(() => {
-            console.log('received all messages!');
+            console.debug('received all messages!');
         });
     }
 
     /**
      * @name sendMsg
      */
-    sendMsg() {
+    async sendMsg() {
         if (!this.editorMsg.trim()) return;
 
         // Mock message
@@ -124,7 +143,7 @@ export class ChatPage {
             status: 'pending'
         };
 
-        console.log("new message: ", newMsg);
+        console.debug("new message: ", newMsg);
 
         this.editorMsg = '';
         this.setToDefaultHeight();
@@ -132,6 +151,7 @@ export class ChatPage {
             this.focus();
         }
 
+        await this.chatService.checkForNewMessages(this.sessionInfo);
         this.chatService.sendMsg(newMsg, this.sessionInfo)
             .then((msgs : ChatMessage[]) => {
                 msgs.forEach((msg : ChatMessage) => {
@@ -140,6 +160,7 @@ export class ChatPage {
                         this.msgList[index].status = 'success';
                     } else {
                         msg.status = 'success';
+                        this.isScrolledToBottom = true;
                         this.pushNewMsg(msg);
                     }
                 });
@@ -163,10 +184,14 @@ export class ChatPage {
         if (!(msg.userId === userId || msg.toUserId === userId)) {
             return;
         }
+        console.log('pushed new message');
 
         this.msgList.push(msg);
-        this.scrollToBottom();
-        console.log("scroll to bottm and display msg: " + msg.messageId);
+        this.changeDetector.detectChanges();
+
+        if (this.isScrolledToBottom) {
+            this.scrollToBottom();
+        }
     }
 
     getMsgIndexById(id: string) {
@@ -178,7 +203,7 @@ export class ChatPage {
             if (this.content && this.content.scrollToBottom) {
                 this.content.scrollToBottom();
             }
-        }, 400)
+        }, 200)
     }
 
     private focus() {

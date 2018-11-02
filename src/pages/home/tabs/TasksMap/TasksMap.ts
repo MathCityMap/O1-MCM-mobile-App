@@ -141,6 +141,7 @@ export class TasksMap implements OnInit, OnDestroy {
     this.gamificationIsDisabled = this.route.isGamificationDisabled();
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
+    this.updateSession(await this.chatAndSessionService.getActiveSession());
 
     if (this.navParams.data.tasksMapState) {
         this.state = this.navParams.data.tasksMapState;
@@ -191,23 +192,7 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
     ngOnInit() {
-
-          this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(next => {
-                if (next && next.session) {
-                    console.log('active session: ' + next.session.code);
-                    this.sessionTime(next.session);
-                    if (this.startInterval == true) {
-                        this.refreshIntervalId = setInterval(() => {
-                            this.sessionTime(next.session);
-                        }, 15000)
-                    }
-                    console.log('IntervalId', this.refreshIntervalId);
-                } else {
-                    console.log('no active session');
-                }
-                this.sessionInfo = next;
-            });
-
+        this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
     }
 
     ngOnDestroy() {
@@ -234,6 +219,26 @@ export class TasksMap implements OnInit, OnDestroy {
       }
   }
 
+    updateSession(sessionInfo: SessionInfo) {
+        if (sessionInfo && sessionInfo.session) {
+            if (this.routeId != sessionInfo.session.trail_id) {
+                console.log(`active session belongs to different trail`);
+                this.sessionInfo = null;
+            } else {
+                console.log('active session: ' + sessionInfo.session.code);
+                this.sessionTime(sessionInfo.session);
+                if (this.startInterval == true) {
+                    this.refreshIntervalId = setInterval(() => {
+                        this.sessionTime(sessionInfo.session);
+                    }, 15000)
+                }
+                this.sessionInfo = sessionInfo;
+            }
+        } else {
+            console.log('no active session');
+            this.sessionInfo = null;
+        }
+    }
 
     async getMapStateFromLocalStorage(){
       let mapState = await this.storage.get(this.stateKey);
@@ -586,7 +591,6 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
     private sessionTime(session) {
-        console.log(this);
         if (!session) {
             this.startInterval = false;
             return;
@@ -601,25 +605,20 @@ export class TasksMap implements OnInit, OnDestroy {
         let timerInMin = Math.floor((endTimeInUnix -currentTimeUnix) / 60);
 
         if (currentTimeUnix > (startTimeInUnix - 3600) && currentTimeUnix < endTimeInUnix) {
-            console.log('C1: Springt in die Funktion');
             this.startInterval = true;
             if (currentTimeUnix < startTimeInUnix && currentTimeUnix < endTimeInUnix) {
-                console.log('C1: Countdown vor Start', countdownInMin);
                 this.showCountdownOrTimer = true;
                 this.countdownBeforeSession = true;
                 this.countdownOrTimerForSession = countdownInMin;
                 this.taskBlocked = true;
             }
             if (currentTimeUnix > startTimeInUnix && currentTimeUnix < endTimeInUnix ) {
-                console.log('C1: Timer ', timerInMin);
                 this.showCountdownOrTimer = true;
                 this.countdownOrTimerForSession = timerInMin;
                 this.countdownBeforeSession = false;
             }
         } else {
             this.startInterval = false;
-            console.log('C1: Session ist abgelaufen');
-            console.log('IntervalId', this.refreshIntervalId);
             clearInterval(this.refreshIntervalId);
             this.showSessionEnds = true;
             this.taskBlocked = false;

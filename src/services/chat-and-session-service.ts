@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Events } from 'ionic-angular';
-import { Observable } from "rxjs/Rx";
+import { Events, ToastController } from 'ionic-angular';
+import { Observable, TimeInterval } from "rxjs/Rx";
 import { Session } from '../app/api/models/session';
 import { Storage } from "@ionic/storage";
 import { SessionService } from '../app/api/services/session.service';
@@ -14,6 +14,11 @@ import { SessionChatMessageResponse } from "../app/api/models/session-chat-messa
 import { SessionChatService } from "../app/api/services/session-chat.service";
 import { SessionChatResponse } from "../app/api/models/session-chat-response";
 import { Geoposition } from "@ionic-native/geolocation";
+import {
+    ILocalNotification, ILocalNotificationActionType,
+    LocalNotifications
+} from '@ionic-native/local-notifications';
+import { TranslateService } from '@ngx-translate/core';
 
 export class ChatMessage {
     messageId: string;
@@ -43,31 +48,42 @@ export class SessionInfo {
 export class ChatAndSessionService {
     private static POSITION_PUSH_INTERVAL_IN_SECS = 15;
     private static CHAT_PULL_INTERVAL_IN_SECS = 15;
+    private static CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS = 2;
     private static STORAGE_KEY_SESSION = 'ChatAndSessionService.activeSession';
 
     private subject = new ReplaySubject<SessionInfo>(1);
-    private timer = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000).timeInterval();
+    private timerBackground = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000).timeInterval();
+    private timerUserSeesMessages = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS * 1000).timeInterval();
     private positionSubscription: Subscription;
     private chatSubscription: Subscription;
     private lastPositionPush: number = 0;
-    private lastPositionPushLatency: number = 0;
+    private transientActiveSession: SessionInfo;
 
     // TODO should be reloaded if session changes
     // if a new team enters session, authors receiver list should be updated
     private receivers : SessionUser[] = [];
+    private userSeesNewMessages: boolean;
+    private alreadySeenMessages = {};
+    private pastLocalNotifications: ILocalNotification[] = [];
 
     constructor(private events: Events,
                 private storage: Storage,
                 private sessionService: SessionService,
                 private sessionUserService: SessionUserService,
                 private sessionChatService: SessionChatService,
-                private gpsService: GpsService) {
-        this.init();
+                private gpsService: GpsService,
+                private localNotifications: LocalNotifications,
+                private translate: TranslateService,
+                private toast: ToastController) {
     }
 
     async init() {
         let sessionInfo = await this.getActiveSession();
         this.subscribeForAndSendEvents(sessionInfo);
+        this.localNotifications.on('click')
+            .subscribe((next) => {
+            console.log(next);
+            });
     }
 
     /**
@@ -182,27 +198,24 @@ export class ChatAndSessionService {
     }
 
     async getActiveSession(): Promise<SessionInfo> {
-        return this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
+        return this.transientActiveSession = await this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
     }
 
     async exitActiveSession() {
         await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
         this.subscribeForAndSendEvents(null);
+        this.transientActiveSession = null;
     }
 
     getSubject(): Subject<SessionInfo> {
         return this.subject;
     }
 
-    private subscribeForAndSendEvents(sessionInfo: SessionInfo) {
+    private async subscribeForAndSendEvents(sessionInfo: SessionInfo) {
         this.subject.next(sessionInfo);
         if (sessionInfo) {
             if (this.positionSubscription) {
                 this.positionSubscription.unsubscribe();
-            }
-
-            if(this.chatSubscription) {
-                this.chatSubscription.unsubscribe();
             }
 
             this.positionSubscription = this.gpsService.watchPosition().subscribe(async (geoposition : Geoposition) => {
@@ -220,26 +233,13 @@ export class ChatAndSessionService {
                     } catch (e) {
                         console.error("ChatAndSessionService: Could not push position", e);
                     }
-                    this.lastPositionPushLatency = new Date().getTime() - currentTimestamp;
                 }
             });
 
-            this.chatSubscription = this.timer.subscribe(tick => {
-                let chatMsgs : Array<any> = [];
-                console.log("check for new msgs ...");
-                this.receivers.forEach(receiver => {
-                    chatMsgs.push(this.getNewMsgs(sessionInfo, receiver.token).toPromise().then((messages) => {
-                        // foreach msg -> publish new event
-                        messages.forEach((msg : ChatMessage) => {
-                            // console.log("chat msgs received: ", msg);
-                            this.events.publish('chat:received', msg);
-                        });
-                    }));
-                });
-            });
-
-            // use rxjs timer for recurring checks
-
+            this.refreshChatSubscription(sessionInfo);
+            if (!await this.localNotifications.hasPermission()) {
+                await this.localNotifications.requestPermission();
+            }
         } else {
             if (this.positionSubscription) {
                 this.positionSubscription.unsubscribe();
@@ -252,6 +252,67 @@ export class ChatAndSessionService {
                 this.chatSubscription = null;
             }
         }
+    }
+
+    private refreshChatSubscription(sessionInfo: SessionInfo) {
+        console.debug('refreshChatSubscription()');
+        if(this.chatSubscription) {
+            this.chatSubscription.unsubscribe();
+        }
+
+        this.chatSubscription = this.getRelevantTimer().subscribe(tick => {
+            this.checkForNewMessages(sessionInfo);
+        });
+    }
+
+    private getRelevantTimer() : Observable<TimeInterval<any>> {
+        if (this.userSeesNewMessages) {
+            return this.timerUserSeesMessages;
+        } else {
+            return this.timerBackground;
+        }
+    }
+
+    public async checkForNewMessages(sessionInfo: SessionInfo) {
+        console.log("check for new msgs ...");
+        this.receivers.forEach(async receiver => {
+            let messages = await this.getNewMsgs(sessionInfo, receiver.token).toPromise();
+            // foreach msg -> publish new event
+            messages.forEach((msg : ChatMessage) => {
+                // console.log("chat msgs received: ", msg);
+                this.events.publish('chat:received', msg);
+                let alreadySeen = this.alreadySeenMessages[msg.messageId];
+                if (!alreadySeen) {
+                    this.alreadySeenMessages[msg.messageId] = true;
+                    if (!this.userSeesNewMessages) {
+                        console.info(`scheduling notfication for ${msg.userName}: ${msg.message}`);
+                        let notification;
+                        this.pastLocalNotifications.push(notification = {
+                            id: this.pastLocalNotifications.length + 1,
+                            title: msg.userName,
+                            text: msg.message,
+                            silent: false,
+                            actions: [<any>{
+                                id: 'reply',
+                                type: ILocalNotificationActionType.INPUT,
+                                title: this.translate.instant('a_chat_reply'),
+                                emptyText: this.translate.instant('a_chat_type_message'),
+                                submitTitle: this.translate.instant('a_chat_reply'),
+                                foreground: true,
+                                launch: true
+                            }],
+
+                        });
+                        this.localNotifications.schedule(notification);
+                        this.toast.create({
+                            message: `${msg.userName}: ${msg.message}`,
+                            duration: 3000,
+                            position: 'bottom'
+                        }).present();
+                    }
+                }
+            });
+        });
     }
 
     public async determineDefaultReceivers(sessionInfo : SessionInfo) : Promise<SessionUser[]> {
@@ -284,6 +345,14 @@ export class ChatAndSessionService {
 
     public getReceivers() : SessionUser[] {
         return this.receivers;
+    }
+
+    public setUserSeesNewMessages(value: boolean) {
+        let refreshSubscription = value != this.userSeesNewMessages && this.transientActiveSession;
+        this.userSeesNewMessages = value;
+        if (refreshSubscription) {
+            this.refreshChatSubscription(this.transientActiveSession);
+        }
     }
 }
 

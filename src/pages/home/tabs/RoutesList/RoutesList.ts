@@ -83,10 +83,16 @@ export class RoutesListPage implements OnDestroy {
         if (!this.gpsService.getLastPosition()) {
             // try to get position
             try {
-                await timeout(this.gpsService.getCurrentPosition(), 3000);
+                await timeout(this.gpsService.getCurrentPosition(), 2000);
             } catch (e) {
-                console.log("could not obtain position");
-                console.log(e);
+                console.log("could not obtain position: " + e.message);
+                // make position check async
+                this.gpsService.getCurrentPosition().then((position) => {
+                    if (position && position.coords) {
+                        this.items.sort(this.compareFunction);
+                        this.filteredItems = this.items.slice(0, this.filteredItems.length);
+                    }
+                });
             }
         }
         this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);

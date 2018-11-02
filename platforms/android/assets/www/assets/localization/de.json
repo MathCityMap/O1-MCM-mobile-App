@@ -487,5 +487,7 @@
   "a_private_session_quit_text": "Soll die Session wirklich beendet werden?",
   "a_private_session_countdown": "Session startet in: ",
   "a_private_session_timer": "Session endet in: ",
-  "a_private_session_ends": "Session ist abgelaufen!"
+  "a_private_session_ends": "Session ist abgelaufen!",
+  "a_chat_type_message": "Nachricht schreiben",
+  "a_chat_reply": "Antworten"
 }

@@ -62,7 +62,14 @@
         },
         "com-sarriaroman-photoviewer": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-local-notification": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        }
+    }
 }

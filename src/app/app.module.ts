@@ -48,6 +48,7 @@ import { ApiModule } from './api/api.module';
 import { ChatAndSessionService } from '../services/chat-and-session-service';
 import { ChatPage } from '../pages/chat/chat';
 import { ChatPageModule } from '../pages/chat/chat.module';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { ChatPageModule } from '../pages/chat/chat.module';
         LanguageService,
         Helper,
         ChatAndSessionService,
+        LocalNotifications,
         Globalization,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]

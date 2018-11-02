@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 
 import { LanguageService } from '../services/language-service';
+import { ChatAndSessionService } from '../services/chat-and-session-service';
 
 
 export enum MCMModalType {
@@ -22,7 +23,8 @@ export class MyApp {
 
   keysTab: string[];
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, languageService: LanguageService) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+              languageService: LanguageService, chatService: ChatAndSessionService) {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -39,6 +41,7 @@ export class MyApp {
           "4", "5", "6", "",
           "7", "8", "9", "",
           "-", "0", decimalSeparator, "✔"]; // ✔
+      chatService.init();
   }
 
     ngOnInit()

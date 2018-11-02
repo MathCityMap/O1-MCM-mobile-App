@@ -24,14 +24,13 @@
         </div>
     </div>
 </ion-content>
-
 <ion-footer no-border [style.height]="'55px'">
     <div class="input-wrap">
         <textarea
                 autoresize
                 id="textarea"
                 #chat_input
-                placeholder="Type a math message"
+                [placeholder]="'a_chat_type_message' | translate"
                 [(ngModel)]="editorMsg"
                 (keyup.enter)="sendMsg()"
                 (focusin)="onFocus()">
