@@ -3,6 +3,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ModalController, NavController, NavParams } from "ionic-angular";
 import { MCMJoinSessionModal } from "../MCMJoinSessionModal/MCMJoinSessionModal";
 import { Session } from '../../app/api/models/session';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class MCMTermsAndConditionsModal {
     tacCheckbox: boolean = false;
     showError: boolean;
     session: Session;
-    navCtrl: NavController
+    navCtrl: NavController;
 
-    constructor(private navParams: NavParams, public modalCtrl: ModalController, private viewCtrl: ViewController) {
+    constructor(private navParams: NavParams, public modalCtrl: ModalController, private viewCtrl: ViewController,
+                private inAppBrowser: InAppBrowser) {
         this.session = this.navParams.data.session;
         this.navCtrl = this.navParams.data.navCtrl;
     }
@@ -30,5 +32,9 @@ export class MCMTermsAndConditionsModal {
         let modal = this.modalCtrl.create(MCMJoinSessionModal, {session: this.session, navCtrl: this.navCtrl});
         this.cancel();
         modal.present();
+    }
+
+    openTermsAndConditions() {
+        this.inAppBrowser.create("https://mathcitymap.eu/de/datenschutzerklaerung/", "_blank");
     }
 }

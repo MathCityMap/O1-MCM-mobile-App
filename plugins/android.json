@@ -65,6 +65,9 @@
         },
         "cordova-plugin-local-notification": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {

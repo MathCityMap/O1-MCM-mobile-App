@@ -79,6 +79,10 @@
                         {
                             "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -244,6 +248,9 @@
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-local-notification": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
@@ -648,6 +655,15 @@
                 "cordova.plugins.notification.local.core",
                 "plugin.notification.local.core"
             ]
+        },
+        {
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -670,6 +686,7 @@
         "cordova-plugin-globalization": "1.0.9",
         "com-sarriaroman-photoviewer": "1.1.18",
         "cordova-plugin-badge": "0.8.7",
-        "cordova-plugin-local-notification": "0.9.0-beta.2"
+        "cordova-plugin-local-notification": "0.9.0-beta.2",
+        "cordova-plugin-inappbrowser": "3.0.0"
     }
 }

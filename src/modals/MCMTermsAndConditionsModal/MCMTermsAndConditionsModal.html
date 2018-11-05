@@ -1,8 +1,7 @@
 <div class="modal card has-button-on-the-edge">
     <div class="modal-content">
         <h2>{{ 'a_terms_and_conditions_title' | translate }}</h2>
-        <!-- TODO replace and translate-->
-        <p class="terms">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+        <p class="terms" [innerHTML]="'a_terms_and_conditions_text' | translate" (click)="openTermsAndConditions()"></p>
         <ion-item>
             <ion-label>{{ 'a_terms_and_conditions_checkbox' | translate }}</ion-label>
             <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>
