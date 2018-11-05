@@ -2,7 +2,7 @@
 
     <div id="map" class="map-view"></div>
 
-    <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s">
+    <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s" ion-fixed>
         <div class="fab-container">
             <ion-fab right bottom>
                 <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
