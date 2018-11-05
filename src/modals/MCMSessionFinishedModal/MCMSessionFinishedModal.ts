@@ -5,6 +5,7 @@ import {HomePage} from "../../pages/home/home";
 import { App } from "ionic-angular";
 import { Session } from '../../app/api/models/session';
 import { Score } from '../../entity/Score';
+import { Task } from '../../entity/Task';
 
 @Component({
     selector: 'mcm-session-finished-modal',
@@ -17,6 +18,7 @@ export class MCMSessionFinishedModal {
     private session: Session;
     private score: Score;
     private tasks: Task[];
+    private numberOfSolvedTasks: number;
 
     constructor(private viewCtrl: ViewController,
                 private navCtrl: NavController,
