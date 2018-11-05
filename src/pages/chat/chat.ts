@@ -40,20 +40,16 @@ export class ChatPage {
            this.sessionUser = res.sessionUser;
            this.session = res.session;
            this.sessionInfo = res;
-
-            this.chatService.determineDefaultReceivers(res).then(receivers => {
-                this.chatService.setReceivers(receivers);
-                // TODO sender, receiver(s) is handlet automaticly from session parameters.
-                // teams, which are *not* admin of a session, get as receiver the admin
-                // the admin of a sessionget as recivers *all* users from a session
-                // TODO gui should have an option to select a team as active receiver.
-                let defaultReceiver : SessionUser = this.chatService.getReceivers()[0];
-                this.toUser = {
-                    id: defaultReceiver.id,
-                    name: defaultReceiver.team_name,
-                    token: defaultReceiver.token
-                };
-            });
+            // TODO sender, receiver(s) is handlet automaticly from session parameters.
+            // teams, which are *not* admin of a session, get as receiver the admin
+            // the admin of a sessionget as recivers *all* users from a session
+            // TODO gui should have an option to select a team as active receiver.
+            let defaultReceiver : SessionUser = this.chatService.getReceivers()[0];
+            this.toUser = {
+                id: defaultReceiver.id,
+                name: defaultReceiver.team_name,
+                token: defaultReceiver.token
+            };
         });
     }
 

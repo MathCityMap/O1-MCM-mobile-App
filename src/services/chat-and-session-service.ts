@@ -240,11 +240,16 @@ export class ChatAndSessionService {
                 }
             });
 
+            this.determineDefaultReceivers(sessionInfo).then(receivers => {
+                this.receivers = receivers;
+            });
+
             this.refreshChatSubscription(sessionInfo);
             if (!await this.localNotifications.hasPermission()) {
                 await this.localNotifications.requestPermission();
             }
         } else {
+            this.receivers = [];
             if (this.positionSubscription) {
                 this.positionSubscription.unsubscribe();
                 this.positionSubscription = null;
@@ -341,10 +346,6 @@ export class ChatAndSessionService {
         }
 
         return Promise.all(receivers);
-    }
-
-    public setReceivers(receivers : SessionUser[]) : void {
-        this.receivers = receivers;
     }
 
     public getReceivers() : SessionUser[] {
