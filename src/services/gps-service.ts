@@ -136,13 +136,18 @@ export class GpsService {
                 enableHighAccuracy: true
             }
         }
-        let position = await this.geolocation.getCurrentPosition(options);
-        this.subject.next(position);
-        if (position && position.coords) {
-            console.debug(`getCurrentPosition: ${position.coords.latitude}, ${position.coords.longitude}`);
-            this.lastPosition = position;
+        try {
+            let position = await this.geolocation.getCurrentPosition(options);
+            this.subject.next(position);
+            if (position && position.coords) {
+                console.debug(`getCurrentPosition: ${position.coords.latitude}, ${position.coords.longitude}`);
+                this.lastPosition = position;
+            }
+            return  position;
+        } catch (e) {
+            console.log('gps-service.ts: getCurrentPosition() caught exception', e);
+            return null;
         }
-        return position;
     }
 
     getLastPosition(): Geoposition {

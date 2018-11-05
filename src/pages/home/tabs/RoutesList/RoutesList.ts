@@ -89,8 +89,6 @@ export class RoutesListPage implements OnDestroy {
                 // make position check async
                 this.gpsService.getCurrentPosition().then((position) => {
                     if (position && position.coords) {
-                        this.items.sort(this.compareFunction);
-                        this.filteredItems = this.items.slice(0, this.filteredItems.length);
                     }
                 });
             }
@@ -116,7 +114,7 @@ export class RoutesListPage implements OnDestroy {
 
     async removeRoute(route: Route) {
         await this.ormService.removeDownloadedRoute(route);
-        this.items.sort(this.compareFunction);
+        this.sortAndRebuildFilteredItems();
         this.scrollTo(route);
     }
 
@@ -145,7 +143,7 @@ export class RoutesListPage implements OnDestroy {
             }
             if (!alreadyAdded) {
                 this.items.push(route);
-                this.items.sort(this.compareFunction);
+                this.sortAndRebuildFilteredItems();
             }
             this.scrollTo(route);
         }
@@ -153,7 +151,7 @@ export class RoutesListPage implements OnDestroy {
 
     async doDownload(route: Route) {
         if (await this.modalsService.doDownload(route)) {
-            this.items.sort(this.compareFunction);
+            this.sortAndRebuildFilteredItems();
             this.scrollTo(route);
         }
     }
@@ -180,5 +178,10 @@ export class RoutesListPage implements OnDestroy {
         setTimeout(() => {
             infiniteScroll.complete();
         }, 2000);
+    }
+
+    private sortAndRebuildFilteredItems() {
+        this.items.sort(this.compareFunction);
+        this.filteredItems = this.items.slice(0, this.filteredItems.length);
     }
 }
