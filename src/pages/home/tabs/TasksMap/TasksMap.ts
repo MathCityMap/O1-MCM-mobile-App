@@ -563,11 +563,16 @@ export class TasksMap implements OnInit, OnDestroy {
        this.modalService.showDialog('a_private_session_quit', 'a_private_session_quit_text',
            'no', () => {},
            'yes', () => {
-               let modal = this.modalCtrl.create(MCMSessionFinishedModal);
+               let modal = this.modalCtrl.create(MCMSessionFinishedModal,
+                   {
+                       session: this.sessionInfo.session,
+                       score: this.score,
+                       tasks: this.taskList
+                   });
                modal.present();
                this.chatAndSessionService.exitActiveSession();
+               clearInterval(this.refreshIntervalId);
            });
-      clearInterval(this.refreshIntervalId);
   }
 
   async gototask(taskId: number, taskName: string) {
