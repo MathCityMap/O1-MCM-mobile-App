@@ -139,6 +139,61 @@ export class SessionUserService extends BaseService {
       map(_r => (<any>_r).body)
     );
   }
+
+
+  /**
+   * @param params The `SessionUserService.LeaveSessionParams` containing the following parameters:
+   *
+   * - `userToken`: The session user's token
+   *
+   * - `sessionCode`: The session code
+   *
+   * @return Returns an empty response
+   */
+
+  leaveSessionResponse(params: SessionUserService.LeaveSessionParams): Observable<HttpResponse<any>> {
+    let __params = new HttpParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+
+    let req = new HttpRequest<any>(
+      "DELETE",
+      this.rootUrl + `/session/${params.sessionCode}/user/${params.userToken}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: any = null;
+
+        return _resp.clone({body: _body}) as HttpResponse<any>;
+      })
+    );
+  }
+
+
+  /**
+   * @param params The `SessionUserService.LeaveSessionParams` containing the following parameters:
+   *
+   * - `userToken`: The session user's token
+   *
+   * - `sessionCode`: The session code
+   *
+   * @return Returns an empty response
+   */
+
+  leaveSession(params: SessionUserService.LeaveSessionParams): Observable<any> {
+    return this.leaveSessionResponse(params).pipe(
+      map(_r => (<any>_r).body)
+    );
+  }
 }
 
 export module SessionUserService {
@@ -149,6 +204,10 @@ export module SessionUserService {
     latitude: number;
   }
   export interface GetSessionUserByTokenParams {
+    userToken: string;
+    sessionCode: string;
+  }
+  export interface LeaveSessionParams {
     userToken: string;
     sessionCode: string;
   }

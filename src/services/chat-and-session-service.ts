@@ -204,6 +204,10 @@ export class ChatAndSessionService {
     async exitActiveSession() {
         await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
         this.subscribeForAndSendEvents(null);
+        await this.sessionUserService.leaveSession({
+            userToken: this.transientActiveSession.sessionUser.token,
+            sessionCode: this.transientActiveSession.session.code
+        }).toPromise();
         this.transientActiveSession = null;
     }
 

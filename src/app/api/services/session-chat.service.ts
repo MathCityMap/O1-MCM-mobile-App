@@ -85,6 +85,66 @@ export class SessionChatService extends BaseService {
 
 
   /**
+   * @param params The `SessionChatService.SetMessageReadParams` containing the following parameters:
+   *
+   * - `sessionCode`: The session code
+   *
+   * - `senderToken`: The senders token
+   *
+   * - `receiverToken`: The receiver token
+   *
+   * @return Returns sended chat message
+   */
+
+  setMessageReadResponse(params: SessionChatService.SetMessageReadParams): Observable<HttpResponse<SessionChatMessageResponse>> {
+    let __params = new HttpParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+
+
+    let req = new HttpRequest<any>(
+      "PUT",
+      this.rootUrl + `/session/${params.sessionCode}/chat/${params.senderToken}/${params.receiverToken}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: SessionChatMessageResponse = null;
+        _body = _resp.body as SessionChatMessageResponse
+        return _resp.clone({body: _body}) as HttpResponse<SessionChatMessageResponse>;
+      })
+    );
+  }
+
+
+  /**
+   * @param params The `SessionChatService.SetMessageReadParams` containing the following parameters:
+   *
+   * - `sessionCode`: The session code
+   *
+   * - `senderToken`: The senders token
+   *
+   * - `receiverToken`: The receiver token
+   *
+   * @return Returns sended chat message
+   */
+
+  setMessageRead(params: SessionChatService.SetMessageReadParams): Observable<SessionChatMessageResponse> {
+    return this.setMessageReadResponse(params).pipe(
+      map(_r => (<any>_r).body)
+    );
+  }
+
+
+  /**
    * @param params The `SessionChatService.SendMessageToUserParams` containing the following parameters:
    *
    * - `sessionCode`: The session code
@@ -271,6 +331,11 @@ export class SessionChatService extends BaseService {
 
 export module SessionChatService {
   export interface GetMessagesParams {
+    sessionCode: string;
+    senderToken: string;
+    receiverToken: string;
+  }
+  export interface SetMessageReadParams {
     sessionCode: string;
     senderToken: string;
     receiverToken: string;
