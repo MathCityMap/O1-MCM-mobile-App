@@ -319,8 +319,9 @@ export class TaskDetail {
         }
         console.log(this.task.solutionType);
         let solution = [this.taskDetails.answer];
+        let answer = this.taskDetails.answer.replace(",", ".");
         if (this.task.solutionType == "value") {
-            if (this.taskDetails.answer == this.task.getSolution()) {
+            if (answer == this.task.getSolution()) {
                 this.CalculateScore("value", "solved");
                 this.taskSolved('solved', solution, 0);
             } else {
@@ -352,7 +353,8 @@ export class TaskDetail {
             let solutionList = this.task.getSolutionList();
             let von = solutionList[0];
             let bis = solutionList[1];
-            let answer = +this.taskDetails.answer;
+            // Do not forget to parse decimal separator as point
+            let answer = +this.taskDetails.answer.replace(",", ".");
             let solution = [this.taskDetails.answer];
             if (answer >= von && answer <= bis) {
                 this.CalculateScore("range", "solved");
