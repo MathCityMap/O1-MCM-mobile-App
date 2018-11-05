@@ -29,6 +29,7 @@ import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedMod
 import { ChatPage } from "../../../chat/chat";
 import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-and-session-service';
 import { Subscription } from 'rxjs/Subscription';
+import * as moment from 'moment';
 
 
 declare var ConicGradient: any;
@@ -596,10 +597,9 @@ export class TasksMap implements OnInit, OnDestroy {
             return;
         }
 
-        let currentTime = new Date();
-        let currentTimeUnix = Math.floor(currentTime.getTime() / 1000);
-        let startTimeInUnix = new Date(session.starts_at).getTime() / 1000;
-        let endTimeInUnix = new Date(session.ends_at).getTime() / 1000;
+        let currentTimeUnix = moment().unix();
+        let startTimeInUnix = moment(session.starts_at).unix();
+        let endTimeInUnix = moment(session.ends_at).unix();
         let countdown = startTimeInUnix - currentTimeUnix;
         let countdownInMin = Math.floor(countdown / 60);
         let timerInMin = Math.floor((endTimeInUnix -currentTimeUnix) / 60);
