@@ -44,6 +44,7 @@ export class RoutesListPage implements OnDestroy {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
+            this.sortAndRebuildFilteredItems();
         });
     }
 
@@ -127,6 +128,7 @@ export class RoutesListPage implements OnDestroy {
                 console.error('caught error while checking for updates:', e);
             }
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
+            this.sortAndRebuildFilteredItems();
         }
         refresher.complete();
     }

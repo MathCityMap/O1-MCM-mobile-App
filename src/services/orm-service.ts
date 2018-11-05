@@ -341,11 +341,10 @@ export class OrmService {
         return result;
     }
 
-    async removeDownloadedRoute(route: Route, removeTiles = false) {
+    async removeDownloadedRoute(route: Route, removeTiles = false): Promise<Route> {
         // Reset route before removing
         let user = await this.getActiveUser();
-        route = await this.findRouteById(route.id);
-        await this.deleteUserScore(route.getScoreForUser(user));
+        await this.deleteUserScore((await this.findRouteById(route.id)).getScoreForUser(user));
         if (removeTiles) {
             await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
         }
@@ -354,6 +353,7 @@ export class OrmService {
         const repo = await this.getRouteRepository();
         await repo.save(route);
         this.updateRouteInCache(route);
+        return route;
     }
 
     async unlockRoute(route: Route) {
@@ -386,5 +386,6 @@ export class OrmService {
                 }
             }
         }
+        this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
     }
 }
