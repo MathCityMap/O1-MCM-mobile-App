@@ -84,7 +84,7 @@ export class Helper {
      */
     static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
-    static readonly API_URL: string = "http://mathcitymap.eu/db_query_post.php"
+    static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
     static readonly REQUEST_PASS: string = "evilknivel2k16"
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"

@@ -40,7 +40,7 @@ export class MCMRouteByCodeModal {
     }
 
     checkInputField() {
-        if(this.code.length <= 5 && this.code.length >= 4) {
+        if(this.code.length >= 4) {
             return this.codeInput = true;
         } else {
             return this.codeInput = false;

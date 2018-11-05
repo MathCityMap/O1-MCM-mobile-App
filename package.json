@@ -27,8 +27,8 @@
     "@ionic-native/file-transfer": "4.3.2",
     "@ionic-native/geolocation": "4.4.2",
     "@ionic-native/globalization": "^4.5.3",
-    "@ionic-native/in-app-browser": "^4.17.0",
-    "@ionic-native/local-notifications": "^4.16.0",
+    "@ionic-native/in-app-browser": "4.10.1",
+    "@ionic-native/local-notifications": "4.10.1",
     "@ionic-native/location-accuracy": "^4.5.2",
     "@ionic-native/network": "4.4.2",
     "@ionic-native/photo-viewer": "^4.10.1",
@@ -86,7 +86,8 @@
     "typeorm": "0.1.6",
     "typescript-collections": "1.2.5",
     "xml2json-cli": "^1.1.1",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "cordova-plugin-inappbrowser": "~3.0.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "^3.1.9",
@@ -118,7 +119,8 @@
       "cordova-plugin-request-location-accuracy": {},
       "cordova-plugin-globalization": {},
       "cordova.plugins.diagnostic": {},
-      "com-sarriaroman-photoviewer": {}
+      "com-sarriaroman-photoviewer": {},
+      "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
       "android",
