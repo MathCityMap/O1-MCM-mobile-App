@@ -183,7 +183,7 @@
   "p_select_any": "[iné]",
   "slug_account": "ucet",
   "slug_register": "registrovat",
-  "p_game_title": "Gamification (Beta)",
+  "p_game_title": "Gamification",
   "p_game_leaderboard": "Leaderboard gamification",
   "p_game_points": "Points gamification",
   "p_game_no": "No gamification",
@@ -404,5 +404,6 @@
   "a_settings_language": "Jazyk",
   "a_about_mcm_portal": "MCM pozostáva z aplikácie a z webového portálu.  Po krátkej registrácii webový portál MathCityMap ponúka užívateľom možnosť vytvárať vlastné úlohy a trasy, ktoré neskôr možno spístupňovať prostredníctvom aplikácie. Vatvorené trasy možno stiahnuť ako PDF súboru z webového portálu. Všetky  nástroje MathCityMap sú k dispozícii zdarma.",
   "a_about_mcm_project": "Matemaická mapa masta (MathCityMap) je projektom pracovnej skupiny MATIS I (IDMI, Goethe-University Frankfurt Main).",
-  "a_about_mcm_responsibility_title": "Zodpovedné osoby"
+  "a_about_mcm_responsibility_title": "Zodpovedné osoby",
+  "p_wzrd_velocity": "rychlost"
 }

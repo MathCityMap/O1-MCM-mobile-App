@@ -183,7 +183,7 @@
   "p_select_any": "[Beliebig]",
   "slug_account": "rekening",
   "slug_register": "daftar",
-  "p_game_title": "Gamification (Beta)",
+  "p_game_title": "Gamification",
   "p_game_leaderboard": "Leaderboard gamification",
   "p_game_points": "Points gamification",
   "p_game_no": "No gamification",
@@ -404,5 +404,7 @@
   "a_settings_language": "Bahasa",
   "a_about_mcm_responsibility_title": "Penanggung jawab",
   "a_about_mcm_portal": "www.mathcitymap.eu adalah portal MathCityMap dengan fitur PDF-export yang terintegrasi. Setelah registrasi singkat, anda dapat membuat dan mengedit tugas secara mandiri, yang kemudian dapat digunakan dengan menggunakan aplikasi. Semua produk MathCityMap adalah gratis.",
-  "a_about_mcm_project": "MathCityMap adalah sebuah proyek dari kelompok Kerja MATIS 1 Institut Pendidikan Matematika dan Informatika Goethe-University Frankfurt am Main."
+  "a_about_mcm_project": "MathCityMap adalah sebuah proyek dari kelompok Kerja MATIS 1 Institut Pendidikan Matematika dan Informatika Goethe-University Frankfurt am Main.",
+  "p_save_draft": "Simpan Draf",
+  "p_get_position": "Dapatkan Posisi"
 }

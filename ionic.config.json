@@ -8,11 +8,11 @@
   "proxies": [
     {
       "path": "/session",
-      "proxyUrl": "http://mcm-api.local.autentek.de/session"
+      "proxyUrl": "http://api.mathcitymap.eu/public/index.php/session"
     },
     {
       "path": "/sessionUser",
-      "proxyUrl": "http://mcm-api.local.autentek.de/sessionUser"
+      "proxyUrl": "http://api.mathcitymap.eu/public/index.php/sessionUser"
     }
   ]
 }
