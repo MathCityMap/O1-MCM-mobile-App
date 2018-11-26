@@ -19,6 +19,7 @@ import {
     LocalNotifications
 } from '@ionic-native/local-notifications';
 import { TranslateService } from '@ngx-translate/core';
+import { checkAvailability } from '@ionic-native/core';
 
 export class ChatMessage {
     messageId: string;
@@ -80,10 +81,13 @@ export class ChatAndSessionService {
     async init() {
         let sessionInfo = await this.getActiveSession();
         this.subscribeForAndSendEvents(sessionInfo);
-        this.localNotifications.on('click')
-            .subscribe((next) => {
-            console.log(next);
-            });
+        if (checkAvailability(LocalNotifications.pluginRef, null, LocalNotifications.pluginName) === true) {
+            this.localNotifications.on('click')
+                .subscribe((next) => {
+                    console.log('local notification has been pressed');
+                    console.log(next);
+                });
+        }
     }
 
     /**
