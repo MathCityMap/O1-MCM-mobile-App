@@ -15,7 +15,6 @@ import { OrmService } from '../../../../services/orm-service';
 import { Route } from '../../../../entity/Route';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { LatLngBounds } from 'leaflet';
-import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
 import { ModalsService } from '../../../../services/modals-service';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
@@ -124,8 +123,6 @@ export class MapPage implements OnInit, OnDestroy {
                     console.error(e);
                 }
             }
-            let userModal = this.modalCtrl.create(MCMInputModal);
-            await userModal.present();
         }
         this.routes = await this.ormService.getVisibleRoutes();
         this.redrawMarker();

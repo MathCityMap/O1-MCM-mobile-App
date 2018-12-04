@@ -8,7 +8,6 @@ import { Route } from '../../../../entity/Route';
 import { ModalsService } from '../../../../services/modals-service';
 import { DB_Updater } from '../../../../classes/DB_Updater';
 import { Subscription } from 'rxjs/Subscription';
-import { MCMInputModal } from '../../../../modals/MCMInputModal/MCMInputModal';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
@@ -65,9 +64,8 @@ export class RoutesListPage implements OnDestroy {
                     console.error('caught error while checking for updates:');
                     console.error(e);
                 }
+                await this.ormService.setNewActiveUser('Me');
             }
-            let userModal = this.modalCtrl.create(MCMInputModal);
-            await userModal.present();
         } else {
             // we need to check for updates
             let quality = await this.helper.checkConnection();
