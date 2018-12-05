@@ -13,7 +13,7 @@
     <key>CFBundleIcons~ipad</key>
     <dict/>
     <key>CFBundleIdentifier</key>
-    <string>de.unifrankfurt.mathcitymap</string>
+    <string>de.autentek.mathcitymap</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -26,11 +26,6 @@
     <string>????</string>
     <key>CFBundleVersion</key>
     <string>2.1.9</string>
-    <key>Fabric</key>
-    <dict>
-      <key>APIKey</key>
-      <string>d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64</string>
-    </dict>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSAppTransportSecurity</key>
@@ -84,11 +79,6 @@
           <key>NSExceptionAllowsInsecureHTTPLoads</key>
           <true/>
         </dict>
-        <key>192.168.2.105</key>
-        <dict>
-          <key>NSExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-        </dict>
       </dict>
     </dict>
     <key>NSBluetoothPeripheralUsageDescription</key>
@@ -132,5 +122,10 @@
       <string>UIInterfaceOrientationPortraitUpsideDown</string>
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>Fabric</key>
+    <dict>
+      <key>APIKey</key>
+      <string>d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64</string>
+    </dict>
   </dict>
 </plist>

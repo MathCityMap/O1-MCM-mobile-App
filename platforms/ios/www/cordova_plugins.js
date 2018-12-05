@@ -1,30 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "id": "cordova-fabric-plugin.FabricPlugin",
-        "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.js",
-        "pluginId": "cordova-fabric-plugin",
-        "clobbers": [
-            "window.fabric.core"
-        ]
-    },
-    {
-        "id": "cordova-fabric-plugin.FabricAnswersPlugin",
-        "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.Answers.js",
-        "pluginId": "cordova-fabric-plugin",
-        "clobbers": [
-            "window.fabric.Answers"
-        ]
-    },
-    {
-        "id": "cordova-fabric-plugin.FabricCrashlyticsPlugin",
-        "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.Crashlytics.js",
-        "pluginId": "cordova-fabric-plugin",
-        "clobbers": [
-            "window.fabric.Crashlytics"
-        ]
-    },
-    {
         "id": "cordova-plugin-file.DirectoryEntry",
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "pluginId": "cordova-plugin-file",
@@ -426,13 +402,36 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "id": "cordova-fabric-plugin.FabricPlugin",
+        "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.js",
+        "pluginId": "cordova-fabric-plugin",
+        "clobbers": [
+            "window.fabric.core"
+        ]
+    },
+    {
+        "id": "cordova-fabric-plugin.FabricAnswersPlugin",
+        "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.Answers.js",
+        "pluginId": "cordova-fabric-plugin",
+        "clobbers": [
+            "window.fabric.Answers"
+        ]
+    },
+    {
+        "id": "cordova-fabric-plugin.FabricCrashlyticsPlugin",
+        "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.Crashlytics.js",
+        "pluginId": "cordova-fabric-plugin",
+        "clobbers": [
+            "window.fabric.Crashlytics"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "cordova-custom-config": "4.0.2",
-    "cordova-fabric-plugin": "1.1.9",
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-file": "4.3.3",
     "cordova-plugin-advanced-http": "1.6.2",
@@ -452,7 +451,8 @@ module.exports.metadata =
     "com-sarriaroman-photoviewer": "1.1.18",
     "cordova-plugin-badge": "0.8.7",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
-    "cordova-plugin-inappbrowser": "3.0.0"
+    "cordova-plugin-inappbrowser": "3.0.0",
+    "cordova-fabric-plugin": "1.1.9"
 };
 // BOTTOM OF METADATA
 });
