@@ -174,16 +174,14 @@ export class Route {
         return equipment;
     }
 
-    concatString(s: string, v: string): string{
-        if(s.indexOf(v) == -1){
-            if (s != ""){
-                s = s + ", ";
-            }
-        }
-        return s + v;
-    }
-
-    buildSettingsEntry(s: string, val: string, k: string, translateService: TranslateService): string {
+    /**
+     *
+     * @param s Settings String
+     * @param val Entry Value
+     * @param k Translation Key
+     * @param translateService
+     */
+    concatSettingsEntry(s: string, val: string, k: string, translateService: TranslateService): string {
         let translation = translateService.instant(k);
         if(val === "true" || val === "1"){
             val = translateService.instant('r_settings_active')
@@ -191,7 +189,12 @@ export class Route {
             val = translateService.instant('r_settings_inactive')
         }
         let entry = translation + ": " + val;
-        return this.concatString(s, entry);
+        if(s.indexOf(entry) == -1){
+            if (s != ""){
+                s = s + ", ";
+            }
+        }
+        return s + entry;
     }
 
     getRouteSettings(translateService: TranslateService): string {
@@ -199,16 +202,16 @@ export class Route {
         let attr = this.getAttributes();
 
         if(attr.gamification != null){
-            settings = this.buildSettingsEntry(settings, attr.gamification, 'gamification', translateService)
+            settings = this.concatSettingsEntry(settings, attr.gamification, 'gamification', translateService)
         }
         if(attr.sampleSolution != null){
-            settings = this.buildSettingsEntry(settings, attr.sampleSolution, 'sampleSolution', translateService);
+            settings = this.concatSettingsEntry(settings, attr.sampleSolution, 'sampleSolution', translateService);
         }
         if(attr.hints != null){
-            settings = this.buildSettingsEntry(settings, attr.hints, 'hints', translateService);
+            settings = this.concatSettingsEntry(settings, attr.hints, 'hints', translateService);
         }
         if(attr.answerValidation != null){
-            settings = this.buildSettingsEntry(settings, attr.answerValidation, 'answerValidation', translateService);
+            settings = this.concatSettingsEntry(settings, attr.answerValidation, 'answerValidation', translateService);
         }
         return settings;
     }
@@ -250,7 +253,7 @@ export class Route {
 
     isGamificationDisabled() {
         return this.getAttributes().gamification === "0";
-        //TODO: Replace with return this.getAttributes().gamification === false; (boolean value)
+        //TODO: Replace with return this.getAttributes().gamification === false;
     }
 
     isSampleSolutionEnabled() {

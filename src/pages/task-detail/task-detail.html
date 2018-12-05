@@ -24,8 +24,8 @@
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
-                <ion-label *ngIf ="task && task.solutionType != 'gps'">{{ "a_task_answer" | translate }}</ion-label>
-                <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice'">
+                <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
+                <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice' && route.isAnswerValidationEnabled()">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
                     <ion-input (keyup.enter)="checkResult()"
                                [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')"
@@ -39,7 +39,7 @@
                     </ion-input>
                     <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
-                <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList">
+                <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled()">
                     <ion-item *ngFor="let item of multipleChoiceList; let i = index">
                         <ion-checkbox [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
                         <ion-label tappable>{{item.value}}</ion-label>
@@ -50,7 +50,7 @@
             <div class="on-the-edge-container" *ngIf="taskDetails">
                 <ion-grid no-padding>
                     <ion-row>
-                        <ion-col>
+                        <ion-col *ngIf="route.isHintsEnabled()">
                             <button *ngIf="task && task.hasHintMessage(1)" class="hint" ion-button (click)="showHint(1)" icon-only clear [disabled]="false">
                                 <img *ngIf="!taskDetails.hint1" class="primary round" src="./assets/icons/icon_hint-activated.svg"/>
                                 <img *ngIf="taskDetails.hint1" class="primary round used" src="./assets/icons/icon_hint-activated-used.svg"/>
@@ -66,7 +66,7 @@
                                 <img *ngIf="!taskDetails.hint2" class="primary round" src="./assets/icons/icon_hint-deactivated.svg"/>
                             </button>
                         </ion-col>
-                        <ion-col>
+                        <ion-col *ngIf="route.isAnswerValidationEnabled()">
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
                             [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap.areAllPointsSet())" (click)="checkResult()">
                                 {{ "a_btn_check_answer" | translate }}
@@ -74,7 +74,7 @@
                         </ion-col>
                         <ion-col>
                             <button class="hint" ion-button icon-only clear (click)="showSolutionSample()"
-                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled()">
                                 <img class="primary round" src="./assets/icons/icon_show_sample_salution.svg"/>
                             </button>
                             <!-- skip task -->
