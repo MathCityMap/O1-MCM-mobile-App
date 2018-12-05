@@ -252,8 +252,7 @@ export class Route {
     }
 
     isGamificationDisabled() {
-        return this.getAttributes().gamification === "0";
-        //TODO: Replace with return this.getAttributes().gamification === false;
+        return this.getAttributes().gamification === "false";
     }
 
     isSampleSolutionEnabled() {

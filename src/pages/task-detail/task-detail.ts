@@ -548,6 +548,20 @@ export class TaskDetail {
                 }
             }
             let that = this;
+            let bSampleSolution = {
+                title: 't_samplesolution',
+                callback: function () {
+                    modal.dismiss().then(() => {
+                        that.showSolutionSample();
+                    });
+                }};
+            let bNextTask = {
+                title: 'pdf_next_task',
+                callback: function () {
+                    modal.dismiss().then(() => {
+                        that.closeDetails(false);
+                    });
+                }};
             let modal = this.modalCtrl.create(MCMIconModal, {
                 title: title,
                 message: message,
@@ -555,23 +569,7 @@ export class TaskDetail {
                 modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
                 gamificationEnabled: !this.gamificationIsDisabled,
                 score: "+" + this.taskDetails.score,
-                buttons: [
-                    {
-                        title: 't_samplesolution',
-                        callback: function () {
-                            modal.dismiss().then(() => {
-                                that.showSolutionSample();
-                            });
-                        }
-                    }, {
-                        title: 'pdf_next_task',
-                        callback: function () {
-                            modal.dismiss().then(() => {
-                                that.closeDetails(false);
-                            });
-                        }
-                    }
-                ]
+                buttons: this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask]
             }, {showBackdrop: true, enableBackdropDismiss: true});
             modal.onDidDismiss((data) => {
                 console.log(data);
@@ -610,53 +608,59 @@ export class TaskDetail {
                 case 4:
                     if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                     else message = 'a_alert_false_answer_2';
+                    if(!this.route.isHintsEnabled()) message = 'a_alert_false_answer_1';
+                    let bShowHint = {
+                        title: 'a_t_show_hint',
+                        callback: function () {
+                        modal.dismiss().then(() => {
+                            let index = 1;
+                            //number of tries already increased
+                            if (tries == 3) {
+                                let temp = that.getNextAvailableHint();
+                                if (temp < 2) index = temp;
+                                else index = 2;
+                            } else if (tries == 4) {
+                                let temp = that.getNextAvailableHint();
+                                if (temp < 3) index = temp;
+                                else index = 3;
+                            }
+                            that.showHint(index);
+                            });
+                        }};
+                    let bClose = {
+                        title: 'a_alert_close',
+                        callback: function () {
+                        modal.dismiss();
+                    }};
+                    if(this.route.isHintsEnabled()) {
+                       buttons = [bShowHint, bClose];
+                    }else{
+                        buttons = [bClose];
+                    }
 
-                    buttons = [
-                        {
-                            title: 'a_t_show_hint',
-                            callback: function () {
-                                modal.dismiss().then(() => {
-                                    let index = 1;
-                                    //number of tries already increased
-                                    if (tries == 3) {
-                                        let temp = that.getNextAvailableHint();
-                                        if (temp < 2) index = temp;
-                                        else index = 2;
-                                    } else if (tries == 4) {
-                                        let temp = that.getNextAvailableHint();
-                                        if (temp < 3) index = temp;
-                                        else index = 3;
-                                    }
-                                    that.showHint(index);
-                                });
-                            }
-                        }, {
-                            title: 'a_alert_close',
-                            callback: function () {
-                                modal.dismiss();
-                            }
-                        }
-                    ];
                     break;
                 default:
                     message = 'a_t_skip_msg';
-                    buttons = [
-                        {
-                            title: 't_samplesolution',
-                            callback: function () {
-                                modal.dismiss().then(() => {
-                                    that.showSolutionSample();
-                                });
-                            }
-                        }, {
-                            title: 'a_skipTask',
-                            callback: function () {
-                                modal.dismiss().then(() => {
-                                    that.closeDetails(true);
-                                });
-                            }
-                        }
-                    ];
+                    let bSampleSolution = {
+                        title: 't_samplesolution',
+                        callback: function () {
+                            modal.dismiss().then(() => {
+                                that.showSolutionSample();
+                            });
+                        }};
+                    let bSkipTask = {
+                        title: 'a_skipTask',
+                        callback: function () {
+                            modal.dismiss().then(() => {
+                                that.closeDetails(true);
+                            });
+                        }};
+                    if(this.route.isSampleSolutionEnabled()){
+                        buttons = [bSampleSolution, bSkipTask];
+                    }else{
+                        buttons = [bSkipTask];
+                    }
+
 
                     break;
             }
