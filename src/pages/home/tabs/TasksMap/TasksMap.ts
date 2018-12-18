@@ -190,6 +190,11 @@ export class TasksMap implements OnInit, OnDestroy {
         }
     }, 100);
 
+    // Add event of user entering trail when session active
+      if(this.sessionInfo != null){
+          let details = JSON.stringify({key: "value"});
+          await this.chatAndSessionService.sendUserEvent("event_trail_opened", details, 0 +"");
+      }
   }
 
     ngOnInit() {
@@ -361,6 +366,11 @@ export class TasksMap implements OnInit, OnDestroy {
           if (this.state.selectedTask == task) {
               this.gototask(task.id, task.title);
           } else {
+              // Add event of user entering trail when session active
+              if(this.sessionInfo != null){
+                  let details = JSON.stringify({key: "value"});
+                  this.chatAndSessionService.sendUserEvent("event_task_previewed", details, task.id +"");
+              }
               this.state.selectedTask = task;
               this.map.panTo( [task.lat, task.lon] );
           }

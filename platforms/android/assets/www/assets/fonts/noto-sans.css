@@ -1,0 +1,59 @@
+/*
+Error: Undefined variable: "$font-path".
+        on line 6 of noto-sans.scss
+
+1: // Noto Sans Font
+2: // Google
+3: // Apache License, version 2.0
+4: // http://www.apache.org/licenses/LICENSE-2.0.html
+5: 
+6: $noto-sans-font-path: $font-path !default;
+7: 
+8: @font-face {
+9:   font-family: "Noto Sans";
+10:   font-style: normal;
+11:   font-weight: 300;
+
+Backtrace:
+noto-sans.scss:6
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/script/tree/variable.rb:49:in `_perform'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/script/tree/node.rb:50:in `perform'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:469:in `visit_variable'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/stack.rb:79:in `block in with_base'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/stack.rb:115:in `with_frame'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/stack.rb:79:in `with_base'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/base.rb:52:in `map'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:157:in `visit'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/visitors/perform.rb:8:in `visit'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/engine.rb:295:in `render_with_sourcemap'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `each'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/plugin.rb:82:in `update_stylesheets'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:363:in `watch_or_update'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:51:in `process_result'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/base.rb:52:in `parse'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/lib/sass/exec/base.rb:19:in `parse!'
+C:/RailsFTW423216/lib/ruby/gems/2.1.0/gems/sass-3.4.21/bin/scss:13:in `<top (required)>'
+C:/RailsFTW423216/bin/scss:23:in `load'
+C:/RailsFTW423216/bin/scss:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$font-path\".\A         on line 6 of noto-sans.scss\A \A 1: // Noto Sans Font\A 2: // Google\A 3: // Apache License, version 2.0\A 4: // http://www.apache.org/licenses/LICENSE-2.0.html\A 5: \A 6: $noto-sans-font-path: $font-path !default;\A 7: \A 8: @font-face {\A 9:   font-family: \"Noto Sans\";\A 10:   font-style: normal;\A 11:   font-weight: 300;"; }

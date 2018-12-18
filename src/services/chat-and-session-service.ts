@@ -20,6 +20,10 @@ import {
 } from '@ionic-native/local-notifications';
 import { TranslateService } from '@ngx-translate/core';
 import { checkAvailability } from '@ionic-native/core';
+import {SessionEventService} from "../app/api/services/session-event.service";
+import {EventsAddRequest} from "../app/api/models/events-add-request";
+import {EventAddRequest} from "../app/api/models/event-add-request";
+import {SessionEventsResponse} from "../app/api/models/session-events-response";
 
 export class ChatMessage {
     messageId: string;
@@ -72,6 +76,7 @@ export class ChatAndSessionService {
                 private sessionService: SessionService,
                 private sessionUserService: SessionUserService,
                 private sessionChatService: SessionChatService,
+                private sessionEventService: SessionEventService,
                 private gpsService: GpsService,
                 private localNotifications: LocalNotifications,
                 private translate: TranslateService,
@@ -362,6 +367,30 @@ export class ChatAndSessionService {
         if (refreshSubscription) {
             this.refreshChatSubscription(this.transientActiveSession);
         }
+    }
+
+    /*
+    Session User Events
+     */
+    public async sendUserEvent(title: string, details: string, task_id: string){
+        let sessionInfo = await this.getActiveSession();
+        let eventsAddRequest = new EventsAddRequest();
+        let eventAddRequest = new EventAddRequest();
+        eventAddRequest.title = title;
+        eventAddRequest.details = details;
+        eventAddRequest.task_id = task_id;
+        eventAddRequest.lat = "0";
+        eventAddRequest.lon = "0";
+        eventsAddRequest.events = [];
+        eventsAddRequest.events.push(eventAddRequest);
+        let params = {
+            events: eventsAddRequest,
+            sessionCode: sessionInfo.session.code,
+            userToken: sessionInfo.sessionUser.token
+        };
+        console.log(params);
+        let sessionEventsResponse = await this.sessionEventService.addEvents(params).toPromise();
+        console.log(sessionEventsResponse);
     }
 }
 

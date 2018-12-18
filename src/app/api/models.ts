@@ -1,6 +1,12 @@
 export { Session } from './models/session';
 export { SessionUser } from './models/session-user';
+export { EventAddRequest } from './models/event-add-request';
+export { EventsAddRequest } from './models/events-add-request';
 export { JoinSessionRequest } from './models/join-session-request';
+export { LeaderboardItemResponse } from './models/leaderboard-item-response';
+export { LeaderboardResponse } from './models/leaderboard-response';
 export { SessionChatMessageRequest } from './models/session-chat-message-request';
 export { SessionChatMessageResponse } from './models/session-chat-message-response';
 export { SessionChatResponse } from './models/session-chat-response';
+export { SessionEventResponse } from './models/session-event-response';
+export { SessionEventsResponse } from './models/session-events-response';

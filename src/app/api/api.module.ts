@@ -4,7 +4,9 @@ import { ApiConfiguration } from './api-configuration';
 
 import { SessionChatService } from './services/session-chat.service';
 import { SessionService } from './services/session.service';
+import { SessionEventService } from './services/session-event.service';
 import { SessionUserService } from './services/session-user.service';
+import { SessionUserLeaderboardService } from './services/session-user-leaderboard.service';
 import { TrailService } from './services/trail.service';
 
 /**
@@ -22,7 +24,9 @@ import { TrailService } from './services/trail.service';
     ApiConfiguration,
    SessionChatService,
    SessionService,
+   SessionEventService,
    SessionUserService,
+   SessionUserLeaderboardService,
    TrailService
   ],
 })

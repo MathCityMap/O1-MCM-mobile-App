@@ -132,10 +132,10 @@ export class TaskDetail {
 
     async ionViewWillEnter() {
         console.log('TasksMap ionViewWillEnter()');
-        this.taskId = this.navParams.get('taskId');
         this.routeId = this.navParams.get('routeId');
-        this.task = await this.ormService.findTaskById(this.taskId);
         this.route = await this.ormService.findRouteById(this.routeId);
+        this.taskId = this.navParams.get('taskId');
+        this.task = await this.ormService.findTaskById(this.taskId);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.taskId);
         if(this.taskDetails.timeSolved == 0){
