@@ -54,6 +54,8 @@ export class TaskDetail {
 
     private multipleChoiceList: Array<any> = [];
 
+    private sessionInfo: SessionInfo;
+
     // For GPS - tasks
     private taskDetailMap: TaskDetailMap;
     private gpsTaskButtonLabels: Array<string> = [];
@@ -69,31 +71,31 @@ export class TaskDetail {
         private deepLinker: DeepLinker,
         private modalsService: ModalsService,
         private gpsService: GpsService,
+        private chatAndSessionService: ChatAndSessionService,
     ) {
-
     }
 
     /*
-        Custom Keyboard subscribe
-         */
-    private subscribeCKEvents(){
+      Custom Keyboard subscribe
+    */
+    subscribeCKEvents(){
 
         // Subscribe to the click event observable
         // Here we add the clicked key value to the string
         this.keyboardSubscriptions.add(
             CustomKeyBoard.onCKClick.subscribe((key) => {
-                if(this.taskDetails.timeSolved == 0 && !this.taskDetails.failed){
-                    if (key === "C") {
-                        this.taskDetails.answer = "";
+                    if(this.taskDetails.timeSolved == 0 && !this.taskDetails.failed){
+                        if (key === "C") {
+                            this.taskDetails.answer = "";
+                        }
+                        else if (key === "✔") { // ✔
+                            this.checkResult();
+                        }
+                        else {
+                            this.taskDetails.answer += key;
+                        }
                     }
-                    else if (key === "✔") { // ✔
-                        this.checkResult();
-                    }
-                    else {
-                        this.taskDetails.answer += key;
-                    }
-                }
-            },
+                },
                 err => {console.log(err);},
                 () => {console.log('onCKClick subscribed.');}
             )
