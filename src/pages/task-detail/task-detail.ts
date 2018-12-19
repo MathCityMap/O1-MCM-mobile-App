@@ -17,7 +17,7 @@ import 'leaflet-geometryutil';
 import {ModalsService} from '../../services/modals-service';
 import {GpsService} from '../../services/gps-service';
 import {Subscription} from "rxjs/Subscription";
-
+import {ChatAndSessionService, SessionInfo} from "../../services/chat-and-session-service";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -138,6 +138,14 @@ export class TaskDetail {
         this.task = await this.ormService.findTaskById(this.taskId);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.taskId);
+        this.sessionInfo = await this.chatAndSessionService.getActiveSession();
+        console.log(this.sessionInfo);
+        // Add event of user entering trail when session active
+        if(this.sessionInfo != null){
+            let details = JSON.stringify({key: this.task.title});
+            await this.chatAndSessionService.addUserEvent("event_task_opened", details, 0 +"");
+        }
+
         if(this.taskDetails.timeSolved == 0){
             // Do not display last entered answer
             this.taskDetails.answer = "";
@@ -255,7 +263,7 @@ export class TaskDetail {
         return match !== null ? match[0] === s : false;
     }
 
-    showHint(index: number) {
+    async showHint(index: number) {
         let needUpdate: boolean = false;
         let title = "";
         /*     console.log(" ===============================  ", this.task.getImagesForDownload() );
@@ -264,6 +272,12 @@ export class TaskDetail {
         let message: string = this.task.getHint(index).value;
         if (this.shownHints.indexOf(index) == -1) {
             this.shownHints.push(index);
+        }
+
+        // Add event of user entering trail when session active
+        if(this.sessionInfo != null){
+            let details = JSON.stringify({key: "value"});
+            await this.chatAndSessionService.addUserEvent("event_took_hint1", details, this.task.id +"");
         }
         switch (index) {
             case 1:
@@ -313,7 +327,7 @@ export class TaskDetail {
         hintModal.present();
     }
 
-    checkResult() {
+    async checkResult() {
         if ((this.task.solutionType == 'range' || this.task.solutionType == 'value') && !this.isDecimal(this.taskDetails.answer)) {
             return;
         }
@@ -494,8 +508,9 @@ export class TaskDetail {
     }
 
 
-    taskSolved(solved: string, solution: string[], scoreVal: number) {
+    async taskSolved(solved: string, solution: string[], scoreVal: number) {
         let that = this;
+        // Add event of user entering trail when session active
         if (solved == 'solved' || solved == 'solved_low') {
             this.taskDetails.skipped = false;
             let message = "";
@@ -579,6 +594,10 @@ export class TaskDetail {
                 }
             });
             modal.present();
+            if(this.sessionInfo != null){
+                let details = JSON.stringify({score: this.taskDetails.score, solution: solution, quality: solved});
+                await this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id +"");
+            }
 
             this.taskDetails.timeSolved = new Date().getTime();
         } else {
