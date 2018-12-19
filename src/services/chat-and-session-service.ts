@@ -53,12 +53,16 @@ export class SessionInfo {
 export class ChatAndSessionService {
     private static POSITION_PUSH_INTERVAL_IN_SECS = 15;
     private static CHAT_PULL_INTERVAL_IN_SECS = 15;
+    private static EVENTS_POST_INTERVAL_IN_SECS = 10;
     private static CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS = 2;
     private static STORAGE_KEY_SESSION = 'ChatAndSessionService.activeSession';
+    private static USER_EVENTS = [];
 
     private subject = new ReplaySubject<SessionInfo>(1);
     private timerBackground = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000).timeInterval();
     private timerUserSeesMessages = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS * 1000).timeInterval();
+    private sendEventsTimer = Observable.interval(ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS * 1000);
+    private sendEventsSubscription: Subscription;
     private positionSubscription: Subscription;
     private chatSubscription: Subscription;
     private lastPositionPush: number = 0;
@@ -249,6 +253,14 @@ export class ChatAndSessionService {
                 }
             });
 
+            if(this.sendEventsSubscription){
+                this.sendEventsSubscription.unsubscribe()
+            }
+
+            this.sendEventsSubscription = this.sendEventsTimer.subscribe(tick => {
+                this.sendUserEvents()
+            });
+
             this.determineDefaultReceivers(sessionInfo).then(receivers => {
                 this.receivers = receivers;
             });
@@ -372,25 +384,31 @@ export class ChatAndSessionService {
     /*
     Session User Events
      */
-    public async sendUserEvent(title: string, details: string, task_id: string){
+    private async sendUserEvents(){
         let sessionInfo = await this.getActiveSession();
-        let eventsAddRequest = new EventsAddRequest();
+        if(sessionInfo){
+            if(ChatAndSessionService.USER_EVENTS.length > 0){
+                let eventsAddRequest = new EventsAddRequest();
+                eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;
+                let params = {
+                    events: eventsAddRequest,
+                    sessionCode: sessionInfo.session.code,
+                    userToken: sessionInfo.sessionUser.token
+                };
+                let sessionEventsResponse = await this.sessionEventService.addEvents(params).toPromise();
+                ChatAndSessionService.USER_EVENTS = [];
+            }
+        }
+    }
+
+    public addUserEvent(title: string, details: string, task_id: string){
         let eventAddRequest = new EventAddRequest();
         eventAddRequest.title = title;
         eventAddRequest.details = details;
         eventAddRequest.task_id = task_id;
         eventAddRequest.lat = "0";
         eventAddRequest.lon = "0";
-        eventsAddRequest.events = [];
-        eventsAddRequest.events.push(eventAddRequest);
-        let params = {
-            events: eventsAddRequest,
-            sessionCode: sessionInfo.session.code,
-            userToken: sessionInfo.sessionUser.token
-        };
-        console.log(params);
-        let sessionEventsResponse = await this.sessionEventService.addEvents(params).toPromise();
-        console.log(sessionEventsResponse);
+        ChatAndSessionService.USER_EVENTS.push(eventAddRequest)
     }
 }
 
