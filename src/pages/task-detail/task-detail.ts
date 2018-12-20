@@ -144,8 +144,8 @@ export class TaskDetail {
         console.log(this.sessionInfo);
         // Add event of user entering trail when session active
         if(this.sessionInfo != null){
-            let details = JSON.stringify({key: this.task.title});
-            await this.chatAndSessionService.addUserEvent("event_task_opened", details, 0 +"");
+            let details = JSON.stringify({title: this.task.title});
+            await this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
         }
 
         if(this.taskDetails.timeSolved == 0){
@@ -276,11 +276,6 @@ export class TaskDetail {
             this.shownHints.push(index);
         }
 
-        // Add event of user entering trail when session active
-        if(this.sessionInfo != null){
-            let details = JSON.stringify({key: "value"});
-            await this.chatAndSessionService.addUserEvent("event_took_hint1", details, this.task.id +"");
-        }
         switch (index) {
             case 1:
                 if (!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed) {
@@ -289,6 +284,10 @@ export class TaskDetail {
                     needUpdate = true;
                 }
                 title = 'a_btn_hint1';
+                if(this.sessionInfo != null){
+                    let details = JSON.stringify({});
+                    await this.chatAndSessionService.addUserEvent("event_took_hint1", details, this.task.id.toString());
+                }
                 break;
             case 2:
                 if (!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed) {
@@ -297,11 +296,19 @@ export class TaskDetail {
                     needUpdate = true;
                 }
                 title = 'a_btn_hint2';
+                if(this.sessionInfo != null){
+                    let details = JSON.stringify({});
+                    await this.chatAndSessionService.addUserEvent("event_took_hint2", details, this.task.id.toString());
+                }
                 break;
             case 3:
                 if (!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed) {
                     //only update if task is not solved
                     this.taskDetails.hint3 = true;
+                    if(this.sessionInfo != null){
+                        let details = JSON.stringify({});
+                        await this.chatAndSessionService.addUserEvent("event_took_hint3", details, this.task.id.toString());
+                    }
                     needUpdate = true;
                 }
                 title = 'a_btn_hint3';
@@ -336,11 +343,17 @@ export class TaskDetail {
         console.log(this.task.solutionType);
         let solution = [this.taskDetails.answer];
         let answer = this.taskDetails.answer.replace(",", ".");
+        //details for wrong answer event
+        let details = JSON.stringify({solution: solution, solutionType: this.task.solutionType});
+
         if (this.task.solutionType == "value") {
             if (answer == this.task.getSolution()) {
                 this.CalculateScore("value", "solved");
                 this.taskSolved('solved', solution, 0);
             } else {
+                if(this.sessionInfo != null){
+                    await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
                 this.taskSolved('', solution, 0);
             }
         } else if (this.task.solutionType == "multiple_choice") {
@@ -363,6 +376,9 @@ export class TaskDetail {
                 this.CalculateScore("multiple_choice", "solved");
                 this.taskSolved('solved', solution, 0);
             } else {
+                if(this.sessionInfo != null){
+                    await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
                 this.taskSolved('', [''], 0);
             }
         } else if (this.task.solutionType == "range") {
@@ -386,9 +402,15 @@ export class TaskDetail {
                         this.CalculateScore("range", "solved_low");
                         this.taskSolved('solved_low', solution, 0);
                     } else {
+                        if(this.sessionInfo != null){
+                            await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                        }
                         this.taskSolved('', [''], 0);
                     }
                 } else {
+                    if(this.sessionInfo != null){
+                        await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    }
                     this.taskSolved('', [''], 0);
                 }
             }
@@ -598,7 +620,7 @@ export class TaskDetail {
             modal.present();
             if(this.sessionInfo != null){
                 let details = JSON.stringify({score: this.taskDetails.score, solution: solution, quality: solved});
-                await this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id +"");
+                await this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
             }
 
             this.taskDetails.timeSolved = new Date().getTime();

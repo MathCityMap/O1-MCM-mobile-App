@@ -192,8 +192,8 @@ export class TasksMap implements OnInit, OnDestroy {
 
     // Add event of user entering trail when session active
       if(this.sessionInfo != null){
-          let details = JSON.stringify({key: "value"});
-          await this.chatAndSessionService.addUserEvent("event_trail_opened", details, 0 +"");
+          let details = JSON.stringify({});
+          await this.chatAndSessionService.addUserEvent("event_trail_opened", details, this.route.id.toString());
       }
   }
 
@@ -368,8 +368,8 @@ export class TasksMap implements OnInit, OnDestroy {
           } else {
               // Add event of user entering trail when session active
               if(this.sessionInfo != null){
-                  let details = JSON.stringify({key: "value"});
-                  this.chatAndSessionService.addUserEvent("event_task_previewed", details, task.id +"");
+                  let details = JSON.stringify({});
+                  this.chatAndSessionService.addUserEvent("event_task_previewed", details, task.id.toString());
               }
               this.state.selectedTask = task;
               this.map.panTo( [task.lat, task.lon] );

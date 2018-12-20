@@ -388,6 +388,11 @@ export class ChatAndSessionService {
         let sessionInfo = await this.getActiveSession();
         if(sessionInfo){
             if(ChatAndSessionService.USER_EVENTS.length > 0){
+                ChatAndSessionService.USER_EVENTS.forEach(event => { // forEach evtl.
+                    event.lat = sessionInfo.sessionUser.lat.toString();
+                    event.lon = sessionInfo.sessionUser.lat.toString();
+                    console.log (event.lat + " " + event.lon);
+                });
                 let eventsAddRequest = new EventsAddRequest();
                 eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;
                 let params = {
@@ -396,6 +401,7 @@ export class ChatAndSessionService {
                     userToken: sessionInfo.sessionUser.token
                 };
                 let sessionEventsResponse = await this.sessionEventService.addEvents(params).toPromise();
+                console.log(ChatAndSessionService.USER_EVENTS);
                 ChatAndSessionService.USER_EVENTS = [];
             }
         }
@@ -406,8 +412,6 @@ export class ChatAndSessionService {
         eventAddRequest.title = title;
         eventAddRequest.details = details;
         eventAddRequest.task_id = task_id;
-        eventAddRequest.lat = "0";
-        eventAddRequest.lon = "0";
         ChatAndSessionService.USER_EVENTS.push(eventAddRequest)
     }
 }
