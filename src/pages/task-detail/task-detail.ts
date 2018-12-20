@@ -333,6 +333,12 @@ export class TaskDetail {
             ]
 
         }, {showBackdrop: true, enableBackdropDismiss: true});
+        hintModal.onDidDismiss(async (click) => {
+            if(this.sessionInfo != null){
+                let details = JSON.stringify({});
+                await this.chatAndSessionService.addUserEvent("event_hint_closed", details, this.task.id.toString());
+            }
+            });
         hintModal.present();
     }
 
@@ -486,8 +492,11 @@ export class TaskDetail {
                 }
             ]
         }, {showBackdrop: true, enableBackdropDismiss: true});
-        modal.onDidDismiss((data) => {
-            console.log(data);
+        modal.onDidDismiss(async (data) => {
+            if(this.sessionInfo != null){
+                let details = JSON.stringify({});
+                await this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
+            }
         });
         modal.present();
     }
@@ -514,6 +523,10 @@ export class TaskDetail {
             'no', () => {
             },
             'yes', async () => {
+                if(this.sessionInfo != null){
+                    let details = JSON.stringify({});
+                    await this.chatAndSessionService.addUserEvent("event_task_skipped", details, this.task.id.toString());
+                }
                 this.closeDetails(true);
             });
     }
@@ -684,6 +697,10 @@ export class TaskDetail {
                     break;
                 default:
                     message = 'a_t_skip_msg';
+                    if(this.sessionInfo != null){
+                        let details = JSON.stringify({});
+                        await this.chatAndSessionService.addUserEvent("event_task_failed", details, this.task.id.toString());
+                    }
                     let bSampleSolution = {
                         title: 't_samplesolution',
                         callback: function () {

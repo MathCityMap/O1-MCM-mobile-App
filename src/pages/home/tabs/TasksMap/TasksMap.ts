@@ -173,7 +173,7 @@ export class TasksMap implements OnInit, OnDestroy {
             setTimeout(function() {
                 that.modalService.showDialog('a_guided_trail_title', 'a_guided_trail',
                     'no', () => {},
-                    'yes', () => {
+                    'yes', async () => {
                         that.selectStartPoint();
                         that.state.selectedStartTask = true;
                     });
@@ -534,7 +534,7 @@ export class TasksMap implements OnInit, OnDestroy {
    // }, 200);
   }
 
-  selectStartPoint(){
+  async selectStartPoint(){
     /* open the damn modal again */
     let that = this;
     this.modalService.presentTaskListModal(this.route, this.score, this.state, this.navCtrl, function(selectedTask: Task){
@@ -545,6 +545,10 @@ export class TasksMap implements OnInit, OnDestroy {
             that.state.isShowingAllTasks = false;
             that.centerSelectedTask();
             that.redrawMarker();
+            if(that.sessionInfo != null){
+            let details = JSON.stringify({title: that.state.selectedTask.title});
+            that.chatAndSessionService.addUserEvent("event_trail_start_from_task", details, that.state.selectedTask.id.toString());
+        }
     });
     /* this.showOnlyCurrentlySelectedTadk(); */
     /*   */
@@ -598,7 +602,10 @@ export class TasksMap implements OnInit, OnDestroy {
 
   async navigateToChat() {
       console.debug('showChat');
-
+      if(this.sessionInfo != null){
+          let details = JSON.stringify({});
+          await this.chatAndSessionService.addUserEvent("event_trail_chat_open", details, this.route.id.toString());
+      }
     this.navCtrl.push(ChatPage, {
         val: 'chatseite',
         headerTitle: this.sessionInfo.session.name
