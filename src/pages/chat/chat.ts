@@ -28,7 +28,8 @@ export class ChatPage {
     constructor(navParams: NavParams,
                 private chatService: ChatAndSessionService,
                 private events: Events,
-                private changeDetector: ChangeDetectorRef) {
+                private changeDetector: ChangeDetectorRef,
+                private chatAndSessionService: ChatAndSessionService) {
 
         this.chatService.getUserInfo()
             .then((res) => {
@@ -53,7 +54,7 @@ export class ChatPage {
         });
     }
 
-    ionViewWillLeave() {
+    async ionViewWillLeave() {
         // unsubscribe
         this.events.unsubscribe('chat:received');
         if (this.scrollEndSubscription) {
@@ -61,6 +62,11 @@ export class ChatPage {
             this.scrollEndSubscription = null;
         }
         this.chatService.setUserSeesNewMessages(false);
+
+        if(this.sessionInfo != null){
+            let details = JSON.stringify({});
+            this.chatAndSessionService.addUserEvent("event_trail_chat_close", details, "0");
+        }
     }
 
     ionViewDidEnter() {

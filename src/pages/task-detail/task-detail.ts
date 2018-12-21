@@ -145,7 +145,7 @@ export class TaskDetail {
         // Add event of user entering trail when session active
         if(this.sessionInfo != null){
             let details = JSON.stringify({title: this.task.title});
-            await this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
+            this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
         }
 
         if(this.taskDetails.timeSolved == 0){
@@ -286,7 +286,7 @@ export class TaskDetail {
                 title = 'a_btn_hint1';
                 if(this.sessionInfo != null){
                     let details = JSON.stringify({});
-                    await this.chatAndSessionService.addUserEvent("event_took_hint1", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent("event_took_hint1", details, this.task.id.toString());
                 }
                 break;
             case 2:
@@ -298,7 +298,7 @@ export class TaskDetail {
                 title = 'a_btn_hint2';
                 if(this.sessionInfo != null){
                     let details = JSON.stringify({});
-                    await this.chatAndSessionService.addUserEvent("event_took_hint2", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent("event_took_hint2", details, this.task.id.toString());
                 }
                 break;
             case 3:
@@ -307,7 +307,7 @@ export class TaskDetail {
                     this.taskDetails.hint3 = true;
                     if(this.sessionInfo != null){
                         let details = JSON.stringify({});
-                        await this.chatAndSessionService.addUserEvent("event_took_hint3", details, this.task.id.toString());
+                        this.chatAndSessionService.addUserEvent("event_took_hint3", details, this.task.id.toString());
                     }
                     needUpdate = true;
                 }
@@ -333,10 +333,10 @@ export class TaskDetail {
             ]
 
         }, {showBackdrop: true, enableBackdropDismiss: true});
-        hintModal.onDidDismiss(async (click) => {
+        hintModal.onDidDismiss(click => {
             if(this.sessionInfo != null){
                 let details = JSON.stringify({});
-                await this.chatAndSessionService.addUserEvent("event_hint_closed", details, this.task.id.toString());
+                this.chatAndSessionService.addUserEvent("event_hint_closed", details, this.task.id.toString());
             }
             });
         hintModal.present();
@@ -358,7 +358,7 @@ export class TaskDetail {
                 this.taskSolved('solved', solution, 0);
             } else {
                 if(this.sessionInfo != null){
-                    await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
                 this.taskSolved('', solution, 0);
             }
@@ -383,7 +383,7 @@ export class TaskDetail {
                 this.taskSolved('solved', solution, 0);
             } else {
                 if(this.sessionInfo != null){
-                    await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
                 this.taskSolved('', [''], 0);
             }
@@ -409,13 +409,13 @@ export class TaskDetail {
                         this.taskSolved('solved_low', solution, 0);
                     } else {
                         if(this.sessionInfo != null){
-                            await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                            this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                         }
                         this.taskSolved('', [''], 0);
                     }
                 } else {
                     if(this.sessionInfo != null){
-                        await this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                        this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                     }
                     this.taskSolved('', [''], 0);
                 }
@@ -492,10 +492,10 @@ export class TaskDetail {
                 }
             ]
         }, {showBackdrop: true, enableBackdropDismiss: true});
-        modal.onDidDismiss(async (data) => {
+        modal.onDidDismiss(data => {
             if(this.sessionInfo != null){
                 let details = JSON.stringify({});
-                await this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
+                this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
             }
         });
         modal.present();
@@ -525,7 +525,7 @@ export class TaskDetail {
             'yes', async () => {
                 if(this.sessionInfo != null){
                     let details = JSON.stringify({});
-                    await this.chatAndSessionService.addUserEvent("event_task_skipped", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent("event_task_skipped", details, this.task.id.toString());
                 }
                 this.closeDetails(true);
             });
@@ -633,7 +633,7 @@ export class TaskDetail {
             modal.present();
             if(this.sessionInfo != null){
                 let details = JSON.stringify({score: this.taskDetails.score, solution: solution, quality: solved});
-                await this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
+                this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
             }
 
             this.taskDetails.timeSolved = new Date().getTime();
@@ -699,7 +699,7 @@ export class TaskDetail {
                     message = 'a_t_skip_msg';
                     if(this.sessionInfo != null){
                         let details = JSON.stringify({});
-                        await this.chatAndSessionService.addUserEvent("event_task_failed", details, this.task.id.toString());
+                        this.chatAndSessionService.addUserEvent("event_task_failed", details, this.task.id.toString());
                     }
                     let bSampleSolution = {
                         title: 't_samplesolution',
