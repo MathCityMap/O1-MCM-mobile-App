@@ -388,10 +388,12 @@ export class ChatAndSessionService {
         let sessionInfo = await this.getActiveSession();
         if(sessionInfo){
             if(ChatAndSessionService.USER_EVENTS.length > 0){
-                ChatAndSessionService.USER_EVENTS.forEach(event => { // forEach evtl.
-                    event.lat = sessionInfo.sessionUser.lat.toString();
-                    event.lon = sessionInfo.sessionUser.lat.toString();
-                    console.log (event.lat + " " + event.lon);
+                this.gpsService.getCurrentPosition().then(position => {
+                    console.log(position.coords);
+                    ChatAndSessionService.USER_EVENTS.forEach(event => { // forEach evtl.
+                        event.lat = position.coords.latitude.toString();
+                        event.lon = position.coords.longitude.toString();
+                    });
                 });
                 let eventsAddRequest = new EventsAddRequest();
                 eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;

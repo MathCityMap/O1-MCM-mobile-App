@@ -82,14 +82,14 @@ export class RoutesListPage implements OnDestroy {
         if (!this.gpsService.getLastPosition()) {
             // try to get position
             try {
-                await timeout(this.gpsService.getCurrentPosition(), 2000);
+                await timeout(this.gpsService.getCurrentPosition().catch(err => {console.error("Error loading GPS data", err)}), 2000);
             } catch (e) {
                 console.log("could not obtain position: " + e.message);
                 // make position check async
                 this.gpsService.getCurrentPosition().then((position) => {
                     if (position && position.coords) {
                     }
-                });
+                }, err => {console.error("Error loading GPS data", err)});
             }
         }
         this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
