@@ -17,6 +17,7 @@ import { ModalsService } from '../services/modals-service';
 import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 import { MyApp } from './app.component';
 
@@ -60,7 +61,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
         MCMIconModal, MCMInputModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
         CenteredTask,
         Autoresize,
-        CustomKeyBoard
+        CustomKeyBoard,
+        QRScanner, QRScannerStatus
     ],
     imports: [
         HttpModule,
