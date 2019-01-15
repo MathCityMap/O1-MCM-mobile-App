@@ -394,7 +394,7 @@ export class ChatAndSessionService {
                         event.lat = position.coords.latitude.toString();
                         event.lon = position.coords.longitude.toString();
                     });
-                });
+                }).catch(err => console.error(err));
                 let eventsAddRequest = new EventsAddRequest();
                 eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;
                 let params = {
@@ -414,6 +414,8 @@ export class ChatAndSessionService {
         eventAddRequest.title = title;
         eventAddRequest.details = details;
         eventAddRequest.task_id = task_id;
+        eventAddRequest.lat = "999";
+        eventAddRequest.lon = "999";
         ChatAndSessionService.USER_EVENTS.push(eventAddRequest)
     }
 }
