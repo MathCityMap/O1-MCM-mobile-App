@@ -24,6 +24,9 @@ import {SessionEventService} from "../app/api/services/session-event.service";
 import {EventsAddRequest} from "../app/api/models/events-add-request";
 import {EventAddRequest} from "../app/api/models/event-add-request";
 import {SessionEventsResponse} from "../app/api/models/session-events-response";
+import {SessionUserLeaderboardService} from "../app/api/services/session-user-leaderboard.service";
+import GetLeaderboardParams = SessionUserLeaderboardService.GetLeaderboardParams;
+import {LeaderboardResponse} from "../app/api/models/leaderboard-response";
 
 export class ChatMessage {
     messageId: string;
@@ -34,6 +37,10 @@ export class ChatMessage {
     time: number | string;
     message: string;
     status: string;
+}
+
+export class LeaderBoardItemRespone {
+
 }
 
 export class UserInfo {
@@ -62,6 +69,8 @@ export class ChatAndSessionService {
     private timerBackground = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000).timeInterval();
     private timerUserSeesMessages = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS * 1000).timeInterval();
     private sendEventsTimer = Observable.interval(ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS * 1000);
+    private getLeaderboardTimer = Observable.interval(ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS * 1000);
+    private getLeaderboardSubscription: Subscription;
     private sendEventsSubscription: Subscription;
     private positionSubscription: Subscription;
     private chatSubscription: Subscription;
@@ -75,6 +84,8 @@ export class ChatAndSessionService {
     private alreadySeenMessages = {};
     private pastLocalNotifications: ILocalNotification[] = [];
 
+    private leaderBoard: LeaderboardResponse = {leaderboard:[]};
+
     constructor(private events: Events,
                 private storage: Storage,
                 private sessionService: SessionService,
@@ -84,7 +95,8 @@ export class ChatAndSessionService {
                 private gpsService: GpsService,
                 private localNotifications: LocalNotifications,
                 private translate: TranslateService,
-                private toast: ToastController) {
+                private toast: ToastController,
+                private leaderBoardService: SessionUserLeaderboardService) {
     }
 
     async init() {
@@ -261,6 +273,14 @@ export class ChatAndSessionService {
                 this.sendUserEvents()
             });
 
+            if(this.getLeaderboardSubscription){
+                this.getLeaderboardSubscription.unsubscribe()
+            }
+
+            this.getLeaderboardSubscription = this.getLeaderboardTimer.subscribe(tick => {
+                this.fetchLeaderboard();
+            });
+
             this.determineDefaultReceivers(sessionInfo).then(receivers => {
                 this.receivers = receivers;
             });
@@ -417,6 +437,25 @@ export class ChatAndSessionService {
         eventAddRequest.lat = "999";
         eventAddRequest.lon = "999";
         ChatAndSessionService.USER_EVENTS.push(eventAddRequest)
+    }
+
+    private async fetchLeaderboard(){
+        let sessionInfo = await this.getActiveSession();
+        if(sessionInfo){
+            let params = new class implements SessionUserLeaderboardService.GetLeaderboardParams {
+                sessionCode: string;
+                userToken: string;
+            };
+            params.sessionCode = sessionInfo.session.code;
+            params.userToken = sessionInfo.sessionUser.token;
+            let leaderboard = await this.leaderBoardService.getLeaderboard(params).toPromise();
+            console.log(leaderboard);
+            this.leaderBoard = leaderboard;
+        }
+    }
+
+    public getLeaderboard(){
+        return this.leaderBoard.leaderboard;
     }
 }
 
