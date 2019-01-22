@@ -24,11 +24,17 @@
                 </ion-col>
             </ion-row>
             <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard">
-                <ion-row class="current"  *ngFor="let user of chatAndSessionService.getLeaderboard()">
-                    <ion-col>
+                <ion-row [ngClass]="{'self' : user.self}" *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">
+
+                    <ion-col col-2>
+                        <ion-label *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self">▲</ion-label>
+                        <ion-label *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self">▼</ion-label>
+                    </ion-col>
+
+                    <ion-col col-7>
                         <ion-label>{{user.team_name}}</ion-label>
                     </ion-col>
-                    <ion-col>
+                    <ion-col col-3>
                         <ion-label>{{user.score}} MP</ion-label>
                     </ion-col>
                 </ion-row>

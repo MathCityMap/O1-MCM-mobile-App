@@ -58,9 +58,14 @@ page-tasks-map {
     .row{
         flex: 1;
         padding: 3px 0;
+        &:not(:first-child) {
+            border-top: 2px dotted color($colors, light-grey);
+        }
         &.current p{
             color: color($colors, primary);
-
+        }
+        &.self .col ion-label{
+            color: color($colors, primary);
         }
         .col {
             ion-label{
