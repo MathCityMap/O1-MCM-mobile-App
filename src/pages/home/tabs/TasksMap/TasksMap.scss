@@ -95,3 +95,23 @@ page-tasks-map {
         }
     }
 }
+
+.badge-top-right{
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    background-color: color($colors, error);
+    color: color($colors, light);
+    padding: 5px;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    font-size: inherit;
+}
+
+.badge-no-show{
+    display: none;
+    font-size: large;
+    transition: all 0.5s ease;
+}
+
+

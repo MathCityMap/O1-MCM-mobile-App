@@ -27,6 +27,7 @@ import {SessionEventsResponse} from "../app/api/models/session-events-response";
 import {SessionUserLeaderboardService} from "../app/api/services/session-user-leaderboard.service";
 import GetLeaderboardParams = SessionUserLeaderboardService.GetLeaderboardParams;
 import {LeaderboardResponse} from "../app/api/models/leaderboard-response";
+import * as moment from 'moment';
 
 export class ChatMessage {
     messageId: string;
@@ -85,6 +86,7 @@ export class ChatAndSessionService {
     private pastLocalNotifications: ILocalNotification[] = [];
 
     private leaderBoard: LeaderboardResponse = {leaderboard:[]};
+    private newMsgNumber: number = 0;
 
     constructor(private events: Events,
                 private storage: Storage,
@@ -160,6 +162,7 @@ export class ChatAndSessionService {
         };
         return this.sessionChatService.getNewMessages(params).map(
             (newMessages : SessionChatMessageResponse[]) : ChatMessage[] => {
+                this.newMsgNumber = newMessages.length;
                 let chatMessages : ChatMessage[] = [];
                 newMessages.forEach((msg : SessionChatMessageResponse) => {
                     chatMessages.push(ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser));
@@ -223,7 +226,23 @@ export class ChatAndSessionService {
     }
 
     async getActiveSession(): Promise<SessionInfo> {
-        return this.transientActiveSession = await this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
+       this.transientActiveSession = await this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
+       if(this.transientActiveSession){
+           console.log("Found active session. Checking if still active.");
+           // Leave Session automatically when time has run out
+           let currentTimeUnix = moment().unix();
+           console.log("Current time: " + currentTimeUnix);
+           let endTimeInUnix = moment(this.transientActiveSession.session.ends_at).unix();
+           console.log("End time: " + endTimeInUnix);
+           if(currentTimeUnix > endTimeInUnix){
+               console.log("Session ended. Exit session.")
+               this.exitActiveSession();
+           }
+           else{
+               console.log("Session running.");
+           }
+       }
+       return this.transientActiveSession;
     }
 
     async exitActiveSession() {
@@ -233,6 +252,12 @@ export class ChatAndSessionService {
             userToken: this.transientActiveSession.sessionUser.token,
             sessionCode: this.transientActiveSession.session.code
         }).toPromise();
+        // Reset watch parameters
+        this.receivers = [];
+        this.alreadySeenMessages = {};
+        this.pastLocalNotifications = [];
+        this.leaderBoard = {leaderboard:[]};
+        this.newMsgNumber = 0;
         this.transientActiveSession = null;
     }
 
@@ -456,6 +481,15 @@ export class ChatAndSessionService {
 
     public getLeaderboard(){
         return this.leaderBoard.leaderboard;
+    }
+
+    public getNewMsgNumber() : number
+    {
+        return this.newMsgNumber;
+    }
+
+    public setNewMsgNumber(n: number){
+        this.newMsgNumber = n;
     }
 }
 

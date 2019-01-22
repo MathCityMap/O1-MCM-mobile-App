@@ -89,6 +89,7 @@ export class ChatPage {
             this.isScrolledToBottom = scrolledToBottom;
         });
         this.chatService.setUserSeesNewMessages(true);
+        this.chatAndSessionService.setNewMsgNumber(0);
     }
 
     onFocus() {
