@@ -1,17 +1,20 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
-import { Content, IonicPage, ModalController, NavController } from 'ionic-angular';
-import { ConnectionQuality, Helper } from '../../../../classes/Helper';
-import { timeout } from 'promise-timeout';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Content, IonicPage, ModalController, NavController, ToastController} from 'ionic-angular';
+import {ConnectionQuality, Helper} from '../../../../classes/Helper';
+import {timeout} from 'promise-timeout';
 
-import { OrmService } from '../../../../services/orm-service';
-import { Route } from '../../../../entity/Route';
-import { ModalsService } from '../../../../services/modals-service';
-import { DB_Updater } from '../../../../classes/DB_Updater';
-import { Subscription } from 'rxjs/Subscription';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { TranslateService } from '@ngx-translate/core';
-import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
-import { GpsService } from '../../../../services/gps-service';
+import {OrmService} from '../../../../services/orm-service';
+import {Route} from '../../../../entity/Route';
+import {ModalsService} from '../../../../services/modals-service';
+import {DB_Updater} from '../../../../classes/DB_Updater';
+import {Subscription} from 'rxjs/Subscription';
+import {SpinnerDialog} from '@ionic-native/spinner-dialog';
+import {TranslateService} from '@ngx-translate/core';
+import {MCMRouteByCodeModal} from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import {GpsService} from '../../../../services/gps-service';
+import {ChatAndSessionService} from "../../../../services/chat-and-session-service";
+import {MCMIconModal} from "../../../../modals/MCMIconModal/MCMIconModal";
+import {MCMModalType} from "../../../../app/app.component";
 
 @IonicPage()
 @Component({
@@ -39,7 +42,10 @@ export class RoutesListPage implements OnDestroy {
                 private translateService: TranslateService,
                 private dbUpdater: DB_Updater,
                 public helper: Helper,
-                private gpsService: GpsService) {
+                private gpsService: GpsService,
+                private chatAndSessionService: ChatAndSessionService,
+                private toastCtrl: ToastController
+    ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
@@ -52,6 +58,7 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async ionViewWillEnter() {
+        console.log('TasksList ionViewWillEnter()');
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
             // initial app start
@@ -82,15 +89,68 @@ export class RoutesListPage implements OnDestroy {
         if (!this.gpsService.getLastPosition()) {
             // try to get position
             try {
-                await timeout(this.gpsService.getCurrentPosition().catch(err => {console.error("Error loading GPS data", err)}), 2000);
+                await timeout(this.gpsService.getCurrentPosition().catch(err => {
+                    console.error("Error loading GPS data", err)
+                }), 2000);
             } catch (e) {
                 console.log("could not obtain position: " + e.message);
                 // make position check async
                 this.gpsService.getCurrentPosition().then((position) => {
                     if (position && position.coords) {
                     }
-                }, err => {console.error("Error loading GPS data", err)});
+                }, err => {
+                    console.error("Error loading GPS data", err)
+                });
             }
+        }
+        console.log('check for active session');
+        let activeSession = await this.chatAndSessionService.getActiveSession();
+        if (activeSession != null) {
+            let toast = this.toastCtrl.create({
+                message: `open modal from routes list`,
+                duration: 3000,
+                position: 'top'
+            }).present();
+            console.log('active session found');
+            console.log(this.navCtrl);
+            let that = this;
+            let route = await this.ormService.findRouteById(activeSession.session.trail_id);
+            let modal = this.modalCtrl.create(MCMIconModal, {
+                title: 'active session',
+                // imageUrl: this.task.getSolutionSampleImgSrc(),
+                text: 'active session',
+                modalType: MCMModalType.hint,
+                buttons: [
+                    {
+                        title: 'enter_session',
+                        callback: function () {
+
+                            modal.dismiss();
+                            // let toast = that.toastCtrl.create({
+                            //     message: `routes list open`,
+                            //     duration: 3000,
+                            //     position: 'top'
+                            // }).present();
+                            that.modalsService.showRoute(route, that.navCtrl);
+                        }
+                    },
+                    {
+                        title: 'leave_session',
+                        callback: function () {
+                            that.chatAndSessionService.exitActiveSession();
+                            activeSession.sessionUser = null;
+                            modal.dismiss();
+                        }
+                    }
+                ]
+            }, {showBackdrop: true, enableBackdropDismiss: true});
+            // modal.onDidDismiss(data => {
+            //     if(this.sessionInfo != null){
+            //         let details = JSON.stringify({});
+            //         this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
+            //     }
+            // });
+            modal.present();
         }
         this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
         this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);

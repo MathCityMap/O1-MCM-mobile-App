@@ -23,9 +23,7 @@ import { checkAvailability } from '@ionic-native/core';
 import {SessionEventService} from "../app/api/services/session-event.service";
 import {EventsAddRequest} from "../app/api/models/events-add-request";
 import {EventAddRequest} from "../app/api/models/event-add-request";
-import {SessionEventsResponse} from "../app/api/models/session-events-response";
 import {SessionUserLeaderboardService} from "../app/api/services/session-user-leaderboard.service";
-import GetLeaderboardParams = SessionUserLeaderboardService.GetLeaderboardParams;
 import {LeaderboardResponse} from "../app/api/models/leaderboard-response";
 import * as moment from 'moment';
 
