@@ -106,40 +106,34 @@ export class RoutesListPage implements OnDestroy {
         console.log('check for active session');
         let activeSession = await this.chatAndSessionService.getActiveSession();
         if (activeSession != null) {
-            let toast = this.toastCtrl.create({
-                message: `open modal from routes list`,
-                duration: 3000,
-                position: 'top'
-            }).present();
             console.log('active session found');
             console.log(this.navCtrl);
             let that = this;
             let route = await this.ormService.findRouteById(activeSession.session.trail_id);
             let modal = this.modalCtrl.create(MCMIconModal, {
-                title: 'active session',
+                title: 'a_session_return_title',
                 // imageUrl: this.task.getSolutionSampleImgSrc(),
-                text: 'active session',
+                text: 'a_session_return_text',
                 modalType: MCMModalType.hint,
                 buttons: [
                     {
-                        title: 'enter_session',
+                        title: 'a_session_return_stay',
                         callback: function () {
-
                             modal.dismiss();
-                            // let toast = that.toastCtrl.create({
-                            //     message: `routes list open`,
-                            //     duration: 3000,
-                            //     position: 'top'
-                            // }).present();
                             that.modalsService.showRoute(route, that.navCtrl);
                         }
                     },
                     {
-                        title: 'leave_session',
+                        title: 'a_private_session_quit',
                         callback: function () {
+                            if(this.sessionInfo != null){
+                                let details = JSON.stringify({});
+                                that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                            }
                             that.chatAndSessionService.exitActiveSession();
                             activeSession.sessionUser = null;
                             modal.dismiss();
+
                         }
                     }
                 ]

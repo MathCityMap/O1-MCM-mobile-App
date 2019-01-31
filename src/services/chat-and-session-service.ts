@@ -244,6 +244,7 @@ export class ChatAndSessionService {
     }
 
     async exitActiveSession() {
+        await this.sendUserEvents();
         await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
         this.subscribeForAndSendEvents(null);
         await this.sessionUserService.leaveSession({

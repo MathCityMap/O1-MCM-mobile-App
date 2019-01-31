@@ -7,6 +7,8 @@ import { SettingsPage } from '../../pages/settings/settings';
 import { Route } from '../../entity/Route';
 import { Task } from '../../entity/Task';
 import {CustomKeyBoard} from "../customKeyBoard/custom-keyboard";
+import {ChatAndSessionService} from "../../services/chat-and-session-service";
+import {TasksMap} from "../../pages/home/tabs/TasksMap/TasksMap";
 
 
 @Component({
@@ -20,7 +22,12 @@ export class MCMHeaderComponent{
     private task: Task;
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,/* public broadcastService: BroadcastService, */ public viewCtrl: ViewController, public modalCtrl: ModalController, private deepLinker: DeepLinker) {
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,/* public broadcastService: BroadcastService, */
+                public viewCtrl: ViewController,
+                public modalCtrl: ModalController,
+                private deepLinker: DeepLinker,
+                private chatAndSessionService: ChatAndSessionService) {
 /*         broadcastService.historyChanged$.subscribe(canGoBack => {
             this.showBackButton = canGoBack;
             console.log(this.showBackButton);
@@ -76,10 +83,24 @@ export class MCMHeaderComponent{
     }
 
     goBack(){
-        this.navCtrl.pop({}, () => {
-          // necessary because of bug which does not update URL
-          this.deepLinker.navChange('back');
-        });
+        if(this.currentpage === 'TasksMap'){
+            let tasksMap = this.navCtrl.getActive().instance;
+            if(tasksMap.sessionInfo != null){
+                console.log('go back from active session');
+                console.log(tasksMap.route.id);
+                tasksMap.sessionFinished();
+            }else{
+                this.navCtrl.pop({}, () => {
+                    // necessary because of bug which does not update URL
+                    this.deepLinker.navChange('back');
+                });
+            }
+        }else{
+            this.navCtrl.pop({}, () => {
+                // necessary because of bug which does not update URL
+                this.deepLinker.navChange('back');
+            });
+        }
     }
 
     closeModal() {

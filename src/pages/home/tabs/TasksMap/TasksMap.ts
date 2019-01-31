@@ -90,7 +90,7 @@ export class TasksMap implements OnInit, OnDestroy {
     private ormService: OrmService,
     private deepLinker: DeepLinker,
     private gpsService: GpsService,
-    private modalService: ModalsService,
+    private modalsService: ModalsService,
     private imagesService: ImagesService,
     private storage: Storage,
     private spinner: SpinnerDialog,
@@ -135,8 +135,10 @@ export class TasksMap implements OnInit, OnDestroy {
       modal.present();
   }
 
+
   async ionViewWillEnter() {
     console.log('TasksMap ionViewWillEnter()');
+    console.log(this.navCtrl);
     this.routeId = this.navParams.get('routeId');
     this.route = await this.ormService.findRouteById(this.routeId);
     this.gamificationIsDisabled = this.route.isGamificationDisabled();
@@ -171,7 +173,7 @@ export class TasksMap implements OnInit, OnDestroy {
             }
             const that = this;
             setTimeout(function() {
-                that.modalService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
                     'no', () => {},
                     'yes', async () => {
                         that.selectStartPoint();
@@ -193,11 +195,12 @@ export class TasksMap implements OnInit, OnDestroy {
     // Add event of user entering trail when session active
       if(this.sessionInfo != null){
           let details = JSON.stringify({});
-          this.chatAndSessionService.addUserEvent("event_trail_opened", details, this.route.id.toString());
+          this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
       }
   }
 
     ngOnInit() {
+      console.log(this.navCtrl);
         this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
     }
 
@@ -537,7 +540,7 @@ export class TasksMap implements OnInit, OnDestroy {
   async selectStartPoint(){
     /* open the damn modal again */
     let that = this;
-    this.modalService.presentTaskListModal(this.route, this.score, this.state, this.navCtrl, function(selectedTask: Task){
+    this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.navCtrl, function(selectedTask: Task){
             console.debug("back in tasksMap");
             that.state.selectedTask = selectedTask;
             that.state.visibleTasks = {};
@@ -560,7 +563,7 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
   resetTasks() {
-      this.modalService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
+      this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
           'no', () => {},
           'yes', () => {
               this.ormService.deleteUserScore(this.score).then( async ()=> {
@@ -574,19 +577,28 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
   async sessionFinished() {
-       this.modalService.showDialog('a_private_session_quit', 'a_private_session_quit_text',
-           'no', () => {},
-           'yes', () => {
-               let modal = this.modalCtrl.create(MCMSessionFinishedModal,
-                   {
-                       session: this.sessionInfo.session,
-                       score: this.score,
-                       tasks: this.taskList
-                   });
-               modal.present();
-               this.chatAndSessionService.exitActiveSession();
-               clearInterval(this.refreshIntervalId);
-           });
+      this.modalsService.showDialog('a_private_session_quit', 'a_private_session_quit_text',
+          'no', () => {},
+          'yes', () => {
+              let modal = this.modalCtrl.create(MCMSessionFinishedModal,
+                  {
+                      session: this.sessionInfo.session,
+                      score: this.score,
+                      tasks: this.taskList
+                  });
+              modal.present();
+              if(this.sessionInfo != null){
+                  let details = JSON.stringify({});
+                  this.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+              }
+              this.chatAndSessionService.exitActiveSession();
+              clearInterval(this.refreshIntervalId);
+
+          });
+
+      // btn = () => {
+      //     this.navCtrl.push('TasksMap', {'routeId' : this.route.id});
+      // };
   }
 
   async gototask(taskId: number, taskName: string) {
@@ -604,7 +616,7 @@ export class TasksMap implements OnInit, OnDestroy {
       console.debug('showChat');
       if(this.sessionInfo != null){
           let details = JSON.stringify({});
-          this.chatAndSessionService.addUserEvent("event_trail_chat_open", details, this.route.id.toString());
+          this.chatAndSessionService.addUserEvent("event_trail_chat_open", details, "0");
       }
     this.navCtrl.push(ChatPage, {
         val: 'chatseite',
