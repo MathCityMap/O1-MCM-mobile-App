@@ -3,7 +3,8 @@
 
 export class SessionEventResponse {
     id?: string;
-    user_token?: string;
+    user_id?: string;
+    team_name?: string;
     title?: string;
     details?: string;
     lat?: string;

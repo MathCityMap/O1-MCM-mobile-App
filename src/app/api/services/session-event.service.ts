@@ -129,7 +129,7 @@ export class SessionEventService extends BaseService {
    *
    * - `sessionCode`: The session code
    *
-   * - `events`: An array of user events
+   * - `events`: An array of user events EventsAddRequest
    *
    * @return Returns added event
    */
@@ -141,7 +141,6 @@ export class SessionEventService extends BaseService {
 
 
     __body = params.events;
-    console.log(__body);
     let req = new HttpRequest<any>(
       "POST",
       this.rootUrl + `/session/${params.sessionCode}/user/${params.userToken}/events`,
@@ -151,7 +150,6 @@ export class SessionEventService extends BaseService {
         params: __params,
         responseType: 'json'
       });
-    console.log(req);
 
     return this.http.request<any>(req).pipe(
       filter(_r => _r instanceof HttpResponse),
@@ -172,7 +170,7 @@ export class SessionEventService extends BaseService {
    *
    * - `sessionCode`: The session code
    *
-   * - `events`: An array of user events
+   * - `events`: An array of user events EventsAddRequest
    *
    * @return Returns added event
    */

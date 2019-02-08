@@ -10,8 +10,11 @@ import { map } from 'rxjs/operators/map';
 import { filter } from 'rxjs/operators/filter';
 
 import { Session } from '../models/session';
+import { SessionCreateRequest } from '../models/session-create-request';
+import { SessionUpdateRequest } from '../models/session-update-request';
 import { SessionUser } from '../models/session-user';
 import { JoinSessionRequest } from '../models/join-session-request';
+import { SessionUsersResponse } from '../models/session-users-response';
 
 
 @Injectable()
@@ -25,13 +28,15 @@ export class SessionService extends BaseService {
 
 
   /**
+   * @param sessionCreateRequest session data
    * @return Return created session
    */
 
-  createSessionResponse(): Observable<HttpResponse<Session>> {
+  createSessionResponse(sessionCreateRequest: SessionCreateRequest): Observable<HttpResponse<Session>> {
     let __params = new HttpParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = sessionCreateRequest;
     let req = new HttpRequest<any>(
       "POST",
       this.rootUrl + `/session`,
@@ -55,29 +60,36 @@ export class SessionService extends BaseService {
 
 
   /**
+   * @param sessionCreateRequest session data
    * @return Return created session
    */
 
-  createSession(): Observable<Session> {
-    return this.createSessionResponse().pipe(
+  createSession(sessionCreateRequest: SessionCreateRequest): Observable<Session> {
+    return this.createSessionResponse(sessionCreateRequest).pipe(
       map(_r => (<any>_r).body)
     );
   }
 
 
   /**
-   * @param sessionCode The session Code to join
+   * @param params The `SessionService.UpdateSessionParams` containing the following parameters:
+   *
+   * - `sessionUpdateRequest`: session data
+   *
+   * - `sessionCode`: The session Code to join
+   *
    * @return Return updated Session
    */
 
-  updateSessionResponse(sessionCode: string): Observable<HttpResponse<Session>> {
+  updateSessionResponse(params: SessionService.UpdateSessionParams): Observable<HttpResponse<Session>> {
     let __params = new HttpParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
+    __body = params.sessionUpdateRequest;
 
     let req = new HttpRequest<any>(
       "PUT",
-      this.rootUrl + `/session/${sessionCode}`,
+      this.rootUrl + `/session/${params.sessionCode}`,
       __body,
       {
         headers: __headers,
@@ -98,12 +110,17 @@ export class SessionService extends BaseService {
 
 
   /**
-   * @param sessionCode The session Code to join
+   * @param params The `SessionService.UpdateSessionParams` containing the following parameters:
+   *
+   * - `sessionUpdateRequest`: session data
+   *
+   * - `sessionCode`: The session Code to join
+   *
    * @return Return updated Session
    */
 
-  updateSession(sessionCode: string): Observable<Session> {
-    return this.updateSessionResponse(sessionCode).pipe(
+  updateSession(params: SessionService.UpdateSessionParams): Observable<Session> {
+    return this.updateSessionResponse(params).pipe(
       map(_r => (<any>_r).body)
     );
   }
@@ -299,7 +316,7 @@ export class SessionService extends BaseService {
    * @return Returns a list of SessionUsers
    */
 
-  getSessionUsersResponse(sessionCode: string): Observable<HttpResponse<Array<SessionUser>>> {
+  getSessionUsersResponse(sessionCode: string): Observable<HttpResponse<SessionUsersResponse>> {
     let __params = new HttpParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -318,9 +335,9 @@ export class SessionService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: Array<SessionUser> = null;
-        _body = _resp.body as Array<SessionUser>
-        return _resp.clone({body: _body}) as HttpResponse<Array<SessionUser>>;
+        let _body: SessionUsersResponse = null;
+        _body = _resp.body as SessionUsersResponse
+        return _resp.clone({body: _body}) as HttpResponse<SessionUsersResponse>;
       })
     );
   }
@@ -331,7 +348,7 @@ export class SessionService extends BaseService {
    * @return Returns a list of SessionUsers
    */
 
-  getSessionUsers(sessionCode: string): Observable<Array<SessionUser>> {
+  getSessionUsers(sessionCode: string): Observable<SessionUsersResponse> {
     return this.getSessionUsersResponse(sessionCode).pipe(
       map(_r => (<any>_r).body)
     );
@@ -383,6 +400,10 @@ export class SessionService extends BaseService {
 }
 
 export module SessionService {
+  export interface UpdateSessionParams {
+    sessionUpdateRequest: SessionUpdateRequest;
+    sessionCode: string;
+  }
   export interface JoinSessionParams {
     sessionCode: string;
     request: JoinSessionRequest;

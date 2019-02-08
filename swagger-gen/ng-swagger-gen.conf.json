@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/ng-swagger-gen/ng-swagger-gen-schema.json",
-  "swagger": "http://mcm-api.local.autentek.de/docs",
+  "swagger": "http://localhost/api.mathcitymap.eu/public/index.php/docs",
   "output": "src/app/api",
   "ignoreUnusedModels": true,
   "minParamsForContainer": 2,

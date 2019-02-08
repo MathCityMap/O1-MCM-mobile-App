@@ -396,19 +396,19 @@ export class ChatAndSessionService {
                 return res;
             });
             receivers.push(admin);
-        } else {
-            let users: SessionUser[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)
-                .toPromise()
-                .then((users: SessionUser[]) => {
-                    return users;
-            });
-
-            users.filter((user : SessionUser) => {
-                return !(user.id === sessionInfo.sessionUser.id)
-            })
-
-            receivers = users;
-        }
+         } //else {
+        //     let users: SessionUser[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)
+        //         .toPromise()
+        //         .then((users: SessionUser[]) => {
+        //             return users;
+        //     });
+        //
+        //     users.filter((user : SessionUser) => {
+        //         return !(user.id === sessionInfo.sessionUser.id)
+        //     })
+        //
+        //     receivers = users;
+        // }
 
         return Promise.all(receivers);
     }
