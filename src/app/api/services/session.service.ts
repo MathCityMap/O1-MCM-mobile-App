@@ -15,6 +15,7 @@ import { SessionUpdateRequest } from '../models/session-update-request';
 import { SessionUser } from '../models/session-user';
 import { JoinSessionRequest } from '../models/join-session-request';
 import { SessionUsersResponse } from '../models/session-users-response';
+import { SessionUserResponse } from '../models/session-user-response';
 
 
 @Injectable()
@@ -356,18 +357,24 @@ export class SessionService extends BaseService {
 
 
   /**
-   * @param sessionCode Session Code
-   * @return get session admin
+   * @param params The `SessionService.GetSessionAdminParams` containing the following parameters:
+   *
+   * - `userToken`: requesting user token
+   *
+   * - `sessionCode`: Session Code
+   *
+   * @return Get session admin
    */
 
-  getSessionAdminResponse(sessionCode: string): Observable<HttpResponse<SessionUser>> {
+  getSessionAdminResponse(params: SessionService.GetSessionAdminParams): Observable<HttpResponse<SessionUserResponse>> {
     let __params = new HttpParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
+
     let req = new HttpRequest<any>(
       "GET",
-      this.rootUrl + `/session/${sessionCode}/admin`,
+      this.rootUrl + `/session/${params.sessionCode}/user/${params.userToken}/admin`,
       __body,
       {
         headers: __headers,
@@ -379,21 +386,26 @@ export class SessionService extends BaseService {
       filter(_r => _r instanceof HttpResponse),
       map(_r => {
         let _resp = _r as HttpResponse<any>;
-        let _body: SessionUser = null;
-        _body = _resp.body as SessionUser
-        return _resp.clone({body: _body}) as HttpResponse<SessionUser>;
+        let _body: SessionUserResponse = null;
+        _body = _resp.body as SessionUserResponse
+        return _resp.clone({body: _body}) as HttpResponse<SessionUserResponse>;
       })
     );
   }
 
 
   /**
-   * @param sessionCode Session Code
-   * @return get session admin
+   * @param params The `SessionService.GetSessionAdminParams` containing the following parameters:
+   *
+   * - `userToken`: requesting user token
+   *
+   * - `sessionCode`: Session Code
+   *
+   * @return Get session admin
    */
 
-  getSessionAdmin(sessionCode: string): Observable<SessionUser> {
-    return this.getSessionAdminResponse(sessionCode).pipe(
+  getSessionAdmin(params: SessionService.GetSessionAdminParams): Observable<SessionUserResponse> {
+    return this.getSessionAdminResponse(params).pipe(
       map(_r => (<any>_r).body)
     );
   }
@@ -407,5 +419,9 @@ export module SessionService {
   export interface JoinSessionParams {
     sessionCode: string;
     request: JoinSessionRequest;
+  }
+  export interface GetSessionAdminParams {
+    userToken: string;
+    sessionCode: string;
   }
 }

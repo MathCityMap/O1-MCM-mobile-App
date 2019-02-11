@@ -26,6 +26,8 @@ import {EventAddRequest} from "../app/api/models/event-add-request";
 import {SessionUserLeaderboardService} from "../app/api/services/session-user-leaderboard.service";
 import {LeaderboardResponse} from "../app/api/models/leaderboard-response";
 import * as moment from 'moment';
+import {SessionUserResponse} from "../app/api/models/session-user-response";
+import {SessionUsersResponse} from "../app/api/models/session-users-response";
 
 export class ChatMessage {
     messageId: string;
@@ -78,7 +80,7 @@ export class ChatAndSessionService {
 
     // TODO should be reloaded if session changes
     // if a new team enters session, authors receiver list should be updated
-    private receivers : SessionUser[] = [];
+    private receivers : SessionUserResponse[] = [];
     private userSeesNewMessages: boolean;
     private alreadySeenMessages = {};
     private pastLocalNotifications: ILocalNotification[] = [];
@@ -389,31 +391,33 @@ export class ChatAndSessionService {
         });
     }
 
-    public async determineDefaultReceivers(sessionInfo : SessionInfo) : Promise<SessionUser[]> {
-        let receivers : SessionUser[] = [];
+    public async determineDefaultReceivers(sessionInfo : SessionInfo) : Promise<SessionUserResponse[]> {
+        let receivers : SessionUserResponse[] = [];
         if(!sessionInfo.sessionUser.wp_user_id || sessionInfo.sessionUser.wp_user_id <= 0) {
-            let admin : SessionUser = await this.sessionService.getSessionAdmin(sessionInfo.session.code).toPromise().then(res => {
+
+            let admin : SessionUserResponse = await this.sessionService.getSessionAdmin({sessionCode : sessionInfo.session.code, userToken: sessionInfo.sessionUser.token} ).toPromise().then(res => {
                 return res;
             });
             receivers.push(admin);
-         } //else {
-        //     let users: SessionUser[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)
-        //         .toPromise()
-        //         .then((users: SessionUser[]) => {
-        //             return users;
-        //     });
-        //
-        //     users.filter((user : SessionUser) => {
-        //         return !(user.id === sessionInfo.sessionUser.id)
-        //     })
-        //
-        //     receivers = users;
-        // }
+         }
+         else {
+            let users: SessionUserResponse[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)
+                .toPromise()
+                .then((users: SessionUsersResponse) => {
+                    return users.users;
+            });
+
+            users.filter((user : SessionUserResponse) => {
+                return !(user.id === sessionInfo.sessionUser.id)
+            })
+
+            receivers = users;
+        }
 
         return Promise.all(receivers);
     }
 
-    public getReceivers() : SessionUser[] {
+    public getReceivers() : SessionUserResponse[] {
         return this.receivers;
     }
 

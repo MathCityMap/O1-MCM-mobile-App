@@ -4,6 +4,7 @@ import { Events, Content } from 'ionic-angular';
 import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../services/chat-and-session-service";
 import { SessionUser } from "../../app/api/models/session-user";
 import {Session} from "../../app/api/models/session";
+import {SessionUserResponse} from "../../app/api/models/session-user-response";
 
 @IonicPage()
 @Component({
@@ -45,7 +46,7 @@ export class ChatPage {
             // teams, which are *not* admin of a session, get as receiver the admin
             // the admin of a sessionget as recivers *all* users from a session
             // TODO gui should have an option to select a team as active receiver.
-            let defaultReceiver : SessionUser = this.chatService.getReceivers()[0];
+            let defaultReceiver : SessionUserResponse = this.chatService.getReceivers()[0];
             this.toUser = {
                 id: defaultReceiver.id,
                 name: defaultReceiver.team_name,
