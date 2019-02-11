@@ -173,7 +173,7 @@ export class TasksMap implements OnInit, OnDestroy {
             }
             const that = this;
             if(this.sessionInfo != null){
-                if(this.sessionInfo.sessionUser.assigned_task_id == null){
+                if(this.sessionInfo.sessionUser.assigned_task_id == 0){
                     setTimeout(function() {
                         that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
                             'no', () => {},
@@ -182,6 +182,14 @@ export class TasksMap implements OnInit, OnDestroy {
                                 that.state.selectedStartTask = true;
                             });
                     }, 500);
+                }else{
+                    let selectedTask = this.taskList.find(x => x.id == this.sessionInfo.sessionUser.assigned_task_id);
+                    this.state.selectedTask = selectedTask;
+                    this.state.visibleTasks = {};
+                    this.state.visibleTasks[selectedTask.position] = true;
+                    this.state.isShowingAllTasks = false;
+                    this.centerSelectedTask();
+                    this.redrawMarker();
                 }
             }else{
                 setTimeout(function() {
@@ -193,7 +201,6 @@ export class TasksMap implements OnInit, OnDestroy {
                         });
                 }, 500);
             }
-
         }
     }
     await this.loadMap();
@@ -290,7 +297,7 @@ export class TasksMap implements OnInit, OnDestroy {
        if(this.sessionInfo == null){
            return false
        }else{
-           if(this.sessionInfo.sessionUser.assigned_task_id != null){
+           if(this.sessionInfo.sessionUser.assigned_task_id != 0){
                return true;
            }
        }
