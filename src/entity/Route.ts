@@ -1,15 +1,15 @@
 import {
     Entity, PrimaryGeneratedColumn, Column, OneToMany
 } from "typeorm";
-import { Task } from './Task';
-import { Helper } from '../classes/Helper';
-import { LatLng, LatLngBounds } from 'leaflet';
-import { Score } from "./Score";
-import { Task2Route } from './Task2Route';
-import { User } from './User';
-import { TranslateService } from '@ngx-translate/core';
-import { OrmService } from '../services/orm-service';
-import { GpsService } from '../services/gps-service';
+import {Task} from './Task';
+import {Helper} from '../classes/Helper';
+import {LatLng, LatLngBounds} from 'leaflet';
+import {Score} from "./Score";
+import {Task2Route} from './Task2Route';
+import {User} from './User';
+import {TranslateService} from '@ngx-translate/core';
+import {OrmService} from '../services/orm-service';
+import {GpsService} from '../services/gps-service';
 
 @Entity('mcm_route')
 export class Route {
@@ -110,7 +110,7 @@ export class Route {
     @OneToMany(type => Score, score => score.route, {eager: true})
     scores: Score[];
 
-    async getTaskCount(): Promise<number>{
+    async getTaskCount(): Promise<number> {
         if (this.task2Routes) {
             return this.task2Routes.length;
         } else {
@@ -183,14 +183,14 @@ export class Route {
      */
     concatSettingsEntry(s: string, val: string, k: string, translateService: TranslateService): string {
         let translation = translateService.instant(k);
-        if(val === "true" || val === "1"){
+        if (val === "true" || val === "1") {
             val = translateService.instant('r_settings_active')
-        }else{
+        } else {
             val = translateService.instant('r_settings_inactive')
         }
         let entry = translation + ": " + val;
-        if(s.indexOf(entry) == -1){
-            if (s != ""){
+        if (s.indexOf(entry) == -1) {
+            if (s != "") {
                 s = s + ", ";
             }
         }
@@ -201,16 +201,16 @@ export class Route {
         let settings = "";
         let attr = this.getAttributes();
 
-        if(attr.gamification != null){
+        if (attr.gamification != null) {
             settings = this.concatSettingsEntry(settings, attr.gamification, 'gamification', translateService)
         }
-        if(attr.sampleSolution != null){
+        if (attr.sampleSolution != null) {
             settings = this.concatSettingsEntry(settings, attr.sampleSolution, 'sampleSolution', translateService);
         }
-        if(attr.hints != null){
+        if (attr.hints != null) {
             settings = this.concatSettingsEntry(settings, attr.hints, 'hints', translateService);
         }
-        if(attr.answerValidation != null){
+        if (attr.answerValidation != null) {
             settings = this.concatSettingsEntry(settings, attr.answerValidation, 'answerValidation', translateService);
         }
         return settings;
@@ -252,19 +252,35 @@ export class Route {
     }
 
     isGamificationDisabled() {
-        return this.getAttributes().gamification === "false";
+        if (this.getAttributes().gamification) {
+            return this.getAttributes().gamification === "false";
+        } else {
+            return false;
+        }
     }
 
     isSampleSolutionEnabled() {
-        return this.getAttributes().sampleSolution === "true";
+        if (this.getAttributes().sampleSolution) {
+            return this.getAttributes().sampleSolution === "true";
+        } else {
+            return true;
+        }
     }
 
     isHintsEnabled() {
-        return this.getAttributes().hints === "true";
+        if (this.getAttributes().hints) {
+            return this.getAttributes().hints === "true";
+        } else {
+            return true;
+        }
     }
 
     isAnswerValidationEnabled() {
-        return this.getAttributes().answerValidation === "true";
+        if (this.getAttributes().answerValidation) {
+            return this.getAttributes().answerValidation === "true";
+        } else {
+            return true;
+        }
     }
 
 
