@@ -41,7 +41,7 @@ export class MyApp {
           "4", "5", "6", "",
           "7", "8", "9", "",
           "-", "0", decimalSeparator, "✔"]; // ✔
-      chatService.init();
+      // chatService.init();
   }
 
     ngOnInit()

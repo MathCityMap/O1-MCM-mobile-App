@@ -102,13 +102,14 @@ export class ChatAndSessionService {
                 private leaderBoardService: SessionUserLeaderboardService) {
     }
 
-    public async updateSession(sessionInfo: SessionInfo){
+    public async updateSession(sessionInfo){
         await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
     }
 
-    async init() {
-        let sessionInfo = await this.getActiveSession();
-        this.subscribeForAndSendEvents(sessionInfo);
+    public async init() {
+        console.log("Init chatservice");
+        await this.getActiveSession();
+        this.subscribeForAndSendEvents(this.transientActiveSession);
         if (checkAvailability(LocalNotifications.pluginRef, null, LocalNotifications.pluginName) === true) {
             this.localNotifications.on('click')
                 .subscribe((next) => {
@@ -116,6 +117,10 @@ export class ChatAndSessionService {
                     console.log(next);
                 });
         }
+    }
+
+    async exit(){
+        this.subscribeForAndSendEvents(null);
     }
 
     /**
@@ -219,22 +224,31 @@ export class ChatAndSessionService {
     }
 
     async setActiveSession(session: Session, teamName: string, teamMembers: string[]) {
-
+        console.log("Joining session.");
         let sessionUser = await this.sessionService.joinSession({
             sessionCode: session.code,
             request: {teamName: teamName, teamMembers: teamMembers}
         }).toPromise();
-        let sessionInfo = {
-            session: session,
-            sessionUser: sessionUser,
-            started: false
-        };
-        await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
-        this.subscribeForAndSendEvents(sessionInfo);
+        if(sessionUser){
+            console.log("Successfully joined. Storing active session");
+            let sessionInfo = {
+                session: session,
+                sessionUser: sessionUser,
+                started: false
+            };
+            await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
+            this.transientActiveSession = sessionInfo;
+            console.log("Session stored");
+        }
+        else{
+            console.log("Error joining session.");
+        }
     }
 
     async getActiveSession(): Promise<SessionInfo> {
+        console.log("Getting Active session.");
        this.transientActiveSession = await this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
+       console.log('result: ' + this.transientActiveSession);
        if(this.transientActiveSession){
            console.log("Found active session. Checking if still active.");
            // Leave Session automatically when time has run out
@@ -251,6 +265,10 @@ export class ChatAndSessionService {
            }
        }
        return this.transientActiveSession;
+    }
+
+    public getSessionInfo(): SessionInfo{
+        return this.transientActiveSession;
     }
 
     async exitActiveSession() {
@@ -334,6 +352,14 @@ export class ChatAndSessionService {
             if(this.chatSubscription) {
                 this.chatSubscription.unsubscribe();
                 this.chatSubscription = null;
+            }
+            if(this.sendEventsSubscription){
+                this.sendEventsSubscription.unsubscribe();
+                this.sendEventsSubscription = null;
+            }
+            if(this.getLeaderboardSubscription){
+                this.getLeaderboardSubscription.unsubscribe();
+                this.getLeaderboardSubscription = null;
             }
         }
     }
@@ -476,17 +502,19 @@ export class ChatAndSessionService {
     }
 
     private async fetchLeaderboard(){
-        let sessionInfo = await this.getActiveSession();
+        let sessionInfo = this.transientActiveSession;
         if(sessionInfo){
-            let params = new class implements SessionUserLeaderboardService.GetLeaderboardParams {
-                sessionCode: string;
-                userToken: string;
-            };
-            params.sessionCode = sessionInfo.session.code;
-            params.userToken = sessionInfo.sessionUser.token;
-            let leaderboard = await this.leaderBoardService.getLeaderboard(params).toPromise();
-            console.log(leaderboard);
-            this.leaderBoard = leaderboard;
+            if(sessionInfo.session.has_leaderboard){
+                let params = new class implements SessionUserLeaderboardService.GetLeaderboardParams {
+                    sessionCode: string;
+                    userToken: string;
+                };
+                params.sessionCode = sessionInfo.session.code;
+                params.userToken = sessionInfo.sessionUser.token;
+                let leaderboard = await this.leaderBoardService.getLeaderboard(params).toPromise();
+                console.log(leaderboard);
+                this.leaderBoard = leaderboard;
+            }
         }
     }
 

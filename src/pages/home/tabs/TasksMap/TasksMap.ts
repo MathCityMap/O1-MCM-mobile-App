@@ -108,6 +108,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.taskDonePerfectIcon.clusterColor = '#4CAF50';
       this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
       this.taskFailedIcon.clusterColor = '#E62B25';
+      this.chatAndSessionService.init();
   }
 
   isTrailCompleted(){
@@ -145,6 +146,8 @@ export class TasksMap implements OnInit, OnDestroy {
     this.gamificationIsDisabled = this.route.isGamificationDisabled();
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
+    let sessionInfo = this.chatAndSessionService.getSessionInfo();
+  this.updateSession(sessionInfo);
 
       await this.loadMap();
       setTimeout(async () => {
@@ -155,22 +158,21 @@ export class TasksMap implements OnInit, OnDestroy {
               this.showTrailCompletedAlert();
           }
       }, 100);
-
-      // Add event of user entering trail when session active
-      if(this.sessionInfo != null){
-          let details = JSON.stringify({});
-          this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
-      }
   }
 
   async ionViewDidEnter(){
       console.log('TasksMap ionViewDidEnter()');
-      let sessionInfo = await this.chatAndSessionService.getActiveSession();
-      console.log(sessionInfo);
-      this.updateSession(sessionInfo);
-
+      /*
+      When a session is active and started the first time:
+      Reset all tasks
+      If user was automatically assigned a task, display only that task
+       */
       if(this.sessionInfo != null) {
-          if (!this.sessionInfo.started) {
+          // Add event of user entering trail when session active
+          let details = JSON.stringify({});
+          this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
+
+          if (this.sessionInfo.started === false) {
               this.showAllTasks();
               this.resetTasks();
 
@@ -182,37 +184,40 @@ export class TasksMap implements OnInit, OnDestroy {
                   this.state.visibleTasks[selectedTask.position] = true;
                   this.state.isShowingAllTasks = false;
                   console.log(this.state.selectedTask);
-                  this.redrawMarker();
                   this.centerSelectedTask();
-                  await this.saveMapStateToLocalStorage();
+              }
+              else{
+                  const that = this;
+                  setTimeout(function() {
+                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                          'no', () => {},
+                          'yes', async () => {
+                              that.selectStartPoint();
+                              that.state.selectedStartTask = true;
+                          });
+                  }, 500);
               }
 
+              this.saveMapStateToLocalStorage();
               this.sessionInfo.started = true;
-              this.chatAndSessionService.updateSession(this.sessionInfo);
+              await this.chatAndSessionService.updateSession(this.sessionInfo);
+              this.redrawMarker();
+              return;
           }
-      }else{
-          this.showAllTasks();
       }
 
-
-      console.log(this.navParams.data.tasksMapState);
-      console.log(this.navParams);
-
-      if (this.navParams.data.tasksMapState != undefined) {
-          console.log("has navparams");
+      if (this.navParams.data.tasksMapState) {
           this.state = this.navParams.data.tasksMapState;
           if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
               this.goToNextTask(this.state.selectedTask, true);
           }
       } else {
-          console.log("has no navparams");
-          // this.state = await this.getMapStateFromLocalStorage();
+          this.state = await this.getMapStateFromLocalStorage();
           if(this.taskToSkip){
               this.goToNextTask(this.taskToSkip, true);
               this.taskToSkip = null;
           }
-          console.debug('mapState ',this.state);
-          if( !this.state){
+          if(!this.state){
               // attach state to navParams so that state is restored when moving back in history (from task detail view)
               this.state = this.navParams.data.tasksMapState = {
                   selectedTask: this.navParams.get("selectedTask"),
@@ -238,7 +243,7 @@ export class TasksMap implements OnInit, OnDestroy {
               }
           }
       }
-
+      this.redrawMarker();
   }
 
     ngOnInit() {
@@ -296,6 +301,7 @@ export class TasksMap implements OnInit, OnDestroy {
       let mapState = await this.storage.get(this.stateKey);
       if(mapState && mapState[this.routeId]){
           let state = mapState[this.routeId];
+          console.log(this.navParams);
           state.selectedTask = this.navParams.get("selectedTask");
           return state;
       }

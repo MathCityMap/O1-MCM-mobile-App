@@ -58,7 +58,7 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async ionViewWillEnter() {
-        console.log('TasksList ionViewWillEnter()');
+        console.log('RoutesList ionViewWillEnter()');
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
             // initial app start
@@ -107,7 +107,6 @@ export class RoutesListPage implements OnDestroy {
         let activeSession = await this.chatAndSessionService.getActiveSession();
         if (activeSession != null) {
             console.log('active session found');
-            console.log(this.navCtrl);
             let that = this;
             let route = await this.ormService.findRouteById(activeSession.session.trail_id);
             let modal = this.modalCtrl.create(MCMIconModal, {

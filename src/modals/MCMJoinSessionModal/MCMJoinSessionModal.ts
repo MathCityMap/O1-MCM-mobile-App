@@ -44,7 +44,7 @@ export class MCMJoinSessionModal {
             this.teamMemberNames = "";
         }
         let route = await this.ormService.findRouteById(this.session.trail_id);
-        this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
+        await this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
         this.cancel();
         this.modalsService.showRoute(route, this.navCtrl)
      }
