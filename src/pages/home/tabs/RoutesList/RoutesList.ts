@@ -131,9 +131,9 @@ export class RoutesListPage implements OnDestroy {
                                 that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
                             }
                             that.chatAndSessionService.exitActiveSession();
-                            activeSession.sessionUser = null;
+                            // activeSession.sessionUser = null;
                             modal.dismiss();
-
+                            clearInterval(this.refreshIntervalId);
                         }
                     }
                 ]

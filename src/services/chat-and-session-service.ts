@@ -55,6 +55,7 @@ export class UserInfo {
 export class SessionInfo {
     session: Session;
     sessionUser: SessionUser;
+    started: boolean;
 }
 
 @Injectable()
@@ -99,6 +100,10 @@ export class ChatAndSessionService {
                 private translate: TranslateService,
                 private toast: ToastController,
                 private leaderBoardService: SessionUserLeaderboardService) {
+    }
+
+    public async updateSession(sessionInfo: SessionInfo){
+        await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
     }
 
     async init() {
@@ -202,13 +207,15 @@ export class ChatAndSessionService {
 
     async getUserInfo(): Promise<UserInfo> {
         let sessionInfo = await this.getActiveSession();
-        const userInfo: UserInfo = {
-            id: sessionInfo.sessionUser.id,
-            name: sessionInfo.sessionUser.team_name,
-            token: sessionInfo.sessionUser.token,
-            avatar: './assets/user.jpg' // FIXME User Avatar
-        };
-        return new Promise<UserInfo>(resolve => resolve(userInfo));
+        if(sessionInfo != null){
+            const userInfo: UserInfo = {
+                id: sessionInfo.sessionUser.id,
+                name: sessionInfo.sessionUser.team_name,
+                token: sessionInfo.sessionUser.token,
+                avatar: './assets/user.jpg' // FIXME User Avatar
+            };
+            return new Promise<UserInfo>(resolve => resolve(userInfo));
+        }
     }
 
     async setActiveSession(session: Session, teamName: string, teamMembers: string[]) {
@@ -219,7 +226,8 @@ export class ChatAndSessionService {
         }).toPromise();
         let sessionInfo = {
             session: session,
-            sessionUser: sessionUser
+            sessionUser: sessionUser,
+            started: false
         };
         await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
         this.subscribeForAndSendEvents(sessionInfo);

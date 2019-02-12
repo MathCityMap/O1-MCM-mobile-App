@@ -48,7 +48,7 @@
             <ion-fab right bottom>
                 <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>
                 <ion-fab-list side="top">
-                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="resetTasks()" *ngIf="sessionInfo == null">
+                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">
                         <ion-icon name="icon-restart"></ion-icon>
                     </button>
                     <button [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">

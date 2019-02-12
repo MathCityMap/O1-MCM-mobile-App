@@ -140,89 +140,109 @@ export class TasksMap implements OnInit, OnDestroy {
     console.log('TasksMap ionViewWillEnter()');
     console.log(this.navCtrl);
     this.routeId = this.navParams.get('routeId');
+    console.log(this.routeId);
     this.route = await this.ormService.findRouteById(this.routeId);
     this.gamificationIsDisabled = this.route.isGamificationDisabled();
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
-    this.updateSession(await this.chatAndSessionService.getActiveSession());
 
-    if (this.navParams.data.tasksMapState) {
-        this.state = this.navParams.data.tasksMapState;
-        if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
-            this.goToNextTask(this.state.selectedTask, true);
-        }
-    } else {
-        this.state = await this.getMapStateFromLocalStorage();
-        if(this.taskToSkip){
-            this.goToNextTask(this.taskToSkip, true);
-            this.taskToSkip = null;
-        }
-        console.debug('mapState ',this.state);
-        if( !this.state){
-            // attach state to navParams so that state is restored when moving back in history (from task detail view)
-            this.state = this.navParams.data.tasksMapState = {
-                selectedTask: this.navParams.get("selectedTask"),
-                isShowingAllTasks: false,
-                visibleTasks: {},
-                skippedTaskIds: [],
-                selectedStartTask: false
-            };
-            this.state.isShowingAllTasks = !this.state.selectedTask;
-            if (this.state.selectedTask) {
-                this.state.visibleTasks[this.state.selectedTask.position] = true;
-            }
-            const that = this;
-            if(this.sessionInfo != null){
-                if(this.sessionInfo.sessionUser.assigned_task_id == 0){
-                    setTimeout(function() {
-                        that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                            'no', () => {},
-                            'yes', async () => {
-                                that.selectStartPoint();
-                                that.state.selectedStartTask = true;
-                            });
-                    }, 500);
-                }else{
-                    let selectedTask = this.taskList.find(x => x.id == this.sessionInfo.sessionUser.assigned_task_id);
-                    this.state.selectedTask = selectedTask;
-                    this.state.visibleTasks = {};
-                    this.state.visibleTasks[selectedTask.position] = true;
-                    this.state.isShowingAllTasks = false;
-                    this.centerSelectedTask();
-                    this.redrawMarker();
-                }
-            }else{
-                setTimeout(function() {
-                    that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                        'no', () => {},
-                        'yes', async () => {
-                            that.selectStartPoint();
-                            that.state.selectedStartTask = true;
-                        });
-                }, 500);
-            }
-        }
-    }
-    await this.loadMap();
-    setTimeout(async () => {
-        // adding markers immediately after map initialization caused marker cluster problems -> use timeout
-        await this.initializeMap();
-        this.spinner.hide();
-        if(this.isTrailCompleted() && !this.route.completed){
-            this.showTrailCompletedAlert();
-        }
-    }, 100);
+      await this.loadMap();
+      setTimeout(async () => {
+          // adding markers immediately after map initialization caused marker cluster problems -> use timeout
+          await this.initializeMap();
+          this.spinner.hide();
+          if(this.isTrailCompleted() && !this.route.completed){
+              this.showTrailCompletedAlert();
+          }
+      }, 100);
 
-    // Add event of user entering trail when session active
+      // Add event of user entering trail when session active
       if(this.sessionInfo != null){
           let details = JSON.stringify({});
           this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
       }
   }
 
+  async ionViewDidEnter(){
+      console.log('TasksMap ionViewDidEnter()');
+      let sessionInfo = await this.chatAndSessionService.getActiveSession();
+      console.log(sessionInfo);
+      this.updateSession(sessionInfo);
+
+      if(this.sessionInfo != null) {
+          if (!this.sessionInfo.started) {
+              this.showAllTasks();
+              this.resetTasks();
+
+              if (this.sessionInfo.sessionUser.assigned_task_id != 0) {
+                  this.taskList = await this.route.getTasks();
+                  let selectedTask = this.taskList.filter(x => x.id == this.sessionInfo.sessionUser.assigned_task_id).pop();
+                  this.state.selectedTask = selectedTask;
+                  this.state.visibleTasks = {};
+                  this.state.visibleTasks[selectedTask.position] = true;
+                  this.state.isShowingAllTasks = false;
+                  console.log(this.state.selectedTask);
+                  this.redrawMarker();
+                  this.centerSelectedTask();
+                  await this.saveMapStateToLocalStorage();
+              }
+
+              this.sessionInfo.started = true;
+              this.chatAndSessionService.updateSession(this.sessionInfo);
+          }
+      }else{
+          this.showAllTasks();
+      }
+
+
+      console.log(this.navParams.data.tasksMapState);
+      console.log(this.navParams);
+
+      if (this.navParams.data.tasksMapState != undefined) {
+          console.log("has navparams");
+          this.state = this.navParams.data.tasksMapState;
+          if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
+              this.goToNextTask(this.state.selectedTask, true);
+          }
+      } else {
+          console.log("has no navparams");
+          // this.state = await this.getMapStateFromLocalStorage();
+          if(this.taskToSkip){
+              this.goToNextTask(this.taskToSkip, true);
+              this.taskToSkip = null;
+          }
+          console.debug('mapState ',this.state);
+          if( !this.state){
+              // attach state to navParams so that state is restored when moving back in history (from task detail view)
+              this.state = this.navParams.data.tasksMapState = {
+                  selectedTask: this.navParams.get("selectedTask"),
+                  isShowingAllTasks: false,
+                  visibleTasks: {},
+                  skippedTaskIds: [],
+                  selectedStartTask: false
+              };
+              this.state.isShowingAllTasks = !this.state.selectedTask;
+              if (this.state.selectedTask) {
+                  this.state.visibleTasks[this.state.selectedTask.position] = true;
+              }
+              else{
+                  const that = this;
+                  setTimeout(function() {
+                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                          'no', () => {},
+                          'yes', async () => {
+                              that.selectStartPoint();
+                              that.state.selectedStartTask = true;
+                          });
+                  }, 500);
+              }
+          }
+      }
+
+  }
+
     ngOnInit() {
-      console.log(this.navCtrl);
-        this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
+        // this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
     }
 
     ngOnDestroy() {
@@ -250,6 +270,8 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
     updateSession(sessionInfo: SessionInfo) {
+       console.log(this.routeId);
+       console.log(sessionInfo);
         if (sessionInfo && sessionInfo.session) {
             if (this.routeId != sessionInfo.session.trail_id) {
                 console.log(`active session belongs to different trail`);
@@ -301,6 +323,7 @@ export class TasksMap implements OnInit, OnDestroy {
                return true;
            }
        }
+       return false;
     }
 
 
@@ -591,7 +614,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.redrawMarker();
   }
 
-  resetTasks() {
+  displayResetTasksModal() {
       this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
           'no', () => {},
           'yes', () => {
@@ -604,6 +627,16 @@ export class TasksMap implements OnInit, OnDestroy {
               });
           });
   }
+
+  resetTasks(){
+      this.ormService.deleteUserScore(this.score).then( async ()=> {
+          this.score = new Score();
+          this.state.skippedTaskIds = [];
+          this.route.completed = false;
+          await this.ormService.saveAndFireChangedEvent(this.route);
+          this.redrawMarker();
+    });
+   }
 
   async sessionFinished() {
       this.modalsService.showDialog('a_private_session_quit', 'a_private_session_quit_text',
@@ -622,7 +655,6 @@ export class TasksMap implements OnInit, OnDestroy {
               }
               this.chatAndSessionService.exitActiveSession();
               clearInterval(this.refreshIntervalId);
-
           });
 
       // btn = () => {
