@@ -61,6 +61,6 @@ export class YoutubePlayerComponent implements AfterContentInit {
     const protocol = hasWindow
       ? window.location.protocol.replace(':', '')
       : 'http';
-    return protocol;
+      return protocol == 'file' ? 'https' : protocol;
   }
 }
