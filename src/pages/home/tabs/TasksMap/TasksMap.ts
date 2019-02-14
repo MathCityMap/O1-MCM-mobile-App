@@ -309,14 +309,14 @@ export class TasksMap implements OnInit, OnDestroy {
                 console.log(`active session belongs to different trail`);
                 this.sessionInfo = null;
             } else {
+                this.sessionInfo = sessionInfo;
                 console.log('active session: ' + sessionInfo.session.code);
-                this.sessionTime(sessionInfo.session);
+                this.sessionTime();
                 if (this.startInterval == true) {
                     this.refreshIntervalId = setInterval(() => {
-                        this.sessionTime(sessionInfo.session);
+                        this.sessionTime();
                     }, 15000)
                 }
-                this.sessionInfo = sessionInfo;
             }
         } else {
             console.log('no active session');
@@ -710,6 +710,10 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
   async gototask(taskId: number, taskName: string) {
+       if(this.taskBlocked){
+           console.log('session in preparation.');
+           return;
+       }
     console.debug('taskId', taskId);
     let that = this;
     this.navCtrl.push('TaskDetail', {taskId: taskId, headerTitle: taskName, routeId: this.routeId, goToNextTaskById: function(taskIdToSkip: number, skip?: boolean){
@@ -733,12 +737,12 @@ export class TasksMap implements OnInit, OnDestroy {
 
   }
 
-    private sessionTime(session) {
-        if (!session) {
+    private sessionTime() {
+        if (this.sessionInfo == null) {
             this.startInterval = false;
             return;
         }
-
+        let session = this.sessionInfo.session;
         let currentTimeUnix = moment().unix();
         let startTimeInUnix = moment(session.starts_at).unix();
         let endTimeInUnix = moment(session.ends_at).unix();
@@ -758,6 +762,7 @@ export class TasksMap implements OnInit, OnDestroy {
                 this.showCountdownOrTimer = true;
                 this.countdownOrTimerForSession = timerInMin;
                 this.countdownBeforeSession = false;
+                this.taskBlocked = false;
             }
         } else {
             this.startInterval = false;
