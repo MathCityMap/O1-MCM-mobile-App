@@ -184,9 +184,9 @@ export class Route {
     concatSettingsEntry(s: string, val: string, k: string, translateService: TranslateService): string {
         let translation = translateService.instant(k);
         if (val === "true" || val === "1") {
-            val = translateService.instant('r_settings_active')
+            val = translateService.instant('a_settings_active')
         } else {
-            val = translateService.instant('r_settings_inactive')
+            val = translateService.instant('a_settings_inactive')
         }
         let entry = translation + ": " + val;
         if (s.indexOf(entry) == -1) {
@@ -202,16 +202,16 @@ export class Route {
         let attr = this.getAttributes();
 
         if (attr.gamification != null) {
-            settings = this.concatSettingsEntry(settings, attr.gamification, 'gamification', translateService)
+            settings = this.concatSettingsEntry(settings, attr.gamification, 'p_session_sorting_score', translateService)
         }
         if (attr.sampleSolution != null) {
-            settings = this.concatSettingsEntry(settings, attr.sampleSolution, 'sampleSolution', translateService);
+            settings = this.concatSettingsEntry(settings, attr.sampleSolution, 't_samplesolution', translateService);
         }
         if (attr.hints != null) {
-            settings = this.concatSettingsEntry(settings, attr.hints, 'hints', translateService);
+            settings = this.concatSettingsEntry(settings, attr.hints, 'a_hints', translateService);
         }
         if (attr.answerValidation != null) {
-            settings = this.concatSettingsEntry(settings, attr.answerValidation, 'answerValidation', translateService);
+            settings = this.concatSettingsEntry(settings, attr.answerValidation, 'p_r_validation', translateService);
         }
         return settings;
     }
