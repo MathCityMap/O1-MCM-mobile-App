@@ -214,11 +214,11 @@ export class SessionChatService extends BaseService {
    *
    * - `sessionCode`: The session code
    *
-   * - `senderToken`: The senders token
+   * - `senderToken`: The senders token, User A
    *
-   * - `receiverToken`: The receiver token
+   * - `receiverToken`: The receiver token, User B
    *
-   * @return Returns new (unread) msgs for sender
+   * @return Returns new (unread) msgs for User A from User B
    */
 
   getNewMessagesResponse(params: SessionChatService.GetNewMessagesParams): Observable<HttpResponse<Array<SessionChatMessageResponse>>> {
@@ -255,11 +255,11 @@ export class SessionChatService extends BaseService {
    *
    * - `sessionCode`: The session code
    *
-   * - `senderToken`: The senders token
+   * - `senderToken`: The senders token, User A
    *
-   * - `receiverToken`: The receiver token
+   * - `receiverToken`: The receiver token, User B
    *
-   * @return Returns new (unread) msgs for sender
+   * @return Returns new (unread) msgs for User A from User B
    */
 
   getNewMessages(params: SessionChatService.GetNewMessagesParams): Observable<Array<SessionChatMessageResponse>> {
