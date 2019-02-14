@@ -1,25 +1,25 @@
-import { Injectable } from '@angular/core';
-import { Events, ToastController } from 'ionic-angular';
-import { Observable, TimeInterval } from "rxjs/Rx";
-import { Session } from '../app/api/models/session';
-import { Storage } from "@ionic/storage";
-import { SessionService } from '../app/api/services/session.service';
-import { SessionUser } from '../app/api/models/session-user';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Subject } from 'rxjs/Subject';
-import { GpsService } from './gps-service';
-import { Subscription } from 'rxjs/Subscription';
-import { SessionUserService } from '../app/api/services/session-user.service';
-import { SessionChatMessageResponse } from "../app/api/models/session-chat-message-response";
-import { SessionChatService } from "../app/api/services/session-chat.service";
-import { SessionChatResponse } from "../app/api/models/session-chat-response";
-import { Geoposition } from "@ionic-native/geolocation";
+import {Injectable} from '@angular/core';
+import {Events, ToastController} from 'ionic-angular';
+import {Observable, TimeInterval} from "rxjs/Rx";
+import {Session} from '../app/api/models/session';
+import {Storage} from "@ionic/storage";
+import {SessionService} from '../app/api/services/session.service';
+import {SessionUser} from '../app/api/models/session-user';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {Subject} from 'rxjs/Subject';
+import {GpsService} from './gps-service';
+import {Subscription} from 'rxjs/Subscription';
+import {SessionUserService} from '../app/api/services/session-user.service';
+import {SessionChatMessageResponse} from "../app/api/models/session-chat-message-response";
+import {SessionChatService} from "../app/api/services/session-chat.service";
+import {SessionChatResponse} from "../app/api/models/session-chat-response";
+import {Geoposition} from "@ionic-native/geolocation";
 import {
     ILocalNotification, ILocalNotificationActionType,
     LocalNotifications
 } from '@ionic-native/local-notifications';
-import { TranslateService } from '@ngx-translate/core';
-import { checkAvailability } from '@ionic-native/core';
+import {TranslateService} from '@ngx-translate/core';
+import {checkAvailability} from '@ionic-native/core';
 import {SessionEventService} from "../app/api/services/session-event.service";
 import {EventsAddRequest} from "../app/api/models/events-add-request";
 import {EventAddRequest} from "../app/api/models/event-add-request";
@@ -28,6 +28,7 @@ import {LeaderboardResponse} from "../app/api/models/leaderboard-response";
 import * as moment from 'moment';
 import {SessionUserResponse} from "../app/api/models/session-user-response";
 import {SessionUsersResponse} from "../app/api/models/session-users-response";
+import {forEach} from "typescript-collections/dist/lib/arrays";
 
 export class ChatMessage {
     messageId: string;
@@ -61,7 +62,7 @@ export class SessionInfo {
 
 @Injectable()
 export class ChatAndSessionService {
-    private static POSITION_PUSH_INTERVAL_IN_SECS = 15;
+    private static POSITION_PUSH_INTERVAL_IN_SECS = 1;
     private static CHAT_PULL_INTERVAL_IN_SECS = 15;
     private static EVENTS_POST_INTERVAL_IN_SECS = 10;
     private static CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS = 2;
@@ -74,6 +75,7 @@ export class ChatAndSessionService {
     private sendEventsTimer = Observable.interval(ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS * 1000);
     private getLeaderboardTimer = Observable.interval(ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS * 1000);
     private getAuthorEventsTimer = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000);
+    private pushPositionTimer = Observable.interval(ChatAndSessionService.POSITION_PUSH_INTERVAL_IN_SECS * 1000);
     private getLeaderboardSubscription: Subscription;
     private sendEventsSubscription: Subscription;
     private positionSubscription: Subscription;
@@ -81,15 +83,17 @@ export class ChatAndSessionService {
     private getAuthorEventsSubscription: Subscription;
     private lastPositionPush: number = 0;
     private transientActiveSession: SessionInfo;
+    private coordinatesList: Coordinates[] = [];
+
 
     // TODO should be reloaded if session changes
     // if a new team enters session, authors receiver list should be updated
-    private receivers : SessionUserResponse[] = [];
+    private receivers: SessionUserResponse[] = [];
     private userSeesNewMessages: boolean;
     private alreadySeenMessages = {};
     private pastLocalNotifications: ILocalNotification[] = [];
 
-    private leaderBoard: LeaderboardResponse = {leaderboard:[]};
+    private leaderBoard: LeaderboardResponse = {leaderboard: []};
     private newMsgNumber: number = 0;
 
     constructor(private events: Events,
@@ -105,7 +109,7 @@ export class ChatAndSessionService {
                 private leaderBoardService: SessionUserLeaderboardService) {
     }
 
-    public async updateSession(sessionInfo){
+    public async updateSession(sessionInfo) {
         await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
     }
 
@@ -122,7 +126,7 @@ export class ChatAndSessionService {
         }
     }
 
-    async exit(){
+    async exit() {
         this.subscribeForAndSendEvents(null);
     }
 
@@ -131,7 +135,7 @@ export class ChatAndSessionService {
      * @param msg
      * @param sessionUser
      */
-    static getChatMessage(msg: SessionChatMessageResponse, sessionUser : SessionUser): ChatMessage {
+    static getChatMessage(msg: SessionChatMessageResponse, sessionUser: SessionUser): ChatMessage {
         let chatMessage = {
             messageId: msg.messageId,
             userId: msg.senderId, // if author id eq current user
@@ -150,16 +154,16 @@ export class ChatAndSessionService {
      * @param sessionInfo
      * @param receiverToken
      */
-    getMsgList(sessionInfo : SessionInfo, receiverToken : string): Observable<ChatMessage[]> {
-      let params : SessionChatService.GetMessagesParams = {
-        sessionCode: sessionInfo.session.code,
-        senderToken: sessionInfo.sessionUser.token,
-        receiverToken: receiverToken
-      };
+    getMsgList(sessionInfo: SessionInfo, receiverToken: string): Observable<ChatMessage[]> {
+        let params: SessionChatService.GetMessagesParams = {
+            sessionCode: sessionInfo.session.code,
+            senderToken: sessionInfo.sessionUser.token,
+            receiverToken: receiverToken
+        };
         return this.sessionChatService.getMessages(params).map(
-            (chatResponse : SessionChatResponse) : ChatMessage[] => {
-                let chatMessages : ChatMessage[] = [];
-                chatResponse.messages.forEach((msg : SessionChatMessageResponse) => {
+            (chatResponse: SessionChatResponse): ChatMessage[] => {
+                let chatMessages: ChatMessage[] = [];
+                chatResponse.messages.forEach((msg: SessionChatMessageResponse) => {
                     chatMessages.push(ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser));
                 });
                 return chatMessages;
@@ -167,17 +171,17 @@ export class ChatAndSessionService {
         );
     }
 
-    getNewMsgs(sessionInfo : SessionInfo, receiverToken : string): Observable<ChatMessage[]> {
-        let params : SessionChatService.GetNewMessagesParams = {
+    getNewMsgs(sessionInfo: SessionInfo, receiverToken: string): Observable<ChatMessage[]> {
+        let params: SessionChatService.GetNewMessagesParams = {
             sessionCode: sessionInfo.session.code,
             senderToken: sessionInfo.sessionUser.token,
             receiverToken: receiverToken
         };
         return this.sessionChatService.getNewMessages(params).map(
-            (newMessages : SessionChatMessageResponse[]) : ChatMessage[] => {
+            (newMessages: SessionChatMessageResponse[]): ChatMessage[] => {
                 this.newMsgNumber += newMessages.length;
-                let chatMessages : ChatMessage[] = [];
-                newMessages.forEach((msg : SessionChatMessageResponse) => {
+                let chatMessages: ChatMessage[] = [];
+                newMessages.forEach((msg: SessionChatMessageResponse) => {
                     chatMessages.push(ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser));
                 });
                 return chatMessages;
@@ -194,7 +198,7 @@ export class ChatAndSessionService {
      * @param sessionInfo
      */
     sendMsg(msg: ChatMessage, sessionInfo: SessionInfo) {
-        let msgsSend : Array<any> = [];
+        let msgsSend: Array<any> = [];
         console.log("Sending chat message: ", msg);
         this.receivers.forEach(receiver => {
             msgsSend.push(this.sessionChatService.sendMessageToUser({
@@ -202,20 +206,20 @@ export class ChatAndSessionService {
                 senderToken: sessionInfo.sessionUser.token,
                 sessionCode: sessionInfo.session.code,
                 chatMessage: msg // FIXME ChatMessage convert to SessionChatMessageRequest (msg = string)
-            }).toPromise().then((msg : SessionChatMessageResponse) => {
+            }).toPromise().then((msg: SessionChatMessageResponse) => {
                 return ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser);
             }));
         });
 
-        return Promise.all(msgsSend).then((msgs : ChatMessage[]) => {
-            console.info("New Chat Messages were send: [".concat( msgs.length.toString() , "]"));
+        return Promise.all(msgsSend).then((msgs: ChatMessage[]) => {
+            console.info("New Chat Messages were send: [".concat(msgs.length.toString(), "]"));
             return msgs;
         });
     }
 
     async getUserInfo(): Promise<UserInfo> {
         let sessionInfo = await this.getActiveSession();
-        if(sessionInfo != null){
+        if (sessionInfo != null) {
             const userInfo: UserInfo = {
                 id: sessionInfo.sessionUser.id,
                 name: sessionInfo.sessionUser.team_name,
@@ -232,7 +236,7 @@ export class ChatAndSessionService {
             sessionCode: session.code,
             request: {teamName: teamName, teamMembers: teamMembers}
         }).toPromise();
-        if(sessionUser){
+        if (sessionUser) {
             console.log("Successfully joined. Storing active session");
             let sessionInfo = {
                 session: session,
@@ -243,35 +247,33 @@ export class ChatAndSessionService {
             await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
             this.transientActiveSession = sessionInfo;
             console.log("Session stored");
-        }
-        else{
+        } else {
             console.log("Error joining session.");
         }
     }
 
     async getActiveSession(): Promise<SessionInfo> {
         console.log("Getting Active session.");
-       this.transientActiveSession = await this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
-       console.log(this.transientActiveSession);
-       if(this.transientActiveSession){
-           console.log("Found active session. Checking if still active.");
-           // Leave Session automatically when time has run out
-           let currentTimeUnix = moment().unix();
-           console.log("Current time: " + currentTimeUnix);
-           let endTimeInUnix = moment(this.transientActiveSession.session.ends_at).unix();
-           console.log("End time: " + endTimeInUnix);
-           if(currentTimeUnix > endTimeInUnix){
-               console.log("Session ended. Exit session.")
-               this.exitActiveSession();
-           }
-           else{
-               console.log("Session running.");
-           }
-       }
-       return this.transientActiveSession;
+        this.transientActiveSession = await this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
+        console.log(this.transientActiveSession);
+        if (this.transientActiveSession) {
+            console.log("Found active session. Checking if still active.");
+            // Leave Session automatically when time has run out
+            let currentTimeUnix = moment().unix();
+            console.log("Current time: " + currentTimeUnix);
+            let endTimeInUnix = moment(this.transientActiveSession.session.ends_at).unix();
+            console.log("End time: " + endTimeInUnix);
+            if (currentTimeUnix > endTimeInUnix) {
+                console.log("Session ended. Exit session.")
+                this.exitActiveSession();
+            } else {
+                console.log("Session running.");
+            }
+        }
+        return this.transientActiveSession;
     }
 
-    public getSessionInfo(): SessionInfo{
+    public getSessionInfo(): SessionInfo {
         return this.transientActiveSession;
     }
 
@@ -279,7 +281,7 @@ export class ChatAndSessionService {
         await this.sendUserEvents();
         await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
         this.subscribeForAndSendEvents(null);
-        if(this.transientActiveSession != null){
+        if (this.transientActiveSession != null) {
             await this.sessionUserService.leaveSession({
                 userToken: this.transientActiveSession.sessionUser.token,
                 sessionCode: this.transientActiveSession.session.code
@@ -289,7 +291,7 @@ export class ChatAndSessionService {
         this.receivers = [];
         this.alreadySeenMessages = {};
         this.pastLocalNotifications = [];
-        this.leaderBoard = {leaderboard:[]};
+        this.leaderBoard = {leaderboard: []};
         this.newMsgNumber = 0;
         this.transientActiveSession = null;
     }
@@ -305,17 +307,27 @@ export class ChatAndSessionService {
                 this.positionSubscription.unsubscribe();
             }
 
-            this.positionSubscription = this.gpsService.watchPosition().subscribe(async (geoposition : Geoposition) => {
-                let currentTimestamp = new Date().getTime();
-                if (geoposition && geoposition.coords
-                    && currentTimestamp - ChatAndSessionService.POSITION_PUSH_INTERVAL_IN_SECS * 1000 > this.lastPositionPush) {
-                    this.lastPositionPush = currentTimestamp;
+            this.positionSubscription = this.pushPositionTimer.subscribe(async tick => {
+                let position = this.gpsService.getLastPosition();
+                this.coordinatesList.push(position.coords);
+                if (this.coordinatesList.length >= 15) {
+                    console.log("calculate sums");
+                    let lat = 0;
+                    let lon = 0;
+                    forEach(this.coordinatesList, function (coords) {
+                        lat += coords.latitude;
+                        lon += coords.longitude;
+                    });
+                    lat = lat / this.coordinatesList.length;
+                    lon = lon / this.coordinatesList.length;
+                    console.log(lat + ", " + lon);
+                    this.coordinatesList = [];
                     try {
                         await this.sessionUserService.updatePosition({
                             sessionCode: sessionInfo.session.code,
                             userToken: sessionInfo.sessionUser.token,
-                            latitude: geoposition.coords.latitude,
-                            longitude: geoposition.coords.longitude
+                            latitude: lat,
+                            longitude: lon
                         }).toPromise();
                     } catch (e) {
                         console.error("ChatAndSessionService: Could not push position", e);
@@ -323,7 +335,7 @@ export class ChatAndSessionService {
                 }
             });
 
-            if(this.sendEventsSubscription){
+            if (this.sendEventsSubscription) {
                 this.sendEventsSubscription.unsubscribe()
             }
 
@@ -331,7 +343,7 @@ export class ChatAndSessionService {
                 this.sendUserEvents()
             });
 
-            if(this.getLeaderboardSubscription){
+            if (this.getLeaderboardSubscription) {
                 this.getLeaderboardSubscription.unsubscribe()
             }
 
@@ -339,7 +351,7 @@ export class ChatAndSessionService {
                 this.fetchLeaderboard();
             });
 
-            if(this.getAuthorEventsSubscription){
+            if (this.getAuthorEventsSubscription) {
                 this.getAuthorEventsSubscription.unsubscribe()
             }
 
@@ -363,19 +375,19 @@ export class ChatAndSessionService {
             }
 
             // TODO i think this type of code is a little bit confusing. refactor to subscribe/unsubscribe methods.
-            if(this.chatSubscription) {
+            if (this.chatSubscription) {
                 this.chatSubscription.unsubscribe();
                 this.chatSubscription = null;
             }
-            if(this.sendEventsSubscription){
+            if (this.sendEventsSubscription) {
                 this.sendEventsSubscription.unsubscribe();
                 this.sendEventsSubscription = null;
             }
-            if(this.getLeaderboardSubscription){
+            if (this.getLeaderboardSubscription) {
                 this.getLeaderboardSubscription.unsubscribe();
                 this.getLeaderboardSubscription = null;
             }
-            if(this.getAuthorEventsSubscription){
+            if (this.getAuthorEventsSubscription) {
                 this.getAuthorEventsSubscription.unsubscribe();
                 this.getAuthorEventsSubscription = null;
             }
@@ -384,7 +396,7 @@ export class ChatAndSessionService {
 
     private refreshChatSubscription(sessionInfo: SessionInfo) {
         console.debug('refreshChatSubscription()');
-        if(this.chatSubscription) {
+        if (this.chatSubscription) {
             this.chatSubscription.unsubscribe();
         }
 
@@ -393,7 +405,7 @@ export class ChatAndSessionService {
         });
     }
 
-    private getRelevantTimer() : Observable<TimeInterval<any>> {
+    private getRelevantTimer(): Observable<TimeInterval<any>> {
         if (this.userSeesNewMessages) {
             return this.timerUserSeesMessages;
         } else {
@@ -406,7 +418,7 @@ export class ChatAndSessionService {
         this.receivers.forEach(async receiver => {
             let messages = await this.getNewMsgs(sessionInfo, receiver.token).toPromise();
             // foreach msg -> publish new event
-            messages.forEach((msg : ChatMessage) => {
+            messages.forEach((msg: ChatMessage) => {
                 // console.log("chat msgs received: ", msg);
                 this.events.publish('chat:received', msg);
                 let alreadySeen = this.alreadySeenMessages[msg.messageId];
@@ -443,23 +455,25 @@ export class ChatAndSessionService {
         });
     }
 
-    public async determineDefaultReceivers(sessionInfo : SessionInfo) : Promise<SessionUserResponse[]> {
-        let receivers : SessionUserResponse[] = [];
-        if(!sessionInfo.sessionUser.wp_user_id || sessionInfo.sessionUser.wp_user_id <= 0) {
+    public async determineDefaultReceivers(sessionInfo: SessionInfo): Promise<SessionUserResponse[]> {
+        let receivers: SessionUserResponse[] = [];
+        if (!sessionInfo.sessionUser.wp_user_id || sessionInfo.sessionUser.wp_user_id <= 0) {
 
-            let admin : SessionUserResponse = await this.sessionService.getSessionAdmin({sessionCode : sessionInfo.session.code, userToken: sessionInfo.sessionUser.token} ).toPromise().then(res => {
+            let admin: SessionUserResponse = await this.sessionService.getSessionAdmin({
+                sessionCode: sessionInfo.session.code,
+                userToken: sessionInfo.sessionUser.token
+            }).toPromise().then(res => {
                 return res;
             });
             receivers.push(admin);
-         }
-         else {
+        } else {
             let users: SessionUserResponse[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)
                 .toPromise()
                 .then((users: SessionUsersResponse) => {
                     return users.users;
-            });
+                });
 
-            users.filter((user : SessionUserResponse) => {
+            users.filter((user: SessionUserResponse) => {
                 return !(user.id === sessionInfo.sessionUser.id)
             })
 
@@ -469,7 +483,7 @@ export class ChatAndSessionService {
         return Promise.all(receivers);
     }
 
-    public getReceivers() : SessionUserResponse[] {
+    public getReceivers(): SessionUserResponse[] {
         return this.receivers;
     }
 
@@ -484,10 +498,10 @@ export class ChatAndSessionService {
     /*
     Session User Events
      */
-    private async sendUserEvents(){
+    private async sendUserEvents() {
         let sessionInfo = await this.getActiveSession();
-        if(sessionInfo){
-            if(ChatAndSessionService.USER_EVENTS.length > 0){
+        if (sessionInfo) {
+            if (ChatAndSessionService.USER_EVENTS.length > 0) {
                 this.gpsService.getCurrentPosition().then(position => {
                     console.log(position.coords);
                     ChatAndSessionService.USER_EVENTS.forEach(event => { // forEach evtl.
@@ -509,7 +523,7 @@ export class ChatAndSessionService {
         }
     }
 
-    public addUserEvent(title: string, details: string, task_id: string){
+    public addUserEvent(title: string, details: string, task_id: string) {
         let eventAddRequest = new EventAddRequest();
         eventAddRequest.title = title;
         eventAddRequest.details = details;
@@ -519,10 +533,10 @@ export class ChatAndSessionService {
         ChatAndSessionService.USER_EVENTS.push(eventAddRequest)
     }
 
-    private async fetchLeaderboard(){
+    private async fetchLeaderboard() {
         let sessionInfo = this.transientActiveSession;
-        if(sessionInfo){
-            if(sessionInfo.session.has_leaderboard){
+        if (sessionInfo) {
+            if (sessionInfo.session.has_leaderboard) {
                 let params = new class implements SessionUserLeaderboardService.GetLeaderboardParams {
                     sessionCode: string;
                     userToken: string;
@@ -536,13 +550,13 @@ export class ChatAndSessionService {
         }
     }
 
-    private async fetchAuthorEvents(){
+    private async fetchAuthorEvents() {
         let sessionInfo = this.transientActiveSession;
-        if(sessionInfo){
+        if (sessionInfo) {
             let params = new class implements SessionEventService.GetAuthorEventsParams {
-              sessionCode: string;
-              userToken: string;
-              unixTime: string
+                sessionCode: string;
+                userToken: string;
+                unixTime: string
             };
             params.sessionCode = sessionInfo.session.code;
             params.userToken = sessionInfo.sessionUser.token;
@@ -558,66 +572,59 @@ export class ChatAndSessionService {
         }
     }
 
-    private parseAuthorEvents( events ){
+    private parseAuthorEvents(events) {
         /*
         Two cases right now:
         1. Author kicks a user: If user == current session user > Leave active session
         2. Author updates session: Get updated session
          */
         let that = this;
-        events.events.forEach(function(event){
-           if(event.title === 'event_author_kick_user'){
-               try{
-                   let details = JSON.parse(event.details);
-                   if(details.userToken == that.transientActiveSession.sessionUser.token){
-                       that.events.publish('user:kicked', 'self');
-                   }
-                   else{
-                       that.events.publish('user:kicked', 'other');
-                   }
-               }
-               catch(e){
-                    console.log("Could not parse details of author event.");
-               }
-
-           }
-           else if(event.title === 'event_author_update_session'){
-               that.sessionService.getSessionByCode(that.transientActiveSession.session.code).toPromise().then(async session => {
-                   that.transientActiveSession.session = session;
-                   await that.updateSession(that.transientActiveSession);
-                   that.events.publish('session:updated', that.transientActiveSession);
-               });
-
-           }
-           else if(event.title === 'event_author_assign_task'){
-                try{
+        events.events.forEach(function (event) {
+            if (event.title === 'event_author_kick_user') {
+                try {
                     let details = JSON.parse(event.details);
-                    if(details.userToken == that.transientActiveSession.sessionUser.token){
+                    if (details.userToken == that.transientActiveSession.sessionUser.token) {
+                        that.events.publish('user:kicked', 'self');
+                    } else {
+                        that.events.publish('user:kicked', 'other');
+                    }
+                } catch (e) {
+                    console.log("Could not parse details of author event.");
+                }
+
+            } else if (event.title === 'event_author_update_session') {
+                that.sessionService.getSessionByCode(that.transientActiveSession.session.code).toPromise().then(async session => {
+                    that.transientActiveSession.session = session;
+                    await that.updateSession(that.transientActiveSession);
+                    that.events.publish('session:updated', that.transientActiveSession);
+                });
+
+            } else if (event.title === 'event_author_assign_task') {
+                try {
+                    let details = JSON.parse(event.details);
+                    if (details.userToken == that.transientActiveSession.sessionUser.token) {
                         that.transientActiveSession.sessionUser.assigned_task_id = details.assigned_task_id;
                         that.updateSession(that.transientActiveSession);
                         that.events.publish('user:assigned_task', details.assigned_task_id);
                     }
-                }
-                catch (e) {
+                } catch (e) {
                     console.log(e);
                 }
-           }
-           else{
+            } else {
 
-           }
+            }
         });
     }
 
-    public getLeaderboard(){
+    public getLeaderboard() {
         return this.leaderBoard.leaderboard;
     }
 
-    public getNewMsgNumber() : number
-    {
+    public getNewMsgNumber(): number {
         return this.newMsgNumber;
     }
 
-    public setNewMsgNumber(n: number){
+    public setNewMsgNumber(n: number) {
         this.newMsgNumber = n;
     }
 }
