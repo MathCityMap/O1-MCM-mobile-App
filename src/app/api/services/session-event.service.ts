@@ -180,6 +180,66 @@ export class SessionEventService extends BaseService {
       map(_r => (<any>_r).body)
     );
   }
+
+
+  /**
+   * @param params The `SessionEventService.GetAuthorEventsParams` containing the following parameters:
+   *
+   * - `userToken`: The user token
+   *
+   * - `unixTime`: Unix time
+   *
+   * - `sessionCode`: The session code
+   *
+   * @return Returns author events that happened after given unix time
+   */
+
+  getAuthorEventsResponse(params: SessionEventService.GetAuthorEventsParams): Observable<HttpResponse<SessionEventsResponse>> {
+    let __params = new HttpParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+
+
+    let req = new HttpRequest<any>(
+      "GET",
+      this.rootUrl + `/session/${params.sessionCode}/user/${params.userToken}/authorEvents/${params.unixTime}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      filter(_r => _r instanceof HttpResponse),
+      map(_r => {
+        let _resp = _r as HttpResponse<any>;
+        let _body: SessionEventsResponse = null;
+        _body = _resp.body as SessionEventsResponse
+        return _resp.clone({body: _body}) as HttpResponse<SessionEventsResponse>;
+      })
+    );
+  }
+
+
+  /**
+   * @param params The `SessionEventService.GetAuthorEventsParams` containing the following parameters:
+   *
+   * - `userToken`: The user token
+   *
+   * - `unixTime`: Unix time
+   *
+   * - `sessionCode`: The session code
+   *
+   * @return Returns author events that happened after given unix time
+   */
+
+  getAuthorEvents(params: SessionEventService.GetAuthorEventsParams): Observable<SessionEventsResponse> {
+    return this.getAuthorEventsResponse(params).pipe(
+      map(_r => (<any>_r).body)
+    );
+  }
 }
 
 export module SessionEventService {
@@ -191,5 +251,10 @@ export module SessionEventService {
     userToken: string;
     sessionCode: string;
     events: EventsAddRequest;
+  }
+  export interface GetAuthorEventsParams {
+    userToken: string;
+    unixTime: string;
+    sessionCode: string;
   }
 }

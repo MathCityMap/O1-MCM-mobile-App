@@ -56,6 +56,7 @@ export class SessionInfo {
     session: Session;
     sessionUser: SessionUser;
     started: boolean;
+    authorEvents_lastPull: number; // Unix timestamp
 }
 
 @Injectable()
@@ -72,10 +73,12 @@ export class ChatAndSessionService {
     private timerUserSeesMessages = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS * 1000).timeInterval();
     private sendEventsTimer = Observable.interval(ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS * 1000);
     private getLeaderboardTimer = Observable.interval(ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS * 1000);
+    private getAuthorEventsTimer = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000);
     private getLeaderboardSubscription: Subscription;
     private sendEventsSubscription: Subscription;
     private positionSubscription: Subscription;
     private chatSubscription: Subscription;
+    private getAuthorEventsSubscription: Subscription;
     private lastPositionPush: number = 0;
     private transientActiveSession: SessionInfo;
 
@@ -234,7 +237,8 @@ export class ChatAndSessionService {
             let sessionInfo = {
                 session: session,
                 sessionUser: sessionUser,
-                started: false
+                started: false,
+                authorEvents_lastPull: moment().unix()
             };
             await this.storage.set(ChatAndSessionService.STORAGE_KEY_SESSION, sessionInfo);
             this.transientActiveSession = sessionInfo;
@@ -248,7 +252,7 @@ export class ChatAndSessionService {
     async getActiveSession(): Promise<SessionInfo> {
         console.log("Getting Active session.");
        this.transientActiveSession = await this.storage.get(ChatAndSessionService.STORAGE_KEY_SESSION);
-       console.log('result: ' + this.transientActiveSession);
+       console.log(this.transientActiveSession);
        if(this.transientActiveSession){
            console.log("Found active session. Checking if still active.");
            // Leave Session automatically when time has run out
@@ -275,10 +279,12 @@ export class ChatAndSessionService {
         await this.sendUserEvents();
         await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
         this.subscribeForAndSendEvents(null);
-        await this.sessionUserService.leaveSession({
-            userToken: this.transientActiveSession.sessionUser.token,
-            sessionCode: this.transientActiveSession.session.code
-        }).toPromise();
+        if(this.transientActiveSession != null){
+            await this.sessionUserService.leaveSession({
+                userToken: this.transientActiveSession.sessionUser.token,
+                sessionCode: this.transientActiveSession.session.code
+            }).toPromise();
+        }
         // Reset watch parameters
         this.receivers = [];
         this.alreadySeenMessages = {};
@@ -333,6 +339,14 @@ export class ChatAndSessionService {
                 this.fetchLeaderboard();
             });
 
+            if(this.getAuthorEventsSubscription){
+                this.getAuthorEventsSubscription.unsubscribe()
+            }
+
+            this.getAuthorEventsSubscription = this.getAuthorEventsTimer.subscribe(tick => {
+                this.fetchAuthorEvents();
+            });
+
             this.determineDefaultReceivers(sessionInfo).then(receivers => {
                 this.receivers = receivers;
             });
@@ -360,6 +374,10 @@ export class ChatAndSessionService {
             if(this.getLeaderboardSubscription){
                 this.getLeaderboardSubscription.unsubscribe();
                 this.getLeaderboardSubscription = null;
+            }
+            if(this.getAuthorEventsSubscription){
+                this.getAuthorEventsSubscription.unsubscribe();
+                this.getAuthorEventsSubscription = null;
             }
         }
     }
@@ -516,6 +534,78 @@ export class ChatAndSessionService {
                 this.leaderBoard = leaderboard;
             }
         }
+    }
+
+    private async fetchAuthorEvents(){
+        let sessionInfo = this.transientActiveSession;
+        if(sessionInfo){
+            let params = new class implements SessionEventService.GetAuthorEventsParams {
+              sessionCode: string;
+              userToken: string;
+              unixTime: string
+            };
+            params.sessionCode = sessionInfo.session.code;
+            params.userToken = sessionInfo.sessionUser.token;
+            params.unixTime = sessionInfo.authorEvents_lastPull.toString();
+            let authorEvents = await this.sessionEventService.getAuthorEvents(params).toPromise();
+            console.log(authorEvents);
+
+            // Update this sessions last update info
+            sessionInfo.authorEvents_lastPull = moment().unix();
+            this.transientActiveSession = sessionInfo;
+            await this.updateSession(sessionInfo);
+            this.parseAuthorEvents(authorEvents);
+        }
+    }
+
+    private parseAuthorEvents( events ){
+        /*
+        Two cases right now:
+        1. Author kicks a user: If user == current session user > Leave active session
+        2. Author updates session: Get updated session
+         */
+        let that = this;
+        events.events.forEach(function(event){
+           if(event.title === 'event_author_kick_user'){
+               try{
+                   let details = JSON.parse(event.details);
+                   if(details.userToken == that.transientActiveSession.sessionUser.token){
+                       that.events.publish('user:kicked', 'self');
+                   }
+                   else{
+                       that.events.publish('user:kicked', 'other');
+                   }
+               }
+               catch(e){
+                    console.log("Could not parse details of author event.");
+               }
+
+           }
+           else if(event.title === 'event_author_update_session'){
+               that.sessionService.getSessionByCode(that.transientActiveSession.session.code).toPromise().then(async session => {
+                   that.transientActiveSession.session = session;
+                   await that.updateSession(that.transientActiveSession);
+                   that.events.publish('session:updated', that.transientActiveSession);
+               });
+
+           }
+           else if(event.title === 'event_author_assign_task'){
+                try{
+                    let details = JSON.parse(event.details);
+                    if(details.userToken == that.transientActiveSession.sessionUser.token){
+                        that.transientActiveSession.sessionUser.assigned_task_id = details.assigned_task_id;
+                        that.updateSession(that.transientActiveSession);
+                        that.events.publish('user:assigned_task', details.assigned_task_id);
+                    }
+                }
+                catch (e) {
+                    console.log(e);
+                }
+           }
+           else{
+
+           }
+        });
     }
 
     public getLeaderboard(){

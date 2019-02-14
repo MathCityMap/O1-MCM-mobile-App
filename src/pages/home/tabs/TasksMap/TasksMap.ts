@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
@@ -87,6 +87,7 @@ export class TasksMap implements OnInit, OnDestroy {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public events: Events,
     private ormService: OrmService,
     private deepLinker: DeepLinker,
     private gpsService: GpsService,
@@ -109,6 +110,25 @@ export class TasksMap implements OnInit, OnDestroy {
       this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
       this.taskFailedIcon.clusterColor = '#E62B25';
       this.chatAndSessionService.init();
+      this.events.subscribe('user:kicked', (user) => {
+          if(user == 'self'){
+              this.sessionKicked();
+              this.events.unsubscribe('user:kicked', null);
+          }
+          else{
+              console.log("Someone else was kicked.")
+          }
+      });
+      this.events.subscribe('session:updated', (sessionInfo) => {
+         console.log('Session has been updated');
+          this.updateSession(sessionInfo);
+      });
+      this.events.subscribe('user:assigned_task', (taskId) => {
+          console.log('User has been assigned task with id: ' + taskId);
+          this.sessionInfo.sessionUser.assigned_task_id = taskId;
+          this.forceStartFromTask(taskId);
+          this.redrawMarker();
+      });
   }
 
   isTrailCompleted(){
@@ -178,13 +198,7 @@ export class TasksMap implements OnInit, OnDestroy {
 
               if (this.sessionInfo.sessionUser.assigned_task_id != 0) {
                   this.taskList = await this.route.getTasks();
-                  let selectedTask = this.taskList.filter(x => x.id == this.sessionInfo.sessionUser.assigned_task_id).pop();
-                  this.state.selectedTask = selectedTask;
-                  this.state.visibleTasks = {};
-                  this.state.visibleTasks[selectedTask.position] = true;
-                  this.state.isShowingAllTasks = false;
-                  console.log(this.state.selectedTask);
-                  this.centerSelectedTask();
+                  this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
               }
               else{
                   const that = this;
@@ -246,6 +260,15 @@ export class TasksMap implements OnInit, OnDestroy {
       this.redrawMarker();
   }
 
+  private forceStartFromTask( taskId ){
+      let selectedTask = this.taskList.filter(x => x.id == taskId).pop();
+      this.state.selectedTask = selectedTask;
+      this.state.visibleTasks = {};
+      this.state.visibleTasks[selectedTask.position] = true;
+      this.state.isShowingAllTasks = false;
+      this.centerSelectedTask();
+  }
+
     ngOnInit() {
         // this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
     }
@@ -260,6 +283,10 @@ export class TasksMap implements OnInit, OnDestroy {
             this.watchSubscription = null;
         }
 
+        // Unsubscribe events:
+        this.events.subscribe('user:kicked');
+        this.events.subscribe('session:updated');
+        this.events.subscribe('user:assigned_task');
     }
 
   markerGroup: any = null;
@@ -325,11 +352,8 @@ export class TasksMap implements OnInit, OnDestroy {
        if(this.sessionInfo == null){
            return false
        }else{
-           if(this.sessionInfo.sessionUser.assigned_task_id != 0){
-               return true;
-           }
+           return this.sessionInfo.session.assign_tasks;
        }
-       return false;
     }
 
 
@@ -666,6 +690,23 @@ export class TasksMap implements OnInit, OnDestroy {
       // btn = () => {
       //     this.navCtrl.push('TasksMap', {'routeId' : this.route.id});
       // };
+  }
+
+  async sessionKicked(){
+      this.modalsService.showDialog('a_private_session_kicked', 'a_private_session_kicked_text',
+          'a_g_ok', () => {
+              let modal = this.modalCtrl.create(MCMSessionFinishedModal,
+                  {
+                      session: this.sessionInfo.session,
+                      score: this.score,
+                      tasks: this.taskList
+                  });
+              modal.present();
+              if(this.sessionInfo != null){
+                 this.chatAndSessionService.exitActiveSession();
+              }
+              clearInterval(this.refreshIntervalId);
+          });
   }
 
   async gototask(taskId: number, taskName: string) {
