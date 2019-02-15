@@ -112,6 +112,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.chatAndSessionService.init();
       this.events.subscribe('user:kicked', (user) => {
           if(user == 'self'){
+              console.log("userKicked");
               this.sessionKicked();
               this.events.unsubscribe('user:kicked', null);
           }
@@ -284,9 +285,9 @@ export class TasksMap implements OnInit, OnDestroy {
         }
 
         // Unsubscribe events:
-        this.events.subscribe('user:kicked');
-        this.events.subscribe('session:updated');
-        this.events.subscribe('user:assigned_task');
+        this.events.unsubscribe('user:kicked');
+        this.events.unsubscribe('session:updated');
+        this.events.unsubscribe('user:assigned_task');
     }
 
   markerGroup: any = null;
@@ -693,20 +694,37 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
   async sessionKicked(){
-      this.modalsService.showDialog('a_private_session_kicked', 'a_private_session_kicked_text',
-          'a_g_ok', () => {
-              let modal = this.modalCtrl.create(MCMSessionFinishedModal,
-                  {
-                      session: this.sessionInfo.session,
-                      score: this.score,
-                      tasks: this.taskList
-                  });
-              modal.present();
-              if(this.sessionInfo != null){
-                 this.chatAndSessionService.exitActiveSession();
-              }
-              clearInterval(this.refreshIntervalId);
-          });
+       let that = this;
+      let modal = this.modalCtrl.create(MCMIconModal, {
+          title: 'a_private_session_kicked',
+          message: 'a_private_session_kicked_text',
+          modalType: MCMModalType.hint,
+          type: 'text',
+          gamificationEnabled: false,
+          buttons: [
+              {
+                  title: 'a_g_ok',
+                  callback: function () {
+                      modal.dismiss();
+                      let finishedModal = that.modalCtrl.create(MCMSessionFinishedModal,
+                          {
+                              session: that.sessionInfo.session,
+                              score: that.score,
+                              tasks: that.taskList
+                          },{
+                              showBackdrop: true,
+                              enableBackdropDismiss: false
+                          });
+                      if(that.sessionInfo != null){
+                          that.chatAndSessionService.exitActiveSession();
+                      }
+                      clearInterval(that.refreshIntervalId);
+                      finishedModal.present();
+                  }
+              },
+          ]
+      }, {showBackdrop: true, enableBackdropDismiss: true});
+      modal.present();
   }
 
   async gototask(taskId: number, taskName: string) {
@@ -769,6 +787,14 @@ export class TasksMap implements OnInit, OnDestroy {
             clearInterval(this.refreshIntervalId);
             this.showSessionEnds = true;
             this.taskBlocked = false;
+            // Leave session
+            let modal = this.modalCtrl.create(MCMSessionFinishedModal,
+                {
+                    session: this.sessionInfo.session,
+                    score: this.score,
+                    tasks: this.taskList
+                });
+            modal.present();
             return;
         }
 

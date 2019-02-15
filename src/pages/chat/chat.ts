@@ -169,6 +169,11 @@ export class ChatPage {
                     }
                 });
             })
+
+        if(this.sessionInfo != null){
+            let details = JSON.stringify({});
+            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+        }
     }
 
     /**

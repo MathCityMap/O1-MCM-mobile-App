@@ -365,6 +365,10 @@ export class TaskDetail {
         } else if (this.task.solutionType == "multiple_choice") {
             console.log(this.multipleChoiceList);
             let taskSuccess = true;
+            let checkedByUser = this.multipleChoiceList.filter(item => {
+                return item.userChecked == true;
+            });
+            checkedByUser = checkedByUser.map(item => item.value);
             for (let i = 0; i < this.multipleChoiceList.length; i++) {
                 let item = this.multipleChoiceList[i];
                 console.log(item);
@@ -383,6 +387,7 @@ export class TaskDetail {
                 this.taskSolved('solved', solution, 0);
             } else {
                 if(this.sessionInfo != null){
+                    details = JSON.stringify({solution: checkedByUser, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
                 this.taskSolved('', [''], 0);
@@ -697,14 +702,14 @@ export class TaskDetail {
                     break;
                 default:
                     message = 'a_t_skip_msg';
-                    if(this.sessionInfo != null){
-                        let details = JSON.stringify({});
-                        this.chatAndSessionService.addUserEvent("event_task_failed", details, this.task.id.toString());
-                    }
                     let bSampleSolution = {
                         title: 't_samplesolution',
                         callback: function () {
                             modal.dismiss().then(() => {
+                                if(that.sessionInfo != null){
+                                    let details = JSON.stringify({});
+                                    that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
+                                }
                                 that.showSolutionSample();
                             });
                         }};
@@ -712,6 +717,10 @@ export class TaskDetail {
                         title: 'a_skipTask',
                         callback: function () {
                             modal.dismiss().then(() => {
+                                if(that.sessionInfo != null){
+                                    let details = JSON.stringify({});
+                                    that.chatAndSessionService.addUserEvent("event_task_skipped", details, that.task.id.toString());
+                                }
                                 that.closeDetails(true);
                             });
                         }};
@@ -784,25 +793,26 @@ export class TaskDetail {
                 let solutionList = this.task.getSolutionList();
 
                 //if the orange interval is below the green
-                if (+this.taskDetails.answer < solutionList[0]) {
+                let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                if (dotAnswer < solutionList[0]) {
                     if (this.taskDetails.tries > 0) {
-                        let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
                         this.score.score += this.taskDetails.score;
                     }
                     else {
-                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], +this.taskDetails.answer);
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
                         this.score.score += this.taskDetails.score;
                     }
                 }
                 else {
                     if (this.taskDetails.tries > 0) {
-                        let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], +this.taskDetails.answer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
                         this.score.score += this.taskDetails.score;
                     }
                     else {
-                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], +this.taskDetails.answer);
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
                         this.score.score += this.taskDetails.score;
                     }
                 }

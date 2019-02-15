@@ -112,7 +112,8 @@ export class RoutesListPage implements OnDestroy {
             let modal = this.modalCtrl.create(MCMIconModal, {
                 title: 'a_session_return_title',
                 // imageUrl: this.task.getSolutionSampleImgSrc(),
-                text: 'a_session_return_text',
+                message: 'a_session_return_text',
+                type: 'text',
                 modalType: MCMModalType.hint,
                 buttons: [
                     {

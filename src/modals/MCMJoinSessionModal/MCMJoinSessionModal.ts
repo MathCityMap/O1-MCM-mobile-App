@@ -6,7 +6,6 @@ import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
 import { ChatAndSessionService } from '../../services/chat-and-session-service';
 
-
 @Component({
     selector: 'mcm-join-session-modal',
     templateUrl:'./MCMJoinSessionModal.html'
@@ -44,9 +43,16 @@ export class MCMJoinSessionModal {
             this.teamMemberNames = "";
         }
         let route = await this.ormService.findRouteById(this.session.trail_id);
-        await this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
-        this.cancel();
-        this.modalsService.showRoute(route, this.navCtrl)
+        try{
+            await this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
+            this.cancel();
+            this.modalsService.showRoute(route, this.navCtrl)
+        }
+        catch(e){
+            this.cancel();
+            this.modalsService.showDialog('a_session_not_available_yet', 'a_session_not_available_yet_text',
+                'a_g_ok', () => {});
+        }
      }
 
     checkInputField() {
