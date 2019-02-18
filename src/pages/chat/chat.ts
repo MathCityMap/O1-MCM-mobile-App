@@ -149,6 +149,11 @@ export class ChatPage {
 
         console.debug("new message: ", newMsg);
 
+        if(this.sessionInfo != null){
+            let details = JSON.stringify({'message': this.editorMsg});
+            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+        }
+
         this.editorMsg = '';
         this.setToDefaultHeight();
         if (!this.showEmojiPicker) {
@@ -169,11 +174,6 @@ export class ChatPage {
                     }
                 });
             })
-
-        if(this.sessionInfo != null){
-            let details = JSON.stringify({});
-            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
-        }
     }
 
     /**
