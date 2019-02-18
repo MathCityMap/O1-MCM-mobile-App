@@ -30,6 +30,7 @@ import { ChatPage } from "../../../chat/chat";
 import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-and-session-service';
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
+import {Observable} from "../../../../../node_modules/rxjs";
 
 
 declare var ConicGradient: any;
@@ -43,6 +44,9 @@ declare var ConicGradient: any;
 })
 export class TasksMap implements OnInit, OnDestroy {
     @ViewChild('tasks-map') mapContainer: ElementRef;
+
+    private static UPDATE_SESSION_TIME_INTERVAL_IN_SECS: number = 15;
+
   private map: any;
   private routeId: number;
   private route: Route;
@@ -83,6 +87,9 @@ export class TasksMap implements OnInit, OnDestroy {
     private refreshIntervalId: any = null;
     private showSessionEnds: boolean = false;
     private taskBlocked: boolean = false;
+
+    private sessionTimeTimer = Observable.interval(TasksMap.UPDATE_SESSION_TIME_INTERVAL_IN_SECS * 1000);
+    private sessionTimeSubscription: Subscription;
 
   constructor(
     public navCtrl: NavController,
@@ -312,12 +319,13 @@ export class TasksMap implements OnInit, OnDestroy {
             } else {
                 this.sessionInfo = sessionInfo;
                 console.log('active session: ' + sessionInfo.session.code);
-                this.sessionTime();
-                if (this.startInterval == true) {
-                    this.refreshIntervalId = setInterval(() => {
-                        this.sessionTime();
-                    }, 15000)
+                if(this.sessionTimeSubscription){
+                    this.sessionTimeSubscription.unsubscribe();
                 }
+                this.sessionTime();
+                this.sessionTimeSubscription = this.sessionTimeTimer.subscribe(tick => {
+                    this.sessionTime();
+                });
             }
         } else {
             console.log('no active session');
@@ -685,7 +693,9 @@ export class TasksMap implements OnInit, OnDestroy {
                   this.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
               }
               this.chatAndSessionService.exitActiveSession();
-              clearInterval(this.refreshIntervalId);
+              if(this.sessionTimeSubscription){
+                  this.sessionTimeSubscription.unsubscribe();
+              }
           });
 
       // btn = () => {
@@ -718,7 +728,9 @@ export class TasksMap implements OnInit, OnDestroy {
                       if(that.sessionInfo != null){
                           that.chatAndSessionService.exitActiveSession();
                       }
-                      clearInterval(that.refreshIntervalId);
+                      if(that.sessionTimeSubscription){
+                          that.sessionTimeSubscription.unsubscribe();
+                      }
                       finishedModal.present();
                   }
               },
@@ -758,6 +770,9 @@ export class TasksMap implements OnInit, OnDestroy {
     private sessionTime() {
         if (this.sessionInfo == null) {
             this.startInterval = false;
+            if(this.sessionTimeSubscription){
+                this.sessionTimeSubscription.unsubscribe();
+            }
             return;
         }
         let session = this.sessionInfo.session;
@@ -784,7 +799,9 @@ export class TasksMap implements OnInit, OnDestroy {
             }
         } else {
             this.startInterval = false;
-            clearInterval(this.refreshIntervalId);
+            if(this.sessionTimeSubscription){
+                this.sessionTimeSubscription.unsubscribe();
+            }
             this.showSessionEnds = true;
             this.taskBlocked = false;
             // Leave session
