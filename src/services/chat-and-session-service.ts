@@ -497,18 +497,20 @@ export class ChatAndSessionService {
 
     /*
     Session User Events
+    Was haben Krokodile und Italiener gemeinsam?
      */
     private async sendUserEvents() {
-        let sessionInfo = await this.getActiveSession();
+        let sessionInfo = this.transientActiveSession;
         if (sessionInfo) {
             if (ChatAndSessionService.USER_EVENTS.length > 0) {
-                this.gpsService.getCurrentPosition().then(position => {
-                    console.log(position.coords);
-                    ChatAndSessionService.USER_EVENTS.forEach(event => { // forEach evtl.
+                let position = this.gpsService.getLastPosition();
+                console.log(position.coords);
+                if(position.coords){
+                    ChatAndSessionService.USER_EVENTS.forEach(event => {
                         event.lat = position.coords.latitude.toString();
                         event.lon = position.coords.longitude.toString();
                     });
-                }).catch(err => console.error(err));
+                }
                 let eventsAddRequest = new EventsAddRequest();
                 eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;
                 let params = {
