@@ -10,7 +10,7 @@ module.exports = {
       reserved: ['InitialMigration1513274191111', 'AddImageUrlAndDownloadedFlagMigration1513679923000',
           'FailedTaskMigration1515428187000', 'AddUnlockedColumn1516037215000', 'AddCompletedColumn1519817905000',
           'HomePage', 'InfoPage', 'SettingsPage', 'ModalCmp', 'RoutesListPage', 'MapPage', 'TaskDetailPage', 'ChatPage',
-          'AddVisibleColumn1526306624000', 'AddLangCodeColumn1526306730000']
+          'AddVisibleColumn1526306624000', 'AddLangCodeColumn1526306730000', 'TasksMap']
   },
 
   /**
