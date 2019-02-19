@@ -426,6 +426,14 @@ module.exports = [
         "clobbers": [
             "window.fabric.Crashlytics"
         ]
+    },
+    {
+        "id": "cordova-plugin-app-version.AppVersionPlugin",
+        "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+        "pluginId": "cordova-plugin-app-version",
+        "clobbers": [
+            "cordova.getAppVersion"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -452,7 +460,8 @@ module.exports.metadata =
     "cordova-plugin-badge": "0.8.7",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-inappbrowser": "3.0.0",
-    "cordova-fabric-plugin": "1.1.9"
+    "cordova-fabric-plugin": "1.1.9",
+    "cordova-plugin-app-version": "0.1.9"
 };
 // BOTTOM OF METADATA
 });

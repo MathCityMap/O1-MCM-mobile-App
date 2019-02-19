@@ -408,6 +408,14 @@ module.exports = [
     "clobbers": [
       "window.fabric.Crashlytics"
     ]
+  },
+  {
+    "id": "cordova-plugin-app-version.AppVersionPlugin",
+    "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+    "pluginId": "cordova-plugin-app-version",
+    "clobbers": [
+      "cordova.getAppVersion"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -433,7 +441,8 @@ module.exports.metadata =
   "cordova-sqlite-storage": "2.0.4",
   "cordova.plugins.diagnostic": "3.9.1",
   "ionic-plugin-keyboard": "2.2.1",
-  "cordova-fabric-plugin": "1.1.9"
+  "cordova-fabric-plugin": "1.1.9",
+  "cordova-plugin-app-version": "0.1.9"
 };
 // BOTTOM OF METADATA
 });

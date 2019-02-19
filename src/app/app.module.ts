@@ -49,6 +49,7 @@ import { ChatPage } from '../pages/chat/chat';
 import { ChatPageModule } from '../pages/chat/chat.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AppVersion } from '@ionic-native/app-version';
 
 
 @NgModule({
@@ -112,6 +113,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
         ChatAndSessionService,
         LocalNotifications,
         InAppBrowser,
+        AppVersion,
         Globalization,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]

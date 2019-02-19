@@ -91,6 +91,10 @@
                         {
                             "xml": "<feature name=\"FabricPlugin\"><param name=\"ios-package\" value=\"FabricPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -114,7 +118,7 @@
                         },
                         {
                             "xml": "<string>MathCityMap would like to know your position to show distance to available routes.</string>",
-                            "count": 10
+                            "count": 13
                         }
                     ],
                     "NSLocationAlwaysAndWhenInUseUsageDescription": [
@@ -249,6 +253,9 @@
         "cordova-fabric-plugin": {
             "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
             "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3",
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-app-version": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
@@ -680,6 +687,14 @@
             "clobbers": [
                 "window.fabric.Crashlytics"
             ]
+        },
+        {
+            "id": "cordova-plugin-app-version.AppVersionPlugin",
+            "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+            "pluginId": "cordova-plugin-app-version",
+            "clobbers": [
+                "cordova.getAppVersion"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -704,6 +719,7 @@
         "cordova-plugin-badge": "0.8.7",
         "cordova-plugin-local-notification": "0.9.0-beta.2",
         "cordova-plugin-inappbrowser": "3.0.0",
-        "cordova-fabric-plugin": "1.1.9"
+        "cordova-fabric-plugin": "1.1.9",
+        "cordova-plugin-app-version": "0.1.9"
     }
 }

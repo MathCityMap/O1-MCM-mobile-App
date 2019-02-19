@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { AppVersion } from '@ionic-native/app-version';
 
 /**
  * Generated class for the InfoPage page.
@@ -15,11 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class InfoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  versionNumber: string = 'unknown';
+  constructor(public navCtrl: NavController, public navParams: NavParams, public appVersion: AppVersion,
+              public platform: Platform) {
+
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     console.log('ionViewDidLoad InfoPage');
+    if (this.platform.is('cordova')) {
+        this.versionNumber = await this.appVersion.getVersionNumber();
+    }
   }
 
 }

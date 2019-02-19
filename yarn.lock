@@ -77,6 +77,11 @@
   dependencies:
     tsickle "^0.21.0"
 
+"@ionic-native/app-version@4.10.1":
+  version "4.10.1"
+  resolved "https://registry.yarnpkg.com/@ionic-native/app-version/-/app-version-4.10.1.tgz#e90596e48741ddc428c0161d694fe1af47ada1ab"
+  integrity sha512-57I2HnjDub7aTFJzZhwKlNXieQANxa5l63hFB5lW8kkIeWbQDHB7tf25cCz4ihenR5nHLEAQ6nj/oqWbCyMLdQ==
+
 "@ionic-native/core@4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-4.3.0.tgz#0d613bb6c8779146949514299ca1c02611e308a9"
@@ -230,10 +235,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.1.tgz#4ec3020bcdfe2abffeef9ba3fbf26fca097514b5"
   integrity sha512-SrmAO+NhnsuG/6TychSl2VdxBZiw/d6V+8j+DFo8O3PwFi+QeYXWHhAw+b170aSc6zYab6/PjEWRZHIDN9mNUw==
 
-"@types/youtube@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@types/youtube/-/youtube-0.0.32.tgz#b53ebc75e6646d7dc46295b8eceb5f1e596f68ae"
-  integrity sha512-fNknzXya97rrOnv9ulBdDefMcyViIuwSeFAPw+/ymofer2D6myXO6E3MucmcNAXjHzrlyLnrwwDied0bZqg0jw==
+"@types/youtube@0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/youtube/-/youtube-0.0.29.tgz#7f16624d0ad1b566abc3480b5ef8231048cf3cd1"
+  integrity sha1-fxZiTQrRtWarw0gLXvgjEEjPPNE=
 
 JSONStream@^1.0.3:
   version "1.3.1"
@@ -4176,13 +4181,6 @@ ng-swagger-gen@0.11.4:
     argparse "^1.0.9"
     json-schema-ref-parser "^4.1.1"
     mustache "^2.3.0"
-
-ngx-youtube-player@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/ngx-youtube-player/-/ngx-youtube-player-0.1.0.tgz#099d73eed9cff5ea82f39150e4da4901b9e636ed"
-  integrity sha512-JD4pUFTZPPvZd26nVV+MxTz7JLRw1RUf7elNfap5iPs9XWbKv39poal/P4sfyVWUjaaXMUPsyBOA/Mxsz0twPw==
-  dependencies:
-    tslib "^1.7.1"
 
 node-expat@^2.3.15:
   version "2.3.16"
