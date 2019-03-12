@@ -235,6 +235,13 @@ export class TaskDetail {
         if(this.task.solutionType == 'range' || this.task.solutionType == 'value'){
             this.unsubscribeCKEvents();
         }
+        if(this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed){
+            //This guaratees that the state is updated before the map opens and gets the information.
+            if (this.navParams.get('goToNextTaskById')) {
+                let goToNextTaskById = this.navParams.get('goToNextTaskById');
+                goToNextTaskById(this.task.id, false);
+            }
+        }
     }
     // Show keyboard
     public setKeyboardOn(state) {
