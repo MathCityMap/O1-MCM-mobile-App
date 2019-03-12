@@ -46,6 +46,7 @@ export class MCMJoinSessionModal {
         try{
             await this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
             this.cancel();
+            await this.ormService.unlockRoute(route);
             this.modalsService.showRoute(route, this.navCtrl)
         }
         catch(e){

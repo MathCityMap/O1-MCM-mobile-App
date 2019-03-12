@@ -25,7 +25,7 @@ export class MCMRouteByCodeModal {
     navCtrl: NavController
 
     constructor(private ormService: OrmService, public modalCtrl: ModalController, private viewCtrl: ViewController,
-                private sessionService: SessionService, private navParams: NavParams) {
+                private sessionService: SessionService, private navParams: NavParams, private modalsService: ModalsService) {
         this.navCtrl = navParams.data.navCtrl;
     }
 
@@ -77,7 +77,11 @@ export class MCMRouteByCodeModal {
             let modal = modalCtrl.create(MCMRouteByCodeModal, {navCtrl: navCtrl});
             modal.onDidDismiss(function (route: Route) {
                 if (route) {
-                    modalsService.showDialog(null, translateService.instant('a_private_route_added', {'T': route.title}));
+                    modalsService.showDialog(null, translateService.instant('a_private_route_added', {'T': route.title}),
+                        translateService.instant('a_g_ok'), function(){
+                            modalsService.presentRouteInfoModal(route, navCtrl);
+                            }
+                        );
                 }
                 success(route);
             });
