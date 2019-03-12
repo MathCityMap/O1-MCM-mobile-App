@@ -866,14 +866,23 @@ export class TaskDetail {
             this.taskSolved("solved", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
             }
-            else this.score.score += this.maxScore;
+            else{
+                this.score.score += this.maxScore;
+                this.taskDetails.score = this.maxScore;
+            }
         } else if (currDistance > (distance - tempOrange) && currDistance < (distance + tempOrange)) {
             this.taskSolved("solved_low", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            }
+            else{
+                this.score.score += this.orangeScore;
+                this.taskDetails.score = this.orangeScore;
             }
         } else {
             this.taskSolved('', solution, 0);
@@ -932,17 +941,24 @@ export class TaskDetail {
             this.taskSolved("solved", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
             }
-            else this.score.score += this.maxScore;
+            else{
+                this.taskDetails.score = this.maxScore;
+                this.score.score += this.maxScore;
+            }
         }
         else if (bearingSolution > 0 && lenghtSolution > 0) {
             this.taskSolved("solved_low", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
-            } else this.score.score += this.orangeScore;
-
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            } else {
+                this.taskDetails.score = this.orangeScore;
+                this.score.score += this.orangeScore;
+            }
         } else {
             this.taskSolved('', solution, 0);
         }
@@ -978,16 +994,24 @@ export class TaskDetail {
             this.taskSolved("solved", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
             }
-            else this.score.score += this.maxScore;
+            else{
+                this.taskDetails.score = this.maxScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else if (allOrange) {
             this.taskSolved("solved_low", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
-            } else this.score.score += this.orangeScore;
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            } else{
+                this.taskDetails.score = this.orangeScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else this.taskSolved('', solution, 0);
     }
@@ -1035,16 +1059,24 @@ export class TaskDetail {
             this.taskSolved("solved", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
             }
-            else this.score.score += this.maxScore;
+            else{
+                this.taskDetails.score = this.maxScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else if (allOrange && diagonalSolution > 0) {
             this.taskSolved("solved_low", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
-            } else this.score.score += this.orangeScore;
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            } else{
+                this.taskDetails.score = this.orangeScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else this.taskSolved('', solution, 0);
     }
@@ -1065,16 +1097,24 @@ export class TaskDetail {
             this.taskSolved("solved", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
             }
-            else this.score.score += this.maxScore;
+            else{
+                this.taskDetails.score = this.maxScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else if (delta < tempOrange) {
             this.taskSolved("solved_low", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
-            } else this.score.score += this.orangeScore;
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            } else{
+                this.taskDetails.score = this.orangeScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else this.taskSolved('', solution, 0);
     }
@@ -1099,16 +1139,24 @@ export class TaskDetail {
             this.taskSolved("solved", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
             }
-            else this.score.score += this.maxScore;
+            else{
+                this.taskDetails.score = this.maxScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else if (deltaAB < tempOrange && deltaBC < tempOrange) {
             this.taskSolved("solved_low", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
-            } else this.score.score += this.orangeScore;
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            } else{
+                this.taskDetails.score = this.orangeScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else this.taskSolved('', solution, 0);
     }
@@ -1171,16 +1219,24 @@ export class TaskDetail {
             this.taskSolved("solved", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
             }
-            else this.score.score += this.maxScore;
+            else{
+                this.taskDetails.score = this.maxScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else if (solutionSlope > 0 && solutionY > 0) {
             this.taskSolved("solved_low", solution, 0);
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.score.score += (tempScore > this.minScore ? tempScore : this.minScore);
-            } else this.score.score += this.orangeScore;
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            }  else{
+                this.taskDetails.score = this.orangeScore;
+                this.score.score += this.taskDetails.score;
+            }
         }
         else this.taskSolved('', solutionFail, 0);
     }
