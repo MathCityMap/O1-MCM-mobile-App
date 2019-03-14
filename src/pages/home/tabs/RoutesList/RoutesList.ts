@@ -25,6 +25,7 @@ export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
     public items: Route[] = [];
     public filteredItems: Route[] = [];
+    private routesListSearch: string = "";
 
     modal: any;
     private eventSubscription: Subscription;
@@ -55,6 +56,14 @@ export class RoutesListPage implements OnDestroy {
 
     ngOnDestroy() {
         this.eventSubscription.unsubscribe();
+    }
+
+    public getRoutesList(){
+        return this.routesListSearch.length > 2 ? this.items : this.filteredItems;
+    }
+
+    public getSearchResults(){
+        return Helper.searchResults;
     }
 
     async ionViewWillEnter() {

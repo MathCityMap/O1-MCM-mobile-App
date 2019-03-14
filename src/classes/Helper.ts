@@ -122,6 +122,7 @@ export class Helper {
     public isOnline: boolean = false;
     static windowWidth: number = 0
     static windowHeight: number = 0
+    static searchResults: number = 999
 
     constructor(private http: Http, private gpsService: GpsService, private network: Network,
                 private platform: Platform) {
