@@ -73,8 +73,16 @@
     </div>
 
     <div class="card">
+        <ion-label>{{ 'p_r_about' | translate }}</ion-label>
+        <p *ngIf="route">{{ route.description }}</p>
+
         <ion-label>{{ 'a_action_settings' | translate }}</ion-label>
-        <p *ngIf="route">{{route.getRouteSettings(translateService)}}</p>
+        <p *ngIf="route">
+            <ion-row>{{ 'p_session_sorting_score' | translate }}: {{route.getSettingStringValue("gamification", translateService)}}</ion-row>
+            <ion-row>{{ 't_samplesolution' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>
+            <ion-row>{{ 'a_hints' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>
+            <ion-row>{{ 'p_r_validation' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>
+        </p>
 
         <ion-label>{{ 'a_r_equip' | translate }}</ion-label>
         <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>

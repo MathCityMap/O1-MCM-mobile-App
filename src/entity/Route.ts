@@ -174,46 +174,35 @@ export class Route {
         return equipment;
     }
 
-    /**
-     *
-     * @param s Settings String
-     * @param val Entry Value
-     * @param k Translation Key
-     * @param translateService
-     */
-    concatSettingsEntry(s: string, val: string, k: string, translateService: TranslateService): string {
-        let translation = translateService.instant(k);
-        if (val === "true" || val === "1") {
-            val = translateService.instant('a_settings_active')
-        } else {
-            val = translateService.instant('a_settings_inactive')
-        }
-        let entry = translation + ": " + val;
-        if (s.indexOf(entry) == -1) {
-            if (s != "") {
-                s = s + ", ";
+    getSettingValue(key: string): boolean{
+        if(this.isSettingAvailable(key)){
+            let attr = this.getAttributes();
+            if(attr[key] === "true" || attr[key] === "1"){
+                return true;
             }
+            else return false;
         }
-        return s + entry;
+        else return null;
     }
 
-    getRouteSettings(translateService: TranslateService): string {
-        let settings = "";
-        let attr = this.getAttributes();
+    getSettingStringValue(key: string, translateService: TranslateService): string{
+        let value = this.getSettingValue(key);
+        if(value !== null){
+            return value ? translateService.instant('a_settings_active') : translateService.instant('a_settings_inactive');
+        }
+        else{
+            return "";
+        }
+    }
 
-        if (attr.gamification != null) {
-            settings = this.concatSettingsEntry(settings, attr.gamification, 'p_session_sorting_score', translateService)
-        }
-        if (attr.sampleSolution != null) {
-            settings = this.concatSettingsEntry(settings, attr.sampleSolution, 't_samplesolution', translateService);
-        }
-        if (attr.hints != null) {
-            settings = this.concatSettingsEntry(settings, attr.hints, 'a_hints', translateService);
-        }
-        if (attr.answerValidation != null) {
-            settings = this.concatSettingsEntry(settings, attr.answerValidation, 'p_r_validation', translateService);
-        }
-        return settings;
+    /*
+    Checks if setting with given key is available
+    @param key string
+    @return boolean
+     */
+    isSettingAvailable(key: string): boolean{
+        let attr = this.getAttributes();
+        return attr.hasOwnProperty(key);
     }
 
     getBoundingBoxLatLng(): LatLngBounds {
