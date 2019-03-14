@@ -72,6 +72,12 @@
                                 {{ "a_btn_check_answer" | translate }}
                             </button>
                         </ion-col>
+                        <ion-col *ngIf="!route.isAnswerValidationEnabled()">
+                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
+                                    (click)="completeTask()">
+                                {{ "a_task_complete" | translate }}
+                            </button>
+                        </ion-col>
                         <ion-col>
                             <button class="hint" ion-button icon-only clear (click)="showSolutionSample()"
                             *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled()">

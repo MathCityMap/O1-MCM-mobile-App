@@ -470,6 +470,17 @@ export class TaskDetail {
         }
     }
 
+    /*
+    This function is called when in trail settings the automatic validation of answers is disabled
+    It allows users to complete a task, when they think that they are finished and mark it accordingly so
+    In session mode where the users are force assigned a task, it allows to continue with the next task
+     */
+    async completeTask(){
+        this.taskDetails.score = this.maxScore;
+        this.score.score += this.taskDetails.score;
+        this.taskSolved("solved", [""], 0);
+    }
+
     showSolutionSample() {
         if (!this.taskDetails.solved && !this.taskDetails.solvedLow) {
             this.score.addFailedTask(this.task.id);
