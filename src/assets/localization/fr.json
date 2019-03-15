@@ -599,5 +599,11 @@
   "event_author_update_session": "Information de session mise à jour par l'auteur",
   "event_author_kick_user": "L'auteur a retiré un participant de la session",
   "event_session_leave": "est parti de la classe virtuelle",
-  "event_hint_closed": "Indice fermé"
+  "event_hint_closed": "Indice fermé",
+  "a_about_version": "Version",
+  "a_session_not_available_yet_text": "Vous ne pouvez pas rejoindre une classe avec plus de 30 minutes d'avance.",
+  "a_session_not_available_yet": "Non disponible",
+  "a_hints": "Indices",
+  "a_settings_inactive": "Inactifs",
+  "a_settings_active": "Actifs"
 }

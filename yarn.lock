@@ -1642,6 +1642,11 @@ cordova-plugin-advanced-http@1.6.1:
   resolved "https://registry.yarnpkg.com/cordova-plugin-advanced-http/-/cordova-plugin-advanced-http-1.6.1.tgz#770cf9b2090f3b3d44d05b2a270b17321d39cf93"
   integrity sha1-dwz5sgkPOz1E0FsqJwsXMh05z5M=
 
+cordova-plugin-app-version@~0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
+  integrity sha1-nbBgeGMzenEEiTAuX1CpBPFEm9s=
+
 cordova-plugin-compat@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-compat/-/cordova-plugin-compat-1.2.0.tgz#0bc65757276ebd920c012ce920e274177576373e"

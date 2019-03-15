@@ -618,5 +618,9 @@
   "a_hints": "Hints",
   "a_session_not_available_yet": "Not available",
   "a_session_not_available_yet_text": "Cannot join a digital classroom more than 30 minutes in advance.",
-  "a_about_version": "Version"
+  "a_about_version": "Version",
+  "a_search_trails": "Search by name, city or code",
+  "a_task_complete": "Complete",
+  "p_session_options_deleted_users": "Hide deleted users",
+  "p_session_restart_tracker": "Restart tracker"
 }
