@@ -4,8 +4,8 @@ page-tasks-map {
         &.ranking{
             padding: 14px 16px 10px;
             bottom: auto;
-            position: fixed;
-            top: 56px;
+            position: absolute;
+            top: 0px;
             left:60px;
             right:60px;
             width: calc( 100% - 120px) ;
@@ -30,21 +30,6 @@ page-tasks-map {
         span {
             position: absolute;
             width: 24px;
-        }
-    }
-}
-.platform-ios{
-    page-tasks-map .map .detail-box {
-        &.ranking{
-            top: 74px;
-        }
-    }
-}
-.md,
-.platform-android{
-    page-tasks-map .map .detail-box {
-        &.ranking{
-            top: 56px;
         }
     }
 }
