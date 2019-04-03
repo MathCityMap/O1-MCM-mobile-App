@@ -100,6 +100,10 @@ export class MCMIconModal{
         }
     }
 
+    ionViewDidEnter() {
+        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+    }
+
     dismiss(backToMap?: boolean){
         if(backToMap){
             this.viewCtrl.dismiss({showMap: true});

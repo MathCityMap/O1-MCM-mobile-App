@@ -225,6 +225,7 @@ export class TaskDetail {
         if(this.task.solutionType == 'range' || this.task.solutionType == 'value'){
             this.subscribeCKEvents();
         }
+        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
     }
 
     async ionViewWillLeave(){
