@@ -77,6 +77,8 @@ export class Route {
     */
 
     tasks: Task[];
+    narrativeEnabled: boolean;
+    narrativeStrings = [];
 
     async getTasks(): Promise<Task[]> {
         if (this.tasks) {

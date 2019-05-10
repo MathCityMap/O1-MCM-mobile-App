@@ -144,7 +144,8 @@ export class DB_Updater {
     public async downloadRouteTasksData(route: Route, lang_code: string){
         let user_id = 0;
         let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-        await this.insertJSONinSQLiteDB(await this.helper.invokeApi('downloadTrail', postparams), DBC.DB_TASK);
+        let response = await this.helper.invokeApi('downloadTrail', postparams);
+        await this.insertJSONinSQLiteDB(response.tasks, DBC.DB_TASK);
         // refresh the tasks
         route.tasks = await (await OrmService.INSTANCE.findRouteById(route.id)).getTasks();
     }
@@ -152,11 +153,21 @@ export class DB_Updater {
     /*
      Gets table data updates for a given route via API call "updateTrail"
      */
-    public async updateRouteTasksData(route_id: number, lang_code: string){
+    public async updateRouteTasksData(route: Route, lang_code: string){
         if(this.helper.isOnline){
             let user_id = 0;
-            let postparams = "&route_id=" + route_id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('updateTrail', postparams), DBC.DB_TASK);
+            let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
+            let response = await this.helper.invokeApi('updateTrail', postparams);
+            await this.insertJSONinSQLiteDB(response.tasks, DBC.DB_TASK);
+
+            // if there are narrative strings, the route has narrative enabled
+            if (response.strings != null) {
+                route.narrativeEnabled = true;
+                route.narrativeStrings = response.strings;
+            }
+            else {
+                route.narrativeEnabled = false;
+            }
         }
     }
 }
