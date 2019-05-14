@@ -104,13 +104,20 @@
         <div class="card evaluation" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed)"
         [ngClass]="{'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }">
             <div class="head">
-                <ion-label *ngIf="taskDetails?.solved || taskDetails?.solvedLow" text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>
-                <ion-label *ngIf="taskDetails?.failed" text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>
+                <div *ngIf="taskDetails?.solved || taskDetails?.solvedLow">
+                    <ion-label *ngIf="route.isNarrativeEnabled()" text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>
+                    <ion-label *ngIf="!route.isNarrativeEnabled()" text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>
+                </div>
+                <div *ngIf="taskDetails?.failed">
+                    <ion-label *ngIf="route.isNarrativeEnabled()" text-wrap>{{ route.getNarrativeString("good_luck_next_time") }}</ion-label>
+                    <ion-label *ngIf="!route.isNarrativeEnabled()" text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>
+                </div>
                 <span class="tag points" *ngIf="!gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}} MP</span>
             </div>
         </div>
 	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">
-		    <ion-label>{{ "a_did_you_know" | translate }}</ion-label>
+            <ion-label *ngIf="route.isNarrativeEnabled()">{{ route.getNarrativeString("a_did_you_know") }}</ion-label>
+            <ion-label *ngIf="!route.isNarrativeEnabled()">{{ "a_did_you_know" | translate }}</ion-label>
 		    <p *ngIf="task">
 			    {{task.getSideFactsText()}}
 		    </p>

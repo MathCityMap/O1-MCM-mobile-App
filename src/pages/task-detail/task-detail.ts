@@ -136,6 +136,7 @@ export class TaskDetail {
         console.log('TasksMap ionViewWillEnter()');
         this.routeId = this.navParams.get('routeId');
         this.route = await this.ormService.findRouteById(this.routeId);
+        this.route.setNarrativeStrings();
         this.taskId = this.navParams.get('taskId');
         this.task = await this.ormService.findTaskById(this.taskId);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
@@ -541,7 +542,11 @@ export class TaskDetail {
     }
 
     confirmSkippingTask() {
-        this.modalsService.showDialog('a_skipTask', 'a_skipTask_confirm',
+        let skipText = 'a_skipTask_confirm';
+        if (this.route.isNarrativeEnabled()) {
+            skipText = this.route.getNarrativeString(skipText);
+        }
+        this.modalsService.showDialog('a_skipTask', skipText,
             'no', () => {
             },
             'yes', async () => {
@@ -636,6 +641,10 @@ export class TaskDetail {
                         that.closeDetails(false);
                     });
                 }};
+            if (this.route.isNarrativeEnabled()) {
+                title = this.route.getNarrativeString(title);
+                message = this.route.getNarrativeString(message);
+            }
             let modal = this.modalCtrl.create(MCMIconModal, {
                 title: title,
                 message: message,
@@ -754,7 +763,13 @@ export class TaskDetail {
             if (this.taskDetails.skipped) {
                 this.taskDetails.newTries++;
             }
+            let title = "a_alert_false_answer_title";
+            if (this.route.isNarrativeEnabled()) {
+                title = this.route.getNarrativeString(title);
+                message = this.route.getNarrativeString(message);
+              }
             let modal = this.modalCtrl.create(MCMIconModal, {
+                title: title,
                 message: message,
                 solution: solution,
                 modalType: MCMModalType.error,

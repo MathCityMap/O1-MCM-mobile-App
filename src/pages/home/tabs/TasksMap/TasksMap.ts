@@ -145,9 +145,15 @@ export class TasksMap implements OnInit, OnDestroy {
 
   showTrailCompletedAlert(){
       let that = this;
+      let title = 'a_alert_congrats';
+      let message = 'a_alert_congrats_msg';
+      if (this.route.isNarrativeEnabled()) {
+        title = this.route.getNarrativeString(title);
+        message = this.route.getNarrativeString(message);
+      }
       let modal = this.modalCtrl.create(MCMIconModal,  {
-          title: 'a_alert_congrats',
-          message: 'a_alert_congrats_msg',
+          title: title,
+          message: message,
           modalType: MCMModalType.solved,
           param: {TITLE: this.route.title},
           buttons: [
@@ -171,6 +177,7 @@ export class TasksMap implements OnInit, OnDestroy {
     this.routeId = this.navParams.get('routeId');
     console.log(this.routeId);
     this.route = await this.ormService.findRouteById(this.routeId);
+    this.route.setNarrativeStrings();
     this.gamificationIsDisabled = this.route.isGamificationDisabled();
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);

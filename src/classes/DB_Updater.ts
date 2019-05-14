@@ -148,6 +148,7 @@ export class DB_Updater {
         await this.insertJSONinSQLiteDB(response.tasks, DBC.DB_TASK);
         // refresh the tasks
         route.tasks = await (await OrmService.INSTANCE.findRouteById(route.id)).getTasks();
+        // TODO: save narrative Strings
     }
 
     /*
@@ -159,15 +160,7 @@ export class DB_Updater {
             let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
             let response = await this.helper.invokeApi('updateTrail', postparams);
             await this.insertJSONinSQLiteDB(response.tasks, DBC.DB_TASK);
-
-            // if there are narrative strings, the route has narrative enabled
-            if (response.strings != null) {
-                route.narrativeEnabled = true;
-                route.narrativeStrings = response.strings;
-            }
-            else {
-                route.narrativeEnabled = false;
-            }
+            // TODO: save narrative Strings
         }
     }
 }

@@ -71,14 +71,35 @@ export class Route {
     @Column()
     attr: string;
 
+    // TODO: change table's schema
+    /*@Column("simple-json")
+    narrativeStrings: { welcome: string, welcomeMessage: string, ending: string, aboutObject: string,
+        wellDone: string, notPerfect: string, firstGo: string, wrongAnswer: string, tryAgain: string, takeHint: string,
+        skipTask: string, congratulations: string, goodLuck: string };*/
+
     /*
     @Column({name: 'lang_code'})
     langCode: string;
     */
 
     tasks: Task[];
-    narrativeEnabled: boolean;
+
     narrativeStrings = [];
+    matchingStrings = {
+        "a_alert_welcome": "welcome",
+        "a_alert_welcome_msg" : "welcomeMessage",
+        "a_alert_congrats_msg" : "ending",
+        "a_did_you_know" : "aboutObject",
+        "a_alert_right_answer_title" : "wellDone",
+        "a_alert_right_answer_title_low" : "notPerfect",
+        "a_alert_right_answer_1" : "firstGo",
+        "a_alert_false_answer_title" : "wrongAnswer",
+        "a_alert_false_answer_1" : "tryAgain",
+        "a_alert_false_answer_2" : "takeHint",
+        "a_skipTask_confirm" : "skipTask",
+        "a_alert_congrats" : "congratulations",
+        "good_luck_next_time" : "goodLuck"
+    };
 
     async getTasks(): Promise<Task[]> {
         if (this.tasks) {
@@ -274,5 +295,24 @@ export class Route {
         }
     }
 
+    isNarrativeEnabled() {
+        if (this.getAttributes().narrativeName) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    async setNarrativeStrings() {
+        let postparams = "&route_id=" + this.id;
+        this.narrativeStrings = await Helper.INSTANCE.invokeApi('getNarrativeStrings', postparams);
+    }
+
+    getNarrativeString($mcmKey) {
+        let key = this.matchingStrings[$mcmKey];
+        let newString = this.narrativeStrings[key];
+
+        return newString? newString : $mcmKey;
+    }
 
 }
