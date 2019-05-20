@@ -124,6 +124,7 @@ export class RoutesListPage implements OnDestroy {
                 message: 'a_session_return_text',
                 type: 'text',
                 modalType: MCMModalType.hint,
+                narrativeEnabled: route.isNarrativeEnabled(),
                 buttons: [
                     {
                         title: 'a_session_return_stay',

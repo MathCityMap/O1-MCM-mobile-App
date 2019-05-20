@@ -144,11 +144,9 @@ export class DB_Updater {
     public async downloadRouteTasksData(route: Route, lang_code: string){
         let user_id = 0;
         let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-        let response = await this.helper.invokeApi('downloadTrail', postparams);
-        await this.insertJSONinSQLiteDB(response.tasks, DBC.DB_TASK);
+        await this.insertJSONinSQLiteDB(await this.helper.invokeApi('downloadTrail', postparams), DBC.DB_TASK);
         // refresh the tasks
         route.tasks = await (await OrmService.INSTANCE.findRouteById(route.id)).getTasks();
-        // TODO: save narrative Strings
     }
 
     /*
@@ -158,9 +156,7 @@ export class DB_Updater {
         if(this.helper.isOnline){
             let user_id = 0;
             let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-            let response = await this.helper.invokeApi('updateTrail', postparams);
-            await this.insertJSONinSQLiteDB(response.tasks, DBC.DB_TASK);
-            // TODO: save narrative Strings
+            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('updateTrail', postparams), DBC.DB_TASK);
         }
     }
 }

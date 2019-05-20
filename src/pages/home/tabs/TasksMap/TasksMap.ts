@@ -156,6 +156,7 @@ export class TasksMap implements OnInit, OnDestroy {
           message: message,
           modalType: MCMModalType.solved,
           param: {TITLE: this.route.title},
+          narrativeEnabled: this.route.isNarrativeEnabled(),
           buttons: [
               {
                   title: 'a_alert_close',
@@ -177,7 +178,6 @@ export class TasksMap implements OnInit, OnDestroy {
     this.routeId = this.navParams.get('routeId');
     console.log(this.routeId);
     this.route = await this.ormService.findRouteById(this.routeId);
-    this.route.setNarrativeStrings();
     this.gamificationIsDisabled = this.route.isGamificationDisabled();
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
@@ -718,6 +718,7 @@ export class TasksMap implements OnInit, OnDestroy {
           modalType: MCMModalType.hint,
           type: 'text',
           gamificationEnabled: false,
+          narrativeEnabled: this.route.isNarrativeEnabled(),
           buttons: [
               {
                   title: 'a_g_ok',

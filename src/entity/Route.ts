@@ -303,12 +303,27 @@ export class Route {
         }
     }
 
-    async setNarrativeStrings() {
-        let postparams = "&route_id=" + this.id;
-        this.narrativeStrings = await Helper.INSTANCE.invokeApi('getNarrativeStrings', postparams);
+    setNarrativeStrings() {
+        this.narrativeStrings = JSON.parse(this.getAttributes().narrativeStrings);
+        if (this.narrativeStrings === undefined) {
+            this.narrativeStrings = [];
+        }
+    }
+
+    hasNarrativeString($mcmKey) {
+        if(this.narrativeStrings == null || this.narrativeStrings.length == 0) {
+            this.setNarrativeStrings();
+        }
+        let key = this.matchingStrings[$mcmKey];
+        let newString = this.narrativeStrings[key];
+
+        return newString? true : false;
     }
 
     getNarrativeString($mcmKey) {
+        if(this.narrativeStrings == null || this.narrativeStrings.length == 0) {
+            this.setNarrativeStrings();
+        }
         let key = this.matchingStrings[$mcmKey];
         let newString = this.narrativeStrings[key];
 

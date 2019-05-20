@@ -136,7 +136,6 @@ export class TaskDetail {
         console.log('TasksMap ionViewWillEnter()');
         this.routeId = this.navParams.get('routeId');
         this.route = await this.ormService.findRouteById(this.routeId);
-        this.route.setNarrativeStrings();
         this.taskId = this.navParams.get('taskId');
         this.task = await this.ormService.findTaskById(this.taskId);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
@@ -331,6 +330,7 @@ export class TaskDetail {
             type: type,
             message: message,
             modalType: MCMModalType.hint,
+            narrativeEnabled: this.route.isNarrativeEnabled(),
             buttons: [
                 {
                     title: 'a_alert_close',
@@ -506,6 +506,7 @@ export class TaskDetail {
             imageUrl: this.task.getSolutionSampleImgSrc(),
             messages: messages,
             modalType: MCMModalType.sampleSolution,
+            narrativeEnabled: this.route.isNarrativeEnabled(),
             buttons: [
                 {
                     title: 'a_alert_close',
@@ -651,6 +652,7 @@ export class TaskDetail {
                 solution: solution,
                 modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
                 gamificationEnabled: !this.gamificationIsDisabled,
+                narrativeEnabled: this.route.isNarrativeEnabled(),
                 score: "+" + this.taskDetails.score,
                 buttons: this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask]
             }, {showBackdrop: true, enableBackdropDismiss: true});
@@ -774,6 +776,7 @@ export class TaskDetail {
                 solution: solution,
                 modalType: MCMModalType.error,
                 gamificationEnabled: !this.gamificationIsDisabled,
+                narrativeEnabled: this.route.isNarrativeEnabled(),
                 score: this.taskDetails.tries > 1 ? '-10' : '0',
                 buttons: buttons
             }, {
