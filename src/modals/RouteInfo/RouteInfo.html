@@ -82,6 +82,8 @@
             <ion-row>{{ 't_samplesolution' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>
             <ion-row>{{ 'a_hints' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>
             <ion-row>{{ 'p_r_validation' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>
+            <ion-row *ngIf="route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_' + route.getNarrativeName().toLowerCase() | translate }}</ion-row>
+            <ion-row *ngIf="!route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_none' | translate }}</ion-row>
         </p>
 
         <ion-label>{{ 'a_r_equip' | translate }}</ion-label>

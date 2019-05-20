@@ -263,6 +263,15 @@ export class Route {
         return Helper.safeJsonDecode(this.attr);
     }
 
+    getNarrativeName(): string {
+        let name = this.getAttributes().narrativeName;
+        if (name) {
+            return name;
+        } else {
+            return "";
+        }
+    }
+
     isGamificationDisabled() {
         if (this.getAttributes().gamification) {
             return this.getAttributes().gamification === "false";
