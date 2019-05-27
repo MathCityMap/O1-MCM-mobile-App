@@ -107,6 +107,12 @@ $global-large-padding:  40px;
 $fab-size: 40px;
 $fab-list-button-background-color: color($colors, primary-darker);
 
+//$toolbar-background: color($colors, primary);
+//$toolbar-ios-background: color($colors, primary);
+
+
+
+
 
 // Own Mixins       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
 //
@@ -139,4 +145,83 @@ $fab-list-button-background-color: color($colors, primary-darker);
   -moz-transform: $property;
   -ms-transform: $property;
   transform: $property;
+}
+
+
+
+// Pirate Theming       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
+// --------------------------------------------------
+
+    $c-primary:        #AA2000;
+    $c-secondary:      #B7702E;
+    $c-secondary-light:      #E2AC64;
+    $c-yellow:         #FFC033;
+    $c-success:        #33CC00;
+    $c-danger:         #333333;
+    $c-light:          #ffffff;
+
+    $c-text:          $c-danger;
+
+    $image-path: "../assets/images/";
+
+.pirates {
+
+    // Main UI (Navigation, Form)
+
+    ion-header{
+        background: $c-secondary;
+        background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: cover;
+    }
+    ion-toolbar {
+        .toolbar-background {
+            background: $c-secondary;
+            background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+        }
+    }
+
+    button{
+        &.button{
+            &:not(.button-clear){
+                background-color: $c-primary;
+            }
+        }
+        &[color="primary"]{
+            background-color: $c-primary;
+        }
+        &[color="danger"]{
+            background-color: $c-danger;
+        }
+
+    }
+
+    // Map
+
+    .map{
+        .detail-box{
+            padding-bottom: 16px;
+            padding-top: 20px;
+            box-shadow: unset;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+            background-color: unset;
+            background-image: url("#{$image-path}pirates/texture-paper-s.svg");
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: cover;
+            .image-container{
+                border: none;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
+            }
+            .title{
+                & > span{
+                    color: $c-text;
+                }
+            }
+        }
+    }
 }
