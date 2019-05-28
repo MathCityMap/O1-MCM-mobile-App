@@ -343,7 +343,7 @@ $searchbar-md-input-box-shadow: none;
                             color: $c-light;
                         }
                     }
-                    padding: $global-base-padding*1.5 $global-large-padding*0.6 $global-base-padding;
+                    padding: $global-base-padding*1.5 $global-large-padding*0.6 $global-large-padding*0.6;
                     border-radius: 0;
                     $rating: perfect good failed;
 
@@ -352,8 +352,9 @@ $searchbar-md-input-box-shadow: none;
                             background: url("#{$image-path}pirates/texture-evaluation-#{$item}.svg");
                             background-repeat: no-repeat;
                             background-position: bottom;
-                            background-size: cover;
+                            background-size: 100%;
                             box-shadow: none;
+                            margin-top: -45px;
                         }
                     }
                 }

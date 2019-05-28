@@ -36,15 +36,15 @@
 			
 				<image style="overflow:visible;opacity:0.2;enable-background:new    ;" width="647" height="196" xlink:href="F7D710835C23DAD8.png"  transform="matrix(1 0 0 1 -21.8 -21.59)">
 			</image>
-			<path class="st6" d="M24,0h555.8c13.3,0,24,10.7,24,24v104.9c0,13.3-10.7,24-24,24H24c-13.3,0-24-10.7-24-24V24
-				C0,10.7,10.7,0,24,0z"/>
+			<path class="st6" d="M24-24h555.8c13.3,0,24,10.7,24,24v128.9c0,13.3-10.7,24-24,24H24c-13.3,0-24-10.7-24-24V0
+				C0-13.3,10.7-24,24-24z"/>
 		</g>
 		<g id="_Gruppe_2">
 			
-				<image style="overflow:visible;opacity:0.2;enable-background:new    ;" width="648" height="197" xlink:href="F7D710835C23DAD9.png"  transform="matrix(1 0 0 1 -21.8 -21.59)">
+				<image style="overflow:visible;opacity:0.2;enable-background:new    ;" width="648" height="197" xlink:href="F7D710835C23DAD9.png"  transform="matrix(1 0 0 1.0568 -21.8 -30.7767)">
 			</image>
-			<path class="st7" d="M24,0h555.8c13.3,0,24,10.7,24,24v104.9c0,13.3-10.7,24-24,24H24c-13.3,0-24-10.7-24-24V24
-				C0,10.7,10.7,0,24,0z"/>
+			<path class="st7" d="M24-24h555.8c13.3,0,24,10.7,24,24v128.9c0,13.3-10.7,24-24,24H24c-13.3,0-24-10.7-24-24V0
+				C0-13.3,10.7-24,24-24z"/>
 		</g>
 	</g>
 </g>
