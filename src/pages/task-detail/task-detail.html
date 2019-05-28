@@ -104,7 +104,7 @@
         </div>
 
        <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->
-        <div class="card evaluation good" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed)"
+        <div class="card evaluation" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed)"
         [ngClass]="{'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }">
             <div class="head">
                 <div *ngIf="taskDetails?.solved || taskDetails?.solvedLow">
