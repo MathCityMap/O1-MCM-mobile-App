@@ -107,8 +107,10 @@ $global-large-padding:  40px;
 $fab-size: 40px;
 $fab-list-button-background-color: color($colors, primary-darker);
 
-//$toolbar-background: color($colors, primary);
-//$toolbar-ios-background: color($colors, primary);
+$toolbar-background: color($colors, light-grey);
+$toolbar-ios-background: color($colors, light-grey);
+$searchbar-ios-toolbar-input-background: white;
+$searchbar-md-input-box-shadow: none;
 
 
 
@@ -149,7 +151,7 @@ $fab-list-button-background-color: color($colors, primary-darker);
 
 
 
-// Pirate Theming       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
+// Pirate Theming       L( Ø -´)⊃━|-----
 // --------------------------------------------------
 
     $c-primary:        #AA2000;
