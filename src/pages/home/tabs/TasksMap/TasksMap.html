@@ -51,7 +51,7 @@
                     <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">
                         <ion-icon name="icon-restart"></ion-icon>
                     </button>
-                    <button [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">
+                    <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">
                         <ion-icon name="icon-starting-point"></ion-icon>
                     </button>
                     <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">
@@ -60,7 +60,7 @@
                     <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">
                         <ion-icon name="log-out"></ion-icon>
                     </button>
-                    <button ion-fab (click)="navigateToChat()" *ngIf="sessionInfo != null">
+                    <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">
                         <ion-icon name="chatbubbles"></ion-icon>
                     </button>
                     <span [ngClass]="{'badge-no-show': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>

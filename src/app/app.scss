@@ -347,8 +347,18 @@ input{
     }
 }
 
-//MAP
+// MAP
+
 .map{
+    .leaflet-top.leaflet-left{
+        bottom: 0;
+        top: unset;
+        .leaflet-bar{
+            &.leaflet-control-zoom{
+                margin: 0 0px 26px 10px;
+            }
+        }
+    }
     .map-view{
         width: 100%;
         height: 100%;
@@ -548,7 +558,9 @@ img{
     }
 }
 .dotted-border-top{
-    border-top: 2px dotted color($colors, light-grey)!important;
+    &:not(:first-of-type){
+        border-top: 2px dotted color($colors, light-grey)!important;
+    }
 }
 .dotted-border-left{
     border-left: 2px dotted color($colors, light-grey);

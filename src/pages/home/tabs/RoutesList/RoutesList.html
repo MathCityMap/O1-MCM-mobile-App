@@ -3,34 +3,30 @@
         <ion-refresher-content refreshingText="{{'a_toast_update_start' | translate}}"></ion-refresher-content>
     </ion-refresher>
 
-    <ion-fab right bottom>
-        <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
-    </ion-fab>
-    <!-- search -->
-    <div class="dotted-border-bottom">
-        <ion-toolbar>
-            <ion-searchbar type="text" [(ngModel)]="routesListSearch" placeholder="{{ 'a_search_trails' | translate }}" debounce="500"></ion-searchbar>
-        </ion-toolbar>
-    </div>
-    <!-- search end-->
-  <ion-list lazy-load-images image-size="s">
-    <div tappable class="detail-box dotted-border-bottom" *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id">
-        <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}">
-        	<img [attr.data-async-src]="item.getImageURL()" />
-    	</div>
-        <div class="text-container">
-            <div class="segmented-box">
-                <div class="title segement">
-                    <span (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}} | {{item.distance | distance: 'm'}}</span>
-                    <h2 class="item-text-wrap" (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>
-                    <div>
-                        <span [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_from_grade" | translate }}</span>
-                        <span *ngIf="item.grade">{{item.grade}}</span>
-                        <span *ngIf="!item.grade">{{ "no_data" | translate }}</span>
+    <!-- Search Bar-->
+    <ion-toolbar>
+        <ion-searchbar type="text" [(ngModel)]="routesListSearch" placeholder="{{ 'a_search_trails' | translate }}" debounce="500"></ion-searchbar>
+    </ion-toolbar>
+
+    <!--Routes Items-->
+    <ion-list lazy-load-images image-size="s">
+        <div tappable class="detail-box dotted-border-top" *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id">
+            <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}">
+                <img [attr.data-async-src]="item.getImageURL()" />
+            </div>
+            <div class="text-container">
+                <div class="segmented-box">
+                    <div class="title segement">
+                        <span (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}} | {{item.distance | distance: 'm'}}</span>
+                        <h2 class="item-text-wrap" (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>
+                        <div>
+                            <span [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_from_grade" | translate }}</span>
+                            <span *ngIf="item.grade">{{item.grade}}</span>
+                            <span *ngIf="!item.grade">{{ "no_data" | translate }}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="segement buttons info">
-                    <!--<div class="button-container text-right">-->
+                    <div class="segement buttons info">
+                        <!--<div class="button-container text-right">-->
                         <button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">
                             <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
                         </button>
@@ -41,48 +37,52 @@
                         <button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">
                             <img class="danger round" src="./assets/icons/icon_delete.svg"/>
                         </button>
-                    <!--</div>-->
+                        <!--</div>-->
+                    </div>
                 </div>
-            </div>
-          <!--<div class="segmented-box">-->
-            <!--&lt;!&ndash;<div class="segement dotted-border-right distance">&ndash;&gt;-->
+                <!--<div class="segmented-box">-->
+                <!--&lt;!&ndash;<div class="segement dotted-border-right distance">&ndash;&gt;-->
                 <!--&lt;!&ndash;<ion-label>{{ "a_t_distance" | translate }}</ion-label>&ndash;&gt;-->
                 <!--&lt;!&ndash;<span>{{item.distance | distance: 'm'}}</span>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--<div class="segement grade">-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<div class="segement grade">-->
                 <!--&lt;!&ndash;<ion-label [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_t_grade" | translate }} <span *ngIf="item.grade">{{item.grade}}</span>&ndash;&gt;-->
                 <!--&lt;!&ndash;<span *ngIf="!item.grade">{{ "no_data" | translate }}</span></ion-label>&ndash;&gt;-->
                 <!--&lt;!&ndash;<span *ngIf="item.grade">{{item.grade}}</span>&ndash;&gt;-->
                 <!--&lt;!&ndash;<span *ngIf="!item.grade">{{ "no_data" | translate }}</span>&ndash;&gt;-->
-            <!--</div>-->
-            <!--<div class="segement buttons">-->
+                <!--</div>-->
+                <!--<div class="segement buttons">-->
                 <!--<div class="button-container text-right">-->
-                    <!--&lt;!&ndash;<button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<img class="primary round" src="./assets/icons/icon_route-info.svg"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">&ndash;&gt;-->
+                <!--&lt;!&ndash;<img class="primary round" src="./assets/icons/icon_route-info.svg"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</button>&ndash;&gt;-->
 
-                    <!--<button ion-button icon-only clear class="dot" *ngIf="!item.downloaded" (click)="modalsService.doDownload(item)">-->
-                        <!--<img class="primary round" src="./assets/icons/icon_route-download.svg"/>-->
-                    <!--</button>-->
+                <!--<button ion-button icon-only clear class="dot" *ngIf="!item.downloaded" (click)="modalsService.doDownload(item)">-->
+                <!--<img class="primary round" src="./assets/icons/icon_route-download.svg"/>-->
+                <!--</button>-->
 
-                    <!--<button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">-->
-                        <!--<img class="danger round" src="./assets/icons/icon_delete.svg"/>-->
-                    <!--</button>-->
+                <!--<button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">-->
+                <!--<img class="danger round" src="./assets/icons/icon_delete.svg"/>-->
+                <!--</button>-->
                 <!--</div>-->
 
-            <!--</div>-->
+                <!--</div>-->
 
-          <!--</div>-->
+                <!--</div>-->
+            </div>
+
         </div>
-
-      </div>
-      <div tappable class="detail-box dotted-border-bottom" *ngIf="getSearchResults() == 0">
-          <h2 class="item-text-wrap">{{ "p_review_no_elements" | translate }}</h2>
-      </div>
-  </ion-list>
+        <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
+            <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
+        </div>
+    </ion-list>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="35%">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
+
+    <ion-fab right bottom>
+        <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+    </ion-fab>
 
 </ion-content>

@@ -14,16 +14,27 @@ import { LanguageService } from '../../services/language-service';
 export class SettingsPage {
     language: string;
     availableLanguages;
+    translatedLangs;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService,
                 private spinner: SpinnerDialog, private ormService: OrmService, private modalsService: ModalsService,
                 private languageService: LanguageService) {
         this.availableLanguages = languageService.getAvailableLanguages();
+        this.translatedLangs = [];
     }
 
     async ionViewDidLoad() {
         console.log('ionViewDidLoad SettingsPage');
         this.language = await this.languageService.getLanguage();
+
+        for (let lang of this.availableLanguages){
+            this.translatedLangs.push({value: await this.translateService.instant('a_language_' + lang), id: lang})
+        }
+        this.translatedLangs.sort(function(a, b){
+            if(a.value < b.value) { return -1; }
+            if(a.value > b.value) { return 1; }
+            return 0;})
+
     }
 
     onChangeLanguage(language) {

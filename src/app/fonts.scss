@@ -77,3 +77,16 @@ input{
 .text-left{text-align:left}
 .text-center{text-align:center}
 .text-right{text-align:right}
+
+
+.pirates {
+    h1{
+        color: $c-primary;
+    }
+    h2{
+        color: $c-primary;
+    }
+    p{
+        color: $c-danger;
+    }
+}
