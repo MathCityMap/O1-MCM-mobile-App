@@ -202,6 +202,13 @@ input{
 // =============================================
 // ----------- INFO CARDS LIST & MAP -----------
 
+.score{
+    &:after{
+        content: ' MP';
+        vertical-align: baseline;
+    }
+}
+
 .detail-box{
     position: relative;
     background-color: #ffffff;
@@ -446,7 +453,6 @@ input{
             }
         }
     }
-
 }
 
 

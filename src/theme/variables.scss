@@ -159,6 +159,7 @@ $searchbar-md-input-box-shadow: none;
     $c-secondary-light:      #E2AC64;
     $c-yellow:         #FFC033;
     $c-success:        #33CC00;
+    $c-blue:           #32A4DC;
     $c-danger:         #333333;
     $c-light:          #ffffff;
 
@@ -166,7 +167,24 @@ $searchbar-md-input-box-shadow: none;
 
     $image-path: "../assets/images/";
 
+@mixin shadow-medium() {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+@mixin shadow-filter-medium() {
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+}
+@mixin shadow-filter-hard() {
+    filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
+}
+
+
+
 .pirates {
+
+    .label{
+        color: $c-text;
+    }
+
 
     // Main UI (Navigation, Form)
 
@@ -188,40 +206,165 @@ $searchbar-md-input-box-shadow: none;
     }
 
     button{
-        &.button{
+        &.button, &.fab{
             &:not(.button-clear){
                 background-color: $c-primary;
             }
+            &[color="primary"]{
+                background-color: $c-primary;
+                &[disabled]{
+                    background-color: inherit;
+                }
+            }
+            &[color="danger"]{
+                background-color: $c-danger;
+            }
         }
-        &[color="primary"]{
-            background-color: $c-primary;
-        }
-        &[color="danger"]{
-            background-color: $c-danger;
-        }
-
     }
 
     // Map
 
-    .map{
+    page-tasks-map{
         .detail-box{
-            padding-bottom: 16px;
-            padding-top: 20px;
-            box-shadow: unset;
-            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
-            background-color: unset;
-            background-image: url("#{$image-path}pirates/texture-paper-s.svg");
-            background-repeat: no-repeat;
-            background-position: top;
-            background-size: cover;
-            .image-container{
-                border: none;
-                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) inset;
+            &#details{
+                padding-bottom: 16px;
+                padding-top: 20px;
+                box-shadow: unset;
+                filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+                background-color: unset;
+                background-image: url("#{$image-path}pirates/texture-paper-s.svg");
+                background-repeat: no-repeat;
+                background-position: top;
+                background-size: cover;
+                .image-container{
+                    border: none;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8) inset;
+                    //filter: grayscale(0.5) sepia(0.5);
+                }
+                .title{
+                    & > span{
+                        color: $c-text;
+                    }
+                }
             }
-            .title{
-                & > span{
-                    color: $c-text;
+            &#ranking {
+                @include shadow-medium;
+                background-color: $c-secondary-light;
+                background-image: url("#{$image-path}pirates/texture-wood-light.svg");
+                background-repeat: no-repeat;
+                background-position: bottom;
+                background-size: cover;
+                .row{
+                    @include shadow-filter-hard();
+                }
+                .col {
+                    ion-label{
+                        color: $c-light;
+                    }
+                }
+            }
+        }
+    }
+
+    .score{
+        padding: 0;
+        &:after{
+            content: url("#{$image-path}pirates/unit-score.svg");
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 6px;
+            height: 100%;
+            @include shadow-filter-hard();
+        }
+    }
+
+    // Task
+
+    page-task-detail{
+        .transition {
+            background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
+        }
+        .task-content{
+            background: url("#{$image-path}pirates/texture-water.svg"), linear-gradient(to bottom, rgba(50, 164, 220, 0) 50px, rgba(50, 164, 220, 1) 51px);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+            .card{
+                .head{
+                    .score{
+                        background-color: unset;
+                        color: $c-text;
+                        border: none;
+                        box-shadow: none;
+                        padding: 0;
+                        &:after {
+                            content: url("#{$image-path}pirates/unit-score-l.svg");
+                            vertical-align: top;
+                        }
+                    }
+                }
+                &.task{
+                    &:before{
+                        content: url("#{$image-path}pirates/texture-paper-l-start.svg");
+                        position: absolute;
+                        left: 0;
+                        top: -30px;
+                        display: block;
+                        width: 100%;
+                    }
+                    @include shadow-filter-medium;
+                    box-shadow: unset;
+                    background-image: url("#{$image-path}pirates/texture-paper-l.svg");
+                    background-repeat: no-repeat;
+                    background-position: bottom;
+                    background-size: 100% 100%;
+                    background-color: unset;
+                    padding: 30px 30px 40px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    margin-top: -1px;
+                    .answer{
+                        .item{
+                            background-color: unset;
+                            .item-inner{
+                                border-color: #000;
+                            }
+                        }
+                    }
+                }
+                .on-the-edge-container{
+                    bottom: -10px;
+                }
+
+
+                &.evaluation{
+                    .head{
+                        .score{
+                            color: $c-light;
+                        }
+                    }
+                    padding: $global-base-padding*1.5 $global-large-padding*0.6 $global-base-padding;
+                    border-radius: 0;
+                    $rating: perfect good failed;
+
+                    @each $item in $rating {
+                        &[class*="#{$item}"] {
+                            background: url("#{$image-path}pirates/texture-evaluation-#{$item}.svg");
+                            background-repeat: no-repeat;
+                            background-position: bottom;
+                            background-size: cover;
+                            box-shadow: none;
+                        }
+                    }
+                }
+
+
+                &.secondary {
+                    background-color: unset;
+                    border: 2px dashed $c-light;
+                    p, .label {
+                        color: $c-light;
+                    }
                 }
             }
         }

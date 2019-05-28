@@ -65,6 +65,9 @@ page-task-detail {
             ion-label {
                 margin: 0;
             }
+            & > *:not(.tag){
+                flex: 1;
+            }
             .tag {
                 font-family: 'NunitoBold', Arial, sans-serif;
                 border-width: 1px;
@@ -75,7 +78,7 @@ page-task-detail {
                 padding: 0 12px;
                 line-height: 2;
                 color: #B2B2B2;
-                &.points {
+                &.score {
                     border-style: solid;
                 }
                 &.secondary {
@@ -119,28 +122,28 @@ page-task-detail {
                 letter-spacing: 1px;
                 padding-right: 5px;
             }
-            .points {
+            .score {
                 font-family: 'NunitoExtrabold', Arial, sans-serif;
                 background-color: #ffffff;
                 box-shadow: 0 0 1px 1px #ffffff;
             }
             &.perfect {
                 background-color: color($colors, success);
-                .points {
+                .score {
                     color: color($colors, success);
                     border-color: color($colors, success);
                 }
             }
             &.good {
                 background-color: color($colors, secondary);
-                .points {
+                .score {
                     color: color($colors, secondary);
                     border-color: color($colors, secondary);
                 }
             }
             &.failed {
                 background-color: color($colors, error);
-                .points {
+                .score {
                     color: color($colors, error);
                     border-color: color($colors, error);
                 }

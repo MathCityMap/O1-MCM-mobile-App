@@ -1,14 +1,14 @@
 page-tasks-map {
     .map .detail-box {
         bottom: 0;
-        &.ranking{
+        &#ranking{
             padding: 14px 16px 10px;
             bottom: auto;
             position: absolute;
             top: 0px;
-            left:60px;
-            right:60px;
-            width: calc( 100% - 120px);
+            //left:60px;
+            //right:60px;
+            //width: calc( 100% - 120px);
             border-top-left-radius: 0px;
             border-top-right-radius: 0px;
             border-bottom-left-radius: 8px;
@@ -60,7 +60,6 @@ page-tasks-map {
             &:last-of-type{
                 text-align: right;
             }
-
         }
     }
 }
