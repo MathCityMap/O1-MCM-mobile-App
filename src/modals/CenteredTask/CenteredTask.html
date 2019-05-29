@@ -1,8 +1,8 @@
 <div class="modal card task-select has-button-on-the-edge">
-    <h2 *ngIf="route">{{route.title}}</h2>
-    <p *ngIf="route">{{ 'a_startAt' | translate}}</p>
 
     <div class="modal-content">
+        <h2 *ngIf="route">{{route.title}}</h2>
+        <p *ngIf="route"><b>{{ 'a_startAt' | translate}}</b></p>
         <div tappable class="dotted-border-bottom"
              *ngFor="let item of tasks" (click) = "showRoute(route, item)">
             <!--#{{item.position}} {{item.title}}-->

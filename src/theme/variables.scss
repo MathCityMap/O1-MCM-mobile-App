@@ -177,6 +177,18 @@ $searchbar-md-input-box-shadow: none;
     filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
 }
 
+@mixin texture-wood-light($rotate: false) {
+    background: url("#{$image-path}pirates/texture-wood-light.svg") $c-secondary-light;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    @if $rotate{
+        background-image: url("#{$image-path}pirates/texture-wood-light-v.svg");
+    }
+}
+
+
+
 
 
 .pirates {
@@ -202,6 +214,25 @@ $searchbar-md-input-box-shadow: none;
             background-repeat: no-repeat;
             background-position: bottom;
             background-size: cover;
+        }
+    }
+
+    .item-input{
+        .item-inner{
+            border-bottom: none!important;
+            box-shadow: none;
+        }
+    }
+    .input-wrapper{
+        &:after {
+            pointer-events: none;
+            content: url(../assets/images/pirates/border-input.svg);
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            right: 0;
+            display: block;
+            width: 100%;
         }
     }
 
@@ -326,9 +357,6 @@ $searchbar-md-input-box-shadow: none;
                     .answer{
                         .item{
                             background-color: unset;
-                            .item-inner{
-                                border-color: #000;
-                            }
                         }
                     }
                 }
@@ -343,7 +371,7 @@ $searchbar-md-input-box-shadow: none;
                             color: $c-light;
                         }
                     }
-                    padding: $global-base-padding*1.5 $global-large-padding*0.6 $global-large-padding*0.6;
+                    padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
                     border-radius: 0;
                     $rating: perfect good failed;
 
@@ -367,6 +395,109 @@ $searchbar-md-input-box-shadow: none;
                         color: $c-light;
                     }
                 }
+            }
+        }
+    }
+
+    .modal.card, .alert-md .alert-wrapper, .alert-ios .alert-wrapper{
+        @include texture-wood-light($rotate: true);
+        .modal-content{
+            .dotted-border-bottom{
+                border-bottom: none!important;
+                position: relative;
+                &:not(:last-of-type):after{
+                    content: url(../assets/images/pirates/border-list.svg);
+                    pointer-events: none;
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    right: 0;
+                    display: block;
+                    width: 100%;
+                }
+            }
+            span, p, h2{
+                 color: $c-light;
+            }
+            h2{
+                @include shadow-filter-hard;
+            }
+        }
+        .alert-message{
+            color: $c-light;
+        }
+        .alert-button{
+            color: $c-primary;
+        }
+
+        &.icon{
+            padding-top: $global-large-padding!important;
+            margin-top: calc(14vw + 20px);
+            .modal-content{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+            img.head-icon{
+                position: relative;
+                top: 0;
+                right: unset;
+                transform: none;
+                margin: 0 auto;
+                border: none;
+                border-radius: 50%;
+                background-color: transparent;
+                margin-bottom: $global-small-padding;
+            }
+            h2, p{
+                color: $c-light!important;
+                margin-bottom: 10px;
+            }
+            h2{
+                order: -1;
+            }
+        }
+
+
+        &.hint{
+            .highlight{
+                color: $c-primary;
+            }
+        }
+        &.perfect{
+            .highlight{
+                color: $c-success;
+            }
+            button{
+                background-color: $c-success;
+            }
+        }
+        &.good{
+            .highlight{
+                color: $c-yellow;
+            }
+            button{
+                background-color:$c-yellow;
+            }
+        }
+        &.failed{
+            .highlight{
+                color: $c-danger;
+            }
+            button{
+                background-color: $c-danger;
+            }
+        }
+        &.task-select{
+            h2{
+                margin: 0 0 8px;
+            }
+            p{
+                margin-bottom: 15px;
+            }
+            .dotted-border-bottom{
+                padding-bottom: 10px;
+                margin-bottom: 10px;
             }
         }
     }

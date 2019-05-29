@@ -1,12 +1,13 @@
-<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'hint': modalType == 1,'negative': modalType == 2, 'solved': modalType == 3, 'solved-low': modalType == 5}">
+<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'hint': modalType == 1,'failed': modalType == 2, 'perfect': modalType == 3, 'good': modalType == 5}">
 
      <div class="modal-content" *ngIf="modalType != 4">
-        <img class="head-icon" *ngIf="modalType == 1 && type != 'image' && type != 'video'" src="./assets/icons/icon_popup-hint.svg"/>
-        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/icon_popup-wrong-answer.svg"/>
-        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/icon_popup-right-answer.svg"/>
-        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/icon_popup-nearly-right-answer.svg"/>
-        <h2>{{title | translate}}</h2>
-         <h2 *ngIf="gamificationEnabled && score != '0'">{{score}} MP</h2>
+        <img class="head-icon" *ngIf="modalType == 1 && type != 'image' && type != 'video'" src="./assets/icons/modal-hint.svg"/>
+        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/modal-rating-failed.svg"/>
+        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/modal-rating-perfect.svg"/>
+        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/modal-rating-good.svg"/>
+        <h2>{{title | translate}}
+            <h2 *ngIf="gamificationEnabled && score != '0'">{{score}} MP</h2>
+        </h2>
 
         <!-- image hint -->
         <mcm-image *ngIf=" type == 'image' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
@@ -19,7 +20,7 @@
 
     </div>
     <div class="modal-content" *ngIf="modalType == 4">
-        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/icon_popup-right-answer.svg"/>
+        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/modal-rating-perfect.svg"/>
         <h2>{{title | translate}}</h2>
 
         <!-- image hint -->

@@ -727,7 +727,8 @@ ion-modal {
         }
     }
 
-    //REAL MODALS
+    // REAL MODALS
+
     .modal.card{
         padding-top: 30px;
         h2{
@@ -826,11 +827,8 @@ ion-modal {
             h2, .highlight{
                 color: color($colors, primary);
             }
-            button{
-                background-color: color($colors, primary);
-            }
         }
-        &.solved{
+        &.perfect{
             h2, .highlight{
                 color: color($colors, success);
             }
@@ -838,7 +836,7 @@ ion-modal {
                 background-color: color($colors, success);
             }
         }
-        &.solved-low{
+        &.good{
             h2, .highlight{
                 color: color($colors, secondary);
             }
@@ -846,7 +844,7 @@ ion-modal {
                 background-color: color($colors, secondary);
             }
         }
-        &.negative{
+        &.failed{
             h2, .highlight{
                 color: color($colors, error);
             }
@@ -868,6 +866,7 @@ ion-modal {
         }
         .on-the-edge-container{
             white-space: nowrap;
+            text-align: center;
             button{
                 &:not(:first-of-type){
                     margin-left: $global-small-padding;
