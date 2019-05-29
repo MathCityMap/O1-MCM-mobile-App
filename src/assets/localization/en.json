@@ -358,6 +358,8 @@
   "a_cancelStartAt": "Show all tasks",
   "a_guided_trail": "Do you want to start from a certain task?",
   "a_guided_trail_title": "Select a start point",
+  "a_intro_title": "IntroTitle",
+  "a_intro_message": "Intro_Message",
   "a_about_mcm_title": "About MathCityMap",
   "a_about_mcm": "MathCityMap is a project of the working group MATIS I (IDMI, Goethe-University Frankfurt Main).\n MCM consists of an app and a web portal. After a short registration the MathCityMap web portal (www.mathcitymap.eu) offers users the possibility to create own tasks and trails, which later on can be accessed from the app. Furthermore trails can be downloaded as a PDF-file from the web portal. All MathCityMap tools are free. \n\n Responsible persons:\n Matthias Ludwig\n Iwan Gurjanow\n Joerg Zender\n\n  MathCityMap uses images of https://icons8.com:\n https://icons8.com/web-app/5682/marker\n https://icons8.com/web-app/2969/settings-filled\n https://icons8.com/web-app/13114/cancel\n https://icons8.com/web-app/5575/plus\n https://icons8.com/web-app/16570/exit\n https://icons8.com/web-app/5663/worldwide-location\n https://icons8.com/web-app/5594/key \n https://icons8.com/web-app/6269/waypoint-map\n https://icons8.com/web-app/13115/ok\n",
   "a_alert_right_answer_1_low": "You completed the task at the first go.\nYour answer '{{L}}' is ok.",

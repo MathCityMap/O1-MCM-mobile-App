@@ -24,6 +24,7 @@ import { Storage } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { MCMModalType } from "../../../../app/app.component";
 import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
+import { MCMIntroModal } from "../../../../modals/MCMIntroModal/MCMIntroModal";
 import { ModalController} from "ionic-angular/components/modal/modal-controller";
 import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
 import { ChatPage } from "../../../chat/chat";
@@ -260,15 +261,17 @@ export class TasksMap implements OnInit, OnDestroy {
                   this.state.visibleTasks[this.state.selectedTask.position] = true;
               }
               else{
-                  const that = this;
-                  setTimeout(function() {
-                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                          'no', () => {},
-                          'yes', async () => {
-                              that.selectStartPoint();
-                              that.state.selectedStartTask = true;
-                          });
-                  }, 500);
+                  this.showIntroModal().then(() => {
+                      const that = this;
+                      setTimeout(function() {
+                          that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                              'no', () => {},
+                              'yes', async () => {
+                                  that.selectStartPoint();
+                                  that.state.selectedStartTask = true;
+                              });
+                      }, 500);
+                  });
               }
           }
       }
@@ -824,6 +827,28 @@ export class TasksMap implements OnInit, OnDestroy {
         }
 
     }
+
+    showIntroModal(): Promise<any> {
+        return new Promise<any>(success => {
+            let introModal = this.modalCtrl.create(MCMIntroModal, {
+                title: 'a_intro_title',
+                message: 'a_intro_message',
+                modalType: MCMModalType.hint,
+                buttons: [
+                    {
+                        title: 'a_alert_close',
+                        callback: function () {
+                            introModal.dismiss();
+                            success();
+                        }
+                    }
+                ]
+
+            });
+            introModal.present();
+        });
+    }
+
 }
 
 export interface TaskMapState {

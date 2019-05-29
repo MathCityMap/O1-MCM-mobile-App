@@ -1,0 +1,17 @@
+<div class="modal card has-button-on-the-edge">
+    <div class="modal-content">
+        <!--<img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/icon_popup-right-answer.svg"/>-->
+        <h2>{{ title | translate}}</h2>
+        <!--<h2>IntroModal</h2>-->
+
+        <!-- text -->
+        <p [innerHtml]=" message | translate "></p>
+        <!--<p>IntroModal Text</p>-->
+
+    </div>
+
+    <div class="on-the-edge-container">
+        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
+        <!--<button ion-button small round (click)="okButtonClick(true)">Ok</button>-->
+    </div>
+</div>
