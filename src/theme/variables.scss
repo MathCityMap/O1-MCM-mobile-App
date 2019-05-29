@@ -458,6 +458,13 @@ $searchbar-md-input-box-shadow: none;
             }
         }
 
+        &.intro{
+            img.head-icon{
+                border-radius: 0;
+                width: 45vw;
+            }
+        }
+
 
         &.hint{
             .highlight{
