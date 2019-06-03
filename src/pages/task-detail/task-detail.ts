@@ -6,7 +6,7 @@ import {Route} from '../../entity/Route';
 import {Task} from '../../entity/Task';
 import {ModalController} from 'ionic-angular/components/modal/modal-controller';
 import {MCMIconModal} from '../../modals/MCMIconModal/MCMIconModal';
-import {MCMModalType} from '../../app/app.component';
+import {MCMModalType, MyApp} from '../../app/app.component';
 import {TaskState} from '../../entity/TaskState';
 import {Score} from '../../entity/Score';
 import {TaskDetailMap} from './task-detail-map';
@@ -72,6 +72,7 @@ export class TaskDetail {
         private modalsService: ModalsService,
         private gpsService: GpsService,
         private chatAndSessionService: ChatAndSessionService,
+        private app: MyApp
     ) {
     }
 
@@ -331,6 +332,7 @@ export class TaskDetail {
             message: message,
             modalType: MCMModalType.hint,
             narrativeEnabled: this.route.isNarrativeEnabled(),
+            narrative: this.app.activeNarrative,
             buttons: [
                 {
                     title: 'a_alert_close',
@@ -340,7 +342,7 @@ export class TaskDetail {
                 }
             ]
 
-        }, {showBackdrop: true, enableBackdropDismiss: true});
+        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
         hintModal.onDidDismiss(click => {
             if(this.sessionInfo != null){
                 let details = JSON.stringify({});
@@ -507,6 +509,7 @@ export class TaskDetail {
             messages: messages,
             modalType: MCMModalType.sampleSolution,
             narrativeEnabled: this.route.isNarrativeEnabled(),
+            narrative: this.app.activeNarrative,
             buttons: [
                 {
                     title: 'a_alert_close',
@@ -515,7 +518,7 @@ export class TaskDetail {
                     }
                 }
             ]
-        }, {showBackdrop: true, enableBackdropDismiss: true});
+        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
         modal.onDidDismiss(data => {
             if(this.sessionInfo != null){
                 let details = JSON.stringify({});
@@ -653,9 +656,10 @@ export class TaskDetail {
                 modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
                 gamificationEnabled: !this.gamificationIsDisabled,
                 narrativeEnabled: this.route.isNarrativeEnabled(),
+                narrative: this.app.activeNarrative,
                 score: "+" + this.taskDetails.score,
                 buttons: this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask]
-            }, {showBackdrop: true, enableBackdropDismiss: true});
+            }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
             modal.onDidDismiss((data) => {
                 console.log(data);
                 if (data && data.showMap) {
@@ -777,11 +781,13 @@ export class TaskDetail {
                 modalType: MCMModalType.error,
                 gamificationEnabled: !this.gamificationIsDisabled,
                 narrativeEnabled: this.route.isNarrativeEnabled(),
+                narrative: this.app.activeNarrative,
                 score: this.taskDetails.tries > 1 ? '-10' : '0',
                 buttons: buttons
             }, {
                 showBackdrop: true,
-                enableBackdropDismiss: true
+                enableBackdropDismiss: true,
+                cssClass: this.app.activeNarrative
             });
             modal.present();
         }

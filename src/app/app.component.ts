@@ -21,7 +21,7 @@ export enum MCMModalType {
 export class MyApp {
   rootPage:any = 'HomePage';
 
-  activeNarrative: string = 'default';
+  public activeNarrative: string = 'default';
   keysTab: string[];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,

@@ -10,13 +10,15 @@ export class MCMIntroModal {
     title: string;
     message: string;
     buttons: any[];
+    narrative: string;
 
     constructor(params: NavParams) {
 
         this.buttons = params.data.buttons;
-
+        this.narrative = params.data.narrative;
         this.title = params.data.title;
         this.message = params.data.message;
+
 
     }
 

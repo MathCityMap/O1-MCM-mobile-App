@@ -151,14 +151,14 @@ export class ModalsService {
         });
     }
 
-    async presentTaskListModal(route: Route, score: Score, state: TaskMapState, navCtrl: NavController, callback: any) {
+    async presentTaskListModal(route: Route, score: Score, state: TaskMapState, narrative: string = 'default', navCtrl: NavController, callback: any) {
         let testModal = this.modalCtrl.create(CenteredTask, {
             route: route,
             score: score,
             state: state,
             tasks: await route.getTasks(),
             modalsService: this
-        });
+        }, {cssClass: narrative});
         testModal.onDidDismiss(data => {
             /* coming from List/Map View */
             if (data && data.route != null && navCtrl != null && !callback) this.navigateToRoute(data.route, navCtrl, data.selectedTask);

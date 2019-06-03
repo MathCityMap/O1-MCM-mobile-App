@@ -26,6 +26,8 @@ export class MCMIconModal{
     gamificationEnabled: boolean = false;
     narrativeEnabled: boolean = false;
     score: string;
+    narrative: string;
+    iconPath: string;
 
     windowWith: number;
     videoWith: number;
@@ -90,6 +92,18 @@ export class MCMIconModal{
         }
         if(params.data.narrativeEnabled){
             this.narrativeEnabled = params.data.narrativeEnabled;
+        }
+        if(params.data.narrative) {
+            this.narrative = params.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        } else {
+            this.iconPath = '';
         }
         if(params.data.score){
             this.score = params.data.score;

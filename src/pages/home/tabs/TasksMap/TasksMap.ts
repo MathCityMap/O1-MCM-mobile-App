@@ -22,7 +22,7 @@ import 'conic-gradient';
 import { ImagesService } from '../../../../services/images-service';
 import { Storage } from '@ionic/storage';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { MCMModalType } from "../../../../app/app.component";
+import {MCMModalType, MyApp} from "../../../../app/app.component";
 import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
 import { MCMIntroModal } from "../../../../modals/MCMIntroModal/MCMIntroModal";
 import { ModalController} from "ionic-angular/components/modal/modal-controller";
@@ -105,8 +105,10 @@ export class TasksMap implements OnInit, OnDestroy {
     private spinner: SpinnerDialog,
     private modalCtrl: ModalController,
     private chatAndSessionService: ChatAndSessionService,
+    private app: MyApp
   ) {
-      this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+
+      /*this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
       this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
       this.taskOpenIcon.clusterColor = '#036D99';
       this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
@@ -116,7 +118,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
       this.taskDonePerfectIcon.clusterColor = '#4CAF50';
       this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-      this.taskFailedIcon.clusterColor = '#E62B25';
+      this.taskFailedIcon.clusterColor = '#E62B25';*/
       this.chatAndSessionService.init();
       this.events.subscribe('user:kicked', (user) => {
           if(user == 'self'){
@@ -158,6 +160,7 @@ export class TasksMap implements OnInit, OnDestroy {
           modalType: MCMModalType.solved,
           param: {TITLE: this.route.title},
           narrativeEnabled: this.route.isNarrativeEnabled(),
+          narrative: this.app.activeNarrative,
           buttons: [
               {
                   title: 'a_alert_close',
@@ -168,7 +171,7 @@ export class TasksMap implements OnInit, OnDestroy {
                       });
                   }
               }
-          ]}, {showBackdrop: true, enableBackdropDismiss: true});
+          ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
       modal.present();
   }
 
@@ -183,7 +186,10 @@ export class TasksMap implements OnInit, OnDestroy {
     this.user = await this.ormService.getActiveUser();
     this.score = this.route.getScoreForUser(this.user);
     let sessionInfo = this.chatAndSessionService.getSessionInfo();
-  this.updateSession(sessionInfo);
+    this.updateSession(sessionInfo);
+    this.events.publish('narrativeChange', /*this.route.getNarrativeName()*/ 'pirates');
+
+    this.updateIcons();
 
       await this.loadMap();
       setTimeout(async () => {
@@ -305,6 +311,7 @@ export class TasksMap implements OnInit, OnDestroy {
         this.events.unsubscribe('user:kicked');
         this.events.unsubscribe('session:updated');
         this.events.unsubscribe('user:assigned_task');
+        this.events.publish('narrativeChange', 'default');
     }
 
   markerGroup: any = null;
@@ -641,7 +648,7 @@ export class TasksMap implements OnInit, OnDestroy {
   async selectStartPoint(){
     /* open the damn modal again */
     let that = this;
-    this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.navCtrl, function(selectedTask: Task){
+    this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.app.activeNarrative, this.navCtrl, function(selectedTask: Task){
             console.debug("back in tasksMap");
             that.state.selectedTask = selectedTask;
             that.state.visibleTasks = {};
@@ -696,7 +703,7 @@ export class TasksMap implements OnInit, OnDestroy {
                       session: this.sessionInfo.session,
                       score: this.score,
                       tasks: this.taskList
-                  });
+                  }, {cssClass: this.app.activeNarrative});
               modal.present();
               if(this.sessionInfo != null){
                   let details = JSON.stringify({});
@@ -722,6 +729,7 @@ export class TasksMap implements OnInit, OnDestroy {
           type: 'text',
           gamificationEnabled: false,
           narrativeEnabled: this.route.isNarrativeEnabled(),
+          narrative: this.app.activeNarrative,
           buttons: [
               {
                   title: 'a_g_ok',
@@ -746,7 +754,7 @@ export class TasksMap implements OnInit, OnDestroy {
                   }
               },
           ]
-      }, {showBackdrop: true, enableBackdropDismiss: true});
+      }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
       modal.present();
   }
 
@@ -821,7 +829,7 @@ export class TasksMap implements OnInit, OnDestroy {
                     session: this.sessionInfo.session,
                     score: this.score,
                     tasks: this.taskList
-                });
+                }, {cssClass: this.app.activeNarrative});
             modal.present();
             return;
         }
@@ -834,6 +842,7 @@ export class TasksMap implements OnInit, OnDestroy {
                 title: 'a_intro_title',
                 message: 'a_intro_message',
                 modalType: MCMModalType.hint,
+                narrative: this.app.activeNarrative,
                 buttons: [
                     {
                         title: 'a_alert_close',
@@ -844,10 +853,56 @@ export class TasksMap implements OnInit, OnDestroy {
                     }
                 ]
 
-            });
+            }, {cssClass: this.app.activeNarrative});
             introModal.present();
         });
     }
+
+    updateIcons() {
+       let iconPath: string;
+        switch (this.app.activeNarrative) {
+            case 'pirates':
+                iconPath = 'pirates/';
+
+                break;
+            default:
+                iconPath = '';
+                /*this.taskOpenIcon.clusterColor = '#036D99';
+                this.taskSkippedIcon.clusterColor = '#B2B2B2';
+                this.taskDoneIcon.clusterColor = '#F3B100';
+                this.taskDonePerfectIcon.clusterColor = '#4CAF50';
+                this.taskFailedIcon.clusterColor = '#E62B25';*/
+                break
+
+        }
+        this.userPositionIcon = L.icon({iconUrl:"./assets/icons/" + iconPath + "icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+        this.taskOpenIcon = L.icon({iconUrl:'assets/icons/' + iconPath + 'icon_taskmarker-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/' + iconPath + 'icon_taskmarker-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskDoneIcon = L.icon({iconUrl:'assets/icons/' + iconPath + 'icon_taskmarker-done.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/' + iconPath + 'icon_taskmarker-done-perfect.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskFailedIcon = L.icon({iconUrl:'assets/icons/' + iconPath + 'icon_taskmarker-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+
+        switch (this.app.activeNarrative) {
+            case 'pirates':
+                iconPath = 'pirates/';
+                this.taskOpenIcon.clusterColor = '#021474';
+                this.taskSkippedIcon.clusterColor = '#b2b2b2';
+                this.taskDoneIcon.clusterColor = '#f3d332';
+                this.taskDonePerfectIcon.clusterColor = '#1f6b1c';
+                this.taskFailedIcon.clusterColor = '#751616';
+                break;
+            default:
+                iconPath = '';
+                this.taskOpenIcon.clusterColor = '#036D99';
+                this.taskSkippedIcon.clusterColor = '#B2B2B2';
+                this.taskDoneIcon.clusterColor = '#F3B100';
+                this.taskDonePerfectIcon.clusterColor = '#4CAF50';
+                this.taskFailedIcon.clusterColor = '#E62B25';
+                break
+
+        }
+    }
+
 
 }
 

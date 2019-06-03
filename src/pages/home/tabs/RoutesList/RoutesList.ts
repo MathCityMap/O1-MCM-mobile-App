@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Content, IonicPage, ModalController, NavController, ToastController} from 'ionic-angular';
+import {Content, Events, IonicPage, ModalController, NavController, ToastController} from 'ionic-angular';
 import {ConnectionQuality, Helper} from '../../../../classes/Helper';
 import {timeout} from 'promise-timeout';
 
@@ -14,7 +14,7 @@ import {MCMRouteByCodeModal} from '../../../../modals/MCMRouteByCodeModal/MCMRou
 import {GpsService} from '../../../../services/gps-service';
 import {ChatAndSessionService} from "../../../../services/chat-and-session-service";
 import {MCMIconModal} from "../../../../modals/MCMIconModal/MCMIconModal";
-import {MCMModalType} from "../../../../app/app.component";
+import {MCMModalType, MyApp} from "../../../../app/app.component";
 
 @IonicPage()
 @Component({
@@ -45,7 +45,9 @@ export class RoutesListPage implements OnDestroy {
                 public helper: Helper,
                 private gpsService: GpsService,
                 private chatAndSessionService: ChatAndSessionService,
-                private toastCtrl: ToastController
+                private toastCtrl: ToastController,
+                private events: Events,
+                private app: MyApp
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
@@ -125,6 +127,7 @@ export class RoutesListPage implements OnDestroy {
                 type: 'text',
                 modalType: MCMModalType.hint,
                 narrativeEnabled: route.isNarrativeEnabled(),
+                narrative: this.app.activeNarrative,
                 buttons: [
                     {
                         title: 'a_session_return_stay',
