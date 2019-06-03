@@ -179,7 +179,7 @@ export class TaskDetail {
         }
         // Init task detail map, if task is gps task
         if (this.task.solutionType == "gps") {
-            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService);
+            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app);
             this.taskDetailMap.loadMap();
             // Insert predefined points / axis
             let gpsType = this.task.getSolutionGpsValue("task");
