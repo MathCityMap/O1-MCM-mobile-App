@@ -217,12 +217,6 @@ $image-path: "../assets/images/";
         text-transform: none;
         font-size: 150%;
     }
-    p{
-        //font-size: 14px;
-        //line-height: 1.6;
-        //font-weight: 500;
-        //color: color($colors, dark-grey);
-    }
 
     .button{
         &.button-round-ios.button-small-ios,
@@ -335,6 +329,31 @@ $image-path: "../assets/images/";
                     ion-label{
                         color: $c-light;
                     }
+                }
+            }
+        }
+
+        .marker-cluster-small{
+            border-color: $c-primary;
+            div{
+                border-color: $c-primary;
+                background-color: $c-primary;
+                span{
+                    font-family: 'CaveatBrush', Arail, sans-serif;
+                    font-size: 200%;
+                    line-height: 24px;
+                }
+            }
+        }
+        .marker-cluster-medium, .marker-cluster-large{
+            border-color: $c-primary;
+            div{
+                border-color: $c-primary;
+                background-color: $c-primary;
+                span{
+                    font-family: 'CaveatBrush', Arail, sans-serif;
+                    font-size: 200%;
+                    line-height: 24px;
                 }
             }
         }
