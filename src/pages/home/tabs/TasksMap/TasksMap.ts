@@ -187,6 +187,7 @@ export class TasksMap implements OnInit, OnDestroy {
     this.score = this.route.getScoreForUser(this.user);
     let sessionInfo = this.chatAndSessionService.getSessionInfo();
     this.updateSession(sessionInfo);
+    //TODO: Make dynamic when database support is given;
     this.events.publish('narrativeChange', /*this.route.getNarrativeName()*/ 'pirates');
 
     this.updateIcons();
@@ -493,8 +494,8 @@ export class TasksMap implements OnInit, OnDestroy {
 
   async loadMap() {
       const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
-      let mapquestUrl = Helper.mapquestUrl
-      let subDomains = Helper.subDomains
+      let mapquestUrl = /*Helper.mapquestUrl*/ this.route.getTilesMap(this.app.activeNarrative);
+      let subDomains = this.route.getTilesServerSubdomains(this.app.activeNarrative);//Helper.subDomains;
 
       //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
       // const corner1 = L.latLng(38.4313915, 27.1212443)
