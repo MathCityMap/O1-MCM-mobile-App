@@ -203,9 +203,12 @@ input{
 // ----------- INFO CARDS LIST & MAP -----------
 
 .score{
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    flex: none;
     &:after{
         content: ' MP';
-        vertical-align: baseline;
     }
 }
 
@@ -579,7 +582,9 @@ img{
     padding-right: 10px!important;
 }
 .dotted-border-bottom{
-    border-bottom: 2px dotted color($colors, light-grey)!important;
+    &:not(:last-of-type) {
+        border-bottom: 2px dotted color($colors, light-grey) !important;
+    }
 }
 
 
@@ -862,6 +867,40 @@ ion-modal {
             .dotted-border-bottom{
                 padding-bottom: 10px;
                 margin-bottom: 10px;
+                span{
+                    position: relative;
+                    &.perfect, &.good, &.failed, &.skipped{
+                        &:before{
+                            content: '';
+                            width: 12px;
+                            height: 12px;
+                            border-radius: 50%;
+                            background: grey;
+                            position: absolute;
+                            top: 50%;
+                            right: 0;
+                            transform: translateY(-50%);
+                        }
+                    }
+                    &.perfect {
+                        &:before {
+                            background-color: color($colors, success);
+                        }
+                    }
+                    &.good {
+                        &:before {
+                            background-color: color($colors, secondary);
+                        }
+                    }
+                    &.failed {
+                        &:before {
+                            background-color: color($colors, error);
+                        }
+                    }
+                    &.skipped{
+                        background-color: color($colors, grey);
+                    }
+                }
             }
         }
         .on-the-edge-container{
@@ -910,22 +949,4 @@ $progress-height: 6px;
 
 .marker.userPosition {
     transition: all 2s linear;
-}
-
-/*  ========== Color Changing by Tasks Status in List View ========== */
-
-span.tasksSolvedColor {
-    color: #4CAF50;
-}
-
-span.tasksFailedColor {
-    color: #E62B25;
-}
-
-span.taskSolvedLowColor {
-    color: #F3B100;
-}
-
-span.tasksSkippedColor {
-    color: #B2B2B2;
 }

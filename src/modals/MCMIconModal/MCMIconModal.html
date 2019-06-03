@@ -6,7 +6,7 @@
         <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>
         <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>
         <h2>{{title | translate}}
-            <h2 *ngIf="gamificationEnabled && score != '0'">{{score}} MP</h2>
+            <div class="score" *ngIf="gamificationEnabled && score != '0'">{{score}}</div>
         </h2>
 
         <!-- image hint -->

@@ -20,7 +20,7 @@
             <!-- // fab buttons for task map -->
             <div class="head">
                 <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-                <span class="tag score" *ngIf="!gamificationIsDisabled">{{possibleScore()}}</span>
+                <ion-label class="tag score" *ngIf="!gamificationIsDisabled">{{possibleScore()}}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
@@ -123,7 +123,7 @@
                         <ion-label text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>
                     </ng-template>
                 </div>
-                <span class="tag score" *ngIf="!gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</span>
+                <ion-label class="tag score" *ngIf="!gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>
             </div>
         </div>
 

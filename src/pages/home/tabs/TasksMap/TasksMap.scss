@@ -58,7 +58,10 @@ page-tasks-map {
                 color: color($colors, dark-grey);
             }
             &:last-of-type{
-                text-align: right;
+                flex-grow: 0;
+                .score:after{
+                    filter: none;
+                }
             }
         }
     }

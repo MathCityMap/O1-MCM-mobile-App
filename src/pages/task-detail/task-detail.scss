@@ -70,14 +70,12 @@ page-task-detail {
                 flex: 1;
             }
             .tag {
-                font-family: 'NunitoBold', Arial, sans-serif;
+                flex: none;
                 border-width: 1px;
                 border-color: #B2B2B2;
                 border-radius: 12px;
                 height: 24px;
-                font-size: 12px;
                 padding: 0 12px;
-                line-height: 2;
                 color: #B2B2B2;
                 &.score {
                     border-style: solid;

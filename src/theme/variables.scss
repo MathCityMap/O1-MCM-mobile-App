@@ -154,18 +154,18 @@ $searchbar-md-input-box-shadow: none;
 // Pirate Theming       L( Ø -´)⊃━|-----
 // --------------------------------------------------
 
-    $c-primary:        #AA2000;
-    $c-secondary:      #B7702E;
-    $c-secondary-light:      #E2AC64;
-    $c-yellow:         #FFC033;
-    $c-success:        #33CC00;
-    $c-blue:           #32A4DC;
-    $c-danger:         #333333;
-    $c-light:          #ffffff;
+$c-primary:        #AA2000;
+$c-secondary:      #B7702E;
+$c-secondary-light:      #E2AC64;
+$c-yellow:         #FFC033;
+$c-success:        #33CC00;
+$c-blue:           #32A4DC;
+$c-danger:         #333333;
+$c-light:          #ffffff;
 
-    $c-text:          $c-danger;
+$c-text:          $c-danger;
 
-    $image-path: "../assets/images/";
+$image-path: "../assets/images/";
 
 @mixin shadow-medium() {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
@@ -195,6 +195,44 @@ $searchbar-md-input-box-shadow: none;
 
     .label{
         color: $c-text;
+        font-family: 'CaveatBrush', Arail, sans-serif;
+        text-transform: capitalize;
+        letter-spacing: 0;
+        font-size: 130%;
+    }
+
+    h3, h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
+        font-family: 'Pangolin', Arial, sans-serif;
+    }
+
+    h1{
+        font-family: 'CaveatBrush', Arail, sans-serif!important;
+        letter-spacing: 0;
+        text-transform: none;
+        font-size: 150%;
+    }
+    h2{
+        font-family: 'CaveatBrush', Arail, sans-serif!important;
+        letter-spacing: 0;
+        text-transform: none;
+        font-size: 150%;
+    }
+    p{
+        //font-size: 14px;
+        //line-height: 1.6;
+        //font-weight: 500;
+        //color: color($colors, dark-grey);
+    }
+
+    .button{
+        &.button-round-ios.button-small-ios,
+        &.button-round-md.button-small-md{
+            font-family: 'CaveatBrush', Arial, sans-serif;
+            span{
+                font-family: 'CaveatBrush', Arial, sans-serif;
+                font-size: 130%;
+            }
+        }
     }
 
 
@@ -214,6 +252,10 @@ $searchbar-md-input-box-shadow: none;
             background-repeat: no-repeat;
             background-position: bottom;
             background-size: cover;
+        }
+        .toolbar-title{
+            font-family: 'CaveatBrush', Arail, sans-serif;
+            font-size: 200%;
         }
     }
 
@@ -287,6 +329,7 @@ $searchbar-md-input-box-shadow: none;
                 background-size: cover;
                 .row{
                     @include shadow-filter-hard();
+                    border: none;
                 }
                 .col {
                     ion-label{
@@ -301,10 +344,8 @@ $searchbar-md-input-box-shadow: none;
         padding: 0;
         &:after{
             content: url("#{$image-path}pirates/unit-score.svg");
-            display: inline-block;
-            vertical-align: middle;
             margin-left: 6px;
-            height: 100%;
+            margin-top: 2px;
             @include shadow-filter-hard();
         }
     }
@@ -323,14 +364,14 @@ $searchbar-md-input-box-shadow: none;
             .card{
                 .head{
                     .score{
+                        height: unset;
                         background-color: unset;
-                        color: $c-text;
                         border: none;
                         box-shadow: none;
                         padding: 0;
+                        color: $c-text;
                         &:after {
                             content: url("#{$image-path}pirates/unit-score-l.svg");
-                            vertical-align: top;
                         }
                     }
                 }
@@ -367,8 +408,18 @@ $searchbar-md-input-box-shadow: none;
 
                 &.evaluation{
                     .head{
+                        .label, .score{
+                            font-family: 'CaveatBrush', Arail, sans-serif;
+                            text-transform: none;
+                            letter-spacing: 0;
+                            font-size: 150%;
+                            @include shadow-filter-hard;
+                        }
                         .score{
                             color: $c-light;
+                            &:after {
+                                filter: none;
+                            }
                         }
                     }
                     padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
@@ -416,12 +467,26 @@ $searchbar-md-input-box-shadow: none;
                     width: 100%;
                 }
             }
+            & > h2{
+                @include shadow-filter-hard;
+                letter-spacing: 0;
+                text-transform: none;
+                font-size: 180%;
+                line-height: 1.5;
+                .score{
+                    &:after{
+                        content: url("#{$image-path}pirates/unit-score-l.svg");
+                        filter: none;
+                    }
+                }
+            }
             span, p, h2{
                  color: $c-light;
             }
-            h2{
-                @include shadow-filter-hard;
-            }
+        }
+        .alert-title {
+            color: $c-light;
+            @include shadow-filter-hard;
         }
         .alert-message{
             color: $c-light;
@@ -455,6 +520,7 @@ $searchbar-md-input-box-shadow: none;
             }
             h2{
                 order: -1;
+                font-size: 250%;
             }
         }
 
@@ -505,6 +571,33 @@ $searchbar-md-input-box-shadow: none;
             .dotted-border-bottom{
                 padding-bottom: 10px;
                 margin-bottom: 10px;
+                span{
+                    &.perfect, &.good, &.failed, &.skipped{
+                        &:before{
+                            top: 40%;
+                            transform: translateY(-50%);
+                            @include shadow-filter-hard;
+                        }
+                    }
+                    &.perfect {
+                        &:before {
+                            background-color: $c-success;
+                        }
+                    }
+                    &.good {
+                        &:before {
+                            background-color: $c-yellow;
+                        }
+                    }
+                    &.failed {
+                        &:before {
+                            background-color: $c-danger;
+                        }
+                    }
+                    &.skipped{
+                        background-color: #B2B2B2;
+                    }
+                }
             }
         }
     }
