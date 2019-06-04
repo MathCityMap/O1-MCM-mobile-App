@@ -693,7 +693,7 @@ export class TasksMap implements OnInit, OnDestroy {
                   await this.ormService.saveAndFireChangedEvent(this.route);
                   this.redrawMarker();
               });
-          });
+          }, this.app.activeNarrative);
   }
 
   resetTasks(){
