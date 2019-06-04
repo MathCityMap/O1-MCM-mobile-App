@@ -13,7 +13,7 @@
         <div tappable class="detail-box dotted-border-top" *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id">
             <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}">
                 <img class="thumb" [attr.data-async-src]="item.getImageURL()" />
-                <img *ngIf="item.isNarrativeEnabled()" class="indicator narrativeName" src="./assets/icons/{{item.getNarrativeName()}}/indicator-badge.svg"/>
+                <img *ngIf="item.isNarrativeEnabled()" class="indicator" src="./assets/icons/{{item.getNarrativeName()}}/indicator-badge.svg"/>
             </div>
             <div class="text-container">
                 <div class="segmented-box">
