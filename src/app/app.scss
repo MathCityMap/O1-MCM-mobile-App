@@ -223,20 +223,39 @@ input{
     align-items: center;
 
     .image-container {
+        $circle-size: 20vw;
+        width: $circle-size;
+        height: $circle-size;
         background-color: #b2b2b2;
-
-        width: 20vw;
-        height: 20vw;
-
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
         border: 2px solid color($colors, light-grey);;
-
         background-size: cover;
         display: inline-block;
+        border-radius: 50%;
+        overflow: visible;
+        position: relative;
+        .thumb{
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .indicator{
+            @include shadow-filter-hard;
+            $item-size: 24px;
+            display: block;
+            position: absolute;
+            top:  50%;
+            left: 50%;
+            width:  $item-size;
+            height: $item-size;
+            margin: -($item-size / 2);
 
-        overflow: hidden;
+            $item-count: 1;
+            $angle: (360 / $item-count);
+            $rot: 45;
+            transform:
+                rotate($rot * 1deg)
+                translate($circle-size / 2)
+                rotate($rot * -1deg);
+        }
 
         &.downloaded{
             border: 2px solid #ffffff;
