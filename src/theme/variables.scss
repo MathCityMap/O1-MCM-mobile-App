@@ -259,16 +259,30 @@ $image-path: "../assets/images/";
             box-shadow: none;
         }
     }
-    .input-wrapper{
-        &:after {
-            pointer-events: none;
-            content: url(../assets/images/pirates/border-input.svg);
-            position: absolute;
-            bottom: -7px;
-            left: 0;
-            right: 0;
-            display: block;
-            width: 100%;
+
+    .item.item-input, .item.item-checkbox:not(:last-of-type){
+        .input-wrapper{
+            &:after {
+                pointer-events: none;
+                content: url(../assets/images/pirates/border-input.svg);
+                position: absolute;
+                bottom: -7px;
+                left: 0;
+                right: 0;
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    .checkbox-md{
+        .checkbox-icon{
+            border-color: $c-danger;
+            background-color: transparent;
+        }
+        .checkbox-checked{
+            border-color: #aa1f00;
+            background-color: #aa1f00;
         }
     }
 
@@ -469,7 +483,7 @@ $image-path: "../assets/images/";
         }
     }
 
-    .modal.card, .alert-md .alert-wrapper, .alert-ios .alert-wrapper{
+    .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
         @include texture-wood-light($rotate: true);
         .modal-content{
             .dotted-border-bottom{
@@ -491,7 +505,6 @@ $image-path: "../assets/images/";
                 letter-spacing: 0;
                 text-transform: none;
                 font-size: 180%;
-                line-height: 1.5;
                 .score{
                     &:after{
                         content: url("#{$image-path}pirates/unit-score-l.svg");
@@ -582,7 +595,7 @@ $image-path: "../assets/images/";
         }
         &.task-select{
             h2{
-                margin: 0 0 8px;
+                margin: 0 0 $global-base-padding;
             }
             p{
                 margin-bottom: 15px;
