@@ -83,7 +83,8 @@ export class ModalsService {
 
     async showDialog(titleKey: string, messageKey: string,
                      button1Key?: string, button1Handler?: () => void,
-                     button2Key?: string, button2Handler?: () => void) {
+                     button2Key?: string, button2Handler?: () => void,
+                     narrative: string = 'default') {
         button1Key = button1Key || 'a_g_ok';
         let buttons = [{
             text: this.translateService.instant(button1Key),
@@ -98,7 +99,8 @@ export class ModalsService {
         let confirm = this.alertCtrl.create({
             title: titleKey ? this.translateService.instant(titleKey) : null,
             message: messageKey ? this.translateService.instant(messageKey) : null,
-            buttons: buttons
+            buttons: buttons,
+            cssClass: narrative
         });
         return confirm.present();
     }

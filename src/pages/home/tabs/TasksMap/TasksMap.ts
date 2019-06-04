@@ -267,7 +267,7 @@ export class TasksMap implements OnInit, OnDestroy {
               if (this.state.selectedTask) {
                   this.state.visibleTasks[this.state.selectedTask.position] = true;
               }
-              else{
+              else if (this.route.isNarrativeEnabled()) {
                   this.showIntroModal().then(() => {
                       const that = this;
                       setTimeout(function() {
@@ -276,9 +276,20 @@ export class TasksMap implements OnInit, OnDestroy {
                               'yes', async () => {
                                   that.selectStartPoint();
                                   that.state.selectedStartTask = true;
-                              });
+                              }, that.app.activeNarrative);
                       }, 500);
                   });
+              }
+              else {
+                  const that = this;
+                  setTimeout(function() {
+                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                          'no', () => {},
+                          'yes', async () => {
+                              that.selectStartPoint();
+                              that.state.selectedStartTask = true;
+                          }, that.app.activeNarrative);
+                  }, 500);
               }
           }
       }
@@ -649,6 +660,7 @@ export class TasksMap implements OnInit, OnDestroy {
   async selectStartPoint(){
     /* open the damn modal again */
     let that = this;
+    console.log('Active Narrative is: ' + this.app.activeNarrative);
     this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.app.activeNarrative, this.navCtrl, function(selectedTask: Task){
             console.debug("back in tasksMap");
             that.state.selectedTask = selectedTask;

@@ -333,11 +333,7 @@ export class Route {
     }
 
     isNarrativeEnabled() {
-        if (this.getAttributes().narrativeName) {
-            return true;
-        } else {
-            return false;
-        }
+        return !!(this.getAttributes().narrativeName);
     }
 
     setNarrativeStrings() {
