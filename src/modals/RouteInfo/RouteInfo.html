@@ -17,10 +17,13 @@
                     <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
                     </button>
                 </ion-col>
-                <ion-col lazy-load-images>
-                    <img src="./assets/images/img_default_image.gif" [attr.data-async-src]="route.getImageURL()" class="round bordered lazy" />
-                    <!-- TODO: show default image when no image found -->
+                <ion-col class="image-container narrativeName pirates" lazy-load-images>
+                    <img class="thumb round bordered lazy" src="./assets/images/img_default_image.gif" [attr.data-async-src]="route.getImageURL()" />
                     <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
+                    <div class="indicator">
+                        <h3 no-margin>Pirates</h3>
+                        <img class="background" src="./assets/icons/pirates/indicator-label.svg" />
+                    </div>
                 </ion-col>
                 <ion-col col-4 class="button-container">
                     <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="showRoute(route)">
