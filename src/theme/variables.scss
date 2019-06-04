@@ -303,7 +303,7 @@ $icon-path: "../assets/icons/";
         .input-wrapper{
             &:after {
                 pointer-events: none;
-                content: url(#{image-path}pirates/border-input.svg);
+                content: url("#{$image-path}pirates/border-input.svg");
                 position: absolute;
                 bottom: -7px;
                 left: 0;
