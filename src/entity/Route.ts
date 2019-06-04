@@ -264,11 +264,11 @@ export class Route {
     }
 
     getNarrativeName(): string {
-        //return string for testing
+        //return string for testing with a specific narrative on all routes (works best together with isNarrativeEnabled true);
         //return 'pirates';
         let name = this.getAttributes().narrativeName;
         if (name) {
-            return name;
+            return name.toLowerCase();
         } else {
             return "";
         }
@@ -334,7 +334,7 @@ export class Route {
     }
 
     isNarrativeEnabled() {
-        // return true for testing
+        // return true for testing with narrative enabled for all routes
         //return true
         return !!(this.getAttributes().narrativeName);
     }
