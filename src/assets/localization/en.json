@@ -624,5 +624,6 @@
   "a_search_trails": "Search by name, city or code",
   "a_task_complete": "Complete",
   "p_session_options_deleted_users": "Hide deleted users",
-  "p_session_restart_tracker": "Restart tracker"
+  "p_session_restart_tracker": "Restart tracker",
+  "pirates": "Pirates"
 }

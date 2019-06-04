@@ -17,12 +17,12 @@
                     <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
                     </button>
                 </ion-col>
-                <ion-col class="image-container narrativeName pirates" lazy-load-images>
+                <ion-col class="image-container narrativeName" [ngClass]="route.getNarrativeName()"  lazy-load-images>
                     <img class="thumb round bordered lazy" src="./assets/images/img_default_image.gif" [attr.data-async-src]="route.getImageURL()" />
                     <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
-                    <div class="indicator">
-                        <h3 no-margin>Pirates</h3>
-                        <img class="background" src="./assets/icons/pirates/indicator-label.svg" />
+                    <div *ngIf="route.isNarrativeEnabled()" class="indicator">
+                        <h3 no-margin>{{route.getNarrativeName() | translate}}</h3>
+                        <img class="background" src="./assets/icons/{{route.getNarrativeName()}}/indicator-label.svg" />
                     </div>
                 </ion-col>
                 <ion-col col-4 class="button-container">

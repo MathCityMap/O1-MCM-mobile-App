@@ -281,10 +281,9 @@ export class Route {
             switch (narrative) {
                 case 'pirates':
                     return 'https://{s}.api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ';
-                    //return `https://{s}.api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx/tiles/256/{z}/{x}/{y}${L.Browser.retina ? '@2x': ''}?access_token=${Helper.accessToken}`;
                 default:
                     return Helper.mapquestUrl
-                    /*http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}${L.Browser.retina ? '@2x' : ''}.png?&tilesize=256&access_token=${Helper.accessToken}*/
+                
             }
         }
     }
