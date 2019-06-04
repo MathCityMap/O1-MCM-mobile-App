@@ -264,6 +264,8 @@ export class Route {
     }
 
     getNarrativeName(): string {
+        //return string for testing
+        //return 'pirates';
         let name = this.getAttributes().narrativeName;
         if (name) {
             return name;
@@ -333,6 +335,8 @@ export class Route {
     }
 
     isNarrativeEnabled() {
+        // return true for testing
+        //return true
         return !!(this.getAttributes().narrativeName);
     }
 

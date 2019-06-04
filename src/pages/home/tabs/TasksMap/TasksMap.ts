@@ -187,8 +187,7 @@ export class TasksMap implements OnInit, OnDestroy {
     this.score = this.route.getScoreForUser(this.user);
     let sessionInfo = this.chatAndSessionService.getSessionInfo();
     this.updateSession(sessionInfo);
-    //TODO: Make dynamic when database support is given;
-    this.events.publish('narrativeChange', /*this.route.getNarrativeName()*/ 'pirates');
+    this.events.publish('narrativeChange', this.route.getNarrativeName());
 
     this.updateIcons();
 
