@@ -559,7 +559,7 @@ export class TaskDetail {
                     this.chatAndSessionService.addUserEvent("event_task_skipped", details, this.task.id.toString());
                 }
                 this.closeDetails(true);
-            });
+            }, this.app.activeNarrative);
     }
 
     getNextAvailableHint() {

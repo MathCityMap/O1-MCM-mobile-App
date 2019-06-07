@@ -435,7 +435,7 @@ $icon-path: "../assets/icons/";
             content: url("#{$image-path}pirates/unit-score.svg");
             margin-left: 6px;
             margin-top: 2px;
-            @include shadow-filter-hard();
+            /*@include shadow-filter-hard();*/
         }
     }
 
@@ -473,7 +473,7 @@ $icon-path: "../assets/icons/";
                         display: block;
                         width: 100%;
                     }
-                    @include shadow-filter-medium;
+                    /*@include shadow-filter-medium;*/
                     box-shadow: unset;
                     background-image: url("#{$image-path}pirates/texture-paper-l.svg");
                     background-repeat: no-repeat;
@@ -502,7 +502,7 @@ $icon-path: "../assets/icons/";
                             text-transform: none;
                             letter-spacing: 0;
                             font-size: 150%;
-                            @include shadow-filter-hard;
+                            /*@include shadow-filter-hard;*/
                         }
                         .score{
                             color: $c-light;
@@ -557,7 +557,7 @@ $icon-path: "../assets/icons/";
                 }
             }
             & > h2{
-                @include shadow-filter-hard;
+                /*@include shadow-filter-hard;*/
                 letter-spacing: 0;
                 text-transform: none;
                 font-size: 180%;
