@@ -494,7 +494,7 @@ export class TaskDetail {
         let solutionSample = this.task.getSolutionSample();
         let solutionSrc = this.task.getSolutionSampleImgSrc();
         let messages = [];
-        if (solutionSample.length == 0 && solutionSrc.length == 0) {
+        if ((!solutionSample  || solutionSample.length == 0) && (!solutionSrc || solutionSrc.length == 0)) {
             messages = [
                 'a_msg_no_solutionsample',
                 'p_t_solution',
