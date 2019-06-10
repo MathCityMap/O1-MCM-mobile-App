@@ -340,9 +340,9 @@ export class Route {
     }
 
     setNarrativeStrings() {
-        this.narrativeStrings = JSON.parse(this.getAttributes().narrativeStrings);
-        if (this.narrativeStrings === undefined) {
-            this.narrativeStrings = [];
+        let strings = this.getAttributes().narrativeStrings;
+        if (strings != null) {
+            this.narrativeStrings = JSON.parse(strings);
         }
     }
 

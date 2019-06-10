@@ -850,9 +850,15 @@ export class TasksMap implements OnInit, OnDestroy {
 
     showIntroModal(): Promise<any> {
         return new Promise<any>(success => {
+            let title = 'a_alert_welcome';
+            let message = 'a_alert_welcome_msg';
+            if (this.route.isNarrativeEnabled()) {
+                title = this.route.getNarrativeString(title);
+                message = this.route.getNarrativeString(message);
+            }
             let introModal = this.modalCtrl.create(MCMIntroModal, {
-                title: 'a_intro_title',
-                message: 'a_intro_message',
+                title: title,
+                message: message,
                 modalType: MCMModalType.hint,
                 narrative: this.app.activeNarrative,
                 buttons: [

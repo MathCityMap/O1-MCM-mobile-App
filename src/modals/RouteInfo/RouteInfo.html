@@ -21,7 +21,7 @@
                     <img class="thumb round bordered lazy" src="./assets/images/img_default_image.gif" [attr.data-async-src]="route.getImageURL()" />
                     <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
                     <div *ngIf="route.isNarrativeEnabled()" class="indicator">
-                        <h3 no-margin>{{route.getNarrativeName() | translate}}</h3>
+                        <h3 no-margin>{{'p_narrative_names_' + route.getNarrativeName() | translate}}</h3>
                         <img class="background" src="./assets/icons/{{route.getNarrativeName()}}/indicator-label.svg" />
                     </div>
                 </ion-col>
@@ -85,7 +85,7 @@
             <ion-row>{{ 't_samplesolution' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>
             <ion-row>{{ 'a_hints' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>
             <ion-row>{{ 'p_r_validation' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>
-            <ion-row *ngIf="route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_' + route.getNarrativeName().toLowerCase() | translate }}</ion-row>
+            <ion-row *ngIf="route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_' + route.getNarrativeName() | translate }}</ion-row>
             <ion-row *ngIf="!route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_none' | translate }}</ion-row>
         </p>
 
