@@ -58,7 +58,8 @@ export class TasksMap implements OnInit, OnDestroy {
       isShowingAllTasks: false,
       visibleTasks : {},
       skippedTaskIds: [],
-      selectedStartTask: false
+      selectedStartTask: false,
+      showIntroModal: false
   };
   private score: Score;
   private stateKey: string = "savedMapStateByRoute";
@@ -260,7 +261,8 @@ export class TasksMap implements OnInit, OnDestroy {
                   isShowingAllTasks: false,
                   visibleTasks: {},
                   skippedTaskIds: [],
-                  selectedStartTask: false
+                  selectedStartTask: false,
+                  showIntroModal: false // Intro Modal for narratives will be displayed on first start anyway
               };
               this.state.isShowingAllTasks = !this.state.selectedTask;
               if (this.state.selectedTask) {
@@ -289,6 +291,15 @@ export class TasksMap implements OnInit, OnDestroy {
                               that.state.selectedStartTask = true;
                           }, that.app.activeNarrative);
                   }, 500);
+              }
+          }
+          else{
+              if(this.state.showIntroModal && this.route.isNarrativeEnabled()){
+                  this.showIntroModal().then(() => {
+                      const that = this;
+                      that.state.showIntroModal = false;
+                      this.saveMapStateToLocalStorage();
+                  });
               }
           }
       }
@@ -686,13 +697,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
           'no', () => {},
           'yes', () => {
-              this.ormService.deleteUserScore(this.score).then( async ()=> {
-                  this.score = new Score();
-                  this.state.skippedTaskIds = [];
-                  this.route.completed = false;
-                  await this.ormService.saveAndFireChangedEvent(this.route);
-                  this.redrawMarker();
-              });
+              this.resetTasks();
           }, this.app.activeNarrative);
   }
 
@@ -700,6 +705,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.ormService.deleteUserScore(this.score).then( async ()=> {
           this.score = new Score();
           this.state.skippedTaskIds = [];
+          this.state.showIntroModal = true;
           this.route.completed = false;
           await this.ormService.saveAndFireChangedEvent(this.route);
           this.redrawMarker();
@@ -918,4 +924,5 @@ export interface TaskMapState {
     visibleTasks: any;
     skippedTaskIds: number[];
     selectedStartTask: boolean;
+    showIntroModal: boolean;
 }
