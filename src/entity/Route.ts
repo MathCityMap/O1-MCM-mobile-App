@@ -362,7 +362,9 @@ export class Route {
         }
         let key = this.matchingStrings[$mcmKey];
         let newString = this.narrativeStrings[key];
-
+        if(newString && $mcmKey === 'a_alert_welcome_msg'){
+            newString = newString.replace('###TITLE###', this.title);
+        }
         return newString? newString : $mcmKey;
     }
 
