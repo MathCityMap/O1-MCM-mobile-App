@@ -177,10 +177,7 @@ export class Route {
     getSettingValue(key: string): boolean{
         if(this.isSettingAvailable(key)){
             let attr = this.getAttributes();
-            if(attr[key] === "true" || attr[key] === "1"){
-                return true;
-            }
-            else return false;
+            return attr[key] === "true" || attr[key] === "1";
         }
         else return null;
     }
@@ -202,6 +199,17 @@ export class Route {
      */
     isSettingAvailable(key: string): boolean{
         let attr = this.getAttributes();
+        // fix missing values
+        if (!attr.sampleSolution) {
+            attr.sampleSolution = "true";
+        }
+        if (!attr.hints) {
+            attr.hints = "true";
+        }
+        if (!attr.answerValidation) {
+            attr.answerValidation = "true";
+        }
+        this.attr = JSON.stringify(attr);
         return attr.hasOwnProperty(key);
     }
 
