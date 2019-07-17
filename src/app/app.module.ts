@@ -32,6 +32,7 @@ import { LinkyModule } from 'angular-linky';
 import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import { BroadcastService } from '../services/broadcast-service';
 import { MCMIconModal } from '../modals/MCMIconModal/MCMIconModal';
+import { MCMIntroModal } from "../modals/MCMIntroModal/MCMIntroModal";
 import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 import { MCMTermsAndConditionsModal } from "../modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 import { MCMJoinSessionModal } from "../modals/MCMJoinSessionModal/MCMJoinSessionModal";
@@ -57,7 +58,7 @@ import { AppVersion } from '@ionic-native/app-version';
         MyApp,
         RouteInfo,
         MCMDownloadProgressPopupComponent,
-        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
+        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal,
         CenteredTask,
         Autoresize,
         CustomKeyBoard
@@ -87,7 +88,7 @@ import { AppVersion } from '@ionic-native/app-version';
         MyApp,
         RouteInfo,
         MCMDownloadProgressPopupComponent,
-        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal,
+        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal,
         CenteredTask,
         CustomKeyBoard
     ],

@@ -74,7 +74,7 @@ export class ModalsService {
     async showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null) {
         if (route.downloaded) {
             // 15.05.18 - Perform dataset refresh of related tasks of the route if online
-            await this.dbUpdater.updateRouteTasksData(route.id, this.translateService.instant("a_language_code"))
+            await this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))
             this.navigateToRoute(route, navCtrl, null);
         } else {
             await this.presentRouteInfoModal(route, navCtrl);
@@ -83,7 +83,8 @@ export class ModalsService {
 
     async showDialog(titleKey: string, messageKey: string,
                      button1Key?: string, button1Handler?: () => void,
-                     button2Key?: string, button2Handler?: () => void) {
+                     button2Key?: string, button2Handler?: () => void,
+                     narrative: string = 'default') {
         button1Key = button1Key || 'a_g_ok';
         let buttons = [{
             text: this.translateService.instant(button1Key),
@@ -98,7 +99,8 @@ export class ModalsService {
         let confirm = this.alertCtrl.create({
             title: titleKey ? this.translateService.instant(titleKey) : null,
             message: messageKey ? this.translateService.instant(messageKey) : null,
-            buttons: buttons
+            buttons: buttons,
+            cssClass: narrative
         });
         return confirm.present();
     }
@@ -151,14 +153,14 @@ export class ModalsService {
         });
     }
 
-    async presentTaskListModal(route: Route, score: Score, state: TaskMapState, navCtrl: NavController, callback: any) {
+    async presentTaskListModal(route: Route, score: Score, state: TaskMapState, narrative: string = 'default', navCtrl: NavController, callback: any) {
         let testModal = this.modalCtrl.create(CenteredTask, {
             route: route,
             score: score,
             state: state,
             tasks: await route.getTasks(),
             modalsService: this
-        });
+        }, {cssClass: narrative});
         testModal.onDidDismiss(data => {
             /* coming from List/Map View */
             if (data && data.route != null && navCtrl != null && !callback) this.navigateToRoute(data.route, navCtrl, data.selectedTask);

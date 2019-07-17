@@ -71,12 +71,35 @@ export class Route {
     @Column()
     attr: string;
 
+    // TODO: change table's schema
+    /*@Column("simple-json")
+    narrativeStrings: { welcome: string, welcomeMessage: string, ending: string, aboutObject: string,
+        wellDone: string, notPerfect: string, firstGo: string, wrongAnswer: string, tryAgain: string, takeHint: string,
+        skipTask: string, congratulations: string, goodLuck: string };*/
+
     /*
     @Column({name: 'lang_code'})
     langCode: string;
     */
 
     tasks: Task[];
+
+    narrativeStrings = [];
+    matchingStrings = {
+        "a_alert_welcome": "welcome",
+        "a_alert_welcome_msg" : "welcomeMessage",
+        "a_alert_congrats_msg" : "ending",
+        "a_did_you_know" : "aboutObject",
+        "a_alert_right_answer_title" : "wellDone",
+        "a_alert_right_answer_title_low" : "notPerfect",
+        "a_alert_right_answer_1" : "firstGo",
+        "a_alert_false_answer_title" : "wrongAnswer",
+        "a_alert_false_answer_1" : "tryAgain",
+        "a_alert_false_answer_2" : "takeHint",
+        "a_skipTask_confirm" : "skipTask",
+        "a_alert_congrats" : "congratulations",
+        "good_luck_next_time" : "goodLuck"
+    };
 
     async getTasks(): Promise<Task[]> {
         if (this.tasks) {
@@ -248,6 +271,44 @@ export class Route {
         return Helper.safeJsonDecode(this.attr);
     }
 
+    getNarrativeName(): string {
+        //return string for testing with a specific narrative on all routes (works best together with isNarrativeEnabled true);
+        //return 'pirates';
+        let name = this.getAttributes().narrativeName;
+        if (name) {
+            return name.toLowerCase();
+        } else {
+            return "";
+        }
+    }
+
+    getTilesMap(narrative) {
+        if (this.getAttributes().tilesUrl) {
+            return this.getAttributes().tilesUrl;
+        } else {
+            switch (narrative) {
+                case 'pirates':
+                    return 'https://{s}.api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ';
+                default:
+                    return Helper.mapquestUrl
+                
+            }
+        }
+    }
+
+    getTilesServerSubdomains(narrative) {
+        if (this.getAttributes().tilesSubdomains) {
+            return this.getAttributes().tilesSubdomains;
+        } else {
+            switch (narrative) {
+                case 'pirates':
+                    return ['a', 'b'];
+                default:
+                    return Helper.subDomains;
+            }
+        }
+    }
+
     isGamificationDisabled() {
         if (this.getAttributes().gamification) {
             return this.getAttributes().gamification === "false";
@@ -280,5 +341,39 @@ export class Route {
         }
     }
 
+    isNarrativeEnabled() {
+        // return true for testing with narrative enabled for all routes
+        //return true
+        return !!(this.getAttributes().narrativeName);
+    }
+
+    setNarrativeStrings() {
+        let strings = this.getAttributes().narrativeStrings;
+        if (strings != null) {
+            this.narrativeStrings = JSON.parse(strings);
+        }
+    }
+
+    hasNarrativeString($mcmKey) {
+        if(this.narrativeStrings == null || this.narrativeStrings.length == 0) {
+            this.setNarrativeStrings();
+        }
+        let key = this.matchingStrings[$mcmKey];
+        let newString = this.narrativeStrings[key];
+
+        return newString? true : false;
+    }
+
+    getNarrativeString($mcmKey) {
+        if(this.narrativeStrings == null || this.narrativeStrings.length == 0) {
+            this.setNarrativeStrings();
+        }
+        let key = this.matchingStrings[$mcmKey];
+        let newString = this.narrativeStrings[key];
+        if(newString && $mcmKey === 'a_alert_welcome_msg'){
+            newString = newString.replace('###TITLE###', this.title);
+        }
+        return newString? newString : $mcmKey;
+    }
 
 }

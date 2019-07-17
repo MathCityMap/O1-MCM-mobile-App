@@ -26,6 +26,7 @@ import {GpsService} from  '../../services/gps-service';
 import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { Subscription } from 'rxjs/Subscription';
+import {MyApp} from "../../app/app.component";
 
 export class TaskDetailMap implements OnDestroy {
 
@@ -62,7 +63,8 @@ export class TaskDetailMap implements OnDestroy {
     constructor(
         private task: Task,
         private route: Route,
-        private gpsService: GpsService
+        private gpsService: GpsService,
+        private app: MyApp
     ) {
         this.userPositionIcon = L.icon({
             iconUrl:"./assets/icons/icon_mapposition.png" ,
@@ -320,8 +322,8 @@ export class TaskDetailMap implements OnDestroy {
 
     loadMap() {
         this.center = [this.taskDetails.lat, this.taskDetails.lon]; // Center at task's position
-        let mapquestUrl = Helper.mapquestUrl;
-        let subDomains = Helper.subDomains;
+        let mapquestUrl = this.route.getTilesMap(this.app.activeNarrative);//Helper.mapquestUrl;
+        let subDomains = this.route.getTilesServerSubdomains(this.app.activeNarrative)//Helper.subDomains;
 
         if (this.map == null) {
             this.map = (L as any).map('gpsTaskMap', {

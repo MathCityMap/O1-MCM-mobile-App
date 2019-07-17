@@ -1,0 +1,11 @@
+<div class="modal card icon intro has-button-on-the-edge">
+    <div class="modal-content">
+        <img class="head-icon" src="./assets/icons/{{narrative}}/modal-intro.svg"/>
+        <h2>{{ title | translate}}</h2>
+        <p [innerHtml]=" message | translate "></p>
+    </div>
+
+    <div class="on-the-edge-container">
+        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
+    </div>
+</div>
