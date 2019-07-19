@@ -1545,7 +1545,7 @@ cordova-create@^1.0.1:
     shelljs "0.3.0"
     valid-identifier "0.0.1"
 
-cordova-custom-config@4.0.2:
+cordova-custom-config@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/cordova-custom-config/-/cordova-custom-config-4.0.2.tgz#76e88a40ad213754069f2e64981e9167a597dfee"
   integrity sha1-duiKQK0hN1QGny5kmB6RZ6WX3+4=

@@ -439,7 +439,6 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-custom-config": "4.0.2",
     "cordova-plugin-compat": "1.2.0",
     "cordova-plugin-file": "4.3.3",
     "cordova-plugin-advanced-http": "1.6.2",
@@ -461,7 +460,8 @@ module.exports.metadata =
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-fabric-plugin": "1.1.9",
-    "cordova-plugin-app-version": "0.1.9"
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-custom-config": "4.0.2"
 };
 // BOTTOM OF METADATA
 });

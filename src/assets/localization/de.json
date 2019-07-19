@@ -358,8 +358,6 @@
   "a_cancelStartAt": "Zeige alle Aufgaben",
   "a_guided_trail": "Möchtest du von einer bestimmten Aufgabe starten?",
   "a_guided_trail_title": "Startpunkt wählen",
-  "a_alert_welcome": "IntroTitle",
-  "a_alert_welcome_msg": "Intro_Message",
   "a_about_mcm_title": "Über MathCityMap",
   "a_about_mcm": "MathCityMap ist ein Projekt der Arbeitsgruppe MATIS 1 des Instituts für Didaktik der Mathematik und Informatik der Goethe-Universität Frankfurt am Main.\n Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos. \n\n Verantwortliche Personen:\n Matthias Ludwig\n Iwan Gurjanow\n Joerg Zender\n\n  MathCityMap nutzt Bildmaterial von https://icons8.com:\n https://icons8.com/web-app/5682/marker\n https://icons8.com/web-app/2969/settings-filled\n https://icons8.com/web-app/13114/cancel\n https://icons8.com/web-app/5575/plus\n https://icons8.com/web-app/16570/exit\n https://icons8.com/web-app/5663/worldwide-location\n https://icons8.com/web-app/5594/key \n https://icons8.com/web-app/6269/waypoint-map\n https://icons8.com/web-app/13115/ok\n",
   "a_alert_right_answer_1_low": "Du hast die Aufgabe auf Anhieb gelöst.\nDeine Lösung '{{L}}' ist ok.",
@@ -411,7 +409,6 @@
   "a_language_en": "English",
   "a_settings_language": "Sprache",
   "a_language_de": "Deutsch",
-  "a_language_id": "Indonesia",
   "a_language_zh": "中文",
   "a_language_tr": "Türkçe",
   "a_settings_console": "Konsolenbefehle",
@@ -625,7 +622,14 @@
   "a_task_complete": "Abschließen",
   "p_session_options_deleted_users": "Verstecke entfernte Nutzer",
   "p_session_restart_tracker": "Tracker neustarten",
+  "p_rating_sort_btn": "Nach Bewertung sortieren",
+  "p_votes": "Abstimmungen",
+  "p_rating_vote_prompt": "Stimme ab, um das Ergebnis zu sehen",
+  "p_rating_your_vote": "Deine Abstimmung",
   "p_narrative": "Erzählung",
+  "p_narrative_names_none": "Keine",
   "p_narrative_names_pirates": "Piraten",
-  "p_narrative_names_none": "Keiner"
+  "a_alert_welcome_msg": "Willkommen auf dem '{{TITLE}}' Pfad! Viel Spaß!",
+  "a_alert_welcome": "Willkommen!",
+  "a_language_id": "Indonesian"
 }

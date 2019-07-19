@@ -195,9 +195,6 @@
     "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-custom-config": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -258,6 +255,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-custom-config": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
@@ -683,7 +683,6 @@
   ],
   "plugin_metadata": {
     "com-sarriaroman-photoviewer": "1.1.18",
-    "cordova-custom-config": "4.0.2",
     "cordova-plugin-file": "4.3.3",
     "cordova-plugin-advanced-http": "1.6.2",
     "cordova-plugin-badge": "0.8.7",
@@ -703,6 +702,7 @@
     "cordova.plugins.diagnostic": "3.9.1",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-fabric-plugin": "1.1.9",
-    "cordova-plugin-app-version": "0.1.9"
+    "cordova-plugin-app-version": "0.1.9",
+    "cordova-custom-config": "4.0.2"
   }
 }
