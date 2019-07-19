@@ -409,7 +409,6 @@
   "a_language_en": "English",
   "a_settings_language": "Sprache",
   "a_language_de": "Deutsch",
-  "a_language_id": "Indonesia",
   "a_language_zh": "中文",
   "a_language_tr": "Türkçe",
   "a_settings_console": "Konsolenbefehle",
@@ -622,5 +621,15 @@
   "a_search_trails": "Suche nach Name, Stadt oder Code",
   "a_task_complete": "Abschließen",
   "p_session_options_deleted_users": "Verstecke entfernte Nutzer",
-  "p_session_restart_tracker": "Tracker neustarten"
+  "p_session_restart_tracker": "Tracker neustarten",
+  "p_rating_sort_btn": "Nach Bewertung sortieren",
+  "p_votes": "Abstimmungen",
+  "p_rating_vote_prompt": "Stimme ab, um das Ergebnis zu sehen",
+  "p_rating_your_vote": "Deine Abstimmung",
+  "p_narrative": "Erzählung",
+  "p_narrative_names_none": "Keine",
+  "p_narrative_names_pirates": "Piraten",
+  "a_alert_welcome_msg": "Willkommen auf dem '{{TITLE}}' Pfad! Viel Spaß!",
+  "a_alert_welcome": "Willkommen!",
+  "a_language_id": "Indonesian"
 }

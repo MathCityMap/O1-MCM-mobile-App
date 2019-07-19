@@ -409,7 +409,6 @@
   "a_language_en": "English",
   "a_settings_language": "Language",
   "a_language_de": "Deutsch",
-  "a_language_id": "Indonesia",
   "a_language_zh": "中文",
   "a_language_tr": "Türkçe",
   "a_settings_console": "Console",
@@ -562,7 +561,7 @@
   "p_r_hints": "Display hints",
   "p_r_saso": "Display sample solutions",
   "p_r_validation": "Answer validation",
-  "p_r_settings": "Sett",
+  "p_r_settings": "Settings",
   "event_trail_opened": "Opened trail map",
   "event_trail_closed": "Closed trail map",
   "event_trail_start_from_task": "Selected starting task",
@@ -622,5 +621,15 @@
   "a_search_trails": "Search by name, city or code",
   "a_task_complete": "Complete",
   "p_session_options_deleted_users": "Hide deleted users",
-  "p_session_restart_tracker": "Restart tracker"
+  "p_session_restart_tracker": "Restart tracker",
+  "p_rating_sort_btn": "Sort by rating",
+  "p_votes": "Votes",
+  "p_rating_vote_prompt": "Vote to see the result",
+  "p_rating_your_vote": "Your Vote",
+  "p_narrative": "Narrative",
+  "p_narrative_names_none": "None",
+  "p_narrative_names_pirates": "Pirates",
+  "a_alert_welcome_msg": "Welcome to the  '{{TITLE}}' trail! Have fun!",
+  "a_alert_welcome": "Welcome!",
+  "a_language_id": "Indonesian"
 }

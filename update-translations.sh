@@ -1,6 +1,6 @@
 #!/bin/bash
 [ -z "$1" ] && echo "Usage: $0 <downloaded zip file>" && exit 1
-[ "$(jq --version)" != "jq-1.5" ] && echo "You need to install version 1.5 of 'jq' (https://stedolan.github.io/jq/)." && exit 1
+[ "$(jq --version)" != "jq-1.5" -a "$(jq --version)" != "jq-1.6" ] && echo "You need to install at least version 1.5 of 'jq' (https://stedolan.github.io/jq/)." && exit 1
 basedir=$(pwd)
 file=$(basename $1)
 tmpdir=/tmp/$file
