@@ -5,7 +5,7 @@ ENV_NAME=ionic-3.19.1
 echo $ATK_ENV | grep "$ENV_NAME" &> /dev/null && echo "Environment $ENV_NAME is already active" && exit
 
 previousNodeVersion=`node --version`
-if [ "$previousNodeVersion" != "v6.12.0" ]
+if [ "$previousNodeVersion" != "v8.8.0" ]
 
 	then
 	if ! [ -e /usr/local/opt/nvm/nvm.sh ] &> /dev/null
@@ -15,8 +15,8 @@ if [ "$previousNodeVersion" != "v6.12.0" ]
 	fi
 	export NVM_DIR=~/.nvm
 	source /usr/local/opt/nvm/nvm.sh
-	echo "Switching to Node v6.12.0"
-	nvm install v6.12.0
+	echo "Switching to Node v8.8.0"
+	nvm install v8.8.0
 	SWITCHED_NODE_VERSION=true
 fi
 [ -z "$ATK_ENV" ] && export ATK_ENV="$ENV_NAME" || export ATK_ENV="$ATK_ENV,$ENV_NAME"
