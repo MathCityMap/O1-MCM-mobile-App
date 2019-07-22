@@ -150,7 +150,7 @@ export class ImagesService {
         for (var i = 0; i < urls.length; i++) {
             let imgFileName = urls[i];
             // No image in task
-            if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
+            if (!imgFileName || imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
                 continue
             }
 
