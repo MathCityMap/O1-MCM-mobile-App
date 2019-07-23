@@ -24,7 +24,10 @@ export class MCMIconModal{
     linkyOptions: any;
     buttons: any[];
     gamificationEnabled: boolean = false;
+    narrativeEnabled: boolean = false;
     score: string;
+    narrative: string;
+    iconPath: string;
 
     windowWith: number;
     videoWith: number;
@@ -87,6 +90,21 @@ export class MCMIconModal{
         if(params.data.gamificationEnabled){
             this.gamificationEnabled = params.data.gamificationEnabled;
         }
+        if(params.data.narrativeEnabled){
+            this.narrativeEnabled = params.data.narrativeEnabled;
+        }
+        if(params.data.narrative) {
+            this.narrative = params.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        } else {
+            this.iconPath = '';
+        }
         if(params.data.score){
             this.score = params.data.score;
         }
@@ -96,6 +114,14 @@ export class MCMIconModal{
                 console.log( "href = ", match.getAnchorHref() );
                 console.log( "text = ", match.getAnchorText() );
                 return '<a href="'+match.getAnchorHref()+'">' + match.getAnchorText() + '</a>';
+            }
+        }
+
+        // replace the ###KEY### in titles and messages
+        if (this.narrativeEnabled) {
+            for (var key in this.param) {
+                this.title = this.title.replace("###"+key+"###", this.param[key]);
+                this.message = this.message.replace("###"+key+"###", this.param[key]);
             }
         }
     }

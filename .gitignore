@@ -22,7 +22,6 @@ dist/
 node_modules/
 tmp/
 temp/
-hooks/
 www/build/
 $RECYCLE.BIN/
 
@@ -42,3 +41,6 @@ www/assets
 platforms/android/assets/www/assets
 platforms/ios/www/assets
 platforms/ios/MathCityMap.xcodeproj/project.xcworkspace/xcuserdata
+release-signing.properties
+platforms/ios/MathCityMap.xcworkspace/xcuserdata
+platforms/android/.gradle

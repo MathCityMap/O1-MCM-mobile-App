@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import {Events, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
@@ -21,10 +21,12 @@ export enum MCMModalType {
 export class MyApp {
   rootPage:any = 'HomePage';
 
+  public activeNarrative: string = 'default';
   keysTab: string[];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-              languageService: LanguageService, chatService: ChatAndSessionService) {
+              languageService: LanguageService, chatService: ChatAndSessionService,
+              events: Events) {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -42,6 +44,12 @@ export class MyApp {
           "7", "8", "9", "",
           "-", "0", decimalSeparator, "✔"]; // ✔
       // chatService.init();
+
+      events.subscribe('narrativeChange', (narrative) => {
+          this.activeNarrative = narrative;
+      });
+
+
   }
 
     ngOnInit()

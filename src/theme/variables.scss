@@ -107,6 +107,14 @@ $global-large-padding:  40px;
 $fab-size: 40px;
 $fab-list-button-background-color: color($colors, primary-darker);
 
+$toolbar-background: color($colors, light-grey);
+$toolbar-ios-background: color($colors, light-grey);
+$searchbar-ios-toolbar-input-background: white;
+$searchbar-md-input-box-shadow: none;
+
+
+
+
 
 // Own Mixins       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
 //
@@ -139,4 +147,546 @@ $fab-list-button-background-color: color($colors, primary-darker);
   -moz-transform: $property;
   -ms-transform: $property;
   transform: $property;
+}
+
+@mixin on-circle($item-count, $circle-size, $item-size) {
+    position: relative;
+    width:  $circle-size;
+    height: $circle-size;
+    padding: 0;
+    border-radius: 50%;
+    list-style: none;
+
+    > * {
+        display: block;
+        position: absolute;
+        top:  50%;
+        left: 50%;
+        width:  $item-size;
+        height: $item-size;
+        margin: -($item-size / 2);
+
+        $angle: (360 / $item-count);
+        $rot: 0;
+
+        @for $i from 1 through $item-count {
+            &:nth-of-type(#{$i}) {
+                transform:
+                    rotate($rot * 1deg)
+                    translate($circle-size / 2)
+                    rotate($rot * -1deg);
+            }
+
+            $rot: $rot + $angle;
+        }
+    }
+}
+
+
+
+// Pirate Theming       L( Ø -´)⊃━|-----
+// --------------------------------------------------
+
+$c-primary:        #AA2000;
+$c-secondary:      #B7702E;
+$c-secondary-light:      #E2AC64;
+$c-yellow:         #FFC033;
+$c-success:        #33CC00;
+$c-blue:           #32A4DC;
+$c-danger:         #333333;
+$c-light:          #ffffff;
+
+$c-text:          $c-danger;
+
+$image-path: "../assets/images/";
+$icon-path: "../assets/icons/";
+
+@mixin shadow-medium() {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+@mixin shadow-filter-medium() {
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+}
+@mixin shadow-filter-hard() {
+    filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
+}
+
+@mixin texture-wood-light($rotate: false) {
+    background: url("#{$image-path}pirates/texture-wood-light.svg") $c-secondary-light;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    @if $rotate{
+        background-image: url("#{$image-path}pirates/texture-wood-light-v.svg");
+    }
+}
+
+
+
+
+
+.pirates {
+
+    .label{
+        color: $c-text;
+        font-family: 'CaveatBrush', Arail, sans-serif;
+        text-transform: capitalize;
+        letter-spacing: 0;
+        font-size: 130%;
+    }
+
+    h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
+        font-family: 'Pangolin', Arial, sans-serif;
+    }
+
+    h1{
+        font-family: 'CaveatBrush', Arail, sans-serif!important;
+        letter-spacing: 0;
+        text-transform: none;
+        font-size: 150%;
+    }
+    h2{
+        font-family: 'CaveatBrush', Arail, sans-serif!important;
+        letter-spacing: 0;
+        text-transform: none;
+        font-size: 150%;
+    }
+
+    h3{
+        font-family: 'CaveatBrush', Arail, sans-serif!important;
+        font-size: 18px;
+    }
+
+    .button{
+        &.button-round-ios.button-small-ios,
+        &.button-round-md.button-small-md{
+            font-family: 'CaveatBrush', Arial, sans-serif;
+            span{
+                font-family: 'CaveatBrush', Arial, sans-serif;
+                font-size: 130%;
+            }
+        }
+    }
+
+
+    // Main UI (Navigation, Form)
+
+    ion-header{
+        background: $c-secondary;
+        background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: cover;
+    }
+    ion-toolbar {
+        .toolbar-background {
+            background: $c-secondary;
+            background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+        }
+        .toolbar-title{
+            font-family: 'CaveatBrush', Arail, sans-serif;
+            font-size: 200%;
+        }
+    }
+
+    .item-input{
+        .item-inner{
+            border-bottom: none!important;
+            box-shadow: none;
+        }
+    }
+
+    .item.item-input, .item.item-checkbox:not(:last-of-type){
+        .input-wrapper{
+            &:after {
+                pointer-events: none;
+                content: url("#{$image-path}pirates/border-input.svg");
+                position: absolute;
+                bottom: -7px;
+                left: 0;
+                right: 0;
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    .checkbox-md, .checkbox-ios{
+        .checkbox-icon{
+            border-color: $c-danger;
+            background-color: transparent;
+        }
+        .checkbox-checked{
+            border-color: #aa1f00;
+            background-color: #aa1f00;
+        }
+    }
+
+    button{
+        &.button, &.fab{
+            &:not(.button-clear){
+                background-color: $c-primary;
+            }
+            &[color="primary"]{
+                background-color: $c-primary;
+                &[disabled]{
+                    background-color: inherit;
+                }
+            }
+            &[color="danger"]{
+                background-color: $c-danger;
+            }
+        }
+    }
+
+    // Route List & Preview/Detail
+
+    &.image-container{
+        .thumb{
+            border-color: $c-secondary;
+            border-width: 5px;
+        }
+        .indicator{
+            &:before, &:after{
+                content: url("#{$icon-path}pirates/indicator-label-deco.svg");
+                margin: 5px 5px 0;
+                width: 16px;
+            }
+        }
+    }
+
+
+    // Map
+
+    page-tasks-map{
+        .detail-box{
+            &#details{
+                padding-bottom: 16px;
+                padding-top: 20px;
+                box-shadow: unset;
+                filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+                background-color: unset;
+                background-image: url("#{$image-path}pirates/texture-paper-s.svg");
+                background-repeat: no-repeat;
+                background-position: top;
+                background-size: cover;
+                .image-container{
+                    border: none;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8) inset;
+                    //filter: grayscale(0.5) sepia(0.5);
+                }
+                .title{
+                    & > span{
+                        color: $c-text;
+                    }
+                }
+            }
+            &#ranking {
+                @include shadow-medium;
+                background-color: $c-secondary-light;
+                background-image: url("#{$image-path}pirates/texture-wood-light.svg");
+                background-repeat: no-repeat;
+                background-position: bottom;
+                background-size: cover;
+                .row{
+                    @include shadow-filter-hard();
+                    border: none;
+                }
+                .col {
+                    ion-label{
+                        color: $c-light;
+                    }
+                }
+            }
+        }
+
+        .marker-cluster-small{
+            border-color: $c-primary;
+            div{
+                border-color: $c-primary;
+                background-color: $c-primary;
+                span{
+                    font-family: 'CaveatBrush', Arail, sans-serif;
+                    font-size: 200%;
+                    line-height: 24px;
+                }
+            }
+        }
+        .marker-cluster-medium, .marker-cluster-large{
+            border-color: $c-primary;
+            div{
+                border-color: $c-primary;
+                background-color: $c-primary;
+                span{
+                    font-family: 'CaveatBrush', Arail, sans-serif;
+                    font-size: 200%;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+
+    .score{
+        padding: 0;
+        &:after{
+            content: url("#{$image-path}pirates/unit-score.svg");
+            margin-left: 6px;
+            margin-top: 2px;
+            /*@include shadow-filter-hard();*/
+        }
+    }
+
+    // Task
+
+    page-task-detail{
+        .transition {
+            background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
+        }
+        .task-content{
+            background: url("#{$image-path}pirates/texture-water.svg"), linear-gradient(to bottom, rgba(50, 164, 220, 0) 50px, rgba(50, 164, 220, 1) 51px);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+            .card{
+                .head{
+                    .score{
+                        height: unset;
+                        background-color: unset;
+                        border: none;
+                        box-shadow: none;
+                        padding: 0;
+                        color: $c-text;
+                        &:after {
+                            content: url("#{$image-path}pirates/unit-score-l.svg");
+                        }
+                    }
+                }
+                &.task{
+                    &:before{
+                        content: url("#{$image-path}pirates/texture-paper-l-start.svg");
+                        position: absolute;
+                        left: 0;
+                        top: -30px;
+                        display: block;
+                        width: 100%;
+                    }
+                    /*@include shadow-filter-medium;*/
+                    box-shadow: unset;
+                    background-image: url("#{$image-path}pirates/texture-paper-l.svg");
+                    background-repeat: no-repeat;
+                    background-position: bottom;
+                    background-size: 100% 100%;
+                    background-color: unset;
+                    padding: 30px 30px 40px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    margin-top: -1px;
+                    .answer{
+                        .item{
+                            background-color: unset;
+                        }
+                    }
+                }
+                .on-the-edge-container{
+                    bottom: -10px;
+                }
+
+
+                &.evaluation{
+                    .head{
+                        .label, .score{
+                            font-family: 'CaveatBrush', Arail, sans-serif;
+                            text-transform: none;
+                            letter-spacing: 0;
+                            font-size: 150%;
+                            /*@include shadow-filter-hard;*/
+                        }
+                        .score{
+                            color: $c-light;
+                            &:after {
+                                filter: none;
+                            }
+                        }
+                    }
+                    padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
+                    border-radius: 0;
+                    $rating: perfect good failed;
+
+                    @each $item in $rating {
+                        &[class*="#{$item}"] {
+                            background: url("#{$image-path}pirates/texture-evaluation-#{$item}.svg");
+                            background-repeat: no-repeat;
+                            background-position: bottom;
+                            background-size: 100%;
+                            box-shadow: none;
+                            margin-top: -45px;
+                        }
+                    }
+                }
+
+
+                &.secondary {
+                    background-color: unset;
+                    border: 2px dashed $c-light;
+                    p, .label {
+                        color: $c-light;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
+        @include texture-wood-light($rotate: true);
+        .modal-content{
+            .dotted-border-bottom{
+                border-bottom: none!important;
+                position: relative;
+                &:not(:last-of-type):after{
+                    content: url(../assets/images/pirates/border-list.svg);
+                    pointer-events: none;
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    right: 0;
+                    display: block;
+                    width: 100%;
+                }
+            }
+            & > h2{
+                /*@include shadow-filter-hard;*/
+                letter-spacing: 0;
+                text-transform: none;
+                font-size: 180%;
+                .score{
+                    &:after{
+                        content: url("#{$image-path}pirates/unit-score-l.svg");
+                        filter: none;
+                    }
+                }
+            }
+            span, p, h2{
+                 color: $c-light;
+            }
+        }
+        .alert-title {
+            color: $c-light;
+            @include shadow-filter-hard;
+        }
+        .alert-message{
+            color: $c-light;
+        }
+        .alert-button{
+            color: $c-primary;
+        }
+
+        &.icon{
+            padding-top: $global-large-padding!important;
+            margin-top: calc(14vw + 20px);
+            .modal-content{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+            img.head-icon{
+                position: relative;
+                top: 0;
+                right: unset;
+                transform: none;
+                margin: 0 auto;
+                border: none;
+                border-radius: 50%;
+                background-color: transparent;
+                margin-bottom: $global-small-padding;
+            }
+            h2, p{
+                color: $c-light!important;
+                margin-bottom: 10px;
+            }
+            h2{
+                order: -1;
+                font-size: 250%;
+            }
+        }
+
+        &.intro{
+            img.head-icon{
+                border-radius: 0;
+                width: 45vw;
+            }
+        }
+
+
+        &.hint{
+            .highlight{
+                color: $c-primary;
+            }
+        }
+        &.perfect{
+            .highlight{
+                color: $c-success;
+            }
+            button{
+                background-color: $c-success;
+            }
+        }
+        &.good{
+            .highlight{
+                color: $c-yellow;
+            }
+            button{
+                background-color:$c-yellow;
+            }
+        }
+        &.failed{
+            .highlight{
+                color: $c-danger;
+            }
+            button{
+                background-color: $c-danger;
+            }
+        }
+        &.task-select{
+            h2{
+                margin: 0 0 $global-base-padding;
+            }
+            p{
+                margin-bottom: 15px;
+            }
+            .dotted-border-bottom{
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                span{
+                    &.perfect, &.good, &.failed, &.skipped{
+                        &:before{
+                            top: 40%;
+                            transform: translateY(-50%);
+                            @include shadow-filter-hard;
+                        }
+                    }
+                    &.perfect {
+                        &:before {
+                            background-color: $c-success;
+                        }
+                    }
+                    &.good {
+                        &:before {
+                            background-color: $c-yellow;
+                        }
+                    }
+                    &.failed {
+                        &:before {
+                            background-color: $c-danger;
+                        }
+                    }
+                    &.skipped{
+                        background-color: #B2B2B2;
+                    }
+                }
+            }
+        }
+    }
 }

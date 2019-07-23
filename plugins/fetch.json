@@ -103,14 +103,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-custom-config": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-custom-config"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova.plugins.diagnostic": {
     "source": {
       "type": "registry",
@@ -182,6 +174,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-app-version"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-custom-config": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-custom-config@4.0.2"
     },
     "is_top_level": true,
     "variables": {}
