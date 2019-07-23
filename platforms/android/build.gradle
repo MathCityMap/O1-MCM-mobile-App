@@ -323,7 +323,7 @@ if (hasProperty('postBuildExtras')) {
     postBuildExtras()
 }
 
-// Fabric Cordova Plugin - Start Fabric Build Tools 
+// Fabric Cordova Plugin - Start Fabric Build Tools
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }

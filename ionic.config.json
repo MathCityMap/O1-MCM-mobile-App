@@ -13,6 +13,5 @@
       "path": "/sessionUser",
       "proxyUrl": "http://api.mathcitymap.eu/public/index.php/sessionUser"
     }
-  ],
-  "app_id": ""
+  ]
 }
