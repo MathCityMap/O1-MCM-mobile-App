@@ -188,8 +188,8 @@ $searchbar-md-input-box-shadow: none;
 // --------------------------------------------------
 
 $c-primary:        #AA2000;
-$c-secondary:      #B7702E;
-$c-secondary-light:      #E2AC64;
+$c-secondary:      #9D7A5E;
+$c-secondary-dark: #7F6858;
 $c-yellow:         #FFC033;
 $c-success:        #33CC00;
 $c-blue:           #32A4DC;
@@ -211,13 +211,17 @@ $icon-path: "../assets/icons/";
     filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
 }
 
-@mixin texture-wood-light($rotate: false) {
-    background: url("#{$image-path}pirates/texture-wood-light.svg") $c-secondary-light;
+@mixin texture-wood($rotate: false, $dark: false) {
+    background: url("#{$image-path}pirates/texture-wood.svg") $c-secondary;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     @if $rotate{
-        background-image: url("#{$image-path}pirates/texture-wood-light-v.svg");
+        background-image: url("#{$image-path}pirates/texture-wood-v.svg");
+    }
+    @if $dark{
+        background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
+        background-color: $c-secondary-dark;
     }
 }
 
@@ -272,19 +276,13 @@ $icon-path: "../assets/icons/";
     // Main UI (Navigation, Form)
 
     ion-header{
-        background: $c-secondary;
-        background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
-        background-repeat: no-repeat;
+        @include texture-wood();
         background-position: bottom;
-        background-size: cover;
     }
     ion-toolbar {
         .toolbar-background {
-            background: $c-secondary;
-            background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
-            background-repeat: no-repeat;
+            @include texture-wood();
             background-position: bottom;
-            background-size: cover;
         }
         .toolbar-title{
             font-family: 'CaveatBrush', Arail, sans-serif;
@@ -369,10 +367,10 @@ $icon-path: "../assets/icons/";
                 box-shadow: unset;
                 filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
                 background-color: unset;
-                background-image: url("#{$image-path}pirates/texture-paper-s.svg");
+                background-image: url("#{$image-path}pirates/texture-paper-sheet.svg");
                 background-repeat: no-repeat;
-                background-position: top;
-                background-size: cover;
+                background-position: center top;
+                background-size: 105%;
                 .image-container{
                     border: none;
                     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8) inset;
@@ -386,8 +384,8 @@ $icon-path: "../assets/icons/";
             }
             &#ranking {
                 @include shadow-medium;
-                background-color: $c-secondary-light;
-                background-image: url("#{$image-path}pirates/texture-wood-light.svg");
+                background-color: $c-secondary-dark;
+                background-image: url("#{$image-path}pirates/texture-wood.svg");
                 background-repeat: no-repeat;
                 background-position: bottom;
                 background-size: cover;
@@ -466,7 +464,7 @@ $icon-path: "../assets/icons/";
                 }
                 &.task{
                     &:before{
-                        content: url("#{$image-path}pirates/texture-paper-l-start.svg");
+                        content: url("#{$image-path}pirates/texture-paper-scroll-start.svg");
                         position: absolute;
                         left: 0;
                         top: -30px;
@@ -475,7 +473,7 @@ $icon-path: "../assets/icons/";
                     }
                     /*@include shadow-filter-medium;*/
                     box-shadow: unset;
-                    background-image: url("#{$image-path}pirates/texture-paper-l.svg");
+                    background-image: url("#{$image-path}pirates/texture-paper-scroll.png");
                     background-repeat: no-repeat;
                     background-position: bottom;
                     background-size: 100% 100%;
@@ -529,8 +527,9 @@ $icon-path: "../assets/icons/";
 
 
                 &.secondary {
-                    background-color: unset;
-                    border: 2px dashed $c-light;
+                    @include texture-wood($dark: true);
+                    //@include shadow-medium;
+                    border: none;
                     p, .label {
                         color: $c-light;
                     }
@@ -540,7 +539,11 @@ $icon-path: "../assets/icons/";
     }
 
     .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
-        @include texture-wood-light($rotate: true);
+        background-image: url("#{$image-path}pirates/texture-paper-sheet.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        background-color: unset;
         .modal-content{
             .dotted-border-bottom{
                 border-bottom: none!important;
@@ -569,16 +572,16 @@ $icon-path: "../assets/icons/";
                 }
             }
             span, p, h2{
-                 color: $c-light;
+                 //color: $c-light;
             }
         }
-        .alert-title {
-            color: $c-light;
-            @include shadow-filter-hard;
-        }
-        .alert-message{
-            color: $c-light;
-        }
+        //.alert-title {
+        //    color: $c-light;
+        //    @include shadow-filter-hard;
+        //}
+        //.alert-message{
+        //    color: $c-light;
+        //}
         .alert-button{
             color: $c-primary;
         }
@@ -598,15 +601,17 @@ $icon-path: "../assets/icons/";
                 transform: none;
                 margin: 0 auto;
                 border: none;
-                border-radius: 50%;
+                border-radius: 0;
+                width: 44vw;
                 background-color: transparent;
                 margin-bottom: $global-small-padding;
             }
             h2, p{
-                color: $c-light!important;
+                //color: $c-light!important;
                 margin-bottom: 10px;
             }
             h2{
+                color: $c-primary;
                 order: -1;
                 font-size: 250%;
             }
