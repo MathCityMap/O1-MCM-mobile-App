@@ -5,15 +5,15 @@
         <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>
         <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>
         <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>
-        <h2>{{title | translate}}
-            <div class="score" *ngIf="gamificationEnabled && score != '0'">{{score}}</div>
-        </h2>
+        <h2>{{title | translate}}</h2>
 
         <!-- image hint -->
         <mcm-image *ngIf=" type == 'image' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
 
         <!-- video hint -->
         <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>
+
+         <h3 class="score" *ngIf="gamificationEnabled && score != '0'">{{score}}</h3>
 
         <!-- text hint -->
         <p *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>

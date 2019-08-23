@@ -8,8 +8,12 @@
                 <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
             </ion-fab>
         </div>
-        <div tappable *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)" [ngClass]="{'downloaded' : routeDetails && routeDetails.downloaded}"
-             [attr.data-async-background-src]="routeDetails.getImageURL()"></div>
+        <div tappable *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)" [ngClass]="{'downloaded' : routeDetails && routeDetails.downloaded}">
+            <div class="cover">
+                <img class="thumb" [attr.data-async-src]="routeDetails.getImageURL()" />
+            </div>
+            <!--<img *ngIf="item.isNarrativeEnabled()" class="indicator" src="./assets/images/{{item.getNarrativeName()}}/indicator-badge.svg"/>-->
+        </div>
         <div class="text-container" *ngIf="routeDetails">
             <div class="segmented-box">
                 <div class="segement distance title">

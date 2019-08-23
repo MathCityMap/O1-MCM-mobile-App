@@ -212,6 +212,36 @@ input{
     }
 }
 
+.image-container{
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+    .cover{
+        position: relative;
+        border-radius: 50%;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: no-repeat center/50% url("/assets/icons/placeholder.svg") color($colors, light-grey);
+        @include box-shadow(0.2);
+        &:before {
+            content: '';
+            display: block;
+            width: 100%;
+            padding-top: 100%;
+        }
+        .thumb{
+            position: absolute;
+            height: calc(100% + 2px);
+            width: calc(100% + 2px);
+            top: -1px;
+            left: -1px;
+            max-width: none;
+            max-height: none;
+            object-fit: cover;
+        }
+    }
+}
+
 .detail-box{
     position: relative;
     background-color: #ffffff;
@@ -222,31 +252,28 @@ input{
     flex-wrap: wrap;
     align-items: center;
 
-    .image-container {
+    .image-container{
         $circle-size: 20vw;
         width: $circle-size;
         height: $circle-size;
-        background-color: #b2b2b2;
-        border: 2px solid color($colors, light-grey);;
-        background-size: cover;
-        display: inline-block;
-        border-radius: 50%;
-        overflow: visible;
-        position: relative;
-        .thumb{
-            border-radius: 50%;
-            overflow: hidden;
+        border: 2px solid color($colors, light-grey);
+        &.downloaded{
+            border: 2px solid #ffffff;
+            box-shadow: 0px 0px 0px 2px #a6a6a6;
+            &.completed {
+                box-shadow: 0px 0px 0px 2px #4caf50;
+            }
         }
         .indicator{
-            @include shadow-filter-hard;
-            $item-size: 24px;
+            //@include shadow-filter-hard;
+            $item-size: 28px;
             display: block;
             position: absolute;
             top:  50%;
             left: 50%;
             width:  $item-size;
             height: $item-size;
-            margin: -($item-size / 2);
+            margin: (-($item-size / 2 + 4px)) (-($item-size / 2));
 
             $item-count: 1;
             $angle: (360 / $item-count);
@@ -255,14 +282,6 @@ input{
                 rotate($rot * 1deg)
                 translate($circle-size / 2)
                 rotate($rot * -1deg);
-        }
-
-        &.downloaded{
-            border: 2px solid #ffffff;
-            box-shadow: 0px 0px 0px 2px #a6a6a6;
-            &.completed {
-                box-shadow: 0px 0px 0px 2px #4caf50;
-            }
         }
     }
 
@@ -811,6 +830,9 @@ ion-modal {
             }
             h2{
                 text-align: center;
+            }
+            .score{
+                font-size: 24px;
             }
             p.main-text{
                 text-align: center;

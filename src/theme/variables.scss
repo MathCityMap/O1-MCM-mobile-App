@@ -272,6 +272,24 @@ $icon-path: "../assets/icons/";
         }
     }
 
+    // OUTSIDE ROUTE Routes List & Preview / Detail
+
+    &.image-box{
+        .image-container{
+            .cover{
+                border-color: $c-secondary;
+                border-width: 6px;
+            }
+            .indicator{
+                &:before, &:after{
+                    content: url("#{$image-path}pirates/indicator-label-deco.svg");
+                    margin: 5px 5px 0;
+                    width: 16px;
+                }
+            }
+        }
+    }
+
 
     // Main UI (Navigation, Form)
 
@@ -340,22 +358,6 @@ $icon-path: "../assets/icons/";
         }
     }
 
-    // Route List & Preview/Detail
-
-    &.image-container{
-        .thumb{
-            border-color: $c-secondary;
-            border-width: 5px;
-        }
-        .indicator{
-            &:before, &:after{
-                content: url("#{$icon-path}pirates/indicator-label-deco.svg");
-                margin: 5px 5px 0;
-                width: 16px;
-            }
-        }
-    }
-
 
     // Map
 
@@ -373,8 +375,14 @@ $icon-path: "../assets/icons/";
                 background-size: 105%;
                 .image-container{
                     border: none;
-                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8) inset;
-                    //filter: grayscale(0.5) sepia(0.5);
+                    &:after{
+                        content: url("#{$image-path}pirates/image-frame.svg");
+                        position: absolute;
+                        top: -#{$global-small-padding/2};
+                        left: -#{$global-small-padding/2};
+                        width: calc(100% + #{$global-small-padding});
+                        height: calc(100% + #{$global-small-padding});
+                    }
                 }
                 .title{
                     & > span{
@@ -383,15 +391,24 @@ $icon-path: "../assets/icons/";
                 }
             }
             &#ranking {
+                @include texture-wood($dark: true);
                 @include shadow-medium;
-                background-color: $c-secondary-dark;
-                background-image: url("#{$image-path}pirates/texture-wood.svg");
                 background-repeat: no-repeat;
                 background-position: bottom;
                 background-size: cover;
                 .row{
                     @include shadow-filter-hard();
                     border: none;
+                    //&:not(:last-of-type):after{
+                    //    content: url("../assets/images/pirates/border-list-dark.svg");
+                    //    pointer-events: none;
+                    //    position: absolute;
+                    //    bottom: -5px;
+                    //    left: 0;
+                    //    right: 0;
+                    //    display: block;
+                    //    width: 100%;
+                    //}
                 }
                 .col {
                     ion-label{
@@ -528,7 +545,7 @@ $icon-path: "../assets/icons/";
 
                 &.secondary {
                     @include texture-wood($dark: true);
-                    //@include shadow-medium;
+                    @include shadow-medium;
                     border: none;
                     p, .label {
                         color: $c-light;
@@ -539,11 +556,12 @@ $icon-path: "../assets/icons/";
     }
 
     .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
-        background-image: url("#{$image-path}pirates/texture-paper-sheet.svg");
+        background-image: url("#{$image-path}pirates/texture-paper-sheet.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
         background-color: unset;
+        box-shadow: none;
         .modal-content{
             .dotted-border-bottom{
                 border-bottom: none!important;
@@ -564,26 +582,26 @@ $icon-path: "../assets/icons/";
                 letter-spacing: 0;
                 text-transform: none;
                 font-size: 180%;
-                .score{
-                    &:after{
-                        content: url("#{$image-path}pirates/unit-score-l.svg");
-                        filter: none;
-                    }
+            }
+            .score{
+                &:after{
+                    content: url("#{$image-path}pirates/unit-score-l.svg");
+                    filter: none;
                 }
             }
-            span, p, h2{
-                 //color: $c-light;
-            }
         }
-        //.alert-title {
-        //    color: $c-light;
-        //    @include shadow-filter-hard;
-        //}
-        //.alert-message{
-        //    color: $c-light;
-        //}
+        .alert-title {
+            font-size: 180%;
+        }
+        .alert-message{
+            margin-top: $global-base-padding;
+        }
         .alert-button{
             color: $c-primary;
+            border: none;
+            &.activated{
+                background-color: transparent;
+            }
         }
 
         &.icon{
@@ -599,12 +617,11 @@ $icon-path: "../assets/icons/";
                 top: 0;
                 right: unset;
                 transform: none;
-                margin: 0 auto;
                 border: none;
                 border-radius: 0;
                 width: 44vw;
                 background-color: transparent;
-                margin-bottom: $global-small-padding;
+                margin: $global-base-padding auto;
             }
             h2, p{
                 //color: $c-light!important;
@@ -634,6 +651,9 @@ $icon-path: "../assets/icons/";
             .highlight{
                 color: $c-success;
             }
+            h2{
+                color: $c-success;
+            }
             button{
                 background-color: $c-success;
             }
@@ -648,6 +668,9 @@ $icon-path: "../assets/icons/";
         }
         &.failed{
             .highlight{
+                color: $c-danger;
+            }
+            h2{
                 color: $c-danger;
             }
             button{
