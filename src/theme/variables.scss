@@ -188,8 +188,8 @@ $searchbar-md-input-box-shadow: none;
 // --------------------------------------------------
 
 $c-primary:        #AA2000;
-$c-secondary:      #B7702E;
-$c-secondary-light:      #E2AC64;
+$c-secondary:      #9D7A5E;
+$c-secondary-dark: #7F6858;
 $c-yellow:         #FFC033;
 $c-success:        #33CC00;
 $c-blue:           #32A4DC;
@@ -211,13 +211,17 @@ $icon-path: "../assets/icons/";
     filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
 }
 
-@mixin texture-wood-light($rotate: false) {
-    background: url("#{$image-path}pirates/texture-wood-light.svg") $c-secondary-light;
+@mixin texture-wood($rotate: false, $dark: false) {
+    background: url("#{$image-path}pirates/texture-wood.svg") $c-secondary;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     @if $rotate{
-        background-image: url("#{$image-path}pirates/texture-wood-light-v.svg");
+        background-image: url("#{$image-path}pirates/texture-wood-v.svg");
+    }
+    @if $dark{
+        background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
+        background-color: $c-secondary-dark;
     }
 }
 
@@ -268,23 +272,35 @@ $icon-path: "../assets/icons/";
         }
     }
 
+    // OUTSIDE ROUTE Routes List & Preview / Detail
+
+    &.image-box{
+        .image-container{
+            .cover{
+                border-color: $c-secondary;
+                border-width: 6px;
+            }
+            .indicator{
+                &:before, &:after{
+                    content: url("#{$image-path}pirates/indicator-label-deco.svg");
+                    margin: 5px 5px 0;
+                    width: 16px;
+                }
+            }
+        }
+    }
+
 
     // Main UI (Navigation, Form)
 
     ion-header{
-        background: $c-secondary;
-        background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
-        background-repeat: no-repeat;
+        @include texture-wood();
         background-position: bottom;
-        background-size: cover;
     }
     ion-toolbar {
         .toolbar-background {
-            background: $c-secondary;
-            background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
-            background-repeat: no-repeat;
+            @include texture-wood();
             background-position: bottom;
-            background-size: cover;
         }
         .toolbar-title{
             font-family: 'CaveatBrush', Arail, sans-serif;
@@ -342,22 +358,6 @@ $icon-path: "../assets/icons/";
         }
     }
 
-    // Route List & Preview/Detail
-
-    &.image-container{
-        .thumb{
-            border-color: $c-secondary;
-            border-width: 5px;
-        }
-        .indicator{
-            &:before, &:after{
-                content: url("#{$icon-path}pirates/indicator-label-deco.svg");
-                margin: 5px 5px 0;
-                width: 16px;
-            }
-        }
-    }
-
 
     // Map
 
@@ -369,14 +369,20 @@ $icon-path: "../assets/icons/";
                 box-shadow: unset;
                 filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
                 background-color: unset;
-                background-image: url("#{$image-path}pirates/texture-paper-s.svg");
+                background-image: url("#{$image-path}pirates/texture-paper-sheet.svg");
                 background-repeat: no-repeat;
-                background-position: top;
-                background-size: cover;
+                background-position: center top;
+                background-size: 105%;
                 .image-container{
                     border: none;
-                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8) inset;
-                    //filter: grayscale(0.5) sepia(0.5);
+                    &:after{
+                        content: url("#{$image-path}pirates/image-frame.svg");
+                        position: absolute;
+                        top: -#{$global-small-padding/2};
+                        left: -#{$global-small-padding/2};
+                        width: calc(100% + #{$global-small-padding});
+                        height: calc(100% + #{$global-small-padding});
+                    }
                 }
                 .title{
                     & > span{
@@ -385,15 +391,24 @@ $icon-path: "../assets/icons/";
                 }
             }
             &#ranking {
+                @include texture-wood($dark: true);
                 @include shadow-medium;
-                background-color: $c-secondary-light;
-                background-image: url("#{$image-path}pirates/texture-wood-light.svg");
                 background-repeat: no-repeat;
                 background-position: bottom;
                 background-size: cover;
                 .row{
                     @include shadow-filter-hard();
                     border: none;
+                    //&:not(:last-of-type):after{
+                    //    content: url("../assets/images/pirates/border-list-dark.svg");
+                    //    pointer-events: none;
+                    //    position: absolute;
+                    //    bottom: -5px;
+                    //    left: 0;
+                    //    right: 0;
+                    //    display: block;
+                    //    width: 100%;
+                    //}
                 }
                 .col {
                     ion-label{
@@ -466,7 +481,7 @@ $icon-path: "../assets/icons/";
                 }
                 &.task{
                     &:before{
-                        content: url("#{$image-path}pirates/texture-paper-l-start.svg");
+                        content: url("#{$image-path}pirates/texture-paper-scroll-start.svg");
                         position: absolute;
                         left: 0;
                         top: -30px;
@@ -475,7 +490,7 @@ $icon-path: "../assets/icons/";
                     }
                     /*@include shadow-filter-medium;*/
                     box-shadow: unset;
-                    background-image: url("#{$image-path}pirates/texture-paper-l.svg");
+                    background-image: url("#{$image-path}pirates/texture-paper-scroll.png");
                     background-repeat: no-repeat;
                     background-position: bottom;
                     background-size: 100% 100%;
@@ -529,8 +544,9 @@ $icon-path: "../assets/icons/";
 
 
                 &.secondary {
-                    background-color: unset;
-                    border: 2px dashed $c-light;
+                    @include texture-wood($dark: true);
+                    @include shadow-medium;
+                    border: none;
                     p, .label {
                         color: $c-light;
                     }
@@ -540,7 +556,12 @@ $icon-path: "../assets/icons/";
     }
 
     .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
-        @include texture-wood-light($rotate: true);
+        background-image: url("#{$image-path}pirates/texture-paper-sheet.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        background-color: unset;
+        box-shadow: none;
         .modal-content{
             .dotted-border-bottom{
                 border-bottom: none!important;
@@ -561,26 +582,26 @@ $icon-path: "../assets/icons/";
                 letter-spacing: 0;
                 text-transform: none;
                 font-size: 180%;
-                .score{
-                    &:after{
-                        content: url("#{$image-path}pirates/unit-score-l.svg");
-                        filter: none;
-                    }
-                }
             }
-            span, p, h2{
-                 color: $c-light;
+            .score{
+                &:after{
+                    content: url("#{$image-path}pirates/unit-score-l.svg");
+                    filter: none;
+                }
             }
         }
         .alert-title {
-            color: $c-light;
-            @include shadow-filter-hard;
+            font-size: 180%;
         }
         .alert-message{
-            color: $c-light;
+            margin-top: $global-base-padding;
         }
         .alert-button{
             color: $c-primary;
+            border: none;
+            &.activated{
+                background-color: transparent;
+            }
         }
 
         &.icon{
@@ -596,17 +617,18 @@ $icon-path: "../assets/icons/";
                 top: 0;
                 right: unset;
                 transform: none;
-                margin: 0 auto;
                 border: none;
-                border-radius: 50%;
+                border-radius: 0;
+                width: 44vw;
                 background-color: transparent;
-                margin-bottom: $global-small-padding;
+                margin: $global-base-padding auto;
             }
             h2, p{
-                color: $c-light!important;
+                //color: $c-light!important;
                 margin-bottom: 10px;
             }
             h2{
+                color: $c-primary;
                 order: -1;
                 font-size: 250%;
             }
@@ -629,6 +651,9 @@ $icon-path: "../assets/icons/";
             .highlight{
                 color: $c-success;
             }
+            h2{
+                color: $c-success;
+            }
             button{
                 background-color: $c-success;
             }
@@ -643,6 +668,9 @@ $icon-path: "../assets/icons/";
         }
         &.failed{
             .highlight{
+                color: $c-danger;
+            }
+            h2{
                 color: $c-danger;
             }
             button{

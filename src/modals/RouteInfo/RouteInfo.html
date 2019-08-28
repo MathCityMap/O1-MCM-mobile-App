@@ -1,14 +1,13 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header pattern-bg">
     <div class="card first" *ngIf="route">
-    <p>{{ route.city }}, {{ route.countryCode }}</p>
-    <h1>{{ route.title }}</h1>
-
+        <p>{{ route.city }}, {{ route.countryCode }}</p>
+        <h1>{{ route.title }}</h1>
     </div>
 
-    <div class="image-box">
+    <div class="image-box" *ngIf="route" [ngClass]="route.getNarrativeName()">
         <ion-grid>
-            <ion-row align-items-center *ngIf="route">
+            <ion-row align-items-center>
                 <ion-col col-4 class="button-container">
                     <button ion-button icon-only clear *ngIf="!route.downloaded" (click)="doDownload(route)">
                     <img class="primary round" src="./assets/icons/icon_download-large.svg"/>
@@ -17,12 +16,13 @@
                     <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
                     </button>
                 </ion-col>
-                <ion-col class="image-container narrativeName" [ngClass]="route.getNarrativeName()"  lazy-load-images>
-                    <img class="thumb round bordered lazy" src="./assets/images/img_default_image.gif" [attr.data-async-src]="route.getImageURL()" />
-                    <img *ngIf="false" src="./assets/images/img_default_image.gif" class="round bordered" />
-                    <div *ngIf="route.isNarrativeEnabled()" class="indicator">
+                <ion-col class="image-container" lazy-load-images>
+                    <div class="cover">
+                        <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
+                    </div>
+                    <div class="indicator" *ngIf="route.isNarrativeEnabled()">
                         <h3 no-margin>{{'p_narrative_names_' + route.getNarrativeName() | translate}}</h3>
-                        <img class="background" src="./assets/icons/{{route.getNarrativeName()}}/indicator-label.svg" />
+                        <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />
                     </div>
                 </ion-col>
                 <ion-col col-4 class="button-container">
