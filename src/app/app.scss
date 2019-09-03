@@ -221,7 +221,7 @@ input{
         border-radius: 50%;
         box-sizing: border-box;
         overflow: hidden;
-        background: no-repeat center/50% url("/assets/icons/placeholder.svg") color($colors, light-grey);
+        background: no-repeat center/50% url("../assets/icons/placeholder.svg") color($colors, light-grey);
         @include box-shadow(0.2);
         &:before {
             content: '';
