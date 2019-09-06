@@ -10,15 +10,53 @@
         }
     }
     &.basic-info{
-        ion-row:first-of-type{
-            margin-bottom: calc(#{$global-small-padding} / 2);
-            ion-col:first-of-type{
-                margin-right: 10px;
-                padding-right: 10px!important;
+        .info-item{
+            &:not(:first-of-type){
+                margin-top: $global-small-padding / 2;
             }
-            ion-col:last-of-type{
-                margin-left: 10px;
-                padding-left: 10px!important;
+        }
+        .row{
+            align-items: stretch;
+            flex-wrap: nowrap;
+        }
+        .col{
+            width: unset;
+            &:nth-of-type(even){
+                align-self: flex-end;
+                margin: 0 $global-small-padding;
+                .info-item{
+                    padding: 0 $global-small-padding;
+                    &:after, &:before{
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        height: 80%;
+                        border-right: 2px dotted color($colors, light-grey);
+                    }
+                     &:before{
+                        left: 0;
+                    }
+                    &:after{
+                        right: 0;
+                    }
+                }
+            }
+            &:nth-of-type(odd){
+                flex-basis: auto;
+                //flex-basis: 26%;
+                flex-grow: 0;
+                max-width: 27%;
+            }
+            &:first-of-type{
+                .info-item{
+                    padding-right: $global-small-padding!important;
+                }
+            }
+            &:last-of-type{
+                .info-item{
+                    padding-left: $global-small-padding!important;
+                }
             }
         }
         ion-label, ion-label.label-ios, ion-label.label-md{

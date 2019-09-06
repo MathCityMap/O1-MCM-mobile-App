@@ -1,4 +1,4 @@
-<mcm-header></mcm-header>
+<mcm-header transparent></mcm-header>
 <ion-content class="has-header pattern-bg">
     <div class="card first" *ngIf="route">
         <p>{{ route.city }}, {{ route.countryCode }}</p>
@@ -38,33 +38,32 @@
         <ion-grid no-padding>
             <ion-row align-items-center>
                 <ion-col>
-                    <ion-label>{{ "a_t_grade" | translate }}</ion-label>
-                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                    <span *ngIf="route">{{ route.grade }}</span>
+                    <div class="info-item">
+                        <ion-label>{{ "a_t_grade" | translate }}</ion-label>
+                        <span *ngIf="route">{{ route.grade }}</span>
+                    </div>
+                    <div class="info-item border">
+                        <ion-label>{{ "a_t_distance" | translate }}</ion-label>
+                        <span *ngIf="route"> {{route.getDistance() | distance: 'm'}} </span>
+                    </div>
                 </ion-col>
-                <ion-col></ion-col>
-                <ion-col>
-                    <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>
-                    <!-- <ion-label>{{ "tasks" | translate }}</ion-label> -->
-                    <span>{{ totalTasks }}</span>
-                </ion-col>
-            </ion-row>
 
-            <ion-row align-items-stretch>
-                <ion-col class="dotted-border-right">
-                    <ion-label>{{ "a_t_distance" | translate }}</ion-label>
-                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                    <span *ngIf="route"> {{route.getDistance() | distance: 'm'}} </span>
-                </ion-col>
                 <ion-col>
-                    <ion-label>{{ "a_r_length" | translate }}</ion-label>
-                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                    <span *ngIf="route">{{ route.length }}</span>
+                    <div class="info-item">
+                        <ion-label>{{ "p_r_duration" | translate }}</ion-label>
+                        <span *ngIf="route">{{ route.duration }}</span>
+                    </div>
                 </ion-col>
-                <ion-col class="dotted-border-left">
-                    <ion-label>{{ "p_r_duration" | translate }}</ion-label>
-                    <!-- <ion-label>{{ "distance" | translate }}</ion-label> -->
-                    <span *ngIf="route">{{ route.duration }}</span>
+
+                <ion-col>
+                    <div class="info-item">
+                        <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>
+                        <span>{{ totalTasks }}</span>
+                    </div>
+                    <div class="info-item border">
+                        <ion-label>{{ "a_r_length" | translate }}</ion-label>
+                        <span *ngIf="route">{{ route.length }}</span>
+                    </div>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -89,8 +88,10 @@
             <ion-row *ngIf="!route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_none' | translate }}</ion-row>
         </p>
 
-        <ion-label>{{ 'a_r_equip' | translate }}</ion-label>
-        <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>
+        <div>
+            <ion-label>{{ 'a_r_equip' | translate }}</ion-label>
+            <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>
+        </div>
 
         <ion-label>{{ 'a_r_tags' | translate }}</ion-label>
         <p *ngIf="route">{{ route.tags }}</p>

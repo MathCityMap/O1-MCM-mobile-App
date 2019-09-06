@@ -182,6 +182,20 @@ $searchbar-md-input-box-shadow: none;
     }
 }
 
+@mixin line-clamp($fontSize, $lineHeight, $maxLines) {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: $fontSize * $lineHeight * $maxLines;
+    text-overflow: ellipsis;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    white-space: initial;
+    -webkit-box-orient: vertical;
+    /* autoprefixer: off */
+    -webkit-line-clamp: $maxLines;
+}
+
 
 
 // Pirate Theming       L( Ø -´)⊃━|-----
