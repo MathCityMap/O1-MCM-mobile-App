@@ -39,12 +39,20 @@ page-tasks-map {
 }
 
 
-.ranking, .table{
+.table{
     .row{
         flex: 1;
-        padding: 3px 0;
-        &:not(:first-child) {
-            border-top: 2px dotted color($colors, light-grey);
+        align-items: center;
+        padding: $global-small-padding/2 0 0;
+        margin-top: $global-small-padding/2!important;
+        &:not(:last-child) {
+            &.session{
+                padding-top: 0;
+                margin-top: 0;
+                padding-bottom: $global-small-padding/2;
+                margin-bottom: $global-small-padding/2;
+                border-bottom: 2px dotted color($colors, light-grey);
+            }
         }
         &.current p{
             color: color($colors, primary);
@@ -53,32 +61,27 @@ page-tasks-map {
             color: color($colors, primary);
         }
         .col {
+            padding: 0;
             ion-label{
                 padding: 0;
+                margin: 0;
                 color: color($colors, dark-grey);
+            }
+            &.chart{
+                .label{
+                    font-size: 85%;
+                    line-height: 200%;
+                }
             }
             &:last-of-type{
                 flex-grow: 0;
-                .score:after{
-                    filter: none;
+                .score{
+                    justify-content: flex-end;
+                    &:after{
+                        filter: none;
+                    }
                 }
             }
-        }
-    }
-}
-.table{
-    margin-top: 30px;
-    .row{
-        &:not(:first-child) {
-            border-top: 2px dotted color($colors, light-grey);
-        }
-    }
-    .col {
-        ion-label{
-            margin-top: 4px;
-            font-family: 'NunitoBold', Arail, sans-serif;
-            font-size: 15px;
-            text-transform: none;
         }
     }
 }

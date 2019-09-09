@@ -413,20 +413,31 @@ $icon-path: "../assets/icons/";
                 .row{
                     @include shadow-filter-hard();
                     border: none;
-                    //&:not(:last-of-type):after{
-                    //    content: url("../assets/images/pirates/border-list-dark.svg");
-                    //    pointer-events: none;
-                    //    position: absolute;
-                    //    bottom: -5px;
-                    //    left: 0;
-                    //    right: 0;
-                    //    display: block;
-                    //    width: 100%;
-                    //}
+                    padding: 0;
+                    margin: 0;
+                    &:not(:last-child){
+                        &.session{
+                            padding-bottom: $global-small-padding/2;
+                            margin-bottom: $global-small-padding/2;
+                            &:after{
+                                content: url("../assets/images/pirates/border-list-dark.svg");
+                                pointer-events: none;
+                                position: absolute;
+                                bottom: -8px;
+                                left: 0;
+                                right: 0;
+                                display: block;
+                                width: 100%;
+                            }
+                        }
+                    }
                 }
                 .col {
                     ion-label{
                         color: $c-light;
+                    }
+                    .icon{
+                        filter: brightness(100);
                     }
                 }
             }
@@ -563,6 +574,18 @@ $icon-path: "../assets/icons/";
                     border: none;
                     p, .label {
                         color: $c-light;
+                    }
+                }
+            }
+        }
+    }
+
+    page-chat {
+        .message-wrap {
+            .message {
+                &.right {
+                    .msg-content{
+                        background-color: $c-primary;
                     }
                 }
             }
