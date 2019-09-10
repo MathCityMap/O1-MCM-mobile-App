@@ -756,6 +756,15 @@ ion-fab-list{
     content:"" !important;
     margin-top: 4px;
 }
+.ion-md-icon-exit:before,
+.ion-ios-icon-exit:before{
+    background-image: url(../assets/icons/exit.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
 
 /*  ========== Modals/ Popups/ Toast =========  */
 

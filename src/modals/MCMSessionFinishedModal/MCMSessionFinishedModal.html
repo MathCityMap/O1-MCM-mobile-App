@@ -5,15 +5,15 @@
         <h2>{{'a_private_session_finished_title' | translate}}</h2>
         <p class="main-text">{{session.goodbye_message}}</p>
         <ion-grid no-padding class="table">
-            <ion-row>
+            <ion-row class="finish">
                 <ion-col>
                     <ion-label>{{'a_private_session_earned_points' | translate}}</ion-label>
                 </ion-col>
                 <ion-col col-auto>
-                    <ion-label>{{score.score}} MP</ion-label>
+                    <ion-label class="score">{{score.score}}</ion-label>
                 </ion-col>
             </ion-row>
-            <ion-row>
+            <ion-row class="finish">
                 <ion-col>
                     <ion-label>{{'a_private_session_finished_tasks' | translate}}</ion-label>
                 </ion-col>

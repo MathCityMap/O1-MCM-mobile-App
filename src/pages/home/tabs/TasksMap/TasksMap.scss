@@ -2,7 +2,7 @@ page-tasks-map {
     .map .detail-box {
         bottom: 0;
         &#ranking{
-            padding: 14px 16px 10px;
+            padding: $global-small-padding 16px $global-small-padding;
             bottom: auto;
             position: absolute;
             top: 0px;
@@ -40,13 +40,14 @@ page-tasks-map {
 
 
 .table{
+    padding: 0;
     .row{
         flex: 1;
         align-items: center;
         padding: $global-small-padding/2 0 0;
         margin-top: $global-small-padding/2!important;
         &:not(:last-child) {
-            &.session{
+            &.session, &.finish{
                 padding-top: 0;
                 margin-top: 0;
                 padding-bottom: $global-small-padding/2;
@@ -66,6 +67,7 @@ page-tasks-map {
                 padding: 0;
                 margin: 0;
                 color: color($colors, dark-grey);
+                text-align: left;
             }
             &.chart{
                 .label{
@@ -96,6 +98,7 @@ page-tasks-map {
     border-radius: 10px;
     transition: all 0.5s ease;
     font-size: inherit;
+    font-weight: bold;
 }
 
 .badge-no-show{
