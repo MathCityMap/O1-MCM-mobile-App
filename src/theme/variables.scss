@@ -261,12 +261,14 @@ $icon-path: "../assets/icons/";
         font-family: 'CaveatBrush', Arail, sans-serif!important;
         letter-spacing: 0;
         text-transform: none;
+        line-height: 1;
         font-size: 150%;
     }
     h2{
         font-family: 'CaveatBrush', Arail, sans-serif!important;
         letter-spacing: 0;
         text-transform: none;
+        line-height: 1;
         font-size: 150%;
     }
 
@@ -376,6 +378,10 @@ $icon-path: "../assets/icons/";
     // Map
 
     page-tasks-map{
+        .mapboxgl-map{
+            //filter: grayscale(0.2) brightness(0.9) sepia(0.4);
+            filter: sepia(0.4) contrast(0.75) brightness(1.2);
+        }
         .detail-box{
             &#details{
                 padding-bottom: 16px;
