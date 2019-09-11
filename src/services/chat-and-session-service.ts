@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Events, ToastController} from 'ionic-angular';
+import {Events, Platform, ToastController} from 'ionic-angular';
 import {Observable, TimeInterval} from "rxjs/Rx";
 import {Session} from '../app/api/models/session';
 import {Storage} from "@ionic/storage";
@@ -106,7 +106,8 @@ export class ChatAndSessionService {
                 private localNotifications: LocalNotifications,
                 private translate: TranslateService,
                 private toast: ToastController,
-                private leaderBoardService: SessionUserLeaderboardService) {
+                private leaderBoardService: SessionUserLeaderboardService,
+                private platform: Platform) {
     }
 
     public async updateSession(sessionInfo) {
@@ -135,7 +136,13 @@ export class ChatAndSessionService {
      * @param msg
      * @param sessionUser
      */
-    static getChatMessage(msg: SessionChatMessageResponse, sessionUser: SessionUser): ChatMessage {
+    private getChatMessage(msg: SessionChatMessageResponse, sessionUser: SessionUser): ChatMessage {
+        if(this.platform.is('ios')){
+            let originalTime = msg.time;
+            let dateParts = originalTime.substring(0,10).split('-');
+            let timePart = originalTime.substr(11);
+            msg.time= dateParts[1] + '/' + dateParts[2] + '/' + dateParts[0] + ' ' + timePart;
+        }
         let chatMessage = {
             messageId: msg.messageId,
             userId: msg.senderId, // if author id eq current user
@@ -164,7 +171,7 @@ export class ChatAndSessionService {
             (chatResponse: SessionChatResponse): ChatMessage[] => {
                 let chatMessages: ChatMessage[] = [];
                 chatResponse.messages.forEach((msg: SessionChatMessageResponse) => {
-                    chatMessages.push(ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser));
+                    chatMessages.push(this.getChatMessage(msg, sessionInfo.sessionUser));
                 });
                 return chatMessages;
             }
@@ -182,7 +189,7 @@ export class ChatAndSessionService {
                 this.newMsgNumber += newMessages.length;
                 let chatMessages: ChatMessage[] = [];
                 newMessages.forEach((msg: SessionChatMessageResponse) => {
-                    chatMessages.push(ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser));
+                    chatMessages.push(this.getChatMessage(msg, sessionInfo.sessionUser));
                 });
                 return chatMessages;
             }
@@ -207,7 +214,7 @@ export class ChatAndSessionService {
                 sessionCode: sessionInfo.session.code,
                 chatMessage: msg // FIXME ChatMessage convert to SessionChatMessageRequest (msg = string)
             }).toPromise().then((msg: SessionChatMessageResponse) => {
-                return ChatAndSessionService.getChatMessage(msg, sessionInfo.sessionUser);
+                return this.getChatMessage(msg, sessionInfo.sessionUser);
             }));
         });
 
