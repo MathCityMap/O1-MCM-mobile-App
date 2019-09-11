@@ -2,7 +2,7 @@ page-tasks-map {
     .map .detail-box {
         bottom: 0;
         &#ranking{
-            padding: 14px 16px 10px;
+            padding: $global-small-padding 16px $global-small-padding;
             bottom: auto;
             position: absolute;
             top: 0px;
@@ -39,12 +39,21 @@ page-tasks-map {
 }
 
 
-.ranking, .table{
+.table{
+    padding: 0;
     .row{
         flex: 1;
-        padding: 3px 0;
-        &:not(:first-child) {
-            border-top: 2px dotted color($colors, light-grey);
+        align-items: center;
+        padding: $global-small-padding/2 0 0;
+        margin-top: $global-small-padding/2!important;
+        &:not(:last-child) {
+            &.session, &.finish{
+                padding-top: 0;
+                margin-top: 0;
+                padding-bottom: $global-small-padding/2;
+                margin-bottom: $global-small-padding/2;
+                border-bottom: 2px dotted color($colors, light-grey);
+            }
         }
         &.current p{
             color: color($colors, primary);
@@ -53,32 +62,28 @@ page-tasks-map {
             color: color($colors, primary);
         }
         .col {
+            padding: 0;
             ion-label{
                 padding: 0;
+                margin: 0;
                 color: color($colors, dark-grey);
+                text-align: left;
+            }
+            &.chart{
+                .label{
+                    font-size: 85%;
+                    line-height: 200%;
+                }
             }
             &:last-of-type{
                 flex-grow: 0;
-                .score:after{
-                    filter: none;
+                .score{
+                    justify-content: flex-end;
+                    &:after{
+                        filter: none;
+                    }
                 }
             }
-        }
-    }
-}
-.table{
-    margin-top: 30px;
-    .row{
-        &:not(:first-child) {
-            border-top: 2px dotted color($colors, light-grey);
-        }
-    }
-    .col {
-        ion-label{
-            margin-top: 4px;
-            font-family: 'NunitoBold', Arail, sans-serif;
-            font-size: 15px;
-            text-transform: none;
         }
     }
 }
@@ -93,6 +98,7 @@ page-tasks-map {
     border-radius: 10px;
     transition: all 0.5s ease;
     font-size: inherit;
+    font-weight: bold;
 }
 
 .badge-no-show{

@@ -737,6 +737,7 @@ ion-fab-list{
     height: 20px;
     content:"" !important;
 }
+
 .ion-md-icon-track-gps:before,
 .ion-ios-icon-track-gps:before{
     background-image: url(../assets/icons/icon_track-gps.svg);
@@ -746,7 +747,24 @@ ion-fab-list{
     content:"" !important;
     margin-top: 4px;
 }
-
+.ion-md-icon-chat:before,
+.ion-ios-icon-chat:before{
+    background-image: url(../assets/icons/chat.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
+.ion-md-icon-exit:before,
+.ion-ios-icon-exit:before{
+    background-image: url(../assets/icons/exit.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
 
 /*  ========== Modals/ Popups/ Toast =========  */
 

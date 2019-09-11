@@ -3,8 +3,11 @@
     <div id="tasks-map" class="map-view"></div>
 
     <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">
-        <ion-grid no-padding class="ranking">
-            <ion-row class="current" *ngIf="sessionInfo != null && this.showCountdownOrTimer">
+        <ion-grid class="table">
+            <ion-row class="session" *ngIf="sessionInfo != null && this.showCountdownOrTimer">
+                <ion-col col-2>
+                    <img class="icon countdown" src="./assets/icons/countdown.svg"/>
+                </ion-col>
                 <ion-col>
                     <ion-label *ngIf="this.countdownBeforeSession">{{'a_private_session_countdown' | translate}}</ion-label>
                     <ion-label *ngIf="this.countdownBeforeSession == false">{{'a_private_session_timer' | translate}}</ion-label>
@@ -24,11 +27,13 @@
                 </ion-col>
             </ion-row>
             <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard">
-                <ion-row [ngClass]="{'self' : user.self}" *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">
-
-                    <ion-col col-2>
-                        <ion-label *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self">▲</ion-label>
-                        <ion-label *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self">▼</ion-label>
+                <ion-row [ngClass]="{'self' : user.self}"
+                         *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">
+                    <ion-col col-2 class="chart">
+                        <img class="icon arrow" src="./assets/icons/up.svg"
+                             *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self"/>
+                        <img class="icon arrow" src="./assets/icons/down.svg"
+                             *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self"/>
                     </ion-col>
 
                     <ion-col col-7>
@@ -58,10 +63,10 @@
                         <ion-icon name="icon-visibility"></ion-icon>
                     </button>
                     <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">
-                        <ion-icon name="log-out"></ion-icon>
+                        <ion-icon name="icon-exit"></ion-icon>
                     </button>
                     <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">
-                        <ion-icon name="chatbubbles"></ion-icon>
+                        <ion-icon name="icon-chat"></ion-icon>
                     </button>
                     <span [ngClass]="{'badge-no-show': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>
                 </ion-fab-list>
