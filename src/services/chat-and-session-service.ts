@@ -137,12 +137,7 @@ export class ChatAndSessionService {
      * @param sessionUser
      */
     private getChatMessage(msg: SessionChatMessageResponse, sessionUser: SessionUser): ChatMessage {
-        if(this.platform.is('ios')){
-            let originalTime = msg.time;
-            let dateParts = originalTime.substring(0,10).split('-');
-            let timePart = originalTime.substr(11);
-            msg.time= dateParts[1] + '/' + dateParts[2] + '/' + dateParts[0] + ' ' + timePart;
-        }
+        msg.time = this.formatTime(msg.time);
         let chatMessage = {
             messageId: msg.messageId,
             userId: msg.senderId, // if author id eq current user
@@ -154,6 +149,19 @@ export class ChatAndSessionService {
             status: msg.status
         };
         return chatMessage;
+    }
+
+    /**
+     * Helper: Converts formats time field because iOS does not accept yyyy-mm-dd (ISO 8601) date format
+     * @param time
+     */
+    private formatTime(time: string) {
+        if (this.platform.is('ios')) {
+            let originalTime = time;
+            let dateParts = originalTime.substring(0, 10).split('-');
+            let timePart = originalTime.substr(11);
+            return dateParts[1] + '/' + dateParts[2] + '/' + dateParts[0] + ' ' + timePart;
+        } else return time;
     }
 
     /**
