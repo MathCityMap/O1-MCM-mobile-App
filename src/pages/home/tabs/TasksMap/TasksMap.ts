@@ -33,6 +33,8 @@ import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "../../../../../node_modules/rxjs";
 
+import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
 declare var ConicGradient: any;
 
@@ -532,8 +534,19 @@ export class TasksMap implements OnInit, OnDestroy {
               attributionControl: false,
               zoom: 18,
               trackResize: false, // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
-              maxBounds: this.route.getBoundingBoxLatLng()
+              maxBounds: this.route.getBoundingBoxLatLng(),
+              minZoom: Helper.min_zoom,
+              maxZoom: Helper.max_zoom,
           });
+
+          // style: 'mapbox://styles/mapbox-docs/cj2qe6qid003a2rmrquvqgbcx'
+
+          var gl = (<any>L).mapboxGL({
+              accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
+              style: 'mapbox://styles/mapbox/streets-v11'
+              // style: 'mapbox://styles/mapbox-docs/cj2qe6qid003a2rmrquvqgbcx'
+          }).addTo(this.map);
+
           L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
           // this.map.setZoom(18);
@@ -543,16 +556,16 @@ export class TasksMap implements OnInit, OnDestroy {
               this.state.selectedTask = null;
           })
           let map = this.map;
-          await tilesDb.initialize();
-          let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-              attribution: '&copy; mapbox.com',
-              subdomains: subDomains,
-              minZoom: Helper.min_zoom,
-              maxZoom: Helper.max_zoom,
-              tileSize: 256,
-              crossOrigin: true,
-              detectRetina: true
-          });
+          // await tilesDb.initialize();
+          // let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
+          //     attribution: '&copy; mapbox.com',
+          //     subdomains: subDomains,
+          //     minZoom: Helper.min_zoom,
+          //     maxZoom: Helper.max_zoom,
+          //     tileSize: 256,
+          //     crossOrigin: true,
+          //     detectRetina: true
+          // });
 
           this.gpsService.getCurrentPosition()
                 .then(resp => {
@@ -587,50 +600,52 @@ export class TasksMap implements OnInit, OnDestroy {
                     console.error(`Location error: ${JSON.stringify(error)}`);
                 });
 
-          const tiles = this.ormService.getTileURLsAsObject(this.route);
-          let that = this;
-          offlineLayer.getTileUrl = function (coords) {
-              var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
-              var dbStorageKey = this._getStorageKey(url);
-
-              if (tiles[dbStorageKey]) {
-                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
-              }
-              return Promise.resolve(url);
-
-          };
-
-          offlineLayer.addTo(map);
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
-
-          offlineLayer.on('offline:below-min-zoom-error', function () {
-              alert('Can not save tiles below minimum zoom level.');
-          });
-
-          offlineLayer.on('offline:save-start', function (data) {
-              console.debug(data);
-              console.debug('Saving ' + data.nTilesToSave + ' tiles.');
-          });
-
-          offlineLayer.on('offline:save-end', function () {
-              alert('All the tiles were saved.');
-          });
-
-          offlineLayer.on('offline:save-error', function (err) {
-              console.error('Error when saving tiles: ' + err);
-          });
-
-          offlineLayer.on('offline:remove-start', function () {
-              console.debug('Removing tiles.');
-          });
-
-          offlineLayer.on('offline:remove-end', function () {
-              alert('All the tiles were removed.');
-          });
-
-          offlineLayer.on('offline:remove-error', function (err) {
-              console.error('Error when removing tiles: ' + err);
-          });
+          //
+          // const tiles = this.ormService.getTileURLsAsObject(this.route);
+          // let that = this;
+          // offlineLayer.getTileUrl = function (coords) {
+          //     var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
+          //     var dbStorageKey = this._getStorageKey(url);
+          //
+          //     if (tiles[dbStorageKey]) {
+          //         return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
+          //     }
+          //     return Promise.resolve(url);
+          //
+          // };
+          //
+          // offlineLayer.addTo(map);
+          //
+          //
+          // offlineLayer.on('offline:below-min-zoom-error', function () {
+          //     alert('Can not save tiles below minimum zoom level.');
+          // });
+          //
+          // offlineLayer.on('offline:save-start', function (data) {
+          //     console.debug(data);
+          //     console.debug('Saving ' + data.nTilesToSave + ' tiles.');
+          // });
+          //
+          // offlineLayer.on('offline:save-end', function () {
+          //     alert('All the tiles were saved.');
+          // });
+          //
+          // offlineLayer.on('offline:save-error', function (err) {
+          //     console.error('Error when saving tiles: ' + err);
+          // });
+          //
+          // offlineLayer.on('offline:remove-start', function () {
+          //     console.debug('Removing tiles.');
+          // });
+          //
+          // offlineLayer.on('offline:remove-end', function () {
+          //     alert('All the tiles were removed.');
+          // });
+          //
+          // offlineLayer.on('offline:remove-error', function (err) {
+          //     console.error('Error when removing tiles: ' + err);
+          // });
 
           //centers map in the selected task
           if(this.state.selectedTask != null){
