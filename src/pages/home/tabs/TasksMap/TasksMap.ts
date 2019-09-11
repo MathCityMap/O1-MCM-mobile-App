@@ -539,12 +539,10 @@ export class TasksMap implements OnInit, OnDestroy {
               maxZoom: Helper.max_zoom,
           });
 
-          // style: 'mapbox://styles/mapbox-docs/cj2qe6qid003a2rmrquvqgbcx'
-
-          var gl = (<any>L).mapboxGL({
+          // TODO: Replace leaflet-mapbox-gl Bridge with native MapboxGl JS implementation
+          (<any>L).mapboxGL({
               accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-              style: 'mapbox://styles/mapbox/outdoors-v11'
-              // style: 'mapbox://styles/mapbox-docs/cj2qe6qid003a2rmrquvqgbcx'
+              style: mapquestUrl
           }).addTo(this.map);
 
           L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
