@@ -288,10 +288,12 @@ export class Route {
         } else {
             switch (narrative) {
                 case 'pirates':
-                    return 'https://{s}.api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ';
+                    return 'mapbox://styles/igurjanow/ck0ezs4vd02ou1co75ep12pyz';
+                    // return 'https://{s}.api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ';
                 default:
-                    return Helper.mapquestUrl
-                
+                    return 'mapbox://styles/mapbox/outdoors-v11';
+                    // return Helper.mapquestUrl
+
             }
         }
     }
