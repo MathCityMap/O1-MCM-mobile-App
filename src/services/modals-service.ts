@@ -102,7 +102,8 @@ export class ModalsService {
             buttons: buttons,
             cssClass: narrative
         });
-        return confirm.present();
+        confirm.present();
+        return confirm;
     }
 
     showYesNoDialog(titleKey: string, messageKey: string,
@@ -169,6 +170,7 @@ export class ModalsService {
             /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
         });
         testModal.present();
+        return testModal;
     }
 
     async showNoInternetModalIfOffline() : Promise<boolean> {

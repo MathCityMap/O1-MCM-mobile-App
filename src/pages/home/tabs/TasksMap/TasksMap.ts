@@ -225,16 +225,31 @@ export class TasksMap implements OnInit, OnDestroy {
                   this.taskList = await this.route.getTasks();
                   this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
               }
-              else{
+              else {
                   const that = this;
-                  setTimeout(function() {
+                  setTimeout(function () {
                       that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                          'no', () => {},
+                          'no', () => {
+                                if (that.route.isNarrativeEnabled()) {
+                                    that.showIntroModal().then(() => {
+                                        that.state.showIntroModal = false;
+                                    })
+                                }
+                          },
                           'yes', async () => {
-                              that.selectStartPoint();
+                              that.selectStartPoint().then(modal => {
+                                  modal.onDidDismiss(() => {
+                                      if (that.route.isNarrativeEnabled()) {
+                                          that.showIntroModal().then(() => {
+                                              that.state.showIntroModal = false;
+                                          })
+                                      }
+                                  })
+                              });
                               that.state.selectedStartTask = true;
-                          });
+                      });
                   }, 500);
+
               }
 
               this.saveMapStateToLocalStorage();
@@ -684,7 +699,7 @@ export class TasksMap implements OnInit, OnDestroy {
     /* open the damn modal again */
     let that = this;
     console.log('Active Narrative is: ' + this.app.activeNarrative);
-    this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.app.activeNarrative, this.navCtrl, function(selectedTask: Task){
+    return this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.app.activeNarrative, this.navCtrl, function(selectedTask: Task){
             console.debug("back in tasksMap");
             that.state.selectedTask = selectedTask;
             that.state.visibleTasks = {};
