@@ -18,6 +18,9 @@ import {ModalsService} from '../../services/modals-service';
 import {GpsService} from '../../services/gps-service';
 import {Subscription} from "rxjs/Subscription";
 import {ChatAndSessionService, SessionInfo} from "../../services/chat-and-session-service";
+import {PhotoViewer} from "@ionic-native/photo-viewer";
+import {Helper} from "../../classes/Helper";
+import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -72,7 +75,9 @@ export class TaskDetail {
         private modalsService: ModalsService,
         private gpsService: GpsService,
         private chatAndSessionService: ChatAndSessionService,
-        private app: MyApp
+        private app: MyApp,
+        private photoViewer: PhotoViewer,
+        private spinnerDialog: SpinnerDialog
     ) {
     }
 
@@ -1320,5 +1325,19 @@ export class TaskDetail {
                 break;
         }
         return result;
+    }
+
+    openInPhotoviewer() {
+        if (Helper.isPluginAvailable(PhotoViewer)) {
+            this.spinnerDialog.show();
+            setTimeout(() => {
+                // use short timeout to let spinner dialog appear
+                this.photoViewer.show(this.task.getImageURL());
+                setTimeout(() => {
+                    // photoviewer doesn't have callback when user closes it => hide spinner in background
+                    this.spinnerDialog.hide();
+                }, 1000);
+            }, 100)
+        }
     }
 }
