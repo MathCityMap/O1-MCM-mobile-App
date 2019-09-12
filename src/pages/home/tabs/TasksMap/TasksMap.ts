@@ -733,7 +733,8 @@ export class TasksMap implements OnInit, OnDestroy {
                   {
                       session: this.sessionInfo.session,
                       score: this.score,
-                      tasks: this.taskList
+                      tasks: this.taskList,
+                      narrative: this.app.activeNarrative
                   }, {cssClass: this.app.activeNarrative});
               modal.present();
               if(this.sessionInfo != null){
@@ -770,7 +771,8 @@ export class TasksMap implements OnInit, OnDestroy {
                           {
                               session: that.sessionInfo.session,
                               score: that.score,
-                              tasks: that.taskList
+                              tasks: that.taskList,
+                              narrative: this.app.activeNarrative
                           },{
                               showBackdrop: true,
                               enableBackdropDismiss: false
@@ -859,7 +861,8 @@ export class TasksMap implements OnInit, OnDestroy {
                 {
                     session: this.sessionInfo.session,
                     score: this.score,
-                    tasks: this.taskList
+                    tasks: this.taskList,
+                    narrative: this.app.activeNarrative
                 }, {cssClass: this.app.activeNarrative});
             modal.present();
             return;

@@ -19,6 +19,8 @@ export class MCMSessionFinishedModal {
     private score: Score;
     private tasks: Task[];
     private numberOfSolvedTasks: number;
+    private iconPath: string;
+    private narrative: string;
 
     constructor(private viewCtrl: ViewController,
                 private navCtrl: NavController,
@@ -35,6 +37,18 @@ export class MCMSessionFinishedModal {
                this.numberOfSolvedTasks++;
            }
         });
+        if(navParams.data.narrative) {
+            this.narrative = navParams.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        } else {
+            this.iconPath = '';
+        }
     }
 
     // ionViewDidEnter() {
