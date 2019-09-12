@@ -247,7 +247,7 @@ export class TasksMap implements OnInit, OnDestroy {
                                   })
                               });
                               that.state.selectedStartTask = true;
-                      });
+                      }, that.app.activeNarrative);
                   }, 500);
 
               }
@@ -760,7 +760,7 @@ export class TasksMap implements OnInit, OnDestroy {
               if(this.sessionTimeSubscription){
                   this.sessionTimeSubscription.unsubscribe();
               }
-          });
+          },this.app.activeNarrative);
 
       // btn = () => {
       //     this.navCtrl.push('TasksMap', {'routeId' : this.route.id});
