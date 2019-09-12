@@ -293,8 +293,8 @@ $icon-path: "../assets/icons/";
     &.image-box{
         .image-container{
             .cover{
-                border-color: $c-secondary;
-                border-width: 6px;
+                //border-color: $c-secondary;
+                //border-width: 6px;
             }
             .indicator{
                 &:before, &:after{
@@ -575,7 +575,7 @@ $icon-path: "../assets/icons/";
                             background-position: bottom;
                             background-size: 100%;
                             box-shadow: none;
-                            margin-top: -45px;
+                            margin-top: -50px;
                         }
                     }
                 }
