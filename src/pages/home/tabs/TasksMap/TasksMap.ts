@@ -557,7 +557,8 @@ export class TasksMap implements OnInit, OnDestroy {
           // TODO: Replace leaflet-mapbox-gl Bridge with native MapboxGl JS implementation
           (<any>L).mapboxGL({
               accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-              style: mapquestUrl
+              style: mapquestUrl,
+              updateInterval: 0,
           }).addTo(this.map);
 
           L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);

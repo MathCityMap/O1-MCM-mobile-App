@@ -340,7 +340,8 @@ export class TaskDetailMap implements OnDestroy {
 
             (<any>L).mapboxGL({
                 accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-                style: mapquestUrl
+                style: mapquestUrl,
+                updateInterval: 0,
             }).addTo(this.map);
 
             /* For testing - sets users position to click event, comment in for local testing*/

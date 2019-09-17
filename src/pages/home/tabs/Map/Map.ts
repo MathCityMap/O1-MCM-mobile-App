@@ -187,7 +187,8 @@ export class MapPage implements OnInit, OnDestroy {
 
             (<any>L).mapboxGL({
                 accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-                style: 'mapbox://styles/mapbox/outdoors-v11'
+                style: 'mapbox://styles/mapbox/outdoors-v11',
+                updateInterval: 0,
             }).addTo(this.map);
 
 
