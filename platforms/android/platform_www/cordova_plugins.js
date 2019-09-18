@@ -442,7 +442,8 @@ module.exports.metadata =
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-fabric-plugin": "1.1.9",
     "cordova-plugin-app-version": "0.1.9",
-    "cordova-custom-config": "4.0.2"
+    "cordova-custom-config": "4.0.2",
+    "cordova-plugin-ionic-webview": "1.2.1"
 };
 // BOTTOM OF METADATA
 });
