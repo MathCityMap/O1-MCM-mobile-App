@@ -549,9 +549,7 @@ export class TasksMap implements OnInit, OnDestroy {
               attributionControl: false,
               zoom: 18,
               trackResize: false, // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
-              maxBounds: this.route.getBoundingBoxLatLng(),
-              minZoom: Helper.min_zoom,
-              maxZoom: Helper.max_zoom,
+              maxBounds: this.route.getBoundingBoxLatLng()
           });
 
           // TODO: Replace leaflet-mapbox-gl Bridge with native MapboxGl JS implementation
