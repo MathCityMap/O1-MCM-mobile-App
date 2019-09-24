@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.autentek.mathcitymap" version="2.2.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.autentek.mathcitymap" version="2.2.10" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
@@ -79,6 +79,10 @@
     <feature name="AppVersion">
         <param name="ios-package" value="AppVersion" />
     </feature>
+    <allow-navigation href="http://localhost:8080/*" />
+    <feature name="CDVWKWebViewEngine">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
@@ -154,6 +158,7 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="SplashMaintainAspectRatio" value="true" />

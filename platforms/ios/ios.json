@@ -95,6 +95,18 @@
                         {
                             "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<allow-navigation href=\"http://localhost:8080/*\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"CDVWKWebViewEngine\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"CordovaWebViewEngine\" value=\"CDVWKWebViewEngine\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -256,6 +268,9 @@
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-custom-config": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-ionic-webview": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
@@ -695,6 +710,14 @@
             "clobbers": [
                 "cordova.getAppVersion"
             ]
+        },
+        {
+            "id": "cordova-plugin-ionic-webview.ios-wkwebview-exec",
+            "file": "plugins/cordova-plugin-ionic-webview/src/www/ios/ios-wkwebview-exec.js",
+            "pluginId": "cordova-plugin-ionic-webview",
+            "clobbers": [
+                "cordova.exec"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -720,6 +743,7 @@
         "cordova-plugin-inappbrowser": "3.0.0",
         "cordova-fabric-plugin": "1.1.9",
         "cordova-plugin-app-version": "0.1.9",
-        "cordova-custom-config": "4.0.2"
+        "cordova-custom-config": "4.0.2",
+        "cordova-plugin-ionic-webview": "1.2.1"
     }
 }

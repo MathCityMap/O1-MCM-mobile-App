@@ -434,6 +434,14 @@ module.exports = [
         "clobbers": [
             "cordova.getAppVersion"
         ]
+    },
+    {
+        "id": "cordova-plugin-ionic-webview.ios-wkwebview-exec",
+        "file": "plugins/cordova-plugin-ionic-webview/src/www/ios/ios-wkwebview-exec.js",
+        "pluginId": "cordova-plugin-ionic-webview",
+        "clobbers": [
+            "cordova.exec"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -461,7 +469,8 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-fabric-plugin": "1.1.9",
     "cordova-plugin-app-version": "0.1.9",
-    "cordova-custom-config": "4.0.2"
+    "cordova-custom-config": "4.0.2",
+    "cordova-plugin-ionic-webview": "1.2.1"
 };
 // BOTTOM OF METADATA
 });
