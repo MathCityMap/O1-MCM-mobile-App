@@ -181,7 +181,7 @@ export class MapPage implements OnInit, OnDestroy {
                 attributionControl: false,
                 center: this.center,
                 zoom: 16,
-                maxZoom: 20,
+                // maxZoom: 20,
                 trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
 

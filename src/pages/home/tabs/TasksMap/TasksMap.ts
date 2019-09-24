@@ -614,52 +614,51 @@ export class TasksMap implements OnInit, OnDestroy {
                     console.error(`Location error: ${JSON.stringify(error)}`);
                 });
 
+          const tiles = this.ormService.getTileURLsAsObject(this.route);
+          let that = this;
+          offlineLayer.getTileUrl = function (coords) {
+              var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
+              var dbStorageKey = this._getStorageKey(url);
+
+              if (tiles[dbStorageKey]) {
+                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
+              }
+              return Promise.resolve(url);
+
+          };
+
+          offlineLayer.addTo(map);
+
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
-          //
-          // const tiles = this.ormService.getTileURLsAsObject(this.route);
-          // let that = this;
-          // offlineLayer.getTileUrl = function (coords) {
-          //     var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
-          //     var dbStorageKey = this._getStorageKey(url);
-          //
-          //     if (tiles[dbStorageKey]) {
-          //         return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
-          //     }
-          //     return Promise.resolve(url);
-          //
-          // };
-          //
-          // offlineLayer.addTo(map);
-          //
-          //
-          // offlineLayer.on('offline:below-min-zoom-error', function () {
-          //     alert('Can not save tiles below minimum zoom level.');
-          // });
-          //
-          // offlineLayer.on('offline:save-start', function (data) {
-          //     console.debug(data);
-          //     console.debug('Saving ' + data.nTilesToSave + ' tiles.');
-          // });
-          //
-          // offlineLayer.on('offline:save-end', function () {
-          //     alert('All the tiles were saved.');
-          // });
-          //
-          // offlineLayer.on('offline:save-error', function (err) {
-          //     console.error('Error when saving tiles: ' + err);
-          // });
-          //
-          // offlineLayer.on('offline:remove-start', function () {
-          //     console.debug('Removing tiles.');
-          // });
-          //
-          // offlineLayer.on('offline:remove-end', function () {
-          //     alert('All the tiles were removed.');
-          // });
-          //
-          // offlineLayer.on('offline:remove-error', function (err) {
-          //     console.error('Error when removing tiles: ' + err);
-          // });
+
+          offlineLayer.on('offline:below-min-zoom-error', function () {
+              alert('Can not save tiles below minimum zoom level.');
+          });
+
+          offlineLayer.on('offline:save-start', function (data) {
+              console.debug(data);
+              console.debug('Saving ' + data.nTilesToSave + ' tiles.');
+          });
+
+          offlineLayer.on('offline:save-end', function () {
+              alert('All the tiles were saved.');
+          });
+
+          offlineLayer.on('offline:save-error', function (err) {
+              console.error('Error when saving tiles: ' + err);
+          });
+
+          offlineLayer.on('offline:remove-start', function () {
+              console.debug('Removing tiles.');
+          });
+
+          offlineLayer.on('offline:remove-end', function () {
+              alert('All the tiles were removed.');
+          });
+
+          offlineLayer.on('offline:remove-error', function (err) {
+              console.error('Error when removing tiles: ' + err);
+          });
 
           //centers map in the selected task
           if(this.state.selectedTask != null){

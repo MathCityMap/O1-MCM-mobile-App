@@ -296,11 +296,11 @@ export class OrmService {
         try {
             // 15.04.18 - get data rows for route tasks from online DB first
             await dbUpdater.downloadRouteTasksData(route, this.translateService.instant("a_language_code"));
-            // statusCallback(0, 0, 'a_rdl_title_map');
-            // await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
-            //     alreadyDownloadedUrls.push(url);
-            //     return statusCallback(done, total);
-            // });
+            statusCallback(0, 0, 'a_rdl_title_map');
+            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
+                alreadyDownloadedUrls.push(url);
+                return statusCallback(done, total);
+            });
             statusCallback(0, 0, 'a_rdl_title_img');
             await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(await route.getTasks()), false, (done, total, url) => {
                 alreadyDownloadedUrls.push(url);
