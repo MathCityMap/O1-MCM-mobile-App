@@ -28,8 +28,8 @@ import 'leaflet-rotatedmarker';
 import { Subscription } from 'rxjs/Subscription';
 import {MyApp} from "../../app/app.component";
 
-import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
+// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
 export class TaskDetailMap implements OnDestroy {
 
@@ -338,11 +338,11 @@ export class TaskDetailMap implements OnDestroy {
                 trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
 
-            (<any>L).mapboxGL({
-                accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-                style: mapquestUrl,
-                updateInterval: 0,
-            }).addTo(this.map);
+            // (<any>L).mapboxGL({
+            //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
+            //     style: mapquestUrl,
+            //     updateInterval: 0,
+            // }).addTo(this.map);
 
             /* For testing - sets users position to click event, comment in for local testing*/
             this.map.on('click', function(e){
@@ -354,20 +354,20 @@ export class TaskDetailMap implements OnDestroy {
             });
 
 
-            // tilesDb.initialize().then(() => {
-            //     console.log("Tiles DB Initialized");
-            //     let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-            //         attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
-            //         subdomains: subDomains,
-            //         minZoom: Helper.min_zoom,
-            //         maxZoom: Helper.max_zoom,
-            //         tileSize: 256,
-            //         crossOrigin: true,
-            //         detectRetina: true
-            //     });
-            //
-            //     offlineLayer.addTo(this.map);
-            // });
+            tilesDb.initialize().then(() => {
+                console.log("Tiles DB Initialized");
+                let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
+                    attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
+                    subdomains: subDomains,
+                    minZoom: Helper.min_zoom,
+                    maxZoom: Helper.max_zoom,
+                    tileSize: 256,
+                    crossOrigin: true,
+                    detectRetina: true
+                });
+
+                offlineLayer.addTo(this.map);
+            });
 
             /* User's Location */
             this.gpsService.getCurrentPosition()

@@ -28,8 +28,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { LanguageService } from '../../../../services/language-service';
 import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
-import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
+// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
 @IonicPage()
 @Component({
@@ -185,11 +185,11 @@ export class MapPage implements OnInit, OnDestroy {
                 trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
             });
 
-            (<any>L).mapboxGL({
-                accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-                style: 'mapbox://styles/mapbox/outdoors-v11',
-                updateInterval: 0,
-            }).addTo(this.map);
+            // (<any>L).mapboxGL({
+            //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
+            //     style: 'mapbox://styles/mapbox/outdoors-v11',
+            //     updateInterval: 0,
+            // }).addTo(this.map);
 
 
             if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
@@ -218,20 +218,20 @@ export class MapPage implements OnInit, OnDestroy {
                 });
             }
             let map = this.map;
-            // tilesDb.initialize().then(() => {
-            //     console.log("Tiles DB Initialized");
-            //     let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-            //         attribution: '&copy; mapbox.com',
-            //         subdomains: subDomains,
-            //         minZoom: 4,
-            //         maxZoom: 20,
-            //         tileSize: 256,
-            //         crossOrigin: true,
-            //         detectRetina: true
-            //     });
-            //
-            //     offlineLayer.addTo(map);
-            // });
+            tilesDb.initialize().then(() => {
+                console.log("Tiles DB Initialized");
+                let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
+                    attribution: '&copy; mapbox.com',
+                    subdomains: subDomains,
+                    minZoom: 4,
+                    maxZoom: 20,
+                    tileSize: 256,
+                    crossOrigin: true,
+                    detectRetina: true
+                });
+
+                offlineLayer.addTo(map);
+            });
             this.gpsService.getCurrentPosition()
                 .then(resp => {
                     if (resp && resp.coords) {

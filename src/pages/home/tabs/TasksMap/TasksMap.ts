@@ -33,8 +33,8 @@ import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "../../../../../node_modules/rxjs";
 
-import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
+// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
 declare var ConicGradient: any;
 
@@ -555,11 +555,11 @@ export class TasksMap implements OnInit, OnDestroy {
           });
 
           // TODO: Replace leaflet-mapbox-gl Bridge with native MapboxGl JS implementation
-          (<any>L).mapboxGL({
-              accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-              style: mapquestUrl,
-              updateInterval: 0,
-          }).addTo(this.map);
+          // (<any>L).mapboxGL({
+          //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
+          //     style: mapquestUrl,
+          //     updateInterval: 0,
+          // }).addTo(this.map);
 
           L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
           this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
@@ -570,16 +570,16 @@ export class TasksMap implements OnInit, OnDestroy {
               this.state.selectedTask = null;
           })
           let map = this.map;
-          // await tilesDb.initialize();
-          // let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-          //     attribution: '&copy; mapbox.com',
-          //     subdomains: subDomains,
-          //     minZoom: Helper.min_zoom,
-          //     maxZoom: Helper.max_zoom,
-          //     tileSize: 256,
-          //     crossOrigin: true,
-          //     detectRetina: true
-          // });
+          await tilesDb.initialize();
+          let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
+              attribution: '&copy; mapbox.com',
+              subdomains: subDomains,
+              minZoom: Helper.min_zoom,
+              maxZoom: Helper.max_zoom,
+              tileSize: 256,
+              crossOrigin: true,
+              detectRetina: true
+          });
 
           this.gpsService.getCurrentPosition()
                 .then(resp => {
