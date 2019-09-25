@@ -134,6 +134,7 @@ export class ChatPage {
      */
     async sendMsg() {
         if (!this.editorMsg.trim()) return;
+        let timezoneOffset = new Date().getTimezoneOffset();
 
         // Mock message
         let newMsg: ChatMessage = {
@@ -142,7 +143,7 @@ export class ChatPage {
             userName: this.user.name,
             userAvatar: this.user.avatar,
             toUserId: this.toUser.token,
-            time: Date.now(),
+            time: Date.now() - (timezoneOffset * 60000),
             message: this.editorMsg,
             status: 'pending'
         };

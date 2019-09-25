@@ -138,13 +138,14 @@ export class ChatAndSessionService {
      */
     private getChatMessage(msg: SessionChatMessageResponse, sessionUser: SessionUser): ChatMessage {
         msg.time = this.formatTime(msg.time);
+        let timezoneOffset = new Date().getTimezoneOffset();
         let chatMessage = {
             messageId: msg.messageId,
             userId: msg.senderId, // if author id eq current user
             userName: msg.username, // team user name
             userAvatar: './assets/to-user.jpg', // TODO User Avatar
             toUserId: msg.receiverId, // toUserId (depends if this is written  or received
-            time: Date.parse(msg.time),
+            time: Date.parse(msg.time) - (timezoneOffset * 60000),
             message: msg.message,
             status: msg.status
         };
