@@ -224,6 +224,11 @@ export class TasksMap implements OnInit, OnDestroy {
               if (this.sessionInfo.sessionUser.assigned_task_id != 0) {
                   this.taskList = await this.route.getTasks();
                   this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                  if (this.route.isNarrativeEnabled()) {
+                      this.showIntroModal().then(() => {
+                          this.state.showIntroModal = false;
+                      })
+                  }
               }
               else {
                   const that = this;
