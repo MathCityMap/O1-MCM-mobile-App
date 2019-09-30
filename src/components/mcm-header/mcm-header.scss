@@ -69,8 +69,22 @@ ion-header{
       width: 38px;
       height: 38px;
     }
-  }
+}
 
+//@supports (padding-top: env(safe-area-inset-top)){
+//  ion-header {
+//    &.header-ios {
+//      padding-top: env(safe-area-inset-top);
+//    }
+//  }
+//}
+//@supports (padding-top: constant(safe-area-inset-top)){
+//  .map {
+//    .detail-box {
+//      padding-top: constant(safe-area-inset-top);
+//    }
+//  }
+//}
 
 // -------------- Header bar styles ---------------
 // ================================================

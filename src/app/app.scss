@@ -25,7 +25,30 @@
 }
 
 
-
+@supports (padding-top: env(safe-area-inset-top)){
+    ion-header {
+        &.header-ios {
+            padding-top: env(safe-area-inset-top)!important;
+        }
+    }
+    .has-header{
+        .scroll-content, ion-refresher {
+            margin-top: calc(54px + env(safe-area-inset-top)) !important;
+        }
+        &.content-ios{
+            .scroll-content, ion-refresher {
+                margin-top: calc(54px + env(safe-area-inset-top))!important;
+            }
+        }
+    }
+}
+@supports (padding-top: constant(safe-area-inset-top)){
+    .map {
+        .detail-box {
+            padding-top: constant(safe-area-inset-top)!important;
+        }
+    }
+}
 
 
 //TAB-BAR
@@ -492,6 +515,22 @@ input{
                 font: 14px 'NunitoExtrabold', Arial, sans-serif;
                 line-height: 26px;
             }
+        }
+    }
+}
+
+
+@supports (bottom: env(safe-area-inset-bottom)){
+    .map {
+        .detail-box {
+            bottom: calc(54px + env(safe-area-inset-bottom));
+        }
+    }
+}
+@supports (bottom: constant(safe-area-inset-bottom)){
+    .map {
+        .detail-box {
+            bottom: calc(54px + constant(safe-area-inset-bottom));
         }
     }
 }
