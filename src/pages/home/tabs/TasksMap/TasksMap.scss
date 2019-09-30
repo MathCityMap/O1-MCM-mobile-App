@@ -1,6 +1,8 @@
 page-tasks-map {
     .map .detail-box {
-        bottom: 0;
+        bottom: 0px;
+        bottom: calc(0px + constant(safe-area-inset-bottom));
+        bottom: calc(0px + env(safe-area-inset-bottom));
         &#ranking{
             padding: $global-small-padding 16px $global-small-padding;
             bottom: auto;
