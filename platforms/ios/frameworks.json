@@ -1,7 +1,7 @@
 {
     "SystemConfiguration.framework": 3,
     "Security.framework": 2,
-    "libz.tbd": 2,
+    "libz.tbd": 1,
     "CoreLocation.framework": 4,
     "CoreTelephony.framework": 1,
     "CoreBluetooth.framework": 1,
@@ -13,6 +13,5 @@
     "Contacts.framework": 1,
     "UserNotifications.framework": 2,
     "libz.dylib": 1,
-    "libc++.dylib": 1,
-    "WebKit.framework": 1
+    "libc++.dylib": 1
 }

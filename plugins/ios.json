@@ -72,9 +72,6 @@
         },
         "cordova-custom-config": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-ionic-webview": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {
