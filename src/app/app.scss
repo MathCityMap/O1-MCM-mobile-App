@@ -25,30 +25,30 @@
 }
 
 
-@supports (padding-top: env(safe-area-inset-top)){
-    ion-header {
-        &.header-ios {
-            padding-top: env(safe-area-inset-top)!important;
-        }
-    }
-    .has-header{
-        .scroll-content, ion-refresher {
-            margin-top: calc(54px + env(safe-area-inset-top)) !important;
-        }
-        &.content-ios{
-            .scroll-content, ion-refresher {
-                margin-top: calc(54px + env(safe-area-inset-top))!important;
-            }
-        }
-    }
-}
-@supports (padding-top: constant(safe-area-inset-top)){
-    .map {
-        .detail-box {
-            padding-top: constant(safe-area-inset-top)!important;
-        }
-    }
-}
+//@supports (padding-top: env(safe-area-inset-top)){
+//    ion-header {
+//        &.header-ios {
+//            padding-top: env(safe-area-inset-top)!important;
+//        }
+//    }
+//    .has-header{
+//        .scroll-content, ion-refresher {
+//            margin-top: calc(54px + env(safe-area-inset-top)) !important;
+//        }
+//        &.content-ios{
+//            .scroll-content, ion-refresher {
+//                margin-top: calc(54px + env(safe-area-inset-top))!important;
+//            }
+//        }
+//    }
+//}
+//@supports (padding-top: constant(safe-area-inset-top)){
+//    .map {
+//        .detail-box {
+//            padding-top: constant(safe-area-inset-top)!important;
+//        }
+//    }
+//}
 
 
 //TAB-BAR
@@ -91,11 +91,13 @@
 
 .has-header{
     .scroll-content, ion-refresher {
-        margin-top: calc(54px);
+        //margin-top: calc(54px);
+        margin-top: calc(54px + env(safe-area-inset-top) + constant(safe-area-inset-top));
     }
     &.content-ios{
         .scroll-content, ion-refresher {
-            margin-top: calc(54px + 20px);
+            //margin-top: calc(54px + 20px);
+            margin-top: calc(54px + 20px + env(safe-area-inset-top) + constant(safe-area-inset-top));
         }
     }
 }
@@ -439,7 +441,9 @@ input{
     .detail-box{
         width: 100%;
         position: fixed;
-        bottom: 54px;
+        //bottom: 54px;
+        //bottom: calc(54px + env(safe-area-inset-bottom));
+        bottom: calc(54px + constant(safe-area-inset-bottom) + env(safe-area-inset-bottom));
         z-index: 2;
         display: flex;
         align-items: center;
@@ -520,20 +524,20 @@ input{
 }
 
 
-@supports (bottom: env(safe-area-inset-bottom)){
-    .map {
-        .detail-box {
-            bottom: calc(54px + env(safe-area-inset-bottom));
-        }
-    }
-}
-@supports (bottom: constant(safe-area-inset-bottom)){
-    .map {
-        .detail-box {
-            bottom: calc(54px + constant(safe-area-inset-bottom));
-        }
-    }
-}
+//@supports (bottom: env(safe-area-inset-bottom)){
+//    .map {
+//        .detail-box {
+//            bottom: calc(54px + env(safe-area-inset-bottom));
+//        }
+//    }
+//}
+//@supports (bottom: constant(safe-area-inset-bottom)){
+//    .map {
+//        .detail-box {
+//            bottom: calc(54px + constant(safe-area-inset-bottom));
+//        }
+//    }
+//}
 
 
 /*  =========== card ===========  */
