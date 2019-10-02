@@ -23,16 +23,16 @@
     "@angular/platform-browser-dynamic": "4.4.4",
     "@ionic-native/app-version": "4.10.1",
     "@ionic-native/core": "4.3.0",
-    "@ionic-native/diagnostic": "^4.5.2",
+    "@ionic-native/diagnostic": "4.4.2",
     "@ionic-native/file": "4.3.2",
     "@ionic-native/file-transfer": "4.3.2",
     "@ionic-native/geolocation": "4.4.2",
-    "@ionic-native/globalization": "^4.5.3",
+    "@ionic-native/globalization": "4.4.2",
     "@ionic-native/in-app-browser": "4.10.1",
     "@ionic-native/local-notifications": "4.10.1",
-    "@ionic-native/location-accuracy": "^4.5.2",
+    "@ionic-native/location-accuracy": "4.4.2",
     "@ionic-native/network": "4.4.2",
-    "@ionic-native/photo-viewer": "^4.10.1",
+    "@ionic-native/photo-viewer": "4.4.2",
     "@ionic-native/spinner-dialog": "4.4.2",
     "@ionic-native/splash-screen": "4.3.0",
     "@ionic-native/sqlite": "4.3.2",
@@ -91,11 +91,10 @@
     "typeorm": "0.1.6",
     "typescript-collections": "1.2.5",
     "xml2json-cli": "^1.1.1",
-    "zone.js": "0.8.18",
-    "cordova-plugin-ionic-webview": "~1.2.1"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "^3.1.9",
+    "@ionic/app-scripts": "3.2.3",
     "ng-swagger-gen": "0.11.4",
     "typescript": "2.6.2"
   },
@@ -126,8 +125,7 @@
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-app-version": {},
-      "cordova-custom-config": {},
-      "cordova-plugin-ionic-webview": {}
+      "cordova-custom-config": {}
     },
     "platforms": [
       "ios",
