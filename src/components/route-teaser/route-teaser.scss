@@ -1,120 +1,133 @@
 route-teaser {
     position: relative;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    width: 100%;
-    height: auto;
-    padding: $global-small-padding;
-    background-color: color($colors, light);
-    &:not(:first-of-type){
+    display: block;
+    &:not(:nth-child(1)){
         border-top: 2px dotted color($colors, light-grey)!important;
     }
+    .main, .secondary{
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .main{
+        flex-wrap: nowrap;
+        height: auto;
+        padding: $global-small-padding $global-base-padding*0.75;
+        background-color: color($colors, light);
 
-    .container{
-        &.image, &.buttons{
-            flex-basis: auto;
-            flex-grow: 0;
-        }
-        &.buttons{
-            align-self: flex-end;
-            .button.dot{
-                min-width: unset;
-                width: 24px;
-                height: 24px;
-                margin: 0;
-                img{
-                    object-fit: contain;
+        .container{
+            &.image, &.buttons{
+                flex-basis: auto;
+                flex-grow: 0;
+            }
+            &.buttons{
+                align-self: flex-end;
+                .button.dot{
+                    min-width: unset;
+                    width: 24px;
+                    height: 24px;
+                    margin: 0;
+                    img{
+                        object-fit: contain;
+                    }
                 }
             }
-        }
-        &.image{
-            position: relative;
-            display: inline-block;
-            border-radius: 50%;
-            .cover{
+            &.image{
                 position: relative;
-                border-radius: 50%;
-                box-sizing: border-box;
-                overflow: hidden;
-                background: no-repeat center/50% url("../assets/icons/placeholder.svg") color($colors, light-grey);
-                @include box-shadow(0.2);
-                &:before {
-                    content: '';
-                    display: block;
-                    width: 100%;
-                    padding-top: 100%;
-                }
-                .thumb{
-                    position: absolute;
-                    height: calc(100% + 2px);
-                    width: calc(100% + 2px);
-                    top: -1px;
-                    left: -1px;
-                    max-width: none;
-                    max-height: none;
-                    object-fit: cover;
-                }
-            }
-        }
-        &.image{
-            $circle-size: 20vw;
-            width: $circle-size;
-            height: $circle-size;
-            border: 2px solid color($colors, light-grey);
-            //&.downloaded{
-            //    border: 2px solid #ffffff;
-            //    box-shadow: 0px 0px 0px 2px #a6a6a6;
-            //    &.completed {
-            //        box-shadow: 0px 0px 0px 2px #4caf50;
-            //    }
-            //}
-            //.indicator{
-            //    $item-size: 28px;
-            //    display: block;
-            //    position: absolute;
-            //    top:  50%;
-            //    left: 50%;
-            //    width:  $item-size;
-            //    height: $item-size;
-            //    margin: (-($item-size / 2 + 4px)) (-($item-size / 2));
-            //
-            //    $item-count: 1;
-            //    $angle: (360 / $item-count);
-            //    $rot: 45;
-            //    transform:
-            //        rotate($rot * 1deg)
-            //        translate($circle-size / 2)
-            //        rotate($rot * -1deg);
-            //}
-        }
-
-
-        &.text{
-            flex: 1;
-            padding: 0 $global-small-padding;
-            box-sizing: border-box;
-            p{
-                margin: 0;
                 display: inline-block;
-                line-height: 1.4;
-                span{
-                    display: inline-block;
+                border-radius: 50%;
+                .cover{
+                    position: relative;
+                    border-radius: 50%;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    background: no-repeat center/50% url("../assets/icons/placeholder.svg") color($colors, light-grey);
+                    @include box-shadow(0.2);
+                    &:before {
+                        content: '';
+                        display: block;
+                        width: 100%;
+                        padding-top: 100%;
+                    }
+                    .thumb{
+                        position: absolute;
+                        height: calc(100% + 2px);
+                        width: calc(100% + 2px);
+                        top: -1px;
+                        left: -1px;
+                        max-width: none;
+                        max-height: none;
+                        object-fit: cover;
+                    }
                 }
             }
-            span{
-                color: color($colors, dark-grey);
+            &.image{
+                $circle-size: 20vw;
+                width: $circle-size;
+                height: $circle-size;
+                border: 2px solid color($colors, light-grey);
+                //&.downloaded{
+                //    border: 2px solid #ffffff;
+                //    box-shadow: 0px 0px 0px 2px #a6a6a6;
+                //    &.completed {
+                //        box-shadow: 0px 0px 0px 2px #4caf50;
+                //    }
+                //}
+                //.indicator{
+                //    $item-size: 28px;
+                //    display: block;
+                //    position: absolute;
+                //    top:  50%;
+                //    left: 50%;
+                //    width:  $item-size;
+                //    height: $item-size;
+                //    margin: (-($item-size / 2 + 4px)) (-($item-size / 2));
+                //
+                //    $item-count: 1;
+                //    $angle: (360 / $item-count);
+                //    $rot: 45;
+                //    transform:
+                //        rotate($rot * 1deg)
+                //        translate($circle-size / 2)
+                //        rotate($rot * -1deg);
+                //}
             }
-            h2{
-                display: block;
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 1;
-                white-space: initial;
-                text-overflow: ellipsis;
-                margin: 0 0 4px;
+
+
+            &.text{
+                flex: 1;
+                padding: 0 $global-small-padding;
+                box-sizing: border-box;
+                p{
+                    margin: 0;
+                    display: inline-block;
+                    line-height: 1.4;
+                    span{
+                        display: inline-block;
+                    }
+                }
+                span{
+                    color: color($colors, dark-grey);
+                }
+                h2{
+                    display: block;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    white-space: initial;
+                    text-overflow: ellipsis;
+                    margin: 0 0 4px;
+                }
             }
+
         }
+    }
+    .secondary{
+        display: none;
+        width: 100%;
+        padding: $global-small-padding $global-base-padding;
+        background-color: rgba(3, 109, 153, 0.05);
     }
 }
