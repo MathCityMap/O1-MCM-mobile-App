@@ -1,6 +1,9 @@
 
   <mcm-header></mcm-header>
   <ion-tabs>
-    <ion-tab [root]="tab1Root" tabTitle="{{ 'a_t_list' | translate }}" tabIcon=""></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="{{ 'a_main_btn_online_map' | translate }}" tabIcon=""></ion-tab>
+      <!--TODO Check for tabTitle translation keys usage and delete if not used anywhere else-->
+    <ion-tab [root]="tab1Root" tabTitle="{{ 'a_t_list' | translate }}" tabIcon="home"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="{{ 'a_main_btn_online_map' | translate }}" tabIcon="search"></ion-tab>
+    <ion-tab [root]="" tabIcon="download"></ion-tab>
+    <ion-tab [root]="" tabIcon="create"></ion-tab>
   </ion-tabs>
