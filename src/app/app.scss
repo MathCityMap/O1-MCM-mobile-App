@@ -126,12 +126,9 @@
 
 
 .routes-list, .map-view{
-    .list-ios,
-    .list-md{
+    .list-ios, .list-md{
         margin: 0;
-        padding: 0px;
-        padding-bottom: 50px;
-        background-color: #ffffff;
+        padding: 0;
     }
     .item{
         height: 124px;

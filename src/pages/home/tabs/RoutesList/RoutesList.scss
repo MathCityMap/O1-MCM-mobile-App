@@ -1,4 +1,7 @@
 page-routes-list {
+    .scroll-content{
+        background-color: #ffffff!important;
+    }
     ion-list{
         &.downloaded{
             route-teaser{
