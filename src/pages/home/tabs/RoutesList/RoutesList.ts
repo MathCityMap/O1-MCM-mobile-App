@@ -242,7 +242,6 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async reactOnRemovedRoute() {
-        debugger;
         this.downloadedItems = await this.ormService.getDownloadedRoutes();
     }
 

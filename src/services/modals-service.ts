@@ -72,7 +72,6 @@ export class ModalsService {
     }
 
     async showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null) {
-        console.log("THIS ROUTE SHOULD ALWAYS HAVE DOWNLOAD: ", route);
         if (route.downloaded) {
             // 15.05.18 - Perform dataset refresh of related tasks of the route if online
             await this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))
