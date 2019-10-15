@@ -1,5 +1,18 @@
 page-routes-list {
-  ion-content.content-md, ion-content.content-ios {
-    background-color: #ffffff;
-  }
+    ion-list{
+        &.downloaded{
+            route-teaser{
+                .container{
+                    &.image{
+                        order: 3;
+                        @include size(15vw);
+
+                    }
+                    &.buttons{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
 }

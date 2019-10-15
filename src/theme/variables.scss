@@ -55,17 +55,10 @@ $colors: (
 
 // App iOS Variables
 // --------------------------------------------------
-// iOS only Sass variables can go here
 
 
 // App Material Design Variables
 // --------------------------------------------------
-// Material Design only Sass variables can go here
-
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
 
 
 // App Theme
@@ -142,6 +135,16 @@ $searchbar-md-input-box-shadow: none;
     border: $width $style $color;
 }
 
+@mixin size($width, $height: null) {
+    @if $height {
+        width: $width;
+        height: $height;
+    } @else {
+        width: $width;
+        height: $width;
+    }
+}
+
 @mixin transform($property) {
   -webkit-transform: $property;
   -moz-transform: $property;
@@ -198,7 +201,13 @@ $searchbar-md-input-box-shadow: none;
 
 
 
-// Pirate Theming       L( Ø -´)⊃━|-----
+
+// --------------------------------------------------
+// --------------------------------------------------
+
+// Pirate Theme       L( Ø -´)⊃━|--------
+
+// --------------------------------------------------
 // --------------------------------------------------
 
 $c-primary:        #AA2000;
