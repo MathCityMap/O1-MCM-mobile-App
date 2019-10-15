@@ -24,8 +24,11 @@ import {MCMModalType, MyApp} from "../../../../app/app.component";
 export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
     public items: Route[] = [];
+    public downloadedItems: Route[] = [];
     public filteredItems: Route[] = [];
     private routesListSearch: string = "";
+
+    private showAllRoutes: boolean = true;
 
     modal: any;
     private eventSubscription: Subscription;
@@ -51,7 +54,8 @@ export class RoutesListPage implements OnDestroy {
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
-            this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
+            this.items = await this.ormService.getVisibleRoutes(false);
+
             this.sortAndRebuildFilteredItems();
         });
     }
@@ -159,29 +163,9 @@ export class RoutesListPage implements OnDestroy {
             // });
             modal.present();
         }
-        this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
+        this.items = await this.ormService.getVisibleRoutes(true);
+        this.downloadedItems = await this.ormService.getDownloadedRoutes();
         this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
-    }
-
-    private compareFunction(a: Route, b: Route) {
-        const distA = a.getDistance();
-        const distB = b.getDistance();
-        if (a.downloaded && !b.downloaded)
-            return -1;
-        if (!a.downloaded && b.downloaded)
-            return 1;
-        if (distA > distB) {
-            return 1;
-        } else if (distA < distB) {
-            return -1;
-        }
-        return a.title.localeCompare(b.title);
-    }
-
-    async removeRoute(route: Route) {
-        await this.ormService.removeDownloadedRoute(route);
-        this.sortAndRebuildFilteredItems();
-        this.scrollTo(route);
     }
 
     async doRefresh(refresher) {
@@ -192,7 +176,7 @@ export class RoutesListPage implements OnDestroy {
             } catch (e) {
                 console.error('caught error while checking for updates:', e);
             }
-            this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
+            this.items = await this.ormService.getVisibleRoutes(false, null, true);
             this.sortAndRebuildFilteredItems();
         }
         refresher.complete();
@@ -216,12 +200,6 @@ export class RoutesListPage implements OnDestroy {
         }
     }
 
-    async doDownload(route: Route) {
-        if (await this.modalsService.doDownload(route)) {
-            this.sortAndRebuildFilteredItems();
-            this.scrollTo(route);
-        }
-    }
 
     scrollTo(route: Route) {
         let that = this;
@@ -248,7 +226,24 @@ export class RoutesListPage implements OnDestroy {
     }
 
     private sortAndRebuildFilteredItems() {
-        this.items.sort(this.compareFunction);
         this.filteredItems = this.items.slice(0, this.filteredItems.length);
     }
+
+
+    async switchBetweenLists(){
+        this.showAllRoutes = !this.showAllRoutes;
+        if(!this.showAllRoutes) this.downloadedItems = await this.ormService.getDownloadedRoutes();
+    }
+
+    async reactOnDownloadedRoute(event) {
+        if (event && event.route) {
+            this.modalsService.showRoute(event.route, this.navCtrl);
+        }
+    }
+
+    async reactOnRemovedRoute() {
+        debugger;
+        this.downloadedItems = await this.ormService.getDownloadedRoutes();
+    }
+
 }

@@ -10,42 +10,17 @@
 
     <!--Routes Items-->
     <ion-list lazy-load-images image-size="s">
-        <div tappable class="detail-box dotted-border-top" *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id">
-            <div class="image-container" (click)="modalsService.showRoute(item, navCtrl)" [ngClass]="{'downloaded' : !!item.downloaded, 'completed': !!item.completed}">
-                <div class="cover">
-                    <img class="thumb" [attr.data-async-src]="item.getImageURL()" onerror="this.style.opacity='0'" />
-                </div>
-                <img *ngIf="item.isNarrativeEnabled()" class="indicator" src="./assets/images/{{item.getNarrativeName()}}/indicator-badge.svg"/>
-            </div>
-            <div class="text-container">
-                <div class="segmented-box">
-                    <div class="title segement">
-                        <span (click)="modalsService.showRoute(item, navCtrl)">{{item.city}}, {{item.countryCode}} | {{item.distance | distance: 'm'}}</span>
-                        <h2 class="item-text-wrap" (click)="modalsService.showRoute(item, navCtrl)">{{item.title}}</h2>
-                        <div>
-                            <span [ngClass]="{'appear-disabled' : !item.grade}">{{ "a_from_grade" | translate }}</span>
-                            <span *ngIf="item.grade">{{item.grade}}</span>
-                            <span *ngIf="!item.grade">{{ "no_data" | translate }}</span>
-                        </div>
-                    </div>
-                    <div class="segement buttons info">
-                        <!--<div class="button-container text-right">-->
-                        <button ion-button icon-only clear class="dot" (click)="modalsService.presentRouteInfoModal(item, navCtrl)">
-                            <img class="primary round" src="./assets/icons/icon_route-info.svg"/>
-                        </button>
-                        <button ion-button icon-only clear class="dot" *ngIf="!item.downloaded && helper.isOnline" (click)="doDownload(item)">
-                            <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
-                        </button>
-
-                        <button ion-button icon-only clear class="dot" *ngIf="!!item.downloaded" (click)="removeRoute(item)">
-                            <img class="danger round" src="./assets/icons/icon_delete.svg"/>
-                        </button>
-                        <!--</div>-->
-                    </div>
-                </div>
-            </div>
-
+        <div *ngIf="showAllRoutes" class="detail-box dotted-border-top">
+            <route-teaser *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
+                          (click)="modalsService.showRoute(item, navCtrl)" [route]="item" [isOnline]="helper.isOnline"
+                            (downloadRoute)="reactOnDownloadedRoute($event)" (removeRoute)="reactOnRemovedRoute()"></route-teaser>
         </div>
+
+        <div *ngIf="!showAllRoutes" class="detail-box dotted-border-top">
+            <route-teaser *ngFor="let item of downloadedItems | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
+                          (click)="modalsService.showRoute(item, navCtrl)" [route]="item" [isOnline]="helper.isOnline" ></route-teaser>
+        </div>
+
         <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
             <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
         </div>
@@ -57,6 +32,10 @@
 
     <ion-fab right bottom>
         <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+    </ion-fab>
+
+    <ion-fab left bottom>
+        <button ion-fab color="primary" (click)="switchBetweenLists()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
     </ion-fab>
 
 </ion-content>

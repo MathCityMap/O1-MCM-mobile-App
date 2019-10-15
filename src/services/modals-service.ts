@@ -1,23 +1,23 @@
-import { NavController } from "ionic-angular/navigation/nav-controller";
-import { ModalController } from "ionic-angular/components/modal/modal-controller";
-import { OrmService } from './orm-service';
-import { DeepLinker } from "ionic-angular/navigation/deep-linker";
-import { Route } from '../entity/Route';
-import { Score} from "../entity/Score";
-import { MCMDownloadProgressPopupComponent } from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
-import { RouteInfo } from '../modals/RouteInfo/RouteInfo';
-import { ChangeDetectorRef, Injectable, state} from '@angular/core';
-import { MCMRouteByCodeModal } from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import {NavController} from "ionic-angular/navigation/nav-controller";
+import {ModalController} from "ionic-angular/components/modal/modal-controller";
+import {OrmService} from './orm-service';
+import {DeepLinker} from "ionic-angular/navigation/deep-linker";
+import {Route} from '../entity/Route';
+import {Score} from "../entity/Score";
+import {MCMDownloadProgressPopupComponent} from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
+import {RouteInfo} from '../modals/RouteInfo/RouteInfo';
+import {ChangeDetectorRef, Injectable, state} from '@angular/core';
+import {MCMRouteByCodeModal} from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
-import { Task } from '../entity/Task';
-import { CenteredTask } from '../modals/CenteredTask/CenteredTask';
-import { AlertController } from 'ionic-angular';
-import { TranslateService } from '@ngx-translate/core';
-import { TaskMapState, TasksMap } from "../pages/home/tabs/TasksMap/TasksMap";
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { Network } from '@ionic-native/network';
-import { ConnectionQuality, Helper } from '../classes/Helper';
-import { DB_Updater } from "../classes/DB_Updater";
+import {Task} from '../entity/Task';
+import {CenteredTask} from '../modals/CenteredTask/CenteredTask';
+import {AlertController} from 'ionic-angular';
+import {TranslateService} from '@ngx-translate/core';
+import {TaskMapState, TasksMap} from "../pages/home/tabs/TasksMap/TasksMap";
+import {SpinnerDialog} from '@ionic-native/spinner-dialog';
+import {Network} from '@ionic-native/network';
+import {ConnectionQuality, Helper} from '../classes/Helper';
+import {DB_Updater} from "../classes/DB_Updater";
 
 
 @Injectable()
@@ -72,13 +72,13 @@ export class ModalsService {
     }
 
     async showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null) {
+        console.log("THIS ROUTE SHOULD ALWAYS HAVE DOWNLOAD: ", route);
         if (route.downloaded) {
             // 15.05.18 - Perform dataset refresh of related tasks of the route if online
             await this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))
-            this.navigateToRoute(route, navCtrl, null);
-        } else {
-            await this.presentRouteInfoModal(route, navCtrl);
         }
+        await this.presentRouteInfoModal(route, navCtrl);
+
     }
 
     async showDialog(titleKey: string, messageKey: string,
@@ -173,7 +173,7 @@ export class ModalsService {
         return testModal;
     }
 
-    async showNoInternetModalIfOffline() : Promise<boolean> {
+    async showNoInternetModalIfOffline(): Promise<boolean> {
         if (this.helper.isOnline) {
             let quality = await this.helper.checkConnection();
             if (quality == ConnectionQuality.FAST) {

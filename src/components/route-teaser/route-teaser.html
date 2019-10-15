@@ -1,0 +1,30 @@
+<!-- Generated template for the RouteTeaserComponent component -->
+<div *ngIf="route" class="image-container" [ngClass]="{'downloaded' : !!route.downloaded, 'completed': !!route.completed}">
+  <div class="cover">
+    <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
+  </div>
+  <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>
+</div>
+<div *ngIf="route" class="text-container">
+  <div class="segmented-box">
+    <div class="title segement">
+      <span>{{route.city}}, {{route.countryCode}} | {{route.distance | distance: 'm'}}</span>
+      <h2 class="item-text-wrap">{{route.title}}</h2>
+      <div>
+        <span [ngClass]="{'appear-disabled' : !route.grade}">{{ "a_from_grade" | translate }}</span>
+        <span *ngIf="route.grade">{{route.grade}}</span>
+        <span *ngIf="!route.grade">{{ "no_data" | translate }}</span>
+      </div>
+    </div>
+    <div class="segement buttons info">
+      <!--<div class="button-container text-right">-->
+      <button ion-button icon-only clear class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">
+        <img class="primary round" src="./assets/icons/icon_route-download.svg"/>
+      </button>
+
+      <button ion-button icon-only clear class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute(route)">
+        <img class="danger round" src="./assets/icons/icon_delete.svg"/>
+      </button>
+      <!--</div>-->
+    </div>
+  </div>
