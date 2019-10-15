@@ -124,6 +124,9 @@ export class Route {
     @Column({name: 'downloaded'})
     downloaded: boolean;
 
+    @Column({name: 'downloadedDate'})
+    downloadedDate: string;
+
     @Column({name: 'unlocked'})
     unlocked: boolean;
 

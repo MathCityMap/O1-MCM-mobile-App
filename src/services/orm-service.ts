@@ -29,6 +29,8 @@ import {DB_Updater} from "../classes/DB_Updater";
 import { ModalsService } from './modals-service';
 import {Helper} from "../classes/Helper";
 
+import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-AddDownloadDateColumn";
+
 
 @Injectable()
 export class OrmService {
@@ -67,7 +69,8 @@ export class OrmService {
             AddUnlockedColumn1516037215000,
             AddCompletedColumn1519817905000,
             AddVisibleColumn1526306624000,
-            AddLangCodeColumn1526306730000
+            AddLangCodeColumn1526306730000,
+            AddDownloadDateColumn15711518720000
         ];
         if (sqliteAvailable) {
             return this.connection = await createConnection({
