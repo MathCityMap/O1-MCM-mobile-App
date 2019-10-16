@@ -9,11 +9,16 @@ route-teaser {
         display: flex;
         align-items: center;
         width: 100%;
+        padding: $global-small-padding $global-base-padding*0.75;
+    }
+    span{
+        &.icon{
+            color: color($colors, greygrey);
+        }
     }
     .main{
         flex-wrap: nowrap;
         height: auto;
-        padding: $global-small-padding $global-base-padding*0.75;
         background-color: color($colors, light);
 
         .container{
@@ -28,6 +33,7 @@ route-teaser {
                     width: 24px;
                     height: 24px;
                     margin: 0;
+                    box-shadow: none!important;
                     img{
                         object-fit: contain;
                     }
@@ -43,7 +49,6 @@ route-teaser {
                     box-sizing: border-box;
                     overflow: hidden;
                     background: no-repeat center/50% url("../assets/icons/placeholder.svg") color($colors, light-grey);
-                    @include box-shadow(0.2);
                     &:before {
                         content: '';
                         display: block;
@@ -66,7 +71,7 @@ route-teaser {
                 $circle-size: 20vw;
                 width: $circle-size;
                 height: $circle-size;
-                border: 2px solid color($colors, light-grey);
+                border: 1px solid color($colors, light-grey);
                 //&.downloaded{
                 //    border: 2px solid #ffffff;
                 //    box-shadow: 0px 0px 0px 2px #a6a6a6;
@@ -97,18 +102,21 @@ route-teaser {
 
             &.text{
                 flex: 1;
-                padding: 0 $global-small-padding;
+                padding-left: $global-small-padding;
                 box-sizing: border-box;
                 p{
                     margin: 0;
                     display: inline-block;
                     line-height: 1.4;
                     span{
+                        margin-top: 4px;
                         display: inline-block;
                     }
                 }
                 span{
-                    color: color($colors, dark-grey);
+                    &.icon{
+                        margin-top: 4px;
+                    }
                 }
                 h2{
                     display: block;
@@ -118,16 +126,79 @@ route-teaser {
                     -webkit-line-clamp: 1;
                     white-space: initial;
                     text-overflow: ellipsis;
-                    margin: 0 0 4px;
+                    margin: 0 0 6px;
+                }
+                .bottom{
+                    display: flex;
+                    align-items: flex-end;
+                    .text{
+                        flex: 1;
+                    }
+                    .buttons{
+                        padding-left: $global-small-padding;
+                    }
                 }
             }
-
+        }
+    }
+    $category: location grade downloaded finished;
+    .icon{
+        line-height: 1.2;
+        &:before{
+            display: inline-block;
+            position: relative;
+            @include size(12px);
+            margin-right: 6px;
+        }
+        @each $type in $category {
+            &.#{$type} {
+                &:before{
+                    content: url("../assets/icons/#{$type}.svg");
+                }
+            }
         }
     }
     .secondary{
         display: none;
         width: 100%;
-        padding: $global-small-padding $global-base-padding;
         background-color: rgba(3, 109, 153, 0.05);
     }
+
+
+    //==// Downloaded routes //==//
+
+    &.downloaded{
+        border: none!important;
+        .main{
+            align-items: flex-end;
+            padding: $global-base-padding*0.75;
+        }
+        .container{
+            &.image{
+                order: 3;
+                @include size(16vw);
+
+            }
+            &.text{
+                padding-left: 0;
+                .bottom{
+                    .text{
+                        flex: 1;
+                        & > *{
+                            display: inline-block;
+                            margin-right: 8px;
+                        }
+                    }
+                }
+            }
+            &.buttons{
+                display: none;
+            }
+        }
+        .secondary {
+            display: block;
+        }
+    }
 }
+
+

@@ -19,8 +19,8 @@
     </ion-list>
 
     <!--Downloaded Routes List-->
-    <ion-list class="downloaded" lazy-load-images image-size="s" *ngIf="!showAllRoutes" >
-        <route-teaser *ngFor="let item of downloadedItems | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
+    <ion-list lazy-load-images image-size="s" *ngIf="!showAllRoutes" >
+        <route-teaser class="downloaded" *ngFor="let item of downloadedItems | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
                       (click)="modalsService.showRoute(item, navCtrl)" [route]="item" [isOnline]="helper.isOnline"
                       (removeRoute)="reactOnRemovedRoute()"></route-teaser>
         <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
