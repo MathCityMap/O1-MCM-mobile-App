@@ -251,4 +251,10 @@ export class RoutesListPage implements OnDestroy {
         this.downloadedItems = await this.ormService.getDownloadedRoutes();
     }
 
+      showRouteDetail(item: any){
+         this.modalsService.showRoute(item, this.navCtrl).then( async () =>{
+            await this.reactOnRemovedRoute();
+         })
+    }
+
 }
