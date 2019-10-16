@@ -211,7 +211,7 @@ export class MapPage implements OnInit, OnDestroy {
         let keepPositionBecauseOfReload = false;
 
         if (this.map == null) {
-            if(this.showAllRoutes) {
+            if (this.showAllRoutes) {
                 this.map = L.map('map', {
                     attributionControl: false,
                     center: this.center,
@@ -342,22 +342,24 @@ export class MapPage implements OnInit, OnDestroy {
     }
 
     async addRouteByCode() {
-        let route = await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
-        if (route) {
-            let alreadyAdded = false;
-            for (let i = 0; !alreadyAdded && i < this.routes.length; i++) {
-                if (this.routes[i].id == route.id) {
-                    // route has been added twice
-                    alreadyAdded = true;
-                }
-            }
-            if (!alreadyAdded) {
-                this.routes.push(route);
-            }
-            this.redrawMarker();
-            this.map.panTo(route.getCenterLatLng(), 8);
-            this.routeDetails = route;
-        }
+        /*        let route = await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
+                if (route) {
+                    let alreadyAdded = false;
+                    for (let i = 0; !alreadyAdded && i < this.routes.length; i++) {
+                        if (this.routes[i].id == route.id) {
+                            // route has been added twice
+                            alreadyAdded = true;
+                        }
+                    }
+                    if (!alreadyAdded) {
+                        this.routes.push(route);
+                    }
+                    this.redrawMarker();
+                    this.map.panTo(route.getCenterLatLng(), 8);
+                    this.routeDetails = route;
+                }*/
+
+        this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});
     }
 
 
