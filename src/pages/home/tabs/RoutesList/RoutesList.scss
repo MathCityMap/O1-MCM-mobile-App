@@ -2,23 +2,4 @@ page-routes-list {
     .scroll-content{
         background-color: #ffffff!important;
     }
-    ion-list{
-        &.downloaded{
-            route-teaser{
-                .container{
-                    &.image{
-                        order: 3;
-                        @include size(15vw);
-
-                    }
-                    &.buttons{
-                        display: none;
-                    }
-                }
-                .secondary {
-                    display: block;
-                }
-            }
-        }
-    }
 }
