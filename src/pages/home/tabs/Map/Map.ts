@@ -1,32 +1,31 @@
-import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import { File } from '@ionic-native/file';
-import { OnInit } from "@angular/core";
+import {Component, ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {File} from '@ionic-native/file';
+import {OnInit} from "@angular/core";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
-import { checkAvailability } from "@ionic-native/core";
+import {checkAvailability} from "@ionic-native/core";
 
-import { DB_Updater } from '../../../../classes/DB_Updater';
-import { Helper } from '../../../../classes/Helper';
-import { tilesDb } from '../../../../classes/tilesDb';
+import {DB_Updater} from '../../../../classes/DB_Updater';
+import {Helper} from '../../../../classes/Helper';
+import {tilesDb} from '../../../../classes/tilesDb';
 
-import { OrmService } from '../../../../services/orm-service';
-import { Route } from '../../../../entity/Route';
-import { ModalController } from 'ionic-angular/components/modal/modal-controller';
-import { LatLngBounds } from 'leaflet';
-import { ModalsService } from '../../../../services/modals-service';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { TranslateService } from '@ngx-translate/core';
+import {OrmService} from '../../../../services/orm-service';
+import {Route} from '../../../../entity/Route';
+import {ModalController} from 'ionic-angular/components/modal/modal-controller';
+import {LatLngBounds} from 'leaflet';
+import {ModalsService} from '../../../../services/modals-service';
+import {SpinnerDialog} from '@ionic-native/spinner-dialog';
+import {TranslateService} from '@ngx-translate/core';
 
 
-
-import {GpsService} from  '../../../../services/gps-service';
+import {GpsService} from '../../../../services/gps-service';
 import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
-import { Subscription } from 'rxjs/Subscription';
-import { LanguageService } from '../../../../services/language-service';
-import { MCMRouteByCodeModal } from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import {Subscription} from 'rxjs/Subscription';
+import {LanguageService} from '../../../../services/language-service';
+import {MCMRouteByCodeModal} from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
@@ -57,6 +56,8 @@ export class MapPage implements OnInit, OnDestroy {
     eventSubscription: Subscription;
     private watchSubscription: Subscription;
 
+    showAllRoutes: boolean;
+
     constructor(
         private updater: DB_Updater,
         private ormService: OrmService,
@@ -66,24 +67,52 @@ export class MapPage implements OnInit, OnDestroy {
         private spinner: SpinnerDialog,
         private translateService: TranslateService,
         private gpsService: GpsService,
+        private navParams: NavParams,
         private languageService: LanguageService) {
-            this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-            this.publicRouteIcon = L.icon({iconUrl:'./assets/icons/marker-route-public.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-            this.privateRouteIcon = L.icon({iconUrl:'./assets/icons/marker-route-private.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-            this.downloadedRouteIcon = L.icon({iconUrl:'./assets/icons/marker-route-downloaded.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-            this.doneRouteIcon = L.icon({iconUrl:'./assets/icons/marker-route-done.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-            this.eventSubscription = this.ormService.eventEmitter.subscribe((event) => {
-                if (this.markerGroup) {
-                    this.redrawMarker();
-                    this.routeDetails = null;
-                }
-            });
+        this.userPositionIcon = L.icon({
+            iconUrl: "./assets/icons/mapposition.png",
+            iconSize: [100, 100],
+            iconAnchor: [50, 50],
+            className: 'marker userPosition'
+        });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+        this.publicRouteIcon = L.icon({
+            iconUrl: './assets/icons/marker-route-public.png',
+            iconSize: [35, 48],
+            iconAnchor: [17.5, 43],
+            className: 'marker'
+        });
+        this.privateRouteIcon = L.icon({
+            iconUrl: './assets/icons/marker-route-private.png',
+            iconSize: [35, 48],
+            iconAnchor: [17.5, 43],
+            className: 'marker'
+        });
+        this.downloadedRouteIcon = L.icon({
+            iconUrl: './assets/icons/marker-route-downloaded.png',
+            iconSize: [35, 48],
+            iconAnchor: [17.5, 43],
+            className: 'marker'
+        });
+        this.doneRouteIcon = L.icon({
+            iconUrl: './assets/icons/marker-route-done.png',
+            iconSize: [35, 48],
+            iconAnchor: [17.5, 43],
+            className: 'marker'
+        });
+        this.eventSubscription = this.ormService.eventEmitter.subscribe((event) => {
+            if (this.markerGroup) {
+                this.redrawMarker();
+                this.routeDetails = null;
+            }
+        });
     }
-
 
 
     async ionViewWillEnter() {
         console.log("ionViewWillEnter:");
+
+        console.log("allRoutes: ", this.showAllRoutes);
+
         this.gpsService.isLocationOn();
         if (this.markerGroup) {
             this.redrawMarker();
@@ -92,6 +121,11 @@ export class MapPage implements OnInit, OnDestroy {
 
     async ngOnInit() {
         this.isFilePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true;
+
+        if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
+            if (this.navParams.data.showAllRoutes) this.showAllRoutes = true;
+            else this.showAllRoutes = false;
+        }
         this.languageService.initialize().then(() => {
             this.loadMap();
             this.initializeMap();
@@ -151,9 +185,9 @@ export class MapPage implements OnInit, OnDestroy {
                 } else {
                     icon = this.downloadedRouteIcon;
                 }
-            } else if(route.public == "1"){
+            } else if (route.public == "1") {
                 icon = this.publicRouteIcon;
-            }else{
+            } else {
                 icon = this.privateRouteIcon;
             }
             markerGroup.addLayer(L.marker(latLng, {icon: icon}).on('click', () => {
@@ -161,7 +195,7 @@ export class MapPage implements OnInit, OnDestroy {
                     this.modalsService.showRoute(route, this.navCtrl);
                 } else {
                     this.routeDetails = route;
-                    this.map.panTo( latLng );
+                    this.map.panTo(latLng);
                 }
             }));
         }
@@ -177,12 +211,21 @@ export class MapPage implements OnInit, OnDestroy {
         let keepPositionBecauseOfReload = false;
 
         if (this.map == null) {
-            this.map = L.map('map', {
-                attributionControl: false,
-                center: this.center,
-                zoom: 16,
-                trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
-            });
+            if(this.showAllRoutes) {
+                this.map = L.map('map', {
+                    attributionControl: false,
+                    center: this.center,
+                    zoom: 16,
+                    trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
+                });
+            } else {
+                this.map = L.map('mapDownloaded', {
+                    attributionControl: false,
+                    center: this.center,
+                    zoom: 16,
+                    trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
+                });
+            }
 
             // (<any>L).mapboxGL({
             //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
@@ -267,10 +310,10 @@ export class MapPage implements OnInit, OnDestroy {
 
 
                                 //Rotate the user marker
-                                if(this.prevPos!=null) {
-                                	let angle = Helper.getAngle(this.prevPos, resp.coords);
-                                	this.userMarker.setRotationAngle(angle);
-                                    }
+                                if (this.prevPos != null) {
+                                    let angle = Helper.getAngle(this.prevPos, resp.coords);
+                                    this.userMarker.setRotationAngle(angle);
+                                }
                                 this.prevPos = resp.coords;
                             }
                         });
@@ -316,8 +359,6 @@ export class MapPage implements OnInit, OnDestroy {
             this.routeDetails = route;
         }
     }
-
-
 
 
 }

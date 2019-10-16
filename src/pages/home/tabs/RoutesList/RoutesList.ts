@@ -75,8 +75,8 @@ export class RoutesListPage implements OnDestroy {
 
     async ionViewWillEnter() {
         console.log('RoutesList ionViewWillEnter()', this.navParams);
-        if(this.navParams.data && this.navParams.data.allElements != null){
-            if(this.navParams.data.allElements) this.showAllRoutes = true;
+        if(this.navParams.data && this.navParams.data.showAllRoutes != null){
+            if(this.navParams.data.showAllRoutes) this.showAllRoutes = true;
             else {
                 this.showAllRoutes = false;
             }
@@ -243,7 +243,8 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async switchToMap(){
-        this.navCtrl.push('MapPage');
+        //this.events.publish('changeViewType', (false));
+        this.navCtrl.setRoot('MapPage', {showAllRoutes: this.showAllRoutes});
     }
 
     async reactOnRemovedRoute() {
