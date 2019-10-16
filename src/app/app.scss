@@ -110,16 +110,6 @@
     background-color: color($colors, light-grey);
 }
 
-//.pattern-bg{
-//    .scroll-content{
-//        background-image: url('../assets/images/foil.png');
-//        background-repeat: round round;
-//        background-size: 7px;
-//    }
-//}
-
-
-
 
 
 //ROUTES LIST
@@ -154,8 +144,12 @@
 }
 
 
+
 // =============================================
 // ------------------ INPUTS -------------------
+// =============================================
+
+
 .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
     box-shadow: none;
@@ -186,7 +180,173 @@ ion-item{
     }
 }
 
-//CHECKBOXES
+input{
+    &.text-input-ios,
+    &.text-input-md{
+        width: 100%;
+        margin: 5px 0 5px 0px;
+    }
+}
+
+//  Search bar
+
+.searchbar{
+    .searchbar-search-icon{
+        left: 0;
+        @include middle-absolute-v;
+        @include size(30px);
+        background-size: 100%;
+    }
+    .searchbar-input{
+        background-color: transparent;
+        padding: $global-small-padding;
+        padding-left: 40px;
+    }
+}
+
+/*  ========== Buttons =========  */
+
+button{
+    &[disabled].button-default,
+    &[disabled= true].button-default{
+        opacity: 1!important;
+        background-color: color($colors, grey);
+        img{
+            background-color: color($colors, grey);
+        }
+    }
+    &[disabled].button-clear,
+    &[disabled= true].button-clear{
+        opacity: 1!important;
+        img{
+            background-color: color($colors, grey);
+        }
+    }
+    &.button-round-ios.button-small-ios,
+    &.button-round-md.button-small-md{
+        font-family: 'NunitoExtrabold', Arial, sans-serif;
+        line-height: 1.4;
+        text-transform: none;
+        min-width: 90px;
+        padding: 0 15px;
+        span{
+            color: #fff;
+            font-family: 'NunitoExtrabold', Arial, sans-serif;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+
+    &.solution{
+        background-color: color($colors, secondary);
+        &.activated{
+            background-color: color($colors, secondary-dark);
+        }
+    }
+}
+
+
+/*  ========== FAB Buttons =========  */
+
+.fab-container{
+    position: absolute;
+    top: -4px;
+    right: 0;
+}
+ion-fab{
+    button{
+        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+    }
+}
+.fixed-content ion-fab[bottom]{
+    bottom: 14px;
+}
+
+ion-fab-list{
+    margin: 44px 0;
+    .fab-in-list{
+        margin: 4px 0;
+    }
+}
+
+.ion-md-icon-add-privateroute:before,
+.ion-ios-icon-add-privateroute:before{
+    background-image: url(../assets/icons/icon_add.svg);
+    background-size: 21px 21px;
+    width: 22px;
+    height: 21px;
+    content:"" !important;
+    margin-top: 4px;
+
+}
+
+.ion-md-close:before,
+.ion-ios-close:before{
+    background-image: url(../assets/icons/icon_close-modal.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 20px;
+    content:"" !important;
+}
+.ion-md-icon-restart:before,
+.ion-ios-icon-restart:before{
+    background-image: url(../assets/icons/icon_restart.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    vertical-align: middle;
+}
+.ion-md-icon-starting-point:before,
+.ion-ios-icon-starting-point:before{
+    background-image: url(../assets/icons/icon_starting-point.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    vertical-align: middle;
+}
+.ion-md-icon-visibility:before,
+.ion-ios-icon-visibility:before{
+    background-image: url(../assets/icons/icon_visibility.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 20px;
+    content:"" !important;
+}
+
+.ion-md-icon-track-gps:before,
+.ion-ios-icon-track-gps:before{
+    background-image: url(../assets/icons/icon_track-gps.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
+.ion-md-icon-chat:before,
+.ion-ios-icon-chat:before{
+    background-image: url(../assets/icons/chat.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
+.ion-md-icon-exit:before,
+.ion-ios-icon-exit:before{
+    background-image: url(../assets/icons/exit.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
+
+
+/*  ========== Checkboxes =========  */
+
 ion-list{
     & > *{
         border: none!important;
@@ -217,13 +377,6 @@ ion-list{
     }
 }
 
-input{
-    &.text-input-ios,
-    &.text-input-md{
-        width: 100%;
-        margin: 5px 0 5px 0px;
-    }
-}
 
 
 // =============================================
@@ -381,31 +534,23 @@ input{
                     >span{
                         min-width: 100%
                     }
-//                    >.button-container{
-                        white-space: nowrap;
-                        button.dot{
-                            min-width: unset;
-                            width: 24px;
-                            height: 24px;
-//                            padding: 4px;
-                            margin: 0px;
-                            overflow: visible;
-                            &:last-of-type{
-//                                margin-right: -4px;
-//                                margin-bottom: 0;
-                            }
-                            img{
-                                object-fit: contain;
-                            }
+                    white-space: nowrap;
+                    button.dot{
+                        min-width: unset;
+                        width: 24px;
+                        height: 24px;
+                        margin: 0px;
+                        overflow: visible;
+                        img{
+                            object-fit: contain;
                         }
-                        button.button-round-ios.button-small-ios, button.button-round-md.button-small-md{
-                            max-height: 24px;
-                            padding: 0 15px;
-                            margin: 0;
-                            box-shadow: none;
-                        }
-//                    }
-
+                    }
+                    button.button-round-ios.button-small-ios, button.button-round-md.button-small-md{
+                        max-height: 24px;
+                        padding: 0 15px;
+                        margin: 0;
+                        box-shadow: none;
+                    }
                 }
                 span.downloading{
                     width: 100%;
@@ -675,145 +820,6 @@ img{
 }
 
 
-/*  ========== Buttons =========  */
-
-button{
-    &[disabled].button-default,
-    &[disabled= true].button-default{
-        opacity: 1!important;
-        background-color: color($colors, grey);
-        img{
-            background-color: color($colors, grey);
-        }
-    }
-    &[disabled].button-clear,
-    &[disabled= true].button-clear{
-        opacity: 1!important;
-        img{
-            background-color: color($colors, grey);
-        }
-    }
-    &.button-round-ios.button-small-ios,
-    &.button-round-md.button-small-md{
-        font-family: 'NunitoExtrabold', Arial, sans-serif;
-        line-height: 1.4;
-        text-transform: none;
-        min-width: 90px;
-        padding: 0 15px;
-        span{
-            color: #fff;
-            font-family: 'NunitoExtrabold', Arial, sans-serif;
-        }
-        &:last-child{
-            margin-right: 0;
-        }
-    }
-
-    &.solution{
-        background-color: color($colors, secondary);
-        &.activated{
-            background-color: color($colors, secondary-dark);
-        }
-    }
-}
-
-
-/*  ========== FAB Buttons =========  */
-
-.fab-container{
-    position: absolute;
-    top: -4px;
-    right: 0;
-}
-ion-fab{
-    button{
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-    }
-}
-.fixed-content ion-fab[bottom]{
-    bottom: 14px;
-}
-
-ion-fab-list{
-    margin: 44px 0;
-    .fab-in-list{
-        margin: 4px 0;
-    }
-}
-
-.ion-md-icon-add-privateroute:before,
-.ion-ios-icon-add-privateroute:before{
-    background-image: url(../assets/icons/icon_add.svg);
-    background-size: 21px 21px;
-    width: 22px;
-    height: 21px;
-    content:"" !important;
-    margin-top: 4px;
-
-}
-
-.ion-md-close:before,
-.ion-ios-close:before{
-    background-image: url(../assets/icons/icon_close-modal.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 20px;
-    content:"" !important;
-}
-.ion-md-icon-restart:before,
-.ion-ios-icon-restart:before{
-    background-image: url(../assets/icons/icon_restart.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    vertical-align: middle;
-}
-.ion-md-icon-starting-point:before,
-.ion-ios-icon-starting-point:before{
-    background-image: url(../assets/icons/icon_starting-point.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    vertical-align: middle;
-}
-.ion-md-icon-visibility:before,
-.ion-ios-icon-visibility:before{
-    background-image: url(../assets/icons/icon_visibility.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 20px;
-    content:"" !important;
-}
-
-.ion-md-icon-track-gps:before,
-.ion-ios-icon-track-gps:before{
-    background-image: url(../assets/icons/icon_track-gps.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    margin-top: 4px;
-}
-.ion-md-icon-chat:before,
-.ion-ios-icon-chat:before{
-    background-image: url(../assets/icons/chat.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    margin-top: 4px;
-}
-.ion-md-icon-exit:before,
-.ion-ios-icon-exit:before{
-    background-image: url(../assets/icons/exit.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    margin-top: 4px;
-}
 
 /*  ========== Modals/ Popups/ Toast =========  */
 

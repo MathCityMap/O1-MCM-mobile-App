@@ -1,12 +1,18 @@
-<ion-content #container class="routes-list has-header">
+<ion-header>
+    <ion-toolbar>
+        <ion-searchbar type="text" [(ngModel)]="routesListSearch" placeholder="{{ 'a_search_trails' | translate }}" debounce="500"></ion-searchbar>
+        <ion-buttons end>
+            <button class="settings-button" ion-button icon-only (click)="addRouteByCode()">
+                <img class="header-icon" src="assets/icons/add-scan.svg"/>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content #container class="routes-list">
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content refreshingText="{{'a_toast_update_start' | translate}}"></ion-refresher-content>
     </ion-refresher>
-
-    <!-- Search Bar-->
-    <ion-toolbar>
-        <ion-searchbar type="text" [(ngModel)]="routesListSearch" placeholder="{{ 'a_search_trails' | translate }}" debounce="500"></ion-searchbar>
-    </ion-toolbar>
 
     <!--Complete Routes List-->
     <ion-list lazy-load-images image-size="s" *ngIf="showAllRoutes">
@@ -35,7 +41,7 @@
     </ion-infinite-scroll>
 
     <ion-fab right bottom>
-        <button ion-fab color="primary" (click)="switchToMap()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+        <button ion-fab color="primary" (click)="switchToMap()"><ion-icon name="map"></ion-icon></button>
     </ion-fab>
 
 </ion-content>

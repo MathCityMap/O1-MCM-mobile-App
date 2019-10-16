@@ -126,7 +126,7 @@ route-teaser {
                     -webkit-line-clamp: 1;
                     white-space: initial;
                     text-overflow: ellipsis;
-                    margin: 0 0 6px;
+                    margin: 0 0 2px;
                 }
                 .bottom{
                     display: flex;
@@ -181,6 +181,7 @@ route-teaser {
             }
             &.text{
                 padding-left: 0;
+                padding-right: $global-small-padding;
                 .bottom{
                     .text{
                         flex: 1;
