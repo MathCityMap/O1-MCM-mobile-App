@@ -26,6 +26,7 @@
         <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
             <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
         </div>
+        <div *ngIf="downloadedItems.length == 0">Currently you have no downloaded trails</div>
     </ion-list>
 
 
@@ -34,7 +35,7 @@
     </ion-infinite-scroll>
 
     <ion-fab right bottom>
-        <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+        <button ion-fab color="primary" (click)="switchToMap()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
     </ion-fab>
 
 </ion-content>

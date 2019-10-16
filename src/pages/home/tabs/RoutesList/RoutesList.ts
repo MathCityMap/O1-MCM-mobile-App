@@ -236,16 +236,14 @@ export class RoutesListPage implements OnDestroy {
         this.filteredItems = this.items.slice(0, this.filteredItems.length);
     }
 
-
-    async switchBetweenLists(){
-        this.showAllRoutes = !this.showAllRoutes;
-        if(!this.showAllRoutes) this.downloadedItems = await this.ormService.getDownloadedRoutes();
-    }
-
     async reactOnDownloadedRoute(event) {
         if (event && event.route) {
             this.modalsService.showRoute(event.route, this.navCtrl);
         }
+    }
+
+    async switchToMap(){
+        this.navCtrl.push('MapPage');
     }
 
     async reactOnRemovedRoute() {
