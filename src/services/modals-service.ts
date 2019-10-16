@@ -71,13 +71,17 @@ export class ModalsService {
         return !cancelHasBeenClicked;
     }
 
-    async showRoute(route: Route, navCtrl: NavController, selectedTask: Task = null) {
+    async showRoute(route: Route, navCtrl: NavController, startRoute: boolean = false, selectedTask: Task = null) {
         if (route.downloaded) {
             // 15.05.18 - Perform dataset refresh of related tasks of the route if online
             await this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))
+            if(startRoute){
+                this.navigateToRoute(route, navCtrl, null);
+                return;
+            }
+
         }
         await this.presentRouteInfoModal(route, navCtrl);
-
     }
 
     async showDialog(titleKey: string, messageKey: string,
@@ -142,7 +146,7 @@ export class ModalsService {
             routeInfoModal.onDidDismiss(result => {
                 if (result.showRoute) {
                     //will probably never showRoute;
-                    self.showRoute(result.route, navCtrl);
+                    self.showRoute(result.route, navCtrl, true);
                     success(result.route);
                 } else {
                     // route is set by RouteInfo
