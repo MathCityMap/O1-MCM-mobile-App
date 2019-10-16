@@ -12,8 +12,9 @@ import { LanguageService } from '../../services/language-service';
 })
 export class HomePage {
   public static nav: NavController;
-  tab1Root = 'RoutesListPage';
-  tab2Root = 'MapPage';
+  tab1Root = 'DashboardPage';
+  tab2Root = 'RoutesListPage';
+  tab3Root = 'MapPage';
 
   constructor(private navCtrl: NavController, private platform: Platform,
               private splashScreen: SplashScreen, private languageService: LanguageService) {

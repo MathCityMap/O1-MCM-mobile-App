@@ -310,6 +310,7 @@ export class OrmService {
                 return statusCallback(done, total);
             });
             route.downloaded = true;
+            route.downloadedDate = new Date().toDateString();
             const repo = await this.getRouteRepository();
             await repo.save(route);
             this.updateRouteInCache(route);
@@ -353,6 +354,7 @@ export class OrmService {
         }
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         route.downloaded = false;
+        route.downloadedDate = null;
         const repo = await this.getRouteRepository();
         await repo.save(route);
         this.updateRouteInCache(route);

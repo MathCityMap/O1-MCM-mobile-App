@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Content, Events, IonicPage, ModalController, NavController, ToastController} from 'ionic-angular';
+import {Content, Events, IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ConnectionQuality, Helper} from '../../../../classes/Helper';
 import {timeout} from 'promise-timeout';
 
@@ -50,7 +50,8 @@ export class RoutesListPage implements OnDestroy {
                 private chatAndSessionService: ChatAndSessionService,
                 private toastCtrl: ToastController,
                 private events: Events,
-                private app: MyApp
+                private app: MyApp,
+                private navParams: NavParams
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
@@ -73,7 +74,13 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async ionViewWillEnter() {
-        console.log('RoutesList ionViewWillEnter()');
+        console.log('RoutesList ionViewWillEnter()', this.navParams);
+        if(this.navParams.data && this.navParams.data.allElements != null){
+            if(this.navParams.data.allElements) this.showAllRoutes = true;
+            else {
+                this.showAllRoutes = false;
+            }
+        }
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
             // initial app start
