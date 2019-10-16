@@ -1,9 +1,6 @@
-
-  <!--<mcm-header></mcm-header>-->
-  <ion-tabs>
-      <!--TODO Check for tabTitle translation keys usage and delete if not used anywhere else-->
+<ion-tabs>
     <ion-tab [root]="tab1Root" tabIcon="home"></ion-tab>
     <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="search"></ion-tab>
     <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="download"></ion-tab>
     <ion-tab [root]="tab3Root" tabIcon="create"></ion-tab>
-  </ion-tabs>
+</ion-tabs>

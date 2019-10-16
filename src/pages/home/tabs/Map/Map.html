@@ -3,28 +3,20 @@
     <div *ngIf="showAllRoutes" id="map" class="map-view"></div>
     <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>
 
-    <!--TODO Implement teaser component data loading here-->
-        <!--[id]="'route-item-' + item.id"-->
-        <!--(click)="modalsService.showRoute(item, navCtrl)" [route]="item" [isOnline]="helper.isOnline"-->
-        <!--(removeRoute)="reactOnRemovedRoute()"-->
-<!--    <route-teaser
-        ion-fixed
-        [ngClass]="{'open': routeDetails != null}"
-    ></route-teaser>-->
-
-    <div class="fab-container">
-        <ion-fab right bottom>
-            <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
-        </ion-fab>
-    </div>
-
-    <!--TODO Should be deleted when replaced by teaser component-->
     <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s" ion-fixed>
+        <!--TODO Implement teaser component data loading here-->
+            <!--[id]="'route-item-' + item.id"-->
+            <!--(click)="modalsService.showRoute(item, navCtrl)" [route]="item" [isOnline]="helper.isOnline"-->
+            <!--(removeRoute)="reactOnRemovedRoute()"-->
+    <!--    <route-teaser
+        ></route-teaser>-->
         <div class="fab-container">
             <ion-fab right bottom>
-                <button ion-fab color="primary" (click)="addRouteByCode()"><ion-icon name="icon-add-privateroute"></ion-icon></button>
+                <button ion-fab color="primary" (click)="addRouteByCode()"><img src="assets/icons/list.svg"/></button>
             </ion-fab>
         </div>
+
+        <!--TODO START Should be deleted when replaced by teaser component-->
         <div tappable *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)" [ngClass]="{'downloaded' : routeDetails && routeDetails.downloaded}">
             <div class="cover">
                 <img class="thumb" [attr.data-async-src]="routeDetails.getImageURL()" />
@@ -54,6 +46,6 @@
                 </div>
             </div>
         </div>
+        <!--TODO END Should be deleted when replaced by teaser component-->
     </div>
-
 </ion-content>

@@ -35,13 +35,14 @@
         <div *ngIf="downloadedItems.length == 0">Currently you have no downloaded trails</div>
     </ion-list>
 
-
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="35%">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
     <ion-fab right bottom>
-        <button ion-fab color="primary" (click)="switchToMap()"><ion-icon name="map"></ion-icon></button>
+        <button ion-fab color="primary" (click)="switchToMap()">
+            <img src="assets/icons/map.svg"/>
+        </button>
     </ion-fab>
 
 </ion-content>

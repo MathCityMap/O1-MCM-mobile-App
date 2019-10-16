@@ -249,6 +249,13 @@ button{
 
 /*  ========== FAB Buttons =========  */
 
+
+ion-fab-list{
+    margin: 44px 0;
+    .fab-in-list{
+        margin: 4px 0;
+    }
+}
 .fab-container{
     position: absolute;
     top: -4px;
@@ -261,13 +268,6 @@ ion-fab{
 }
 .fixed-content ion-fab[bottom]{
     bottom: 14px;
-}
-
-ion-fab-list{
-    margin: 44px 0;
-    .fab-in-list{
-        margin: 4px 0;
-    }
 }
 
 .ion-md-icon-add-privateroute:before,
@@ -585,7 +585,7 @@ ion-list{
         position: relative;
         z-index: 1;
     }
-    .detail-box, route-teaser{
+    .detail-box{
         width: 100%;
         position: fixed;
         bottom: 54px;
@@ -626,9 +626,6 @@ ion-list{
         &.open{
             -webkit-transform: translateY(0%);
             transform: translateY(0%);
-        }
-        route-teaser{
-            z-index: 1000;
         }
     }
 
