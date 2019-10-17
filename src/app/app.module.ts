@@ -67,7 +67,10 @@ import { AppVersion } from '@ionic-native/app-version';
         HttpModule,
         HttpClientModule,
         BrowserModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp, {
+            tabsHideOnSubPages: true,
+            swipeBackEnabled: false
+        }),
         IonicStorageModule.forRoot(),
         TranslateModule.forRoot({
             loader: {

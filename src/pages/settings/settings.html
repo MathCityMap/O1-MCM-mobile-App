@@ -23,6 +23,11 @@
       <button class="on-the-edge" ion-button small round >Enter</button>
     </div>
 
-    <ion-toggle [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
+    <div class="card">
+        <ion-label>{{'a_settings_console' | translate }}</ion-label>
+        <ion-item no-lines>
+            <ion-toggle [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
+        </ion-item>
+    </div>
 
 </ion-content>

@@ -3,13 +3,6 @@ import {Route} from "../../entity/Route";
 import {ModalsService} from "../../services/modals-service";
 import {OrmService} from "../../services/orm-service";
 
-/**
- * Generated class for the RouteTeaserComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
-
 
 @Component({
   selector: 'route-teaser',
@@ -30,9 +23,18 @@ export class RouteTeaserComponent {
   @Output()
   removeRoute = new EventEmitter<any>();
 
+    private totalTasks: number;
+    private currentProgress = 0;
+
   constructor( private modalsService: ModalsService,
                private ormService: OrmService) {
   }
+
+    async ionViewWillEnter() {
+        this.totalTasks = await this.route.getTaskCount();
+        let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
+        this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+    }
 
   async doDownload(event, route: Route) {
     event.stopPropagation();

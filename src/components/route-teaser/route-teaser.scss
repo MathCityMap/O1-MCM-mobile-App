@@ -197,7 +197,11 @@ route-teaser {
             }
         }
         .secondary {
-            display: block;
+            display: flex;
+            mcm-progress-bar{
+                flex: 1;
+                margin-left: $global-base-padding;
+            }
         }
     }
 }
