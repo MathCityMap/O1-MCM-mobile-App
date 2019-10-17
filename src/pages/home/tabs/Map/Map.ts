@@ -110,11 +110,12 @@ export class MapPage implements OnInit, OnDestroy {
 
     async ionViewWillEnter() {
         console.log("ionViewWillEnter:");
-
-        console.log("allRoutes: ", this.showAllRoutes);
-
+        
         this.gpsService.isLocationOn();
+
         if (this.markerGroup) {
+            if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
+            else this.routes = await this.ormService.getDownloadedRoutes();
             this.redrawMarker();
         }
     }
@@ -161,7 +162,8 @@ export class MapPage implements OnInit, OnDestroy {
                 }
             }
         }
-        this.routes = await this.ormService.getVisibleRoutes();
+        if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
+        else this.routes = await this.ormService.getDownloadedRoutes();
         this.redrawMarker();
         this.spinner.hide();
     }
