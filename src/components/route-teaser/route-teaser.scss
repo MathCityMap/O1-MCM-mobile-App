@@ -12,9 +12,7 @@ route-teaser {
         padding: $global-small-padding $global-base-padding*0.75;
     }
     span{
-        &.icon{
-            color: color($colors, greygrey);
-        }
+        color: color($colors, greygrey);
     }
     .main{
         flex-wrap: nowrap;
@@ -142,7 +140,7 @@ route-teaser {
         }
     }
     $category: location grade downloaded finished;
-    .icon{
+    .icon, .icon > span{
         line-height: 1.2;
         &:before{
             display: inline-block;
@@ -169,7 +167,11 @@ route-teaser {
 
     &.downloaded{
         border: none!important;
+        display: flex;
+        flex-direction: column;
+        background: white;
         .main{
+            flex: 1;
             align-items: flex-end;
             padding: $global-base-padding*0.75;
         }
@@ -201,9 +203,30 @@ route-teaser {
             mcm-progress-bar{
                 flex: 1;
                 margin-left: $global-base-padding;
+                padding-left: $global-base-padding;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    height: 80%;
+                    border-right: 2px dotted rgba(color($colors, primary-darker), 0.2);
+                }
             }
         }
     }
 }
 
-
+.routes-list{
+    route-teaser{
+        &.downloaded{
+            min-height: 20vh;
+            margin: 12px 8px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+        }
+    }
+}

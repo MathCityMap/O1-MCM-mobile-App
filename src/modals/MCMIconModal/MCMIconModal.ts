@@ -9,7 +9,6 @@ import { ImagesService } from '../../services/images-service';
 @Component({
     selector: 'mcm-icon-modal',
     templateUrl:'./MCMIconModal.html',
-/*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMIconModal{
 

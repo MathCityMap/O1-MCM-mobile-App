@@ -64,6 +64,10 @@ $searchbar-md-input-box-shadow: none;
 $fab-size: 44px;
 $fab-list-button-background-color: color($colors, primary-darker);
 
+$searchbar-ios-input-background-color: transparent;
+$searchbar-ios-toolbar-input-background: transparent;
+
+
 $searchbar-ios-input-search-icon-color: color($colors, light);
 $searchbar-md-input-search-icon-color: color($colors, light);
 $searchbar-ios-input-text-color: color($colors, light);

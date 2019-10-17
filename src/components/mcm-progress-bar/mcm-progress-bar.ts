@@ -2,8 +2,7 @@ import { Component,Input} from '@angular/core';
 
 @Component({
     selector: 'mcm-progress-bar',
-    templateUrl:'./mcm-progress-bar.component.html',
-/*     styleUrls: ['./mcm-progress-bar.component.scss'] */
+    templateUrl:'./mcm-progress-bar.html'
 })
 export class MCMProgressBarComponent{
     @Input() currentProgress: number;

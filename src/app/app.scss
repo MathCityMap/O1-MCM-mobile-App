@@ -18,7 +18,9 @@
 
 
 
-//============== Global Layout Structure ==============
+// =============================================
+// ------------------ BASICS -------------------
+// =============================================
 
 *{
     box-sizing: border-box;
@@ -51,7 +53,7 @@
 //}
 
 
-//TAB-BAR
+//Navigation
 
 .tabs{
     .tabbar{
@@ -86,8 +88,7 @@
 }
 
 
-
-//CONTENT
+//  Pages & Structure
 
 .has-header{
     .scroll-content, ion-refresher {
@@ -108,39 +109,6 @@
 }
 .content-md, .content-ios{
     background-color: color($colors, light-grey);
-}
-
-
-
-//ROUTES LIST
-
-
-.routes-list, .map-view{
-    .list-ios, .list-md{
-        margin: 0;
-        padding: 0;
-    }
-    .item{
-        height: 124px;
-        padding: 0px 10px 10px 0px;
-        box-sizing: border-box;
-        background: transparent;
-        border: none!important;
-        .item-inner{
-            margin: 0;padding: 0;
-            border: none;
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-            .input-wrapper{
-                background-color: #ffffff;
-            }
-        }
-    }
-    .text-container{
-        span{
-            display: inline-block;
-        }
-    }
 }
 
 
@@ -270,16 +238,7 @@ ion-fab{
     bottom: 14px;
 }
 
-.ion-md-icon-add-privateroute:before,
-.ion-ios-icon-add-privateroute:before{
-    background-image: url(../assets/icons/icon_add.svg);
-    background-size: 21px 21px;
-    width: 22px;
-    height: 21px;
-    content:"" !important;
-    margin-top: 4px;
 
-}
 
 .ion-md-close:before,
 .ion-ios-close:before{
@@ -381,6 +340,7 @@ ion-list{
 
 // =============================================
 // ----------- INFO CARDS LIST & MAP -----------
+// =============================================
 
 .score{
     display: flex!important;
@@ -560,12 +520,8 @@ ion-list{
             }
         }
     }
-
-    mcm-progress-bar{
-        padding: $global-base-padding 0 0 0;
-        min-width: calc(100% - 150px);
-    }
 }
+
 
 // MAP
 
@@ -600,28 +556,16 @@ ion-list{
         margin: 0;
         margin-bottom: -4px;
 
-        -webkit-transform: translateY(100%);
         transform: translateY(100%);
-
-        -webkit-border-top-left-radius: 8px;
-        -webkit-border-top-right-radius: 8px;
-        -webkit-border-bottom-left-radius: 0px;
-        -webkit-border-bottom-right-radius: 0px;
 
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
 
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-        -webkit-transition: all 0.5s;
-        -moz-transition: all 0.5s;
-        -ms-transition: all 0.5s;
-        -o-transition: all 0.5s;transition: all 0.5s;
 
-        mcm-progress-bar {
-            bottom: $global-small-padding;
-        }
+        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+        transition: all 0.5s;
 
         &.open{
             -webkit-transform: translateY(0%);
@@ -666,6 +610,17 @@ ion-list{
             span{
                 font: 14px 'NunitoExtrabold', Arial, sans-serif;
                 line-height: 26px;
+            }
+        }
+    }
+
+    &.routes{
+        .detail-box{
+            padding: 0;
+            route-teaser{
+                width: 100%;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
             }
         }
     }
@@ -1024,34 +979,45 @@ ion-modal {
             }
         }
     }
-
-
 }
 
 /*  ========== Progress Bars =========  */
 
 $progress-height: 6px;
-.progress-bar{
-    background-color: color($colors, grey);
+
+mcm-progress-bar{
+    position: relative;
+    display: flex;
+    align-items: center;
+    & > *{
+        &:not(.progress){
+            flex-grow: 0;
+            flex-basis: auto;
+        }
+    }
+}
+.progress{
+    background-color: rgba(color($colors, primary-darker), 0.2);
     height: $progress-height;
-    margin-top: $progress-height/2;
     @include border-radius($progress-height/2);
-
-    &.progress-route{
-        margin-left: $global-small-padding;
-    }
-    &.progress-download{
-        margin-bottom: $global-small-padding;;
-    }
-
-    .progress{
+    flex: 1;
+    & > .bar{
         width: 0;
-        //prevent initial bug of flull progress bar
+        //prevent initial bug of full progress bar
         background-color: color($colors, primary);
         height: $progress-height;
         @include border-radius($progress-height/2);
     }
+
+    &.route{
+        margin-left: $global-small-padding;
+    }
+    &.download{
+        margin-bottom: $global-small-padding;;
+    }
 }
+
+
 
 //overwrite implicit ionic styling for tabs on ios devices
 .ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child .scroll-content{

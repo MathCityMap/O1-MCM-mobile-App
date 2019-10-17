@@ -1,0 +1,4 @@
+<span>{{ currentProgress }} / {{ total }}</span>
+<div class="container progress route">
+    <div class="bar" [ngStyle]="{'width': ((100/total)*currentProgress) +'%'}"></div>
+</div>

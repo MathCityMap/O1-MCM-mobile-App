@@ -14,7 +14,6 @@ import { ModalsService } from '../../services/modals-service';
 @Component({
     selector: 'mcm-route-by-code-modal',
     templateUrl:'./MCMRouteByCodeModal.html'
-/*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMRouteByCodeModal {
     @ViewChild('input') input;
