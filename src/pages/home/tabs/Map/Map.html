@@ -8,8 +8,10 @@
             <!--[id]="'route-item-' + item.id"-->
             <!--(click)="modalsService.showRoute(item, navCtrl)" [route]="item" [isOnline]="helper.isOnline"-->
             <!--(removeRoute)="reactOnRemovedRoute()"-->
-    <!--    <route-teaser
-        ></route-teaser>-->
+        <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"
+                      [isOnline]="helper.isOnline" (click)="showRouteDetail(routeDetails)"
+                      (removeRoute)="reactOnRemovedRoute()"
+        ></route-teaser>
         <div class="fab-container">
             <ion-fab right bottom>
                 <button ion-fab color="primary" (click)="addRouteByCode()"><img src="assets/icons/list.svg"/></button>
@@ -17,12 +19,12 @@
         </div>
 
         <!--TODO START Should be deleted when replaced by teaser component-->
-        <div tappable *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)" [ngClass]="{'downloaded' : routeDetails && routeDetails.downloaded}">
+        <!--<div tappable *ngIf="routeDetails" class="image-container" (click)="modalsService.showRoute(routeDetails, navCtrl)" [ngClass]="{'downloaded' : routeDetails && routeDetails.downloaded}">
             <div class="cover">
                 <img class="thumb" [attr.data-async-src]="routeDetails.getImageURL()" />
             </div>
             <img *ngIf="routeDetails.isNarrativeEnabled()" class="indicator" src="./assets/images/{{routeDetails.getNarrativeName()}}/indicator-badge.svg"/>
-            <!--<img *ngIf="item.isNarrativeEnabled()" class="indicator" src="./assets/images/{{item.getNarrativeName()}}/indicator-badge.svg"/>-->
+            &lt;!&ndash;<img *ngIf="item.isNarrativeEnabled()" class="indicator" src="./assets/images/{{item.getNarrativeName()}}/indicator-badge.svg"/>&ndash;&gt;
         </div>
         <div class="text-container" *ngIf="routeDetails">
             <div class="segmented-box">
@@ -45,7 +47,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!--TODO END Should be deleted when replaced by teaser component-->
     </div>
 </ion-content>

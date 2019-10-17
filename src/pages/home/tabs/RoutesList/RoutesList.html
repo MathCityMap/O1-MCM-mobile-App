@@ -17,7 +17,7 @@
     <!--Complete Routes List-->
     <ion-list lazy-load-images image-size="s" *ngIf="showAllRoutes">
         <route-teaser *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
-                      (click)="modalsService.showRoute(item, navCtrl)" [route]="item" [isOnline]="helper.isOnline"
+                      (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
                       (downloadRoute)="reactOnDownloadedRoute($event)" (removeRoute)="reactOnRemovedRoute()"></route-teaser>
         <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
             <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
@@ -26,7 +26,7 @@
 
     <!--Downloaded Routes List-->
     <ion-list lazy-load-images image-size="s" *ngIf="!showAllRoutes" >
-        <route-teaser class="downloaded" *ngFor="let item of downloadedItems | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
+        <route-teaser class=downloaded *ngFor="let item of downloadedItems | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
                       (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
                       (removeRoute)="reactOnRemovedRoute()"></route-teaser>
         <div tappable class="detail-box" *ngIf="getSearchResults() == 0">

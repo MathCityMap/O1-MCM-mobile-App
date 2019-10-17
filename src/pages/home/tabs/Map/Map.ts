@@ -57,6 +57,7 @@ export class MapPage implements OnInit, OnDestroy {
     private watchSubscription: Subscription;
 
     showAllRoutes: boolean;
+    isRouteDownloaded: string;
 
     constructor(
         private updater: DB_Updater,
@@ -67,6 +68,7 @@ export class MapPage implements OnInit, OnDestroy {
         private spinner: SpinnerDialog,
         private translateService: TranslateService,
         private gpsService: GpsService,
+        public helper: Helper,
         private navParams: NavParams,
         private languageService: LanguageService) {
         this.userPositionIcon = L.icon({
@@ -197,6 +199,8 @@ export class MapPage implements OnInit, OnDestroy {
                     this.modalsService.showRoute(route, this.navCtrl);
                 } else {
                     this.routeDetails = route;
+                    if(route.downloaded) this.isRouteDownloaded = 'downloaded';
+                    else this.isRouteDownloaded = null;
                     this.map.panTo(latLng);
                 }
             }));
@@ -327,12 +331,6 @@ export class MapPage implements OnInit, OnDestroy {
         }
     }
 
-
-    async removeRoute() {
-        await this.ormService.removeDownloadedRoute(this.routeDetails);
-        this.redrawMarker();
-    }
-
     async doDownload() {
         await this.modalsService.doDownload(this.routeDetails);
         this.redrawMarker();
@@ -343,26 +341,23 @@ export class MapPage implements OnInit, OnDestroy {
         this.redrawMarker();
     }
 
-    async addRouteByCode() {
-        /*        let route = await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
-                if (route) {
-                    let alreadyAdded = false;
-                    for (let i = 0; !alreadyAdded && i < this.routes.length; i++) {
-                        if (this.routes[i].id == route.id) {
-                            // route has been added twice
-                            alreadyAdded = true;
-                        }
-                    }
-                    if (!alreadyAdded) {
-                        this.routes.push(route);
-                    }
-                    this.redrawMarker();
-                    this.map.panTo(route.getCenterLatLng(), 8);
-                    this.routeDetails = route;
-                }*/
+    showRouteDetail(item: any){
+        this.modalsService.showRoute(item, this.navCtrl).then( async () =>{
+           await this.reactOnRemovedRoute();
+        })
+    }
 
+    async addRouteByCode() {
         this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});
     }
+
+    async reactOnRemovedRoute() {
+        console.log("Triggered");
+        if(this.showAllRoutes)this.routes = await this.ormService.getVisibleRoutes();
+        else this.routes = await this.ormService.getDownloadedRoutes();
+        this.redrawMarker();
+    }
+
 
 
 }

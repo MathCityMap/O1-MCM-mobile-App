@@ -14,19 +14,15 @@ export class HomePage {
   public static nav: NavController;
   tab1Root = 'DashboardPage';
   tab2Root = 'RoutesListPage';
-  tab3Root = 'MapPage';
+  tab3Root = 'PortalPage';
+
+  devMode: boolean = false;
 
 
   constructor(private navCtrl: NavController, private platform: Platform,
               private splashScreen: SplashScreen, private languageService: LanguageService,
-              public events: Events) {
+              private helper: Helper) {
     HomePage.nav = navCtrl;
-
-    events.subscribe('changeViewType', (isList) => {
-          // user and time are the same arguments passed in `events.publish(user, time)`
-          if(isList) this.tab2Root = 'RoutesListPage';
-          else this.tab2Root = 'MapPage';
-      });
   }
 
   ionViewWillEnter() {
@@ -35,7 +31,7 @@ export class HomePage {
             console.log('Platform is ready!');
             this.splashScreen.hide();
         });
-
-    })
+    });
+    this.devMode = this.helper.getDevMode();
   }
 }

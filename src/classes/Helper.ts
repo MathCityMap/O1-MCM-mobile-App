@@ -120,6 +120,7 @@ export class Helper {
     // public static GoogleApiClient googleApiClient
     static readonly REQUEST_LOCATION: number = 199
     public isOnline: boolean = false;
+    public devModeEnabled: boolean = false;
     static windowWidth: number = 0
     static windowHeight: number = 0
     static searchResults: number = 999
@@ -307,5 +308,13 @@ export class Helper {
         } catch (e) {
             return ConnectionQuality.BAD;
         }
+    }
+
+    public setDevMode(value: boolean){
+        this.devModeEnabled = value;
+    }
+
+    public getDevMode(): boolean {
+        return this.devModeEnabled;
     }
 }
