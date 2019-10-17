@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {TranslateService} from "@ngx-translate/core";
-import { DomSanitizer } from "@angular/platform-browser";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 /**
  * Generated class for the PortalPage page.
@@ -32,6 +32,7 @@ export class PortalPage {
         zh: '入口'
     };
     currentLang:string;
+    sanitizedUrl: SafeResourceUrl;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public iab: InAppBrowser, private translateService: TranslateService,
@@ -39,10 +40,6 @@ export class PortalPage {
     }
     ionViewWillEnter(){
         this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
-    }
-
-
-    buildUrl(){
-        return this.sanitizer.bypassSecurityTrustResourceUrl("https://dev.mathcitymap.eu/en/" + this.languageUrl[this.currentLang]);
+        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://dev.mathcitymap.eu/en/" + this.languageUrl[this.currentLang]);
     }
 }
