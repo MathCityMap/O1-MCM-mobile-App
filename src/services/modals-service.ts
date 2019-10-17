@@ -6,16 +6,14 @@ import {Route} from '../entity/Route';
 import {Score} from "../entity/Score";
 import {MCMDownloadProgressPopupComponent} from '../components/mcm-download-progress-popup/mcm-download-progress-popup.component';
 import {RouteInfo} from '../modals/RouteInfo/RouteInfo';
-import {ChangeDetectorRef, Injectable, state} from '@angular/core';
-import {MCMRouteByCodeModal} from '../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
+import {Injectable} from '@angular/core';
 
 import {Task} from '../entity/Task';
 import {CenteredTask} from '../modals/CenteredTask/CenteredTask';
 import {AlertController} from 'ionic-angular';
 import {TranslateService} from '@ngx-translate/core';
-import {TaskMapState, TasksMap} from "../pages/home/tabs/TasksMap/TasksMap";
+import {TaskMapState} from "../pages/home/tabs/TasksMap/TasksMap";
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
-import {Network} from '@ionic-native/network';
 import {ConnectionQuality, Helper} from '../classes/Helper';
 import {DB_Updater} from "../classes/DB_Updater";
 

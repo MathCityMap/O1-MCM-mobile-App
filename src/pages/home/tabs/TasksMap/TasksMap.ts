@@ -88,7 +88,7 @@ export class TasksMap implements OnInit, OnDestroy {
     private countdownBeforeSession: boolean = false;
     private startInterval: boolean = false;
     private showCountdownOrTimer: boolean = false;
-    private refreshIntervalId: any = null;
+    //private refreshIntervalId: any = null;
     private showSessionEnds: boolean = false;
     private taskBlocked: boolean = false;
 
@@ -536,7 +536,7 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
   async loadMap() {
-      const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
+      //const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
       let mapquestUrl = /*Helper.mapquestUrl*/ this.route.getTilesMap(this.app.activeNarrative);
       let subDomains = this.route.getTilesServerSubdomains(this.app.activeNarrative);//Helper.subDomains;
 

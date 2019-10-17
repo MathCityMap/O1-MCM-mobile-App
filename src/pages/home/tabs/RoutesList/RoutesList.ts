@@ -1,5 +1,5 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Content, Events, IonicPage, ModalController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Component, OnDestroy, ViewChild} from '@angular/core';
+import {Content, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ConnectionQuality, Helper} from '../../../../classes/Helper';
 import {timeout} from 'promise-timeout';
 
@@ -48,8 +48,6 @@ export class RoutesListPage implements OnDestroy {
                 public helper: Helper,
                 private gpsService: GpsService,
                 private chatAndSessionService: ChatAndSessionService,
-                private toastCtrl: ToastController,
-                private events: Events,
                 private app: MyApp,
                 private navParams: NavParams
     ) {

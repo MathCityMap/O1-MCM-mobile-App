@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Network } from '@ionic-native/network';
-import {IonicPage, NavController, Platform, Events} from 'ionic-angular';
+import {IonicPage, NavController, Platform} from 'ionic-angular';
 
 import { Helper } from '../../classes/Helper';
 import { SplashScreen } from '@ionic-native/splash-screen';

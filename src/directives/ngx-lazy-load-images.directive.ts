@@ -1,6 +1,5 @@
 import {
-    Directive, ElementRef, Renderer2, Input, NgZone, Inject, PLATFORM_ID, Output,
-    EventEmitter
+    Directive, ElementRef, Renderer2, Input, NgZone, Inject, PLATFORM_ID
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 

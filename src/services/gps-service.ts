@@ -8,8 +8,7 @@ import { checkAvailability } from "@ionic-native/core";
 import { AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Scheduler } from 'rxjs/Scheduler';
-import { Subscription, TeardownLogic } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 import { Subscriber } from 'rxjs/Subscriber';
 import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation';
 

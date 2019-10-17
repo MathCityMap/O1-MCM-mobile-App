@@ -1,6 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { ImagesService } from '../../services/images-service';
-import { checkAvailability } from '@ionic-native/core';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { Helper } from '../../classes/Helper';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
@@ -35,7 +34,7 @@ export class McmImageComponent implements OnChanges {
     private imageUrl: string;
 
     constructor(private imagesService: ImagesService, private photoViewerPlugin: PhotoViewer,
-                private spinnerDialog: SpinnerDialog, private elementRef: ElementRef) {
+                private spinnerDialog: SpinnerDialog) {
     }
 
     ngOnChanges() {

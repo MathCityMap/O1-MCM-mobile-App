@@ -17,7 +17,7 @@
        under the License.
  */
 
-package de.autentek.mathcitymap;
+package de.unifrankfurt.mathcitymap;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

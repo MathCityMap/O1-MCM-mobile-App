@@ -13,7 +13,6 @@ import {tilesDb} from '../../../../classes/tilesDb';
 
 import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
-import {ModalController} from 'ionic-angular/components/modal/modal-controller';
 import {LatLngBounds} from 'leaflet';
 import {ModalsService} from '../../../../services/modals-service';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
@@ -25,7 +24,6 @@ import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import {Subscription} from 'rxjs/Subscription';
 import {LanguageService} from '../../../../services/language-service';
-import {MCMRouteByCodeModal} from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
@@ -62,7 +60,6 @@ export class MapPage implements OnInit, OnDestroy {
     constructor(
         private updater: DB_Updater,
         private ormService: OrmService,
-        private modalCtrl: ModalController,
         public modalsService: ModalsService,
         public navCtrl: NavController,
         private spinner: SpinnerDialog,

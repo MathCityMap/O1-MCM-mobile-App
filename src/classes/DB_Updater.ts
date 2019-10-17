@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { FileTransfer } from '@ionic-native/file-transfer'
 import 'rxjs/add/operator/toPromise'
 import * as Collections from 'typescript-collections'
 
@@ -7,14 +6,12 @@ import { DBC } from './DBC'
 import { Helper } from './Helper'
 import { DBC_Plan } from './DBC_Plan'
 import { DB_Handler } from './DB_Handler'
-import { ImagesService } from '../services/images-service';
-import { checkAvailability } from '@ionic-native/core';
 import { OrmService } from '../services/orm-service';
 import { Route } from "../entity/Route";
 
 @Injectable()
 export class DB_Updater {
-    constructor(private imagesService: ImagesService, private ormService: OrmService, private helper: Helper) {
+    constructor(private ormService: OrmService, private helper: Helper) {
     }
 
     /*

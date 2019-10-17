@@ -2,12 +2,7 @@
  * Created by Iwan Gurjanow on 19.02.2018.
  */
 
-import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import { Platform } from 'ionic-angular';
-import { File } from '@ionic-native/file';
-import { Geolocation } from '@ionic-native/geolocation';
-import { OnInit } from "@angular/core";
+import {ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
@@ -15,12 +10,9 @@ import 'leaflet-geometryutil';
 
 import { Helper } from '../../classes/Helper';
 import { tilesDb } from '../../classes/tilesDb';
-import { OrmService } from '../../services/orm-service';
 import { Route } from '../../entity/Route';
 import { Task } from '../../entity/Task';
-import { LatLngBounds } from 'leaflet';
 import { Marker } from 'leaflet';
-import { TranslateService } from '@ngx-translate/core';
 
 import {GpsService} from  '../../services/gps-service';
 import 'rxjs/add/operator/filter';
@@ -226,7 +218,7 @@ export class TaskDetailMap implements OnDestroy {
         let aCoor = new L.LatLng(origin[0], origin[1]);
         let bCoor = new L.LatLng(dPoint[0], dPoint[1]);
         let bearingAB = (L as any).GeometryUtil.bearing(aCoor, bCoor);
-        let disAB = (L as any).GeometryUtil.distance(this.map, aCoor, bCoor);
+        //let disAB = (L as any).GeometryUtil.distance(this.map, aCoor, bCoor);
         bCoor = (L as any).GeometryUtil.destination(aCoor, bearingAB, this.AXIS_LENGTH); // Override bCoor with a point that is 100 meter in right direction
         /*
         if (disAB < this.AXIS_LENGTH) {
@@ -291,14 +283,14 @@ export class TaskDetailMap implements OnDestroy {
     }
 
     getLabeledIcon(labelText: string, labelClass: string, axis: string):L.DivIcon{
-        var iconSize, iconAnchor;
+        var iconSize/*, iconAnchor*/;
         if(axis == "x"){
             iconSize = [40,20];
-            iconAnchor = [0, 10];
+            //iconAnchor = [0, 10];
         }
         else{
             iconSize = [40,20];
-            iconAnchor = [40, -30];
+            //iconAnchor = [40, -30];
         }
 
         return L.divIcon({

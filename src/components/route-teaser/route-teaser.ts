@@ -1,4 +1,4 @@
-import {EventEmitter, ChangeDetectionStrategy, Component, Input, Output} from '@angular/core';
+import {EventEmitter, Component, Input, Output} from '@angular/core';
 import {Route} from "../../entity/Route";
 import {ModalsService} from "../../services/modals-service";
 import {OrmService} from "../../services/orm-service";

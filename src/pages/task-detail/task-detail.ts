@@ -41,7 +41,7 @@ export class TaskDetail {
 
 
     // Keyboard open
-    private keyboardOpen;
+    //private keyboardOpen;
     private route: Route;
     private routeId: number;
     private taskId: number;
@@ -897,7 +897,6 @@ export class TaskDetail {
 //      Check if there is the need to put tries on these tasks
     CalculateLine(pointA: L.Marker, pointB: L.Marker, distance: number) {
         let currDistance = (L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]);
-        let lenghtSolution = 0;
         let solution = [Math.round(currDistance).toString()];
         let tempGreen = 10;
         let tempOrange = 20;
@@ -931,8 +930,6 @@ export class TaskDetail {
     CalculateLineDirection(pointA: L.Marker, pointB: L.Marker, distance: number, angle: number) {
         let tempGreen = 10;
         let tempOrange = 20;
-        let tempAngGreen = 5;
-        let tempAngOrange = 10;
 
         let lenghtSolution = 0;
         let bearingSolution = 0;

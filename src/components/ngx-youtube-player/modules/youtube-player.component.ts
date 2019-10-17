@@ -2,13 +2,10 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
   Renderer2,
-  SimpleChanges,
 } from '@angular/core';
 import { YoutubePlayerService } from '../services/youtube-player.service';
 
@@ -38,7 +35,6 @@ export class YoutubePlayerComponent implements AfterContentInit {
 
   constructor(
     public playerService: YoutubePlayerService,
-    private elementRef: ElementRef,
     private renderer: Renderer2
   ) { }
 

@@ -26,7 +26,6 @@ import { DB_Handler } from '../classes/DB_Handler';
 import {AddVisibleColumn1526306624000} from "../migration/1526306624000-AddVisibleColumn";
 import {AddLangCodeColumn1526306730000} from "../migration/1526306730000-AddLangCodeColumn";
 import {DB_Updater} from "../classes/DB_Updater";
-import { ModalsService } from './modals-service';
 import {Helper} from "../classes/Helper";
 
 import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-AddDownloadDateColumn";

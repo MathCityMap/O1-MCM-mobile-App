@@ -3,12 +3,6 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 /* import { BroadcastService } from '../../services/broadcast-service'; */
 import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
-import { SettingsPage } from '../../pages/settings/settings';
-import { Route } from '../../entity/Route';
-import { Task } from '../../entity/Task';
-import {CustomKeyBoard} from "../customKeyBoard/custom-keyboard";
-import {ChatAndSessionService} from "../../services/chat-and-session-service";
-import {TasksMap} from "../../pages/home/tabs/TasksMap/TasksMap";
 
 
 @Component({
@@ -18,16 +12,13 @@ import {TasksMap} from "../../pages/home/tabs/TasksMap/TasksMap";
 })
 export class MCMHeaderComponent{
     showBackButton: boolean = false;
-    private route: Route;
-    private task: Task;
 
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,/* public broadcastService: BroadcastService, */
                 public viewCtrl: ViewController,
                 public modalCtrl: ModalController,
-                private deepLinker: DeepLinker,
-                private chatAndSessionService: ChatAndSessionService) {
+                private deepLinker: DeepLinker) {
 /*         broadcastService.historyChanged$.subscribe(canGoBack => {
             this.showBackButton = canGoBack;
             console.log(this.showBackButton);
