@@ -145,7 +145,7 @@
     <plugin name="cordova-plugin-globalization" spec="~1.0.9" />
     <plugin name="cordova.plugins.diagnostic" spec="~3.9.1" />
     <plugin name="com-sarriaroman-photoviewer" spec="~1.1.18" />
-    <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-custom-config" spec="^4.0.2" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~3.1.0" />
 </widget>

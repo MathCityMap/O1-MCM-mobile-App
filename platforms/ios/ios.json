@@ -85,15 +85,23 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"FabricPlugin\"><param name=\"ios-package\" value=\"FabricPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
                             "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"UIInAppBrowser\"><param name=\"ios-package\" value=\"CDVUIInAppBrowser\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WKInAppBrowser\"><param name=\"ios-package\" value=\"CDVWKInAppBrowser\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -282,9 +290,6 @@
         "cordova-plugin-local-notification": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
         "cordova-fabric-plugin": {
             "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
             "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3",
@@ -295,6 +300,9 @@
         },
         "cordova-custom-config": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
         }
     },
     "dependent_plugins": {},
@@ -694,15 +702,6 @@
             ]
         },
         {
-            "id": "cordova-plugin-inappbrowser.inappbrowser",
-            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-            "pluginId": "cordova-plugin-inappbrowser",
-            "clobbers": [
-                "cordova.InAppBrowser.open",
-                "window.open"
-            ]
-        },
-        {
             "id": "cordova-fabric-plugin.FabricPlugin",
             "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.js",
             "pluginId": "cordova-fabric-plugin",
@@ -733,6 +732,15 @@
             "clobbers": [
                 "cordova.getAppVersion"
             ]
+        },
+        {
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -755,9 +763,9 @@
         "com-sarriaroman-photoviewer": "1.1.18",
         "cordova-plugin-badge": "0.8.7",
         "cordova-plugin-local-notification": "0.9.0-beta.2",
-        "cordova-plugin-inappbrowser": "3.0.0",
         "cordova-fabric-plugin": "1.1.9",
         "cordova-plugin-app-version": "0.1.9",
-        "cordova-custom-config": "4.0.2"
+        "cordova-custom-config": "4.0.2",
+        "cordova-plugin-inappbrowser": "3.1.0"
     }
 }

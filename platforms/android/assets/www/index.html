@@ -39,7 +39,16 @@
   <link href="assets/MarkerCluster.css" rel="stylesheet">
 
     <script type="text/x-mathjax-config">
-
+MathJax.Hub.Register.StartupHook("HTML-CSS Jax Startup",function () {
+  var HTMLCSS = MathJax.OutputJax["HTML-CSS"];
+  HTMLCSS.Font.checkWebFont = function (check,font,callback) {
+    if (check.time(callback)) return;
+    if (check.total === 0) {
+      HTMLCSS.Font.testFont(font);
+      setTimeout(check,200);
+    } else {callback(check.STATUS.OK)}
+  }
+});
   MathJax.Hub.Config({
             extensions: ["tex2jax.js"],
             jax: ["input/TeX", "output/HTML-CSS"],
@@ -49,7 +58,8 @@
                 processEscapes: true
             },
             TeX: {
-              extensions: ["AMSmath.js","AMSsymbols.js"]
+              extensions: ["AMSmath.js","AMSsymbols.js"],
+              noErrors: {disabled: true}
            },
            styles: {
            ".MathJax span": {"font-size":  "16px"}

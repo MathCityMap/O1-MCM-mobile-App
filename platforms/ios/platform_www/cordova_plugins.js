@@ -395,15 +395,6 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "pluginId": "cordova-plugin-inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
-    },
-    {
         "id": "cordova-fabric-plugin.FabricPlugin",
         "file": "plugins/cordova-fabric-plugin/www/FabricPlugin.js",
         "pluginId": "cordova-fabric-plugin",
@@ -434,6 +425,15 @@ module.exports = [
         "clobbers": [
             "cordova.getAppVersion"
         ]
+    },
+    {
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -458,10 +458,10 @@ module.exports.metadata =
     "com-sarriaroman-photoviewer": "1.1.18",
     "cordova-plugin-badge": "0.8.7",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
-    "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-fabric-plugin": "1.1.9",
     "cordova-plugin-app-version": "0.1.9",
-    "cordova-custom-config": "4.0.2"
+    "cordova-custom-config": "4.0.2",
+    "cordova-plugin-inappbrowser": "3.1.0"
 };
 // BOTTOM OF METADATA
 });
