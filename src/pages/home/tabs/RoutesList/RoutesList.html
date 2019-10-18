@@ -17,7 +17,7 @@
     <!--Complete Routes List-->
     <ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="showAllRoutes">
         <route-teaser *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
-                      (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
+                      (tap)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
                       (downloadRoute)="reactOnDownloadedRoute($event)" (removeRoute)="updateRoutes()"></route-teaser>
         <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
             <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
@@ -27,7 +27,7 @@
     <!--Downloaded Routes List-->
     <ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="!showAllRoutes" >
         <route-teaser class=downloaded *ngFor="let item of downloadedItems | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
-                      (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
+                      (tap)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
                       (removeRoute)="updateRoutes()"></route-teaser>
         <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
             <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
