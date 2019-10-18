@@ -1,6 +1,6 @@
-<mcm-header transparent></mcm-header>
-<ion-content class="has-header pattern-bg">
-    <div class="card first" *ngIf="route">
+<mcm-header></mcm-header>
+<ion-content>
+    <div class="card title" *ngIf="route">
         <p>{{ route.city }}, {{ route.countryCode }}</p>
         <h1>{{ route.title }}</h1>
     </div>
@@ -9,11 +9,11 @@
         <ion-grid>
             <ion-row align-items-center>
                 <ion-col col-4 class="button-container">
-                    <button ion-button icon-only clear *ngIf="!route.downloaded" (click)="doDownload(route)">
-                    <img class="primary round" src="./assets/icons/icon_download-large.svg"/>
+                    <button ion-button icon-only small round *ngIf="!route.downloaded" (click)="doDownload(route)">
+                        <img src="./assets/icons/icon_download-large.svg"/>
                     </button>
-                    <button ion-button icon-only clear *ngIf="route.downloaded" (click)="removeRoute(route)">
-                    <img class="danger round" src="./assets/icons/icon_delete-large.svg"/>
+                    <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute(route)">
+                        <img src="./assets/icons/icon_delete-large.svg"/>
                     </button>
                 </ion-col>
                 <ion-col class="image-container" lazy-load-images>
@@ -25,10 +25,12 @@
                         <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />
                     </div>
                 </ion-col>
+
+                <!--TODO Sharing coming soon near your area-->
                 <ion-col col-4 class="button-container">
-                    <button ion-button icon-only clear [disabled]="!route.downloaded" (click)="showRoute(route)">
-                    <img class="primary round" src="./assets/icons/icon_play-large.svg"/>
-                    </button>
+                    <!--<button ion-button icon-only small round [disabled]="!route.downloaded" (click)="showRoute(route)">-->
+                        <!--<img src="./assets/icons/icon_play-large.svg"/>-->
+                    <!--</button>-->
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -98,3 +100,13 @@
     </div>
 
 </ion-content>
+
+<ion-footer>
+    <button color="success" class="start" ion-button full block no-margin no-padding large
+            *ngIf="route"
+            [disabled]="!route.downloaded" (click)="showRoute(route)">
+        <img content src="./assets/icons/play.svg">
+        start da route
+    </button>
+</ion-footer>
+

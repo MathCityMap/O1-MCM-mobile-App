@@ -651,7 +651,7 @@ ion-list{
     span{
         color: color($colors, dark-grey);
     }
-    >p:last-of-type{
+    & > p:last-of-type{
         margin-bottom: 0;
     }
     &.has-button-on-the-edge{

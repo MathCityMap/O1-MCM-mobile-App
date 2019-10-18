@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-searchbar type="text" [(ngModel)]="routesListSearch" placeholder="{{ 'a_search_trails' | translate }}" debounce="500"></ion-searchbar>
         <ion-buttons end>
-            <button class="settings-button" ion-button icon-only (click)="addRouteByCode()">
+            <button ion-button icon-only (click)="addRouteByCode()">
                 <img class="header-icon" src="assets/icons/add-scan.svg"/>
             </button>
         </ion-buttons>
