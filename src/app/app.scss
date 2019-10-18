@@ -170,6 +170,11 @@ input{
         padding: $global-small-padding;
         padding-left: 40px;
     }
+
+    &.disabled{
+        pointer-events: none;
+        opacity: 0.3;
+    }
 }
 
 /*  ========== Buttons =========  */

@@ -73,6 +73,10 @@ span{
     font-size: 13px;
 }
 
+@mixin bolder{
+    font-family: 'NunitoExtraBold', Arial, sans-serif;
+}
+
 input{
     &.text-input-ios,
     &.text-input-md{
