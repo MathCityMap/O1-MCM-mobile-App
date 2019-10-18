@@ -53,6 +53,7 @@ export class RoutesListPage implements OnDestroy {
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
+            this.downloadedItems = await this.ormService.getDownloadedRoutes();
             this.items = await this.ormService.getVisibleRoutes(false);
 
             this.sortAndRebuildFilteredItems();

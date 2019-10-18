@@ -98,8 +98,9 @@ export class MapPage implements OnInit, OnDestroy {
             iconAnchor: [17.5, 43],
             className: 'marker'
         });
-        this.eventSubscription = this.ormService.eventEmitter.subscribe((event) => {
+        this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             if (this.markerGroup) {
+                if(!this.showAllRoutes) this.routes = await this.ormService.getDownloadedRoutes();
                 this.redrawMarker();
                 this.routeDetails = null;
             }
@@ -349,7 +350,6 @@ export class MapPage implements OnInit, OnDestroy {
     }
 
     async reactOnRemovedRoute() {
-        console.log("Triggered");
         if(this.showAllRoutes)this.routes = await this.ormService.getVisibleRoutes();
         else this.routes = await this.ormService.getDownloadedRoutes();
         this.redrawMarker();

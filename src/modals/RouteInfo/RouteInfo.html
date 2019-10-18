@@ -71,7 +71,7 @@
 
     <div class="card">
         <ion-label>{{'current_progress' | translate}}</ion-label>
-        <mcm-progress-bar [total]="totalTasks" [currentProgress]="currentProgress" ></mcm-progress-bar>
+        <mcm-progress-bar *ngIf="route" [route]="route" ></mcm-progress-bar>
     </div>
 
     <div class="card">

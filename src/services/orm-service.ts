@@ -173,8 +173,8 @@ export class OrmService {
         score.addTaskStateForTask(score.getTaskState(), detailsToSave);
         let user = await this.getActiveUser();
         score.userId = user.id;
-
         await repo.save(score);
+        this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
     }
 
     async deleteUserScore(score: Score) {

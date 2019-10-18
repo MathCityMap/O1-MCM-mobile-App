@@ -6,6 +6,8 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { GpsService } from '../services/gps-service';
 import { Network } from '@ionic-native/network';
 import { Platform } from 'ionic-angular';
+import { Route } from '../entity/Route';
+import {OrmService} from "../services/orm-service";
 
 export class MapTile {
     constructor(private pZoomLevel: number, private pX: number, private pY: number) {
@@ -126,7 +128,7 @@ export class Helper {
     static searchResults: number = 999
 
     constructor(private http: Http, private gpsService: GpsService, private network: Network,
-                private platform: Platform) {
+                private platform: Platform, private ormService: OrmService) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();
@@ -316,5 +318,12 @@ export class Helper {
 
     public getDevMode(): boolean {
         return this.devModeEnabled;
+    }
+
+    public async calculateProgress(route: Route){
+        let totalTasks = await route.getTaskCount();
+        let score = route.getScoreForUser(await this.ormService.getActiveUser());
+        let currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+        return {totalTasks: totalTasks, currentProgress: currentProgress};
     }
 }
