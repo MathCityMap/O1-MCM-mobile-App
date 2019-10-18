@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage} from 'ionic-angular';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import {Helper} from "../../classes/Helper";
 
 @IonicPage()
 @Component({
@@ -10,8 +11,15 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 })
 export class DashboardPage {
 
+    devMode: boolean;
+
     constructor(public navCtrl: NavController,
-                public navParams: NavParams) {
+                public navParams: NavParams,
+                private helper: Helper) {
+    }
+
+    ionViewWillEnter(){
+        this.devMode = this.helper.getDevMode();
     }
 
     pushSettingsPage() {
@@ -19,6 +27,10 @@ export class DashboardPage {
     }
     pushInfoPage() {
         this.navCtrl.push('InfoPage');
+    }
+
+    switchTab(index: number){
+        this.navCtrl.parent.select(index);
     }
 
 }
