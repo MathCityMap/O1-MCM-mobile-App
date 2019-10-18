@@ -374,6 +374,7 @@
   "a_t_via_code": "By Code",
   "a_from_grade": "From grade",
   "a_r_remove": "Delete",
+  "a_r_start": "Start Trail",
   "a_r_no_routes_found": "No trails found",
   "a_r_no_routes_update": "Do you want to update the trails list?",
   "a_loading": "Loading…",

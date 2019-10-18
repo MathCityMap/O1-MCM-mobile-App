@@ -175,6 +175,11 @@ input{
 /*  ========== Buttons =========  */
 
 button{
+    .button-inner{
+        font-size: 15px;
+        text-transform: none;
+        font-family: 'NunitoExtraBold', Arial, sans-serif;
+    }
     &[disabled].button-default,
     &[disabled= true].button-default{
         opacity: 1!important;

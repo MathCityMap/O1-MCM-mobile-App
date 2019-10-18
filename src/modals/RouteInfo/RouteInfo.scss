@@ -120,8 +120,9 @@
 }
 
 .footer{
+    min-height: 56px;
     .button{
-        &.start{
+        &.play{
             img{
                 @include size(20px);
                 margin-right: $global-small-padding;

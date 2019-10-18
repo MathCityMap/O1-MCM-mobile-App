@@ -15,10 +15,10 @@
             </div>
             <div *ngIf="route" class="container buttons">
                 <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">
-                    <img src="./assets/icons/icon_route-download.svg"/>
+                    <img src="./assets/icons/download.svg"/>
                 </button>
                 <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute(route)">
-                    <img src="./assets/icons/icon_delete.svg"/>
+                    <img src="./assets/icons/delete.svg"/>
                 </button>
             </div>
         </div>

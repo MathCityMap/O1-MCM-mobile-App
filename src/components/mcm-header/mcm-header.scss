@@ -1,7 +1,8 @@
-
-// ================================================
-// --------------- Header bar styles --------------
-
+mcm-header{
+    &[transparent]{
+        pointer-events: none;
+    }
+}
 ion-header{
     &.header-ios{
       padding-top: calc(constant(safe-area-inset-top));
