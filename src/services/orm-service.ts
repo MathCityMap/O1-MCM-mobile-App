@@ -29,7 +29,7 @@ import {DB_Updater} from "../classes/DB_Updater";
 import {Helper} from "../classes/Helper";
 
 import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-AddDownloadDateColumn";
-
+import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-AddCompletedDateColumn";
 
 @Injectable()
 export class OrmService {
@@ -69,7 +69,8 @@ export class OrmService {
             AddCompletedColumn1519817905000,
             AddVisibleColumn1526306624000,
             AddLangCodeColumn1526306730000,
-            AddDownloadDateColumn15711518720000
+            AddDownloadDateColumn15711518720000,
+            AddCompletedDateColumn15713974540000
         ];
         if (sqliteAvailable) {
             return this.connection = await createConnection({
@@ -368,7 +369,7 @@ export class OrmService {
     }
 
     async saveAndFireChangedEvent(route: Route) {
-        (await this.getRouteRepository()).save(route);
+        await (await this.getRouteRepository()).save(route);
         this.updateRouteInCache(route);
         this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
     }

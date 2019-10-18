@@ -246,13 +246,13 @@ export class RoutesListPage implements OnDestroy {
         this.navCtrl.setRoot('RoutesMapPage', {showAllRoutes: this.showAllRoutes});
     }
 
-    async reactOnRemovedRoute() {
+    async updateRoutes() {
         this.downloadedItems = await this.ormService.getDownloadedRoutes();
     }
 
       showRouteDetail(item: any){
          this.modalsService.showRoute(item, this.navCtrl).then( async () =>{
-            await this.reactOnRemovedRoute();
+            await this.updateRoutes();
          })
     }
 
