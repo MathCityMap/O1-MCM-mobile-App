@@ -226,7 +226,7 @@ ion-fab-list{
 }
 .fab-container{
     position: absolute;
-    top: -4px;
+    top: 0;
     right: 0;
 }
 ion-fab{
@@ -573,7 +573,6 @@ ion-list{
         }
     }
 
-
     .marker-cluster{
         border-width: 3px;
         border-style: solid;
@@ -610,17 +609,6 @@ ion-list{
             span{
                 font: 14px 'NunitoExtrabold', Arial, sans-serif;
                 line-height: 26px;
-            }
-        }
-    }
-
-    &.routes{
-        .detail-box{
-            padding: 0;
-            route-teaser{
-                width: 100%;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
             }
         }
     }
@@ -713,8 +701,7 @@ ion-list{
         }
     }
 
-    .item,
-    ion-select{
+    .item, ion-select{
         width:100%;
         max-width:100%;
         padding-left: 0;

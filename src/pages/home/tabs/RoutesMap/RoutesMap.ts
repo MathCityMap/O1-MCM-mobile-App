@@ -30,10 +30,10 @@ import {LanguageService} from '../../../../services/language-service';
 
 @IonicPage()
 @Component({
-    selector: 'page-map',
-    templateUrl: 'Map.html'
+    selector: 'routes-map',
+    templateUrl: 'RoutesMap.html'
 })
-export class MapPage implements OnInit, OnDestroy {
+export class RoutesMapPage implements OnInit, OnDestroy {
 
     @ViewChild('map') mapContainer: ElementRef;
     map: any;
@@ -109,7 +109,7 @@ export class MapPage implements OnInit, OnDestroy {
 
     async ionViewWillEnter() {
         console.log("ionViewWillEnter:");
-        
+
         this.gpsService.isLocationOn();
 
         if (this.markerGroup) {
