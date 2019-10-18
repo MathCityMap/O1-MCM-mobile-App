@@ -18,7 +18,7 @@ import {MCMModalType, MyApp} from "../../../../app/app.component";
 
 @IonicPage()
 @Component({
-    selector: 'page-routes-list',
+    selector: 'routes-list',
     templateUrl: 'RoutesList.html'
 })
 export class RoutesListPage implements OnDestroy {
@@ -243,7 +243,7 @@ export class RoutesListPage implements OnDestroy {
 
     async switchToMap(){
         //this.events.publish('changeViewType', (false));
-        this.navCtrl.setRoot('MapPage', {showAllRoutes: this.showAllRoutes});
+        this.navCtrl.setRoot('RoutesMapPage', {showAllRoutes: this.showAllRoutes});
     }
 
     async reactOnRemovedRoute() {
