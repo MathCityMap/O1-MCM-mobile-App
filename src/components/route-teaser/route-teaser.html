@@ -28,7 +28,7 @@
 <div class="secondary">
     <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>
     <mcm-progress-bar *ngIf="route && route.downloadedDate && !route.completed" class="icon finished" [route]="route" ></mcm-progress-bar>
-    <div *ngIf="route.completed">
+    <div *ngIf="route?.completed">
         <div>{{route.completedDate}}</div>
         <div>{{route.scores[0].getTasksSolved().length}}</div>
         <div>{{route.scores[0].getTasksSolvedLow().length}}</div>
