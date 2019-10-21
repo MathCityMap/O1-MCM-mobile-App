@@ -57,16 +57,14 @@ $colors: (
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 $toolbar-background: color($colors, primary);
-$searchbar-ios-toolbar-input-background: white;
-$searchbar-md-input-box-shadow: none;
 
 $fab-size: 44px;
 $fab-list-button-background-color: color($colors, primary-darker);
 
 $searchbar-ios-input-background-color: transparent;
 $searchbar-ios-toolbar-input-background: transparent;
-
-
+$searchbar-ios-toolbar-input-background: white;
+$searchbar-md-input-box-shadow: none;
 $searchbar-ios-input-search-icon-color: color($colors, light);
 $searchbar-md-input-search-icon-color: color($colors, light);
 $searchbar-ios-input-text-color: color($colors, light);
@@ -117,9 +115,19 @@ $searchbar-md-input-placeholder-color: rgba(255, 255, 255, 0.7);
 
 
 $global-small-padding:  10px;
+$global-medium-padding:  15px;
 $global-base-padding:   20px;
 $global-large-padding:  40px;
 
+
+// Task Rating System
+
+$ratings:(
+    perfect: color($colors, success),
+    good: color($colors, secondary),
+    failed: color($colors, error),
+    skipped: color($colors, grey),
+);
 
 
 // Own Mixins       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ

@@ -42,11 +42,11 @@
             <h4 class="message">You don’t have any downloaded trails yet! Go to trail browsing and load them to find here.</h4>
         </div>
         <div class="search-empty a" *ngIf="showAllRoutes && filteredResult?.length == 0">
-            <img src="assets/icons/search.svg"/>
+            <img src="assets/icons/search-empty.svg"/>
             <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
         </div>
         <div class="search-empty d" *ngIf="!showAllRoutes && filteredResult?.length == 0 && downloadedItems.length != 0">
-            <img src="assets/icons/search.svg"/>
+            <img src="assets/icons/search-empty.svg"/>
             <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
         </div>
     </div>
@@ -55,7 +55,7 @@
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
-    <ion-fab right bottom>
+    <ion-fab right bottom *ngIf="showAllRoutes || !showAllRoutes && downloadedItems.length != 0">
         <button ion-fab color="primary" (click)="switchToMap()">
             <img src="assets/icons/map.svg"/>
         </button>

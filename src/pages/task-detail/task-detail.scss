@@ -44,9 +44,6 @@ page-task-detail {
         display: block;
         position: relative;
         background: linear-gradient(to bottom, rgba(229, 229, 229, 0) 50px, rgba(229, 229, 229, 1) 51px);
-        //        background-image: url(../assets/images/math_pattern.png);
-        //        background-repeat: round round;
-        //        background-size: 82px;
     }
     .card {
         z-index: 2;
@@ -95,7 +92,7 @@ page-task-detail {
             }
         }
         &.secondary {
-            background-color: color($colors, light-grey);
+            background-color: transparent;
             border: 2px dotted;
             border-color: color($colors, grey);
             box-shadow: none;
@@ -103,7 +100,9 @@ page-task-detail {
                 color: color($colors, grey);
             }
         }
-        //EVALUATION
+
+        //  EVALUATION
+
         &.evaluation {
             color: #ffffff;
             z-index: 1;
@@ -113,6 +112,7 @@ page-task-detail {
             border-top-left-radius: 0px;
             .head {
                 margin-bottom: 0;
+                width: 100%;
             }
             ion-label {
                 font-family: 'NunitoBold', Arial, sans-serif;
@@ -126,25 +126,13 @@ page-task-detail {
                 background-color: #ffffff;
                 box-shadow: 0 0 1px 1px #ffffff;
             }
-            &.perfect {
-                background-color: color($colors, success);
-                .score {
-                    color: color($colors, success);
-                    border-color: color($colors, success);
-                }
-            }
-            &.good {
-                background-color: color($colors, secondary);
-                .score {
-                    color: color($colors, secondary);
-                    border-color: color($colors, secondary);
-                }
-            }
-            &.failed {
-                background-color: color($colors, error);
-                .score {
-                    color: color($colors, error);
-                    border-color: color($colors, error);
+            @each $rating, $color in $ratings {
+                &.#{$rating} {
+                    background-color: #{nth($color, 1)};
+                    .score {
+                        color: #{nth($color, 1)};
+                        border-color: #{nth($color, 1)};
+                    }
                 }
             }
         }
