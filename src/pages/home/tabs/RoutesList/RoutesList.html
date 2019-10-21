@@ -40,10 +40,12 @@
             <img src="assets/icons/download-empty.svg"/>
             <h4 class="message">You don’t have any downloaded trails yet! Go to trail browsing and load them to find here.</h4>
         </div>
-        <div class="search-empty 2" *ngIf="showAllRoutes && getSearchResults() == 0">
+        <div class="search-empty a" *ngIf="showAllRoutes && getSearchResults() == 0">
+            <img src="assets/icons/search.svg"/>
             <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
         </div>
-        <div class="search-empty 1" *ngIf="!showAllRoutes && getSearchResults() == 0">
+        <div class="search-empty d" *ngIf="!showAllRoutes && getSearchResults() == 0">
+            <img src="assets/icons/search.svg"/>
             <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
         </div>
     </div>

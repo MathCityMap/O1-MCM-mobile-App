@@ -13,6 +13,7 @@ routes-list {
         text-align: center;
         & > * {
             padding: $global-base-padding;
+            width: 100%;
         }
 
         img{
