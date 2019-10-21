@@ -74,6 +74,9 @@
             align-items: stretch;
             flex-wrap: nowrap;
         }
+        span{
+            color: color($colors, dark-grey);
+        }
         .col{
             width: unset;
             &:nth-of-type(even){

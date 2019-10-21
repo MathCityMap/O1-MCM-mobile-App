@@ -8,26 +8,36 @@
       </ion-select>
     </div>
 
-    <div class="card has-button-on-the-edge">
-      <ion-label>{{'a_main_settings_delCache' | translate }}</ion-label>
-      <!--<p>Alle gespeicherten App Daten unwiederruflich löschen.</p>-->
-      <button class="on-the-edge" ion-button small round (click)="deleteAppData()">{{'p_delete' | translate }}</button>
+    <!--<div class="card has-button-on-the-edge">-->
+      <!--<ion-label>{{'a_main_settings_delCache' | translate }}</ion-label>-->
+      <!--&lt;!&ndash;<p>Alle gespeicherten App Daten unwiederruflich löschen.</p>&ndash;&gt;-->
+      <!--<button ion-button small round color="danger" class="on-the-edge" (click)="deleteAppData()">{{'p_delete' | translate }}</button>-->
+    <!--</div>-->
+
+    <div class="card transparent">
+        <ion-label>EXPERT TOOLS</ion-label>
+    </div>
+    <div class="card">
+        <ion-label>{{'a_settings_console' | translate }}</ion-label>
+        <ion-item no-lines align-items-end>
+            <p item-content>Enable the menu item for creation of trails through MCM portal</p>
+            <ion-toggle mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
+        </ion-item>
     </div>
 
     <div class="card has-button-on-the-edge">
       <ion-label>{{'a_settings_console' | translate }}</ion-label>
-      <!--<p>Tippe zusätzliche Benuzter Kommandos hier ein.</p>-->
+    <p item-content>Tippe zusätzliche Benuzter Kommandos hier ein.</p>
       <ion-item>
         <ion-input type="text" placeholder="z.B XXXXXX"></ion-input>
       </ion-item>
       <button class="on-the-edge" ion-button small round >Enter</button>
     </div>
-
-    <div class="card">
-        <ion-label>{{'a_settings_console' | translate }}</ion-label>
-        <ion-item no-lines>
-            <ion-toggle [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
-        </ion-item>
+    
+    <div class="card transparent">
+        <button ion-button block default round margin-top color="danger" (click)="deleteAppData()">{{'a_main_settings_delCache' | translate }}</button>
     </div>
+
+
 
 </ion-content>
