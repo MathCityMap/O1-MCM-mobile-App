@@ -24,7 +24,7 @@ export class MCMHeaderComponent{
     private currentpage: string = this.viewCtrl.name;
 
     retriveTitle(): string {
-        console.log('currentpage ',this.currentpage);
+        //console.log('currentpage ',this.currentpage);
         if (this.navParams && this.navParams.data.headerTitle) {
             return this.navParams.data.headerTitle;
         }

@@ -310,7 +310,7 @@ export class OrmService {
                 return statusCallback(done, total);
             });
             route.downloaded = true;
-            route.downloadedDate = new Date().toDateString();
+            route.downloadedDate = new Date().toDateString().split(' ').slice(1).join(' ');
             const repo = await this.getRouteRepository();
             await repo.save(route);
             this.updateRouteInCache(route);

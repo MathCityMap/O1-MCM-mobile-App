@@ -60,8 +60,9 @@ export class RoutesListPage implements OnDestroy {
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             this.downloadedItems = await this.ormService.getDownloadedRoutes();
             this.items = await this.ormService.getVisibleRoutes(false);
-
             this.sortAndRebuildFilteredItems();
+            this.filterItems();
+
         });
     }
 
@@ -236,7 +237,7 @@ export class RoutesListPage implements OnDestroy {
 
     async reactOnDownloadedRoute(event) {
         if (event && event.route) {
-            this.modalsService.showRoute(event.route, this.navCtrl);
+            //this.modalsService.showRoute(event.route, this.navCtrl);
         }
     }
 

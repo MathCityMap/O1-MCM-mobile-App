@@ -10,14 +10,14 @@
         <h2 class="item-text-wrap">{{route.title}}</h2>
         <div class="bottom">
             <div class="text">
-            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.distance | distance: 'm'}}</span>
+            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: 'm'}}</span>
             <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>
             </div>
             <div *ngIf="route" class="container buttons">
                 <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">
                     <img src="./assets/icons/download.svg"/>
                 </button>
-                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute(route)">
+                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">
                     <img src="./assets/icons/delete.svg"/>
                 </button>
             </div>
@@ -28,7 +28,7 @@
 <div class="secondary">
     <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>
     <mcm-progress-bar *ngIf="route && route.downloadedDate && !route.completed" class="icon finished" [route]="route" ></mcm-progress-bar>
-    <div *ngIf="route?.completed">
+    <div *ngIf="route?.completed && route?.scores">
         <div>{{route.completedDate}}</div>
         <div>{{route.scores[0].getTasksSolved().length}}</div>
         <div>{{route.scores[0].getTasksSolvedLow().length}}</div>

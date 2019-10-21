@@ -170,7 +170,7 @@ export class TasksMap implements OnInit, OnDestroy {
                   callback: function(){
                       modal.dismiss().then(() => {
                           that.route.completed = true;
-                          that.route.completedDate = new Date().toDateString();
+                          that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
                           that.ormService.saveAndFireChangedEvent(that.route);
                       });
                   }
