@@ -19,6 +19,7 @@ import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 import {Deeplinks} from "@ionic-native/deeplinks";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 import { MyApp } from './app.component';
 
@@ -98,6 +99,7 @@ import { AppVersion } from '@ionic-native/app-version';
     ],
     providers: [
         Deeplinks,
+        SocialSharing,
         StatusBar,
         SplashScreen,
         Network,

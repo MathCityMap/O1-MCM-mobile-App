@@ -89,11 +89,15 @@
     <feature name="Diagnostic">
         <param name="ios-package" value="Diagnostic" />
     </feature>
-    <feature name="IonicDeeplinkPlugin">
-        <param name="ios-package" onload="true" value="IonicDeeplinkPlugin" />
-    </feature>
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
+    </feature>
+    <feature name="SocialSharing">
+        <param name="ios-package" value="SocialSharing" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IonicDeeplinkPlugin">
+        <param name="ios-package" onload="true" value="IonicDeeplinkPlugin" />
     </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
@@ -199,7 +203,7 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="URL_SCHEME" value="mathcitymap" />
     <preference name="DEEPLINK_SCHEME" value="https" />
-    <preference name="DEEPLINK_HOST" value="share.mathcitymap.com" />
+    <preference name="DEEPLINK_HOST" value="dev.mathcitymap.eu" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="SplashMaintainAspectRatio" value="true" />

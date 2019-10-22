@@ -64,9 +64,8 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
-    <feature name="IonicDeeplinkPlugin">
-        <param name="android-package" value="io.ionic.links.IonicDeeplink" />
-        <param name="onload" value="true" />
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
     <feature name="RequestLocationAccuracy">
         <param name="android-package" value="cordova.plugin.RequestLocationAccuracy" />
@@ -131,4 +130,8 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.DeviceDefault" />
     <preference name="AndroidLaunchMode" value="singleTask" />
+    <feature name="IonicDeeplinkPlugin">
+        <param name="android-package" value="io.ionic.links.IonicDeeplink" />
+        <param name="onload" value="true" />
+    </feature>
 </widget>

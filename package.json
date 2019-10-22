@@ -34,6 +34,7 @@
     "@ionic-native/location-accuracy": "4.4.2",
     "@ionic-native/network": "4.4.2",
     "@ionic-native/photo-viewer": "4.4.2",
+    "@ionic-native/social-sharing": "4",
     "@ionic-native/spinner-dialog": "4.4.2",
     "@ionic-native/splash-screen": "4.3.0",
     "@ionic-native/sqlite": "4.3.2",
@@ -92,8 +93,7 @@
     "typeorm": "0.1.6",
     "typescript-collections": "1.2.5",
     "xml2json-cli": "^1.1.1",
-    "zone.js": "0.8.18",
-    "ionic-plugin-deeplinks": "~1.0.20"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.3",
@@ -127,25 +127,7 @@
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-app-version": {},
-      "cordova-custom-config": {},
-      "ionic-plugin-deeplinks": {
-        "URL_SCHEME": "mathcitymap",
-        "DEEPLINK_SCHEME": "https",
-        "DEEPLINK_HOST": "share.mathcitymap.com",
-        "ANDROID_PATH_PREFIX": "/",
-        "ANDROID_2_PATH_PREFIX": "/",
-        "ANDROID_3_PATH_PREFIX": "/",
-        "ANDROID_4_PATH_PREFIX": "/",
-        "ANDROID_5_PATH_PREFIX": "/",
-        "DEEPLINK_2_SCHEME": " ",
-        "DEEPLINK_2_HOST": " ",
-        "DEEPLINK_3_SCHEME": " ",
-        "DEEPLINK_3_HOST": " ",
-        "DEEPLINK_4_SCHEME": " ",
-        "DEEPLINK_4_HOST": " ",
-        "DEEPLINK_5_SCHEME": " ",
-        "DEEPLINK_5_HOST": " "
-      }
+      "cordova-custom-config": {}
     },
     "platforms": [
       "android",

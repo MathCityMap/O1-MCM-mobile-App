@@ -6,6 +6,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ModalsService } from '../../services/modals-service';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController } from "ionic-angular/navigation/nav-controller";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 
 @Component({
@@ -25,7 +26,8 @@ export class RouteInfo {
                 private viewCtrl: ViewController,
                 public alertCtrl: AlertController,
                 public navCtrl: NavController,
-                public translateService: TranslateService) {
+                public translateService: TranslateService,
+                private social: SocialSharing) {
     }
 
     async ionViewWillEnter() {
@@ -54,11 +56,11 @@ export class RouteInfo {
     }
 
     async share(){
-        let url = `share.mathcitymap.com/${this.route.id}`;
+        let url = `https://dev.mathcitymap.eu/${this.route.id}`;
         const options = {
             message: 'this is a test message for the route' + this.route.title,
             url: url
         };
-        //SocialSharing.sharewithoptions(options);
+        this.social.shareWithOptions(options);
     }
 }

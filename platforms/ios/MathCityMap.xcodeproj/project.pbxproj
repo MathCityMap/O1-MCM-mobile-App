@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		05EB38B6AD674924BE4189AB /* UNUserNotificationCenter+APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AB42ED74AA4785ADC47C8B /* UNUserNotificationCenter+APPLocalNotification.m */; };
@@ -49,7 +48,6 @@
 		969CD9176EAA4289A35DEA6C /* CDVUIInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5344678F2A4EAA8B493586 /* CDVUIInAppBrowser.m */; };
 		9B67C86EBC7D479FBBF97680 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE6AB5669EE456CBCCF134B /* libz.dylib */; };
 		9C481621E5E74271A59E0B4F /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8EB0CD1DF54B3498E47712 /* UserNotifications.framework */; };
-		A0521EFE874541A0A2422578 /* IonicDeeplinkPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D6066A933A6E4D2994982555 /* IonicDeeplinkPlugin.m */; };
 		A5D4D0630077445492B08C68 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 44136289E9B24FB4AD612164 /* libz.tbd */; };
 		A74AC9A62E0140E0A2C042D2 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FEAA2059DB1A4BD889D7AEA5 /* AFNetworkReachabilityManager.m */; };
 		A7C5E65715D84B769604F7BB /* TextResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6365D1EEA17249559C9233A2 /* TextResponseSerializer.m */; };
@@ -60,7 +58,6 @@
 		D6A3C104A3564CFD8315E365 /* UNNotificationRequest+APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 21786A6F89F34C879F13D9BE /* UNNotificationRequest+APPLocalNotification.m */; };
 		D715619B5B774F0582F5A065 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DAA36677C242C98B24D653 /* AFHTTPSessionManager.m */; };
 		D81DB4EC376446D7B30F1C88 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C92FF0B728C046628A5326C9 /* CDVSplashScreen.m */; };
-		DF8141D7CDF442B19BDA0C8C /* AppDelegate+IonicDeeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C657961104414D9AA16552 /* AppDelegate+IonicDeeplink.m */; };
 		E4EDA4466C7846BAA9EBB21C /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC98D0490564465A5D6F71A /* CDVStatusBar.m */; };
 		E54E3151052B4DB19BBBB089 /* APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8ECF53E13C4ABCA555D6FF /* APPLocalNotification.m */; };
 		E606BE6A0B0C4324A5025665 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC01AC236B814A8FA4FC6394 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -74,6 +71,12 @@
 		FE04CFA8A6AE4297B9E3CA08 /* PhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B59EDB85E8F46188D96A97A /* PhotoViewer.m */; };
 		FF73323430D647B0814C6CD0 /* CordovaHttpPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 77173CD6E5674BE79418E799 /* CordovaHttpPlugin.m */; };
 		FF7A1A44D13B407AB494BA79 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60B9D4B39056403AB8E24C81 /* CoreLocation.framework */; };
+		14C4E5CD700849A5BD46DC92 /* NSString+SSURLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = A2DEAB788DEA4E6BA3964A21 /* NSString+SSURLEncoding.m */; };
+		1BE0451082DE420EBEF898A0 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8648CC52764446FD95567937 /* SocialSharing.m */; };
+		D53642EAC1964720ACF340A9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8518F95BB5744C41BC64964A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B20CDA2C3E0A44D19E98E4BD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDB51364E484A92800D5C9F /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F551CC44F6894F45B64CEF8C /* AppDelegate+IonicDeeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7735F9BBEE44C18891B1F9 /* AppDelegate+IonicDeeplink.m */; };
+		0153059199C94E2E83410033 /* IonicDeeplinkPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C479751A1434573A9215C03 /* IonicDeeplinkPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,7 +165,6 @@
 		6A7F14859A1D40B6B6EDC8B5 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLocalFilesystem.h; path = "cordova-plugin-file/CDVLocalFilesystem.h"; sourceTree = "<group>"; };
 		6AFF5BF81D6E424B00AB3073 /* CDVLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CDVLaunchScreen.storyboard; path = MathCityMap/CDVLaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		6B6107EEAF3C40ECAF4C0016 /* CDVSplashScreen.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; };
-		72C657961104414D9AA16552 /* AppDelegate+IonicDeeplink.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+IonicDeeplink.m"; path = "ionic-plugin-deeplinks/AppDelegate+IonicDeeplink.m"; sourceTree = "<group>"; };
 		75965F56672A4DDF90998146 /* APPLocalNotification.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = APPLocalNotification.h; path = "cordova-plugin-local-notification/APPLocalNotification.h"; sourceTree = "<group>"; };
 		77173CD6E5674BE79418E799 /* CordovaHttpPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CordovaHttpPlugin.m; path = "cordova-plugin-advanced-http/CordovaHttpPlugin.m"; sourceTree = "<group>"; };
 		774F7C0736F7463B9E96A680 /* CDVGlobalization.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVGlobalization.m; path = "cordova-plugin-globalization/CDVGlobalization.m"; sourceTree = "<group>"; };
@@ -195,7 +197,6 @@
 		CDFECBF7F7A64BBF9CA75C5C /* CDVSpinnerDialog.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVSpinnerDialog.m; path = "cordova-plugin-native-spinner/CDVSpinnerDialog.m"; sourceTree = "<group>"; };
 		CE8A4B58885A4660A2D21810 /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D21EFADAD161416BAF26EAEE /* Crashlytics.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "MathCityMap/Plugins/cordova-fabric-plugin/Crashlytics.framework"; sourceTree = "<group>"; };
-		D6066A933A6E4D2994982555 /* IonicDeeplinkPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = IonicDeeplinkPlugin.m; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.m"; sourceTree = "<group>"; };
 		D8ABE7F8F9554D79A900CC4D /* CDVDevice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
 		DA0BA27D999D4DD199267715 /* APPBadge.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = APPBadge.m; path = "cordova-plugin-badge/APPBadge.m"; sourceTree = "<group>"; };
 		DD7F25D76FFB49AB820E1585 /* CDVSpinnerDialog.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVSpinnerDialog.h; path = "cordova-plugin-native-spinner/CDVSpinnerDialog.h"; sourceTree = "<group>"; };
@@ -219,9 +220,17 @@
 		FB1A38BD9754481CAF5A849C /* Fabric.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = "MathCityMap/Plugins/cordova-fabric-plugin/Fabric.framework"; sourceTree = "<group>"; };
 		FC01AC236B814A8FA4FC6394 /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FEAA2059DB1A4BD889D7AEA5 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = "cordova-plugin-advanced-http/AFNetworkReachabilityManager.m"; sourceTree = "<group>"; };
-		FECE7D4A87F148058EC0625D /* IonicDeeplinkPlugin.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = IonicDeeplinkPlugin.h; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.h"; sourceTree = "<group>"; };
 		FEE65DFF95D642FB86251F08 /* CDVFile.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVFile.m; path = "cordova-plugin-file/CDVFile.m"; sourceTree = "<group>"; };
 		FFEC62FC73924D4096271A74 /* AppVersion.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AppVersion.m; path = "cordova-plugin-app-version/AppVersion.m"; sourceTree = "<group>"; };
+		A2DEAB788DEA4E6BA3964A21 /* NSString+SSURLEncoding.m */ = {isa = PBXFileReference; name = "NSString+SSURLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+SSURLEncoding.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		8648CC52764446FD95567937 /* SocialSharing.m */ = {isa = PBXFileReference; name = "SocialSharing.m"; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7DE7D61776014B019902E553 /* NSString+SSURLEncoding.h */ = {isa = PBXFileReference; name = "NSString+SSURLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+SSURLEncoding.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		8411A555233447249B2AF812 /* SocialSharing.h */ = {isa = PBXFileReference; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		8518F95BB5744C41BC64964A /* Social.framework */ = {isa = PBXFileReference; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		5EDB51364E484A92800D5C9F /* MessageUI.framework */ = {isa = PBXFileReference; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		1F7735F9BBEE44C18891B1F9 /* AppDelegate+IonicDeeplink.m */ = {isa = PBXFileReference; name = "AppDelegate+IonicDeeplink.m"; path = "ionic-plugin-deeplinks/AppDelegate+IonicDeeplink.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7C479751A1434573A9215C03 /* IonicDeeplinkPlugin.m */ = {isa = PBXFileReference; name = "IonicDeeplinkPlugin.m"; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		08643B77B0594B39B2C9990A /* IonicDeeplinkPlugin.h */ = {isa = PBXFileReference; name = "IonicDeeplinkPlugin.h"; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +256,8 @@
 				791E15B42B054ACA90DDDC90 /* AddressBook.framework in Frameworks */,
 				4ADB8412505842049760FF9B /* EventKit.framework in Frameworks */,
 				88FCD478AA9041068E2D1F4D /* Contacts.framework in Frameworks */,
+				D53642EAC1964720ACF340A9 /* Social.framework in Frameworks */,
+				B20CDA2C3E0A44D19E98E4BD /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +345,8 @@
 				1605F50254324069B40DD580 /* AddressBook.framework */,
 				57A91E4EDB784EDABDE3494B /* EventKit.framework */,
 				161D8D2874834687806B0B96 /* Contacts.framework */,
+				8518F95BB5744C41BC64964A /* Social.framework */,
+				5EDB51364E484A92800D5C9F /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -439,11 +452,15 @@
 				25400CE6AA31424C9C2C7F86 /* sqlite3.h */,
 				F8BC13C2D0EB4F77A24D8375 /* Diagnostic.m */,
 				F3B0AF01AE364450BE0F9BE7 /* Diagnostic.h */,
-				72C657961104414D9AA16552 /* AppDelegate+IonicDeeplink.m */,
-				D6066A933A6E4D2994982555 /* IonicDeeplinkPlugin.m */,
-				FECE7D4A87F148058EC0625D /* IonicDeeplinkPlugin.h */,
 				84158EB94E0F4636AC164DC2 /* IonicKeyboard.m */,
 				4929FC2F539B42F1B035B0D4 /* IonicKeyboard.h */,
+				A2DEAB788DEA4E6BA3964A21 /* NSString+SSURLEncoding.m */,
+				8648CC52764446FD95567937 /* SocialSharing.m */,
+				7DE7D61776014B019902E553 /* NSString+SSURLEncoding.h */,
+				8411A555233447249B2AF812 /* SocialSharing.h */,
+				1F7735F9BBEE44C18891B1F9 /* AppDelegate+IonicDeeplink.m */,
+				7C479751A1434573A9215C03 /* IonicDeeplinkPlugin.m */,
+				08643B77B0594B39B2C9990A /* IonicDeeplinkPlugin.h */,
 			);
 			name = Plugins;
 			path = MathCityMap/Plugins;
@@ -630,9 +647,11 @@
 				95A2A4A5A226470981DA1F8E /* SQLitePlugin.m in Sources */,
 				1BDBE24890694EB292CE0E30 /* sqlite3.c in Sources */,
 				7B05FBC6249449B6B60AD872 /* Diagnostic.m in Sources */,
-				DF8141D7CDF442B19BDA0C8C /* AppDelegate+IonicDeeplink.m in Sources */,
-				A0521EFE874541A0A2422578 /* IonicDeeplinkPlugin.m in Sources */,
 				44018DA6B03043C7901A2522 /* IonicKeyboard.m in Sources */,
+				14C4E5CD700849A5BD46DC92 /* NSString+SSURLEncoding.m in Sources */,
+				1BE0451082DE420EBEF898A0 /* SocialSharing.m in Sources */,
+				F551CC44F6894F45B64CEF8C /* AppDelegate+IonicDeeplink.m in Sources */,
+				0153059199C94E2E83410033 /* IonicDeeplinkPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

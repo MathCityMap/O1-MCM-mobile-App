@@ -418,6 +418,20 @@ module.exports = [
         ]
     },
     {
+        "id": "es6-promise-plugin.Promise",
+        "file": "plugins/es6-promise-plugin/www/promise.js",
+        "pluginId": "es6-promise-plugin",
+        "runs": true
+    },
+    {
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
+    },
+    {
         "id": "ionic-plugin-deeplinks.deeplink",
         "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
         "pluginId": "ionic-plugin-deeplinks",
@@ -452,6 +466,8 @@ module.exports.metadata =
     "cordova-plugin-app-version": "0.1.9",
     "cordova-custom-config": "4.0.2",
     "cordova-plugin-inappbrowser": "3.1.0",
+    "es6-promise-plugin": "4.2.2",
+    "cordova-plugin-x-socialsharing": "5.4.0",
     "ionic-plugin-deeplinks": "1.0.20"
 };
 // BOTTOM OF METADATA

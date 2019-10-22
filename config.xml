@@ -149,10 +149,13 @@
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-custom-config" spec="^4.0.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="~3.1.0" />
+    <engine name="ios" spec="~4.5.5" />
+    <plugin name="es6-promise-plugin" spec="~4.2.2" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="~5.4.0" />
     <plugin name="ionic-plugin-deeplinks" spec="~1.0.20">
         <variable name="URL_SCHEME" value="mathcitymap" />
         <variable name="DEEPLINK_SCHEME" value="https" />
-        <variable name="DEEPLINK_HOST" value="share.mathcitymap.com" />
+        <variable name="DEEPLINK_HOST" value="dev.mathcitymap.eu" />
         <variable name="ANDROID_PATH_PREFIX" value="/" />
         <variable name="ANDROID_2_PATH_PREFIX" value="/" />
         <variable name="ANDROID_3_PATH_PREFIX" value="/" />
@@ -167,5 +170,4 @@
         <variable name="DEEPLINK_5_SCHEME" value=" " />
         <variable name="DEEPLINK_5_HOST" value=" " />
     </plugin>
-    <engine name="ios" spec="~4.5.5" />
 </widget>

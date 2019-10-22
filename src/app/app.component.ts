@@ -9,6 +9,7 @@ import {ChatAndSessionService} from '../services/chat-and-session-service';
 import {Deeplinks} from "@ionic-native/deeplinks";
 import {ModalsService} from "../services/modals-service";
 import {OrmService} from "../services/orm-service";
+import {DB_Updater} from "../classes/DB_Updater";
 
 
 export enum MCMModalType {
@@ -34,12 +35,14 @@ export class MyApp {
                 languageService: LanguageService, chatService: ChatAndSessionService,
                 events: Events, private deeplinks: Deeplinks,
                 private ormService: OrmService,
-                private modalService: ModalsService) {
+                private modalService: ModalsService,
+                private dbUpdater: DB_Updater) {
         platform.ready().then(async () => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             // statusBar.styleDefault();
             // statusBar.show();
+            this.setupDeeplinks();
         });
         languageService.initialize().then(() => splashScreen.hide());
         statusBar.backgroundColorByHexString('#035f87'); // set status bar color
@@ -51,7 +54,7 @@ export class MyApp {
             "7", "8", "9", "",
             "-", "0", decimalSeparator, "✔"]; // ✔
         // chatService.init();
-        this.setupDeeplinks();
+
         events.subscribe('narrativeChange', (narrative) => {
             this.activeNarrative = narrative;
         });
@@ -78,6 +81,16 @@ export class MyApp {
             if (regex.test(match.$link.path)) {
                 if (this.nav.canGoBack()) {
                     await this.nav.popToRoot();
+                }
+                let online = await this.modalService.showNoInternetModalIfOffline();
+                if (online) {
+                    try {
+                        await this.dbUpdater.checkForUpdates();
+                    } catch (e) {
+                        console.error('caught error while checking for updates:');
+                        console.error(e);
+                    }
+                    await this.ormService.setNewActiveUser('Me');
                 }
                 console.log("START ARGS: ", match.$args, parseInt(match.$args.id));
                 let route = await this.ormService.findRouteById(parseInt(match.$args.id));

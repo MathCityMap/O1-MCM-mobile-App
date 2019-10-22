@@ -427,20 +427,34 @@ module.exports = [
     ]
   },
   {
-    "id": "ionic-plugin-deeplinks.deeplink",
-    "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
-    "pluginId": "ionic-plugin-deeplinks",
-    "clobbers": [
-      "IonicDeeplink"
-    ],
-    "runs": true
-  },
-  {
     "id": "ionic-plugin-keyboard.keyboard",
     "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
     "pluginId": "ionic-plugin-keyboard",
     "clobbers": [
       "cordova.plugins.Keyboard"
+    ],
+    "runs": true
+  },
+  {
+    "id": "es6-promise-plugin.Promise",
+    "file": "plugins/es6-promise-plugin/www/promise.js",
+    "pluginId": "es6-promise-plugin",
+    "runs": true
+  },
+  {
+    "id": "cordova-plugin-x-socialsharing.SocialSharing",
+    "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+    "pluginId": "cordova-plugin-x-socialsharing",
+    "clobbers": [
+      "window.plugins.socialsharing"
+    ]
+  },
+  {
+    "id": "ionic-plugin-deeplinks.deeplink",
+    "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
+    "pluginId": "ionic-plugin-deeplinks",
+    "clobbers": [
+      "IonicDeeplink"
     ],
     "runs": true
   }
@@ -470,8 +484,10 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-sqlite-storage": "2.0.4",
   "cordova.plugins.diagnostic": "3.9.1",
-  "ionic-plugin-deeplinks": "1.0.20",
-  "ionic-plugin-keyboard": "2.2.1"
+  "ionic-plugin-keyboard": "2.2.1",
+  "es6-promise-plugin": "4.2.2",
+  "cordova-plugin-x-socialsharing": "5.4.0",
+  "ionic-plugin-deeplinks": "1.0.20"
 };
 // BOTTOM OF METADATA
 });
