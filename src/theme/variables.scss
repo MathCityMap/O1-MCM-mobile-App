@@ -119,6 +119,8 @@ $global-medium-padding:  15px;
 $global-base-padding:   20px;
 $global-large-padding:  40px;
 
+$border-radius-basic: 8px;
+
 
 // Task Rating System
 
@@ -159,6 +161,17 @@ $ratings:(
     -moz-border: $width $style $color;
     -ms-border: $width $style $color;
     border: $width $style $color;
+}
+
+@mixin transition($property, $duration, $type) {
+    transition: $property $duration $type;
+}
+
+@mixin transition-basic() {
+    transition: all 0.3s ease-in-out;
+}
+@mixin transition-fast() {
+    transition: all 0.15s ease-in-out;
 }
 
 

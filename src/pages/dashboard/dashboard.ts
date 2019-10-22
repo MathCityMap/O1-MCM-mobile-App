@@ -12,14 +12,20 @@ import {Helper} from "../../classes/Helper";
 export class DashboardPage {
 
     devMode: boolean;
+    tabBarElement: any;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private helper: Helper) {
+                this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     }
 
     ionViewWillEnter(){
         this.devMode = this.helper.getDevMode();
+        this.tabBarElement.style.display = 'none';
+    }
+    ionViewWillLeave() {
+        this.tabBarElement.style.display = 'flex';
     }
 
     pushSettingsPage() {
