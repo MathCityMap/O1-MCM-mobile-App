@@ -159,16 +159,26 @@ input{
 //  Search bar
 
 .searchbar{
+    padding-left: 0;
+    .searchbar-search-icon,.searchbar-clear-icon{
+        background-size: 80%;
+        @include size(30px);
+    }
     .searchbar-search-icon{
         left: 0;
         @include middle-absolute-v;
-        @include size(30px);
-        background-size: 100%;
+        background: url(../assets/icons/search.svg) no-repeat center;
     }
-    .searchbar-input{
-        background-color: transparent;
-        padding: $global-small-padding;
-        padding-left: 40px;
+    .searchbar-clear-icon{
+        background-image: url(../assets/icons/clear.svg);
+        height: 100%;
+    }
+    &.searchbar-left-aligned{
+        .searchbar-input{
+            background-color: transparent;
+            padding: $global-small-padding;
+            padding-left: 40px;
+        }
     }
 
     &.disabled{
@@ -181,10 +191,41 @@ input{
 
 button{
     .button-inner{
-        font-size: 15px;
+        font-size: 14px;
         text-transform: none;
         font-family: 'NunitoExtraBold', Arial, sans-serif;
     }
+
+    //  Types
+
+    &.button-default{
+        height: $fab-size;
+    }
+    &.button-small{
+        height: 30px;
+    }
+    &.button-large{
+        height: 56px;
+    }
+
+    &.button-round-ios.button-small-ios,
+    &.button-round-md.button-small-md{
+        font-family: 'NunitoExtrabold', Arial, sans-serif;
+        line-height: 1.4;
+        text-transform: none;
+        min-width: 90px;
+        padding: 0 15px;
+        .button-inner{
+            color: #fff;
+            font-family: 'NunitoExtrabold', Arial, sans-serif;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+
+    //  States
+
     &[disabled].button-default,
     &[disabled= true].button-default{
         opacity: 1!important;
@@ -198,21 +239,6 @@ button{
         opacity: 1!important;
         img{
             background-color: color($colors, grey);
-        }
-    }
-    &.button-round-ios.button-small-ios,
-    &.button-round-md.button-small-md{
-        font-family: 'NunitoExtrabold', Arial, sans-serif;
-        line-height: 1.4;
-        text-transform: none;
-        min-width: 90px;
-        padding: 0 15px;
-        span{
-            color: #fff;
-            font-family: 'NunitoExtrabold', Arial, sans-serif;
-        }
-        &:last-child{
-            margin-right: 0;
         }
     }
 
@@ -652,14 +678,17 @@ ion-list{
     margin: $global-base-padding;
     position: relative;
     z-index: -1;
+    &.transparent {
+        background-color: transparent;
+        box-shadow: none;
+        overflow: auto;
+        padding: 0;
+    }
     &.modal {
         z-index: 10000;
     }
     ion-label, ion-label.label-ios, ion-label.label-md{
         margin-bottom: $global-small-padding*0.8;
-    }
-    span{
-        color: color($colors, dark-grey);
     }
     & > p:last-of-type{
         margin-bottom: 0;
@@ -861,7 +890,8 @@ ion-modal {
             }
         }
 
-        //Dynamic Inputs
+        // Dynamic Inputs
+
         .input-container{
             margin-top: 14px;
         }
@@ -896,28 +926,14 @@ ion-modal {
                 color: color($colors, primary);
             }
         }
-        &.perfect{
-            h2, .highlight{
-                color: color($colors, success);
-            }
-            button{
-                background-color: color($colors, success);
-            }
-        }
-        &.good{
-            h2, .highlight{
-                color: color($colors, secondary);
-            }
-            button{
-                background-color: color($colors, secondary);
-            }
-        }
-        &.failed{
-            h2, .highlight{
-                color: color($colors, error);
-            }
-            button{
-                background-color: color($colors, error);
+        @each $rating, $color in $ratings {
+            &.#{$rating} {
+                h2, .highlight{
+                    color: #{nth($color, 1)};
+                }
+                button{
+                    background-color: #{nth($color, 1)};
+                }
             }
         }
         &.task-select{
@@ -945,23 +961,12 @@ ion-modal {
                             transform: translateY(-50%);
                         }
                     }
-                    &.perfect {
-                        &:before {
-                            background-color: color($colors, success);
+                    @each $rating, $color in $ratings {
+                        &.#{$rating} {
+                            &:before{
+                                background-color: #{nth($color, 1)};
+                            }
                         }
-                    }
-                    &.good {
-                        &:before {
-                            background-color: color($colors, secondary);
-                        }
-                    }
-                    &.failed {
-                        &:before {
-                            background-color: color($colors, error);
-                        }
-                    }
-                    &.skipped{
-                        background-color: color($colors, grey);
                     }
                 }
             }
@@ -978,14 +983,16 @@ ion-modal {
     }
 }
 
-/*  ========== Progress Bars =========  */
+/*  ========== Progress & Evaluation =========  */
 
-$progress-height: 6px;
 
-mcm-progress-bar{
+mcm-progress-bar, .evaluation{
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: baseline;
+}
+
+mcm-progress-bar{
     & > *{
         &:not(.progress){
             flex-grow: 0;
@@ -993,6 +1000,39 @@ mcm-progress-bar{
         }
     }
 }
+
+.evaluation{
+    flex: 1;
+    flex-wrap: wrap;
+    .ratings {
+        display: flex;
+    }
+    .rating{
+        display: flex;
+        align-items: baseline;
+        margin-left: $global-small-padding;
+        p{
+            margin: 0;
+        }
+        &:before{
+            content: '';
+            @include size(8px);
+            border-radius: 50%;
+            margin-right: $global-small-padding/2;
+        }
+
+        @each $rating, $color in $ratings {
+            &.#{$rating} {
+                &:before{
+                    background-color: #{nth($color, 1)};
+                }
+            }
+        }
+    }
+}
+
+$progress-height: 6px;
+
 .progress{
     background-color: rgba(color($colors, primary-darker), 0.2);
     height: $progress-height;
@@ -1000,6 +1040,7 @@ mcm-progress-bar{
     flex: 1;
     & > .bar{
         width: 0;
+        z-index: 100;
         //prevent initial bug of full progress bar
         background-color: color($colors, primary);
         height: $progress-height;
