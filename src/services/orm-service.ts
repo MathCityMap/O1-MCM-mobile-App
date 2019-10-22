@@ -264,13 +264,16 @@ export class OrmService {
         return this.visibleRoutesCache;
     }
 
-    async getDownloadedRoutes(): Promise<Route[]> {
+    async getDownloadedRoutes(compareFn = null): Promise<Route[]> {
         let repo = await this.getRouteRepository();
         let result = await repo.find({
             where: {
                 downloaded: '1'
             }
         });
+        if (compareFn) {
+            result.sort(compareFn);
+        }
         return result;
     }
 

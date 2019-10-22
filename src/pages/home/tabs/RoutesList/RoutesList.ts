@@ -58,8 +58,8 @@ export class RoutesListPage implements OnDestroy {
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
-            this.downloadedItems = await this.ormService.getDownloadedRoutes();
-            this.items = await this.ormService.getVisibleRoutes(false);
+            this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
+            this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
             this.sortAndRebuildFilteredItems();
             this.filterItems();
 
@@ -167,8 +167,8 @@ export class RoutesListPage implements OnDestroy {
             // });
             modal.present();
         }
-        this.items = await this.ormService.getVisibleRoutes(true);
-        this.downloadedItems = await this.ormService.getDownloadedRoutes();
+        this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
+        this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
         this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
         this.filterItems();
 
@@ -206,6 +206,17 @@ export class RoutesListPage implements OnDestroy {
         }
     }
 
+    private compareFunction(a: Route, b: Route) {
+        const distA = a.getDistance();
+        const distB = b.getDistance();
+        if (distA > distB) {
+            return 1;
+        } else if (distA < distB) {
+            return -1;
+        }
+        return a.title.localeCompare(b.title);
+    }
+
 
     scrollTo(route: Route) {
         let that = this;
@@ -235,11 +246,11 @@ export class RoutesListPage implements OnDestroy {
         this.filteredItems = this.items.slice(0, this.filteredItems.length);
     }
 
-    async reactOnDownloadedRoute(event) {
+/*    async reactOnDownloadedRoute(event) {
         if (event && event.route) {
             //this.modalsService.showRoute(event.route, this.navCtrl);
         }
-    }
+    }*/
 
     async switchToMap() {
         //this.events.publish('changeViewType', (false));
@@ -247,7 +258,7 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async updateRoutes() {
-        this.downloadedItems = await this.ormService.getDownloadedRoutes();
+        this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
     }
 
     showRouteDetail(item: any) {
