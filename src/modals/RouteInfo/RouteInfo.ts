@@ -49,7 +49,16 @@ export class RouteInfo {
         }
     }
 
-    async removeRoute(route: Route) {
+    async removeRoute() {
         await this.ormService.removeDownloadedRoute(this.route);
+    }
+
+    async share(){
+        let url = `share.mathcitymap.com/${this.route.id}`;
+        const options = {
+            message: 'this is a test message for the route' + this.route.title,
+            url: url
+        };
+        //SocialSharing.sharewithoptions(options);
     }
 }

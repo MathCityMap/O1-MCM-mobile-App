@@ -128,7 +128,8 @@ export class OrmService {
 
     public async findRouteById(id: number): Promise<Route> {
         let repo = await this.getRouteRepository();
-        return await repo.findOneById(id);
+        let route = await repo.findOneById(id);
+        return route;
     }
 
     public async findRouteByCode(code: string): Promise<Route> {

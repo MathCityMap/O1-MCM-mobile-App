@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
+
 import { Geolocation } from '@ionic-native/geolocation';
 import { SQLite } from '@ionic-native/sqlite';
 import { IonicStorageModule } from '@ionic/storage';
@@ -17,6 +18,7 @@ import { ModalsService } from '../services/modals-service';
 import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
+import {Deeplinks} from "@ionic-native/deeplinks";
 
 import { MyApp } from './app.component';
 
@@ -95,6 +97,7 @@ import { AppVersion } from '@ionic-native/app-version';
         CustomKeyBoard
     ],
     providers: [
+        Deeplinks,
         StatusBar,
         SplashScreen,
         Network,

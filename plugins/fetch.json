@@ -185,5 +185,18 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "ionic-plugin-deeplinks": {
+        "source": {
+            "type": "registry",
+            "id": "ionic-plugin-deeplinks@1.0.20"
+        },
+        "is_top_level": true,
+        "variables": {
+            "URL_SCHEME": "mathcitymap",
+            "DEEPLINK_SCHEME": "https",
+            "DEEPLINK_HOST": "share.mathcitymap.com",
+            "ANDROID_PATH_PREFIX": "/"
+        }
     }
 }

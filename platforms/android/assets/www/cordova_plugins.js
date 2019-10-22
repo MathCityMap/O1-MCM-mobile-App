@@ -416,6 +416,15 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "id": "ionic-plugin-deeplinks.deeplink",
+        "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
+        "pluginId": "ionic-plugin-deeplinks",
+        "clobbers": [
+            "IonicDeeplink"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -442,7 +451,8 @@ module.exports.metadata =
     "cordova-fabric-plugin": "1.1.9",
     "cordova-plugin-app-version": "0.1.9",
     "cordova-custom-config": "4.0.2",
-    "cordova-plugin-inappbrowser": "3.1.0"
+    "cordova-plugin-inappbrowser": "3.1.0",
+    "ionic-plugin-deeplinks": "1.0.20"
 };
 // BOTTOM OF METADATA
 });
