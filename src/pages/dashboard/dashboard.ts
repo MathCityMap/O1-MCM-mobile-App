@@ -17,15 +17,7 @@ export class DashboardPage {
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private helper: Helper) {
-                this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-    }
-
-    ionViewWillEnter(){
-        this.devMode = this.helper.getDevMode();
-        this.tabBarElement.style.display = 'none';
-    }
-    ionViewWillLeave() {
-        this.tabBarElement.style.display = 'flex';
+                this.tabBarElement = document.querySelector('.tabbar');
     }
 
     pushSettingsPage() {
@@ -37,6 +29,16 @@ export class DashboardPage {
 
     switchTab(index: number){
         this.navCtrl.parent.select(index);
+    }
+
+    ionViewWillEnter(){
+        this.devMode = this.helper.getDevMode();
+        if (this.tabBarElement != null) {
+            this.tabBarElement.style.display = 'none';
+        }
+    }
+    ionViewDidLeave() {
+        this.tabBarElement.style.display = 'flex';
     }
 
 }

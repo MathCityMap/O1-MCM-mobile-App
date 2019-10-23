@@ -57,35 +57,33 @@
 
 .tabs{
     .tabbar{
-        border-top: 0.55px solid color($colors, primary);
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-        background: color($colors, primary);
-        .tab-button, .tab-button-icon{
-            color: color($colors, light);
-            &[aria-selected="false"]{
-                color:rgba(color($colors, light), .4);
-            }
-        }
-        .tab-button{
-            padding: 5px 5px 6px;
-            min-height: 50px;
-        }
-        .has-icon .tab-button-icon,
-        .has-title .tab-button-text{
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 16px;
-        }
+        height: $size-large;
+        box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
         .tab-button-icon{
             margin: 0;
+            @include size($size-large);
+            @each $tab in $tabs {
+                &[class*="tab-#{$tab}"]{
+                    background: url("../assets/icons/#{$tab}.svg") center /50% 50% no-repeat;
+                }
+            }
         }
-        //    selected state
-        .tab-button[aria-selected=true], .tab-button[aria-selected=true] .tab-button-icon{
-            background: color($colors, primary-darker);
-            transition: all, .3s;
+
+        //  Active State
+
+        .tab-button{
+            &[aria-selected="true"]{
+                opacity: 1;
+                .tab-button-icon{
+                    transform: none;
+                    filter: brightness(100);
+                }
+            }
         }
     }
 }
+
+
 
 
 //  Pages & Structure
@@ -220,7 +218,7 @@ button{
         font-family: 'NunitoExtraBold', Arial, sans-serif;
     }
 
-    //  Types
+    //  Sizes
 
     &.button-default{
         height: $fab-size;
@@ -229,7 +227,18 @@ button{
         height: 30px;
     }
     &.button-large{
-        height: 56px;
+        height: $size-large;
+        .button-inner{
+            font-size: large;
+        }
+    }
+
+    //  Properties
+
+    &[icon-start]{
+        .icon{
+            margin-right: $global-small-padding/2;
+        }
     }
 
     &.button-round-ios.button-small-ios,

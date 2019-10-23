@@ -1,6 +1,6 @@
 page-dashboard {
     .content{
-        background-color: color($colors, primary);
+        background: url("../assets/images/pattern-dashboard.svg") center / 160%  repeat color($colors, primary);
         .scroll-content{
             padding: $global-small-padding;
             display: flex;
@@ -43,7 +43,9 @@ page-dashboard {
                 }
                 &.activated{
                     @include transition-fast();
-                    opacity: 0.5;
+                    @include box-shadow(0.5);
+                    transform: scale(1.1);
+                    opacity: 0.3;
                 }
             }
             &.disabled{

@@ -29,13 +29,14 @@ h1, h2, h3, h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
 }
 
 h1{
+    font-family: 'NunitoExtraBold', Arail, sans-serif;
     font-size: 24px;
     line-height: 1.2;
     font-weight: 500;
     color: color($colors, primary);
 }
 h2{
-    font-family: 'NunitoBold', Arail, sans-serif;
+    font-family: 'NunitoExtraBold', Arail, sans-serif;
     font-size: 18px;
     line-height: 1.2;
     font-weight: 500;
