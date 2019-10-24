@@ -3,6 +3,7 @@ import { IonicPage} from 'ionic-angular';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import {Helper} from "../../classes/Helper";
+import { Storage } from "@ionic/storage";
 
 @IonicPage()
 @Component({
@@ -16,8 +17,13 @@ export class DashboardPage {
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
-                private helper: Helper) {
+                private helper: Helper,
+                private storage: Storage) {
                 this.tabBarElement = document.querySelector('.tabbar');
+    }
+
+    async ngOnInit(){
+        this.devMode = (await this.storage.get('devMode') === 'true')
     }
 
     pushSettingsPage() {

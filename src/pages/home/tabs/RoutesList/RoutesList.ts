@@ -77,7 +77,9 @@ export class RoutesListPage implements OnDestroy {
     async ionViewWillEnter() {
         console.log('RoutesList ionViewWillEnter()', this.navParams);
         this.pipe = new SearchPipe();
-        this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
+        if(this.navParams.data && this.navParams.data.showAllRoutes != null) {
+            this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
+        }
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
             // initial app start
