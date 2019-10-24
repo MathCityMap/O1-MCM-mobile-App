@@ -16,7 +16,7 @@ page-dashboard {
         display: flex;
         flex-wrap: wrap;
         flex: 1;
-        align-items: center;
+        align-items: stretch;
         align-content: center;
         .tile{
             padding: $global-small-padding;
@@ -24,10 +24,12 @@ page-dashboard {
             min-height: 25vh;
             box-sizing: border-box;
             .item{
+                height: 100%;
                 padding: $global-base-padding;
                 @include transition-fast();
                 border-radius: $border-radius-basic;
                 .item-inner{
+                    align-items: flex-end;
                     padding: 0!important;
                     [item-content]{
                         display: flex;
@@ -61,8 +63,38 @@ page-dashboard {
             flex: 1;
         }
     }
+    @media screen and (max-width: 359px) {
+        .content{
+            .scroll-content{
+                padding: $global-small-padding;
+            }
+        }
+        .logo{
+            margin: $global-small-padding auto;
+            width: 75%;
+        }
+        .tiles{
+            .tile{
+                padding: $global-small-padding;
+                min-height: 25vh;
+                .item{
+                    padding: $global-base-padding*0.75 $global-small-padding;
+                    .item-inner{
+                        [item-content]{
+                            .icon{
+                                margin-top: $global-base-padding*0.75;
+                                width: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 }
 
-.tabbar{
-    display: none;
-}
+//.tabbar{
+//    display: none;
+//}
