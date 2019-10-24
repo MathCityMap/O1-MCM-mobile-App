@@ -761,7 +761,7 @@ base64-js@1.2.0:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.0.tgz#a39992d723584811982be5e290bb6a53d86700f1"
   integrity sha1-o5mS1yNYSBGYK+XikLtqU9hnAPE=
 
-base64-js@^1.0.2, base64-js@^1.2.3:
+base64-js@^1.0.2:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.3.1.tgz#58ece8cb75dd07e71ed08c736abc5fac4dbf8df1"
   integrity sha512-mLQ4i2QO1ytvGWFWmcngKO//JXAQueZvwEKtjgQFM4jIK0kU+ytMfplL8j+n5mspOfjHwoAg+9yhb7BwAHm36g==
@@ -3552,16 +3552,6 @@ ionic-angular@3.8.0:
   resolved "https://registry.yarnpkg.com/ionic-angular/-/ionic-angular-3.8.0.tgz#c88faaeb5693e1053f90ff77b6df5f3bdfda93a2"
   integrity sha512-qr9zsSSy0rS+8kPCMtqvwRre8UWxanu+NnDDy0SwrBwYPz0rCl2IhvZsiJPUNFW+jPQDKehFs0aaH1Me3odiyQ==
 
-ionic-plugin-deeplinks@~1.0.20:
-  version "1.0.20"
-  resolved "https://registry.yarnpkg.com/ionic-plugin-deeplinks/-/ionic-plugin-deeplinks-1.0.20.tgz#ac5f4f24f81ba6a77e721680bdbd68f0e22a109f"
-  integrity sha512-DCqg7GR15b9Gzttoo/Cv9a2FGwrR6WM5GdO7XuX5sF291dTZGW92gq9UmTu2z4ogJ0sQhUy8VDdBltIjBNK5bQ==
-  dependencies:
-    mkpath ">=1.0.0"
-    node-version-compare ">=1.0.1"
-    plist ">=1.2.0"
-    xml2js ">=0.4"
-
 ionic-plugin-keyboard@2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ionic-plugin-keyboard/-/ionic-plugin-keyboard-2.2.1.tgz#f2a9e169bbe9b5522400347c9fd6d3467ee3fa12"
@@ -4520,11 +4510,6 @@ mixin-deep@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-mkpath@>=1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/mkpath/-/mkpath-1.0.0.tgz#ebb3a977e7af1c683ae6fda12b545a6ba6c5853d"
-  integrity sha1-67Opd+evHGg65v2hK1Raa6bFhT0=
-
 module-deps@^4.0.8:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/module-deps/-/module-deps-4.1.1.tgz#23215833f1da13fd606ccb8087b44852dcb821fd"
@@ -4779,11 +4764,6 @@ node-uuid@~1.4.0, node-uuid@~1.4.7:
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.8.tgz#b040eb0923968afabf8d32fb1f17f1167fdab907"
   integrity sha1-sEDrCSOWivq/jTL7HxfxFn/auQc=
-
-node-version-compare@>=1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/node-version-compare/-/node-version-compare-1.0.2.tgz#a3d8c1073746e3aa494b2190e2b23dfcda64c05a"
-  integrity sha512-OVcHSPS3nROlBQXcALptOR0j2lOabC9wE2S+y+Fvr7nSDqoO/LCNzRdVGVovipeHUXs5jAqq7GelWE1X4J1sEw==
 
 nopt@1.0.9:
   version "1.0.9"
@@ -5482,15 +5462,6 @@ plist@2.1.0, plist@^2.1.0:
   dependencies:
     base64-js "1.2.0"
     xmlbuilder "8.2.2"
-    xmldom "0.1.x"
-
-plist@>=1.2.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.1.tgz#a9b931d17c304e8912ef0ba3bdd6182baf2e1f8c"
-  integrity sha512-GpgvHHocGRyQm74b6FWEZZVRroHKE1I0/BTjAmySaohK+cUn+hZpbqXkc3KWgW3gQYkqcQej35FohcT0FRlkRQ==
-  dependencies:
-    base64-js "^1.2.3"
-    xmlbuilder "^9.0.7"
     xmldom "0.1.x"
 
 posix-character-classes@^0.1.0:
@@ -7727,7 +7698,7 @@ xml-escape@1.1.0:
   resolved "https://registry.yarnpkg.com/xml-escape/-/xml-escape-1.1.0.tgz#3904c143fa8eb3a0030ec646d2902a2f1b706c44"
   integrity sha1-OQTBQ/qOs6ADDsZG0pAqLxtwbEQ=
 
-xml2js@>=0.4, xml2js@^0.4.17, xml2js@^0.4.19:
+xml2js@^0.4.17, xml2js@^0.4.19:
   version "0.4.22"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.22.tgz#4fa2d846ec803237de86f30aa9b5f70b6600de02"
   integrity sha512-MWTbxAQqclRSTnehWWe5nMKzI3VmJ8ltiJEco8akcC6j3miOhjjfzKum5sId+CWhfxdOs/1xauYr8/ZDBtQiRw==
@@ -7764,11 +7735,6 @@ xmlbuilder@8.2.2:
   version "8.2.2"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
   integrity sha1-aSSGc0ELS6QuGmE2VR0pIjNap3M=
-
-xmlbuilder@^9.0.7:
-  version "9.0.7"
-  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
-  integrity sha1-Ey7mPS7FVlxVfiD0wi35rKaGsQ0=
 
 xmlbuilder@~11.0.0:
   version "11.0.1"

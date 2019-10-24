@@ -42,7 +42,6 @@ export class MyApp {
             // Here you can do any higher level native things you might need.
             // statusBar.styleDefault();
             // statusBar.show();
-            this.setupDeeplinks();
         });
         languageService.initialize().then(() => splashScreen.hide());
         statusBar.backgroundColorByHexString('#035f87'); // set status bar color
@@ -67,44 +66,6 @@ export class MyApp {
     // Event emitter
     keyClick(k: string) {
         console.log('Event emitter - key: ', k);
-    }
-
-    private setupDeeplinks() {
-        console.log("entered deeplinks");
-        this.deeplinks.route({
-            '/:id': 'RouteInfo'
-        }).subscribe(async match => {
-            // match.$route - the route we matched, which is the matched entry from the arguments to route()
-            // match.$args - the args passed in the link
-            // match.$link - the full link data
-            let regex = new RegExp(`/(\\d+)`);
-            if (regex.test(match.$link.path)) {
-                if (this.nav.canGoBack()) {
-                    await this.nav.popToRoot();
-                }
-                let online = await this.modalService.showNoInternetModalIfOffline();
-                if (online) {
-                    try {
-                        await this.dbUpdater.checkForUpdates();
-                    } catch (e) {
-                        console.error('caught error while checking for updates:');
-                        console.error(e);
-                    }
-                    await this.ormService.setNewActiveUser('Me');
-                }
-                console.log("START ARGS: ", match.$args, parseInt(match.$args.id));
-                let route = await this.ormService.findRouteById(parseInt(match.$args.id));
-                console.log("This is my route: ", route);
-                await this.modalService.presentRouteInfoModal(route, this.nav);
-                console.log('Successfully matched route', JSON.stringify(match));
-            } else {
-                this.nav.popToRoot();
-                console.log('Got an invalid Deeplink "ID invalid: ' + match.$link.path + '"');
-            }
-        }, nomatch => {
-            // nomatch.$link - the full link data
-            console.log('Got a deeplink that didn\'t match', nomatch);
-        });
     }
 
 }
