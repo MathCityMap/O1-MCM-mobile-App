@@ -8,6 +8,7 @@ import { Network } from '@ionic-native/network';
 import { Platform } from 'ionic-angular';
 import { Route } from '../entity/Route';
 import {OrmService} from "../services/orm-service";
+import { Storage } from "@ionic/storage";
 
 export class MapTile {
     constructor(private pZoomLevel: number, private pX: number, private pY: number) {
@@ -130,13 +131,14 @@ export class Helper {
     private activateAddRouteModal: boolean = false;
 
     constructor(private http: Http, private gpsService: GpsService, private network: Network,
-                private platform: Platform, private ormService: OrmService) {
+                private platform: Platform, private ormService: OrmService, private storage: Storage) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();
     }
 
     private async init() {
+        this.devModeEnabled = (await this.storage.get('devMode') === 'true');
         await this.platform.ready();
         this.isOnline = navigator.onLine;
         console.info(`Connection status: ${this.isOnline}`);
@@ -314,11 +316,12 @@ export class Helper {
         }
     }
 
-    public setDevMode(value: boolean){
-        this.devModeEnabled = value;
+    public async setDevMode(value: string){
+        await this.storage.set('devMode', value);
+        this.devModeEnabled = (value === 'true')
     }
 
-    public getDevMode(): boolean {
+    public getDevMode() {
         return this.devModeEnabled;
     }
 
