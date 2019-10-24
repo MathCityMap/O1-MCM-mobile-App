@@ -27,8 +27,11 @@ export class DashboardPage {
         this.navCtrl.push('InfoPage');
     }
 
-    switchTab(index: number){
-        this.navCtrl.parent.select(index);
+    switchTab(index: number, addRoute = false){
+       if(addRoute){
+           this.helper.setActivateAddRoute(true);
+       }
+       this.navCtrl.parent.select(index);
     }
 
     ionViewWillEnter(){

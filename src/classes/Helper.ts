@@ -127,6 +127,8 @@ export class Helper {
     static windowHeight: number = 0
     static searchResults: number = 999
 
+    private activateAddRouteModal: boolean = false;
+
     constructor(private http: Http, private gpsService: GpsService, private network: Network,
                 private platform: Platform, private ormService: OrmService) {
         Helper.INSTANCE = this;
@@ -318,6 +320,14 @@ export class Helper {
 
     public getDevMode(): boolean {
         return this.devModeEnabled;
+    }
+
+    public setActivateAddRoute(value: boolean){
+        this.activateAddRouteModal = value;
+    }
+
+    public getActivateAddRoute(): boolean {
+        return this.activateAddRouteModal;
     }
 
     public async calculateProgress(route: Route){

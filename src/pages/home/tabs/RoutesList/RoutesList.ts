@@ -172,6 +172,11 @@ export class RoutesListPage implements OnDestroy {
         this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
         this.filterItems();
 
+        if(this.helper.getActivateAddRoute()){
+            this.addRouteByCode();
+            this.helper.setActivateAddRoute(false);
+        }
+
     }
 
     async doRefresh(refresher) {
