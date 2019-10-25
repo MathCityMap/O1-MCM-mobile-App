@@ -67,6 +67,8 @@ export class DB_Updater {
                 let newRoute = await this.ormService.findRouteById(oldRoute.id);
                 if (newRoute) {
                     newRoute.downloaded = oldRoute.downloaded;
+                    newRoute.downloadedDate = oldRoute.downloadedDate;
+                    newRoute.completedDate = oldRoute.completedDate;
                     newRoute.unlocked = oldRoute.unlocked;
                     newRoute.completed = oldRoute.completed;
                     alreadyVisitedIds[oldRoute.id] = true;
