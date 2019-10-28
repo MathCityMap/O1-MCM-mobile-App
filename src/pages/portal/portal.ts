@@ -40,6 +40,6 @@ export class PortalPage {
     }
     ionViewWillEnter(){
         this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
-        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://mathcitymap.eu/en/" + this.languageUrl[this.currentLang]);
+        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://codepen.io/sensei/pen/VwwaYxa?editors=1010");// + this.languageUrl[this.currentLang]);
     }
 }

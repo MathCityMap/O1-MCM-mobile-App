@@ -94,6 +94,9 @@
         <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
             <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
         </config-file>
+        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+            <string>Used to take pictures</string>
+        </edit-config>
         <config-file parent="NSContactsUsageDescription" platform="ios" target="*-Info.plist">
             <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
         </config-file>
@@ -148,4 +151,6 @@
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-custom-config" spec="^4.0.2" />
     <plugin name="cordova-plugin-inappbrowser" spec="~3.1.0" />
+    <plugin name="cordova-plugin-camera" spec="~4.0.3" />
+    <plugin name="cordova-plugin-camera-preview" spec="~0.9.0" />
 </widget>

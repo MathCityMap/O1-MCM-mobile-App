@@ -13,7 +13,7 @@
     <key>CFBundleIcons~ipad</key>
     <dict/>
     <key>CFBundleIdentifier</key>
-    <string>de.unifrankfurt.mathcitymap</string>
+    <string>de.autentek.mathcitymap</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -21,11 +21,11 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>2.3.2</string>
+    <string>2.3.5</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>2.3.2</string>
+    <string>2.3.5</string>
     <key>Fabric</key>
     <dict>
       <key>APIKey</key>
@@ -92,8 +92,6 @@
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>
     <key>NSCalendarsUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to calendar.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
     <key>NSContactsUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -129,5 +127,7 @@
       <string>UIInterfaceOrientationPortraitUpsideDown</string>
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>NSCameraUsageDescription</key>
+    <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
   </dict>
 </plist>

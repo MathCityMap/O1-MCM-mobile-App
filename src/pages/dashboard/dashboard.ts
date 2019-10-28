@@ -76,4 +76,8 @@ export class DashboardPage {
         this.tabBarElement.style.display = 'flex';
     }
 
+    augmentedMode(){
+        this.navCtrl.push('AumentedRealityPage');
+    }
+
 }

@@ -87,6 +87,14 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"CameraPreview\"><param name=\"android-package\" value=\"com.cordovaplugincamerapreview.CameraPreview\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -121,6 +129,10 @@
                         {
                             "xml": "<receiver android:name=\"cordova.plugins.Diagnostic$NFCStateChangedReceiver\"><intent-filter><action android:name=\"android.nfc.action.ADAPTER_STATE_CHANGED\" /></intent-filter></receiver>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<activity android:name=\"com.cordovaplugincamerapreview.CameraActivity\" android:screenOrientation=\"portrait\" android:theme=\"@style/CameraPreviewTheme\" />",
+                            "count": 1
                         }
                     ],
                     "/manifest": [
@@ -139,12 +151,24 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.camera\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.camera.autofocus\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
+                            "count": 1
                         }
                     ],
                     "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 2
+                            "count": 3
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
@@ -170,6 +194,10 @@
                     "application": [
                         {
                             "xml": "<meta-data android:name=\"io.fabric.ApiKey\" android:value=\"d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"org.apache.cordova.camera.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/camera_provider_paths\" /></provider>",
                             "count": 1
                         }
                     ]
@@ -259,6 +287,12 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-camera-preview": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {},
@@ -679,6 +713,46 @@
                 "cordova.InAppBrowser.open",
                 "window.open"
             ]
+        },
+        {
+            "id": "cordova-plugin-camera.Camera",
+            "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
+            "pluginId": "cordova-plugin-camera",
+            "clobbers": [
+                "Camera"
+            ]
+        },
+        {
+            "id": "cordova-plugin-camera.CameraPopoverOptions",
+            "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
+            "pluginId": "cordova-plugin-camera",
+            "clobbers": [
+                "CameraPopoverOptions"
+            ]
+        },
+        {
+            "id": "cordova-plugin-camera.camera",
+            "file": "plugins/cordova-plugin-camera/www/Camera.js",
+            "pluginId": "cordova-plugin-camera",
+            "clobbers": [
+                "navigator.camera"
+            ]
+        },
+        {
+            "id": "cordova-plugin-camera.CameraPopoverHandle",
+            "file": "plugins/cordova-plugin-camera/www/CameraPopoverHandle.js",
+            "pluginId": "cordova-plugin-camera",
+            "clobbers": [
+                "CameraPopoverHandle"
+            ]
+        },
+        {
+            "id": "cordova-plugin-camera-preview.CameraPreview",
+            "file": "plugins/cordova-plugin-camera-preview/www/CameraPreview.js",
+            "pluginId": "cordova-plugin-camera-preview",
+            "clobbers": [
+                "CameraPreview"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -703,6 +777,8 @@
         "cordova-fabric-plugin": "1.1.9",
         "cordova-plugin-app-version": "0.1.9",
         "cordova-custom-config": "4.0.2",
-        "cordova-plugin-inappbrowser": "3.1.0"
+        "cordova-plugin-inappbrowser": "3.1.0",
+        "cordova-plugin-camera": "4.0.3",
+        "cordova-plugin-camera-preview": "0.9.0"
     }
 }
