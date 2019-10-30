@@ -41,3 +41,8 @@ SWIFT_OBJC_BRIDGING_HEADER = $(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h
 
 // (CB-11854)
 CODE_SIGN_ENTITLEMENTS = $(PROJECT_DIR)/$(PROJECT_NAME)/Entitlements-$(CONFIGURATION).plist
+
+LD_RUNPATH_SEARCH_PATHS = @executable_path/Frameworks
+IPHONEOS_DEPLOYMENT_TARGET = 10.2
+SWIFT_VERSION = 4.2
+SWIFT_OBJC_BRIDGING_HEADER = MathCityMap/Plugins/cordova-plugin-iosrtc/cordova-plugin-iosrtc-Bridging-Header.h

@@ -127,15 +127,15 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             if (this.navParams.data.showAllRoutes) this.showAllRoutes = true;
             else this.showAllRoutes = false;
         }
-        this.languageService.initialize().then(() => {
+        this.languageService.initialize().then(async () => {
             this.loadMap();
-            this.initializeMap();
+           await this.initializeMap();
         });
 
     }
 
     ngOnDestroy() {
-        if (this.eventSubscription) {
+        this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});        if (this.eventSubscription) {
             this.eventSubscription.unsubscribe();
             this.eventSubscription = null;
         }

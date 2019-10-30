@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74.834" height="82.893" viewBox="0 0 74.834 82.893">
+  <g id="Gruppe_533" data-name="Gruppe 533" transform="translate(2 2)">
+    <g id="Gruppe_515" data-name="Gruppe 515" transform="translate(0 24.793)">
+      <path id="Pfad_318" data-name="Pfad 318" d="M3068.219,557.964a1.115,1.115,0,0,1,1.9.788v51.289a1.117,1.117,0,0,1-1.115,1.115H3017.7a1.115,1.115,0,0,1-.646-2.025Zm-7.017,44.272V582.628L3041.6,602.235Z" transform="translate(-3016.582 -557.637)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <g id="Gruppe_514" data-name="Gruppe 514" transform="translate(9.085 9.073)">
+        <line id="Linie_175" data-name="Linie 175" x2="3.817" y2="3.817" transform="translate(33.785)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+        <line id="Linie_176" data-name="Linie 176" x2="3.817" y2="3.817" transform="translate(28.209 5.576)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+        <line id="Linie_177" data-name="Linie 177" x2="3.817" y2="3.817" transform="translate(22.568 11.217)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+        <line id="Linie_178" data-name="Linie 178" x2="3.817" y2="3.817" transform="translate(16.925 16.859)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+        <line id="Linie_179" data-name="Linie 179" x2="3.817" y2="3.817" transform="translate(11.283 22.502)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+        <line id="Linie_180" data-name="Linie 180" x2="3.817" y2="3.817" transform="translate(5.642 28.143)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+        <line id="Linie_181" data-name="Linie 181" x2="3.817" y2="3.817" transform="translate(0 33.785)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      </g>
+    </g>
+    <g id="Gruppe_513" data-name="Gruppe 513" transform="translate(51.529)">
+      <path id="Pfad_317" data-name="Pfad 317" d="M3118.147,585.489l7.756-17.452a2.076,2.076,0,0,1,3.793,0l7.754,17.452v50.558a9.652,9.652,0,0,1-19.3,0Z" transform="translate(-3118.147 -566.805)" fill="#fff" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Linie_171" data-name="Linie 171" x2="19.304" transform="translate(0.001 18.683)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Linie_172" data-name="Linie 172" x1="19.304" transform="translate(0.001 65.38)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Linie_173" data-name="Linie 173" y2="46.697" transform="translate(9.653 18.683)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <line id="Linie_174" data-name="Linie 174" x2="9.13" transform="translate(5.088 7.238)" fill="none" stroke="#036d99" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+    </g>
+  </g>
+</svg>

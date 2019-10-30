@@ -267,13 +267,16 @@ export class OrmService {
         return this.visibleRoutesCache;
     }
 
-    async getDownloadedRoutes(): Promise<Route[]> {
+    async getDownloadedRoutes(compareFn = null): Promise<Route[]> {
         let repo = await this.getRouteRepository();
         let result = await repo.find({
             where: {
                 downloaded: '1'
             }
         });
+        if (compareFn) {
+            result.sort(compareFn);
+        }
         return result;
     }
 
@@ -313,7 +316,7 @@ export class OrmService {
                 return statusCallback(done, total);
             });
             route.downloaded = true;
-            route.downloadedDate = new Date().toDateString();
+            route.downloadedDate = new Date().toDateString().split(' ').slice(1).join(' ');
             const repo = await this.getRouteRepository();
             await repo.save(route);
             this.updateRouteInCache(route);

@@ -12,6 +12,10 @@
     {
       "path": "/sessionUser",
       "proxyUrl": "http://api.mathcitymap.eu/public/index.php/sessionUser"
+    },
+    {
+      "path": "CameraFrame.html",
+      "proxyUrl": "file://assets/CameraFrame.html"
     }
   ],
   "app_id": ""

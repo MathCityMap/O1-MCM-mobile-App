@@ -8,6 +8,7 @@ import { Network } from '@ionic-native/network';
 import { Platform } from 'ionic-angular';
 import { Route } from '../entity/Route';
 import {OrmService} from "../services/orm-service";
+import { Storage } from "@ionic/storage";
 
 export class MapTile {
     constructor(private pZoomLevel: number, private pX: number, private pY: number) {
@@ -84,10 +85,10 @@ export class Helper {
     /*
     GLOBAL VARS #
      */
-    static readonly WEBSERVER_URL: string = "http://dev.mathcitymap.eu/"
+    static readonly WEBSERVER_URL: string = "http://mathcitymap.eu/"
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
-    static readonly API_URL: string = "http://dev.mathcitymap.eu/db_query_post.php"
+    static readonly API_URL: string = "http://mathcitymap.eu/db_query_post.php"
     static readonly REQUEST_PASS: string = "evilknivel2k16"
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"
@@ -127,14 +128,17 @@ export class Helper {
     static windowHeight: number = 0
     static searchResults: number = 999
 
+    private activateAddRouteModal: boolean = false;
+
     constructor(private http: Http, private gpsService: GpsService, private network: Network,
-                private platform: Platform, private ormService: OrmService) {
+                private platform: Platform, private ormService: OrmService, private storage: Storage) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();
     }
 
     private async init() {
+        this.devModeEnabled = (await this.storage.get('devMode') === 'true');
         await this.platform.ready();
         this.isOnline = navigator.onLine;
         console.info(`Connection status: ${this.isOnline}`);
@@ -312,12 +316,21 @@ export class Helper {
         }
     }
 
-    public setDevMode(value: boolean){
-        this.devModeEnabled = value;
+    public async setDevMode(value: string){
+        await this.storage.set('devMode', value);
+        this.devModeEnabled = (value === 'true')
     }
 
-    public getDevMode(): boolean {
+    public getDevMode() {
         return this.devModeEnabled;
+    }
+
+    public setActivateAddRoute(value: boolean){
+        this.activateAddRouteModal = value;
+    }
+
+    public getActivateAddRoute(): boolean {
+        return this.activateAddRouteModal;
     }
 
     public async calculateProgress(route: Route){

@@ -9,6 +9,7 @@
         .button-container{
             padding: $global-small-padding $global-small-padding $global-base-padding;
             max-width: 70px;
+            text-align: center;
             button{
                 margin: 0;
                 padding: 0;
@@ -72,6 +73,9 @@
         .row{
             align-items: stretch;
             flex-wrap: nowrap;
+        }
+        span{
+            color: color($colors, dark-grey);
         }
         .col{
             width: unset;

@@ -56,17 +56,18 @@ $colors: (
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
+$tabs-background: color($colors, primary);
+$tabs-ios-tab-min-height: 56px;
+
 $toolbar-background: color($colors, primary);
-$searchbar-ios-toolbar-input-background: white;
-$searchbar-md-input-box-shadow: none;
 
 $fab-size: 44px;
 $fab-list-button-background-color: color($colors, primary-darker);
 
 $searchbar-ios-input-background-color: transparent;
 $searchbar-ios-toolbar-input-background: transparent;
-
-
+$searchbar-ios-toolbar-input-background: white;
+$searchbar-md-input-box-shadow: none;
 $searchbar-ios-input-search-icon-color: color($colors, light);
 $searchbar-md-input-search-icon-color: color($colors, light);
 $searchbar-ios-input-text-color: color($colors, light);
@@ -117,9 +118,26 @@ $searchbar-md-input-placeholder-color: rgba(255, 255, 255, 0.7);
 
 
 $global-small-padding:  10px;
+$global-medium-padding:  15px;
 $global-base-padding:   20px;
 $global-large-padding:  40px;
 
+$border-radius-basic: 8px;
+
+$size-large: 56px;
+
+$tabs:(
+    home browse downloads create
+);
+
+// Task Rating System
+
+$ratings:(
+    perfect: color($colors, success),
+    good: color($colors, secondary),
+    failed: color($colors, error),
+    skipped: color($colors, grey),
+);
 
 
 // Own Mixins       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
@@ -139,11 +157,12 @@ $global-large-padding:  40px;
     box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
 }
 
+@mixin shadow-hard() {
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+}
+
 @mixin box-shadow($opacity) {
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
-  -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
-  -ms-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
-  box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
+  box-shadow: 0 0 6px 0 rgba(0,0,0,$opacity);
 }
 
 @mixin border($width, $style, $color) {
@@ -151,6 +170,17 @@ $global-large-padding:  40px;
     -moz-border: $width $style $color;
     -ms-border: $width $style $color;
     border: $width $style $color;
+}
+
+@mixin transition($property, $duration, $type) {
+    transition: $property $duration $type;
+}
+
+@mixin transition-basic() {
+    transition: all 0.3s ease-in-out;
+}
+@mixin transition-fast() {
+    transition: all 0.15s ease-in-out;
 }
 
 

@@ -5,6 +5,7 @@ import { Helper } from '../../classes/Helper';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LanguageService } from '../../services/language-service';
 
+
 @IonicPage()
 @Component({
   templateUrl: 'home.html'
@@ -15,22 +16,18 @@ export class HomePage {
   tab2Root = 'RoutesListPage';
   tab3Root = 'PortalPage';
 
-  devMode: boolean = false;
-
-
   constructor(private navCtrl: NavController, private platform: Platform,
               private splashScreen: SplashScreen, private languageService: LanguageService,
               private helper: Helper) {
     HomePage.nav = navCtrl;
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.platform.ready().then(() => {
         this.languageService.initialize().then(() => {
             console.log('Platform is ready!');
             this.splashScreen.hide();
         });
     });
-    this.devMode = this.helper.getDevMode();
   }
 }

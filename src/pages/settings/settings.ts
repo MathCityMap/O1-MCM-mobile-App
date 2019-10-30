@@ -54,7 +54,7 @@ export class SettingsPage {
         });
     }
 
-    switchDevMode(){
-        this.helper.setDevMode(this.developerMode);
+    async switchDevMode(){
+       await this.helper.setDevMode(this.developerMode+'');
     }
 }

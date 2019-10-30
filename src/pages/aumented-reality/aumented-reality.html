@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ARLauncher</ion-title>
+    <ion-buttons slot="end">
+      <button ion-button (click)="close()"><ion-icon name="close" slot="icon-only"></ion-icon></button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <iframe *ngIf="scene == 0" style="position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;" allow="camera;microphone" src="assets/Example1.html"></iframe>
+
+  <iframe *ngIf="scene == 1" style="position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;" src="assets/Example2.html"></iframe>
+
+  <iframe *ngIf="scene == 2" style="position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;" src="assets/Example3.html"></iframe>
+
+  <ion-fab left bottom>
+    <button ion-fab color="primary" (click)="switchMode()">
+      <img src="assets/icons/map.svg"/>
+    </button>
+  </ion-fab>
+
+</ion-content>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -53,9 +53,11 @@ import { ChatPageModule } from '../pages/chat/chat.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
+import {CameraPreview} from "@ionic-native/camera-preview";
 
 
 @NgModule({
+     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
     declarations: [
         MyApp,
         RouteInfo,
@@ -123,6 +125,7 @@ import { AppVersion } from '@ionic-native/app-version';
         InAppBrowser,
         AppVersion,
         Globalization,
+        CameraPreview,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

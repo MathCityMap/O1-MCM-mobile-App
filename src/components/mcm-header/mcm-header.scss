@@ -31,11 +31,8 @@ ion-header{
         &.toolbar{
           padding: 10px;
 
-            &.toolbar-ios{
-              height: 54px;
-            }
-            &.toolbar-md{
-              height: 54px;
+            &.toolbar-ios, &.toolbar-md{
+              height: $size-large;
             }
         }
     }
