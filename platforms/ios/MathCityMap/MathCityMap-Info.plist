@@ -26,12 +26,26 @@
     <string>????</string>
     <key>CFBundleVersion</key>
     <string>2.3.5</string>
-    <key>Fabric</key>
-    <dict>
-      <key>APIKey</key>
-      <string>d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64</string>
-    </dict>
     <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>NSMainNibFile</key>
+    <string/>
+    <key>NSMainNibFile~ipad</key>
+    <string/>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UIRequiresFullScreen</key>
     <true/>
     <key>NSAppTransportSecurity</key>
     <dict>
@@ -86,6 +100,12 @@
         </dict>
       </dict>
     </dict>
+    <key>UILaunchStoryboardName</key>
+    <string>CDVLaunchScreen</string>
+    <key>NSCameraUsageDescription</key>
+    <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>MathCityMap would like to know your position to show distance to available routes.</string>
     <key>NSBluetoothAlwaysUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>
     <key>NSBluetoothPeripheralUsageDescription</key>
@@ -94,16 +114,6 @@
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to calendar.</string>
     <key>NSContactsUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>MathCityMap would like to know your position to show distance to available routes.</string>
-    <key>NSMainNibFile</key>
-    <string/>
-    <key>NSMainNibFile~ipad</key>
-    <string/>
     <key>NSMicrophoneUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to microphone.</string>
     <key>NSMotionUsageDescription</key>
@@ -112,22 +122,14 @@
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to photo library.</string>
     <key>NSRemindersUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
-    <key>UILaunchStoryboardName</key>
-    <string>CDVLaunchScreen</string>
-    <key>UIRequiresFullScreen</key>
-    <true/>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationPortraitUpsideDown</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
-    <key>NSCameraUsageDescription</key>
-    <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
+    <key>Fabric</key>
+    <dict>
+      <key>APIKey</key>
+      <string>d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64</string>
+    </dict>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
   </dict>
 </plist>

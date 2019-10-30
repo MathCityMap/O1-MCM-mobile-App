@@ -1,87 +1,87 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "installed_plugins": {
-        "com-sarriaroman-photoviewer": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-advanced-http": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-local-notification": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-native-spinner": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-request-location-accuracy": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-sqlite-storage": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova.plugins.diagnostic": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-fabric-plugin": {
-            "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
-            "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3",
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-custom-config": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-camera-preview": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        }
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "dependent_plugins": {
-        "cordova-plugin-badge": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        }
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-native-spinner": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova.plugins.diagnostic": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-fabric-plugin": {
+      "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
+      "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3",
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-custom-config": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-camera-preview": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    }
+  }
 }

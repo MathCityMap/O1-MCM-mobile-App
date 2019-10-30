@@ -49,7 +49,6 @@ export class MyApp {
           this.activeNarrative = narrative;
       });
 
-
   }
 
     ngOnInit()
