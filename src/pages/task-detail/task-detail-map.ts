@@ -69,23 +69,8 @@ export class TaskDetailMap implements OnDestroy {
         private gpsService: GpsService,
         private app: MyApp
     ) {
-        this.userPositionIcon = L.icon({
-            iconUrl:"./assets/icons/icon_mapposition.png" ,
-            iconSize: [38, 41],
-            className:'marker'
-        });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-        this.pointIcon = L.icon({
-            iconUrl:"./assets/icons/icon_taskmarker-open.png" ,
-            iconSize: [35, 48],
-            iconAnchor: [17, 48],
-            className:'marker'
-        });
-        this.preDefinedPointIcon = L.icon({
-            iconUrl:"./assets/icons/icon_taskmarker-failed.png" ,
-            iconSize: [35, 48],
-            iconAnchor: [17, 48],
-            className:'marker'
-        });
+        this.updateIcons();
+
         this.taskDetails = task;
         this.routeDetails = route;
         // Init Marker Array
@@ -98,6 +83,25 @@ export class TaskDetailMap implements OnDestroy {
         if (this.watchSubscription) {
             this.watchSubscription.unsubscribe();
             this.watchSubscription = null;
+        }
+    }
+
+
+
+    updateIcons() {
+
+        switch (this.app.activeNarrative) {
+            case 'pirates':
+                this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.pointIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
+                this.preDefinedPointIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
+                break;
+            default:
+                this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], className:'marker'});
+                this.pointIcon = L.icon({iconUrl:"./assets/icons/marker-task-open.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.preDefinedPointIcon = L.icon({iconUrl:"./assets/icons/task-marker-failed.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                break;
+
         }
     }
 
@@ -133,6 +137,8 @@ export class TaskDetailMap implements OnDestroy {
             console.log("Marker placed");
         }
     }
+
+
 
     markerCanBeSet(clickLatLng: L.LatLng): boolean{
         // Markers need to be placed within a certain radius from the task
@@ -421,5 +427,8 @@ export class TaskDetailMap implements OnDestroy {
     getMap():L.Map{
         return this.map;
     }
+
+
+
 }
 
