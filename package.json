@@ -22,6 +22,8 @@
     "@angular/platform-browser": "4.4.4",
     "@angular/platform-browser-dynamic": "4.4.4",
     "@ionic-native/app-version": "4.10.1",
+    "@ionic-native/camera": "^5.15.1",
+    "@ionic-native/camera-preview": "4",
     "@ionic-native/core": "4.3.0",
     "@ionic-native/deeplinks": "4.18",
     "@ionic-native/diagnostic": "4.4.2",

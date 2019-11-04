@@ -78,6 +78,9 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
+        "cordova-plugin-camera-preview": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
         "ionic-plugin-deeplinks": {
             "URL_SCHEME": "mathcitymap",
             "DEEPLINK_SCHEME": "https",

@@ -28,18 +28,6 @@ export class AumentedRealityPage {
               private modalCtrl: ModalController, private cameraPreview: CameraPreview) {
 
 
-    var cordova = window.cordova;
-    if (cordova && cordova.plugins && cordova.plugins.iosrtc) {
-
-      // Expose WebRTC and GetUserMedia SHIM as Globals (Optional)
-      // Alternatively WebRTC API will be inside cordova.plugins.iosrtc namespace
-      cordova.plugins.iosrtc.registerGlobals();
-
-      // Enable iosrtc debug (Optional)
-      cordova.plugins.iosrtc.debug.enable('*', true);
-    }
-
-
     let cameraPreviewOpts: CameraPreviewOptions = {
       x: 0,
       y: 0,

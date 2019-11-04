@@ -67,6 +67,14 @@
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
+    <feature name="CameraPreview">
+        <param name="android-package" value="com.cordovaplugincamerapreview.CameraPreview" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IonicDeeplinkPlugin">
+        <param name="android-package" value="io.ionic.links.IonicDeeplink" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="RequestLocationAccuracy">
         <param name="android-package" value="cordova.plugin.RequestLocationAccuracy" />
     </feature>
@@ -130,8 +138,4 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.DeviceDefault" />
     <preference name="AndroidLaunchMode" value="singleTask" />
-    <feature name="IonicDeeplinkPlugin">
-        <param name="android-package" value="io.ionic.links.IonicDeeplink" />
-        <param name="onload" value="true" />
-    </feature>
 </widget>

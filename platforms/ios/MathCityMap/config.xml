@@ -96,6 +96,9 @@
         <param name="ios-package" value="SocialSharing" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="CameraPreview">
+        <param name="ios-package" onload="true" value="CameraPreview" />
+    </feature>
     <feature name="IonicDeeplinkPlugin">
         <param name="ios-package" onload="true" value="IonicDeeplinkPlugin" />
     </feature>
@@ -171,6 +174,9 @@
     <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
     </config-file>
+    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+        <string>Used to take pictures</string>
+    </edit-config>
     <config-file parent="NSContactsUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
     </config-file>

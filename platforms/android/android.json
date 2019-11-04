@@ -93,6 +93,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"CameraPreview\"><param name=\"android-package\" value=\"com.cordovaplugincamerapreview.CameraPreview\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"IonicDeeplinkPlugin\"><param name=\"android-package\" value=\"io.ionic.links.IonicDeeplink\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         }
@@ -133,6 +137,10 @@
                         {
                             "xml": "<provider android:authorities=\"${applicationId}.sharing.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"nl.xservices.plugins.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/sharing_paths\" /></provider>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<activity android:name=\"com.cordovaplugincamerapreview.CameraActivity\" android:screenOrientation=\"portrait\" android:theme=\"@style/CameraPreviewTheme\" />",
+                            "count": 1
                         }
                     ],
                     "/manifest": [
@@ -150,6 +158,18 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.camera\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.camera.autofocus\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
                             "count": 1
                         }
                     ],
@@ -292,6 +312,9 @@
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-camera-preview": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "ionic-plugin-deeplinks": {
@@ -748,6 +771,14 @@
             ]
         },
         {
+            "id": "cordova-plugin-camera-preview.CameraPreview",
+            "file": "plugins/cordova-plugin-camera-preview/www/CameraPreview.js",
+            "pluginId": "cordova-plugin-camera-preview",
+            "clobbers": [
+                "CameraPreview"
+            ]
+        },
+        {
             "id": "ionic-plugin-deeplinks.deeplink",
             "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
             "pluginId": "ionic-plugin-deeplinks",
@@ -782,6 +813,7 @@
         "cordova-plugin-inappbrowser": "3.1.0",
         "es6-promise-plugin": "4.2.2",
         "cordova-plugin-x-socialsharing": "5.4.0",
+        "cordova-plugin-camera-preview": "0.9.0",
         "ionic-plugin-deeplinks": "1.0.20"
     }
 }

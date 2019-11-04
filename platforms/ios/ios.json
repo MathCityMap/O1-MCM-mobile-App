@@ -49,12 +49,14 @@
                     ],
                     "NSCameraUsageDescription": [
                         {
-                            "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>",
-                            "count": 2
-                        },
-                        {
                             "xml": "<string>This app requires camera access to function properly.</string>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<string>Used to take pictures</string>",
+                            "count": 1,
+                            "mode": "merge",
+                            "id": "config.xml"
                         }
                     ],
                     "NSContactsUsageDescription": [
@@ -243,6 +245,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"CameraPreview\"><param name=\"ios-package\" onload=\"true\" value=\"CameraPreview\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"IonicDeeplinkPlugin\"><param name=\"ios-package\" onload=\"true\" value=\"IonicDeeplinkPlugin\" /></feature>",
                             "count": 1
                         },
@@ -340,6 +346,9 @@
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-camera-preview": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "ionic-plugin-deeplinks": {
@@ -801,6 +810,14 @@
             ]
         },
         {
+            "id": "cordova-plugin-camera-preview.CameraPreview",
+            "file": "plugins/cordova-plugin-camera-preview/www/CameraPreview.js",
+            "pluginId": "cordova-plugin-camera-preview",
+            "clobbers": [
+                "CameraPreview"
+            ]
+        },
+        {
             "id": "ionic-plugin-deeplinks.deeplink",
             "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
             "pluginId": "ionic-plugin-deeplinks",
@@ -836,6 +853,7 @@
         "ionic-plugin-keyboard": "2.2.1",
         "es6-promise-plugin": "4.2.2",
         "cordova-plugin-x-socialsharing": "5.4.0",
+        "cordova-plugin-camera-preview": "0.9.0",
         "ionic-plugin-deeplinks": "1.0.20"
     }
 }

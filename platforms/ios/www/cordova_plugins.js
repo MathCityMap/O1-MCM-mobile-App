@@ -450,6 +450,14 @@ module.exports = [
     ]
   },
   {
+    "id": "cordova-plugin-camera-preview.CameraPreview",
+    "file": "plugins/cordova-plugin-camera-preview/www/CameraPreview.js",
+    "pluginId": "cordova-plugin-camera-preview",
+    "clobbers": [
+      "CameraPreview"
+    ]
+  },
+  {
     "id": "ionic-plugin-deeplinks.deeplink",
     "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
     "pluginId": "ionic-plugin-deeplinks",
@@ -487,6 +495,7 @@ module.exports.metadata =
   "ionic-plugin-keyboard": "2.2.1",
   "es6-promise-plugin": "4.2.2",
   "cordova-plugin-x-socialsharing": "5.4.0",
+  "cordova-plugin-camera-preview": "0.9.0",
   "ionic-plugin-deeplinks": "1.0.20"
 };
 // BOTTOM OF METADATA

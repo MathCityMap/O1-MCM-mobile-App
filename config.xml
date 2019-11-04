@@ -96,6 +96,9 @@
         <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
             <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
         </config-file>
+        <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
+            <string>Used to take pictures</string>
+        </edit-config>
         <config-file parent="NSContactsUsageDescription" platform="ios" target="*-Info.plist">
             <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
         </config-file>
@@ -152,6 +155,7 @@
     <engine name="ios" spec="~4.5.5" />
     <plugin name="es6-promise-plugin" spec="~4.2.2" />
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.4.0" />
+    <plugin name="cordova-plugin-camera-preview" spec="~0.9.0" />
     <plugin name="ionic-plugin-deeplinks" spec="~1.0.20">
         <variable name="URL_SCHEME" value="mathcitymap" />
         <variable name="DEEPLINK_SCHEME" value="https" />

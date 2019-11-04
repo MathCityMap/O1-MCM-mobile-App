@@ -8,6 +8,7 @@ import {ModalsService} from "../../services/modals-service";
 import {DB_Updater} from "../../classes/DB_Updater";
 import {OrmService} from "../../services/orm-service";
 
+
 @IonicPage()
 @Component({
     selector: 'page-dashboard',
@@ -81,5 +82,12 @@ export class DashboardPage {
             console.log('Got a deeplink that didn\'t match', nomatch);
         });
     }
+
+
+
+    augmentedMode(){
+        this.navCtrl.push('AumentedRealityPage');
+    }
+
 
 }

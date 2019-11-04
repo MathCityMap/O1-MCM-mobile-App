@@ -75,8 +75,18 @@
 		1BE0451082DE420EBEF898A0 /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8648CC52764446FD95567937 /* SocialSharing.m */; };
 		D53642EAC1964720ACF340A9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8518F95BB5744C41BC64964A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		B20CDA2C3E0A44D19E98E4BD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDB51364E484A92800D5C9F /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F551CC44F6894F45B64CEF8C /* AppDelegate+IonicDeeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7735F9BBEE44C18891B1F9 /* AppDelegate+IonicDeeplink.m */; };
-		0153059199C94E2E83410033 /* IonicDeeplinkPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C479751A1434573A9215C03 /* IonicDeeplinkPlugin.m */; };
+		C92B1032A0914CFC815A304D /* CameraPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = B407221D8FD64F30AE2964FD /* CameraPreview.m */; };
+		3D51F1704CE24A2796282929 /* TemperatureAndTint.m in Sources */ = {isa = PBXBuildFile; fileRef = 208B981289A1430EAB78E05D /* TemperatureAndTint.m */; };
+		544446DC817147FA863688BA /* CameraSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F95ADF4BC9A4B509E7CE685 /* CameraSessionManager.m */; };
+		32CBF8F3BB30452D9E27D70B /* CameraRenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C03F988BF9641B695FA8384 /* CameraRenderController.m */; };
+		F56F3E9A386B4FECBB0717B7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BFA24B8B4F49978130540D /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		996D32120F0045E9B5F9C2B2 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60AEF7CC6DB4D678C9924C3 /* CoreImage.framework */; };
+		DFC4A105E8414EECB30F147C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3C34D2E716440F96349370 /* OpenGLES.framework */; };
+		D09AB43818FD4A16835CCC8B /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870CAFC01E93408998D2D466 /* GLKit.framework */; };
+		393EA5DA01E24AD694210F0E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DA68E275F24A51B8E26A97 /* CoreVideo.framework */; };
+		70F312119940488DB53BDAE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639E795643184A45AA0262AD /* QuartzCore.framework */; };
+		2BE4DA2E90E84746AE5DE55E /* AppDelegate+IonicDeeplink.m in Sources */ = {isa = PBXBuildFile; fileRef = DC80105DF32B4A458ED8A51A /* AppDelegate+IonicDeeplink.m */; };
+		7C9660D3D279405DB4FD85C1 /* IonicDeeplinkPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DA9E0385894185B15F2766 /* IonicDeeplinkPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,9 +238,23 @@
 		8411A555233447249B2AF812 /* SocialSharing.h */ = {isa = PBXFileReference; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		8518F95BB5744C41BC64964A /* Social.framework */ = {isa = PBXFileReference; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		5EDB51364E484A92800D5C9F /* MessageUI.framework */ = {isa = PBXFileReference; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		1F7735F9BBEE44C18891B1F9 /* AppDelegate+IonicDeeplink.m */ = {isa = PBXFileReference; name = "AppDelegate+IonicDeeplink.m"; path = "ionic-plugin-deeplinks/AppDelegate+IonicDeeplink.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		7C479751A1434573A9215C03 /* IonicDeeplinkPlugin.m */ = {isa = PBXFileReference; name = "IonicDeeplinkPlugin.m"; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		08643B77B0594B39B2C9990A /* IonicDeeplinkPlugin.h */ = {isa = PBXFileReference; name = "IonicDeeplinkPlugin.h"; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		B407221D8FD64F30AE2964FD /* CameraPreview.m */ = {isa = PBXFileReference; name = "CameraPreview.m"; path = "cordova-plugin-camera-preview/CameraPreview.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		208B981289A1430EAB78E05D /* TemperatureAndTint.m */ = {isa = PBXFileReference; name = "TemperatureAndTint.m"; path = "cordova-plugin-camera-preview/TemperatureAndTint.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		8F95ADF4BC9A4B509E7CE685 /* CameraSessionManager.m */ = {isa = PBXFileReference; name = "CameraSessionManager.m"; path = "cordova-plugin-camera-preview/CameraSessionManager.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		0C03F988BF9641B695FA8384 /* CameraRenderController.m */ = {isa = PBXFileReference; name = "CameraRenderController.m"; path = "cordova-plugin-camera-preview/CameraRenderController.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		E50C58D4B5E240A498524FBE /* CameraPreview.h */ = {isa = PBXFileReference; name = "CameraPreview.h"; path = "cordova-plugin-camera-preview/CameraPreview.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		5A6FC977A9334C538B6914A0 /* TemperatureAndTint.h */ = {isa = PBXFileReference; name = "TemperatureAndTint.h"; path = "cordova-plugin-camera-preview/TemperatureAndTint.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		EDE19C97AD2D4F1BB3156B16 /* CameraSessionManager.h */ = {isa = PBXFileReference; name = "CameraSessionManager.h"; path = "cordova-plugin-camera-preview/CameraSessionManager.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E1CAC854F1E84112BBD289B6 /* CameraRenderController.h */ = {isa = PBXFileReference; name = "CameraRenderController.h"; path = "cordova-plugin-camera-preview/CameraRenderController.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		93BFA24B8B4F49978130540D /* ImageIO.framework */ = {isa = PBXFileReference; name = "ImageIO.framework"; path = "System/Library/Frameworks/ImageIO.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		C60AEF7CC6DB4D678C9924C3 /* CoreImage.framework */ = {isa = PBXFileReference; name = "CoreImage.framework"; path = "System/Library/Frameworks/CoreImage.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		EC3C34D2E716440F96349370 /* OpenGLES.framework */ = {isa = PBXFileReference; name = "OpenGLES.framework"; path = "System/Library/Frameworks/OpenGLES.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		870CAFC01E93408998D2D466 /* GLKit.framework */ = {isa = PBXFileReference; name = "GLKit.framework"; path = "System/Library/Frameworks/GLKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		F9DA68E275F24A51B8E26A97 /* CoreVideo.framework */ = {isa = PBXFileReference; name = "CoreVideo.framework"; path = "System/Library/Frameworks/CoreVideo.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		639E795643184A45AA0262AD /* QuartzCore.framework */ = {isa = PBXFileReference; name = "QuartzCore.framework"; path = "System/Library/Frameworks/QuartzCore.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		DC80105DF32B4A458ED8A51A /* AppDelegate+IonicDeeplink.m */ = {isa = PBXFileReference; name = "AppDelegate+IonicDeeplink.m"; path = "ionic-plugin-deeplinks/AppDelegate+IonicDeeplink.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		97DA9E0385894185B15F2766 /* IonicDeeplinkPlugin.m */ = {isa = PBXFileReference; name = "IonicDeeplinkPlugin.m"; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		FA2742A8371A45C880CFD00C /* IonicDeeplinkPlugin.h */ = {isa = PBXFileReference; name = "IonicDeeplinkPlugin.h"; path = "ionic-plugin-deeplinks/IonicDeeplinkPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +282,12 @@
 				88FCD478AA9041068E2D1F4D /* Contacts.framework in Frameworks */,
 				D53642EAC1964720ACF340A9 /* Social.framework in Frameworks */,
 				B20CDA2C3E0A44D19E98E4BD /* MessageUI.framework in Frameworks */,
+				F56F3E9A386B4FECBB0717B7 /* ImageIO.framework in Frameworks */,
+				996D32120F0045E9B5F9C2B2 /* CoreImage.framework in Frameworks */,
+				DFC4A105E8414EECB30F147C /* OpenGLES.framework in Frameworks */,
+				D09AB43818FD4A16835CCC8B /* GLKit.framework in Frameworks */,
+				393EA5DA01E24AD694210F0E /* CoreVideo.framework in Frameworks */,
+				70F312119940488DB53BDAE4 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +377,12 @@
 				161D8D2874834687806B0B96 /* Contacts.framework */,
 				8518F95BB5744C41BC64964A /* Social.framework */,
 				5EDB51364E484A92800D5C9F /* MessageUI.framework */,
+				93BFA24B8B4F49978130540D /* ImageIO.framework */,
+				C60AEF7CC6DB4D678C9924C3 /* CoreImage.framework */,
+				EC3C34D2E716440F96349370 /* OpenGLES.framework */,
+				870CAFC01E93408998D2D466 /* GLKit.framework */,
+				F9DA68E275F24A51B8E26A97 /* CoreVideo.framework */,
+				639E795643184A45AA0262AD /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -458,9 +494,17 @@
 				8648CC52764446FD95567937 /* SocialSharing.m */,
 				7DE7D61776014B019902E553 /* NSString+SSURLEncoding.h */,
 				8411A555233447249B2AF812 /* SocialSharing.h */,
-				1F7735F9BBEE44C18891B1F9 /* AppDelegate+IonicDeeplink.m */,
-				7C479751A1434573A9215C03 /* IonicDeeplinkPlugin.m */,
-				08643B77B0594B39B2C9990A /* IonicDeeplinkPlugin.h */,
+				B407221D8FD64F30AE2964FD /* CameraPreview.m */,
+				208B981289A1430EAB78E05D /* TemperatureAndTint.m */,
+				8F95ADF4BC9A4B509E7CE685 /* CameraSessionManager.m */,
+				0C03F988BF9641B695FA8384 /* CameraRenderController.m */,
+				E50C58D4B5E240A498524FBE /* CameraPreview.h */,
+				5A6FC977A9334C538B6914A0 /* TemperatureAndTint.h */,
+				EDE19C97AD2D4F1BB3156B16 /* CameraSessionManager.h */,
+				E1CAC854F1E84112BBD289B6 /* CameraRenderController.h */,
+				DC80105DF32B4A458ED8A51A /* AppDelegate+IonicDeeplink.m */,
+				97DA9E0385894185B15F2766 /* IonicDeeplinkPlugin.m */,
+				FA2742A8371A45C880CFD00C /* IonicDeeplinkPlugin.h */,
 			);
 			name = Plugins;
 			path = MathCityMap/Plugins;
@@ -650,8 +694,12 @@
 				44018DA6B03043C7901A2522 /* IonicKeyboard.m in Sources */,
 				14C4E5CD700849A5BD46DC92 /* NSString+SSURLEncoding.m in Sources */,
 				1BE0451082DE420EBEF898A0 /* SocialSharing.m in Sources */,
-				F551CC44F6894F45B64CEF8C /* AppDelegate+IonicDeeplink.m in Sources */,
-				0153059199C94E2E83410033 /* IonicDeeplinkPlugin.m in Sources */,
+				C92B1032A0914CFC815A304D /* CameraPreview.m in Sources */,
+				3D51F1704CE24A2796282929 /* TemperatureAndTint.m in Sources */,
+				544446DC817147FA863688BA /* CameraSessionManager.m in Sources */,
+				32CBF8F3BB30452D9E27D70B /* CameraRenderController.m in Sources */,
+				2BE4DA2E90E84746AE5DE55E /* AppDelegate+IonicDeeplink.m in Sources */,
+				7C9660D3D279405DB4FD85C1 /* IonicDeeplinkPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

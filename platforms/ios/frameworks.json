@@ -15,5 +15,11 @@
     "EventKit.framework": 1,
     "Contacts.framework": 1,
     "Social.framework": 1,
-    "MessageUI.framework": 1
+    "MessageUI.framework": 1,
+    "ImageIO.framework": 1,
+    "CoreImage.framework": 1,
+    "OpenGLES.framework": 1,
+    "GLKit.framework": 1,
+    "CoreVideo.framework": 1,
+    "QuartzCore.framework": 1
 }
