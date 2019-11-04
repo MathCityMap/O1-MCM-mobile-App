@@ -43,6 +43,8 @@ export class TaskDetailMap implements OnDestroy {
     userPositionIcon;
     preDefinedPointIcon;
 
+    pointsIcons: any = [];
+
     // Markers (set by user) settings
     pointMarkers: Array<Marker> = [];
     pointIcon;
@@ -93,13 +95,19 @@ export class TaskDetailMap implements OnDestroy {
         switch (this.app.activeNarrative) {
             case 'pirates':
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.pointIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
                 this.preDefinedPointIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
+                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/marker-task-open.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/marker-route-public.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/marker-route-private.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/marker-task-failed.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
                 break;
             default:
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], className:'marker'});
-                this.pointIcon = L.icon({iconUrl:"./assets/icons/marker-task-open.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
                 this.preDefinedPointIcon = L.icon({iconUrl:"./assets/icons/task-marker-failed.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/marker-task-open.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/marker-route-public.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/marker-route-private.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/marker-task-failed.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
                 break;
 
         }
@@ -124,7 +132,7 @@ export class TaskDetailMap implements OnDestroy {
             }
             if(this.pointMarkers[index] == null){
                 let label = String.fromCharCode("A".charCodeAt(0) + index);
-                let newMarker = L.marker(locationLatLng, {icon: this.pointIcon});
+                let newMarker = L.marker(locationLatLng, {icon: this.pointsIcons[index]});
                 newMarker.addTo(this.map);
                 this.pointMarkers[index] = newMarker;
             }
