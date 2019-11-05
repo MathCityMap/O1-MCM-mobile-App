@@ -1,5 +1,5 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Content, Events, IonicPage, ModalController, NavController, ToastController} from 'ionic-angular';
+import {Component, OnDestroy, ViewChild} from '@angular/core';
+import {Content, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ConnectionQuality, Helper} from '../../../../classes/Helper';
 import {timeout} from 'promise-timeout';
 
@@ -15,17 +15,25 @@ import {GpsService} from '../../../../services/gps-service';
 import {ChatAndSessionService} from "../../../../services/chat-and-session-service";
 import {MCMIconModal} from "../../../../modals/MCMIconModal/MCMIconModal";
 import {MCMModalType, MyApp} from "../../../../app/app.component";
+import {SearchPipe} from "../../../../app/pipes/search.pipe";
 
 @IonicPage()
 @Component({
-    selector: 'page-routes-list',
+    selector: 'routes-list',
     templateUrl: 'RoutesList.html'
 })
 export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
     public items: Route[] = [];
+    public downloadedItems: Route[] = [];
     public filteredItems: Route[] = [];
     private routesListSearch: string = "";
+
+    private pipe: SearchPipe;
+
+    private filteredResult: Route[];
+
+    private showAllRoutes: boolean = true;
 
     modal: any;
     private eventSubscription: Subscription;
@@ -45,14 +53,16 @@ export class RoutesListPage implements OnDestroy {
                 public helper: Helper,
                 private gpsService: GpsService,
                 private chatAndSessionService: ChatAndSessionService,
-                private toastCtrl: ToastController,
-                private events: Events,
-                private app: MyApp
+                private app: MyApp,
+                private navParams: NavParams,
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
+            this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
             this.sortAndRebuildFilteredItems();
+            this.filterItems();
+
         });
     }
 
@@ -60,16 +70,16 @@ export class RoutesListPage implements OnDestroy {
         this.eventSubscription.unsubscribe();
     }
 
-    public getRoutesList(){
+    public getRoutesList() {
         return this.routesListSearch.length > 2 ? this.items : this.filteredItems;
     }
 
-    public getSearchResults(){
-        return Helper.searchResults;
-    }
-
     async ionViewWillEnter() {
-        console.log('RoutesList ionViewWillEnter()');
+        console.log('RoutesList ionViewWillEnter()', this.navParams);
+        this.pipe = new SearchPipe();
+        if(this.navParams.data && this.navParams.data.showAllRoutes != null) {
+            this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
+        }
         let activeUser = await this.ormService.getActiveUser();
         if (!activeUser) {
             // initial app start
@@ -139,7 +149,7 @@ export class RoutesListPage implements OnDestroy {
                     {
                         title: 'a_private_session_quit',
                         callback: function () {
-                            if(this.sessionInfo != null){
+                            if (this.sessionInfo != null) {
                                 let details = JSON.stringify({});
                                 that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
                             }
@@ -160,28 +170,15 @@ export class RoutesListPage implements OnDestroy {
             modal.present();
         }
         this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
+        this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
         this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
-    }
+        this.filterItems();
 
-    private compareFunction(a: Route, b: Route) {
-        const distA = a.getDistance();
-        const distB = b.getDistance();
-        if (a.downloaded && !b.downloaded)
-            return -1;
-        if (!a.downloaded && b.downloaded)
-            return 1;
-        if (distA > distB) {
-            return 1;
-        } else if (distA < distB) {
-            return -1;
+        if(this.helper.getActivateAddRoute()){
+            this.addRouteByCode();
+            this.helper.setActivateAddRoute(false);
         }
-        return a.title.localeCompare(b.title);
-    }
 
-    async removeRoute(route: Route) {
-        await this.ormService.removeDownloadedRoute(route);
-        this.sortAndRebuildFilteredItems();
-        this.scrollTo(route);
     }
 
     async doRefresh(refresher) {
@@ -192,7 +189,7 @@ export class RoutesListPage implements OnDestroy {
             } catch (e) {
                 console.error('caught error while checking for updates:', e);
             }
-            this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction, true);
+            this.items = await this.ormService.getVisibleRoutes(false, null, true);
             this.sortAndRebuildFilteredItems();
         }
         refresher.complete();
@@ -216,12 +213,17 @@ export class RoutesListPage implements OnDestroy {
         }
     }
 
-    async doDownload(route: Route) {
-        if (await this.modalsService.doDownload(route)) {
-            this.sortAndRebuildFilteredItems();
-            this.scrollTo(route);
+    private compareFunction(a: Route, b: Route) {
+        const distA = a.getDistance();
+        const distB = b.getDistance();
+        if (distA > distB) {
+            return 1;
+        } else if (distA < distB) {
+            return -1;
         }
+        return a.title.localeCompare(b.title);
     }
+
 
     scrollTo(route: Route) {
         let that = this;
@@ -248,7 +250,36 @@ export class RoutesListPage implements OnDestroy {
     }
 
     private sortAndRebuildFilteredItems() {
-        this.items.sort(this.compareFunction);
         this.filteredItems = this.items.slice(0, this.filteredItems.length);
     }
+
+/*    async reactOnDownloadedRoute(event) {
+        if (event && event.route) {
+            //this.modalsService.showRoute(event.route, this.navCtrl);
+        }
+    }*/
+
+    async switchToMap() {
+        //this.events.publish('changeViewType', (false));
+        this.navCtrl.setRoot('RoutesMapPage', {showAllRoutes: this.showAllRoutes});
+    }
+
+    async updateRoutes() {
+        this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
+    }
+
+    showRouteDetail(item: any) {
+        this.modalsService.showRoute(item, this.navCtrl).then(async () => {
+            await this.updateRoutes();
+        })
+    }
+
+    filterItems(){
+        let value;
+        if(this.showAllRoutes) value = this.getRoutesList();
+        else value = this.downloadedItems;
+        this.filteredResult = this.pipe.transform(value, 'title,city,code', this.routesListSearch)
+
+    }
+
 }

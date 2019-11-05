@@ -1,0 +1,49 @@
+<div class="main">
+    <div *ngIf="route" class="container image" [ngClass]="{'downloaded' : !!route.downloaded, 'completed': !!route.completed}">
+        <div class="cover">
+            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
+        </div>
+        <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>
+    </div>
+
+    <div *ngIf="route" class="container text">
+        <h2 class="item-text-wrap">{{route.title}}</h2>
+        <div class="bottom">
+            <div class="text">
+            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: 'm'}}</span>
+            <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>
+            </div>
+            <div *ngIf="route" class="container buttons">
+                <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">
+                    <img src="./assets/icons/download.svg"/>
+                </button>
+                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">
+                    <img src="./assets/icons/delete.svg"/>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="secondary">
+    <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>
+    <mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>
+    <div class="evaluation" *ngIf="route?.completed && route?.scores">
+        <span class="icon finished">{{route.completedDate}}</span>
+        <div class="ratings">
+            <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
+            <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>
+            <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>
+        </div>
+    </div>
+
+    <!--Dummy just for quick testing purposes  -->
+    <!--<div class="evaluation">-->
+        <!--<span class="icon finished">Oct 21 2019</span>-->
+        <!--<div class="ratings">-->
+            <!--<div class="rating perfect"><p>1</p></div>-->
+            <!--<div class="rating good"><p>3</p></div>-->
+            <!--<div class="rating failed"><p>20</p></div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

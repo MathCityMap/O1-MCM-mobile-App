@@ -1,4 +1,4 @@
-import { Component,Input, Inject} from '@angular/core';
+import { Component} from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { MCMModalType } from '../../app/app.component';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
@@ -9,7 +9,6 @@ import { ImagesService } from '../../services/images-service';
 @Component({
     selector: 'mcm-icon-modal',
     templateUrl:'./MCMIconModal.html',
-/*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMIconModal{
 
@@ -76,7 +75,7 @@ export class MCMIconModal{
 
         if(params.data.solution){
             let sol = params.data.solution as Array<string>;
-            let L: any; let K: any; let J: any; let H: any;
+            // let L: any; let K: any; let J: any; let H: any;
             let variables = ["L", "K", "J", "H"];
             this.param = {};
             for(let i = 0; i < sol.length; i++){

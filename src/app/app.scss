@@ -18,7 +18,9 @@
 
 
 
-//============== Global Layout Structure ==============
+// =============================================
+// ------------------ BASICS -------------------
+// =============================================
 
 *{
     box-sizing: border-box;
@@ -51,43 +53,40 @@
 //}
 
 
-//TAB-BAR
+//Navigation
 
 .tabs{
     .tabbar{
-        border-top: 0.55px solid color($colors, primary);
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-        background: color($colors, primary);
-        .tab-button, .tab-button-icon{
-            color: color($colors, light);
-            &[aria-selected="false"]{
-                color:rgba(color($colors, light), .4);
-            }
-        }
-        .tab-button{
-            padding: 5px 5px 6px;
-            min-height: 50px;
-        }
-        .has-icon .tab-button-icon,
-        .has-title .tab-button-text{
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 16px;
-        }
+        height: $size-large;
+        box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
         .tab-button-icon{
             margin: 0;
+            @include size($size-large);
+            @each $tab in $tabs {
+                &[class*="tab-#{$tab}"]{
+                    background: url("../assets/icons/#{$tab}.svg") center /50% 50% no-repeat;
+                }
+            }
         }
-        //    selected state
-        .tab-button[aria-selected=true], .tab-button[aria-selected=true] .tab-button-icon{
-            background: color($colors, primary-darker);
-            transition: all, .3s;
+
+        //  Active State
+
+        .tab-button{
+            &[aria-selected="true"]{
+                opacity: 1;
+                .tab-button-icon{
+                    transform: none;
+                    filter: brightness(100);
+                }
+            }
         }
     }
 }
 
 
 
-//CONTENT
+
+//  Pages & Structure
 
 .has-header{
     .scroll-content, ion-refresher {
@@ -110,55 +109,13 @@
     background-color: color($colors, light-grey);
 }
 
-//.pattern-bg{
-//    .scroll-content{
-//        background-image: url('../assets/images/foil.png');
-//        background-repeat: round round;
-//        background-size: 7px;
-//    }
-//}
-
-
-
-
-
-//ROUTES LIST
-
-
-.routes-list, .map-view{
-    .list-ios,
-    .list-md{
-        margin: 0;
-        padding: 0px;
-        padding-bottom: 50px;
-        background-color: #ffffff;
-    }
-    .item{
-        height: 124px;
-        padding: 0px 10px 10px 0px;
-        box-sizing: border-box;
-        background: transparent;
-        border: none!important;
-        .item-inner{
-            margin: 0;padding: 0;
-            border: none;
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-            .input-wrapper{
-                background-color: #ffffff;
-            }
-        }
-    }
-    .text-container{
-        span{
-            display: inline-block;
-        }
-    }
-}
 
 
 // =============================================
 // ------------------ INPUTS -------------------
+// =============================================
+
+
 .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
     box-shadow: none;
@@ -181,15 +138,243 @@ ion-item{
     &.item-input{
         min-height: 0;
     }
-    &.item-ios,
-    &.item-md{
+    &.item-ios, &.item-md{
         .item-inner{
+            padding: 0;
+        }
+    }
+    &.item-toggle{
+        .item-inner{
+            padding: 0!important;
+        }
+    }
+    [item-content]{
+        color: color($colors, dark-grey);
+    }
+}
+
+.card{
+    ion-item{
+        &.item-toggle{
+            align-items: flex-end;
+            .item-inner{
+                padding: 0!important;
+            }
+        }
+        [item-content]{
+            margin-right: $global-base-padding;
+        }
+        .toggle{
             padding: 0;
         }
     }
 }
 
-//CHECKBOXES
+input{
+    &.text-input-ios,
+    &.text-input-md{
+        width: 100%;
+        margin: 5px 0 5px 0px;
+    }
+}
+
+//  Search bar
+
+.searchbar{
+    padding-left: 0;
+    .searchbar-search-icon,.searchbar-clear-icon{
+        background-size: 80%;
+        @include size(30px);
+    }
+    .searchbar-search-icon{
+        left: 0;
+        @include middle-absolute-v;
+        background: url(../assets/icons/search.svg) no-repeat center;
+    }
+    .searchbar-clear-icon{
+        background-image: url(../assets/icons/clear.svg);
+        height: 100%;
+    }
+    &.searchbar-left-aligned{
+        .searchbar-input{
+            background-color: transparent;
+            padding: $global-small-padding;
+            padding-left: 40px;
+        }
+    }
+
+    &.disabled{
+        pointer-events: none;
+        opacity: 0.3;
+    }
+}
+
+/*  ========== Buttons =========  */
+
+button{
+    .button-inner{
+        font-size: 14px;
+        text-transform: none;
+        font-family: 'NunitoExtraBold', Arial, sans-serif;
+    }
+
+    //  Sizes
+
+    &.button-default{
+        height: $fab-size;
+    }
+    &.button-small{
+        height: 30px;
+    }
+    &.button-large{
+        height: $size-large;
+        .button-inner{
+            font-size: large;
+        }
+    }
+
+    //  Properties
+
+    &[icon-start]{
+        .icon{
+            margin-right: $global-small-padding/2;
+        }
+    }
+
+    &.button-round-ios.button-small-ios,
+    &.button-round-md.button-small-md{
+        font-family: 'NunitoExtrabold', Arial, sans-serif;
+        line-height: 1.4;
+        text-transform: none;
+        min-width: 90px;
+        padding: 0 15px;
+        .button-inner{
+            color: #fff;
+            font-family: 'NunitoExtrabold', Arial, sans-serif;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+
+    //  States
+
+    &[disabled].button-default,
+    &[disabled= true].button-default{
+        opacity: 1!important;
+        background-color: color($colors, grey);
+        img{
+            background-color: color($colors, grey);
+        }
+    }
+    &[disabled].button-clear,
+    &[disabled= true].button-clear{
+        opacity: 1!important;
+        img{
+            background-color: color($colors, grey);
+        }
+    }
+
+    &.solution{
+        background-color: color($colors, secondary);
+        &.activated{
+            background-color: color($colors, secondary-dark);
+        }
+    }
+}
+
+
+/*  ========== FAB Buttons =========  */
+
+
+ion-fab-list{
+    margin: 44px 0;
+    .fab-in-list{
+        margin: 4px 0;
+    }
+}
+.fab-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+ion-fab{
+    button{
+        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+    }
+}
+.fixed-content ion-fab[bottom]{
+    bottom: 14px;
+}
+
+
+
+.ion-md-close:before,
+.ion-ios-close:before{
+    background-image: url(../assets/icons/icon_close-modal.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 20px;
+    content:"" !important;
+}
+.ion-md-icon-restart:before,
+.ion-ios-icon-restart:before{
+    background-image: url(../assets/icons/icon_restart.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    vertical-align: middle;
+}
+.ion-md-icon-starting-point:before,
+.ion-ios-icon-starting-point:before{
+    background-image: url(../assets/icons/icon_starting-point.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    vertical-align: middle;
+}
+.ion-md-icon-visibility:before,
+.ion-ios-icon-visibility:before{
+    background-image: url(../assets/icons/icon_visibility.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 20px;
+    content:"" !important;
+}
+
+.ion-md-icon-track-gps:before,
+.ion-ios-icon-track-gps:before{
+    background-image: url(../assets/icons/icon_track-gps.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
+.ion-md-icon-chat:before,
+.ion-ios-icon-chat:before{
+    background-image: url(../assets/icons/chat.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
+.ion-md-icon-exit:before,
+.ion-ios-icon-exit:before{
+    background-image: url(../assets/icons/exit.svg);
+    background-size: 22px 22px;
+    width: 22px;
+    height: 22px;
+    content:"" !important;
+    margin-top: 4px;
+}
+
+
+/*  ========== Checkboxes =========  */
+
 ion-list{
     & > *{
         border: none!important;
@@ -208,8 +393,8 @@ ion-list{
     }
     .item-inner{
         padding: 0;
-        padding-right: 0px;
-        border-bottom: 0px solid #dedede;
+        padding-right: 0;
+        border-bottom: 0 solid #dedede;
         box-shadow: none;
         ion-label{
             margin: 0;
@@ -220,17 +405,11 @@ ion-list{
     }
 }
 
-input{
-    &.text-input-ios,
-    &.text-input-md{
-        width: 100%;
-        margin: 5px 0 5px 0px;
-    }
-}
 
 
 // =============================================
 // ----------- INFO CARDS LIST & MAP -----------
+// =============================================
 
 .score{
     display: flex!important;
@@ -384,31 +563,23 @@ input{
                     >span{
                         min-width: 100%
                     }
-//                    >.button-container{
-                        white-space: nowrap;
-                        button.dot{
-                            min-width: unset;
-                            width: 24px;
-                            height: 24px;
-//                            padding: 4px;
-                            margin: 0px;
-                            overflow: visible;
-                            &:last-of-type{
-//                                margin-right: -4px;
-//                                margin-bottom: 0;
-                            }
-                            img{
-                                object-fit: contain;
-                            }
+                    white-space: nowrap;
+                    button.dot{
+                        min-width: unset;
+                        width: 24px;
+                        height: 24px;
+                        margin: 0px;
+                        overflow: visible;
+                        img{
+                            object-fit: contain;
                         }
-                        button.button-round-ios.button-small-ios, button.button-round-md.button-small-md{
-                            max-height: 24px;
-                            padding: 0 15px;
-                            margin: 0;
-                            box-shadow: none;
-                        }
-//                    }
-
+                    }
+                    button.button-round-ios.button-small-ios, button.button-round-md.button-small-md{
+                        max-height: 24px;
+                        padding: 0 15px;
+                        margin: 0;
+                        box-shadow: none;
+                    }
                 }
                 span.downloading{
                     width: 100%;
@@ -418,12 +589,8 @@ input{
             }
         }
     }
-
-    mcm-progress-bar{
-        padding: $global-base-padding 0 0 0;
-        min-width: calc(100% - 150px);
-    }
 }
+
 
 // MAP
 
@@ -458,33 +625,21 @@ input{
         margin: 0;
         margin-bottom: -4px;
 
-        -webkit-transform: translateY(100%);
         transform: translateY(100%);
-
-        -webkit-border-top-left-radius: 8px;
-        -webkit-border-top-right-radius: 8px;
-        -webkit-border-bottom-left-radius: 0px;
-        -webkit-border-bottom-right-radius: 0px;
 
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
 
+
         box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-        -webkit-transition: all 0.5s;
-        -moz-transition: all 0.5s;
-        -ms-transition: all 0.5s;
-        -o-transition: all 0.5s;transition: all 0.5s;
+        transition: all 0.5s;
 
-        mcm-progress-bar {
-            bottom: $global-small-padding;
+        &.open{
+            -webkit-transform: translateY(0%);
+            transform: translateY(0%);
         }
-    }
-
-    .detail-box.open{
-        -webkit-transform: translateY(0%);
-        transform: translateY(0%);
     }
 
     .marker-cluster{
@@ -556,16 +711,29 @@ input{
     margin: $global-base-padding;
     position: relative;
     z-index: -1;
+    &.transparent {
+        background-color: transparent;
+        box-shadow: none;
+        overflow: auto;
+        padding: 0;
+        &.divider{
+            margin-top: $global-large-padding;
+            margin-bottom: -#{$global-small-padding};
+            .label{
+                font-size: 15px;
+            }
+        }
+    }
+    &.select{
+        padding-bottom: $global-small-padding;
+    }
     &.modal {
         z-index: 10000;
     }
     ion-label, ion-label.label-ios, ion-label.label-md{
         margin-bottom: $global-small-padding*0.8;
     }
-    span{
-        color: color($colors, dark-grey);
-    }
-    >p:last-of-type{
+    & > p:last-of-type{
         margin-bottom: 0;
     }
     &.has-button-on-the-edge{
@@ -615,8 +783,7 @@ input{
         }
     }
 
-    .item,
-    ion-select{
+    .item, ion-select{
         width:100%;
         max-width:100%;
         padding-left: 0;
@@ -674,145 +841,6 @@ img{
 }
 
 
-/*  ========== Buttons =========  */
-
-button{
-    &[disabled].button-default,
-    &[disabled= true].button-default{
-        opacity: 1!important;
-        background-color: color($colors, grey);
-        img{
-            background-color: color($colors, grey);
-        }
-    }
-    &[disabled].button-clear,
-    &[disabled= true].button-clear{
-        opacity: 1!important;
-        img{
-            background-color: color($colors, grey);
-        }
-    }
-    &.button-round-ios.button-small-ios,
-    &.button-round-md.button-small-md{
-        font-family: 'NunitoExtrabold', Arial, sans-serif;
-        line-height: 1.4;
-        text-transform: none;
-        min-width: 90px;
-        padding: 0 15px;
-        span{
-            color: #fff;
-            font-family: 'NunitoExtrabold', Arial, sans-serif;
-        }
-        &:last-child{
-            margin-right: 0;
-        }
-    }
-
-    &.solution{
-        background-color: color($colors, secondary);
-        &.activated{
-            background-color: color($colors, secondary-dark);
-        }
-    }
-}
-
-
-/*  ========== FAB Buttons =========  */
-
-.fab-container{
-    position: absolute;
-    top: -4px;
-    right: 0;
-}
-ion-fab{
-    button{
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-    }
-}
-.fixed-content ion-fab[bottom]{
-    bottom: 14px;
-}
-
-ion-fab-list{
-    margin: 44px 0;
-    .fab-in-list{
-        margin: 4px 0;
-    }
-}
-
-.ion-md-icon-add-privateroute:before,
-.ion-ios-icon-add-privateroute:before{
-    background-image: url(../assets/icons/icon_add.svg);
-    background-size: 21px 21px;
-    width: 22px;
-    height: 21px;
-    content:"" !important;
-    margin-top: 4px;
-
-}
-
-.ion-md-close:before,
-.ion-ios-close:before{
-    background-image: url(../assets/icons/icon_close-modal.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 20px;
-    content:"" !important;
-}
-.ion-md-icon-restart:before,
-.ion-ios-icon-restart:before{
-    background-image: url(../assets/icons/icon_restart.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    vertical-align: middle;
-}
-.ion-md-icon-starting-point:before,
-.ion-ios-icon-starting-point:before{
-    background-image: url(../assets/icons/icon_starting-point.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    vertical-align: middle;
-}
-.ion-md-icon-visibility:before,
-.ion-ios-icon-visibility:before{
-    background-image: url(../assets/icons/icon_visibility.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 20px;
-    content:"" !important;
-}
-
-.ion-md-icon-track-gps:before,
-.ion-ios-icon-track-gps:before{
-    background-image: url(../assets/icons/icon_track-gps.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    margin-top: 4px;
-}
-.ion-md-icon-chat:before,
-.ion-ios-icon-chat:before{
-    background-image: url(../assets/icons/chat.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    margin-top: 4px;
-}
-.ion-md-icon-exit:before,
-.ion-ios-icon-exit:before{
-    background-image: url(../assets/icons/exit.svg);
-    background-size: 22px 22px;
-    width: 22px;
-    height: 22px;
-    content:"" !important;
-    margin-top: 4px;
-}
 
 /*  ========== Modals/ Popups/ Toast =========  */
 
@@ -905,7 +933,8 @@ ion-modal {
             }
         }
 
-        //Dynamic Inputs
+        // Dynamic Inputs
+
         .input-container{
             margin-top: 14px;
         }
@@ -940,28 +969,14 @@ ion-modal {
                 color: color($colors, primary);
             }
         }
-        &.perfect{
-            h2, .highlight{
-                color: color($colors, success);
-            }
-            button{
-                background-color: color($colors, success);
-            }
-        }
-        &.good{
-            h2, .highlight{
-                color: color($colors, secondary);
-            }
-            button{
-                background-color: color($colors, secondary);
-            }
-        }
-        &.failed{
-            h2, .highlight{
-                color: color($colors, error);
-            }
-            button{
-                background-color: color($colors, error);
+        @each $rating, $color in $ratings {
+            &.#{$rating} {
+                h2, .highlight{
+                    color: #{nth($color, 1)};
+                }
+                button{
+                    background-color: #{nth($color, 1)};
+                }
             }
         }
         &.task-select{
@@ -989,23 +1004,12 @@ ion-modal {
                             transform: translateY(-50%);
                         }
                     }
-                    &.perfect {
-                        &:before {
-                            background-color: color($colors, success);
+                    @each $rating, $color in $ratings {
+                        &.#{$rating} {
+                            &:before{
+                                background-color: #{nth($color, 1)};
+                            }
                         }
-                    }
-                    &.good {
-                        &:before {
-                            background-color: color($colors, secondary);
-                        }
-                    }
-                    &.failed {
-                        &:before {
-                            background-color: color($colors, error);
-                        }
-                    }
-                    &.skipped{
-                        background-color: color($colors, grey);
                     }
                 }
             }
@@ -1020,34 +1024,81 @@ ion-modal {
             }
         }
     }
-
-
 }
 
-/*  ========== Progress Bars =========  */
+/*  ========== Progress & Evaluation =========  */
+
+
+mcm-progress-bar, .evaluation{
+    position: relative;
+    display: flex;
+    align-items: baseline;
+}
+
+mcm-progress-bar{
+    & > *{
+        &:not(.progress){
+            flex-grow: 0;
+            flex-basis: auto;
+        }
+    }
+}
+
+.evaluation{
+    flex: 1;
+    flex-wrap: wrap;
+    .ratings {
+        display: flex;
+    }
+    .rating{
+        display: flex;
+        align-items: baseline;
+        margin-left: $global-small-padding;
+        p{
+            margin: 0;
+        }
+        &:before{
+            content: '';
+            @include size(8px);
+            border-radius: 50%;
+            margin-right: $global-small-padding/2;
+        }
+
+        @each $rating, $color in $ratings {
+            &.#{$rating} {
+                &:before{
+                    background-color: #{nth($color, 1)};
+                }
+            }
+        }
+    }
+}
 
 $progress-height: 6px;
-.progress-bar{
-    background-color: color($colors, grey);
+
+.progress{
+    background-color: rgba(color($colors, primary-darker), 0.2);
     height: $progress-height;
-    margin-top: $progress-height/2;
     @include border-radius($progress-height/2);
-
-    &.progress-route{
-        margin-left: $global-small-padding;
-    }
-    &.progress-download{
-        margin-bottom: $global-small-padding;;
-    }
-
-    .progress{
+    flex: 1;
+    & > .bar{
         width: 0;
-        //prevent initial bug of flull progress bar
+        z-index: 100;
+        //prevent initial bug of full progress bar
         background-color: color($colors, primary);
         height: $progress-height;
         @include border-radius($progress-height/2);
     }
+
+    &.route{
+        margin-left: $global-small-padding;
+    }
+    &.download{
+        margin-bottom: $global-small-padding;;
+    }
 }
+
+
 
 //overwrite implicit ionic styling for tabs on ios devices
 .ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child .scroll-content{

@@ -46,7 +46,6 @@ import { Helper } from '../classes/Helper';
 import { Autoresize } from "../directives/autoresize";
 import { ApiModule } from './api/api.module';
 import { ChatAndSessionService } from '../services/chat-and-session-service';
-import { ChatPage } from '../pages/chat/chat';
 import { ChatPageModule } from '../pages/chat/chat.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -67,7 +66,10 @@ import { AppVersion } from '@ionic-native/app-version';
         HttpModule,
         HttpClientModule,
         BrowserModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp, {
+            tabsHideOnSubPages: true,
+            swipeBackEnabled: false
+        }),
         IonicStorageModule.forRoot(),
         TranslateModule.forRoot({
             loader: {

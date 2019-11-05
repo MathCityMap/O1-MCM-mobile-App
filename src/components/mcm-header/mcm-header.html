@@ -1,21 +1,15 @@
 <ion-header>
-    <ion-toolbar hideBackButton>
+    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">
         <ion-buttons left>
-            <button class="imprint-button" *ngIf="!showBackButton  && currentpage != 'ModalCmp'" ion-button icon-only  (click)="goToInfo()">
-                <img class="header-icon" src="assets/icons/info.svg"/>
-            </button>
-            <button class="mcm-back-button" *ngIf="showBackButton && currentpage != 'ModalCmp'"  ion-button icon-only (click)="goBack()">
+            <button ion-button icon-only *ngIf="showBackButton && currentpage != 'ModalCmp'" (click)="goBack()">
                 <img class="header-icon" src="assets/icons/back.svg"/>
             </button>
-            <button class="mcm-modal-close-button" *ngIf="currentpage == 'ModalCmp'" ion-button icon-only (click)="closeModal()">
-                <img class="header-icon" src="assets/icons/icon_close-modal.svg"/>
+            <button ion-button icon-only *ngIf="currentpage == 'ModalCmp'" (click)="closeModal()">
+                <!--<img class="header-icon" src="assets/icons/icon_close-modal.svg"/>-->
+                <img class="header-icon" src="assets/icons/back.svg"/>
             </button>
         </ion-buttons>
         <ion-title>{{ retriveTitle() | translate }}</ion-title>
-        <ion-buttons end>
-            <button class="settings-button" ion-button icon-only  (click)="goToSettings()" *ngIf=" currentpage == 'HomePage' ">
-                <img class="header-icon" src="assets/icons/icon_settings.svg"/>
-            </button>
-        </ion-buttons>
+        <ion-buttons end></ion-buttons>
     </ion-toolbar>
 </ion-header>

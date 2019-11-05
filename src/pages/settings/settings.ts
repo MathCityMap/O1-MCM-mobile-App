@@ -5,6 +5,7 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
 import { LanguageService } from '../../services/language-service';
+import {Helper} from "../../classes/Helper";
 
 @IonicPage()
 @Component({
@@ -16,9 +17,11 @@ export class SettingsPage {
     availableLanguages;
     translatedLangs;
 
+    developerMode: boolean;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService,
                 private spinner: SpinnerDialog, private ormService: OrmService, private modalsService: ModalsService,
-                private languageService: LanguageService) {
+                private languageService: LanguageService, private helper: Helper) {
         this.availableLanguages = languageService.getAvailableLanguages();
         this.translatedLangs = [];
     }
@@ -34,7 +37,7 @@ export class SettingsPage {
             if(a.value < b.value) { return -1; }
             if(a.value > b.value) { return 1; }
             return 0;})
-
+        this.developerMode = this.helper.getDevMode();
     }
 
     onChangeLanguage(language) {
@@ -49,5 +52,9 @@ export class SettingsPage {
                 await this.ormService.removeAllDownloadedData();
                 this.spinner.hide();
         });
+    }
+
+    async switchDevMode(){
+       await this.helper.setDevMode(this.developerMode+'');
     }
 }

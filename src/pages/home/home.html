@@ -1,6 +1,6 @@
-
-  <mcm-header></mcm-header>
-  <ion-tabs>
-    <ion-tab [root]="tab1Root" tabTitle="{{ 'a_t_list' | translate }}" tabIcon=""></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="{{ 'a_main_btn_online_map' | translate }}" tabIcon=""></ion-tab>
-  </ion-tabs>
+<ion-tabs>
+    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>
+    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>
+</ion-tabs>

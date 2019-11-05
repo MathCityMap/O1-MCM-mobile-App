@@ -28,9 +28,6 @@
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
         "cordova-plugin-local-notification": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
@@ -71,6 +68,9 @@
         },
         "cordova-custom-config": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
         }
     },
     "dependent_plugins": {

@@ -13,7 +13,6 @@ import {SessionUserService} from '../app/api/services/session-user.service';
 import {SessionChatMessageResponse} from "../app/api/models/session-chat-message-response";
 import {SessionChatService} from "../app/api/services/session-chat.service";
 import {SessionChatResponse} from "../app/api/models/session-chat-response";
-import {Geoposition} from "@ionic-native/geolocation";
 import {
     ILocalNotification, ILocalNotificationActionType,
     LocalNotifications

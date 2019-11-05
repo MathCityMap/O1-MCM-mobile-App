@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29.198" height="25.818" viewBox="0 0 29.198 25.818">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="29.198" height="25.818" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Komponente_31_5" data-name="Komponente 31 – 5" clip-path="url(#clip-path)">
+    <path id="Pfad_258" data-name="Pfad 258" d="M-8449.3,1285.479l-7.6,2.2a.856.856,0,0,1-.9-.274.858.858,0,0,1-.119-.931l3.465-7.118,16.033-13.5a4.006,4.006,0,0,1,5.639.484,4,4,0,0,1-.483,5.635Z" transform="translate(8459.544 -1263.417)" fill="none" stroke="#045a87" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <line id="Linie_136" data-name="Linie 136" x1="5.157" y1="6.122" transform="translate(5.085 15.94)" fill="none" stroke="#045a87" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <line id="Linie_137" data-name="Linie 137" x2="5.155" y2="6.12" transform="translate(19.894 3.474)" fill="none" stroke="#045a87" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <line id="Linie_138" data-name="Linie 138" x1="2.438" y1="2.894" transform="translate(2.812 20.611)" fill="none" stroke="#045a87" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  </g>
+</svg>

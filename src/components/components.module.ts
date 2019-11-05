@@ -7,9 +7,11 @@ import { MCMHeaderComponent } from './mcm-header/mcm-header.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DistancePipe } from '.././app/pipes/distance.pipe';
 import { SearchPipe} from ".././app/pipes/search.pipe";
-import { MCMProgressBarComponent } from './mcm-progress-bar/mcm-progress-bar.component';
+import { MCMProgressBarComponent } from './mcm-progress-bar/mcm-progress-bar';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { LazyLoadImagesDirective } from '../directives/ngx-lazy-load-images.directive';
+
+import { RouteTeaserComponent } from "./route-teaser/route-teaser";
 
 const components = [
     MCMHeaderComponent,
@@ -21,10 +23,10 @@ const components = [
 ]
 
 @NgModule({
-	declarations: components,
+	declarations: [components, RouteTeaserComponent],
 	imports: [IonicModule,
         TranslateModule],
-	exports: [components, TranslateModule],
+	exports: [components, TranslateModule, RouteTeaserComponent],
     providers: [PhotoViewer]
 })
 export class ComponentsModule {

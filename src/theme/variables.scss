@@ -1,27 +1,21 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
+
 $font-path: "../assets/fonts";
+$icon-path: "../assets/icons";
 
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
+
 $app-direction: ltr;
 
-
 @import "ionic.globals";
-
-
-// Shared Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass variables found in Ionic's source scss files.
-// To view all the possible Ionic variables, see:
-// http://ionicframework.com/docs/theming/overriding-ionic-variables/
-
 
 // Named Color Variables
 // --------------------------------------------------
@@ -38,10 +32,11 @@ $colors: (
   secondary-dark: #D9A000,
   danger:         #f25801,
   error:          #E62B25,
-  success:        #4CAF50,
+  success:        #3DCC68,
   light:          #ffffff,
   dark:           #222222,
   dark-grey:      #444444,
+  greygrey:       #808080,
   grey:           #a5a0a3,
   mid-grey:       #b2b2b2,
   light-grey:     #e5e5e5,
@@ -53,19 +48,42 @@ $colors: (
 );
 
 
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+
+$tabs-background: color($colors, primary);
+$tabs-ios-tab-min-height: 56px;
+
+$toolbar-background: color($colors, primary);
+
+$fab-size: 44px;
+$fab-list-button-background-color: color($colors, primary-darker);
+
+$searchbar-ios-input-background-color: transparent;
+$searchbar-ios-toolbar-input-background: transparent;
+$searchbar-ios-toolbar-input-background: white;
+$searchbar-md-input-box-shadow: none;
+$searchbar-ios-input-search-icon-color: color($colors, light);
+$searchbar-md-input-search-icon-color: color($colors, light);
+$searchbar-ios-input-text-color: color($colors, light);
+$searchbar-md-input-text-color: color($colors, light);
+$searchbar-ios-input-clear-icon-color: color($colors, light);
+$searchbar-md-input-clear-icon-color: color($colors, light);
+$searchbar-ios-input-placeholder-color: rgba(255, 255, 255, 0.7);
+$searchbar-md-input-placeholder-color: rgba(255, 255, 255, 0.7);
+
+
 // App iOS Variables
 // --------------------------------------------------
-// iOS only Sass variables can go here
 
 
 // App Material Design Variables
 // --------------------------------------------------
-// Material Design only Sass variables can go here
-
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
 
 
 // App Theme
@@ -87,7 +105,6 @@ $colors: (
 
 
 // Own Fonts        (ง •̀_•́)ง
-//
 // --------------------------------------------------
 
 
@@ -95,31 +112,39 @@ $colors: (
 //@import "noto-sans";
 
 
+
 // Own Variables    (づ￣ ³￣)づ
-//
 // --------------------------------------------------
 
 
 $global-small-padding:  10px;
+$global-medium-padding:  15px;
 $global-base-padding:   20px;
 $global-large-padding:  40px;
 
-$fab-size: 40px;
-$fab-list-button-background-color: color($colors, primary-darker);
+$border-radius-basic: 8px;
 
-$toolbar-background: color($colors, light-grey);
-$toolbar-ios-background: color($colors, light-grey);
-$searchbar-ios-toolbar-input-background: white;
-$searchbar-md-input-box-shadow: none;
+$size-large: 56px;
 
+$tabs:(
+    home browse downloads create
+);
 
+// Task Rating System
 
+$ratings:(
+    perfect: color($colors, success),
+    good: color($colors, secondary),
+    failed: color($colors, error),
+    skipped: color($colors, grey),
+);
 
 
 // Own Mixins       (∩｀-´)⊃━☆ﾟ.*･｡ﾟ
-//
 // --------------------------------------------------
 
+
+//  Look & Feel
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -128,11 +153,16 @@ $searchbar-md-input-box-shadow: none;
           border-radius: $radius;
 }
 
+@mixin shadow-hard() {
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+}
+
+@mixin shadow-hard() {
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+}
+
 @mixin box-shadow($opacity) {
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
-  -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
-  -ms-box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
-  box-shadow: 0px 0px 6px 0px rgba(0,0,0,$opacity);
+  box-shadow: 0 0 6px 0 rgba(0,0,0,$opacity);
 }
 
 @mixin border($width, $style, $color) {
@@ -140,6 +170,48 @@ $searchbar-md-input-box-shadow: none;
     -moz-border: $width $style $color;
     -ms-border: $width $style $color;
     border: $width $style $color;
+}
+
+@mixin transition($property, $duration, $type) {
+    transition: $property $duration $type;
+}
+
+@mixin transition-basic() {
+    transition: all 0.3s ease-in-out;
+}
+@mixin transition-fast() {
+    transition: all 0.15s ease-in-out;
+}
+
+
+//  Size & Position
+
+@mixin size($width, $height: null) {
+    @if $height {
+        width: $width;
+        height: $height;
+    } @else {
+        width: $width;
+        height: $width;
+    }
+}
+
+
+.middle-absolute, %middle-absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@mixin middle-absolute-v() {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@mixin middle-absolute-h() {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 @mixin transform($property) {
@@ -198,7 +270,13 @@ $searchbar-md-input-box-shadow: none;
 
 
 
-// Pirate Theming       L( Ø -´)⊃━|-----
+
+// --------------------------------------------------
+// --------------------------------------------------
+
+// Pirate Theme       L( Ø -´)⊃━|--------
+
+// --------------------------------------------------
 // --------------------------------------------------
 
 $c-primary:        #AA2000;

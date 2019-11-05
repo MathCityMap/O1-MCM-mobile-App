@@ -88,7 +88,7 @@ export class TasksMap implements OnInit, OnDestroy {
     private countdownBeforeSession: boolean = false;
     private startInterval: boolean = false;
     private showCountdownOrTimer: boolean = false;
-    private refreshIntervalId: any = null;
+    //private refreshIntervalId: any = null;
     private showSessionEnds: boolean = false;
     private taskBlocked: boolean = false;
 
@@ -170,6 +170,7 @@ export class TasksMap implements OnInit, OnDestroy {
                   callback: function(){
                       modal.dismiss().then(() => {
                           that.route.completed = true;
+                          that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
                           that.ormService.saveAndFireChangedEvent(that.route);
                       });
                   }
@@ -536,7 +537,7 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
   async loadMap() {
-      const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
+      //const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
       let mapquestUrl = /*Helper.mapquestUrl*/ this.route.getTilesMap(this.app.activeNarrative);
       let subDomains = this.route.getTilesServerSubdomains(this.app.activeNarrative);//Helper.subDomains;
 
@@ -738,6 +739,7 @@ export class TasksMap implements OnInit, OnDestroy {
           this.state.skippedTaskIds = [];
           this.state.showIntroModal = true;
           this.route.completed = false;
+          this.route.completedDate = null;
           await this.ormService.saveAndFireChangedEvent(this.route);
           this.redrawMarker();
     });

@@ -26,9 +26,10 @@ import { DB_Handler } from '../classes/DB_Handler';
 import {AddVisibleColumn1526306624000} from "../migration/1526306624000-AddVisibleColumn";
 import {AddLangCodeColumn1526306730000} from "../migration/1526306730000-AddLangCodeColumn";
 import {DB_Updater} from "../classes/DB_Updater";
-import { ModalsService } from './modals-service';
 import {Helper} from "../classes/Helper";
 
+import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-AddDownloadDateColumn";
+import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-AddCompletedDateColumn";
 
 @Injectable()
 export class OrmService {
@@ -67,7 +68,9 @@ export class OrmService {
             AddUnlockedColumn1516037215000,
             AddCompletedColumn1519817905000,
             AddVisibleColumn1526306624000,
-            AddLangCodeColumn1526306730000
+            AddLangCodeColumn1526306730000,
+            AddDownloadDateColumn15711518720000,
+            AddCompletedDateColumn15713974540000
         ];
         if (sqliteAvailable) {
             return this.connection = await createConnection({
@@ -171,8 +174,8 @@ export class OrmService {
         score.addTaskStateForTask(score.getTaskState(), detailsToSave);
         let user = await this.getActiveUser();
         score.userId = user.id;
-
         await repo.save(score);
+        this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
     }
 
     async deleteUserScore(score: Score) {
@@ -261,13 +264,16 @@ export class OrmService {
         return this.visibleRoutesCache;
     }
 
-    async getDownloadedRoutes(): Promise<Route[]> {
+    async getDownloadedRoutes(compareFn = null): Promise<Route[]> {
         let repo = await this.getRouteRepository();
         let result = await repo.find({
             where: {
                 downloaded: '1'
             }
         });
+        if (compareFn) {
+            result.sort(compareFn);
+        }
         return result;
     }
 
@@ -307,6 +313,7 @@ export class OrmService {
                 return statusCallback(done, total);
             });
             route.downloaded = true;
+            route.downloadedDate = new Date().toDateString().split(' ').slice(1).join(' ');
             const repo = await this.getRouteRepository();
             await repo.save(route);
             this.updateRouteInCache(route);
@@ -350,6 +357,7 @@ export class OrmService {
         }
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         route.downloaded = false;
+        route.downloadedDate = null;
         const repo = await this.getRouteRepository();
         await repo.save(route);
         this.updateRouteInCache(route);
@@ -364,7 +372,7 @@ export class OrmService {
     }
 
     async saveAndFireChangedEvent(route: Route) {
-        (await this.getRouteRepository()).save(route);
+        await (await this.getRouteRepository()).save(route);
         this.updateRouteInCache(route);
         this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
     }

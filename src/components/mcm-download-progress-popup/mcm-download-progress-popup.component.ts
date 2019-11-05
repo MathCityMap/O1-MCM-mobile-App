@@ -4,7 +4,6 @@ import { ViewController } from 'ionic-angular';
 @Component({
     selector: 'mcm-download-progress-popup',
     templateUrl:'./mcm-download-progress-popup.component.html',
-/*     styleUrls: ['./mcm-progress-bar.component.scss'] */
 })
 export class MCMDownloadProgressPopupComponent{
     data = null;
@@ -22,3 +21,4 @@ export class MCMDownloadProgressPopupComponent{
         }
     }
 }
+

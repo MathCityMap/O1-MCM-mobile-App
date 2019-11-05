@@ -1,14 +1,7 @@
 import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-/* import { BroadcastService } from '../../services/broadcast-service'; */
 import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
-import { SettingsPage } from '../../pages/settings/settings';
-import { Route } from '../../entity/Route';
-import { Task } from '../../entity/Task';
-import {CustomKeyBoard} from "../customKeyBoard/custom-keyboard";
-import {ChatAndSessionService} from "../../services/chat-and-session-service";
-import {TasksMap} from "../../pages/home/tabs/TasksMap/TasksMap";
 
 
 @Component({
@@ -18,32 +11,22 @@ import {TasksMap} from "../../pages/home/tabs/TasksMap/TasksMap";
 })
 export class MCMHeaderComponent{
     showBackButton: boolean = false;
-    private route: Route;
-    private task: Task;
+    transparent: boolean = false;
 
 
     constructor(public navCtrl: NavController,
-                public navParams: NavParams,/* public broadcastService: BroadcastService, */
+                public navParams: NavParams,
                 public viewCtrl: ViewController,
                 public modalCtrl: ModalController,
-                private deepLinker: DeepLinker,
-                private chatAndSessionService: ChatAndSessionService) {
-/*         broadcastService.historyChanged$.subscribe(canGoBack => {
-            this.showBackButton = canGoBack;
-            console.log(this.showBackButton);
-        }); */
+                private deepLinker: DeepLinker) {
     }
 
     private currentpage: string = this.viewCtrl.name;
 
     retriveTitle(): string {
-        /* console.log('currentpage ',this.currentpage); */
+        //console.log('currentpage ',this.currentpage);
         if (this.navParams && this.navParams.data.headerTitle) {
             return this.navParams.data.headerTitle;
-        }
-        // make sure to exclude class names from UglifyJS to avoid name mangling (see config/uglifyjs.config.js)
-        if (this.currentpage == 'HomePage') {
-            return 'a_title_activity_main'
         }
         if (this.currentpage == 'InfoPage') {
             return 'a_about_mcm_title'
@@ -52,34 +35,23 @@ export class MCMHeaderComponent{
             return 'a_action_settings'
         }
         if (this.currentpage == 'ModalCmp') {
-            return 'a_title_activity_main'
+            return ''
         }
         return this.currentpage;
     }
 
     ngOnInit(){
         this.showBackButton = this.navCtrl.canGoBack();
-/*         console.log(this.currentpage);
-        console.log(this.currentpage == 'DashboardPage'); */
-/*         this.broadcastService.historyChanged(this.navCtrl.canGoBack()); */
+        if(this.currentpage == 'ModalCmp'){
+            this.transparent = true;
+        }
     }
+
 
     goToDashboard(){
-/*         console.log("popToRoot"); */
         this.navCtrl.setRoot('DashboardPage').then(() =>{
             this.navCtrl.popToRoot();
-/*             this.broadcastService.historyChanged(this.navCtrl.canGoBack()); */
         });
-    }
-
-   goToInfo() {
-        // Let's navigate to info/imprint
-        this.navCtrl.push('InfoPage');
-    }
-
-   goToSettings() {
-        // Let's navigate to settings
-        this.navCtrl.push('SettingsPage');
     }
 
     goBack(){
@@ -106,7 +78,4 @@ export class MCMHeaderComponent{
     closeModal() {
         this.viewCtrl.dismiss(this.modalCtrl);
     }
-
-
-
 }

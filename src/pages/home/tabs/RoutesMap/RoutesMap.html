@@ -1,0 +1,16 @@
+<ion-content class="map routes">
+
+    <div *ngIf="showAllRoutes" id="map" class="map-view"></div>
+    <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>
+
+    <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s" ion-fixed>
+        <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"
+                      [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"
+        ></route-teaser>
+        <div class="fab-container">
+            <ion-fab right bottom>
+                <button ion-fab color="primary" (click)="addRouteByCode()"><img src="assets/icons/list.svg"/></button>
+            </ion-fab>
+        </div>
+    </div>
+</ion-content>

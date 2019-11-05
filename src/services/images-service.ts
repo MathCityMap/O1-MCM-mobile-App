@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
-import { DirectoryEntry, File, FileEntry } from '@ionic-native/file';
+import { DirectoryEntry, File} from '@ionic-native/file';
 import { Platform } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
@@ -255,7 +255,6 @@ export class ImagesService {
 
 
             let outputName = this.getLocalFileName(imgFileName);
-            let file;
             this.fileManager.getFile(this.dataDirectory, outputName, {create: false}).then(file => {
                 file.remove(() => console.log("deleted file " + outputName),
                     () => console.log("could not delete file " + outputName))

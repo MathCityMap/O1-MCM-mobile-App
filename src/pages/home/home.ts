@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Network } from '@ionic-native/network';
 import {IonicPage, NavController, Platform} from 'ionic-angular';
 
 import { Helper } from '../../classes/Helper';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LanguageService } from '../../services/language-service';
+
 
 @IonicPage()
 @Component({
@@ -12,21 +12,22 @@ import { LanguageService } from '../../services/language-service';
 })
 export class HomePage {
   public static nav: NavController;
-  tab1Root = 'RoutesListPage';
-  tab2Root = 'MapPage';
+  tab1Root = 'DashboardPage';
+  tab2Root = 'RoutesListPage';
+  tab3Root = 'PortalPage';
 
   constructor(private navCtrl: NavController, private platform: Platform,
-              private splashScreen: SplashScreen, private languageService: LanguageService) {
+              private splashScreen: SplashScreen, private languageService: LanguageService,
+              private helper: Helper) {
     HomePage.nav = navCtrl;
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.platform.ready().then(() => {
         this.languageService.initialize().then(() => {
             console.log('Platform is ready!');
             this.splashScreen.hide();
         });
-
-    })
+    });
   }
 }
