@@ -37,11 +37,15 @@ export class MyApp {
                 private ormService: OrmService,
                 private modalService: ModalsService,
                 private dbUpdater: DB_Updater) {
+
         platform.ready().then(async () => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             // statusBar.styleDefault();
             // statusBar.show();
+
+            this.setupDeeplinks();
+
         });
         languageService.initialize().then(() => splashScreen.hide());
         statusBar.backgroundColorByHexString('#035f87'); // set status bar color
@@ -66,6 +70,28 @@ export class MyApp {
     // Event emitter
     keyClick(k: string) {
         console.log('Event emitter - key: ', k);
+    }
+
+    private setupDeeplinks() {
+        console.log("entered deeplinks");
+        this.deeplinks.route({
+            '/:id': 'RouteInfo'
+        }).subscribe(async match => {
+            // match.$route - the route we matched, which is the matched entry from the arguments to route()
+            // match.$args - the args passed in the link
+            // match.$link - the full link data
+            if (await this.nav.canGoBack()) {
+                await this.nav.popToRoot();
+            }
+            let route = await this.ormService.findRouteById(parseInt(match.$args.id));
+
+            this.modalService.presentRouteInfoModal(route, this.nav);
+
+            console.log('Successfully matched route', JSON.stringify(match));
+        }, nomatch => {
+            // nomatch.$link - the full link data
+            console.log('Got a deeplink that didn\'t match', nomatch);
+        });
     }
 
 }

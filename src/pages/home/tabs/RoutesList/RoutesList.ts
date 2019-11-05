@@ -80,23 +80,8 @@ export class RoutesListPage implements OnDestroy {
         if(this.navParams.data && this.navParams.data.showAllRoutes != null) {
             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
         }
-        let activeUser = await this.ormService.getActiveUser();
-        if (!activeUser) {
-            // initial app start
-            let online = await this.modalsService.showNoInternetModalIfOffline();
-            if (online) {
-                this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-                try {
-                    await this.dbUpdater.checkForUpdates();
-                } catch (e) {
-                    console.error('caught error while checking for updates:');
-                    console.error(e);
-                }
-                await this.ormService.setNewActiveUser('Me');
-            }
-        } else {
             // we need to check for updates
-            let quality = await this.helper.checkConnection();
+/*            let quality = await this.helper.checkConnection();
             if (quality == ConnectionQuality.FAST || quality == ConnectionQuality.SLOW) {
                 this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
                 try {
@@ -105,8 +90,7 @@ export class RoutesListPage implements OnDestroy {
                     console.error('caught error while checking for updates:');
                     console.error(e);
                 }
-            }
-        }
+            }*/
         if (!this.gpsService.getLastPosition()) {
             // try to get position
             try {

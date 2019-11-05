@@ -334,11 +334,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         this.redrawMarker();
     }
 
-    async presentRouteInfoModal() {
-        this.routeDetails = await this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl);
-        this.redrawMarker();
-    }
-
     showRouteDetail(item: any){
         this.modalsService.showRoute(item, this.navCtrl).then( async () =>{
            await this.reactOnRemovedRoute();

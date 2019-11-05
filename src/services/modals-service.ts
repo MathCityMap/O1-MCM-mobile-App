@@ -10,7 +10,7 @@ import {Injectable} from '@angular/core';
 
 import {Task} from '../entity/Task';
 import {CenteredTask} from '../modals/CenteredTask/CenteredTask';
-import {AlertController} from 'ionic-angular';
+import {AlertController, Modal} from 'ionic-angular';
 import {TranslateService} from '@ngx-translate/core';
 import {TaskMapState} from "../pages/home/tabs/TasksMap/TasksMap";
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
@@ -20,6 +20,7 @@ import {DB_Updater} from "../classes/DB_Updater";
 
 @Injectable()
 export class ModalsService {
+    private currentModal: Modal;
 
     constructor(public modalCtrl: ModalController,
                 public ormService: OrmService,
@@ -131,8 +132,12 @@ export class ModalsService {
         }, 10);
     }
 
-    presentRouteInfoModal(route: Route, navCtrl: NavController): Promise<Route> {
+    async presentRouteInfoModal(route: Route, navCtrl: NavController): Promise<any> {
         let self = this;
+        if (this.currentModal) {
+            await this.currentModal.dismiss().catch();
+            this.currentModal = null;
+        }
         return new Promise(success => {
             //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
             let data = {
@@ -140,9 +145,10 @@ export class ModalsService {
                 modalsService: this,
                 route: null
             };
-            let routeInfoModal = this.modalCtrl.create(RouteInfo, data);
-            routeInfoModal.onDidDismiss(result => {
-                if (result.showRoute) {
+            let routeInfoModal = self.currentModal = this.modalCtrl.create(RouteInfo, data);
+            routeInfoModal.onWillDismiss(result => {
+                self.currentModal = null;
+                if (result && result.showRoute) {
                     //will probably never showRoute;
                     self.showRoute(result.route, navCtrl, true);
                     success(result.route);
