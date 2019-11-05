@@ -1,2 +1,27 @@
-page-routes-list {
+routes-list {
+    .user-feedback{
+        position: absolute;
+        @include size(100%);
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        & > * {
+            padding: $global-base-padding;
+            width: 100%;
+        }
+
+        img{
+            width: 33%;
+        }
+        .message{
+            color: color($colors, mid-grey);
+            @include bolder;
+        }
+    }
 }

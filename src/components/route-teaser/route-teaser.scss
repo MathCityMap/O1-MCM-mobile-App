@@ -7,8 +7,9 @@ route-teaser {
         align-items: center;
         width: 100%;
     }
-    span{
+    span, p{
         color: color($colors, greygrey);
+        margin: 0;
     }
     .main{
         flex-wrap: nowrap;
@@ -63,7 +64,7 @@ route-teaser {
                 }
             }
             &.image{
-                $circle-size: 20vw;
+                $circle-size: 18vw;
                 width: $circle-size;
                 height: $circle-size;
                 border: 1px solid color($colors, light-grey);
@@ -129,7 +130,7 @@ route-teaser {
             }
         }
     }
-    $category: location grade downloaded finished;
+    $info-type: location grade downloaded finished;
     .icon, .icon > span{
         line-height: 1.2;
         &:before{
@@ -138,7 +139,7 @@ route-teaser {
             @include size(12px);
             margin-right: 6px;
         }
-        @each $type in $category {
+        @each $type in $info-type {
             &.#{$type} {
                 &:before{
                     content: url("../assets/icons/#{$type}.svg");
@@ -191,10 +192,9 @@ route-teaser {
         }
         .secondary {
             display: flex;
-            mcm-progress-bar{
-                flex: 1;
-                margin-left: $global-base-padding;
-                padding-left: $global-base-padding;
+            & > :nth-child(2){
+                margin-left: $global-medium-padding;
+                padding-left: $global-medium-padding;
                 &:after{
                     content: '';
                     position: absolute;
@@ -205,6 +205,9 @@ route-teaser {
                     height: 80%;
                     border-right: 2px dotted rgba(color($colors, primary-darker), 0.2);
                 }
+            }
+            mcm-progress-bar{
+                flex: 1;
             }
         }
     }

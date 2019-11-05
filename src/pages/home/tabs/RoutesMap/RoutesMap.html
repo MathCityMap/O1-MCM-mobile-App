@@ -5,8 +5,7 @@
 
     <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s" ion-fixed>
         <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"
-                      [isOnline]="helper.isOnline" (tap)="showRouteDetail(routeDetails)"
-                      (removeRoute)="reactOnRemovedRoute()"
+                      [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"
         ></route-teaser>
         <div class="fab-container">
             <ion-fab right bottom>

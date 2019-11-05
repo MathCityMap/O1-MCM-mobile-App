@@ -1,6 +1,11 @@
 <ion-header>
     <ion-toolbar>
-        <ion-searchbar type="text" [(ngModel)]="routesListSearch" placeholder="{{ 'a_search_trails' | translate }}" debounce="500"></ion-searchbar>
+        <ion-searchbar type="text"
+                       [ngClass]="{'disabled' : !showAllRoutes && downloadedItems.length == 0}"
+                       [(ngModel)]="routesListSearch"
+                       (ngModelChange)="filterItems()"
+                       placeholder="{{ 'a_search_trails' | translate }}"
+                       debounce="500"></ion-searchbar>
         <ion-buttons end>
             <button ion-button icon-only (click)="addRouteByCode()">
                 <img class="header-icon" src="assets/icons/add-scan.svg"/>
@@ -16,30 +21,41 @@
 
     <!--Complete Routes List-->
     <ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="showAllRoutes">
-        <route-teaser *ngFor="let item of getRoutesList() | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
-                      (tap)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
-                      (downloadRoute)="reactOnDownloadedRoute($event)" (removeRoute)="updateRoutes()"></route-teaser>
-        <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
-            <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
-        </div>
+        <route-teaser *ngFor="let item of filteredResult"
+                      tappable (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
+                      ></route-teaser>
     </ion-list>
 
     <!--Downloaded Routes List-->
-    <ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="!showAllRoutes" >
-        <route-teaser class=downloaded *ngFor="let item of downloadedItems | search:'title,city,code':routesListSearch" [id]="'route-item-' + item.id"
-                      (tap)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
-                      (removeRoute)="updateRoutes()"></route-teaser>
-        <div tappable class="detail-box" *ngIf="getSearchResults() == 0">
-            <h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>
-        </div>
-        <div *ngIf="downloadedItems.length == 0">Currently you have no downloaded trails</div>
+    <ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="!showAllRoutes">
+        <route-teaser class=downloaded *ngFor="let item of filteredResult"
+                      tappable (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
+                      ></route-teaser>
+        <!--<div tappable class="detail-box" *ngIf="getSearchResults() == 0">-->
+            <!--<h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>-->
+        <!--</div>-->
     </ion-list>
+
+    <div class="user-feedback">
+        <div class="download-empty" *ngIf="!showAllRoutes && downloadedItems.length == 0">
+            <img src="assets/icons/download-empty.svg"/>
+            <h4 class="message">You don’t have any downloaded trails yet! Go to trail browsing and load them to find here.</h4>
+        </div>
+        <div class="search-empty a" *ngIf="showAllRoutes && filteredResult?.length == 0">
+            <img src="assets/icons/search-empty.svg"/>
+            <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
+        </div>
+        <div class="search-empty d" *ngIf="!showAllRoutes && filteredResult?.length == 0 && downloadedItems.length != 0">
+            <img src="assets/icons/search-empty.svg"/>
+            <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
+        </div>
+    </div>
 
     <ion-infinite-scroll  *ngIf="showAllRoutes" (ionInfinite)="doInfinite($event)" threshold="35%">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
-    <ion-fab right bottom>
+    <ion-fab right bottom *ngIf="showAllRoutes || !showAllRoutes && downloadedItems.length != 0">
         <button ion-fab color="primary" (click)="switchToMap()">
             <img src="assets/icons/map.svg"/>
         </button>

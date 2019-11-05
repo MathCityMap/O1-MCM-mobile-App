@@ -1,6 +1,6 @@
 <ion-tabs>
-    <ion-tab [root]="tab1Root" tabIcon="home"></ion-tab>
-    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="search"></ion-tab>
-    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="download"></ion-tab>
-    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="create"></ion-tab>
+    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>
+    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>
 </ion-tabs>

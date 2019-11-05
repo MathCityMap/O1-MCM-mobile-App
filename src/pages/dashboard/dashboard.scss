@@ -1,3 +1,100 @@
 page-dashboard {
+    .content{
+        background: url("../assets/images/pattern-dashboard.svg") center / 160%  repeat color($colors, primary);
+        .scroll-content{
+            padding: $global-small-padding;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .logo{
+        margin: $global-base-padding auto;
+        padding-left: $global-base-padding;
+        display: block;
+    }
+    .tiles{
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1;
+        align-items: stretch;
+        align-content: center;
+        .tile{
+            padding: $global-small-padding;
+            flex-basis: 50%;
+            min-height: 25vh;
+            box-sizing: border-box;
+            .item{
+                height: 100%;
+                padding: $global-base-padding;
+                @include transition-fast();
+                border-radius: $border-radius-basic;
+                .item-inner{
+                    align-items: flex-end;
+                    padding: 0!important;
+                    [item-content]{
+                        display: flex;
+                        flex-direction: column;
+                        .title{
+                            margin-bottom: $global-small-padding;
+                        }
+                        .icon{
+                            margin-top: $global-base-padding;
+                            align-self: flex-end;
+                        }
+                    }
+                }
+                &.activated{
+                    @include transition-fast();
+                    @include box-shadow(0.5);
+                    transform: scale(1.1);
+                    opacity: 0.3;
+                }
+            }
+            &.disabled{
+                opacity: 0.3;
+                pointer-events: none;
+            }
+        }
+    }
+    .secondary{
+        text-align: center;
+        display: flex;
+        & > * {
+            flex: 1;
+        }
+    }
+    @media screen and (max-width: 359px) {
+        .content{
+            .scroll-content{
+                padding: $global-small-padding;
+            }
+        }
+        .logo{
+            margin: $global-small-padding auto;
+            width: 75%;
+        }
+        .tiles{
+            .tile{
+                padding: $global-small-padding;
+                min-height: 25vh;
+                .item{
+                    padding: $global-base-padding*0.75 $global-small-padding;
+                    .item-inner{
+                        [item-content]{
+                            .icon{
+                                margin-top: $global-base-padding*0.75;
+                                width: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 
 }
+
+//.tabbar{
+//    display: none;
+//}

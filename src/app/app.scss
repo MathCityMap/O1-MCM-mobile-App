@@ -57,35 +57,33 @@
 
 .tabs{
     .tabbar{
-        border-top: 0.55px solid color($colors, primary);
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
-        background: color($colors, primary);
-        .tab-button, .tab-button-icon{
-            color: color($colors, light);
-            &[aria-selected="false"]{
-                color:rgba(color($colors, light), .4);
-            }
-        }
-        .tab-button{
-            padding: 5px 5px 6px;
-            min-height: 50px;
-        }
-        .has-icon .tab-button-icon,
-        .has-title .tab-button-text{
-            display: inline-block;
-            vertical-align: middle;
-            font-size: 16px;
-        }
+        height: $size-large;
+        box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
         .tab-button-icon{
             margin: 0;
+            @include size($size-large);
+            @each $tab in $tabs {
+                &[class*="tab-#{$tab}"]{
+                    background: url("../assets/icons/#{$tab}.svg") center /50% 50% no-repeat;
+                }
+            }
         }
-        //    selected state
-        .tab-button[aria-selected=true], .tab-button[aria-selected=true] .tab-button-icon{
-            background: color($colors, primary-darker);
-            transition: all, .3s;
+
+        //  Active State
+
+        .tab-button{
+            &[aria-selected="true"]{
+                opacity: 1;
+                .tab-button-icon{
+                    transform: none;
+                    filter: brightness(100);
+                }
+            }
         }
     }
 }
+
+
 
 
 //  Pages & Structure
@@ -140,9 +138,33 @@ ion-item{
     &.item-input{
         min-height: 0;
     }
-    &.item-ios,
-    &.item-md{
+    &.item-ios, &.item-md{
         .item-inner{
+            padding: 0;
+        }
+    }
+    &.item-toggle{
+        .item-inner{
+            padding: 0!important;
+        }
+    }
+    [item-content]{
+        color: color($colors, dark-grey);
+    }
+}
+
+.card{
+    ion-item{
+        &.item-toggle{
+            align-items: flex-end;
+            .item-inner{
+                padding: 0!important;
+            }
+        }
+        [item-content]{
+            margin-right: $global-base-padding;
+        }
+        .toggle{
             padding: 0;
         }
     }
@@ -159,16 +181,31 @@ input{
 //  Search bar
 
 .searchbar{
+    padding-left: 0;
+    .searchbar-search-icon,.searchbar-clear-icon{
+        background-size: 80%;
+        @include size(30px);
+    }
     .searchbar-search-icon{
         left: 0;
         @include middle-absolute-v;
-        @include size(30px);
-        background-size: 100%;
+        background: url(../assets/icons/search.svg) no-repeat center;
     }
-    .searchbar-input{
-        background-color: transparent;
-        padding: $global-small-padding;
-        padding-left: 40px;
+    .searchbar-clear-icon{
+        background-image: url(../assets/icons/clear.svg);
+        height: 100%;
+    }
+    &.searchbar-left-aligned{
+        .searchbar-input{
+            background-color: transparent;
+            padding: $global-small-padding;
+            padding-left: 40px;
+        }
+    }
+
+    &.disabled{
+        pointer-events: none;
+        opacity: 0.3;
     }
 }
 
@@ -176,10 +213,52 @@ input{
 
 button{
     .button-inner{
-        font-size: 15px;
+        font-size: 14px;
         text-transform: none;
         font-family: 'NunitoExtraBold', Arial, sans-serif;
     }
+
+    //  Sizes
+
+    &.button-default{
+        height: $fab-size;
+    }
+    &.button-small{
+        height: 30px;
+    }
+    &.button-large{
+        height: $size-large;
+        .button-inner{
+            font-size: large;
+        }
+    }
+
+    //  Properties
+
+    &[icon-start]{
+        .icon{
+            margin-right: $global-small-padding/2;
+        }
+    }
+
+    &.button-round-ios.button-small-ios,
+    &.button-round-md.button-small-md{
+        font-family: 'NunitoExtrabold', Arial, sans-serif;
+        line-height: 1.4;
+        text-transform: none;
+        min-width: 90px;
+        padding: 0 15px;
+        .button-inner{
+            color: #fff;
+            font-family: 'NunitoExtrabold', Arial, sans-serif;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+
+    //  States
+
     &[disabled].button-default,
     &[disabled= true].button-default{
         opacity: 1!important;
@@ -193,21 +272,6 @@ button{
         opacity: 1!important;
         img{
             background-color: color($colors, grey);
-        }
-    }
-    &.button-round-ios.button-small-ios,
-    &.button-round-md.button-small-md{
-        font-family: 'NunitoExtrabold', Arial, sans-serif;
-        line-height: 1.4;
-        text-transform: none;
-        min-width: 90px;
-        padding: 0 15px;
-        span{
-            color: #fff;
-            font-family: 'NunitoExtrabold', Arial, sans-serif;
-        }
-        &:last-child{
-            margin-right: 0;
         }
     }
 
@@ -329,8 +393,8 @@ ion-list{
     }
     .item-inner{
         padding: 0;
-        padding-right: 0px;
-        border-bottom: 0px solid #dedede;
+        padding-right: 0;
+        border-bottom: 0 solid #dedede;
         box-shadow: none;
         ion-label{
             margin: 0;
@@ -647,14 +711,27 @@ ion-list{
     margin: $global-base-padding;
     position: relative;
     z-index: -1;
+    &.transparent {
+        background-color: transparent;
+        box-shadow: none;
+        overflow: auto;
+        padding: 0;
+        &.divider{
+            margin-top: $global-large-padding;
+            margin-bottom: -#{$global-small-padding};
+            .label{
+                font-size: 15px;
+            }
+        }
+    }
+    &.select{
+        padding-bottom: $global-small-padding;
+    }
     &.modal {
         z-index: 10000;
     }
     ion-label, ion-label.label-ios, ion-label.label-md{
         margin-bottom: $global-small-padding*0.8;
-    }
-    span{
-        color: color($colors, dark-grey);
     }
     & > p:last-of-type{
         margin-bottom: 0;
@@ -856,7 +933,8 @@ ion-modal {
             }
         }
 
-        //Dynamic Inputs
+        // Dynamic Inputs
+
         .input-container{
             margin-top: 14px;
         }
@@ -891,28 +969,14 @@ ion-modal {
                 color: color($colors, primary);
             }
         }
-        &.perfect{
-            h2, .highlight{
-                color: color($colors, success);
-            }
-            button{
-                background-color: color($colors, success);
-            }
-        }
-        &.good{
-            h2, .highlight{
-                color: color($colors, secondary);
-            }
-            button{
-                background-color: color($colors, secondary);
-            }
-        }
-        &.failed{
-            h2, .highlight{
-                color: color($colors, error);
-            }
-            button{
-                background-color: color($colors, error);
+        @each $rating, $color in $ratings {
+            &.#{$rating} {
+                h2, .highlight{
+                    color: #{nth($color, 1)};
+                }
+                button{
+                    background-color: #{nth($color, 1)};
+                }
             }
         }
         &.task-select{
@@ -940,23 +1004,12 @@ ion-modal {
                             transform: translateY(-50%);
                         }
                     }
-                    &.perfect {
-                        &:before {
-                            background-color: color($colors, success);
+                    @each $rating, $color in $ratings {
+                        &.#{$rating} {
+                            &:before{
+                                background-color: #{nth($color, 1)};
+                            }
                         }
-                    }
-                    &.good {
-                        &:before {
-                            background-color: color($colors, secondary);
-                        }
-                    }
-                    &.failed {
-                        &:before {
-                            background-color: color($colors, error);
-                        }
-                    }
-                    &.skipped{
-                        background-color: color($colors, grey);
                     }
                 }
             }
@@ -973,14 +1026,16 @@ ion-modal {
     }
 }
 
-/*  ========== Progress Bars =========  */
+/*  ========== Progress & Evaluation =========  */
 
-$progress-height: 6px;
 
-mcm-progress-bar{
+mcm-progress-bar, .evaluation{
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: baseline;
+}
+
+mcm-progress-bar{
     & > *{
         &:not(.progress){
             flex-grow: 0;
@@ -988,6 +1043,39 @@ mcm-progress-bar{
         }
     }
 }
+
+.evaluation{
+    flex: 1;
+    flex-wrap: wrap;
+    .ratings {
+        display: flex;
+    }
+    .rating{
+        display: flex;
+        align-items: baseline;
+        margin-left: $global-small-padding;
+        p{
+            margin: 0;
+        }
+        &:before{
+            content: '';
+            @include size(8px);
+            border-radius: 50%;
+            margin-right: $global-small-padding/2;
+        }
+
+        @each $rating, $color in $ratings {
+            &.#{$rating} {
+                &:before{
+                    background-color: #{nth($color, 1)};
+                }
+            }
+        }
+    }
+}
+
+$progress-height: 6px;
+
 .progress{
     background-color: rgba(color($colors, primary-darker), 0.2);
     height: $progress-height;
@@ -995,6 +1083,7 @@ mcm-progress-bar{
     flex: 1;
     & > .bar{
         width: 0;
+        z-index: 100;
         //prevent initial bug of full progress bar
         background-color: color($colors, primary);
         height: $progress-height;

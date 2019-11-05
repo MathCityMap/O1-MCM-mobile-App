@@ -7,6 +7,10 @@ import {Deeplinks} from "@ionic-native/deeplinks";
 import {ModalsService} from "../../services/modals-service";
 import {DB_Updater} from "../../classes/DB_Updater";
 import {OrmService} from "../../services/orm-service";
+import { Storage } from "@ionic/storage";
+import {GpsService} from "../../services/gps-service";
+import {timeout} from 'promise-timeout';
+
 
 @IonicPage()
 @Component({
@@ -16,6 +20,7 @@ import {OrmService} from "../../services/orm-service";
 export class DashboardPage {
 
     devMode: boolean;
+    tabBarElement: any;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -23,12 +28,48 @@ export class DashboardPage {
                 private deeplinks: Deeplinks,
                 private modalService: ModalsService,
                 private dbUpdater: DB_Updater,
-                private ormService: OrmService) {
+                private ormService: OrmService,
+                private storage: Storage,
+                private gpsService: GpsService) {
+        this.tabBarElement = document.querySelector('.tabbar');
+    }
+
+    async ngOnInit() {
+        /**
+         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
+         * from the default one (Frankfurt) for a few seconds
+         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
+         */
+        this.devMode = (await this.storage.get('devMode') === 'true')
+        if (!this.gpsService.getLastPosition()) {
+            // try to get position
+            try {
+                await timeout(this.gpsService.getCurrentPosition().catch(err => {
+                    console.error("Error loading GPS data", err)
+                }), 2000);
+            } catch (e) {
+                console.log("could not obtain position: " + e.message);
+                // make position check async
+                this.gpsService.getCurrentPosition().then((position) => {
+                    if (position && position.coords) {
+                    }
+                }, err => {
+                    console.error("Error loading GPS data", err)
+                });
+            }
+        }
     }
 
     ionViewWillEnter(){
         this.devMode = this.helper.getDevMode();
         this.setupDeeplinks();
+        if (this.tabBarElement != null) {
+            this.tabBarElement.style.display = 'none';
+        }
+    }
+
+    ionViewDidLeave() {
+        this.tabBarElement.style.display = 'flex';
     }
 
     pushSettingsPage() {
@@ -38,8 +79,11 @@ export class DashboardPage {
         this.navCtrl.push('InfoPage');
     }
 
-    switchTab(index: number){
-        this.navCtrl.parent.select(index);
+    switchTab(index: number, addRoute = false){
+       if(addRoute){
+           this.helper.setActivateAddRoute(true);
+       }
+       this.navCtrl.parent.select(index);
     }
 
 
@@ -81,5 +125,4 @@ export class DashboardPage {
             console.log('Got a deeplink that didn\'t match', nomatch);
         });
     }
-
 }
