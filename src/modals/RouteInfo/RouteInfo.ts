@@ -7,6 +7,7 @@ import { ModalsService } from '../../services/modals-service';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController } from "ionic-angular/navigation/nav-controller";
 import {SocialSharing} from "@ionic-native/social-sharing";
+import {Helper} from "../../classes/Helper";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class RouteInfo {
     constructor(public navParams: NavParams,
                 private ormService: OrmService,
                 private viewCtrl: ViewController,
-                public alertCtrl: AlertController,
+                public helper: Helper,
                 public navCtrl: NavController,
                 public translateService: TranslateService,
                 private social: SocialSharing) {

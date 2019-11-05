@@ -83,10 +83,13 @@ export class MyApp {
             if (await this.nav.canGoBack()) {
                 await this.nav.popToRoot();
             }
-            let route = await this.ormService.findRouteById(parseInt(match.$args.id));
-
-            this.modalService.presentRouteInfoModal(route, this.nav);
-
+            try {
+                let route = await this.ormService.findRouteById(parseInt(match.$args.id));
+                if(!route) throw route;
+                this.modalService.presentRouteInfoModal(route, this.nav);
+            } catch (e) {
+                await this.modalService.showDialog(null, 'p_alert_wrong_url');
+            }
             console.log('Successfully matched route', JSON.stringify(match));
         }, nomatch => {
             // nomatch.$link - the full link data

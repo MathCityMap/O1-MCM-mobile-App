@@ -9,7 +9,7 @@
         <ion-grid>
             <ion-row align-items-center>
                 <ion-col col-4 class="button-container">
-                    <button ion-button icon-only small round *ngIf="!route.downloaded" (click)="doDownload(route)">
+                    <button ion-button icon-only small round *ngIf="!route.downloaded && helper.isOnline" (click)="doDownload(route)">
                         <img src="./assets/icons/download.svg"/>
                     </button>
                     <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute()">
@@ -28,9 +28,9 @@
 
                 <!--TODO Sharing coming soon near your area-->
                 <ion-col col-4 class="button-container">
-                    <!--<button ion-button icon-only small round (click)="share(route)">-->
-                        <!--<img src="./assets/icons/share.svg"/>-->
-                    <!--</button>-->
+                    <button ion-button icon-only small round (click)="share(route)">
+                        <img src="./assets/icons/share.svg"/>
+                    </button>
                 </ion-col>
             </ion-row>
         </ion-grid>
