@@ -44,7 +44,7 @@ $colors: (
   fab-color-1:    #29B0E5,
   fab-color-2:    #1595C1,
   fab-color-3:    #036D99,
-  fab-color-4:    #034562,
+  fab-color-4:    #034562
 );
 
 
@@ -288,6 +288,13 @@ $c-blue:           #32A4DC;
 $c-danger:         #333333;
 $c-light:          #ffffff;
 
+$fab: (
+    color-1:    #4D2117,
+    color-2:    $c-primary,
+    color-3:    #D9634C,
+    color-4:    #FF8C73
+);
+
 $c-text:          $c-danger;
 
 $image-path: "../assets/images/";
@@ -355,9 +362,10 @@ $icon-path: "../assets/icons/";
         font-size: 18px;
     }
 
-    .button{
+    .button, button{
         &.button-round-ios.button-small-ios,
-        &.button-round-md.button-small-md{
+        &.button-round-md.button-small-md,
+        &.fab{
             font-family: 'CaveatBrush', Arial, sans-serif;
             span{
                 font-family: 'CaveatBrush', Arial, sans-serif;
@@ -448,6 +456,11 @@ $icon-path: "../assets/icons/";
             }
             &[color="danger"]{
                 background-color: $c-danger;
+            }
+            @for $i from 1 through 4 {
+                &[class*="fab-color-#{$i}"]{
+                    background-color: color($fab, color-#{$i});;
+                }
             }
         }
     }
@@ -575,6 +588,9 @@ $icon-path: "../assets/icons/";
     page-task-detail{
         .transition {
             background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
+        }
+        .fab-container{
+            transform: translateY(calc(-100% - 50px));
         }
         .task-content{
             background: url("#{$image-path}pirates/texture-water.svg"), linear-gradient(to bottom, rgba(50, 164, 220, 0) 50px, rgba(50, 164, 220, 1) 51px);

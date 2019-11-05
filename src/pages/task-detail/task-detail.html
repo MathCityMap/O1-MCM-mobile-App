@@ -5,8 +5,7 @@
             <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />
             <!-- image mirror is needed to give the following content a spacing according to the image dimension -->
         </div>
-        <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap" style="width:100%; height: 60vh;">
-        </div>
+        <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap"></div>
         <div class="transition"></div>
     </div>
     <div class="task-content" id="scroll-anchor">
@@ -14,7 +13,7 @@
             <!-- fab buttons for task map -->
             <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
                 <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">
-                    <ion-icon name="{{item}}">{{item}}</ion-icon>
+                    <span>{{item}}</span>
                 </button>
             </div>
             <!-- // fab buttons for task map -->
@@ -25,10 +24,10 @@
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
                 <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
-                <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice' && route.isAnswerValidationEnabled()">
+                <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice' && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
                     <ion-input (keyup.enter)="checkResult()"
-                               [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')"
+                               [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
                                *ngIf="task.solutionType != 'text'"
                                type="text"
                                (focus)="setKeyboardOn(true)"
@@ -37,7 +36,7 @@
                                [(ngModel)]="taskDetails.answer"
                     >
                     </ion-input>
-                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || task.solutionType == 'gps')" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled()">
                     <ion-item *ngFor="let item of multipleChoiceList; let i = index">

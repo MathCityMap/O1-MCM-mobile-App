@@ -29,6 +29,9 @@ page-task-detail {
                 width: 100%;
             }
         }
+        #gpsTaskMap{
+            @include size(100%, 66vh);
+        }
     }
     .transition {
         content: '';
@@ -38,6 +41,7 @@ page-task-detail {
         display: block;
         position: absolute;
         bottom: -50px;
+        z-index: 1000;
     }
     .task-content {
         padding-bottom: 1px;
@@ -138,14 +142,14 @@ page-task-detail {
         }
     }
     .fab-container {
-        @include transform(translateY(-100%));
+        @include transform(translateY(calc(-100% - #{$global-base-padding})));
         button {
-            -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.2);
-            margin-bottom: $global-small-padding;
-            padding-top:5px;
-            span,
-            span .icon{
+            &:not(:first-of-type){
+                margin-top: $global-small-padding;
+            }
+            padding-top: 5px;
+            span, span .icon{
                 color: #ffffff;
                 font-family: 'NunitoExtrabold', Arial, sans-serif;
                 line-height: 1;
