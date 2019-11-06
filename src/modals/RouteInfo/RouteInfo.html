@@ -5,7 +5,7 @@
         <h1>{{ route.title }}</h1>
     </div>
 
-    <div class="image-box" *ngIf="route" [ngClass]="route.getNarrativeName()">
+    <div class="image-box" *ngIf="route">
         <ion-grid>
             <ion-row align-items-center>
                 <ion-col col-4 class="button-container">
@@ -16,7 +16,7 @@
                         <img src="./assets/icons/delete.svg"/>
                     </button>
                 </ion-col>
-                <ion-col class="image-container" lazy-load-images>
+                <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">
                     <div class="cover">
                         <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
                     </div>

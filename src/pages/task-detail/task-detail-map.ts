@@ -87,19 +87,19 @@ export class TaskDetailMap implements OnDestroy {
         switch (this.app.activeNarrative) {
             case 'pirates':
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.preDefinedPointIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/marker-task-open.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
-                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/marker-route-public.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
-                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/marker-route-private.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
-                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/marker-task-failed.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.preDefinedPointIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-gps-0.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-1.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-2.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-3.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-4.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
                 break;
             default:
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], className:'marker'});
-                this.preDefinedPointIcon = L.icon({iconUrl:"./assets/icons/task-marker-failed.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
-                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/marker-task-open.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
-                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/marker-route-public.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
-                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/marker-route-private.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
-                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/marker-task-failed.png" , iconSize: [35, 48], iconAnchor: [17, 48], className:'marker'});
+                this.preDefinedPointIcon = L.icon({iconUrl:"./assets/icons/marker-task-gps-0.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/marker-task-gps-1.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/marker-task-gps-2.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/marker-task-gps-3.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/marker-task-gps-4.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
                 break;
 
         }
