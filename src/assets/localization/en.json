@@ -321,6 +321,8 @@
   "a_r_length": "Length",
   "a_r_equip": "Tools",
   "a_rdl_title_map": "Downloading map data",
+  "a_list_noDownloads": "You don’t have any downloaded trails yet! Go to trail browsing and load them to find here.",
+  "a_route_default_share": "Hello, look at this route I found: ",
   "a_rdl_error": "Error(s)",
   "a_rdl_complete_with_error": "Download finished with",
   "a_rdl_title_img": "Downloading images",
