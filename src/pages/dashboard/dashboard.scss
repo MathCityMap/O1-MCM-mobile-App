@@ -29,11 +29,12 @@ page-dashboard {
                 @include transition-fast();
                 border-radius: $border-radius-basic;
                 .item-inner{
-                    align-items: flex-end;
                     padding: 0!important;
                     [item-content]{
+                        justify-content: space-between;
                         display: flex;
                         flex-direction: column;
+                        height: 100%;
                         .title{
                             margin-bottom: $global-small-padding;
                         }
@@ -90,9 +91,7 @@ page-dashboard {
                 }
             }
         }
-
     }
-
 }
 
 //.tabbar{
