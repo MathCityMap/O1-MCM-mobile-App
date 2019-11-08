@@ -21,6 +21,7 @@ routes-list {
         }
         .message{
             color: color($colors, mid-grey);
+            line-height: 1.4;
             @include bolder;
         }
     }
