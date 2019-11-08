@@ -41,10 +41,10 @@ $colors: (
   mid-grey:       #b2b2b2,
   light-grey:     #e5e5e5,
 
-  fab-color-1:    #29B0E5,
-  fab-color-2:    #1595C1,
-  fab-color-3:    #036D99,
-  fab-color-4:    #034562,
+  fab-color-1:    #034562,
+  fab-color-2:    #036D99,
+  fab-color-3:    #1595C1,
+  fab-color-4:    #29B0E5
 );
 
 
@@ -279,6 +279,8 @@ $ratings:(
 // --------------------------------------------------
 // --------------------------------------------------
 
+$narrative: pirates;
+
 $c-primary:        #AA2000;
 $c-secondary:      #9D7A5E;
 $c-secondary-dark: #7F6858;
@@ -287,8 +289,15 @@ $c-success:        #33CC00;
 $c-blue:           #32A4DC;
 $c-danger:         #333333;
 $c-light:          #ffffff;
-
 $c-text:          $c-danger;
+
+$fab: (
+    color-1:    #4D2117,
+    color-2:    $c-primary,
+    color-3:    #D9634C,
+    color-4:    #FF8C73
+);
+
 
 $image-path: "../assets/images/";
 $icon-path: "../assets/icons/";
@@ -304,24 +313,40 @@ $icon-path: "../assets/icons/";
 }
 
 @mixin texture-wood($rotate: false, $dark: false) {
-    background: url("#{$image-path}pirates/texture-wood.svg") $c-secondary;
+    background: url("#{$image-path}#{$narrative}/texture-wood.svg") $c-secondary;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     @if $rotate{
-        background-image: url("#{$image-path}pirates/texture-wood-v.svg");
+        background-image: url("#{$image-path}#{$narrative}/texture-wood-v.svg");
     }
     @if $dark{
-        background-image: url("#{$image-path}pirates/texture-wood-dark.svg");
+        background-image: url("#{$image-path}#{$narrative}/texture-wood-dark.svg");
         background-color: $c-secondary-dark;
     }
 }
 
 
 
+// OUTSIDE ROUTE Routes List & Preview / Detail
+
+.image-box{
+    .image-container{
+        &.#{$narrative}{
+            .indicator{
+                &:before, &:after{
+                    content: url("#{$image-path}#{$narrative}/indicator-label-deco.svg");
+                    margin: 5px 5px 0;
+                    width: 16px;
+                }
+            }
+
+        }
+    }
+}
 
 
-.pirates {
+.#{$narrative} {
 
     .label{
         color: $c-text;
@@ -355,31 +380,14 @@ $icon-path: "../assets/icons/";
         font-size: 18px;
     }
 
-    .button{
+    .button, button{
         &.button-round-ios.button-small-ios,
-        &.button-round-md.button-small-md{
+        &.button-round-md.button-small-md,
+        &.fab{
             font-family: 'CaveatBrush', Arial, sans-serif;
             span{
                 font-family: 'CaveatBrush', Arial, sans-serif;
                 font-size: 130%;
-            }
-        }
-    }
-
-    // OUTSIDE ROUTE Routes List & Preview / Detail
-
-    &.image-box{
-        .image-container{
-            .cover{
-                //border-color: $c-secondary;
-                //border-width: 6px;
-            }
-            .indicator{
-                &:before, &:after{
-                    content: url("#{$image-path}pirates/indicator-label-deco.svg");
-                    margin: 5px 5px 0;
-                    width: 16px;
-                }
             }
         }
     }
@@ -413,7 +421,7 @@ $icon-path: "../assets/icons/";
         .input-wrapper{
             &:after {
                 pointer-events: none;
-                content: url("#{$image-path}pirates/border-input.svg");
+                content: url("#{$image-path}#{$narrative}/border-input.svg");
                 position: absolute;
                 bottom: -7px;
                 left: 0;
@@ -449,6 +457,11 @@ $icon-path: "../assets/icons/";
             &[color="danger"]{
                 background-color: $c-danger;
             }
+            @for $i from 1 through 4 {
+                &[class*="fab-color-#{$i}"]{
+                    background-color: color($fab, color-#{$i});;
+                }
+            }
         }
     }
 
@@ -467,14 +480,14 @@ $icon-path: "../assets/icons/";
                 box-shadow: unset;
                 filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
                 background-color: unset;
-                background-image: url("#{$image-path}pirates/texture-paper-sheet.svg");
+                background-image: url("#{$image-path}#{$narrative}/texture-paper-sheet.svg");
                 background-repeat: no-repeat;
                 background-position: center top;
                 background-size: 105%;
                 .image-container{
                     border: none;
                     &:after{
-                        content: url("#{$image-path}pirates/image-frame.svg");
+                        content: url("#{$image-path}#{$narrative}/image-frame.svg");
                         position: absolute;
                         top: -#{$global-small-padding/2};
                         left: -#{$global-small-padding/2};
@@ -541,7 +554,7 @@ $icon-path: "../assets/icons/";
                 &.session, &.finish{
                     border: none;
                     &:after{
-                        content: url("../assets/images/pirates/border-list-dark.svg");
+                        content: url("../assets/images/#{$narrative}/border-list-dark.svg");
                         pointer-events: none;
                         position: absolute;
                         bottom: -8px;
@@ -553,7 +566,7 @@ $icon-path: "../assets/icons/";
                 }
                 &.finish{
                     &:after{
-                        content: url("../assets/images/pirates/border-input.svg");
+                        content: url("../assets/images/#{$narrative}/border-input.svg");
                     }
                 }
             }
@@ -563,7 +576,7 @@ $icon-path: "../assets/icons/";
     .score{
         padding: 0;
         &:after{
-            content: url("#{$image-path}pirates/unit-score.svg");
+            content: url("#{$image-path}#{$narrative}/unit-score.svg");
             margin-left: 6px;
             margin-top: 2px;
             /*@include shadow-filter-hard();*/
@@ -576,8 +589,11 @@ $icon-path: "../assets/icons/";
         .transition {
             background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
         }
+        .fab-container{
+            transform: translateY(calc(-100% - 50px));
+        }
         .task-content{
-            background: url("#{$image-path}pirates/texture-water.svg"), linear-gradient(to bottom, rgba(50, 164, 220, 0) 50px, rgba(50, 164, 220, 1) 51px);
+            background: url("#{$image-path}#{$narrative}/texture-water.svg"), linear-gradient(to bottom, rgba(50, 164, 220, 0) 50px, rgba(50, 164, 220, 1) 51px);
             background-repeat: no-repeat;
             background-position: bottom;
             background-size: cover;
@@ -591,13 +607,13 @@ $icon-path: "../assets/icons/";
                         padding: 0;
                         color: $c-text;
                         &:after {
-                            content: url("#{$image-path}pirates/unit-score-l.svg");
+                            content: url("#{$image-path}#{$narrative}/unit-score-l.svg");
                         }
                     }
                 }
                 &.task{
                     &:before{
-                        content: url("#{$image-path}pirates/texture-paper-scroll-start.svg");
+                        content: url("#{$image-path}#{$narrative}/texture-paper-scroll-start.svg");
                         position: absolute;
                         left: 0;
                         top: -30px;
@@ -606,7 +622,7 @@ $icon-path: "../assets/icons/";
                     }
                     /*@include shadow-filter-medium;*/
                     box-shadow: unset;
-                    background-image: url("#{$image-path}pirates/texture-paper-scroll.png");
+                    background-image: url("#{$image-path}#{$narrative}/texture-paper-scroll.png");
                     background-repeat: no-repeat;
                     background-position: bottom;
                     background-size: 100% 100%;
@@ -648,7 +664,7 @@ $icon-path: "../assets/icons/";
 
                     @each $item in $rating {
                         &[class*="#{$item}"] {
-                            background: url("#{$image-path}pirates/texture-evaluation-#{$item}.svg");
+                            background: url("#{$image-path}#{$narrative}/texture-evaluation-#{$item}.svg");
                             background-repeat: no-repeat;
                             background-position: bottom;
                             background-size: 100%;
@@ -684,7 +700,7 @@ $icon-path: "../assets/icons/";
     }
 
     .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
-        background-image: url("#{$image-path}pirates/texture-paper-sheet.png");
+        background-image: url("#{$image-path}#{$narrative}/texture-paper-sheet.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -695,7 +711,7 @@ $icon-path: "../assets/icons/";
                 border-bottom: none!important;
                 position: relative;
                 &:not(:last-of-type):after{
-                    content: url(../assets/images/pirates/border-list.svg);
+                    content: url("../assets/images/#{$narrative}/border-list.svg");
                     pointer-events: none;
                     position: absolute;
                     bottom: -5px;
@@ -713,7 +729,7 @@ $icon-path: "../assets/icons/";
             }
             .score{
                 &:after{
-                    content: url("#{$image-path}pirates/unit-score-l.svg");
+                    content: url("#{$image-path}#{$narrative}/unit-score-l.svg");
                     filter: none;
                 }
             }

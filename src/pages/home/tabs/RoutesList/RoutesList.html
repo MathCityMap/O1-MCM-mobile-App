@@ -39,7 +39,7 @@
     <div class="user-feedback">
         <div class="download-empty" *ngIf="!showAllRoutes && downloadedItems.length == 0">
             <img src="assets/icons/download-empty.svg"/>
-            <h4 class="message">You don’t have any downloaded trails yet! Go to trail browsing and load them to find here.</h4>
+            <h4 class="message">{{ "a_list_noDownloads" | translate}}</h4>
         </div>
         <div class="search-empty a" *ngIf="showAllRoutes && filteredResult?.length == 0">
             <img src="assets/icons/search-empty.svg"/>

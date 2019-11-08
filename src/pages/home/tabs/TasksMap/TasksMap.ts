@@ -923,11 +923,11 @@ export class TasksMap implements OnInit, OnDestroy {
         switch (this.app.activeNarrative) {
             case 'pirates':
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-skipped.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-good.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-perfect.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
+                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-skipped.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-good.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-perfect.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
 
                 this.taskOpenIcon.clusterColor = '#AA2000';
                 this.taskSkippedIcon.clusterColor = '#b2b2b2';
