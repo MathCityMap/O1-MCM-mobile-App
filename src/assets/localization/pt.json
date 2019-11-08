@@ -381,7 +381,6 @@
   "a_alert_congrats_msg": "Completou todas as tarefas da rota '{{TITLE}}' com sucesso!",
   "a_g_max_points": "Máximo de pontos",
   "a_g_name_error": "O nome deve ter entre 3 a 13 caracteres.",
-  "a_t_list": "Lista",
   "a_alert_bigmap_msg": "Esta rota é grande ({{TILES}} ladrilhos). O download pode demorar vários minutos. Deseja continuar?",
   "a_alert_bigmap_title": "Encontrada rota grande",
   "a_alert_dlmapcancel_msg": "Deseja cancelar o download do mapa?",

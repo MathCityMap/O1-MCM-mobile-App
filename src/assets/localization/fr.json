@@ -381,7 +381,6 @@
   "a_alert_congrats_msg": "Vous avez réussi le parcours '{{TITLE}}'!",
   "a_g_max_points": "points max.",
   "a_g_name_error": "Le nom doit contenir de 3 à 13 caractères.",
-  "a_t_list": "Liste",
   "a_alert_bigmap_msg": "Ce parcours est volumineux, il contient {{TILES}} tuiles. Le téléchargement nécessitera plusieurs minutes. Voulez-vous continuer?",
   "a_alert_bigmap_title": "Ce parcours est volumineux",
   "a_alert_dlmapcancel_msg": "Voulez-vous abandonner le téléchargement de la carte?",
@@ -566,7 +565,7 @@
   "p_tb_edit_draft": "Brouillon",
   "p_image_deleted": "À détruire",
   "p_undo": "Rétablir",
-  "a_private_session_kicked_text": "Ouhlà! Vous avez été éjecté·e de la classe virtuelle!",
+  "a_private_session_kicked_text": "Ouhlà ! Vous avez été éjecté·e de la classe virtuelle!",
   "a_private_session_kicked": "Au revoir!",
   "p_r_help_hints": "Si ces options sont décochées, les indices ne sont pas disponibles.",
   "p_r_help_saso": "Si cette option est décochée, les éléments de solution ne sont pas disponibles.",
@@ -614,10 +613,13 @@
   "p_session_options_deleted_users": "Cacher les utilisateurs effacés",
   "a_task_complete": "Compléter",
   "a_search_trails": "Chercher par nom, ville ou code",
-  "a_alert_welcome": "Bienvenue!",
-  "a_alert_welcome_msg": "Bienvenue au parcours '{{TITLE}}'! Rigolez bien!",
+  "a_alert_welcome": "Bienvenue !",
+  "a_alert_welcome_msg": "Bienvenue au parcours '{{TITLE}}' ! Amusez-vous bien !",
   "p_narrative_names_pirates": "Pirates",
   "p_narrative_names_none": "Aucun",
   "p_narrative": "Narration",
-  "a_terms_and_conditions_title": "Conditions générales"
+  "a_terms_and_conditions_title": "Conditions générales",
+  "p_alert_no_narrative_translation_continue": "Voulez-vous continuer quand-même?",
+  "p_alert_no_narrative_translation_1": "Une épreuve au moins n'est pas disponible dans votre langue pour la narration sélectionnée:",
+  "r_alert_no_comment": "L'écriture d'un commentaire est obligatoire"
 }

@@ -382,7 +382,6 @@
   "a_alert_congrats_msg": "Všetky úlohy prechádzky '{{TITLE}}' úspešne vyriešené!",
   "a_g_max_points": "max. bodov",
   "a_g_name_error": "Názov musí obsahovať 3 až 13 znakov.",
-  "a_t_list": "Zoznam",
   "a_alert_bigmap_msg": "Prechádzka je veľká ({{TILES}} tiles). Nahratie môže trvať niekoľko minút. Pokračovať?",
   "a_alert_bigmap_title": "Našla sa veľká prechádzka",
   "a_alert_dlmapcancel_msg": "Chcete zrušiť nahratie mapy?",

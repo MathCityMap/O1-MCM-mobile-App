@@ -306,7 +306,6 @@
   "a_alert_dlmapcancel_msg": "Vuoi cancellare la mappa scaricata?",
   "a_alert_bigmap_title": "Individuato un grande percorso",
   "a_alert_bigmap_msg": "Questo percorso è pesante ({{TILES}} tiles). Il download potrebbe durare alcuni minuti. Vuoi continuare il download?",
-  "a_t_list": "lista",
   "a_g_name_error": "Il nome deve essere composto da 3 a 13 caratteri.",
   "a_g_max_points": "punti massimi",
   "a_alert_congrats_msg": "Hai completato tutti le attività del percorso '{{TITLE}}' con successo!",
