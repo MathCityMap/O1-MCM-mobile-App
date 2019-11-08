@@ -381,7 +381,6 @@
   "a_alert_congrats_msg": "Vous avez réussi le parcours '{{TITLE}}'!",
   "a_g_max_points": "points max.",
   "a_g_name_error": "Le nom doit contenir de 3 à 13 caractères.",
-  "a_t_list": "Liste",
   "a_alert_bigmap_msg": "Ce parcours est volumineux, il contient {{TILES}} tuiles. Le téléchargement nécessitera plusieurs minutes. Voulez-vous continuer?",
   "a_alert_bigmap_title": "Ce parcours est volumineux",
   "a_alert_dlmapcancel_msg": "Voulez-vous abandonner le téléchargement de la carte?",

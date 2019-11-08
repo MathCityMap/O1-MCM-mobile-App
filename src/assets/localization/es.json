@@ -374,7 +374,6 @@
   "a_alert_congrats_msg": "¡Has completado con éxito todas las tareas de la ruta '{{TITLE}}' !",
   "a_g_max_points": "Máximo de puntos",
   "a_g_name_error": "El nombre debe contener de 3 a 13 caracteres.",
-  "a_t_list": "Lista",
   "a_alert_bigmap_title": "Encontrada una ruta voluminosa.",
   "a_alert_dlmapcancel_msg": "¿Quieres cancelar la descarga del mapa?",
   "a_alert_dlmapcancel_title": "¿Se cancela la descarga?",
