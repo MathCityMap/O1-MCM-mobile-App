@@ -1,14 +1,11 @@
 <mcm-header></mcm-header>
-<ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
+<ion-content class="has-header pattern-bg" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
     <div class="task-header">
-        <div *ngIf="task && task.solutionType!='gps'" class="image-container" no-bounce>
-            <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />
-            <!-- image mirror is needed to give the following content a spacing according to the image dimension -->
-        </div>
+        <img class="image" *ngIf="task && task.solutionType!='gps'" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap"></div>
-        <div class="transition"></div>
     </div>
     <div class="task-content" id="scroll-anchor">
+        <div class="transition"></div>
         <div class="card task has-button-on-the-edge">
             <ion-fab top right *ngIf="task && task.solutionType=='gps'">
                 <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">

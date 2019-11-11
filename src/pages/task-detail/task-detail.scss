@@ -1,15 +1,14 @@
 .platform-ios{
     page-task-detail{
         ion-content{
-            background-position: 0 74px ;
+            background-position: 0 74px;
         }
     }
 }
-.platform-android,
-.md{
+.platform-android, .md{
     page-task-detail{
         ion-content{
-            background-position: 0 54px ;
+            background-position: 0 54px;
         }
     }
 }
@@ -18,36 +17,46 @@ page-task-detail {
         background-size: 100% auto;
         background-repeat: no-repeat;
     }
+
+    //  Upper Part (Header)
+    $header-height: 66vh;
+
     .task-header {
-        position: relative;
+        position: sticky;
         display: block;
         z-index: 0;
-        .image-container {
-            max-height: 80vh;
-            img {
-                opacity: 0;
-                width: 100%;
-            }
+        width: 100%;
+        top: 0;
+        left: 0;
+        min-height: $header-height;
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         #gpsTaskMap{
-            @include size(100%, 66vh);
+            @include size(100%, $header-height);
         }
     }
-    .transition {
-        content: '';
-        background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
-        height: 100px;
-        width: 100%;
-        display: block;
-        position: absolute;
-        bottom: -50px;
-        z-index: 1000;
-    }
+
+    //  Bottom Part (Content)
+
     .task-content {
+        position: relative;
         padding-bottom: 1px;
         display: block;
-        position: relative;
         background: linear-gradient(to bottom, rgba(229, 229, 229, 0) 50px, rgba(229, 229, 229, 1) 51px);
+        .transition {
+            position: absolute;
+            top: 0;
+            height: 100px;
+            width: 100%;
+            z-index: 1;
+            display: block;
+            content: '';
+            background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
+        }
     }
     .card {
         z-index: 2;

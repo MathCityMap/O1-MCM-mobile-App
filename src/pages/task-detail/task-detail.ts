@@ -1284,14 +1284,6 @@ export class TaskDetail {
         return 'fab-color-' + (index + 1);
     }
 
-    getIonContentStyles() {
-        if (this.task && this.task.solutionType != 'gps') {
-            let result = this.task.getImageURL();
-            let conditionalBackgroundImageStyles = {'background-image': 'url(" ' + result + ' ")'};
-            return conditionalBackgroundImageStyles;
-        } else return;
-    }
-
     SetMessage(type: string) {
         let result = "";
         switch (type) {

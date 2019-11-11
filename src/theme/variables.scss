@@ -580,13 +580,13 @@ $icon-path: "../assets/icons/";
     // Task
 
     page-task-detail{
-        .transition {
-            background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
-        }
         ion-fab{
             transform: translateY(calc(-100% - 50px));
         }
         .task-content{
+            .transition {
+                background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
+            }
             background: url("#{$image-path}#{$narrative}/texture-water.svg"), linear-gradient(to bottom, rgba(50, 164, 220, 0) 50px, rgba(50, 164, 220, 1) 51px);
             background-repeat: no-repeat;
             background-position: bottom;
@@ -624,7 +624,6 @@ $icon-path: "../assets/icons/";
                     padding: 30px 30px 40px;
                     margin-left: 10px;
                     margin-right: 10px;
-                    margin-top: -1px;
                     .answer{
                         .item{
                             background-color: unset;
