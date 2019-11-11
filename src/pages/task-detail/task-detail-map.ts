@@ -19,6 +19,8 @@ import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { Subscription } from 'rxjs/Subscription';
 import {MyApp} from "../../app/app.component";
+import {OrmService} from "../../services/orm-service";
+import {ImagesService} from "../../services/images-service";
 
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
@@ -61,7 +63,9 @@ export class TaskDetailMap implements OnDestroy {
         private task: Task,
         private route: Route,
         private gpsService: GpsService,
-        private app: MyApp
+        private app: MyApp,
+        private ormService: OrmService,
+        private imagesService: ImagesService
     ) {
         this.updateIcons();
 
@@ -363,7 +367,7 @@ export class TaskDetailMap implements OnDestroy {
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
                 let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-                    attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
+                    attribution:'&copy; mapbox.com',
                     subdomains: subDomains,
                     minZoom: Helper.min_zoom,
                     maxZoom: Helper.max_zoom,
@@ -372,6 +376,49 @@ export class TaskDetailMap implements OnDestroy {
                     detectRetina: true
                 });
 
+                const tiles = this.ormService.getTileURLsAsObject(this.route);
+                let that = this;
+                offlineLayer.getTileUrl = function (coords) {
+                    var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
+                    var dbStorageKey = this._getStorageKey(url);
+
+                    if (tiles[dbStorageKey]) {
+                        return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
+                    }
+                    return Promise.resolve(url);
+
+                };
+
+                this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
+
+                offlineLayer.on('offline:below-min-zoom-error', function () {
+                    alert('Can not save tiles below minimum zoom level.');
+                });
+
+                offlineLayer.on('offline:save-start', function (data) {
+                    console.debug(data);
+                    console.debug('Saving ' + data.nTilesToSave + ' tiles.');
+                });
+
+                offlineLayer.on('offline:save-end', function () {
+                    alert('All the tiles were saved.');
+                });
+
+                offlineLayer.on('offline:save-error', function (err) {
+                    console.error('Error when saving tiles: ' + err);
+                });
+
+                offlineLayer.on('offline:remove-start', function () {
+                    console.debug('Removing tiles.');
+                });
+
+                offlineLayer.on('offline:remove-end', function () {
+                    alert('All the tiles were removed.');
+                });
+
+                offlineLayer.on('offline:remove-error', function (err) {
+                    console.error('Error when removing tiles: ' + err);
+                });
                 offlineLayer.addTo(this.map);
             });
 
