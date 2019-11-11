@@ -303,7 +303,7 @@ export class OrmService {
             // 15.04.18 - get data rows for route tasks from online DB first
             await dbUpdater.downloadRouteTasksData(route, this.translateService.instant("a_language_code"));
             statusCallback(0, 0, 'a_rdl_title_map');
-            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
+            await CacheManagerMCM.downloadTiles(route, Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
                 alreadyDownloadedUrls.push(url);
                 return statusCallback(done, total);
             });
@@ -328,7 +328,7 @@ export class OrmService {
     }
 
     getTileURLs(route: Route) {
-        return CacheManagerMCM.getTileURLs(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom);
+        return CacheManagerMCM.getTileURLs(route, Helper.min_zoom, Helper.max_zoom);
     }
 
     getTileURLsAsObject(route: Route) {

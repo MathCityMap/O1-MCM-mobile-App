@@ -3,6 +3,7 @@ import { MyMath } from './MyMath'
 import { tilesDb } from "./tilesDb"
 import { LatLngBounds, Point } from 'leaflet';
 import { ImagesService } from '../services/images-service';
+import {Route} from "../entity/Route";
 
 export class CacheManagerMCM {
     static getTilesCoverageMinMaxZoom(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number): Array<MapTile> {
@@ -61,12 +62,12 @@ export class CacheManagerMCM {
         return new Point(x, y)
     }
 
-    static async downloadTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number, callback: any): Promise<any> {
-        const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
+    static async downloadTiles(route: Route, pZoomMin: number, pZoomMax: number, callback: any): Promise<any> {
+        const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
         await tilesDb.initialize();
         let tilesUrls = tiles.map(tile => {
-            let domain = Helper.subDomains[Math.floor(Math.random() * Helper.subDomains.length)];
-            return Helper.mapquestUrl.replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
+            let domain = route.getTilesServerSubdomains(route.getNarrativeName())[Math.floor(Math.random() * route.getTilesServerSubdomains(route.getNarrativeName()).length)];
+            return route.getTilesMap(route.getNarrativeName()).replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
         });
         try {
             await ImagesService.INSTANCE.downloadURLs(tilesUrls, false, callback, true);
@@ -76,14 +77,14 @@ export class CacheManagerMCM {
         }
     }
 
-    static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
+/*    static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
         //const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
         await tilesDb.initialize();
         tilesDb.removeItems(CacheManagerMCM.getTileURLs(pBB, pZoomMin, pZoomMax));
-    }
+    }*/
 
-    static getTileURLs(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
-        const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
-        return tiles.map(tile => Helper.mapquestUrl.replace('{s}', Helper.subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)));
+    static getTileURLs(route: Route, pZoomMin: number, pZoomMax: number) {
+        const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
+        return tiles.map(tile => route.getTilesMap(route.getNarrativeName()).replace('{s}', Helper.subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)));
     }
 }
