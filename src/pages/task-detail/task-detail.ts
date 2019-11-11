@@ -21,6 +21,7 @@ import {ChatAndSessionService, SessionInfo} from "../../services/chat-and-sessio
 import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
+import {ImagesService} from "../../services/images-service";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -77,7 +78,8 @@ export class TaskDetail {
         private chatAndSessionService: ChatAndSessionService,
         private app: MyApp,
         private photoViewer: PhotoViewer,
-        private spinnerDialog: SpinnerDialog
+        private spinnerDialog: SpinnerDialog,
+        private imageService: ImagesService
     ) {
     }
 
@@ -184,7 +186,7 @@ export class TaskDetail {
         }
         // Init task detail map, if task is gps task
         if (this.task.solutionType == "gps") {
-            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app);
+            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app, this.ormService, this.imageService);
             this.taskDetailMap.loadMap();
             // Insert predefined points / axis
             let gpsType = this.task.getSolutionGpsValue("task");

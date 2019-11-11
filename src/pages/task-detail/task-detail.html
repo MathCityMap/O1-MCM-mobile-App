@@ -1,7 +1,7 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header pattern-bg" [ngStyle]="getIonContentStyles()" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
     <div class="task-header">
-        <div *ngIf="task && task.solutionType!='gps'" class="image-container">
+        <div *ngIf="task && task.solutionType!='gps'" class="image-container" no-bounce>
             <img class="image-mirror" *ngIf="task" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />
             <!-- image mirror is needed to give the following content a spacing according to the image dimension -->
         </div>
