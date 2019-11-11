@@ -49,30 +49,28 @@
 
     <div id="details" class="detail-box" [ngClass]="{'open': state.selectedTask}">
 
-        <div class="fab-container">
-            <ion-fab right bottom>
-                <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>
-                <ion-fab-list side="top">
-                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">
-                        <ion-icon name="icon-restart"></ion-icon>
-                    </button>
-                    <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">
-                        <ion-icon name="icon-starting-point"></ion-icon>
-                    </button>
-                    <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">
-                        <ion-icon name="icon-visibility"></ion-icon>
-                    </button>
-                    <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">
-                        <ion-icon name="icon-exit"></ion-icon>
-                    </button>
-                    <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">
-                        <ion-icon name="icon-chat"></ion-icon>
-                    </button>
-                    <span [ngClass]="{'badge-no-show': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>
-                </ion-fab-list>
-                <span [ngClass]="{'badge-no-show': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>
-            </ion-fab>
-        </div>
+        <ion-fab right top>
+            <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>
+            <ion-fab-list side="top">
+                <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">
+                    <ion-icon name="icon-restart"></ion-icon>
+                </button>
+                <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">
+                    <ion-icon name="icon-starting-point"></ion-icon>
+                </button>
+                <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">
+                    <ion-icon name="icon-visibility"></ion-icon>
+                </button>
+                <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">
+                    <ion-icon name="icon-exit"></ion-icon>
+                </button>
+                <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">
+                    <ion-icon name="icon-chat"></ion-icon>
+                </button>
+                <span [ngClass]="{'badge-no-show': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>
+            </ion-fab-list>
+            <span [ngClass]="{'badge-no-show': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>
+        </ion-fab>
 
         <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)">
             <div class="cover">

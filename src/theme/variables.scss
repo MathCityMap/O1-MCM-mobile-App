@@ -37,7 +37,7 @@ $colors: (
   dark:           #222222,
   dark-grey:      #444444,
   greygrey:       #808080,
-  grey:           #a5a0a3,
+  grey:           #a6a6a6,
   mid-grey:       #b2b2b2,
   light-grey:     #e5e5e5,
 
@@ -147,10 +147,7 @@ $ratings:(
 //  Look & Feel
 
 @mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+      border-radius: $radius;
 }
 
 @mixin shadow-hard() {
@@ -166,9 +163,6 @@ $ratings:(
 }
 
 @mixin border($width, $style, $color) {
-    -webkit-border: $width $style $color;
-    -moz-border: $width $style $color;
-    -ms-border: $width $style $color;
     border: $width $style $color;
 }
 
@@ -589,7 +583,7 @@ $icon-path: "../assets/icons/";
         .transition {
             background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
         }
-        .fab-container{
+        ion-fab{
             transform: translateY(calc(-100% - 50px));
         }
         .task-content{

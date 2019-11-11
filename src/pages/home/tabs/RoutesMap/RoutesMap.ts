@@ -345,7 +345,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         })
     }
 
-    async addRouteByCode() {
+    async switchToList() {
         this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});
     }
 

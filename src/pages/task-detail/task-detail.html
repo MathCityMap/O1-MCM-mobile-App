@@ -10,13 +10,12 @@
     </div>
     <div class="task-content" id="scroll-anchor">
         <div class="card task has-button-on-the-edge">
-            <!-- fab buttons for task map -->
-            <div *ngIf="task && task.solutionType=='gps'" class="fab-container">
+            <ion-fab top right *ngIf="task && task.solutionType=='gps'">
                 <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">
                     <span>{{item}}</span>
                 </button>
-            </div>
-            <!-- // fab buttons for task map -->
+            </ion-fab>
+
             <div class="head">
                 <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
                 <ion-label class="tag score" *ngIf="!gamificationIsDisabled">{{possibleScore()}}</ion-label>

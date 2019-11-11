@@ -1,21 +1,10 @@
 page-tasks-map {
     .map .detail-box {
-        bottom: 0px;
-        bottom: calc(0px + constant(safe-area-inset-bottom));
-        bottom: calc(0px + env(safe-area-inset-bottom));
         &#ranking{
-            padding: $global-small-padding 16px $global-small-padding;
             bottom: auto;
-            position: absolute;
             top: 0px;
-            //left:60px;
-            //right:60px;
-            //width: calc( 100% - 120px);
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            -webkit-transform: none;
+            padding: $global-small-padding 16px $global-small-padding;
+            border-radius: 0 0 $border-radius-basic $border-radius-basic;
             transform: none;
         }
     }
@@ -92,15 +81,15 @@ page-tasks-map {
 
 .badge-top-right{
     position: absolute;
-    top: -15px;
-    right: 0px;
+    top: -4px;
+    right: -6px;
     background-color: color($colors, error);
     color: color($colors, light);
-    padding: 5px;
-    border-radius: 10px;
+    padding: 0 6px;
+    border-radius: 100px;
     transition: all 0.5s ease;
     font-size: inherit;
-    font-weight: bold;
+    font-family: 'NunitoExtraBold', Arial, sans-serif;
 }
 
 .badge-no-show{

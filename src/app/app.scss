@@ -287,24 +287,16 @@ button{
 /*  ========== FAB Buttons =========  */
 
 
-ion-fab-list{
-    margin: 44px 0;
-    .fab-in-list{
-        margin: 4px 0;
-    }
-}
-.fab-container{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 ion-fab{
-    button{
+    .fab{
         box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
     }
-}
-.fixed-content ion-fab[bottom]{
-    bottom: 14px;
+    ion-fab-list{
+        margin: calc(#{$fab-size} + #{$global-small-padding/2}) 0;
+        .fab-in-list{
+            margin: 4px 0;
+        }
+    }
 }
 
 
@@ -611,34 +603,27 @@ ion-list{
         z-index: 1;
     }
     .detail-box{
-        width: 100%;
-        position: fixed;
-        bottom: 54px;
-        bottom: calc(54px + constant(safe-area-inset-bottom));
-        bottom: calc(54px + env(safe-area-inset-bottom));
+        position: absolute;
         z-index: 2;
+        width: 100%;
+        height: auto;
+        bottom: 0px;
+        bottom: calc(0px + constant(safe-area-inset-bottom));
+        bottom: calc(0px + env(safe-area-inset-bottom));
+        padding: 12px $global-small-padding;
+        margin: 0;
         display: flex;
         align-items: center;
-        background: #ffffff;
-        height: auto;
-        padding: 12px 10px;
-        margin: 0;
-        margin-bottom: -4px;
-
-        transform: translateY(100%);
-
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-
-
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+        background-color: #ffffff;
+        border-radius: $border-radius-basic $border-radius-basic 0 0;
         transition: all 0.5s;
-
+        transform: translateY(100%);
         &.open{
-            -webkit-transform: translateY(0%);
             transform: translateY(0%);
+            box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
+        }
+        & > ion-fab{
+            top: -#{$fab-size + $global-small-padding};
         }
     }
 
@@ -770,6 +755,7 @@ ion-list{
                 text-align: center;
                 &>.col:first-of-type{
                     text-align: left;
+                    margin-right: 10px;
                 }
                 &>.col:last-of-type{
                     text-align: right;
