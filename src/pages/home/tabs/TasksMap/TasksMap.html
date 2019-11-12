@@ -1,5 +1,6 @@
 <mcm-header></mcm-header>
-<ion-content class="has-header map" no-bounce>
+<ion-content class="has-header map">
+    <div ion-fixed>
     <div id="tasks-map" class="map-view"></div>
 
     <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">
@@ -94,5 +95,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </ion-content>

@@ -587,6 +587,13 @@ ion-list{
 // MAP
 
 .map{
+    .fixed-content{
+        z-index: 1000;
+        [ion-fixed]{
+            display: block;
+            @include size(100%);
+        }
+    }
     .leaflet-top.leaflet-left{
         bottom: 0;
         top: unset;

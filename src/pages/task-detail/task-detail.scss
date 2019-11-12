@@ -2,6 +2,9 @@
     page-task-detail{
         ion-content{
             background-position: 0 74px;
+            .scroll-content{
+                transform: translateY(66vh);
+            }
         }
     }
 }
@@ -35,9 +38,9 @@ page-task-detail {
             height: 100%;
             object-fit: cover;
         }
-        #gpsTaskMap{
-            @include size(100%, $header-height);
-        }
+    }
+    #gpsTaskMap{
+        @include size(100%, $header-height);
     }
 
     //  Bottom Part (Content)

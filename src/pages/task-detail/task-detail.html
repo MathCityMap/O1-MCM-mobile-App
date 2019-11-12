@@ -1,8 +1,8 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header pattern-bg" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
+        <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap" ion-fixed></div>
     <div class="task-header">
         <img class="image" *ngIf="task && task.solutionType!='gps'" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />
-        <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap"></div>
     </div>
     <div class="task-content" id="scroll-anchor">
         <div class="transition"></div>
