@@ -89,7 +89,7 @@
 //  Pages & Structure
 
 .has-header{
-    .scroll-content, ion-refresher {
+    .scroll-content, .fixed-content, ion-refresher {
         margin-top: 54px;
         margin-top: calc(54px + constant(safe-area-inset-top));
         margin-top: calc(54px + env(safe-area-inset-top));

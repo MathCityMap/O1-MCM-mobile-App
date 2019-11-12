@@ -1,4 +1,4 @@
-<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'hint': modalType == 1,'failed': modalType == 2, 'perfect': modalType == 3, 'good': modalType == 5}">
+<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'no-icon' : modalType == 4, 'hint': modalType == 1,'failed': modalType == 2, 'perfect': modalType == 3, 'good': modalType == 5}">
 
      <div class="modal-content" *ngIf="modalType != 4">
         <img class="head-icon" *ngIf="modalType == 1 && type != 'image' && type != 'video'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>

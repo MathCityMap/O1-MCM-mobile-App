@@ -1,5 +1,6 @@
 mcm-header{
   z-index: 10001;
+    display: block;
     &[transparent]{
         pointer-events: none;
     }
