@@ -26,6 +26,9 @@
     box-sizing: border-box;
 }
 
+.content-md, .content-ios{
+    background-color: color($colors, light-grey);
+}
 
 //@supports (padding-top: env(safe-area-inset-top)){
 //    ion-header {
@@ -52,12 +55,146 @@
 //    }
 //}
 
+$safe-area-top: 30px;
+$safe-area-bottom: 24px;
 
-//Navigation
+
+$prefix:
+    constant
+    env;
+
+$root-top: unquote("(safe-area-inset-top, 0px)");
+$root-bottom: unquote("(safe-area-inset-bottom, 0px)");
+
+
+//constant(safe-area-inset-top, 0px)
+
+
+
+@each $prefix in $prefix {
+    .content {
+        .scroll-content {
+            padding-top: #{$prefix}$root-top;
+            padding-bottom: #{$prefix}$root-bottom;
+            contain: layout;
+        }
+        // Special MCM-Header case FML
+
+        &.has-header{
+            .scroll-content, .fixed-content {
+                margin-top: $size-large;
+                padding-top: #{$prefix}$root-top;
+                [ion-fixed]{
+                    height: calc(100% - #{#{$prefix}$root-top});
+                }
+            }
+        }
+    }
+    .header{
+        .toolbar {
+            padding-top: calc(10px + #{#{$prefix}$root-top});
+        }
+    }
+    .footer{
+        .button{
+            &[large]{
+                padding-bottom: #{$prefix}$root-bottom;
+            }
+        }
+    }
+    .ios .tabs .tabbar{
+        padding-bottom: #{$prefix}$root-bottom;
+    }
+
+
+    .map{
+        .detail-box{
+            bottom: 0;
+        }
+        &:not(.routes){
+            .detail-box{
+                padding-bottom: calc(12px + #{#{$prefix}$root-bottom});
+            }
+        }
+    }
+}
+
+
+
+
+ion-header{
+    &:after{
+        display: none;
+    }
+    .toolbar{
+        padding: 10px;
+        min-height: $size-large;
+        &:not([transparent="true"]){
+            box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+        }
+        &[transparent="true"]{
+            button{
+                border-radius: 50%;
+                background-color: color($colors, light);
+                @include shadow-hard;
+                @include size(40px);
+                box-sizing: border-box;
+                .button-inner{
+                    padding: $global-small-padding;
+                    filter: brightness(0);
+                }
+            }
+        }
+    }
+    ion-navbar{
+        border: none;
+        border-color: transparent;
+    }
+    .bar-buttons{
+        width: 32px;
+        padding: 3px;
+        button{
+            width: 100%;
+            margin: 0 auto;
+        }
+    }
+    .header-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .logo-bar{
+        display: flex;
+    }
+    .title{
+        text-align: center;
+        position: relative;
+        padding: 0;
+    }
+    .toolbar-title{
+        font-family: 'NunitoBold', Helvetica, sans-serif;
+        color: color($colors, light);
+        font-size: 24px;
+        font-weight: 500;
+        overflow: hidden;
+        margin-top: 1%;
+    }
+}
+
+mcm-header{
+    z-index: 10001;
+    display: block;
+    &[transparent]{
+        pointer-events: none;
+    }
+}
+
+
+//  Pages Layout & Structure
+
 
 .tabs{
     .tabbar{
-        height: $size-large;
+        min-height: $size-large;
         box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
         .tab-button-icon{
             margin: 0;
@@ -83,31 +220,34 @@
     }
 }
 
+//.has-header{
+//    .scroll-content, .fixed-content, ion-refresher {
+//        margin-top: 54px;
+//        margin-top: calc(54px + constant(safe-area-inset-top));
+//        margin-top: calc(54px + env(safe-area-inset-top));
+//    }
+//    &.content-ios{
+//        .scroll-content, ion-refresher {
+//            margin-top: calc(54px + constant(safe-area-inset-top));
+//            margin-top: calc(54px + env(safe-area-inset-top));
+//        }
+//        .scroll-content, .fixed-content {
+//            margin-bottom: env(safe-area-inset-bottom);
+//            margin-bottom: contant(safe-area-inset-bottom);
+//        }
+//    }
+//}
+//
+//ion-header{
+//    &.header-ios{
+//        .toolbar {
+//            padding-top: calc(constant(safe-area-inset-top));
+//            padding-top: calc(env(safe-area-inset-top));
+//        }
+//    }
+//}
 
 
-
-//  Pages & Structure
-
-.has-header{
-    .scroll-content, .fixed-content, ion-refresher {
-        margin-top: 54px;
-        margin-top: calc(54px + constant(safe-area-inset-top));
-        margin-top: calc(54px + env(safe-area-inset-top));
-    }
-    &.content-ios{
-        .scroll-content, ion-refresher {
-            margin-top: calc(54px + constant(safe-area-inset-top));
-            margin-top: calc(54px + env(safe-area-inset-top));
-        }
-        .scroll-content, .fixed-content {
-            margin-bottom: env(safe-area-inset-bottom);
-            margin-bottom: contant(safe-area-inset-bottom);
-        }
-    }
-}
-.content-md, .content-ios{
-    background-color: color($colors, light-grey);
-}
 
 
 
@@ -228,6 +368,7 @@ button{
     }
     &.button-large{
         height: $size-large;
+        box-sizing: content-box;
         .button-inner{
             font-size: large;
         }
@@ -614,9 +755,9 @@ ion-list{
         z-index: 2;
         width: 100%;
         height: auto;
-        bottom: 0px;
-        bottom: calc(0px + constant(safe-area-inset-bottom));
-        bottom: calc(0px + env(safe-area-inset-bottom));
+        //bottom: 0px;
+        //bottom: calc(0px + constant(safe-area-inset-bottom));
+        //bottom: calc(0px + env(safe-area-inset-bottom));
         padding: 12px $global-small-padding;
         margin: 0;
         display: flex;
@@ -674,22 +815,6 @@ ion-list{
         }
     }
 }
-
-
-//@supports (bottom: env(safe-area-inset-bottom)){
-//    .map {
-//        .detail-box {
-//            bottom: calc(54px + env(safe-area-inset-bottom));
-//        }
-//    }
-//}
-//@supports (bottom: constant(safe-area-inset-bottom)){
-//    .map {
-//        .detail-box {
-//            bottom: calc(54px + constant(safe-area-inset-bottom));
-//        }
-//    }
-//}
 
 
 /*  =========== card ===========  */
