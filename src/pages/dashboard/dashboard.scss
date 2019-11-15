@@ -2,7 +2,8 @@ page-dashboard {
     .content{
         background: url("../assets/images/pattern-dashboard.svg") center / 160%  repeat color($colors, primary);
         .scroll-content{
-            padding: $global-small-padding;
+            padding-left: $global-small-padding;
+            padding-right: $global-small-padding;
             display: flex;
             flex-direction: column;
         }

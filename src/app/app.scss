@@ -30,34 +30,8 @@
     background-color: color($colors, light-grey);
 }
 
-//@supports (padding-top: env(safe-area-inset-top)){
-//    ion-header {
-//        &.header-ios {
-//            padding-top: env(safe-area-inset-top)!important;
-//        }
-//    }
-//    .has-header{
-//        .scroll-content, ion-refresher {
-//            margin-top: calc(54px + env(safe-area-inset-top)) !important;
-//        }
-//        &.content-ios{
-//            .scroll-content, ion-refresher {
-//                margin-top: calc(54px + env(safe-area-inset-top))!important;
-//            }
-//        }
-//    }
-//}
-//@supports (padding-top: constant(safe-area-inset-top)){
-//    .map {
-//        .detail-box {
-//            padding-top: constant(safe-area-inset-top)!important;
-//        }
-//    }
-//}
 
-$safe-area-top: 30px;
-$safe-area-bottom: 24px;
-
+//  Safe space handling kit
 
 $prefix:
     constant
@@ -66,23 +40,38 @@ $prefix:
 $root-top: unquote("(safe-area-inset-top, 0px)");
 $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
 
-
-//constant(safe-area-inset-top, 0px)
+// End result:
+// constant(safe-area-inset-top, 0px)
 
 
 
 @each $prefix in $prefix {
     .content {
-        .scroll-content {
-            padding-top: #{$prefix}$root-top;
-            padding-bottom: #{$prefix}$root-bottom;
-            contain: layout;
-        }
+        //.scroll-content {
+        //    padding-top: #{$prefix}$root-top;
+        //    padding-bottom: #{$prefix}$root-bottom;
+        //    contain: layout;
+        //}
         // Special MCM-Header case FML
 
         &.has-header{
             .scroll-content, .fixed-content {
                 margin-top: $size-large;
+                padding-top: #{$prefix}$root-top;
+                [ion-fixed]{
+                    height: calc(100% - #{#{$prefix}$root-top});
+                }
+            }
+
+            // Route Info
+            &.transparent{
+                .scroll-content, .fixed-content {
+                    margin-top: 0;
+                }
+            }
+        }
+        &.fullscreen{
+            .scroll-content, .fixed-content {
                 padding-top: #{$prefix}$root-top;
                 [ion-fixed]{
                     height: calc(100% - #{#{$prefix}$root-top});
@@ -219,34 +208,6 @@ mcm-header{
         }
     }
 }
-
-//.has-header{
-//    .scroll-content, .fixed-content, ion-refresher {
-//        margin-top: 54px;
-//        margin-top: calc(54px + constant(safe-area-inset-top));
-//        margin-top: calc(54px + env(safe-area-inset-top));
-//    }
-//    &.content-ios{
-//        .scroll-content, ion-refresher {
-//            margin-top: calc(54px + constant(safe-area-inset-top));
-//            margin-top: calc(54px + env(safe-area-inset-top));
-//        }
-//        .scroll-content, .fixed-content {
-//            margin-bottom: env(safe-area-inset-bottom);
-//            margin-bottom: contant(safe-area-inset-bottom);
-//        }
-//    }
-//}
-//
-//ion-header{
-//    &.header-ios{
-//        .toolbar {
-//            padding-top: calc(constant(safe-area-inset-top));
-//            padding-top: calc(env(safe-area-inset-top));
-//        }
-//    }
-//}
-
 
 
 
