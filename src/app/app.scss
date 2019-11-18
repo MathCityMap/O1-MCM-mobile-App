@@ -40,19 +40,39 @@ $prefix:
 $root-top: unquote("(safe-area-inset-top, 0px)");
 $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
 
-// End result:
+
+// Web testing preview
+
+//$prefix:
+//    24;
+//
+//$root-top: px;
+//$root-bottom: px;
+
+
+
+// Expected end result example:
 // constant(safe-area-inset-top, 0px)
 
 
 
 @each $prefix in $prefix {
+    .header{
+        .toolbar {
+            padding-top: calc(10px + #{#{$prefix}$root-top});
+        }
+    }
     .content {
+
+        // Should happen automatically already:
+
         //.scroll-content {
         //    padding-top: #{$prefix}$root-top;
         //    padding-bottom: #{$prefix}$root-bottom;
         //    contain: layout;
         //}
-        // Special MCM-Header case FML
+
+        // Special MCM-Header case (FML)
 
         &.has-header{
             .scroll-content, .fixed-content {
@@ -77,11 +97,6 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
                     height: calc(100% - #{#{$prefix}$root-top});
                 }
             }
-        }
-    }
-    .header{
-        .toolbar {
-            padding-top: calc(10px + #{#{$prefix}$root-top});
         }
     }
     .footer{
@@ -773,6 +788,12 @@ ion-list{
                 font: 14px 'NunitoExtrabold', Arial, sans-serif;
                 line-height: 26px;
             }
+        }
+    }
+    &.tasks{
+        .leaflet-container .leaflet-control-attribution{
+            padding-left: constant(safe-area-inset-left);
+            padding-left: env(safe-area-inset-left);
         }
     }
 }
