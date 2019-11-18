@@ -47,9 +47,9 @@ page-task-detail {
 
     .task-content {
         position: relative;
-        padding-bottom: 1px;
         display: block;
         background: linear-gradient(to bottom, rgba(229, 229, 229, 0) 50px, rgba(229, 229, 229, 1) 51px);
+        @include ios-scroll-fix;
         .transition {
             position: absolute;
             top: 0;

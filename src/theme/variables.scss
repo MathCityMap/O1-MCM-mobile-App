@@ -263,6 +263,11 @@ $ratings:(
 }
 
 
+@mixin ios-scroll-fix(){
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
 
 
 // --------------------------------------------------
@@ -469,7 +474,6 @@ $icon-path: "../assets/icons/";
         }
         .detail-box{
             &#details{
-                padding-bottom: 16px;
                 padding-top: 20px;
                 box-shadow: unset;
                 filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));

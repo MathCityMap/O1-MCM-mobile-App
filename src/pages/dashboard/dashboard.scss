@@ -93,6 +93,11 @@ page-dashboard {
             }
         }
     }
+    @media screen and (min-width: 375px) {
+        .logo{
+            margin-top: 36px;
+        }
+    }
 }
 
 //.tabbar{

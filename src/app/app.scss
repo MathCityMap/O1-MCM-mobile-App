@@ -50,7 +50,6 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
 //$root-bottom: px;
 
 
-
 // Expected end result example:
 // constant(safe-area-inset-top, 0px)
 
@@ -63,14 +62,21 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
         }
     }
     .content {
-
-        // Should happen automatically already:
-
-        //.scroll-content {
-        //    padding-top: #{$prefix}$root-top;
-        //    padding-bottom: #{$prefix}$root-bottom;
-        //    contain: layout;
-        //}
+        &.padding{
+            .scroll-content {
+                contain: layout;
+            }
+            &.top{
+                .scroll-content {
+                    padding-top: #{$prefix}$root-top;
+                }
+            }
+            &.bottom{
+                .scroll-content {
+                    padding-bottom: #{$prefix}$root-bottom;
+                }
+            }
+        }
 
         // Special MCM-Header case (FML)
 
@@ -90,21 +96,7 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
                 }
             }
         }
-        &.padding{
-            .scroll-content {
-                contain: layout;
-            }
-            &.top{
-                .scroll-content {
-                    padding-top: #{$prefix}$root-top;
-                }
-            }
-            &.bottom{
-                .scroll-content {
-                    padding-bottom: #{$prefix}$root-bottom;
-                }
-            }
-        }
+
         &.fullscreen{
             .scroll-content, .fixed-content {
                 padding-top: #{$prefix}$root-top;
@@ -114,6 +106,14 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
             }
         }
     }
+
+    // Special Case Tasks with complicated Header
+
+    .task-content {
+        margin-bottom: calc(1px - #{#{$prefix}$root-bottom});
+        padding-bottom: calc(1px + #{#{$prefix}$root-bottom});
+    }
+
     .footer{
         min-height: calc(#{$size-large} + #{#{$prefix}$root-bottom});
         .button{
