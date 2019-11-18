@@ -111,10 +111,12 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
 
     .task-content {
         margin-bottom: calc(1px - #{#{$prefix}$root-bottom});
+        padding-bottom: 1px;
         padding-bottom: calc(1px + #{#{$prefix}$root-bottom});
     }
 
     .footer{
+        min-height: $size-large;
         min-height: calc(#{$size-large} + #{#{$prefix}$root-bottom});
         .button{
             &[large]{

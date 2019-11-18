@@ -1,7 +1,7 @@
 page-dashboard {
     .content{
         background: url("../assets/images/pattern-dashboard.svg") center / 160%  repeat color($colors, primary);
-        .scroll-content{
+        .stretch-container{
             padding-left: $global-small-padding;
             padding-right: $global-small-padding;
             display: flex;

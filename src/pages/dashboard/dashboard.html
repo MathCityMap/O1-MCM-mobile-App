@@ -1,60 +1,62 @@
 <ion-content class="padding top bottom">
-    <img class="logo" src="./assets/images/mcm-logo-white.svg">
+    <div class="stretch-container">
+        <img class="logo" src="./assets/images/mcm-logo-white.svg">
 
-    <div class="tiles">
-        <div class="tile">
-            <ion-item tappable no-lines (click)="switchTab(1)">
-                <div item-content>
-                    <div>
-                        <h2 class="title">{{'a_dashboard_browse_title' | translate }}</h2>
-                        <p>{{'a_dashboard_browse_text' | translate }}</p>
+        <div class="tiles">
+            <div class="tile">
+                <ion-item tappable no-lines (click)="switchTab(1)">
+                    <div item-content>
+                        <div>
+                            <h2 class="title">{{'a_dashboard_browse_title' | translate }}</h2>
+                            <p>{{'a_dashboard_browse_text' | translate }}</p>
+                        </div>
+                        <img class="icon" src="./assets/icons/dashboard/browse.svg">
                     </div>
-                    <img class="icon" src="./assets/icons/dashboard/browse.svg">
-                </div>
-            </ion-item>
-        </div>
-        <div class="tile">
-            <ion-item tappable no-lines (click)="switchTab(2, true)">
-                <div item-content>
-                    <div>
-                        <h2 class="title">{{'a_dashboard_add_title' | translate }}</h2>
-                        <p>{{'a_dashboard_add_text' | translate }}</p>
+                </ion-item>
+            </div>
+            <div class="tile">
+                <ion-item tappable no-lines (click)="switchTab(2, true)">
+                    <div item-content>
+                        <div>
+                            <h2 class="title">{{'a_dashboard_add_title' | translate }}</h2>
+                            <p>{{'a_dashboard_add_text' | translate }}</p>
+                        </div>
+                        <img class="icon" src="./assets/icons/dashboard/add.svg">
                     </div>
-                    <img class="icon" src="./assets/icons/dashboard/add.svg">
-                </div>
-            </ion-item>
-        </div>
-        <div class="tile">
-            <ion-item tappable no-lines (click)="switchTab(2)">
-                <div item-content>
-                    <div>
-                        <h2 class="title">{{'a_dashboard_downloads_title' | translate }}</h2>
-                        <p>{{'a_dashboard_downloads_text' | translate }}</p>
+                </ion-item>
+            </div>
+            <div class="tile">
+                <ion-item tappable no-lines (click)="switchTab(2)">
+                    <div item-content>
+                        <div>
+                            <h2 class="title">{{'a_dashboard_downloads_title' | translate }}</h2>
+                            <p>{{'a_dashboard_downloads_text' | translate }}</p>
+                        </div>
+                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">
                     </div>
-                    <img class="icon" src="./assets/icons/dashboard/downloads.svg">
-                </div>
-            </ion-item>
-        </div>
-        <div class="tile" [ngClass]="{'disabled' : !devMode}">
-            <ion-item tappable no-lines (click)="switchTab(3)">
-                <div item-content>
-                    <div>
-                        <h2 class="title">{{'a_dashboard_create_title' | translate }}</h2>
-                        <p>{{'a_dashboard_create_text' | translate }}</p>
+                </ion-item>
+            </div>
+            <div class="tile" [ngClass]="{'disabled' : !devMode}">
+                <ion-item tappable no-lines (click)="switchTab(3)">
+                    <div item-content>
+                        <div>
+                            <h2 class="title">{{'a_dashboard_create_title' | translate }}</h2>
+                            <p>{{'a_dashboard_create_text' | translate }}</p>
+                        </div>
+                        <img class="icon" src="./assets/icons/dashboard/create.svg">
                     </div>
-                    <img class="icon" src="./assets/icons/dashboard/create.svg">
-                </div>
-            </ion-item>
+                </ion-item>
+            </div>
         </div>
-    </div>
 
-    <div class="secondary">
-        <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">
-            <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}
-        </button>
-        <button ion-button clear icon-start color="light" (click)="pushInfoPage()">
-            <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}
-        </button>
+        <div class="secondary">
+            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">
+                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}
+            </button>
+            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">
+                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}
+            </button>
+        </div>
     </div>
 </ion-content>
 
