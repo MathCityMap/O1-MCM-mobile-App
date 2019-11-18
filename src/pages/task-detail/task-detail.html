@@ -1,5 +1,5 @@
 <mcm-header></mcm-header>
-<ion-content no-bounce class="has-header pattern-bg" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
+<ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
     <div class="task-header" [ngClass]="{'gps' : task && task.solutionType=='gps'}">
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap"></div>
         <img class="image" *ngIf="task && task.solutionType!='gps'" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />

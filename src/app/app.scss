@@ -90,6 +90,21 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
                 }
             }
         }
+        &.padding{
+            .scroll-content {
+                contain: layout;
+            }
+            &.top{
+                .scroll-content {
+                    padding-top: #{$prefix}$root-top;
+                }
+            }
+            &.bottom{
+                .scroll-content {
+                    padding-bottom: #{$prefix}$root-bottom;
+                }
+            }
+        }
         &.fullscreen{
             .scroll-content, .fixed-content {
                 padding-top: #{$prefix}$root-top;
@@ -100,6 +115,7 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
         }
     }
     .footer{
+        min-height: calc(#{$size-large} + #{#{$prefix}$root-bottom});
         .button{
             &[large]{
                 padding-bottom: #{$prefix}$root-bottom;
@@ -314,8 +330,7 @@ input{
     &.searchbar-left-aligned{
         .searchbar-input{
             background-color: transparent;
-            padding: $global-small-padding;
-            padding-left: 40px;
+            padding: 0 0 0 40px;
         }
     }
 
@@ -792,8 +807,8 @@ ion-list{
     }
     &.tasks{
         .leaflet-container .leaflet-control-attribution{
-            padding-left: constant(safe-area-inset-left);
-            padding-left: env(safe-area-inset-left);
+            padding-left: calc(10px + constant(safe-area-inset-left));
+            padding-left: calc(10px + env(safe-area-inset-left));
         }
     }
 }
