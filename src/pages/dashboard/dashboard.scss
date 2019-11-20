@@ -53,7 +53,8 @@ page-dashboard {
                 }
             }
             &.disabled{
-                opacity: 0.3;
+                //opacity: 0.3;
+                opacity: 0.4;
                 pointer-events: none;
             }
         }
@@ -69,6 +70,10 @@ page-dashboard {
         .content{
             .scroll-content{
                 padding: $global-small-padding;
+            }
+            .stretch-container{
+                padding-left: 0;
+                padding-right: 0;
             }
         }
         .logo{
@@ -100,6 +105,26 @@ page-dashboard {
     }
 }
 
-//.tabbar{
-//    display: none;
-//}
+
+.soon{
+    position: absolute;
+    color: black;
+    z-index: 140;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.4);
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 10px;
+    p{
+        color: black;
+        font-family: 'NunitoBold', Helvetica, sans-serif;
+    }
+}
