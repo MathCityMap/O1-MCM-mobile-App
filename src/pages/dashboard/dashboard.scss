@@ -9,7 +9,7 @@ page-dashboard {
         }
     }
     .logo{
-        margin: $global-base-padding auto;
+        margin: $global-base-padding auto $global-small-padding/2 ;
         padding-left: $global-base-padding;
         display: block;
     }

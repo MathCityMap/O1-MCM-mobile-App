@@ -2,6 +2,15 @@
     <div class="stretch-container">
         <img class="logo" src="./assets/images/mcm-logo-white.svg">
 
+        <div class="secondary">
+            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">
+                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}
+            </button>
+            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">
+                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}
+            </button>
+        </div>
+
         <div class="tiles">
             <div class="tile">
                 <ion-item tappable no-lines (click)="switchTab(1)">
@@ -47,15 +56,6 @@
                     </div>
                 </ion-item>
             </div>
-        </div>
-
-        <div class="secondary">
-            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">
-                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}
-            </button>
-            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">
-                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}
-            </button>
         </div>
     </div>
 </ion-content>
