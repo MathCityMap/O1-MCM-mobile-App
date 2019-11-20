@@ -15,17 +15,17 @@
         <ion-label>{{'a_settings_editing' | translate }}</ion-label>
         <ion-item no-lines no-padding>
             <p item-content>{{'a_settings_editing_text' | translate }}</p>
-            <ion-toggle mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
+            <ion-toggle [disabled]="true" mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
         </ion-item>
     </div>
-    <div class="card has-button-on-the-edge">
+<!--    <div class="card has-button-on-the-edge">
         <ion-label>{{'a_settings_console' | translate }}</ion-label>
         <p item-content>{{'a_settings_console_text' | translate }}</p>
         <ion-item>
             <ion-input type="text" placeholder="######"></ion-input>
         </ion-item>
         <button class="on-the-edge" ion-button small round>{{'a_settings_console_button' | translate }}</button>
-    </div>
+    </div>-->
 
     <div class="card transparent divider">
         <ion-label>{{'a_settings_data' | translate }}</ion-label>
