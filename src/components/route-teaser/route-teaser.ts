@@ -27,6 +27,8 @@ export class RouteTeaserComponent {
   private currentProgress: number = 0;
   private total: number = 0;
 
+  private completedRadius: number = 0;
+
   constructor( private modalsService: ModalsService,
                private ormService: OrmService,
                private helper: Helper) {
@@ -36,6 +38,7 @@ export class RouteTeaserComponent {
     let data = await this.helper.calculateProgress(this.route)
     this.currentProgress = data.currentProgress;
     this.total = data.totalTasks;
+    this.completedRadius = this.calculatePercentage();
   }
 
   async doDownload(event, route: Route) {
@@ -50,6 +53,13 @@ export class RouteTeaserComponent {
     if(await this.ormService.removeDownloadedRoute(route)){
       this.removeRoute.emit();
     }
+  }
+
+  calculatePercentage(){
+    let c = 2 * Math.PI * 54;
+    let completedPercentage = (1/this.total) *this.currentProgress;
+    return c * (1-completedPercentage);
+
   }
 
 }

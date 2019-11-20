@@ -2,7 +2,7 @@
     <div *ngIf="route" class="container image" [ngClass]="{'downloaded' : !!route.downloaded, 'completed': !!route.completed}">
         <svg class="progress" width="120" height="120" viewBox="0 0 120 120">
             <circle class="progress__meter" cx="60" cy="60" r="54" stroke-width="12"></circle>
-            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" style="stroke-dasharray: 339.292; stroke-dashoffset: 193.396;"></circle>
+            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{'stroke-dasharray': 339.292, 'stroke-dashoffset': completedRadius}"></circle>
         </svg>
         <div class="cover">
             <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
