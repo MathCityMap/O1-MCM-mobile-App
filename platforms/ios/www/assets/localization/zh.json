@@ -381,7 +381,6 @@
   "a_alert_congrats_msg": "You have completed all tasks of the route '{{TITLE}}' successfully!",
   "a_g_max_points": "max. points",
   "a_g_name_error": "The name must consist of 3 to 13 characters.",
-  "a_t_list": "名单",
   "a_alert_bigmap_msg": "This route is large ({{TILES}} tiles). The download could take some minutes. Do you want to continue?",
   "a_alert_bigmap_title": "Large route found",
   "a_alert_dlmapcancel_msg": "Do you want to cancel the map download?",
