@@ -35,10 +35,13 @@ export class RouteTeaserComponent {
   }
 
   async ngOnInit(){
-    let data = await this.helper.calculateProgress(this.route)
-    this.currentProgress = data.currentProgress;
-    this.total = data.totalTasks;
-    this.completedRadius = this.calculatePercentage();
+    if(this.route && this.route.scores) {
+      let data = await this.helper.calculateProgress(this.route)
+
+      this.currentProgress = data.currentProgress;
+      this.total = data.totalTasks;
+      this.completedRadius = this.calculatePercentage();
+    }
   }
 
   async doDownload(event, route: Route) {
