@@ -32,10 +32,10 @@
 <div class="secondary">
     <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>
     <!--<mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>-->
-    <p>{{currentProgress}}/{{total}}</p>
-    <div class="evaluation" *ngIf="route?.scores && route.scores[0]">
+    <div class="evaluation">
         <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>
-        <div class="ratings">
+        <p class="icon finished">{{currentProgress}} / {{total}}</p>
+        <div class="ratings" *ngIf="route?.scores && route.scores[0]">
             <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
             <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>
             <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>

@@ -1157,7 +1157,7 @@ mcm-progress-bar, .evaluation{
 
 mcm-progress-bar{
     & > *{
-        &:not(.progress){
+        &:not(.progress-vertical){
             flex-grow: 0;
             flex-basis: auto;
         }
@@ -1167,13 +1167,17 @@ mcm-progress-bar{
 .evaluation{
     flex: 1;
     flex-wrap: wrap;
+    justify-content: space-between;
     .ratings {
         display: flex;
+        max-height: $global-base-padding;
     }
     .rating{
-        display: flex;
-        align-items: baseline;
-        margin-left: $global-small-padding;
+        margin-left: $global-small-padding/2;
+        & > *, &:before{
+            display: inline-block;
+            vertical-align: middle;
+        }
         p{
             margin: 0;
         }
@@ -1196,7 +1200,7 @@ mcm-progress-bar{
 
 $progress-height: 6px;
 
-.progress{
+.progress-vertical{
     background-color: rgba(color($colors, primary-darker), 0.2);
     height: $progress-height;
     @include border-radius($progress-height/2);
