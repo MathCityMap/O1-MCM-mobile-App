@@ -17,7 +17,7 @@ export class SettingsPage {
     availableLanguages;
     translatedLangs;
 
-    developerMode: boolean;
+    developerMode: boolean = false;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService,
                 private spinner: SpinnerDialog, private ormService: OrmService, private modalsService: ModalsService,
