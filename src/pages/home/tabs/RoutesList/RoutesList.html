@@ -25,15 +25,15 @@
                       tappable (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
                       ></route-teaser>
     </ion-list>
+    <ion-infinite-scroll  *ngIf="showAllRoutes" (ionInfinite)="doInfinite($event)" threshold="50%">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
     <!--Downloaded Routes List-->
     <ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="!showAllRoutes">
         <route-teaser class=downloaded *ngFor="let item of filteredResult"
                       tappable (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
                       ></route-teaser>
-        <!--<div tappable class="detail-box" *ngIf="getSearchResults() == 0">-->
-            <!--<h2 class="item-text-wrap" text-center>{{ "p_review_no_elements" | translate }}</h2>-->
-        <!--</div>-->
     </ion-list>
 
     <div class="user-feedback">
@@ -50,10 +50,6 @@
             <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
         </div>
     </div>
-
-    <ion-infinite-scroll  *ngIf="showAllRoutes" (ionInfinite)="doInfinite($event)" threshold="35%">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
 
     <ion-fab right bottom *ngIf="showAllRoutes || !showAllRoutes && downloadedItems.length != 0">
         <button ion-fab color="primary" (click)="switchToMap()">

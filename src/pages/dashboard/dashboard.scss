@@ -19,6 +19,7 @@ page-dashboard {
         flex: 1;
         align-items: stretch;
         align-content: center;
+        padding-bottom: $global-small-padding;
         .tile{
             padding: $global-small-padding;
             flex-basis: 50%;
@@ -116,7 +117,7 @@ page-dashboard {
     left: 50%;
     transform: translate(-50%);
     font-weight: bold;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.7);
     margin: 0;
     height: 100%;
     display: flex;
@@ -124,7 +125,8 @@ page-dashboard {
     align-items: center;
     padding: 3px 10px;
     p{
-        color: black;
-        font-family: 'NunitoBold', Helvetica, sans-serif;
+        color: color($colors, primary-darker);
+        font-family: 'NunitoExtraBold', Helvetica, sans-serif;
+        transform: rotate(-45deg);
     }
 }

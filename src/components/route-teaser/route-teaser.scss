@@ -186,7 +186,7 @@ route-teaser {
                     transform: rotate(-90deg);
 
                     circle{
-                        stroke-width: 3px;
+                        stroke-width: 3.6px;
                         fill: none;
                         stroke-linecap: round;
                         &.progress__meter {
@@ -194,7 +194,7 @@ route-teaser {
                         }
                         &.progress__value {
                             stroke: color($colors, primary);
-                            @include transition-basic;
+                            transition: all 0.44s ease-in-out;
                         }
                     }
                 }
@@ -253,7 +253,9 @@ routes{
                 }
             }
             &:last-of-type{
-                margin-bottom: $fab-size+$global-large-padding!important;
+                &.downloaded{
+                    margin-bottom: $fab-size+$global-large-padding!important;
+                }
             }
             &.downloaded{
                 min-height: 36vw;

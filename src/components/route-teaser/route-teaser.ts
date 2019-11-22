@@ -27,7 +27,7 @@ export class RouteTeaserComponent {
     private currentProgress: number = 0;
     private total: number = 0;
 
-    private completedRadius: number = 339.2;
+    private completedRadius: number = 339.292;
 
     constructor( private modalsService: ModalsService,
                  private ormService: OrmService,

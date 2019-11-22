@@ -1207,6 +1207,7 @@ $progress-height: 6px;
     flex: 1;
     & > .bar{
         width: 0;
+        transition: all 0.3s ease-in-out;
         z-index: 100;
         //prevent initial bug of full progress bar
         background-color: color($colors, primary);
