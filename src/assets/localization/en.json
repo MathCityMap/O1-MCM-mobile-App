@@ -425,7 +425,6 @@
   "a_about_mcm_project": "MathCityMap is a project of the working group MATIS I (IDMI, Goethe-University Frankfurt Main).",
   "a_about_mcm_portal": "MCM consists of an app and a web portal. After a short registration the MathCityMap web portal (www.mathcitymap.eu) offers users the possibility to create own tasks and trails, which later on can be accessed from the app. Furthermore trails can be downloaded as a PDF-file from the web portal. All MathCityMap tools are free.",
   "a_about_mcm_responsibility_title": "Responsible persons",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
   "a_route_detail_settings_resetTasks_msg": "Do you want to reset all tasks in this trail?",
   "good_luck_next_time": "Good luck next time...",
   "a_main_settings_delCache_confirm": "Do you really want to remove all downloaded trails, map data and images?",
@@ -696,5 +695,6 @@
   "a_dashboard_create_text": "Manage owned trails on the platform",
   "a_list_noDownloads": "It seems you don’t have any saved trails yet! Go to trail browsing and download them to find here 😉",
   "a_route_default_share": "Hey, look at this trail I found:",
-  "a_settings_editing": "Management functionality"
+  "a_settings_editing": "Management functionality",
+  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Moritz Baumann-Wehner<br/>Simone Jablonski<br/>Simon Barlovits<br/>Gregor Milicic"
 }

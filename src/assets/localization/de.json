@@ -425,7 +425,6 @@
   "a_about_mcm_project": "MathCityMap ist ein Projekt der Arbeitsgruppe MATIS 1 des Instituts für Didaktik der Mathematik und Informatik der Goethe-Universität Frankfurt am Main.",
   "a_about_mcm_portal": "Unter www.mathcitymap.eu befindet sich das MathCityMap Webportal mit integrierter PDF-Export-Funktion. Nach einer kurzen Registrierung ist es möglich im Portal selbstständig Aufgaben und Trails anzulegen und zu bearbeiten, die dann mithilfe der App benutzt werden können. Alle MathCityMap-Produkte sind kostenlos.",
   "a_about_mcm_responsibility_title": "Verantwortliche Personen",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Joerg Zender",
   "a_route_detail_settings_resetTasks_msg": "Möchtest du alle Aufgaben in dieser Route zurücksetzen?",
   "good_luck_next_time": "Viel Glück fürs nächste Mal!",
   "a_main_settings_delCache_confirm": "Wirklich alle heruntergeladenen Trails, Kartendaten und Bilder löschen?",
@@ -696,5 +695,6 @@
   "a_dashboard_create_text": "Verwaltung eigener Routen auf der Plattform",
   "a_list_noDownloads": "Es scheint, dass du noch keine gespeicherten Routen hast! Gehe zur Routensuche und lade sie herunter, um sie hier zu finden 😉",
   "a_route_default_share": "Hey, schau mal was für eine Route ich gefunden habe:",
-  "a_settings_editing": "Verwaltungsfunktion"
+  "a_settings_editing": "Verwaltungsfunktion",
+  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Moritz Baumann-Wehner<br/>Simone Jablonski<br/>Simon Barlovits<br/>Gregor Milicic"
 }
