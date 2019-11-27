@@ -600,7 +600,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 2.3.1;
@@ -624,7 +624,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.unifrankfurt.mathcitymap;
 				PRODUCT_NAME = MathCityMap;
 				PROVISIONING_PROFILE = "f8f41914-0938-4560-91c7-421b9813ee16";
-				PROVISIONING_PROFILE_SPECIFIER = "Development Wildcard";
+				PROVISIONING_PROFILE_SPECIFIER = "MathCityMap App Store";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
