@@ -32,6 +32,7 @@ export class DashboardPage {
          * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
          */
         this.devMode = (await this.storage.get('devMode') === 'true')
+
         if (!this.gpsService.getLastPosition()) {
             // try to get position
             try {
@@ -49,6 +50,7 @@ export class DashboardPage {
                 });
             }
         }
+        //await this.gpsService.isLocationOn();
 
     }
 
