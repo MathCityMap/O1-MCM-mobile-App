@@ -174,11 +174,15 @@ page-task-detail {
     }
 }
 
+ion-app.ios{
+    .mcm-keyboard-open{
+        .scroll-content{
+            margin-bottom: 20vh!important;
+        }
+    }
+}
 .mcm-keyboard-open{
     .scroll-content{
         margin-bottom: 27vh!important;
-
-        //transform: translateY(-33vh);
-        //transition: margin 0.5s ease;
     }
 }
