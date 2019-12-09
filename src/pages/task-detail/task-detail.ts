@@ -258,7 +258,7 @@ export class TaskDetail {
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
                 // Scroll input field into view (may happen that the field is hidden by keyboard)
-                that.content.scrollTo(0, document.getElementById('scroll-anchor').offsetTop);
+                that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
             });
         }
     }
