@@ -17,6 +17,7 @@ import { ModalsService } from '../services/modals-service';
 import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
+import { Camera } from "@ionic-native/camera";
 
 import { MyApp } from './app.component';
 
@@ -118,7 +119,8 @@ import { AppVersion } from '@ionic-native/app-version';
         InAppBrowser,
         AppVersion,
         Globalization,
-        {provide: ErrorHandler, useClass: IonicErrorHandler}
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        Camera
     ]
 })
 export class AppModule {

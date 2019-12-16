@@ -5,6 +5,8 @@ import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../s
 import { SessionUser } from "../../app/api/models/session-user";
 import {Session} from "../../app/api/models/session";
 import {SessionUserResponse} from "../../app/api/models/session-user-response";
+import { CameraOptions } from "@ionic-native/camera";
+import {Camera} from "@ionic-native/camera";
 
 @IonicPage()
 @Component({
@@ -22,6 +24,7 @@ export class ChatPage {
     session: Session;
     toUser: UserInfo;
     editorMsg = '';
+    editorImg = '';
     showEmojiPicker = false;
     isScrolledToBottom = true;
     private scrollEndSubscription: any;
@@ -30,7 +33,8 @@ export class ChatPage {
                 private chatService: ChatAndSessionService,
                 private events: Events,
                 private changeDetector: ChangeDetectorRef,
-                private chatAndSessionService: ChatAndSessionService) {
+                private chatAndSessionService: ChatAndSessionService,
+                private camera: Camera) {
 
         this.chatService.getUserInfo()
             .then((res) => {
@@ -133,7 +137,7 @@ export class ChatPage {
      * @name sendMsg
      */
     async sendMsg() {
-        if (!this.editorMsg.trim()) return;
+        if (!this.editorMsg.trim() && !this.editorImg.trim()) return;
         let timezoneOffset = new Date().getTimezoneOffset();
 
         // Mock message
@@ -145,6 +149,7 @@ export class ChatPage {
             toUserId: this.toUser.token,
             time: Date.now() - (timezoneOffset * 60000),
             message: this.editorMsg,
+            media: [this.editorImg],
             status: 'pending'
         };
 
@@ -175,6 +180,36 @@ export class ChatPage {
                     }
                 });
             })
+    }
+
+
+    /**
+     * @name imageChat
+     */
+    async getImage() {
+        const options: CameraOptions = {
+            quality: 100,
+            targetHeight: 300,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            correctOrientation: true,
+            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+            saveToPhotoAlbum: true,
+            allowEdit: true
+        }
+
+        this.camera.getPicture(options).then((imageData) => {
+            let base64Image = 'data:image/jpeg;base64,' + imageData;
+
+            // now you can do whatever you want with the base64Image, I chose to update the db
+           this.editorImg = base64Image;
+
+        }, (err) => {
+            console.log("ERROR#####: ", err);
+            // Handle error
+        });
+        console.log("done###", this.editorMsg);
     }
 
     /**

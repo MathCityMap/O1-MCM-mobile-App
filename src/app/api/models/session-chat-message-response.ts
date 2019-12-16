@@ -9,4 +9,5 @@ export class SessionChatMessageResponse {
     time?: string;
     message?: string;
     status?: string;
+    media?: string[];
 }

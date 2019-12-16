@@ -260,6 +260,7 @@ dependencies {
     compile "com.android.support:support-v4:26.+"
     compile "com.google.android.gms:play-services-location:11.+"
     compile "com.android.support:appcompat-v7:26.+"
+    compile "com.android.support:support-v4:$ANDROID_SUPPORT_V4_VERSION"
     // SUB-PROJECT DEPENDENCIES END
 }
 

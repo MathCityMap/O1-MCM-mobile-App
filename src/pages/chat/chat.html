@@ -12,6 +12,7 @@
             <div class="msg-detail">
                 <div class="msg-content">
                     <p class="line-breaker ">{{msg.message}}</p>
+                    <img *ngIf="msg.media" src="{{msg.media[0]}}">
                 </div>
                 <div class="msg-info">
                     <p>
@@ -35,9 +36,9 @@
                 (keyup.enter)="sendMsg()"
                 (focusin)="onFocus()">
         </textarea>
-        <!--<button ion-button class="image">-->
-            <!--<img src="./assets/icons/image.svg"/>-->
-        <!--</button>-->
+        <button ion-button class="image" (click)="getImage()">
+            <img src="./assets/icons/image.svg"/>
+        </button>
         <!--<button ion-button class="photo">-->
             <!--<img src="./assets/icons/photo.svg"/>-->
         <!--</button>-->

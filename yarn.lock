@@ -98,6 +98,11 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/app-version/-/app-version-4.10.1.tgz#e90596e48741ddc428c0161d694fe1af47ada1ab"
   integrity sha512-57I2HnjDub7aTFJzZhwKlNXieQANxa5l63hFB5lW8kkIeWbQDHB7tf25cCz4ihenR5nHLEAQ6nj/oqWbCyMLdQ==
 
+"@ionic-native/camera@4":
+  version "4.20.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/camera/-/camera-4.20.0.tgz#db236497f880bd1b832e4223485f99875fedc570"
+  integrity sha512-WnfQq8RV+7ezOqpCyNx9Xgpy7Y8TZehGLSxZXnCqCbFZ72CpC70Q5AV/eTIRGiKkotx2U6nUopYF+gTj1cunFA==
+
 "@ionic-native/core@4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-4.3.0.tgz#0d613bb6c8779146949514299ca1c02611e308a9"
@@ -1770,6 +1775,11 @@ cordova-plugin-app-version@~0.1.9:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
   integrity sha1-nbBgeGMzenEEiTAuX1CpBPFEm9s=
+
+cordova-plugin-camera@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.1.0.tgz#6474a3e080c4662aa00fd7425705d301c693ddc0"
+  integrity sha512-fCLhWjWYn49q3X5xaypAPgTz6MAWSKFFQvD2Gpi5SuVlrRPRphtX2jIqR2zCBuDTBR082QVnlc+yUDXt65Mjgw==
 
 cordova-plugin-compat@1.2.0:
   version "1.2.0"
