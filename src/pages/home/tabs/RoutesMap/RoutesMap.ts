@@ -4,7 +4,7 @@ import {File} from '@ionic-native/file';
 import {OnInit} from "@angular/core";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import 'leaflet-offline';
+//import 'leaflet-offline';
 import {checkAvailability} from "@ionic-native/core";
 
 import {DB_Updater} from '../../../../classes/DB_Updater';
@@ -13,7 +13,7 @@ import {tilesDb} from '../../../../classes/tilesDb';
 
 import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
-import {LatLngBounds} from 'leaflet';
+import {geoJSON, LatLngBounds} from 'leaflet';
 import {ModalsService} from '../../../../services/modals-service';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {TranslateService} from '@ngx-translate/core';
@@ -21,9 +21,12 @@ import {TranslateService} from '@ngx-translate/core';
 
 import {GpsService} from '../../../../services/gps-service';
 import 'rxjs/add/operator/filter';
-import 'leaflet-rotatedmarker';
+//import 'leaflet-rotatedmarker';
 import {Subscription} from 'rxjs/Subscription';
 import {LanguageService} from '../../../../services/language-service';
+
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
+import {forEach} from "typescript-collections/dist/lib/arrays";
 
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
@@ -40,17 +43,12 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     center: L.PointTuple;
     imageObject: any;
     routeDetails: Route;
-    userMarker: any;
+    mapBoxUserMarker: any;
     isFilePluginAvailable: boolean;
     routes: Route[];
 
     prevPos: any;
 
-    userPositionIcon;
-    publicRouteIcon;
-    privateRouteIcon;
-    downloadedRouteIcon;
-    doneRouteIcon;
     eventSubscription: Subscription;
     private watchSubscription: Subscription;
 
@@ -68,40 +66,11 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         public helper: Helper,
         private navParams: NavParams,
         private languageService: LanguageService) {
-        this.userPositionIcon = L.icon({
-            iconUrl: "./assets/icons/mapposition.png",
-            iconSize: [100, 100],
-            iconAnchor: [50, 50],
-            className: 'marker userPosition'
-        });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-        this.publicRouteIcon = L.icon({
-            iconUrl: './assets/icons/marker-route-public.png',
-            iconSize: [35, 48],
-            iconAnchor: [17.5, 43],
-            className: 'marker'
-        });
-        this.privateRouteIcon = L.icon({
-            iconUrl: './assets/icons/marker-route-private.png',
-            iconSize: [35, 48],
-            iconAnchor: [17.5, 43],
-            className: 'marker'
-        });
-        this.downloadedRouteIcon = L.icon({
-            iconUrl: './assets/icons/marker-route-downloaded.png',
-            iconSize: [35, 48],
-            iconAnchor: [17.5, 43],
-            className: 'marker'
-        });
-        this.doneRouteIcon = L.icon({
-            iconUrl: './assets/icons/marker-route-done.png',
-            iconSize: [35, 48],
-            iconAnchor: [17.5, 43],
-            className: 'marker'
-        });
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
-            if (this.markerGroup) {
-                if(!this.showAllRoutes) this.routes = await this.ormService.getDownloadedRoutes();
-                this.redrawMarker();
+            if (this.map && this.map.getLayer('unclustered-point')) {
+                if (!this.showAllRoutes) this.routes = await this.ormService.getDownloadedRoutes();
+                this.redrawMapBoxMarker();
+                console.log("REDRAWED")
                 this.routeDetails = null;
             }
         });
@@ -113,10 +82,10 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
         this.gpsService.isLocationOn();
 
-        if (this.markerGroup) {
+        if (this.map && this.map.getLayer('unclustered-point')) {
             if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
             else this.routes = await this.ormService.getDownloadedRoutes();
-            this.redrawMarker();
+            this.redrawMapBoxMarker();
         }
     }
 
@@ -128,8 +97,9 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             else this.showAllRoutes = false;
         }
         this.languageService.initialize().then(async () => {
-            this.loadMap();
-           await this.initializeMap();
+            //this.loadMap();
+            this.loadMapBox();
+            await this.initializeMap();
         });
 
     }
@@ -147,6 +117,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
 
     markerGroup: any = null;
+    merkerMapBoxGroup: any = null;
 
     async initializeMap() {
         let activeUser = await this.ormService.getActiveUser();
@@ -164,184 +135,293 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         }
         if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
         else this.routes = await this.ormService.getDownloadedRoutes();
-        this.redrawMarker();
+        this.redrawMapBoxMarker();
         this.spinner.hide();
     }
 
-    redrawMarker() {
+    redrawMapBoxMarker() {
         const map = this.map;
-        if (this.markerGroup != null) {
-            console.warn('removing markerGroup');
-            this.map.removeLayer(this.markerGroup);
+
+        console.log('POINT####', this.map.getLayer('unclustered-point'))
+        //clean layers to be redrawn
+        if (this.map.getLayer('unclustered-point')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('unclustered-point');
             this.markerGroup = null;
         }
-        let markerGroup = (L as any).markerClusterGroup({
-            maxClusterRadius: 30
-        });
-        for (let route of this.routes) {
-            let latLng = route.getCenterLatLng()
-            let icon;
-            if (route.downloaded) {
-                if (route.completed) {
-                    icon = this.doneRouteIcon;
-                } else {
-                    icon = this.downloadedRouteIcon;
-                }
-            } else if (route.public == "1") {
-                icon = this.publicRouteIcon;
-            } else {
-                icon = this.privateRouteIcon;
-            }
-            markerGroup.addLayer(L.marker(latLng, {icon: icon}).on('click', () => {
-                if (this.routeDetails == route) {
-                    this.modalsService.showRoute(route, this.navCtrl);
-                } else {
-                    this.routeDetails = route;
-                    if(route.downloaded) this.isRouteDownloaded = 'downloaded';
-                    else this.isRouteDownloaded = null;
-                    this.map.panTo(latLng);
-                }
-            }));
+        if (this.map.getLayer('clusters')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('clusters');
+            this.markerGroup = null;
         }
-        map.addLayer(markerGroup);
-        this.markerGroup = markerGroup;
+        if (this.map.getLayer('cluster-count')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('cluster-count');
+            this.markerGroup = null;
+        }
+
+
+        let GeoJson =
+            {
+                "type": "FeatureCollection",
+                "features": []
+            };
+
+        for (let route in this.routes) {
+
+            let icon;
+
+            if (this.routes[route].downloaded) {
+                if (this.routes[route].completed) {
+                    icon = 'completed-route';
+                } else {
+                    icon = 'downloaded-route';
+                }
+            } else if (this.routes[route].public == "1") {
+                icon = 'public-route';
+            } else {
+                icon = 'private-route';
+            }
+
+            let routeCenter = this.routes[route].getCenterLatLng();
+            let data = {
+                "type": "Feature",
+                "properties": {
+                    'routeIndex': route,
+                    'icon': icon
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        routeCenter.lng,
+                        routeCenter.lat
+                    ]
+                }
+            };
+            GeoJson.features.push(data);
+        }
+
+        if (this.map.getSource("routes")) this.map.getSource('routes').setData(GeoJson);
+        else {
+            this.map.addSource("routes", {
+                type: "geojson",
+                data: GeoJson,
+                cluster: true,
+                clusterRadius: 30
+            });
+        }
+
+        this.map.addLayer({
+            id: "clusters",
+            type: "circle",
+            source: "routes",
+            filter: ["has", "point_count"],
+            paint: {
+                'circle-color': '#11b4da',
+                'circle-radius': 20
+            }
+        });
+
+        map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-size': 15
+            }
+        });
+
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['!', ['has', 'point_count']],
+            layout: {
+                'icon-size': 0.23,
+                'icon-image': ['get', 'icon'],
+                'icon-allow-overlap': true
+            }
+        });
+
     }
 
-    loadMap() {
+    loadMapBox() {
+
         let isLoadedViaHttp = window.location.href.indexOf('http') === 0
-        this.center = [50.1208566, 8.66158515]; // Frankfurt-am Main
-        let mapquestUrl = Helper.mapquestUrl
-        let subDomains = Helper.subDomains
         let keepPositionBecauseOfReload = false;
 
-        if (this.map == null) {
-            if (this.showAllRoutes) {
-                this.map = L.map('map', {
-                    attributionControl: false,
-                    center: this.center,
-                    zoom: 16,
-                    trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
-                });
-            } else {
-                this.map = L.map('mapDownloaded', {
-                    attributionControl: false,
-                    center: this.center,
-                    zoom: 16,
-                    trackResize: false // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
-                });
-            }
+        mapboxgl.accessToken = Helper.accessToken;
 
-            // (<any>L).mapboxGL({
-            //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-            //     style: 'mapbox://styles/mapbox/outdoors-v11',
-            //     updateInterval: 0,
-            // }).addTo(this.map);
-
-
-            if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
-                keepPositionBecauseOfReload = true;
-                let startIndex = window.location.search.indexOf('pos=') + 4;
-                let bboxString = window.location.search.substring(startIndex).split("&|/")[0];
-                let coords = bboxString.split(",").map(parseFloat);
-                const bounds: LatLngBounds = L.latLngBounds(L.latLng(coords[1], coords[0]), L.latLng(coords[3], coords[2]));
-                this.map.fitBounds(bounds);
-            }
-            this.map.on('click', e => {
-                //check if details open and reset content. for now just reset content
-                this.routeDetails = null;
-                console.log('cleared route details');
+        //Either draws the map for all routes or for downloaded ones only
+        if (this.showAllRoutes) {
+            this.map = new mapboxgl.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566], // Frankfurt-am Main
+                zoom: 16,
+                container: 'map'
             });
-            L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
-            if (isLoadedViaHttp) {
-                // when loaded via http (for development), keep track of map position
-                this.map.on('moveend', event => {
-                    let bounds: LatLngBounds = this.map.getBounds();
-                    window.history.replaceState(
-                        {},
-                        "",
-                        `${window.location.origin}?pos=${bounds.toBBoxString()}/${window.location.hash}`
-                    );
-                });
-            }
-            let map = this.map;
-            tilesDb.initialize().then(() => {
-                console.log("Tiles DB Initialized");
-                let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-                    attribution: '&copy; mapbox.com',
-                    subdomains: subDomains,
-                    minZoom: 4,
-                    maxZoom: 20,
-                    tileSize: 256,
-                    crossOrigin: true,
-                    detectRetina: true
-                });
-
-                offlineLayer.addTo(map);
+        } else {
+            this.map = new mapboxgl.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566], // Frankfurt-am Main
+                zoom: 16,
+                container: 'mapDownloaded'
             });
-            this.gpsService.getCurrentPosition()
-                .then(resp => {
-                    if (resp && resp.coords) {
-                        console.warn('found you');
-                        // let markerGroup = L.featureGroup();
-
-                        this.userMarker = L.marker([resp.coords.latitude, resp.coords.longitude], {icon: this.userPositionIcon}).on('click', () => {
-                            //alert('Marker clicked');
-                        });
-                        this.userMarker.setRotationOrigin('center center');
-                        this.userMarker.addTo(this.map);
-                        if (!keepPositionBecauseOfReload) {
-                            this.map.panTo(new L.LatLng(resp.coords.latitude, resp.coords.longitude), 8);
-                        }
-
-                        if (this.watchSubscription) {
-                            this.watchSubscription.unsubscribe();
-                        }
-                        this.watchSubscription = this.gpsService.watchPosition().subscribe(resp => {
-
-
-                            if (resp && resp.coords) {
-                                const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
-                                // this.map.panTo(lanlng);
-                                this.userMarker.setLatLng(lanlng);
-
-                                //Check if it needs to move the map (in case the user is outside the threshold bounds)
-                                /*let freeBounds = L.bounds(L.point(this.map.getSize().x * 0.2, this.map.getSize().y * 0.2),
-                                                   L.point(this.map.getSize().x * 0.8, this.map.getSize().y * 0.8));
-                                let newPos = Helper.followUser(freeBounds, this.map.latLngToContainerPoint(lanlng), this.map.getZoom());
-                                if(newPos!= null) {
-                                    //this.map.panTo(this.map.containerPointToLatLng(newPos));
-                                }*/
-
-
-                                //Rotate the user marker
-                                if (this.prevPos != null) {
-                                    let angle = Helper.getAngle(this.prevPos, resp.coords);
-                                    this.userMarker.setRotationAngle(angle);
-                                }
-                                this.prevPos = resp.coords;
-                            }
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error(`Location error: ${JSON.stringify(error)}`);
-                })
         }
+        this.loadImagesToMap();
+        this.map.touchZoomRotate.disableRotation();
+        //removes labels for points of interest
+        this.map.on("load", () => {
+            this.map.style.stylesheet.layers.forEach(layer => {
+                if (layer.id === "poi-label") {
+                    this.map.removeLayer(layer.id);
+                }
+            });
+        });
+
+        if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
+            keepPositionBecauseOfReload = true;
+            let startIndex = window.location.search.indexOf('pos=') + 4;
+            let bboxString = window.location.search.substring(startIndex).split("&|/")[0]
+                .replace(/LngLat\(/g, '')
+                .replace(/%20/g, ' ')
+                .replace(/\)/g, '');
+            console.log("BBOX: ", bboxString);
+            let coords = bboxString.split(",").map(parseFloat);
+            const bounds = [[coords[0], coords[1]], [coords[2], coords[3]]];
+            console.log("BOUNDS: ", bounds);
+            this.map.fitBounds(bounds);
+        }
+
+
+        this.map.on('click', e => {
+            //check if details open and reset content. for now just reset content
+            this.routeDetails = null;
+            console.log('cleared route details');
+        });
+
+        let that = this;
+        //Zoom clusters
+        that.map.on('click', 'clusters', function (e) {
+            let features = that.map.queryRenderedFeatures(e.point, {
+                layers: ['clusters']
+            });
+            let clusterId = features[0].properties.cluster_id;
+            that.map.getSource('routes').getClusterExpansionZoom(
+                clusterId,
+                function (err, zoom) {
+                    if (err) return;
+
+                    that.map.easeTo({
+                        center: features[0].geometry.coordinates,
+                        zoom: zoom
+                    });
+                }
+            );
+        });
+
+
+        that.map.on('click', 'unclustered-point', function (e) {
+            let features = that.map.queryRenderedFeatures(e.point, {
+                layers: ['unclustered-point']
+            });
+            let index = features[0].properties.routeIndex;
+            let route = that.routes[index];
+            if (that.routeDetails == route) {
+                that.modalsService.showRoute(route, that.navCtrl);
+            } else {
+                that.routeDetails = route;
+                console.log("ROUTEDETAIIS: ", that.routeDetails);
+                if (route.downloaded) that.isRouteDownloaded = 'downloaded';
+                else that.isRouteDownloaded = null;
+                that.map.panTo(features[0].geometry.coordinates);
+            }
+        });
+
+
+        if (isLoadedViaHttp) {
+            // when loaded via http (for development), keep track of map position
+            this.map.on('moveend', event => {
+                let bounds: mapboxgl.LngLatBounds = this.map.getBounds();
+                let boundsString = bounds.toString();
+                boundsString = boundsString.substring(13, boundsString.length - 1);
+                window.history.replaceState(
+                    {},
+                    "",
+                    `${window.location.origin}?pos=${boundsString}/${window.location.hash}`
+                );
+            });
+        }
+
+        this.gpsService.getCurrentPosition()
+            .then(resp => {
+                if (resp && resp.coords) {
+                    console.warn('found you');
+                    // let markerGroup = L.featureGroup();
+
+                    let el = document.createElement('div');
+                    el.className = 'marker';
+                    el.style.backgroundImage = "url(assets/icons/mapposition.png)";
+                    el.style.backgroundSize = 'cover';
+                    el.style.width = 100 + 'px';
+                    el.style.height = 100 + 'px';
+                    el.addEventListener('click', function () {
+                        //window.alert(marker.properties.message);
+                        console.log("HEY clicked");
+                    });
+
+
+                    this.mapBoxUserMarker = new mapboxgl.Marker(el)
+                        .setLngLat([resp.coords.longitude, resp.coords.latitude])
+                        .addTo(this.map);
+
+                    if (!keepPositionBecauseOfReload) {
+                        this.map.panTo([resp.coords.longitude, resp.coords.latitude]);
+                    }
+
+                    if (this.watchSubscription) {
+                        this.watchSubscription.unsubscribe();
+                    }
+                    this.watchSubscription = this.gpsService.watchPosition().subscribe(resp => {
+                        if (resp && resp.coords) {
+                            const lnglat = [resp.coords.longitude, resp.coords.latitude];
+                            this.mapBoxUserMarker.setLngLat(lnglat);
+
+
+                            //Rotate the user marker
+                            if (this.prevPos != null) {
+                                let angle = Helper.getAngle(this.prevPos, resp.coords);
+                                this.mapBoxUserMarker.setRotation(angle);
+                            }
+                            this.prevPos = resp.coords;
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                console.log("error: ", error);
+                console.error(`Location error: ${JSON.stringify(error)}`);
+            })
     }
 
     async doDownload() {
         await this.modalsService.doDownload(this.routeDetails);
-        this.redrawMarker();
+        console.log("DID DOWNLOAD");
+        this.redrawMapBoxMarker();
     }
 
     async presentRouteInfoModal() {
         this.routeDetails = await this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl);
-        this.redrawMarker();
+        this.redrawMapBoxMarker();
     }
 
-    showRouteDetail(item: any){
-        this.modalsService.showRoute(item, this.navCtrl).then( async () =>{
-           await this.reactOnRemovedRoute();
+    showRouteDetail(item: any) {
+        console.log("##### ROUTE: ", item);
+        this.modalsService.showRoute(item, this.navCtrl).then(async () => {
+            await this.reactOnRemovedRoute();
         })
     }
 
@@ -350,11 +430,31 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     }
 
     async reactOnRemovedRoute() {
-        if(this.showAllRoutes)this.routes = await this.ormService.getVisibleRoutes();
+        if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
         else this.routes = await this.ormService.getDownloadedRoutes();
-        this.redrawMarker();
+        this.redrawMapBoxMarker();
     }
 
+    loadImagesToMap() {
+        let map = this.map;
+        map.loadImage('assets/icons/marker-route-private.png', function (error, image) {
+            map.addImage('private-route', image);
+        });
+
+        map.loadImage('assets/icons/marker-route-public.png', function (error, image) {
+            map.addImage('public-route', image);
+        });
+
+        map.loadImage('assets/icons/marker-route-downloaded.png', function (error, image) {
+            map.addImage('downloaded-route', image);
+        });
+
+        map.loadImage('assets/icons/marker-route-done.png', function (error, image) {
+            map.addImage('completed-route', image);
+        });
+
+
+    }
 
 
 }

@@ -140,6 +140,7 @@ export class Route {
     scores: Score[];
 
     async getTaskCount(): Promise<number> {
+        if(this.tasks) return this.tasks.length;
         if (this.task2Routes) {
             return this.task2Routes.length;
         } else {
