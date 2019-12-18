@@ -226,7 +226,9 @@
                             "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>",
                             "count": 11
                         }
-                    ]
+                    ],
+                    "MGLMapboxAccessToken": [],
+                    "MGLMapboxMetricsEnabledSettingShownInApp": []
                 }
             }
         }
