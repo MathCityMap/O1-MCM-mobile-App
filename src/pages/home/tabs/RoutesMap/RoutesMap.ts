@@ -324,7 +324,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         });
 
 
-        that.map.on('click', 'unclustered-point', function (e) {
+        that.map.on('click', 'unclustered-point', async function (e) {
             let features = that.map.queryRenderedFeatures(e.point, {
                 layers: ['unclustered-point']
             });
@@ -333,10 +333,15 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             if (that.routeDetails == route) {
                 that.modalsService.showRoute(route, that.navCtrl);
             } else {
-                that.routeDetails = route;
-                console.log("ROUTEDETAIIS: ", that.routeDetails);
-                if (route.downloaded) that.isRouteDownloaded = 'downloaded';
-                else that.isRouteDownloaded = null;
+                if (route.downloaded){
+                    that.isRouteDownloaded = 'downloaded';
+                    console.log("THIS.ROUTE: ", route);
+                    that.routeDetails = await that.ormService.findRouteByCode(route.code);
+                }
+                else {
+                    that.routeDetails = route;
+                    that.isRouteDownloaded = null;
+                }
                 that.map.panTo(features[0].geometry.coordinates);
             }
         });
