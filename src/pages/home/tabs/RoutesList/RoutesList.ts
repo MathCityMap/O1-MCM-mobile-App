@@ -75,7 +75,6 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async ionViewWillEnter() {
-        console.log('RoutesList ionViewWillEnter()', this.navParams);
         this.pipe = new SearchPipe();
         if(this.navParams.data && this.navParams.data.showAllRoutes != null) {
             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
