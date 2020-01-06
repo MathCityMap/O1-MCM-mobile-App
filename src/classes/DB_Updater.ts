@@ -42,13 +42,16 @@ export class DB_Updater {
         // Compare
         let sqlUpdateQuery = `UPDATE ${DBC.DATABASE_TABLE_STATE} SET ${DBC.DB_STATE.fields[2]} = ? WHERE ${DBC.DB_STATE.fields[1]} = ?`
         if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
+
+            // Routes need update
+            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRoutes'), DBC.DB_ROUTE);
+
             // load routes with flags which need to be restored
             let downloadedRoutes = await this.ormService.getDownloadedRoutes();
             let unlockedRoutes = await this.ormService.getUnlockedRoutes();
             let completedRoutes = await this.ormService.getCompletedRoutes();
 
-            // Routes need update
-            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRoutes'), DBC.DB_ROUTE);
+
 
             // Update local table
             console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
