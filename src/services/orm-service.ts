@@ -30,6 +30,8 @@ import {Helper} from "../classes/Helper";
 
 import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-AddDownloadDateColumn";
 import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-AddCompletedDateColumn";
+import {AddZipMapFields15783117210000} from "../migration/15783117210000-AddZipMapFields";
+
 
 @Injectable()
 export class OrmService {
@@ -70,10 +72,11 @@ export class OrmService {
             AddVisibleColumn1526306624000,
             AddLangCodeColumn1526306730000,
             AddDownloadDateColumn15711518720000,
-            AddCompletedDateColumn15713974540000
+            AddCompletedDateColumn15713974540000,
+            AddZipMapFields15783117210000
         ];
         if (sqliteAvailable) {
-            return this.connection = await createConnection({
+            this.connection = await createConnection({
                 type: 'cordova',
                 location: 'default',
                 database: 'mcm_db.sqlite3',
@@ -84,8 +87,9 @@ export class OrmService {
                 migrationsRun: true,
                 migrations: migrations
             });
+            return this.connection;
         } else {
-            return this.connection = await createConnection({
+            this.connection = await createConnection({
                 type: 'websql',
                 version: '1.0',
                 description: 'MCM DB',
@@ -98,6 +102,7 @@ export class OrmService {
                 migrationsRun: true,
                 migrations: migrations
             });
+            return this.connection;
         }
     }
 
@@ -245,7 +250,7 @@ export class OrmService {
             });
         }
         let repo = await this.getRouteRepository();
-        let result = await repo.createQueryBuilder('r').where('r.public = 1').orWhere('r.unlocked = 1').getMany();
+        let result = await repo.createQueryBuilder('r').where('r.map_version != 0').andWhere('r.public = 1').orWhere('r.unlocked = 1').getMany();
         if (compareFn) {
             result.sort(compareFn);
         }
@@ -271,6 +276,10 @@ export class OrmService {
                 downloaded: '1'
             }
         });
+
+        result = result.filter((route)=>{
+            return route.mapVersion != '0'
+        });
         if (compareFn) {
             result.sort(compareFn);
         }
@@ -284,6 +293,10 @@ export class OrmService {
                 unlocked: '1'
             }
         });
+
+        result = result.filter((route)=>{
+            return route.mapVersion != '0'
+        });
         return result;
     }
 
@@ -293,6 +306,10 @@ export class OrmService {
             where: {
                 completed: '1'
             }
+        });
+
+        result = result.filter((route)=>{
+            return route.mapVersion != '0'
         });
         return result;
     }
