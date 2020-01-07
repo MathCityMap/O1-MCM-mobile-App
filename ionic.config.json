@@ -12,6 +12,10 @@
     {
       "path": "/sessionUser",
       "proxyUrl": "http://api.mathcitymap.eu/public/index.php/sessionUser"
+    },
+    {
+      "path": "/mcm_maps",
+      "proxyUrl": "https://dev.mathcitymap.eu/mcm_maps/*"
     }
   ],
   "app_id": ""
