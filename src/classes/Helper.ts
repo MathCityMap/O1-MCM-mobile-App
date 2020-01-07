@@ -1,17 +1,21 @@
 import * as L from 'leaflet';
-import { LatLng } from 'leaflet';
-import { checkAvailability } from '@ionic-native/core';
-import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
-import { GpsService } from '../services/gps-service';
-import { Network } from '@ionic-native/network';
-import { Platform } from 'ionic-angular';
-import { Route } from '../entity/Route';
+import {LatLng} from 'leaflet';
+import * as JSZip from 'jszip';
+import {checkAvailability} from '@ionic-native/core';
+import {Injectable} from '@angular/core';
+import {Headers, Http, RequestOptions, ResponseContentType} from '@angular/http';
+import {GpsService} from '../services/gps-service';
+import {Network} from '@ionic-native/network';
+import {Platform} from 'ionic-angular';
+import {Route} from '../entity/Route';
 import {OrmService} from "../services/orm-service";
-import { Storage } from "@ionic/storage";
+import {Storage} from "@ionic/storage";
+import {File} from "@ionic-native/file";
+import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 
 export class MapTile {
-    constructor(private pZoomLevel: number, private pX: number, private pY: number) {
+    constructor(private pZoomLevel: number, private pX: number, private pY: number
+    ) {
     }
 
     get x(): number {
@@ -130,8 +134,9 @@ export class Helper {
 
     private activateAddRouteModal: boolean = false;
 
-    constructor(private http: Http, private gpsService: GpsService, private network: Network,
-                private platform: Platform, private ormService: OrmService, private storage: Storage) {
+    constructor(private http: Http, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
+                private platform: Platform, private ormService: OrmService, private storage: Storage,
+                private file: File) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();
@@ -154,6 +159,7 @@ export class Helper {
             this.isOnline = true;
         });
     }
+
     public getDistanceToCenterByLatLng(latLng: LatLng): number {
         if (!latLng) {
             return 0;
@@ -316,7 +322,7 @@ export class Helper {
         }
     }
 
-    public async setDevMode(value: string){
+    public async setDevMode(value: string) {
         await this.storage.set('devMode', value);
         this.devModeEnabled = (value === 'true')
     }
@@ -325,7 +331,7 @@ export class Helper {
         return this.devModeEnabled;
     }
 
-    public setActivateAddRoute(value: boolean){
+    public setActivateAddRoute(value: boolean) {
         this.activateAddRouteModal = value;
     }
 
@@ -333,10 +339,32 @@ export class Helper {
         return this.activateAddRouteModal;
     }
 
-    public async calculateProgress(route: Route){
+    public async calculateProgress(route: Route) {
         let totalTasks = await route.getTaskCount();
         let score = route.getScoreForUser(await this.ormService.getActiveUser());
         let currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         return {totalTasks: totalTasks, currentProgress: currentProgress};
     }
+
+    public async downloadAndUnzip(route: Route) {
+
+        let url = 'https://dev.mathcitymap.eu/mcm_maps/' + route.mapFileName;
+        //Download
+        let zip = await this.http.get(url,
+            {
+                headers: new Headers(),
+                responseType: ResponseContentType.ArrayBuffer
+            }).toPromise();
+
+
+        let zipFile: JSZip = new JSZip();
+
+        zipFile.loadAsync(zip.arrayBuffer()).then((result) => {
+            console.log("### unzipped file: ", result);
+        }).catch(err => {
+            console.error("ERROR unzipping file: ", err);
+        });
+
+    }
+
 }
