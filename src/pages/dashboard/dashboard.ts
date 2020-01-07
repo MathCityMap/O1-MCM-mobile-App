@@ -78,4 +78,7 @@ export class DashboardPage {
         this.tabBarElement.style.display = 'flex';
     }
 
+    openAudioPage() {
+        this.navCtrl.push('AudioPage');
+    }
 }

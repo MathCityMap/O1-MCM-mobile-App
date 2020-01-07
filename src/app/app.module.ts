@@ -51,6 +51,7 @@ import { ChatPageModule } from '../pages/chat/chat.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
+import { Media } from '@ionic-native/media';
 
 
 @NgModule({
@@ -120,7 +121,8 @@ import { AppVersion } from '@ionic-native/app-version';
         AppVersion,
         Globalization,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        Camera
+        Camera,
+        Media
     ]
 })
 export class AppModule {
