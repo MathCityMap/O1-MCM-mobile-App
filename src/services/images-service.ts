@@ -1,10 +1,13 @@
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { DirectoryEntry, File} from '@ionic-native/file';
+import * as JSZip from 'jszip';
 import { Platform } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
 import { Helper } from '../classes/Helper';
+import {Route} from "../entity/Route";
+import {Headers, ResponseContentType, Http} from "@angular/http";
 
 @Injectable()
 export class ImagesService {
@@ -18,7 +21,7 @@ export class ImagesService {
     private filePluginAvailable: boolean;
     private dataDirectory: DirectoryEntry;
 
-    constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer) {
+    constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer, private http: Http) {
         ImagesService.INSTANCE = this;
         this.init();
     }
@@ -296,6 +299,31 @@ export class ImagesService {
         }
         return this.lazyLoadedImagesCache[imgPath] = this.getOfflineURL(imgPath);
     }
+
+
+    public async downloadAndUnzip(route: Route) {
+
+        let url = 'https://dev.mathcitymap.eu/mcm_maps/' + route.mapFileName;
+        //Download
+        let zip = await this.http.get(url,
+            {
+                headers: new Headers(),
+                responseType: ResponseContentType.ArrayBuffer
+            }).toPromise();
+
+
+        let zipFile: JSZip = new JSZip();
+
+        zipFile.loadAsync(zip.arrayBuffer()).then((result) => {
+            console.log("### unzipped file: ", result);
+            return result;
+        }).catch(err => {
+            console.error("ERROR unzipping file: ", err);
+        });
+
+    }
+
+
 }
 
 
