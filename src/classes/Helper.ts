@@ -1,6 +1,5 @@
 import * as L from 'leaflet';
 import {LatLng} from 'leaflet';
-import * as JSZip from 'jszip';
 import {checkAvailability} from '@ionic-native/core';
 import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, ResponseContentType} from '@angular/http';
@@ -344,27 +343,6 @@ export class Helper {
         let score = route.getScoreForUser(await this.ormService.getActiveUser());
         let currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         return {totalTasks: totalTasks, currentProgress: currentProgress};
-    }
-
-    public async downloadAndUnzip(route: Route) {
-
-        let url = 'https://dev.mathcitymap.eu/mcm_maps/' + route.mapFileName;
-        //Download
-        let zip = await this.http.get(url,
-            {
-                headers: new Headers(),
-                responseType: ResponseContentType.ArrayBuffer
-            }).toPromise();
-
-
-        let zipFile: JSZip = new JSZip();
-
-        zipFile.loadAsync(zip.arrayBuffer()).then((result) => {
-            console.log("### unzipped file: ", result);
-        }).catch(err => {
-            console.error("ERROR unzipping file: ", err);
-        });
-
     }
 
 }
