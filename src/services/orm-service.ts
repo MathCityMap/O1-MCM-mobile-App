@@ -322,10 +322,19 @@ export class OrmService {
             statusCallback(0, 0, 'a_rdl_title_map');
 
             //should be here that we add the download and unzipping.
-            await CacheManagerMCM.downloadTiles(route, Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
-                alreadyDownloadedUrls.push(url);
-                return statusCallback(done, total);
-            });
+            console.log("ROUTE##### : ", route);
+            if(!route.isNarrativeEnabled()) {
+                console.log("NORMAL####");
+                await this.imagesService.downloadAndUnzip(route);
+            }
+            else {
+                console.log("PIRATE####");
+
+                await CacheManagerMCM.downloadTiles(route, Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
+                    alreadyDownloadedUrls.push(url);
+                    return statusCallback(done, total);
+                });
+            }
             statusCallback(0, 0, 'a_rdl_title_img');
             await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(await route.getTasks()), false, (done, total, url) => {
                 alreadyDownloadedUrls.push(url);

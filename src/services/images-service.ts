@@ -1,7 +1,7 @@
+import * as JSZip from 'jszip';
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { DirectoryEntry, File} from '@ionic-native/file';
-import * as JSZip from 'jszip';
 import { Platform } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
@@ -314,9 +314,15 @@ export class ImagesService {
 
         let zipFile: JSZip = new JSZip();
 
-        zipFile.loadAsync(zip.arrayBuffer()).then((result) => {
-            console.log("### unzipped file: ", result);
-            return result;
+
+        zipFile.loadAsync(zip.arrayBuffer()).then(async (result) => {
+            Object.keys(result.files).forEach(async key=>{
+                let storableResult = await result.file(key).async("blob");
+                let parsedName = result.files[key].name.replace(/\/|@/g, "_");
+                parsedName = "v4_mapbox.streets_" + parsedName;
+                await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true}).then((y) =>{ console.log("answers pls222 ### ", y)}).catch(err=> {console.log("##ERROR :( ", err)});
+            })
+
         }).catch(err => {
             console.error("ERROR unzipping file: ", err);
         });
