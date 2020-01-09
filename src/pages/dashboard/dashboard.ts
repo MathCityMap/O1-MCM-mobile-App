@@ -77,8 +77,4 @@ export class DashboardPage {
     ionViewDidLeave() {
         this.tabBarElement.style.display = 'flex';
     }
-
-    openAudioPage() {
-        this.navCtrl.push('AudioPage');
-    }
 }

@@ -48,15 +48,15 @@
                 (keyup.enter)="sendMsg()"
                 (focusin)="onFocus()">
         </textarea>
-        <textarea *ngIf="recordState ==  3"
+        <!--<textarea *ngIf="recordState ==  3"
                 autoresize
                 id="textarea2"
-                [placeholder]="audio.getDuration()"
+                [placeholder]="recordTime"
                 [(ngModel)]="editorMsg"
                 (keyup.enter)="sendMsg()"
                 (focusin)="onFocus()"
         >
-        </textarea>
+        </textarea>-->
         <button ion-button class="image" (click)="getImage()">
             <img src="./assets/icons/image.svg"/>
         </button>

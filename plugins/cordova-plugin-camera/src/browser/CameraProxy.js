@@ -102,17 +102,14 @@ function capture (success, errorCallback, opts) {
 
     var successCallback = function (stream) {
         localMediaStream = stream;
-        if ('srcObject' in video) {
-            video.srcObject = localMediaStream;
-        } else {
-            video.src = window.URL.createObjectURL(localMediaStream);
-        }
+        video.src = window.URL.createObjectURL(localMediaStream);
         video.play();
+
         document.body.appendChild(parent);
     };
 
     if (navigator.getUserMedia) {
-        navigator.getUserMedia({video: true, audio: false}, successCallback, errorCallback);
+        navigator.getUserMedia({video: true, audio: true}, successCallback, errorCallback);
     } else {
         alert('Browser does not support camera :(');
     }

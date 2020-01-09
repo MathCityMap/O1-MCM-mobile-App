@@ -170,6 +170,8 @@ export class ChatPage {
             this.recordState = RecordStateEnum.Idle;
             newMsg.isAudio = true;
             this.msgList.push(newMsg);
+
+
             newMsg.media = [this.editorImg];
         } else {
             newMsg.message = this.editorMsg;
@@ -326,6 +328,12 @@ export class ChatPage {
         this.audio = this.media.create(this.filePath);
         this.audio.startRecord();
         this.recording = true;
+
+        // Stop Recording after 1 minute
+        setTimeout(() => {
+            this.recordState = RecordStateEnum.Stop;
+            this.stopRecording();
+        }, 60000);
     }
 
     stopRecording() {
@@ -336,22 +344,25 @@ export class ChatPage {
         this.recording = false;
 
         this.recordTime = this.audio.getDuration();
+        console.log('record time: ', this.recordTime);
     }
 
     playAudio(file, index) {
         this.audioIndex = index;
+
         // if (this.pausedPosition != 0) {
         //     console.log('gonna play the audio');
         //     this.audio.seekTo(this.pausedPosition);
         //     this.pausedPosition = 0;
         // } else {
+        //}
+
         if (this.platform.is('ios')) {
             this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
         } else if (this.platform.is('android')) {
             this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + file;
         }
         this.audio = this.media.create(this.filePath);
-        //}
 
         this.audio.play();
         this.audio.setVolume(0.8);

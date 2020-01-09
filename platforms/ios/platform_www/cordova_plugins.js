@@ -511,7 +511,7 @@ module.exports.metadata =
     "cordova-custom-config": "4.0.2",
     "cordova-plugin-inappbrowser": "3.1.0",
     "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-camera": "4.1.0"
+    "cordova-plugin-camera": "4.0.3"
 };
 // BOTTOM OF METADATA
 });
