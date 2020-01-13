@@ -145,7 +145,9 @@ export class ChatPage {
             toUserId: this.toUser.token,
             time: Date.now() - (timezoneOffset * 60000),
             message: this.editorMsg,
-            status: 'pending'
+            status: 'pending',
+            //temporary use of media to avoid error
+            media: []
         };
 
         console.debug("new message: ", newMsg);

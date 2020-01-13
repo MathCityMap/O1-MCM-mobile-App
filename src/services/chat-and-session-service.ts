@@ -38,6 +38,7 @@ export class ChatMessage {
     time: number | string;
     message: string;
     status: string;
+    media: string[] = [];
 }
 
 export class LeaderBoardItemRespone {
@@ -146,7 +147,8 @@ export class ChatAndSessionService {
             toUserId: msg.receiverId, // toUserId (depends if this is written  or received
             time: Date.parse(msg.time) - (timezoneOffset * 60000),
             message: msg.message,
-            status: msg.status
+            status: msg.status,
+            media: []
         };
         return chatMessage;
     }

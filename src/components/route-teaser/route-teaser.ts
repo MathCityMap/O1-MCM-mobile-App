@@ -64,7 +64,7 @@ export class RouteTeaserComponent {
 
     async deleteRoute(event, route: Route) {
         event.stopPropagation();
-        if(await this.ormService.removeDownloadedRoute(route)){
+        if(await this.ormService.removeDownloadedRoute(route, true)){
             this.removeRoute.emit();
         }
     }
