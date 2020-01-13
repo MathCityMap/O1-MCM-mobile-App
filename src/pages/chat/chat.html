@@ -28,8 +28,8 @@
                 <ion-list>
                     <ion-item>
                         <p>{{audioList[i].filename}}</p>
-                        <button ion-button clear item-end large *ngIf="!audioIndex" (click)="playAudio(audioList[i].filename, i)"><ion-icon name="play"></ion-icon></button>
-                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio(audioList[i].filename)"><ion-icon name="pause"></ion-icon></button>
+                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(audioList[i].filename, i)"><ion-icon name="play"></ion-icon></button>
+                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio(audioList[i].filename)"><ion-icon name="square"></ion-icon></button>
                     </ion-item>
                 </ion-list>
             </div>
@@ -39,7 +39,7 @@
 </ion-content>
 <ion-footer no-border [style.height]="'55px'">
     <div class="input-wrap">
-        <textarea *ngIf="recordState != 3"
+        <textarea
                 autoresize
                 id="textarea"
                 #chat_input
@@ -48,21 +48,12 @@
                 (keyup.enter)="sendMsg()"
                 (focusin)="onFocus()">
         </textarea>
-        <!--<textarea *ngIf="recordState ==  3"
-                autoresize
-                id="textarea2"
-                [placeholder]="recordTime"
-                [(ngModel)]="editorMsg"
-                (keyup.enter)="sendMsg()"
-                (focusin)="onFocus()"
-        >
-        </textarea>-->
-        <button ion-button class="image" (click)="getImage()">
-            <img src="./assets/icons/image.svg"/>
+        <button ion-button icon-only round (click)="getImage()">
+            <ion-icon name="image"></ion-icon>
         </button>
-        <button ion-button icon-only (click)="micButtonClick()">
+        <button ion-button icon-only round (click)="micButtonClick()">
             <ion-icon *ngIf="recordState == 1" name="mic"></ion-icon>
-            <ion-icon *ngIf="recordState == 2" name="pause"></ion-icon>
+            <ion-icon *ngIf="recordState == 2" name="square"></ion-icon>
             <ion-icon *ngIf="recordState == 3" name="close"></ion-icon>
         </button>
         <!--<button ion-button class="photo">-->

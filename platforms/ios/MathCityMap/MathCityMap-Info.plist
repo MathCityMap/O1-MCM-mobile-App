@@ -98,7 +98,7 @@
     <key>NSCalendarsUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to calendar.</string>
     <key>NSCameraUsageDescription</key>
-    <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
+    <string>We use the camera plugin in order to be able to send pictures via chat.</string>
     <key>NSContactsUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -116,7 +116,7 @@
     <key>NSMotionUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to motion detection.</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to photo library.</string>
+    <string>We use the camera plugin in order to be able to send pictures via chat.</string>
     <key>NSRemindersUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
     <key>UILaunchStoryboardName</key>

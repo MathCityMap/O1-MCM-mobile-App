@@ -91,6 +91,9 @@
     <feature name="Media">
         <param name="ios-package" value="CDVSound" />
     </feature>
+    <feature name="Camera">
+        <param name="ios-package" value="CDVCamera" />
+    </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
@@ -200,6 +203,7 @@
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
+    <preference name="CameraUsesGeolocation" value="false" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="android-targetSdkVersion" value="28" />
@@ -208,8 +212,4 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="30000" />
-    <feature name="Camera">
-        <param name="ios-package" value="CDVCamera" />
-    </feature>
-    <preference name="CameraUsesGeolocation" value="false" />
 </widget>

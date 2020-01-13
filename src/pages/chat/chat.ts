@@ -34,7 +34,6 @@ export class ChatPage {
     private recording: boolean = false;
     private scrollEndSubscription: any;
     private audioList: any[] = [];
-    private recordTime: number = 0;
     private audioIndex: number = null;
     private pausedPosition: number = 0;
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
@@ -293,12 +292,10 @@ export class ChatPage {
     }
 
     micButtonClick() {
-        console.log('Record State on Click: ', this.recordState);
-
         switch (this.recordState) {
             case RecordStateEnum.Record:
-                this.stopRecording();
                 this.recordState = RecordStateEnum.Stop;
+                this.stopRecording();
                 break;
             case RecordStateEnum.Stop:
                 this.recordState = RecordStateEnum.Idle;
@@ -306,8 +303,8 @@ export class ChatPage {
                 break;
             default:
                 // RecordStateEnum.Idle:
-                this.startRecording();
                 this.recordState = RecordStateEnum.Record;
+                this.startRecording();
                 break;
         }
     }
@@ -331,31 +328,22 @@ export class ChatPage {
 
         // Stop Recording after 1 minute
         setTimeout(() => {
-            this.recordState = RecordStateEnum.Stop;
-            this.stopRecording();
+            if(this.recordState != RecordStateEnum.Idle) {
+                this.recordState = RecordStateEnum.Stop;
+                this.stopRecording();
+            }
         }, 60000);
     }
 
     stopRecording() {
         this.audio.stopRecord();
-
         // This way we can identify the audio clip that needs to be played by using the msgList index
         this.audioList[this.msgList.length] = { filename: this.fileName };
         this.recording = false;
-
-        this.recordTime = this.audio.getDuration();
-        console.log('record time: ', this.recordTime);
     }
 
     playAudio(file, index) {
         this.audioIndex = index;
-
-        // if (this.pausedPosition != 0) {
-        //     console.log('gonna play the audio');
-        //     this.audio.seekTo(this.pausedPosition);
-        //     this.pausedPosition = 0;
-        // } else {
-        //}
 
         if (this.platform.is('ios')) {
             this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
