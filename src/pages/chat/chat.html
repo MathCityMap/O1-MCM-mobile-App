@@ -39,22 +39,34 @@
 </ion-content>
 <ion-footer no-border [style.height]="'55px'">
     <div class="input-wrap">
-        <textarea
-                autoresize
-                id="textarea"
-                #chat_input
-                [placeholder]="'a_chat_type_message' | translate"
-                [(ngModel)]="editorMsg"
-                (keyup.enter)="sendMsg()"
-                (focusin)="onFocus()">
-        </textarea>
-        <button ion-button icon-only round (click)="getImage()">
-            <ion-icon name="image"></ion-icon>
+        <!--wrap inside div check -->
+        <div *ngIf="recordState == 1">
+            <textarea
+                    autoresize
+                    id="textarea"
+                    #chat_input
+                    [placeholder]="'a_chat_type_message' | translate"
+                    [(ngModel)]="editorMsg"
+                    (keyup.enter)="sendMsg()"
+                    (focusin)="onFocus()">
+            </textarea>
+        </div>
+
+        <button ion-button icon-only round start *ngIf="recordState == 3 && canPlayback" (click)="playAudio(fileName)">
+            <ion-icon name="play"></ion-icon>
         </button>
-        <button ion-button icon-only round (click)="micButtonClick()">
+        <button ion-button icon-only round start *ngIf="recordState == 3 && !canPlayback" (click)="pauseAudio(fileName)">
+            <ion-icon name="pause"></ion-icon>
+        </button>
+
+        <button ion-button icon-only round end (click)="micButtonClick()">
             <ion-icon *ngIf="recordState == 1" name="mic"></ion-icon>
             <ion-icon *ngIf="recordState == 2" name="square"></ion-icon>
             <ion-icon *ngIf="recordState == 3" name="close"></ion-icon>
+        </button>
+
+        <button *ngIf="recordState == 1" ion-button icon-only round end (click)="getImage()">
+            <ion-icon name="image"></ion-icon>
         </button>
         <!--<button ion-button class="photo">-->
             <!--<img src="./assets/icons/photo.svg"/>-->

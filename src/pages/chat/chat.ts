@@ -28,16 +28,16 @@ export class ChatPage {
     editorImg = '';
     showEmojiPicker = false;
     isScrolledToBottom = true;
+    private scrollEndSubscription: any;
+
     private filePath: string;
     private fileName: string;
     private audio: MediaObject;
-    private recording: boolean = false;
-    private scrollEndSubscription: any;
     private audioList: any[] = [];
     private audioIndex: number = null;
-    private pausedPosition: number = 0;
+    private recording: boolean = false;
+    private canPlayback: boolean = true;
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
-
 
     constructor(navParams: NavParams,
                 protected file: File,
@@ -166,10 +166,13 @@ export class ChatPage {
         };
 
         if (this.recordState == RecordStateEnum.Stop) {
+            if (!this.canPlayback) {
+                this.pauseAudio();
+            }
+
             this.recordState = RecordStateEnum.Idle;
             newMsg.isAudio = true;
             this.msgList.push(newMsg);
-
 
             newMsg.media = [this.editorImg];
         } else {
@@ -302,7 +305,6 @@ export class ChatPage {
                 this.cancelRecording();
                 break;
             default:
-                // RecordStateEnum.Idle:
                 this.recordState = RecordStateEnum.Record;
                 this.startRecording();
                 break;
@@ -317,7 +319,7 @@ export class ChatPage {
             this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
         } else if (this.platform.is('android')) {
             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.3gp';
+              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.png';
 
             this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
         }
@@ -340,10 +342,12 @@ export class ChatPage {
         // This way we can identify the audio clip that needs to be played by using the msgList index
         this.audioList[this.msgList.length] = { filename: this.fileName };
         this.recording = false;
+        this.canPlayback = true;
     }
 
-    playAudio(file, index) {
+    playAudio(file, index?) {
         this.audioIndex = index;
+        this.canPlayback = false;
 
         if (this.platform.is('ios')) {
             this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
@@ -361,19 +365,15 @@ export class ChatPage {
                 case 3:
                 case 4:
                     this.audioIndex = null;
+                    this.canPlayback = true;
                     break;
             }
         });
     }
 
     pauseAudio() {
-        if(this.audio) {
+        if (this.audio) {
           this.audio.pause();
-
-          this.audio.getCurrentPosition().then((position) => {
-              this.pausedPosition = position;
-          });
-          this.audioIndex = null;
         }
     }
 
