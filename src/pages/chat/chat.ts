@@ -150,7 +150,9 @@ export class ChatPage {
      * @name sendMsg
      */
     async sendMsg() {
-        if (!this.editorMsg.trim() && !this.editorImg.trim() && this.recordState != RecordStateEnum.Stop) return;
+        if (this.editorMsg && this.editorImg &&
+          !this.editorMsg.trim() && !this.editorImg.trim() &&
+          this.recordState != RecordStateEnum.Stop) return;
         let timezoneOffset = new Date().getTimezoneOffset();
         let path = [];
 
@@ -336,7 +338,7 @@ export class ChatPage {
             this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
         } else if (this.platform.is('android')) {
             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.png';
+              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.aac';
 
             this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
         }
