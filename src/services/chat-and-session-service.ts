@@ -234,6 +234,17 @@ export class ChatAndSessionService {
         });
     }
 
+    async postMedia(file: FormData, sessionInfo: SessionInfo){
+        try {
+            let x = await this.sessionChatService.postMedia(file, sessionInfo.session.code, sessionInfo.sessionUser.token);
+            return this.sessionService.rootUrl.replace("index.php", "") + x.body;
+        }
+        catch (e) {
+            console.log("ERROR sending media to chat: ", e);
+            return null;
+        }
+    }
+
     async getUserInfo(): Promise<UserInfo> {
         let sessionInfo = await this.getActiveSession();
         if (sessionInfo != null) {

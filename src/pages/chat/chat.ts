@@ -24,7 +24,7 @@ export class ChatPage {
     session: Session;
     toUser: UserInfo;
     editorMsg = '';
-    editorImg = '';
+    editorImg = null;
     showEmojiPicker = false;
     isScrolledToBottom = true;
     private scrollEndSubscription: any;
@@ -133,12 +133,29 @@ export class ChatPage {
         });
     }
 
+
     /**
      * @name sendMsg
      */
     async sendMsg() {
         if (!this.editorMsg.trim() && !this.editorImg.trim()) return;
         let timezoneOffset = new Date().getTimezoneOffset();
+        let path = [];
+
+        if(this.editorImg){
+            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
+            let myFormData = new FormData();
+            myFormData.append('media', blob, 'image.jpeg');
+            let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
+            //resets image
+            this.editorImg = null;
+            if(resultPath) path.push(resultPath);
+            else {
+                console.log("ERROR: unnable to send media");
+                return;
+            }
+
+        }
 
         // Mock message
         let newMsg: ChatMessage = {
@@ -149,7 +166,7 @@ export class ChatPage {
             toUserId: this.toUser.token,
             time: Date.now() - (timezoneOffset * 60000),
             message: this.editorMsg,
-            media: [this.editorImg],
+            media: path,
             status: 'pending'
         };
 
@@ -200,10 +217,9 @@ export class ChatPage {
         }
 
         this.camera.getPicture(options).then((imageData) => {
-            let base64Image = 'data:image/jpeg;base64,' + imageData;
 
             // now you can do whatever you want with the base64Image, I chose to update the db
-           this.editorImg = base64Image;
+           this.editorImg = imageData;
 
         }, (err) => {
             console.log("ERROR#####: ", err);

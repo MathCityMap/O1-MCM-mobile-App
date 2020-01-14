@@ -310,6 +310,24 @@ export class SessionChatService extends BaseService {
   }
 
 
+    postMedia(file: FormData, session: string, sender: string): any {
+        let __headers = new HttpHeaders();
+        __headers.append('Content-Type', 'multipart/form-data');
+        __headers.append('Accept', 'application/json');
+
+
+
+        let req = new HttpRequest<any>(
+            "POST",
+            this.rootUrl + `/session/${session}/media/${sender}`, file,
+            {
+                headers: __headers
+            });
+
+        return this.http.request<any>(req).toPromise().catch(err=>{console.log("ERROR#####: ", err)});
+    }
+
+
   /**
    * @param params The `SessionChatService.SendMessageToUsersParams` containing the following parameters:
    *
