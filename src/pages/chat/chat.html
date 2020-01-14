@@ -29,7 +29,7 @@
                     <ion-item>
                         <p>{{audioList[i].filename}}</p>
                         <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(audioList[i].filename, i)"><ion-icon name="play"></ion-icon></button>
-                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio(audioList[i].filename)"><ion-icon name="square"></ion-icon></button>
+                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="square"></ion-icon></button>
                     </ion-item>
                 </ion-list>
             </div>
@@ -55,7 +55,7 @@
         <button ion-button icon-only round start *ngIf="recordState == 3 && canPlayback" (click)="playAudio(fileName)">
             <ion-icon name="play"></ion-icon>
         </button>
-        <button ion-button icon-only round start *ngIf="recordState == 3 && !canPlayback" (click)="pauseAudio(fileName)">
+        <button ion-button icon-only round start *ngIf="recordState == 3 && !canPlayback" (click)="pauseAudio()">
             <ion-icon name="pause"></ion-icon>
         </button>
 

@@ -35,8 +35,8 @@ export class ChatPage {
     private audio: MediaObject;
     private audioList: any[] = [];
     private audioIndex: number = null;
-    private recording: boolean = false;
     private canPlayback: boolean = true;
+    private audioPlaying: boolean = false;
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
     constructor(navParams: NavParams,
@@ -312,6 +312,8 @@ export class ChatPage {
     }
 
     startRecording() {
+        this.pauseAudio();
+
         if (this.platform.is('ios')) {
             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
               new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.m4a';
@@ -326,7 +328,6 @@ export class ChatPage {
 
         this.audio = this.media.create(this.filePath);
         this.audio.startRecord();
-        this.recording = true;
 
         // Stop Recording after 1 minute
         setTimeout(() => {
@@ -341,31 +342,36 @@ export class ChatPage {
         this.audio.stopRecord();
         // This way we can identify the audio clip that needs to be played by using the msgList index
         this.audioList[this.msgList.length] = { filename: this.fileName };
-        this.recording = false;
         this.canPlayback = true;
     }
 
     playAudio(file, index?) {
-        this.audioIndex = index;
-        this.canPlayback = false;
+        if (this.audioPlaying) this.pauseAudio();
+
+        if(!isNaN(index)) this.audioIndex = index;
+        else this.canPlayback = false;
 
         if (this.platform.is('ios')) {
             this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
         } else if (this.platform.is('android')) {
             this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + file;
         }
+        
         this.audio = this.media.create(this.filePath);
-
         this.audio.play();
         this.audio.setVolume(0.8);
 
         this.audio.onStatusUpdate.subscribe(status => {
             switch (status) {
-                // 3 = Paused, 4 = Finished/Stopped
-                case 3:
-                case 4:
-                    this.audioIndex = null;
-                    this.canPlayback = true;
+                case 2: // Running
+                    this.audioPlaying = true;
+                    break;
+                case 3: // Paused
+                case 4: // Finished/Stopped
+                    if (!isNaN(index)) this.audioIndex = null;
+                    else this.canPlayback = true;
+
+                    this.audioPlaying = false;
                     break;
             }
         });
