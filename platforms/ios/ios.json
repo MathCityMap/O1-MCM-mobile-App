@@ -105,6 +105,14 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Media\"><param name=\"ios-package\" value=\"CDVSound\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"KeepAVAudioSessionAlwaysActive\" value=\"NO\" />",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
                             "count": 1
                         },
@@ -311,6 +319,10 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+        },
+        "cordova-plugin-media": {
+            "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
@@ -754,6 +766,22 @@
             ]
         },
         {
+            "id": "cordova-plugin-media.MediaError",
+            "file": "plugins/cordova-plugin-media/www/MediaError.js",
+            "pluginId": "cordova-plugin-media",
+            "clobbers": [
+                "window.MediaError"
+            ]
+        },
+        {
+            "id": "cordova-plugin-media.Media",
+            "file": "plugins/cordova-plugin-media/www/Media.js",
+            "pluginId": "cordova-plugin-media",
+            "clobbers": [
+                "window.Media"
+            ]
+        },
+        {
             "id": "cordova-plugin-camera.Camera",
             "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
             "pluginId": "cordova-plugin-camera",
@@ -810,6 +838,7 @@
         "cordova-plugin-app-version": "0.1.9",
         "cordova-custom-config": "4.0.2",
         "cordova-plugin-inappbrowser": "3.1.0",
-        "cordova-plugin-camera": "4.1.0"
+        "cordova-plugin-media": "5.0.3",
+        "cordova-plugin-camera": "4.0.3"
     }
 }

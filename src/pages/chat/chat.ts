@@ -1,12 +1,13 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
-import { Events, Content } from 'ionic-angular';
+import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
+import {Content, Events, IonicPage, NavParams, Platform} from 'ionic-angular';
 import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../services/chat-and-session-service";
-import { SessionUser } from "../../app/api/models/session-user";
+import {SessionUser} from "../../app/api/models/session-user";
 import {Session} from "../../app/api/models/session";
 import {SessionUserResponse} from "../../app/api/models/session-user-response";
-import { CameraOptions } from "@ionic-native/camera";
-import {Camera} from "@ionic-native/camera";
+import {Camera, CameraOptions} from "@ionic-native/camera";
+import {File} from "@ionic-native/file";
+import {Media, MediaObject} from "@ionic-native/media";
+import {RecordStateEnum} from "./recordStateEnum";
 
 @IonicPage()
 @Component({
@@ -29,7 +30,19 @@ export class ChatPage {
     isScrolledToBottom = true;
     private scrollEndSubscription: any;
 
+    private filePath: string;
+    private fileName: string;
+    private audio: MediaObject;
+    private audioList: any[] = [];
+    private audioIndex: number = null;
+    private canPlayback: boolean = true;
+    private audioPlaying: boolean = false;
+    private recordState: RecordStateEnum = RecordStateEnum.Idle;
+
     constructor(navParams: NavParams,
+                protected file: File,
+                protected media: Media,
+                protected platform: Platform,
                 private chatService: ChatAndSessionService,
                 private events: Events,
                 private changeDetector: ChangeDetectorRef,
@@ -133,12 +146,11 @@ export class ChatPage {
         });
     }
 
-
     /**
      * @name sendMsg
      */
     async sendMsg() {
-        if (!this.editorMsg.trim() && !this.editorImg.trim()) return;
+        if (!this.editorMsg.trim() && !this.editorImg.trim() && this.recordState != RecordStateEnum.Stop) return;
         let timezoneOffset = new Date().getTimezoneOffset();
         let path = [];
 
@@ -157,7 +169,6 @@ export class ChatPage {
 
         }
 
-        // Mock message
         let newMsg: ChatMessage = {
             messageId: null,
             userId: this.user.token,
@@ -170,15 +181,29 @@ export class ChatPage {
             status: 'pending'
         };
 
-        console.debug("new message: ", newMsg);
+        if (this.recordState == RecordStateEnum.Stop) {
+            if (!this.canPlayback) {
+                this.pauseAudio();
+            }
 
-        if(this.sessionInfo != null){
+            this.recordState = RecordStateEnum.Idle;
+            newMsg.isAudio = true;
+            this.msgList.push(newMsg);
+
+            newMsg.media = [this.editorImg];
+        } else {
+            newMsg.message = this.editorMsg;
+            newMsg.media = [this.editorImg];
+        }
+
+        if (this.sessionInfo != null){
             let details = JSON.stringify({'message': this.editorMsg});
             this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
         }
 
         this.editorMsg = '';
         this.setToDefaultHeight();
+
         if (!this.showEmojiPicker) {
             this.focus();
         }
@@ -282,6 +307,99 @@ export class ChatPage {
         if(this.messageInput.nativeElement){
             this.messageInput.nativeElement.style.height = '40px';
         }
+    }
+
+    micButtonClick() {
+        switch (this.recordState) {
+            case RecordStateEnum.Record:
+                this.recordState = RecordStateEnum.Stop;
+                this.stopRecording();
+                break;
+            case RecordStateEnum.Stop:
+                this.recordState = RecordStateEnum.Idle;
+                this.cancelRecording();
+                break;
+            default:
+                this.recordState = RecordStateEnum.Record;
+                this.startRecording();
+                break;
+        }
+    }
+
+    startRecording() {
+        this.pauseAudio();
+
+        if (this.platform.is('ios')) {
+            this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
+              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.m4a';
+
+            this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
+        } else if (this.platform.is('android')) {
+            this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
+              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.png';
+
+            this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
+        }
+
+        this.audio = this.media.create(this.filePath);
+        this.audio.startRecord();
+
+        // Stop Recording after 1 minute
+        setTimeout(() => {
+            if(this.recordState != RecordStateEnum.Idle) {
+                this.recordState = RecordStateEnum.Stop;
+                this.stopRecording();
+            }
+        }, 60000);
+    }
+
+    stopRecording() {
+        this.audio.stopRecord();
+        // This way we can identify the audio clip that needs to be played by using the msgList index
+        this.audioList[this.msgList.length] = { filename: this.fileName };
+        this.canPlayback = true;
+    }
+
+    playAudio(file, index?) {
+        if (this.audioPlaying) this.pauseAudio();
+
+        if(!isNaN(index)) this.audioIndex = index;
+        else this.canPlayback = false;
+
+        if (this.platform.is('ios')) {
+            this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
+        } else if (this.platform.is('android')) {
+            this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + file;
+        }
+
+        this.audio = this.media.create(this.filePath);
+        this.audio.play();
+        this.audio.setVolume(0.8);
+
+        this.audio.onStatusUpdate.subscribe(status => {
+            switch (status) {
+                case 2: // Running
+                    this.audioPlaying = true;
+                    break;
+                case 3: // Paused
+                case 4: // Finished/Stopped
+                    if (!isNaN(index)) this.audioIndex = null;
+                    else this.canPlayback = true;
+
+                    this.audioPlaying = false;
+                    break;
+            }
+        });
+    }
+
+    pauseAudio() {
+        if (this.audio) {
+          this.audio.pause();
+        }
+    }
+
+    cancelRecording() {
+        this.audioList.pop();
     }
 }
 

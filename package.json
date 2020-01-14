@@ -32,6 +32,7 @@
     "@ionic-native/in-app-browser": "4.10.1",
     "@ionic-native/local-notifications": "4.10.1",
     "@ionic-native/location-accuracy": "4.4.2",
+    "@ionic-native/media": "^4.20.0",
     "@ionic-native/network": "4.4.2",
     "@ionic-native/photo-viewer": "4.4.2",
     "@ionic-native/spinner-dialog": "4.4.2",

@@ -16,26 +16,23 @@
        specific language governing permissions and limitations
        under the License.
  */
+package org.apache.cordova.media;
 
-package de.uni_frankfurt.mathcitymap;
+import android.net.Uri;
 
-import android.os.Bundle;
-import org.apache.cordova.*;
+public class FileHelper {
 
-public class MainActivity extends CordovaActivity
-{
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-
-        // enable Cordova apps to be started in the background
-        Bundle extras = getIntent().getExtras();
-        if (extras != null && extras.getBoolean("cdvStartInBackground", false)) {
-            moveTaskToBack(true);
+    /**
+     * Removes the "file://" prefix from the given URI string, if applicable.
+     * If the given URI string doesn't have a "file://" prefix, it is returned unchanged.
+     *
+     * @param uriString the URI string to operate on
+     * @return a path without the "file://" prefix
+     */
+    public static String stripFileProtocol(String uriString) {
+        if (uriString.startsWith("file://")) {
+            return Uri.parse(uriString).getPath();
         }
-
-        // Set by <content src="index.html" /> in config.xml
-        loadUrl(launchUrl);
+        return uriString;
     }
 }

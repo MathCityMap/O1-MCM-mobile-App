@@ -77,5 +77,4 @@ export class DashboardPage {
     ionViewDidLeave() {
         this.tabBarElement.style.display = 'flex';
     }
-
 }

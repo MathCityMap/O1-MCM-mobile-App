@@ -2,14 +2,15 @@
 
 <ion-content class="has-header">
     <div class="message-wrap">
-        <div *ngFor="let msg of msgList"
+        <div *ngFor="let msg of msgList; let i = index"
              class="message"
              [class.left]=" msg.userId === toUser.token "
              [class.right]=" msg.userId === user.token ">
             <!--TODO Remove user-image from data-->
             <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->
-            <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
-            <div class="msg-detail">
+            <ion-spinner name="dots" *ngIf="msg.status === 'pending' && !msg.isAudio"></ion-spinner>
+            <!-- Text Message -->
+            <div *ngIf="!msg.isAudio" class="msg-detail">
                 <div class="msg-content">
                     <p class="line-breaker ">{{msg.message}}</p>
                     <img *ngIf="msg.media" src="{{msg.media[0]}}">
@@ -22,22 +23,50 @@
                         &nbsp;{{msg.time | date:'medium' }}</p>
                 </div>
             </div>
+            <!-- Audio Message -->
+            <div *ngIf="msg.isAudio">
+                <ion-list>
+                    <ion-item>
+                        <p>{{audioList[i].filename}}</p>
+                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(audioList[i].filename, i)"><ion-icon name="play"></ion-icon></button>
+                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="square"></ion-icon></button>
+                    </ion-item>
+                </ion-list>
+            </div>
         </div>
+
     </div>
 </ion-content>
 <ion-footer no-border [style.height]="'55px'">
     <div class="input-wrap">
-        <textarea
-                autoresize
-                id="textarea"
-                #chat_input
-                [placeholder]="'a_chat_type_message' | translate"
-                [(ngModel)]="editorMsg"
-                (keyup.enter)="sendMsg()"
-                (focusin)="onFocus()">
-        </textarea>
-        <button ion-button class="image" (click)="getImage()">
-            <img src="./assets/icons/image.svg"/>
+        <!--wrap inside div check -->
+        <div *ngIf="recordState == 1">
+            <textarea
+                    autoresize
+                    id="textarea"
+                    #chat_input
+                    [placeholder]="'a_chat_type_message' | translate"
+                    [(ngModel)]="editorMsg"
+                    (keyup.enter)="sendMsg()"
+                    (focusin)="onFocus()">
+            </textarea>
+        </div>
+
+        <button ion-button icon-only round start *ngIf="recordState == 3 && canPlayback" (click)="playAudio(fileName)">
+            <ion-icon name="play"></ion-icon>
+        </button>
+        <button ion-button icon-only round start *ngIf="recordState == 3 && !canPlayback" (click)="pauseAudio()">
+            <ion-icon name="pause"></ion-icon>
+        </button>
+
+        <button ion-button icon-only round end (click)="micButtonClick()">
+            <ion-icon *ngIf="recordState == 1" name="mic"></ion-icon>
+            <ion-icon *ngIf="recordState == 2" name="square"></ion-icon>
+            <ion-icon *ngIf="recordState == 3" name="close"></ion-icon>
+        </button>
+
+        <button *ngIf="recordState == 1" ion-button icon-only round end (click)="getImage()">
+            <ion-icon name="image"></ion-icon>
         </button>
         <!--<button ion-button class="photo">-->
             <!--<img src="./assets/icons/photo.svg"/>-->

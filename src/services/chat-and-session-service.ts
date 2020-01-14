@@ -39,6 +39,7 @@ export class ChatMessage {
     message: string;
     media: string[];
     status: string;
+    isAudio?: boolean;
 }
 
 export class LeaderBoardItemRespone {
