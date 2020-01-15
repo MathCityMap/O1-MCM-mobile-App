@@ -34,6 +34,7 @@ export class ChatPage {
     private fileName: string;
     private audio: MediaObject;
     private audioList: any[] = [];
+    private resultPath: string;
     private audioIndex: number = null;
     private canPlayback: boolean = true;
     private audioPlaying: boolean = false;
@@ -157,18 +158,14 @@ export class ChatPage {
         let path = [];
 
         if(this.editorImg){
-            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
-            let myFormData = new FormData();
-            myFormData.append('media', blob, 'image.jpeg');
-            let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
-            //resets image
+            this.resultPath = null;
             this.editorImg = null;
-            if(resultPath) path.push(resultPath);
+
+            if(this.resultPath) path.push(this.resultPath);
             else {
                 console.log("ERROR: unnable to send media");
                 return;
             }
-
         }
 
         let newMsg: ChatMessage = {
@@ -191,11 +188,10 @@ export class ChatPage {
             this.recordState = RecordStateEnum.Idle;
             newMsg.isAudio = true;
             this.msgList.push(newMsg);
-
-            newMsg.media = [this.editorImg];
+            // newMsg.media = [this.editorImg];
         } else {
             newMsg.message = this.editorMsg;
-            newMsg.media = [this.editorImg];
+            // newMsg.media = [this.editorImg];
         }
 
         if (this.sessionInfo != null){
@@ -239,20 +235,27 @@ export class ChatPage {
             mediaType: this.camera.MediaType.PICTURE,
             correctOrientation: true,
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-            saveToPhotoAlbum: true,
+            // saveToPhotoAlbum: true,
             allowEdit: true
         }
 
-        this.camera.getPicture(options).then((imageData) => {
-
-            // now you can do whatever you want with the base64Image, I chose to update the db
+        this.camera.getPicture(options).then(async (imageData) => {
+           // now you can do whatever you want with the base64Image, I chose to update the db
            this.editorImg = imageData;
-
+           let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
+           let myFormData = new FormData();
+           myFormData.append('media', blob, 'image.jpeg');
+           this.resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
         }, (err) => {
             console.log("ERROR#####: ", err);
             // Handle error
         });
         console.log("done###", this.editorMsg);
+    }
+
+    removeImage() {
+        this.resultPath = null;
+        this.editorImg = null;
     }
 
     /**
@@ -306,7 +309,7 @@ export class ChatPage {
     }
 
     setToDefaultHeight() {
-        if(this.messageInput.nativeElement){
+        if(this.messageInput && this.messageInput.nativeElement){
             this.messageInput.nativeElement.style.height = '40px';
         }
     }
