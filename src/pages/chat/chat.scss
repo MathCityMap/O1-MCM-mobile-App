@@ -103,6 +103,7 @@ page-chat {
 
     .input-wrap {
         position: relative;
+        height: 80px;
         flex: auto;
         background-color: #fff;
         border-radius: 25px;
@@ -122,11 +123,11 @@ page-chat {
         }
         ion-spinner {
             flex: auto;
-          //  min-height: 10px;
+            align-items: center;
+            height: 50px;
             resize: none;
             padding-bottom: 10px;
             border: 0;
-          //  line-height: 0.7;
         }
         button{
             &.image, &.photo{
@@ -142,11 +143,13 @@ page-chat {
         .msg-close-button {
             position: absolute;
             right: 10px;
+            height: 80px;
         }
         .msg-image {
-            height: 100px;
+            height: 70px;
             width: 100px;
             border-radius: 25px;
+            overflow: scroll;
         }
     }
     button.send{
@@ -159,11 +162,7 @@ page-chat {
         }
     }
 
-
-
     .audio-player {
         height: 80px;
     }
-
-
 }

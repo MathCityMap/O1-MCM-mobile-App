@@ -159,10 +159,13 @@ export class ChatPage {
         let path = [];
 
         if(this.editorImg){
-            this.resultPath = null;
+            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
+            let myFormData = new FormData();
+            myFormData.append('media', blob, 'image.jpeg');
+            let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
             this.editorImg = null;
 
-            if(this.resultPath) path.push(this.resultPath);
+            if(resultPath) path.push(resultPath);
             else {
                 console.log("ERROR: unnable to send media");
                 return;
@@ -242,12 +245,8 @@ export class ChatPage {
 
         this.camera.getPicture(options).then(async (imageData) => {
            this.showSpinner = true;
-           // now you can do whatever you want with the base64Image, I chose to update the db
+           this.resultPath = 'data:image/jpeg;base64,' + imageData;
            this.editorImg = imageData;
-           let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
-           let myFormData = new FormData();
-           myFormData.append('media', blob, 'image.jpeg');
-           this.resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
            this.showSpinner = false;
         }, (err) => {
             console.log("ERROR#####: ", err);
@@ -265,11 +264,8 @@ export class ChatPage {
         };
 
         this.camera.getPicture(options).then(async (imageData) => {
+            this.resultPath = 'data:image/jpeg;base64,' + imageData;
             this.editorImg = imageData;
-            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
-            let myFormData = new FormData();
-            myFormData.append('media', blob, 'image.jpeg');
-            this.resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
             this.showSpinner = false;
         }, (err) => {
             // Handle error
