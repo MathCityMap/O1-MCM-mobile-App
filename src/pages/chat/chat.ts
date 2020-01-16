@@ -38,6 +38,7 @@ export class ChatPage {
     private audioIndex: number = null;
     private canPlayback: boolean = true;
     private audioPlaying: boolean = false;
+    private showSpinner: boolean = false;
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
     constructor(navParams: NavParams,
@@ -237,20 +238,44 @@ export class ChatPage {
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
             // saveToPhotoAlbum: true,
             allowEdit: true
-        }
+        };
 
         this.camera.getPicture(options).then(async (imageData) => {
+           this.showSpinner = true;
            // now you can do whatever you want with the base64Image, I chose to update the db
            this.editorImg = imageData;
            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
            let myFormData = new FormData();
            myFormData.append('media', blob, 'image.jpeg');
            this.resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
+           this.showSpinner = false;
         }, (err) => {
             console.log("ERROR#####: ", err);
             // Handle error
         });
-        console.log("done###", this.editorMsg);
+    }
+
+    openCamera() {
+        this.showSpinner = true;
+        const options: CameraOptions = {
+            quality: 100,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+        };
+
+        this.camera.getPicture(options).then(async (imageData) => {
+            this.editorImg = imageData;
+            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
+            let myFormData = new FormData();
+            myFormData.append('media', blob, 'image.jpeg');
+            this.resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
+            this.showSpinner = false;
+        }, (err) => {
+            // Handle error
+            this.showSpinner = false;
+            console.log("Camera issue:" + err);
+        });
     }
 
     removeImage() {
@@ -336,12 +361,12 @@ export class ChatPage {
 
         if (this.platform.is('ios')) {
             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.m4a';
+              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.mp3';
 
             this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
         } else if (this.platform.is('android')) {
             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.aac';
+              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.mp3';
 
             this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
         }
@@ -380,6 +405,8 @@ export class ChatPage {
         this.audio = this.media.create(this.filePath);
         this.audio.play();
         this.audio.setVolume(0.8);
+
+        console.log('filepath: ', this.filePath, ' file: ', file);
 
         this.audio.onStatusUpdate.subscribe(status => {
             switch (status) {
