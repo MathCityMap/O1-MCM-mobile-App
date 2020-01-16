@@ -13,7 +13,7 @@
             <div *ngIf="!msg.isAudio" class="msg-detail">
                 <div class="msg-content">
                     <p class="line-breaker ">{{msg.message}}</p>
-                    <img *ngIf="msg.media" src="{{msg.media[0]}}">
+                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" src="{{msg.media[0]}}">
                 </div>
                 <div class="msg-info">
                     <p>
@@ -24,11 +24,11 @@
                 </div>
             </div>
             <!-- Audio Message -->
-            <div *ngIf="msg.isAudio">
+            <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])">
                 <ion-list>
                     <ion-item>
-                        <p>{{audioList[i].filename}}</p>
-                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(audioList[i].filename, i)"><ion-icon name="play"></ion-icon></button>
+                        <p>{{"Audio file"}}</p>
+                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg.media[0], i)"><ion-icon name="play"></ion-icon></button>
                         <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="square"></ion-icon></button>
                     </ion-item>
                 </ion-list>
@@ -52,7 +52,7 @@
             </textarea>
         </div>
 
-        <button ion-button icon-only round start *ngIf="recordState == 3 && canPlayback" (click)="playAudio(fileName)">
+        <button ion-button icon-only round start *ngIf="recordState == 3 && canPlayback" (click)="playAudio()">
             <ion-icon name="play"></ion-icon>
         </button>
         <button ion-button icon-only round start *ngIf="recordState == 3 && !canPlayback" (click)="pauseAudio()">

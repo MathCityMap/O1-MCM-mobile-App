@@ -30,14 +30,13 @@ export class ChatPage {
     isScrolledToBottom = true;
     private scrollEndSubscription: any;
 
-    private filePath: string;
-    private fileName: string;
     private audio: MediaObject;
-    private audioList: any[] = [];
     private audioIndex: number = null;
     private canPlayback: boolean = true;
     private audioPlaying: boolean = false;
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
+
+    private audioFilePath: string = null;
 
     constructor(navParams: NavParams,
                 protected file: File,
@@ -55,15 +54,15 @@ export class ChatPage {
             });
 
         // TODO Does chat.ts need access to all session objects? refactor!
-        this.chatService.getActiveSession().then((res : SessionInfo) => {
-           this.sessionUser = res.sessionUser;
-           this.session = res.session;
-           this.sessionInfo = res;
+        this.chatService.getActiveSession().then((res: SessionInfo) => {
+            this.sessionUser = res.sessionUser;
+            this.session = res.session;
+            this.sessionInfo = res;
             // TODO sender, receiver(s) is handlet automaticly from session parameters.
             // teams, which are *not* admin of a session, get as receiver the admin
             // the admin of a sessionget as recivers *all* users from a session
             // TODO gui should have an option to select a team as active receiver.
-            let defaultReceiver : SessionUserResponse = this.chatService.getReceivers()[0];
+            let defaultReceiver: SessionUserResponse = this.chatService.getReceivers()[0];
             this.toUser = {
                 id: defaultReceiver.id,
                 name: defaultReceiver.team_name,
@@ -81,7 +80,7 @@ export class ChatPage {
         }
         this.chatService.setUserSeesNewMessages(false);
 
-        if(this.sessionInfo != null){
+        if (this.sessionInfo != null) {
             let details = JSON.stringify({});
             this.chatAndSessionService.addUserEvent("event_trail_chat_close", details, "0");
         }
@@ -131,7 +130,7 @@ export class ChatPage {
      * @returns {Promise<ChatMessage[]>}
      */
     getMsg() {
-        let chatMsgs : Array<any> = [];
+        let chatMsgs: Array<any> = [];
         this.chatService.getReceivers().forEach(receiver => {
             chatMsgs.push(this.chatService
                 .getMsgList(this.sessionInfo, receiver.token).toPromise()
@@ -151,25 +150,9 @@ export class ChatPage {
      */
     async sendMsg() {
         if (this.editorMsg && this.editorImg &&
-          !this.editorMsg.trim() && !this.editorImg.trim() &&
-          this.recordState != RecordStateEnum.Stop) return;
+            !this.editorMsg.trim() && !this.editorImg.trim() &&
+            this.recordState != RecordStateEnum.Stop) return;
         let timezoneOffset = new Date().getTimezoneOffset();
-        let path = [];
-
-        if(this.editorImg){
-            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
-            let myFormData = new FormData();
-            myFormData.append('media', blob, 'image.jpeg');
-            let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
-            //resets image
-            this.editorImg = null;
-            if(resultPath) path.push(resultPath);
-            else {
-                console.log("ERROR: unnable to send media");
-                return;
-            }
-
-        }
 
         let newMsg: ChatMessage = {
             messageId: null,
@@ -179,31 +162,76 @@ export class ChatPage {
             toUserId: this.toUser.token,
             time: Date.now() - (timezoneOffset * 60000),
             message: this.editorMsg,
-            media: path,
+            media: [],
             status: 'pending'
         };
 
-        if (this.recordState == RecordStateEnum.Stop) {
+
+        //If we are sending an image
+        if (this.editorImg) {
+            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
+            let myFormData = new FormData();
+            myFormData.append('media', blob, 'image.jpeg');
+            let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
+            //resets image
+            this.editorImg = null;
+            if (resultPath) {
+                newMsg.media.push(resultPath);
+                //TODO: ask Iwan about how wordpress interprets event messages
+                let details = JSON.stringify({'message': resultPath});
+                this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+            } else {
+                console.log("ERROR: unnable to send media");
+                return;
+            }
+        }
+
+        //If we are sending audio file
+        else if (this.recordState == RecordStateEnum.Stop) {
             if (!this.canPlayback) {
                 this.pauseAudio();
             }
 
             this.recordState = RecordStateEnum.Idle;
-            newMsg.isAudio = true;
-            this.msgList.push(newMsg);
 
-            newMsg.media = [this.editorImg];
-        } else {
+            let audioType: string;
+            if (this.platform.is('ios')) {
+                audioType = 'aac';
+            } else if (this.platform.is('android')) {
+                audioType = 'aac';
+            }
+            this.audioFilePath = this.audioFilePath.substr(0, this.audioFilePath.lastIndexOf('/'))
+
+            await this.file.readAsArrayBuffer(this.audioFilePath, 'audioFile.aac').then(async (data) => {
+                const blob = new Blob([data], {type: 'audio/' + audioType});
+                let myFormData = new FormData();
+                myFormData.append('media', blob, 'audio.' + audioType);
+                let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
+                //newMsg.isAudio = true;
+                this.audio = null;
+                if (resultPath) {
+                    newMsg.media.push(resultPath);
+                    //TODO: ask Iwan about how wordpress interprets event messages
+                    let details = JSON.stringify({'message': resultPath});
+                    this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+                } else {
+                    console.log("ERROR: unnable to send media");
+                    return;
+                }
+            }).catch(err => {
+                console.log("ERROR: ", err)
+            });
+        }
+        //If we are sending just text message
+        else {
             newMsg.message = this.editorMsg;
-            newMsg.media = [this.editorImg];
+            if (this.sessionInfo != null) {
+                let details = JSON.stringify({'message': this.editorMsg});
+                this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+            }
+            this.editorMsg = '';
         }
 
-        if (this.sessionInfo != null){
-            let details = JSON.stringify({'message': this.editorMsg});
-            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
-        }
-
-        this.editorMsg = '';
         this.setToDefaultHeight();
 
         if (!this.showEmojiPicker) {
@@ -212,8 +240,8 @@ export class ChatPage {
 
         await this.chatService.checkForNewMessages(this.sessionInfo);
         this.chatService.sendMsg(newMsg, this.sessionInfo)
-            .then((msgs : ChatMessage[]) => {
-                msgs.forEach((msg : ChatMessage) => {
+            .then((msgs: ChatMessage[]) => {
+                msgs.forEach((msg: ChatMessage) => {
                     let index = this.getMsgIndexById(msg.messageId);
                     if (msg.messageId && index !== -1) {
                         this.msgList[index].status = 'success';
@@ -233,20 +261,21 @@ export class ChatPage {
     async getImage() {
         const options: CameraOptions = {
             quality: 100,
-            targetHeight: 300,
+            targetHeight: 512,
+            targetWidth: 512,
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE,
             correctOrientation: true,
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-            saveToPhotoAlbum: true,
+            //saveToPhotoAlbum: true,
             allowEdit: true
         }
 
         this.camera.getPicture(options).then((imageData) => {
 
             // now you can do whatever you want with the base64Image, I chose to update the db
-           this.editorImg = imageData;
+            this.editorImg = imageData;
 
         }, (err) => {
             console.log("ERROR#####: ", err);
@@ -264,7 +293,7 @@ export class ChatPage {
 
         // check if msg already displayed
 
-        if(this.getMsgIndexById(msg.messageId) >= 0) {
+        if (this.getMsgIndexById(msg.messageId) >= 0) {
             return;
         }
 
@@ -301,12 +330,12 @@ export class ChatPage {
     }
 
     private setTextareaScroll() {
-        const textarea =this.messageInput.nativeElement;
+        const textarea = this.messageInput.nativeElement;
         textarea.scrollTop = textarea.scrollHeight;
     }
 
     setToDefaultHeight() {
-        if(this.messageInput.nativeElement){
+        if (this.messageInput.nativeElement) {
             this.messageInput.nativeElement.style.height = '40px';
         }
     }
@@ -328,27 +357,38 @@ export class ChatPage {
         }
     }
 
-    startRecording() {
+    async startRecording() {
         this.pauseAudio();
 
-        if (this.platform.is('ios')) {
-            this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.m4a';
+        //todo:remove?
+        /* if (this.platform.is('ios')) {
+             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
+                 new Date().getHours() + +new Date().getMinutes() + new Date().getSeconds() + new Date().getSeconds() + '.m4a';
 
-            this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
-        } else if (this.platform.is('android')) {
-            this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-              new Date().getHours() + + new Date().getMinutes() +  new Date().getSeconds() + new Date().getSeconds() + '.aac';
+             this.filePath = this.file.tempDirectory.replace(/^file:\/\//, '') + 'audioFile.aac';
+         } else if (this.platform.is('android')) {
+             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
+                 new Date().getHours() + +new Date().getMinutes() + new Date().getSeconds() + new Date().getSeconds() + '.aac';
 
-            this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
+             this.filePath = this.file.tempDirectory.replace(/^file:\/\//, '') + 'audioFile.aac';
+         }
+ */
+        let directory;
+        if(this.platform.is('android')){
+            directory = this.file.dataDirectory;
+        } else if(this.platform.is('ios')){
+            directory = this.file.documentsDirectory;
         }
+        this.file.createFile(directory, 'audioFile.aac', true).then(filePath => {
+            this.audio = this.media.create(directory.replace(/^file:\/\//, '') + 'audioFile.aac');
+            this.audio.startRecord();
+            this.audioFilePath = filePath.toInternalURL();
 
-        this.audio = this.media.create(this.filePath);
-        this.audio.startRecord();
+        });
 
         // Stop Recording after 1 minute
         setTimeout(() => {
-            if(this.recordState != RecordStateEnum.Idle) {
+            if (this.recordState != RecordStateEnum.Idle) {
                 this.recordState = RecordStateEnum.Stop;
                 this.stopRecording();
             }
@@ -358,23 +398,31 @@ export class ChatPage {
     stopRecording() {
         this.audio.stopRecord();
         // This way we can identify the audio clip that needs to be played by using the msgList index
-        this.audioList[this.msgList.length] = { filename: this.fileName };
+        //this.audioList[this.msgList.length] = {filename: this.fileName};
         this.canPlayback = true;
     }
 
-    playAudio(file, index?) {
-        if (this.audioPlaying) this.pauseAudio();
-
-        if(!isNaN(index)) this.audioIndex = index;
-        else this.canPlayback = false;
-
-        if (this.platform.is('ios')) {
-            this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
-        } else if (this.platform.is('android')) {
-            this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + file;
+    playAudio(filePath?, index?) {
+        if (this.audioPlaying) {
+            this.pauseAudio();
         }
 
-        this.audio = this.media.create(this.filePath);
+        if (filePath) this.audioIndex = index;
+        else {
+            this.canPlayback = false;
+            filePath = this.audioFilePath;
+            /*if (this.platform.is('ios')) {
+                filePath = this.audioFilePath;
+            } else if (this.platform.is('android')) {
+                filePath = this.audioFilePath;
+            }*/
+        }
+
+        //this.audio = null;
+
+        this.audio = this.media.create(filePath);
+        //console.log("###CREATED audio ###: ", this.audio, filePath);
+        //this.audio.seekTo(0);
         this.audio.play();
         this.audio.setVolume(0.8);
 
@@ -388,6 +436,7 @@ export class ChatPage {
                     if (!isNaN(index)) this.audioIndex = null;
                     else this.canPlayback = true;
 
+                    this.audio.release();
                     this.audioPlaying = false;
                     break;
             }
@@ -396,12 +445,18 @@ export class ChatPage {
 
     pauseAudio() {
         if (this.audio) {
-          this.audio.pause();
+            console.log('someone told me to pause');
+            this.audio.pause();
         }
     }
 
     cancelRecording() {
-        this.audioList.pop();
+        //todo:remove file;
+    }
+
+    isAudio(path: string) {
+        return (path.substring(path.lastIndexOf('.')) == '.aac' || path.substring(path.lastIndexOf('.')) == '.3gp');
+        //todo: receives a path and reads its extension this is used for the html to see what to display
     }
 }
 
