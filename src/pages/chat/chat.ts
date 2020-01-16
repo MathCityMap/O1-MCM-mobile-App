@@ -357,22 +357,9 @@ export class ChatPage {
         }
     }
 
-    async startRecording() {
+    startRecording() {
         this.pauseAudio();
 
-        //todo:remove?
-        /* if (this.platform.is('ios')) {
-             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-                 new Date().getHours() + +new Date().getMinutes() + new Date().getSeconds() + new Date().getSeconds() + '.m4a';
-
-             this.filePath = this.file.tempDirectory.replace(/^file:\/\//, '') + 'audioFile.aac';
-         } else if (this.platform.is('android')) {
-             this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() +
-                 new Date().getHours() + +new Date().getMinutes() + new Date().getSeconds() + new Date().getSeconds() + '.aac';
-
-             this.filePath = this.file.tempDirectory.replace(/^file:\/\//, '') + 'audioFile.aac';
-         }
- */
         let directory;
         if(this.platform.is('android')){
             directory = this.file.dataDirectory;
@@ -397,8 +384,6 @@ export class ChatPage {
 
     stopRecording() {
         this.audio.stopRecord();
-        // This way we can identify the audio clip that needs to be played by using the msgList index
-        //this.audioList[this.msgList.length] = {filename: this.fileName};
         this.canPlayback = true;
     }
 
@@ -411,18 +396,9 @@ export class ChatPage {
         else {
             this.canPlayback = false;
             filePath = this.audioFilePath;
-            /*if (this.platform.is('ios')) {
-                filePath = this.audioFilePath;
-            } else if (this.platform.is('android')) {
-                filePath = this.audioFilePath;
-            }*/
         }
 
-        //this.audio = null;
-
         this.audio = this.media.create(filePath);
-        //console.log("###CREATED audio ###: ", this.audio, filePath);
-        //this.audio.seekTo(0);
         this.audio.play();
         this.audio.setVolume(0.8);
 
@@ -456,7 +432,6 @@ export class ChatPage {
 
     isAudio(path: string) {
         return (path.substring(path.lastIndexOf('.')) == '.aac' || path.substring(path.lastIndexOf('.')) == '.3gp');
-        //todo: receives a path and reads its extension this is used for the html to see what to display
     }
 }
 
