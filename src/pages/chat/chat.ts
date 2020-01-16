@@ -32,6 +32,7 @@ export class ChatPage {
 
     private audio: MediaObject;
     private audioIndex: number = null;
+    private resultPath: string;
     private canPlayback: boolean = true;
     private audioPlaying: boolean = false;
     private showSpinner: boolean = false;
