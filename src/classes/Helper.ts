@@ -78,7 +78,7 @@ export class Helper {
     static readonly updated_once: boolean = false
     // Map Settings (also which tiles to download)
     static readonly min_zoom: number = 15
-    static readonly max_zoom: number = 20
+    static readonly max_zoom: number = 19
 
     /*
     SETTINGS END ###
