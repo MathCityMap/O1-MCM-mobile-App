@@ -159,9 +159,15 @@ export class ChatPage {
     async sendMsg() {
         this.setInputWrapButtons(true);
 
-        if (this.editorMsg && this.editorImg &&
-            !this.editorMsg.trim() && !this.editorImg.trim() &&
-            this.recordState != RecordStateEnum.Stop) return;
+        //does not allow sending empty messages
+        if(this.editorMsg == '' && !this.editorImg && this.recordState != RecordStateEnum.Stop) return;
+
+        //failsafe to stop you from seding more than 1 time of message
+        if ((this.editorMsg && this.editorImg) ||
+            (this.editorMsg && this.recordState == RecordStateEnum.Stop) ||
+            (this.editorImg && this.recordState == RecordStateEnum.Stop))
+            return;
+
         let timezoneOffset = new Date().getTimezoneOffset();
 
         let newMsg: ChatMessage = {
@@ -180,7 +186,6 @@ export class ChatPage {
         //If we are sending an image
         if (this.editorImg) {
             this.localPath = null;
-            console.log('hello??');
             let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
             let myFormData = new FormData();
             myFormData.append('media', blob, 'image.jpeg');
@@ -192,7 +197,7 @@ export class ChatPage {
                 let details = JSON.stringify({'message': resultPath});
                 this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
             } else {
-                console.log("ERROR: unnable to send media");
+                console.log("ERROR: unable to send media");
                 return;
             }
         }
@@ -205,12 +210,14 @@ export class ChatPage {
 
             this.recordState = RecordStateEnum.Idle;
 
-            let audioType: string;
+            let audioType = 'aac';
+
+            /*
             if (this.platform.is('ios')) {
                 audioType = 'aac';
             } else if (this.platform.is('android')) {
                 audioType = 'aac';
-            }
+            }*/
 
             await this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(async (data) => {
                 const blob = new Blob([data], {type: 'audio/' + audioType});
@@ -280,7 +287,6 @@ export class ChatPage {
             mediaType: this.camera.MediaType.PICTURE,
             correctOrientation: true,
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-            //saveToPhotoAlbum: false,
             allowEdit: true
         };
 
@@ -302,6 +308,8 @@ export class ChatPage {
 
         const options: CameraOptions = {
             quality: 100,
+            targetHeight: 512,
+            targetWidth: 512,
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE
@@ -392,7 +400,8 @@ export class ChatPage {
                 break;
             case RecordStateEnum.Stop:
                 this.recordState = RecordStateEnum.Idle;
-                this.cancelRecording();
+                this.showTextArea = true;
+                this.showPictureButtons = true;
                 break;
             default:
                 this.recordState = RecordStateEnum.Record;
@@ -475,14 +484,8 @@ export class ChatPage {
         }
     }
 
-    cancelRecording() {
-        //todo:remove file;
-        this.showTextArea = true;
-        this.showPictureButtons = true;
-    }
-
     isAudio(path: string) {
-        return (path.substring(path.lastIndexOf('.')) == '.aac' || path.substring(path.lastIndexOf('.')) == '.3gp');
+        return (path.substring(path.lastIndexOf('.')) == '.aac');
     }
 
     changeButtonsStatus() {
