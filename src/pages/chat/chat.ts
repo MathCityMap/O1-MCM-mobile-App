@@ -31,18 +31,17 @@ export class ChatPage {
 
     private scrollEndSubscription: any;
 
-    private audio: MediaObject;
-    private audioIndex: number = null;
-    private canPlayback: boolean = true;
-    private showSpinner: boolean = false;
-    private audioPlaying: boolean = false;
-    private showTextArea: boolean = true;
-    private showAudioButtons: boolean = true;
-    private showPictureButtons: boolean = true;
-
     private localPath: string = null;
     private audioFilePath: string = null;
     private fileDirectory: string = null;
+
+    private audio: MediaObject;
+    private audioIndex: number = null;
+    private canPlayback: boolean = true;
+    private showTextArea: boolean = true;
+    private audioPlaying: boolean = false;
+    private showAudioButtons: boolean = true;
+    private showPictureButtons: boolean = true;
 
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
@@ -182,7 +181,6 @@ export class ChatPage {
             status: 'pending'
         };
 
-
         //If we are sending an image
         if (this.editorImg) {
             this.localPath = null;
@@ -211,14 +209,6 @@ export class ChatPage {
             this.recordState = RecordStateEnum.Idle;
 
             let audioType = 'aac';
-
-            /*
-            if (this.platform.is('ios')) {
-                audioType = 'aac';
-            } else if (this.platform.is('android')) {
-                audioType = 'aac';
-            }*/
-
             await this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(async (data) => {
                 const blob = new Blob([data], {type: 'audio/' + audioType});
                 let myFormData = new FormData();
@@ -248,8 +238,6 @@ export class ChatPage {
             }
             this.editorMsg = '';
         }
-
-        this.setToDefaultHeight();
 
         if (!this.showEmojiPicker) {
             this.focus();
@@ -291,10 +279,8 @@ export class ChatPage {
         };
 
         this.camera.getPicture(options).then(async (imageData) => {
-           this.showSpinner = true;
            this.editorImg = imageData;
            this.localPath = 'data:image/jpeg;base64,' + imageData;
-           this.showSpinner = false;
         }, (err) => {
             console.log("ERROR#####: ", err);
             this.setInputWrapButtons(true);
@@ -303,7 +289,6 @@ export class ChatPage {
     }
 
     openCamera() {
-        this.showSpinner = true;
         this.setInputWrapButtons(false);
 
         const options: CameraOptions = {
@@ -312,16 +297,14 @@ export class ChatPage {
             targetWidth: 512,
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE
+            mediaType: this.camera.MediaType.PICTURE,
         };
 
         this.camera.getPicture(options).then(async (imageData) => {
             this.editorImg = imageData;
             this.localPath = 'data:image/jpeg;base64,' + imageData;
-            this.showSpinner = false;
         }, (err) => {
             // Handle error
-            this.showSpinner = false;
             console.log("Camera issue:" + err);
             this.setInputWrapButtons(true);
         });
@@ -381,12 +364,6 @@ export class ChatPage {
     private setTextareaScroll() {
         const textarea = this.messageInput.nativeElement;
         textarea.scrollTop = textarea.scrollHeight;
-    }
-
-    setToDefaultHeight() {
-        if (this.messageInput && this.messageInput.nativeElement){
-            this.messageInput.nativeElement.style.height = '40px';
-        }
     }
 
     micButtonClick() {
@@ -472,12 +449,6 @@ export class ChatPage {
         });
     }
 
-    setInputWrapButtons(setValue: boolean) {
-        this.showTextArea = setValue;
-        this.showAudioButtons = setValue;
-        this.showPictureButtons = setValue;
-    }
-
     pauseAudio() {
         if (this.audio) {
           this.audio.pause();
@@ -489,8 +460,18 @@ export class ChatPage {
     }
 
     changeButtonsStatus() {
-        this.showAudioButtons = false;
-        this.showPictureButtons = false;
+        if (this.editorMsg.length == 0) {
+            this.setInputWrapButtons(true);
+        } else {
+            this.showAudioButtons = false;
+            this.showPictureButtons = false;
+        }
+    }
+
+    setInputWrapButtons(setValue: boolean) {
+        this.showTextArea = setValue;
+        this.showAudioButtons = setValue;
+        this.showPictureButtons = setValue;
     }
 }
 

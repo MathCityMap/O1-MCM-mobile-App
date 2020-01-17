@@ -45,10 +45,7 @@
 </ion-content>
 <ion-footer no-border [style.height]="'55px'">
     <div class="input-wrap">
-        <!--wrap inside div check -->
-
         <!-- ######### TEXT ######### -->
-        <!-- recordState == 1 && !localPath && !showSpinner -->
         <textarea *ngIf="showTextArea"
                   autoresize
                   id="textarea"
@@ -56,12 +53,13 @@
                   [placeholder]="'a_chat_type_message' | translate"
                   [(ngModel)]="editorMsg"
                   (keyup.enter)="sendMsg()"
-                  (ionChange)="changeButtonsStatus()"
+                  (input)="changeButtonsStatus()"
                   (focusin)="onFocus()">
         </textarea>
 
         <!-- ######### AUDIO ########## -->
-        <div *ngIf="showAudioButtons">
+        <div class="message-input-buttons" *ngIf="showAudioButtons">
+            <!-- Playback for Local Audio -->
             <div *ngIf="recordState == 3">
                 <button ion-button icon-only round start *ngIf="canPlayback" (click)="playAudio()">
                     <ion-icon name="play"></ion-icon>
@@ -71,7 +69,6 @@
                 </button>
             </div>
 
-            <!-- *ngIf="!localPath"-->
             <button ion-button icon-only round end (click)="micButtonClick()">
                 <ion-icon *ngIf="recordState == 1" name="mic"></ion-icon>
                 <ion-icon *ngIf="recordState == 2" name="square"></ion-icon>
@@ -80,7 +77,7 @@
         </div>
 
         <!-- ######### PICTURES ######## -->
-        <div *ngIf="showPictureButtons && !localPath">
+        <div class="message-input-buttons" *ngIf="showPictureButtons">
             <button ion-button icon-only round end (click)="getImage()">
                 <ion-icon name="image"></ion-icon>
             </button>
@@ -89,8 +86,7 @@
             </button>
         </div>
 
-        <ion-spinner name="bubbles" *ngIf="showSpinner"></ion-spinner>
-        <div *ngIf="localPath">
+        <div class="image-previewer" *ngIf="localPath">
             <img class="msg-image" src="{{localPath}}">
             <button class="msg-close-button" ion-button icon-only round end (click)="removeImage()">
                 <ion-icon name="close"></ion-icon>
