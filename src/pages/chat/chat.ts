@@ -34,9 +34,11 @@ export class ChatPage {
     private audioIndex: number = null;
     private canPlayback: boolean = true;
     private audioPlaying: boolean = false;
+    private showSpinner: boolean = false;
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
     private audioFilePath: string = null;
+    private fileDirectory: string = null;
 
     constructor(navParams: NavParams,
                 protected file: File,
@@ -80,7 +82,7 @@ export class ChatPage {
         }
         this.chatService.setUserSeesNewMessages(false);
 
-        if (this.sessionInfo != null) {
+        if(this.sessionInfo != null){
             let details = JSON.stringify({});
             this.chatAndSessionService.addUserEvent("event_trail_chat_close", details, "0");
         }
@@ -130,7 +132,7 @@ export class ChatPage {
      * @returns {Promise<ChatMessage[]>}
      */
     getMsg() {
-        let chatMsgs: Array<any> = [];
+        let chatMsgs : Array<any> = [];
         this.chatService.getReceivers().forEach(receiver => {
             chatMsgs.push(this.chatService
                 .getMsgList(this.sessionInfo, receiver.token).toPromise()
@@ -200,9 +202,9 @@ export class ChatPage {
             } else if (this.platform.is('android')) {
                 audioType = 'aac';
             }
-            this.audioFilePath = this.audioFilePath.substr(0, this.audioFilePath.lastIndexOf('/'))
-
-            await this.file.readAsArrayBuffer(this.audioFilePath, 'audioFile.aac').then(async (data) => {
+            //this.audioFilePath = this.audioFilePath.substr(0, this.audioFilePath.lastIndexOf('/'))
+            console.log("AUDIO PATH BEFORE BEING SENT: ", this.audioFilePath);
+            await this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(async (data) => {
                 const blob = new Blob([data], {type: 'audio/' + audioType});
                 let myFormData = new FormData();
                 myFormData.append('media', blob, 'audio.' + audioType);
@@ -270,7 +272,7 @@ export class ChatPage {
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
             //saveToPhotoAlbum: true,
             allowEdit: true
-        }
+        };
 
         this.camera.getPicture(options).then((imageData) => {
 
@@ -330,12 +332,12 @@ export class ChatPage {
     }
 
     private setTextareaScroll() {
-        const textarea = this.messageInput.nativeElement;
+        const textarea =this.messageInput.nativeElement;
         textarea.scrollTop = textarea.scrollHeight;
     }
 
     setToDefaultHeight() {
-        if (this.messageInput.nativeElement) {
+        if(this.messageInput && this.messageInput.nativeElement){
             this.messageInput.nativeElement.style.height = '40px';
         }
     }
@@ -360,18 +362,19 @@ export class ChatPage {
     startRecording() {
         this.pauseAudio();
 
-        let directory;
+
         if(this.platform.is('android')){
-            directory = this.file.dataDirectory;
+            this.fileDirectory = this.file.externalDataDirectory;
         } else if(this.platform.is('ios')){
-            directory = this.file.documentsDirectory;
+            this.fileDirectory = this.file.documentsDirectory;
         }
-        this.file.createFile(directory, 'audioFile.aac', true).then(filePath => {
-            this.audio = this.media.create(directory.replace(/^file:\/\//, '') + 'audioFile.aac');
+        this.file.createFile(this.fileDirectory, 'audioFile.aac', true).then(filePath => {
+            this.audio = this.media.create(this.fileDirectory.replace(/^file:\/\//, '') + 'audioFile.aac');
+            //this.audio.release();
             this.audio.startRecord();
             this.audioFilePath = filePath.toInternalURL();
 
-        });
+        }).catch(err => {console.log("creation file error:", err)});
 
         // Stop Recording after 1 minute
         setTimeout(() => {
@@ -412,6 +415,7 @@ export class ChatPage {
                     if (!isNaN(index)) this.audioIndex = null;
                     else this.canPlayback = true;
 
+                    console.log("###RELSEAS");
                     this.audio.release();
                     this.audioPlaying = false;
                     break;
