@@ -39,8 +39,6 @@ export class ChatMessage {
     message: string;
     media: string[];
     status: string;
-    //TODO: remove this
-    isAudio?: boolean;
 }
 
 export class LeaderBoardItemRespone {

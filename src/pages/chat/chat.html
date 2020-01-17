@@ -8,12 +8,28 @@
              [class.right]=" msg.userId === user.token ">
             <!--TODO Remove user-image from data-->
             <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->
-            <ion-spinner name="dots" *ngIf="msg.status === 'pending' && !msg.isAudio"></ion-spinner>
-            <!-- Text Message -->
-            <div *ngIf="!msg.isAudio" class="msg-detail">
+            <ion-spinner name="dots" *ngIf="msg.status === 'pending' && (msg.media.length==0 || !isAudio(msg.media[0]))"></ion-spinner>
+            <!-- Non-audio Message -->
+            <div class="msg-detail">
                 <div class="msg-content">
-                    <p class="line-breaker ">{{msg.message}}</p>
+
+                    <!-- Text Message -->
+                    <p *ngIf="msg.message" class="line-breaker ">{{msg.message}}</p>
+
+                    <!-- Image Message -->
                     <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" src="{{msg.media[0]}}">
+
+                    <!-- Audio Message -->
+                    <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])">
+                        <ion-list>
+                            <ion-item class="audio-player">
+                                <p>{{"Audio file"}}</p>
+                                <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg.media[0], i)"><ion-icon name="play"></ion-icon></button>
+                                <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="square"></ion-icon></button>
+                            </ion-item>
+                        </ion-list>
+                    </div>
+
                 </div>
                 <div class="msg-info">
                     <p>
@@ -22,16 +38,6 @@
                         <!-- TODO Time Format -->
                         &nbsp;{{msg.time | date:'medium' }}</p>
                 </div>
-            </div>
-            <!-- Audio Message -->
-            <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])">
-                <ion-list>
-                    <ion-item class="audio-player">
-                        <p>{{"Audio file"}}</p>
-                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg.media[0], i)"><ion-icon name="play"></ion-icon></button>
-                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="square"></ion-icon></button>
-                    </ion-item>
-                </ion-list>
             </div>
         </div>
 
