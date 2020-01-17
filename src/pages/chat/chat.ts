@@ -32,11 +32,11 @@ export class ChatPage {
 
     private audio: MediaObject;
     private audioIndex: number = null;
+    private resultPath: string;
     private canPlayback: boolean = true;
     private audioPlaying: boolean = false;
     private showSpinner: boolean = false;
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
-
     private audioFilePath: string = null;
     private fileDirectory: string = null;
 
@@ -82,7 +82,7 @@ export class ChatPage {
         }
         this.chatService.setUserSeesNewMessages(false);
 
-        if(this.sessionInfo != null){
+        if (this.sessionInfo != null) {
             let details = JSON.stringify({});
             this.chatAndSessionService.addUserEvent("event_trail_chat_close", details, "0");
         }
@@ -132,7 +132,7 @@ export class ChatPage {
      * @returns {Promise<ChatMessage[]>}
      */
     getMsg() {
-        let chatMsgs : Array<any> = [];
+        let chatMsgs: Array<any> = [];
         this.chatService.getReceivers().forEach(receiver => {
             chatMsgs.push(this.chatService
                 .getMsgList(this.sessionInfo, receiver.token).toPromise()
@@ -175,7 +175,6 @@ export class ChatPage {
             let myFormData = new FormData();
             myFormData.append('media', blob, 'image.jpeg');
             let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
-            //resets image
             this.editorImg = null;
             if (resultPath) {
                 newMsg.media.push(resultPath);
@@ -202,8 +201,7 @@ export class ChatPage {
             } else if (this.platform.is('android')) {
                 audioType = 'aac';
             }
-            //this.audioFilePath = this.audioFilePath.substr(0, this.audioFilePath.lastIndexOf('/'))
-            console.log("AUDIO PATH BEFORE BEING SENT: ", this.audioFilePath);
+
             await this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(async (data) => {
                 const blob = new Blob([data], {type: 'audio/' + audioType});
                 let myFormData = new FormData();
@@ -270,20 +268,44 @@ export class ChatPage {
             mediaType: this.camera.MediaType.PICTURE,
             correctOrientation: true,
             sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-            //saveToPhotoAlbum: true,
+            //saveToPhotoAlbum: false,
             allowEdit: true
         };
 
-        this.camera.getPicture(options).then((imageData) => {
-
-            // now you can do whatever you want with the base64Image, I chose to update the db
-            this.editorImg = imageData;
-
+        this.camera.getPicture(options).then(async (imageData) => {
+           this.showSpinner = true;
+           this.resultPath = 'data:image/jpeg;base64,' + imageData;
+           this.editorImg = imageData;
+           this.showSpinner = false;
         }, (err) => {
             console.log("ERROR#####: ", err);
             // Handle error
         });
-        console.log("done###", this.editorMsg);
+    }
+
+    openCamera() {
+        this.showSpinner = true;
+        const options: CameraOptions = {
+            quality: 100,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
+        };
+
+        this.camera.getPicture(options).then(async (imageData) => {
+            this.resultPath = 'data:image/jpeg;base64,' + imageData;
+            this.editorImg = imageData;
+            this.showSpinner = false;
+        }, (err) => {
+            // Handle error
+            this.showSpinner = false;
+            console.log("Camera issue:" + err);
+        });
+    }
+
+    removeImage() {
+        this.resultPath = null;
+        this.editorImg = null;
     }
 
     /**
@@ -332,12 +354,12 @@ export class ChatPage {
     }
 
     private setTextareaScroll() {
-        const textarea =this.messageInput.nativeElement;
+        const textarea = this.messageInput.nativeElement;
         textarea.scrollTop = textarea.scrollHeight;
     }
 
     setToDefaultHeight() {
-        if(this.messageInput && this.messageInput.nativeElement){
+        if (this.messageInput && this.messageInput.nativeElement){
             this.messageInput.nativeElement.style.height = '40px';
         }
     }
@@ -415,7 +437,6 @@ export class ChatPage {
                     if (!isNaN(index)) this.audioIndex = null;
                     else this.canPlayback = true;
 
-                    console.log("###RELSEAS");
                     this.audio.release();
                     this.audioPlaying = false;
                     break;
@@ -425,8 +446,7 @@ export class ChatPage {
 
     pauseAudio() {
         if (this.audio) {
-            console.log('someone told me to pause');
-            this.audio.pause();
+          this.audio.pause();
         }
     }
 

@@ -27,14 +27,9 @@
             <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])">
                 <ion-list>
                     <ion-item class="audio-player">
-                        <p>{{''}}</p>
-                        <button ion-button clear item-end large *ngIf="audioIndex == null"
-                                (click)="playAudio(msg.media[0], i)">
-                            <ion-icon name="play"></ion-icon>
-                        </button>
-                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()">
-                            <ion-icon name="square"></ion-icon>
-                        </button>
+                        <p>{{"Audio file"}}</p>
+                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg.media[0], i)"><ion-icon name="play"></ion-icon></button>
+                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="square"></ion-icon></button>
                     </ion-item>
                 </ion-list>
             </div>
