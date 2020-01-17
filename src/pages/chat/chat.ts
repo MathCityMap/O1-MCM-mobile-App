@@ -28,17 +28,23 @@ export class ChatPage {
     editorImg = null;
     showEmojiPicker = false;
     isScrolledToBottom = true;
+
     private scrollEndSubscription: any;
 
     private audio: MediaObject;
     private audioIndex: number = null;
-    private resultPath: string;
     private canPlayback: boolean = true;
-    private audioPlaying: boolean = false;
     private showSpinner: boolean = false;
-    private recordState: RecordStateEnum = RecordStateEnum.Idle;
+    private audioPlaying: boolean = false;
+    private showTextArea: boolean = true;
+    private showAudioButtons: boolean = true;
+    private showPictureButtons: boolean = true;
+
+    private localPath: string = null;
     private audioFilePath: string = null;
     private fileDirectory: string = null;
+
+    private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
     constructor(navParams: NavParams,
                 protected file: File,
@@ -151,6 +157,8 @@ export class ChatPage {
      * @name sendMsg
      */
     async sendMsg() {
+        this.setInputWrapButtons(true);
+
         if (this.editorMsg && this.editorImg &&
             !this.editorMsg.trim() && !this.editorImg.trim() &&
             this.recordState != RecordStateEnum.Stop) return;
@@ -171,6 +179,8 @@ export class ChatPage {
 
         //If we are sending an image
         if (this.editorImg) {
+            this.localPath = null;
+            console.log('hello??');
             let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
             let myFormData = new FormData();
             myFormData.append('media', blob, 'image.jpeg');
@@ -259,6 +269,8 @@ export class ChatPage {
      * @name imageChat
      */
     async getImage() {
+        this.setInputWrapButtons(false);
+
         const options: CameraOptions = {
             quality: 100,
             targetHeight: 512,
@@ -274,17 +286,20 @@ export class ChatPage {
 
         this.camera.getPicture(options).then(async (imageData) => {
            this.showSpinner = true;
-           this.resultPath = 'data:image/jpeg;base64,' + imageData;
            this.editorImg = imageData;
+           this.localPath = 'data:image/jpeg;base64,' + imageData;
            this.showSpinner = false;
         }, (err) => {
             console.log("ERROR#####: ", err);
+            this.setInputWrapButtons(true);
             // Handle error
         });
     }
 
     openCamera() {
         this.showSpinner = true;
+        this.setInputWrapButtons(false);
+
         const options: CameraOptions = {
             quality: 100,
             destinationType: this.camera.DestinationType.DATA_URL,
@@ -293,19 +308,21 @@ export class ChatPage {
         };
 
         this.camera.getPicture(options).then(async (imageData) => {
-            this.resultPath = 'data:image/jpeg;base64,' + imageData;
             this.editorImg = imageData;
+            this.localPath = 'data:image/jpeg;base64,' + imageData;
             this.showSpinner = false;
         }, (err) => {
             // Handle error
             this.showSpinner = false;
             console.log("Camera issue:" + err);
+            this.setInputWrapButtons(true);
         });
     }
 
     removeImage() {
-        this.resultPath = null;
+        this.localPath = null;
         this.editorImg = null;
+        this.setInputWrapButtons(true);
     }
 
     /**
@@ -365,6 +382,9 @@ export class ChatPage {
     }
 
     micButtonClick() {
+        this.showTextArea = false;
+        this.showPictureButtons = false;
+
         switch (this.recordState) {
             case RecordStateEnum.Record:
                 this.recordState = RecordStateEnum.Stop;
@@ -383,7 +403,6 @@ export class ChatPage {
 
     startRecording() {
         this.pauseAudio();
-
 
         if(this.platform.is('android')){
             this.fileDirectory = this.file.externalDataDirectory;
@@ -444,6 +463,12 @@ export class ChatPage {
         });
     }
 
+    setInputWrapButtons(setValue: boolean) {
+        this.showTextArea = setValue;
+        this.showAudioButtons = setValue;
+        this.showPictureButtons = setValue;
+    }
+
     pauseAudio() {
         if (this.audio) {
           this.audio.pause();
@@ -452,10 +477,17 @@ export class ChatPage {
 
     cancelRecording() {
         //todo:remove file;
+        this.showTextArea = true;
+        this.showPictureButtons = true;
     }
 
     isAudio(path: string) {
         return (path.substring(path.lastIndexOf('.')) == '.aac' || path.substring(path.lastIndexOf('.')) == '.3gp');
+    }
+
+    changeButtonsStatus() {
+        this.showAudioButtons = false;
+        this.showPictureButtons = false;
     }
 }
 
