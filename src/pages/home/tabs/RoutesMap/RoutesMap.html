@@ -6,7 +6,7 @@
 
         <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s">
             <ion-fab right top>
-                <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>
+                <button ion-fab color="primary" (tap)="switchToList()"><img src="assets/icons/list.svg"/></button>
             </ion-fab>
 
             <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"

@@ -5,7 +5,7 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import {Helper} from "../../classes/Helper";
 import { Storage } from "@ionic/storage";
 import {GpsService} from "../../services/gps-service";
-import {timeout} from 'promise-timeout';
+
 
 @IonicPage()
 @Component({
@@ -33,24 +33,7 @@ export class DashboardPage {
          */
         this.devMode = (await this.storage.get('devMode') === 'true')
 
-        if (!this.gpsService.getLastPosition()) {
-            // try to get position
-            try {
-                await timeout(this.gpsService.getCurrentPosition().catch(err => {
-                    console.error("Error loading GPS data", err)
-                }), 2000);
-            } catch (e) {
-                console.log("could not obtain position: " + e.message);
-                // make position check async
-                this.gpsService.getCurrentPosition().then((position) => {
-                    if (position && position.coords) {
-                    }
-                }, err => {
-                    console.error("Error loading GPS data", err)
-                });
-            }
-        }
-        //await this.gpsService.isLocationOn();
+        await this.gpsService.checkLocationPermission();
 
     }
 

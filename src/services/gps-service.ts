@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { Diagnostic } from '@ionic-native/diagnostic';
-import { Platform } from 'ionic-angular';
-import { LocationAccuracy } from '@ionic-native/location-accuracy';
-import { checkAvailability } from "@ionic-native/core";
+import {Injectable} from "@angular/core";
+import {Diagnostic} from '@ionic-native/diagnostic';
+import {Platform} from 'ionic-angular';
+import {LocationAccuracy} from '@ionic-native/location-accuracy';
+import {checkAvailability} from "@ionic-native/core";
 
 
-import { AlertController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Subscription } from 'rxjs/Subscription';
-import { Subscriber } from 'rxjs/Subscriber';
-import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation';
+import {AlertController} from 'ionic-angular';
+import {Observable} from 'rxjs/Observable';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {Subscription} from 'rxjs/Subscription';
+import {Subscriber} from 'rxjs/Subscriber';
+import {Geolocation, GeolocationOptions, Geoposition} from '@ionic-native/geolocation';
 
 @Injectable()
 export class GpsService {
@@ -43,12 +43,15 @@ export class GpsService {
 
         //if the platform is not browser
         if (this.platform.is("android") &&
-            checkAvailability(LocationAccuracy.getPluginRef(), null, LocationAccuracy.getPluginName()) === true)
-            this.diagnostic.isLocationEnabled().then(async (enabled) => {
-                //if the location is off
-                console.log("LOCATION##: ", enabled);
-                if (!enabled) await this.turnLocationOn();
-            })
+            checkAvailability(LocationAccuracy.getPluginRef(), null, LocationAccuracy.getPluginName()) === true) {
+            if (!(await this.checkLocationPermission())) return false;
+            let enabled = await this.diagnostic.isLocationEnabled();
+            //if the location is off
+            console.log("LOCATION##: ", enabled);
+            if (!enabled) enabled = await this.turnLocationOn();
+            console.log("LOCATION AFTER##: ", enabled);
+            return enabled;
+        }
     }
 
 
@@ -75,15 +78,19 @@ export class GpsService {
     }
 
 
-    async turnLocationOn() {
-        this.locationAcc.canRequest().then((can) => {
-            if (can) this.locationAcc.request(this.locationAcc.REQUEST_PRIORITY_HIGH_ACCURACY).then(function (suc) {
-                console.log("Device Location is now turned ON");
-            }, function (rip) {
-                console.log("Device Location is still OFF ");
+    turnLocationOn(): Promise<boolean> {
+        return new Promise<boolean>(resolve => {
+            this.locationAcc.canRequest().then((can) => {
+                if (can) this.locationAcc.request(this.locationAcc.REQUEST_PRIORITY_HIGH_ACCURACY).then(function (suc) {
+                    console.log("Device Location is now turned ON");
+                    resolve(true);
+                }, function (rip) {
+                    console.log("Device Location is still OFF ");
+                    resolve(false)
+                })
             })
+        });
 
-        })
 
     }
 
@@ -131,6 +138,9 @@ export class GpsService {
      * @returns {Promise<Geoposition>} Returns a Promise that resolves with the [position](https://developer.mozilla.org/en-US/docs/Web/API/Position) of the device, or rejects with an error.
      */
     async getCurrentPosition(options?: GeolocationOptions): Promise<Geoposition> {
+        if (!(await this.checkLocationPermission())) return null;
+        if (!(await this.isLocationOn())) return null;
+        console.log("###please print after the LOCATION##");
         if (!options) {
             options = {
                 enableHighAccuracy: true
@@ -143,11 +153,25 @@ export class GpsService {
                 console.debug(`getCurrentPosition: ${position.coords.latitude}, ${position.coords.longitude}`);
                 this.lastPosition = position;
             }
-            return  position;
+            return position;
         } catch (e) {
             console.log('gps-service.ts: getCurrentPosition() caught exception', e);
             return null;
         }
+    }
+
+    async checkLocationPermission() {
+        let isAuthorized = await this.diagnostic.isLocationAuthorized();
+        if (!isAuthorized) {
+            let status = await this.diagnostic.getLocationAuthorizationStatus();
+            if (status != this.diagnostic.permissionStatus.DENIED_ALWAYS) {
+                let locationStatus = await this.diagnostic.requestLocationAuthorization();
+                    return (locationStatus == this.diagnostic.permissionStatus.GRANTED ||
+                        locationStatus == this.diagnostic.permissionStatus.GRANTED_WHEN_IN_USE);
+            }
+            return false
+        }
+        return true
     }
 
     getLastPosition(): Geoposition {

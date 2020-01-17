@@ -58,11 +58,11 @@ export class RoutesListPage implements OnDestroy {
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
+            console.log("###########HERE######");
             this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
             this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
             this.sortAndRebuildFilteredItems();
             this.filterItems();
-
         });
     }
 
@@ -110,18 +110,11 @@ export class RoutesListPage implements OnDestroy {
         if (!this.gpsService.getLastPosition()) {
             // try to get position
             try {
-                await timeout(this.gpsService.getCurrentPosition().catch(err => {
-                    console.error("Error loading GPS data", err)
-                }), 2000);
-            } catch (e) {
-                console.log("could not obtain position: " + e.message);
-                // make position check async
-                this.gpsService.getCurrentPosition().then((position) => {
-                    if (position && position.coords) {
-                    }
-                }, err => {
+                await this.gpsService.getCurrentPosition().catch(err => {
                     console.error("Error loading GPS data", err)
                 });
+            } catch (e) {
+                console.log("could not obtain position: " + e.message);
             }
         }
         console.log('check for active session');

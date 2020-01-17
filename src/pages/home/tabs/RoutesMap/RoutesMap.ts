@@ -110,9 +110,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
     async ionViewWillEnter() {
         console.log("ionViewWillEnter:");
-
-        this.gpsService.isLocationOn();
-
         if (this.markerGroup) {
             if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
             else this.routes = await this.ormService.getDownloadedRoutes();
@@ -135,7 +132,9 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});        if (this.eventSubscription) {
+        //todo: check on monday
+        this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});
+        if (this.eventSubscription) {
             this.eventSubscription.unsubscribe();
             this.eventSubscription = null;
         }
@@ -207,7 +206,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         this.markerGroup = markerGroup;
     }
 
-    loadMap() {
+        loadMap() {
         let isLoadedViaHttp = window.location.href.indexOf('http') === 0
         this.center = [50.1208566, 8.66158515]; // Frankfurt-am Main
         let mapquestUrl = Helper.mapquestUrl
@@ -346,7 +345,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     }
 
     async switchToList() {
-        this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});
+        await this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});
     }
 
     async reactOnRemovedRoute() {

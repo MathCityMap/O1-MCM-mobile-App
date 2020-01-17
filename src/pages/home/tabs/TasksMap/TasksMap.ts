@@ -364,7 +364,6 @@ export class TasksMap implements OnInit, OnDestroy {
    async initializeMap() {
       this.currentScore = this.score.score;
       this.redrawMarker();
-      this.gpsService.isLocationOn();
       // This should fix the gray tiles and missing marker issue on android
       if(this.map != null){
           this.map.invalidateSize();
