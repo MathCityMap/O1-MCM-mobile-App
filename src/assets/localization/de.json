@@ -696,5 +696,13 @@
   "a_list_noDownloads": "Es scheint, dass du noch keine gespeicherten Routen hast! Gehe zur Routensuche und lade sie herunter, um sie hier zu finden 😉",
   "a_route_default_share": "Hey, schau mal was für eine Route ich gefunden habe:",
   "a_settings_editing": "Verwaltungsfunktion",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Moritz Baumann-Wehner<br/>Simone Jablonski<br/>Simon Barlovits<br/>Gregor Milicic"
+  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Moritz Baumann-Wehner<br/>Simone Jablonski<br/>Simon Barlovits<br/>Gregor Milicic",
+  "p_map_dimension": "Maße des Kartenausschnitts",
+  "p_map_width": "Breite",
+  "p_map_height": "Höhe",
+  "p_map_area": "Fläche",
+  "p_mapsize_warning1": "Ihr Trail ist überdurchschnittlich groß. Die Bereitstellung des Kartenmaterials kann einige Minuten in Anspruch nehmen.",
+  "p_mapsize_warning2": "Warnung: Ihr Trail überschreitet die zulässige Fläche von 6 Quadratkilometern. Dieser Trail kann zwar erstellt werden, kann jedoch derzeit in der App nicht angezeigt werden.",
+  "p_equip_goniometer": "Goniometer",
+  "a_alert_confirm_close": "Wollen sie die App wirklich schließen?"
 }

@@ -604,5 +604,6 @@
   "a_center_three_distances": "La tua distanza dai punti è A: \\ '{{ L }} ', B: \\ '{{ K }} ', C: \\ '{{ J }} '",
   "a_square_distances": "La distanza tra i punti è: AB: \\ '{{ L }} ' m, BC: \\ '{{ K }} ' m, CD: \\ '{{ J }} ' m , DA: \\ '{{ H }} ' m",
   "a_triangle_distances": "La distanza tra i punti è: AB: \\ '{{ L }} ' m, BC: \\ '{{ K }} ' m, CA: \\ '{{ J }} ' m",
-  "a_line_direction_distance": "Hai camminato \\ '{{ L }} ' metri, e \\ '{{ K }} ' º lontano dalla giusta direzione."
+  "a_line_direction_distance": "Hai camminato \\ '{{ L }} ' metri, e \\ '{{ K }} ' º lontano dalla giusta direzione.",
+  "p_equip_goniometer": "goniometro"
 }
