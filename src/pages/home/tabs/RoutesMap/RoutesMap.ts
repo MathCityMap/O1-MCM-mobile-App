@@ -133,7 +133,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         //todo: check on monday
-        this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});
         if (this.eventSubscription) {
             this.eventSubscription.unsubscribe();
             this.eventSubscription = null;
