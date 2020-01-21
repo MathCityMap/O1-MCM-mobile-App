@@ -8,10 +8,11 @@ import { DBC_Plan } from './DBC_Plan'
 import { DB_Handler } from './DB_Handler'
 import { OrmService } from '../services/orm-service';
 import { Route } from "../entity/Route";
+import {ImagesService} from "../services/images-service";
 
 @Injectable()
 export class DB_Updater {
-    constructor(private ormService: OrmService, private helper: Helper) {
+    constructor(private ormService: OrmService, private helper: Helper, private imageService: ImagesService) {
     }
 
     /*
@@ -42,19 +43,15 @@ export class DB_Updater {
         // Compare
         let sqlUpdateQuery = `UPDATE ${DBC.DATABASE_TABLE_STATE} SET ${DBC.DB_STATE.fields[2]} = ? WHERE ${DBC.DB_STATE.fields[1]} = ?`
         if (Number(offlineVersions.getValue("version_route")) < Number(onlineVersions.getValue("version_route"))) {
-
-            // Routes need update
-            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRoutes'), DBC.DB_ROUTE);
-
             // load routes with flags which need to be restored
             let downloadedRoutes = await this.ormService.getDownloadedRoutes();
             let unlockedRoutes = await this.ormService.getUnlockedRoutes();
             let completedRoutes = await this.ormService.getCompletedRoutes();
 
-
+            // Routes need update
+            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRoutes'), DBC.DB_ROUTE);
 
             // Update local table
-            console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
             await db.executeSql(sqlUpdateQuery,
                 [
                     onlineVersions.getValue("version_route"),
@@ -76,13 +73,10 @@ export class DB_Updater {
                     newRoute.completed = oldRoute.completed;
                     alreadyVisitedIds[oldRoute.id] = true;
 
-                    /***
-                     *TODO: here it should compare map version in case it is downloaded route and update said map
-                     needs testing
-                     ***/
-                    /*if(newRoute.downloaded && Number(newRoute.mapVersion)>Number(oldRoute.mapVersion)){
-                        await this.ormService.downloadRoute(newRoute, {}, this);
-                    }*/
+                    //Checks if the mapVersion is outdated, if so, downloads the zip file again
+                    if(newRoute.downloaded && Number(newRoute.mapVersion)>Number(oldRoute.mapVersion)){
+                        await this.imageService.downloadAndUnzip(newRoute, ()=>{}, ()=>{});
+                    }
                     
                     routesToSave.push(newRoute);
                 }
