@@ -75,6 +75,15 @@ export class DB_Updater {
                     newRoute.unlocked = oldRoute.unlocked;
                     newRoute.completed = oldRoute.completed;
                     alreadyVisitedIds[oldRoute.id] = true;
+
+                    /***
+                     *TODO: here it should compare map version in case it is downloaded route and update said map
+                     needs testing
+                     ***/
+                    /*if(newRoute.downloaded && Number(newRoute.mapVersion)>Number(oldRoute.mapVersion)){
+                        await this.ormService.downloadRoute(newRoute, {}, this);
+                    }*/
+                    
                     routesToSave.push(newRoute);
                 }
             }
