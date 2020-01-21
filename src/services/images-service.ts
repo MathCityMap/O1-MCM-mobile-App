@@ -335,7 +335,8 @@ export class ImagesService {
                 let parsedName = result.files[key].name.replace(/\/|@/g, "_");
                 parsedName = "v4_mapbox.streets_" + parsedName;
                 tileCallback(parsedName);
-                await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true}).then((y) =>{ console.log("answers pls222 ### ", y)}).catch(err=> {console.log("##ERROR :( ", err)});
+                await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true})
+                    .catch(err=> {console.log("Saving tile to device: ", err)});
             })
 
         }).catch(err => {
