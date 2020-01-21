@@ -52,6 +52,9 @@ export class GpsService {
             console.log("LOCATION AFTER##: ", enabled);
             return enabled;
         }
+        if(this.platform.is("ios")){
+            return await this.diagnostic.isLocationEnabled();
+        }
     }
 
 
