@@ -306,7 +306,7 @@ export class ImagesService {
     public async downloadAndUnzip(route: Route, progressCallback: any, tileCallback: any) {
 
         //Download
-        let url = 'https://dev.mathcitymap.eu/mcm_maps/' + route.mapFileName;
+        let url = Helper.WEBSERVER_URL + 'mcm_maps/' + route.mapFileName;
         const headers = new HttpHeaders()
             .set('Access-Control-Allow-Origin', '*')
         const req = new HttpRequest('GET', url, {
