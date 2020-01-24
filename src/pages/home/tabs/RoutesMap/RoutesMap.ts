@@ -69,7 +69,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             if (this.map && this.map.getLayer('unclustered-point')) {
                 if (!this.showAllRoutes) this.routes = await this.ormService.getDownloadedRoutes();
-                this.redrawMapBoxMarker();
+                this.redrawMapBoxMarker()
                 console.log("REDRAWED")
                 this.routeDetails = null;
             }
@@ -85,7 +85,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         if (this.map && this.map.getLayer('unclustered-point')) {
             if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
             else this.routes = await this.ormService.getDownloadedRoutes();
-            this.redrawMapBoxMarker();
+            this.redrawMapBoxMarker()
         }
     }
 
@@ -135,20 +135,28 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         }
         if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
         else this.routes = await this.ormService.getDownloadedRoutes();
-        this.redrawMapBoxMarker();
+        this.map.on('load', () => {
+            const waiting = () => {
+                if (!this.map.isStyleLoaded()) {
+                    setTimeout(waiting, 200);
+                } else {
+                    this.redrawMapBoxMarker();
+                }
+            };
+            waiting();
+        });
         this.spinner.hide();
     }
 
     redrawMapBoxMarker() {
         const map = this.map;
-
-        console.log('POINT####', this.map.getLayer('unclustered-point'))
         //clean layers to be redrawn
         if (this.map.getLayer('unclustered-point')) {
             console.log("###removing unclustered points layer");
             this.map.removeLayer('unclustered-point');
             this.markerGroup = null;
         }
+
         if (this.map.getLayer('clusters')) {
             console.log("###removing unclustered points layer");
             this.map.removeLayer('clusters');
@@ -159,7 +167,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             this.map.removeLayer('cluster-count');
             this.markerGroup = null;
         }
-
 
         let GeoJson =
             {
@@ -274,7 +281,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         this.loadImagesToMap();
         this.map.touchZoomRotate.disableRotation();
         //removes labels for points of interest
-        this.map.on("load", () => {
+        this.map.on('load', () => {
             this.map.style.stylesheet.layers.forEach(layer => {
                 if (layer.id === "poi-label") {
                     this.map.removeLayer(layer.id);
@@ -415,12 +422,12 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     async doDownload() {
         await this.modalsService.doDownload(this.routeDetails);
         console.log("DID DOWNLOAD");
-        this.redrawMapBoxMarker();
+        this.redrawMapBoxMarker()
     }
 
     async presentRouteInfoModal() {
         this.routeDetails = await this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl);
-        this.redrawMapBoxMarker();
+        this.redrawMapBoxMarker()
     }
 
     showRouteDetail(item: any) {
@@ -437,7 +444,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     async reactOnRemovedRoute() {
         if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
         else this.routes = await this.ormService.getDownloadedRoutes();
-        this.redrawMapBoxMarker();
+        this.redrawMapBoxMarker()
     }
 
     loadImagesToMap() {
