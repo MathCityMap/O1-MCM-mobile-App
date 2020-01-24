@@ -17,6 +17,7 @@ import { ModalsService } from '../services/modals-service';
 import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
+import { Camera } from "@ionic-native/camera";
 
 import { MyApp } from './app.component';
 
@@ -50,6 +51,7 @@ import { ChatPageModule } from '../pages/chat/chat.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
+import { Media } from '@ionic-native/media';
 
 
 @NgModule({
@@ -118,7 +120,9 @@ import { AppVersion } from '@ionic-native/app-version';
         InAppBrowser,
         AppVersion,
         Globalization,
-        {provide: ErrorHandler, useClass: IonicErrorHandler}
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        Camera,
+        Media
     ]
 })
 export class AppModule {

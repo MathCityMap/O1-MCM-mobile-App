@@ -37,6 +37,7 @@ export class ChatMessage {
     toUserId: string;
     time: number | string;
     message: string;
+    media: string[];
     status: string;
 }
 
@@ -146,7 +147,8 @@ export class ChatAndSessionService {
             toUserId: msg.receiverId, // toUserId (depends if this is written  or received
             time: Date.parse(msg.time) - (timezoneOffset * 60000),
             message: msg.message,
-            status: msg.status
+            status: msg.status,
+            media: msg.media
         };
         return chatMessage;
     }
@@ -230,6 +232,17 @@ export class ChatAndSessionService {
             console.info("New Chat Messages were send: [".concat(msgs.length.toString(), "]"));
             return msgs;
         });
+    }
+
+    async postMedia(file: FormData, sessionInfo: SessionInfo){
+        try {
+            let x = await this.sessionChatService.postMedia(file, sessionInfo.session.code, sessionInfo.sessionUser.token);
+            return this.sessionService.rootUrl.replace("index.php", "") + x.body;
+        }
+        catch (e) {
+            console.log("ERROR sending media to chat: ", e);
+            return null;
+        }
     }
 
     async getUserInfo(): Promise<UserInfo> {

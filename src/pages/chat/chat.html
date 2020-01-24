@@ -2,16 +2,34 @@
 
 <ion-content class="has-header">
     <div class="message-wrap">
-        <div *ngFor="let msg of msgList"
+        <div *ngFor="let msg of msgList; let i = index"
              class="message"
              [class.left]=" msg.userId === toUser.token "
              [class.right]=" msg.userId === user.token ">
             <!--TODO Remove user-image from data-->
             <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->
-            <ion-spinner name="dots" *ngIf="msg.status === 'pending'"></ion-spinner>
+            <ion-spinner name="dots" *ngIf="msg.status === 'pending' && (msg.media.length==0 || !isAudio(msg.media[0]))"></ion-spinner>
+            <!-- Non-audio Message -->
             <div class="msg-detail">
                 <div class="msg-content">
-                    <p class="line-breaker ">{{msg.message}}</p>
+
+                    <!-- Text Message -->
+                    <p *ngIf="msg.message" class="line-breaker ">{{msg.message}}</p>
+
+                    <!-- Image Message -->
+                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" src="{{msg.media[0]}}">
+
+                    <!-- Audio Message -->
+                    <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])">
+                        <ion-list>
+                            <ion-item class="audio-player">
+                                <p>{{"Audio file"}}</p>
+                                <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg.media[0], i)"><ion-icon name="play"></ion-icon></button>
+                                <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="square"></ion-icon></button>
+                            </ion-item>
+                        </ion-list>
+                    </div>
+
                 </div>
                 <div class="msg-info">
                     <p>
@@ -22,25 +40,58 @@
                 </div>
             </div>
         </div>
+
     </div>
 </ion-content>
 <ion-footer no-border [style.height]="'55px'">
     <div class="input-wrap">
-        <textarea
-                autoresize
-                id="textarea"
-                #chat_input
-                [placeholder]="'a_chat_type_message' | translate"
-                [(ngModel)]="editorMsg"
-                (keyup.enter)="sendMsg()"
-                (focusin)="onFocus()">
+        <!-- ######### TEXT ######### -->
+        <textarea *ngIf="showTextArea"
+                  autoresize
+                  id="textarea"
+                  #chat_input
+                  [placeholder]="'a_chat_type_message' | translate"
+                  [(ngModel)]="editorMsg"
+                  (keyup.enter)="sendMsg()"
+                  (input)="changeButtonsStatus()"
+                  (focusin)="onFocus()">
         </textarea>
-        <!--<button ion-button class="image">-->
-            <!--<img src="./assets/icons/image.svg"/>-->
-        <!--</button>-->
-        <!--<button ion-button class="photo">-->
-            <!--<img src="./assets/icons/photo.svg"/>-->
-        <!--</button>-->
+
+        <!-- ######### AUDIO ########## -->
+        <div class="message-input-buttons" *ngIf="showAudioButtons">
+            <!-- Playback for Local Audio -->
+            <div *ngIf="recordState == 3">
+                <button ion-button icon-only round start *ngIf="canPlayback" (click)="playAudio()">
+                    <ion-icon name="play"></ion-icon>
+                </button>
+                <button ion-button icon-only round start *ngIf="!canPlayback" (click)="pauseAudio()">
+                    <ion-icon name="pause"></ion-icon>
+                </button>
+            </div>
+
+            <button ion-button icon-only round end (click)="micButtonClick()">
+                <ion-icon *ngIf="recordState == 1" name="mic"></ion-icon>
+                <ion-icon *ngIf="recordState == 2" name="square"></ion-icon>
+                <ion-icon *ngIf="recordState == 3" name="close"></ion-icon>
+            </button>
+        </div>
+
+        <!-- ######### PICTURES ######## -->
+        <div class="message-input-buttons" *ngIf="showPictureButtons">
+            <button ion-button icon-only round end (click)="getImage()">
+                <ion-icon name="image"></ion-icon>
+            </button>
+            <button ion-button icon-only round end (click)="openCamera()">
+                <ion-icon name="camera"></ion-icon>
+            </button>
+        </div>
+
+        <div class="image-previewer" *ngIf="localPath">
+            <img class="msg-image" src="{{localPath}}">
+            <button class="msg-close-button" ion-button icon-only round end (click)="removeImage()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </div>
     </div>
     <button class="send" no-padding ion-button round item-right (click)="sendMsg()">
         <img src="./assets/icons/send.svg"/>

@@ -1,10 +1,13 @@
-import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
-import { Events, Content } from 'ionic-angular';
+import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
+import {Content, Events, IonicPage, NavParams, Platform} from 'ionic-angular';
 import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../services/chat-and-session-service";
-import { SessionUser } from "../../app/api/models/session-user";
+import {SessionUser} from "../../app/api/models/session-user";
 import {Session} from "../../app/api/models/session";
 import {SessionUserResponse} from "../../app/api/models/session-user-response";
+import {Camera, CameraOptions} from "@ionic-native/camera";
+import {File} from "@ionic-native/file";
+import {Media, MediaObject} from "@ionic-native/media";
+import {RecordStateEnum} from "./recordStateEnum";
 
 @IonicPage()
 @Component({
@@ -22,15 +25,35 @@ export class ChatPage {
     session: Session;
     toUser: UserInfo;
     editorMsg = '';
+    editorImg = null;
     showEmojiPicker = false;
     isScrolledToBottom = true;
+
     private scrollEndSubscription: any;
 
+    private localPath: string = null;
+    private audioFilePath: string = null;
+    private fileDirectory: string = null;
+
+    private audio: MediaObject;
+    private audioIndex: number = null;
+    private canPlayback: boolean = true;
+    private showTextArea: boolean = true;
+    private audioPlaying: boolean = false;
+    private showAudioButtons: boolean = true;
+    private showPictureButtons: boolean = true;
+
+    private recordState: RecordStateEnum = RecordStateEnum.Idle;
+
     constructor(navParams: NavParams,
+                protected file: File,
+                protected media: Media,
+                protected platform: Platform,
                 private chatService: ChatAndSessionService,
                 private events: Events,
                 private changeDetector: ChangeDetectorRef,
-                private chatAndSessionService: ChatAndSessionService) {
+                private chatAndSessionService: ChatAndSessionService,
+                private camera: Camera) {
 
         this.chatService.getUserInfo()
             .then((res) => {
@@ -38,15 +61,15 @@ export class ChatPage {
             });
 
         // TODO Does chat.ts need access to all session objects? refactor!
-        this.chatService.getActiveSession().then((res : SessionInfo) => {
-           this.sessionUser = res.sessionUser;
-           this.session = res.session;
-           this.sessionInfo = res;
+        this.chatService.getActiveSession().then((res: SessionInfo) => {
+            this.sessionUser = res.sessionUser;
+            this.session = res.session;
+            this.sessionInfo = res;
             // TODO sender, receiver(s) is handlet automaticly from session parameters.
             // teams, which are *not* admin of a session, get as receiver the admin
             // the admin of a sessionget as recivers *all* users from a session
             // TODO gui should have an option to select a team as active receiver.
-            let defaultReceiver : SessionUserResponse = this.chatService.getReceivers()[0];
+            let defaultReceiver: SessionUserResponse = this.chatService.getReceivers()[0];
             this.toUser = {
                 id: defaultReceiver.id,
                 name: defaultReceiver.team_name,
@@ -64,7 +87,7 @@ export class ChatPage {
         }
         this.chatService.setUserSeesNewMessages(false);
 
-        if(this.sessionInfo != null){
+        if (this.sessionInfo != null) {
             let details = JSON.stringify({});
             this.chatAndSessionService.addUserEvent("event_trail_chat_close", details, "0");
         }
@@ -114,7 +137,7 @@ export class ChatPage {
      * @returns {Promise<ChatMessage[]>}
      */
     getMsg() {
-        let chatMsgs : Array<any> = [];
+        let chatMsgs: Array<any> = [];
         this.chatService.getReceivers().forEach(receiver => {
             chatMsgs.push(this.chatService
                 .getMsgList(this.sessionInfo, receiver.token).toPromise()
@@ -133,10 +156,19 @@ export class ChatPage {
      * @name sendMsg
      */
     async sendMsg() {
-        if (!this.editorMsg.trim()) return;
+        this.setInputWrapButtons(true);
+
+        //does not allow sending empty messages
+        if(this.editorMsg == '' && !this.editorImg && this.recordState != RecordStateEnum.Stop) return;
+
+        //failsafe to stop you from seding more than 1 time of message
+        if ((this.editorMsg && this.editorImg) ||
+            (this.editorMsg && this.recordState == RecordStateEnum.Stop) ||
+            (this.editorImg && this.recordState == RecordStateEnum.Stop))
+            return;
+
         let timezoneOffset = new Date().getTimezoneOffset();
 
-        // Mock message
         let newMsg: ChatMessage = {
             messageId: null,
             userId: this.user.token,
@@ -145,26 +177,76 @@ export class ChatPage {
             toUserId: this.toUser.token,
             time: Date.now() - (timezoneOffset * 60000),
             message: this.editorMsg,
+            media: [],
             status: 'pending'
         };
 
-        console.debug("new message: ", newMsg);
-
-        if(this.sessionInfo != null){
-            let details = JSON.stringify({'message': this.editorMsg});
-            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+        //If we are sending an image
+        if (this.editorImg) {
+            this.localPath = null;
+            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
+            let myFormData = new FormData();
+            myFormData.append('media', blob, 'image.jpeg');
+            let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
+            this.editorImg = null;
+            if (resultPath) {
+                newMsg.media.push(resultPath);
+                //TODO: ask Iwan about how wordpress interprets event messages
+                let details = JSON.stringify({'message': resultPath});
+                this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+            } else {
+                console.log("ERROR: unable to send media");
+                return;
+            }
         }
 
-        this.editorMsg = '';
-        this.setToDefaultHeight();
+        //If we are sending audio file
+        else if (this.recordState == RecordStateEnum.Stop) {
+            if (!this.canPlayback) {
+                this.pauseAudio();
+            }
+
+            this.recordState = RecordStateEnum.Idle;
+
+            let audioType = 'aac';
+            await this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(async (data) => {
+                const blob = new Blob([data], {type: 'audio/' + audioType});
+                let myFormData = new FormData();
+                myFormData.append('media', blob, 'audio.' + audioType);
+                let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
+                //newMsg.isAudio = true;
+                this.audio = null;
+                if (resultPath) {
+                    newMsg.media.push(resultPath);
+                    //TODO: ask Iwan about how wordpress interprets event messages
+                    let details = JSON.stringify({'message': resultPath});
+                    this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+                } else {
+                    console.log("ERROR: unnable to send media");
+                    return;
+                }
+            }).catch(err => {
+                console.log("ERROR: ", err)
+            });
+        }
+        //If we are sending just text message
+        else {
+            newMsg.message = this.editorMsg;
+            if (this.sessionInfo != null) {
+                let details = JSON.stringify({'message': this.editorMsg});
+                this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+            }
+            this.editorMsg = '';
+        }
+
         if (!this.showEmojiPicker) {
             this.focus();
         }
 
         await this.chatService.checkForNewMessages(this.sessionInfo);
         this.chatService.sendMsg(newMsg, this.sessionInfo)
-            .then((msgs : ChatMessage[]) => {
-                msgs.forEach((msg : ChatMessage) => {
+            .then((msgs: ChatMessage[]) => {
+                msgs.forEach((msg: ChatMessage) => {
                     let index = this.getMsgIndexById(msg.messageId);
                     if (msg.messageId && index !== -1) {
                         this.msgList[index].status = 'success';
@@ -177,6 +259,63 @@ export class ChatPage {
             })
     }
 
+
+    /**
+     * @name imageChat
+     */
+    async getImage() {
+        this.setInputWrapButtons(false);
+
+        const options: CameraOptions = {
+            quality: 100,
+            targetHeight: 512,
+            targetWidth: 512,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            correctOrientation: true,
+            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true
+        };
+
+        this.camera.getPicture(options).then(async (imageData) => {
+           this.editorImg = imageData;
+           this.localPath = 'data:image/jpeg;base64,' + imageData;
+        }, (err) => {
+            console.log("ERROR#####: ", err);
+            this.setInputWrapButtons(true);
+            // Handle error
+        });
+    }
+
+    openCamera() {
+        this.setInputWrapButtons(false);
+
+        const options: CameraOptions = {
+            quality: 100,
+            targetHeight: 512,
+            targetWidth: 512,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+        };
+
+        this.camera.getPicture(options).then(async (imageData) => {
+            this.editorImg = imageData;
+            this.localPath = 'data:image/jpeg;base64,' + imageData;
+        }, (err) => {
+            // Handle error
+            console.log("Camera issue:" + err);
+            this.setInputWrapButtons(true);
+        });
+    }
+
+    removeImage() {
+        this.localPath = null;
+        this.editorImg = null;
+        this.setInputWrapButtons(true);
+    }
+
     /**
      * @name pushNewMsg
      * @param msg
@@ -186,7 +325,7 @@ export class ChatPage {
 
         // check if msg already displayed
 
-        if(this.getMsgIndexById(msg.messageId) >= 0) {
+        if (this.getMsgIndexById(msg.messageId) >= 0) {
             return;
         }
 
@@ -223,14 +362,116 @@ export class ChatPage {
     }
 
     private setTextareaScroll() {
-        const textarea =this.messageInput.nativeElement;
+        const textarea = this.messageInput.nativeElement;
         textarea.scrollTop = textarea.scrollHeight;
     }
 
-    setToDefaultHeight() {
-        if(this.messageInput.nativeElement){
-            this.messageInput.nativeElement.style.height = '40px';
+    micButtonClick() {
+        this.showTextArea = false;
+        this.showPictureButtons = false;
+
+        switch (this.recordState) {
+            case RecordStateEnum.Record:
+                this.recordState = RecordStateEnum.Stop;
+                this.stopRecording();
+                break;
+            case RecordStateEnum.Stop:
+                this.recordState = RecordStateEnum.Idle;
+                this.showTextArea = true;
+                this.showPictureButtons = true;
+                break;
+            default:
+                this.recordState = RecordStateEnum.Record;
+                this.startRecording();
+                break;
         }
+    }
+
+    startRecording() {
+        this.pauseAudio();
+
+        if(this.platform.is('android')){
+            this.fileDirectory = this.file.externalDataDirectory;
+        } else if(this.platform.is('ios')){
+            this.fileDirectory = this.file.documentsDirectory;
+        }
+        this.file.createFile(this.fileDirectory, 'audioFile.aac', true).then(filePath => {
+            this.audio = this.media.create(this.fileDirectory.replace(/^file:\/\//, '') + 'audioFile.aac');
+            //this.audio.release();
+            this.audio.startRecord();
+            this.audioFilePath = filePath.toInternalURL();
+
+        }).catch(err => {console.log("creation file error:", err)});
+
+        // Stop Recording after 1 minute
+        setTimeout(() => {
+            if (this.recordState != RecordStateEnum.Idle) {
+                this.recordState = RecordStateEnum.Stop;
+                this.stopRecording();
+            }
+        }, 60000);
+    }
+
+    stopRecording() {
+        this.audio.stopRecord();
+        this.canPlayback = true;
+    }
+
+    playAudio(filePath?, index?) {
+        if (this.audioPlaying) {
+            this.pauseAudio();
+        }
+
+        if (filePath) this.audioIndex = index;
+        else {
+            this.canPlayback = false;
+            filePath = this.audioFilePath;
+        }
+
+        this.audio = this.media.create(filePath);
+        this.audio.play();
+        this.audio.setVolume(0.8);
+
+        this.audio.onStatusUpdate.subscribe(status => {
+            switch (status) {
+                case 2: // Running
+                    this.audioPlaying = true;
+                    break;
+                case 3: // Paused
+                case 4: // Finished/Stopped
+                    if (!isNaN(index)) this.audioIndex = null;
+                    else this.canPlayback = true;
+
+                    this.audio.release();
+                    this.audioPlaying = false;
+                    break;
+            }
+        });
+    }
+
+    pauseAudio() {
+        if (this.audio) {
+          this.audio.pause();
+        }
+    }
+
+    isAudio(path: string) {
+        return (path.substring(path.lastIndexOf('.')) == '.aac');
+    }
+
+    changeButtonsStatus() {
+        if (this.editorMsg.length == 0) {
+            this.setInputWrapButtons(true);
+        } else {
+            this.showAudioButtons = false;
+            this.showPictureButtons = false;
+        }
+    }
+
+    setInputWrapButtons(setValue: boolean) {
+        this.showTextArea = setValue;
+        this.showAudioButtons = setValue;
+        this.showPictureButtons = setValue;
     }
 }
 
