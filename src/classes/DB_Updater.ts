@@ -8,10 +8,11 @@ import { DBC_Plan } from './DBC_Plan'
 import { DB_Handler } from './DB_Handler'
 import { OrmService } from '../services/orm-service';
 import { Route } from "../entity/Route";
+import {ImagesService} from "../services/images-service";
 
 @Injectable()
 export class DB_Updater {
-    constructor(private ormService: OrmService, private helper: Helper) {
+    constructor(private ormService: OrmService, private helper: Helper, private imageService: ImagesService) {
     }
 
     /*
@@ -51,7 +52,6 @@ export class DB_Updater {
             await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRoutes'), DBC.DB_ROUTE);
 
             // Update local table
-            console.log("UPDATING version_route VERSION!", onlineVersions.getValue("version_route"))
             await db.executeSql(sqlUpdateQuery,
                 [
                     onlineVersions.getValue("version_route"),
@@ -72,6 +72,12 @@ export class DB_Updater {
                     newRoute.unlocked = oldRoute.unlocked;
                     newRoute.completed = oldRoute.completed;
                     alreadyVisitedIds[oldRoute.id] = true;
+
+                    //Checks if the mapVersion is outdated, if so, downloads the zip file again
+                    if(newRoute.downloaded && Number(newRoute.mapVersion)>Number(oldRoute.mapVersion)){
+                        await this.imageService.downloadAndUnzip(newRoute, ()=>{}, ()=>{});
+                    }
+                    
                     routesToSave.push(newRoute);
                 }
             }

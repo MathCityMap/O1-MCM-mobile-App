@@ -32,7 +32,6 @@ import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-an
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "../../../../../node_modules/rxjs";
-
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
@@ -108,7 +107,8 @@ export class TasksMap implements OnInit, OnDestroy {
     private spinner: SpinnerDialog,
     private modalCtrl: ModalController,
     private chatAndSessionService: ChatAndSessionService,
-    private app: MyApp
+    private app: MyApp,
+    private helper: Helper
   ) {
 
       /*this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
@@ -582,7 +582,8 @@ export class TasksMap implements OnInit, OnDestroy {
               maxZoom: Helper.max_zoom,
               tileSize: 256,
               crossOrigin: true,
-              detectRetina: true
+              detectRetina: true,
+              bounds: this.route.getBoundingBoxLatLng()
           });
 
           this.gpsService.getCurrentPosition()

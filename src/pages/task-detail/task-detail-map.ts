@@ -373,7 +373,8 @@ export class TaskDetailMap implements OnDestroy {
                     maxZoom: Helper.max_zoom,
                     tileSize: 256,
                     crossOrigin: true,
-                    detectRetina: true
+                    detectRetina: true,
+                    bounds: this.route.getBoundingBoxLatLng()
                 });
 
                 const tiles = this.ormService.getTileURLsAsObject(this.route);

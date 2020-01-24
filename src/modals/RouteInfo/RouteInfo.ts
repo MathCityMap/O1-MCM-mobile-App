@@ -50,6 +50,6 @@ export class RouteInfo {
     }
 
     async removeRoute(route: Route) {
-        await this.ormService.removeDownloadedRoute(this.route);
+        await this.ormService.removeDownloadedRoute(this.route, true);
     }
 }

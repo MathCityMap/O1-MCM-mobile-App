@@ -3,6 +3,8 @@ import {Route} from "../../entity/Route";
 import {ModalsService} from "../../services/modals-service";
 import {OrmService} from "../../services/orm-service";
 import {Helper} from "../../classes/Helper";
+import {DB_Updater} from "../../classes/DB_Updater";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -31,16 +33,19 @@ export class RouteTeaserComponent {
 
     constructor( private modalsService: ModalsService,
                  private ormService: OrmService,
-                 private helper: Helper) {
+                 private helper: Helper,
+                 private dbUpdater: DB_Updater,
+                 private translateService: TranslateService) {
     }
 
-    async ngOnInit(){
-        if(this.route && this.route.scores) {
-            let data = await this.helper.calculateProgress(this.route)
-
-            this.currentProgress = data.currentProgress;
-            this.total = data.totalTasks;
-            this.completedRadius = this.calculatePercentage();
+    async ngOnChanges(){
+        if(this.route && this.route.downloaded) {
+            this.total = await this.route.getTaskCount();
+            if(this.route.scores) {
+                let data = await this.helper.calculateProgress(this.route);
+                this.currentProgress = data.currentProgress;
+                this.completedRadius = this.calculatePercentage();
+            }
         }
     }
 
@@ -59,7 +64,7 @@ export class RouteTeaserComponent {
 
     async deleteRoute(event, route: Route) {
         event.stopPropagation();
-        if(await this.ormService.removeDownloadedRoute(route)){
+        if(await this.ormService.removeDownloadedRoute(route, true)){
             this.removeRoute.emit();
         }
     }

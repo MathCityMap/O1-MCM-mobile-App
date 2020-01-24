@@ -1,3 +1,4 @@
+import * as JSZip from 'jszip';
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { DirectoryEntry, File} from '@ionic-native/file';
@@ -5,6 +6,9 @@ import { Platform } from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
 import { Helper } from '../classes/Helper';
+import {Route} from "../entity/Route";
+import {Http} from "@angular/http";
+import {HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpEvent} from "@angular/common/http";
 
 @Injectable()
 export class ImagesService {
@@ -18,7 +22,8 @@ export class ImagesService {
     private filePluginAvailable: boolean;
     private dataDirectory: DirectoryEntry;
 
-    constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer) {
+    constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer,
+                private http: Http, private httpClient: HttpClient) {
         ImagesService.INSTANCE = this;
         this.init();
     }
@@ -296,6 +301,51 @@ export class ImagesService {
         }
         return this.lazyLoadedImagesCache[imgPath] = this.getOfflineURL(imgPath);
     }
+
+
+    public async downloadAndUnzip(route: Route, progressCallback: any, tileCallback: any) {
+
+        //Download
+        let url = Helper.WEBSERVER_URL + 'mcm_maps/' + route.mapFileName;
+        const headers = new HttpHeaders()
+            .set('Access-Control-Allow-Origin', '*')
+        const req = new HttpRequest('GET', url, {
+            headers,
+            reportProgress: true,
+            responseType: 'arraybuffer',
+        });
+
+       let zip = await new Promise<ArrayBuffer>((success, error) => {
+            this.httpClient.request(req).subscribe((event: HttpEvent<any>) => {
+                if (event.type === HttpEventType.DownloadProgress) {
+                    progressCallback(Math.round(100 * (event.loaded / event.total)));
+                } else if (event.type === HttpEventType.Response) {
+                    success(event.body);
+                } else {
+                    // console.log('Unhandled event, please ignore.');
+                }
+            });
+        });
+
+        let zipFile: JSZip = new JSZip();
+
+        zipFile.loadAsync(zip).then(async (result) => {
+            Object.keys(result.files).forEach(async key=>{
+                let storableResult = await result.file(key).async("blob");
+                let parsedName = result.files[key].name.replace(/\/|@/g, "_");
+                parsedName = "v4_mapbox.streets_" + parsedName;
+                tileCallback(parsedName);
+                await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true})
+                    .catch(err=> {console.log("Saving tile to device: ", err)});
+            })
+
+        }).catch(err => {
+            console.error("ERROR unzipping file: ", err);
+        });
+
+    }
+
+
 }
 
 
