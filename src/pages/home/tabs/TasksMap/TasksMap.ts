@@ -575,16 +575,18 @@ export class TasksMap implements OnInit, OnDestroy {
           })
           let map = this.map;
           await tilesDb.initialize();
+          let zoomLevels = Helper.calculateZoom(this.route.getViewBoundingBoxLatLng());
           let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
               attribution: '&copy; mapbox.com',
               subdomains: subDomains,
-              minZoom: Helper.min_zoom,
-              maxZoom: Helper.max_zoom,
+              minZoom: zoomLevels.min_zoom,
+              maxZoom: zoomLevels.max_zoom,
               tileSize: 256,
               crossOrigin: true,
               detectRetina: true,
               bounds: this.route.getBoundingBoxLatLng()
           });
+
 
           this.gpsService.getCurrentPosition()
                 .then(resp => {

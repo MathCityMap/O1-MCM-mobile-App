@@ -1,5 +1,5 @@
 import * as L from 'leaflet';
-import {LatLng} from 'leaflet';
+import {LatLng, latLngBounds, LatLngBounds} from 'leaflet';
 import {checkAvailability} from '@ionic-native/core';
 import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, ResponseContentType} from '@angular/http';
@@ -10,6 +10,7 @@ import {Route} from '../entity/Route';
 import {OrmService} from "../services/orm-service";
 import {Storage} from "@ionic/storage";
 import {File} from "@ionic-native/file";
+import 'leaflet-geometryutil';
 import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 
 export class MapTile {
@@ -343,6 +344,25 @@ export class Helper {
         let score = route.getScoreForUser(await this.ormService.getActiveUser());
         let currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         return {totalTasks: totalTasks, currentProgress: currentProgress};
+    }
+
+    public static calculateZoom(bounds: LatLngBounds){
+
+        let width = (L as any).GeometryUtil.length([bounds.getSouthWest(), bounds.getSouthEast()]);
+        let height = (L as any).GeometryUtil.length([bounds.getNorthWest(), bounds.getSouthWest()]);
+
+        let area = (width/1000) * (height/1000);
+
+        console.log("####Area = ", width/1000, height/1000, area);
+
+
+        if(area <= 0.4) {
+            return {min_zoom: 17, max_zoom: 20}
+        }
+        else if(area <= 1.5) {
+            return {min_zoom: 16, max_zoom: 19}
+        }
+        else return {min_zoom: 15, max_zoom: 18}
     }
 
 }
