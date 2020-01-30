@@ -7,19 +7,21 @@
         <ion-grid no-padding>
             <ion-row>
                 <ion-col>
-                    <div class="container progress-vertical download">
-                        <div class="bar" [ngStyle]="{'width': ((100/data.total)*data.currentProgress) +'%'}"></div>
-                    </div>
+                    <!--<div class="container progress-vertical download">-->
+                        <!--<div class="bar" [ngStyle]="{'width': ((100/data.total)*data.currentProgress) +'%'}"></div>-->
+                    <!--</div>-->
+                    <progress-bar [progress]="progress" [color]="'#488aff'">
+                    </progress-bar>
                 </ion-col>
             </ion-row>
-            <ion-row>
-                <ion-col col-6>
-                    <p *ngIf="data.total != 0">{{((100/data.total)*data.currentProgress).toFixed(0)}}%</p>
-                </ion-col>
-                <ion-col col-6 text-right>
-                    <p class="progress-files">{{ data.currentProgress }} / {{ data.total }}</p>
-                </ion-col>
-            </ion-row>
+            <!--<ion-row>-->
+                <!--<ion-col col-6>-->
+                    <!--<p *ngIf="data.total != 0">{{((100/data.total)*data.currentProgress).toFixed(0)}}%</p>-->
+                <!--</ion-col>-->
+                <!--<ion-col col-6 text-right>-->
+                    <!--<p class="progress-files">{{ data.currentProgress }} / {{ data.total }}</p>-->
+                <!--</ion-col>-->
+            <!--</ion-row>-->
         </ion-grid>
     </div>
     <div class="on-the-edge-container">

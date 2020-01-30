@@ -335,10 +335,10 @@ export class OrmService {
                     return statusCallback(done, total);
                 });
             }
-            statusCallback(0, 0, 'a_rdl_title_img');
+            //statusCallback(0, 0, 'a_rdl_title_img');
             await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(await route.getTasks()), false, (done, total, url) => {
                 alreadyDownloadedUrls.push(url);
-                return statusCallback(done, total);
+                return statusCallback(done, total, 'a_rdl_title_img');
             });
             route.downloaded = true;
             route.downloadedDate = new Date().toDateString().split(' ').slice(1).join(' ');

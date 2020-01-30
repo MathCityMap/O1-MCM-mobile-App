@@ -50,6 +50,7 @@ import { ChatPageModule } from '../pages/chat/chat.module';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
+import {ProgressBarModule} from "angular-progress-bar";
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { AppVersion } from '@ionic-native/app-version';
         LinkyModule,
         YoutubePlayerModule,
         ApiModule,
-        ChatPageModule
+        ChatPageModule,
+        ProgressBarModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

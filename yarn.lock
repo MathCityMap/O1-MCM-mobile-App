@@ -454,6 +454,13 @@ angular-linky@^1.2.2:
     "@types/autolinker" "^0.24.28"
     autolinker "^1.1.0"
 
+angular-progress-bar@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/angular-progress-bar/-/angular-progress-bar-1.0.9.tgz#e057a64cb9feff23f06951dc37f851ee09293b2d"
+  integrity sha512-Q8ZIysLyoZaya9GY9BcN2dLdO9QNWsYPZ/1FU9yi1tojRNv+FJn67+iDBmeu1Qtc26JVSgtPYtqbmImCs+91Nw==
+  dependencies:
+    tslib "^1.9.0"
+
 ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
@@ -7128,7 +7135,7 @@ tsickle@^0.21.0:
     source-map "^0.5.6"
     source-map-support "^0.4.2"
 
-tslib@^1.0.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1:
+tslib@^1.0.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
