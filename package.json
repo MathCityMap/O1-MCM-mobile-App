@@ -46,6 +46,7 @@
     "@types/youtube": "0.0.29",
     "android-versions": "^1.2.2",
     "angular-linky": "^1.2.2",
+    "angular-progress-bar": "^1.0.9",
     "async": "2.6.0",
     "com-sarriaroman-photoviewer": "~1.1.18",
     "conic-gradient": "^1.0.0",
