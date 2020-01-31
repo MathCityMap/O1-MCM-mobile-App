@@ -316,9 +316,14 @@ export class ImagesService {
         });
 
        let zip = await new Promise<ArrayBuffer>((success, error) => {
-            this.httpClient.request(req).subscribe((event: HttpEvent<any>) => {
+            let request = this.httpClient.request(req).subscribe((event: HttpEvent<any>) => {
                 if (event.type === HttpEventType.DownloadProgress) {
-                    progressCallback(Math.round(30 * (event.loaded / event.total)));
+                    if(event.total > 0) {
+                        if (progressCallback(Math.round(30 * (event.loaded / event.total)))) {
+                            error('download was canceled');
+                            request.unsubscribe();
+                        }
+                    }
                 } else if (event.type === HttpEventType.Response) {
                     success(event.body);
                 } else {
@@ -329,7 +334,7 @@ export class ImagesService {
 
         await new Promise((success, error) => {
             let zipFile: JSZip = new JSZip();
-
+            let filePath: string = this.fileManager.dataDirectory;
             zipFile.loadAsync(zip).then(async (result) => {
                 const keys = Object.keys(result.files);
                 let i = 0;
@@ -339,9 +344,12 @@ export class ImagesService {
                     let parsedName = result.files[key].name.replace(/\/|@/g, "_");
                     parsedName = "v4_mapbox.streets_" + parsedName;
                     tileCallback(parsedName);
-                    await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true})
+                    await this.fileManager.writeFile(filePath, parsedName, storableResult, {replace: true})
                         .catch(err=> {console.log("Saving tile to device: ", err)});
-                    progressCallback(30 + Math.round(70 * (i / keys.length)))
+                    if (progressCallback(30 + Math.round(70 * (i / keys.length)))) {
+                        error('unzipping is canceled');
+                        return;
+                    }
                 }
                 success();
             }).catch(err => {
