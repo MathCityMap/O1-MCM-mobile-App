@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.autentek.mathcitymap" version="2.4.13" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.autentek.mathcitymap" version="2.4.14" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
 
     <name>MathCityMap</name>
     <description>MathCityMap</description>
@@ -122,7 +122,6 @@
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
-    <engine name="ios" spec="4.4.0" />
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-geolocation" spec="2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="MathCityMap would like to know your position to show distance to available routes." />
@@ -149,4 +148,5 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-custom-config" spec="^4.0.2" />
+    <plugin name="com.jjdltc.cordova.plugin.zip" spec="./plugin-src/com.jjdltc.cordova.plugin.zip" />
 </widget>

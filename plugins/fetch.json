@@ -185,5 +185,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "com.jjdltc.cordova.plugin.zip": {
+    "source": {
+      "type": "local",
+      "path": "/Users/miguelferreira/Documents/web/mcmApp/node_modules/cordova-zip-plugin"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

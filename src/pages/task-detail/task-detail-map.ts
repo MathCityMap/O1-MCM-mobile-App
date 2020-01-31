@@ -378,13 +378,14 @@ export class TaskDetailMap implements OnDestroy {
                 });
 
                 const tiles = this.ormService.getTileURLsAsObject(this.route);
+                const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
                 let that = this;
                 offlineLayer.getTileUrl = function (coords) {
                     var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
                     var dbStorageKey = this._getStorageKey(url);
 
                     if (tiles[dbStorageKey]) {
-                        return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
+                        return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles));
                     }
                     return Promise.resolve(url);
 

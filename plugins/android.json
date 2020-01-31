@@ -71,6 +71,9 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+    },
+    "com.jjdltc.cordova.plugin.zip": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {
