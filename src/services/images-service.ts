@@ -318,7 +318,7 @@ export class ImagesService {
        let zip = await new Promise<ArrayBuffer>((success, error) => {
             this.httpClient.request(req).subscribe((event: HttpEvent<any>) => {
                 if (event.type === HttpEventType.DownloadProgress) {
-                    progressCallback(Math.round(100 * (event.loaded / event.total)));
+                    progressCallback(Math.round(30 * (event.loaded / event.total)));
                 } else if (event.type === HttpEventType.Response) {
                     success(event.body);
                 } else {
@@ -327,22 +327,28 @@ export class ImagesService {
             });
         });
 
-        let zipFile: JSZip = new JSZip();
+        await new Promise((success, error) => {
+            let zipFile: JSZip = new JSZip();
 
-        zipFile.loadAsync(zip).then(async (result) => {
-            Object.keys(result.files).forEach(async key=>{
-                let storableResult = await result.file(key).async("blob");
-                let parsedName = result.files[key].name.replace(/\/|@/g, "_");
-                parsedName = "v4_mapbox.streets_" + parsedName;
-                tileCallback(parsedName);
-                await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true})
-                    .catch(err=> {console.log("Saving tile to device: ", err)});
-            })
-
-        }).catch(err => {
-            console.error("ERROR unzipping file: ", err);
+            zipFile.loadAsync(zip).then(async (result) => {
+                const keys = Object.keys(result.files);
+                let i = 0;
+                for (let key of keys) {
+                    i++;
+                    let storableResult = await result.file(key).async("blob");
+                    let parsedName = result.files[key].name.replace(/\/|@/g, "_");
+                    parsedName = "v4_mapbox.streets_" + parsedName;
+                    tileCallback(parsedName);
+                    await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true})
+                        .catch(err=> {console.log("Saving tile to device: ", err)});
+                    progressCallback(30 + Math.round(70 * (i / keys.length)))
+                }
+                success();
+            }).catch(err => {
+                console.error("ERROR unzipping file: ", err);
+                error(err);
+            });
         });
-
     }
 
 
