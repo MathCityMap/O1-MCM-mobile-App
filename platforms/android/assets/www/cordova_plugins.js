@@ -416,6 +416,14 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "id": "com.jjdltc.cordova.plugin.zip.JJzip",
+        "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
+        "pluginId": "com.jjdltc.cordova.plugin.zip",
+        "clobbers": [
+            "JJzip"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -442,7 +450,8 @@ module.exports.metadata =
     "cordova-fabric-plugin": "1.1.9",
     "cordova-plugin-app-version": "0.1.9",
     "cordova-custom-config": "4.0.2",
-    "cordova-plugin-inappbrowser": "3.1.0"
+    "cordova-plugin-inappbrowser": "3.1.0",
+    "com.jjdltc.cordova.plugin.zip": "1.1.0"
 };
 // BOTTOM OF METADATA
 });

@@ -87,6 +87,10 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"JJzip\"><param name=\"android-package\" value=\"com.jjdltc.cordova.plugin.zip.JJzip\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -276,6 +280,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+        },
+        "com.jjdltc.cordova.plugin.zip": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {},
@@ -696,6 +703,14 @@
                 "cordova.InAppBrowser.open",
                 "window.open"
             ]
+        },
+        {
+            "id": "com.jjdltc.cordova.plugin.zip.JJzip",
+            "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
+            "pluginId": "com.jjdltc.cordova.plugin.zip",
+            "clobbers": [
+                "JJzip"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -720,6 +735,7 @@
         "cordova-fabric-plugin": "1.1.9",
         "cordova-plugin-app-version": "0.1.9",
         "cordova-custom-config": "4.0.2",
-        "cordova-plugin-inappbrowser": "3.1.0"
+        "cordova-plugin-inappbrowser": "3.1.0",
+        "com.jjdltc.cordova.plugin.zip": "1.1.0"
     }
 }

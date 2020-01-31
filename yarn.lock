@@ -454,12 +454,10 @@ angular-linky@^1.2.2:
     "@types/autolinker" "^0.24.28"
     autolinker "^1.1.0"
 
-angular-progress-bar@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/angular-progress-bar/-/angular-progress-bar-1.0.9.tgz#e057a64cb9feff23f06951dc37f851ee09293b2d"
-  integrity sha512-Q8ZIysLyoZaya9GY9BcN2dLdO9QNWsYPZ/1FU9yi1tojRNv+FJn67+iDBmeu1Qtc26JVSgtPYtqbmImCs+91Nw==
-  dependencies:
-    tslib "^1.9.0"
+angular-progress-bar@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/angular-progress-bar/-/angular-progress-bar-1.0.0.tgz#f1c36b4feecb2720ab2198d73766da65ff9f4cb2"
+  integrity sha512-uqo5XtfccrwTtx7pBUfpZnik9BY/vIG1xcnZT3oKQj9fIg/ndxhbxjyrJ5LpslbzAvOz9zaqchSfVZhEeDsQqQ==
 
 ansi-escapes@^1.1.0:
   version "1.4.0"
@@ -1868,6 +1866,9 @@ cordova-sqlite-storage@2.0.4:
   integrity sha1-i1zmXGO0awQVynASzFe/JxGyA3E=
   dependencies:
     cordova-sqlite-storage-dependencies "1.0.4"
+
+"cordova-zip-plugin@file:plugin-src/com.jjdltc.cordova.plugin.zip":
+  version "1.1.0"
 
 cordova.plugins.diagnostic@~3.9.1:
   version "3.9.2"
@@ -7135,7 +7136,7 @@ tsickle@^0.21.0:
     source-map "^0.5.6"
     source-map-support "^0.4.2"
 
-tslib@^1.0.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.0.0, tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
