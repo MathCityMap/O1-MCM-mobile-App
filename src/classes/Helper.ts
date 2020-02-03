@@ -357,7 +357,7 @@ export class Helper {
 
 
         if(area <= 0.4) {
-            return {min_zoom: 17, max_zoom: 20}
+            return {min_zoom: 16, max_zoom: 20}
         }
         else if(area <= 1.5) {
             return {min_zoom: 16, max_zoom: 19}
