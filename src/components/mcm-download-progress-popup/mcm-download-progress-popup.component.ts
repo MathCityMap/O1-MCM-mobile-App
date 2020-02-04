@@ -13,7 +13,8 @@ export class MCMDownloadProgressPopupComponent{
         this.data.updateView = () => {
             // make sure that angular detects changes
             changeDetectorRef.detectChanges();
-            this.progress = Math.round((100/this.data.total) * this.data.currentProgress);
+            this.progress = this.data.currentProgress == 0 ? 0 :
+                Math.round((100/this.data.total) * this.data.currentProgress);
         }
     }
 
