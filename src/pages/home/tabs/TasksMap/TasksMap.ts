@@ -634,11 +634,13 @@ export class TasksMap implements OnInit, OnDestroy {
                         });
 
                         // Add map listener events
-                        this.map.on('zoomend', e => {
+                        this.map.on('moveend', e => {
                             if(!this.isUserInsideMap){
-                                this.updateUserLocationArrow(this.prevPos)
+                                this.updateUserLocationArrow(new L.LatLng(this.prevPos.latitude, this.prevPos.longitude))
                             }
                         });
+
+
                     }
                 })
                 .catch(error => {
