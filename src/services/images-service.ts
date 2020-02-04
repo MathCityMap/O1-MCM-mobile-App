@@ -305,7 +305,10 @@ export class ImagesService {
 
 
     public async downloadAndUnzip(route: Route, progressCallback: any, tileCallback: any) {
-
+        if (!(<any>window).JJzip) {
+            // JJZip is only available on native platforms. In browser we don't need to download
+            return;
+        }
 
         let url = Helper.WEBSERVER_URL + 'mcm_maps/' + route.mapFileName;
         let downloadRequest: FileTransferObject = this.transfer.create();
