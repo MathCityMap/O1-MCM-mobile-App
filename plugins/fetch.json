@@ -1,197 +1,199 @@
 {
-  "cordova-plugin-device": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-device@^1.1.4"
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device@^1.1.4"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-file": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-file@~4.3.3"
+    "cordova-plugin-file": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-file@~4.3.3"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-compat": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-compat@^1.0.0"
+    "cordova-plugin-compat": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-compat@^1.0.0"
+        },
+        "is_top_level": false,
+        "variables": {}
     },
-    "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-plugin-file-transfer": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-file-transfer@^1.6.3"
+    "cordova-plugin-file-transfer": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-file-transfer@^1.6.3"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-geolocation": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-geolocation@^2.4.3"
+    "cordova-plugin-splashscreen": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-splashscreen@^4.0.3"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-splashscreen": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-splashscreen@^4.0.3"
+    "cordova-plugin-statusbar": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-statusbar@git+https://github.com/apache/cordova-plugin-statusbar.git"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-statusbar": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-statusbar@git+https://github.com/apache/cordova-plugin-statusbar.git"
+    "cordova-sqlite-storage": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-sqlite-storage@~2.0.4"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-sqlite-storage": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-sqlite-storage@~2.0.4"
+    "ionic-plugin-keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "ionic-plugin-keyboard@^2.2.1"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "ionic-plugin-keyboard": {
-    "source": {
-      "type": "registry",
-      "id": "ionic-plugin-keyboard@^2.2.1"
+    "cordova-plugin-advanced-http": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-advanced-http@~1.6.1"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-advanced-http": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-advanced-http@~1.6.1"
+    "cordova-plugin-native-spinner": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-native-spinner@^1.1.3"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-native-spinner": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-native-spinner@^1.1.3"
+    "cordova-plugin-network-information": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-network-information@^1.3.4"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-network-information": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-network-information@^1.3.4"
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1.3.3"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-whitelist": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-whitelist@1.3.3"
+    "cordova.plugins.diagnostic": {
+        "source": {
+            "type": "registry",
+            "id": "cordova.plugins.diagnostic"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova.plugins.diagnostic": {
-    "source": {
-      "type": "registry",
-      "id": "cordova.plugins.diagnostic"
+    "cordova-plugin-request-location-accuracy": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-request-location-accuracy"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-request-location-accuracy": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-request-location-accuracy"
+    "cordova-plugin-globalization": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-globalization"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-globalization": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-globalization"
+    "com-sarriaroman-photoviewer": {
+        "source": {
+            "type": "registry",
+            "id": "com-sarriaroman-photoviewer"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "com-sarriaroman-photoviewer": {
-    "source": {
-      "type": "registry",
-      "id": "com-sarriaroman-photoviewer"
+    "cordova-plugin-local-notification": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-local-notification"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-local-notification": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-local-notification"
+    "cordova-plugin-badge": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-badge"
+        },
+        "is_top_level": false,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-badge": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-badge"
+    "cordova-fabric-plugin": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-fabric-plugin@1.1.9"
+        },
+        "is_top_level": true,
+        "variables": {
+            "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
+            "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3"
+        }
     },
-    "is_top_level": false,
-    "variables": {}
-  },
-  "cordova-fabric-plugin": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-fabric-plugin@1.1.9"
+    "cordova-plugin-app-version": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-app-version"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "is_top_level": true,
-    "variables": {
-      "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
-      "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3"
+    "cordova-custom-config": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-custom-config@5.1.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@3.1.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.jjdltc.cordova.plugin.zip": {
+        "source": {
+            "type": "local",
+            "path": "/Users/miguelferreira/Documents/web/mcmApp/node_modules/cordova-zip-plugin"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-geolocation": {
+        "source": {
+            "type": "local",
+            "path": "plugin-src/cordova-plugin-geolocation"
+        },
+        "is_top_level": true,
+        "variables": {
+            "GEOLOCATION_USAGE_DESCRIPTION": "MathCityMap would like to know your position to show distance to available routes."
+        }
     }
-  },
-  "cordova-plugin-app-version": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-app-version"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-custom-config": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-custom-config@5.1.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-inappbrowser": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-inappbrowser@3.1.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "com.jjdltc.cordova.plugin.zip": {
-    "source": {
-      "type": "local",
-      "path": "/Users/miguelferreira/Documents/web/mcmApp/node_modules/cordova-zip-plugin"
-    },
-    "is_top_level": true,
-    "variables": {}
-  }
 }
