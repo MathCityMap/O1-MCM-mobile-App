@@ -61,7 +61,7 @@
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-file": "4.3.3",
     "cordova-plugin-file-transfer": "1.6.3",
-    "cordova-plugin-geolocation": "2.4.3",
+    "cordova-plugin-geolocation": "file:plugin-src/cordova-plugin-geolocation",
     "cordova-plugin-globalization": "~1.0.9",
     "cordova-plugin-inappbrowser": "~3.1.0",
     "cordova-plugin-native-spinner": "1.1.3",

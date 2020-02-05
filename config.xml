@@ -126,9 +126,6 @@
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
     <engine name="android" spec="^6.3.0" />
-    <plugin name="cordova-plugin-geolocation" spec="2.4.3">
-        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="MathCityMap would like to know your position to show distance to available routes." />
-    </plugin>
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="git+https://github.com/apache/cordova-plugin-statusbar.git" />
@@ -152,4 +149,7 @@
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-custom-config" spec="^4.0.2" />
     <plugin name="com.jjdltc.cordova.plugin.zip" spec="./plugin-src/com.jjdltc.cordova.plugin.zip" />
+    <plugin name="cordova-plugin-geolocation" spec="./plugin-src/cordova-plugin-geolocation">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="MathCityMap would like to know your position to show distance to available routes." />
+    </plugin>
 </widget>
