@@ -17,7 +17,6 @@
 
 
 
-
 // =============================================
 // ------------------ BASICS -------------------
 // =============================================
@@ -505,7 +504,7 @@ ion-list{
     & > *{
         border: none!important;
     }
-    &.list-ios, &.list-md{
+&.list-ios, &.list-md{
     }
 }
 
@@ -1233,3 +1232,40 @@ $progress-height: 6px;
 .marker.userPosition {
     transition: all 2s linear;
 }
+
+
+@media screen and (min-width: 768px) {
+    ion-modal {
+        .modal-wrapper {
+            box-shadow: none;
+            width: 50vw;
+            max-width: 375px;
+            max-height: 88vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+        }
+        .image-container{
+            max-width: 50%;
+            margin: auto;
+        }
+    }
+    page-task-detail{
+        .scroll-content{
+            display: flex;
+            .task-header{
+                flex: 5;
+            }
+            .task-content{
+                flex: 3;
+                padding: $global-base-padding;
+            }
+            .card{
+                &.task{
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
