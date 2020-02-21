@@ -61,6 +61,15 @@ page-tasks-map {
                 color: color($colors, dark-grey);
                 text-align: left;
             }
+            &.countdown, &.chart{
+                flex-grow: 0;
+                flex-basis: 30px;
+                .icon{
+                    @include size(20px);
+                    max-width: unset;
+                    margin-right: $global-small-padding;
+                }
+            }
             &.chart{
                 .label{
                     font-size: 85%;

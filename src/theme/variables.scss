@@ -584,9 +584,6 @@ $icon-path: "../assets/icons/";
     // Task
 
     page-task-detail{
-        ion-fab{
-            transform: translateY(calc(-100% - 50px));
-        }
         .task-content{
             .transition {
                 background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
@@ -858,6 +855,8 @@ $icon-path: "../assets/icons/";
             }
         }
     }
+
+
     @media screen and (min-width: 768px) {
         page-tasks-map {
             .detail-box {
@@ -868,8 +867,10 @@ $icon-path: "../assets/icons/";
         }
         page-task-detail {
             .task-content {
+                padding-top: $size-large;
+                background-color: $c-blue;
                 .transition {
-                    background: linear-gradient(to left, $c-blue 50%, rgba(255, 255, 255, 0) 100%);
+                    //background: linear-gradient(to left, $c-blue 50%, rgba(255, 255, 255, 0) 100%);
                 }
             }
         }
