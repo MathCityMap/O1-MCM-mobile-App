@@ -288,7 +288,7 @@ routes{
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px){
     routes-list, routes-map {
         route-teaser {
             .main {
@@ -316,6 +316,10 @@ routes{
                     }
                 }
             }
+            .secondary{
+                padding-left: $global-base-padding;
+                padding-right: $global-base-padding;
+            }
             &.downloaded{
                 min-height: unset;
             }
@@ -328,13 +332,13 @@ routes{
             route-teaser {
                 flex-basis: 50%;
                 &:nth-of-type(even){
-                    border-left: 1px dotted color($colors, light-grey);
+                    border-left: 1px dotted color($colors, light-grey) !important;
                 }
                 &.downloaded{
                     margin: 8px;
                     flex-basis: calc(50% - 8px*2);
-                    &:last-of-type{
-                        margin-bottom: 8px!important;
+                    &:last-of-type, &:nth-of-type(odd):nth-last-child(2){
+                        margin-bottom: calc(#{$fab-size} + #{$global-base-padding})!important;
                     }
                 }
             }
@@ -347,10 +351,18 @@ routes{
         }
     }
     .map .detail-box {
-        padding: $global-base-padding!important;
+        padding: $global-base-padding;
         .text-container{
             max-width: unset;
             padding-left: $global-base-padding;
+            .segmented-box{
+                .segement.buttons{
+                    button.button-round-ios.button-small-ios, button.button-round-md.button-small-md{
+                        max-height: 34px;
+                        padding: 0 $global-base-padding;
+                    }
+                }
+            }
         }
     }
 }

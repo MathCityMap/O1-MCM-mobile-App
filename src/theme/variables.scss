@@ -858,4 +858,20 @@ $icon-path: "../assets/icons/";
             }
         }
     }
+    @media screen and (min-width: 768px) {
+        page-tasks-map {
+            .detail-box {
+                &#details {
+                    padding-top: $global-base-padding*2;
+                }
+            }
+        }
+        page-task-detail {
+            .task-content {
+                .transition {
+                    background: linear-gradient(to left, $c-blue 50%, rgba(255, 255, 255, 0) 100%);
+                }
+            }
+        }
+    }
 }

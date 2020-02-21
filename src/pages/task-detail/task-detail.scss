@@ -179,3 +179,32 @@ page-task-detail {
         margin-bottom: 27vh!important;
     }
 }
+
+
+
+@media screen and (min-width: 768px){
+    page-task-detail{
+        .scroll-content{
+            display: flex;
+        }
+        .task-header{
+            flex: 55;
+        }
+        .task-content{
+            flex: 45;
+            padding-top: $global-medium-padding*2;
+            .transition{
+                left: -30px;
+                height: 100%;
+                width: 35px;
+                z-index: 1000;
+                background: linear-gradient(to left, #e5e5e5 0%, rgba(255, 255, 255, 0) 100%);
+            }
+        }
+        .card{
+            &.task{
+                margin-top: 0;
+            }
+        }
+    }
+}

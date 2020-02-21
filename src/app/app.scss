@@ -1047,6 +1047,9 @@ ion-modal {
             p.main-text{
                 text-align: center;
             }
+            &.no-icon{
+                padding-top: 30px!important;
+            }
         }
         &.no-icon{
             padding-top: 30px!important;
@@ -1234,7 +1237,7 @@ $progress-height: 6px;
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px){
     ion-modal {
         .modal-wrapper {
             box-shadow: none;
@@ -1249,20 +1252,12 @@ $progress-height: 6px;
             max-width: 50%;
             margin: auto;
         }
-    }
-    page-task-detail{
-        .scroll-content{
-            display: flex;
-            .task-header{
-                flex: 5;
-            }
-            .task-content{
-                flex: 3;
-                padding: $global-base-padding;
-            }
-            .card{
-                &.task{
-                    margin: 0;
+        .modal.card{
+            &.icon{
+                padding-top: 40% !important;
+                img.head-icon{
+                    max-width: 50%;
+                    top: -25%;
                 }
             }
         }
