@@ -148,9 +148,15 @@ h1{
 
 @media screen and (min-width: 768px){
     route-info.ion-page{
-        max-height: 88%;
+        max-height: 90%;
         top: 50%;
         transform: translateY(-50%);
         border-radius: $border-radius-basic;
+        .footer{
+            min-height: unset;
+            .button[large]{
+                padding-bottom: 0;
+            }
+        }
     }
 }

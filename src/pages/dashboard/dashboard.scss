@@ -106,6 +106,22 @@ page-dashboard {
         .logo{
             margin-top: 36px;
         }
+        .tiles{
+            .tile{
+                .item{
+                    .item-inner{
+                        [item-content]{
+                            .title{
+                                font-size: 2rem;
+                            }
+                            p{
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

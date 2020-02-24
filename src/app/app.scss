@@ -1247,7 +1247,7 @@ $progress-height: 6px;
 
     ion-modal {
         .modal-wrapper {
-            box-shadow: none;
+            box-shadow: none!important;
             width: 50vw;
             max-width: 375px;
             //max-height: 88vh;

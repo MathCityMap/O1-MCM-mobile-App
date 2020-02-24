@@ -187,7 +187,7 @@ page-task-detail {
     page-task-detail{
         .content.padding.bottom .scroll-content{
             display: flex;
-            padding-bottom: 0;
+            padding-bottom: 0!important;
         }
         .task-header{
             flex: 55;
@@ -205,8 +205,9 @@ page-task-detail {
         }
         .task-content{
             flex: 45;
-            padding-top: $global-medium-padding*2;
+            height: 100%;
             margin-bottom: 0;
+            padding-top: $global-medium-padding*2;
             overflow: scroll;
             .transition{
                 //left: -30px;
