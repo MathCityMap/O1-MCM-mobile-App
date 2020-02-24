@@ -1,6 +1,6 @@
 page-dashboard {
     .content{
-        background: url("../assets/images/pattern-dashboard.svg") center / 160%  repeat color($colors, primary);
+        background: url("../assets/images/pattern-dashboard.svg") center / 133%  repeat color($colors, primary);
         .stretch-container{
             padding-left: $global-small-padding;
             padding-right: $global-small-padding;
@@ -32,11 +32,14 @@ page-dashboard {
                 border-radius: $border-radius-basic;
                 .item-inner{
                     padding: 0!important;
+                    .label{
+                        display: none;
+                    }
                     [item-content]{
                         justify-content: space-between;
                         display: flex;
                         flex-direction: column;
-                        height: 100%;
+                        @include size(100%);
                         .title{
                             margin-bottom: $global-small-padding;
                         }
@@ -102,6 +105,22 @@ page-dashboard {
     @media screen and (min-width: 375px) {
         .logo{
             margin-top: 36px;
+        }
+        .tiles{
+            .tile{
+                .item{
+                    .item-inner{
+                        [item-content]{
+                            .title{
+                                font-size: 2rem;
+                            }
+                            p{
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

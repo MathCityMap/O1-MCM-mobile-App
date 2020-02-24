@@ -201,7 +201,7 @@ route-teaser {
 
             }
             &.text{
-                padding-left: 0;
+                padding-left: 0!important;
                 padding-right: $global-small-padding;
                 .bottom{
                     .text{
@@ -283,6 +283,86 @@ routes{
         }
         .detail-box{
             padding: 0!important;
+        }
+    }
+}
+
+
+@media screen and (min-width: 768px){
+    routes-list, routes-map {
+        route-teaser {
+            .main {
+                padding: $global-base-padding;
+                .container{
+                    &.image{
+                        .indicator{
+                            right: 0;
+                            top: 100%;
+                            left: unset;
+                            transform: rotate(45deg) rotate(-45deg) translate(4px, calc(-100% - 4px));
+                            margin: 0;
+                        }
+                    }
+                    &.text{
+                        padding-left: $global-base-padding;
+                        span.icon{
+                            font-size: 16px;
+                        }
+                    }
+                    &.buttons{
+                        .button.dot{
+                            @include size(34px);
+                        }
+                    }
+                }
+            }
+            .secondary{
+                padding-left: $global-base-padding;
+                padding-right: $global-base-padding;
+            }
+            &.downloaded{
+                min-height: unset;
+            }
+        }
+    }
+    routes-list {
+        ion-list {
+            display: flex;
+            flex-wrap: wrap;
+            route-teaser {
+                flex-basis: 50%;
+                &:nth-of-type(even){
+                    border-left: 1px dotted color($colors, light-grey) !important;
+                }
+                &.downloaded{
+                    margin: 8px;
+                    flex-basis: calc(50% - 8px*2);
+                    &:last-of-type, &:nth-of-type(odd):nth-last-child(2){
+                        margin-bottom: calc(#{$fab-size} + #{$global-base-padding})!important;
+                    }
+                }
+            }
+        }
+    }
+    route-teaser, .detail-box {
+        .container.image, .image-container {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    }
+    .map .detail-box {
+        padding: $global-base-padding;
+        .text-container{
+            max-width: unset;
+            padding-left: $global-base-padding;
+            .segmented-box{
+                .segement.buttons{
+                    button.button-round-ios.button-small-ios, button.button-round-md.button-small-md{
+                        max-height: 34px;
+                        padding: 0 $global-base-padding;
+                    }
+                }
+            }
         }
     }
 }
