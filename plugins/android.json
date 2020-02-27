@@ -74,10 +74,16 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-badge": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "es6-promise-plugin": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     }

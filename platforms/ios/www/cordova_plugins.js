@@ -433,6 +433,14 @@ module.exports = [
         "clobbers": [
             "navigator.geolocation"
         ]
+    },
+    {
+        "id": "cordova-plugin-screen-orientation.screenorientation",
+        "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+        "pluginId": "cordova-plugin-screen-orientation",
+        "clobbers": [
+            "cordova.plugins.screenorientation"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -460,7 +468,8 @@ module.exports.metadata =
     "cordova-sqlite-storage": "2.0.4",
     "cordova.plugins.diagnostic": "3.9.1",
     "com.jjdltc.cordova.plugin.zip": "1.1.0",
-    "cordova-plugin-geolocation": "2.4.3"
+    "cordova-plugin-geolocation": "2.4.3",
+    "cordova-plugin-screen-orientation": "3.0.2"
 };
 // BOTTOM OF METADATA
 });

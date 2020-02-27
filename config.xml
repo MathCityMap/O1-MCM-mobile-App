@@ -113,6 +113,20 @@
         <config-file parent="NSRemindersUsageDescription" platform="ios" target="*-Info.plist">
             <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
         </config-file>
+        <config-file parent="UISupportedInterfaceOrientations" platform="ios" target="-Info.plist">
+            <array>
+                <string>UIInterfaceOrientationPortrait</string>
+                <string>UIInterfaceOrientationPortraitUpsideDown</string>
+            </array>
+        </config-file>
+        <config-file parent="UISupportedInterfaceOrientations~ipad" platform="ios" target="-Info.plist">
+            <array>
+                <string>UIInterfaceOrientationPortrait</string>
+                <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                <string>UIInterfaceOrientationLandscapeLeft</string>
+                <string>UIInterfaceOrientationLandscapeRight</string>
+            </array>
+        </config-file>
     </platform>
     <allow-navigation href="*" />
     <allow-navigation href="http://10.0.1.51:8100" />
@@ -153,4 +167,5 @@
     <plugin name="cordova-plugin-app-version" spec="~0.1.9" />
     <plugin name="cordova-custom-config" spec="^4.0.2" />
     <plugin name="com.jjdltc.cordova.plugin.zip" spec="./plugin-src/com.jjdltc.cordova.plugin.zip" />
+    <plugin name="cordova-plugin-screen-orientation" spec="~3.0.2" />
 </widget>

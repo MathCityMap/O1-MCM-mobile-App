@@ -6,6 +6,7 @@ import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 
 import { LanguageService } from '../services/language-service';
 import { ChatAndSessionService } from '../services/chat-and-session-service';
+import {ScreenOrientation} from "@ionic-native/screen-orientation";
 
 
 export enum MCMModalType {
@@ -26,12 +27,19 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
               languageService: LanguageService, chatService: ChatAndSessionService,
-              events: Events) {
+              events: Events, screenOrientation: ScreenOrientation) {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // statusBar.styleDefault();
       // statusBar.show();
+        console.log('platform.is(\'tablet\')');
+        console.log(platform.is('tablet'));
+        console.log('############');
+        if(platform.is('cordova') && !platform.is('tablet')){
+            //force portrait mode on phones
+            screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+        }
     });
     languageService.initialize().then(() => splashScreen.hide());
     statusBar.backgroundColorByHexString('#035f87'); // set status bar color

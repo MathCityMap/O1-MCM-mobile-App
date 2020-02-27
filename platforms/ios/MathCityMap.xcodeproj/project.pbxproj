@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		018026EC64BC481098411585 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8487ED049BED4B4AB735E85A /* Contacts.framework */; };
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
@@ -74,6 +73,7 @@
 		FCED4A01CAA44FF2A92D7B68 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E261CA10D64457BBB1598F /* CDVFile.m */; };
 		FD0DFE530B774B3E8AF9A253 /* RequestLocationAccuracy.m in Sources */ = {isa = PBXBuildFile; fileRef = B96D216D19B24C2CBACFBCAE /* RequestLocationAccuracy.m */; };
 		FFACA4E1515ECF2535CF43F2 /* libPods-MathCityMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58BDD0F56240ECBC1B7A64D4 /* libPods-MathCityMap.a */; };
+		DA86337678994BE5BA414204 /* CDVOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E674AC08AC4A5B9BC91D4D /* CDVOrientation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +222,8 @@
 		F6D870314D634E91BB83714F /* CDVStatusBar.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = MathCityMap/config.xml; sourceTree = "<group>"; };
 		FE63BF2A088348A9BAE365DA /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = "cordova-plugin-advanced-http/AFHTTPSessionManager.m"; sourceTree = "<group>"; };
+		D9E674AC08AC4A5B9BC91D4D /* CDVOrientation.m */ = {isa = PBXFileReference; name = "CDVOrientation.m"; path = "cordova-plugin-screen-orientation/CDVOrientation.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		4FA4CDBF11EE4E43B1604A64 /* CDVOrientation.h */ = {isa = PBXFileReference; name = "CDVOrientation.h"; path = "cordova-plugin-screen-orientation/CDVOrientation.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,6 +446,8 @@
 				AD31DA97266944A9889E3BE2 /* Diagnostic.h */,
 				5B33421558554A8B8EBE8096 /* JJzip.h */,
 				533BA56A5F5E49B9AD95A0FF /* JJzip.m */,
+				D9E674AC08AC4A5B9BC91D4D /* CDVOrientation.m */,
+				4FA4CDBF11EE4E43B1604A64 /* CDVOrientation.h */,
 			);
 			name = Plugins;
 			path = MathCityMap/Plugins;
@@ -649,6 +653,7 @@
 				04AC6364E45746BB83773682 /* Diagnostic.m in Sources */,
 				D1FF73A5FFB542BBAF532EB6 /* JJzip.h in Sources */,
 				6D1D7CF0BA504571A3F08B89 /* JJzip.m in Sources */,
+				DA86337678994BE5BA414204 /* CDVOrientation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,7 +680,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2.4.14;
+				CURRENT_PROJECT_VERSION = 2.6;
 				DEVELOPMENT_TEAM = 52N63JF6C2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -691,7 +696,7 @@
 				INFOPLIST_FILE = "MathCityMap/MathCityMap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.4.14;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_NAME = MathCityMap;
 				PROVISIONING_PROFILE_SPECIFIER = "MathCityMap Development";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -709,7 +714,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 2.4.14;
+				CURRENT_PROJECT_VERSION = 2.6;
 				DEVELOPMENT_TEAM = 52N63JF6C2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -723,7 +728,7 @@
 				INFOPLIST_FILE = "MathCityMap/MathCityMap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.4.14;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_NAME = MathCityMap;
 				PROVISIONING_PROFILE_SPECIFIER = "MathCityMap Hybrid Profile";
 				TARGETED_DEVICE_FAMILY = "1,2";
