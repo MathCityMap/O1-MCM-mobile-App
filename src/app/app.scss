@@ -1229,6 +1229,23 @@ $progress-height: 6px;
     }
 }
 
+progress-bar{
+    .progress-outer[_ngcontent-c0]{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: rgba(color($colors, primary-darker), 0.2);
+        border: none;
+    }
+    .progress-inner[_ngcontent-c0]{
+        min-width: 12%;
+        padding: 0;
+        font-size: 12px;
+        font-family: 'NunitoBold', Helvetica, sans-serif;
+    }
+}
+
 
 
 //overwrite implicit ionic styling for tabs on ios devices
