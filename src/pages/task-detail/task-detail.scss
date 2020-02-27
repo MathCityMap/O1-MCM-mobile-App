@@ -183,7 +183,7 @@ page-task-detail {
 
 
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) and (orientation: landscape){
     page-task-detail{
         .content.padding.bottom .scroll-content{
             display: flex;
