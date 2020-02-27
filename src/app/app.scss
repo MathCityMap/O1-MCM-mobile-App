@@ -57,7 +57,7 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
 @each $prefix in $prefix {
     .header{
         .toolbar {
-            padding-top: calc(10px + #{#{$prefix}$root-top});
+            padding-top: calc(12px + #{#{$prefix}$root-top});
         }
     }
     .content {
@@ -152,6 +152,29 @@ ion-header{
         min-height: $size-large;
         &:not([transparent="true"]){
             box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+            .bar-buttons{
+                position: absolute;
+                height: 100%;
+                width: 44px;
+                box-sizing: content-box;
+                padding: 0 $global-small-padding/2;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                bottom: 0;
+                &[left]{
+                    left: 0;
+                }
+                &[end]{
+                    right: 0;
+                }
+                button{
+                    width: 100%;
+                    min-height: $size-large;
+                    margin: 0 auto;
+                }
+            }
         }
         &[transparent="true"]{
             button{
@@ -171,14 +194,6 @@ ion-header{
         border: none;
         border-color: transparent;
     }
-    .bar-buttons{
-        width: 32px;
-        padding: 3px;
-        button{
-            width: 100%;
-            margin: 0 auto;
-        }
-    }
     .header-icon {
         width: 30px;
         height: 30px;
@@ -197,7 +212,8 @@ ion-header{
         font-size: 24px;
         font-weight: 500;
         overflow: hidden;
-        margin-top: 1%;
+        margin-top: 2px;
+        padding: 0 calc(#{$size-large} - #{$global-small-padding});
     }
 }
 
@@ -314,7 +330,9 @@ input{
 //  Search bar
 
 .searchbar{
-    padding-left: 0;
+    padding: 0!important;
+    padding-right: calc(#{$size-large} - #{$global-small-padding})!important;
+    min-height: unset;
     .searchbar-search-icon,.searchbar-clear-icon{
         background-size: 80%;
         @include size(30px);
