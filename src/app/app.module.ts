@@ -51,6 +51,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
 import {ProgressBarModule} from "angular-progress-bar";
+import {ScreenOrientation} from "@ionic-native/screen-orientation";
+
 
 
 @NgModule({
@@ -120,6 +122,7 @@ import {ProgressBarModule} from "angular-progress-bar";
         InAppBrowser,
         AppVersion,
         Globalization,
+        ScreenOrientation,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

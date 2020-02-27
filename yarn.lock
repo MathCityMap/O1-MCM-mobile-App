@@ -153,6 +153,13 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/photo-viewer/-/photo-viewer-4.4.2.tgz#74b3e939bfd3e00256d81fea13a7ab1d5b678aa5"
   integrity sha512-LgG0yKP0LWqJ0OeQA4fLViz5zgtjELBGVlQnXDQP7hUXbUTaM3+TJ4UHdW3V43DWCxepKUfINENRsf+WKPOXSw==
 
+"@ionic-native/screen-orientation@^5.21.6":
+  version "5.21.6"
+  resolved "https://registry.yarnpkg.com/@ionic-native/screen-orientation/-/screen-orientation-5.21.6.tgz#f00f38fff2106e10fa537f3cfaec0a25651b2470"
+  integrity sha512-jarpQbsPTtZOYOGZWC8vJeXSkTKTpcHMn1OZfrGBGohNHE5E8hnoZTHkjGxfBtRSzfoaQtSgS6Juu07ONLMbCg==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/spinner-dialog@4.4.2":
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/@ionic-native/spinner-dialog/-/spinner-dialog-4.4.2.tgz#0671409f7b058a9f09c8e065e8ed8403971e3779"
@@ -288,6 +295,11 @@
   version "0.24.28"
   resolved "https://registry.yarnpkg.com/@types/autolinker/-/autolinker-0.24.28.tgz#37976f20c6e0abde283784fdc6b91cc6cb90e8dc"
   integrity sha1-N5dvIMbgq94oN4T9xrkcxsuQ6Nw=
+
+"@types/cordova@latest":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
+  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
 
 "@types/geojson@*":
   version "7946.0.7"
@@ -1421,6 +1433,9 @@ com-sarriaroman-photoviewer@~1.1.18:
   resolved "https://registry.yarnpkg.com/com-sarriaroman-photoviewer/-/com-sarriaroman-photoviewer-1.1.22.tgz#830544d762546a3e7f1daef59c4150f06d100f0b"
   integrity sha512-EC+ItYPOWvWrg7kj+VG9lJnbpw+O6j35pUWLlL2x5bWa9oX/UQWgY1l9+lcCYBg/Tuu4iwWGe316SK9i03LV0Q==
 
+com.jjdltc.cordova.plugin.zip@./plugin-src/com.jjdltc.cordova.plugin.zip:
+  version "1.1.0"
+
 combine-source-map@^0.8.0, combine-source-map@~0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/combine-source-map/-/combine-source-map-0.8.0.tgz#a58d0df042c186fcf822a8e8015f5450d2d79a8b"
@@ -1796,10 +1811,8 @@ cordova-plugin-file@4.3.3:
   resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-4.3.3.tgz#012e97aa1afb91f84916e6341b548366d23de9b9"
   integrity sha1-AS6Xqhr7kfhJFuY0G1SDZtI96bk=
 
-cordova-plugin-geolocation@2.4.3:
+cordova-plugin-geolocation@./plugin-src/cordova-plugin-geolocation:
   version "2.4.3"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-geolocation/-/cordova-plugin-geolocation-2.4.3.tgz#1dd00023d1f1a2ce330f8767ed08f7b738fe7184"
-  integrity sha1-HdAAI9Hxos4zD4dn7Qj3tzj+cYQ=
 
 cordova-plugin-globalization@~1.0.9:
   version "1.0.9"
@@ -1866,9 +1879,6 @@ cordova-sqlite-storage@2.0.4:
   integrity sha1-i1zmXGO0awQVynASzFe/JxGyA3E=
   dependencies:
     cordova-sqlite-storage-dependencies "1.0.4"
-
-"cordova-zip-plugin@file:plugin-src/com.jjdltc.cordova.plugin.zip":
-  version "1.1.0"
 
 cordova.plugins.diagnostic@~3.9.1:
   version "3.9.2"

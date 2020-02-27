@@ -72,6 +72,9 @@
         "cordova-plugin-geolocation": {
             "GEOLOCATION_USAGE_DESCRIPTION": "MathCityMap would like to know your position to show distance to available routes.",
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {

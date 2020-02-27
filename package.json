@@ -33,6 +33,7 @@
     "@ionic-native/location-accuracy": "4.4.2",
     "@ionic-native/network": "4.4.2",
     "@ionic-native/photo-viewer": "4.4.2",
+    "@ionic-native/screen-orientation": "^4.4.2",
     "@ionic-native/spinner-dialog": "4.4.2",
     "@ionic-native/splash-screen": "4.3.0",
     "@ionic-native/sqlite": "4.3.2",
@@ -49,6 +50,7 @@
     "angular-progress-bar": "1.0.0",
     "async": "2.6.0",
     "com-sarriaroman-photoviewer": "~1.1.18",
+    "com.jjdltc.cordova.plugin.zip": "./plugin-src/com.jjdltc.cordova.plugin.zip",
     "conic-gradient": "^1.0.0",
     "cordova": "6",
     "cordova-android": "^6.3.0",
@@ -93,8 +95,7 @@
     "typeorm": "0.1.6",
     "typescript-collections": "1.2.5",
     "xml2json-cli": "^1.1.1",
-    "zone.js": "0.8.18",
-    "com.jjdltc.cordova.plugin.zip": "./plugin-src/com.jjdltc.cordova.plugin.zip"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.3",

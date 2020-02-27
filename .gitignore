@@ -44,3 +44,5 @@ platforms/ios/MathCityMap.xcodeproj/project.xcworkspace/xcuserdata
 release-signing.properties
 platforms/ios/MathCityMap.xcworkspace/xcuserdata
 platforms/android/.gradle
+platforms/ios/Pods/Pods.xcodeproj/xcuserdata
+mathcitymap.keystore

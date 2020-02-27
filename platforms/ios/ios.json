@@ -103,6 +103,10 @@
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"CDVOrientation\"><param name=\"ios-package\" value=\"CDVOrientation\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -260,6 +264,9 @@
         },
         "cordova-plugin-geolocation": {
             "GEOLOCATION_USAGE_DESCRIPTION": "MathCityMap would like to know your position to show distance to available routes.",
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
@@ -698,6 +705,14 @@
             "clobbers": [
                 "navigator.geolocation"
             ]
+        },
+        {
+            "id": "cordova-plugin-screen-orientation.screenorientation",
+            "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+            "pluginId": "cordova-plugin-screen-orientation",
+            "clobbers": [
+                "cordova.plugins.screenorientation"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -723,6 +738,7 @@
         "cordova-sqlite-storage": "2.0.4",
         "cordova.plugins.diagnostic": "3.9.1",
         "com.jjdltc.cordova.plugin.zip": "1.1.0",
-        "cordova-plugin-geolocation": "2.4.3"
+        "cordova-plugin-geolocation": "2.4.3",
+        "cordova-plugin-screen-orientation": "3.0.2"
     }
 }
