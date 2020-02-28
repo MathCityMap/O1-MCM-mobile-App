@@ -341,8 +341,10 @@ input{
         left: 0;
         @include middle-absolute-v;
         background: url(../assets/icons/search.svg) no-repeat center;
+        pointer-events: none;
     }
     .searchbar-clear-icon{
+        right: $global-small-padding/2;
         background-image: url(../assets/icons/clear.svg);
         height: 100%;
     }
