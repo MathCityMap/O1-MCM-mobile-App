@@ -169,7 +169,7 @@ route-teaser {
         .main{
             flex: 1;
             align-items: flex-end;
-            padding: 22px 20px $global-base-padding*0.75;
+            padding: 22px $global-medium-padding $global-base-padding*0.75;
         }
         .container{
             &.image{
