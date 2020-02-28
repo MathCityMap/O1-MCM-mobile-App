@@ -95,7 +95,8 @@
     "typeorm": "0.1.6",
     "typescript-collections": "1.2.5",
     "xml2json-cli": "^1.1.1",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "cordova-plugin-screen-orientation": "~3.0.2"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.3",
@@ -130,7 +131,8 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-app-version": {},
       "cordova-custom-config": {},
-      "com.jjdltc.cordova.plugin.zip": {}
+      "com.jjdltc.cordova.plugin.zip": {},
+      "cordova-plugin-screen-orientation": {}
     },
     "platforms": [
       "ios",
