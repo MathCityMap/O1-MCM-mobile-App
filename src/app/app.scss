@@ -60,6 +60,11 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
             padding-top: calc(12px + #{#{$prefix}$root-top});
         }
     }
+    page-dashboard{
+        .logo{
+            padding-top: #{#{$prefix}$root-top};
+        }
+    }
     .content {
         &.padding{
             .scroll-content {
@@ -197,6 +202,7 @@ ion-header{
     .header-icon {
         width: 30px;
         height: 30px;
+        pointer-events: none;
     }
     .logo-bar{
         display: flex;

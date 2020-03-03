@@ -292,7 +292,7 @@ routes{
     routes-list, routes-map {
         route-teaser {
             .main {
-                padding: $global-base-padding;
+                padding: $global-base-padding!important;
                 .container{
                     &.image{
                         .indicator{
