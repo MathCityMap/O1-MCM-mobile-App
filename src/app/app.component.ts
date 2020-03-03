@@ -33,12 +33,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       // statusBar.styleDefault();
       // statusBar.show();
-        console.log('platform.is(\'tablet\')');
-        console.log(platform.is('tablet'));
-        console.log('############');
-        if(platform.is('cordova') && !platform.is('tablet')){
-            //force portrait mode on phones
-            screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+        if(platform.is('cordova')){
+            if(platform.is('tablet')){
+                //force landscape mode on tablets
+                screenOrientation.lock(screenOrientation.ORIENTATIONS.LANDSCAPE);
+            }else{
+                //force portrait mode on phones
+                screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+            }
         }
     });
     languageService.initialize().then(() => splashScreen.hide());
