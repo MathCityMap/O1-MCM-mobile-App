@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Events, Platform} from 'ionic-angular';
+import {AlertController, App, Events, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
@@ -7,6 +7,8 @@ import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 import { LanguageService } from '../services/language-service';
 import { ChatAndSessionService } from '../services/chat-and-session-service';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
+import {TranslateService} from "@ngx-translate/core";
+
 
 
 export enum MCMModalType {
@@ -27,7 +29,8 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
               languageService: LanguageService, chatService: ChatAndSessionService,
-              events: Events, screenOrientation: ScreenOrientation) {
+              events: Events, app: App, alertCtrl: AlertController, translate: TranslateService, screenOrientation: ScreenOrientation) {
+
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -43,6 +46,27 @@ export class MyApp {
             }
         }
     });
+
+    platform.registerBackButtonAction(async () => {
+      let nav = app.getActiveNavs()[0];
+
+      if (!nav.canGoBack()) {
+        const alert = alertCtrl.create({
+          title: translate.instant("a_alert_confirm_close"),
+          buttons: [{
+            text:  translate.instant("no"),
+            role: 'cancel'
+          },{
+            text:  translate.instant("yes"),
+            handler: () => {
+              platform.exitApp();
+            }
+          }]
+        });
+        alert.present();
+      }
+    });
+
     languageService.initialize().then(() => splashScreen.hide());
     statusBar.backgroundColorByHexString('#035f87'); // set status bar color
       // Keyboard key tab (used in the app.html template)
