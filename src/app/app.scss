@@ -1283,6 +1283,11 @@ progress-bar{
     transition: all 2s linear;
 }
 
+.marker.userArrow {
+    transition: all 0.5s linear;
+}
+
+
 
 @media screen and (min-width: 768px){
 
@@ -1318,4 +1323,3 @@ progress-bar{
 .marker.userArrow {
     transition: all 0.5s linear;
 }
-
