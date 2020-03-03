@@ -1,4 +1,7 @@
 page-tasks-map {
+    ion-content{
+        z-index: -1;
+    }
     .map .detail-box {
         &#ranking{
             bottom: auto;
