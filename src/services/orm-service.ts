@@ -330,7 +330,8 @@ export class OrmService {
                         alreadyDownloadedUrls.push(tile);
                     });
             } else {
-                await CacheManagerMCM.downloadTiles(route, Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
+                let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
+                await CacheManagerMCM.downloadTiles(route, zoomLevels.min_zoom, zoomLevels.max_zoom, (done, total, url) => {
                     alreadyDownloadedUrls.push(url);
                     return statusCallback(done, total);
                 });
@@ -356,7 +357,8 @@ export class OrmService {
     }
 
     getTileURLs(route: Route) {
-        return CacheManagerMCM.getTileURLs(route, Helper.min_zoom, Helper.max_zoom);
+        let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
+        return CacheManagerMCM.getTileURLs(route, zoomLevels.min_zoom, zoomLevels.max_zoom);
     }
 
     getTileURLsAsObject(route: Route) {

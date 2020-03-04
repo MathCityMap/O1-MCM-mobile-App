@@ -363,14 +363,14 @@ export class TaskDetailMap implements OnDestroy {
                 Helper.testLocation.coords.longitude = e.latlng.lng;
             });
 
-
+            let zoomLevels = Helper.calculateZoom(this.route.getViewBoundingBoxLatLng());
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
                 let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
                     attribution:'&copy; mapbox.com',
                     subdomains: subDomains,
-                    minZoom: Helper.min_zoom,
-                    maxZoom: Helper.max_zoom,
+                    minZoom: zoomLevels.min_zoom,
+                    maxZoom: zoomLevels.max_zoom,
                     tileSize: 256,
                     crossOrigin: true,
                     detectRetina: true,
