@@ -74,7 +74,7 @@
     <div class="card">
         <ion-label>{{'current_progress' | translate}}</ion-label>
         <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>
-        <div class="evaluation" *ngIf="route?.completed">
+        <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">
             <span class="icon finished">{{route.completedDate}}</span>
             <div class="ratings">
                 <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
