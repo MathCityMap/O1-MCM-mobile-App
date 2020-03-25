@@ -32,6 +32,7 @@ import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-an
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "../../../../../node_modules/rxjs";
+import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
@@ -153,32 +154,47 @@ export class TasksMap implements OnInit, OnDestroy {
 
   showTrailCompletedAlert(){
       let that = this;
-      let title = 'a_alert_congrats';
-      let message = 'a_alert_congrats_msg';
-      if (this.route.isNarrativeEnabled()) {
-        title = this.route.getNarrativeString(title);
-        message = this.route.getNarrativeString(message);
-      }
-      let modal = this.modalCtrl.create(MCMIconModal,  {
-          title: title,
-          message: message,
-          modalType: MCMModalType.solved,
-          param: {TITLE: this.route.title},
-          narrativeEnabled: this.route.isNarrativeEnabled(),
-          narrative: this.app.activeNarrative,
-          buttons: [
-              {
-                  title: 'a_alert_close',
-                  callback: function(){
-                      modal.dismiss().then(() => {
-                          that.route.completed = true;
-                          that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-                          that.ormService.saveAndFireChangedEvent(that.route);
-                      });
-                  }
+      let modal = this.modalCtrl.create(MCMTrailFinishedModal,
+          {
+              score: this.score,
+              tasks: this.taskList,
+              narrative: this.app.activeNarrative,
+              callback: function() {
+                  modal.dismiss().then(() => {
+                      that.route.completed = true;
+                      that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+                      that.ormService.saveAndFireChangedEvent(that.route);
+                  });
               }
-          ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+          }, {cssClass: this.app.activeNarrative});
       modal.present();
+      // let that = this;
+      // let title = 'a_alert_congrats';
+      // let message = 'a_alert_congrats_msg';
+      // if (this.route.isNarrativeEnabled()) {
+      //   title = this.route.getNarrativeString(title);
+      //   message = this.route.getNarrativeString(message);
+      // }
+      // let modal = this.modalCtrl.create(MCMIconModal,  {
+      //     title: title,
+      //     message: message,
+      //     modalType: MCMModalType.solved,
+      //     param: {TITLE: this.route.title},
+      //     narrativeEnabled: this.route.isNarrativeEnabled(),
+      //     narrative: this.app.activeNarrative,
+      //     buttons: [
+      //         {
+      //             title: 'a_alert_close',
+      //             callback: function(){
+      //                 modal.dismiss().then(() => {
+      //                     that.route.completed = true;
+      //                     that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+      //                     that.ormService.saveAndFireChangedEvent(that.route);
+      //                 });
+      //             }
+      //         }
+      //     ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+      // modal.present();
   }
 
 
