@@ -74,8 +74,10 @@ export class TasksMap implements OnInit, OnDestroy {
     taskFailedIcon;
 
     userPositionIcon;
+    userPositionArrow;
     userMarker: any;
     prevPos: any;
+    isUserInsideMap: boolean = true;
 
     currentScore: any;
     user = null;
@@ -575,11 +577,12 @@ export class TasksMap implements OnInit, OnDestroy {
           })
           let map = this.map;
           await tilesDb.initialize();
+          let zoomLevels = Helper.calculateZoom(this.route.getViewBoundingBoxLatLng());
           let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
               attribution: '&copy; mapbox.com',
               subdomains: subDomains,
-              minZoom: Helper.min_zoom,
-              maxZoom: Helper.max_zoom,
+              minZoom: zoomLevels.min_zoom,
+              maxZoom: zoomLevels.max_zoom,
               tileSize: 256,
               crossOrigin: true,
               detectRetina: true,
@@ -604,15 +607,40 @@ export class TasksMap implements OnInit, OnDestroy {
                         this.watchSubscription = this.gpsService.watchPosition().subscribe(resp => {
                             if (resp && resp.coords) {
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
-                                this.userMarker.setLatLng(lanlng);
-                                //Rotate the user marker
-                                if(this.prevPos!=null) {
-                                  let angle = Helper.getAngle(this.prevPos, resp.coords);
-                                  this.userMarker.setRotationAngle(angle);
+                                let bBox = this.map.getBounds();
+                                if(bBox.contains(lanlng)){
+                                    // User entered visible map bounding box -> Change Icon
+                                    if(!this.isUserInsideMap){
+                                        this.userMarker.setIcon(this.userPositionIcon);
                                     }
+                                    this.userMarker.setLatLng(lanlng);
+                                    //Rotate the user marker
+                                    if(this.prevPos!=null) {
+                                        let angle = Helper.getAngle(this.prevPos, resp.coords);
+                                        this.userMarker.setRotationAngle(angle);
+                                    }
+                                    this.isUserInsideMap = true;
+                                }
+                                else{
+                                    // User left visible map bounding box -> Change icon to arrow
+                                    if(this.isUserInsideMap){
+                                        this.userMarker.setIcon(this.userPositionArrow);
+                                    }
+                                    this.updateUserLocationArrow(lanlng);
+                                    this.isUserInsideMap = false;
+                                }
                                 this.prevPos = resp.coords;
                             }
                         });
+
+                        // Add map listener events
+                        this.map.on('moveend', e => {
+                            if(!this.isUserInsideMap){
+                                this.updateUserLocationArrow(new L.LatLng(this.prevPos.latitude, this.prevPos.longitude))
+                            }
+                        });
+
+
                     }
                 })
                 .catch(error => {
@@ -620,13 +648,14 @@ export class TasksMap implements OnInit, OnDestroy {
                 });
 
           const tiles = this.ormService.getTileURLsAsObject(this.route);
+          const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
           let that = this;
           offlineLayer.getTileUrl = function (coords) {
               var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
               var dbStorageKey = this._getStorageKey(url);
 
               if (tiles[dbStorageKey]) {
-                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
+                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles));
               }
               return Promise.resolve(url);
 
@@ -671,6 +700,41 @@ export class TasksMap implements OnInit, OnDestroy {
             /* todo: show only selectedTask */
           }
       }
+  }
+
+  /*
+  @description: Shows direction arrow pointing towards users geolocation if he isn't inside the current boundaries
+  @param userLatLng array - [lat, lng]
+   */
+  updateUserLocationArrow(userLatLng){
+       if(!userLatLng){
+           return;
+       }
+      let bBox = this.map.getBounds();
+      let alpha = (L as any).GeometryUtil.bearing(this.map.getCenter(), userLatLng);
+      let beta = (L as any).GeometryUtil.bearing(this.map.getCenter(), bBox.getNorthEast());
+      let dx2 = ((L as any).GeometryUtil.length([bBox.getNorthWest(), bBox.getNorthEast()])) / 2;
+      let dy2 = ((L as any).GeometryUtil.length([bBox.getSouthWest(), bBox.getNorthWest()])) / 2;
+      let length = 0;
+
+      // fix negative alpha values
+      if(alpha < 0){
+          alpha = alpha + 360;
+      }
+
+      // Calculate length to bounding box in direction of own position
+      if(
+          (alpha >= beta && alpha <= (180 - beta)) ||
+          (alpha >= (180 + beta) && alpha <= (360 - beta))
+      ){
+          length = Math.abs(dx2 / Math.sin(alpha * (Math.PI / 180)));
+      }
+      else{
+          length = Math.abs(dy2 / Math.cos(alpha * (Math.PI / 180)));
+      }
+      let closestPoint = (L as any).GeometryUtil.destination(this.map.getCenter(), alpha, 0.90 * length);
+      this.userMarker.setLatLng(closestPoint);
+      this.userMarker.setRotationAngle(alpha);
   }
 
   centerSelectedTask(){
@@ -924,6 +988,7 @@ export class TasksMap implements OnInit, OnDestroy {
         switch (this.app.activeNarrative) {
             case 'pirates':
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = L.icon({iconUrl:"./assets/icons/userDirection.png" , iconSize: [36, 36], iconAnchor: [18, 18], className:'marker userArrow'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
                 this.taskOpenIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
                 this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-skipped.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
                 this.taskDoneIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-good.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
@@ -938,6 +1003,7 @@ export class TasksMap implements OnInit, OnDestroy {
                 break;
             default:
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = L.icon({iconUrl:"./assets/icons/userDirection.png" , iconSize: [36, 36], iconAnchor: [18, 18], className:'marker userArrow'});
                 this.taskOpenIcon = L.icon({iconUrl:'assets/icons/marker-task-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
                 this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/marker-task-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
                 this.taskDoneIcon = L.icon({iconUrl:'assets/icons/marker-task-good.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});

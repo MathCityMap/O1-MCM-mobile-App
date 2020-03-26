@@ -6,7 +6,7 @@
         <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">
             <ion-grid class="table">
                 <ion-row class="session" *ngIf="sessionInfo != null && this.showCountdownOrTimer">
-                    <ion-col col-2>
+                    <ion-col col class="countdown">
                         <img class="icon countdown" src="./assets/icons/countdown.svg"/>
                     </ion-col>
                     <ion-col>
@@ -30,17 +30,17 @@
                 <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard">
                     <ion-row [ngClass]="{'self' : user.self}"
                              *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">
-                        <ion-col col-2 class="chart">
+                        <ion-col class="chart">
                             <img class="icon arrow" src="./assets/icons/up.svg"
                                  *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self"/>
                             <img class="icon arrow" src="./assets/icons/down.svg"
                                  *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self"/>
                         </ion-col>
 
-                        <ion-col col-7>
+                        <ion-col>
                             <ion-label>{{user.team_name}}</ion-label>
                         </ion-col>
-                        <ion-col col-3>
+                        <ion-col>
                             <ion-label class="score">{{user.score}}</ion-label>
                         </ion-col>
                     </ion-row>

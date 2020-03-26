@@ -142,7 +142,7 @@ export class ModalsService {
             };
             let routeInfoModal = this.modalCtrl.create(RouteInfo, data);
             routeInfoModal.onDidDismiss(result => {
-                if (result.showRoute) {
+                if (result && result.showRoute) {
                     //will probably never showRoute;
                     self.showRoute(result.route, navCtrl, true);
                     success(result.route);

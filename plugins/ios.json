@@ -7,7 +7,21 @@
         "files": {}
     },
     "installed_plugins": {
+        "com-sarriaroman-photoviewer": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-custom-config": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-fabric-plugin": {
+            "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
+            "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3",
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
         "cordova-plugin-advanced-http": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-app-version": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-device": {
@@ -19,8 +33,13 @@
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "cordova-plugin-geolocation": {
-            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-local-notification": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-native-spinner": {
@@ -47,37 +66,14 @@
         "cordova.plugins.diagnostic": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "ionic-plugin-keyboard": {
+        "com.jjdltc.cordova.plugin.zip": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "cordova-plugin-globalization": {
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": "MathCityMap would like to know your position to show distance to available routes.",
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "com-sarriaroman-photoviewer": {
-            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
-        },
-        "cordova-plugin-local-notification": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-fabric-plugin": {
-            "FABRIC_API_KEY": "d7afdb0a3dde9cb4ad71ce2afee5a6ed91bb7e64",
-            "FABRIC_API_SECRET": "28e9bafde641c5c7a362a43ee319a030c1393053f3d5e3fb15f2fc11bf4d89a3",
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-app-version": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-custom-config": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
-        },
-        "cordova-plugin-media": {
-            "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
-        "cordova-plugin-camera": {
+        "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },

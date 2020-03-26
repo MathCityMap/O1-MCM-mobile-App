@@ -29,6 +29,7 @@ export class RoutesListPage implements OnDestroy {
     public filteredItems: Route[] = [];
     private routesListSearch: string = "";
 
+    private isOpeningRoute: boolean = false;
     private pipe: SearchPipe;
 
     private filteredResult: Route[];
@@ -268,9 +269,14 @@ export class RoutesListPage implements OnDestroy {
     }
 
     showRouteDetail(item: any) {
-        this.modalsService.showRoute(item, this.navCtrl).then(async () => {
-            await this.updateRoutes();
-        })
+        if(!this.isOpeningRoute){
+            this.isOpeningRoute = true;
+            this.modalsService.showRoute(item, this.navCtrl).then(async () => {
+                this.isOpeningRoute = false;
+                await this.updateRoutes();
+            })
+        }
+
     }
 
     filterItems(){

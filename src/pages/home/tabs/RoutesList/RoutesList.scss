@@ -19,10 +19,12 @@ routes-list {
         & > * {
             padding: $global-base-padding;
             width: 100%;
+            max-width: 80vw;
         }
 
         img{
             width: 33%;
+            max-width: 200px;
         }
         .message{
             color: color($colors, mid-grey);

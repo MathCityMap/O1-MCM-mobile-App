@@ -17,7 +17,6 @@
 
 
 
-
 // =============================================
 // ------------------ BASICS -------------------
 // =============================================
@@ -58,7 +57,12 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
 @each $prefix in $prefix {
     .header{
         .toolbar {
-            padding-top: calc(10px + #{#{$prefix}$root-top});
+            padding-top: calc(12px + #{#{$prefix}$root-top});
+        }
+    }
+    page-dashboard{
+        .logo{
+            padding-top: #{#{$prefix}$root-top};
         }
     }
     .content {
@@ -153,6 +157,29 @@ ion-header{
         min-height: $size-large;
         &:not([transparent="true"]){
             box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+            .bar-buttons{
+                position: absolute;
+                height: 100%;
+                width: 44px;
+                box-sizing: content-box;
+                padding: 0 $global-small-padding/2;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                bottom: 0;
+                &[left]{
+                    left: 0;
+                }
+                &[end]{
+                    right: 0;
+                }
+                button{
+                    width: 100%;
+                    min-height: $size-large;
+                    margin: 0 auto;
+                }
+            }
         }
         &[transparent="true"]{
             button{
@@ -172,17 +199,10 @@ ion-header{
         border: none;
         border-color: transparent;
     }
-    .bar-buttons{
-        width: 32px;
-        padding: 3px;
-        button{
-            width: 100%;
-            margin: 0 auto;
-        }
-    }
     .header-icon {
         width: 30px;
         height: 30px;
+        pointer-events: none;
     }
     .logo-bar{
         display: flex;
@@ -198,7 +218,8 @@ ion-header{
         font-size: 24px;
         font-weight: 500;
         overflow: hidden;
-        margin-top: 1%;
+        margin-top: 2px;
+        padding: 0 calc(#{$size-large} - #{$global-small-padding});
     }
 }
 
@@ -315,7 +336,9 @@ input{
 //  Search bar
 
 .searchbar{
-    padding-left: 0;
+    padding: 0!important;
+    padding-right: calc(#{$size-large} - #{$global-small-padding})!important;
+    min-height: unset;
     .searchbar-search-icon,.searchbar-clear-icon{
         background-size: 80%;
         @include size(30px);
@@ -324,8 +347,10 @@ input{
         left: 0;
         @include middle-absolute-v;
         background: url(../assets/icons/search.svg) no-repeat center;
+        pointer-events: none;
     }
     .searchbar-clear-icon{
+        right: $global-small-padding/2;
         background-image: url(../assets/icons/clear.svg);
         height: 100%;
     }
@@ -505,7 +530,7 @@ ion-list{
     & > *{
         border: none!important;
     }
-    &.list-ios, &.list-md{
+&.list-ios, &.list-md{
     }
 }
 
@@ -1004,34 +1029,38 @@ ion-modal {
         ion-label, ion-label.label-ios, ion-label.label-md{
             margin-bottom: 4px;
         }
-
-        img{
-            display: block;
-            &.head-icon{
-                width: 35vw;
-                margin: 0;
-                position: absolute;
-                top: -14vw;
-                right: 50%;
-                transform: translateX(50%);
-                border: 24px solid #ffffff;
-                box-sizing: content-box;
-                border-radius: 50%;
-                background-color: #ffffff;
-            }
-            &.full-width{
-                width:100%;
-            }
-        }
         .terms{
             font-size: 14px;
             line-height: 1.3;
             max-height: 50vh;
         }
 
+        $modal-icon-size: 36vw;
+        $modal-icon-size-border: 24px;
+
+        img{
+            display: block;
+            &.full-width{
+                width:100%;
+            }
+            &.head-icon{
+                position: absolute;
+                top: 0%;
+                right: 50%;
+                transform: translate(50%, -50%);
+                width: $modal-icon-size;
+                margin: 0;
+                border: $modal-icon-size-border solid #ffffff;
+                box-sizing: content-box;
+                border-radius: 50%;
+                background-color: #ffffff;
+                z-index: -1;
+            }
+        }
+
         &.icon{
-            padding-top: 36vw!important;
-            margin-top: calc(14vw + 20px);
+            padding-top: calc(#{$modal-icon-size}/2 + #{$modal-icon-size-border}) !important;
+            margin-top: calc(#{$modal-icon-size}/2 + #{$global-base-padding});
             .modal-content{
                 max-height: 60vh;
                 overflow: scroll;
@@ -1047,6 +1076,9 @@ ion-modal {
             }
             p.main-text{
                 text-align: center;
+            }
+            &.no-icon{
+                padding-top: 30px!important;
             }
         }
         &.no-icon{
@@ -1223,6 +1255,23 @@ $progress-height: 6px;
     }
 }
 
+progress-bar{
+    .progress-outer[_ngcontent-c0]{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: rgba(color($colors, primary-darker), 0.2);
+        border: none;
+    }
+    .progress-inner[_ngcontent-c0]{
+        min-width: 12%;
+        padding: 0;
+        font-size: 12px;
+        font-family: 'NunitoBold', Helvetica, sans-serif;
+    }
+}
+
 
 
 //overwrite implicit ionic styling for tabs on ios devices
@@ -1232,4 +1281,45 @@ $progress-height: 6px;
 
 .marker.userPosition {
     transition: all 2s linear;
+}
+
+.marker.userArrow {
+    transition: all 0.5s linear;
+}
+
+
+
+@media screen and (min-width: 768px){
+
+    $modal-icon-size: 200px;
+
+    ion-modal {
+        .modal-wrapper {
+            box-shadow: none!important;
+            width: 50vw;
+            max-width: 375px;
+            //max-height: 88vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+        }
+        .image-container{
+            max-width: 50%;
+            margin: auto;
+        }
+        .modal.card{
+            &.icon{
+                padding-top: $modal-icon-size/2 !important;
+                margin-top: $modal-icon-size/2 !important;
+                img.head-icon{
+                    max-width: $modal-icon-size;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+}
+
+.marker.userArrow {
+    transition: all 0.5s linear;
 }

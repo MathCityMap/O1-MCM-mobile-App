@@ -39,6 +39,26 @@ page-task-detail {
             #gpsTaskMap{
                 position: fixed;
                 @include size(100%, $header-height);
+                ion-fab {
+                    //@include transform(translateY(calc(-100% - #{$global-base-padding})));
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    flex-flow: column-reverse;
+                    bottom: 100px;
+                    button {
+                        &:not(:first-of-type){
+                            margin-bottom: $global-small-padding;
+                        }
+                        padding-top: 5px;
+                        span, span .icon{
+                            color: #ffffff;
+                            font-family: 'NunitoExtrabold', Arial, sans-serif;
+                            line-height: 1;
+                            font-size: 20px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -153,29 +173,55 @@ page-task-detail {
             }
         }
     }
-    ion-fab {
-        @include transform(translateY(calc(-100% - #{$global-base-padding})));
-        display: flex;
-        flex-direction: column;
-        flex-flow: column-reverse;
-        right: 0px!important;
-        button {
-            &:not(:first-of-type){
-                margin-bottom: $global-small-padding;
-            }
-            padding-top: 5px;
-            span, span .icon{
-                color: #ffffff;
-                font-family: 'NunitoExtrabold', Arial, sans-serif;
-                line-height: 1;
-                font-size: 20px;
-            }
-        }
-    }
 }
 
 .mcm-keyboard-open{
     .scroll-content{
         margin-bottom: 27vh!important;
+    }
+}
+
+
+
+@media screen and (min-width: 768px) and (orientation: landscape){
+    page-task-detail{
+        .content.padding.bottom .scroll-content{
+            display: flex;
+            padding-bottom: 0!important;
+        }
+        .task-header{
+            flex: 55;
+            &.gps{
+                #gpsTaskMap{
+                    position: relative;
+                    height: 100%;
+                    ion-fab{
+                        bottom: $global-large-padding;
+                        right: $global-base-padding!important;
+                        left: unset;
+                    }
+                }
+            }
+        }
+        .task-content{
+            flex: 45;
+            height: 100%;
+            margin-bottom: 0;
+            padding-top: $global-medium-padding*2;
+            overflow: scroll;
+            .transition{
+                //left: -30px;
+                //height: 100%;
+                //width: 35px;
+                //z-index: 1000;
+                //background: linear-gradient(to left, #e5e5e5 0%, rgba(255, 255, 255, 0) 100%);
+                display: none;
+            }
+        }
+        .card{
+            &.task{
+                margin-top: 0;
+            }
+        }
     }
 }

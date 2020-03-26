@@ -115,7 +115,7 @@ export class ImagesService {
             console.log('Starting download task for ' + task.outputName);
             let url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
                 : Helper.WEBSERVER_URL + encodeURI(task.imgFileName);
-            fileTransfer.download(url, dataDirectory + task.outputName)
+            setTimeout(()=>{fileTransfer.download(url, dataDirectory + task.outputName)
                 .then(() => {
                     if (!createThumbs) {
                         callback();
@@ -144,7 +144,7 @@ export class ImagesService {
                 .catch(error => {
                     console.error(`Error downloading image ${task.imgFileName}`)
                     callback();
-                })
+                })}, 50);
         }, 8);
 
         let promise = new Promise<any>((success, error) => {
@@ -213,7 +213,7 @@ export class ImagesService {
         return promise;
     }
 
-    getLocalFileName(imgPath: string) : string {
+    getLocalFileName(imgPath: string, isMapTile: boolean = false) : string {
         if (imgPath.indexOf('http') === 0) {
             // strip hostname
             imgPath = imgPath.substring(imgPath.indexOf('/', 9) + 1);
@@ -223,14 +223,15 @@ export class ImagesService {
                 imgPath = imgPath.substring(0, queryIndex);
             }
         }
-        return imgPath.replace(/\/| |@/g, '_');
+        return isMapTile ? 'tiles/' + imgPath.replace('v4/mapbox.streets/', '') :
+            imgPath.replace(/\/| |@/g, '_');
     }
 
     getLocalThumbFileName(imgPath: string) : string {
         return 'thumb_' + this.getLocalFileName(imgPath);
     }
 
-    getOfflineURL(imgPath: string, asThumbNail: boolean = false) : string {
+    getOfflineURL(imgPath: string, asThumbNail: boolean = false, isMapTile: boolean = false) : string {
         if (asThumbNail) {
             return this.offlineThumbnailUrlCache[imgPath] ? this.offlineThumbnailUrlCache[imgPath]
                 : this.offlineThumbnailUrlCache[imgPath] =
@@ -239,7 +240,7 @@ export class ImagesService {
         }
         return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
             : this.offlineImageUrlCache[imgPath] =
-                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath)
+                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
                     : this.getOnlineURL(imgPath));
     }
 
@@ -304,46 +305,49 @@ export class ImagesService {
 
 
     public async downloadAndUnzip(route: Route, progressCallback: any, tileCallback: any) {
+        if (!(<any>window).JJzip) {
+            // JJZip is only available on native platforms. In browser we don't need to download
+            return;
+        }
 
-        //Download
         let url = Helper.WEBSERVER_URL + 'mcm_maps/' + route.mapFileName;
-        const headers = new HttpHeaders()
-            .set('Access-Control-Allow-Origin', '*')
-        const req = new HttpRequest('GET', url, {
-            headers,
-            reportProgress: true,
-            responseType: 'arraybuffer',
-        });
-
-       let zip = await new Promise<ArrayBuffer>((success, error) => {
-            this.httpClient.request(req).subscribe((event: HttpEvent<any>) => {
-                if (event.type === HttpEventType.DownloadProgress) {
-                    progressCallback(Math.round(100 * (event.loaded / event.total)));
-                } else if (event.type === HttpEventType.Response) {
-                    success(event.body);
-                } else {
-                    // console.log('Unhandled event, please ignore.');
+        let downloadRequest: FileTransferObject = this.transfer.create();
+        let dataDirectory = this.fileManager.dataDirectory;
+        let pathToFileInString  = dataDirectory + route.mapFileName;
+        await new Promise((success, error) => {
+            downloadRequest.onProgress((progress) => {
+                if (progress.loaded && progress.total && progress.loaded < progress.total) {
+                    if (progress.total > 0) {
+                        if (progressCallback(Math.round(100 * (progress.loaded / progress.total)))) {
+                            error('download was canceled');
+                            downloadRequest.abort();
+                        }
+                    }
                 }
             });
+
+
+            downloadRequest.download(url, pathToFileInString).then((result) => {
+                (<any>window).JJzip.unzip(pathToFileInString, {target: dataDirectory + '/tiles'}, function (data) {
+                    /* Wow everything goes good, but just in case verify data.success */
+                    console.log("victory");
+                    console.log("victory " + JSON.stringify(data));
+                    success();
+                }, function (error) {
+                    /* Wow something goes wrong, check the error.message */
+                    console.log("no victory :(((");
+                    console.log(error)
+                })
+            }).catch((err) => {console.log("ERROR DOWNLOADING: ", err)});
         });
 
-        let zipFile: JSZip = new JSZip();
 
-        zipFile.loadAsync(zip).then(async (result) => {
-            Object.keys(result.files).forEach(async key=>{
-                let storableResult = await result.file(key).async("blob");
-                let parsedName = result.files[key].name.replace(/\/|@/g, "_");
-                parsedName = "v4_mapbox.streets_" + parsedName;
-                tileCallback(parsedName);
-                await this.fileManager.writeFile(this.fileManager.dataDirectory, parsedName, storableResult, {replace: true})
-                    .catch(err=> {console.log("Saving tile to device: ", err)});
-            })
 
-        }).catch(err => {
-            console.error("ERROR unzipping file: ", err);
-        });
 
     }
+
+
+
 
 
 }
