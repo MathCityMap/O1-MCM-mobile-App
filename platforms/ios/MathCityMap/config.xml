@@ -120,7 +120,6 @@
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
-    <allow-navigation href="http://10.0.1.35:8100" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -167,6 +166,9 @@
     <config-file parent="NSCalendarsUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to calendar.</string>
     </config-file>
+    <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
+    </config-file>
     <config-file parent="NSContactsUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
     </config-file>
@@ -176,19 +178,11 @@
     <config-file parent="NSMotionUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to motion detection.</string>
     </config-file>
-    <config-file parent="NSRemindersUsageDescription" platform="ios" target="*-Info.plist">
-        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
-    </config-file>
-    <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
-        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However.</string>
-        <string>We use the camera plugin in order to be able to send pictures via chat.</string>
-    </config-file>
     <config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to photo library.</string>
-        <string>We use the camera plugin in order to be able to send pictures via chat.</string>
     </config-file>
-    <config-file parent="NSPhotoLibraryAddUsageDescription" platform="ios" target="*-Info.plist">
-        <string>We use the camera plugin in order to be able to send pictures via chat.</string>
+    <config-file parent="NSRemindersUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
     </config-file>
     <config-file parent="UISupportedInterfaceOrientations" platform="ios" target="-Info.plist">
         <array>

@@ -258,8 +258,6 @@ dependencies {
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
     compile "com.android.support:support-v4:26.+"
-    compile "com.google.android.gms:play-services-location:11.+"
-    compile "com.android.support:appcompat-v7:26.+"
     compile "com.android.support:support-v4:24.1.1+"
     // SUB-PROJECT DEPENDENCIES END
 }

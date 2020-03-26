@@ -164,4 +164,8 @@
     <plugin name="cordova-custom-config" spec="^4.0.2" />
     <plugin name="com.jjdltc.cordova.plugin.zip" spec="./plugin-src/com.jjdltc.cordova.plugin.zip" />
     <plugin name="cordova-plugin-screen-orientation" spec="~3.0.2" />
+    <plugin name="cordova-plugin-media" spec="~5.0.3">
+        <variable name="KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE" value="NO" />
+    </plugin>
+    <plugin name="cordova-plugin-camera" spec="~4.0.3" />
 </widget>

@@ -163,12 +163,10 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/photo-viewer/-/photo-viewer-4.4.2.tgz#74b3e939bfd3e00256d81fea13a7ab1d5b678aa5"
   integrity sha512-LgG0yKP0LWqJ0OeQA4fLViz5zgtjELBGVlQnXDQP7hUXbUTaM3+TJ4UHdW3V43DWCxepKUfINENRsf+WKPOXSw==
 
-"@ionic-native/screen-orientation@^5.21.6":
-  version "5.21.6"
-  resolved "https://registry.yarnpkg.com/@ionic-native/screen-orientation/-/screen-orientation-5.21.6.tgz#f00f38fff2106e10fa537f3cfaec0a25651b2470"
-  integrity sha512-jarpQbsPTtZOYOGZWC8vJeXSkTKTpcHMn1OZfrGBGohNHE5E8hnoZTHkjGxfBtRSzfoaQtSgS6Juu07ONLMbCg==
-  dependencies:
-    "@types/cordova" latest
+"@ionic-native/screen-orientation@^4.4.2":
+  version "4.20.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/screen-orientation/-/screen-orientation-4.20.0.tgz#4337f7e014d9d12d2d9a9b8f8ede9cefa55cf739"
+  integrity sha512-vQaADwj93OFoRwDOJd/67pP/ESaXtfVfL8vinFpsBtlkBvouSTrjEzEht7ZrVfkTuKuDGFzvbFqB8DxLNf6mUg==
 
 "@ionic-native/spinner-dialog@4.4.2":
   version "4.4.2"
@@ -1801,11 +1799,6 @@ cordova-plugin-app-version@~0.1.9:
   resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
   integrity sha1-nbBgeGMzenEEiTAuX1CpBPFEm9s=
 
-cordova-plugin-camera@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.1.0.tgz#6474a3e080c4662aa00fd7425705d301c693ddc0"
-  integrity sha512-fCLhWjWYn49q3X5xaypAPgTz6MAWSKFFQvD2Gpi5SuVlrRPRphtX2jIqR2zCBuDTBR082QVnlc+yUDXt65Mjgw==
-
 cordova-plugin-compat@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-compat/-/cordova-plugin-compat-1.2.0.tgz#0bc65757276ebd920c012ce920e274177576373e"
@@ -1853,6 +1846,11 @@ cordova-plugin-request-location-accuracy@^2.2.2:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-request-location-accuracy/-/cordova-plugin-request-location-accuracy-2.3.0.tgz#46c21ca92e46b7f9a209fbb7f5662562f14cbb97"
   integrity sha512-Rgr3DnRC8PUQyxmsOs76KxvDJB28MoCoYFfceiGn9Nzwsg6nAJmAwEtrYzm283x1cDhBPvzkZ6lzuldTkmnWjA==
+
+cordova-plugin-screen-orientation@~3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-screen-orientation/-/cordova-plugin-screen-orientation-3.0.2.tgz#81290a933cfe84d35482cfcb251c931cc7b71931"
+  integrity sha512-2w6CMC+HGvbhogJetalwGurL2Fx8DQCCPy3wlSZHN1/W7WoQ5n9ujVozcoKrY4VaagK6bxrPFih+ElkO8Uqfzg==
 
 cordova-plugin-splashscreen@4.0.3:
   version "4.0.3"
