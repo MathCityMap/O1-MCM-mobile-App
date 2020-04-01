@@ -74,7 +74,7 @@
     <div class="card">
         <ion-label>{{'current_progress' | translate}}</ion-label>
         <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>
-        <div class="evaluation" *ngIf="route?.completed">
+        <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">
             <span class="icon finished">{{route.completedDate}}</span>
             <div class="ratings">
                 <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
@@ -111,9 +111,14 @@
 
 <ion-footer>
     <button class="play" ion-button full block no-margin no-padding large
-            *ngIf="route"
+            *ngIf="route && (!route.scores || route.scores.length === 0)"
             [disabled]="!route.downloaded" (click)="showRoute(route)">
         <img content src="./assets/icons/play.svg"> {{ 'a_r_start' | translate }}
+    </button>
+    <button class="play" ion-button full block no-margin no-padding large
+            *ngIf="route && (route.scores && route.scores.length > 0)"
+            [disabled]="!route.downloaded" (click)="showRoute(route)">
+        <img content src="./assets/icons/play.svg"> {{ 'a_r_continue' | translate }}
     </button>
 </ion-footer>
 

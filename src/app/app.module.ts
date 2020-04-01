@@ -54,6 +54,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { Media } from '@ionic-native/media';
 import {ProgressBarModule} from "angular-progress-bar";
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
+import {MCMTrailFinishedModal} from "../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
 
 
 
@@ -62,7 +63,7 @@ import {ScreenOrientation} from "@ionic-native/screen-orientation";
         MyApp,
         RouteInfo,
         MCMDownloadProgressPopupComponent,
-        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal,
+        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal, MCMTrailFinishedModal,
         CenteredTask,
         Autoresize,
         CustomKeyBoard
@@ -96,7 +97,7 @@ import {ScreenOrientation} from "@ionic-native/screen-orientation";
         MyApp,
         RouteInfo,
         MCMDownloadProgressPopupComponent,
-        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal,
+        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal, MCMTrailFinishedModal,
         CenteredTask,
         CustomKeyBoard
     ],

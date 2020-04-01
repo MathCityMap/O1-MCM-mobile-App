@@ -388,6 +388,8 @@ export class OrmService {
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         route.downloaded = false;
         route.downloadedDate = null;
+        route.completed = false;
+        route.completedDate = null;
         const repo = await this.getRouteRepository();
         await repo.save(route);
         this.updateRouteInCache(route);

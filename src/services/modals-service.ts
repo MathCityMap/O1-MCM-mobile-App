@@ -120,14 +120,25 @@ export class ModalsService {
     private navigateToRoute(route: Route, navCtrl: NavController, selectedTask: Task = null): void {
         this.spinner.show(null, null, false);
         setTimeout(() => {
-            navCtrl.parent.parent.push('TasksMap', {
-                routeId: route.id,
-                headerTitle: route.title,
-                selectedTask: selectedTask
-            }, {}, () => {
-                // necessary because of bug which does not update URL
-                this.deepLinker.navChange('forward');
-            });
+            if (navCtrl.parent && navCtrl.parent.parent) {
+                navCtrl.parent.parent.push('TasksMap', {
+                    routeId: route.id,
+                    headerTitle: route.title,
+                    selectedTask: selectedTask
+                }, {}, () => {
+                    // necessary because of bug which does not update URL
+                    this.deepLinker.navChange('forward');
+                });
+            } else if (navCtrl.parent == null) {
+                navCtrl.push('TasksMap', {
+                    routeId: route.id,
+                    headerTitle: route.title,
+                    selectedTask: selectedTask
+                }, {}, () => {
+                    // necessary because of bug which does not update URL
+                    this.deepLinker.navChange('forward');
+                });
+            }
         }, 10);
     }
 

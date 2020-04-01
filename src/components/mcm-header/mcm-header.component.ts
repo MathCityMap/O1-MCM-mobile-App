@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
+import {ModalsService} from "../../services/modals-service";
 
 
 @Component({
@@ -12,11 +13,13 @@ import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
 export class MCMHeaderComponent{
     showBackButton: boolean = false;
     transparent: boolean = false;
+    isOpeningRoute: boolean = false;
 
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 public viewCtrl: ViewController,
+                public modalService: ModalsService,
                 public modalCtrl: ModalController,
                 private deepLinker: DeepLinker) {
     }
@@ -62,10 +65,16 @@ export class MCMHeaderComponent{
                 console.log(tasksMap.route.id);
                 tasksMap.sessionFinished();
             }else{
-                this.navCtrl.pop({}, () => {
-                    // necessary because of bug which does not update URL
-                    this.deepLinker.navChange('back');
-                });
+                if(!this.isOpeningRoute){
+                    this.isOpeningRoute = true;
+                    this.navCtrl.pop({}, () => {
+                        // necessary because of bug which does not update URL
+                        this.deepLinker.navChange('back');
+                    });
+                    this.modalService.showRoute(tasksMap.route, this.navCtrl).then(async () => {
+                        this.isOpeningRoute = false;
+                    });
+                }
             }
         }else{
             this.navCtrl.pop({}, () => {

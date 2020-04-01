@@ -704,7 +704,7 @@
   "p_mapsize_warning1": "Ihr Trail ist überdurchschnittlich groß. Die Bereitstellung des Kartenmaterials kann einige Minuten in Anspruch nehmen.",
   "p_mapsize_warning2": "Warnung: Ihr Trail überschreitet die zulässige Fläche von 6 Quadratkilometern. Dieser Trail kann zwar erstellt werden, kann jedoch derzeit in der App nicht angezeigt werden.",
   "p_equip_goniometer": "Goniometer",
-  "a_alert_confirm_close": "Wollen Sie die App wirklich schließen?",
+  "a_alert_confirm_close": "Wollen sie die App wirklich schließen?",
   "p_wg_share": "Gruppe teilen",
   "p_wg_tid": "Task-ID",
   "p_wg_trid": "Trail-ID",
@@ -772,5 +772,13 @@
   "p_added_to_review": "Inhalt wurde zur Überprüfung eingereicht. Dieser Prozess kann einige Tage in Anspruch nehmen.",
   "p_cancelled_review": "Inhalt wurde aus dem Reviewprozess herausgenommen.",
   "p_mark_as_read_success": "Das Feedback des Reviewers wurde als 'gelesen' markiert. Überarbeitung und Neueinreichung nun möglich.",
-  "p_trail_routing": "Routenführung"
+  "p_trail_routing": "Routenführung",
+  "p_forme": "Für mich",
+  "p_favourites": "Favoriten",
+  "p_add_to_favourites": "Zu Favoriten hinzufügen",
+  "p_remove_from_favourites": "Aus Favoriten entfernen",
+  "p_add_to_favourites_success": "Zu Favoriten hinzugefügt.",
+  "p_remove_from_favourites_success": "Aus Favoriten entfernt.",
+  "a_trail_finished_title": "Trail abgeschlossen",
+  "a_r_continue": "Route fortsetzen"
 }
