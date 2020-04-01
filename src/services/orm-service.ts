@@ -31,6 +31,7 @@ import {Helper} from "../classes/Helper";
 import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-AddDownloadDateColumn";
 import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-AddCompletedDateColumn";
 import {AddZipMapFields15783117210000} from "../migration/15783117210000-AddZipMapFields";
+import {Storage} from "@ionic/storage";
 
 
 @Injectable()
@@ -42,7 +43,7 @@ export class OrmService {
     public eventEmitter = new Subject<String>();
 
     constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
-                private translateService: TranslateService, private platform: Platform) {
+                private translateService: TranslateService, private platform: Platform, private storage: Storage) {
         OrmService.INSTANCE = this;
     }
 
@@ -386,9 +387,12 @@ export class OrmService {
             await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
         }
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
-        route.downloaded = false;
+        let state = await this.storage.get("savedMapStateByRoute");
+        delete state[route.id];
+        this.storage.set("savedMapStateByRoute", state);
+        route.downloaded = null;
         route.downloadedDate = null;
-        route.completed = false;
+        route.completed = null;
         route.completedDate = null;
         const repo = await this.getRouteRepository();
         await repo.save(route);
