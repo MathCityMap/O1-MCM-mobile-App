@@ -32,6 +32,7 @@ import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-A
 import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-AddCompletedDateColumn";
 import {AddZipMapFields15783117210000} from "../migration/15783117210000-AddZipMapFields";
 import {Storage} from "@ionic/storage";
+import {ApiConfiguration} from "../app/api/api-configuration";
 
 
 @Injectable()
@@ -361,6 +362,8 @@ export class OrmService {
                     }]
                 });
                 alert.present();
+                let postparams = "&route_id=" + route.id;
+                Helper.INSTANCE.invokeApi('downloadTrailFailed', postparams)
             }
             console.log(e);
             await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
