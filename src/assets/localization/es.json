@@ -74,7 +74,7 @@
   "p_t_position_map_click": "Posición [haz clic en el mapa]",
   "p_t": "Tarea",
   "p_t_title": "Título",
-  "p_t_error_imgwidth": "Error: la anchura de la imagen debe ser mayor que 360px.",
+  "p_t_error_imgwidth": "La anchura de la imagen debe ser mayor que",
   "p_t_error_id": "No se ha hallado ninguna tarea con la ID dada",
   "p_t_error_account": "La tarea solicitada no está vinculada a su cuenta.",
   "p_tb_public_tasks": "Tareas públicas",

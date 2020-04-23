@@ -74,7 +74,7 @@
   "p_t_position_map_click": "Posisi [klik pada peta]",
   "p_t": "Tugas",
   "p_t_title": "Judul",
-  "p_t_error_imgwidth": "Kesalahan: lebar gambar harus lebih besar dari 360px.",
+  "p_t_error_imgwidth": "Lebar gambar harus lebih besar dari",
   "p_t_error_id": "Tidak ada tugas dengan ID yang diberikan dapat ditemukan.",
   "p_t_error_account": "Tugas yang diminta tidak terkait dengan akun Anda.",
   "p_tb_public_tasks": "Tugas untuk umum",

@@ -18,7 +18,7 @@ import {TaskState} from "../entity/TaskState";
 import {Task2Route} from '../entity/Task2Route';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {TranslateService} from '@ngx-translate/core';
-import {Platform} from 'ionic-angular';
+import {AlertController, Platform} from 'ionic-angular';
 import {AddUnlockedColumn1516037215000} from '../migration/1516037215000-AddUnlockedColumn';
 import {AddCompletedColumn1519817905000} from '../migration/1519817905000-AddCompletedColumn';
 import {Subject} from 'rxjs/Subject';
@@ -43,7 +43,7 @@ export class OrmService {
     public eventEmitter = new Subject<String>();
 
     constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
-                private translateService: TranslateService, private platform: Platform, private storage: Storage) {
+                private translateService: TranslateService, private platform: Platform, private storage: Storage, private alertCtrl: AlertController) {
         OrmService.INSTANCE = this;
     }
 
@@ -329,7 +329,7 @@ export class OrmService {
                 },
                     (tile)=>{
                         alreadyDownloadedUrls.push(tile);
-                    });
+                    })
             } else {
                 let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
                 await CacheManagerMCM.downloadTiles(route, zoomLevels.min_zoom, zoomLevels.max_zoom, (done, total, url) => {
@@ -351,6 +351,16 @@ export class OrmService {
             console.log("download failed or was aborted");
             if (e.message) {
                 console.log(e.message);
+            }
+            if(e.http_status && e.http_status === 404){
+                const alert = this.alertCtrl.create({
+                    title: this.translateService.instant("a_missing_map_data_error_msg"),
+                    buttons: [{
+                        text:  this.translateService.instant("a_g_ok"),
+                        role: 'cancel'
+                    }]
+                });
+                alert.present();
             }
             console.log(e);
             await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
