@@ -171,12 +171,10 @@ export class TaskDetail {
 
 
         if (this.score.score == null) this.score.score = 0;
-        console.log(this.taskDetails);
+
         if (this.taskDetails.timeFirstOpen == 0) {
             this.taskDetails.timeFirstOpen = new Date().getTime();
         }
-        console.log(this.task.solutionType);
-        console.log(this.task.getSolution());
         if (this.task.solutionType == 'multiple_choice') {
             if (this.taskDetails.solved || this.taskDetails.solvedLow) {
                 this.multipleChoiceList = this.taskDetails.answerMultipleChoice;
@@ -371,7 +369,9 @@ export class TaskDetail {
         let details = JSON.stringify({solution: solution, solutionType: this.task.solutionType});
 
         if (this.task.solutionType == "value") {
-            if (answer == this.task.getSolution()) {
+            let f_answer = parseFloat(answer);
+            let f_solution  = parseFloat(this.task.getSolution());
+            if (f_answer.toString() == f_solution.toString()) {
                 this.CalculateScore("value", "solved");
                 this.taskSolved('solved', solution, 0);
             } else {
