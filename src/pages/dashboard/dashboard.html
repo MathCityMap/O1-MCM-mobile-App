@@ -45,11 +45,10 @@
                     </div>
                 </ion-item>
             </div>
-            <div class="tile" [ngClass]="{'disabled' : !devMode}">
-                <ion-item tappable no-lines> <!--(click)="switchTab(3)">-->
+            <div class="tile">
+                <ion-item tappable no-lines (click)="switchTab(3)">
                     <div item-content>
                         <div>
-                            <div class="soon"><p>COMING SOON!</p></div>
                             <h2 class="title">{{'a_dashboard_create_title' | translate }}</h2>
                             <p>{{'a_dashboard_create_text' | translate }}</p>
                         </div>
