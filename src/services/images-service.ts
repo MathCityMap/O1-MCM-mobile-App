@@ -338,7 +338,7 @@ export class ImagesService {
                     console.log("no victory :(((");
                     console.log(error)
                 })
-            }).catch((err) => {console.log("ERROR DOWNLOADING: ", err)});
+            }, error).catch((err) => {console.log("ERROR DOWNLOADING: ", err)});
         });
 
 

@@ -74,7 +74,7 @@
   "p_t_position_map_click": "位置【在地图中点击】",
   "p_t": "任务",
   "p_t_title": "标题",
-  "p_t_error_imgwidth": "错误：图片必须大于360px",
+  "p_t_error_imgwidth": "图片必须大于",
   "p_t_error_id": "未找到与所给ID相关的的任务",
   "p_t_error_account": "所请求的任务未与您的账户相链接",
   "p_tb_public_tasks": "公共任务",

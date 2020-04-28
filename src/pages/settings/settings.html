@@ -11,11 +11,11 @@
     <div class="card transparent divider">
         <ion-label>{{'a_settings_expert' | translate }}</ion-label>
     </div>
-    <div class="card disabled">
+    <div class="card">
         <ion-label>{{'a_settings_editing' | translate }}</ion-label>
         <ion-item no-lines no-padding>
             <p item-content>{{'a_settings_editing_text' | translate }}</p>
-            <ion-toggle disabled mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
+            <ion-toggle mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
         </ion-item>
     </div>
 <!--    <div class="card has-button-on-the-edge">

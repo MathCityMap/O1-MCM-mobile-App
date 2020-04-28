@@ -74,7 +74,7 @@
   "p_t_position_map_click": "Konum [haritaya tıkla]",
   "p_t": "Görev",
   "p_t_title": "Titel",
-  "p_t_error_imgwidth": "Hata: resim boyutu 360px den yüksek olmalı.",
+  "p_t_error_imgwidth": "Fotoğrafın genişliği şu değerden büyük olmalı:",
   "p_t_error_id": "Verilen kimlik ile görev bulunamadı.",
   "p_t_error_account": "İstenilen görev hesabınıza bağlı değildir.",
   "p_tb_public_tasks": "Herkese açık görevler",
