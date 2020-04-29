@@ -491,7 +491,7 @@ export class ChatPage {
     }
 
     isAudio(path: string) {
-        return this.chatService.isAudio(path);
+        return (path.substring(path.lastIndexOf('.')) == '.aac');
     }
 
     changeButtonsStatus() {
