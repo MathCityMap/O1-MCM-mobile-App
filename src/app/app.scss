@@ -127,6 +127,9 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
                 padding-bottom: #{$prefix}$root-bottom;
             }
         }
+        &.input{
+            padding-bottom: #{$prefix}$root-bottom;
+        }
     }
     .ios .tabs .tabbar{
         padding-bottom: #{$prefix}$root-bottom;

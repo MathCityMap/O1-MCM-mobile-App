@@ -43,7 +43,7 @@
 
     </div>
 </ion-content>
-<ion-footer no-border [style.height]="'55px'">
+<ion-footer no-border class="input">
     <div class="input-wrap">
         <!-- ######### TEXT ######### -->
         <textarea *ngIf="showTextArea"
@@ -61,16 +61,16 @@
         <div class="message-input-buttons" *ngIf="showAudioButtons">
             <!-- Playback for Local Audio -->
             <div *ngIf="recordState == 3">
-                <button ion-button icon-only round start *ngIf="canPlayback" (click)="playAudio()">
+                <button ion-button clear icon-only round start *ngIf="canPlayback" (click)="playAudio()">
                     <ion-icon name="play"></ion-icon>
                 </button>
-                <button ion-button icon-only round start *ngIf="!canPlayback" (click)="pauseAudio()">
+                <button ion-button clear icon-only round start *ngIf="!canPlayback" (click)="pauseAudio()">
                     <ion-icon name="pause"></ion-icon>
                 </button>
             </div>
 
-            <button ion-button icon-only round end (click)="micButtonClick()">
-                <ion-icon *ngIf="recordState == 1" name="mic"></ion-icon>
+            <button ion-button clear icon-only round end (click)="micButtonClick()">
+                <ion-icon *ngIf="recordState == 1" name="md-mic"></ion-icon>
                 <ion-icon *ngIf="recordState == 2" name="square"></ion-icon>
                 <ion-icon *ngIf="recordState == 3" name="close"></ion-icon>
             </button>
@@ -78,11 +78,11 @@
 
         <!-- ######### PICTURES ######## -->
         <div class="message-input-buttons" *ngIf="showPictureButtons">
-            <button ion-button icon-only round end (click)="getImage()">
-                <ion-icon name="image"></ion-icon>
+            <button ion-button clear icon-only round end (click)="getImage()">
+                <ion-icon name="md-image"></ion-icon>
             </button>
-            <button ion-button icon-only round end (click)="openCamera()">
-                <ion-icon name="camera"></ion-icon>
+            <button ion-button clear icon-only round end (click)="openCamera()">
+                <ion-icon name="md-camera"></ion-icon>
             </button>
         </div>
 
