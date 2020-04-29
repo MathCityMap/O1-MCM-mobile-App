@@ -42,6 +42,12 @@ export class ChatPage {
     private audioPlaying: boolean = false;
     private showAudioButtons: boolean = true;
     private showPictureButtons: boolean = true;
+    private startAudioRecord: number = 0;
+    private startAudioPlaying: number = 0;
+    private audioDuration: number = 0;
+    private currentPosition: number = 0;
+    private durationInterval;
+    private positionInterval;
 
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
@@ -205,14 +211,15 @@ export class ChatPage {
             if (!this.canPlayback) {
                 this.pauseAudio();
             }
-
             this.recordState = RecordStateEnum.Idle;
-
+            console.log("audio duration: " + this.audioDuration);
             let audioType = 'aac';
             await this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(async (data) => {
                 const blob = new Blob([data], {type: 'audio/' + audioType});
                 let myFormData = new FormData();
                 myFormData.append('media', blob, 'audio.' + audioType);
+                myFormData.append('mediaDuration', this.audioDuration.toString());
+                this.audioDuration = 0;
                 let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
                 //newMsg.isAudio = true;
                 this.audio = null;
@@ -334,7 +341,6 @@ export class ChatPage {
             return;
         }
         console.log('pushed new message');
-
         this.msgList.push(msg);
         this.changeDetector.detectChanges();
 
@@ -387,6 +393,16 @@ export class ChatPage {
         }
     }
 
+    updateAudioDuration(){
+        let now = new Date().getTime();
+        this.audioDuration = now - this.startAudioRecord;
+    }
+
+    updateAudioPosition(){
+        let now = new Date().getTime();
+        this.currentPosition = now - this.startAudioPlaying;
+    }
+
     startRecording() {
         this.pauseAudio();
 
@@ -398,7 +414,12 @@ export class ChatPage {
         this.file.createFile(this.fileDirectory, 'audioFile.aac', true).then(filePath => {
             this.audio = this.media.create(this.fileDirectory.replace(/^file:\/\//, '') + 'audioFile.aac');
             //this.audio.release();
+            this.startAudioRecord = new Date().getTime();
             this.audio.startRecord();
+            this.updateAudioDuration();
+            this.durationInterval = window.setInterval(() => {
+                this.updateAudioDuration();
+            }, 1000);
             this.audioFilePath = filePath.toInternalURL();
 
         }).catch(err => {console.log("creation file error:", err)});
@@ -414,6 +435,11 @@ export class ChatPage {
 
     stopRecording() {
         this.audio.stopRecord();
+        if(this.durationInterval){
+            clearInterval(this.durationInterval);
+            this.durationInterval = null;
+        }
+        this.startAudioRecord = 0;
         this.canPlayback = true;
     }
 
@@ -430,6 +456,10 @@ export class ChatPage {
 
         this.audio = this.media.create(filePath);
         this.audio.play();
+        this.startAudioPlaying = new Date().getTime();
+        this.positionInterval = window.setInterval(() => {
+            this.updateAudioPosition();
+        }, 1000);
         this.audio.setVolume(0.8);
 
         this.audio.onStatusUpdate.subscribe(status => {
@@ -450,13 +480,18 @@ export class ChatPage {
     }
 
     pauseAudio() {
+        if(this.positionInterval){
+            this.currentPosition = 0;
+            clearInterval(this.positionInterval);
+            this.positionInterval = null;
+        }
         if (this.audio) {
           this.audio.pause();
         }
     }
 
     isAudio(path: string) {
-        return (path.substring(path.lastIndexOf('.')) == '.aac');
+        return this.chatService.isAudio(path);
     }
 
     changeButtonsStatus() {

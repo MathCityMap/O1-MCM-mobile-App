@@ -7,25 +7,30 @@ import {Helper} from "../../classes/Helper";
     templateUrl: './mcm-progress-bar.html'
 })
 export class MCMProgressBarComponent {
-    @Input() route: Route;
+    @Input() route?: Route;
 
-    currentProgress: number;
-    total: number;
+
+    @Input() isAudio?: boolean;
+    @Input() currentProgress: number;
+    @Input() total: number;
     progressWidth: number;
 
     constructor(private helper: Helper) {
+
     }
 
     async ngOnChanges() {
-        if (this.route.scores) {
+        if (this.route && this.route.scores) {
             try {
-                let data = await this.helper.calculateProgress(this.route)
+                let data = await this.helper.calculateProgress(this.route);
                 this.currentProgress = data.currentProgress;
                 this.total = data.totalTasks;
                 this.progressWidth = (100 / this.total) * this.currentProgress;
             } catch (e) {
                 console.log(e);
             }
+        }else if(this.total && this.currentProgress){
+            this.progressWidth = (100 / this.total) * this.currentProgress;
         }
     }
 }

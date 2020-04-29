@@ -74,6 +74,8 @@
                 <ion-icon *ngIf="recordState == 2" name="square"></ion-icon>
                 <ion-icon *ngIf="recordState == 3" name="close"></ion-icon>
             </button>
+            <mcm-progress-bar *ngIf="recordState == 2 || recordState == 3" [currentProgress]="currentPosition" [total]="audioDuration" [isAudio]="true"></mcm-progress-bar>
+<!--            <span *ngIf="recordState == 3 && !canPlayback">{{currentPosition | date: 'mm:ss'}} / </span><span  *ngIf="recordState == 2 || recordState == 3">{{audioDuration | date: 'mm:ss'}}</span>-->
         </div>
 
         <!-- ######### PICTURES ######## -->
