@@ -61,7 +61,8 @@ export class TasksMap implements OnInit, OnDestroy {
       visibleTasks : {},
       skippedTaskIds: [],
       selectedStartTask: false,
-      showIntroModal: false
+      showIntroModal: false,
+      showGuidedTrailModal: false
   };
   private score: Score;
   private stateKey: string = "savedMapStateByRoute";
@@ -250,30 +251,12 @@ export class TasksMap implements OnInit, OnDestroy {
                   }
               }
               else {
-                  const that = this;
-                  setTimeout(function () {
-                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                          'no', () => {
-                                if (that.route.isNarrativeEnabled()) {
-                                    that.showIntroModal().then(() => {
-                                        that.state.showIntroModal = false;
-                                    })
-                                }
-                          },
-                          'yes', async () => {
-                              that.selectStartPoint().then(modal => {
-                                  modal.onDidDismiss(() => {
-                                      if (that.route.isNarrativeEnabled()) {
-                                          that.showIntroModal().then(() => {
-                                              that.state.showIntroModal = false;
-                                          })
-                                      }
-                                  })
-                              });
-                              that.state.selectedStartTask = true;
-                      }, that.app.activeNarrative);
-                  }, 500);
-
+                  if (this.route.isNarrativeEnabled()) {
+                      this.showIntroModal().then(() => {
+                          this.state.showIntroModal = false;
+                          this.showGuidedTrailModalWithDelay(500);
+                      })
+                  }
               }
 
               this.saveMapStateToLocalStorage();
@@ -285,12 +268,14 @@ export class TasksMap implements OnInit, OnDestroy {
       }
 
       if (this.navParams.data.tasksMapState) {
+          console.log("3");
           this.state = this.navParams.data.tasksMapState;
           if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
               this.goToNextTask(this.state.selectedTask, true);
           }
       } else {
           this.state = await this.getMapStateFromLocalStorage();
+          console.log(this.state);
           if(this.taskToSkip){
               this.goToNextTask(this.taskToSkip, true);
               this.taskToSkip = null;
@@ -303,7 +288,8 @@ export class TasksMap implements OnInit, OnDestroy {
                   visibleTasks: {},
                   skippedTaskIds: [],
                   selectedStartTask: false,
-                  showIntroModal: false // Intro Modal for narratives will be displayed on first start anyway
+                  showIntroModal: false, // Intro Modal for narratives will be displayed on first start anyway
+                  showGuidedTrailModal: false // GuidedTrail Modal will be displayed on first start anyway
               };
               this.state.isShowingAllTasks = !this.state.selectedTask;
               if (this.state.selectedTask) {
@@ -311,27 +297,11 @@ export class TasksMap implements OnInit, OnDestroy {
               }
               else if (this.route.isNarrativeEnabled()) {
                   this.showIntroModal().then(() => {
-                      const that = this;
-                      setTimeout(function() {
-                          that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                              'no', () => {},
-                              'yes', async () => {
-                                  that.selectStartPoint();
-                                  that.state.selectedStartTask = true;
-                              }, that.app.activeNarrative);
-                      }, 500);
+                      this.showGuidedTrailModalWithDelay(500);
                   });
               }
               else {
-                  const that = this;
-                  setTimeout(function() {
-                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                          'no', () => {},
-                          'yes', async () => {
-                              that.selectStartPoint();
-                              that.state.selectedStartTask = true;
-                          }, that.app.activeNarrative);
-                  }, 500);
+                  this.showGuidedTrailModalWithDelay(500);
               }
           }
           else{
@@ -340,11 +310,30 @@ export class TasksMap implements OnInit, OnDestroy {
                       const that = this;
                       that.state.showIntroModal = false;
                       this.saveMapStateToLocalStorage();
+                      if(this.state.showGuidedTrailModal){
+                          this.showGuidedTrailModalWithDelay(500);
+                      }
                   });
+              }else if(this.state.showGuidedTrailModal){
+                  this.showGuidedTrailModalWithDelay(500);
               }
           }
       }
       this.redrawMarker();
+  }
+
+  private showGuidedTrailModalWithDelay(delay) {
+      const that = this;
+      this.state.showGuidedTrailModal = false;
+      setTimeout(function () {
+          that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
+              'no', () => {
+              },
+              'yes', async () => {
+                  that.selectStartPoint();
+                  that.state.selectedStartTask = true;
+              }, that.app.activeNarrative);
+      }, delay);
   }
 
   private forceStartFromTask( taskId ){
@@ -817,10 +806,19 @@ export class TasksMap implements OnInit, OnDestroy {
   resetTasks(){
       this.ormService.deleteUserScore(this.score).then( async ()=> {
           this.score = new Score();
-          this.state.skippedTaskIds = [];
-          this.state.showIntroModal = true;
+          this.state = {
+              selectedTask: null,
+              isShowingAllTasks: true,
+              visibleTasks: {},
+              skippedTaskIds: [],
+              selectedStartTask: false,
+              showIntroModal: true,
+              showGuidedTrailModal: true
+          };
           this.route.completed = false;
           this.route.completedDate = null;
+          delete this.state[this.route.id];
+          await this.storage.set(this.stateKey, this.state);
           await this.ormService.saveAndFireChangedEvent(this.route);
           this.redrawMarker();
     });
@@ -1044,4 +1042,5 @@ export interface TaskMapState {
     skippedTaskIds: number[];
     selectedStartTask: boolean;
     showIntroModal: boolean;
+    showGuidedTrailModal: boolean;
 }
