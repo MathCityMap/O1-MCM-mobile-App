@@ -549,6 +549,7 @@
   "a_private_session_timer": "Session ends in:",
   "a_private_session_ends": "Session has ended!",
   "a_chat_type_message": "Type message",
+  "a_chat_recording_message": "Recording...",
   "a_chat_reply": "Reply",
   "a_terms_and_conditions_text": "By joining a session I understand and agree that for the time of the session. information will be shared with the mathcitymap.eu server. The used information includes location and current trail progress data. Only the session leader has access to the transmitted data to organize the digital math trail classroom. The data will be deleted after 3 months. Read more on data protection <a>here</a>.",
   "p_cookie_message": "This website stores cookies on your computer to guarantee a <strong> good and personalized </strong> user experience. Furthermore, we (in accordance with the European Data Protection Regulation) collect usage statistics during your visit. Would you like to allow MathCityMap to collect usage statistics?",

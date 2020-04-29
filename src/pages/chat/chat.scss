@@ -35,6 +35,20 @@ page-chat {
                     color: #fff;
                     width: auto;
                     max-width: 80%;
+                    &.audio{
+                        width: 100%;
+                        & > * {
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            mcm-progress-bar{
+                                flex: auto;
+                            }
+                        }
+                    }
+                    .button{
+                        margin: 0;
+                    }
                 }
                 .msg-info {
                     float: right;
@@ -74,8 +88,16 @@ page-chat {
             }
             .msg-content {
                 background-color: $userBackgroundColor;
-                p {
-                    color: #ffffff;
+                p, .button{
+                    color: $toUserBackgroundColor;
+                }
+                mcm-progress-bar{
+                    .progress-vertical{
+                        background-color: rgba($toUserBackgroundColor, 0.2);
+                        .bar{
+                            background-color: $toUserBackgroundColor;
+                        }
+                    }
                 }
             }
 
@@ -96,6 +118,7 @@ page-chat {
 
     .input-wrap {
         position: relative;
+        min-height: 66px;
         flex: auto;
         background-color: #fff;
         padding: 5px 10px;
@@ -113,6 +136,7 @@ page-chat {
         }
         .message-input-buttons {
             display: flex;
+            align-items: center;
             button {
                 width: 42px;
                 height: 42px;
@@ -124,6 +148,29 @@ page-chat {
                     box-sizing: content-box;
                     background: transparent;
                     box-shadow: none;
+                }
+
+                &.recording{
+                    background-color: #eb4747;
+                    color: color($colors, light);
+                    animation: flickerAnimation 1.8s infinite ;
+                    order: 2;
+                    @keyframes flickerAnimation {
+                        0%   { opacity:1; }
+                        50%  { opacity:0; }
+                        100% { opacity:1; }
+                    }
+                    & ~ p{
+                        flex: auto;
+                    }
+                }
+            }
+            &.audio{
+                &.active{
+                    width: 100%;
+                    mcm-progress-bar{
+                        width: 100%;
+                    }
                 }
             }
         }
@@ -148,16 +195,9 @@ page-chat {
         &.send{
             min-width: $fab-size;
             margin-right: $global-small-padding;
-            @include box-shadow(.3);
             img{
                 display: block;
             }
         }
-    }
-
-    .audio-player {
-        height: 35px;
-        width: 60px;
-        border-radius: 25px;
     }
 }
