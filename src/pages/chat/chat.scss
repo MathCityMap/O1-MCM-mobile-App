@@ -156,9 +156,9 @@ page-chat {
                     animation: flickerAnimation 1.8s infinite ;
                     order: 2;
                     @keyframes flickerAnimation {
-                        0%   { opacity:1; }
-                        50%  { opacity:0; }
-                        100% { opacity:1; }
+                        0%   { opacity: 1; }
+                        50%  { opacity: 0.2; }
+                        100% { opacity: 1; }
                     }
                     & ~ p{
                         flex: auto;
@@ -185,7 +185,7 @@ page-chat {
                 height: 42px;
             }
             .msg-image {
-                height: 70px;
+                height: 100%;
                 border-radius: 25px;
                 overflow: scroll;
             }
@@ -197,6 +197,14 @@ page-chat {
             margin-right: $global-small-padding;
             img{
                 display: block;
+            }
+        }
+    }
+    mcm-progress-bar{
+        .progress-vertical{
+            position: relative;
+            .bar{
+                transition: all 0.2s linear;
             }
         }
     }
