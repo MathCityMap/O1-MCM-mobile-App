@@ -22,8 +22,9 @@
 
                     <!-- Audio Message -->
                     <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])">
-                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg.media[0], i)"><ion-icon name="md-play"></ion-icon></button>
+                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg, i)"><ion-icon name="md-play"></ion-icon></button>
                         <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio()"><ion-icon name="md-square"></ion-icon></button>
+                        <mcm-progress-bar [currentProgress]="msg.currentPosition" [total]="msg.audioDuration" [isAudio]="true" [isAudioPlaying]="audioIndex == i"></mcm-progress-bar>
                         <!--TODO Insert audio progress here-->
                         <!--<mcm-progress-bar></mcm-progress-bar>-->
                     </div>
@@ -72,9 +73,8 @@
                 <ion-icon *ngIf="recordState == 2" name="md-mic"></ion-icon>
                 <ion-icon *ngIf="recordState == 3" name="md-trash"></ion-icon>
             </button>
-            <p no-margin *ngIf="recordState == 2">{{ 'a_chat_recording_message' | translate }}</p>
-            <mcm-progress-bar *ngIf="recordState == 3" [currentProgress]="currentPosition" [total]="audioDuration" [isAudio]="true"></mcm-progress-bar>
-<!--            <span *ngIf="recordState == 3 && !canPlayback">{{currentPosition | date: 'mm:ss'}} / </span><span  *ngIf="recordState == 2 || recordState == 3">{{audioDuration | date: 'mm:ss'}}</span>-->
+            <p no-margin *ngIf="recordState == 2">{{ 'a_chat_recording_message' | translate }} {{audioDuration | date : 'mm:ss'}}</p>
+            <mcm-progress-bar *ngIf="recordState == 3" [currentProgress]="currentPosition" [total]="audioDuration" [isAudio]="true" [remainingTime]="audioDuration - currentPosition" [isAudioPlaying]="!canPlayback"></mcm-progress-bar>
         </div>
 
         <!-- ######### PICTURES ######## -->
@@ -90,7 +90,7 @@
         <div class="image-previewer" *ngIf="localPath">
             <img class="msg-image" src="{{localPath}}">
             <button class="msg-close-button" ion-button icon-only round end (click)="removeImage()">
-                <ion-icon name="close"></ion-icon>
+                <ion-icon name="md-trash"></ion-icon>
             </button>
         </div>
     </div>

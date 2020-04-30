@@ -2,4 +2,5 @@
 <div class="container progress-vertical route">
     <div class="bar" [ngStyle]="{'width': ((100/total)*currentProgress) +'%'}"></div>
 </div>
-<span *ngIf="isAudio" class="audio">{{ currentProgress | date: 'mm:ss' }} / {{ total  | date: 'mm:ss'}}</span>
+<span *ngIf="isAudio && isAudioPlaying" class="audio">{{ remainingTime | date: 'mm:ss' }} </span>
+<span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: 'mm:ss' }} </span>

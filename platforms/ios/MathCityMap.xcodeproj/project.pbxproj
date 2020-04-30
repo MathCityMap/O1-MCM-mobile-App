@@ -730,7 +730,7 @@
 				MARKETING_VERSION = 2.6.3.10;
 				PRODUCT_BUNDLE_IDENTIFIER = de.autentek.mathcitymap;
 				PRODUCT_NAME = MathCityMap;
-				PROVISIONING_PROFILE_SPECIFIER = "MathCityMap Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Development Wildcard";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

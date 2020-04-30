@@ -212,7 +212,6 @@ export class ChatPage {
                 this.pauseAudio();
             }
             this.recordState = RecordStateEnum.Idle;
-            console.log("audio duration: " + this.audioDuration);
             let audioType = 'aac';
             await this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(async (data) => {
                 const blob = new Blob([data], {type: 'audio/' + audioType});
@@ -385,6 +384,7 @@ export class ChatPage {
                 this.recordState = RecordStateEnum.Idle;
                 this.showTextArea = true;
                 this.showPictureButtons = true;
+                this.pauseAudio();
                 break;
             default:
                 this.recordState = RecordStateEnum.Record;
@@ -398,12 +398,27 @@ export class ChatPage {
         this.audioDuration = now - this.startAudioRecord;
     }
 
-    updateAudioPosition(){
+    updateAudioPosition(message?){
         let now = new Date().getTime();
-        this.currentPosition = now - this.startAudioPlaying;
+        if(message){
+            if((now - this.startAudioPlaying) < message.audioDuration){
+                message.currentPosition  = now - this.startAudioPlaying;
+            }else{
+                this.currentPosition = message.audioDuration;
+                this.clearPositionInterval();
+            }
+        }else {
+            if((now - this.startAudioPlaying) < this.audioDuration){
+                this.currentPosition = now - this.startAudioPlaying;
+            }else{
+                this.currentPosition = this.audioDuration;
+                this.clearPositionInterval();
+            }
+        }
     }
 
     startRecording() {
+        console.log('start recording');
         this.pauseAudio();
 
         if(this.platform.is('android')){
@@ -443,11 +458,12 @@ export class ChatPage {
         this.canPlayback = true;
     }
 
-    playAudio(filePath?, index?) {
+    playAudio(message?, index?) {
         if (this.audioPlaying) {
             this.pauseAudio();
         }
-
+        let filePath = null;
+        if (message) filePath  = message.media[0];
         if (filePath) this.audioIndex = index;
         else {
             this.canPlayback = false;
@@ -458,8 +474,8 @@ export class ChatPage {
         this.audio.play();
         this.startAudioPlaying = new Date().getTime();
         this.positionInterval = window.setInterval(() => {
-            this.updateAudioPosition();
-        }, 1000);
+            this.updateAudioPosition(message);
+        }, 10);
         this.audio.setVolume(0.8);
 
         this.audio.onStatusUpdate.subscribe(status => {
@@ -474,17 +490,22 @@ export class ChatPage {
 
                     this.audio.release();
                     this.audioPlaying = false;
+                    this.clearPositionInterval();
                     break;
             }
         });
     }
 
-    pauseAudio() {
+    clearPositionInterval() {
         if(this.positionInterval){
             this.currentPosition = 0;
             clearInterval(this.positionInterval);
             this.positionInterval = null;
         }
+    }
+
+    pauseAudio() {
+        this.clearPositionInterval();
         if (this.audio) {
           this.audio.pause();
         }

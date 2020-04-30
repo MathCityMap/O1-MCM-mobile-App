@@ -39,6 +39,8 @@ export class ChatMessage {
     message: string;
     media: string[];
     status: string;
+    audioDuration?: number;
+    currentPosition?: number;
 }
 
 export class LeaderBoardItemRespone {
@@ -141,7 +143,7 @@ export class ChatAndSessionService {
     private getChatMessage(msg: SessionChatMessageResponse, sessionUser: SessionUser): ChatMessage {
         msg.time = this.formatTime(msg.time);
         let timezoneOffset = new Date().getTimezoneOffset();
-        let chatMessage = {
+        let chatMessage: ChatMessage = {
             messageId: msg.messageId,
             userId: msg.senderId, // if author id eq current user
             userName: msg.username, // team user name
@@ -152,6 +154,9 @@ export class ChatAndSessionService {
             status: msg.status,
             media: msg.media
         };
+        if(chatMessage.media.length > 0 && chatMessage.media[0].substring(chatMessage.media[0].lastIndexOf('.')) == '.aac'){
+            chatMessage.audioDuration = 5030;
+        }
         return chatMessage;
     }
 

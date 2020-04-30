@@ -10,7 +10,9 @@ export class MCMProgressBarComponent {
     @Input() route?: Route;
 
 
+    @Input() isAudioPlaying?: boolean;
     @Input() isAudio?: boolean;
+    @Input() remainingTime?: number;
     @Input() currentProgress: number;
     @Input() total: number;
     progressWidth: number;
