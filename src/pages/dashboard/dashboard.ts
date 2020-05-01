@@ -65,6 +65,9 @@ export class DashboardPage {
        if(addRoute){
            this.helper.setActivateAddRoute(true);
        }
+       if(index == 3 && !this.devMode){
+           return;
+       }
        this.navCtrl.parent.select(index);
     }
 
