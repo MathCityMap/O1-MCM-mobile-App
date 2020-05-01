@@ -218,6 +218,7 @@ export class ChatPage {
                 let myFormData = new FormData();
                 myFormData.append('media', blob, 'audio.' + audioType);
                 myFormData.append('mediaDuration', this.audioDuration.toString());
+                newMsg.audioDuration = this.audioDuration;
                 this.audioDuration = 0;
                 let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
                 //newMsg.isAudio = true;

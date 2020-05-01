@@ -155,7 +155,7 @@ export class ChatAndSessionService {
             media: msg.media
         };
         if(chatMessage.media.length > 0 && chatMessage.media[0].substring(chatMessage.media[0].lastIndexOf('.')) == '.aac'){
-            chatMessage.audioDuration = 5030;
+            chatMessage.audioDuration = msg.mediaDuration;
         }
         return chatMessage;
     }

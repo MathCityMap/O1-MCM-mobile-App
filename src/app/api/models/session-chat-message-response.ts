@@ -10,4 +10,5 @@ export class SessionChatMessageResponse {
     message?: string;
     status?: string;
     media?: string[];
+    mediaDuration?: number;
 }
