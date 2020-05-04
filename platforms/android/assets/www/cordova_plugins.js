@@ -418,7 +418,8 @@ module.exports.metadata =
   "cordova-plugin-inappbrowser": "3.1.0",
   "cordova-plugin-local-notification": "0.9.0-beta.2",
   "cordova-plugin-media": "5.0.3",
-  "cordova-plugin-camera": "4.0.3"
+  "cordova-plugin-camera": "4.0.3",
+  "cordova-plugin-whitelist": "1.3.4"
 };
 // BOTTOM OF METADATA
 });

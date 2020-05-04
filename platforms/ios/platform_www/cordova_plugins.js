@@ -512,14 +512,14 @@ module.exports.metadata =
     "cordova-plugin-request-location-accuracy": "2.2.2",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-statusbar": "2.2.4-dev",
-    "cordova-plugin-whitelist": "1.3.3",
     "cordova-sqlite-storage": "2.0.4",
     "cordova.plugins.diagnostic": "3.9.1",
     "com.jjdltc.cordova.plugin.zip": "1.1.0",
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-camera": "4.0.3"
+    "cordova-plugin-camera": "4.0.3",
+    "cordova-plugin-whitelist": "1.3.4"
 };
 // BOTTOM OF METADATA
 });

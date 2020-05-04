@@ -57,9 +57,6 @@
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
@@ -81,6 +78,9 @@
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-camera": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
