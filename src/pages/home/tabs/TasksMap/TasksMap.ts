@@ -342,6 +342,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.state.visibleTasks = {};
       this.state.visibleTasks[selectedTask.position] = true;
       this.state.isShowingAllTasks = false;
+      this.state.showGuidedTrailModal = false;
       this.centerSelectedTask();
   }
 
@@ -815,10 +816,15 @@ export class TasksMap implements OnInit, OnDestroy {
               showIntroModal: true,
               showGuidedTrailModal: true
           };
+          if (!this.taskList) {
+              this.taskList = await this.route.getTasks();
+          }
+          if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
+              this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+          }
           this.route.completed = false;
           this.route.completedDate = null;
-          delete this.state[this.route.id];
-          await this.storage.set(this.stateKey, this.state);
+          await this.saveMapStateToLocalStorage();
           await this.ormService.saveAndFireChangedEvent(this.route);
           this.redrawMarker();
     });
