@@ -405,15 +405,19 @@ export class ChatPage {
             if((now - this.startAudioPlaying) < message.audioDuration){
                 message.currentPosition  = now - this.startAudioPlaying;
             }else{
-                this.currentPosition = message.audioDuration;
-                this.clearPositionInterval();
+                message.currentPosition = message.audioDuration;
+                setTimeout(() =>{
+                    this.clearPositionInterval(message);
+                }, 1000);
             }
         }else {
             if((now - this.startAudioPlaying) < this.audioDuration){
                 this.currentPosition = now - this.startAudioPlaying;
             }else{
                 this.currentPosition = this.audioDuration;
-                this.clearPositionInterval();
+                setTimeout(() =>{
+                    this.clearPositionInterval();
+                }, 1000);
             }
         }
     }
@@ -491,22 +495,26 @@ export class ChatPage {
 
                     this.audio.release();
                     this.audioPlaying = false;
-                    this.clearPositionInterval();
+                    this.clearPositionInterval(message);
                     break;
             }
         });
     }
 
-    clearPositionInterval() {
+    clearPositionInterval(message?) {
         if(this.positionInterval){
-            this.currentPosition = 0;
+            if(message){
+                message.currentPosition = 0;
+            }else{
+                this.currentPosition = 0;
+            }
             clearInterval(this.positionInterval);
             this.positionInterval = null;
         }
     }
 
-    pauseAudio() {
-        this.clearPositionInterval();
+    pauseAudio(message?) {
+        this.clearPositionInterval(message);
         if (this.audio) {
           this.audio.pause();
         }
