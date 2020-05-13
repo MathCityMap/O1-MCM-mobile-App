@@ -17,7 +17,7 @@
                     <p *ngIf="msg.message" class="line-breaker ">{{msg.message}}</p>
 
                     <!-- Image Message -->
-                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" src="{{msg.media[0]}}">
+                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" (click)="openInPhotoviewer(msg.media[0])" src="{{msg.media[0]}}">
 
                     <!-- Audio Message -->
                     <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])" >

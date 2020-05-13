@@ -8,6 +8,9 @@ import {Camera, CameraOptions} from "@ionic-native/camera";
 import {File} from "@ionic-native/file";
 import {Media, MediaObject} from "@ionic-native/media";
 import {RecordStateEnum} from "./recordStateEnum";
+import {PhotoViewer} from "@ionic-native/photo-viewer";
+import {Helper} from "../../classes/Helper";
+import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 
 @IonicPage()
 @Component({
@@ -59,7 +62,9 @@ export class ChatPage {
                 private events: Events,
                 private changeDetector: ChangeDetectorRef,
                 private chatAndSessionService: ChatAndSessionService,
-                private camera: Camera) {
+                private camera: Camera,
+                private photoViewer: PhotoViewer,
+                private spinnerDialog: SpinnerDialog) {
 
         this.chatService.getUserInfo()
             .then((res) => {
@@ -537,6 +542,20 @@ export class ChatPage {
         this.showTextArea = setValue;
         this.showAudioButtons = setValue;
         this.showPictureButtons = setValue;
+    }
+
+    openInPhotoviewer(image) {
+        if (Helper.isPluginAvailable(PhotoViewer)) {
+            this.spinnerDialog.show();
+            setTimeout(() => {
+                // use short timeout to let spinner dialog appear
+                this.photoViewer.show(image);
+                setTimeout(() => {
+                    // photoviewer doesn't have callback when user closes it => hide spinner in background
+                    this.spinnerDialog.hide();
+                }, 1000);
+            }, 100)
+        }
     }
 }
 
