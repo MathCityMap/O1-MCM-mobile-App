@@ -1,3 +1,13 @@
+<ion-header>
+    <ion-toolbar hideBackButton [attr.transparent]="true">
+        <ion-buttons right>
+            <button ion-button icon-only (click)="goToHomePage()">
+                <img class="header-icon" src="assets/icons/icon_close-modal.svg"/>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content bg-white>
     <ion-slides pager="true" padding>
         <ion-slide>
