@@ -1,0 +1,19 @@
+page-onboarding, touch-point {
+    h1{
+        margin: 10px 0;
+    }
+    p{
+        margin-top: 10px;
+    }
+    img{
+        max-width: 66vw!important;
+        margin: 0 auto;
+    }
+    .swiper-slide{
+        &:last-of-type{
+            img{
+                min-width: 77vw;
+            }
+        }
+    }
+}

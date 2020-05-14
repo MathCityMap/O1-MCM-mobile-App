@@ -8,6 +8,7 @@ import { LanguageService } from '../services/language-service';
 import { ChatAndSessionService } from '../services/chat-and-session-service';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {TranslateService} from "@ngx-translate/core";
+import {Storage} from "@ionic/storage";
 
 
 
@@ -22,16 +23,19 @@ export enum MCMModalType {
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'HomePage';
+  rootPage: string = 'HomePage';
 
   public activeNarrative: string = 'default';
   keysTab: string[];
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+  constructor(platform: Platform, statusBar: StatusBar,private splashScreen: SplashScreen,
               languageService: LanguageService, chatService: ChatAndSessionService,
-              events: Events, app: App, alertCtrl: AlertController, translate: TranslateService, screenOrientation: ScreenOrientation) {
+              events: Events, app: App, alertCtrl: AlertController, translate: TranslateService, screenOrientation: ScreenOrientation,private storage: Storage) {
 
+    let that = this;
     platform.ready().then(async () => {
+        await languageService.initialize();
+        await this.setRootPage();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // statusBar.styleDefault();
@@ -66,8 +70,6 @@ export class MyApp {
         alert.present();
       }
     });
-
-    languageService.initialize().then(() => splashScreen.hide());
     statusBar.backgroundColorByHexString('#035f87'); // set status bar color
       // Keyboard key tab (used in the app.html template)
       let decimalSeparator = window.navigator.language.substring(0, 2) == 'en' ? '.' : ',';
@@ -93,6 +95,24 @@ export class MyApp {
     // Event emitter
     keyClick(k: string) {
         console.log('Event emitter - key: ', k);
+    }
+
+    async isFirstStart(): Promise<boolean> {
+        let dashboardHasAlreadyBeenShown = await this.storage.get('OnboardingHasBeenShown');
+        // FIXME: Code deactivated for testing purposes
+        // if (!dashboardHasAlreadyBeenShown) {
+        //     this.storage.set('OnboardingHasBeenShown', true);
+        // }
+        return !dashboardHasAlreadyBeenShown;
+    }
+
+    async setRootPage() {
+        if (await this.isFirstStart()) {
+            this.rootPage = 'OnboardingPage';
+        } else {
+            this.rootPage = 'HomePage';
+        }
+        this.splashScreen.hide()
     }
 }
 

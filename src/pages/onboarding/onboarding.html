@@ -1,0 +1,29 @@
+<ion-content bg-white>
+    <ion-slides pager="true" padding>
+        <ion-slide>
+            <object type="image/svg+xml" data="./assets/icons/onboarding/slide1.svg"></object>
+            <h1>{{ 'onboarding.title.1' | translate }}</h1>
+            <p [innerHTML]="'onboarding.text.1' | translate"></p>
+        </ion-slide>
+        <ion-slide>
+            <object type="image/svg+xml" data="./assets/icons/onboarding/slide2.svg"></object>
+            <h1>{{ 'onboarding.title.2' | translate }}</h1>
+            <p [innerHTML]="'onboarding.text.2' | translate"></p>
+        </ion-slide>
+        <ion-slide>
+            <div [innerHTML]="slide3Svg"></div>
+            <h1>{{ 'onboarding.title.3' | translate }}</h1>
+            <p [innerHTML]="'onboarding.text.3' | translate"></p>
+        </ion-slide>
+        <ion-slide>
+            <div [innerHTML]="slide4Svg"></div>
+            <h1>{{ 'onboarding.title.4' | translate }}</h1>
+            <p [innerHTML]="'onboarding.text.4' | translate"></p>
+            <ion-row>
+                <ion-col>
+                    <button ion-button solid default block (click)="goToHomePage()">{{ 'leggoooo' | translate }}</button>
+                </ion-col>
+            </ion-row>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

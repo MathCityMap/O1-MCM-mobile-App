@@ -56,6 +56,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {

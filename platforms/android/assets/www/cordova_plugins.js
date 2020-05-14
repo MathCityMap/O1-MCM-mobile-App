@@ -398,6 +398,14 @@ module.exports = [
     "clobbers": [
       "CameraPopoverHandle"
     ]
+  },
+  {
+    "id": "cordova-plugin-splashscreen.SplashScreen",
+    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+    "pluginId": "cordova-plugin-splashscreen",
+    "clobbers": [
+      "navigator.splashscreen"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -419,7 +427,8 @@ module.exports.metadata =
   "cordova-plugin-local-notification": "0.9.0-beta.2",
   "cordova-plugin-media": "5.0.3",
   "cordova-plugin-camera": "4.0.3",
-  "cordova-plugin-whitelist": "1.3.4"
+  "cordova-plugin-whitelist": "1.3.4",
+  "cordova-plugin-splashscreen": "4.0.3"
 };
 // BOTTOM OF METADATA
 });
