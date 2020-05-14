@@ -933,5 +933,8 @@
   "p_about_code_title": "O kóde",
   "p_content_cancel_edit_info": "Chcete sa vrátiť na predchádzajúcu stranu? Neuložené údaje budú stratené.",
   "p_content_cancel_edit": "Zrušiť tvorbu trasy?",
-  "p_narrative_help": "Naratívy pridajú k trase tematické nastavenia. Zmenia výzor aplikácie a spôsobia preformulovanie niektorých úloh."
+  "p_narrative_help": "Naratívy pridajú k trase tematické nastavenia. Zmenia výzor aplikácie a spôsobia preformulovanie niektorých úloh.",
+  "a_dialog_leave": "Odísť",
+  "a_dialog_stay": "Zostať",
+  "a_dialog_leave_portal": "Odchádzate z portálu. Prosíme, predtým ako z portálu odídete, uložte si svoju prácu."
 }
