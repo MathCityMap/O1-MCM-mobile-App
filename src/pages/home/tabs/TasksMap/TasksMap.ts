@@ -799,35 +799,39 @@ export class TasksMap implements OnInit, OnDestroy {
   displayResetTasksModal() {
       this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
           'no', () => {},
-          'yes', () => {
-              this.resetTasks();
+          'yes', async () => {
+              await this.resetTasks();
+              this.showGuidedTrailModalWithDelay(50);
           }, this.app.activeNarrative);
   }
 
   resetTasks(){
-      this.ormService.deleteUserScore(this.score).then( async ()=> {
-          this.score = new Score();
-          this.state = {
-              selectedTask: null,
-              isShowingAllTasks: true,
-              visibleTasks: {},
-              skippedTaskIds: [],
-              selectedStartTask: false,
-              showIntroModal: true,
-              showGuidedTrailModal: true
-          };
-          if (!this.taskList) {
-              this.taskList = await this.route.getTasks();
-          }
-          if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
-              this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
-          }
-          this.route.completed = false;
-          this.route.completedDate = null;
-          await this.saveMapStateToLocalStorage();
-          await this.ormService.saveAndFireChangedEvent(this.route);
-          this.redrawMarker();
-    });
+      return new Promise(resolve => {
+          this.ormService.deleteUserScore(this.score).then(async () => {
+              this.score = new Score();
+              this.state = {
+                  selectedTask: null,
+                  isShowingAllTasks: true,
+                  visibleTasks: {},
+                  skippedTaskIds: [],
+                  selectedStartTask: false,
+                  showIntroModal: true,
+                  showGuidedTrailModal: true
+              };
+              if (!this.taskList) {
+                  this.taskList = await this.route.getTasks();
+              }
+              if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
+                  this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+              }
+              this.route.completed = false;
+              this.route.completedDate = null;
+              await this.saveMapStateToLocalStorage();
+              await this.ormService.saveAndFireChangedEvent(this.route);
+              this.redrawMarker();
+              resolve();
+          });
+      });
    }
 
   async sessionFinished() {
