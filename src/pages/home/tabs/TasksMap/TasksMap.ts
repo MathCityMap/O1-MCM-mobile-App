@@ -420,7 +420,7 @@ export class TasksMap implements OnInit, OnDestroy {
           mapState = {};
       }
       mapState[this.routeId] = this.state;
-      this.storage.set(this.stateKey, mapState);
+      return this.storage.set(this.stateKey, mapState);
   }
 
   async ionViewWillLeave(){
@@ -809,7 +809,7 @@ export class TasksMap implements OnInit, OnDestroy {
       return new Promise(resolve => {
           this.ormService.deleteUserScore(this.score).then(async () => {
               this.score = new Score();
-              this.state = {
+              this.state = this.navParams.data.tasksMapState = {
                   selectedTask: null,
                   isShowingAllTasks: true,
                   visibleTasks: {},
@@ -828,7 +828,7 @@ export class TasksMap implements OnInit, OnDestroy {
               this.route.completedDate = null;
               await this.saveMapStateToLocalStorage();
               await this.ormService.saveAndFireChangedEvent(this.route);
-              this.redrawMarker();
+              await this.redrawMarker();
               resolve();
           });
       });

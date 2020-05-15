@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		018026EC64BC481098411585 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8487ED049BED4B4AB735E85A /* Contacts.framework */; };
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
@@ -726,7 +727,7 @@
 				INFOPLIST_FILE = "MathCityMap/MathCityMap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.6.3.10;
+				MARKETING_VERSION = 2.6.14;
 				PRODUCT_BUNDLE_IDENTIFIER = de.autentek.mathcitymap;
 				PRODUCT_NAME = MathCityMap;
 				PROVISIONING_PROFILE_SPECIFIER = "Development Wildcard";
@@ -760,7 +761,7 @@
 				INFOPLIST_FILE = "MathCityMap/MathCityMap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 2.6.3.10;
+				MARKETING_VERSION = 2.6.14;
 				PRODUCT_BUNDLE_IDENTIFIER = de.autentek.mathcitymap;
 				PRODUCT_NAME = MathCityMap;
 				PROVISIONING_PROFILE_SPECIFIER = "MathCityMap Hybrid Profile";
