@@ -1,19 +1,63 @@
 page-onboarding, touch-point {
-    h1{
-        margin: 10px 0;
+    .content{
+        background-color: #F4F9F9;
     }
-    p{
-        margin-top: 10px;
-    }
-    img{
-        max-width: 66vw!important;
-        margin: 0 auto;
-    }
-    .swiper-slide{
-        &:last-of-type{
-            img{
-                min-width: 77vw;
+    .slides{
+        padding: 0!important;
+        .swiper-slide{
+            padding: 0 $global-base-padding;
+            .slide-zoom{
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 6vh 0;
+                object, .img{
+                    flex: 5;
+                    width: 100%;
+                    pointer-events: none;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 $global-small-padding;
+                    svg{
+                        flex: 1;
+                    }
+                }
+                .text{
+                    flex: 2;
+                    h1{
+                        margin: 0 0 15px 0;
+                    }
+                    p{
+                        font-size: 4vw;
+                        line-height: 1.4;
+                        margin-bottom: 10px;
+                    }
+                    .button{
+                        margin: $global-small-padding 0;
+                        & > *{
+                            font-size: 4.8vw;
+                        }
+                    }
+                }
             }
+            &:nth-of-type(3){
+                object, .img{
+                    padding-right: $global-base-padding;
+                }
+            }
+            &:last-of-type{
+                .text {
+                    flex: 3;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-end;
+                }
+
+            }
+        }
+        .swiper-pagination-bullet-active{
+            background-color: color($colors, primary);
         }
     }
 }

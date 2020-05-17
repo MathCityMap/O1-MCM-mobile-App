@@ -6,11 +6,13 @@ import {TranslateService} from "@ngx-translate/core";
 
 @IonicPage()
 @Component({
+    selector: 'page-onboarding',
     templateUrl: 'onboarding.html',
 })
 export class OnboardingPage {
     slide3Svg: SafeHtml;
     slide4Svg: SafeHtml;
+    slide5Svg: SafeHtml;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -22,13 +24,17 @@ export class OnboardingPage {
 
     async ionViewWillLoad() {
         try {
-            let slide3Response = await this.http.get('./assets/icons/onboarding/slide3.svg', {responseType: 'text'}).toPromise();
-            slide3Response = this.translateSvg(slide3Response, [{key: 'startTrail', translateString: 'a_r_start'}]);
+            let slide3Response = await this.http.get('./assets/icons/onboarding/slide-3.svg', {responseType: 'text'}).toPromise();
+            slide3Response = this.translateSvg(slide3Response, [{key: 'start', translateString: 'a_onboarding_slide3_svg'}]);
             this.slide3Svg = this.sanitizer.bypassSecurityTrustHtml(slide3Response);
 
-            let slide4Response = await this.http.get('./assets/icons/onboarding/slide4.svg', {responseType: 'text'}).toPromise();
-            slide4Response = this.translateSvg(slide4Response, [{key: 'check', translateString: 'a_btn_check_answer'}]);
+            let slide4Response = await this.http.get('./assets/icons/onboarding/slide-4.svg', {responseType: 'text'}).toPromise();
+            slide4Response = this.translateSvg(slide4Response, [{key: 'check', translateString: 'a_onboarding_slide4_svg'}]);
             this.slide4Svg = this.sanitizer.bypassSecurityTrustHtml(slide4Response);
+
+            let slide5Response = await this.http.get('./assets/icons/onboarding/slide-5.svg', {responseType: 'text'}).toPromise();
+            slide5Response = this.translateSvg(slide5Response, [{key: 'solution', translateString: 'a_onboarding_slide5_svg'}]);
+            this.slide5Svg = this.sanitizer.bypassSecurityTrustHtml(slide5Response);
         } catch (e) {
             console.error('HTTPERROR', e);
         }

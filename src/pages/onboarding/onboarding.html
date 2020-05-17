@@ -8,32 +8,43 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content bg-white>
-    <ion-slides pager="true" padding>
+<ion-content slides class="has-header transparent padding top bottom">
+    <ion-slides pager="true">
         <ion-slide>
-            <object type="image/svg+xml" data="./assets/icons/onboarding/slide1.svg"></object>
-            <h1>{{ 'a_onboarding_slide1_title' | translate }}</h1>
-            <p [innerHTML]="'a_onboarding_slide1_text' | translate"></p>
+            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-1.svg"></object>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide1_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide1_text' | translate"></p>
+            </div>
         </ion-slide>
         <ion-slide>
-            <object type="image/svg+xml" data="./assets/icons/onboarding/slide2.svg"></object>
-            <h1>{{ 'a_onboarding_slide2_title' | translate }}</h1>
-            <p [innerHTML]="'a_onboarding_slide2_text' | translate"></p>
+            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-2.svg"></object>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide2_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide2_text' | translate"></p>
+            </div>
         </ion-slide>
         <ion-slide>
-            <div [innerHTML]="slide3Svg"></div>
-            <h1>{{ 'a_onboarding_slide3_title' | translate }}</h1>
-            <p [innerHTML]="'a_onboarding_slide3_text' | translate"></p>
+            <div class="img" [innerHTML]="slide3Svg"></div>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide3_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide3_text' | translate"></p>
+            </div>
         </ion-slide>
         <ion-slide>
-            <div [innerHTML]="slide4Svg"></div>
-            <h1>{{ 'a_onboarding_slide4_title' | translate }}</h1>
-            <p [innerHTML]="'a_onboarding_slide4_text' | translate"></p>
-            <ion-row>
-                <ion-col>
-                    <button ion-button solid default block (click)="goToHomePage()">{{ 'a_onboarding_slide4_button' | translate }}</button>
-                </ion-col>
-            </ion-row>
+            <div class="img" [innerHTML]="slide4Svg"></div>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide4_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide4_text' | translate"></p>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="img" [innerHTML]="slide5Svg"></div>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide5_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide5_text' | translate"></p>
+                <button ion-button round (click)="goToHomePage()">{{ 'a_onboarding_slide5_button' | translate }}</button>
+            </div>
         </ion-slide>
     </ion-slides>
 </ion-content>

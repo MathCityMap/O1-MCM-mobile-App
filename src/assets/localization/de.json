@@ -955,9 +955,14 @@
   "a_onboarding_slide1_text": "Mit MathCityMap kannst du Trails in deiner Umgebung ablaufen und dabei sowohl Mathe als auch deine Umwelt von einer ganz neuen Seite kennen lernen!",
   "a_onboarding_slide2_text": "Entdecke Trails in deiner Umgebung über die Liste oder Karte. Um einen konkreten Trail zu finden nutze die Suche oder Hinzufügen-Funktion mit Code",
   "a_onboarding_slide2_title": "Suchen und Entdecken",
-  "a_onboarding_slide3_title": "Speichern und Loslegen",
-  "a_onboarding_slide3_text": "Passenden Trail gefunden? Direkt herunterladen und jederzeit offline durchstarten! GPS anchalten nicht vergessen ;)",
+  "a_onboarding_slide3_svg": "Starten",
+  "a_onboarding_slide3_title": "Laden und Loslegen",
+  "a_onboarding_slide3_text": "Passenden Trail gefunden? Direkt herunterladen und jederzeit offline durchstarten! GPS anschalten nicht vergessen ;)",
+  "a_onboarding_slide4_svg": "Prüfen",
   "a_onboarding_slide4_title": "Mathe machen",
-  "a_onboarding_slide4_text": "Löse Aufgaben und sammle Punkte. Und kommst du mal nicht weiter, hilft bestimmt ein Hinweis! Ansonsten überspring einfach die Aufgabe.",
-  "a_onboarding_slide4_button": "Loslegen!"
+  "a_onboarding_slide4_text": "Löse Aufgaben und sammle Punkte. Und kommst du mal nicht weiter, hilft bestimmt ein Hinweis!",
+  "a_onboarding_slide5_svg": "Musterlösung",
+  "a_onboarding_slide5_title": "Schritt für Schritt",
+  "a_onboarding_slide5_text": "Nutze deine 6 Versuche weise und erhalte Feedback, wo du grade stehst! Und mit der Musterlösung am Ende lernst du immer etwas dazu.",
+  "a_onboarding_slide5_button": "Jetzt loslegen!"
 }
