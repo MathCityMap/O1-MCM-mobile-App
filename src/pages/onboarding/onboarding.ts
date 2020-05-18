@@ -29,7 +29,7 @@ export class OnboardingPage {
             this.slide3Svg = this.sanitizer.bypassSecurityTrustHtml(slide3Response);
 
             let slide4Response = await this.http.get('./assets/icons/onboarding/slide-4.svg', {responseType: 'text'}).toPromise();
-            slide4Response = this.translateSvg(slide4Response, [{key: 'check', translateString: 'a_onboarding_slide4_svg'}]);
+            slide4Response = this.translateSvg(slide4Response, [{key: 'check', translateString: 'a_btn_check_answer'}]);
             this.slide4Svg = this.sanitizer.bypassSecurityTrustHtml(slide4Response);
 
             let slide5Response = await this.http.get('./assets/icons/onboarding/slide-5.svg', {responseType: 'text'}).toPromise();
