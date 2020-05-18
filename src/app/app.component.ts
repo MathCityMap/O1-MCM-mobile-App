@@ -98,12 +98,11 @@ export class MyApp {
     }
 
     async isFirstStart(): Promise<boolean> {
-        let dashboardHasAlreadyBeenShown = await this.storage.get('OnboardingHasBeenShown');
-        // FIXME: Code deactivated for testing purposes
-        // if (!dashboardHasAlreadyBeenShown) {
-        //     this.storage.set('OnboardingHasBeenShown', true);
-        // }
-        return !dashboardHasAlreadyBeenShown;
+        let OnboardingHasAlreadyBeenShown = await this.storage.get('OnboardingHasBeenShown');
+        if (!OnboardingHasAlreadyBeenShown) {
+            this.storage.set('OnboardingHasBeenShown', true);
+        }
+        return !OnboardingHasAlreadyBeenShown;
     }
 
     async setRootPage() {
