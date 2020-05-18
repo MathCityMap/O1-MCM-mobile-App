@@ -14,8 +14,8 @@
       "proxyUrl": "http://api.mathcitymap.eu/public/index.php/sessionUser"
     },
     {
-      "path": "CameraFrame.html",
-      "proxyUrl": "file://assets/CameraFrame.html"
+      "path": "/mcm_maps",
+      "proxyUrl": "https://mathcitymap.eu/mcm_maps/*"
     }
   ],
   "app_id": ""

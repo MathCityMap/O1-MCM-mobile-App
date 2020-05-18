@@ -1,15 +1,14 @@
 .platform-ios{
     page-task-detail{
         ion-content{
-            background-position: 0 74px ;
+            background-position: 0 74px;
         }
     }
 }
-.platform-android,
-.md{
+.platform-android, .md{
     page-task-detail{
         ion-content{
-            background-position: 0 54px ;
+            background-position: 0 54px;
         }
     }
 }
@@ -18,37 +17,74 @@ page-task-detail {
         background-size: 100% auto;
         background-repeat: no-repeat;
     }
+
+    //  Upper Part (Header)
+    $header-height: 66vh;
+
     .task-header {
-        position: relative;
+        position: sticky;
         display: block;
         z-index: 0;
-        .image-container {
-            max-height: 80vh;
-            img {
-                opacity: 0;
-                width: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        max-height: 88vh;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &.gps{
+            min-height: $header-height;
+            #gpsTaskMap{
+                position: fixed;
+                @include size(100%, $header-height);
+                ion-fab {
+                    //@include transform(translateY(calc(-100% - #{$global-base-padding})));
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    flex-flow: column-reverse;
+                    bottom: 100px;
+                    button {
+                        &:not(:first-of-type){
+                            margin-bottom: $global-small-padding;
+                        }
+                        padding-top: 5px;
+                        span, span .icon{
+                            color: #ffffff;
+                            font-family: 'NunitoExtrabold', Arial, sans-serif;
+                            line-height: 1;
+                            font-size: 20px;
+                        }
+                    }
+                }
             }
         }
     }
-    .transition {
-        content: '';
-        background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
-        height: 100px;
-        width: 100%;
-        display: block;
-        position: absolute;
-        bottom: -50px;
-    }
+
+    //  Bottom Part (Content)
+
     .task-content {
-        padding-bottom: 1px;
-        display: block;
         position: relative;
+        display: block;
         background: linear-gradient(to bottom, rgba(229, 229, 229, 0) 50px, rgba(229, 229, 229, 1) 51px);
+        @include ios-scroll-fix;
+        .transition {
+            position: absolute;
+            top: 0;
+            height: 55px;
+            width: 100%;
+            z-index: 1;
+            display: block;
+            content: '';
+            background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
+        }
     }
     .card {
         z-index: 2;
         &.task {
-            margin-top: -15%;
+            margin-top: -10%;
             padding-top: $global-large-padding*0.5;
             p {
                 margin-bottom: $global-base-padding*1.5;
@@ -137,29 +173,70 @@ page-task-detail {
             }
         }
     }
-    .fab-container {
-        @include transform(translateY(-100%));
-        button {
-            -webkit-box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.2);
-            box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.2);
-            margin-bottom: $global-small-padding;
-            padding-top:5px;
-            span,
-            span .icon{
-                color: #ffffff;
-                font-family: 'NunitoExtrabold', Arial, sans-serif;
-                line-height: 1;
-                font-size: 20px;
+}
+
+.mcm-keyboard-open{
+    .scroll-content{
+        margin-bottom: 27vh!important;
+    }
+}
+
+
+
+@media screen and (min-width: 768px) and (orientation: portrait){
+    page-task-detail{
+        .task-header {
+            max-height: 95vh;
+            overflow: hidden;
+        }
+        .card{
+            &.task{
+                margin-top: -6%;
             }
         }
     }
 }
 
-.mcm-keyboard-open{
-    .scroll-content{
-        margin-bottom: 33vh;
-
-        //transform: translateY(-33vh);
-        //transition: margin 0.5s ease;
+@media screen and (min-width: 768px) and (orientation: landscape){
+    page-task-detail{
+        .content.padding.bottom .scroll-content{
+            display: flex;
+            padding-bottom: 0!important;
+        }
+        .task-header{
+            flex: 55;
+            max-height: unset;
+            &.gps{
+                #gpsTaskMap{
+                    position: relative;
+                    height: 100%;
+                    ion-fab{
+                        bottom: $global-large-padding;
+                        right: $global-base-padding!important;
+                        left: unset;
+                    }
+                }
+            }
+        }
+        .task-content{
+            flex: 45;
+            height: 100%;
+            margin-bottom: 0;
+            padding-top: $global-medium-padding*2;
+            overflow: scroll;
+            .transition{
+                //left: -30px;
+                //height: 100%;
+                //width: 35px;
+                //z-index: 1000;
+                //background: linear-gradient(to left, #e5e5e5 0%, rgba(255, 255, 255, 0) 100%);
+                display: none;
+            }
+        }
+        .card{
+            &.task{
+                margin-top: 0;
+            }
+        }
     }
 }

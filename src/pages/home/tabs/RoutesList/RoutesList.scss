@@ -1,4 +1,9 @@
 routes-list {
+    ion-list{
+        @include ios-scroll-fix;
+        //perspective: 1000;
+        //-webkit-perspective: 1000;
+    }
     .user-feedback{
         position: absolute;
         @include size(100%);
@@ -14,14 +19,21 @@ routes-list {
         & > * {
             padding: $global-base-padding;
             width: 100%;
+            max-width: 80vw;
         }
 
         img{
             width: 33%;
+            max-width: 200px;
         }
         .message{
             color: color($colors, mid-grey);
+            line-height: 1.4;
             @include bolder;
         }
     }
+
+    //ion-infinite-scroll{
+    //    background-color: $c-light;
+    //}
 }

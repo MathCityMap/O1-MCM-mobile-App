@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar hideBackButton [attr.transparent]="true">
+        <ion-buttons right>
+            <button ion-button icon-only (click)="goToHomePage()">
+                <img class="header-icon" src="assets/icons/icon_close-modal.svg"/>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content slides class="has-header transparent padding top bottom">
+    <ion-slides pager="true">
+        <ion-slide>
+            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-1.svg"></object>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide1_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide1_text' | translate"></p>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-2.svg"></object>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide2_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide2_text' | translate"></p>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="img" [innerHTML]="slide3Svg"></div>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide3_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide3_text' | translate"></p>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="img" [innerHTML]="slide4Svg"></div>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide4_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide4_text' | translate"></p>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="img" [innerHTML]="slide5Svg"></div>
+            <div class="text">
+                <h1>{{ 'a_onboarding_slide5_title' | translate }}</h1>
+                <p [innerHTML]="'a_onboarding_slide5_text' | translate"></p>
+                <button ion-button round (click)="goToHomePage()">{{ 'a_onboarding_slide5_button' | translate }}</button>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

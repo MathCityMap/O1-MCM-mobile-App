@@ -1,11 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.autentek.mathcitymap" version="2.3.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.autentek.mathcitymap" version="2.6.14" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
-    </feature>
-    <feature name="Console">
-        <param name="ios-package" value="CDVLogger" />
-        <param name="onload" value="true" />
     </feature>
     <feature name="HandleOpenUrl">
         <param name="ios-package" value="CDVHandleOpenURL" />
@@ -39,20 +35,11 @@
     <feature name="Badge">
         <param name="ios-package" value="APPBadge" />
     </feature>
-    <feature name="Camera">
-        <param name="ios-package" value="CDVCamera" />
-    </feature>
-    <feature name="CameraPreview">
-        <param name="ios-package" onload="true" value="CameraPreview" />
-    </feature>
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
     <feature name="FileTransfer">
         <param name="ios-package" value="CDVFileTransfer" />
-    </feature>
-    <feature name="Geolocation">
-        <param name="ios-package" value="CDVLocation" />
     </feature>
     <feature name="Globalization">
         <param name="ios-package" value="CDVGlobalization" />
@@ -94,6 +81,21 @@
     </feature>
     <feature name="Diagnostic">
         <param name="ios-package" value="Diagnostic" />
+    </feature>
+    <feature name="JJzip">
+        <param name="ios-package" value="JJzip" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
+    <feature name="CDVOrientation">
+        <param name="ios-package" value="CDVOrientation" />
+    </feature>
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
+    <feature name="Camera">
+        <param name="ios-package" value="CDVCamera" />
     </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
@@ -167,9 +169,6 @@
     <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
     </config-file>
-    <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
-        <string>Used to take pictures</string>
-    </edit-config>
     <config-file parent="NSContactsUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
     </config-file>
@@ -185,6 +184,20 @@
     <config-file parent="NSRemindersUsageDescription" platform="ios" target="*-Info.plist">
         <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
     </config-file>
+    <config-file parent="UISupportedInterfaceOrientations" platform="ios" target="-Info.plist">
+        <array>
+            <string>UIInterfaceOrientationPortrait</string>
+            <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        </array>
+    </config-file>
+    <config-file parent="UISupportedInterfaceOrientations~ipad" platform="ios" target="-Info.plist">
+        <array>
+            <string>UIInterfaceOrientationPortrait</string>
+            <string>UIInterfaceOrientationPortraitUpsideDown</string>
+            <string>UIInterfaceOrientationLandscapeLeft</string>
+            <string>UIInterfaceOrientationLandscapeRight</string>
+        </array>
+    </config-file>
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="true" />
@@ -198,9 +211,10 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
-    <preference name="CameraUsesGeolocation" value="false" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
+    <preference name="CameraUsesGeolocation" value="false" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="SplashMaintainAspectRatio" value="true" />

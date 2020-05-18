@@ -37,7 +37,10 @@ export class ChatMessage {
     toUserId: string;
     time: number | string;
     message: string;
+    media: string[];
     status: string;
+    audioDuration?: number;
+    currentPosition?: number;
 }
 
 export class LeaderBoardItemRespone {
@@ -67,6 +70,8 @@ export class ChatAndSessionService {
     private static CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS = 2;
     private static STORAGE_KEY_SESSION = 'ChatAndSessionService.activeSession';
     private static USER_EVENTS = [];
+    private static DEFAULT_LAT = 999;
+    private static DEFAULT_LON = 999;
 
     private subject = new ReplaySubject<SessionInfo>(1);
     private timerBackground = Observable.interval(ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS * 1000).timeInterval();
@@ -138,7 +143,7 @@ export class ChatAndSessionService {
     private getChatMessage(msg: SessionChatMessageResponse, sessionUser: SessionUser): ChatMessage {
         msg.time = this.formatTime(msg.time);
         let timezoneOffset = new Date().getTimezoneOffset();
-        let chatMessage = {
+        let chatMessage: ChatMessage = {
             messageId: msg.messageId,
             userId: msg.senderId, // if author id eq current user
             userName: msg.username, // team user name
@@ -146,8 +151,12 @@ export class ChatAndSessionService {
             toUserId: msg.receiverId, // toUserId (depends if this is written  or received
             time: Date.parse(msg.time) - (timezoneOffset * 60000),
             message: msg.message,
-            status: msg.status
+            status: msg.status,
+            media: msg.media
         };
+        if(chatMessage.media.length > 0 && chatMessage.media[0].substring(chatMessage.media[0].lastIndexOf('.')) == '.aac'){
+            chatMessage.audioDuration = msg.mediaDuration;
+        }
         return chatMessage;
     }
 
@@ -230,6 +239,17 @@ export class ChatAndSessionService {
             console.info("New Chat Messages were send: [".concat(msgs.length.toString(), "]"));
             return msgs;
         });
+    }
+
+    async postMedia(file: FormData, sessionInfo: SessionInfo){
+        try {
+            let x = await this.sessionChatService.postMedia(file, sessionInfo.session.code, sessionInfo.sessionUser.token);
+            return this.sessionService.rootUrl.replace("index.php", "") + x.body;
+        }
+        catch (e) {
+            console.log("ERROR sending media to chat: ", e);
+            return null;
+        }
     }
 
     async getUserInfo(): Promise<UserInfo> {
@@ -324,7 +344,19 @@ export class ChatAndSessionService {
 
             this.positionSubscription = this.pushPositionTimer.subscribe(async tick => {
                 let position = this.gpsService.getLastPosition();
-                this.coordinatesList.push(position.coords);
+                if(position && position.coords){
+                    this.coordinatesList.push(position.coords);
+                }else{
+                    this.coordinatesList.push({
+                        accuracy: 0,
+                        altitude: null,
+                        altitudeAccuracy: null,
+                        heading: null,
+                        latitude: ChatAndSessionService.DEFAULT_LAT,
+                        longitude: ChatAndSessionService.DEFAULT_LON,
+                        speed:  null
+                    });
+                }
                 if (this.coordinatesList.length >= 15) {
                     console.log("calculate sums");
                     let lat = 0;
@@ -355,6 +387,7 @@ export class ChatAndSessionService {
             }
 
             this.sendEventsSubscription = this.sendEventsTimer.subscribe(tick => {
+                console.log('tick tock');
                 this.sendUserEvents()
             });
 
@@ -516,11 +549,12 @@ export class ChatAndSessionService {
      */
     private async sendUserEvents() {
         let sessionInfo = this.transientActiveSession;
+        console.log('send user events');
         if (sessionInfo) {
             if (ChatAndSessionService.USER_EVENTS.length > 0) {
                 let position = this.gpsService.getLastPosition();
-                console.log(position.coords);
-                if(position.coords){
+                if(position && position.coords){
+                    console.log(position.coords);
                     ChatAndSessionService.USER_EVENTS.forEach(event => {
                         event.lat = position.coords.latitude.toString();
                         event.lon = position.coords.longitude.toString();
@@ -545,8 +579,8 @@ export class ChatAndSessionService {
         eventAddRequest.title = title;
         eventAddRequest.details = details;
         eventAddRequest.task_id = task_id;
-        eventAddRequest.lat = "999";
-        eventAddRequest.lon = "999";
+        eventAddRequest.lat = ""+ChatAndSessionService.DEFAULT_LAT;
+        eventAddRequest.lon = ""+ChatAndSessionService.DEFAULT_LON;
         ChatAndSessionService.USER_EVENTS.push(eventAddRequest)
     }
 

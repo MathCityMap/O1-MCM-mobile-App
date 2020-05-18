@@ -29,6 +29,7 @@ export class RoutesListPage implements OnDestroy {
     public filteredItems: Route[] = [];
     private routesListSearch: string = "";
 
+    private isOpeningRoute: boolean = false;
     private pipe: SearchPipe;
 
     private filteredResult: Route[];
@@ -75,7 +76,6 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async ionViewWillEnter() {
-        console.log('RoutesList ionViewWillEnter()', this.navParams);
         this.pipe = new SearchPipe();
         if(this.navParams.data && this.navParams.data.showAllRoutes != null) {
             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
@@ -269,9 +269,14 @@ export class RoutesListPage implements OnDestroy {
     }
 
     showRouteDetail(item: any) {
-        this.modalsService.showRoute(item, this.navCtrl).then(async () => {
-            await this.updateRoutes();
-        })
+        if(!this.isOpeningRoute){
+            this.isOpeningRoute = true;
+            this.modalsService.showRoute(item, this.navCtrl).then(async () => {
+                this.isOpeningRoute = false;
+                await this.updateRoutes();
+            })
+        }
+
     }
 
     filterItems(){

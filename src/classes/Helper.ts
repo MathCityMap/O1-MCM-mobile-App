@@ -1,17 +1,21 @@
 import * as L from 'leaflet';
-import { LatLng } from 'leaflet';
-import { checkAvailability } from '@ionic-native/core';
-import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
-import { GpsService } from '../services/gps-service';
-import { Network } from '@ionic-native/network';
-import { Platform } from 'ionic-angular';
-import { Route } from '../entity/Route';
+import {LatLng, latLngBounds, LatLngBounds} from 'leaflet';
+import {checkAvailability} from '@ionic-native/core';
+import {Injectable} from '@angular/core';
+import {Headers, Http, RequestOptions, ResponseContentType} from '@angular/http';
+import {GpsService} from '../services/gps-service';
+import {Network} from '@ionic-native/network';
+import {Platform} from 'ionic-angular';
+import {Route} from '../entity/Route';
 import {OrmService} from "../services/orm-service";
-import { Storage } from "@ionic/storage";
+import {Storage} from "@ionic/storage";
+import {File} from "@ionic-native/file";
+import 'leaflet-geometryutil';
+import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 
 export class MapTile {
-    constructor(private pZoomLevel: number, private pX: number, private pY: number) {
+    constructor(private pZoomLevel: number, private pX: number, private pY: number
+    ) {
     }
 
     get x(): number {
@@ -75,7 +79,7 @@ export class Helper {
     static readonly updated_once: boolean = false
     // Map Settings (also which tiles to download)
     static readonly min_zoom: number = 15
-    static readonly max_zoom: number = 20
+    static readonly max_zoom: number = 19
 
     /*
     SETTINGS END ###
@@ -85,17 +89,17 @@ export class Helper {
     /*
     GLOBAL VARS #
      */
-    static readonly WEBSERVER_URL: string = "http://mathcitymap.eu/"
+    static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
-    static readonly API_URL: string = "http://mathcitymap.eu/db_query_post.php"
+    static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
     static readonly REQUEST_PASS: string = "evilknivel2k16"
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"
     // public static ProgressDialog updater_dialog = null
     static readonly mapCode: string = "mapbox.streets"
     static readonly accessToken: string = "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww"
-    static readonly mapquestUrl = `http://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}${L.Browser.retina ? '@2x' : ''}.png?&tilesize=256&access_token=${Helper.accessToken}`
+    static readonly mapquestUrl = `https://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}@2x.png?&tilesize=256&access_token=${Helper.accessToken}`
     static readonly subDomains = ['a', 'b', 'c', 'd'];
 
     // public static OnlineTileSourceBase mbTileSource = new XYTileSource("MapBoxSatelliteLabelled",
@@ -130,8 +134,9 @@ export class Helper {
 
     private activateAddRouteModal: boolean = false;
 
-    constructor(private http: Http, private gpsService: GpsService, private network: Network,
-                private platform: Platform, private ormService: OrmService, private storage: Storage) {
+    constructor(private http: Http, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
+                private platform: Platform, private ormService: OrmService, private storage: Storage,
+                private file: File) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();
@@ -154,6 +159,7 @@ export class Helper {
             this.isOnline = true;
         });
     }
+
     public getDistanceToCenterByLatLng(latLng: LatLng): number {
         if (!latLng) {
             return 0;
@@ -316,7 +322,7 @@ export class Helper {
         }
     }
 
-    public async setDevMode(value: string){
+    public async setDevMode(value: string) {
         await this.storage.set('devMode', value);
         this.devModeEnabled = (value === 'true')
     }
@@ -325,7 +331,7 @@ export class Helper {
         return this.devModeEnabled;
     }
 
-    public setActivateAddRoute(value: boolean){
+    public setActivateAddRoute(value: boolean) {
         this.activateAddRouteModal = value;
     }
 
@@ -333,10 +339,30 @@ export class Helper {
         return this.activateAddRouteModal;
     }
 
-    public async calculateProgress(route: Route){
+    public async calculateProgress(route: Route) {
         let totalTasks = await route.getTaskCount();
         let score = route.getScoreForUser(await this.ormService.getActiveUser());
         let currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         return {totalTasks: totalTasks, currentProgress: currentProgress};
     }
+
+    public static calculateZoom(bounds: LatLngBounds){
+
+        let width = (L as any).GeometryUtil.length([bounds.getSouthWest(), bounds.getSouthEast()]);
+        let height = (L as any).GeometryUtil.length([bounds.getNorthWest(), bounds.getSouthWest()]);
+
+        let area = (width/1000) * (height/1000);
+
+        console.log("####Area = ", width/1000, height/1000, area);
+
+
+        if(area <= 0.4) {
+            return {min_zoom: 16, max_zoom: 20}
+        }
+        else if(area <= 1.5) {
+            return {min_zoom: 16, max_zoom: 19}
+        }
+        else return {min_zoom: 15, max_zoom: 18}
+    }
+
 }

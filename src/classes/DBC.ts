@@ -159,6 +159,9 @@ export abstract class DBC {
       "create_date",
       "attr",
       "lang_code",
+        "map_version",
+        "map_filename",
+        "map_date"
     ],
     [
       "INTEGER",
@@ -179,7 +182,10 @@ export abstract class DBC {
       "TEXT",
       "TIMESTAMP",
       "TEXT",
-      "VARCHAR"
+      "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TEXT"
     ],
     [
       "PRIMARY KEY AUTOINCREMENT",
@@ -200,7 +206,10 @@ export abstract class DBC {
       "",
       "NOT NULL",
       "",
-      "(2)"
+      "(2)",
+        "",
+        "",
+        ""
     ]
   )
 

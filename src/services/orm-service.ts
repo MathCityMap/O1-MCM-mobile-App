@@ -1,28 +1,28 @@
-import { Injectable } from "@angular/core";
-import { checkAvailability } from "@ionic-native/core";
-import { SQLite } from '@ionic-native/sqlite';
-import { Connection, createConnection, Repository } from "typeorm";
+import {Injectable} from "@angular/core";
+import {checkAvailability} from "@ionic-native/core";
+import {SQLite} from '@ionic-native/sqlite';
+import {Connection, createConnection, Repository} from "typeorm";
 
-import { InitialMigration1513274191111 } from '../migration/1513274191111-InitialMigration';
-import { FailedTaskMigration1515428187000 } from '../migration/1515428187000-failedTaskMigration';
+import {InitialMigration1513274191111} from '../migration/1513274191111-InitialMigration';
+import {FailedTaskMigration1515428187000} from '../migration/1515428187000-failedTaskMigration';
 
-import { User } from '../entity/User';
-import { State } from '../entity/State';
-import { Task } from '../entity/Task';
-import { Route } from '../entity/Route';
-import { AddImageUrlAndDownloadedFlagMigration1513679923000 } from '../migration/1513679923000-AddImageUrlAndDownloadedFlagMigration';
-import { ImagesService } from './images-service';
-import { CacheManagerMCM } from '../classes/CacheManagerMCM';
-import { Score } from "../entity/Score";
-import { TaskState } from "../entity/TaskState";
-import { Task2Route } from '../entity/Task2Route';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { TranslateService } from '@ngx-translate/core';
-import { Platform } from 'ionic-angular';
-import { AddUnlockedColumn1516037215000 } from '../migration/1516037215000-AddUnlockedColumn';
-import { AddCompletedColumn1519817905000 } from '../migration/1519817905000-AddCompletedColumn';
-import { Subject } from 'rxjs/Subject';
-import { DB_Handler } from '../classes/DB_Handler';
+import {User} from '../entity/User';
+import {State} from '../entity/State';
+import {Task} from '../entity/Task';
+import {Route} from '../entity/Route';
+import {AddImageUrlAndDownloadedFlagMigration1513679923000} from '../migration/1513679923000-AddImageUrlAndDownloadedFlagMigration';
+import {ImagesService} from './images-service';
+import {CacheManagerMCM} from '../classes/CacheManagerMCM';
+import {Score} from "../entity/Score";
+import {TaskState} from "../entity/TaskState";
+import {Task2Route} from '../entity/Task2Route';
+import {SpinnerDialog} from '@ionic-native/spinner-dialog';
+import {TranslateService} from '@ngx-translate/core';
+import {AlertController, Platform} from 'ionic-angular';
+import {AddUnlockedColumn1516037215000} from '../migration/1516037215000-AddUnlockedColumn';
+import {AddCompletedColumn1519817905000} from '../migration/1519817905000-AddCompletedColumn';
+import {Subject} from 'rxjs/Subject';
+import {DB_Handler} from '../classes/DB_Handler';
 import {AddVisibleColumn1526306624000} from "../migration/1526306624000-AddVisibleColumn";
 import {AddLangCodeColumn1526306730000} from "../migration/1526306730000-AddLangCodeColumn";
 import {DB_Updater} from "../classes/DB_Updater";
@@ -30,17 +30,21 @@ import {Helper} from "../classes/Helper";
 
 import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-AddDownloadDateColumn";
 import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-AddCompletedDateColumn";
+import {AddZipMapFields15783117210000} from "../migration/15783117210000-AddZipMapFields";
+import {Storage} from "@ionic/storage";
+import {ApiConfiguration} from "../app/api/api-configuration";
+
 
 @Injectable()
 export class OrmService {
     connection: Connection;
     public static INSTANCE: OrmService;
     public static EVENT_ROUTES_CHANGED = 'EVENT_ROUTES_CHANGED';
-    private visibleRoutesCache : Route[];
+    private visibleRoutesCache: Route[];
     public eventEmitter = new Subject<String>();
 
     constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
-                private translateService: TranslateService, private platform: Platform) {
+                private translateService: TranslateService, private platform: Platform, private storage: Storage, private alertCtrl: AlertController) {
         OrmService.INSTANCE = this;
     }
 
@@ -70,10 +74,11 @@ export class OrmService {
             AddVisibleColumn1526306624000,
             AddLangCodeColumn1526306730000,
             AddDownloadDateColumn15711518720000,
-            AddCompletedDateColumn15713974540000
+            AddCompletedDateColumn15713974540000,
+            AddZipMapFields15783117210000
         ];
         if (sqliteAvailable) {
-            return this.connection = await createConnection({
+            this.connection = await createConnection({
                 type: 'cordova',
                 location: 'default',
                 database: 'mcm_db.sqlite3',
@@ -84,8 +89,9 @@ export class OrmService {
                 migrationsRun: true,
                 migrations: migrations
             });
+            return this.connection;
         } else {
-            return this.connection = await createConnection({
+            this.connection = await createConnection({
                 type: 'websql',
                 version: '1.0',
                 description: 'MCM DB',
@@ -98,6 +104,7 @@ export class OrmService {
                 migrationsRun: true,
                 migrations: migrations
             });
+            return this.connection;
         }
     }
 
@@ -245,7 +252,7 @@ export class OrmService {
             });
         }
         let repo = await this.getRouteRepository();
-        let result = await repo.createQueryBuilder('r').where('r.public = 1').orWhere('r.unlocked = 1').getMany();
+        let result = await repo.createQueryBuilder('r').where('r.map_version != 0').andWhere('r.public = 1').orWhere('r.unlocked = 1').getMany();
         if (compareFn) {
             result.sort(compareFn);
         }
@@ -271,6 +278,10 @@ export class OrmService {
                 downloaded: '1'
             }
         });
+
+        result = result.filter((route) => {
+            return route.mapVersion != '0'
+        });
         if (compareFn) {
             result.sort(compareFn);
         }
@@ -284,6 +295,10 @@ export class OrmService {
                 unlocked: '1'
             }
         });
+
+        result = result.filter((route) => {
+            return route.mapVersion != '0'
+        });
         return result;
     }
 
@@ -294,6 +309,10 @@ export class OrmService {
                 completed: '1'
             }
         });
+
+        result = result.filter((route) => {
+            return route.mapVersion != '0'
+        });
         return result;
     }
 
@@ -303,14 +322,26 @@ export class OrmService {
             // 15.04.18 - get data rows for route tasks from online DB first
             await dbUpdater.downloadRouteTasksData(route, this.translateService.instant("a_language_code"));
             statusCallback(0, 0, 'a_rdl_title_map');
-            await CacheManagerMCM.downloadTiles(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom, (done, total, url) => {
-                alreadyDownloadedUrls.push(url);
-                return statusCallback(done, total);
-            });
-            statusCallback(0, 0, 'a_rdl_title_img');
+
+            //should be here that we add the download and unzipping.
+            if (!route.isNarrativeEnabled()) {
+                await this.imagesService.downloadAndUnzip(route, (done) => {
+                    return statusCallback(done, 100);
+                },
+                    (tile)=>{
+                        alreadyDownloadedUrls.push(tile);
+                    })
+            } else {
+                let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
+                await CacheManagerMCM.downloadTiles(route, zoomLevels.min_zoom, zoomLevels.max_zoom, (done, total, url) => {
+                    alreadyDownloadedUrls.push(url);
+                    return statusCallback(done, total);
+                });
+            }
+            //statusCallback(0, 0, 'a_rdl_title_img');
             await this.imagesService.downloadURLs(this.getDownloadImagesForTasks(await route.getTasks()), false, (done, total, url) => {
                 alreadyDownloadedUrls.push(url);
-                return statusCallback(done, total);
+                return statusCallback(done, total, 'a_rdl_title_img');
             });
             route.downloaded = true;
             route.downloadedDate = new Date().toDateString().split(' ').slice(1).join(' ');
@@ -322,13 +353,26 @@ export class OrmService {
             if (e.message) {
                 console.log(e.message);
             }
+            if(e.http_status && e.http_status === 404){
+                const alert = this.alertCtrl.create({
+                    title: this.translateService.instant("a_missing_map_data_error_msg"),
+                    buttons: [{
+                        text:  this.translateService.instant("a_g_ok"),
+                        role: 'cancel'
+                    }]
+                });
+                alert.present();
+                let postparams = "&route_id=" + route.id;
+                Helper.INSTANCE.invokeApi('downloadTrailFailed', postparams)
+            }
             console.log(e);
             await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
         }
     }
 
     getTileURLs(route: Route) {
-        return CacheManagerMCM.getTileURLs(route.getBoundingBoxLatLng(), Helper.min_zoom, Helper.max_zoom);
+        let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
+        return CacheManagerMCM.getTileURLs(route, zoomLevels.min_zoom, zoomLevels.max_zoom);
     }
 
     getTileURLsAsObject(route: Route) {
@@ -356,8 +400,13 @@ export class OrmService {
             await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
         }
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
-        route.downloaded = false;
+        let state = await this.storage.get("savedMapStateByRoute");
+        delete state[route.id];
+        this.storage.set("savedMapStateByRoute", state);
+        route.downloaded = null;
         route.downloadedDate = null;
+        route.completed = null;
+        route.completedDate = null;
         const repo = await this.getRouteRepository();
         await repo.save(route);
         this.updateRouteInCache(route);

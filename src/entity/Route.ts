@@ -16,7 +16,6 @@ export class Route {
 // CREATE TABLE IF NOT EXISTS mcm_route (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,title TEXT NOT NULL,country_code TEXT NOT NULL,city TEXT NOT NULL,image TEXT ,code VARCHAR (64),
 // grade TEXT (64),tags VARCHAR ,duration VARCHAR (64),length VARCHAR (64),bounding_box TEXT ,center TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,description TEXT ,create_date TIMESTAMP NOT NULL,attr TEXT TEXT)");
 
-
     @PrimaryGeneratedColumn({name: '_id'})
     id: number;
 
@@ -70,6 +69,15 @@ export class Route {
 
     @Column()
     attr: string;
+
+    @Column({name: 'map_version'})
+    mapVersion: string;
+
+    @Column({name: 'map_filename'})
+    mapFileName: string;
+
+    @Column({name: 'map_date'})
+    mapDate: string;
 
     // TODO: change table's schema
     /*@Column("simple-json")
@@ -140,6 +148,7 @@ export class Route {
     scores: Score[];
 
     async getTaskCount(): Promise<number> {
+        if(this.tasks) return this.tasks.length;
         if (this.task2Routes) {
             return this.task2Routes.length;
         } else {

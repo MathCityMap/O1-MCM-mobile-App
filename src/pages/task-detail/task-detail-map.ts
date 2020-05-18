@@ -19,6 +19,8 @@ import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { Subscription } from 'rxjs/Subscription';
 import {MyApp} from "../../app/app.component";
+import {OrmService} from "../../services/orm-service";
+import {ImagesService} from "../../services/images-service";
 
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
@@ -34,6 +36,8 @@ export class TaskDetailMap implements OnDestroy {
     prevPos: any;
     userPositionIcon;
     preDefinedPointIcon;
+
+    pointsIcons: any = [];
 
     // Markers (set by user) settings
     pointMarkers: Array<Marker> = [];
@@ -59,25 +63,12 @@ export class TaskDetailMap implements OnDestroy {
         private task: Task,
         private route: Route,
         private gpsService: GpsService,
-        private app: MyApp
+        private app: MyApp,
+        private ormService: OrmService,
+        private imagesService: ImagesService
     ) {
-        this.userPositionIcon = L.icon({
-            iconUrl:"./assets/icons/icon_mapposition.png" ,
-            iconSize: [38, 41],
-            className:'marker'
-        });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-        this.pointIcon = L.icon({
-            iconUrl:"./assets/icons/icon_taskmarker-open.png" ,
-            iconSize: [35, 48],
-            iconAnchor: [17, 48],
-            className:'marker'
-        });
-        this.preDefinedPointIcon = L.icon({
-            iconUrl:"./assets/icons/icon_taskmarker-failed.png" ,
-            iconSize: [35, 48],
-            iconAnchor: [17, 48],
-            className:'marker'
-        });
+        this.updateIcons();
+
         this.taskDetails = task;
         this.routeDetails = route;
         // Init Marker Array
@@ -90,6 +81,31 @@ export class TaskDetailMap implements OnDestroy {
         if (this.watchSubscription) {
             this.watchSubscription.unsubscribe();
             this.watchSubscription = null;
+        }
+    }
+
+
+
+    updateIcons() {
+
+        switch (this.app.activeNarrative) {
+            case 'pirates':
+                this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.preDefinedPointIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-gps-0.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-1.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-2.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-3.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/pirates/marker-task-gps-4.png" , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                break;
+            default:
+                this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], className:'marker'});
+                this.preDefinedPointIcon = L.icon({iconUrl:"./assets/icons/marker-task-gps-0.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[0] = L.icon({iconUrl:"./assets/icons/marker-task-gps-1.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[1] = L.icon({iconUrl:"./assets/icons/marker-task-gps-2.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[2] = L.icon({iconUrl:"./assets/icons/marker-task-gps-3.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                this.pointsIcons[3] = L.icon({iconUrl:"./assets/icons/marker-task-gps-4.png" , iconSize: [50, 50], iconAnchor: [25, 50], className:'marker'});
+                break;
+
         }
     }
 
@@ -112,7 +128,7 @@ export class TaskDetailMap implements OnDestroy {
             }
             if(this.pointMarkers[index] == null){
                 let label = String.fromCharCode("A".charCodeAt(0) + index);
-                let newMarker = L.marker(locationLatLng, {icon: this.pointIcon});
+                let newMarker = L.marker(locationLatLng, {icon: this.pointsIcons[index]});
                 newMarker.addTo(this.map);
                 this.pointMarkers[index] = newMarker;
             }
@@ -125,6 +141,8 @@ export class TaskDetailMap implements OnDestroy {
             console.log("Marker placed");
         }
     }
+
+
 
     markerCanBeSet(clickLatLng: L.LatLng): boolean{
         // Markers need to be placed within a certain radius from the task
@@ -345,19 +363,64 @@ export class TaskDetailMap implements OnDestroy {
                 Helper.testLocation.coords.longitude = e.latlng.lng;
             });
 
-
+            let zoomLevels = Helper.calculateZoom(this.route.getViewBoundingBoxLatLng());
             tilesDb.initialize().then(() => {
                 console.log("Tiles DB Initialized");
                 let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-                    attribution: '&copy; <a href="https://www.mapbox.com" target="_blank">mapbox.com</a>',
+                    attribution:'&copy; mapbox.com',
                     subdomains: subDomains,
-                    minZoom: Helper.min_zoom,
-                    maxZoom: Helper.max_zoom,
+                    minZoom: zoomLevels.min_zoom,
+                    maxZoom: zoomLevels.max_zoom,
                     tileSize: 256,
                     crossOrigin: true,
-                    detectRetina: true
+                    detectRetina: true,
+                    bounds: this.route.getBoundingBoxLatLng()
                 });
 
+                const tiles = this.ormService.getTileURLsAsObject(this.route);
+                const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
+                let that = this;
+                offlineLayer.getTileUrl = function (coords) {
+                    var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
+                    var dbStorageKey = this._getStorageKey(url);
+
+                    if (tiles[dbStorageKey]) {
+                        return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles));
+                    }
+                    return Promise.resolve(url);
+
+                };
+
+                this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
+
+                offlineLayer.on('offline:below-min-zoom-error', function () {
+                    alert('Can not save tiles below minimum zoom level.');
+                });
+
+                offlineLayer.on('offline:save-start', function (data) {
+                    console.debug(data);
+                    console.debug('Saving ' + data.nTilesToSave + ' tiles.');
+                });
+
+                offlineLayer.on('offline:save-end', function () {
+                    alert('All the tiles were saved.');
+                });
+
+                offlineLayer.on('offline:save-error', function (err) {
+                    console.error('Error when saving tiles: ' + err);
+                });
+
+                offlineLayer.on('offline:remove-start', function () {
+                    console.debug('Removing tiles.');
+                });
+
+                offlineLayer.on('offline:remove-end', function () {
+                    alert('All the tiles were removed.');
+                });
+
+                offlineLayer.on('offline:remove-error', function (err) {
+                    console.error('Error when removing tiles: ' + err);
+                });
                 offlineLayer.addTo(this.map);
             });
 
@@ -413,5 +476,8 @@ export class TaskDetailMap implements OnDestroy {
     getMap():L.Map{
         return this.map;
     }
+
+
+
 }
 

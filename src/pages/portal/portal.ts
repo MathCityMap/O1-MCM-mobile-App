@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {TranslateService} from "@ngx-translate/core";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {Helper} from "../../classes/Helper";
 
 /**
  * Generated class for the PortalPage page.
@@ -36,10 +37,9 @@ export class PortalPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public iab: InAppBrowser, private translateService: TranslateService,
-                private sanitizer: DomSanitizer) {
-    }
-    ionViewWillEnter(){
+                private sanitizer: DomSanitizer, private alertCtrl: AlertController) {
         this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
-        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl("https://codepen.io/sensei/pen/VwwaYxa?editors=1010");// + this.languageUrl[this.currentLang]);
+        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(Helper.WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
     }
 }
+

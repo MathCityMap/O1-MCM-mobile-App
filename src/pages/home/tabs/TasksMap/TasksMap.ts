@@ -32,7 +32,7 @@ import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-an
 import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "../../../../../node_modules/rxjs";
-
+import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
@@ -61,7 +61,8 @@ export class TasksMap implements OnInit, OnDestroy {
       visibleTasks : {},
       skippedTaskIds: [],
       selectedStartTask: false,
-      showIntroModal: false
+      showIntroModal: false,
+      showGuidedTrailModal: false
   };
   private score: Score;
   private stateKey: string = "savedMapStateByRoute";
@@ -75,8 +76,10 @@ export class TasksMap implements OnInit, OnDestroy {
     taskFailedIcon;
 
     userPositionIcon;
+    userPositionArrow;
     userMarker: any;
     prevPos: any;
+    isUserInsideMap: boolean = true;
 
     currentScore: any;
     user = null;
@@ -108,7 +111,8 @@ export class TasksMap implements OnInit, OnDestroy {
     private spinner: SpinnerDialog,
     private modalCtrl: ModalController,
     private chatAndSessionService: ChatAndSessionService,
-    private app: MyApp
+    private app: MyApp,
+    private helper: Helper
   ) {
 
       /*this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
@@ -151,32 +155,47 @@ export class TasksMap implements OnInit, OnDestroy {
 
   showTrailCompletedAlert(){
       let that = this;
-      let title = 'a_alert_congrats';
-      let message = 'a_alert_congrats_msg';
-      if (this.route.isNarrativeEnabled()) {
-        title = this.route.getNarrativeString(title);
-        message = this.route.getNarrativeString(message);
-      }
-      let modal = this.modalCtrl.create(MCMIconModal,  {
-          title: title,
-          message: message,
-          modalType: MCMModalType.solved,
-          param: {TITLE: this.route.title},
-          narrativeEnabled: this.route.isNarrativeEnabled(),
-          narrative: this.app.activeNarrative,
-          buttons: [
-              {
-                  title: 'a_alert_close',
-                  callback: function(){
-                      modal.dismiss().then(() => {
-                          that.route.completed = true;
-                          that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-                          that.ormService.saveAndFireChangedEvent(that.route);
-                      });
-                  }
+      let modal = this.modalCtrl.create(MCMTrailFinishedModal,
+          {
+              score: this.score,
+              tasks: this.taskList,
+              narrative: this.app.activeNarrative,
+              callback: function() {
+                  modal.dismiss().then(() => {
+                      that.route.completed = true;
+                      that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+                      that.ormService.saveAndFireChangedEvent(that.route);
+                  });
               }
-          ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+          }, {cssClass: this.app.activeNarrative});
       modal.present();
+      // let that = this;
+      // let title = 'a_alert_congrats';
+      // let message = 'a_alert_congrats_msg';
+      // if (this.route.isNarrativeEnabled()) {
+      //   title = this.route.getNarrativeString(title);
+      //   message = this.route.getNarrativeString(message);
+      // }
+      // let modal = this.modalCtrl.create(MCMIconModal,  {
+      //     title: title,
+      //     message: message,
+      //     modalType: MCMModalType.solved,
+      //     param: {TITLE: this.route.title},
+      //     narrativeEnabled: this.route.isNarrativeEnabled(),
+      //     narrative: this.app.activeNarrative,
+      //     buttons: [
+      //         {
+      //             title: 'a_alert_close',
+      //             callback: function(){
+      //                 modal.dismiss().then(() => {
+      //                     that.route.completed = true;
+      //                     that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+      //                     that.ormService.saveAndFireChangedEvent(that.route);
+      //                 });
+      //             }
+      //         }
+      //     ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+      // modal.present();
   }
 
 
@@ -232,30 +251,12 @@ export class TasksMap implements OnInit, OnDestroy {
                   }
               }
               else {
-                  const that = this;
-                  setTimeout(function () {
-                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                          'no', () => {
-                                if (that.route.isNarrativeEnabled()) {
-                                    that.showIntroModal().then(() => {
-                                        that.state.showIntroModal = false;
-                                    })
-                                }
-                          },
-                          'yes', async () => {
-                              that.selectStartPoint().then(modal => {
-                                  modal.onDidDismiss(() => {
-                                      if (that.route.isNarrativeEnabled()) {
-                                          that.showIntroModal().then(() => {
-                                              that.state.showIntroModal = false;
-                                          })
-                                      }
-                                  })
-                              });
-                              that.state.selectedStartTask = true;
-                      }, that.app.activeNarrative);
-                  }, 500);
-
+                  if (this.route.isNarrativeEnabled()) {
+                      this.showIntroModal().then(() => {
+                          this.state.showIntroModal = false;
+                          this.showGuidedTrailModalWithDelay(500);
+                      })
+                  }
               }
 
               this.saveMapStateToLocalStorage();
@@ -267,12 +268,14 @@ export class TasksMap implements OnInit, OnDestroy {
       }
 
       if (this.navParams.data.tasksMapState) {
+          console.log("3");
           this.state = this.navParams.data.tasksMapState;
           if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
               this.goToNextTask(this.state.selectedTask, true);
           }
       } else {
           this.state = await this.getMapStateFromLocalStorage();
+          console.log(this.state);
           if(this.taskToSkip){
               this.goToNextTask(this.taskToSkip, true);
               this.taskToSkip = null;
@@ -285,7 +288,8 @@ export class TasksMap implements OnInit, OnDestroy {
                   visibleTasks: {},
                   skippedTaskIds: [],
                   selectedStartTask: false,
-                  showIntroModal: false // Intro Modal for narratives will be displayed on first start anyway
+                  showIntroModal: false, // Intro Modal for narratives will be displayed on first start anyway
+                  showGuidedTrailModal: false // GuidedTrail Modal will be displayed on first start anyway
               };
               this.state.isShowingAllTasks = !this.state.selectedTask;
               if (this.state.selectedTask) {
@@ -293,27 +297,11 @@ export class TasksMap implements OnInit, OnDestroy {
               }
               else if (this.route.isNarrativeEnabled()) {
                   this.showIntroModal().then(() => {
-                      const that = this;
-                      setTimeout(function() {
-                          that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                              'no', () => {},
-                              'yes', async () => {
-                                  that.selectStartPoint();
-                                  that.state.selectedStartTask = true;
-                              }, that.app.activeNarrative);
-                      }, 500);
+                      this.showGuidedTrailModalWithDelay(500);
                   });
               }
               else {
-                  const that = this;
-                  setTimeout(function() {
-                      that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-                          'no', () => {},
-                          'yes', async () => {
-                              that.selectStartPoint();
-                              that.state.selectedStartTask = true;
-                          }, that.app.activeNarrative);
-                  }, 500);
+                  this.showGuidedTrailModalWithDelay(500);
               }
           }
           else{
@@ -322,11 +310,30 @@ export class TasksMap implements OnInit, OnDestroy {
                       const that = this;
                       that.state.showIntroModal = false;
                       this.saveMapStateToLocalStorage();
+                      if(this.state.showGuidedTrailModal){
+                          this.showGuidedTrailModalWithDelay(500);
+                      }
                   });
+              }else if(this.state.showGuidedTrailModal){
+                  this.showGuidedTrailModalWithDelay(500);
               }
           }
       }
       this.redrawMarker();
+  }
+
+  private showGuidedTrailModalWithDelay(delay) {
+      const that = this;
+      this.state.showGuidedTrailModal = false;
+      setTimeout(function () {
+          that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
+              'no', () => {
+              },
+              'yes', async () => {
+                  that.selectStartPoint();
+                  that.state.selectedStartTask = true;
+              }, that.app.activeNarrative);
+      }, delay);
   }
 
   private forceStartFromTask( taskId ){
@@ -335,6 +342,7 @@ export class TasksMap implements OnInit, OnDestroy {
       this.state.visibleTasks = {};
       this.state.visibleTasks[selectedTask.position] = true;
       this.state.isShowingAllTasks = false;
+      this.state.showGuidedTrailModal = false;
       this.centerSelectedTask();
   }
 
@@ -412,7 +420,7 @@ export class TasksMap implements OnInit, OnDestroy {
           mapState = {};
       }
       mapState[this.routeId] = this.state;
-      this.storage.set(this.stateKey, mapState);
+      return this.storage.set(this.stateKey, mapState);
   }
 
   async ionViewWillLeave(){
@@ -575,14 +583,16 @@ export class TasksMap implements OnInit, OnDestroy {
           })
           let map = this.map;
           await tilesDb.initialize();
+          let zoomLevels = Helper.calculateZoom(this.route.getViewBoundingBoxLatLng());
           let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
               attribution: '&copy; mapbox.com',
               subdomains: subDomains,
-              minZoom: Helper.min_zoom,
-              maxZoom: Helper.max_zoom,
+              minZoom: zoomLevels.min_zoom,
+              maxZoom: zoomLevels.max_zoom,
               tileSize: 256,
               crossOrigin: true,
-              detectRetina: true
+              detectRetina: true,
+              bounds: this.route.getBoundingBoxLatLng()
           });
 
           this.gpsService.getCurrentPosition()
@@ -603,15 +613,40 @@ export class TasksMap implements OnInit, OnDestroy {
                         this.watchSubscription = this.gpsService.watchPosition().subscribe(resp => {
                             if (resp && resp.coords) {
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
-                                this.userMarker.setLatLng(lanlng);
-                                //Rotate the user marker
-                                if(this.prevPos!=null) {
-                                  let angle = Helper.getAngle(this.prevPos, resp.coords);
-                                  this.userMarker.setRotationAngle(angle);
+                                let bBox = this.map.getBounds();
+                                if(bBox.contains(lanlng)){
+                                    // User entered visible map bounding box -> Change Icon
+                                    if(!this.isUserInsideMap){
+                                        this.userMarker.setIcon(this.userPositionIcon);
                                     }
+                                    this.userMarker.setLatLng(lanlng);
+                                    //Rotate the user marker
+                                    if(this.prevPos!=null) {
+                                        let angle = Helper.getAngle(this.prevPos, resp.coords);
+                                        this.userMarker.setRotationAngle(angle);
+                                    }
+                                    this.isUserInsideMap = true;
+                                }
+                                else{
+                                    // User left visible map bounding box -> Change icon to arrow
+                                    if(this.isUserInsideMap){
+                                        this.userMarker.setIcon(this.userPositionArrow);
+                                    }
+                                    this.updateUserLocationArrow(lanlng);
+                                    this.isUserInsideMap = false;
+                                }
                                 this.prevPos = resp.coords;
                             }
                         });
+
+                        // Add map listener events
+                        this.map.on('moveend', e => {
+                            if(!this.isUserInsideMap){
+                                this.updateUserLocationArrow(new L.LatLng(this.prevPos.latitude, this.prevPos.longitude))
+                            }
+                        });
+
+
                     }
                 })
                 .catch(error => {
@@ -619,13 +654,14 @@ export class TasksMap implements OnInit, OnDestroy {
                 });
 
           const tiles = this.ormService.getTileURLsAsObject(this.route);
+          const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
           let that = this;
           offlineLayer.getTileUrl = function (coords) {
               var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
               var dbStorageKey = this._getStorageKey(url);
 
               if (tiles[dbStorageKey]) {
-                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey));
+                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles));
               }
               return Promise.resolve(url);
 
@@ -670,6 +706,41 @@ export class TasksMap implements OnInit, OnDestroy {
             /* todo: show only selectedTask */
           }
       }
+  }
+
+  /*
+  @description: Shows direction arrow pointing towards users geolocation if he isn't inside the current boundaries
+  @param userLatLng array - [lat, lng]
+   */
+  updateUserLocationArrow(userLatLng){
+       if(!userLatLng){
+           return;
+       }
+      let bBox = this.map.getBounds();
+      let alpha = (L as any).GeometryUtil.bearing(this.map.getCenter(), userLatLng);
+      let beta = (L as any).GeometryUtil.bearing(this.map.getCenter(), bBox.getNorthEast());
+      let dx2 = ((L as any).GeometryUtil.length([bBox.getNorthWest(), bBox.getNorthEast()])) / 2;
+      let dy2 = ((L as any).GeometryUtil.length([bBox.getSouthWest(), bBox.getNorthWest()])) / 2;
+      let length = 0;
+
+      // fix negative alpha values
+      if(alpha < 0){
+          alpha = alpha + 360;
+      }
+
+      // Calculate length to bounding box in direction of own position
+      if(
+          (alpha >= beta && alpha <= (180 - beta)) ||
+          (alpha >= (180 + beta) && alpha <= (360 - beta))
+      ){
+          length = Math.abs(dx2 / Math.sin(alpha * (Math.PI / 180)));
+      }
+      else{
+          length = Math.abs(dy2 / Math.cos(alpha * (Math.PI / 180)));
+      }
+      let closestPoint = (L as any).GeometryUtil.destination(this.map.getCenter(), alpha, 0.90 * length);
+      this.userMarker.setLatLng(closestPoint);
+      this.userMarker.setRotationAngle(alpha);
   }
 
   centerSelectedTask(){
@@ -728,21 +799,39 @@ export class TasksMap implements OnInit, OnDestroy {
   displayResetTasksModal() {
       this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
           'no', () => {},
-          'yes', () => {
-              this.resetTasks();
+          'yes', async () => {
+              await this.resetTasks();
+              this.showGuidedTrailModalWithDelay(50);
           }, this.app.activeNarrative);
   }
 
   resetTasks(){
-      this.ormService.deleteUserScore(this.score).then( async ()=> {
-          this.score = new Score();
-          this.state.skippedTaskIds = [];
-          this.state.showIntroModal = true;
-          this.route.completed = false;
-          this.route.completedDate = null;
-          await this.ormService.saveAndFireChangedEvent(this.route);
-          this.redrawMarker();
-    });
+      return new Promise(resolve => {
+          this.ormService.deleteUserScore(this.score).then(async () => {
+              this.score = new Score();
+              this.state = this.navParams.data.tasksMapState = {
+                  selectedTask: null,
+                  isShowingAllTasks: true,
+                  visibleTasks: {},
+                  skippedTaskIds: [],
+                  selectedStartTask: false,
+                  showIntroModal: true,
+                  showGuidedTrailModal: true
+              };
+              if (!this.taskList) {
+                  this.taskList = await this.route.getTasks();
+              }
+              if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
+                  this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+              }
+              this.route.completed = false;
+              this.route.completedDate = null;
+              await this.saveMapStateToLocalStorage();
+              await this.ormService.saveAndFireChangedEvent(this.route);
+              await this.redrawMarker();
+              resolve();
+          });
+      });
    }
 
   async sessionFinished() {
@@ -923,11 +1012,12 @@ export class TasksMap implements OnInit, OnDestroy {
         switch (this.app.activeNarrative) {
             case 'pirates':
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-skipped.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-good.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-perfect.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
-                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [48, 48], iconAnchor: [24, 24], className:'marker'});
+                this.userPositionArrow = L.icon({iconUrl:"./assets/icons/userDirection.png" , iconSize: [36, 36], iconAnchor: [18, 18], className:'marker userArrow'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-skipped.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-good.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-perfect.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
 
                 this.taskOpenIcon.clusterColor = '#AA2000';
                 this.taskSkippedIcon.clusterColor = '#b2b2b2';
@@ -937,6 +1027,7 @@ export class TasksMap implements OnInit, OnDestroy {
                 break;
             default:
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = L.icon({iconUrl:"./assets/icons/userDirection.png" , iconSize: [36, 36], iconAnchor: [18, 18], className:'marker userArrow'});
                 this.taskOpenIcon = L.icon({iconUrl:'assets/icons/marker-task-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
                 this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/marker-task-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
                 this.taskDoneIcon = L.icon({iconUrl:'assets/icons/marker-task-good.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
@@ -961,4 +1052,5 @@ export interface TaskMapState {
     skippedTaskIds: number[];
     selectedStartTask: boolean;
     showIntroModal: boolean;
+    showGuidedTrailModal: boolean;
 }

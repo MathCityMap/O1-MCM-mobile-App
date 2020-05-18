@@ -1,14 +1,15 @@
 page-dashboard {
     .content{
-        background: url("../assets/images/pattern-dashboard.svg") center / 160%  repeat color($colors, primary);
-        .scroll-content{
-            padding: $global-small-padding;
+        background: url("../assets/images/pattern-dashboard.svg") center / 133%  repeat color($colors, primary);
+        .stretch-container{
+            padding-left: $global-small-padding;
+            padding-right: $global-small-padding;
             display: flex;
             flex-direction: column;
         }
     }
     .logo{
-        margin: $global-base-padding auto;
+        margin: $global-base-padding auto $global-small-padding/2 ;
         padding-left: $global-base-padding;
         display: block;
     }
@@ -18,6 +19,7 @@ page-dashboard {
         flex: 1;
         align-items: stretch;
         align-content: center;
+        padding-bottom: $global-small-padding;
         .tile{
             padding: $global-small-padding;
             flex-basis: 50%;
@@ -29,11 +31,15 @@ page-dashboard {
                 @include transition-fast();
                 border-radius: $border-radius-basic;
                 .item-inner{
-                    align-items: flex-end;
                     padding: 0!important;
+                    .label{
+                        display: none;
+                    }
                     [item-content]{
+                        justify-content: space-between;
                         display: flex;
                         flex-direction: column;
+                        @include size(100%);
                         .title{
                             margin-bottom: $global-small-padding;
                         }
@@ -51,7 +57,8 @@ page-dashboard {
                 }
             }
             &.disabled{
-                opacity: 0.3;
+                //opacity: 0.3;
+                opacity: 0.4;
                 pointer-events: none;
             }
         }
@@ -67,6 +74,10 @@ page-dashboard {
         .content{
             .scroll-content{
                 padding: $global-small-padding;
+            }
+            .stretch-container{
+                padding-left: 0;
+                padding-right: 0;
             }
         }
         .logo{
@@ -90,11 +101,51 @@ page-dashboard {
                 }
             }
         }
-
     }
-
+    @media screen and (min-width: 376px) {
+        .logo{
+            margin-top: 36px;
+        }
+        .tiles{
+            .tile{
+                .item{
+                    .item-inner{
+                        [item-content]{
+                            .title{
+                                font-size: 2rem;
+                            }
+                            p{
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
-//.tabbar{
-//    display: none;
-//}
+
+.soon{
+    position: absolute;
+    color: black;
+    z-index: 140;
+    top: 0;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 10px;
+    p{
+        color: color($colors, primary-darker);
+        font-family: 'NunitoExtraBold', Helvetica, sans-serif;
+        transform: rotate(-45deg);
+    }
+}

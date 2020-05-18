@@ -17,7 +17,6 @@
 
 
 
-
 // =============================================
 // ------------------ BASICS -------------------
 // =============================================
@@ -26,38 +25,222 @@
     box-sizing: border-box;
 }
 
-
-//@supports (padding-top: env(safe-area-inset-top)){
-//    ion-header {
-//        &.header-ios {
-//            padding-top: env(safe-area-inset-top)!important;
-//        }
-//    }
-//    .has-header{
-//        .scroll-content, ion-refresher {
-//            margin-top: calc(54px + env(safe-area-inset-top)) !important;
-//        }
-//        &.content-ios{
-//            .scroll-content, ion-refresher {
-//                margin-top: calc(54px + env(safe-area-inset-top))!important;
-//            }
-//        }
-//    }
-//}
-//@supports (padding-top: constant(safe-area-inset-top)){
-//    .map {
-//        .detail-box {
-//            padding-top: constant(safe-area-inset-top)!important;
-//        }
-//    }
-//}
+.content-md, .content-ios{
+    background-color: color($colors, light-grey);
+}
 
 
-//Navigation
+//  Safe space handling kit
+
+$prefix:
+    constant
+    env;
+
+$root-top: unquote("(safe-area-inset-top, 0px)");
+$root-bottom: unquote("(safe-area-inset-bottom, 0px)");
+
+
+// Web testing preview
+
+//$prefix:
+//    24;
+//
+//$root-top: px;
+//$root-bottom: px;
+
+
+// Expected end result example:
+// constant(safe-area-inset-top, 0px)
+
+
+
+@each $prefix in $prefix {
+    .header{
+        .toolbar {
+            padding-top: calc(12px + #{#{$prefix}$root-top});
+        }
+    }
+    page-dashboard{
+        .logo{
+            padding-top: #{#{$prefix}$root-top};
+        }
+    }
+    .content {
+        &.padding{
+            .scroll-content {
+                contain: layout;
+            }
+            &.top{
+                .scroll-content {
+                    padding-top: #{$prefix}$root-top;
+                }
+            }
+            &.bottom{
+                .scroll-content {
+                    padding-bottom: #{$prefix}$root-bottom;
+                }
+            }
+        }
+
+        // Special MCM-Header case (FML)
+
+        &.has-header{
+            .scroll-content, .fixed-content {
+                margin-top: $size-large;
+                padding-top: #{$prefix}$root-top;
+                [ion-fixed]{
+                    height: calc(100% - #{#{$prefix}$root-top});
+                }
+            }
+
+            // Route Info + Onboarding
+            &.transparent{
+                .scroll-content, .fixed-content {
+                    margin-top: 0!important;
+                }
+            }
+        }
+
+        &.fullscreen{
+            .scroll-content, .fixed-content {
+                padding-top: #{$prefix}$root-top;
+                [ion-fixed]{
+                    height: calc(100% - #{#{$prefix}$root-top});
+                }
+            }
+        }
+    }
+
+    // Special Case Tasks with complicated Header
+
+    .task-content {
+        margin-bottom: calc(1px - #{#{$prefix}$root-bottom});
+        padding-bottom: 1px;
+        padding-bottom: calc(1px + #{#{$prefix}$root-bottom});
+    }
+
+    .footer{
+        min-height: $size-large;
+        min-height: calc(#{$size-large} + #{#{$prefix}$root-bottom});
+        .button{
+            &[large]{
+                padding-bottom: #{$prefix}$root-bottom;
+            }
+        }
+        &.input{
+            padding-bottom: #{$prefix}$root-bottom;
+        }
+    }
+    .ios .tabs .tabbar{
+        padding-bottom: #{$prefix}$root-bottom;
+    }
+
+
+    .map{
+        .detail-box{
+            bottom: 0;
+        }
+        &:not(.routes){
+            .detail-box{
+                padding-bottom: calc(12px + #{#{$prefix}$root-bottom});
+            }
+        }
+    }
+}
+
+
+
+
+ion-header{
+    &:after{
+        display: none;
+    }
+    .toolbar{
+        padding: 10px;
+        min-height: $size-large;
+        &:not([transparent="true"]){
+            box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+            .bar-buttons{
+                position: absolute;
+                height: 100%;
+                width: 44px;
+                box-sizing: content-box;
+                padding: 0 $global-small-padding/2;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                bottom: 0;
+                &[left]{
+                    left: 0;
+                }
+                &[end]{
+                    right: 0;
+                }
+                button{
+                    width: 100%;
+                    min-height: $size-large;
+                    margin: 0 auto;
+                }
+            }
+        }
+        &[transparent="true"]{
+            button{
+                border-radius: 50%;
+                background-color: color($colors, light);
+                @include shadow-hard;
+                @include size(40px);
+                box-sizing: border-box;
+                .button-inner{
+                    padding: $global-small-padding;
+                    filter: brightness(0);
+                }
+            }
+        }
+    }
+    ion-navbar{
+        border: none;
+        border-color: transparent;
+    }
+    .header-icon {
+        width: 30px;
+        height: 30px;
+        pointer-events: none;
+    }
+    .logo-bar{
+        display: flex;
+    }
+    .title{
+        text-align: center;
+        position: relative;
+        padding: 0;
+    }
+    .toolbar-title{
+        font-family: 'NunitoBold', Helvetica, sans-serif;
+        color: color($colors, light);
+        font-size: 24px;
+        font-weight: 500;
+        overflow: hidden;
+        margin-top: 2px;
+        padding: 0 calc(#{$size-large} - #{$global-small-padding});
+    }
+}
+
+mcm-header{
+    z-index: 10001;
+    display: block;
+    &[transparent]{
+        pointer-events: none;
+    }
+}
+
+
+//  Pages Layout & Structure
+
 
 .tabs{
     .tabbar{
-        height: $size-large;
+        min-height: $size-large;
         box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
         .tab-button-icon{
             margin: 0;
@@ -83,31 +266,6 @@
     }
 }
 
-
-
-
-//  Pages & Structure
-
-.has-header{
-    .scroll-content, ion-refresher {
-        margin-top: 54px;
-        margin-top: calc(54px + constant(safe-area-inset-top));
-        margin-top: calc(54px + env(safe-area-inset-top));
-    }
-    &.content-ios{
-        .scroll-content, ion-refresher {
-            margin-top: calc(54px + constant(safe-area-inset-top));
-            margin-top: calc(54px + env(safe-area-inset-top));
-        }
-        .scroll-content, .fixed-content {
-            margin-bottom: env(safe-area-inset-bottom);
-            margin-bottom: contant(safe-area-inset-bottom);
-        }
-    }
-}
-.content-md, .content-ios{
-    background-color: color($colors, light-grey);
-}
 
 
 
@@ -181,7 +339,9 @@ input{
 //  Search bar
 
 .searchbar{
-    padding-left: 0;
+    padding: 0!important;
+    padding-right: calc(#{$size-large} - #{$global-small-padding})!important;
+    min-height: unset;
     .searchbar-search-icon,.searchbar-clear-icon{
         background-size: 80%;
         @include size(30px);
@@ -190,16 +350,17 @@ input{
         left: 0;
         @include middle-absolute-v;
         background: url(../assets/icons/search.svg) no-repeat center;
+        pointer-events: none;
     }
     .searchbar-clear-icon{
+        right: $global-small-padding/2;
         background-image: url(../assets/icons/clear.svg);
         height: 100%;
     }
     &.searchbar-left-aligned{
         .searchbar-input{
             background-color: transparent;
-            padding: $global-small-padding;
-            padding-left: 40px;
+            padding: 0 0 0 40px;
         }
     }
 
@@ -228,6 +389,7 @@ button{
     }
     &.button-large{
         height: $size-large;
+        box-sizing: content-box;
         .button-inner{
             font-size: large;
         }
@@ -287,24 +449,16 @@ button{
 /*  ========== FAB Buttons =========  */
 
 
-ion-fab-list{
-    margin: 44px 0;
-    .fab-in-list{
-        margin: 4px 0;
-    }
-}
-.fab-container{
-    position: absolute;
-    top: 0;
-    right: 0;
-}
 ion-fab{
-    button{
+    .fab{
         box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
     }
-}
-.fixed-content ion-fab[bottom]{
-    bottom: 14px;
+    ion-fab-list{
+        margin: calc(#{$fab-size} + #{$global-small-padding/2}) 0;
+        .fab-in-list{
+            margin: 4px 0;
+        }
+    }
 }
 
 
@@ -379,7 +533,7 @@ ion-list{
     & > *{
         border: none!important;
     }
-    &.list-ios, &.list-md{
+&.list-ios, &.list-md{
     }
 }
 
@@ -595,6 +749,13 @@ ion-list{
 // MAP
 
 .map{
+    .fixed-content{
+        z-index: 1000;
+        [ion-fixed]{
+            display: block;
+            @include size(100%);
+        }
+    }
     .leaflet-top.leaflet-left{
         bottom: 0;
         top: unset;
@@ -611,34 +772,27 @@ ion-list{
         z-index: 1;
     }
     .detail-box{
-        width: 100%;
-        position: fixed;
-        bottom: 54px;
-        bottom: calc(54px + constant(safe-area-inset-bottom));
-        bottom: calc(54px + env(safe-area-inset-bottom));
+        position: absolute;
         z-index: 2;
+        width: 100%;
+        height: auto;
+        //bottom: 0px;
+        //bottom: calc(0px + constant(safe-area-inset-bottom));
+        //bottom: calc(0px + env(safe-area-inset-bottom));
+        padding: 12px $global-small-padding;
+        margin: 0;
         display: flex;
         align-items: center;
-        background: #ffffff;
-        height: auto;
-        padding: 12px 10px;
-        margin: 0;
-        margin-bottom: -4px;
-
-        transform: translateY(100%);
-
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-
-
-        box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
+        background-color: #ffffff;
+        border-radius: $border-radius-basic $border-radius-basic 0 0;
         transition: all 0.5s;
-
+        transform: translateY(100%);
         &.open{
-            -webkit-transform: translateY(0%);
             transform: translateY(0%);
+            box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
+        }
+        & > ion-fab{
+            top: -#{$fab-size + $global-small-padding};
         }
     }
 
@@ -681,23 +835,13 @@ ion-list{
             }
         }
     }
+    &.tasks{
+        .leaflet-container .leaflet-control-attribution{
+            padding-left: calc(10px + constant(safe-area-inset-left));
+            padding-left: calc(10px + env(safe-area-inset-left));
+        }
+    }
 }
-
-
-//@supports (bottom: env(safe-area-inset-bottom)){
-//    .map {
-//        .detail-box {
-//            bottom: calc(54px + env(safe-area-inset-bottom));
-//        }
-//    }
-//}
-//@supports (bottom: constant(safe-area-inset-bottom)){
-//    .map {
-//        .detail-box {
-//            bottom: calc(54px + constant(safe-area-inset-bottom));
-//        }
-//    }
-//}
 
 
 /*  =========== card ===========  */
@@ -770,6 +914,7 @@ ion-list{
                 text-align: center;
                 &>.col:first-of-type{
                     text-align: left;
+                    margin-right: 10px;
                 }
                 &>.col:last-of-type{
                     text-align: right;
@@ -887,34 +1032,38 @@ ion-modal {
         ion-label, ion-label.label-ios, ion-label.label-md{
             margin-bottom: 4px;
         }
-
-        img{
-            display: block;
-            &.head-icon{
-                width: 35vw;
-                margin: 0;
-                position: absolute;
-                top: -14vw;
-                right: 50%;
-                transform: translateX(50%);
-                border: 24px solid #ffffff;
-                box-sizing: content-box;
-                border-radius: 50%;
-                background-color: #ffffff;
-            }
-            &.full-width{
-                width:100%;
-            }
-        }
         .terms{
             font-size: 14px;
             line-height: 1.3;
             max-height: 50vh;
         }
 
+        $modal-icon-size: 36vw;
+        $modal-icon-size-border: 24px;
+
+        img{
+            display: block;
+            &.full-width{
+                width:100%;
+            }
+            &.head-icon{
+                position: absolute;
+                top: 0%;
+                right: 50%;
+                transform: translate(50%, -50%);
+                width: $modal-icon-size;
+                margin: 0;
+                border: $modal-icon-size-border solid #ffffff;
+                box-sizing: content-box;
+                border-radius: 50%;
+                background-color: #ffffff;
+                z-index: -1;
+            }
+        }
+
         &.icon{
-            padding-top: 36vw!important;
-            margin-top: calc(14vw + 20px);
+            padding-top: calc(#{$modal-icon-size}/2 + #{$modal-icon-size-border}) !important;
+            margin-top: calc(#{$modal-icon-size}/2 + #{$global-base-padding});
             .modal-content{
                 max-height: 60vh;
                 overflow: scroll;
@@ -931,6 +1080,12 @@ ion-modal {
             p.main-text{
                 text-align: center;
             }
+            &.no-icon{
+                padding-top: 30px!important;
+            }
+        }
+        &.no-icon{
+            padding-top: 30px!important;
         }
 
         // Dynamic Inputs
@@ -1037,23 +1192,30 @@ mcm-progress-bar, .evaluation{
 
 mcm-progress-bar{
     & > *{
-        &:not(.progress){
+        &:not(.progress-vertical){
             flex-grow: 0;
             flex-basis: auto;
         }
+    }
+    .audio{
+        margin-left: 10px;
     }
 }
 
 .evaluation{
     flex: 1;
     flex-wrap: wrap;
+    justify-content: space-between;
     .ratings {
         display: flex;
+        max-height: $global-base-padding;
     }
     .rating{
-        display: flex;
-        align-items: baseline;
-        margin-left: $global-small-padding;
+        margin-left: $global-small-padding/2;
+        & > *, &:before{
+            display: inline-block;
+            vertical-align: middle;
+        }
         p{
             margin: 0;
         }
@@ -1076,13 +1238,14 @@ mcm-progress-bar{
 
 $progress-height: 6px;
 
-.progress{
+.progress-vertical{
     background-color: rgba(color($colors, primary-darker), 0.2);
     height: $progress-height;
     @include border-radius($progress-height/2);
     flex: 1;
     & > .bar{
         width: 0;
+        transition: all 0.3s ease-in-out;
         z-index: 100;
         //prevent initial bug of full progress bar
         background-color: color($colors, primary);
@@ -1098,6 +1261,23 @@ $progress-height: 6px;
     }
 }
 
+progress-bar{
+    .progress-outer[_ngcontent-c0]{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-color: rgba(color($colors, primary-darker), 0.2);
+        border: none;
+    }
+    .progress-inner[_ngcontent-c0]{
+        min-width: 12%;
+        padding: 0;
+        font-size: 12px;
+        font-family: 'NunitoBold', Helvetica, sans-serif;
+    }
+}
+
 
 
 //overwrite implicit ionic styling for tabs on ios devices
@@ -1107,4 +1287,45 @@ $progress-height: 6px;
 
 .marker.userPosition {
     transition: all 2s linear;
+}
+
+.marker.userArrow {
+    transition: all 0.5s linear;
+}
+
+
+
+@media screen and (min-width: 768px){
+
+    $modal-icon-size: 200px;
+
+    ion-modal {
+        .modal-wrapper {
+            box-shadow: none!important;
+            width: 50vw;
+            max-width: 375px;
+            //max-height: 88vh;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) !important;
+        }
+        .image-container{
+            max-width: 50%;
+            margin: auto;
+        }
+        .modal.card{
+            &.icon{
+                padding-top: $modal-icon-size/2 !important;
+                margin-top: $modal-icon-size/2 !important;
+                img.head-icon{
+                    max-width: $modal-icon-size;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+}
+
+.marker.userArrow {
+    transition: all 0.5s linear;
 }

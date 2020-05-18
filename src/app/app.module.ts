@@ -17,6 +17,7 @@ import { ModalsService } from '../services/modals-service';
 import { LanguageService } from '../services/language-service';
 import { Globalization } from '@ionic-native/globalization';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
+import { Camera } from "@ionic-native/camera";
 
 import { MyApp } from './app.component';
 
@@ -52,6 +53,12 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
 import {CameraPreview} from "@ionic-native/camera-preview";
 
+import { Media } from '@ionic-native/media';
+import {ProgressBarModule} from "angular-progress-bar";
+import {ScreenOrientation} from "@ionic-native/screen-orientation";
+import {MCMTrailFinishedModal} from "../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
+
+
 
 @NgModule({
      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -59,7 +66,7 @@ import {CameraPreview} from "@ionic-native/camera-preview";
         MyApp,
         RouteInfo,
         MCMDownloadProgressPopupComponent,
-        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal,
+        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal, MCMTrailFinishedModal,
         CenteredTask,
         Autoresize,
         CustomKeyBoard
@@ -85,14 +92,15 @@ import {CameraPreview} from "@ionic-native/camera-preview";
         LinkyModule,
         YoutubePlayerModule,
         ApiModule,
-        ChatPageModule
+        ChatPageModule,
+        ProgressBarModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
         RouteInfo,
         MCMDownloadProgressPopupComponent,
-        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal,
+        MCMIconModal, MCMRouteByCodeModal, MCMTermsAndConditionsModal, MCMJoinSessionModal, MCMSessionFinishedModal, MCMIntroModal, MCMTrailFinishedModal,
         CenteredTask,
         CustomKeyBoard
     ],
@@ -121,6 +129,9 @@ import {CameraPreview} from "@ionic-native/camera-preview";
         AppVersion,
         Globalization,
         CameraPreview,
+        Camera,
+        Media,
+        ScreenOrientation,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

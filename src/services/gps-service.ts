@@ -44,9 +44,10 @@ export class GpsService {
         //if the platform is not browser
         if (this.platform.is("android") &&
             checkAvailability(LocationAccuracy.getPluginRef(), null, LocationAccuracy.getPluginName()) === true)
-            this.diagnostic.isLocationEnabled().then((enabled) => {
+            this.diagnostic.isLocationEnabled().then(async (enabled) => {
                 //if the location is off
-                if (!enabled) this.turnLocationOn();
+                console.log("LOCATION##: ", enabled);
+                if (!enabled) await this.turnLocationOn();
             })
     }
 

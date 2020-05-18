@@ -21,6 +21,7 @@ import {ChatAndSessionService, SessionInfo} from "../../services/chat-and-sessio
 import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
+import {ImagesService} from "../../services/images-service";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -77,7 +78,8 @@ export class TaskDetail {
         private chatAndSessionService: ChatAndSessionService,
         private app: MyApp,
         private photoViewer: PhotoViewer,
-        private spinnerDialog: SpinnerDialog
+        private spinnerDialog: SpinnerDialog,
+        private imageService: ImagesService
     ) {
     }
 
@@ -169,12 +171,10 @@ export class TaskDetail {
 
 
         if (this.score.score == null) this.score.score = 0;
-        console.log(this.taskDetails);
+
         if (this.taskDetails.timeFirstOpen == 0) {
             this.taskDetails.timeFirstOpen = new Date().getTime();
         }
-        console.log(this.task.solutionType);
-        console.log(this.task.getSolution());
         if (this.task.solutionType == 'multiple_choice') {
             if (this.taskDetails.solved || this.taskDetails.solvedLow) {
                 this.multipleChoiceList = this.taskDetails.answerMultipleChoice;
@@ -184,7 +184,7 @@ export class TaskDetail {
         }
         // Init task detail map, if task is gps task
         if (this.task.solutionType == "gps") {
-            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app);
+            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app, this.ormService, this.imageService);
             this.taskDetailMap.loadMap();
             // Insert predefined points / axis
             let gpsType = this.task.getSolutionGpsValue("task");
@@ -256,7 +256,7 @@ export class TaskDetail {
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
                 // Scroll input field into view (may happen that the field is hidden by keyboard)
-                that.content.scrollTo(0, document.getElementById('scroll-anchor').offsetTop);
+                that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
             });
         }
     }
@@ -369,7 +369,9 @@ export class TaskDetail {
         let details = JSON.stringify({solution: solution, solutionType: this.task.solutionType});
 
         if (this.task.solutionType == "value") {
-            if (answer == this.task.getSolution()) {
+            let f_answer = parseFloat(answer);
+            let f_solution  = parseFloat(this.task.getSolution());
+            if (f_answer.toString() == f_solution.toString()) {
                 this.CalculateScore("value", "solved");
                 this.taskSolved('solved', solution, 0);
             } else {
@@ -535,13 +537,13 @@ export class TaskDetail {
     }
 
 
-    closeDetails(skip?: boolean) {
+    async closeDetails(skip?: boolean) {
         //This guaratees that the state is updated before the map opens and gets the information.
         if (this.navParams.get('goToNextTaskById')) {
             let goToNextTaskById = this.navParams.get('goToNextTaskById');
             if (skip) {
                 this.taskDetails.skipped = true;
-                this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+                await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
             }
             goToNextTaskById(this.task.id, skip);
         }
@@ -1280,14 +1282,6 @@ export class TaskDetail {
 
     setFabColor(index) {
         return 'fab-color-' + (index + 1);
-    }
-
-    getIonContentStyles() {
-        if (this.task && this.task.solutionType != 'gps') {
-            let result = this.task.getImageURL();
-            let conditionalBackgroundImageStyles = {'background-image': 'url(" ' + result + ' ")'};
-            return conditionalBackgroundImageStyles;
-        } else return;
     }
 
     SetMessage(type: string) {

@@ -7,11 +7,14 @@ import { ViewController } from 'ionic-angular';
 })
 export class MCMDownloadProgressPopupComponent{
     data = null;
+    private progress = 0;
     constructor(private viewCtrl: ViewController, private changeDetectorRef: ChangeDetectorRef) {
         this.data = viewCtrl.data;
         this.data.updateView = () => {
             // make sure that angular detects changes
             changeDetectorRef.detectChanges();
+            this.progress = this.data.currentProgress == 0 ? 0 :
+                Math.round((100/this.data.total) * this.data.currentProgress);
         }
     }
 
