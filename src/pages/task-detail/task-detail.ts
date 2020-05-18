@@ -537,13 +537,13 @@ export class TaskDetail {
     }
 
 
-    closeDetails(skip?: boolean) {
+    async closeDetails(skip?: boolean) {
         //This guaratees that the state is updated before the map opens and gets the information.
         if (this.navParams.get('goToNextTaskById')) {
             let goToNextTaskById = this.navParams.get('goToNextTaskById');
             if (skip) {
                 this.taskDetails.skipped = true;
-                this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+                await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
             }
             goToNextTaskById(this.task.id, skip);
         }

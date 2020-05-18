@@ -170,7 +170,7 @@ export class ChatPage {
         this.setInputWrapButtons(true);
 
         //does not allow sending empty messages
-        if(this.editorMsg == '' && !this.editorImg && this.recordState != RecordStateEnum.Stop) return;
+        if(this.editorMsg.trim() == '' && !this.editorImg && this.recordState != RecordStateEnum.Stop) return;
 
         //failsafe to stop you from seding more than 1 time of message
         if ((this.editorMsg && this.editorImg) ||
@@ -191,6 +191,7 @@ export class ChatPage {
             media: [],
             status: 'pending'
         };
+        this.editorMsg = '';
 
         //If we are sending an image
         if (this.editorImg) {
@@ -243,12 +244,10 @@ export class ChatPage {
         }
         //If we are sending just text message
         else {
-            newMsg.message = this.editorMsg;
             if (this.sessionInfo != null) {
-                let details = JSON.stringify({'message': this.editorMsg});
+                let details = JSON.stringify({'message': newMsg.message});
                 this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
             }
-            this.editorMsg = '';
         }
 
         if (!this.showEmojiPicker) {
@@ -307,6 +306,7 @@ export class ChatPage {
             quality: 100,
             targetHeight: 512,
             targetWidth: 512,
+            correctOrientation: true,
             destinationType: this.camera.DestinationType.DATA_URL,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE,
