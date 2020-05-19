@@ -10,6 +10,10 @@
     font-family: 'NunitoExtrabold';
     src: url('../assets/fonts/nunito/Nunito-ExtraBold.ttf')  format('truetype');
 }
+@font-face {
+    font-family: 'NunitoBlack';
+    src: url('../assets/fonts/nunito/Nunito-Black.ttf')  format('truetype');
+}
 
 @font-face {
     font-family: 'CaveatBrush';
@@ -49,6 +53,12 @@ p{
     line-height: 1.6;
     font-weight: 500;
     color: color($colors, dark-grey);
+}
+
+svg{
+    text{
+        font-family: 'NunitoBlack', Arail, sans-serif;
+    }
 }
 .alert-md,
 .alert-ios {
