@@ -963,5 +963,7 @@
   "a_onboarding_slide5_title": "Check Answer",
   "a_onboarding_slide5_svg": "Sample Solution",
   "a_onboarding_slide5_button": "Let's Go",
-  "a_onboarding_slide3_svg": "Start"
+  "a_onboarding_slide3_svg": "Start",
+  "a_onboarding_slide4_svg": "Check",
+  "a_settings_onboarding": "Start tutorial"
 }

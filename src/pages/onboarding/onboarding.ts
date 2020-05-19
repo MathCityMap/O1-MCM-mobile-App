@@ -53,7 +53,11 @@ export class OnboardingPage {
     }
 
     goToHomePage() {
-        this.navCtrl.setRoot('HomePage');
+        if (this.navCtrl.canGoBack()) {
+            this.navCtrl.pop();
+        } else {
+            this.navCtrl.setRoot('HomePage');
+        }
     }
 
 }

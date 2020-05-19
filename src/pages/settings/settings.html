@@ -7,6 +7,9 @@
             <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>
         </ion-select>
     </div>
+    <div class="card transparent">
+        <button ion-button block default round (click)="openOnboarding()">{{'a_settings_onboarding' | translate }}</button>
+    </div>
 
     <div class="card transparent divider">
         <ion-label>{{'a_settings_expert' | translate }}</ion-label>

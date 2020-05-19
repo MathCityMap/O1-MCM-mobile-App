@@ -44,6 +44,10 @@ export class SettingsPage {
         this.languageService.setLanguage(language);
     }
 
+    openOnboarding(){
+        this.navCtrl.push('OnboardingPage');
+    }
+
     deleteAppData() {
         this.modalsService.showDialog('a_main_settings_delCache', 'a_main_settings_delCache_confirm',
             'no', () => {},
