@@ -83,7 +83,7 @@
       <g id="Gruppe_1378" data-name="Gruppe 1378">
         <circle id="Ellipse_129" data-name="Ellipse 129" cx="15" cy="15" r="15" transform="translate(4019.199 1774.573)" fill="#f3b100"/>
         <g id="Speichern_Loslegen" data-name="Speichern Loslegen">
-          <text id="_1" data-name="1" transform="translate(4029.656 1794.061)" fill="#fff" font-size="14.992" font-weight="800" style="isolation: isolate"><tspan x="0" y="0">1</tspan></text>
+          <text id="_1" data-name="1" transform="translate(4029.656 1794.061)" fill="#fff" font-size="14.992"  style="isolation: isolate"><tspan x="0" y="0">1</tspan></text>
         </g>
       </g>
     </g>
@@ -92,13 +92,13 @@
         <rect id="Rechteck_243" data-name="Rechteck 243" width="204.771" height="46" rx="22.477" transform="translate(4059.41 1956.487)" fill="#036d99"/>
         <path id="Pfad_3" data-name="Pfad 3" d="M4091.835,1972.119l13.247,7.943-13.247,8.013Z" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.852"/>
         <g id="Speichern_Loslegen-2" data-name="Speichern Loslegen" style="isolation: isolate">
-          <text id="Starten" transform="translate(4167.389 1986.438)" fill="#fff" font-size="19.845" font-weight="800" style="isolation: isolate" text-anchor="middle"><tspan x="0" y="0">{{start}}</tspan></text>
+          <text id="Starten" transform="translate(4167.389 1986.438)" fill="#fff" font-size="19.845"  style="isolation: isolate" text-anchor="middle"><tspan x="0" y="0">{{start}}</tspan></text>
         </g>
       </g>
       <g id="Gruppe_1381" data-name="Gruppe 1381">
         <circle id="Ellipse_130" data-name="Ellipse 130" cx="17.249" cy="17.249" r="17.249" transform="translate(4239.882 1938.47)" fill="#f3b100"/>
         <g id="Speichern_Loslegen-3" data-name="Speichern Loslegen">
-          <text id="_2" data-name="2" transform="translate(4251.905 1961.987)" fill="#fff" font-size="17.24" font-weight="800" style="isolation: isolate"><tspan x="0" y="0">2</tspan></text>
+          <text id="_2" data-name="2" transform="translate(4251.905 1961.987)" fill="#fff" font-size="17.24"  style="isolation: isolate"><tspan x="0" y="0">2</tspan></text>
         </g>
       </g>
     </g>
