@@ -98,15 +98,15 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/app-version/-/app-version-4.10.1.tgz#e90596e48741ddc428c0161d694fe1af47ada1ab"
   integrity sha512-57I2HnjDub7aTFJzZhwKlNXieQANxa5l63hFB5lW8kkIeWbQDHB7tf25cCz4ihenR5nHLEAQ6nj/oqWbCyMLdQ==
 
-"@ionic-native/camera@4":
-  version "4.20.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/camera/-/camera-4.20.0.tgz#db236497f880bd1b832e4223485f99875fedc570"
-  integrity sha512-WnfQq8RV+7ezOqpCyNx9Xgpy7Y8TZehGLSxZXnCqCbFZ72CpC70Q5AV/eTIRGiKkotx2U6nUopYF+gTj1cunFA==
+"@ionic-native/camera@4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@ionic-native/camera/-/camera-4.4.2.tgz#bbdd689a20652bd300ce9fed8a5d5bc5a6d38187"
+  integrity sha512-epvInWMcJPzhOE5lHN1EgY99f9djb1wWL72+MngLZ9YNsRGHkQW/2c0sJ+5lji+YBp4PwHV5MpyoSR/nG2VaBA==
 
-"@ionic-native/core@4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-4.3.0.tgz#0d613bb6c8779146949514299ca1c02611e308a9"
-  integrity sha512-Pf0qCzqlVFmIpZpvo35Kl0e+1K8GUgPMcKBnN57gWh+5Ecj3dPcb+MbP4murJo/dnFsIYPYdXRZRf74hjo6gtw==
+"@ionic-native/core@4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-4.4.2.tgz#867872b00399fc20f4f4ebe19fc303cb9f7677d4"
+  integrity sha512-6OqX1gPnnL6SY+yBJxIvfjtUcWMIo4lmeufHvIwPVpPh2jSEM72nOZGBrcEkkV7ot2puferDFhEo6GGu4HareQ==
 
 "@ionic-native/diagnostic@4.4.2":
   version "4.4.2"
@@ -148,10 +148,10 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/location-accuracy/-/location-accuracy-4.4.2.tgz#d23c627df040963a54fc02120bbe8e779ebfa8b0"
   integrity sha512-EkJCET4N2P/GjN87oOcrpLQlpztwrqWhvrdBARRxdSWRTTFwTJA/Nows5bN6ZHJsp2+GhWgWXfjEQTSymcOw0g==
 
-"@ionic-native/media@^4.20.0":
-  version "4.20.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/media/-/media-4.20.0.tgz#1966769e27ba9f1bc665cea502a4c4b851c9d2c9"
-  integrity sha512-uhuTvy7MT6zFMSTDX/0aIrGu8IeRGi2FWJbWE+6o5wttAeVA6hNISSbtj4OQZhL3sUXYNCczDayV1VsOcXbdUg==
+"@ionic-native/media@4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@ionic-native/media/-/media-4.4.2.tgz#d841e302b4b39a4ec838b5150068bcb0606625ac"
+  integrity sha512-oFSoBerbQ0Y5vXZZshLZ3t0SL9YRkJSwDpH372vPidgBU2ykNLTzHdXiL4H4dHa4htQfqhWS5SFHOqrpbLYeFA==
 
 "@ionic-native/network@4.4.2":
   version "4.4.2"
@@ -1794,7 +1794,7 @@ cordova-plugin-app-version@~0.1.9:
   resolved "https://registry.yarnpkg.com/cordova-plugin-app-version/-/cordova-plugin-app-version-0.1.9.tgz#9db0607863337a710489302e5f50a904f1449bdb"
   integrity sha1-nbBgeGMzenEEiTAuX1CpBPFEm9s=
 
-cordova-plugin-camera@^4.1.0:
+cordova-plugin-camera@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-camera/-/cordova-plugin-camera-4.1.0.tgz#6474a3e080c4662aa00fd7425705d301c693ddc0"
   integrity sha512-fCLhWjWYn49q3X5xaypAPgTz6MAWSKFFQvD2Gpi5SuVlrRPRphtX2jIqR2zCBuDTBR082QVnlc+yUDXt65Mjgw==
@@ -1831,6 +1831,11 @@ cordova-plugin-inappbrowser@~3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/cordova-plugin-inappbrowser/-/cordova-plugin-inappbrowser-3.1.0.tgz#61520b8de3eb75b37842d2340f5d90a84a073747"
   integrity sha512-YqrZfYgbGTS20SFID0mrRxud312VH072QVlFonCAkPgtGg1Svy7lELOCNFd+KU7t4mVtZeTEjZPEeefvjaetwQ==
+
+cordova-plugin-media@~5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-media/-/cordova-plugin-media-5.0.3.tgz#366188bd4f8472651c1e8304be649af6333b0e36"
+  integrity sha512-UQPFlpk1zL4BY44zGi8RVmYCvcKBCN4Dyf8ovxqGYCC8zR1yhbTRWYDdO9vJdERwbfgWV7+z7FMWiSUfqWm9bQ==
 
 cordova-plugin-native-spinner@1.1.3:
   version "1.1.3"
@@ -7249,14 +7254,15 @@ typedarray@^0.0.6, typedarray@~0.0.5:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeorm@0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.1.6.tgz#77c385b4ef0a267a145da62989a369f741beb23d"
-  integrity sha512-Mw6A15/tfBVnfe7HcYpMzuT4YtgCj5YzH9G1grJXMRY2ZaV3eZEX5Ka4k0vYQYSgNEaFkLaxAUmj+j2JXRTq7g==
+typeorm@0.1.15:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.1.15.tgz#ca2c2bf588258a73b49b8eb2fc08ce714b93d79c"
+  integrity sha512-24358b5QXiVpT7vax5qTphaRFlYwjomuzQgtmq3VcXCQ+oH1/uTXi2ziseEWf+IHwW3450u5GvRcnPHtlvy3dQ==
   dependencies:
     app-root-path "^2.0.1"
     chalk "^2.0.1"
     cli-highlight "^1.1.4"
+    debug "^3.1.0"
     dotenv "^4.0.0"
     glob "^7.1.2"
     js-yaml "^3.8.4"
