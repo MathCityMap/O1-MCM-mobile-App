@@ -51,14 +51,14 @@
         "cordova-plugin-media": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "de.autentek.mathcitymap"
-        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
         }
     },
     "dependent_plugins": {

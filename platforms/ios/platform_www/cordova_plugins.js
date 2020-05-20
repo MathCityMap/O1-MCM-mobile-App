@@ -518,8 +518,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.4.3",
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-camera": "4.0.3",
-    "cordova-plugin-whitelist": "1.3.4"
+    "cordova-plugin-whitelist": "1.3.4",
+    "cordova-plugin-camera": "4.0.3"
 };
 // BOTTOM OF METADATA
 });
