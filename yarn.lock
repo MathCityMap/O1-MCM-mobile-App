@@ -98,12 +98,10 @@
   resolved "https://registry.yarnpkg.com/@ionic-native/app-version/-/app-version-4.10.1.tgz#e90596e48741ddc428c0161d694fe1af47ada1ab"
   integrity sha512-57I2HnjDub7aTFJzZhwKlNXieQANxa5l63hFB5lW8kkIeWbQDHB7tf25cCz4ihenR5nHLEAQ6nj/oqWbCyMLdQ==
 
-"@ionic-native/camera-preview@^5.26.0":
-  version "5.26.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/camera-preview/-/camera-preview-5.26.0.tgz#d48e3599d4607f5f8bc6531e57bbb86c0df765bb"
-  integrity sha512-Wm0ZF28cTtSZi/Ge0k8Xaa4QcT93YktAAiwaUkCfaU+UrX7x80jZVO5vkyEIa0wykSw249rQOjyfTnILxE8bdQ==
-  dependencies:
-    "@types/cordova" latest
+"@ionic-native/camera-preview@4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@ionic-native/camera-preview/-/camera-preview-4.4.2.tgz#e0b3c5e15a35c69c91c66232d0b13b2802857c43"
+  integrity sha512-gkt+6IEf/tX3FO66c4BhPHDiROH5sCU0hNWiaKA1cuhC6sTmRf0dQ4HxJlkk3aNtdho6582g3Wb3q4vn7wBarQ==
 
 "@ionic-native/camera@4":
   version "4.20.0"
@@ -310,11 +308,6 @@
   version "0.24.28"
   resolved "https://registry.yarnpkg.com/@types/autolinker/-/autolinker-0.24.28.tgz#37976f20c6e0abde283784fdc6b91cc6cb90e8dc"
   integrity sha1-N5dvIMbgq94oN4T9xrkcxsuQ6Nw=
-
-"@types/cordova@latest":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
-  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
 
 "@types/geojson@*":
   version "7946.0.7"
