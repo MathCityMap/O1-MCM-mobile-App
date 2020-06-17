@@ -21,7 +21,7 @@ import {timeout} from 'promise-timeout';
 export class AumentedRealityPage {
 
   scene: number = 0;
-  @ViewChild('testAR') testAr;
+  @ViewChild('testAR') testAr: HTMLIFrameElement;
 
   constructor (public navCtrl: NavController,
                public navParams: NavParams,
@@ -59,8 +59,8 @@ export class AumentedRealityPage {
   ionViewDidLoad () {
     console.log('ionViewDidLoad AumentedRealityPage');
 
-    // this.getCurrentPosition().catch();
-    console.log('testAR', this.testAr.nativeElement);
+    this.getCurrentPosition().catch();
+    console.log('testAR', typeof this.testAr);
 
   }
 

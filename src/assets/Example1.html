@@ -1,8 +1,8 @@
 <html>
 <head>
-<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js"> </script>
-<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+  <script src="http://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="http://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js"></script>
+  <script src="http://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 </head>
 <!--<body style='margin : 0px; overflow: hidden;'>-->
 <!--<a-scene embedded arjs>-->
@@ -18,14 +18,42 @@
     vr-mode-ui="enabled: false"
     embedded
     arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-  <a-box material="color: yellow" gps-entity-place="latitude: 52.5165640; longitude: 13.2957510;"/>
+  <a-assets>
+    <audio id="click-sound" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+
+    <!-- Images. -->
+    <img id="city" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+    <img id="city-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+    <img id="cubes" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+    <img id="cubes-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+    <img id="sechelt" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+    <img id="sechelt-thumb" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+  </a-assets>
+
+    <a-box material="color: yellow" gps-entity-place="latitude: 52.5165691; longitude: 13.2959865;"/>
   <a-text
       value="This content will always face you."
       look-at="[gps-camera]"
-      scale="80 80 80"
-      gps-entity-place="latitude: 52.5163944; longitude: 13.2959366"
+      scale="10 10 10"
+      gps-entity-place="latitude: 52.5165691; longitude: 13.2959865;"
   ></a-text>
-  <a-camera gps-camera rotation-reader></a-camera>
+  <a-entity class="link"
+            geometry="primitive: plane; height: 1; width: 1"
+            material="shader: flat; src: #cubes-thumb"
+            sound="on: click; src: #click-sound"></a-entity>
+  <a-entity rotation="90 0 0"
+            look-at="[gps-camera]"
+            gps-entity-place="latitude: 52.5165691; longitude: 13.2959865;">
+    <a-image src="#cubes" width="3" height="1.5"></a-image>
+  </a-entity>
+  <a-camera gps-camera rotation-reader>
+    <a-cursor
+        id="cursor"
+        animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
+        animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+        animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
+  </a-camera>
 </a-scene>
+<input type="text"/>
 </body>
 </html>
