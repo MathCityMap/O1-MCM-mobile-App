@@ -83,6 +83,8 @@
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
+    <allow-navigation href="http://192.168.0.6:8100" />
+    <allow-navigation href="http://10.0.1.29:8100" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -113,5 +115,6 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.DeviceDefault" />
 </widget>

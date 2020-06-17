@@ -497,6 +497,22 @@ module.exports = [
         "clobbers": [
             "CameraPreview"
         ]
+    },
+    {
+        "id": "cordova-plugin-wkwebview-engine.ios-wkwebview-exec",
+        "file": "plugins/cordova-plugin-wkwebview-engine/src/www/ios/ios-wkwebview-exec.js",
+        "pluginId": "cordova-plugin-wkwebview-engine",
+        "clobbers": [
+            "cordova.exec"
+        ]
+    },
+    {
+        "id": "cordova-plugin-wkwebview-engine.ios-wkwebview",
+        "file": "plugins/cordova-plugin-wkwebview-engine/src/www/ios/ios-wkwebview.js",
+        "pluginId": "cordova-plugin-wkwebview-engine",
+        "clobbers": [
+            "window.WkWebView"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -528,7 +544,8 @@ module.exports.metadata =
     "cordova-plugin-media": "5.0.3",
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-plugin-camera-preview": "0.9.0"
+    "cordova-plugin-camera-preview": "0.9.0",
+    "cordova-plugin-wkwebview-engine": "1.2.1"
 };
 // BOTTOM OF METADATA
 });

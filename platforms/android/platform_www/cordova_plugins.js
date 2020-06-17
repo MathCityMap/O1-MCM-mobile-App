@@ -437,7 +437,8 @@ module.exports.metadata =
   "cordova-plugin-camera": "4.0.3",
   "cordova-plugin-whitelist": "1.3.4",
   "cordova-plugin-splashscreen": "4.0.3",
-  "cordova-plugin-camera-preview": "0.9.0"
+  "cordova-plugin-camera-preview": "0.9.0",
+  "cordova-plugin-wkwebview-engine": "1.2.1"
 };
 // BOTTOM OF METADATA
 });

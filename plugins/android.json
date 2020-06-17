@@ -62,6 +62,9 @@
         },
         "cordova-plugin-camera-preview": {
             "PACKAGE_NAME": "de.autentek.mathcitymap"
+        },
+        "cordova-plugin-wkwebview-engine": {
+            "PACKAGE_NAME": "de.autentek.mathcitymap"
         }
     },
     "dependent_plugins": {

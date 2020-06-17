@@ -19,5 +19,6 @@
     "OpenGLES.framework": 1,
     "GLKit.framework": 1,
     "CoreVideo.framework": 1,
-    "QuartzCore.framework": 1
+    "QuartzCore.framework": 1,
+    "WebKit.framework": 1
 }
