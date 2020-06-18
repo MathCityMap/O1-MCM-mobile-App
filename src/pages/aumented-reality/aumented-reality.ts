@@ -1,8 +1,11 @@
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { CameraPreview, CameraPreviewOptions } from "@ionic-native/camera-preview";
-import {GpsService} from "../../services/gps-service";
-import {timeout} from 'promise-timeout';
+import { GpsService } from "../../services/gps-service";
+import { timeout } from 'promise-timeout';
+import { File } from '@ionic-native/file';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { Geoposition } from "@ionic-native/geolocation";
 
 /**
  * Generated class for the AumentedRealityPage page.
@@ -28,6 +31,8 @@ export class AumentedRealityPage {
                private gpsService: GpsService,
                private modalCtrl: ViewController,
                private cameraPreview: CameraPreview,
+               private inAppBrowser: InAppBrowser,
+               private file: File,
   ) {
 
     let cameraPreviewOpts: CameraPreviewOptions = {
@@ -42,13 +47,13 @@ export class AumentedRealityPage {
       alpha: 1
     };
 
-    this.cameraPreview.startCamera(cameraPreviewOpts).then(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      });
+    // this.cameraPreview.startCamera(cameraPreviewOpts).then(
+    //   (res) => {
+    //     console.log(res);
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   });
   }
 
   switchMode () {
@@ -59,32 +64,48 @@ export class AumentedRealityPage {
   ionViewDidLoad () {
     console.log('ionViewDidLoad AumentedRealityPage');
 
-    this.getCurrentPosition().catch();
-    console.log('testAR', typeof this.testAr);
-
+    this.getCurrentPosition()
+      .then(position => {
+        // TODO: open https://mcm.autentek.de/example.php?lon=xxx&lat=yyy
+        if (position == null) {
+          alert('cannot determine your poasition');
+        } else {
+          window.open(`https://mcm.autentek.de/example.php?longitude=${position.coords.longitude}&latitude=${position.coords.latitude}`, '_system', 'location=yes');
+        }
+      })
+      .catch();
   }
 
-  async getCurrentPosition() {
+  async getCurrentPosition () {
+    let position: Geoposition = {
+      coords: null,
+      timestamp: null,
+    };
     if (!this.gpsService.getLastPosition()) {
       // try to get position
       try {
-        await timeout(this.gpsService.getCurrentPosition().catch(err => {
-          console.error("getCurrentPosition: Error loading GPS data", err)
-        }), 2000);
+        position = await this.gpsService.getCurrentPosition({timeout: 2000, maximumAge: 0});
+        // await timeout(this.gpsService.getCurrentPosition().catch(err => {
+        //   console.error("getCurrentPosition: Error loading GPS data", err);
+        // }), 2000);
       } catch (e) {
         console.log("getCurrentPosition: could not obtain position: " + e.message);
         // make position check async
-        this.gpsService.getCurrentPosition().then((position) => {
+        try {
+          position = await this.gpsService.getCurrentPosition();
           if (position && position.coords) {
             console.log('getCurrentPosition: ', position);
           }
-        }, err => {
-          console.error("getCurrentPosition: Error loading GPS data", err)
-        });
+        } catch (err) {
+          console.error("getCurrentPosition: Error loading GPS data", err);
+        }
       }
     } else {
       console.log("getCurrentPosition: last position", this.gpsService.getLastPosition());
+      position = this.gpsService.getLastPosition();
     }
+
+    return position;
   }
 
   close () {
