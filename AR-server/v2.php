@@ -1,0 +1,104 @@
+<?php
+
+$i_lon = $_GET['longitude'] ?? '13.2960865';
+$i_lat = $_GET['latitude'] ?? '52.5165691';
+$lon = floatval($i_lon);
+$lat = floatval($i_lat);
+
+$scene = $_GET['scene'] ?? 'default';
+$scene = str_replace("../", "", $scene);
+$currentFolder = getcwd();
+$sceneFile = "{$currentFolder}/scenes/{$scene}.json";
+
+if (!file_exists($sceneFile)) {
+    http_response_code(404);
+    include('404.php'); // provide your own HTML for the error page
+    die();
+}
+
+$sceneContent = file_get_contents($sceneFile);
+
+?>
+<html>
+<head>
+  <script src="scripts/log.js"></script>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="components/log.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js"></script>
+  <!--  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>-->
+
+  <script>
+  var lon = <?php echo $lon; ?>;
+  var lat = <?php echo $lat; ?>;
+  var sceneJson = JSON.parse(`<?php echo $sceneContent; ?>`)
+
+  console.log(`I have a json scene [${sceneJson.name}]`, sceneJson)
+  console.log(sceneJson)
+
+  AFRAME.registerComponent('cursor-listener', {
+    init: function () {
+      console.log('cursor listener is ready')
+      var lastIndex = -1
+      var COLORS = ['red', 'green', 'blue']
+      this.el.addEventListener('click', function (evt) {
+        lastIndex = (lastIndex + 1) % COLORS.length
+        this.setAttribute('material', 'color', COLORS[lastIndex])
+        console.log('I was clicked at:', evt.detail.intersection.point)
+      })
+    }
+  })
+
+  function createEntity (element) {
+    if (element['a-entity']) {
+      let entity = document.createElement(element['a-entity'])
+      delete element['a-entity']
+
+      for (const attribute in element) {
+        if (attribute == 'entities') {
+          createEntities(entity, element[attribute])
+        } else {
+          entity.setAttribute(attribute, element[attribute])
+        }
+      }
+
+      return entity
+    }
+  }
+
+  function createEntities (rootElement, aList) {
+    aList.forEach(element => {
+      const entity = createEntity(element)
+      if (entity) {
+        rootElement.appendChild(entity)
+      }
+    })
+  }
+
+  AFRAME.registerComponent('scene-is-ready', {
+    init: function () {
+      var sceneEl = this.el
+      // TODO create scene components
+      console.log('ready to create components', sceneEl)
+
+      createEntities(sceneEl, sceneJson.scene)
+    },
+  })
+  </script>
+</head>
+<body style='margin: 0; overflow: hidden;'>
+
+<a-scene scene-is-ready vr-mode-ui="enabled: false">
+  <a-entity id="rig" position="0 1.6 0">
+    <a-camera gps-camera rotation-reader>
+      <a-cursor fuse="true" fuseTimeout="500"
+                id="cursor"
+                scale="0.1 0.1 0.1"
+                animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
+                animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+                animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
+    </a-camera>
+  </a-entity>
+</a-scene>
+</body>
+</html>
+

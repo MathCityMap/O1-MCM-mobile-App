@@ -1,0 +1,47 @@
+{
+  "name": "default",
+  "scene": [
+    {
+      "a-entity": "a-box",
+      "position": "0 0.5 -3",
+      "rotation": "0 45 0",
+      "color": "#FF00FF",
+      "entities": [
+        {
+          "a-entity": "a-box",
+          "position": "-0.25 0 0.25",
+          "rotation": "0 45 0",
+          "color": "#00FF00",
+          "scale": "0.5 0.5 1",
+          "entities": [
+            {
+              "a-entity": "a-box",
+              "position": "-0.25 0 0.25",
+              "rotation": "0 45 0",
+              "color": "#FFAAAA",
+              "scale": "0.5 0.5 1",
+              "cursor-listener": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "a-entity": "a-entity",
+      "geometry": "primitive: box",
+      "material": "color: blue",
+      "id": "box",
+      "position": "-1 0.5 -3",
+      "rotation": "0 45 0",
+      "cursor-listener": ""
+    },
+    {
+      "a-entity": "a-sphere",
+      "position": "0 1.25 -5",
+      "gps-entity-place": "latitude: 50.5165691; longitude: 10.2960865;",
+      "radius": "1.25",
+      "color": "#EF2D5E",
+      "cursor-listener": ""
+    }
+  ]
+}
