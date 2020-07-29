@@ -42,6 +42,17 @@ while true do
                 end repeat
               end repeat
         	end tell
+          tell application "Microsoft Edge"
+            set windowList to every window
+              repeat with aWindow in windowList
+                set tabList to every tab in aWindow
+                repeat with atab in tabList
+                  if (URL of atab contains "#{keyword}") then
+                    tell atab to reload
+                  end if
+                end repeat
+              end repeat
+        	end tell
 ENDGAME
 }
     end

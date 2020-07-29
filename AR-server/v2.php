@@ -24,70 +24,58 @@ $sceneContent = file_get_contents($sceneFile);
   <script src="scripts/log.js"></script>
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="components/log.js"></script>
+  <script src="components/rotation-reader.js"></script>
+  <script src="scripts/entity.js"></script>
+  <script src="scripts/entity-collection.js"></script>
+  <script src="scripts/scene.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js"></script>
-  <!--  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>-->
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 
   <script>
   var lon = <?php echo $lon; ?>;
   var lat = <?php echo $lat; ?>;
-  var sceneJson = JSON.parse(`<?php echo $sceneContent; ?>`)
+  var sceneJson = JSON.parse(`<?php echo $sceneContent; ?>`);
 
-  console.log(`I have a json scene [${sceneJson.name}]`, sceneJson)
-  console.log(sceneJson)
+  console.log(`I have a json scene [${sceneJson.name}]`, sceneJson);
+  console.log(sceneJson);
 
-  AFRAME.registerComponent('cursor-listener', {
+  AFRAME.registerComponent("cursor-listener", {
     init: function () {
-      console.log('cursor listener is ready')
-      var lastIndex = -1
-      var COLORS = ['red', 'green', 'blue']
-      this.el.addEventListener('click', function (evt) {
-        lastIndex = (lastIndex + 1) % COLORS.length
-        this.setAttribute('material', 'color', COLORS[lastIndex])
-        console.log('I was clicked at:', evt.detail.intersection.point)
-      })
+      console.log("cursor listener is ready");
+      var lastIndex = -1;
+      var COLORS = ["red", "green", "blue"];
+      this.el.addEventListener("click", function (evt) {
+        lastIndex = (lastIndex + 1) % COLORS.length;
+        this.setAttribute("material", "color", COLORS[lastIndex]);
+        console.log("I was clicked at:", evt.detail.intersection.point);
+      });
     }
-  })
+  });
 
-  function createEntity (element) {
-    if (element['a-entity']) {
-      let entity = document.createElement(element['a-entity'])
-      delete element['a-entity']
-
-      for (const attribute in element) {
-        if (attribute == 'entities') {
-          createEntities(entity, element[attribute])
-        } else {
-          entity.setAttribute(attribute, element[attribute])
-        }
-      }
-
-      return entity
-    }
-  }
-
-  function createEntities (rootElement, aList) {
-    aList.forEach(element => {
-      const entity = createEntity(element)
-      if (entity) {
-        rootElement.appendChild(entity)
-      }
-    })
-  }
-
-  AFRAME.registerComponent('scene-is-ready', {
+  AFRAME.registerComponent("scene-is-ready", {
     init: function () {
-      var sceneEl = this.el
-      // TODO create scene components
-      console.log('ready to create components', sceneEl)
+      var sceneEl = this.el;
+      console.log("ready to create components", sceneEl);
 
-      createEntities(sceneEl, sceneJson.scene)
+      try {
+        const scene = new Scene(document, sceneJson);
+        scene.fill(sceneEl);
+      } catch (e) {
+        console.log("scene-is-ready error", e);
+      }
     },
-  })
+  });
+
+
   </script>
 </head>
 <body style='margin: 0; overflow: hidden;'>
 
-<a-scene scene-is-ready vr-mode-ui="enabled: false">
+<a-scene scene-is-ready
+         vr-mode-ui="enabled: false"
+         embedded
+         stats
+         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
   <a-entity id="rig" position="0 1.6 0">
     <a-camera gps-camera rotation-reader>
       <a-cursor fuse="true" fuseTimeout="500"

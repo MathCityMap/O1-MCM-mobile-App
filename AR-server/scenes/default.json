@@ -1,6 +1,6 @@
 {
   "name": "default",
-  "scene": [
+  "entities": [
     {
       "a-entity": "a-box",
       "position": "0 0.5 -3",
