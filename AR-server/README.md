@@ -116,13 +116,19 @@ This README is based on:
 
 ## (Development) Auto reload page
 
-There's a ruby script `watch.rb` which utilises OSX **AppleScript**. To use it run in folder:
+There's a ruby script `watch.rb` which utilises OSX **AppleScript**. To use it run in main project folder:
 ```
-./watch.rb ./ ar-server.local
+./watch.rb ./AR-server ar-server.local
 ```
 **Note**: first parameter is folder (`./` refers to current one), second parameter the unique URL part that script will
 look in **Google Chrome** and reloads it (`ar-server.local` is part of url `https://ar-server.local.autentek.de/v2.php`
 which is unique and only that page will be reloaded).
+**Note**: this script will invoke `rsync-ar.sh` script which in turn synchronizes server files to be accessible:
+`https://mcm.autentek.de/v2.php`. If you want to just synchronize to server:
+```
+./rsync-ar.sh -F ./AR-server
+```
+and it will sync files with the server.
 
 If you cannot run `watch.rb` then you need to add execution flag to it:
 ```
