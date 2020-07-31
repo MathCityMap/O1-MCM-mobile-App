@@ -29,6 +29,11 @@ while true do
     hash = new_hash
 
     diff_hash.each do |df|
+      io = IO.popen(['./sync-ar.sh', '-F', watch_folder])
+      listing = io.read
+      io.close
+      raise "it failed!" unless $?.exitstatus == 0
+      puts listing
       puts "Detected change in #{df[0]}, refreshing"
       %x{osascript<<ENDGAME
         	tell application "Google Chrome"

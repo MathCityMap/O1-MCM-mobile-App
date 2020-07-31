@@ -28,7 +28,7 @@ $sceneContent = file_get_contents($sceneFile);
   <script src="scripts/entity.js"></script>
   <script src="scripts/entity-collection.js"></script>
   <script src="scripts/scene.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/3.1.0/aframe/build/aframe-ar.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
   <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 
   <script>
@@ -70,17 +70,18 @@ $sceneContent = file_get_contents($sceneFile);
   </script>
 </head>
 <body style='margin: 0; overflow: hidden;'>
-
+<div class="arjs-loader">
+  <div>Loading, please wait...</div>
+</div>
 <a-scene scene-is-ready
          vr-mode-ui="enabled: false"
          embedded
-         stats
-         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-  <a-entity id="rig" position="0 1.6 0">
-    <a-camera gps-camera rotation-reader>
+         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: true;'>
+  <a-entity id="rig">
+    <a-camera simulate-latitude="52.478612" simulate-longitude="13.364809" gps-camera="simulateLatitude: 52.478612; simulateLongitude: 13.364809" rotation-reader>
       <a-cursor fuse="true" fuseTimeout="500"
                 id="cursor"
-                scale="0.1 0.1 0.1"
+                scale="0.2 0.2 0.2"
                 animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
                 animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
                 animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>

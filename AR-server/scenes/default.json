@@ -3,9 +3,10 @@
   "entities": [
     {
       "a-entity": "a-box",
-      "position": "0 0.5 -3",
+      "gps-entity-position": "latitude: 52.478990; longitude: 13.364862",
       "rotation": "0 45 0",
       "color": "#FF00FF",
+      "scale": "0.5 0.5 0.5",
       "entities": [
         {
           "a-entity": "a-box",
@@ -31,17 +32,24 @@
       "geometry": "primitive: box",
       "material": "color: blue",
       "id": "box",
-      "position": "-1 0.5 -3",
+      "gps-entity-position": "latitude: 52.478857; longitude: 13.364842",
       "rotation": "0 45 0",
       "cursor-listener": ""
     },
     {
       "a-entity": "a-sphere",
-      "position": "0 1.25 -5",
-      "gps-entity-place": "latitude: 50.5165691; longitude: 10.2960865;",
+      "gps-entity-place": "latitude: 52.478728; longitude: 13.364822",
+      "scale": "2 2 2",
       "radius": "1.25",
       "color": "#EF2D5E",
       "cursor-listener": ""
+    },
+    {
+      "a-entity": "a-text",
+      "value":"This content will always face you.",
+      "llook-at": "[gps-camera]",
+      "scale": "50 50 50",
+      "gps-entity-place": "latitude: 52.478874; longitude: 13.364696"
     }
   ]
 }
