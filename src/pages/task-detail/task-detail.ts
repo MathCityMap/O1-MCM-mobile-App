@@ -140,6 +140,12 @@ export class TaskDetail {
         this.keyboardSubscriptions.unsubscribe();
     }
 
+    async ionViewDidEnter() {
+        console.log('TasksMap ionViewDidEnter()');
+
+        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+    }
+
     async ionViewWillEnter() {
         console.log('TasksMap ionViewWillEnter()');
         this.routeId = this.navParams.get('routeId');
