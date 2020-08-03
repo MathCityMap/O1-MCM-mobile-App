@@ -5,7 +5,7 @@
 trap("SIGINT") { exit }
 
 if ARGV.length < 2
-  puts "Usage: #{$0} watch_folder keyword"
+  puts "Usage: #{$0} watch_folder keyword sync"
   puts "Example: #{$0} . mywebproject"
   exit
 end
@@ -15,6 +15,10 @@ filetypes = ['css','html','htm','php','js','json']
 watch_folder = ARGV[0]
 keyword = ARGV[1]
 puts "Watching #{watch_folder} and subfolders for changes in project files..."
+rsync = ARGV.include? "-r"
+if rsync then
+  puts "Syncing to remote server..."
+end
 
 while true do
   files = []
@@ -29,11 +33,13 @@ while true do
     hash = new_hash
 
     diff_hash.each do |df|
-      io = IO.popen(['./sync-ar.sh', '-F', watch_folder])
-      listing = io.read
-      io.close
-      raise "it failed!" unless $?.exitstatus == 0
-      puts listing
+      if rsync then
+        io = IO.popen(['./sync-ar.sh', '-F', watch_folder])
+        listing = io.read
+        io.close
+        raise "it failed!" unless $?.exitstatus == 0
+        puts listing
+      end
       puts "Detected change in #{df[0]}, refreshing"
       %x{osascript<<ENDGAME
         	tell application "Google Chrome"

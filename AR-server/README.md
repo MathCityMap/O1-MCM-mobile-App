@@ -123,7 +123,9 @@ There's a ruby script `watch.rb` which utilises OSX **AppleScript**. To use it r
 **Note**: first parameter is folder (`./` refers to current one), second parameter the unique URL part that script will
 look in **Google Chrome** and reloads it (`ar-server.local` is part of url `https://ar-server.local.autentek.de/v2.php`
 which is unique and only that page will be reloaded).
-**Note**: this script will invoke `rsync-ar.sh` script which in turn synchronizes server files to be accessible:
+
+
+**Note**: this script can invoke `rsync-ar.sh` script if parameter `-r` is provided which in turn synchronizes server files to be accessible:
 `https://mcm.autentek.de/v2.php`. If you want to just synchronize to server:
 ```
 ./rsync-ar.sh -F ./AR-server
