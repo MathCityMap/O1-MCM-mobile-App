@@ -10,6 +10,14 @@ if ARGV.length < 2
   exit
 end
 
+def rsyncToServer(watch_folder)
+  io = IO.popen(['./sync-ar.sh', '-F', watch_folder])
+  listing = io.read
+  io.close
+  raise "it failed!" unless $?.exitstatus == 0
+  puts listing
+end
+
 dev_extension = 'dev'
 filetypes = ['css','html','htm','php','js','json']
 watch_folder = ARGV[0]
@@ -18,6 +26,7 @@ puts "Watching #{watch_folder} and subfolders for changes in project files..."
 rsync = ARGV.include? "-r"
 if rsync then
   puts "Syncing to remote server..."
+  rsyncToServer(watch_folder)
 end
 
 while true do
@@ -34,11 +43,7 @@ while true do
 
     diff_hash.each do |df|
       if rsync then
-        io = IO.popen(['./sync-ar.sh', '-F', watch_folder])
-        listing = io.read
-        io.close
-        raise "it failed!" unless $?.exitstatus == 0
-        puts listing
+        rsyncToServer(watch_folder)
       end
       puts "Detected change in #{df[0]}, refreshing"
       %x{osascript<<ENDGAME
