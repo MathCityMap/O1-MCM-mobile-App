@@ -1,5 +1,128 @@
 # Augmented Reality (AR) in local WEB browser
 
+## Usage instructions
+### URL explained
+AR page is accessible through [https://mcm.autentek.de/v2.php](https://mcm.autentek.de/v2.php)
+
+* http://mcm.autentek.de/v2.php?scene=weights
+
+    * creates scene with _weights_ images
+
+    * scene is placed at GPS latitude: 52.478926; longitude: 13.364861; which is set inside scene JSON file
+
+* http://mcm.autentek.de/v2.php?scene=numbers&lat=52.478926&lon=13.364861
+
+    * creates scene with _numbers_ images
+
+    * places scene at GPS lat=52.478926&lon=13.364861 which is set in URL
+
+* http://mcm.autentek.de/v2.php?scene=weights&x=0&y=1.6&z=-5
+
+    * this is mostly used for PC/Mac browsers for debugging, places scene at x, y, z in relative to you in meters:
+
+        * x - left/right relative from you
+
+        * y - up/down relative from you (1.6 is approx height of eyes)
+
+        * z - it’s how far object from you. - means objects is in front of you further away (z axis increases into your perspective)
+
+* https://ar-server.local.autentek.de/v2.php?text={“lat”:52.478926,”lon”:13.364861,”value”:”random text haha”}]
+
+    * creates text entity in a scene with given gps position
+
+**Note:** *scene* and *text* parameters are friendly to each other so you can use both if needed. But main reason for
+*text* parameter is to have quick way of adding object in a scene for debugging.
+
+### Scenes
+
+Scenes are located under *scenes* folder. Scene is accessed through *scene* parameter in url matching name of json file
+without extention (e.g. scene=numbers would load json from _scenes/numbers.json_). Example of scene structure:
+```json
+{
+  "name": "default",
+  "gps-entity-place": "latitude: 52.478926; longitude: 13.364861;",
+  "entities": [
+    {
+      "a-entity": "a-box",
+      "position": "0 0.5 -3",
+      "rotation": "0 45 0",
+      "color": "#FF00FF",
+      "entities": [
+        {
+          "a-entity": "a-box",
+          "position": "-0.25 0 0.25",
+          "rotation": "0 45 0",
+          "color": "#00FF00",
+          "scale": "0.5 0.5 1",
+          "entities": [
+            {
+              "a-entity": "a-box",
+              "position": "-0.25 0 0.25",
+              "rotation": "0 45 0",
+              "color": "#FFAAAA",
+              "scale": "0.5 0.5 1",
+              "cursor-listener": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "a-entity": "a-entity",
+      "geometry": "primitive: box",
+      "material": "color: blue",
+      "id": "box",
+      "position": "-1 0.5 -3",
+      "rotation": "0 45 0",
+      "cursor-listener": ""
+    },
+    {
+      "a-entity": "a-sphere",
+      "position": "0 1.25 -5",
+      "gps-entity-place": "latitude: 50.5165691; longitude: 10.2960865;",
+      "radius": "1.25",
+      "color": "#EF2D5E",
+      "cursor-listener": ""
+    }
+  ]
+}
+```
+All documentation regarding A-Frame entities should be known to the reader as it's not the scope of this file to
+explain it. But all entities properties directly are transfered to json. So if you would like to transfer entity
+```html
+<a-text
+        value="This content will always face you."
+        look-at="[gps-camera]"
+        scale="50 50 50"
+        gps-entity-place="latitude: <add-your-latitude>; longitude: <add-your-longitude>;"
+      ></a-text>
+```
+to json format it would be written like that:
+```json
+{
+  "a-entity": "a-text",
+  "value": "This content will always face you.",
+  "look-at": "[gps-camera]",
+  "scale": "50 50 50",
+  "gps-entity-place": "latitude: <add-your-latitude>; longitude: <add-your-longitude>;"
+}
+```
+The exception is special property *entities* which is array of subentities and a way to place sub-children if entity
+ (nesting). Nesting deepness is not limited nor by quantity nor by deepness. This gives a tool to group object under one
+ entity at specific place and children just needs to position themselves in relation to parent. So parent can be placed
+ at GPS position but children can then use *position* parameter to be placed at a distance (in meters) in relation to 
+ parent GPS position.
+ 
+ Root object can have combination of four properies:
+ * name - the name of scene. _Not used_.
+ * position - position of whole scene in relation to camera in meters given x, y, z coordinats and explained above.
+ * gps-entity-place - position given latitude and longitude. Please do not mix *gps-entity-place* and *position* on 
+ same entity as it might produce unexpected results (tested on own skin).
+ * entities - array of sub entities. Structure of them explained in example above. Exception are a-assets type of
+  entities as they automatically placed directly under *\<scene\>* for preloading.
+
+
+## DEV notes
 If you can run [https://localhost](https://localhost) or [https://*.local.autentek.de](https://local.autentek.de) you are good
 to go and do not need any configuration.
 
