@@ -1,6 +1,5 @@
 class EntityCollection {
   constructor (document, entityCollection) {
-    this.entities = [];
     this.entityCollection = entityCollection;
     this.document = document;
     this.load(entityCollection);
@@ -8,11 +7,14 @@ class EntityCollection {
 
   load (entityCollection) {
     this.error = false;
+    this.entities = [];
     try {
-      for (const element of entityCollection) {
-        const entity = new Entity(this.document, element);
-        if (entity) {
-          this.entities.push(entity);
+      if (Array.isArray(entityCollection)) {
+        for (const element of entityCollection) {
+          const entity = new Entity(this.document, element);
+          if (entity) {
+            this.entities.push(entity);
+          }
         }
       }
     } catch (e) {

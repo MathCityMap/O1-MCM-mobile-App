@@ -5,18 +5,24 @@ $i_lat = $_GET['latitude'] ?? '52.5165691';
 $lon = floatval($i_lon);
 $lat = floatval($i_lat);
 
-$scene = $_GET['scene'] ?? 'default';
-$scene = str_replace("../", "", $scene);
-$currentFolder = getcwd();
-$sceneFile = "{$currentFolder}/scenes/{$scene}.json";
+$text = $_GET['text'] ?? null;
 
-if (!file_exists($sceneFile)) {
-    http_response_code(404);
-    include('404.php'); // provide your own HTML for the error page
-    die();
+
+$scene = $_GET['scene'] ?? null;
+$sceneContent = '{}';
+if ($scene) {
+    $scene = str_replace("../", "", $scene);
+    $currentFolder = getcwd();
+    $sceneFile = "{$currentFolder}/scenes/{$scene}.json";
+
+//if (!file_exists($sceneFile)) {
+//    http_response_code(404);
+//    include('404.php'); // provide your own HTML for the error page
+//    die();
+//}
+
+    $sceneContent = file_get_contents($sceneFile);
 }
-
-$sceneContent = file_get_contents($sceneFile);
 
 ?>
 <html>
@@ -36,9 +42,22 @@ $sceneContent = file_get_contents($sceneFile);
   var lon = <?php echo $lon; ?>;
   var lat = <?php echo $lat; ?>;
   var sceneJson = JSON.parse(`<?php echo $sceneContent; ?>`)
+  var textJson = null
+  try {
+    //var text = `<?php //echo $text; ?>//`
+    var text = '{"lat":52.478926,"lon":13.364861,"value":"random%20text%20haha"}';
+    console.log('[text]', text)
+    textJson = JSON.parse(text)
+    console.log('[text] parameter translated to', textJson)
+  } catch (e) {
+    console.log('No valid [text] parameter given', e)
+  }
 
-  console.log(`I have a json scene [${sceneJson.name}]`, sceneJson)
-  console.log(sceneJson)
+  if (sceneJson.name) {
+    console.log(`I have a json scene [${sceneJson.name}]`, sceneJson)
+  } else {
+    console.log('Scene without name', sceneJson)
+  }
 
   AFRAME.registerComponent('cursor-listener', {
     init: function () {
@@ -85,6 +104,23 @@ $sceneContent = file_get_contents($sceneFile);
         scene.fill(sceneEl)
       } catch (e) {
         console.log('scene-is-ready error', e)
+      }
+      try {
+        if (textJson) {
+          const sceneObject = {
+            name: 'custom-text',
+            entities: [{
+              "a-entity": "a-text",
+              "value": textJson.value,
+              "gps-entity-place": `latitude: ${textJson.lat}; longitude: ${textJson.lon};`,
+            }],
+          }
+          console.log('creating scene object from [text] parameter', sceneObject)
+          const scene = new Scene(document, sceneObject)
+          scene.fill(sceneEl)
+        }
+      } catch (e) {
+        console.log('scene-is-ready error processing [text] parameter', e)
       }
     },
   })
