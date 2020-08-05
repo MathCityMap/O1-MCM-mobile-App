@@ -24,13 +24,13 @@ class EntityCollection {
     }
   }
 
-  fill (parent) {
+  fill (parent, scene) {
     if (this.error) {
       throw("Cannot fill entities. Collection load had error");
     }
 
     for (const entity of this.entities) {
-      entity.fill(parent);
+      entity.fill(parent, scene);
     }
   }
 }

@@ -1,20 +1,14 @@
 {
   "name": "numbers",
+  "gps-entity-place": "latitude: 52.478926; longitude: 13.364861;",
   "entities": [
     {
-      "a-entity": "a-entity",
-      "gps-entity-place": "latitude: 52.478926; longitude: 13.364861;",
-      "aposition": "0 0 -5",
-      "entities": [
-        {
-          "a-entity": "a-text",
-          "value": "5\\n12\\n6\\n5\\n20\\n6\\n|",
-          "look-at": "[gps-camera]",
-          "scale": "1 1 1",
-          "position": "0 0 0",
-          "cursor-listener-text": ""
-        }
-      ]
+      "a-entity": "a-text",
+      "value": "5\\n12\\n6\\n5\\n20\\n6\\n|",
+      "look-at": "[gps-camera]",
+      "scale": "1 1 1",
+      "position": "0 0 0",
+      "cursor-listener-text": ""
     }
   ]
 }

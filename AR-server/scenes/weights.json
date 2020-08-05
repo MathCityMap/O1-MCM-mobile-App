@@ -1,5 +1,6 @@
 {
   "name": "weights",
+  "gps-entity-place": "latitude: 52.478926; longitude: 13.364861;",
   "entities": [
     {
       "a-entity": "a-assets",
@@ -29,34 +30,27 @@
     },
     {
       "a-entity": "a-entity",
-      "gps-entity-place": "latitude: 52.478926; longitude: 13.364861;",
-      "aposition": "-1 1.6 -5",
-      "entities": [
-        {
-          "a-entity": "a-entity",
-          "position": "0 0 0",
-          "geometry": "primitive: plane; height: 0.25; width: 0.25",
-          "material": "shader: flat; src: #weight2x5kg"
-        },
-        {
-          "a-entity": "a-entity",
-          "position": "0.4 0 0",
-          "geometry": "primitive: plane; height: 0.5; width: 0.5",
-          "material": "shader: flat; src: #weight2x10kg"
-        },
-        {
-          "a-entity": "a-entity",
-          "position": "1.05 0 0",
-          "geometry": "primitive: plane; height: 0.75; width: 0.75",
-          "material": "shader: flat; src: #weight2x20kg"
-        },
-        {
-          "a-entity": "a-entity",
-          "position": "1.95 0 0",
-          "geometry": "primitive: plane; height: 1; width: 1",
-          "material": "shader: flat; src: #weight2x25kg"
-        }
-      ]
+      "position": "0 0 0",
+      "geometry": "primitive: plane; height: 0.25; width: 0.25",
+      "material": "shader: flat; src: #weight2x5kg"
+    },
+    {
+      "a-entity": "a-entity",
+      "position": "0.4 0 0",
+      "geometry": "primitive: plane; height: 0.5; width: 0.5",
+      "material": "shader: flat; src: #weight2x10kg"
+    },
+    {
+      "a-entity": "a-entity",
+      "position": "1.05 0 0",
+      "geometry": "primitive: plane; height: 0.75; width: 0.75",
+      "material": "shader: flat; src: #weight2x20kg"
+    },
+    {
+      "a-entity": "a-entity",
+      "position": "1.95 0 0",
+      "geometry": "primitive: plane; height: 1; width: 1",
+      "material": "shader: flat; src: #weight2x25kg"
     }
   ]
 }

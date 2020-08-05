@@ -1,15 +1,23 @@
 <?php
 
-$i_lon = $_GET['longitude'] ?? '13.2960865';
-$i_lat = $_GET['latitude'] ?? '52.5165691';
-$lon = floatval($i_lon);
-$lat = floatval($i_lat);
+function GET_FLOAT($par)
+{
+    if (isset($_GET[$par])) {
+        return filter_input(INPUT_GET, $par, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    }
 
+    return null;
+}
+
+$lon = GET_FLOAT('lon'); //'13.2960865';
+$lat = GET_FLOAT('lat');  //'52.5165691';
+$x = GET_FLOAT('x');
+$y = GET_FLOAT('y');
+$z = GET_FLOAT('z');
 $text = $_GET['text'] ?? null;
-
-
 $scene = $_GET['scene'] ?? null;
 $sceneContent = '{}';
+
 if ($scene) {
     $scene = str_replace("../", "", $scene);
     $currentFolder = getcwd();
@@ -34,18 +42,35 @@ if ($scene) {
   <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
   <script src="components/log.js"></script>
   <script src="components/rotation-reader.js"></script>
-  <script src="scripts/entity.js"></script>
-  <script src="scripts/entity-collection.js"></script>
-  <script src="scripts/scene.js"></script>
+  <script src="scripts/scene.js?1"></script>
+  <script src="scripts/entity-collection.js?1"></script>
+  <script src="scripts/entity.js?1"></script>
 
   <script>
-  var lon = <?php echo $lon; ?>;
-  var lat = <?php echo $lat; ?>;
+  let x, y, z, lon, lat, position, gpsPosition
+  <?php echo $x !== null ? "x = $x;" : ''; ?>
+  <?php echo $y !== null ? "y = $y;" : ''; ?>
+  <?php echo $z !== null ? "z = $z;" : ''; ?>
+  <?php echo $lon !== null ? "lon = $lon;" : ''; ?>
+  <?php echo $lat !== null ? "lat = $lat;" : ''; ?>
+  if (typeof x === 'number' && typeof y === 'number' && typeof z === 'number') {
+    position = true
+  } else {
+    console.log('x, y, z undefined')
+  }
+
+  if (typeof lon === 'number' && typeof lat === 'number') {
+    gpsPosition = true
+  } else {
+    console.log('lat, lon undefined')
+  }
+
   var sceneJson = JSON.parse(`<?php echo $sceneContent; ?>`)
   var textJson = null
   try {
-    //var text = `<?php //echo $text; ?>//`
-    var text = '{"lat":52.478926,"lon":13.364861,"value":"random%20text%20haha"}';
+    var text
+    text = `<?php echo $text; ?>`
+    // var text = '{"lat":52.478926,"lon":13.364861,"value":"random%20text%20haha"}'
     console.log('[text]', text)
     textJson = JSON.parse(text)
     console.log('[text] parameter translated to', textJson)
@@ -101,6 +126,14 @@ if ($scene) {
       console.log('ready to create components', sceneEl)
       try {
         const scene = new Scene(document, sceneJson)
+        if (position) {
+          console.log('new position', x, y, z)
+          scene.setPosition(x, y, z)
+        }
+        if (gpsPosition) {
+          console.log('new gps position', lat, lon)
+          scene.setGPSPosition(lat, lon)
+        }
         scene.fill(sceneEl)
       } catch (e) {
         console.log('scene-is-ready error', e)
@@ -110,9 +143,9 @@ if ($scene) {
           const sceneObject = {
             name: 'custom-text',
             entities: [{
-              "a-entity": "a-text",
-              "value": textJson.value,
-              "gps-entity-place": `latitude: ${textJson.lat}; longitude: ${textJson.lon};`,
+              'a-entity': 'a-text',
+              'value': textJson.value,
+              'gps-entity-place': `latitude: ${textJson.lat}; longitude: ${textJson.lon};`,
             }],
           }
           console.log('creating scene object from [text] parameter', sceneObject)

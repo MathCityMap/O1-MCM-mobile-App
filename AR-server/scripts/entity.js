@@ -31,14 +31,19 @@ class Entity {
     }
   }
 
-  fill (parent) {
+  fill (parent, scene) {
     if (this.error) {
       throw("Cannot fill entity. Entity load had error");
     }
 
-    parent.appendChild(this.entity);
+    // a-assets always must be direct child of a-scene for preload resources
+    if (this.json["a-entity"] === "a-assets") {
+      scene.appendChild(this.entity);
+    } else {
+      parent.appendChild(this.entity);
+    }
     if (this.entities) {
-      this.entities.fill(this.entity);
+      this.entities.fill(this.entity, scene);
     }
   }
 }
