@@ -24,9 +24,9 @@ AR page is accessible through [https://mcm.autentek.de/v2.php](https://mcm.auten
 
         * y - up/down relative from you (1.6 is approx height of eyes)
 
-        * z - it’s how far object from you. - means objects is in front of you further away (z axis increases into your perspective)
+        * z - it's how far object from you. - means objects is in front of you further away (z axis increases into your perspective)
 
-* https://ar-server.local.autentek.de/v2.php?text={“lat”:52.478926,”lon”:13.364861,”value”:”random text haha”}]
+* https://ar-server.local.autentek.de/v2.php?text={"lat":52.478926,"lon":13.364861,"value":"random text haha"}]
 
     * creates text entity in a scene with given gps position
 

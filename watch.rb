@@ -19,7 +19,7 @@ def rsyncToServer(watch_folder)
 end
 
 dev_extension = 'dev'
-filetypes = ['css','html','htm','php','js','json']
+filetypes = ['css','html','htm','php','js','json', 'md']
 watch_folder = ARGV[0]
 keyword = ARGV[1]
 puts "Watching #{watch_folder} and subfolders for changes in project files..."
