@@ -150,7 +150,7 @@ export class TasksMap implements OnInit, OnDestroy {
   }
 
   isTrailCompleted(){
-      return this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length;
+      return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
   }
 
   showTrailCompletedAlert(){

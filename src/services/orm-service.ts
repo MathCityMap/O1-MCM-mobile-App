@@ -32,7 +32,7 @@ import {AddDownloadDateColumn15711518720000} from "../migration/15711518720000-A
 import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-AddCompletedDateColumn";
 import {AddZipMapFields15783117210000} from "../migration/15783117210000-AddZipMapFields";
 import {Storage} from "@ionic/storage";
-import {ApiConfiguration} from "../app/api/api-configuration";
+import {AddSubtasks16010330860000} from "../migration/16010330860000-AddSubtasks";
 
 
 @Injectable()
@@ -75,7 +75,8 @@ export class OrmService {
             AddLangCodeColumn1526306730000,
             AddDownloadDateColumn15711518720000,
             AddCompletedDateColumn15713974540000,
-            AddZipMapFields15783117210000
+            AddZipMapFields15783117210000,
+            AddSubtasks16010330860000
         ];
         if (sqliteAvailable) {
             this.connection = await createConnection({
@@ -172,7 +173,10 @@ export class OrmService {
 
     public async findTaskById(id: number): Promise<Task> {
         let repo = await this.getTaskRepository();
-        return await repo.findOneById(id);
+        return await repo.createQueryBuilder("tasks")
+            .where({id: id})
+            .leftJoinAndSelect("tasks.subtasks", "subtasks")
+            .getOne();
     }
 
 
