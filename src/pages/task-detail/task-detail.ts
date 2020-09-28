@@ -48,6 +48,8 @@ export class TaskDetail {
     private taskId: number;
     private task: Task;
     private taskDetails: TaskState;
+    private subTaskIndex: number;
+    private rootTask: Task;
     private score: Score;
     private gamificationIsDisabled = false;
 
@@ -151,13 +153,18 @@ export class TaskDetail {
         this.routeId = this.navParams.get('routeId');
         this.route = await this.ormService.findRouteById(this.routeId);
         this.taskId = this.navParams.get('taskId');
+        this.subTaskIndex = this.navParams.get('subTaskIndex');
         this.task = await this.ormService.findTaskById(this.taskId);
+        if (this.subTaskIndex || this.subTaskIndex === 0) {
+            this.rootTask = this.task;
+            this.task = this.rootTask.subtasks[this.subTaskIndex]
+        }
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.taskId);
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         console.log(this.sessionInfo);
         // Add event of user entering trail when session active
-        if(this.sessionInfo != null){
+        if(this.sessionInfo != null && !this.task){
             let details = JSON.stringify({title: this.task.title});
             this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
         }
@@ -652,6 +659,12 @@ export class TaskDetail {
                         that.showSolutionSample();
                     });
                 }};
+            let subTaskOkay = {
+                title: 'okay',
+                callback: function () {
+                    modal.dismiss();
+                }
+            }
             let bNextTask = {
                 title: 'pdf_next_task',
                 callback: function () {
@@ -672,7 +685,7 @@ export class TaskDetail {
                 narrativeEnabled: this.route.isNarrativeEnabled(),
                 narrative: this.app.activeNarrative,
                 score: "+" + this.taskDetails.score,
-                buttons: this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask]
+                buttons: this.rootTask ? [subTaskOkay] :(this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
             }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
             modal.onDidDismiss((data) => {
                 console.log(data);
@@ -1324,17 +1337,22 @@ export class TaskDetail {
         return result;
     }
 
-    openInPhotoviewer() {
+    openInPhotoviewer(useRoot=  false) {
         if (Helper.isPluginAvailable(PhotoViewer)) {
             this.spinnerDialog.show();
             setTimeout(() => {
                 // use short timeout to let spinner dialog appear
-                this.photoViewer.show(this.task.getImageURL());
+                this.photoViewer.show(useRoot ? this.rootTask.getImageURL() : this.task.getImageURL());
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();
                 }, 1000);
             }, 100)
         }
+    }
+
+    openSubtask(index, title) {
+        if (this.rootTask) return;
+        this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: title, subTaskIndex: index});
     }
 }

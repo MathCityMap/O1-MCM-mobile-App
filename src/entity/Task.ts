@@ -118,6 +118,11 @@ export class Task {
         if(sampleSolutionImg != ""){
             result.push(sampleSolutionImg);
         }
+        if (this.subtasks) {
+            for (let subtask of this.subtasks) {
+                result = result.concat(subtask.getImagesForDownload());
+            }
+        }
         // Add hint images
         return result.concat(this.getHints().filter(hint =>
             hint.type == 'image' && hint.value && hint.value.trim()
