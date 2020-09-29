@@ -92,7 +92,7 @@ export class TaskDetail {
         // Here we add the clicked key value to the string
         this.keyboardSubscriptions.add(
             CustomKeyBoard.onCKClick.subscribe((key) => {
-                    if(this.taskDetails.timeSolved == 0 && !this.taskDetails.failed){
+                    if((this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) || !this.route.isAnswerFeedbackEnabled()){
                         if (key === "C") {
                             this.taskDetails.answer = "";
                         }
@@ -156,6 +156,7 @@ export class TaskDetail {
         this.taskDetails = this.score.getTaskStateForTask(this.taskId);
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         console.log(this.sessionInfo);
+        console.log(this.task);
         // Add event of user entering trail when session active
         if(this.sessionInfo != null){
             let details = JSON.stringify({title: this.task.title});
@@ -170,10 +171,17 @@ export class TaskDetail {
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
-        this.maxScore = 100;
-        this.orangeScore = 50;
-        this.penalty = 10;
-        this.minScore = 10;
+        if (this.route.isAnswerFeedbackEnabled()) {
+            this.maxScore = 100;
+            this.orangeScore = 50;
+            this.penalty = 10;
+            this.minScore = 10;
+        } else {
+            this.maxScore = 0;
+            this.orangeScore = 0;
+            this.penalty = 0;
+            this.minScore = 0;
+        }
 
 
         if (this.score.score == null) this.score.score = 0;
@@ -593,6 +601,10 @@ export class TaskDetail {
     async taskSolved(solved: string, solution: string[], scoreVal: number) {
         let that = this;
         // Add event of user entering trail when session active
+        if (!this.route.isAnswerFeedbackEnabled()) {
+            this.taskDetails.saved = true;
+            this.score.addSavedTask(this.task.id)
+        }
         if (solved == 'solved' || solved == 'solved_low') {
             this.taskDetails.skipped = false;
             let message = "";
@@ -663,17 +675,30 @@ export class TaskDetail {
                 title = this.route.getNarrativeString(title);
                 message = this.route.getNarrativeString(message);
             }
-            let modal = this.modalCtrl.create(MCMIconModal, {
-                title: title,
-                message: message,
-                solution: solution,
-                modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
-                gamificationEnabled: !this.gamificationIsDisabled,
-                narrativeEnabled: this.route.isNarrativeEnabled(),
-                narrative: this.app.activeNarrative,
-                score: "+" + this.taskDetails.score,
-                buttons: this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask]
-            }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            let modal;
+            if (this.route.isAnswerFeedbackEnabled()) {
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: title,
+                    message: message,
+                    solution: solution,
+                    modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    score: "+" + this.taskDetails.score,
+                    buttons: this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask]
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            } else {
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'Saved',
+                    message: 'taskSaved',
+                    modalType: MCMModalType.saved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [bNextTask],
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            }
             modal.onDidDismiss((data) => {
                 console.log(data);
                 if (data && data.showMap) {
@@ -788,21 +813,41 @@ export class TaskDetail {
                 title = this.route.getNarrativeString(title);
                 message = this.route.getNarrativeString(message);
               }
-            let modal = this.modalCtrl.create(MCMIconModal, {
-                title: title,
-                message: message,
-                solution: solution,
-                modalType: MCMModalType.error,
-                gamificationEnabled: !this.gamificationIsDisabled,
-                narrativeEnabled: this.route.isNarrativeEnabled(),
-                narrative: this.app.activeNarrative,
-                score: this.taskDetails.tries > 1 ? '-10' : '0',
-                buttons: buttons
-            }, {
-                showBackdrop: true,
-                enableBackdropDismiss: true,
-                cssClass: this.app.activeNarrative
-            });
+            let modal;
+            if (this.route.isAnswerFeedbackEnabled()) {
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: title,
+                    message: message,
+                    solution: solution,
+                    modalType: MCMModalType.error,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    score: this.taskDetails.tries > 1 ? '-10' : '0',
+                    buttons: buttons
+                }, {
+                    showBackdrop: true,
+                    enableBackdropDismiss: true,
+                    cssClass: this.app.activeNarrative
+                });
+            } else {
+                let bNextTask = {
+                    title: 'pdf_next_task',
+                    callback: function () {
+                        modal.dismiss().then(() => {
+                            that.closeDetails(false);
+                        });
+                    }};
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'Saved',
+                    message: 'taskSaved',
+                    modalType: MCMModalType.saved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [bNextTask],
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            }
             modal.present();
         }
         this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);

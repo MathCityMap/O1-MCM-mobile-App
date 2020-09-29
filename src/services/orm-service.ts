@@ -33,6 +33,7 @@ import {AddCompletedDateColumn15713974540000} from "../migration/15713974540000-
 import {AddZipMapFields15783117210000} from "../migration/15783117210000-AddZipMapFields";
 import {Storage} from "@ionic/storage";
 import {ApiConfiguration} from "../app/api/api-configuration";
+import {AddSavedTasks16013795030000} from "../migration/16013795030000-AddSavedTasks";
 
 
 @Injectable()
@@ -75,7 +76,8 @@ export class OrmService {
             AddLangCodeColumn1526306730000,
             AddDownloadDateColumn15711518720000,
             AddCompletedDateColumn15713974540000,
-            AddZipMapFields15783117210000
+            AddZipMapFields15783117210000,
+            AddSavedTasks16013795030000
         ];
         if (sqliteAvailable) {
             this.connection = await createConnection({

@@ -35,7 +35,7 @@
     <div class="evaluation">
         <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>
         <p class="icon finished" *ngIf="!route?.completed">{{currentProgress}} / {{total}}</p>
-        <div class="ratings" *ngIf="route?.scores">
+        <div class="ratings" *ngIf="route?.scores && route.isAnswerFeedbackEnabled()">
             <div class="rating perfect">
                 <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolved().length}}</p>
                 <p *ngIf="!route?.scores[0]">0</p>
@@ -46,6 +46,12 @@
             </div>
             <div class="rating failed">
                 <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksFailed().length}}</p>
+                <p *ngIf="!route?.scores[0]">0</p>
+            </div>
+        </div>
+        <div class="ratings" *ngIf="route?.scores && !route.isAnswerFeedbackEnabled()">
+            <div class="rating saved">
+                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSaved().length}}</p>
                 <p *ngIf="!route?.scores[0]">0</p>
             </div>
         </div>

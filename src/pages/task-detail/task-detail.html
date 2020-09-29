@@ -16,7 +16,7 @@
 
             <div class="head">
                 <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-                <ion-label class="tag score" *ngIf="!gamificationIsDisabled">{{possibleScore()}}</ion-label>
+                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
@@ -24,7 +24,7 @@
                 <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice' && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
                     <ion-input (keyup.enter)="checkResult()"
-                               [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
+                               [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
                                *ngIf="task.solutionType != 'text'"
                                type="text"
                                (focus)="setKeyboardOn(true)"
@@ -33,11 +33,11 @@
                                [(ngModel)]="taskDetails.answer"
                     >
                     </ion-input>
-                    <ion-input [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
+                    <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled()">
                     <ion-item *ngFor="let item of multipleChoiceList; let i = index">
-                        <ion-checkbox [disabled]="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
+                        <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
                         <ion-label tappable>{{item.value}}</ion-label>
                     </ion-item>
                 </ion-list>
@@ -63,15 +63,22 @@
                             </button>
                         </ion-col>
 
-                        <ion-col *ngIf="route.isAnswerValidationEnabled()">
+                        <ion-col *ngIf="route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()">
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
                             [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
                                 {{ "a_btn_check_answer" | translate }}
                             </button>
                         </ion-col>
 
-                        <ion-col *ngIf="!route.isAnswerValidationEnabled()">
+                        <ion-col *ngIf="route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()">
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
+                                    (click)="completeTask()">
+                                {{ "a_task_complete" | translate }}
+                            </button>
+                        </ion-col>
+
+                        <ion-col *ngIf="route && !route.isAnswerFeedbackEnabled()">
+                            <button ion-button small round *ngIf="(task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)) || !route.isAnswerFeedbackEnabled()"
                                     (click)="completeTask()">
                                 {{ "a_task_complete" | translate }}
                             </button>
@@ -79,7 +86,7 @@
 
                         <ion-col>
                             <button class="hint" ion-button icon-only round color="primary" (click)="showSolutionSample()"
-                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled()">
+                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled()">
                                 <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>
                             </button>
                             <!-- skip task -->
@@ -100,10 +107,10 @@
         </div>
 
        <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->
-        <div class="card evaluation" *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed)"
-        [ngClass]="{'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }">
+        <div class="card evaluation" *ngIf="route && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed || taskDetails?.saved)"
+        [ngClass]="{'saved' : taskDetails?.saved, 'perfect' : taskDetails?.solved && route.isAnswerFeedbackEnabled(), 'good': taskDetails?.solvedLow && route.isAnswerFeedbackEnabled(), 'failed' : taskDetails?.failed && route.isAnswerFeedbackEnabled() }">
             <div class="head">
-                <div *ngIf="taskDetails?.solved || taskDetails?.solvedLow">
+                <div *ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled()">
                     <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">
                         <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>
                     </div>
@@ -111,7 +118,7 @@
                         <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>
                     </ng-template>
                 </div>
-                <div *ngIf="taskDetails?.failed">
+                <div *ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled()">
                     <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;good_luck_next_time&quot;); else elseBlock">
                         <ion-label text-wrap>{{ route.getNarrativeString("good_luck_next_time") }}</ion-label>
                     </div>
@@ -119,7 +126,15 @@
                         <ion-label text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>
                     </ng-template>
                 </div>
-                <ion-label class="tag score" *ngIf="!gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>
+                <div *ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled()">
+                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">
+                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>
+                    </div>
+                    <ng-template #elseBlock>
+                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>
+                    </ng-template>
+                </div>
+                <ion-label class="tag score" *ngIf="route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>
             </div>
         </div>
         <div id="keyboard-anchor"></div>

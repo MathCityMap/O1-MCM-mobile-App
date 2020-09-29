@@ -6,6 +6,7 @@ export class TaskState{
     }
 
     taskId: number;
+    saved: boolean = false;
     solved: boolean = false;
     solvedLow: boolean = false;
     skipped: boolean = false;
@@ -25,6 +26,7 @@ export class TaskState{
     public getTaskDetailAsJSON() : string{
         return JSON.stringify({
             taskId: +this.taskId, //use '+' to parse to number
+            saved: this.saved,
             solved: this.solved,
             solvedLow: this.solvedLow,
             skipped: this.skipped,
@@ -82,6 +84,7 @@ export class TaskState{
         let flags = JSON.parse(jsonObject);
         let taskState = new TaskState();
         taskState.taskId = flags.taskId;
+        taskState.saved = flags.saved;
         taskState.solved = flags.solved;
         taskState.solvedLow = flags.solvedLow;
         taskState.skipped = flags.skipped;

@@ -342,7 +342,12 @@ export class Helper {
     public async calculateProgress(route: Route) {
         let totalTasks = await route.getTaskCount();
         let score = route.getScoreForUser(await this.ormService.getActiveUser());
-        let currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+        let currentProgress = 0;
+        if (route.isAnswerFeedbackEnabled()) {
+            currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+        } else {
+            currentProgress = score.getTasksSaved().length;
+        }
         return {totalTasks: totalTasks, currentProgress: currentProgress};
     }
 

@@ -247,6 +247,9 @@ export class Route {
         if (!attr.answerValidation) {
             attr.answerValidation = "true";
         }
+        if (!attr.answerFeedback) {
+            attr.answerFeedback = "true";
+        }
         this.attr = JSON.stringify(attr);
         return attr.hasOwnProperty(key);
     }
@@ -353,6 +356,14 @@ export class Route {
     isAnswerValidationEnabled() {
         if (this.getAttributes().answerValidation) {
             return this.getAttributes().answerValidation === "true";
+        } else {
+            return true;
+        }
+    }
+
+    isAnswerFeedbackEnabled() {
+        if (this.getAttributes().answerFeedback) {
+            return this.getAttributes().answerFeedback === "true";
         } else {
             return true;
         }
