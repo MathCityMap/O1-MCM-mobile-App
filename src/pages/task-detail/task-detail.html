@@ -130,7 +130,8 @@
             </div>
         </div>
 
-        <div id="keyboard-anchor"></div>
+        <div *ngIf="!rootTask" id="keyboard-anchor"></div>
+        <div *ngIf="rootTask" id="snd-keyboard-anchor"></div>
 	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">
                 <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_did_you_know&quot;); else elseBlock">
                     <ion-label text-wrap>{{ route.getNarrativeString("a_did_you_know") }}</ion-label>

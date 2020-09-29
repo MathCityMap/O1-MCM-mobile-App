@@ -160,7 +160,7 @@ export class TaskDetail {
             this.task = this.rootTask.subtasks[this.subTaskIndex]
         }
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
-        this.taskDetails = this.score.getTaskStateForTask(this.taskId);
+        this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         console.log(this.sessionInfo);
         // Add event of user entering trail when session active
@@ -177,10 +177,17 @@ export class TaskDetail {
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
-        this.maxScore = 100;
-        this.orangeScore = 50;
-        this.penalty = 10;
-        this.minScore = 10;
+        if (!this.rootTask) {
+            this.maxScore = 100;
+            this.orangeScore = 50;
+            this.penalty = 10;
+            this.minScore = 10;
+        } else {
+            this.maxScore = 0;
+            this.orangeScore = 0;
+            this.penalty = 0;
+            this.minScore = 0;
+        }
 
 
         if (this.score.score == null) this.score.score = 0;
@@ -269,7 +276,11 @@ export class TaskDetail {
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
                 // Scroll input field into view (may happen that the field is hidden by keyboard)
-                that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
+                if (!that.rootTask) {
+                    that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
+                } else {
+                    that.content.scrollTo(0, document.getElementById('snd-keyboard-anchor').offsetTop);
+                }
             });
         }
     }
@@ -507,7 +518,9 @@ export class TaskDetail {
 
     showSolutionSample() {
         if (!this.taskDetails.solved && !this.taskDetails.solvedLow) {
-            this.score.addFailedTask(this.task.id);
+            if (!this.rootTask) {
+                this.score.addFailedTask(this.task.id);
+            }
             this.taskDetails.score = 0;
             this.taskDetails.failed = true;
             this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
@@ -609,7 +622,9 @@ export class TaskDetail {
             if (solved == 'solved') {
                 title = 'a_alert_right_answer_title';
                 this.taskDetails.solved = true;
-                this.score.addSolvedTask(this.task.id);
+                if (!this.rootTask) {
+                    this.score.addSolvedTask(this.task.id);
+                }
                 switch (this.taskDetails.tries) {
                     case 0:
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
@@ -632,7 +647,9 @@ export class TaskDetail {
             if (solved == 'solved_low') {
                 title = 'a_alert_right_answer_title_low';
                 this.taskDetails.solvedLow = true;
-                this.score.addSolvedTaskLow(this.task.id);
+                if (!this.rootTask) {
+                    this.score.addSolvedTaskLow(this.task.id);
+                }
                 switch (this.taskDetails.tries) {
                     case 0:
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
