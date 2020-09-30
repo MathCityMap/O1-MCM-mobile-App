@@ -603,7 +603,7 @@ export class TaskDetail {
         // Add event of user entering trail when session active
         if (!this.route.isAnswerFeedbackEnabled()) {
             this.taskDetails.saved = true;
-            this.score.addSavedTask(this.task.id)
+            this.score.addSavedTask(this.task.id);
         }
         if (solved == 'solved' || solved == 'solved_low') {
             this.taskDetails.skipped = false;
@@ -690,8 +690,8 @@ export class TaskDetail {
                 }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
             } else {
                 modal = this.modalCtrl.create(MCMIconModal, {
-                    title: 'Saved',
-                    message: 'taskSaved',
+                    title: 'a_alert_saved_answer_title',
+                    message: 'a_alert_saved_answer_message',
                     modalType: MCMModalType.saved,
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
@@ -839,8 +839,8 @@ export class TaskDetail {
                         });
                     }};
                 modal = this.modalCtrl.create(MCMIconModal, {
-                    title: 'Saved',
-                    message: 'taskSaved',
+                    title: 'a_alert_saved_answer_title',
+                    message: 'a_alert_saved_answer_message',
                     modalType: MCMModalType.saved,
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),

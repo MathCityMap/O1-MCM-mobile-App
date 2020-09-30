@@ -78,8 +78,8 @@
                         </ion-col>
 
                         <ion-col *ngIf="route && !route.isAnswerFeedbackEnabled()">
-                            <button ion-button small round *ngIf="(task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)) || !route.isAnswerFeedbackEnabled()"
-                                    (click)="completeTask()">
+                            <button ion-button small round *ngIf="task && taskDetails"
+                                    [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
                                 {{ "a_task_complete" | translate }}
                             </button>
                         </ion-col>

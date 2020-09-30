@@ -1064,5 +1064,7 @@
   "p_cw_notifications_hide_condition_extra": "Bei Kontaktanfragen und Nachrichten muss zusätzlich angegeben werden, ob diese angenommen werden.",
   "p_use_subtasks_title": "Use Subtasks",
   "p_r_help_use_subtasks": "If this option is disabled, subtasks will not be used.",
-  "p_r_feedback": "Ergebnissanzeige"
+  "p_r_feedback": "Ergebnissanzeige",
+  "a_alert_saved_answer_title": "Gespeichert!",
+  "a_alert_saved_answer_message": "Dein Ergebnis wurde erfolgreich gespeichert!"
 }
