@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {OrmService} from '../../services/orm-service';
@@ -39,6 +39,8 @@ import {ImagesService} from "../../services/images-service";
 })
 export class TaskDetail {
     @ViewChild(Content) content: Content;
+
+    @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>
 
 
     // Keyboard open
@@ -190,6 +192,10 @@ export class TaskDetail {
             this.taskDetails.timeFirstOpen = new Date().getTime();
         }
         if (this.task.solutionType == 'multiple_choice') {
+            this.multipleChoiceView.changes.subscribe(data => {
+                console.log("MultipleChoiceChildData", data);
+                eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+            })
             if (this.taskDetails.solved || this.taskDetails.solvedLow) {
                 this.multipleChoiceList = this.taskDetails.answerMultipleChoice;
             } else {

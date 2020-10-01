@@ -36,7 +36,7 @@
                     <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled()">
-                    <ion-item *ngFor="let item of multipleChoiceList; let i = index">
+                    <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
                         <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
                         <ion-label tappable>{{item.value}}</ion-label>
                     </ion-item>
@@ -80,7 +80,7 @@
                         <ion-col *ngIf="route && !route.isAnswerFeedbackEnabled()">
                             <button ion-button small round *ngIf="task && taskDetails"
                                     [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
-                                {{ "a_task_complete" | translate }}
+                                {{ "p_save" | translate }}
                             </button>
                         </ion-col>
 
