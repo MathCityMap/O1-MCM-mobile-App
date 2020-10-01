@@ -4,17 +4,35 @@
 
 MIT or Apache 2.0
 
-## Android version
+## for browser platform
 
 MIT or Apache 2.0
 
-## iOS/macOS version
+### sql.js
+
+MIT
+
+## for Android
+
+MIT or Apache 2.0
+
+### Android-sqlite-connector
+
+Unlicense (public domain)
+
+### Android-sqlite-ext-native-driver
+
+Unlicense (public domain)
+
+## for iOS & macOS
 
 MIT only
 
 based on Phonegap-SQLitePlugin by @davibe (Davide Bertola <dade@dadeb.it>) and @joenoon (Joe Noon <joenoon@gmail.com>)
 
-## Windows version
+includes and uses PSPDFThreadSafeMutableDictionary (PSPDFThreadSafeMutableDictionary.m <https://gist.github.com/steipete/5928916>) MIT license by @steipete (<https://gist.github.com/steipete>)
+
+## for Windows
 
 MIT or Apache 2.0
 
@@ -24,6 +42,8 @@ by @doo (doo GmbH)
 
 MIT License
 
-## SQLite3
+## Common native code
+
+### SQLite3
 
 Public domain

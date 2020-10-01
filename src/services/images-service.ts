@@ -2,13 +2,14 @@ import * as JSZip from 'jszip';
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { DirectoryEntry, File} from '@ionic-native/file';
-import { Platform } from 'ionic-angular';
+import {normalizeURL, Platform} from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
 import { Helper } from '../classes/Helper';
 import {Route} from "../entity/Route";
 import {Http} from "@angular/http";
 import {HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpEvent} from "@angular/common/http";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Injectable()
 export class ImagesService {
@@ -23,7 +24,7 @@ export class ImagesService {
     private dataDirectory: DirectoryEntry;
 
     constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer,
-                private http: Http, private httpClient: HttpClient) {
+                private http: Http, private httpClient: HttpClient, private sanitizer : DomSanitizer) {
         ImagesService.INSTANCE = this;
         this.init();
     }
@@ -235,17 +236,26 @@ export class ImagesService {
         if (asThumbNail) {
             return this.offlineThumbnailUrlCache[imgPath] ? this.offlineThumbnailUrlCache[imgPath]
                 : this.offlineThumbnailUrlCache[imgPath] =
-                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
+                    (this.nativeBaseURL ? this.fixUrlForWebview(this.nativeBaseURL + this.getLocalThumbFileName(imgPath))
                         : this.getOnlineURL(imgPath));
         }
         return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
             : this.offlineImageUrlCache[imgPath] =
-                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
+                (this.nativeBaseURL ? this.fixUrlForWebview(this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile))
                     : this.getOnlineURL(imgPath));
     }
 
     getOnlineURL(imgPath: string) {
         return imgPath.indexOf('http') !== 0 ? Helper.WEBSERVER_URL + imgPath : imgPath;
+    }
+
+    fixUrlForWebview(url) {
+        let fixedUrl = (<any>window).Ionic.WebView.convertFileSrc(url);
+        //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
+        if (fixedUrl.includes('mcm_images_tasks')) {
+            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
+        }
+        return fixedUrl;
     }
 
     async removeDownloadedURLs(urls: string[], removeThumbs = true): Promise<any> {

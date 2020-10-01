@@ -5,47 +5,21 @@
 **/
 cordova.commandProxy.add("Diagnostic", {
 
-    /**
-     * Checks if location is enabled.
-     *
-     * @param {Function} successCallback - The callback which will be called when diagnostic is successful. 
-     * This callback function is passed a single boolean parameter with the diagnostic result.
-     * @param {Function} errorCallback -  The callback which will be called when diagnostic encounters an error.
-     *  This callback function is passed a single string parameter containing the error message.
-     */
-    // exec(win, fail, 'Diagnostic', 'isLocationAvailable', []);
-    isLocationAvailable: function (successCallback, errorCallback) {
 
-        Windows.Devices.Geolocation.Geolocator.requestAccessAsync().done(
-            function (accessStatus) {
-                var isEnabled = false;
-                var isError = false;
-                switch (accessStatus) {
-                    case Windows.Devices.Geolocation.GeolocationAccessStatus.allowed:
-                        isEnabled = true;
-                        break;
-                    case Windows.Devices.Geolocation.GeolocationAccessStatus.denied:
-                        isEnabled = false;
-                        break;
-                    case Windows.Devices.Geolocation.GeolocationAccessStatus.unspecified:
-                        isError = true;
-                        break;
-                }
-                if (!isError)
-                    successCallback(isEnabled);
-                else
-                    errorCallback("Unspecified error");
-            },
-            function (error) {
-                errorCallback(error);
-            }
-        );
+    /**
+     * Display the mobile data settings page.
+     */
+    // exec(null, null, 'Diagnostic', 'switchToMobileDataSettings', []);
+    switchToMobileDataSettings: function () {
+
+        var uri = new Windows.Foundation.Uri("ms-settings:datausage");
+        Windows.System.Launcher.launchUriAsync(uri);
     },
 
     /**
      * Checks if bluetooth/wifi is enabled.
      *
-     * @param {Function} successCallback - The callback which will be called when diagnostic is successful. 
+     * @param {Function} successCallback - The callback which will be called when diagnostic is successful.
      * This callback function is passed a single boolean parameter with the diagnostic result.
      * @param {Function} errorCallback -  The callback which will be called when diagnostic encounters an error.
      *  This callback function is passed a single string parameter containing the error message.
@@ -71,79 +45,6 @@ cordova.commandProxy.add("Diagnostic", {
                 errorCallback(error);
             }
         );
-    },
-
-    /**
-     * Checks if camera is enabled.
-     *
-     * @param {Function} successCallback - The callback which will be called when diagnostic is successful. 
-     * This callback function is passed a single boolean parameter with the diagnostic result.
-     * @param {Function} errorCallback -  The callback which will be called when diagnostic encounters an error.
-     *  This callback function is passed a single string parameter containing the error message.
-     */
-    // exec(win, fail, 'Diagnostic', 'isCameraAvailable', []);
-    isCameraAvailable: function (successCallback, errorCallback) {
-
-        Windows.Devices.Enumeration.DeviceInformation.findAllAsync(Windows.Devices.Enumeration.DeviceClass.videoCapture).then(
-            function (deviceList) {
-                var isEnabled = false;
-                for (var i = 0; i < deviceList.length; i++) {
-                    if ((deviceList[i].enclosureLocation != null) && (deviceList[i].enclosureLocation.panel === Windows.Devices.Enumeration.Panel.back)) {
-                        isEnabled = true;
-                        break;
-                    }
-                }
-                successCallback(isEnabled);
-            },
-            function (error) {
-                errorCallback(error);
-            }
-        );
-    },
-
-    /**
-     * Display the location services settings page.
-     */
-    // exec(null, null, 'Diagnostic', 'switchToLocationSettings', []);
-    switchToLocationSettings: function () {
-
-        var uri = new Windows.Foundation.Uri("ms-settings:privacy-location");
-        Windows.System.Launcher.launchUriAsync(uri);
-    },
-
-    /**
-     * Display the mobile data settings page.
-     */
-    // exec(null, null, 'Diagnostic', 'switchToMobileDataSettings', []);
-    switchToMobileDataSettings: function () {
-
-        var uri = new Windows.Foundation.Uri("ms-settings:datausage");
-        Windows.System.Launcher.launchUriAsync(uri);
-    },
-
-    /**
-     * Display the wifi settings page.
-     */
-    // exec(null, null, 'Diagnostic', 'switchToWifiSettings', []);
-    switchToWifiSettings: function () {
-
-        var uri = new Windows.Foundation.Uri("ms-settings-wifi:");
-        Windows.System.Launcher.launchUriAsync(uri);
-    },
-
-    /**
-     * Display the bluetooth settings page.
-     */
-    // exec(null, null, 'Diagnostic', 'switchToBluetoothSettings', []);
-    switchToBluetoothSettings: function () {
-
-        // Mike says: According to the docs, "ms-settings-bluetooth:" is the correct URI to use
-        // to take the user directly to the Bluetooth page in the mobile settings app, but as of 10/9/2015
-        // it does not work (we just get back "false" in the success callback). So,
-        // using the desktop settings URI until this gets fixed, which takes the user to the
-        // "which of these settings are you interested in?" page.
-        var uri = new Windows.Foundation.Uri("ms-settings:bluetooth");
-        Windows.System.Launcher.launchUriAsync(uri);
     },
 
     /**

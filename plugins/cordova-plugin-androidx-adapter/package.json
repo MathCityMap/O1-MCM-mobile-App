@@ -1,0 +1,41 @@
+{
+  "_from": "cordova-plugin-androidx-adapter",
+  "_id": "cordova-plugin-androidx-adapter@1.1.1",
+  "_inBundle": false,
+  "_integrity": "sha512-ePt0WG7Y8jOFx2x3A6oXQyxzavis2ANw2hFlm7MU/H7ez1QKPXmWjA1zIIx4T/QdKWM5D8fLH60t2PyJmKSsOg==",
+  "_location": "/cordova-plugin-androidx-adapter",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-androidx-adapter",
+    "name": "cordova-plugin-androidx-adapter",
+    "escapedName": "cordova-plugin-androidx-adapter",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-androidx-adapter/-/cordova-plugin-androidx-adapter-1.1.1.tgz",
+  "_shasum": "67c1553b4358a54827b5930d2590569749ad0f47",
+  "_spec": "cordova-plugin-androidx-adapter",
+  "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
+  "author": {
+    "name": "Dave Alden"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "performance-now": "^2.1.0",
+    "q": "^1.4.1",
+    "recursive-readdir": "^2.2.2"
+  },
+  "deprecated": false,
+  "description": "Cordova/Phonegap plugin to migrate any code which references the legacy Android Support Library to the new AndroidX mappings in a Cordova Android platform project.",
+  "devDependencies": {},
+  "license": "MIT",
+  "name": "cordova-plugin-androidx-adapter",
+  "version": "1.1.1"
+}

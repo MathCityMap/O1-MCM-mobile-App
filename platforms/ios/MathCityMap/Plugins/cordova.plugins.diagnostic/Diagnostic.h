@@ -1,6 +1,6 @@
 /*
  *  Diagnostic.h
- *  Plugin diagnostic
+ *  Diagnostic Plugin - Core Module
  *
  *  Copyright (c) 2015 Working Edge Ltd.
  *  Copyright (c) 2012 AVANTIC ESTUDIO DE INGENIEROS
@@ -10,107 +10,45 @@
 #import <Cordova/CDVPlugin.h>
 #import <WebKit/WebKit.h>
 
-#import <CoreBluetooth/CoreBluetooth.h>
-#import <CoreLocation/CoreLocation.h>
-#import <CoreMotion/CoreMotion.h>
-#import <EventKit/EventKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <Photos/Photos.h>
-#import <AddressBook/AddressBook.h>
-#import <Contacts/Contacts.h>
-
-#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-#import <UserNotifications/UserNotifications.h>
-#endif
-
-#import <arpa/inet.h> // For AF_INET, etc.
-#import <ifaddrs.h> // For getifaddrs()
-#import <net/if.h> // For IFF_LOOPBACK
 #import <mach/machine.h>
 #import <sys/types.h>
 #import <sys/sysctl.h>
 
-static NSString*const LOG_TAG = @"Diagnostic[native]";
+// Public constants
+extern NSString*const UNKNOWN;
 
-static NSString*const UNKNOWN = @"unknown";
+extern NSString*const AUTHORIZATION_NOT_DETERMINED;
+extern NSString*const AUTHORIZATION_DENIED;
+extern NSString*const AUTHORIZATION_GRANTED;
 
-static NSString*const CPU_ARCH_ARMv6 = @"ARMv6";
-static NSString*const CPU_ARCH_ARMv7 = @"ARMv7";
-static NSString*const CPU_ARCH_ARMv8 = @"ARMv8";
-static NSString*const CPU_ARCH_X86 = @"X86";
-static NSString*const CPU_ARCH_X86_64 = @"X86_64";
+@interface Diagnostic : CDVPlugin
 
-static NSString*const AUTHORIZATION_NOT_DETERMINED = @"not_determined";
-static NSString*const AUTHORIZATION_DENIED = @"denied";
-static NSString*const AUTHORIZATION_GRANTED = @"authorized";
+@property (nonatomic) float osVersion;
+@property (nonatomic) BOOL debugEnabled;
 
-static NSString*const REMOTE_NOTIFICATIONS_ALERT = @"alert";
-static NSString*const REMOTE_NOTIFICATIONS_SOUND = @"sound";
-static NSString*const REMOTE_NOTIFICATIONS_BADGE = @"badge";
-
-@interface Diagnostic : CDVPlugin <CBCentralManagerDelegate, CLLocationManagerDelegate>
-
-    @property (nonatomic, retain) CBCentralManager* bluetoothManager;
-    @property (strong, nonatomic) CLLocationManager* locationManager;
-    @property (strong, nonatomic) CMMotionActivityManager* motionManager;
-    @property (strong, nonatomic) NSOperationQueue* motionActivityQueue;
-    @property (nonatomic, retain) NSString* locationRequestCallbackId;
-    @property (nonatomic) EKEventStore *eventStore;
-    @property (nonatomic, retain) NSString* currentLocationAuthorizationStatus;
-
+// Plugin API
 - (void) enableDebug: (CDVInvokedUrlCommand*)command;
-
-- (void) isLocationAvailable: (CDVInvokedUrlCommand*)command;
-- (void) isLocationEnabled: (CDVInvokedUrlCommand*)command;
-- (void) isLocationAuthorized: (CDVInvokedUrlCommand*)command;
-- (void) getLocationAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) requestLocationAuthorization: (CDVInvokedUrlCommand*)command;
-
-- (void) isCameraAvailable: (CDVInvokedUrlCommand*)command;
-- (void) isCameraPresent: (CDVInvokedUrlCommand*)command;
-- (void) isCameraAuthorized: (CDVInvokedUrlCommand*)command;
-- (void) getCameraAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) requestCameraAuthorization: (CDVInvokedUrlCommand*)command;
-- (void) isCameraRollAuthorized: (CDVInvokedUrlCommand*)command;
-- (void) getCameraRollAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-
-- (void) isWifiAvailable: (CDVInvokedUrlCommand*)command;
-- (void) isWifiEnabled: (CDVInvokedUrlCommand*)command;
-
-- (void) isBluetoothAvailable: (CDVInvokedUrlCommand*)command;
-- (void) getBluetoothState: (CDVInvokedUrlCommand*)command;
-- (void) requestBluetoothAuthorization: (CDVInvokedUrlCommand*)command;
-
-- (void) isRemoteNotificationsEnabled: (CDVInvokedUrlCommand*)command;
-- (void) getRemoteNotificationTypes: (CDVInvokedUrlCommand*)command;
-- (void) isRegisteredForRemoteNotifications: (CDVInvokedUrlCommand*)command;
-- (void) getRemoteNotificationsAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) requestRemoteNotificationsAuthorization: (CDVInvokedUrlCommand*)command;
-
 - (void) switchToSettings: (CDVInvokedUrlCommand*)command;
-
-- (void) isMicrophoneAuthorized: (CDVInvokedUrlCommand*)command;
-- (void) getMicrophoneAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) requestMicrophoneAuthorization: (CDVInvokedUrlCommand*)command;
-
-- (void) getAddressBookAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) isAddressBookAuthorized: (CDVInvokedUrlCommand*)command;
-- (void) requestAddressBookAuthorization: (CDVInvokedUrlCommand*)command;
-
-- (void) getCalendarAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) isCalendarAuthorized: (CDVInvokedUrlCommand*)command;
-- (void) requestCalendarAuthorization: (CDVInvokedUrlCommand*)command;
-- (void) getRemindersAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) isRemindersAuthorized: (CDVInvokedUrlCommand*)command;
-- (void) requestRemindersAuthorization: (CDVInvokedUrlCommand*)command;
-
 - (void) getBackgroundRefreshStatus: (CDVInvokedUrlCommand*)command;
-
-- (void) isMotionAvailable: (CDVInvokedUrlCommand*)command;
-- (void) isMotionRequestOutcomeAvailable: (CDVInvokedUrlCommand*)command;
-- (void) getMotionAuthorizationStatus: (CDVInvokedUrlCommand*)command;
-- (void) requestMotionAuthorization: (CDVInvokedUrlCommand*)command;
-
 - (void) getArchitecture: (CDVInvokedUrlCommand*)command;
+
+// Utilities
++ (id) getInstance;
+- (void) sendPluginResult: (CDVPluginResult*)result :(CDVInvokedUrlCommand*)command;
+- (void) sendPluginResultBool: (BOOL)result :(CDVInvokedUrlCommand*)command;
+- (void) sendPluginResultString: (NSString*)result :(CDVInvokedUrlCommand*)command;
+- (void) sendPluginError: (NSString*) errorMessage :(CDVInvokedUrlCommand*)command;
+- (void) handlePluginException: (NSException*) exception :(CDVInvokedUrlCommand*)command;
+- (void)executeGlobalJavascript: (NSString*)jsString;
+- (NSString*) arrayToJsonString:(NSArray*)inputArray;
+- (NSString*) objectToJsonString:(NSDictionary*)inputObject;
+- (NSArray*) jsonStringToArray:(NSString*)jsonStr;
+- (NSDictionary*) jsonStringToDictionary:(NSString*)jsonStr;
+- (bool)isNull: (NSString*)str;
+- (void)logDebug: (NSString*)msg;
+- (void)logError: (NSString*)msg;
+- (NSString*)escapeDoubleQuotes: (NSString*)str;
+- (void) setSetting: (NSString*)key forValue:(id)value;
+- (id) getSetting: (NSString*) key;
 
 @end

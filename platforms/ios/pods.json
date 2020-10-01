@@ -1,8 +1,12 @@
 {
-    "SSZipArchive": {
-        "name": "SSZipArchive",
-        "type": "podspec",
-        "spec": "~> 2.1.4",
-        "count": 1
+    "declarations": {},
+    "sources": {},
+    "libraries": {
+        "SSZipArchive": {
+            "name": "SSZipArchive",
+            "type": "podspec",
+            "spec": "~> 2.1.4",
+            "count": 1
+        }
     }
 }

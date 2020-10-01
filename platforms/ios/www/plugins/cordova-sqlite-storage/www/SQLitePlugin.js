@@ -103,7 +103,7 @@ cordova.define("cordova-sqlite-storage.SQLitePlugin", function(require, exports,
       this.startNextTransaction();
     } else {
       if (this.dbname in this.openDBs) {
-        console.log('new transaction is waiting for open operation');
+        console.log('new transaction is queued, waiting for open operation to finish');
       } else {
         console.log('database is closed, new transaction is [stuck] waiting until db is opened again!');
       }
@@ -163,7 +163,7 @@ cordova.define("cordova-sqlite-storage.SQLitePlugin", function(require, exports,
   };
 
   SQLitePlugin.prototype.open = function(success, error) {
-    var myfn, openerrorcb, opensuccesscb;
+    var openerrorcb, opensuccesscb, step2;
     if (this.dbname in this.openDBs) {
       console.log('database already open: ' + this.dbname);
       nextTick((function(_this) {
@@ -203,13 +203,16 @@ cordova.define("cordova-sqlite-storage.SQLitePlugin", function(require, exports,
         };
       })(this);
       this.openDBs[this.dbname] = DB_STATE_INIT;
-      if (!txLocks[this.dbname]) {
-        myfn = function(tx) {
-          tx.addStatement('ROLLBACK');
+      step2 = (function(_this) {
+        return function() {
+          cordova.exec(opensuccesscb, openerrorcb, "SQLitePlugin", "open", [_this.openargs]);
         };
-        this.addTransaction(new SQLitePluginTransaction(this, myfn, null, null, false, false));
-      }
-      cordova.exec(opensuccesscb, openerrorcb, "SQLitePlugin", "open", [this.openargs]);
+      })(this);
+      cordova.exec(step2, step2, 'SQLitePlugin', 'close', [
+        {
+          path: this.dbname
+        }
+      ]);
     }
   };
 
@@ -445,7 +448,6 @@ cordova.define("cordova-sqlite-storage.SQLitePlugin", function(require, exports,
         error: handlerFor(i, false)
       };
       tropts.push({
-        qid: null,
         sql: request.sql,
         params: request.params
       });
@@ -580,6 +582,15 @@ cordova.define("cordova-sqlite-storage.SQLitePlugin", function(require, exports,
       openargs.dblocation = dblocation;
       if (!!openargs.createFromLocation && openargs.createFromLocation === 1) {
         openargs.createFromResource = "1";
+      }
+      if (!!openargs.androidDatabaseProvider && !!openargs.androidDatabaseImplementation) {
+        throw newSQLError('AMBIGUOUS: both androidDatabaseProvider and deprecated androidDatabaseImplementation settings are present in openDatabase call. Please drop androidDatabaseImplementation in favor of androidDatabaseProvider.');
+      }
+      if (openargs.androidDatabaseProvider !== void 0 && openargs.androidDatabaseProvider !== 'default' && openargs.androidDatabaseProvider !== 'system') {
+        throw newSQLError("Incorrect androidDatabaseProvider value. Valid values are: 'default', 'system'");
+      }
+      if (!!openargs.androidDatabaseProvider && openargs.androidDatabaseProvider === 'system') {
+        openargs.androidOldDatabaseImplementation = 1;
       }
       if (!!openargs.androidDatabaseImplementation && openargs.androidDatabaseImplementation === 2) {
         openargs.androidOldDatabaseImplementation = 1;
@@ -835,28 +846,10 @@ cordova.define("cordova-sqlite-storage.SQLitePlugin", function(require, exports,
                       SelfTest.finishWithError(errorcb, 'second readTransaction did not finish');
                       return;
                     }
-                    return db.close(function() {
-                      return SQLiteFactory.deleteDatabase({
-                        name: SelfTest.DBNAME,
-                        location: 'default'
-                      }, successcb, function(cleanup_err) {
-                        if (/Windows /.test(navigator.userAgent) || /IEMobile/.test(navigator.userAgent)) {
-                          console.log("IGNORE CLEANUP (DELETE) ERROR: " + (JSON.stringify(cleanup_err)) + " (Windows/WP8)");
-                          successcb();
-                          return;
-                        }
-                        return SelfTest.finishWithError(errorcb, "Cleanup error: " + cleanup_err);
-                      });
+                    db.close(function() {
+                      SelfTest.cleanupAndFinish(successcb, errorcb);
                     }, function(close_err) {
-                      if (/Windows /.test(navigator.userAgent) || /IEMobile/.test(navigator.userAgent)) {
-                        console.log("IGNORE close ERROR: " + (JSON.stringify(close_err)) + " (Windows/WP8)");
-                        SQLiteFactory.deleteDatabase({
-                          name: SelfTest.DBNAME,
-                          location: 'default'
-                        }, successcb, successcb);
-                        return;
-                      }
-                      return SelfTest.finishWithError(errorcb, "close error: " + close_err);
+                      SelfTest.finishWithError(errorcb, "close error: " + close_err);
                     });
                   });
                 });
@@ -872,15 +865,24 @@ cordova.define("cordova-sqlite-storage.SQLitePlugin", function(require, exports,
         return SelfTest.finishWithError(errorcb, "Open database error: " + open_err);
       });
     },
+    cleanupAndFinish: function(successcb, errorcb) {
+      SQLiteFactory.deleteDatabase({
+        name: SelfTest.DBNAME,
+        location: 'default'
+      }, successcb, function(cleanup_err) {
+        SelfTest.finishWithError(errorcb, "CLEANUP DELETE ERROR: " + cleanup_err);
+      });
+    },
     finishWithError: function(errorcb, message) {
       console.log("selfTest ERROR with message: " + message);
       SQLiteFactory.deleteDatabase({
         name: SelfTest.DBNAME,
         location: 'default'
       }, function() {
-        return errorcb(newSQLError(message));
+        errorcb(newSQLError(message));
       }, function(err2) {
-        return errorcb(newSQLError("Cleanup error: " + err2 + " for error: " + message));
+        console.log("selfTest CLEANUP DELETE ERROR " + err2);
+        errorcb(newSQLError("CLEANUP DELETE ERROR: " + err2 + " for error: " + message));
       });
     }
   };
