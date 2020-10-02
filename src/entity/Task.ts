@@ -92,8 +92,8 @@ export class Task {
     @OneToMany(type => Task2Route, task2Route => task2Route.task)
     task2Routes: Task2Route[];
 
-    getImageURL(): string {
-        return ImagesService.INSTANCE.getOfflineURL(this.image);
+    getImageURL(asRawString: boolean = false): string {
+        return ImagesService.INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
     }
 
     getSingleQuotedImageURL(): string {

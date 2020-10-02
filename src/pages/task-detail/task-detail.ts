@@ -1380,7 +1380,7 @@ export class TaskDetail {
             this.spinnerDialog.show();
             setTimeout(() => {
                 // use short timeout to let spinner dialog appear
-                this.photoViewer.show(this.task.getImageURL());
+                this.photoViewer.show(this.task.getImageURL(true));
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();

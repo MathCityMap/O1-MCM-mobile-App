@@ -232,17 +232,23 @@ export class ImagesService {
         return 'thumb_' + this.getLocalFileName(imgPath);
     }
 
-    getOfflineURL(imgPath: string, asThumbNail: boolean = false, isMapTile: boolean = false) : string {
+    getOfflineURL(imgPath: string, asThumbNail: boolean = false, isMapTile: boolean = false, asRawString: boolean = false) : string {
         if (asThumbNail) {
-            return this.offlineThumbnailUrlCache[imgPath] ? this.offlineThumbnailUrlCache[imgPath]
-                : this.offlineThumbnailUrlCache[imgPath] =
-                    (this.nativeBaseURL ? this.fixUrlForWebview(this.nativeBaseURL + this.getLocalThumbFileName(imgPath))
+            return this.offlineThumbnailUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath])
+                : this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
+                        : this.getOnlineURL(imgPath)));
+        }
+        if (asRawString) {
+            return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
+                : this.offlineImageUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
                         : this.getOnlineURL(imgPath));
         }
-        return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
-            : this.offlineImageUrlCache[imgPath] =
-                (this.nativeBaseURL ? this.fixUrlForWebview(this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile))
-                    : this.getOnlineURL(imgPath));
+        return this.offlineImageUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineImageUrlCache[imgPath])
+            :  this.fixUrlForWebview(this.offlineImageUrlCache[imgPath] =
+                (this.nativeBaseURL ?this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
+                    : this.getOnlineURL(imgPath)));
     }
 
     getOnlineURL(imgPath: string) {
