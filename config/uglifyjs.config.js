@@ -11,7 +11,7 @@ module.exports = {
           'FailedTaskMigration1515428187000', 'AddUnlockedColumn1516037215000', 'AddCompletedColumn1519817905000',
           'HomePage', 'InfoPage', 'SettingsPage', 'ModalCmp', 'RoutesListPage', 'MapPage', 'TaskDetailPage', 'ChatPage',
           'AddVisibleColumn1526306624000', 'AddLangCodeColumn1526306730000', 'TasksMap',
-          'AddDownloadDateColumn15711518720000', 'AddCompletedDateColumn15713974540000', 'AddZipMapFields15783117210000']
+          'AddDownloadDateColumn15711518720000', 'AddCompletedDateColumn15713974540000', 'AddZipMapFields15783117210000', 'AddZipMapFields15783117210000', 'AddSavedTasks16013795030000']
   },
 
   /**
