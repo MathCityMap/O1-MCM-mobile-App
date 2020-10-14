@@ -90,9 +90,10 @@ export class Helper {
     GLOBAL VARS #
      */
     static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
+    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
-    // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
     static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
+    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
     static readonly REQUEST_PASS: string = "evilknivel2k16"
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"
@@ -342,7 +343,12 @@ export class Helper {
     public async calculateProgress(route: Route) {
         let totalTasks = await route.getTaskCount();
         let score = route.getScoreForUser(await this.ormService.getActiveUser());
-        let currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+        let currentProgress = 0;
+        if (route.isAnswerFeedbackEnabled()) {
+            currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+        } else {
+            currentProgress = score.getTasksSaved().length;
+        }
         return {totalTasks: totalTasks, currentProgress: currentProgress};
     }
 

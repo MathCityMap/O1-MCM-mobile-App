@@ -99,8 +99,8 @@ export class Task {
     @OneToMany(type => Task, task => task.task_id)
     subtasks: Task[];
 
-    getImageURL(): string {
-        return ImagesService.INSTANCE.getOfflineURL(this.image);
+    getImageURL(asRawString: boolean = false): string {
+        return ImagesService.INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
     }
 
     getSingleQuotedImageURL(): string {

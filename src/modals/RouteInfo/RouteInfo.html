@@ -76,10 +76,13 @@
         <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>
         <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">
             <span class="icon finished">{{route.completedDate}}</span>
-            <div class="ratings">
+            <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">
                 <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
                 <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>
                 <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>
+            </div>
+            <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">
+                <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>
             </div>
         </div>
     </div>
@@ -94,6 +97,7 @@
             <ion-row>{{ 't_samplesolution' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>
             <ion-row>{{ 'a_hints' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>
             <ion-row>{{ 'p_r_validation' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>
+            <ion-row>{{ 'p_r_feedback' | translate }}: {{route.getSettingStringValue("answerFeedback", translateService)}}</ion-row>
             <ion-row *ngIf="route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_' + route.getNarrativeName() | translate }}</ion-row>
             <ion-row *ngIf="!route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_none' | translate }}</ion-row>
         </p>

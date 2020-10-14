@@ -1,5 +1,96 @@
 # CHANGELOG
 
+**v6.0.2**
+* (iOS) Update location accuracy authorization logic based on iOS 14 Beta 3. 
+    * Relates to [#402](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/402). 
+
+**v6.0.1**
+* (iOS, bug fix): Fix handling of conditional logic for iOS version in location module. 
+    * Resolves [#406](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/406).
+
+**v6.0.0**
+* (iOS) Support new location accuracy authorization API on iOS 14+.
+    * Resolves [#402](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/402).
+* (Android) *BREAKING CHANGE:*  Migrate to AndroidX from Android Support Library
+    * The recommended Cordova Android platform version is now `cordova-android@9.0.0` (which includes AndroidX support).
+        * To use this plugin with `cordova-android@8`, install [cordova-plugin-androidx](https://github.com/dpa99c/cordova-plugin-androidx) and [cordova-plugin-androidx-adapter](https://github.com/dpa99c/cordova-plugin-androidx-adapter).
+* (iOS) *BREAKING CHANGE:* Remove conditional code to support iOS <= 9
+
+**v5.0.2**
+* (Android) Add support for background location permission on Android 10 / API 29. Resolves [#398](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/398).
+* (Doc) Add doc about `locationAuthorizationMode` constants
+* (Doc) Fix error in `hasBluetoothSupport()` example
+* (Doc) Fix `enableDebug()` for iOS note
+* (iOS) Add return statement to getBackgroundRefreshStatus following handling of an exception raised when attempting to retrieve status. Resolves [#389](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/389).
+* (iOS): If motion tracking is not available on the device, return "not available" when calling getMotionAuthorizationStatus(). Further resolves [#372](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/372).
+
+
+**v5.0.1**
+* Add types for various statuses constants (thanks to [@fcamblor](https://github.com/fcamblor))
+* (iOS) Add placeholder `NSBluetoothAlwaysUsageDescription` to Bluetooth module. 
+    * Resolves [#369](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/369).
+* (iOS) Only initialise the native Bluetooth manager on calling a plugin API operation in the Bluetooth module.
+    * This is necessary because on iOS 13, since initialising the Bluetooth manager implicitly requests runtime access to Bluetooth, presenting the user with a permission dialog.
+    * Fixes [#365](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/365).
+* (iOS): Fix setting/getting of persistent user settings so motion permission status is correctly determined. Fixes [#372](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/372).    
+
+**v5.0.0**
+* BREAKING CHANGE - Align permission status constants between iOS and Android platforms. Resolves [#230](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/230).
+
+**v4.0.12**
+* Enable default version of Android Support Library to be overridden at plugin installation via ANDROID_SUPPORT_VERSION plugin variable. Resolves [#338](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/338).
+* Bump default Android Support Library version to `28.+` to match `cordova-android@8.0.0`.
+
+**v4.0.11**
+* Bug fix: On Android, count number of available cameras in order to determine if camera is present (since FEATURE_CAMERA can't be relied upon). Resolves [#339](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/339).
+
+**v4.0.10**
+* Bug fix: return string instead of object to success function after requesting single runtime permission on Android. Fixes [#324](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/324).
+
+**v4.0.9**
+* Add minimum version restriction on Cordova CLI and platforms to prevent anomalous issues being reported due to outdated Cordova environment. Resolves [#323](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/323).
+
+**v4.0.8**
+* iOS build fix: Make static the definition of the diagnostic variable which references the Diagnostic singleton instance to prevent it leaking to global scope and causing duplicate symbol build errors. Fixes [#308](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/308).
+* Fix typo which references wrong namespace. See [#306](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/306).
+
+**v4.0.7**
+Use native SharedPreferences to track request permissions (instead of HTML5 Local Storage) in order to avoid issues with Android Autobackup. Fixes [#304](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/304).
+
+**v4.0.6**
+* Remove obselete `windows-target-version` preference which is causing Window platform build failure. Fixes [#295](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/295).
+* Add missing call to getMotionAuthorizationStatus() in iOS motion module.
+
+**v4.0.5**
+* Bug fix: ensure complete camera module inclusion and default Info.plist strings on iOS. 
+Merges [#292](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/292). 
+
+**v4.0.4**
+* Ensure all Android code entry points are handled in try/catch blocks to prevent app crashes by unhandled exceptions.
+* Enable the `types` parameter for `requestRemoteNotificationsAuthorization` to be omitted (rather than requiring empty object). Fixes [#286](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/286).
+
+**v4.0.3**
+* Remove literal angle brackets in comment attributes as they cause XML parse issue in Visual Studio. Fixes [#284](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/284).
+
+**v4.0.2**
+* Add `<uses-permission>` manifest entry for Bluetooth since registering broadcast receiver is now done at runtime. Fixes [#282](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/282)/[#283](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/283).
+
+**v4.0.1**
+* Register explicit broadcast receivers for location/Bluetooth/NFC state change listeners at run-time, due to [removal of support for implicit broadcast receivers in Android 8.0 (API 26)](https://developer.android.com/about/versions/oreo/background.html#broadcasts).
+Fixes [#279](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/279).
+
+**v4.0.0**
+* Major rework of plugin code (both native and JS) into separate modules.
+    * Adds mechanism for including optional modules via config preference.
+    * Resolves [#181](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/181).
+* Removed deprecated iOS method `requestAndCheckMotionAuthorization()`
+
+**v3.9.2**
+* Run iOS plugin initialisation on-load (rather than on-demand) to avoid race conditions when querying async native managers such as Bluetooth. Fixes [#271](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/271).
+* Run all iOS native plugin commands on a background thread (other than those which call methods on `[UIApplication sharedApplication]` so must explicitly run on the main thread) to prevent THREAD WARNING messages in the console.
+Fixes [#272](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/272).
+
+
 **v3.9.1**
 * Declare Objective-C constants as static. Fixes [#270](https://github.com/dpa99c/cordova-diagnostic-plugin/issues/270).
 

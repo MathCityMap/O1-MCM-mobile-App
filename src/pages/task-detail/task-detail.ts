@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {OrmService} from '../../services/orm-service';
@@ -39,6 +39,8 @@ import {ImagesService} from "../../services/images-service";
 })
 export class TaskDetail {
     @ViewChild(Content) content: Content;
+
+    @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>
 
 
     // Keyboard open
@@ -96,7 +98,7 @@ export class TaskDetail {
         // Here we add the clicked key value to the string
         this.keyboardSubscriptions.add(
             CustomKeyBoard.onCKClick.subscribe((key) => {
-                    if(this.taskDetails.timeSolved == 0 && !this.taskDetails.failed){
+                    if((this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) || !this.route.isAnswerFeedbackEnabled()){
                         if (key === "C") {
                             this.taskDetails.answer = "";
                         }
@@ -175,6 +177,7 @@ export class TaskDetail {
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         console.log(this.sessionInfo);
+        console.log(this.task);
         // Add event of user entering trail when session active
         if(this.sessionInfo != null && !this.task){
             let details = JSON.stringify({title: this.task.title});
@@ -189,7 +192,7 @@ export class TaskDetail {
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
-        if (!this.rootTask) {
+        if (!this.rootTask && this.route.isAnswerFeedbackEnabled()) {
             this.maxScore = 100;
             this.orangeScore = 50;
             this.penalty = 10;
@@ -208,6 +211,10 @@ export class TaskDetail {
             this.taskDetails.timeFirstOpen = new Date().getTime();
         }
         if (this.task.solutionType == 'multiple_choice') {
+            this.multipleChoiceView.changes.subscribe(data => {
+                console.log("MultipleChoiceChildData", data);
+                eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+            })
             if (this.taskDetails.solved || this.taskDetails.solvedLow) {
                 this.multipleChoiceList = this.taskDetails.answerMultipleChoice;
             } else {
@@ -629,6 +636,10 @@ export class TaskDetail {
     async taskSolved(solved: string, solution: string[], scoreVal: number) {
         let that = this;
         // Add event of user entering trail when session active
+        if (!this.route.isAnswerFeedbackEnabled()) {
+            this.taskDetails.saved = true;
+            this.score.addSavedTask(this.task.id);
+        }
         if (solved == 'solved' || solved == 'solved_low') {
             this.taskDetails.skipped = false;
             let message = "";
@@ -711,17 +722,30 @@ export class TaskDetail {
                 title = this.route.getNarrativeString(title);
                 message = this.route.getNarrativeString(message);
             }
-            let modal = this.modalCtrl.create(MCMIconModal, {
-                title: title,
-                message: message,
-                solution: solution,
-                modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
-                gamificationEnabled: !this.gamificationIsDisabled,
-                narrativeEnabled: this.route.isNarrativeEnabled(),
-                narrative: this.app.activeNarrative,
-                score: "+" + this.taskDetails.score,
-                buttons: this.rootTask ? [subTaskOkay] :(this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
-            }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            let modal;
+            if (this.route.isAnswerFeedbackEnabled()) {
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: title,
+                    message: message,
+                    solution: solution,
+                    modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    score: "+" + this.taskDetails.score,
+                    buttons: this.rootTask ? [subTaskOkay] :(this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            } else {
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'a_alert_saved_answer_title',
+                    message: 'a_alert_saved_answer_message',
+                    modalType: MCMModalType.saved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [bNextTask],
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            }
             modal.onDidDismiss((data) => {
                 console.log(data);
                 if (data && data.showMap) {
@@ -854,21 +878,41 @@ export class TaskDetail {
                 title = this.route.getNarrativeString(title);
                 message = this.route.getNarrativeString(message);
               }
-            let modal = this.modalCtrl.create(MCMIconModal, {
-                title: title,
-                message: message,
-                solution: solution,
-                modalType: MCMModalType.error,
-                gamificationEnabled: !this.gamificationIsDisabled,
-                narrativeEnabled: this.route.isNarrativeEnabled(),
-                narrative: this.app.activeNarrative,
-                score: this.taskDetails.tries > 1 ? '-10' : '0',
-                buttons: buttons
-            }, {
-                showBackdrop: true,
-                enableBackdropDismiss: true,
-                cssClass: this.app.activeNarrative
-            });
+            let modal;
+            if (this.route.isAnswerFeedbackEnabled()) {
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: title,
+                    message: message,
+                    solution: solution,
+                    modalType: MCMModalType.error,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    score: this.taskDetails.tries > 1 ? '-10' : '0',
+                    buttons: buttons
+                }, {
+                    showBackdrop: true,
+                    enableBackdropDismiss: true,
+                    cssClass: this.app.activeNarrative
+                });
+            } else {
+                let bNextTask = {
+                    title: 'pdf_next_task',
+                    callback: function () {
+                        modal.dismiss().then(() => {
+                            that.closeDetails(false);
+                        });
+                    }};
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'a_alert_saved_answer_title',
+                    message: 'a_alert_saved_answer_message',
+                    modalType: MCMModalType.saved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [bNextTask],
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            }
             modal.present();
         }
         this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
@@ -1395,7 +1439,7 @@ export class TaskDetail {
             this.spinnerDialog.show();
             setTimeout(() => {
                 // use short timeout to let spinner dialog appear
-                this.photoViewer.show(useRoot ? this.rootTask.getImageURL() : this.task.getImageURL());
+                this.photoViewer.show(useRoot ? this.rootTask.getImageURL() : this.task.getImageURL(true));
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();

@@ -32,8 +32,9 @@ export class MCMSessionFinishedModal {
         this.numberOfSolvedTasks = 0;
         let solvedTasks = this.score.getTasksSolved();
         let solvedLowTasks = this.score.getTasksSolvedLow();
+        let savedTasks = this.score.getTasksSaved();
         this.tasks.map(task => {
-           if (solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
+           if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
                this.numberOfSolvedTasks++;
            }
         });
