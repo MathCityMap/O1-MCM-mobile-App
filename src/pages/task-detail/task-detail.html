@@ -149,13 +149,13 @@
             </div>
         </div>
 
-        <div class="card subtasks" *ngIf="task && task.subtasks">
+        <div class="card subtasks" *ngIf="task && task.subtasks && task.subtasks.length > 0 && solvedSubtasks && solvedSubtasks.length > 0">
             <ion-label>{{ "subtasks" | translate }}</ion-label>
             <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{'open': activeAccordions.indexOf(subtask.taskId) != -1}">
                 <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">
                     <p class="task_name">#{{i}} {{task.subtasks[i].title}}</p>
                     <div class="rating_container">
-                    <div class="rating" [ngClass]="{'perfect': subtask.solved, 'good': subtask.solvedLow, 'failed': subtask.failed}"></div>
+                    <div class="rating" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}"></div>
                     </div>
                     <img class="accordion_arrow" src="./assets/icons/down.svg">
                 </div>

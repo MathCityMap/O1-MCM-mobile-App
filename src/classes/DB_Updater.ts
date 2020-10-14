@@ -150,14 +150,20 @@ export class DB_Updater {
                         // params.push(n)
                         if (table.fields[n - 1] === '_id') {
                             params.push(Number(row.task_id + row[table.fields[n - 1]]))
-                        } else {
+                        } else if (row[table.fields[n - 1]]) {
                             params.push(Number(row[table.fields[n - 1]]))
+                        } else {
+                            params.push(0);
                         }
                     } else if (table.fieldsType[n - 1] === "VARCHAR"
                         || table.fieldsType[n - 1] === "TEXT"
                         || table.fieldsType[n - 1] === "TIMESTAMP") {
                         // params.push(n)
-                        params.push(row[table.fields[n - 1]])
+                        if (row[table.fields[n - 1]]) {
+                            params.push(row[table.fields[n - 1]])
+                        } else {
+                            params.push("");
+                        }
                     } else {
                         console.warn("Caution: Datatype not Integer, Varchar or Text!");
                     }

@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class AddSubtasks16010330860000 implements MigrationInterface {
+export class AddSubtasks16026790930000 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         try {

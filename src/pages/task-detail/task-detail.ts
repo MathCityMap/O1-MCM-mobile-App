@@ -93,6 +93,8 @@ export class TaskDetail {
       Custom Keyboard subscribe
     */
     subscribeCKEvents(){
+        // Initialize a new Keyboard subscription in case the old one was unsubscribed
+        this.keyboardSubscriptions = new Subscription();
 
         // Subscribe to the click event observable
         // Here we add the clicked key value to the string
@@ -170,7 +172,7 @@ export class TaskDetail {
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
-                if (subtaskDetails.solved || subtaskDetails.failed|| subtaskDetails.solvedLow) {
+                if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved) {
                     this.solvedSubtasks.push(subtaskDetails);
                 }
             }
@@ -638,7 +640,9 @@ export class TaskDetail {
         // Add event of user entering trail when session active
         if (!this.route.isAnswerFeedbackEnabled()) {
             this.taskDetails.saved = true;
-            this.score.addSavedTask(this.task.id);
+            if (!this.rootTask) {
+                this.score.addSavedTask(this.task.id);
+            }
         }
         if (solved == 'solved' || solved == 'solved_low') {
             this.taskDetails.skipped = false;
@@ -724,7 +728,7 @@ export class TaskDetail {
             }
             let modal;
             if (this.route.isAnswerFeedbackEnabled()) {
-                modal = this.modalCtrl.create(MCMIconModal, {
+                let data = {
                     title: title,
                     message: message,
                     solution: solution,
@@ -732,9 +736,12 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    score: "+" + this.taskDetails.score,
                     buttons: this.rootTask ? [subTaskOkay] :(this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
-                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+                };
+                if (!this.rootTask) {
+                    data['score'] = "+" + this.taskDetails.score;
+                }
+                modal = this.modalCtrl.create(MCMIconModal, data , {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
             } else {
                 modal = this.modalCtrl.create(MCMIconModal, {
                     title: 'a_alert_saved_answer_title',
@@ -743,7 +750,7 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    buttons: [bNextTask],
+                    buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
                 }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
             }
             modal.onDidDismiss((data) => {
@@ -880,7 +887,7 @@ export class TaskDetail {
               }
             let modal;
             if (this.route.isAnswerFeedbackEnabled()) {
-                modal = this.modalCtrl.create(MCMIconModal, {
+                let data = {
                     title: title,
                     message: message,
                     solution: solution,
@@ -888,9 +895,12 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    score: this.taskDetails.tries > 1 ? '-10' : '0',
                     buttons: buttons
-                }, {
+                }
+                if (!this.rootTask) {
+                    data['score'] = this.taskDetails.tries > 1 ? '-10' : '0';
+                }
+                modal = this.modalCtrl.create(MCMIconModal, data , {
                     showBackdrop: true,
                     enableBackdropDismiss: true,
                     cssClass: this.app.activeNarrative
