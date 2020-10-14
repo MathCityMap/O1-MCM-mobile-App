@@ -47,6 +47,8 @@ export class TaskDetail {
     private routeId: number;
     private taskId: number;
     private task: Task;
+    private solvedSubtasks = [];
+    private activeAccordions = [];
     private taskDetails: TaskState;
     private subTaskIndex: number;
     private rootTask: Task;
@@ -159,8 +161,18 @@ export class TaskDetail {
             this.rootTask = this.task;
             this.task = this.rootTask.subtasks[this.subTaskIndex]
         }
+        console.log("Opened Task: ", this.task);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
+        if (this.task.subtasks) {
+            this.solvedSubtasks = [];
+            for (let task of this.task.subtasks) {
+                let subtaskDetails = this.score.getTaskStateForTask(task.id);
+                if (subtaskDetails.solved || subtaskDetails.failed|| subtaskDetails.solvedLow) {
+                    this.solvedSubtasks.push(subtaskDetails);
+                }
+            }
+        }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         console.log(this.sessionInfo);
         // Add event of user entering trail when session active
@@ -537,6 +549,7 @@ export class TaskDetail {
         } else {
             messages.push(solutionSample);
         }
+        let that = this;
         let modal = this.modalCtrl.create(MCMIconModal, {
             title: 't_samplesolution',
             imageUrl: this.task.getSolutionSampleImgSrc(),
@@ -549,6 +562,9 @@ export class TaskDetail {
                     title: 'a_alert_close',
                     callback: function () {
                         modal.dismiss();
+                        if (that.rootTask) {
+                            that.closeDetails();
+                        }
                     }
                 }
             ]
@@ -679,7 +695,9 @@ export class TaskDetail {
             let subTaskOkay = {
                 title: 'okay',
                 callback: function () {
-                    modal.dismiss();
+                    modal.dismiss().then(() => {
+                        that.closeDetails(false);
+                    });
                 }
             }
             let bNextTask = {
@@ -800,9 +818,27 @@ export class TaskDetail {
                                 that.closeDetails(true);
                             });
                         }};
-                    if(this.route.isSampleSolutionEnabled()){
+                    let bFailTask = {
+                        title: 'okay',
+                        callback: function () {
+                            modal.dismiss().then(() => {
+                                if(that.sessionInfo != null){
+                                    let details = JSON.stringify({});
+                                    that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
+                                }
+                                that.taskDetails.failed = true;
+                                that.ormService.insertOrUpdateTaskState(that.score, that.taskDetails).then(() => {
+                                    that.closeDetails();
+                                });
+                            });
+                        }};
+                    if (this.rootTask && this.route.isSampleSolutionEnabled()) {
+                        buttons = [bSampleSolution, bFailTask];
+                    } else if (this.rootTask) {
+                        buttons = [bFailTask];
+                    } else if (this.route.isSampleSolutionEnabled()){
                         buttons = [bSampleSolution, bSkipTask];
-                    }else{
+                    }  else {
                         buttons = [bSkipTask];
                     }
 
@@ -1368,8 +1404,21 @@ export class TaskDetail {
         }
     }
 
-    openSubtask(index, title) {
+    openSubtask() {
         if (this.rootTask) return;
-        this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: title, subTaskIndex: index});
+        let nextSubtask = this.solvedSubtasks.length
+        this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: this.task.subtasks[nextSubtask].title, subTaskIndex: nextSubtask});
+    }
+
+    changeSubtaskAccordionState(subtask) {
+        let activeAccordion = this.activeAccordions.find(entry => entry === subtask);
+        if (activeAccordion) {
+            this.activeAccordions = this.activeAccordions.filter(entry => {
+                return entry != subtask;
+            })
+        } else {
+            this.activeAccordions.push(subtask);
+        }
+        console.log("New Accordion State", this.activeAccordions);
     }
 }

@@ -148,7 +148,11 @@ export class DB_Updater {
                     if (table.fieldsType[n - 1] === "INTEGER") {
                         // integer
                         // params.push(n)
-                        params.push(Number(row[table.fields[n - 1]]))
+                        if (table.fields[n - 1] === '_id') {
+                            params.push(Number(row.task_id + row[table.fields[n - 1]]))
+                        } else {
+                            params.push(Number(row[table.fields[n - 1]]))
+                        }
                     } else if (table.fieldsType[n - 1] === "VARCHAR"
                         || table.fieldsType[n - 1] === "TEXT"
                         || table.fieldsType[n - 1] === "TIMESTAMP") {

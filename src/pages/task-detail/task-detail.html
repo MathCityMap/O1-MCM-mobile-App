@@ -17,7 +17,7 @@
 
             <div class="head">
                 <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-                <ion-label class="tag score" *ngIf="!gamificationIsDisabled">{{possibleScore()}}</ion-label>
+                <ion-label class="tag score" *ngIf="!rootTask && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
@@ -83,9 +83,19 @@
                             *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled()">
                                 <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>
                             </button>
+                            <!-- open subtask -->
+                            <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"
+                                    *ngIf="task.subtasks && task.subtasks.length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                                <img class="round" src="./assets/icons/subtask_icon.svg"/>
+                            </button>
+                            <!-- close subtask -->
+                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"
+                                    *ngIf="rootTask && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                                <img class="round" src="./assets/icons/task_icon.svg"/>
+                            </button>
                             <!-- skip task -->
                             <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"
-                            *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                            *ngIf="!rootTask && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
                                 <img class="round" src="./assets/icons/icon_skip.svg"/>
                             </button>
                             <!-- show next task -->
@@ -124,9 +134,21 @@
             </div>
         </div>
 
-        <div class="card" *ngIf="task && task.subtasks">
-            <div *ngFor="let subtask of task.subtasks; let i = index" (click)="openSubtask(i, subtask.title)">
-                #{{i}}:{{subtask.title}}
+        <div class="card subtasks" *ngIf="task && task.subtasks">
+            <ion-label>{{ "subtasks" | translate }}</ion-label>
+            <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{'open': activeAccordions.indexOf(subtask.taskId) != -1}">
+                <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">
+                    <p class="task_name">#{{i}} {{task.subtasks[i].title}}</p>
+                    <div class="rating_container">
+                    <div class="rating" [ngClass]="{'perfect': subtask.solved, 'good': subtask.solvedLow, 'failed': subtask.failed}"></div>
+                    </div>
+                    <img class="accordion_arrow" src="./assets/icons/down.svg">
+                </div>
+                <div class="accordion_content">
+                    <span class="description">{{task.subtasks[i].description}}</span>
+                    <ion-label class="answer">your answer<span class="answer">{{subtask.answer}}</span></ion-label>
+
+                </div>
             </div>
         </div>
 
