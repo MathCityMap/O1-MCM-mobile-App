@@ -226,8 +226,16 @@ page-task-detail {
                         padding-right: 10px;
                     }
 
-                    .answer {
+                    .answer_container {
                         text-align: center;
+
+                        .answer {
+                            @each $rating, $color in $ratings {
+                                &.#{$rating} {
+                                    color: #{nth($color, 1)};
+                                }
+                            }
+                        }
                     }
                 }
 

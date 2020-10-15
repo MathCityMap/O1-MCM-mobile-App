@@ -169,12 +169,16 @@ export class TaskDetail {
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         if (this.task.subtasks) {
+            let previousCount = this.solvedSubtasks.length;
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
                 if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved) {
                     this.solvedSubtasks.push(subtaskDetails);
                 }
+            }
+            if (previousCount < this.solvedSubtasks.length) {
+                this.openSubtask();
             }
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
@@ -1459,7 +1463,7 @@ export class TaskDetail {
     }
 
     openSubtask() {
-        if (this.rootTask) return;
+        if (this.rootTask || this.solvedSubtasks.length === this.task.subtasks.length) return;
         let nextSubtask = this.solvedSubtasks.length
         this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: this.task.subtasks[nextSubtask].title, subTaskIndex: nextSubtask});
     }

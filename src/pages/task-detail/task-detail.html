@@ -150,7 +150,7 @@
         </div>
 
         <div class="card subtasks" *ngIf="task && task.subtasks && task.subtasks.length > 0 && solvedSubtasks && solvedSubtasks.length > 0">
-            <ion-label>{{ "subtasks" | translate }}</ion-label>
+            <ion-label>{{ "a_solved_subtasks" | translate }}</ion-label>
             <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{'open': activeAccordions.indexOf(subtask.taskId) != -1}">
                 <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">
                     <p class="task_name">#{{i}} {{task.subtasks[i].title}}</p>
@@ -161,7 +161,7 @@
                 </div>
                 <div class="accordion_content">
                     <span class="description">{{task.subtasks[i].description}}</span>
-                    <ion-label class="answer">your answer<span class="answer">{{subtask.answer}}</span></ion-label>
+                    <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>
 
                 </div>
             </div>

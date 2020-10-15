@@ -1066,5 +1066,18 @@
   "p_r_help_use_subtasks": "If this option is disabled, subtasks will not be used.",
   "p_r_feedback": "Ergebnissanzeige",
   "a_alert_saved_answer_title": "Gespeichert!",
-  "a_alert_saved_answer_message": "Dein Ergebnis wurde erfolgreich gespeichert!"
+  "a_alert_saved_answer_message": "Dein Ergebnis wurde erfolgreich gespeichert!",
+  "p_pdf_download_popup_hint": "Pop-ups für diese Website müssen aktiviert sein.",
+  "p_fill_in_the_blanks": "Fill in the Blanks",
+  "p_preview_tooltip": "Preview",
+  "p_insert_new_blank_tooltip": "Insert new Blank",
+  "p_error_no_blanks": "At least one blank is required!",
+  "p_new_inserted_blank": "**Enter blank text here**",
+  "p_blanks_instructions_heading": "Instructions",
+  "p_blanks_instructions_blanks": "Blanks are marked with a double asterisk (**) before and after a word or phrase.",
+  "p_blanks_instructions_alternatives": "Alternative solutions are separated by a slash (/).",
+  "p_blanks_instructions_example_title": "Example",
+  "p_blanks_instructions_example": "Two plus two equals **four/4**.",
+  "p_equip_stopwatch": "Stoppuhr",
+  "a_solved_subtasks": "Gelöste Unteraufgaben"
 }
