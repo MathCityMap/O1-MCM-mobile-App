@@ -6029,11 +6029,11 @@ var map = {
 		2
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1125,
+		1124,
 		1
 	],
 	"../pages/info/info.module": [
-		1124,
+		1125,
 		8
 	],
 	"../pages/onboarding/onboarding.module": [
@@ -7719,6 +7719,7 @@ var OrmService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(50);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7772,13 +7773,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var ImagesService = /** @class */ (function () {
-    function ImagesService(fileManager, platform, transfer, http, httpClient) {
+    function ImagesService(fileManager, platform, transfer, http, httpClient, sanitizer) {
         this.fileManager = fileManager;
         this.platform = platform;
         this.transfer = transfer;
         this.http = http;
         this.httpClient = httpClient;
+        this.sanitizer = sanitizer;
         this.isInitialized = false;
         this.downloadQueue = null;
         this.offlineImageUrlCache = {};
@@ -7822,7 +7825,7 @@ var ImagesService = /** @class */ (function () {
     };
     ImagesService.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, isLoadedViaHttp;
+            var _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -7838,10 +7841,9 @@ var ImagesService = /** @class */ (function () {
                         return [4 /*yield*/, this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)];
                     case 2:
                         _a.dataDirectory = _b.sent();
-                        isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-                        if (!isLoadedViaHttp) {
-                            this.nativeBaseURL = this.dataDirectory.nativeURL;
-                        }
+                        // let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
+                        // if (!isLoadedViaHttp) {
+                        this.nativeBaseURL = this.dataDirectory.nativeURL;
                         _b.label = 3;
                     case 3:
                         this.isInitialized = true;
@@ -8035,22 +8037,37 @@ var ImagesService = /** @class */ (function () {
     ImagesService.prototype.getLocalThumbFileName = function (imgPath) {
         return 'thumb_' + this.getLocalFileName(imgPath);
     };
-    ImagesService.prototype.getOfflineURL = function (imgPath, asThumbNail, isMapTile) {
+    ImagesService.prototype.getOfflineURL = function (imgPath, asThumbNail, isMapTile, asRawString) {
         if (asThumbNail === void 0) { asThumbNail = false; }
         if (isMapTile === void 0) { isMapTile = false; }
+        if (asRawString === void 0) { asRawString = false; }
         if (asThumbNail) {
-            return this.offlineThumbnailUrlCache[imgPath] ? this.offlineThumbnailUrlCache[imgPath]
-                : this.offlineThumbnailUrlCache[imgPath] =
+            return this.offlineThumbnailUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath])
+                : this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath] =
                     (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
+                        : this.getOnlineURL(imgPath)));
+        }
+        if (asRawString) {
+            return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
+                : this.offlineImageUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
                         : this.getOnlineURL(imgPath));
         }
-        return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
-            : this.offlineImageUrlCache[imgPath] =
+        return this.offlineImageUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineImageUrlCache[imgPath])
+            : this.fixUrlForWebview(this.offlineImageUrlCache[imgPath] =
                 (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
-                    : this.getOnlineURL(imgPath));
+                    : this.getOnlineURL(imgPath)));
     };
     ImagesService.prototype.getOnlineURL = function (imgPath) {
         return imgPath.indexOf('http') !== 0 ? __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].WEBSERVER_URL + imgPath : imgPath;
+    };
+    ImagesService.prototype.fixUrlForWebview = function (url) {
+        var fixedUrl = window.Ionic.WebView.convertFileSrc(url);
+        //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
+        if (fixedUrl.includes('mcm_images_tasks')) {
+            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
+        }
+        return fixedUrl;
     };
     ImagesService.prototype.removeDownloadedURLs = function (urls, removeThumbs) {
         if (removeThumbs === void 0) { removeThumbs = true; }
@@ -8172,7 +8189,7 @@ var ImagesService = /** @class */ (function () {
     ImagesService = ImagesService_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */]])
+            __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["c" /* DomSanitizer */]])
     ], ImagesService);
     return ImagesService;
     var ImagesService_1;
@@ -8209,8 +8226,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var Task = /** @class */ (function () {
     function Task() {
     }
-    Task.prototype.getImageURL = function () {
-        return __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.getOfflineURL(this.image);
+    Task.prototype.getImageURL = function (asRawString) {
+        if (asRawString === void 0) { asRawString = false; }
+        return __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
     };
     Task.prototype.getSingleQuotedImageURL = function () {
         return "'" + this.getImageURL() + "'";
@@ -10851,7 +10869,7 @@ var MCMRouteByCodeModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 630:
+/***/ 629:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10889,7 +10907,7 @@ var MCMIntroModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 631:
+/***/ 630:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10977,7 +10995,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 632:
+/***/ 631:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11084,7 +11102,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
@@ -11116,11 +11134,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(574);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_broadcast_service__ = __webpack_require__(1111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(622);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(628);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(578);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(630);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modals_CenteredTask_CenteredTask__ = __webpack_require__(576);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__services_gps_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_location_accuracy__ = __webpack_require__(402);
@@ -11133,11 +11151,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_chat_chat_module__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_local_notifications__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_in_app_browser__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_app_version__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_app_version__ = __webpack_require__(632);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__ionic_native_media__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_angular_progress_bar__ = __webpack_require__(1117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ionic_native_screen_orientation__ = __webpack_require__(581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(631);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11226,8 +11244,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },

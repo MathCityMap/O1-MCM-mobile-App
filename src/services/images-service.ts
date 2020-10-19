@@ -73,10 +73,10 @@ export class ImagesService {
         this.filePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true
         if (this.filePluginAvailable) {
             this.dataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory);
-            let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-            if (!isLoadedViaHttp) {
+            // let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
+            // if (!isLoadedViaHttp) {
                 this.nativeBaseURL = this.dataDirectory.nativeURL;
-            }
+            // }
         }
         this.isInitialized = true;
         return this.nativeBaseURL;

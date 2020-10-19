@@ -1963,7 +1963,7 @@ var TaskDetail = /** @class */ (function () {
             this.spinnerDialog.show();
             setTimeout(function () {
                 // use short timeout to let spinner dialog appear
-                _this.photoViewer.show(_this.task.getImageURL());
+                _this.photoViewer.show(_this.task.getImageURL(true));
                 setTimeout(function () {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     _this.spinnerDialog.hide();
