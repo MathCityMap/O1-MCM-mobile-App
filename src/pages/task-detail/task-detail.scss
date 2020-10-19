@@ -80,6 +80,12 @@ page-task-detail {
             content: '';
             background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
         }
+        &.subtask {
+            background: linear-gradient(to bottom, rgba(220, 235, 240, 0) 50px, #DCEBF0 51px);
+            .transition {
+                background: linear-gradient(to top, #dcebf0 60%, rgba(255, 255, 255, 0) 96%);
+            }
+        }
     }
     .card {
         z-index: 2;
@@ -179,8 +185,8 @@ page-task-detail {
             padding: $global-base-padding*1.5 $global-base-padding*0.7 $global-base-padding*0.7;
             border-top-right-radius: 0;
             border-top-left-radius: 0;
+            background: #F5F5F5;
             .accordion {
-
                 .accordion_title {
                     display: flex;
                     height: 25px;
@@ -208,9 +214,10 @@ page-task-detail {
                     }
 
                     .accordion_arrow {
+                        width: 15px;
                         transition: transform 0.5s;
-                        transform: rotate(90deg);
-                        margin-top: -5px;
+                        transform: rotate(-90deg);
+                        margin-top: -7px;
                     }
                 }
 
@@ -228,6 +235,8 @@ page-task-detail {
 
                     .answer_container {
                         text-align: center;
+                        white-space: normal;
+                        overflow-wrap: break-word;
 
                         .answer {
                             @each $rating, $color in $ratings {

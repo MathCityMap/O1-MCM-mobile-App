@@ -22,6 +22,7 @@ import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
+import {root} from "rxjs/util/root";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -169,16 +170,12 @@ export class TaskDetail {
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         if (this.task.subtasks) {
-            let previousCount = this.solvedSubtasks.length;
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
                 if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved) {
                     this.solvedSubtasks.push(subtaskDetails);
                 }
-            }
-            if (previousCount < this.solvedSubtasks.length) {
-                this.openSubtask();
             }
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
@@ -576,7 +573,7 @@ export class TaskDetail {
                     callback: function () {
                         modal.dismiss();
                         if (that.rootTask) {
-                            that.closeDetails();
+                            that.goToNextSubtask();
                         }
                     }
                 }
@@ -715,7 +712,7 @@ export class TaskDetail {
                 title: 'okay',
                 callback: function () {
                     modal.dismiss().then(() => {
-                        that.closeDetails(false);
+                        that.goToNextSubtask();
                     });
                 }
             }
@@ -863,7 +860,11 @@ export class TaskDetail {
                                 }
                                 that.taskDetails.failed = true;
                                 that.ormService.insertOrUpdateTaskState(that.score, that.taskDetails).then(() => {
-                                    that.closeDetails();
+                                    if (!that.rootTask) {
+                                        that.closeDetails();
+                                    } else {
+                                        that.goToNextSubtask();
+                                    }
                                 });
                             });
                         }};
@@ -1462,10 +1463,13 @@ export class TaskDetail {
         }
     }
 
-    openSubtask() {
-        if (this.rootTask || this.solvedSubtasks.length === this.task.subtasks.length) return;
-        let nextSubtask = this.solvedSubtasks.length
-        this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: this.task.subtasks[nextSubtask].title, subTaskIndex: nextSubtask});
+    openSubtask(index?) {
+        let rootTask = this.rootTask ? this.rootTask : this.task;
+        if ((this.rootTask && !index) || this.solvedSubtasks.length === rootTask.subtasks.length) return;
+        if (!index) {
+            index = this.solvedSubtasks.length
+        }
+        return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index});
     }
 
     changeSubtaskAccordionState(subtask) {
@@ -1478,5 +1482,16 @@ export class TaskDetail {
             this.activeAccordions.push(subtask);
         }
         console.log("New Accordion State", this.activeAccordions);
+    }
+
+    goToNextSubtask(){
+        const index = this.navCtrl.getActive().index;
+        if (this.subTaskIndex + 1 !== this.rootTask.subtasks.length) {
+            this.openSubtask(this.subTaskIndex + 1).then(() => {
+                this.navCtrl.remove(index);
+            })
+        } else {
+            this.closeDetails();
+        }
     }
 }

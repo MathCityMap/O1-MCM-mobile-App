@@ -1045,7 +1045,7 @@
   "p_subtask_count": "Subtask count",
   "p_new_subtask": "New subtask",
   "p_subtasks": "Subtasks",
-  "a_title_activity_subtask_view": "Subtask",
+  "a_title_activity_subtask_view": "Unteraufgabe {{current}}/{{count}}",
   "p_st_delete": "Delete subtask",
   "p_st_edit": "Subtask edit",
   "p_st_deleted": "Subtask deleted",
@@ -1079,5 +1079,9 @@
   "p_blanks_instructions_example_title": "Example",
   "p_blanks_instructions_example": "Two plus two equals **four/4**.",
   "p_equip_stopwatch": "Stoppuhr",
-  "a_solved_subtasks": "Gelöste Unteraufgaben"
+  "a_solved_subtasks": "Gelöste Unteraufgaben",
+  "p_blanks_check_type_strict": "Strict",
+  "p_blanks_check_type_normal": "Normal",
+  "p_blanks_check_type_easy": "Easy",
+  "p_blanks_check_type": "Check type"
 }

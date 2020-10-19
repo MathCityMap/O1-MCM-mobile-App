@@ -77,7 +77,7 @@
         showCloseBtn = [[command.arguments objectAtIndex:3] boolValue];
         copyToReference = [[command.arguments objectAtIndex:4] boolValue];
 
-        if ([url range  OfString:@"http"].location != NSNotFound) {
+        if ([url rangeOfString:@"http"].location != NSNotFound) {
             copyToReference = true;
         }
 
