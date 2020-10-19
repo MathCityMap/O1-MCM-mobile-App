@@ -112,7 +112,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
         /**
          * Constructor of the layer.
-         * 
+         *
          * @param {String} url URL of the tile map provider.
          * @param {Object} tilesDb An object that implements a certain interface
          * so it's able to serve as the database layer to save and remove the tiles.
@@ -152,7 +152,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         /**
          * Overrides the method from the Tile Layer. Loads a tile given its
          * coordinates.
-         * 
+         *
          * @param {Object} coords Coordinates of the tile.
          * @param {Function} done A callback to be called when the tile has been
          * loaded.
@@ -187,7 +187,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
          * given its coordinates. It tries to get the tile image offline first,
          * then if it fails, it falls back to the original Tile Layer
          * implementation.
-         * 
+         *
          * @param {Object} coords Coordinates of the tile.
          * @returns {String} The URL for a tile image.
          */
@@ -213,7 +213,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
          * {key: <String>, url: <String>}. The key is the key used on the
          * database layer to find the tile image offline. The URL is the
          * location from where the tile image will be downloaded.
-         * 
+         *
          * @param {Object} bounds The bounding box of the tiles.
          * @param {Number} zoom The zoom level of the bounding box.
          * @returns {Array} An array containing all the URLs inside the given
@@ -250,7 +250,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         /**
          * Determines the key that will be used on the database layer given
          * a URL.
-         * 
+         *
          * @param {String} url The URL of a tile image.
          * @returns {String} The key that will be used on the database layer
          * to find a tile image.
@@ -269,7 +269,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
     /**
      * Factory function as suggested by the Leaflet team.
-     * 
+     *
      * @param {String} url URL of the tile map provider.
      * @param {Object} tilesDb An object that implements a certain interface
      * so it's able to serve as the database layer to save and remove the tiles.
@@ -326,7 +326,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
         /**
          * Constructor of the control.
-         * 
+         *
          * @param {Object} baseLayer The Offline Layer to work together with the
          * control.
          * @param {Object} tilesDb An object that implements a certain interface
@@ -344,7 +344,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         /**
          * Creates the container DOM element for the control and add listeners
          * on relevant map events.
-         * 
+         *
          * @param {Object} map The Leaflet map.
          * @returns {HTMLElement} The DOM element for the control.
          */
@@ -359,7 +359,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
         /**
          * Auxiliary method that creates a button DOM element.
-         * 
+         *
          * @param {String} html The HTML that will be used inside the button
          * DOM element.
          * @param {String} title The title of the button DOM element.
@@ -461,7 +461,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
     /**
      * Factory function as suggested by the Leaflet team.
-     * 
+     *
      * @param {Object} baseLayer The Offline Layer to work together with the
      * control.
      * @param {Object} tilesDb An object that implements a certain interface
