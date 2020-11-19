@@ -23,6 +23,7 @@ import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
 import {root} from "rxjs/util/root";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -73,6 +74,8 @@ export class TaskDetail {
     shownHints: number[] = [];
 
     private keyboardSubscriptions : Subscription = new Subscription();
+    private sceneName: string = 'default';
+    private arScene: boolean = true;
 
     constructor(
         public navCtrl: NavController,
@@ -86,7 +89,8 @@ export class TaskDetail {
         private app: MyApp,
         private photoViewer: PhotoViewer,
         private spinnerDialog: SpinnerDialog,
-        private imageService: ImagesService
+        private imageService: ImagesService,
+        private iab: InAppBrowser
     ) {
     }
 
@@ -1493,5 +1497,9 @@ export class TaskDetail {
         } else {
             this.closeDetails();
         }
+    }
+
+    openArScene() {
+        this.iab.create('https://192.168.178.28/mcm-educat-ar/public/scene/show?scene=' + this.sceneName, '_system');
     }
 }

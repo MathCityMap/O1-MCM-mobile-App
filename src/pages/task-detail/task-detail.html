@@ -168,6 +168,11 @@
             </div>
         </div>
 
+        <div *ngIf="arScene" class="card transparent">
+            <ion-input [(ngModel)]="sceneName"></ion-input>
+            <button ion-button block default round (click)="openArScene()">WIP: OPEN AR SCENE</button>
+        </div>
+
         <div *ngIf="!rootTask" id="keyboard-anchor"></div>
         <div *ngIf="rootTask" id="snd-keyboard-anchor"></div>
 	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">
