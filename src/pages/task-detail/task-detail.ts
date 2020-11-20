@@ -1499,7 +1499,7 @@ export class TaskDetail {
         }
     }
 
-    openArScene() {
-        this.iab.create('https://192.168.178.28/mcm-educat-ar/public/scene/show?scene=' + this.sceneName, '_system');
+    async openArScene() {
+        this.iab.create('https://mcm.autentek.de/scene/show?scene=' + this.sceneName, '_system');
     }
 }
