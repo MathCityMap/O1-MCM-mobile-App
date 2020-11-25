@@ -4157,6 +4157,11 @@ ion-icon::before {
   margin-top: -50px;
 }
 
+.pirates page-task-detail .task-content .card.subtasks {
+  padding: 35px 24px 24px;
+  border-radius: 0;
+}
+
 .pirates page-task-detail .task-content .card.secondary {
   background: url("../assets/images/pirates/texture-wood.svg") #9D7A5E;
   background-repeat: no-repeat;
@@ -62029,6 +62034,20 @@ mcm-progress-bar .audio {
   background-color: #6E38B9;
 }
 
+.subtasks {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .progress-vertical {
   background-color: rgba(3, 95, 135, 0.2);
   height: 6px;
@@ -63957,6 +63976,15 @@ page-task-detail .task-content .transition {
   background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
 }
 
+page-task-detail .task-content.subtask {
+  background: linear-gradient(to bottom, rgba(220, 235, 240, 0) 50px, #DCEBF0 51px);
+}
+
+page-task-detail .task-content.subtask .transition {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(60%, #dcebf0), color-stop(96%, rgba(255, 255, 255, 0)));
+  background: linear-gradient(to top, #dcebf0 60%, rgba(255, 255, 255, 0) 96%);
+}
+
 page-task-detail .card {
   z-index: 2;
 }
@@ -64108,6 +64136,127 @@ page-task-detail .card.evaluation.saved {
 page-task-detail .card.evaluation.saved .score {
   color: #6E38B9;
   border-color: #6E38B9;
+}
+
+page-task-detail .card.subtasks {
+  z-index: 1;
+  margin: -34px 26px 20px;
+  padding: 30px 14px 14px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  background: #F5F5F5;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 25px;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .rating_container {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .rating_container .rating {
+  margin: 5px 0px 0px 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .rating_container .rating.perfect {
+  background-color: #3DCC68;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .rating_container .rating.good {
+  background-color: #f3b100;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .rating_container .rating.failed {
+  background-color: #E62B25;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .rating_container .rating.skipped {
+  background-color: #a6a6a6;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .rating_container .rating.saved {
+  background-color: #6E38B9;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .task_name {
+  max-width: calc(90% - 15px);
+  overflow: hidden;
+  white-space: nowrap;
+  height: 1.7em;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_title .accordion_arrow {
+  width: 15px;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  margin-top: -7px;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  color: #a6a6a6;
+  max-height: 0;
+  -webkit-transition: max-height 0.3s;
+  transition: max-height 0.3s;
+  overflow: hidden;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .description {
+  width: 70%;
+  padding-right: 10px;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .answer_container {
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .answer_container .answer.perfect {
+  color: #3DCC68;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .answer_container .answer.good {
+  color: #f3b100;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .answer_container .answer.failed {
+  color: #E62B25;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .answer_container .answer.skipped {
+  color: #a6a6a6;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .answer_container .answer.saved {
+  color: #6E38B9;
+}
+
+page-task-detail .card.subtasks .accordion.open .accordion_content {
+  max-height: 100%;
+}
+
+page-task-detail .card.subtasks .accordion.open .accordion_arrow {
+  -webkit-transform: unset;
+  transform: unset;
 }
 
 .mcm-keyboard-open .scroll-content {

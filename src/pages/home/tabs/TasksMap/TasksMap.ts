@@ -152,9 +152,9 @@ export class TasksMap implements OnInit, OnDestroy {
 
   isTrailCompleted(){
       if (this.route.isAnswerFeedbackEnabled()) {
-          return this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length;
+          return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
       } else {
-          return this.score.getTasksSaved().length == this.taskList.length;
+          return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.taskList.length;
       }
   }
 

@@ -8,15 +8,17 @@
                 </button>
             </ion-fab>
         </div>
-        <img class="image" *ngIf="task && task.solutionType!='gps'" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />
+        <img class="image" *ngIf="task && task.solutionType!='gps' && task.image" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />
+        <img class="image" *ngIf="task && !task.image && rootTask && rootTask.image && task.solutionType !='gps'" [src]="rootTask.getImageURL()" (click)="openInPhotoviewer(true)" />
     </div>
-    <div class="task-content">
+    <div class="task-content" [ngClass]="{'subtask': rootTask}">
         <div class="transition"></div>
         <div class="card task has-button-on-the-edge">
 
             <div class="head">
-                <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
-                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
+                <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>
+                <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.subtasks.length} }}</ion-label>
+                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && !rootTask && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
@@ -89,9 +91,19 @@
                             *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled()">
                                 <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>
                             </button>
+                            <!-- open subtask -->
+                            <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"
+                                    *ngIf="task.subtasks && task.subtasks.length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                                <img class="round" src="./assets/icons/subtask_icon.svg"/>
+                            </button>
+                            <!-- close subtask -->
+                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"
+                                    *ngIf="rootTask && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                                <img class="round" src="./assets/icons/task_icon.svg"/>
+                            </button>
                             <!-- skip task -->
                             <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"
-                            *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                            *ngIf="!rootTask && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
                                 <img class="round" src="./assets/icons/icon_skip.svg"/>
                             </button>
                             <!-- show next task -->
@@ -103,6 +115,24 @@
                     </ion-row>
                 </ion-grid>
 
+            </div>
+        </div>
+
+        <div class="card subtasks" *ngIf="task && task.subtasks && task.subtasks.length > 0 && solvedSubtasks && solvedSubtasks.length > 0">
+            <ion-label>{{ "a_solved_subtasks" | translate }}</ion-label>
+            <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{'open': activeAccordions.indexOf(subtask.taskId) != -1}">
+                <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">
+                    <p class="task_name">#{{i+1}} {{task.subtasks[i].title}}</p>
+                    <div class="rating_container">
+                        <!--                    <div class="rating" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}"></div>-->
+                    </div>
+                    <img class="accordion_arrow" src="./assets/icons/subtask_arrow.svg">
+                </div>
+                <div class="accordion_content">
+                    <span class="description">{{task.subtasks[i].description}}</span>
+                    <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>
+
+                </div>
             </div>
         </div>
 
@@ -137,7 +167,9 @@
                 <ion-label class="tag score" *ngIf="route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>
             </div>
         </div>
-        <div id="keyboard-anchor"></div>
+
+        <div *ngIf="!rootTask" id="keyboard-anchor"></div>
+        <div *ngIf="rootTask" id="snd-keyboard-anchor"></div>
 	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">
                 <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_did_you_know&quot;); else elseBlock">
                     <ion-label text-wrap>{{ route.getNarrativeString("a_did_you_know") }}</ion-label>

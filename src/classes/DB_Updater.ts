@@ -77,7 +77,7 @@ export class DB_Updater {
                     if(newRoute.downloaded && Number(newRoute.mapVersion)>Number(oldRoute.mapVersion)){
                         await this.imageService.downloadAndUnzip(newRoute, ()=>{}, ()=>{});
                     }
-                    
+
                     routesToSave.push(newRoute);
                 }
             }
@@ -112,8 +112,10 @@ export class DB_Updater {
             await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
         }
         await db.transaction(tr => {
-            for (var i = 0; i < data.length; i++) {
-                let row = data[i]
+            var primaryCounter = table === DBC.DB_TASK ? data.tasks.length : data.length;
+            var subCounter = table === DBC.DB_TASK ? data.subtasks.length : 0;
+            for (var i = 0; i < primaryCounter; i++) {
+                let row =  table === DBC.DB_TASK ? data.tasks[i] : data[i]
                 var params = []
                 for (var n = 1; n <= table.fieldsCount; n++) {
                     // Check which data type is used in table > choose right bind
@@ -127,7 +129,43 @@ export class DB_Updater {
                         // params.push(n)
                         params.push(row[table.fields[n - 1]])
                     } else {
-                        console.warn("Caution: Datatype not Integer, Varchar or Text!")
+                        console.warn("Caution: Datatype not Integer, Varchar or Text!");
+                    }
+                }
+                if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
+                    tr.executeSql(sqlInsertQry, params)
+                }
+                else{
+                    // For tasks: Replace rows when refreshing the trail
+                    tr.executeSql(sqlReplaceIntoQry, params)
+                }
+            }
+            for (var i = 0; i < subCounter; i++) {
+                let row =  data.subtasks[i];
+                var params = []
+                for (var n = 1; n <= table.fieldsCount; n++) {
+                    // Check which data type is used in table > choose right bind
+                    if (table.fieldsType[n - 1] === "INTEGER") {
+                        // integer
+                        // params.push(n)
+                        if (table.fields[n - 1] === '_id') {
+                            params.push(Number(row.task_id + row[table.fields[n - 1]]))
+                        } else if (row[table.fields[n - 1]]) {
+                            params.push(Number(row[table.fields[n - 1]]))
+                        } else {
+                            params.push(0);
+                        }
+                    } else if (table.fieldsType[n - 1] === "VARCHAR"
+                        || table.fieldsType[n - 1] === "TEXT"
+                        || table.fieldsType[n - 1] === "TIMESTAMP") {
+                        // params.push(n)
+                        if (row[table.fields[n - 1]]) {
+                            params.push(row[table.fields[n - 1]])
+                        } else {
+                            params.push("");
+                        }
+                    } else {
+                        console.warn("Caution: Datatype not Integer, Varchar or Text!");
                     }
                 }
                 if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
@@ -149,7 +187,7 @@ export class DB_Updater {
     public async downloadRouteTasksData(route: Route, lang_code: string){
         let user_id = 0;
         let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-        await this.insertJSONinSQLiteDB(await this.helper.invokeApi('downloadTrail', postparams), DBC.DB_TASK);
+        await this.insertJSONinSQLiteDB(await this.helper.invokeApi('downloadTrailV2', postparams), DBC.DB_TASK);
         // refresh the tasks
         route.tasks = await (await OrmService.INSTANCE.findRouteById(route.id)).getTasks();
     }
@@ -161,7 +199,7 @@ export class DB_Updater {
         if(this.helper.isOnline){
             let user_id = 0;
             let postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
-            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('updateTrail', postparams), DBC.DB_TASK);
+            await this.insertJSONinSQLiteDB(await this.helper.invokeApi('updateTrailV2', postparams), DBC.DB_TASK);
         }
     }
 }

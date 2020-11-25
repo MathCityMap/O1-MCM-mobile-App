@@ -1236,6 +1236,12 @@ mcm-progress-bar{
     }
 }
 
+.subtasks{
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 $progress-height: 6px;
 
 .progress-vertical{

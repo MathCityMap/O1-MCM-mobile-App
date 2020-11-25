@@ -73,10 +73,7 @@ export class ImagesService {
         this.filePluginAvailable = checkAvailability(File.getPluginRef(), null, File.getPluginName()) === true
         if (this.filePluginAvailable) {
             this.dataDirectory = await this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory);
-            // let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-            // if (!isLoadedViaHttp) {
-                this.nativeBaseURL = this.dataDirectory.nativeURL;
-            // }
+            this.nativeBaseURL = this.dataDirectory.nativeURL;
         }
         this.isInitialized = true;
         return this.nativeBaseURL;
@@ -256,6 +253,7 @@ export class ImagesService {
     }
 
     fixUrlForWebview(url) {
+        if (!this.platform.is('cordova')) return url;
         let fixedUrl = (<any>window).Ionic.WebView.convertFileSrc(url);
         //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
         if (fixedUrl.includes('mcm_images_tasks')) {

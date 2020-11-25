@@ -1,6 +1,7 @@
 import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Task } from './Task';
 import { Route } from './Route';
+import {OrmService} from "../services/orm-service";
 
 @Entity('mcm_rel_route_task')
 export class Task2Route {
@@ -15,4 +16,12 @@ export class Task2Route {
   @ManyToOne(type => Task, task => task.task2Routes, {eager: true})
   @JoinColumn({name: 'task_id', referencedColumnName: 'id'})
   task: Task;
+
+  async getTaskWithSubtasks() {
+      let repo = await OrmService.INSTANCE.getTaskRepository()
+      return  await repo.createQueryBuilder("tasks")
+          .where({id: this.task.id})
+          .leftJoinAndSelect("tasks.subtasks", "subtasks")
+          .getOne();
+  }
 }

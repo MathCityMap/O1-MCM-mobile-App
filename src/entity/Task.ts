@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import { Route } from "./Route";
 import { Helper } from '../classes/Helper';
 import { Task2Route } from './Task2Route';
@@ -92,6 +92,13 @@ export class Task {
     @OneToMany(type => Task2Route, task2Route => task2Route.task)
     task2Routes: Task2Route[];
 
+    @ManyToOne(type => Task, task => task.subtasks)
+    @JoinColumn({name: 'task_id'})
+    task_id: Task;
+
+    @OneToMany(type => Task, task => task.task_id)
+    subtasks: Task[];
+
     getImageURL(asRawString: boolean = false): string {
         return ImagesService.INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
     }
@@ -110,6 +117,11 @@ export class Task {
         let sampleSolutionImg = this.getSolutionSampleImgSrc();
         if(sampleSolutionImg != ""){
             result.push(sampleSolutionImg);
+        }
+        if (this.subtasks) {
+            for (let subtask of this.subtasks) {
+                result = result.concat(subtask.getImagesForDownload());
+            }
         }
         // Add hint images
         return result.concat(this.getHints().filter(hint =>

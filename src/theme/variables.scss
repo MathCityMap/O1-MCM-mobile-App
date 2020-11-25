@@ -670,6 +670,10 @@ $icon-path: "../assets/icons/";
                     }
                 }
 
+                &.subtasks {
+                    padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
+                    border-radius: 0;
+                }
 
                 &.secondary {
                     @include texture-wood($dark: true);

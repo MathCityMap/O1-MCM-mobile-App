@@ -80,6 +80,12 @@ page-task-detail {
             content: '';
             background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
         }
+        &.subtask {
+            background: linear-gradient(to bottom, rgba(220, 235, 240, 0) 50px, #DCEBF0 51px);
+            .transition {
+                background: linear-gradient(to top, #dcebf0 60%, rgba(255, 255, 255, 0) 96%);
+            }
+        }
     }
     .card {
         z-index: 2;
@@ -168,6 +174,86 @@ page-task-detail {
                     .score {
                         color: #{nth($color, 1)};
                         border-color: #{nth($color, 1)};
+                    }
+                }
+            }
+        }
+
+        &.subtasks {
+            z-index: 1;
+            margin: -34px $global-base-padding*1.3 $global-base-padding;
+            padding: $global-base-padding*1.5 $global-base-padding*0.7 $global-base-padding*0.7;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            background: #F5F5F5;
+            .accordion {
+                .accordion_title {
+                    display: flex;
+                    height: 25px;
+
+                    .rating_container {
+                        flex-grow: 1;
+                        .rating {
+                        margin: 5px 0px 0px 5px;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        @each $rating, $color in $ratings {
+                            &.#{$rating} {
+                                background-color: #{nth($color, 1)};
+                                }
+                            }
+                        }
+                    }
+
+                    .task_name {
+                        max-width: calc(90% - 15px);
+                        overflow: hidden;
+                        white-space: nowrap;
+                        height: 1.7em;
+                    }
+
+                    .accordion_arrow {
+                        width: 15px;
+                        transition: transform 0.5s;
+                        transform: rotate(-90deg);
+                        margin-top: -7px;
+                    }
+                }
+
+                .accordion_content {
+                    display: flex;
+                    color: color($colors, grey);
+                    max-height: 0;
+                    transition: max-height 0.3s;
+                    overflow: hidden;
+
+                    .description {
+                        width: 70%;
+                        padding-right: 10px;
+                    }
+
+                    .answer_container {
+                        text-align: center;
+                        white-space: normal;
+                        overflow-wrap: break-word;
+
+                        .answer {
+                            @each $rating, $color in $ratings {
+                                &.#{$rating} {
+                                    color: #{nth($color, 1)};
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.open {
+                    .accordion_content {
+                        max-height: 100%;
+                    }
+                    .accordion_arrow {
+                        transform: unset;
                     }
                 }
             }

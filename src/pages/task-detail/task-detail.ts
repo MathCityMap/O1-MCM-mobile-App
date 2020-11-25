@@ -22,6 +22,7 @@ import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
+import {root} from "rxjs/util/root";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -49,7 +50,11 @@ export class TaskDetail {
     private routeId: number;
     private taskId: number;
     private task: Task;
+    private solvedSubtasks = [];
+    private activeAccordions = [];
     private taskDetails: TaskState;
+    private subTaskIndex: number;
+    private rootTask: Task;
     private score: Score;
     private gamificationIsDisabled = false;
 
@@ -89,6 +94,8 @@ export class TaskDetail {
       Custom Keyboard subscribe
     */
     subscribeCKEvents(){
+        // Initialize a new Keyboard subscription in case the old one was unsubscribed
+        this.keyboardSubscriptions = new Subscription();
 
         // Subscribe to the click event observable
         // Here we add the clicked key value to the string
@@ -153,14 +160,29 @@ export class TaskDetail {
         this.routeId = this.navParams.get('routeId');
         this.route = await this.ormService.findRouteById(this.routeId);
         this.taskId = this.navParams.get('taskId');
+        this.subTaskIndex = this.navParams.get('subTaskIndex');
         this.task = await this.ormService.findTaskById(this.taskId);
+        if (this.subTaskIndex || this.subTaskIndex === 0) {
+            this.rootTask = this.task;
+            this.task = this.rootTask.subtasks[this.subTaskIndex]
+        }
+        console.log("Opened Task: ", this.task);
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
-        this.taskDetails = this.score.getTaskStateForTask(this.taskId);
+        this.taskDetails = this.score.getTaskStateForTask(this.task.id);
+        if (this.task.subtasks) {
+            this.solvedSubtasks = [];
+            for (let task of this.task.subtasks) {
+                let subtaskDetails = this.score.getTaskStateForTask(task.id);
+                if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved) {
+                    this.solvedSubtasks.push(subtaskDetails);
+                }
+            }
+        }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         console.log(this.sessionInfo);
         console.log(this.task);
         // Add event of user entering trail when session active
-        if(this.sessionInfo != null){
+        if(this.sessionInfo != null && !this.task){
             let details = JSON.stringify({title: this.task.title});
             this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
         }
@@ -173,7 +195,7 @@ export class TaskDetail {
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
-        if (this.route.isAnswerFeedbackEnabled()) {
+        if (!this.rootTask && this.route.isAnswerFeedbackEnabled()) {
             this.maxScore = 100;
             this.orangeScore = 50;
             this.penalty = 10;
@@ -276,7 +298,11 @@ export class TaskDetail {
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
                 // Scroll input field into view (may happen that the field is hidden by keyboard)
-                that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
+                if (!that.rootTask) {
+                    that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
+                } else {
+                    that.content.scrollTo(0, document.getElementById('snd-keyboard-anchor').offsetTop);
+                }
             });
         }
     }
@@ -514,7 +540,9 @@ export class TaskDetail {
 
     showSolutionSample() {
         if (!this.taskDetails.solved && !this.taskDetails.solvedLow) {
-            this.score.addFailedTask(this.task.id);
+            if (!this.rootTask) {
+                this.score.addFailedTask(this.task.id);
+            }
             this.taskDetails.score = 0;
             this.taskDetails.failed = true;
             this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
@@ -531,6 +559,7 @@ export class TaskDetail {
         } else {
             messages.push(solutionSample);
         }
+        let that = this;
         let modal = this.modalCtrl.create(MCMIconModal, {
             title: 't_samplesolution',
             imageUrl: this.task.getSolutionSampleImgSrc(),
@@ -543,6 +572,9 @@ export class TaskDetail {
                     title: 'a_alert_close',
                     callback: function () {
                         modal.dismiss();
+                        if (that.rootTask) {
+                            that.goToNextSubtask();
+                        }
                     }
                 }
             ]
@@ -609,7 +641,9 @@ export class TaskDetail {
         // Add event of user entering trail when session active
         if (!this.route.isAnswerFeedbackEnabled()) {
             this.taskDetails.saved = true;
-            this.score.addSavedTask(this.task.id);
+            if (!this.rootTask) {
+                this.score.addSavedTask(this.task.id);
+            }
         }
         if (solved == 'solved' || solved == 'solved_low') {
             this.taskDetails.skipped = false;
@@ -620,7 +654,9 @@ export class TaskDetail {
             if (solved == 'solved') {
                 title = 'a_alert_right_answer_title';
                 this.taskDetails.solved = true;
-                this.score.addSolvedTask(this.task.id);
+                if (!this.rootTask) {
+                    this.score.addSolvedTask(this.task.id);
+                }
                 switch (this.taskDetails.tries) {
                     case 0:
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
@@ -643,7 +679,9 @@ export class TaskDetail {
             if (solved == 'solved_low') {
                 title = 'a_alert_right_answer_title_low';
                 this.taskDetails.solvedLow = true;
-                this.score.addSolvedTaskLow(this.task.id);
+                if (!this.rootTask) {
+                    this.score.addSolvedTaskLow(this.task.id);
+                }
                 switch (this.taskDetails.tries) {
                     case 0:
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
@@ -670,6 +708,14 @@ export class TaskDetail {
                         that.showSolutionSample();
                     });
                 }};
+            let subTaskOkay = {
+                title: 'okay',
+                callback: function () {
+                    modal.dismiss().then(() => {
+                        that.goToNextSubtask();
+                    });
+                }
+            }
             let bNextTask = {
                 title: 'pdf_next_task',
                 callback: function () {
@@ -683,7 +729,7 @@ export class TaskDetail {
             }
             let modal;
             if (this.route.isAnswerFeedbackEnabled()) {
-                modal = this.modalCtrl.create(MCMIconModal, {
+                let data = {
                     title: title,
                     message: message,
                     solution: solution,
@@ -691,9 +737,12 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    score: "+" + this.taskDetails.score,
-                    buttons: this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask]
-                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+                    buttons: this.rootTask ? [subTaskOkay] :(this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
+                };
+                if (!this.rootTask) {
+                    data['score'] = "+" + this.taskDetails.score;
+                }
+                modal = this.modalCtrl.create(MCMIconModal, data , {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
             } else {
                 modal = this.modalCtrl.create(MCMIconModal, {
                     title: 'a_alert_saved_answer_title',
@@ -702,7 +751,7 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    buttons: [bNextTask],
+                    buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
                 }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
             }
             modal.onDidDismiss((data) => {
@@ -801,9 +850,31 @@ export class TaskDetail {
                                 that.closeDetails(true);
                             });
                         }};
-                    if(this.route.isSampleSolutionEnabled()){
+                    let bFailTask = {
+                        title: 'okay',
+                        callback: function () {
+                            modal.dismiss().then(() => {
+                                if(that.sessionInfo != null){
+                                    let details = JSON.stringify({});
+                                    that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
+                                }
+                                that.taskDetails.failed = true;
+                                that.ormService.insertOrUpdateTaskState(that.score, that.taskDetails).then(() => {
+                                    if (!that.rootTask) {
+                                        that.closeDetails();
+                                    } else {
+                                        that.goToNextSubtask();
+                                    }
+                                });
+                            });
+                        }};
+                    if (this.rootTask && this.route.isSampleSolutionEnabled()) {
+                        buttons = [bSampleSolution, bFailTask];
+                    } else if (this.rootTask) {
+                        buttons = [bFailTask];
+                    } else if (this.route.isSampleSolutionEnabled()){
                         buttons = [bSampleSolution, bSkipTask];
-                    }else{
+                    }  else {
                         buttons = [bSkipTask];
                     }
 
@@ -821,7 +892,7 @@ export class TaskDetail {
               }
             let modal;
             if (this.route.isAnswerFeedbackEnabled()) {
-                modal = this.modalCtrl.create(MCMIconModal, {
+                let data = {
                     title: title,
                     message: message,
                     solution: solution,
@@ -829,9 +900,12 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    score: this.taskDetails.tries > 1 ? '-10' : '0',
                     buttons: buttons
-                }, {
+                }
+                if (!this.rootTask) {
+                    data['score'] = this.taskDetails.tries > 1 ? '-10' : '0';
+                }
+                modal = this.modalCtrl.create(MCMIconModal, data , {
                     showBackdrop: true,
                     enableBackdropDismiss: true,
                     cssClass: this.app.activeNarrative
@@ -1375,17 +1449,49 @@ export class TaskDetail {
         return result;
     }
 
-    openInPhotoviewer() {
+    openInPhotoviewer(useRoot=  false) {
         if (Helper.isPluginAvailable(PhotoViewer)) {
             this.spinnerDialog.show();
             setTimeout(() => {
                 // use short timeout to let spinner dialog appear
-                this.photoViewer.show(this.task.getImageURL(true));
+                this.photoViewer.show(useRoot ? this.rootTask.getImageURL() : this.task.getImageURL(true));
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();
                 }, 1000);
             }, 100)
+        }
+    }
+
+    openSubtask(index?) {
+        let rootTask = this.rootTask ? this.rootTask : this.task;
+        if ((this.rootTask && !index) || this.solvedSubtasks.length === rootTask.subtasks.length) return;
+        if (!index) {
+            index = this.solvedSubtasks.length
+        }
+        return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index});
+    }
+
+    changeSubtaskAccordionState(subtask) {
+        let activeAccordion = this.activeAccordions.find(entry => entry === subtask);
+        if (activeAccordion) {
+            this.activeAccordions = this.activeAccordions.filter(entry => {
+                return entry != subtask;
+            })
+        } else {
+            this.activeAccordions.push(subtask);
+        }
+        console.log("New Accordion State", this.activeAccordions);
+    }
+
+    goToNextSubtask(){
+        const index = this.navCtrl.getActive().index;
+        if (this.subTaskIndex + 1 !== this.rootTask.subtasks.length) {
+            this.openSubtask(this.subTaskIndex + 1).then(() => {
+                this.navCtrl.remove(index);
+            })
+        } else {
+            this.closeDetails();
         }
     }
 }
