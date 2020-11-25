@@ -17,7 +17,7 @@
          <h3 class="score" *ngIf="gamificationEnabled && score && score != '0'">{{score}}</h3>
 
         <!-- text hint -->
-        <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
+        <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>
     <div class="modal-content" *ngIf="modalType == 4">
@@ -27,8 +27,7 @@
         <!-- image hint -->
         <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
 
-        <!-- text hint -->
-        <p *ngFor="let message of messages" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>
+        <!-- text hint --><p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>
 
     </div>
 
