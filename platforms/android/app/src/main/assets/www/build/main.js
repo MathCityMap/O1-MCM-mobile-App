@@ -1270,83 +1270,6 @@ var AddSavedTasks16013795030000 = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSubtasks16026790930000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddSubtasks16026790930000 = /** @class */ (function () {
-    function AddSubtasks16026790930000() {
-    }
-    AddSubtasks16026790930000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN task_id INTEGER")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'task_id' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddSubtasks16026790930000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddSubtasks16026790930000;
-}());
-
-//# sourceMappingURL=16026790930000-AddSubtasks.js.map
-
-/***/ }),
-
-/***/ 1083:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return McmImageComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(45);
@@ -1436,13 +1359,13 @@ var McmImageComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1084:
+/***/ 1083:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMHeaderComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(111);
@@ -1589,7 +1512,7 @@ var MCMHeaderComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1085:
+/***/ 1084:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1632,7 +1555,7 @@ var DistancePipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1086:
+/***/ 1085:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1760,14 +1683,14 @@ var MCMProgressBarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1087:
+/***/ 1086:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyLoadImagesDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(1088);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(1087);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intersection_observer__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1909,7 +1832,7 @@ var LazyLoadImagesDirective = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1089:
+/***/ 1088:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1917,7 +1840,7 @@ var LazyLoadImagesDirective = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(35);
@@ -2365,12 +2288,12 @@ var CustomReplaySubject = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 1107:
+/***/ 1106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createTranslateLoader;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1107);
 
 function createTranslateLoader(httpClient) {
     return new __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](httpClient, './assets/localization/', '.json');
@@ -2385,7 +2308,7 @@ function createTranslateLoader(httpClient) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(574);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(575);
@@ -2698,7 +2621,7 @@ var ModalsService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1112:
+/***/ 1111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2736,14 +2659,14 @@ var BroadcastService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1113:
+/***/ 1112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YoutubePlayerModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_youtube_player_service__ = __webpack_require__(621);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2781,7 +2704,7 @@ var YoutubePlayerModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1114:
+/***/ 1113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2880,7 +2803,7 @@ var YoutubePlayerComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1115:
+/***/ 1114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2933,20 +2856,20 @@ var Autoresize = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1116:
+/***/ 1115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(405);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(410);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(404);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(411);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2995,13 +2918,13 @@ var ApiModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1117:
+/***/ 1116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrailService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
@@ -3119,7 +3042,7 @@ var TrailService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(110);
@@ -3989,6 +3912,98 @@ var ChatAndSessionService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 1120:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__ = __webpack_require__(1121);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var DirectivesModule = /** @class */ (function () {
+    function DirectivesModule() {
+    }
+    DirectivesModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [__WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__["a" /* SafeInnerHtmlDirective */]],
+            imports: [],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__["a" /* SafeInnerHtmlDirective */]]
+        })
+    ], DirectivesModule);
+    return DirectivesModule;
+}());
+
+//# sourceMappingURL=directives.module.js.map
+
+/***/ }),
+
+/***/ 1121:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SafeInnerHtmlDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__ = __webpack_require__(145);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the SafeInnerHtmlDirective directive.
+ *
+ * See https://angular.io/api/core/Directive for more info on Angular
+ * Directives.
+ */
+var SafeInnerHtmlDirective = /** @class */ (function () {
+    function SafeInnerHtmlDirective(el, iab) {
+        this.el = el;
+        this.iab = iab;
+    }
+    SafeInnerHtmlDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this.el.nativeElement.innerHTML = this.test;
+        var childLinks = this.el.nativeElement.querySelector('a');
+        if (childLinks) {
+            childLinks.addEventListener('click', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                var link = e.srcElement.href;
+                _this.iab.create(link, '_system');
+                console.log('EventListenerClick', e.srcElement);
+            });
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('linkedInnerHtml'),
+        __metadata("design:type", String)
+    ], SafeInnerHtmlDirective.prototype, "test", void 0);
+    SafeInnerHtmlDirective = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
+            selector: '[linkedInnerHtml]' // Attribute selector
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+    ], SafeInnerHtmlDirective);
+    return SafeInnerHtmlDirective;
+}());
+
+//# sourceMappingURL=safe-inner-html.js.map
+
+/***/ }),
+
 /***/ 143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3997,12 +4012,12 @@ var ChatAndSessionService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(569);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(568);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4207,10 +4222,8 @@ var DB_Updater = /** @class */ (function () {
                         _a.sent();
                         _a.label = 2;
                     case 2: return [4 /*yield*/, db.transaction(function (tr) {
-                            var primaryCounter = table === __WEBPACK_IMPORTED_MODULE_3__DBC__["a" /* DBC */].DB_TASK ? data.tasks.length : data.length;
-                            var subCounter = table === __WEBPACK_IMPORTED_MODULE_3__DBC__["a" /* DBC */].DB_TASK ? data.subtasks.length : 0;
-                            for (var i = 0; i < primaryCounter; i++) {
-                                var row = table === __WEBPACK_IMPORTED_MODULE_3__DBC__["a" /* DBC */].DB_TASK ? data.tasks[i] : data[i];
+                            for (var i = 0; i < data.length; i++) {
+                                var row = data[i];
                                 var params = [];
                                 for (var n = 1; n <= table.fieldsCount; n++) {
                                     // Check which data type is used in table > choose right bind
@@ -4224,47 +4237,6 @@ var DB_Updater = /** @class */ (function () {
                                         || table.fieldsType[n - 1] === "TIMESTAMP") {
                                         // params.push(n)
                                         params.push(row[table.fields[n - 1]]);
-                                    }
-                                    else {
-                                        console.warn("Caution: Datatype not Integer, Varchar or Text!");
-                                    }
-                                }
-                                if (table.getTableName() !== __WEBPACK_IMPORTED_MODULE_3__DBC__["a" /* DBC */].DATABASE_TABLE_TASK) {
-                                    tr.executeSql(sqlInsertQry, params);
-                                }
-                                else {
-                                    // For tasks: Replace rows when refreshing the trail
-                                    tr.executeSql(sqlReplaceIntoQry, params);
-                                }
-                            }
-                            for (var i = 0; i < subCounter; i++) {
-                                var row = data.subtasks[i];
-                                var params = [];
-                                for (var n = 1; n <= table.fieldsCount; n++) {
-                                    // Check which data type is used in table > choose right bind
-                                    if (table.fieldsType[n - 1] === "INTEGER") {
-                                        // integer
-                                        // params.push(n)
-                                        if (table.fields[n - 1] === '_id') {
-                                            params.push(Number(row.task_id + row[table.fields[n - 1]]));
-                                        }
-                                        else if (row[table.fields[n - 1]]) {
-                                            params.push(Number(row[table.fields[n - 1]]));
-                                        }
-                                        else {
-                                            params.push(0);
-                                        }
-                                    }
-                                    else if (table.fieldsType[n - 1] === "VARCHAR"
-                                        || table.fieldsType[n - 1] === "TEXT"
-                                        || table.fieldsType[n - 1] === "TIMESTAMP") {
-                                        // params.push(n)
-                                        if (row[table.fields[n - 1]]) {
-                                            params.push(row[table.fields[n - 1]]);
-                                        }
-                                        else {
-                                            params.push("");
-                                        }
                                     }
                                     else {
                                         console.warn("Caution: Datatype not Integer, Varchar or Text!");
@@ -4300,7 +4272,7 @@ var DB_Updater = /** @class */ (function () {
                         user_id = 0;
                         postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
                         _a = this.insertJSONinSQLiteDB;
-                        return [4 /*yield*/, this.helper.invokeApi('downloadTrailV2', postparams)];
+                        return [4 /*yield*/, this.helper.invokeApi('downloadTrail', postparams)];
                     case 1: return [4 /*yield*/, _a.apply(this, [_c.sent(), __WEBPACK_IMPORTED_MODULE_3__DBC__["a" /* DBC */].DB_TASK])];
                     case 2:
                         _c.sent();
@@ -4329,7 +4301,7 @@ var DB_Updater = /** @class */ (function () {
                         user_id = 0;
                         postparams = "&route_id=" + route.id + "&user_id=" + user_id + "&lang_code=" + lang_code;
                         _a = this.insertJSONinSQLiteDB;
-                        return [4 /*yield*/, this.helper.invokeApi('updateTrailV2', postparams)];
+                        return [4 /*yield*/, this.helper.invokeApi('updateTrail', postparams)];
                     case 1: return [4 /*yield*/, _a.apply(this, [_b.sent(), __WEBPACK_IMPORTED_MODULE_3__DBC__["a" /* DBC */].DB_TASK])];
                     case 2:
                         _b.sent();
@@ -4535,13 +4507,13 @@ var LanguageService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 190:
+/***/ 191:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
@@ -4837,7 +4809,7 @@ var SessionService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 208:
+/***/ 209:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4845,7 +4817,6 @@ var SessionService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(566);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4855,65 +4826,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
 
 
 
 var Task2Route = /** @class */ (function () {
     function Task2Route() {
     }
-    Task2Route.prototype.getTaskWithSubtasks = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var repo;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */].INSTANCE.getTaskRepository()];
-                    case 1:
-                        repo = _a.sent();
-                        return [4 /*yield*/, repo.createQueryBuilder("tasks")
-                                .where({ id: this.task.id })
-                                .leftJoinAndSelect("tasks.subtasks", "subtasks")
-                                .getOne()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
         __metadata("design:type", Number)
@@ -4938,22 +4856,22 @@ var Task2Route = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(1083);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(1082);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1084);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1083);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1085);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1084);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1086);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1085);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1087);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1089);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1086);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1088);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4998,7 +4916,7 @@ var ComponentsModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 234:
+/***/ 235:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5007,7 +4925,7 @@ var ComponentsModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_language_service__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_chat_and_session_service__ = __webpack_require__(112);
@@ -5391,7 +5309,7 @@ var Score = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5686,16 +5604,16 @@ var CustomKeyBoard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(37);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6191,39 +6109,39 @@ var map = {
 		4
 	],
 	"../pages/home/home.module": [
-		1121,
+		1123,
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1123,
+		1124,
 		3
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1124,
+		1125,
 		2
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1125,
+		1126,
 		1
 	],
 	"../pages/info/info.module": [
-		1126,
+		1127,
 		8
 	],
 	"../pages/onboarding/onboarding.module": [
-		1127,
+		1128,
 		7
 	],
 	"../pages/portal/portal.module": [
-		1130,
+		1129,
 		6
 	],
 	"../pages/settings/settings.module": [
-		1128,
+		1130,
 		5
 	],
 	"../pages/task-detail/task-detail.module": [
-		1129,
+		1131,
 		0
 	]
 };
@@ -6253,7 +6171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(626);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(234);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6290,14 +6208,758 @@ var ChatPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 36:
+/***/ 404:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* tslint:disable */
+
+
+
+
+
+
+var SessionUserService = /** @class */ (function (_super) {
+    __extends(SessionUserService, _super);
+    function SessionUserService(config, http) {
+        return _super.call(this, config, http) || this;
+    }
+    /**
+     * @param params The `SessionUserService.UpdatePositionParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `longitude`: The session user's longitude
+     *
+     * - `latitude`: The session user's latitude
+     *
+     * @return Returns an empty response
+     */
+    SessionUserService.prototype.updatePositionResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("PUT", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/position/" + params.latitude + "/" + params.longitude), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionUserService.UpdatePositionParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `longitude`: The session user's longitude
+     *
+     * - `latitude`: The session user's latitude
+     *
+     * @return Returns an empty response
+     */
+    SessionUserService.prototype.updatePosition = function (params) {
+        return this.updatePositionResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionUserService.GetSessionUserByTokenParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns requested sessionUser
+     */
+    SessionUserService.prototype.getSessionUserByTokenResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionUserService.GetSessionUserByTokenParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns requested sessionUser
+     */
+    SessionUserService.prototype.getSessionUserByToken = function (params) {
+        return this.getSessionUserByTokenResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionUserService.LeaveSessionParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns an empty response
+     */
+    SessionUserService.prototype.leaveSessionResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("DELETE", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionUserService.LeaveSessionParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns an empty response
+     */
+    SessionUserService.prototype.leaveSession = function (params) {
+        return this.leaveSessionResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    SessionUserService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], SessionUserService);
+    return SessionUserService;
+}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
+
+//# sourceMappingURL=session-user.service.js.map
+
+/***/ }),
+
+/***/ 405:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionChatService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* tslint:disable */
+
+
+
+
+
+
+var SessionChatService = /** @class */ (function (_super) {
+    __extends(SessionChatService, _super);
+    function SessionChatService(config, http) {
+        return _super.call(this, config, http) || this;
+    }
+    /**
+     * @param params The `SessionChatService.GetMessagesParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `receiverToken`: The receiver token
+     *
+     * @return Returns the chat - inclusive chat history
+     */
+    SessionChatService.prototype.getMessagesResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionChatService.GetMessagesParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `receiverToken`: The receiver token
+     *
+     * @return Returns the chat - inclusive chat history
+     */
+    SessionChatService.prototype.getMessages = function (params) {
+        return this.getMessagesResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionChatService.SetMessageReadParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `receiverToken`: The receiver token
+     *
+     * @return Returns sended chat message
+     */
+    SessionChatService.prototype.setMessageReadResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("PUT", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionChatService.SetMessageReadParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `receiverToken`: The receiver token
+     *
+     * @return Returns sended chat message
+     */
+    SessionChatService.prototype.setMessageRead = function (params) {
+        return this.setMessageReadResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionChatService.SendMessageToUserParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `receiverToken`: The receiver token
+     *
+     * - `chatMessage`: The message
+     *
+     * @return Returns sended chat message
+     */
+    SessionChatService.prototype.sendMessageToUserResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        __body = params.chatMessage;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionChatService.SendMessageToUserParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `receiverToken`: The receiver token
+     *
+     * - `chatMessage`: The message
+     *
+     * @return Returns sended chat message
+     */
+    SessionChatService.prototype.sendMessageToUser = function (params) {
+        return this.sendMessageToUserResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionChatService.GetNewMessagesParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token, User A
+     *
+     * - `receiverToken`: The receiver token, User B
+     *
+     * @return Returns new (unread) msgs for User A from User B
+     */
+    SessionChatService.prototype.getNewMessagesResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken + "/new"), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionChatService.GetNewMessagesParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token, User A
+     *
+     * - `receiverToken`: The receiver token, User B
+     *
+     * @return Returns new (unread) msgs for User A from User B
+     */
+    SessionChatService.prototype.getNewMessages = function (params) {
+        return this.getNewMessagesResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionChatService.SendMessageToUsersParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `chatMessage`: The message
+     *
+     * @return Returns sended chat messages
+     */
+    SessionChatService.prototype.sendMessageToUsersResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        __body = params.chatMessage;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    SessionChatService.prototype.postMedia = function (file, session, sender) {
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        __headers.append('Content-Type', 'multipart/form-data');
+        __headers.append('Accept', 'application/json');
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + session + "/media/" + sender), file, {
+            headers: __headers
+        });
+        return this.http.request(req).toPromise().catch(function (err) { console.log("ERROR#####: ", err); });
+    };
+    /**
+     * @param params The `SessionChatService.SendMessageToUsersParams` containing the following parameters:
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `senderToken`: The senders token
+     *
+     * - `chatMessage`: The message
+     *
+     * @return Returns sended chat messages
+     */
+    SessionChatService.prototype.sendMessageToUsers = function (params) {
+        return this.sendMessageToUsersResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    SessionChatService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], SessionChatService);
+    return SessionChatService;
+}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
+
+//# sourceMappingURL=session-chat.service.js.map
+
+/***/ }),
+
+/***/ 410:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionEventService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* tslint:disable */
+
+
+
+
+
+
+var SessionEventService = /** @class */ (function (_super) {
+    __extends(SessionEventService, _super);
+    function SessionEventService(config, http) {
+        return _super.call(this, config, http) || this;
+    }
+    /**
+     * @param sessionCode The session code
+     * @return Returns all events of the session
+     */
+    SessionEventService.prototype.getEventsResponse = function (sessionCode) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + sessionCode + "/event"), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param sessionCode The session code
+     * @return Returns all events of the session
+     */
+    SessionEventService.prototype.getEvents = function (sessionCode) {
+        return this.getEventsResponse(sessionCode).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionEventService.GetUserEventsParams` containing the following parameters:
+     *
+     * - `userToken`: The user token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns all events of the session for given user token
+     */
+    SessionEventService.prototype.getUserEventsResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/events"), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionEventService.GetUserEventsParams` containing the following parameters:
+     *
+     * - `userToken`: The user token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns all events of the session for given user token
+     */
+    SessionEventService.prototype.getUserEvents = function (params) {
+        return this.getUserEventsResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionEventService.AddEventsParams` containing the following parameters:
+     *
+     * - `userToken`: userToken of sending user
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `events`: An array of user events EventsAddRequest
+     *
+     * @return Returns added event
+     */
+    SessionEventService.prototype.addEventsResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        __body = params.events;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/events"), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionEventService.AddEventsParams` containing the following parameters:
+     *
+     * - `userToken`: userToken of sending user
+     *
+     * - `sessionCode`: The session code
+     *
+     * - `events`: An array of user events EventsAddRequest
+     *
+     * @return Returns added event
+     */
+    SessionEventService.prototype.addEvents = function (params) {
+        return this.addEventsResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param params The `SessionEventService.GetAuthorEventsParams` containing the following parameters:
+     *
+     * - `userToken`: The user token
+     *
+     * - `unixTime`: Unix time
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns author events that happened after given unix time
+     */
+    SessionEventService.prototype.getAuthorEventsResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/authorEvents/" + params.unixTime), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionEventService.GetAuthorEventsParams` containing the following parameters:
+     *
+     * - `userToken`: The user token
+     *
+     * - `unixTime`: Unix time
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns author events that happened after given unix time
+     */
+    SessionEventService.prototype.getAuthorEvents = function (params) {
+        return this.getAuthorEventsResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    SessionEventService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], SessionEventService);
+    return SessionEventService;
+}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
+
+//# sourceMappingURL=session-event.service.js.map
+
+/***/ }),
+
+/***/ 411:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserLeaderboardService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* tslint:disable */
+
+
+
+
+
+
+var SessionUserLeaderboardService = /** @class */ (function (_super) {
+    __extends(SessionUserLeaderboardService, _super);
+    function SessionUserLeaderboardService(config, http) {
+        return _super.call(this, config, http) || this;
+    }
+    /**
+     * @param params The `SessionUserLeaderboardService.GetLeaderboardParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns Leaderboard array
+     */
+    SessionUserLeaderboardService.prototype.getLeaderboardResponse = function (params) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/leaderboard"), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param params The `SessionUserLeaderboardService.GetLeaderboardParams` containing the following parameters:
+     *
+     * - `userToken`: The session user's token
+     *
+     * - `sessionCode`: The session code
+     *
+     * @return Returns Leaderboard array
+     */
+    SessionUserLeaderboardService.prototype.getLeaderboard = function (params) {
+        return this.getLeaderboardResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    SessionUserLeaderboardService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], SessionUserLeaderboardService);
+    return SessionUserLeaderboardService;
+}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
+
+//# sourceMappingURL=session-user-leaderboard.service.js.map
+
+/***/ }),
+
+/***/ 44:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrmService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_typeorm__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(1057);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(1058);
@@ -6309,7 +6971,7 @@ var ChatPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(1064);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ionic_angular__ = __webpack_require__(12);
@@ -6326,7 +6988,6 @@ var ChatPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(1080);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(1081);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(1082);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6371,7 +7032,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-
 
 
 
@@ -6449,8 +7109,7 @@ var OrmService = /** @class */ (function () {
                             __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__["a" /* AddDownloadDateColumn15711518720000 */],
                             __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__["a" /* AddCompletedDateColumn15713974540000 */],
                             __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__["a" /* AddZipMapFields15783117210000 */],
-                            __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__["a" /* AddSavedTasks16013795030000 */],
-                            __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__["a" /* AddSubtasks16026790930000 */],
+                            __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__["a" /* AddSavedTasks16013795030000 */]
                         ];
                         if (!sqliteAvailable) return [3 /*break*/, 4];
                         _a = this;
@@ -6635,10 +7294,7 @@ var OrmService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.getTaskRepository()];
                     case 1:
                         repo = _a.sent();
-                        return [4 /*yield*/, repo.createQueryBuilder("tasks")
-                                .where({ id: id })
-                                .leftJoinAndSelect("tasks.subtasks", "subtasks")
-                                .getOne()];
+                        return [4 /*yield*/, repo.findOneById(id)];
                     case 2: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -7140,750 +7796,6 @@ var OrmService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 404:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/* tslint:disable */
-
-
-
-
-
-
-var SessionUserService = /** @class */ (function (_super) {
-    __extends(SessionUserService, _super);
-    function SessionUserService(config, http) {
-        return _super.call(this, config, http) || this;
-    }
-    /**
-     * @param params The `SessionUserService.UpdatePositionParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `longitude`: The session user's longitude
-     *
-     * - `latitude`: The session user's latitude
-     *
-     * @return Returns an empty response
-     */
-    SessionUserService.prototype.updatePositionResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("PUT", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/position/" + params.latitude + "/" + params.longitude), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionUserService.UpdatePositionParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `longitude`: The session user's longitude
-     *
-     * - `latitude`: The session user's latitude
-     *
-     * @return Returns an empty response
-     */
-    SessionUserService.prototype.updatePosition = function (params) {
-        return this.updatePositionResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionUserService.GetSessionUserByTokenParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns requested sessionUser
-     */
-    SessionUserService.prototype.getSessionUserByTokenResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionUserService.GetSessionUserByTokenParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns requested sessionUser
-     */
-    SessionUserService.prototype.getSessionUserByToken = function (params) {
-        return this.getSessionUserByTokenResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionUserService.LeaveSessionParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns an empty response
-     */
-    SessionUserService.prototype.leaveSessionResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("DELETE", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionUserService.LeaveSessionParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns an empty response
-     */
-    SessionUserService.prototype.leaveSession = function (params) {
-        return this.leaveSessionResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    SessionUserService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
-    ], SessionUserService);
-    return SessionUserService;
-}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
-
-//# sourceMappingURL=session-user.service.js.map
-
-/***/ }),
-
-/***/ 405:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionChatService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/* tslint:disable */
-
-
-
-
-
-
-var SessionChatService = /** @class */ (function (_super) {
-    __extends(SessionChatService, _super);
-    function SessionChatService(config, http) {
-        return _super.call(this, config, http) || this;
-    }
-    /**
-     * @param params The `SessionChatService.GetMessagesParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `receiverToken`: The receiver token
-     *
-     * @return Returns the chat - inclusive chat history
-     */
-    SessionChatService.prototype.getMessagesResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionChatService.GetMessagesParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `receiverToken`: The receiver token
-     *
-     * @return Returns the chat - inclusive chat history
-     */
-    SessionChatService.prototype.getMessages = function (params) {
-        return this.getMessagesResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionChatService.SetMessageReadParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `receiverToken`: The receiver token
-     *
-     * @return Returns sended chat message
-     */
-    SessionChatService.prototype.setMessageReadResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("PUT", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionChatService.SetMessageReadParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `receiverToken`: The receiver token
-     *
-     * @return Returns sended chat message
-     */
-    SessionChatService.prototype.setMessageRead = function (params) {
-        return this.setMessageReadResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionChatService.SendMessageToUserParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `receiverToken`: The receiver token
-     *
-     * - `chatMessage`: The message
-     *
-     * @return Returns sended chat message
-     */
-    SessionChatService.prototype.sendMessageToUserResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        __body = params.chatMessage;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionChatService.SendMessageToUserParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `receiverToken`: The receiver token
-     *
-     * - `chatMessage`: The message
-     *
-     * @return Returns sended chat message
-     */
-    SessionChatService.prototype.sendMessageToUser = function (params) {
-        return this.sendMessageToUserResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionChatService.GetNewMessagesParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token, User A
-     *
-     * - `receiverToken`: The receiver token, User B
-     *
-     * @return Returns new (unread) msgs for User A from User B
-     */
-    SessionChatService.prototype.getNewMessagesResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken + "/" + params.receiverToken + "/new"), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionChatService.GetNewMessagesParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token, User A
-     *
-     * - `receiverToken`: The receiver token, User B
-     *
-     * @return Returns new (unread) msgs for User A from User B
-     */
-    SessionChatService.prototype.getNewMessages = function (params) {
-        return this.getNewMessagesResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionChatService.SendMessageToUsersParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `chatMessage`: The message
-     *
-     * @return Returns sended chat messages
-     */
-    SessionChatService.prototype.sendMessageToUsersResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        __body = params.chatMessage;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + params.sessionCode + "/chat/" + params.senderToken), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    SessionChatService.prototype.postMedia = function (file, session, sender) {
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        __headers.append('Content-Type', 'multipart/form-data');
-        __headers.append('Accept', 'application/json');
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + session + "/media/" + sender), file, {
-            headers: __headers
-        });
-        return this.http.request(req).toPromise().catch(function (err) { console.log("ERROR#####: ", err); });
-    };
-    /**
-     * @param params The `SessionChatService.SendMessageToUsersParams` containing the following parameters:
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `senderToken`: The senders token
-     *
-     * - `chatMessage`: The message
-     *
-     * @return Returns sended chat messages
-     */
-    SessionChatService.prototype.sendMessageToUsers = function (params) {
-        return this.sendMessageToUsersResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    SessionChatService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
-    ], SessionChatService);
-    return SessionChatService;
-}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
-
-//# sourceMappingURL=session-chat.service.js.map
-
-/***/ }),
-
-/***/ 410:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionEventService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/* tslint:disable */
-
-
-
-
-
-
-var SessionEventService = /** @class */ (function (_super) {
-    __extends(SessionEventService, _super);
-    function SessionEventService(config, http) {
-        return _super.call(this, config, http) || this;
-    }
-    /**
-     * @param sessionCode The session code
-     * @return Returns all events of the session
-     */
-    SessionEventService.prototype.getEventsResponse = function (sessionCode) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + sessionCode + "/event"), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param sessionCode The session code
-     * @return Returns all events of the session
-     */
-    SessionEventService.prototype.getEvents = function (sessionCode) {
-        return this.getEventsResponse(sessionCode).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionEventService.GetUserEventsParams` containing the following parameters:
-     *
-     * - `userToken`: The user token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns all events of the session for given user token
-     */
-    SessionEventService.prototype.getUserEventsResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/events"), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionEventService.GetUserEventsParams` containing the following parameters:
-     *
-     * - `userToken`: The user token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns all events of the session for given user token
-     */
-    SessionEventService.prototype.getUserEvents = function (params) {
-        return this.getUserEventsResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionEventService.AddEventsParams` containing the following parameters:
-     *
-     * - `userToken`: userToken of sending user
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `events`: An array of user events EventsAddRequest
-     *
-     * @return Returns added event
-     */
-    SessionEventService.prototype.addEventsResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        __body = params.events;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("POST", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/events"), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionEventService.AddEventsParams` containing the following parameters:
-     *
-     * - `userToken`: userToken of sending user
-     *
-     * - `sessionCode`: The session code
-     *
-     * - `events`: An array of user events EventsAddRequest
-     *
-     * @return Returns added event
-     */
-    SessionEventService.prototype.addEvents = function (params) {
-        return this.addEventsResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param params The `SessionEventService.GetAuthorEventsParams` containing the following parameters:
-     *
-     * - `userToken`: The user token
-     *
-     * - `unixTime`: Unix time
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns author events that happened after given unix time
-     */
-    SessionEventService.prototype.getAuthorEventsResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/authorEvents/" + params.unixTime), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionEventService.GetAuthorEventsParams` containing the following parameters:
-     *
-     * - `userToken`: The user token
-     *
-     * - `unixTime`: Unix time
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns author events that happened after given unix time
-     */
-    SessionEventService.prototype.getAuthorEvents = function (params) {
-        return this.getAuthorEventsResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    SessionEventService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
-    ], SessionEventService);
-    return SessionEventService;
-}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
-
-//# sourceMappingURL=session-event.service.js.map
-
-/***/ }),
-
-/***/ 411:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserLeaderboardService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/* tslint:disable */
-
-
-
-
-
-
-var SessionUserLeaderboardService = /** @class */ (function (_super) {
-    __extends(SessionUserLeaderboardService, _super);
-    function SessionUserLeaderboardService(config, http) {
-        return _super.call(this, config, http) || this;
-    }
-    /**
-     * @param params The `SessionUserLeaderboardService.GetLeaderboardParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns Leaderboard array
-     */
-    SessionUserLeaderboardService.prototype.getLeaderboardResponse = function (params) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/session/" + params.sessionCode + "/user/" + params.userToken + "/leaderboard"), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param params The `SessionUserLeaderboardService.GetLeaderboardParams` containing the following parameters:
-     *
-     * - `userToken`: The session user's token
-     *
-     * - `sessionCode`: The session code
-     *
-     * @return Returns Leaderboard array
-     */
-    SessionUserLeaderboardService.prototype.getLeaderboard = function (params) {
-        return this.getLeaderboardResponse(params).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    SessionUserLeaderboardService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
-    ], SessionUserLeaderboardService);
-    return SessionUserLeaderboardService;
-}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
-
-//# sourceMappingURL=session-user-leaderboard.service.js.map
-
-/***/ }),
-
 /***/ 45:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -7897,8 +7809,8 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(1062);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(50);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8021,6 +7933,8 @@ var ImagesService = /** @class */ (function () {
                         return [4 /*yield*/, this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)];
                     case 2:
                         _a.dataDirectory = _b.sent();
+                        // let isLoadedViaHttp = window.location.href.indexOf('http') === 0;
+                        // if (!isLoadedViaHttp) {
                         this.nativeBaseURL = this.dataDirectory.nativeURL;
                         _b.label = 3;
                     case 3:
@@ -8240,8 +8154,6 @@ var ImagesService = /** @class */ (function () {
         return imgPath.indexOf('http') !== 0 ? __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].WEBSERVER_URL + imgPath : imgPath;
     };
     ImagesService.prototype.fixUrlForWebview = function (url) {
-        if (!this.platform.is('cordova'))
-            return url;
         var fixedUrl = window.Ionic.WebView.convertFileSrc(url);
         //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
         if (fixedUrl.includes('mcm_images_tasks')) {
@@ -8387,7 +8299,7 @@ var ImagesService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8406,7 +8318,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var Task = /** @class */ (function () {
     function Task() {
     }
-    Task_1 = Task;
     Task.prototype.getImageURL = function (asRawString) {
         if (asRawString === void 0) { asRawString = false; }
         return __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
@@ -8424,12 +8335,6 @@ var Task = /** @class */ (function () {
         var sampleSolutionImg = this.getSolutionSampleImgSrc();
         if (sampleSolutionImg != "") {
             result.push(sampleSolutionImg);
-        }
-        if (this.subtasks) {
-            for (var _i = 0, _a = this.subtasks; _i < _a.length; _i++) {
-                var subtask = _a[_i];
-                result = result.concat(subtask.getImagesForDownload());
-            }
         }
         // Add hint images
         return result.concat(this.getHints().filter(function (hint) {
@@ -8725,20 +8630,10 @@ var Task = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["g" /* OneToMany */])(function (type) { return __WEBPACK_IMPORTED_MODULE_3__Task2Route__["a" /* Task2Route */]; }, function (task2Route) { return task2Route.task; }),
         __metadata("design:type", Array)
     ], Task.prototype, "task2Routes", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return Task_1; }, function (task) { return task.subtasks; }),
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'task_id' }),
-        __metadata("design:type", Task)
-    ], Task.prototype, "task_id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["g" /* OneToMany */])(function (type) { return Task_1; }, function (task) { return task.task_id; }),
-        __metadata("design:type", Array)
-    ], Task.prototype, "subtasks", void 0);
-    Task = Task_1 = __decorate([
+    Task = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_task')
     ], Task);
     return Task;
-    var Task_1;
 }());
 
 //# sourceMappingURL=Task.js.map
@@ -8750,9 +8645,9 @@ var Task = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(569);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
 var __extends = (this && this.__extends) || (function () {
@@ -8959,7 +8854,7 @@ var DB_Handler = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(1075);
 
@@ -9044,7 +8939,6 @@ var DBC = /** @class */ (function () {
         "create_date",
         "lang_code",
         "visible",
-        "task_id",
     ], [
         "INTEGER",
         "INTEGER",
@@ -9069,7 +8963,6 @@ var DBC = /** @class */ (function () {
         "TEXT",
         "TIMESTAMP",
         "VARCHAR",
-        "INTEGER",
         "INTEGER"
     ], [
         "PRIMARY KEY AUTOINCREMENT",
@@ -9095,8 +8988,7 @@ var DBC = /** @class */ (function () {
         "",
         "NOT NULL",
         "(2)",
-        "(1) NOT NULL DEFAULT 1",
-        ""
+        "(1) NOT NULL DEFAULT 1"
     ]);
     // DB_ROUTE
     DBC.DB_ROUTE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_ROUTE, [
@@ -9302,10 +9194,10 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteInfo; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9556,7 +9448,7 @@ var CenteredTask = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(145);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9659,7 +9551,7 @@ var MCMTermsAndConditionsModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(112);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -9962,7 +9854,7 @@ var YoutubePlayerService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMIconModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(45);
@@ -10089,7 +9981,7 @@ var MCMIconModal = /** @class */ (function () {
     };
     MCMIconModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge" [ngClass]="{\'no-icon\': type != \'image\', \'no-icon\' : modalType == 4, \'hint\': modalType == 1,\'failed\': modalType == 2, \'perfect\': modalType == 3, \'good\': modalType == 5}">\n\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf=" type == \'image\' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="score" *ngIf="gamificationEnabled && score && score != \'0\'">{{score}}</h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n    <div class="modal-content" *ngIf="modalType == 4">\n        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/modal-rating-perfect.svg"/>\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- text hint -->\n        <p *ngFor="let message of messages" [innerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
+            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge" [ngClass]="{\'no-icon\': type != \'image\', \'no-icon\' : modalType == 4, \'hint\': modalType == 1,\'failed\': modalType == 2, \'perfect\': modalType == 3, \'good\': modalType == 5}">\n\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf=" type == \'image\' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="score" *ngIf="gamificationEnabled && score && score != \'0\'">{{score}}</h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n    <div class="modal-content" *ngIf="modalType == 4">\n        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/modal-rating-perfect.svg"/>\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- text hint --><p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__services_images_service__["a" /* ImagesService */]])
     ], MCMIconModal);
@@ -10906,8 +10798,8 @@ var SearchPipe = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(578);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(190);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11305,14 +11197,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(403);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_sqlite__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_sqlite__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_DB_Updater__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_http__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file_transfer__ = __webpack_require__(567);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_spinner_dialog__ = __webpack_require__(86);
@@ -11322,17 +11214,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_globalization__ = __webpack_require__(577);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_camera__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_translate_loader__ = __webpack_require__(1107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_translate_loader__ = __webpack_require__(1106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_images_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modals_RouteInfo_RouteInfo__ = __webpack_require__(575);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angular_linky__ = __webpack_require__(1110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angular_linky__ = __webpack_require__(1109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_angular_linky__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(574);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_broadcast_service__ = __webpack_require__(1112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_broadcast_service__ = __webpack_require__(1111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(622);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(628);
@@ -11342,20 +11234,21 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modals_CenteredTask_CenteredTask__ = __webpack_require__(576);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__services_gps_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_location_accuracy__ = __webpack_require__(402);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_components_module__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_components_module__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__classes_Helper__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__directives_autoresize__ = __webpack_require__(1115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__api_api_module__ = __webpack_require__(1116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__directives_autoresize__ = __webpack_require__(1114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__api_api_module__ = __webpack_require__(1115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__services_chat_and_session_service__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_chat_chat_module__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_local_notifications__ = __webpack_require__(406);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_in_app_browser__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_in_app_browser__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_app_version__ = __webpack_require__(632);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__ionic_native_media__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_angular_progress_bar__ = __webpack_require__(1118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_angular_progress_bar__ = __webpack_require__(1117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ionic_native_screen_orientation__ = __webpack_require__(581);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__directives_directives_module__ = __webpack_require__(1120);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11416,6 +11309,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -11440,16 +11334,16 @@ var AppModule = /** @class */ (function () {
                 }, {
                     links: [
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -11465,7 +11359,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_39__components_ngx_youtube_player_modules_ngx_youtube_player_module__["a" /* YoutubePlayerModule */],
                 __WEBPACK_IMPORTED_MODULE_43__api_api_module__["a" /* ApiModule */],
                 __WEBPACK_IMPORTED_MODULE_45__pages_chat_chat_module__["ChatPageModule"],
-                __WEBPACK_IMPORTED_MODULE_50_angular_progress_bar__["a" /* ProgressBarModule */]
+                __WEBPACK_IMPORTED_MODULE_50_angular_progress_bar__["a" /* ProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_53__directives_directives_module__["a" /* DirectivesModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicApp */]],
             entryComponents: [
@@ -11593,8 +11488,8 @@ var BaseService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Task2Route__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Task2Route__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(110);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11674,42 +11569,30 @@ var Route = /** @class */ (function () {
     }
     Route.prototype.getTasks = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         if (this.tasks) {
                             return [2 /*return*/, this.tasks];
                         }
-                        if (!this.task2Routes) return [3 /*break*/, 2];
+                        if (!this.task2Routes) return [3 /*break*/, 1];
                         this.task2Routes.sort(function (a, b) { return a.id - b.id; });
-                        _a = this;
-                        return [4 /*yield*/, Promise.all(this.task2Routes.map(function (value, index) { return __awaiter(_this, void 0, void 0, function () {
-                                var task;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0: return [4 /*yield*/, value.getTaskWithSubtasks()];
-                                        case 1:
-                                            task = _a.sent();
-                                            task.position = index + 1;
-                                            return [2 /*return*/, Promise.resolve(task)];
-                                    }
-                                });
-                            }); }))];
+                        this.tasks = this.task2Routes.map(function (value, index) {
+                            value.task.position = index + 1;
+                            return value.task;
+                        });
+                        return [3 /*break*/, 4];
                     case 1:
-                        _a.tasks = _c.sent();
-                        return [3 /*break*/, 5];
-                    case 2:
                         // relation was not loaded yet -> reload route to get tasks
-                        _b = this;
+                        _a = this;
                         return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_5__services_orm_service__["a" /* OrmService */].INSTANCE.findRouteById(this.id)];
-                    case 3: return [4 /*yield*/, (_c.sent()).getTasks()];
-                    case 4:
+                    case 2: return [4 /*yield*/, (_b.sent()).getTasks()];
+                    case 3:
                         // relation was not loaded yet -> reload route to get tasks
-                        _b.tasks = _c.sent();
-                        _c.label = 5;
-                    case 5: return [2 /*return*/, this.tasks];
+                        _a.tasks = _b.sent();
+                        _b.label = 4;
+                    case 4: return [2 /*return*/, this.tasks];
                 }
             });
         });

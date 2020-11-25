@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import {Component} from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { MCMModalType } from '../../app/app.component';
 import { ViewController } from 'ionic-angular/navigation/view-controller';

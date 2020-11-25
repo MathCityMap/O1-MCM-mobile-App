@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1125:
+/***/ 1126:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,8 +9,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(234);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -44,7 +44,7 @@ var TasksMapPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1131:
+/***/ 1132:
 /***/ (function(module, exports) {
 
 /*
@@ -57,7 +57,7 @@ var TasksMapPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1133:
+/***/ 1134:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65,7 +65,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (factory) {
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1134), __webpack_require__(1135)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1135), __webpack_require__(1136)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -78,7 +78,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1134:
+/***/ 1135:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -282,7 +282,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1135:
+/***/ 1136:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -474,7 +474,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1136:
+/***/ 1137:
 /***/ (function(module, exports) {
 
 (function() {
@@ -538,7 +538,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1141:
+/***/ 1142:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -547,25 +547,25 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(1131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(1132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline__ = __webpack_require__(1133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline__ = __webpack_require__(1134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_offline__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(624);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Score__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_angular_navigation_deep_linker__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_gps_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__ = __webpack_require__(1136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__ = __webpack_require__(1137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_conic_gradient__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_images_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_storage__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(622);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__ = __webpack_require__(113);
@@ -723,10 +723,10 @@ var TasksMap = /** @class */ (function () {
     TasksMap_1 = TasksMap;
     TasksMap.prototype.isTrailCompleted = function () {
         if (this.route.isAnswerFeedbackEnabled()) {
-            return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
+            return this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length;
         }
         else {
-            return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.taskList.length;
+            return this.score.getTasksSaved().length == this.taskList.length;
         }
     };
     TasksMap.prototype.showTrailCompletedAlert = function () {
@@ -1727,7 +1727,7 @@ var TasksMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1142:
+/***/ 1143:
 /***/ (function(module, exports) {
 
 /**

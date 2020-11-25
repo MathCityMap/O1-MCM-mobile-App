@@ -55,7 +55,7 @@ import { Media } from '@ionic-native/media';
 import {ProgressBarModule} from "angular-progress-bar";
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {MCMTrailFinishedModal} from "../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
-
+import {DirectivesModule} from "../directives/directives.module";
 
 
 @NgModule({
@@ -90,7 +90,8 @@ import {MCMTrailFinishedModal} from "../modals/MCMTrailFinishedModal/MCMTrailFin
         YoutubePlayerModule,
         ApiModule,
         ChatPageModule,
-        ProgressBarModule
+        ProgressBarModule,
+        DirectivesModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
