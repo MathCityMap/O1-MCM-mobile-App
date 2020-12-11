@@ -23,7 +23,7 @@
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer">
                 <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
-                <ion-item *ngIf="task && taskDetails && task.solutionType != 'multiple_choice' && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">
+                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled()">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
                     <ion-input (keyup.enter)="checkResult()"
                                [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
@@ -37,6 +37,20 @@
                     </ion-input>
                     <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
+                <ion-list class="vector-input-list" *ngIf="task && task.solutionType == 'vector_values' && taskDetails && route.isAnswerValidationEnabled()">
+                    <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{'is-focused': answerIndex == i && keyboardVisible()}">
+                        <ion-label floating>{{answerField.name}}</ion-label>
+                        <ion-input (keyup.enter)="checkResult()"
+                                   [disabled]="answerField.solved"
+                                   type="text"
+                                   (focus)="setKeyboardOn(true, i)"
+                                   [ngModelOptions]="{standalone: true}"
+                                   readonly="true"
+                                   [(ngModel)]="answerField.answer"
+                        >
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled()">
                     <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
                         <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
@@ -67,7 +81,7 @@
 
                         <ion-col *ngIf="route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()">
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
-                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
+                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !isSpecialTypeAnswered() && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
                                 {{ "a_btn_check_answer" | translate }}
                             </button>
                         </ion-col>

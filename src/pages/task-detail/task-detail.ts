@@ -62,6 +62,9 @@ export class TaskDetail {
     private penalty: number;
     private maxScore: number;
     private orangeScore: number;
+    private isSpecialTaskType: boolean;
+    private specialSolution: any;
+    private answerIndex: any = null;
 
     private multipleChoiceList: Array<any> = [];
 
@@ -103,13 +106,21 @@ export class TaskDetail {
             CustomKeyBoard.onCKClick.subscribe((key) => {
                     if((this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) || !this.route.isAnswerFeedbackEnabled()){
                         if (key === "C") {
-                            this.taskDetails.answer = "";
+                            if (this.answerIndex != null) {
+                                this.taskDetails.answerMultipleChoice[this.answerIndex].answer = "";
+                            } else {
+                                this.taskDetails.answer = "";
+                            }
                         }
                         else if (key === "✔") { // ✔
                             this.checkResult();
                         }
                         else {
-                            this.taskDetails.answer += key;
+                            if (this.answerIndex != null) {
+                                this.taskDetails.answerMultipleChoice[this.answerIndex].answer += key;
+                            } else {
+                                this.taskDetails.answer += key;
+                            }
                         }
                     }
                 },
@@ -124,7 +135,11 @@ export class TaskDetail {
         this.keyboardSubscriptions.add(
             CustomKeyBoard.onDeleteClick.subscribe(
                 () => {
-                    this.taskDetails.answer = this.taskDetails.answer.slice(0, this.taskDetails.answer.length - 1);
+                    if (this.answerIndex != null) {
+                        this.taskDetails.answerMultipleChoice[this.answerIndex].answer = this.taskDetails.answerMultipleChoice[this.answerIndex].answer.slice(0, this.taskDetails.answerMultipleChoice[this.answerIndex].answer.length - 1);
+                    } else {
+                        this.taskDetails.answer = this.taskDetails.answer.slice(0, this.taskDetails.answer.length - 1);
+                    }
                 },
                 err => {console.log(err)},
                 () => {console.log('onDeleteClick subscribed.');}
@@ -167,8 +182,20 @@ export class TaskDetail {
             this.task = this.rootTask.subtasks[this.subTaskIndex]
         }
         console.log("Opened Task: ", this.task);
+        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
+        if (this.task.solutionType === 'vector_values') {
+            this.specialSolution = this.task.getSolution();
+            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                let answerArray = [];
+                for (let i = 0; i < this.specialSolution.components.length; i++) {
+                    let component = this.specialSolution.components[i];
+                    answerArray.push({name: component.name, answer: '', solved: null});
+                }
+                this.taskDetails.answerMultipleChoice = answerArray;
+            }
+        }
         if (this.task.subtasks) {
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
@@ -196,7 +223,14 @@ export class TaskDetail {
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
         if (!this.rootTask && this.route.isAnswerFeedbackEnabled()) {
-            this.maxScore = 100;
+            if (this.task.solutionType == 'vector_values') {
+                this.maxScore = 40 * this.specialSolution.components.length;
+                if (this.maxScore > 200) {
+                    this.maxScore = 200;
+                }
+            } else {
+                this.maxScore = 100;
+            }
             this.orangeScore = 50;
             this.penalty = 10;
             this.minScore = 10;
@@ -270,7 +304,7 @@ export class TaskDetail {
         if (this.taskDetails.skipped) {
             this.taskDetails.newTries = 0;
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value'){
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values'){
             this.subscribeCKEvents();
         }
         eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
@@ -293,8 +327,9 @@ export class TaskDetail {
         }
     }
     // Show keyboard
-    public setKeyboardOn(state) {
+    public setKeyboardOn(state, answerIndex = null) {
         let that = this;
+        this.answerIndex = answerIndex;
         if (state && this.task.solutionType != "gps") {
             CustomKeyBoard.show(function(){
                 // Scroll input field into view (may happen that the field is hidden by keyboard)
@@ -419,12 +454,12 @@ export class TaskDetail {
             let f_solution  = parseFloat(this.task.getSolution());
             if (f_answer.toString() == f_solution.toString()) {
                 this.CalculateScore("value", "solved");
-                this.taskSolved('solved', solution, 0);
+                this.taskSolved('solved', solution);
             } else {
                 if(this.sessionInfo != null){
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', solution, 0);
+                this.taskSolved('', solution);
             }
         } else if (this.task.solutionType == "multiple_choice") {
             console.log(this.multipleChoiceList);
@@ -448,13 +483,13 @@ export class TaskDetail {
             let solution = [this.task.getSolution()]
             if (taskSuccess) {
                 this.CalculateScore("multiple_choice", "solved");
-                this.taskSolved('solved', solution, 0);
+                this.taskSolved('solved', solution);
             } else {
                 if(this.sessionInfo != null){
                     details = JSON.stringify({solution: checkedByUser, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', [''], 0);
+                this.taskSolved('', ['']);
             }
         } else if (this.task.solutionType == "range") {
             let solutionList = this.task.getSolutionList();
@@ -466,7 +501,7 @@ export class TaskDetail {
             if (answer >= von && answer <= bis) {
                 this.CalculateScore("range", "solved");
                 //DEBUG:LOG PAREI AQUI
-                this.taskSolved('solved', solution, 0);
+                this.taskSolved('solved', solution);
             } else {
                 if (solutionList.length == 4) {
                     //oranges intervall (solvedLow)
@@ -475,18 +510,18 @@ export class TaskDetail {
                     let solution = [this.taskDetails.answer];
                     if (answer >= vonLow && answer <= bisLow) {
                         this.CalculateScore("range", "solved_low");
-                        this.taskSolved('solved_low', solution, 0);
+                        this.taskSolved('solved_low', solution);
                     } else {
                         if(this.sessionInfo != null){
                             this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                         }
-                        this.taskSolved('', [''], 0);
+                        this.taskSolved('', ['']);
                     }
                 } else {
                     if(this.sessionInfo != null){
                         this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                     }
-                    this.taskSolved('', [''], 0);
+                    this.taskSolved('', ['']);
                 }
             }
         } else if (this.task.solutionType == "gps") {
@@ -524,6 +559,39 @@ export class TaskDetail {
                     // code...
                     break;
             }
+        } else if (this.task.solutionType == "vector_values") {
+            let answers = this.taskDetails.answerMultipleChoice;
+            let solutions = this.specialSolution.components;
+            let solvedTask = true;
+            let detailSolutions = [];
+            let solutionText = ""
+            console.log('Answers', answers);
+            for (let i = 0; i < answers.length; i++) {
+                let answer = answers[i];
+                let solution = solutions[i];
+                detailSolutions.push({name: solution.name, answer: answer.answer});
+                answer.solved = answer.answer == solution.val
+                if (!answer.solved) {
+                    solvedTask = false;
+                    continue;
+                }
+                if (i == 0) {
+                    solutionText += `${solution.name}: ${answer.answer}`;
+                } else {
+                    solutionText += `, ${solution.name}: ${answer.answer}`;
+                }
+            }
+            if (solvedTask) {
+                this.CalculateScore("vector_values", "solved");
+                console.log("Task Solved with Solution:", solutionText);
+                this.taskSolved('solved',[solutionText]);
+            } else {
+                if(this.sessionInfo != null){
+                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
+                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
+                this.taskSolved('', ['']);
+            }
         }
     }
 
@@ -535,7 +603,7 @@ export class TaskDetail {
     async completeTask(){
         this.taskDetails.score = this.maxScore;
         this.score.score += this.taskDetails.score;
-        this.taskSolved("solved", [""], 0);
+        this.taskSolved("solved", [""]);
     }
 
     showSolutionSample() {
@@ -636,7 +704,7 @@ export class TaskDetail {
     }
 
 
-    async taskSolved(solved: string, solution: string[], scoreVal: number) {
+    async taskSolved(solved: string, solution: string[]) {
         let that = this;
         // Add event of user entering trail when session active
         if (!this.route.isAnswerFeedbackEnabled()) {
@@ -649,8 +717,6 @@ export class TaskDetail {
             this.taskDetails.skipped = false;
             let message = "";
             let title = "";
-            if (this.task.solutionType == "gps") {
-            }
             if (solved == 'solved') {
                 title = 'a_alert_right_answer_title';
                 this.taskDetails.solved = true;
@@ -998,6 +1064,17 @@ export class TaskDetail {
                 }
             }
         }
+        if (solutionType == 'vector_values') {
+            if (this.taskDetails.tries > 0) {
+                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                this.score.score += this.taskDetails.score;
+            }
+            else {
+                this.taskDetails.score = this.maxScore;
+                this.score.score += this.taskDetails.score;
+            }
+        }
         console.log("FinalScore: " + this.score.score);
     }
 
@@ -1044,7 +1121,7 @@ export class TaskDetail {
                 this.taskDetails.score = this.maxScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved", solution, 0);
+            this.taskSolved("solved", solution);
         } else if (currDistance > (distance - tempOrange) && currDistance < (distance + tempOrange)) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
@@ -1054,9 +1131,9 @@ export class TaskDetail {
                 this.taskDetails.score = this.orangeScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved_low", solution, 0);
+            this.taskSolved("solved_low", solution);
         } else {
-            this.taskSolved('', solution, 0);
+            this.taskSolved('', solution);
         }
     }
 
@@ -1115,7 +1192,7 @@ export class TaskDetail {
                 this.taskDetails.score = this.maxScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved", solution, 0);
+            this.taskSolved("solved", solution);
         }
         else if (bearingSolution > 0 && lenghtSolution > 0) {
             if (this.taskDetails.tries > 0) {
@@ -1125,9 +1202,9 @@ export class TaskDetail {
                 this.taskDetails.score = this.orangeScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved_low", solution, 0);
+            this.taskSolved("solved_low", solution);
         } else {
-            this.taskSolved('', solution, 0);
+            this.taskSolved('', solution);
         }
     }
 
@@ -1166,7 +1243,7 @@ export class TaskDetail {
                 this.taskDetails.score = this.maxScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved", solution, 0);
+            this.taskSolved("solved", solution);
         }
         else if (allOrange) {
             if (this.taskDetails.tries > 0) {
@@ -1176,9 +1253,9 @@ export class TaskDetail {
                 this.taskDetails.score = this.orangeScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved_low", solution, 0);
+            this.taskSolved("solved_low", solution);
         }
-        else this.taskSolved('', solution, 0);
+        else this.taskSolved('', solution);
     }
 
     CalculateSquare(pointA: L.Marker, pointB: L.Marker, pointC: L.Marker, pointD: L.Marker, distance: number) {
@@ -1229,7 +1306,7 @@ export class TaskDetail {
                 this.taskDetails.score = this.maxScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved", solution, 0);
+            this.taskSolved("solved", solution);
         }
         else if (allOrange && diagonalSolution > 0) {
             if (this.taskDetails.tries > 0) {
@@ -1239,9 +1316,9 @@ export class TaskDetail {
                 this.taskDetails.score = this.orangeScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved_low", solution, 0);
+            this.taskSolved("solved_low", solution);
         }
-        else this.taskSolved('', solution, 0);
+        else this.taskSolved('', solution);
     }
 
     CalculateCenterTwoP(pointA: L.LatLng, pointB: L.LatLng, currPosition: L.Marker) {
@@ -1265,7 +1342,7 @@ export class TaskDetail {
                 this.taskDetails.score = this.maxScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved", solution, 0);
+            this.taskSolved("solved", solution);
         }
         else if (delta < tempOrange) {
             if (this.taskDetails.tries > 0) {
@@ -1275,9 +1352,9 @@ export class TaskDetail {
                 this.taskDetails.score = this.orangeScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved_low", solution, 0);
+            this.taskSolved("solved_low", solution);
         }
-        else this.taskSolved('', solution, 0);
+        else this.taskSolved('', solution);
     }
 
 
@@ -1305,7 +1382,7 @@ export class TaskDetail {
                 this.taskDetails.score = this.maxScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved", solution, 0);
+            this.taskSolved("solved", solution);
         }
         else if (deltaAB < tempOrange && deltaBC < tempOrange) {
             if (this.taskDetails.tries > 0) {
@@ -1315,9 +1392,9 @@ export class TaskDetail {
                 this.taskDetails.score = this.orangeScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved_low", solution, 0);
+            this.taskSolved("solved_low", solution);
         }
-        else this.taskSolved('', solution, 0);
+        else this.taskSolved('', solution);
     }
 
 
@@ -1383,7 +1460,7 @@ export class TaskDetail {
                 this.taskDetails.score = this.maxScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved", solution, 0);
+            this.taskSolved("solved", solution);
         }
         else if (solutionSlope > 0 && solutionY > 0) {
             if (this.taskDetails.tries > 0) {
@@ -1394,9 +1471,9 @@ export class TaskDetail {
                 this.taskDetails.score = this.orangeScore;
             }
             this.score.score += this.taskDetails.score;
-            this.taskSolved("solved_low", solution, 0);
+            this.taskSolved("solved_low", solution);
         }
-        else this.taskSolved('', solutionFail, 0);
+        else this.taskSolved('', solutionFail);
     }
 
     //Possibly add this to the MyMath class
@@ -1493,5 +1570,20 @@ export class TaskDetail {
         } else {
             this.closeDetails();
         }
+    }
+
+    isSpecialTypeAnswered() {
+        let isAnswered = true;
+        if (!this.isSpecialTaskType) {
+            return isAnswered;
+        }
+        if (this.task.solutionType == 'vector_values') {
+            for (let answerObject of this.taskDetails.answerMultipleChoice) {
+                if (answerObject.answer === "") {
+                    isAnswered = false;
+                }
+            }
+        }
+        return isAnswered;
     }
 }

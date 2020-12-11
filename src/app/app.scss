@@ -529,7 +529,7 @@ ion-fab{
 
 /*  ========== Checkboxes =========  */
 
-ion-list{
+ion-list:not(.vector-input-list){
     & > *{
         border: none!important;
     }

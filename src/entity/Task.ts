@@ -149,6 +149,9 @@ export class Task {
 
     getSolution(): string {
         let solution = Helper.safeJsonDecode(this.solution);
+        if (this.solutionType == "vector_values") {
+            return solution;
+        }
         if (this.solutionType != 'multiple_choice') {
             return solution[0];
         } else {
