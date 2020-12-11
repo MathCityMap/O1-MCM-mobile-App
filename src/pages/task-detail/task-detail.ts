@@ -182,10 +182,10 @@ export class TaskDetail {
             this.task = this.rootTask.subtasks[this.subTaskIndex]
         }
         console.log("Opened Task: ", this.task);
-        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values');
+        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
-        if (this.task.solutionType === 'vector_values') {
+        if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
             this.specialSolution = this.task.getSolution();
             if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
                 let answerArray = [];
@@ -223,7 +223,7 @@ export class TaskDetail {
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
         if (!this.rootTask && this.route.isAnswerFeedbackEnabled()) {
-            if (this.task.solutionType == 'vector_values') {
+            if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
                 this.maxScore = 40 * this.specialSolution.components.length;
                 if (this.maxScore > 200) {
                     this.maxScore = 200;
@@ -304,7 +304,7 @@ export class TaskDetail {
         if (this.taskDetails.skipped) {
             this.taskDetails.newTries = 0;
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values'){
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals'){
             this.subscribeCKEvents();
         }
         eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
@@ -565,7 +565,6 @@ export class TaskDetail {
             let solvedTask = true;
             let detailSolutions = [];
             let solutionText = ""
-            console.log('Answers', answers);
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
                 let solution = solutions[i];
@@ -576,13 +575,45 @@ export class TaskDetail {
                     continue;
                 }
                 if (i == 0) {
-                    solutionText += `${solution.name}: ${answer.answer}`;
+                    solutionText += `${answer.name}: ${answer.answer}`;
                 } else {
-                    solutionText += `, ${solution.name}: ${answer.answer}`;
+                    solutionText += `, ${answer.name}: ${answer.answer}`;
                 }
             }
             if (solvedTask) {
                 this.CalculateScore("vector_values", "solved");
+                console.log("Task Solved with Solution:", solutionText);
+                this.taskSolved('solved',[solutionText]);
+            } else {
+                if(this.sessionInfo != null){
+                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
+                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
+                this.taskSolved('', ['']);
+            }
+        } else if (this.task.solutionType == "vector_intervals") {
+            let answers = this.taskDetails.answerMultipleChoice;
+            let solutions = this.specialSolution.components;
+            let solvedTask = true;
+            let detailSolutions = [];
+            let solutionText = ""
+            for (let i = 0; i < answers.length; i++) {
+                let answer = answers[i];
+                let solution = solutions[i];
+                detailSolutions.push({name: solution.name, answer: answer.answer});
+                answer.solved = answer.answer >= solution.low && answer.answer <= solution.high;
+                if (!answer.solved) {
+                    solvedTask = false;
+                    continue;
+                }
+                if (i == 0) {
+                    solutionText += `${answer.name}: ${answer.answer}`;
+                } else {
+                    solutionText += `, ${answer.name}: ${answer.answer}`;
+                }
+            }
+            if (solvedTask) {
+                this.CalculateScore("vector_intervals", "solved");
                 console.log("Task Solved with Solution:", solutionText);
                 this.taskSolved('solved',[solutionText]);
             } else {
@@ -1064,7 +1095,7 @@ export class TaskDetail {
                 }
             }
         }
-        if (solutionType == 'vector_values') {
+        if (solutionType == 'vector_values' || solutionType == 'vector_intervals') {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);

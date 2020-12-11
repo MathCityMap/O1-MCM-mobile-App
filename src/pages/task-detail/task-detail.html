@@ -37,7 +37,7 @@
                     </ion-input>
                     <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
-                <ion-list class="vector-input-list" *ngIf="task && task.solutionType == 'vector_values' && taskDetails && route.isAnswerValidationEnabled()">
+                <ion-list class="vector-input-list" *ngIf="task && (task.solutionType == 'vector_values' || task.solutionType == 'vector_intervals') && taskDetails && route.isAnswerValidationEnabled()">
                     <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{'is-focused': answerIndex == i && keyboardVisible()}">
                         <ion-label floating>{{answerField.name}}</ion-label>
                         <ion-input (keyup.enter)="checkResult()"
