@@ -222,7 +222,7 @@ export class TaskDetail {
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
-        if (!this.rootTask && this.route.isAnswerFeedbackEnabled()) {
+        if (!this.rootTask && this.route.isAnswerFeedbackEnabled() && this.task.solutionType != 'info') {
             if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
                 this.maxScore = 40 * this.specialSolution.components.length;
                 if (this.maxScore > 200) {

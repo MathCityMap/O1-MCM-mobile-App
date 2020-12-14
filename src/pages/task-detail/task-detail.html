@@ -21,9 +21,9 @@
                 <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && !rootTask && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
-            <div class="answer">
+            <div class="answer" *ngIf="task && task.solutionType != 'info'">
                 <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
-                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled()">
+                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
                     <ion-input (keyup.enter)="checkResult()"
                                [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
@@ -79,21 +79,21 @@
                             </button>
                         </ion-col>
 
-                        <ion-col *ngIf="route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()">
+                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()) && (task && task.solutionType != 'info')">
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
                             [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !isSpecialTypeAnswered() && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
                                 {{ "a_btn_check_answer" | translate }}
                             </button>
                         </ion-col>
 
-                        <ion-col *ngIf="route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()">
+                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()) || (task && task.solutionType == 'info')">
                             <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
                                     (click)="completeTask()">
                                 {{ "a_task_complete" | translate }}
                             </button>
                         </ion-col>
 
-                        <ion-col *ngIf="route && !route.isAnswerFeedbackEnabled()">
+                        <ion-col *ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != 'info')">
                             <button ion-button small round *ngIf="task && taskDetails"
                                     [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
                                 {{ "p_save" | translate }}
