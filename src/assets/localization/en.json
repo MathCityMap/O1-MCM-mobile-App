@@ -1132,6 +1132,7 @@
   "p_wiz_tasks": "Wizard tasks",
   "p_wiz_task_create": "Create wizard task",
   "fts_no_results_warning": "Please check spelling and / or adjust the advanced search parameters and try again.",
+  "a_task_set_answer": "Solution {{index}}",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

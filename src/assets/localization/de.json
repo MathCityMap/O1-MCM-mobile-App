@@ -1131,5 +1131,6 @@
   "p_group": "Gruppe",
   "p_wiz_tasks": "Wizard-Aufgaben",
   "p_wiz_task_create": "Wizard-Aufgabe erstellen",
-  "fts_no_results_warning": "Bitte überprüfen Sie die Rechtschreibung und / oder passen Sie die erweiterten Suchparameter an und versuchen Sie es erneut."
+  "fts_no_results_warning": "Bitte überprüfen Sie die Rechtschreibung und / oder passen Sie die erweiterten Suchparameter an und versuchen Sie es erneut.",
+  "a_task_set_answer": "Lösung {{index}}"
 }

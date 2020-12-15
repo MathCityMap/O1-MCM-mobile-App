@@ -182,7 +182,7 @@ export class TaskDetail {
             this.task = this.rootTask.subtasks[this.subTaskIndex]
         }
         console.log("Opened Task: ", this.task);
-        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals');
+        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
@@ -195,6 +195,16 @@ export class TaskDetail {
                 }
                 this.taskDetails.answerMultipleChoice = answerArray;
             }
+        } else if (this.task.solutionType === 'set') {
+            this.specialSolution = this.task.getSolution();
+            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                let answerArray = [];
+                for (let i = 0; i < this.specialSolution.length; i++) {
+                    answerArray.push({answer: '', solved: null});
+                }
+                this.taskDetails.answerMultipleChoice = answerArray;
+            }
+            console.log(this.taskDetails.answerMultipleChoice);
         }
         if (this.task.subtasks) {
             this.solvedSubtasks = [];
@@ -225,6 +235,11 @@ export class TaskDetail {
         if (!this.rootTask && this.route.isAnswerFeedbackEnabled() && this.task.solutionType != 'info') {
             if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
                 this.maxScore = 40 * this.specialSolution.components.length;
+                if (this.maxScore > 200) {
+                    this.maxScore = 200;
+                }
+            } else if (this.task.solutionType == 'set') {
+                this.maxScore = 40 * this.specialSolution.length;
                 if (this.maxScore > 200) {
                     this.maxScore = 200;
                 }
@@ -304,7 +319,7 @@ export class TaskDetail {
         if (this.taskDetails.skipped) {
             this.taskDetails.newTries = 0;
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals'){
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set'){
             this.subscribeCKEvents();
         }
         eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
@@ -315,7 +330,7 @@ export class TaskDetail {
         if(CustomKeyBoard.isVisible()){
             CustomKeyBoard.hide();
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value'){
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set'){
             this.unsubscribeCKEvents();
         }
         if(this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed){
@@ -614,6 +629,65 @@ export class TaskDetail {
             }
             if (solvedTask) {
                 this.CalculateScore("vector_intervals", "solved");
+                console.log("Task Solved with Solution:", solutionText);
+                this.taskSolved('solved',[solutionText]);
+            } else {
+                if(this.sessionInfo != null){
+                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
+                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
+                this.taskSolved('', ['']);
+            }
+        } else if (this.task.solutionType === "set") {
+            let answers = [];
+            for (let index in this.taskDetails.answerMultipleChoice) {
+                let answer = {answer: this.taskDetails.answerMultipleChoice[index].answer, originalIndex: index};
+                answers.push(answer);
+            }
+            answers.sort((a, b) => {
+                    if (parseFloat(a.answer) > parseFloat(b.answer)) {
+                        return 1;
+                    } else if (parseFloat(a.answer) === parseFloat(b.answer)) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+            });
+            let solutions = this.specialSolution.sort((a, b) => {
+                if (parseFloat(a) > parseFloat(b)) {return 1;}
+                else if (parseFloat(a) === parseFloat(b)) {return 0;}
+                else {return -1;}
+            });
+            console.log("answers", answers);
+            console.log("solutions", solutions);
+            let solvedTask = true;
+            let detailSolutions = [];
+            let solutionText = "";
+            for (let i = 0; i < answers.length; i++) {
+                let answer = answers[i];
+                let originalAnswer = this.taskDetails.answerMultipleChoice[answer.originalIndex];
+                for (let solution of solutions) {
+                    if (solution == answer.answer) {
+                        originalAnswer.solved = true;
+                        break;
+                    } else {
+                        originalAnswer.solved = false;
+                    }
+                }
+                detailSolutions.push(answer.answer);
+                if (!originalAnswer.solved) {
+                    solvedTask = false;
+                    continue;
+                }
+                if (i == 0) {
+                    solutionText += `${answer.answer}`;
+                } else {
+                    solutionText += `, ${answer.answer}`;
+                }
+            }
+            console.log(this.taskDetails.answerMultipleChoice);
+            if (solvedTask) {
+                this.CalculateScore("set", "solved");
                 console.log("Task Solved with Solution:", solutionText);
                 this.taskSolved('solved',[solutionText]);
             } else {
@@ -1095,7 +1169,7 @@ export class TaskDetail {
                 }
             }
         }
-        if (solutionType == 'vector_values' || solutionType == 'vector_intervals') {
+        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set') {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
