@@ -1140,7 +1140,10 @@
   "p_session_select_exclusive_initial_task": "Select an initial task",
   "p_session_info_exclusive_initial_task": "Exclusive initial task",
   "page_navigation": "Page navigation",
-  "a_alert_blanks_false_answer": "Try again!\n Your answer '{{L}}' contains errors.",
+  "a_alert_blanks_false_answer_1": "Try again!\n Your answer '{{L}}' contains errors.",
+  "a_alert_set_false_answer_1": "Try again!\n Your answer contains following errors: '{{L}}'.",
+  "a_alert_set_false_answer_2": "Try to take a hint.\n Your answer contains following errors: '{{L}}'.",
+  "a_alert_blanks_false_answer_2": "Try to take a hint.\n Your answer '{{L}}' contains errors.",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

@@ -1071,7 +1071,7 @@ var TaskDetail = /** @class */ (function () {
     };
     TaskDetail.prototype.checkResult = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var solution, answer, details, f_answer, f_solution, taskSuccess, checkedByUser, i, item, solution_1, solutionList, von, bis, answer_1, solution_2, vonLow, bisLow, solution_3, gpsType, answers, solutions, solvedTask, detailSolutions, solutionText, i, answer_2, solution_4, answers, solutions, solvedTask, detailSolutions, solutionText, i, answer_3, solution_5, answers, index, answer_4, solutions, solvedTask, detailSolutions, solutionText, i, answer_5, originalAnswer, _i, solutions_1, solution_6, solutions, precision, solvedTask, detailSolutions, blankText, _loop_2, _a, _b, answer_6;
+            var solution, answer, details, f_answer, f_solution, taskSuccess, checkedByUser, i, item, solution_1, solutionList, von, bis, answer_1, solution_2, vonLow, bisLow, solution_3, gpsType, answers, solutions, solvedTask, detailSolutions, solutionText, wrongAnswersText, i, answer_2, solution_4, answers, solutions, solvedTask, detailSolutions, solutionText, wrongAnswersText, i, answer_3, solution_5, answers, index, answer_4, solutions, solvedTask, detailSolutions, solutionText, wrongAnswersText, i, answer_5, originalAnswer, _i, solutions_1, solution_6, solutions, precision, solvedTask, detailSolutions, blankText, _loop_2, _a, _b, answer_6;
             return __generator(this, function (_c) {
                 if ((this.task.solutionType == 'range' || this.task.solutionType == 'value') && !this.isDecimal(this.taskDetails.answer)) {
                     return [2 /*return*/];
@@ -1196,6 +1196,7 @@ var TaskDetail = /** @class */ (function () {
                     solvedTask = true;
                     detailSolutions = [];
                     solutionText = "";
+                    wrongAnswersText = "";
                     for (i = 0; i < answers.length; i++) {
                         answer_2 = answers[i];
                         solution_4 = solutions[i];
@@ -1203,6 +1204,12 @@ var TaskDetail = /** @class */ (function () {
                         answer_2.solved = answer_2.answer == solution_4.val;
                         if (!answer_2.solved) {
                             solvedTask = false;
+                            if (i == 0) {
+                                wrongAnswersText += answer_2.name + ": " + answer_2.answer;
+                            }
+                            else {
+                                wrongAnswersText += ", " + answer_2.name + ": " + answer_2.answer;
+                            }
                             continue;
                         }
                         if (i == 0) {
@@ -1222,7 +1229,7 @@ var TaskDetail = /** @class */ (function () {
                             details = JSON.stringify({ solution: detailSolutions, solutionType: this.task.solutionType });
                             this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                         }
-                        this.taskSolved('', ['']);
+                        this.taskSolved('', [wrongAnswersText]);
                     }
                 }
                 else if (this.task.solutionType == "vector_intervals") {
@@ -1231,13 +1238,20 @@ var TaskDetail = /** @class */ (function () {
                     solvedTask = true;
                     detailSolutions = [];
                     solutionText = "";
+                    wrongAnswersText = "";
                     for (i = 0; i < answers.length; i++) {
                         answer_3 = answers[i];
                         solution_5 = solutions[i];
                         detailSolutions.push({ name: solution_5.name, answer: answer_3.answer });
-                        answer_3.solved = answer_3.answer >= solution_5.low && answer_3.answer <= solution_5.high;
+                        answer_3.solved = parseFloat(answer_3.answer) >= parseFloat(solution_5.low) && parseFloat(answer_3.answer) <= parseFloat(solution_5.high);
                         if (!answer_3.solved) {
                             solvedTask = false;
+                            if (i == 0) {
+                                wrongAnswersText += answer_3.name + ": " + answer_3.answer;
+                            }
+                            else {
+                                wrongAnswersText += ", " + answer_3.name + ": " + answer_3.answer;
+                            }
                             continue;
                         }
                         if (i == 0) {
@@ -1257,7 +1271,7 @@ var TaskDetail = /** @class */ (function () {
                             details = JSON.stringify({ solution: detailSolutions, solutionType: this.task.solutionType });
                             this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                         }
-                        this.taskSolved('', ['']);
+                        this.taskSolved('', [wrongAnswersText]);
                     }
                 }
                 else if (this.task.solutionType === "set") {
@@ -1293,6 +1307,7 @@ var TaskDetail = /** @class */ (function () {
                     solvedTask = true;
                     detailSolutions = [];
                     solutionText = "";
+                    wrongAnswersText = "";
                     for (i = 0; i < answers.length; i++) {
                         answer_5 = answers[i];
                         originalAnswer = this.taskDetails.answerMultipleChoice[answer_5.originalIndex];
@@ -1309,6 +1324,12 @@ var TaskDetail = /** @class */ (function () {
                         detailSolutions.push(answer_5.answer);
                         if (!originalAnswer.solved) {
                             solvedTask = false;
+                            if (i == 0) {
+                                wrongAnswersText += "" + answer_5.answer;
+                            }
+                            else {
+                                wrongAnswersText += ", " + answer_5.answer;
+                            }
                             continue;
                         }
                         if (i == 0) {
@@ -1329,7 +1350,7 @@ var TaskDetail = /** @class */ (function () {
                             details = JSON.stringify({ solution: detailSolutions, solutionType: this.task.solutionType });
                             this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                         }
-                        this.taskSolved('', ['']);
+                        this.taskSolved('', [wrongAnswersText]);
                     }
                 }
                 else if (this.task.solutionType === "blanks") {
@@ -1672,7 +1693,9 @@ var TaskDetail = /** @class */ (function () {
                             if (this.task.solutionType == "gps")
                                 message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                             else if (this.task.solutionType == "blanks")
-                                message = 'a_alert_blanks_false_answer';
+                                message = 'a_alert_blanks_false_answer_1';
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                message = 'a_alert_set_false_answer_1';
                             else
                                 message = 'a_alert_false_answer_1';
                             buttons = [
@@ -1690,11 +1713,19 @@ var TaskDetail = /** @class */ (function () {
                             if (this.task.solutionType == "gps")
                                 message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                             else if (this.task.solutionType == "blanks")
-                                message = 'a_alert_blanks_false_answer';
+                                message = 'a_alert_blanks_false_answer_2';
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                message = 'a_alert_set_false_answer_2';
                             else
                                 message = 'a_alert_false_answer_2';
-                            if (!this.route.isHintsEnabled())
-                                message = 'a_alert_false_answer_1';
+                            if (!this.route.isHintsEnabled()) {
+                                if (this.task.solutionType == "blanks")
+                                    message = 'a_alert_blanks_false_answer_2';
+                                else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                    message = 'a_alert_set_false_answer_2';
+                                else
+                                    message = 'a_alert_false_answer_1';
+                            }
                             bShowHint = {
                                 title: 'a_t_show_hint',
                                 callback: function () {

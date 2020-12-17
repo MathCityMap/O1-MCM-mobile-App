@@ -613,7 +613,8 @@ export class TaskDetail {
             let solutions = this.specialSolution.components;
             let solvedTask = true;
             let detailSolutions = [];
-            let solutionText = ""
+            let solutionText = "";
+            let wrongAnswersText = "";
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
                 let solution = solutions[i];
@@ -621,6 +622,11 @@ export class TaskDetail {
                 answer.solved = answer.answer == solution.val
                 if (!answer.solved) {
                     solvedTask = false;
+                    if (i == 0) {
+                        wrongAnswersText += `${answer.name}: ${answer.answer}`;
+                    } else {
+                        wrongAnswersText += `, ${answer.name}: ${answer.answer}`;
+                    }
                     continue;
                 }
                 if (i == 0) {
@@ -638,21 +644,27 @@ export class TaskDetail {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', ['']);
+                this.taskSolved('', [wrongAnswersText]);
             }
         } else if (this.task.solutionType == "vector_intervals") {
             let answers = this.taskDetails.answerMultipleChoice;
             let solutions = this.specialSolution.components;
             let solvedTask = true;
             let detailSolutions = [];
-            let solutionText = ""
+            let solutionText = "";
+            let wrongAnswersText = "";
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
                 let solution = solutions[i];
                 detailSolutions.push({name: solution.name, answer: answer.answer});
-                answer.solved = answer.answer >= solution.low && answer.answer <= solution.high;
+                answer.solved = parseFloat(answer.answer) >= parseFloat(solution.low) && parseFloat(answer.answer) <= parseFloat(solution.high);
                 if (!answer.solved) {
                     solvedTask = false;
+                    if (i == 0) {
+                        wrongAnswersText += `${answer.name}: ${answer.answer}`;
+                    } else {
+                        wrongAnswersText += `, ${answer.name}: ${answer.answer}`;
+                    }
                     continue;
                 }
                 if (i == 0) {
@@ -670,7 +682,7 @@ export class TaskDetail {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', ['']);
+                this.taskSolved('', [wrongAnswersText]);
             }
         } else if (this.task.solutionType === "set") {
             let answers = [];
@@ -697,6 +709,7 @@ export class TaskDetail {
             let solvedTask = true;
             let detailSolutions = [];
             let solutionText = "";
+            let wrongAnswersText = "";
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
                 let originalAnswer = this.taskDetails.answerMultipleChoice[answer.originalIndex];
@@ -711,6 +724,11 @@ export class TaskDetail {
                 detailSolutions.push(answer.answer);
                 if (!originalAnswer.solved) {
                     solvedTask = false;
+                    if (i == 0) {
+                        wrongAnswersText += `${answer.answer}`;
+                    } else {
+                        wrongAnswersText += `, ${answer.answer}`;
+                    }
                     continue;
                 }
                 if (i == 0) {
@@ -729,7 +747,7 @@ export class TaskDetail {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', ['']);
+                this.taskSolved('', [wrongAnswersText]);
             }
         } else if (this.task.solutionType === "blanks") {
             console.log("we got blanks going on here", this.taskDetails.answerMultipleChoice, this.specialSolution);
@@ -1030,7 +1048,8 @@ export class TaskDetail {
                 case 0:
                 case 1:
                     if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer';
+                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
+                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
                     else message = 'a_alert_false_answer_1';
                     buttons = [
                         {
@@ -1045,9 +1064,14 @@ export class TaskDetail {
                 case 3:
                 case 4:
                     if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer';
+                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
+                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
                     else message = 'a_alert_false_answer_2';
-                    if(!this.route.isHintsEnabled()) message = 'a_alert_false_answer_1';
+                    if(!this.route.isHintsEnabled()) {
+                        if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
+                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
+                        else message = 'a_alert_false_answer_1';
+                    }
                     let bShowHint = {
                         title: 'a_t_show_hint',
                         callback: function () {

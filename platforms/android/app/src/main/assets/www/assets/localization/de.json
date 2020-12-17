@@ -1140,5 +1140,8 @@
   "p_session_select_exclusive_initial_task": "Wähle eine Startaufgabe",
   "p_session_info_exclusive_initial_task": "Exklusive Startaufgabe",
   "page_navigation": "Seitennavigation",
-  "a_alert_blanks_false_answer": "Versuch's nochmal!\n Deine Antwort '{{L}}' enthält Fehler."
+  "a_alert_blanks_false_answer_1": "Versuch's nochmal!\n Deine Antwort '{{L}}' enthält Fehler.",
+  "a_alert_set_false_answer_1": "Versuch's nochmal!\n Deine Antwort enthält folgende Fehler: '{{L}}'.",
+  "a_alert_set_false_answer_2": "Vielleicht hilft ein Hinweis?\n Deine Antwort enthält folgende Fehler: '{{L}}'.",
+  "a_alert_blanks_false_answer_2": "Vielleicht hilft ein Hinweis?\n Deine Antwort '{{L}}' enthält Fehler."
 }
