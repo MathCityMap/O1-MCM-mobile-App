@@ -61794,6 +61794,21 @@ ion-modal .modal.card.icon .score {
   font-size: 24px;
 }
 
+ion-modal .modal.card.icon .blank {
+  display: inline-block;
+  min-width: 15px;
+  font-size: inherit;
+}
+
+ion-modal .modal.card.icon .blank.correct {
+  color: #3DCC68;
+}
+
+ion-modal .modal.card.icon .blank.false {
+  color: #E62B25;
+  border-bottom: 1px solid #E62B25;
+}
+
 ion-modal .modal.card.icon p.main-text {
   text-align: center;
 }
@@ -63994,6 +64009,34 @@ page-task-detail .task-content .vector-input-list.list-md .item-input.ng-valid.i
 
 page-task-detail .task-content .vector-input-list.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus).is-focused .item-inner ion-label {
   color: #036d99;
+}
+
+page-task-detail .task-content #blankContainer {
+  padding-bottom: 5px;
+  text-transform: none;
+}
+
+page-task-detail .task-content #blankContainer.disabled .blankInput {
+  pointer-events: none;
+  color: #a6a6a6;
+}
+
+page-task-detail .task-content #blankContainer .blankInput {
+  text-align: center;
+  min-width: 50px;
+  display: inline-block;
+  border-bottom: 1px solid #e5e5e5;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+page-task-detail .task-content #blankContainer .blankInput:focus {
+  border-bottom: 1px solid #036d99;
+}
+
+page-task-detail .task-content #blankContainer .blankInput.disabled {
+  pointer-events: none;
+  color: #a6a6a6;
 }
 
 page-task-detail .task-content.subtask {

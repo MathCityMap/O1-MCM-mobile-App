@@ -97,6 +97,31 @@ page-task-detail {
                 }
             }
         }
+        #blankContainer {
+            padding-bottom: 5px;
+            text-transform: none;
+            &.disabled {
+                .blankInput {
+                    pointer-events: none;
+                    color: color($colors, grey);
+                }
+            }
+            .blankInput {
+                &:focus {
+                    border-bottom: 1px solid color($colors, primary);
+                }
+                text-align: center;
+                min-width: 50px;
+                display: inline-block;
+                border-bottom: 1px solid color($colors, light-grey);
+                font-family: inherit;
+                font-size: inherit;
+                &.disabled {
+                    pointer-events: none;
+                    color: color($colors, grey);
+                }
+            }
+        }
         &.subtask {
             background: linear-gradient(to bottom, rgba(220, 235, 240, 0) 50px, #DCEBF0 51px);
             .transition {

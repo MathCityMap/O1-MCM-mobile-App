@@ -42,7 +42,7 @@
                         <ion-label *ngIf="task.solutionType !== 'set'" floating>{{answerField.name}}</ion-label>
                         <ion-label *ngIf="task.solutionType === 'set'" floating>{{'a_task_set_answer' | translate : {index: i + 1} }}</ion-label>
                         <ion-input (keyup.enter)="checkResult()"
-                                   [disabled]="answerField.solved"
+                                   [disabled]="answerField.solved || (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))"
                                    type="text"
                                    (focus)="setKeyboardOn(true, i)"
                                    [ngModelOptions]="{standalone: true}"
@@ -52,6 +52,9 @@
                         </ion-input>
                     </ion-item>
                 </ion-list>
+                <ion-item *ngIf="task && task.solutionType === 'blanks'">
+                    <p [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))}" id="blankContainer"></p>
+                </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled()">
                     <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
                         <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>

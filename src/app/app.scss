@@ -1077,6 +1077,18 @@ ion-modal {
             .score{
                 font-size: 24px;
             }
+            .blank{
+                display: inline-block;
+                min-width: 15px;
+                font-size: inherit;
+                &.correct {
+                    color: color($colors, success);
+                }
+                &.false {
+                    color: color($colors, error);
+                    border-bottom: 1px solid color($colors, error);
+                }
+            }
             p.main-text{
                 text-align: center;
             }

@@ -22,6 +22,7 @@ import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
+import * as Levenstein from 'js-levenshtein';
 import {root} from "rxjs/util/root";
 
 /**
@@ -65,6 +66,7 @@ export class TaskDetail {
     private isSpecialTaskType: boolean;
     private specialSolution: any;
     private answerIndex: any = null;
+    private blankRegex = /\*\*([^*]+)\*\*/g;
 
     private multipleChoiceList: Array<any> = [];
 
@@ -182,9 +184,34 @@ export class TaskDetail {
             this.task = this.rootTask.subtasks[this.subTaskIndex]
         }
         console.log("Opened Task: ", this.task);
-        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set');
+        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
+        if (this.task.solutionType === 'blanks') {
+            this.specialSolution = this.task.getSolution();
+            let blankMatch;
+            let blankText: string = this.specialSolution.val
+            while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
+                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {return answer.id === blankMatch[1]}) : null;
+                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
+            }
+            let blankContainer = document.getElementById('blankContainer');
+            blankContainer.innerHTML = blankText;
+            let inputs = blankContainer.getElementsByClassName('blankInput');
+            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                let answers = [];
+                for (let input of Array.from(inputs)) {
+                    answers.push({id: input.id, answer: "", solved: null})
+                }
+                this.taskDetails.answerMultipleChoice = answers;
+            }
+            for (let input of Array.from(inputs)) {
+                input.addEventListener('input', (event: any) => {
+                    let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {return answer.id === input.id});
+                    answerElement.answer = event.currentTarget.innerText;
+                });
+            }
+        }
         if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
             this.specialSolution = this.task.getSolution();
             if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
@@ -240,6 +267,13 @@ export class TaskDetail {
                 }
             } else if (this.task.solutionType == 'set') {
                 this.maxScore = 40 * this.specialSolution.length;
+                if (this.maxScore > 200) {
+                    this.maxScore = 200;
+                }
+            } else if (this.task.solutionType == 'blanks') {
+                let scorePerQuestion = this.specialSolution.settings.check_type === 'strict' ? 40 : (this.specialSolution.settings.check_type === 'normal' ? 30 : 20);
+                let amountOfQuestions = this.specialSolution.features.length;
+                this.maxScore = scorePerQuestion * amountOfQuestions;
                 if (this.maxScore > 200) {
                     this.maxScore = 200;
                 }
@@ -697,6 +731,51 @@ export class TaskDetail {
                 }
                 this.taskSolved('', ['']);
             }
+        } else if (this.task.solutionType === "blanks") {
+            console.log("we got blanks going on here", this.taskDetails.answerMultipleChoice, this.specialSolution);
+            let solutions = this.specialSolution.features;
+            let precision = this.specialSolution.settings.check_type === 'strict' ? 0 : (this.specialSolution.settings.check_type === 'normal' ? 0.2 : 0.4);
+            let solvedTask = true;
+            let detailSolutions = [];
+            let blankText: string = this.specialSolution.val;
+            for (let answer of this.taskDetails.answerMultipleChoice) {
+                let solutionObject = solutions.find(sol => {
+                    return sol.blank === '**' + answer.id + '**';
+                })
+                console.log("Solution for Answer", solutionObject, answer);
+                let answerPrecision = 1;
+                for (let solution of solutionObject.answers) {
+                    let absoluteDistance = Levenstein(solution.toLowerCase(), answer.answer.toLowerCase());
+                    console.log("absoluteDistance", absoluteDistance, solution, answer.answer);
+                    let relativeDistance = absoluteDistance / solution.length;
+                    console.log("relativeDistance", relativeDistance);
+                    if (relativeDistance < answerPrecision) {
+                        answerPrecision = relativeDistance;
+                    }
+                }
+                answer.solved = answerPrecision <= precision;
+                if (!answer.solved) {
+                    solvedTask = false;
+                } else {
+                    let htmlElement = document.getElementById(answer.id);
+                    htmlElement.classList.add('disabled');
+                }
+                let regex = new RegExp('\\*\\*' + answer.id.replaceAll('/', '\\/') + '\\*\\*');
+                let blankMatch = regex.exec(blankText);
+                blankText = blankText.replace(blankMatch[0], `<span class="blank ${answer.solved ? 'correct' : 'false'}">${answer.answer}</span>`);
+                detailSolutions.push(answer.answer);
+
+            }
+            if (solvedTask) {
+                this.CalculateScore("blanks", "solved");
+                this.taskSolved('solved',[blankText]);
+            } else {
+                if(this.sessionInfo != null){
+                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
+                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
+                this.taskSolved('', [blankText]);
+            }
         }
     }
 
@@ -951,6 +1030,7 @@ export class TaskDetail {
                 case 0:
                 case 1:
                     if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer';
                     else message = 'a_alert_false_answer_1';
                     buttons = [
                         {
@@ -965,6 +1045,7 @@ export class TaskDetail {
                 case 3:
                 case 4:
                     if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer';
                     else message = 'a_alert_false_answer_2';
                     if(!this.route.isHintsEnabled()) message = 'a_alert_false_answer_1';
                     let bShowHint = {
@@ -1169,7 +1250,7 @@ export class TaskDetail {
                 }
             }
         }
-        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set') {
+        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);

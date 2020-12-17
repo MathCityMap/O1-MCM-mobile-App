@@ -1131,5 +1131,14 @@
   "p_group": "Gruppe",
   "p_wiz_tasks": "Wizard-Aufgaben",
   "p_wiz_task_create": "Wizard-Aufgabe erstellen",
-  "fts_no_results_warning": "Bitte überprüfen Sie die Rechtschreibung und / oder passen Sie die erweiterten Suchparameter an und versuchen Sie es erneut."
+  "fts_no_results_warning": "Bitte überprüfen Sie die Rechtschreibung und / oder passen Sie die erweiterten Suchparameter an und versuchen Sie es erneut.",
+  "a_task_set_answer": "Lösung {{index}}",
+  "p_session_starting_tasks": "Startaufgaben",
+  "p_session_available": "Verfügbar",
+  "p_session_one_start_for_all": "Alle starten mit derselben Aufgabe",
+  "p_session_help_exclusive_initial_task": "Alle Teilnehmer starten mit derselben Startaufgabe.",
+  "p_session_select_exclusive_initial_task": "Wähle eine Startaufgabe",
+  "p_session_info_exclusive_initial_task": "Exklusive Startaufgabe",
+  "page_navigation": "Seitennavigation",
+  "a_alert_blanks_false_answer": "Versuch's nochmal!\n Deine Antwort '{{L}}' enthält Fehler."
 }
