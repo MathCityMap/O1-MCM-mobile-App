@@ -778,7 +778,7 @@ export class TaskDetail {
                     let htmlElement = document.getElementById(answer.id);
                     htmlElement.classList.add('disabled');
                 }
-                let regex = new RegExp('\\*\\*' + answer.id.replaceAll('/', '\\/') + '\\*\\*');
+                let regex = new RegExp('\\*\\*' + answer.id.replace(/\//g, '\\/') + '\\*\\*');
                 let blankMatch = regex.exec(blankText);
                 blankText = blankText.replace(blankMatch[0], `<span class="blank ${answer.solved ? 'correct' : 'false'}">${answer.answer}</span>`);
                 detailSolutions.push(answer.answer);

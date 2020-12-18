@@ -110,6 +110,7 @@ page-task-detail {
                 &:focus {
                     border-bottom: 1px solid color($colors, primary);
                 }
+                user-select: text;
                 text-align: center;
                 min-width: 50px;
                 display: inline-block;
