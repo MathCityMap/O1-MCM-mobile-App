@@ -24,6 +24,8 @@ import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
 import * as Levenstein from 'js-levenshtein';
 import {root} from "rxjs/util/root";
+import {Util} from "leaflet";
+import trim = Util.trim;
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -613,28 +615,19 @@ export class TaskDetail {
             let solutions = this.specialSolution.components;
             let solvedTask = true;
             let detailSolutions = [];
-            let solutionText = "";
-            let wrongAnswersText = "";
+            let solutionText = "<table class='solutionTable'>";
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
+                let checkAnswer = parseFloat(answer.answer.replace(",", "."));
                 let solution = solutions[i];
                 detailSolutions.push({name: solution.name, answer: answer.answer});
-                answer.solved = answer.answer == solution.val
+                answer.solved = checkAnswer > +solution.val - 0.0001 && checkAnswer < +solution.val + 0.0001;
                 if (!answer.solved) {
                     solvedTask = false;
-                    if (i == 0) {
-                        wrongAnswersText += `${answer.name}: ${answer.answer}`;
-                    } else {
-                        wrongAnswersText += `, ${answer.name}: ${answer.answer}`;
-                    }
-                    continue;
                 }
-                if (i == 0) {
-                    solutionText += `${answer.name}: ${answer.answer}`;
-                } else {
-                    solutionText += `, ${answer.name}: ${answer.answer}`;
-                }
+                solutionText += `<tr><td>${answer.name}:</td> <td class="${answer.solved ? 'correct' : 'false'}">${answer.answer}</td></tr>`;
             }
+            solutionText += "</table>"
             if (solvedTask) {
                 this.CalculateScore("vector_values", "solved");
                 console.log("Task Solved with Solution:", solutionText);
@@ -644,35 +637,26 @@ export class TaskDetail {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', [wrongAnswersText]);
+                this.taskSolved('', [solutionText]);
             }
         } else if (this.task.solutionType == "vector_intervals") {
             let answers = this.taskDetails.answerMultipleChoice;
             let solutions = this.specialSolution.components;
             let solvedTask = true;
             let detailSolutions = [];
-            let solutionText = "";
-            let wrongAnswersText = "";
+            let solutionText = "<table class='solutionTable'>";
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
+                let checkAnswer = parseFloat(answer.answer.replace(",", "."));
                 let solution = solutions[i];
                 detailSolutions.push({name: solution.name, answer: answer.answer});
-                answer.solved = parseFloat(answer.answer) >= parseFloat(solution.low) && parseFloat(answer.answer) <= parseFloat(solution.high);
+                answer.solved = checkAnswer >= +solution.low && checkAnswer <= +solution.high;
                 if (!answer.solved) {
                     solvedTask = false;
-                    if (i == 0) {
-                        wrongAnswersText += `${answer.name}: ${answer.answer}`;
-                    } else {
-                        wrongAnswersText += `, ${answer.name}: ${answer.answer}`;
-                    }
-                    continue;
                 }
-                if (i == 0) {
-                    solutionText += `${answer.name}: ${answer.answer}`;
-                } else {
-                    solutionText += `, ${answer.name}: ${answer.answer}`;
-                }
+                solutionText += `<tr><td>${answer.name}:</td> <td class="${answer.solved ? 'correct' : 'false'}">${answer.answer}</td></tr>`;
             }
+            solutionText += "</table>"
             if (solvedTask) {
                 this.CalculateScore("vector_intervals", "solved");
                 console.log("Task Solved with Solution:", solutionText);
@@ -682,7 +666,7 @@ export class TaskDetail {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', [wrongAnswersText]);
+                this.taskSolved('', [solutionText]);
             }
         } else if (this.task.solutionType === "set") {
             let answers = [];
@@ -708,13 +692,13 @@ export class TaskDetail {
             console.log("solutions", solutions);
             let solvedTask = true;
             let detailSolutions = [];
-            let solutionText = "";
-            let wrongAnswersText = "";
+            let solutionText = "<table class='solutionTable'>";
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
+                let checkAnswer = parseFloat(answer.answer.replace(",", "."));
                 let originalAnswer = this.taskDetails.answerMultipleChoice[answer.originalIndex];
                 for (let solution of solutions) {
-                    if (solution == answer.answer) {
+                    if (checkAnswer > +solution - 0.0001 && checkAnswer < +solution + 0.0001) {
                         originalAnswer.solved = true;
                         break;
                     } else {
@@ -724,19 +708,10 @@ export class TaskDetail {
                 detailSolutions.push(answer.answer);
                 if (!originalAnswer.solved) {
                     solvedTask = false;
-                    if (i == 0) {
-                        wrongAnswersText += `${answer.answer}`;
-                    } else {
-                        wrongAnswersText += `, ${answer.answer}`;
-                    }
-                    continue;
                 }
-                if (i == 0) {
-                    solutionText += `${answer.answer}`;
-                } else {
-                    solutionText += `, ${answer.answer}`;
-                }
+                solutionText += `<tr><td class="${originalAnswer.solved ? 'correct' : 'false'}">${answer.answer}</td></tr>`;
             }
+            solutionText += "</table>"
             console.log(this.taskDetails.answerMultipleChoice);
             if (solvedTask) {
                 this.CalculateScore("set", "solved");
@@ -747,7 +722,7 @@ export class TaskDetail {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
-                this.taskSolved('', [wrongAnswersText]);
+                this.taskSolved('', [solutionText]);
             }
         } else if (this.task.solutionType === "blanks") {
             console.log("we got blanks going on here", this.taskDetails.answerMultipleChoice, this.specialSolution);
@@ -763,6 +738,7 @@ export class TaskDetail {
                 console.log("Solution for Answer", solutionObject, answer);
                 let answerPrecision = 1;
                 for (let solution of solutionObject.answers) {
+                    answer.answer = trim(answer.answer);
                     let absoluteDistance = Levenstein(solution.toLowerCase(), answer.answer.toLowerCase());
                     console.log("absoluteDistance", absoluteDistance, solution, answer.answer);
                     let relativeDistance = absoluteDistance / solution.length;
@@ -928,6 +904,7 @@ export class TaskDetail {
                 switch (this.taskDetails.tries) {
                     case 0:
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        if (this.task.solutionType == "info") message = "";
                         else message = 'a_alert_right_answer_1';
                         break;
                     case 1:
@@ -935,10 +912,12 @@ export class TaskDetail {
                     case 3:
                     case 4:
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        if (this.task.solutionType == "info") message = "";
                         else message = 'a_alert_right_answer_2';
                         break;
                     case 5:
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        if (this.task.solutionType == "info") message = "";
                         else message = 'a_alert_right_answer_3';
                         break;
 
@@ -1005,9 +984,9 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    buttons: this.rootTask ? [subTaskOkay] :(this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
+                    buttons: this.rootTask ? [subTaskOkay] :((this.route.isSampleSolutionEnabled() && this.task.solutionType != "info") ? [bSampleSolution, bNextTask] : [bNextTask])
                 };
-                if (!this.rootTask) {
+                if (!this.rootTask && this.task.solutionType != "info") {
                     data['score'] = "+" + this.taskDetails.score;
                 }
                 modal = this.modalCtrl.create(MCMIconModal, data , {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
@@ -1090,14 +1069,30 @@ export class TaskDetail {
                             that.showHint(index);
                             });
                         }};
+                    let thiss = this;
+                    let bShowSubtask = {
+                        title: 'a_t_show_subtask',
+                        callback: function () {
+                            modal.dismiss().then(() => {
+                                thiss.openSubtask()
+                            })
+                        }
+                    }
                     let bClose = {
                         title: 'a_alert_close',
                         callback: function () {
                         modal.dismiss();
                     }};
-                    if(this.route.isHintsEnabled()) {
+                    if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                        buttons = [bShowSubtask, bShowHint, bClose];
+                    }
+                    else if(this.route.isHintsEnabled()) {
                        buttons = [bShowHint, bClose];
-                    }else{
+                    }
+                    else if ((this.task.subtasks && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                        buttons = [bShowSubtask, bClose];
+                    }
+                    else {
                         buttons = [bClose];
                     }
 

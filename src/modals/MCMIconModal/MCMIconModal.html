@@ -32,6 +32,6 @@
     </div>
 
     <div class="on-the-edge-container">
-        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
+        <button *ngFor="let button of buttons" [ngClass]="{'col-33': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
     </div>
 </div>

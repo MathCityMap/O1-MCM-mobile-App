@@ -106,7 +106,7 @@
 
                         <ion-col>
                             <button class="hint" ion-button icon-only round color="primary" (click)="showSolutionSample()"
-                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled()">
+                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== 'info'">
                                 <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>
                             </button>
                             <!-- open subtask -->
@@ -199,9 +199,9 @@
 			    {{task.getSideFactsText()}}
 		    </p>
 	    </div>
-        <div class="card secondary">
+        <div *ngIf="task && task.author" class="card secondary">
             <ion-label>{{ "author" | translate }}</ion-label>
-            <p *ngIf="task">
+            <p>
                 {{task.author}}<br> {{task.mail}}
             </p>
         </div>

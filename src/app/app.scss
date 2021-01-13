@@ -1077,17 +1077,22 @@ ion-modal {
             .score{
                 font-size: 24px;
             }
+            .solutionTable {
+                margin-left: 45%;
+            }
             .blank{
                 display: inline-block;
                 min-width: 15px;
                 font-size: inherit;
-                &.correct {
-                    color: color($colors, success);
-                }
-                &.false {
-                    color: color($colors, error);
+                &.false{
                     border-bottom: 1px solid color($colors, error);
                 }
+            }
+            .correct {
+                color: color($colors, success);
+            }
+            .false {
+                color: color($colors, error);
             }
             p.main-text{
                 text-align: center;
@@ -1185,6 +1190,12 @@ ion-modal {
             white-space: nowrap;
             text-align: center;
             button{
+                &.col-33 {
+                    &:first-of-type {
+                        margin-left: -10px;
+                    }
+                    width: 33%;
+                }
                 &:not(:first-of-type){
                     margin-left: $global-small-padding;
                 }

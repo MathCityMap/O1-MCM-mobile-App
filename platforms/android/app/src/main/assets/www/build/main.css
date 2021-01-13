@@ -61794,19 +61794,26 @@ ion-modal .modal.card.icon .score {
   font-size: 24px;
 }
 
+ion-modal .modal.card.icon .solutionTable {
+  margin-left: 45%;
+}
+
 ion-modal .modal.card.icon .blank {
   display: inline-block;
   min-width: 15px;
   font-size: inherit;
 }
 
-ion-modal .modal.card.icon .blank.correct {
+ion-modal .modal.card.icon .blank.false {
+  border-bottom: 1px solid #E62B25;
+}
+
+ion-modal .modal.card.icon .correct {
   color: #3DCC68;
 }
 
-ion-modal .modal.card.icon .blank.false {
+ion-modal .modal.card.icon .false {
   color: #E62B25;
-  border-bottom: 1px solid #E62B25;
 }
 
 ion-modal .modal.card.icon p.main-text {
@@ -61953,6 +61960,14 @@ ion-modal .modal.card.task-select .dotted-border-bottom span.saved:before {
 ion-modal .modal.card .on-the-edge-container {
   white-space: nowrap;
   text-align: center;
+}
+
+ion-modal .modal.card .on-the-edge-container button.col-33 {
+  width: 33%;
+}
+
+ion-modal .modal.card .on-the-edge-container button.col-33:first-of-type {
+  margin-left: -10px;
 }
 
 ion-modal .modal.card .on-the-edge-container button:not(:first-of-type) {
@@ -63991,6 +64006,10 @@ page-task-detail .task-content .transition {
   background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
 }
 
+page-task-detail .task-content .vector-input-list ion-label {
+  text-transform: none;
+}
+
 page-task-detail .task-content .vector-input-list .input-has-value .label {
   margin: 0;
 }
@@ -64022,6 +64041,10 @@ page-task-detail .task-content #blankContainer.disabled .blankInput {
 }
 
 page-task-detail .task-content #blankContainer .blankInput {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
   text-align: center;
   min-width: 50px;
   display: inline-block;

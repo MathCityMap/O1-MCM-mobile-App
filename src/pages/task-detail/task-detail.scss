@@ -81,6 +81,9 @@ page-task-detail {
             background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
         }
         .vector-input-list {
+            ion-label{
+                text-transform: none;
+            }
             .input-has-value .label {
                 margin: 0;
             }
