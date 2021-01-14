@@ -121,7 +121,7 @@
                             </button>
                             <!-- skip task -->
                             <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"
-                            *ngIf="!rootTask && task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                            *ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
                                 <img class="round" src="./assets/icons/icon_skip.svg"/>
                             </button>
                             <!-- show next task -->

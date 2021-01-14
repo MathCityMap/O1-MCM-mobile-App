@@ -233,12 +233,9 @@ export class TaskDetail {
                 }
                 this.taskDetails.answerMultipleChoice = answerArray;
             }
-            console.log(this.taskDetails.answerMultipleChoice);
         }
-        if (this.task.subtasks) {
+        if (this.task.subtasks && this.task.subtasks.length > 0) {
             if (this.taskDetails.timeFirstOpen === 0) {
-                console.log("TASK WITH SUBTASKS OPENED FOR THE FIRST TIME");
-                //OPEN MODAL
                 let subtaskModal = this.modalCtrl.create(MCMIconModal, {
                     title: 'a_subtaskinfo_title',
                     type: 'text',
@@ -262,14 +259,12 @@ export class TaskDetail {
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
-                if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved) {
+                if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved || subtaskDetails.skipped) {
                     this.solvedSubtasks.push(subtaskDetails);
                 }
             }
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
-        console.log(this.sessionInfo);
-        console.log(this.task);
         // Add event of user entering trail when session active
         if(this.sessionInfo != null && !this.task){
             let details = JSON.stringify({title: this.task.title});
@@ -654,7 +649,6 @@ export class TaskDetail {
             solutionText += "</table>"
             if (solvedTask) {
                 this.CalculateScore("vector_values", "solved");
-                console.log("Task Solved with Solution:", solutionText);
                 this.taskSolved('solved',[solutionText]);
             } else {
                 if(this.sessionInfo != null){
@@ -683,7 +677,6 @@ export class TaskDetail {
             solutionText += "</table>"
             if (solvedTask) {
                 this.CalculateScore("vector_intervals", "solved");
-                console.log("Task Solved with Solution:", solutionText);
                 this.taskSolved('solved',[solutionText]);
             } else {
                 if(this.sessionInfo != null){
@@ -712,8 +705,6 @@ export class TaskDetail {
                 else if (parseFloat(a) === parseFloat(b)) {return 0;}
                 else {return -1;}
             });
-            console.log("answers", answers);
-            console.log("solutions", solutions);
             let solvedTask = true;
             let detailSolutions = [];
             let solutionText = "<table class='solutionTable'>";
@@ -736,10 +727,8 @@ export class TaskDetail {
                 solutionText += `<tr><td class="${originalAnswer.solved ? 'correct' : 'false'}">${answer.answer}</td></tr>`;
             }
             solutionText += "</table>"
-            console.log(this.taskDetails.answerMultipleChoice);
             if (solvedTask) {
                 this.CalculateScore("set", "solved");
-                console.log("Task Solved with Solution:", solutionText);
                 this.taskSolved('solved',[solutionText]);
             } else {
                 if(this.sessionInfo != null){
@@ -749,7 +738,6 @@ export class TaskDetail {
                 this.taskSolved('', [solutionText]);
             }
         } else if (this.task.solutionType === "blanks") {
-            console.log("we got blanks going on here", this.taskDetails.answerMultipleChoice, this.specialSolution);
             let solutions = this.specialSolution.features;
             let precision = this.specialSolution.settings.check_type === 'strict' ? 0 : (this.specialSolution.settings.check_type === 'normal' ? 0.2 : 0.4);
             let solvedTask = true;
@@ -759,14 +747,11 @@ export class TaskDetail {
                 let solutionObject = solutions.find(sol => {
                     return sol.blank === '**' + answer.id + '**';
                 })
-                console.log("Solution for Answer", solutionObject, answer);
                 let answerPrecision = 1;
                 for (let solution of solutionObject.answers) {
                     answer.answer = trim(answer.answer);
                     let absoluteDistance = Levenstein(solution.toLowerCase(), answer.answer.toLowerCase());
-                    console.log("absoluteDistance", absoluteDistance, solution, answer.answer);
                     let relativeDistance = absoluteDistance / solution.length;
-                    console.log("relativeDistance", relativeDistance);
                     if (relativeDistance < answerPrecision) {
                         answerPrecision = relativeDistance;
                     }
@@ -860,6 +845,12 @@ export class TaskDetail {
 
 
     async closeDetails(skip?: boolean) {
+        if (this.rootTask) {
+            if (skip) {
+                this.taskDetails.skipped = true;
+                await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+            }
+        }
         //This guaratees that the state is updated before the map opens and gets the information.
         if (this.navParams.get('goToNextTaskById')) {
             let goToNextTaskById = this.navParams.get('goToNextTaskById');
@@ -1070,9 +1061,9 @@ export class TaskDetail {
                     else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
                     else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
                     else message = 'a_alert_false_answer_2';
-                    if(!this.route.isHintsEnabled()) {
-                        if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
-                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
+                    if(!this.route.isHintsEnabled() || this.rootTask) {
+                        if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
+                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
                         else message = 'a_alert_false_answer_1';
                     }
                     let bShowHint = {
@@ -1107,13 +1098,13 @@ export class TaskDetail {
                         callback: function () {
                         modal.dismiss();
                     }};
-                    if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                    if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
                         buttons = [bShowSubtask, bShowHint, bClose];
                     }
-                    else if(this.route.isHintsEnabled()) {
+                    else if(this.route.isHintsEnabled() && !this.rootTask) {
                        buttons = [bShowHint, bClose];
                     }
-                    else if ((this.task.subtasks && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                    else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
                         buttons = [bShowSubtask, bClose];
                     }
                     else {
@@ -1760,7 +1751,7 @@ export class TaskDetail {
             this.spinnerDialog.show();
             setTimeout(() => {
                 // use short timeout to let spinner dialog appear
-                this.photoViewer.show(useRoot ? this.rootTask.getImageURL() : this.task.getImageURL(true));
+                this.photoViewer.show(useRoot ? this.rootTask.getImageURL(true) : this.task.getImageURL(true));
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();

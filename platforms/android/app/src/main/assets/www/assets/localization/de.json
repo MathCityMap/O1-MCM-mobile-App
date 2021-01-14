@@ -1141,9 +1141,13 @@
   "p_session_info_exclusive_initial_task": "Exklusive Startaufgabe",
   "page_navigation": "Seitennavigation",
   "a_alert_blanks_false_answer_1": "Versuch's nochmal!\n Deine Antwort '{{L}}' enthält Fehler.",
-  "a_alert_set_false_answer_1": "Versuch's nochmal!\n Deine Antwort enthält folgende Fehler: '{{L}}'.",
-  "a_alert_set_false_answer_2": "Vielleicht hilft ein Hinweis?\n Deine Antwort enthält folgende Fehler: '{{L}}'.",
+  "a_alert_set_false_answer_1": "Versuch's nochmal!\n Deine Antwort enthält Fehler: {{L}}",
+  "a_alert_set_false_answer_2": "Vielleicht hilft ein Hinweis?\n Deine Antwort enthält Fehler: {{L}}",
   "a_alert_blanks_false_answer_2": "Vielleicht hilft ein Hinweis?\n Deine Antwort '{{L}}' enthält Fehler.",
   "a_subtaskinfo_title": "Unteraufgaben!",
-  "a_subtaskinfo_message": "Diese Aufgabe enthält Unteraufgaben auf welche du über die <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/> Schaltfläche zugreifen kannst."
+  "a_subtaskinfo_message": "Diese Aufgabe enthält Unteraufgaben auf welche du über die <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/> Schaltfläche zugreifen kannst.",
+  "tex_parse": "TeX parsen",
+  "tex_tooltip": "Erlaubt einen Preview der Antworten in TeX Format (falls verwendet).",
+  "tex_headline": "MathJax Vorschau (wenn verwendet)",
+  "a_t_show_subtask": "Unteraufgabe"
 }
