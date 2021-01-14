@@ -1144,6 +1144,8 @@
   "a_alert_set_false_answer_1": "Try again!\n Your answer contains following errors: '{{L}}'.",
   "a_alert_set_false_answer_2": "Try to take a hint.\n Your answer contains following errors: '{{L}}'.",
   "a_alert_blanks_false_answer_2": "Try to take a hint.\n Your answer '{{L}}' contains errors.",
+  "a_subtaskinfo_title": "Subtasks!",
+  "a_subtaskinfo_message": "This task contains subtasks which you can access using the <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/> button.",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

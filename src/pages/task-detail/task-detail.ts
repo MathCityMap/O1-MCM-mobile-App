@@ -236,6 +236,29 @@ export class TaskDetail {
             console.log(this.taskDetails.answerMultipleChoice);
         }
         if (this.task.subtasks) {
+            if (this.taskDetails.timeFirstOpen === 0) {
+                console.log("TASK WITH SUBTASKS OPENED FOR THE FIRST TIME");
+                //OPEN MODAL
+                let subtaskModal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'a_subtaskinfo_title',
+                    type: 'text',
+                    message: 'a_subtaskinfo_message',
+                    modalType: MCMModalType.subtask,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [
+                        {
+                            title: 'a_alert_close',
+                            callback: function () {
+                                subtaskModal.dismiss();
+                            }
+                        }
+                    ]
+
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+
+                subtaskModal.present();
+            }
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
@@ -297,6 +320,7 @@ export class TaskDetail {
 
         if (this.taskDetails.timeFirstOpen == 0) {
             this.taskDetails.timeFirstOpen = new Date().getTime();
+            this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
         }
         if (this.task.solutionType == 'multiple_choice') {
             this.multipleChoiceView.changes.subscribe(data => {

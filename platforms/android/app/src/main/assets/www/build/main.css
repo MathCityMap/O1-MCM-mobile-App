@@ -61974,6 +61974,12 @@ ion-modal .modal.card .on-the-edge-container button:not(:first-of-type) {
   margin-left: 10px;
 }
 
+ion-modal .modal.card .inline_image {
+  display: inline;
+  width: 20px;
+  margin-bottom: -5px;
+}
+
 /*  ========== Progress & Evaluation =========  */
 mcm-progress-bar, .evaluation {
   position: relative;
@@ -64006,6 +64012,10 @@ page-task-detail .task-content .transition {
   background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
 }
 
+page-task-detail .task-content .vector-input-list .item-block:first-child {
+  border-top: none;
+}
+
 page-task-detail .task-content .vector-input-list ion-label {
   text-transform: none;
 }
@@ -64048,7 +64058,7 @@ page-task-detail .task-content #blankContainer .blankInput {
   text-align: center;
   min-width: 50px;
   display: inline-block;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #444444;
   font-family: inherit;
   font-size: inherit;
 }

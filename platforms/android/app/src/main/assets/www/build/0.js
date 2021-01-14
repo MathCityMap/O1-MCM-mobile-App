@@ -556,7 +556,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(624);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_modals_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(110);
@@ -729,7 +729,7 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.ionViewWillEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var _a, _b, _c, _d, _e, blankMatch_1, blankText, savedAnswer, blankContainer, inputs, answers, _i, _f, input, _loop_1, _g, _h, input, answerArray, i, component, answerArray, i, _j, _k, task, subtaskDetails, _l, details, scorePerQuestion, amountOfQuestions, gpsType, points, buttonCount, startCharCode, i;
+            var _a, _b, _c, _d, _e, blankMatch_1, blankText, savedAnswer, blankContainer, inputs, answers, _i, _f, input, _loop_1, _g, _h, input, answerArray, i, component, answerArray, i, subtaskModal_1, _j, _k, task, subtaskDetails, _l, details, scorePerQuestion, amountOfQuestions, gpsType, points, buttonCount, startCharCode, i;
             return __generator(this, function (_m) {
                 switch (_m.label) {
                     case 0:
@@ -809,6 +809,26 @@ var TaskDetail = /** @class */ (function () {
                             console.log(this.taskDetails.answerMultipleChoice);
                         }
                         if (this.task.subtasks) {
+                            if (this.taskDetails.timeFirstOpen === 0) {
+                                console.log("TASK WITH SUBTASKS OPENED FOR THE FIRST TIME");
+                                subtaskModal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                                    title: 'a_subtaskinfo_title',
+                                    type: 'text',
+                                    message: 'a_subtaskinfo_message',
+                                    modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].subtask,
+                                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                                    narrative: this.app.activeNarrative,
+                                    buttons: [
+                                        {
+                                            title: 'a_alert_close',
+                                            callback: function () {
+                                                subtaskModal_1.dismiss();
+                                            }
+                                        }
+                                    ]
+                                }, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
+                                subtaskModal_1.present();
+                            }
                             this.solvedSubtasks = [];
                             for (_j = 0, _k = this.task.subtasks; _j < _k.length; _j++) {
                                 task = _k[_j];
@@ -873,6 +893,7 @@ var TaskDetail = /** @class */ (function () {
                             this.score.score = 0;
                         if (this.taskDetails.timeFirstOpen == 0) {
                             this.taskDetails.timeFirstOpen = new Date().getTime();
+                            this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
                         }
                         if (this.task.solutionType == 'multiple_choice') {
                             this.multipleChoiceView.changes.subscribe(function (data) {
@@ -2414,7 +2435,7 @@ var TaskDetail = /** @class */ (function () {
         if (!this.isSpecialTaskType) {
             return isAnswered;
         }
-        if (this.task.solutionType == 'vector_values') {
+        if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType == 'set' || this.task.solutionType == 'blanks') {
             for (var _i = 0, _a = this.taskDetails.answerMultipleChoice; _i < _a.length; _i++) {
                 var answerObject = _a[_i];
                 if (answerObject.answer === "") {
@@ -2469,11 +2490,11 @@ var TaskDetail = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline__ = __webpack_require__(1135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_offline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__ = __webpack_require__(624);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(623);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(624);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(623);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__ = __webpack_require__(1138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__);
