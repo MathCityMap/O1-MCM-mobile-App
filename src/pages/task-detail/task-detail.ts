@@ -1782,7 +1782,7 @@ export class TaskDetail {
         if (!this.isSpecialTaskType) {
             return isAnswered;
         }
-        if (this.task.solutionType == 'vector_values') {
+        if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType == 'set' || this.task.solutionType == 'blanks') {
             for (let answerObject of this.taskDetails.answerMultipleChoice) {
                 if (answerObject.answer === "") {
                     isAnswered = false;

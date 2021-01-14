@@ -81,6 +81,9 @@ page-task-detail {
             background: linear-gradient(to top, #e5e5e5 60%, rgba(255, 255, 255, 0) 96%);
         }
         .vector-input-list {
+            .item-block:first-child{
+                border-top: none;
+            }
             ion-label{
                 text-transform: none;
             }
@@ -117,7 +120,7 @@ page-task-detail {
                 text-align: center;
                 min-width: 50px;
                 display: inline-block;
-                border-bottom: 1px solid color($colors, light-grey);
+                border-bottom: 1px solid color($colors, dark-grey);
                 font-family: inherit;
                 font-size: inherit;
                 &.disabled {
