@@ -1150,6 +1150,11 @@
   "tex_tooltip": "Displays answers in TeX format (when used).",
   "tex_headline": "MathJax Preview (when used)",
   "a_t_show_subtask": "Open subtask",
+  "dc_leave_dialog_headline": "Leave this view?",
+  "dc_are_you_sure": "Are you sure you want to leave this view?",
+  "tt_show_own_tasks": "Own tasks only",
+  "tt_show_all_tasks": "Tasks from all authors",
+  "a_subtaskinfo_required_message": "To solve this task you must first solve all subtasks!",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

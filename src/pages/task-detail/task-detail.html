@@ -18,12 +18,12 @@
             <div class="head">
                 <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>
                 <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.subtasks.length} }}</ion-label>
-                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && !rootTask && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
+                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
-            <div class="answer" *ngIf="task && task.solutionType != 'info'">
+            <div class="answer" *ngIf="task && task.solutionType != 'info' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                 <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
-                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails">
+                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                     <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
                     <ion-input (keyup.enter)="checkResult()"
                                [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
@@ -37,7 +37,7 @@
                     </ion-input>
                     <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
-                <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === 'vector_values' || task.solutionType === 'vector_intervals' || task.solutionType === 'set') && taskDetails && route.isAnswerValidationEnabled()">
+                <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === 'vector_values' || task.solutionType === 'vector_intervals' || task.solutionType === 'set') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                     <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{'is-focused': answerIndex == i && keyboardVisible()}">
                         <ion-label *ngIf="task.solutionType !== 'set'" floating>{{answerField.name}}</ion-label>
                         <ion-label *ngIf="task.solutionType === 'set'" floating>{{'a_task_set_answer' | translate : {index: i + 1} }}</ion-label>
@@ -52,10 +52,10 @@
                         </ion-input>
                     </ion-item>
                 </ion-list>
-                <ion-item *ngIf="task && task.solutionType === 'blanks'">
+                <ion-item *ngIf="task && task.solutionType === 'blanks' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                     <p [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))}" id="blankContainer"></p>
                 </ion-item>
-                <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled()">
+                <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                     <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
                         <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
                         <ion-label tappable>{{item.value}}</ion-label>

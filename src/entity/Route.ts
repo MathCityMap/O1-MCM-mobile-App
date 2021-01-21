@@ -406,4 +406,9 @@ export class Route {
         return newString? newString : $mcmKey;
     }
 
+    //TODO Move this to individual tasks
+    isSubtaskRequired() {
+        return this.getAttributes().useSubtasks === "true";
+    }
+
 }
