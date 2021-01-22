@@ -58,7 +58,7 @@
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                     <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
                         <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
-                        <ion-label tappable>{{item.value}}</ion-label>
+                        <ion-label class="multi-choice-label" text-wrap tappable>{{item.value}}</ion-label>
                     </ion-item>
                 </ion-list>
             </div>

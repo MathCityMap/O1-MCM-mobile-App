@@ -135,6 +135,9 @@ page-task-detail {
                 background: linear-gradient(to top, #dcebf0 60%, rgba(255, 255, 255, 0) 96%);
             }
         }
+        .multi-choice-label {
+            line-height: 1;
+        }
     }
     .card {
         z-index: 2;
