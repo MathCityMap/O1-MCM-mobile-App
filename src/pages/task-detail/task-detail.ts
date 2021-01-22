@@ -328,8 +328,8 @@ export class TaskDetail {
                 this.maxScore = 100;
             }
             this.orangeScore = this.maxScore / 2;
-            this.penalty = this.maxScore * 0.1;
-            this.minScore = this.maxScore * 0.1;
+            this.penalty = Math.floor(this.maxScore) / 10;
+            this.minScore = Math.floor(this.maxScore) / 10;
         } else {
             this.maxScore = 0;
             this.orangeScore = 0;
@@ -346,14 +346,16 @@ export class TaskDetail {
             }
             this.subTaskScore = Math.floor(this.maxScore / scorableTaskCount);
             this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
+            this.penalty = Math.floor(this.maxScore) / 10;
+            this.minScore = Math.floor(this.maxScore ) / 10;
         }
 
         if (this.rootTask && this.subTasksRequired && this.task.solutionType !== 'info') {
             this.subTaskScore = this.navParams.get('score');
             this.maxScore = this.subTaskScore;
             this.orangeScore = this.maxScore / 2;
-            this.penalty = this.maxScore * 0.1;
-            this.minScore = this.maxScore * 0.1;
+            this.penalty = Math.floor(this.maxScore) / 10;
+            this.minScore = Math.floor(this.maxScore ) / 10;
         }
 
         if (this.score.score == null) this.score.score = 0;

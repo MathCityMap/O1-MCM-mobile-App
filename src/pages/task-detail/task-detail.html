@@ -18,7 +18,7 @@
             <div class="head">
                 <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>
                 <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.subtasks.length} }}</ion-label>
-                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled">{{possibleScore()}}</ion-label>
+                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled">{{possibleScore() | number }}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
             <div class="answer" *ngIf="task && task.solutionType != 'info' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
