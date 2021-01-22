@@ -555,7 +555,7 @@ export class TaskDetail {
     }
 
     async checkResult() {
-        if ((this.task.solutionType == 'range' || this.task.solutionType == 'value') && !this.isDecimal(this.taskDetails.answer)) {
+        if ((this.task.solutionType == 'range' || this.task.solutionType == 'value') && !this.isDecimal(this.taskDetails.answer) || !this.isSpecialTypeAnswered()) {
             return;
         }
         console.log(this.task.solutionType);
