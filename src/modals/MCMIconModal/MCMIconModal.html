@@ -18,6 +18,7 @@
          <h3 class="score" *ngIf="gamificationEnabled && score && score != '0'">{{score}}</h3>
 
         <!-- text hint -->
+         <p text-center *ngIf="modalType == 7" [linkedInnerHtml]=" taskDescription | translate: param | linky: linkyOptions "></p>
         <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>

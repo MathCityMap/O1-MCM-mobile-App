@@ -18,6 +18,7 @@ export class MCMIconModal{
     videoId: string;
     message: string;
     messages: string[];
+    taskDescription: string;
     param: any;
     modalType: MCMModalType;
     linkyOptions: any;
@@ -60,7 +61,7 @@ export class MCMIconModal{
                         break;
                 }
             }
-
+            this.taskDescription = params.data.taskDescription;
             this.message = params.data.message;
             this.messages = params.data.messages;
             this.imageUrl = params.data.imageUrl;

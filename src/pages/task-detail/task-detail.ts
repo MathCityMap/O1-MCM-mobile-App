@@ -80,6 +80,7 @@ export class TaskDetail {
     private gpsTaskButtonLabels: Array<string> = [];
     shownHints: number[] = [];
     private subTasksRequired;
+    private subTaskModalShown = false;
 
     private keyboardSubscriptions : Subscription = new Subscription();
 
@@ -238,57 +239,57 @@ export class TaskDetail {
             }
         }
         if (this.task.subtasks && this.task.subtasks.length > 0) {
-            if (this.taskDetails.timeFirstOpen === 0) {
-                if (!this.subTasksRequired) {
-                    let subtaskModal = this.modalCtrl.create(MCMIconModal, {
-                        title: 'a_subtaskinfo_title',
-                        type: 'text',
-                        message: 'a_subtaskinfo_message',
-                        modalType: MCMModalType.subtask,
-                        narrativeEnabled: this.route.isNarrativeEnabled(),
-                        narrative: this.app.activeNarrative,
-                        buttons: [
-                            {
-                                title: 'a_alert_close',
-                                callback: function () {
-                                    subtaskModal.dismiss();
-                                }
-                            }
-                        ]
-
-                    }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-
-                    subtaskModal.present();
-                } else {
-                    let thiss = this;
-                    let subtaskModal = this.modalCtrl.create(MCMIconModal, {
-                        title: 'a_subtaskinfo_title',
-                        type: 'text',
-                        message: 'a_subtaskinfo_required_message',
-                        modalType: MCMModalType.subtask,
-                        narrativeEnabled: this.route.isNarrativeEnabled(),
-                        narrative: this.app.activeNarrative,
-                        buttons: [
-                            {
-                                title: 'a_alert_close',
-                                callback: function () {
-                                    thiss.openSubtask()
-                                    subtaskModal.dismiss();
-                                }
-                            }
-                        ]
-
-                    }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-
-                    subtaskModal.present();
-                }
-            }
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
                 if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved || subtaskDetails.skipped) {
                     this.solvedSubtasks.push(subtaskDetails);
                 }
+            }
+            if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.subtasks.length) {
+                let thiss = this;
+                let subtaskModal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'a_subtaskinfo_title',
+                    type: 'text',
+                    message: this.solvedSubtasks.length == 0 ? 'a_subtaskinfo_required_message' : 'a_subtaskinfo_required_progress_message',
+                    taskDescription: this.task.description,
+                    modalType: MCMModalType.subtask,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [
+                        {
+                            title: 'a_subtaskinfo_required_letsgo',
+                            callback: function () {
+                                thiss.openSubtask()
+                                subtaskModal.dismiss();
+                            }
+                        }
+                    ]
+
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+
+                subtaskModal.present();
+                this.subTaskModalShown = true;
+            } else if (this.taskDetails.timeFirstOpen === 0) {
+                let subtaskModal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'a_subtaskinfo_title',
+                    type: 'text',
+                    message: 'a_subtaskinfo_message',
+                    modalType: MCMModalType.subtask,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [
+                        {
+                            title: 'a_alert_close',
+                            callback: function () {
+                                subtaskModal.dismiss();
+                            }
+                        }
+                    ]
+
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+
+                subtaskModal.present();
             }
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();

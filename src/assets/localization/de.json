@@ -1156,5 +1156,7 @@
   "tt_show_all_tasks": "Aufgaben von allen Autoren",
   "a_subtaskinfo_required_message": "Um diesen Task zu lösen musst du zuerst alle Subtasks lösen!",
   "p_solution_type": "Lösungstyp",
-  "a_task_score": "Deine Punkte"
+  "a_task_score": "Deine Punkte",
+  "a_subtaskinfo_required_progress_message": "Du hast noch nicht alle Unteraufgaben bearbeitet, um die Aufgabe zu lösen musst du zuerst die Unteraufgaben lösen.",
+  "a_subtaskinfo_required_letsgo": "Los gehts"
 }
