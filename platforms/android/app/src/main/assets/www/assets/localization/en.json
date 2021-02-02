@@ -1155,6 +1155,8 @@
   "tt_show_own_tasks": "Own tasks only",
   "tt_show_all_tasks": "Tasks from all authors",
   "a_subtaskinfo_required_message": "To solve this task you must first solve all subtasks!",
+  "p_solution_type": "Solution type",
+  "a_task_score": "Your Score",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

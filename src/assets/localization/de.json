@@ -1153,6 +1153,8 @@
   "dc_leave_dialog_headline": "Verlasse diese Ansicht?",
   "dc_are_you_sure": "Bist Du sicher, dass Du diese Ansicht verlassen willst?",
   "tt_show_own_tasks": "Nur eigene Aufgaben",
-  "tt_show_all_tasks": "Aufgaben von allen Authoren",
-  "a_subtaskinfo_required_message": "Um diesen Task zu lösen musst du zuerst alle Subtasks lösen!"
+  "tt_show_all_tasks": "Aufgaben von allen Autoren",
+  "a_subtaskinfo_required_message": "Um diesen Task zu lösen musst du zuerst alle Subtasks lösen!",
+  "p_solution_type": "Lösungstyp",
+  "a_task_score": "Deine Punkte"
 }

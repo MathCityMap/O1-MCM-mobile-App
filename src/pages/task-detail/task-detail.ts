@@ -898,6 +898,7 @@ export class TaskDetail {
             if (skip) {
                 this.taskDetails.skipped = true;
                 await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+                return this.goToNextSubtask();
             }
         }
         //This guaratees that the state is updated before the map opens and gets the information.
@@ -1086,7 +1087,6 @@ export class TaskDetail {
             if (this.taskDetails.skipped) {
                 tries = this.taskDetails.newTries;
             }
-
             switch (tries) {
                 case 0:
                 case 1:

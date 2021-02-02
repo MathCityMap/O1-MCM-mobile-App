@@ -64328,6 +64328,10 @@ page-task-detail .card.subtasks .accordion .accordion_content .description {
   padding-right: 10px;
 }
 
+page-task-detail .card.subtasks .accordion .accordion_content .description.compact {
+  width: 60%;
+}
+
 page-task-detail .card.subtasks .accordion .accordion_content .answer_container {
   text-align: center;
   white-space: normal;

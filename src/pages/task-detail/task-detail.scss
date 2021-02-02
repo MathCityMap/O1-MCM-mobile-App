@@ -283,6 +283,9 @@ page-task-detail {
                     .description {
                         width: 70%;
                         padding-right: 10px;
+                        &.compact {
+                            width: 60%;
+                        }
                     }
 
                     .answer_container {
