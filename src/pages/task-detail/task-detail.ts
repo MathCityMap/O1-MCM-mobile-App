@@ -1052,7 +1052,7 @@ export class TaskDetail {
                     narrative: this.app.activeNarrative,
                     buttons: this.rootTask ? [subTaskOkay] :((this.route.isSampleSolutionEnabled() && this.task.solutionType != "info") ? [bSampleSolution, bNextTask] : [bNextTask])
                 };
-                if (!this.rootTask && this.task.solutionType != "info") {
+                if ((!this.rootTask || (this.rootTask && this.subTasksRequired)) && this.task.solutionType != "info") {
                     data['score'] = "+" + this.taskDetails.score;
                 }
                 modal = this.modalCtrl.create(MCMIconModal, data , {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});

@@ -1573,6 +1573,7 @@ var TaskDetail = /** @class */ (function () {
             return __generator(this, function (_a) {
                 that = this;
                 // Add event of user entering trail when session active
+                console.log("Task solved");
                 if (!this.route.isAnswerFeedbackEnabled()) {
                     this.taskDetails.saved = true;
                     if (!this.rootTask) {
@@ -1689,7 +1690,7 @@ var TaskDetail = /** @class */ (function () {
                             narrative: this.app.activeNarrative,
                             buttons: this.rootTask ? [subTaskOkay] : ((this.route.isSampleSolutionEnabled() && this.task.solutionType != "info") ? [bSampleSolution, bNextTask] : [bNextTask])
                         };
-                        if (!this.rootTask && this.task.solutionType != "info") {
+                        if ((!this.rootTask || (this.rootTask && this.subTasksRequired)) && this.task.solutionType != "info") {
                             data['score'] = "+" + this.taskDetails.score;
                         }
                         modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], data, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
