@@ -5169,6 +5169,7 @@ var MCMModalType;
     MCMModalType[MCMModalType["solvedLow"] = 5] = "solvedLow";
     MCMModalType[MCMModalType["saved"] = 6] = "saved";
     MCMModalType[MCMModalType["subtask"] = 7] = "subtask";
+    MCMModalType[MCMModalType["calculation"] = 8] = "calculation";
 })(MCMModalType || (MCMModalType = {}));
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen, languageService, chatService, events, app, alertCtrl, translate, screenOrientation, storage) {
@@ -6280,23 +6281,23 @@ var map = {
 		297
 	],
 	"../pages/dashboard/dashboard.module": [
-		1126,
+		1123,
 		4
 	],
 	"../pages/home/home.module": [
-		1123,
+		1124,
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1124,
+		1125,
 		3
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1125,
+		1126,
 		2
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1128,
+		1129,
 		1
 	],
 	"../pages/info/info.module": [
@@ -6304,15 +6305,15 @@ var map = {
 		8
 	],
 	"../pages/onboarding/onboarding.module": [
-		1129,
+		1128,
 		7
 	],
 	"../pages/portal/portal.module": [
-		1131,
+		1130,
 		6
 	],
 	"../pages/settings/settings.module": [
-		1130,
+		1131,
 		5
 	],
 	"../pages/task-detail/task-detail.module": [
@@ -10186,7 +10187,7 @@ var MCMIconModal = /** @class */ (function () {
     };
     MCMIconModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge" [ngClass]="{\'no-icon\': type != \'image\', \'no-icon\' : modalType == 4, \'hint\': modalType == 1,\'failed\': modalType == 2, \'perfect\': modalType == 3, \'good\': modalType == 5}">\n\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <img class="head-icon" *ngIf="modalType == 7" src="./assets/icons/{{iconPath}}modal-subtask-info.svg" />\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf=" type == \'image\' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="score" *ngIf="gamificationEnabled && score && score != \'0\'">{{score}}</h3>\n\n        <!-- text hint -->\n         <p text-center *ngIf="modalType == 7" [linkedInnerHtml]=" taskDescription | translate: param | linky: linkyOptions "></p>\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n    <div class="modal-content" *ngIf="modalType == 4">\n        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/modal-rating-perfect.svg"/>\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- text hint --><p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" [ngClass]="{\'col-33\': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
+            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge" [ngClass]="{\'no-icon\': type != \'image\', \'no-icon\' : modalType == 4 || modalType == 8, \'hint\': modalType == 1,\'failed\': modalType == 2, \'perfect\': modalType == 3, \'good\': modalType == 5}">\n\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <img class="head-icon" *ngIf="modalType == 7" src="./assets/icons/{{iconPath}}modal-subtask-info.svg" />\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf=" type == \'image\' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="score" *ngIf="gamificationEnabled && score && score != \'0\'">{{score}}</h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 7" [linkedInnerHtml]=" taskDescription | translate: param | linky: linkyOptions "></p>\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n    <div class="modal-content" *ngIf="modalType == 4">\n        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/modal-rating-perfect.svg"/>\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- text hint --><p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" [ngClass]="{\'col-33\': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__services_images_service__["a" /* ImagesService */]])
     ], MCMIconModal);
@@ -11539,15 +11540,15 @@ var AppModule = /** @class */ (function () {
                 }, {
                     links: [
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),

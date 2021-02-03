@@ -1,4 +1,4 @@
-<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'no-icon' : modalType == 4, 'hint': modalType == 1,'failed': modalType == 2, 'perfect': modalType == 3, 'good': modalType == 5}">
+<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'no-icon' : modalType == 4 || modalType == 8, 'hint': modalType == 1,'failed': modalType == 2, 'perfect': modalType == 3, 'good': modalType == 5}">
 
      <div class="modal-content" *ngIf="modalType != 4">
         <img class="head-icon" *ngIf="modalType == 1 && type != 'image' && type != 'video'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>
@@ -18,7 +18,7 @@
          <h3 class="score" *ngIf="gamificationEnabled && score && score != '0'">{{score}}</h3>
 
         <!-- text hint -->
-         <p text-center *ngIf="modalType == 7" [linkedInnerHtml]=" taskDescription | translate: param | linky: linkyOptions "></p>
+        <p text-center *ngIf="modalType == 7" [linkedInnerHtml]=" taskDescription | translate: param | linky: linkyOptions "></p>
         <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>

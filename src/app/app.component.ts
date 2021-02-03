@@ -19,7 +19,8 @@ export enum MCMModalType {
   sampleSolution = 4,
   solvedLow = 5,
   saved = 6,
-  subtask = 7
+  subtask = 7,
+  calculation = 8
 }
 @Component({
   templateUrl: 'app.html'
