@@ -116,7 +116,7 @@
                             </button>
                             <!-- close subtask -->
                             <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"
-                                    *ngIf="rootTask && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                                    *ngIf="rootTask && task">
                                 <img class="round" src="./assets/icons/task_icon.svg"/>
                             </button>
                             <!-- skip task -->
@@ -126,7 +126,12 @@
                             </button>
                             <!-- show next task -->
                             <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails(false)"
-                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+                            *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+                                <img class="round" src="./assets/icons/icon_skip.svg"/>
+                            </button>
+                            <!-- show next subtask -->
+                            <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"
+                                    *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
                                 <img class="round" src="./assets/icons/icon_skip.svg"/>
                             </button>
                         </ion-col>
@@ -146,7 +151,7 @@
                     </div>
                     <img class="accordion_arrow" src="./assets/icons/subtask_arrow.svg">
                 </div>
-                <div class="accordion_content">
+                <div class="accordion_content" (click)="openSubtask(i)">
                     <span class="description" [ngClass]="{'compact': subTasksRequired}">{{task.subtasks[i].description}}</span>
                     <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>
                     <ion-label *ngIf="subTasksRequired" class="answer_container">{{ "a_task_score" | translate }}<span class="answer" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}">{{subtask.score}}</span></ion-label>

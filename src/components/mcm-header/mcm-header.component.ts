@@ -58,6 +58,10 @@ export class MCMHeaderComponent{
     }
 
     goBack(){
+        console.log('Header going back');
+        if (this.viewCtrl.instance.goBack) {
+            return this.viewCtrl.instance.goBack();
+        }
         if(this.currentpage === 'TasksMap'){
             let tasksMap = this.navCtrl.getActive().instance;
             if(tasksMap.sessionInfo != null){

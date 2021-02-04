@@ -843,7 +843,7 @@ export class TaskDetail {
         this.taskSolved("solved", [""]);
     }
 
-    showSolutionSample() {
+    showSolutionSample(nextSubtaskOnClose = false) {
         if (!this.taskDetails.solved && !this.taskDetails.solvedLow) {
             if (!this.rootTask) {
                 this.score.addFailedTask(this.task.id);
@@ -877,7 +877,7 @@ export class TaskDetail {
                     title: 'a_alert_close',
                     callback: function () {
                         modal.dismiss();
-                        if (that.rootTask) {
+                        if (that.rootTask && nextSubtaskOnClose) {
                             that.goToNextSubtask();
                         }
                     }
@@ -894,7 +894,7 @@ export class TaskDetail {
     }
 
 
-    async closeDetails(skip?: boolean) {
+    async closeDetails(skip?: boolean, ) {
         if (this.rootTask) {
             if (skip) {
                 this.taskDetails.skipped = true;
@@ -1018,7 +1018,7 @@ export class TaskDetail {
                 title: 't_samplesolution',
                 callback: function () {
                     modal.dismiss().then(() => {
-                        that.showSolutionSample();
+                        that.showSolutionSample(true);
                     });
                 }};
             let subTaskOkay = {
@@ -1176,7 +1176,7 @@ export class TaskDetail {
                                     let details = JSON.stringify({});
                                     that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
                                 }
-                                that.showSolutionSample();
+                                that.showSolutionSample(true);
                             });
                         }};
                     let bSkipTask = {
@@ -1891,8 +1891,8 @@ export class TaskDetail {
 
     openSubtask(index?) {
         let rootTask = this.rootTask ? this.rootTask : this.task;
-        if ((this.rootTask && !index) || this.solvedSubtasks.length === rootTask.subtasks.length) return;
-        if (!index) {
+        if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.subtasks.length) return;
+        if (!index && index !== 0) {
             index = this.solvedSubtasks.length
         }
         return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index, score: this.subTaskScore});
@@ -1914,6 +1914,17 @@ export class TaskDetail {
         const index = this.navCtrl.getActive().index;
         if (this.subTaskIndex + 1 !== this.rootTask.subtasks.length) {
             this.openSubtask(this.subTaskIndex + 1).then(() => {
+                this.navCtrl.remove(index);
+            })
+        } else {
+            this.closeDetails();
+        }
+    }
+
+    goToPreviousSubtask(){
+        const index = this.navCtrl.getActive().index;
+        if (this.subTaskIndex - 1 >= 0) {
+            this.openSubtask(this.subTaskIndex - 1).then(() => {
                 this.navCtrl.remove(index);
             })
         } else {
@@ -1998,6 +2009,15 @@ export class TaskDetail {
             }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
 
             subtaskModal.present();
+        }
+    }
+
+    public goBack() {
+        console.log("We goin back boys");
+        if (!this.rootTask) {
+            this.closeDetails();
+        } else {
+            this.goToPreviousSubtask();
         }
     }
 }
