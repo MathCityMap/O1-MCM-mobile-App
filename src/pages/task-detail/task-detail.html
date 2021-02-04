@@ -155,7 +155,7 @@
                     <span class="description" [ngClass]="{'compact': subTasksRequired}">{{task.subtasks[i].description}}</span>
                     <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>
                     <ion-label *ngIf="subTasksRequired" class="answer_container">{{ "a_task_score" | translate }}<span class="answer" [ngClass]="{'perfect': subtask.solved && route.isAnswerFeedbackEnabled(), 'good': subtask.solvedLow && route.isAnswerFeedbackEnabled(), 'failed': subtask.failed && route.isAnswerFeedbackEnabled(), 'saved': !route.isAnswerFeedbackEnabled()}">{{subtask.score}}</span></ion-label>
-
+                    <img class="subtask-inner-arrow" src="./assets/icons/subtask_arrow.svg">
                 </div>
             </div>
         </div>

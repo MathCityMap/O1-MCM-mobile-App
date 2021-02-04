@@ -287,7 +287,10 @@ page-task-detail {
                             width: 55%;
                         }
                     }
-
+                    .subtask-inner-arrow {
+                        max-width: 10px;
+                        transform: rotate(-90deg);
+                    }
                     .answer_container {
                         text-align: center;
                         white-space: normal;
