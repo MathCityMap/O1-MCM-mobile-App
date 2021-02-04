@@ -1394,7 +1394,7 @@ var McmImageComponent = /** @class */ (function () {
             this.spinnerDialog.show();
             setTimeout(function () {
                 // use short timeout to let spinner dialog appear
-                _this.photoViewerPlugin.show(_this.imageUrl);
+                _this.photoViewerPlugin.show(_this.offline ? _this.imagesService.getOfflineURL(_this.src, undefined, undefined, true) : _this.imageUrl);
                 setTimeout(function () {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     _this.spinnerDialog.hide();
@@ -4998,7 +4998,11 @@ var Task2Route = /** @class */ (function () {
             var repo;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */].INSTANCE.getTaskRepository()];
+                    case 0:
+                        if (!this.task) {
+                            console.log("WE MISSING TASK ON THIS ENTRY");
+                        }
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */].INSTANCE.getTaskRepository()];
                     case 1:
                         repo = _a.sent();
                         return [4 /*yield*/, repo.createQueryBuilder("tasks")

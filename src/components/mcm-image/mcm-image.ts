@@ -48,7 +48,7 @@ export class McmImageComponent implements OnChanges {
             this.spinnerDialog.show();
             setTimeout(() => {
                 // use short timeout to let spinner dialog appear
-                this.photoViewerPlugin.show(this.imageUrl);
+                this.photoViewerPlugin.show(this.offline ? this.imagesService.getOfflineURL(this.src, undefined, undefined, true) : this.imageUrl);
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();

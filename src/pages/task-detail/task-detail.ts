@@ -299,7 +299,7 @@ export class TaskDetail {
             this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
         }
 
-        if(this.taskDetails.timeSolved == 0){
+        if(this.taskDetails.timeSolved == 0 && !this.taskDetails.failed){
             // Do not display last entered answer
             this.taskDetails.answer = "";
         }
