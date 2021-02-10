@@ -731,7 +731,7 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.ionViewWillEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var _a, _b, _c, _d, _e, blankMatch_1, blankText, savedAnswer, blankContainer, inputs, answers, _i, _f, input, _loop_1, _g, _h, input, answerArray, i, component, answerArray, i, _j, _k, task, subtaskDetails, thiss_1, subtaskModal_1, subtaskModal_2, _l, details, scorePerQuestion, amountOfQuestions, scorableTaskCount, _m, _o, task, gpsType, points, buttonCount, startCharCode, i;
+            var _a, _b, _c, _d, _e, blankMatch_1, blankText, savedAnswer, blankContainer, inputs, answers, _i, _f, input, _loop_1, _g, _h, input, answerArray, i, component, answerArray, i, _j, _k, task, subtaskDetails, subtaskModal_1, subtaskModal_2, _l, details, scorePerQuestion, amountOfQuestions, scorableTaskCount, _m, _o, task, gpsType, points, buttonCount, startCharCode, i;
             return __generator(this, function (_p) {
                 switch (_p.label) {
                     case 0:
@@ -820,12 +820,9 @@ var TaskDetail = /** @class */ (function () {
                                 }
                             }
                             if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.subtasks.length) {
-                                thiss_1 = this;
                                 subtaskModal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
-                                    title: 'a_subtaskinfo_title',
                                     type: 'text',
                                     message: this.solvedSubtasks.length == 0 ? 'a_subtaskinfo_required_message' : 'a_subtaskinfo_required_progress_message',
-                                    taskDescription: this.task.description,
                                     modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].subtask,
                                     narrativeEnabled: this.route.isNarrativeEnabled(),
                                     narrative: this.app.activeNarrative,
@@ -833,7 +830,6 @@ var TaskDetail = /** @class */ (function () {
                                         {
                                             title: 'a_subtaskinfo_required_letsgo',
                                             callback: function () {
-                                                thiss_1.openSubtask();
                                                 subtaskModal_1.dismiss();
                                             }
                                         }
@@ -1570,490 +1566,544 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.taskSolved = function (solved, solution) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var that, message, title, that_1, bSampleSolution, subTaskOkay, bNextTask, modal_1, data, details, message, buttons, tries_1, bShowHint, thiss_2, bShowSubtask, bClose, bSampleSolution, bSkipTask, bFailTask, title, modal_2, data, bNextTask;
+            var that, message, title, that_1, bSampleSolution, subTaskOkay, bNextTask, modal_1, data, details, message, buttons, tries_1, bShowHint, thiss_1, bShowSubtask, bClose, bSampleSolution, bSkipTask, bFailTask, title, modal_2, data, bNextTask;
             return __generator(this, function (_a) {
-                that = this;
-                // Add event of user entering trail when session active
-                if (!this.route.isAnswerFeedbackEnabled()) {
-                    this.taskDetails.saved = true;
-                    if (!this.rootTask) {
-                        this.score.addSavedTask(this.task.id);
-                    }
-                }
-                if (solved == 'solved' || solved == 'solved_low') {
-                    this.taskDetails.skipped = false;
-                    message = "";
-                    title = "";
-                    if (solved == 'solved') {
-                        title = 'a_alert_right_answer_title';
-                        this.taskDetails.solved = true;
-                        if (!this.rootTask) {
-                            this.score.addSolvedTask(this.task.id);
+                switch (_a.label) {
+                    case 0:
+                        that = this;
+                        // Add event of user entering trail when session active
+                        if (!this.route.isAnswerFeedbackEnabled()) {
+                            this.taskDetails.saved = true;
+                            if (!this.rootTask) {
+                                this.score.addSavedTask(this.task.id);
+                            }
                         }
-                        switch (this.taskDetails.tries) {
-                            case 0:
-                                if (this.task.solutionType == "gps")
-                                    message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                if (this.task.solutionType == "info")
-                                    message = "";
-                                else
-                                    message = 'a_alert_right_answer_1';
-                                break;
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 4:
-                                if (this.task.solutionType == "gps")
-                                    message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                if (this.task.solutionType == "info")
-                                    message = "";
-                                else
-                                    message = 'a_alert_right_answer_2';
-                                break;
-                            case 5:
-                                if (this.task.solutionType == "gps")
-                                    message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                if (this.task.solutionType == "info")
-                                    message = "";
-                                else
-                                    message = 'a_alert_right_answer_3';
-                                break;
-                        }
-                    }
-                    if (solved == 'solved_low') {
-                        title = 'a_alert_right_answer_title_low';
-                        this.taskDetails.solvedLow = true;
-                        if (!this.rootTask) {
-                            this.score.addSolvedTaskLow(this.task.id);
-                        }
-                        switch (this.taskDetails.tries) {
-                            case 0:
-                                if (this.task.solutionType == "gps")
-                                    message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                else
-                                    message = 'a_alert_right_answer_1_low';
-                                break;
-                            case 1:
-                            case 2:
-                            case 3:
-                            case 4:
-                                if (this.task.solutionType == "gps")
-                                    message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                else
-                                    message = 'a_alert_right_answer_2_low';
-                                break;
-                            case 5:
-                                if (this.task.solutionType == "gps")
-                                    message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                else
-                                    message = 'a_alert_right_answer_3_low';
-                                break;
-                        }
-                    }
-                    that_1 = this;
-                    bSampleSolution = {
-                        title: 't_samplesolution',
-                        callback: function () {
-                            modal_1.dismiss().then(function () {
-                                that_1.showSolutionSample(true);
-                            });
-                        }
-                    };
-                    subTaskOkay = {
-                        title: 'okay',
-                        callback: function () {
-                            modal_1.dismiss().then(function () {
-                                that_1.goToNextSubtask();
-                            });
-                        }
-                    };
-                    bNextTask = {
-                        title: 'pdf_next_task',
-                        callback: function () {
-                            modal_1.dismiss().then(function () {
-                                that_1.closeDetails(false);
-                            });
-                        }
-                    };
-                    if (this.route.isNarrativeEnabled()) {
-                        title = this.route.getNarrativeString(title);
-                        message = this.route.getNarrativeString(message);
-                    }
-                    if (this.route.isAnswerFeedbackEnabled()) {
-                        data = {
-                            title: title,
-                            message: message,
-                            solution: solution,
-                            modalType: solved == 'solved_low' ? __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].solvedLow : __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].solved,
-                            gamificationEnabled: !this.gamificationIsDisabled,
-                            narrativeEnabled: this.route.isNarrativeEnabled(),
-                            narrative: this.app.activeNarrative,
-                            buttons: this.rootTask ? [subTaskOkay] : ((this.route.isSampleSolutionEnabled() && this.task.solutionType != "info") ? [bSampleSolution, bNextTask] : [bNextTask])
-                        };
-                        console.log("we scoring it up");
-                        if (this.subTasksRequired && !this.rootTask) {
-                            data['score'] = '+(' + this.generateSubtaskScoreCalculationString() + ' = ' + this.taskDetails.score + ')';
-                        }
-                        else if ((!this.rootTask || (this.rootTask && this.subTasksRequired)) && this.task.solutionType != "info") {
-                            data['score'] = "+" + this.taskDetails.score;
-                        }
-                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], data, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
-                    }
-                    else {
-                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
-                            title: 'a_alert_saved_answer_title',
-                            message: 'a_alert_saved_answer_message',
-                            modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].saved,
-                            gamificationEnabled: !this.gamificationIsDisabled,
-                            narrativeEnabled: this.route.isNarrativeEnabled(),
-                            narrative: this.app.activeNarrative,
-                            buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
-                        }, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
-                    }
-                    modal_1.onDidDismiss(function (data) {
-                        console.log(data);
-                        if (data && data.showMap) {
-                            /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
-                            _this.navCtrl.pop();
-                        }
-                    });
-                    modal_1.present();
-                    if (this.sessionInfo != null) {
-                        details = JSON.stringify({ score: this.taskDetails.score, solution: solution, quality: solved });
-                        this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
-                    }
-                    this.taskDetails.timeSolved = new Date().getTime();
-                }
-                else {
-                    message = "";
-                    buttons = void 0;
-                    tries_1 = this.taskDetails.tries;
-                    if (this.taskDetails.skipped) {
-                        tries_1 = this.taskDetails.newTries;
-                    }
-                    switch (tries_1) {
-                        case 0:
-                        case 1:
-                            if (this.task.solutionType == "gps")
-                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "blanks")
-                                message = 'a_alert_blanks_false_answer_1';
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
-                                message = 'a_alert_set_false_answer_1';
-                            else
-                                message = 'a_alert_false_answer_1';
-                            buttons = [
-                                {
-                                    title: 'a_alert_close',
-                                    callback: function () {
-                                        modal_2.dismiss();
+                        if (solved == 'solved' || solved == 'solved_low') {
+                            this.taskDetails.skipped = false;
+                            message = "";
+                            title = "";
+                            if (solved == 'solved') {
+                                title = 'a_alert_right_answer_title';
+                                this.taskDetails.solved = true;
+                                if (!this.rootTask) {
+                                    this.score.addSolvedTask(this.task.id);
+                                }
+                                if (this.rootTask && !this.subTasksRequired) {
+                                    if (this.taskDetails.tries == 0) {
+                                        if (this.task.solutionType == "gps")
+                                            message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                            message = 'a_alert_set_right_answer_1';
+                                        else
+                                            message = 'a_alert_right_answer_1';
+                                    }
+                                    else {
+                                        message = 'a_alert_subtask_right_answer';
                                     }
                                 }
-                            ];
-                            break;
-                        case 2:
-                        case 3:
-                        case 4:
-                            if (this.task.solutionType == "gps")
-                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "blanks")
-                                message = 'a_alert_blanks_false_answer_2';
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
-                                message = 'a_alert_set_false_answer_2';
-                            else
-                                message = 'a_alert_false_answer_2';
-                            if (!this.route.isHintsEnabled() || this.rootTask) {
-                                if (this.task.solutionType == "blanks")
-                                    message = 'a_alert_blanks_false_answer_1';
-                                else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
-                                    message = 'a_alert_set_false_answer_1';
-                                else
-                                    message = 'a_alert_false_answer_1';
-                            }
-                            bShowHint = {
-                                title: 'a_t_show_hint',
-                                callback: function () {
-                                    modal_2.dismiss().then(function () {
-                                        var index = 1;
-                                        //number of tries already increased
-                                        if (tries_1 == 3) {
-                                            var temp = that.getNextAvailableHint();
-                                            if (temp < 2)
-                                                index = temp;
+                                else {
+                                    switch (this.taskDetails.tries) {
+                                        case 0:
+                                            if (this.task.solutionType == "gps")
+                                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                            else if (this.task.solutionType == "info")
+                                                message = "";
+                                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                                message = 'a_alert_set_right_answer_1';
                                             else
-                                                index = 2;
-                                        }
-                                        else if (tries_1 == 4) {
-                                            var temp = that.getNextAvailableHint();
-                                            if (temp < 3)
-                                                index = temp;
+                                                message = 'a_alert_right_answer_1';
+                                            break;
+                                        case 1:
+                                        case 2:
+                                        case 3:
+                                        case 4:
+                                            if (this.task.solutionType == "gps")
+                                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                            else if (this.task.solutionType == "info")
+                                                message = "";
+                                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                                message = 'a_alert_set_right_answer_2';
                                             else
-                                                index = 3;
-                                        }
-                                        that.showHint(index);
-                                    });
+                                                message = 'a_alert_right_answer_2';
+                                            break;
+                                        case 5:
+                                            if (this.task.solutionType == "gps")
+                                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                            else if (this.task.solutionType == "info")
+                                                message = "";
+                                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                                message = 'a_alert_set_right_answer_3';
+                                            else
+                                                message = 'a_alert_right_answer_3';
+                                            break;
+                                    }
                                 }
-                            };
-                            thiss_2 = this;
-                            bShowSubtask = {
-                                title: 'a_t_show_subtask',
-                                callback: function () {
-                                    modal_2.dismiss().then(function () {
-                                        thiss_2.openSubtask();
-                                    });
+                            }
+                            if (solved == 'solved_low') {
+                                title = 'a_alert_right_answer_title_low';
+                                this.taskDetails.solvedLow = true;
+                                if (!this.rootTask) {
+                                    this.score.addSolvedTaskLow(this.task.id);
                                 }
-                            };
-                            bClose = {
-                                title: 'a_alert_close',
-                                callback: function () {
-                                    modal_2.dismiss();
+                                if (this.rootTask && !this.subTasksRequired) {
+                                    if (this.taskDetails.tries == 0) {
+                                        if (this.task.solutionType == "gps")
+                                            message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                            message = 'a_alert_set_right_answer_1_low';
+                                        else
+                                            message = 'a_alert_right_answer_1_low';
+                                    }
+                                    else {
+                                        message = 'a_alert_subtask_right_answer_low';
+                                    }
                                 }
-                            };
-                            if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
-                                buttons = [bShowSubtask, bShowHint, bClose];
+                                else {
+                                    switch (this.taskDetails.tries) {
+                                        case 0:
+                                            if (this.task.solutionType == "gps")
+                                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                                message = 'a_alert_set_right_answer_1_low';
+                                            else
+                                                message = 'a_alert_right_answer_1_low';
+                                            break;
+                                        case 1:
+                                        case 2:
+                                        case 3:
+                                        case 4:
+                                            if (this.task.solutionType == "gps")
+                                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                                message = 'a_alert_set_right_answer_2_low';
+                                            else
+                                                message = 'a_alert_right_answer_2_low';
+                                            break;
+                                        case 5:
+                                            if (this.task.solutionType == "gps")
+                                                message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                                message = 'a_alert_set_right_answer_3_low';
+                                            else
+                                                message = 'a_alert_right_answer_3_low';
+                                            break;
+                                    }
+                                }
                             }
-                            else if (this.route.isHintsEnabled() && !this.rootTask) {
-                                buttons = [bShowHint, bClose];
-                            }
-                            else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
-                                buttons = [bShowSubtask, bClose];
-                            }
-                            else {
-                                buttons = [bClose];
-                            }
-                            break;
-                        default:
-                            message = 'a_t_skip_msg';
+                            that_1 = this;
                             bSampleSolution = {
                                 title: 't_samplesolution',
                                 callback: function () {
-                                    modal_2.dismiss().then(function () {
-                                        if (that.sessionInfo != null) {
-                                            var details = JSON.stringify({});
-                                            that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
-                                        }
-                                        that.showSolutionSample(true);
+                                    modal_1.dismiss().then(function () {
+                                        that_1.showSolutionSample(true);
                                     });
                                 }
                             };
-                            bSkipTask = {
-                                title: 'a_skipTask',
-                                callback: function () {
-                                    modal_2.dismiss().then(function () {
-                                        if (that.sessionInfo != null) {
-                                            var details = JSON.stringify({});
-                                            that.chatAndSessionService.addUserEvent("event_task_skipped", details, that.task.id.toString());
-                                        }
-                                        that.closeDetails(true);
-                                    });
-                                }
-                            };
-                            bFailTask = {
+                            subTaskOkay = {
                                 title: 'okay',
                                 callback: function () {
-                                    modal_2.dismiss().then(function () {
-                                        if (that.sessionInfo != null) {
-                                            var details = JSON.stringify({});
-                                            that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
-                                        }
-                                        that.taskDetails.failed = true;
-                                        that.ormService.insertOrUpdateTaskState(that.score, that.taskDetails).then(function () {
-                                            if (!that.rootTask) {
-                                                that.closeDetails();
-                                            }
-                                            else {
-                                                that.goToNextSubtask();
-                                            }
-                                        });
+                                    modal_1.dismiss().then(function () {
+                                        that_1.goToNextSubtask();
                                     });
                                 }
                             };
-                            if (this.rootTask && this.route.isSampleSolutionEnabled()) {
-                                buttons = [bSampleSolution, bFailTask];
+                            bNextTask = {
+                                title: 'pdf_next_task',
+                                callback: function () {
+                                    modal_1.dismiss().then(function () {
+                                        that_1.closeDetails(false);
+                                    });
+                                }
+                            };
+                            if (this.route.isNarrativeEnabled()) {
+                                title = this.route.getNarrativeString(title);
+                                message = this.route.getNarrativeString(message);
                             }
-                            else if (this.rootTask) {
-                                buttons = [bFailTask];
+                            if (!(this.task.solutionType === "info")) {
+                                if (this.route.isAnswerFeedbackEnabled()) {
+                                    data = {
+                                        title: title,
+                                        message: message,
+                                        solution: solution,
+                                        modalType: solved == 'solved_low' ? __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].solvedLow : __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].solved,
+                                        gamificationEnabled: !this.gamificationIsDisabled,
+                                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                                        narrative: this.app.activeNarrative,
+                                        param: { tries: this.taskDetails.tries + 1 },
+                                        buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
+                                    };
+                                    if (!this.rootTask || (this.rootTask && this.subTasksRequired) && (this.taskDetails.tries > 1 || (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0))) {
+                                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
+                                    }
+                                    else if (!this.rootTask || (this.rootTask && this.subTasksRequired) && (this.taskDetails.tries <= 1)) {
+                                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP';
+                                    }
+                                    else if (!this.rootTask || (this.rootTask && this.subTasksRequired)) {
+                                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP';
+                                    }
+                                    modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], data, {
+                                        showBackdrop: true,
+                                        enableBackdropDismiss: true,
+                                        cssClass: this.app.activeNarrative
+                                    });
+                                }
+                                else {
+                                    modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                                        title: 'a_alert_saved_answer_title',
+                                        message: 'a_alert_saved_answer_message',
+                                        modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].saved,
+                                        gamificationEnabled: !this.gamificationIsDisabled,
+                                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                                        narrative: this.app.activeNarrative,
+                                        buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
+                                    }, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
+                                }
+                                modal_1.onDidDismiss(function (data) {
+                                    console.log(data);
+                                    if (data && data.showMap) {
+                                        /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
+                                        _this.navCtrl.pop();
+                                    }
+                                });
+                                modal_1.present();
                             }
-                            else if (this.route.isSampleSolutionEnabled()) {
-                                buttons = [bSampleSolution, bSkipTask];
+                            if (this.sessionInfo != null) {
+                                details = JSON.stringify({ score: this.taskDetails.score, solution: solution, quality: solved });
+                                this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
                             }
-                            else {
-                                buttons = [bSkipTask];
-                            }
-                            break;
-                    }
-                    if (!this.rootTask || this.subTasksRequired) {
-                        this.taskDetails.tries++;
-                    }
-                    if (this.taskDetails.skipped) {
-                        this.taskDetails.newTries++;
-                    }
-                    title = "a_alert_false_answer_title";
-                    if (this.route.isNarrativeEnabled()) {
-                        title = this.route.getNarrativeString(title);
-                        message = this.route.getNarrativeString(message);
-                    }
-                    if (this.route.isAnswerFeedbackEnabled()) {
-                        data = {
-                            title: title,
-                            message: message,
-                            solution: solution,
-                            modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].error,
-                            gamificationEnabled: !this.gamificationIsDisabled,
-                            narrativeEnabled: this.route.isNarrativeEnabled(),
-                            narrative: this.app.activeNarrative,
-                            buttons: buttons
-                        };
-                        if (!this.rootTask || (this.rootTask && this.subTasksRequired)) {
-                            data['score'] = this.taskDetails.tries > 1 ? '-' + this.penalty : '0';
+                            this.taskDetails.timeSolved = new Date().getTime();
                         }
-                        modal_2 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], data, {
-                            showBackdrop: true,
-                            enableBackdropDismiss: true,
-                            cssClass: this.app.activeNarrative
-                        });
-                    }
-                    else {
-                        bNextTask = {
-                            title: 'pdf_next_task',
-                            callback: function () {
-                                modal_2.dismiss().then(function () {
-                                    that.closeDetails(false);
+                        else {
+                            message = "";
+                            buttons = void 0;
+                            tries_1 = this.taskDetails.tries;
+                            if (this.taskDetails.skipped) {
+                                tries_1 = this.taskDetails.newTries;
+                            }
+                            switch (tries_1) {
+                                case 0:
+                                case 1:
+                                    if (this.task.solutionType == "gps")
+                                        message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                    else if (this.task.solutionType == "blanks")
+                                        message = 'a_alert_blanks_false_answer_1';
+                                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                        message = 'a_alert_set_false_answer_1';
+                                    else
+                                        message = 'a_alert_false_answer_1';
+                                    buttons = [
+                                        {
+                                            title: 'a_alert_close',
+                                            callback: function () {
+                                                modal_2.dismiss();
+                                            }
+                                        }
+                                    ];
+                                    break;
+                                case 2:
+                                case 3:
+                                case 4:
+                                    if (this.task.solutionType == "gps")
+                                        message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                    else if (this.task.solutionType == "blanks")
+                                        message = 'a_alert_blanks_false_answer_2';
+                                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                        message = 'a_alert_set_false_answer_2';
+                                    else
+                                        message = 'a_alert_false_answer_2';
+                                    if (!this.route.isHintsEnabled() || this.rootTask) {
+                                        if (this.task.solutionType == "blanks")
+                                            message = 'a_alert_blanks_false_answer_1';
+                                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                            message = 'a_alert_set_false_answer_1';
+                                        else
+                                            message = 'a_alert_false_answer_1';
+                                    }
+                                    bShowHint = {
+                                        title: 'a_t_show_hint',
+                                        callback: function () {
+                                            modal_2.dismiss().then(function () {
+                                                var index = 1;
+                                                //number of tries already increased
+                                                if (tries_1 == 3) {
+                                                    var temp = that.getNextAvailableHint();
+                                                    if (temp < 2)
+                                                        index = temp;
+                                                    else
+                                                        index = 2;
+                                                }
+                                                else if (tries_1 == 4) {
+                                                    var temp = that.getNextAvailableHint();
+                                                    if (temp < 3)
+                                                        index = temp;
+                                                    else
+                                                        index = 3;
+                                                }
+                                                that.showHint(index);
+                                            });
+                                        }
+                                    };
+                                    thiss_1 = this;
+                                    bShowSubtask = {
+                                        title: 'a_t_show_subtask',
+                                        callback: function () {
+                                            modal_2.dismiss().then(function () {
+                                                thiss_1.openSubtask();
+                                            });
+                                        }
+                                    };
+                                    bClose = {
+                                        title: 'a_alert_close',
+                                        callback: function () {
+                                            modal_2.dismiss();
+                                        }
+                                    };
+                                    if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                                        buttons = [bShowSubtask, bShowHint, bClose];
+                                    }
+                                    else if (this.route.isHintsEnabled() && !this.rootTask) {
+                                        buttons = [bShowHint, bClose];
+                                    }
+                                    else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                                        buttons = [bShowSubtask, bClose];
+                                    }
+                                    else {
+                                        buttons = [bClose];
+                                    }
+                                    break;
+                                default:
+                                    message = 'a_t_skip_msg';
+                                    bSampleSolution = {
+                                        title: 't_samplesolution',
+                                        callback: function () {
+                                            modal_2.dismiss().then(function () {
+                                                if (that.sessionInfo != null) {
+                                                    var details = JSON.stringify({});
+                                                    that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
+                                                }
+                                                that.showSolutionSample(true);
+                                            });
+                                        }
+                                    };
+                                    bSkipTask = {
+                                        title: 'a_skipTask',
+                                        callback: function () {
+                                            modal_2.dismiss().then(function () {
+                                                if (that.sessionInfo != null) {
+                                                    var details = JSON.stringify({});
+                                                    that.chatAndSessionService.addUserEvent("event_task_skipped", details, that.task.id.toString());
+                                                }
+                                                that.closeDetails(true);
+                                            });
+                                        }
+                                    };
+                                    bFailTask = {
+                                        title: 'okay',
+                                        callback: function () {
+                                            modal_2.dismiss().then(function () {
+                                                if (that.sessionInfo != null) {
+                                                    var details = JSON.stringify({});
+                                                    that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
+                                                }
+                                                that.taskDetails.failed = true;
+                                                that.ormService.insertOrUpdateTaskState(that.score, that.taskDetails).then(function () {
+                                                    if (!that.rootTask) {
+                                                        that.closeDetails();
+                                                    }
+                                                    else {
+                                                        that.goToNextSubtask();
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    };
+                                    if (this.rootTask && this.route.isSampleSolutionEnabled()) {
+                                        buttons = [bSampleSolution, bFailTask];
+                                    }
+                                    else if (this.rootTask) {
+                                        buttons = [bFailTask];
+                                    }
+                                    else if (this.route.isSampleSolutionEnabled()) {
+                                        buttons = [bSampleSolution, bSkipTask];
+                                    }
+                                    else {
+                                        buttons = [bSkipTask];
+                                    }
+                                    break;
+                            }
+                            this.taskDetails.tries++;
+                            if (this.taskDetails.skipped) {
+                                this.taskDetails.newTries++;
+                            }
+                            title = "a_alert_false_answer_title";
+                            if (this.route.isNarrativeEnabled()) {
+                                title = this.route.getNarrativeString(title);
+                                message = this.route.getNarrativeString(message);
+                            }
+                            if (this.route.isAnswerFeedbackEnabled()) {
+                                data = {
+                                    title: title,
+                                    message: message,
+                                    solution: solution,
+                                    modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].error,
+                                    gamificationEnabled: !this.gamificationIsDisabled,
+                                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                                    narrative: this.app.activeNarrative,
+                                    buttons: buttons
+                                };
+                                if (!this.rootTask || (this.rootTask && this.subTasksRequired)) {
+                                    data['score'] = this.taskDetails.tries > 1 ? '-' + this.penalty : '0';
+                                }
+                                modal_2 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], data, {
+                                    showBackdrop: true,
+                                    enableBackdropDismiss: true,
+                                    cssClass: this.app.activeNarrative
                                 });
                             }
-                        };
-                        modal_2 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
-                            title: 'a_alert_saved_answer_title',
-                            message: 'a_alert_saved_answer_message',
-                            modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].saved,
-                            gamificationEnabled: !this.gamificationIsDisabled,
-                            narrativeEnabled: this.route.isNarrativeEnabled(),
-                            narrative: this.app.activeNarrative,
-                            buttons: [bNextTask],
-                        }, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
-                    }
-                    modal_2.present();
+                            else {
+                                bNextTask = {
+                                    title: 'pdf_next_task',
+                                    callback: function () {
+                                        modal_2.dismiss().then(function () {
+                                            that.closeDetails(false);
+                                        });
+                                    }
+                                };
+                                modal_2 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                                    title: 'a_alert_saved_answer_title',
+                                    message: 'a_alert_saved_answer_message',
+                                    modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].saved,
+                                    gamificationEnabled: !this.gamificationIsDisabled,
+                                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                                    narrative: this.app.activeNarrative,
+                                    buttons: [bNextTask],
+                                }, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
+                            }
+                            modal_2.present();
+                        }
+                        return [4 /*yield*/, this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails)];
+                    case 1:
+                        _a.sent();
+                        if (this.task.solutionType === 'info') {
+                            if (this.rootTask) {
+                                this.goToNextSubtask();
+                            }
+                            else {
+                                this.closeDetails(false);
+                            }
+                        }
+                        return [2 /*return*/];
                 }
-                this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
-                return [2 /*return*/];
             });
         });
     };
     TaskDetail.prototype.CalculateScore = function (solutionType, solved) {
+        if (solutionType == "value") {
+            if (this.taskDetails.tries > 0) {
+                var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+            else {
+                this.taskDetails.score = this.maxScore;
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+        }
+        if (solutionType == "multiple_choice") {
+            if (this.taskDetails.tries > 0) {
+                var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+            else {
+                this.taskDetails.score = this.maxScore;
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+        }
+        if (solutionType == "range") {
+            if (solved == "solved") {
+                if (this.taskDetails.tries > 0) {
+                    var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        this.score.score += this.taskDetails.score;
+                    }
+                }
+                else {
+                    this.taskDetails.score = this.maxScore;
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        this.score.score += this.taskDetails.score;
+                    }
+                }
+            }
+            else if (solved == "solved_low") {
+                var solutionList = this.task.getSolutionList();
+                //if the orange interval is below the green
+                var dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                if (dotAnswer < solutionList[0]) {
+                    if (this.taskDetails.tries > 0) {
+                        var tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    }
+                    else {
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    }
+                }
+                else {
+                    if (this.taskDetails.tries > 0) {
+                        var tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    }
+                    else {
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    }
+                }
+            }
+        }
+        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
+            if (this.taskDetails.tries > 0) {
+                var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+            else {
+                this.taskDetails.score = this.maxScore;
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+        }
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
-            var tempScore = 0;
+            var tempScore = this.taskDetails.score;
             for (var _i = 0, _a = this.solvedSubtasks; _i < _a.length; _i++) {
                 var task = _a[_i];
                 tempScore += task.score;
             }
-            if (this.taskDetails.tries > 0) {
-                tempScore += this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-            }
-            else {
-                tempScore += this.maxScore;
-            }
             this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
-            }
-        }
-        else {
-            if (solutionType == "value") {
-                if (this.taskDetails.tries > 0) {
-                    var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
-                else {
-                    this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
-            }
-            if (solutionType == "multiple_choice") {
-                if (this.taskDetails.tries > 0) {
-                    var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
-                else {
-                    this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
-            }
-            if (solutionType == "range") {
-                if (solved == "solved") {
-                    if (this.taskDetails.tries > 0) {
-                        var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask) {
-                            this.score.score += this.taskDetails.score;
-                        }
-                    }
-                    else {
-                        this.taskDetails.score = this.maxScore;
-                        if (!this.rootTask) {
-                            this.score.score += this.taskDetails.score;
-                        }
-                    }
-                }
-                else if (solved == "solved_low") {
-                    var solutionList = this.task.getSolutionList();
-                    //if the orange interval is below the green
-                    var dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
-                    if (dotAnswer < solutionList[0]) {
-                        if (this.taskDetails.tries > 0) {
-                            var tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
-                            this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        }
-                        else {
-                            this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        }
-                    }
-                    else {
-                        if (this.taskDetails.tries > 0) {
-                            var tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
-                            this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        }
-                        else {
-                            this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        }
-                    }
-                }
-            }
-            if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
-                if (this.taskDetails.tries > 0) {
-                    var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
-                else {
-                    this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
             }
         }
         console.log("FinalScore: " + this.score.score);
@@ -2067,6 +2117,20 @@ var TaskDetail = /** @class */ (function () {
             return this.minScore;
         else
             return score;
+    };
+    TaskDetail.prototype.bestPossibleScore = function () {
+        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+            var tempScore = 0;
+            for (var _i = 0, _a = this.solvedSubtasks; _i < _a.length; _i++) {
+                var task = _a[_i];
+                tempScore += task.score;
+            }
+            if (this.taskDetails.tries <= 1) {
+                tempScore += this.maxScore;
+            }
+            return tempScore;
+        }
+        return this.maxScore;
     };
     TaskDetail.prototype.possibleScore = function () {
         if (this.taskDetails) {
@@ -2591,10 +2655,31 @@ var TaskDetail = /** @class */ (function () {
         }
         return isAnswered;
     };
-    TaskDetail.prototype.generateSubtaskScoreCalculationString = function () {
+    TaskDetail.prototype.generateSubtaskScoreCalculationString = function (solved) {
+        var taskScore;
+        var solutionType = this.task.solutionType;
+        if (solutionType == "value" || solutionType == "multiple_choice" || solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
+            taskScore = this.maxScore;
+        }
+        if (solutionType == "range") {
+            if (solved == "solved") {
+                taskScore = this.maxScore;
+            }
+            else if (solved == "solved_low") {
+                var solutionList = this.task.getSolutionList();
+                //if the orange interval is below the green
+                var dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                if (dotAnswer < solutionList[0]) {
+                    taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
+                }
+                else {
+                    taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
+                }
+            }
+        }
+        var calculation = "";
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
             var numbersArray = [];
-            var calculation = "";
             for (var _i = 0, _a = this.solvedSubtasks; _i < _a.length; _i++) {
                 var task = _a[_i];
                 if (!numbersArray[task.score]) {
@@ -2604,16 +2689,16 @@ var TaskDetail = /** @class */ (function () {
                     numbersArray[task.score]++;
                 }
             }
-            if (this.taskDetails.tries == 0) {
-                if (!numbersArray[this.maxScore]) {
-                    numbersArray[this.maxScore] = 1;
+            if (this.taskDetails.tries <= 1) {
+                if (!numbersArray[taskScore]) {
+                    numbersArray[taskScore] = 1;
                 }
                 else {
-                    numbersArray[this.maxScore]++;
+                    numbersArray[taskScore]++;
                 }
             }
             else {
-                var tempScore = this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+                var tempScore = taskScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
                 if (!numbersArray[tempScore]) {
                     numbersArray[tempScore] = 1;
                 }
@@ -2621,25 +2706,42 @@ var TaskDetail = /** @class */ (function () {
                     numbersArray[tempScore]++;
                 }
             }
+            numbersArray.sort(function (a, b) {
+                if (a > b)
+                    return 1;
+                if (a < b)
+                    return -1;
+                return 0;
+            });
             for (var score in numbersArray) {
                 if (calculation != "") {
                     calculation += ' + ';
                 }
                 if (numbersArray[score] == 1 && score != "0") {
-                    calculation += score;
+                    calculation += score + 'MP';
                 }
                 else if (score != "0") {
-                    calculation += numbersArray[score] + ' * ' + score + ' ';
+                    calculation += numbersArray[score] + ' * ' + score + 'MP';
                 }
             }
-            return calculation;
         }
+        else {
+            if (this.taskDetails.tries > 1) {
+                if (taskScore - this.penalty * (this.taskDetails.tries - 1) > this.minScore) {
+                    calculation = taskScore + 'MP - ' + this.penalty + 'MP';
+                    if (this.taskDetails.tries > 2) {
+                        calculation += ' * ' + (this.taskDetails.tries - 1);
+                    }
+                }
+            }
+        }
+        return calculation;
     };
     TaskDetail.prototype.displayScoreCalculation = function () {
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
             var subtaskModal_3 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
                 type: 'text',
-                score: '(' + this.generateSubtaskScoreCalculationString() + ')',
+                score: '(' + this.generateSubtaskScoreCalculationString('solved') + ')',
                 gamificationEnabled: !this.gamificationIsDisabled,
                 modalType: __WEBPACK_IMPORTED_MODULE_5__app_app_component__["a" /* MCMModalType */].calculation,
                 narrativeEnabled: this.route.isNarrativeEnabled(),
@@ -2675,7 +2777,7 @@ var TaskDetail = /** @class */ (function () {
     ], TaskDetail.prototype, "multipleChoiceView", void 0);
     TaskDetail = TaskDetail_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-task-detail',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? \'mcm-keyboard-open\' : \'\'">\n    <div class="task-header" [ngClass]="{\'gps\' : task && task.solutionType==\'gps\'}">\n        <div *ngIf="task && task.solutionType==\'gps\'" id="gpsTaskMap">\n            <ion-fab bottom right *ngIf="task && task.solutionType==\'gps\'">\n                <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">\n                    <span>{{item}}</span>\n                </button>\n            </ion-fab>\n        </div>\n        <img class="image" *ngIf="task && task.solutionType!=\'gps\' && task.image" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />\n        <img class="image" *ngIf="task && !task.image && rootTask && rootTask.image && task.solutionType !=\'gps\'" [src]="rootTask.getImageURL()" (click)="openInPhotoviewer(true)" />\n    </div>\n    <div class="task-content" [ngClass]="{\'subtask\': rootTask}">\n        <div class="transition"></div>\n        <div class="card task has-button-on-the-edge">\n\n            <div class="head">\n                <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>\n                <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.subtasks.length} }}</ion-label>\n                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>\n            </div>\n            <p *ngIf="task">{{task.description}}</p>\n            <div class="answer" *ngIf="task && task.solutionType != \'info\' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                <ion-label *ngIf ="task && task.solutionType != \'gps\' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>\n                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->\n                    <ion-input (keyup.enter)="checkResult()"\n                               [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"\n                               *ngIf="task.solutionType != \'text\'"\n                               type="text"\n                               (focus)="setKeyboardOn(true)"\n                               [ngModelOptions]="{standalone: true}"\n                               readonly="true"\n                               [(ngModel)]="taskDetails.answer"\n                    >\n                    </ion-input>\n                    <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == \'text\'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>\n                </ion-item>\n                <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === \'vector_values\' || task.solutionType === \'vector_intervals\' || task.solutionType === \'set\') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{\'is-focused\': answerIndex == i && keyboardVisible()}">\n                        <ion-label *ngIf="task.solutionType !== \'set\'" floating>{{answerField.name}}</ion-label>\n                        <ion-label *ngIf="task.solutionType === \'set\'" floating>{{\'a_task_set_answer\' | translate : {index: i + 1} }}</ion-label>\n                        <ion-input (keyup.enter)="checkResult()"\n                                   [disabled]="answerField.solved || (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))"\n                                   type="text"\n                                   (focus)="setKeyboardOn(true, i)"\n                                   [ngModelOptions]="{standalone: true}"\n                                   readonly="true"\n                                   [(ngModel)]="answerField.answer"\n                        >\n                        </ion-input>\n                    </ion-item>\n                </ion-list>\n                <ion-item *ngIf="task && task.solutionType === \'blanks\' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <p [ngClass]="{\'disabled\': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))}" id="blankContainer"></p>\n                </ion-item>\n                <ion-list *ngIf="task && task.solutionType == \'multiple_choice\' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">\n                        <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>\n                        <ion-label class="multi-choice-label" text-wrap tappable>{{item.value}}</ion-label>\n                    </ion-item>\n                </ion-list>\n            </div>\n\n            <div class="on-the-edge-container" *ngIf="taskDetails">\n                <ion-grid no-padding>\n                    <ion-row>\n                        <ion-col *ngIf="route.isHintsEnabled()">\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="false" *ngIf="task && task.hasHintMessage(1)" (click)="showHint(1)">\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint1" *ngIf="task && task.hasHintMessage(2)" (click)="showHint(2)">\n                                <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint2" *ngIf="task && task.hasHintMessage(3)" (click)="showHint(3)">\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint2" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()) && (task && task.solutionType != \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))"\n                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !isSpecialTypeAnswered() && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">\n                                {{ "a_btn_check_answer" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()) || (task && task.solutionType == \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"\n                                    (click)="completeTask()">\n                                {{ "a_task_complete" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails"\n                                    [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">\n                                {{ "p_save" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col>\n                            <button class="hint" ion-button icon-only round color="primary" (click)="showSolutionSample()"\n                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== \'info\'">\n                                <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>\n                            </button>\n                            <!-- open subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"\n                                    *ngIf="task.subtasks && task.subtasks.length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">\n                                <img class="round" src="./assets/icons/subtask_icon.svg"/>\n                            </button>\n                            <!-- close subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"\n                                    *ngIf="rootTask && task">\n                                <img class="round" src="./assets/icons/task_icon.svg"/>\n                            </button>\n                            <!-- skip task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"\n                            *ngIf="task && taskDetails && task.solutionType !== \'info\' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2)) && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails(false)"\n                            *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"\n                                    *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                        </ion-col>\n                    </ion-row>\n                </ion-grid>\n\n            </div>\n        </div>\n\n        <div class="card subtasks" *ngIf="task && task.subtasks && task.subtasks.length > 0 && solvedSubtasks && solvedSubtasks.length > 0">\n            <ion-label>{{ "a_solved_subtasks" | translate }}</ion-label>\n            <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{\'open\': activeAccordions.indexOf(subtask.taskId) != -1}">\n                <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">\n                    <p class="task_name">#{{i+1}} {{task.subtasks[i].title}}</p>\n                    <div class="rating_container">\n                        <!--                    <div class="rating" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}"></div>-->\n                    </div>\n                    <img class="accordion_arrow" src="./assets/icons/subtask_arrow.svg">\n                </div>\n                <div class="accordion_content" (click)="openSubtask(i)">\n                    <span class="description" [ngClass]="{\'compact\': subTasksRequired}">{{task.subtasks[i].description}}</span>\n                    <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>\n                    <ion-label *ngIf="subTasksRequired" class="answer_container">{{ "a_task_score" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.score}}</span></ion-label>\n\n                </div>\n            </div>\n        </div>\n\n       <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->\n        <div class="card evaluation" *ngIf="route && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed || taskDetails?.saved)"\n        [ngClass]="{\'saved\' : taskDetails?.saved, \'perfect\' : taskDetails?.solved && route.isAnswerFeedbackEnabled(), \'good\': taskDetails?.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\' : taskDetails?.failed && route.isAnswerFeedbackEnabled() }">\n            <div class="head">\n                <div *ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled()">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled()">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;good_luck_next_time&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("good_luck_next_time") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled()">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <ion-label class="tag score" *ngIf="route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!rootTask" id="keyboard-anchor"></div>\n        <div *ngIf="rootTask" id="snd-keyboard-anchor"></div>\n	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">\n                <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_did_you_know&quot;); else elseBlock">\n                    <ion-label text-wrap>{{ route.getNarrativeString("a_did_you_know") }}</ion-label>\n                </div>\n                <ng-template #elseBlock>\n                    <ion-label text-wrap>{{ "a_did_you_know" | translate }}</ion-label>\n                </ng-template>\n		    <p *ngIf="task">\n			    {{task.getSideFactsText()}}\n		    </p>\n	    </div>\n        <div *ngIf="task && task.author" class="card secondary">\n            <ion-label>{{ "author" | translate }}</ion-label>\n            <p>\n                {{task.author}}<br> {{task.mail}}\n            </p>\n        </div>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/,
+            selector: 'page-task-detail',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? \'mcm-keyboard-open\' : \'\'">\n    <div class="task-header" [ngClass]="{\'gps\' : task && task.solutionType==\'gps\'}">\n        <div *ngIf="task && task.solutionType==\'gps\'" id="gpsTaskMap">\n            <ion-fab bottom right *ngIf="task && task.solutionType==\'gps\'">\n                <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">\n                    <span>{{item}}</span>\n                </button>\n            </ion-fab>\n        </div>\n        <img class="image" *ngIf="task && task.solutionType!=\'gps\' && task.image" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />\n        <img class="image" *ngIf="task && !task.image && rootTask && rootTask.image && task.solutionType !=\'gps\'" [src]="rootTask.getImageURL()" (click)="openInPhotoviewer(true)" />\n    </div>\n    <div class="task-content" [ngClass]="{\'subtask\': rootTask}">\n        <div class="transition"></div>\n        <div class="card task has-button-on-the-edge">\n\n            <div class="head">\n                <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>\n                <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.subtasks.length} }}</ion-label>\n                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>\n            </div>\n            <p *ngIf="task">{{task.description}}</p>\n            <div class="answer" *ngIf="task && task.solutionType != \'info\' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                <ion-label *ngIf ="task && task.solutionType != \'gps\' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>\n                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->\n                    <ion-input (keyup.enter)="checkResult()"\n                               [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"\n                               *ngIf="task.solutionType != \'text\'"\n                               type="text"\n                               (focus)="setKeyboardOn(true)"\n                               [ngModelOptions]="{standalone: true}"\n                               readonly="true"\n                               [(ngModel)]="taskDetails.answer"\n                    >\n                    </ion-input>\n                    <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == \'text\'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>\n                </ion-item>\n                <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === \'vector_values\' || task.solutionType === \'vector_intervals\' || task.solutionType === \'set\') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{\'is-focused\': answerIndex == i && keyboardVisible()}">\n                        <ion-label *ngIf="task.solutionType !== \'set\'" floating>{{answerField.name}}</ion-label>\n                        <ion-label *ngIf="task.solutionType === \'set\'" floating>{{\'a_task_set_answer\' | translate : {index: i + 1} }}</ion-label>\n                        <ion-input (keyup.enter)="checkResult()"\n                                   [disabled]="answerField.solved || (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))"\n                                   type="text"\n                                   (focus)="setKeyboardOn(true, i)"\n                                   [ngModelOptions]="{standalone: true}"\n                                   readonly="true"\n                                   [(ngModel)]="answerField.answer"\n                        >\n                        </ion-input>\n                    </ion-item>\n                </ion-list>\n                <ion-item *ngIf="task && task.solutionType === \'blanks\' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <p [ngClass]="{\'disabled\': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))}" id="blankContainer"></p>\n                </ion-item>\n                <ion-list *ngIf="task && task.solutionType == \'multiple_choice\' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">\n                        <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>\n                        <ion-label class="multi-choice-label" text-wrap tappable>{{item.value}}</ion-label>\n                    </ion-item>\n                </ion-list>\n            </div>\n\n            <div class="on-the-edge-container" *ngIf="taskDetails">\n                <ion-grid no-padding>\n                    <ion-row>\n                        <ion-col *ngIf="route.isHintsEnabled() && task && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="false" *ngIf="task.hasHintMessage(1)" (click)="showHint(1)">\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint1" *ngIf="task.hasHintMessage(2)" (click)="showHint(2)">\n                                <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint2" *ngIf="task.hasHintMessage(3)" (click)="showHint(3)">\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint2" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()) && (task && task.solutionType != \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))"\n                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !isSpecialTypeAnswered() && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">\n                                {{ "a_btn_check_answer" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()) || (task && task.solutionType == \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"\n                                    (click)="completeTask()">\n                                {{ "a_task_complete" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails"\n                                    [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">\n                                {{ "p_save" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col>\n                            <button class="hint" ion-button icon-only round color="primary" (click)="showSolutionSample()"\n                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== \'info\'">\n                                <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>\n                            </button>\n                            <!-- open subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"\n                                    *ngIf="task.subtasks && task.subtasks.length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">\n                                <img class="round" src="./assets/icons/subtask_icon.svg"/>\n                            </button>\n                            <!-- close subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"\n                                    *ngIf="rootTask && task">\n                                <img class="round" src="./assets/icons/task_icon.svg"/>\n                            </button>\n                            <!-- skip task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"\n                            *ngIf="task && taskDetails && task.solutionType !== \'info\' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails(false)"\n                            *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"\n                                    *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                        </ion-col>\n                    </ion-row>\n                </ion-grid>\n\n            </div>\n        </div>\n\n        <div class="card subtasks" *ngIf="task && task.subtasks && task.subtasks.length > 0 && solvedSubtasks && solvedSubtasks.length > 0">\n            <ion-label>{{ "a_solved_subtasks" | translate }}</ion-label>\n            <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{\'open\': activeAccordions.indexOf(subtask.taskId) != -1}">\n                <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">\n                    <p class="task_name">#{{i+1}} {{task.subtasks[i].title}}</p>\n                    <div class="rating_container">\n                        <!--                    <div class="rating" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}"></div>-->\n                    </div>\n                    <img class="accordion_arrow" src="./assets/icons/subtask_arrow.svg">\n                </div>\n                <div class="accordion_content" (click)="openSubtask(i)">\n                    <span class="description" [ngClass]="{\'compact\': subTasksRequired}">{{task.subtasks[i].description}}</span>\n                    <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>\n                    <ion-label *ngIf="subTasksRequired" class="answer_container">{{ "a_task_score" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.score}}</span></ion-label>\n                    <img class="subtask-inner-arrow" src="./assets/icons/subtask_arrow.svg">\n                </div>\n            </div>\n        </div>\n\n       <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->\n        <div class="card evaluation" *ngIf="route && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed || taskDetails?.saved)"\n        [ngClass]="{\'saved\' : taskDetails?.saved, \'perfect\' : taskDetails?.solved && route.isAnswerFeedbackEnabled(), \'good\': taskDetails?.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\' : taskDetails?.failed && route.isAnswerFeedbackEnabled() }">\n            <div class="head" *ngIf="task.solutionType !== \'info\'">\n                <div *ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;good_luck_next_time&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("good_luck_next_time") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <ion-label class="tag score" *ngIf="route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!rootTask" id="keyboard-anchor"></div>\n        <div *ngIf="rootTask" id="snd-keyboard-anchor"></div>\n	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">\n                <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_did_you_know&quot;); else elseBlock">\n                    <ion-label text-wrap>{{ route.getNarrativeString("a_did_you_know") }}</ion-label>\n                </div>\n                <ng-template #elseBlock>\n                    <ion-label text-wrap>{{ "a_did_you_know" | translate }}</ion-label>\n                </ng-template>\n		    <p *ngIf="task">\n			    {{task.getSideFactsText()}}\n		    </p>\n	    </div>\n        <div *ngIf="task && task.author" class="card secondary">\n            <ion-label>{{ "author" | translate }}</ion-label>\n            <p>\n                {{task.author}}<br> {{task.mail}}\n            </p>\n        </div>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],

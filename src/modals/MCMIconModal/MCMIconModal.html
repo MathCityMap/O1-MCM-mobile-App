@@ -15,10 +15,9 @@
         <!-- video hint -->
         <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>
 
-         <h3 class="score" *ngIf="gamificationEnabled && score && score != '0'">{{score}}</h3>
+         <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != '0'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>
 
         <!-- text hint -->
-        <p text-center *ngIf="modalType == 7" [linkedInnerHtml]=" taskDescription | translate: param | linky: linkyOptions "></p>
         <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>

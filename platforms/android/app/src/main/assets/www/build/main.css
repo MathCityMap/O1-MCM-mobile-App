@@ -61183,6 +61183,20 @@ ion-list:not(.vector-input-list) > * {
   content: ' MP';
 }
 
+.score.in-icon-modal {
+  display: block !important;
+  text-align: center;
+}
+
+.score.in-icon-modal .subscore {
+  text-align: center;
+  font-size: 16px;
+}
+
+.score.in-icon-modal:after {
+  content: unset;
+}
+
 .image-container {
   position: relative;
   display: inline-block;
@@ -61795,7 +61809,9 @@ ion-modal .modal.card.icon .score {
 }
 
 ion-modal .modal.card.icon .solutionTable {
-  margin-left: 45%;
+  margin-left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 ion-modal .modal.card.icon .blank {
@@ -64330,6 +64346,12 @@ page-task-detail .card.subtasks .accordion .accordion_content .description {
 
 page-task-detail .card.subtasks .accordion .accordion_content .description.compact {
   width: 55%;
+}
+
+page-task-detail .card.subtasks .accordion .accordion_content .subtask-inner-arrow {
+  max-width: 10px;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 page-task-detail .card.subtasks .accordion .accordion_content .answer_container {

@@ -247,12 +247,9 @@ export class TaskDetail {
                 }
             }
             if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.subtasks.length) {
-                let thiss = this;
                 let subtaskModal = this.modalCtrl.create(MCMIconModal, {
-                    title: 'a_subtaskinfo_title',
                     type: 'text',
                     message: this.solvedSubtasks.length == 0 ? 'a_subtaskinfo_required_message' : 'a_subtaskinfo_required_progress_message',
-                    taskDescription: this.task.description,
                     modalType: MCMModalType.subtask,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
@@ -260,7 +257,6 @@ export class TaskDetail {
                         {
                             title: 'a_subtaskinfo_required_letsgo',
                             callback: function () {
-                                thiss.openSubtask()
                                 subtaskModal.dismiss();
                             }
                         }
@@ -967,26 +963,39 @@ export class TaskDetail {
                 if (!this.rootTask) {
                     this.score.addSolvedTask(this.task.id);
                 }
-                switch (this.taskDetails.tries) {
-                    case 0:
+                if (this.rootTask && !this.subTasksRequired) {
+                    if (this.taskDetails.tries == 0) {
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        if (this.task.solutionType == "info") message = "";
+                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1';
                         else message = 'a_alert_right_answer_1';
-                        break;
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        if (this.task.solutionType == "info") message = "";
-                        else message = 'a_alert_right_answer_2';
-                        break;
-                    case 5:
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        if (this.task.solutionType == "info") message = "";
-                        else message = 'a_alert_right_answer_3';
-                        break;
+                    } else {
+                        message = 'a_alert_subtask_right_answer';
+                    }
+                } else {
+                    switch (this.taskDetails.tries) {
+                        case 0:
+                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                            else if (this.task.solutionType == "info") message = "";
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1';
+                            else message = 'a_alert_right_answer_1';
+                            break;
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                            else if (this.task.solutionType == "info") message = "";
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_2';
+                            else message = 'a_alert_right_answer_2';
+                            break;
+                        case 5:
+                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                            else if (this.task.solutionType == "info") message = "";
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_3';
+                            else message = 'a_alert_right_answer_3';
+                            break;
 
+                    }
                 }
             }
             if (solved == 'solved_low') {
@@ -995,22 +1004,35 @@ export class TaskDetail {
                 if (!this.rootTask) {
                     this.score.addSolvedTaskLow(this.task.id);
                 }
-                switch (this.taskDetails.tries) {
-                    case 0:
+                if (this.rootTask && !this.subTasksRequired) {
+                    if (this.taskDetails.tries == 0) {
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1_low';
                         else message = 'a_alert_right_answer_1_low';
-                        break;
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        else message = 'a_alert_right_answer_2_low';
-                        break;
-                    case 5:
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        else message = 'a_alert_right_answer_3_low';
-                        break;
+                    } else {
+                        message = 'a_alert_subtask_right_answer_low';
+                    }
+                } else {
+                    switch (this.taskDetails.tries) {
+                        case 0:
+                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1_low';
+                            else message = 'a_alert_right_answer_1_low';
+                            break;
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_2_low';
+                            else message = 'a_alert_right_answer_2_low';
+                            break;
+                        case 5:
+                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_3_low';
+                            else message = 'a_alert_right_answer_3_low';
+                            break;
+                    }
                 }
             }
             let that = this;
@@ -1041,44 +1063,51 @@ export class TaskDetail {
                 message = this.route.getNarrativeString(message);
             }
             let modal;
-            if (this.route.isAnswerFeedbackEnabled()) {
-                let data = {
-                    title: title,
-                    message: message,
-                    solution: solution,
-                    modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
-                    gamificationEnabled: !this.gamificationIsDisabled,
-                    narrativeEnabled: this.route.isNarrativeEnabled(),
-                    narrative: this.app.activeNarrative,
-                    buttons: this.rootTask ? [subTaskOkay] :((this.route.isSampleSolutionEnabled() && this.task.solutionType != "info") ? [bSampleSolution, bNextTask] : [bNextTask])
-                };
-                console.log("we scoring it up");
-                if (this.subTasksRequired && !this.rootTask) {
-                    data['score'] =  '+(' + this.generateSubtaskScoreCalculationString() + ' = ' + this.taskDetails.score + ')';
+            if (!(this.task.solutionType === "info")) {
+                if (this.route.isAnswerFeedbackEnabled()) {
+                    let data = {
+                        title: title,
+                        message: message,
+                        solution: solution,
+                        modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
+                        gamificationEnabled: !this.gamificationIsDisabled,
+                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                        narrative: this.app.activeNarrative,
+                        param: {tries: this.taskDetails.tries+1},
+                        buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
+                    };
+                    if (!this.rootTask || (this.rootTask && this.subTasksRequired) && (this.taskDetails.tries > 1 || (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0))) {
+                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
+                    } else if (!this.rootTask || (this.rootTask && this.subTasksRequired) && (this.taskDetails.tries <= 1)) {
+                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP';
+                    } else if (!this.rootTask || (this.rootTask && this.subTasksRequired)) {
+                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP';
+                    }
+                    modal = this.modalCtrl.create(MCMIconModal, data, {
+                        showBackdrop: true,
+                        enableBackdropDismiss: true,
+                        cssClass: this.app.activeNarrative
+                    });
+                } else {
+                    modal = this.modalCtrl.create(MCMIconModal, {
+                        title: 'a_alert_saved_answer_title',
+                        message: 'a_alert_saved_answer_message',
+                        modalType: MCMModalType.saved,
+                        gamificationEnabled: !this.gamificationIsDisabled,
+                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                        narrative: this.app.activeNarrative,
+                        buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
+                    }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
                 }
-                else if ((!this.rootTask || (this.rootTask && this.subTasksRequired)) && this.task.solutionType != "info") {
-                    data['score'] = "+" + this.taskDetails.score;
-                }
-                modal = this.modalCtrl.create(MCMIconModal, data , {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-            } else {
-                modal = this.modalCtrl.create(MCMIconModal, {
-                    title: 'a_alert_saved_answer_title',
-                    message: 'a_alert_saved_answer_message',
-                    modalType: MCMModalType.saved,
-                    gamificationEnabled: !this.gamificationIsDisabled,
-                    narrativeEnabled: this.route.isNarrativeEnabled(),
-                    narrative: this.app.activeNarrative,
-                    buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
-                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+                modal.onDidDismiss((data) => {
+                    console.log(data);
+                    if (data && data.showMap) {
+                        /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
+                        this.navCtrl.pop();
+                    }
+                });
+                modal.present();
             }
-            modal.onDidDismiss((data) => {
-                console.log(data);
-                if (data && data.showMap) {
-                    /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
-                    this.navCtrl.pop();
-                }
-            });
-            modal.present();
             if(this.sessionInfo != null){
                 let details = JSON.stringify({score: this.taskDetails.score, solution: solution, quality: solved});
                 this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
@@ -1221,9 +1250,7 @@ export class TaskDetail {
 
                     break;
             }
-            if (!this.rootTask || this.subTasksRequired) {
-                this.taskDetails.tries++;
-            }
+            this.taskDetails.tries++;
             if (this.taskDetails.skipped) {
                 this.taskDetails.newTries++;
             }
@@ -1272,115 +1299,119 @@ export class TaskDetail {
             }
             modal.present();
         }
-        this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+        await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+        if (this.task.solutionType === 'info') {
+            if (this.rootTask) {
+                this.goToNextSubtask();
+            } else {
+                this.closeDetails(false);
+            }
+        }
     }
 
     CalculateScore(solutionType: string, solved: string) {
+        if (solutionType == "value") {
+            if (this.taskDetails.tries > 0) {
+                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            } else {
+                this.taskDetails.score = this.maxScore;
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+        }
+
+        if (solutionType == "multiple_choice") {
+            if (this.taskDetails.tries > 0) {
+                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            } else {
+                this.taskDetails.score = this.maxScore;
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+        }
+
+        if (solutionType == "range") {
+            if (solved == "solved") {
+                if (this.taskDetails.tries > 0) {
+                    let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        this.score.score += this.taskDetails.score;
+                    }
+                } else {
+                    this.taskDetails.score = this.maxScore;
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        this.score.score += this.taskDetails.score;
+                    }
+                }
+            } else if (solved == "solved_low") {
+                let solutionList = this.task.getSolutionList();
+
+                //if the orange interval is below the green
+                let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                if (dotAnswer < solutionList[0]) {
+                    if (this.taskDetails.tries > 0) {
+                        let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    } else {
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    }
+                } else {
+                    if (this.taskDetails.tries > 0) {
+                        let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    } else {
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                            this.score.score += this.taskDetails.score;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
+            if (this.taskDetails.tries > 0) {
+                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
+                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            } else {
+                this.taskDetails.score = this.maxScore;
+                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    this.score.score += this.taskDetails.score;
+                }
+            }
+        }
+
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
-            let tempScore = 0;
+            let tempScore = this.taskDetails.score;
             for (let task of this.solvedSubtasks) {
                 tempScore += task.score
-            }
-            if (this.taskDetails.tries > 0) {
-                tempScore += this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-            } else {
-                tempScore += this.maxScore
             }
             this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
-            }
-        } else {
-            if (solutionType == "value") {
-                if (this.taskDetails.tries > 0) {
-                    let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                } else {
-                    this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
-            }
-
-            if (solutionType == "multiple_choice") {
-                if (this.taskDetails.tries > 0) {
-                    let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                } else {
-                    this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
-            }
-            if (solutionType == "range") {
-                if (solved == "solved") {
-                    if (this.taskDetails.tries > 0) {
-                        let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask) {
-                            this.score.score += this.taskDetails.score;
-                        }
-                    } else {
-                        this.taskDetails.score = this.maxScore;
-                        if (!this.rootTask) {
-                            this.score.score += this.taskDetails.score;
-                        }
-                    }
-                } else if (solved == "solved_low") {
-                    let solutionList = this.task.getSolutionList();
-
-                    //if the orange interval is below the green
-                    let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
-                    if (dotAnswer < solutionList[0]) {
-                        if (this.taskDetails.tries > 0) {
-                            let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
-                            this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        } else {
-                            this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        }
-                    } else {
-                        if (this.taskDetails.tries > 0) {
-                            let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
-                            this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        } else {
-                            this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
-                            if (!this.rootTask) {
-                                this.score.score += this.taskDetails.score;
-                            }
-                        }
-                    }
-                }
-            }
-            if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
-                if (this.taskDetails.tries > 0) {
-                    let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                } else {
-                    this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask) {
-                        this.score.score += this.taskDetails.score;
-                    }
-                }
             }
         }
         console.log("FinalScore: " + this.score.score);
@@ -1394,6 +1425,20 @@ export class TaskDetail {
 
         if (score < this.minScore) return this.minScore;
         else return score;
+    }
+
+    private bestPossibleScore() {
+        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+            let tempScore = 0;
+            for (let task of this.solvedSubtasks) {
+                tempScore += task.score
+            }
+            if(this.taskDetails.tries <= 1){
+                tempScore += this.maxScore;
+            }
+            return tempScore;
+        }
+        return this.maxScore
     }
 
     private possibleScore(){
@@ -1947,10 +1992,31 @@ export class TaskDetail {
         return isAnswered;
     }
 
-    generateSubtaskScoreCalculationString() {
+    generateSubtaskScoreCalculationString(solved) {
+        let taskScore;
+        let solutionType = this.task.solutionType;
+            if (solutionType == "value" || solutionType == "multiple_choice" || solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
+                    taskScore = this.maxScore;
+            }
+
+            if (solutionType == "range") {
+                if (solved == "solved") {
+                        taskScore = this.maxScore;
+                } else if (solved == "solved_low") {
+                    let solutionList = this.task.getSolutionList();
+
+                    //if the orange interval is below the green
+                    let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                    if (dotAnswer < solutionList[0]) {
+                        taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
+                    } else {
+                        taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
+                    }
+                }
+            }
+        let calculation = "";
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
             let numbersArray = [];
-            let calculation = "";
             for (let task of this.solvedSubtasks) {
                 if (!numbersArray[task.score]) {
                     numbersArray[task.score] = 1;
@@ -1958,15 +2024,15 @@ export class TaskDetail {
                     numbersArray[task.score]++;
                 }
             }
-            if(this.taskDetails.tries == 0) {
-                if (!numbersArray[this.maxScore]) {
-                    numbersArray[this.maxScore] = 1;
+            if(this.taskDetails.tries <= 1) {
+                if (!numbersArray[taskScore]) {
+                    numbersArray[taskScore] = 1;
                 } else {
-                    numbersArray[this.maxScore]++;
+                    numbersArray[taskScore]++;
                 }
             }
             else {
-                let tempScore = this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+                let tempScore = taskScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
                 if (!numbersArray[tempScore]) {
                     numbersArray[tempScore] = 1;
                 } else {
@@ -1974,25 +2040,39 @@ export class TaskDetail {
                 }
 
             }
+            numbersArray.sort((a, b) => {
+                if (a > b) return 1;
+                if (a < b) return -1;
+                return 0;
+            })
             for (let score in numbersArray) {
                 if (calculation != "") {
                     calculation += ' + '
                 }
                 if (numbersArray[score] == 1 && score != "0") {
-                    calculation += score;
+                    calculation += score + 'MP';
                 } else if (score != "0") {
-                    calculation += numbersArray[score] + ' * ' + score + ' ';
+                    calculation += numbersArray[score] + ' * ' + score + 'MP';
                 }
             }
-            return calculation;
+        } else {
+            if (this.taskDetails.tries > 1) {
+                if (taskScore - this.penalty * (this.taskDetails.tries - 1) > this.minScore) {
+                    calculation = taskScore + 'MP - ' + this.penalty + 'MP'
+                    if (this.taskDetails.tries > 2) {
+                        calculation += ' * ' + (this.taskDetails.tries - 1);
+                    }
+                }
+            }
         }
+        return calculation;
     }
 
     displayScoreCalculation() {
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
             let subtaskModal = this.modalCtrl.create(MCMIconModal, {
                 type: 'text',
-                score: '(' + this.generateSubtaskScoreCalculationString() + ')',
+                score: '(' + this.generateSubtaskScoreCalculationString('solved') + ')',
                 gamificationEnabled: !this.gamificationIsDisabled,
                 modalType: MCMModalType.calculation,
                 narrativeEnabled: this.route.isNarrativeEnabled(),

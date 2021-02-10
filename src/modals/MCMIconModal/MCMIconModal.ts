@@ -73,19 +73,20 @@ export class MCMIconModal{
                 }
             }
         }
-
+        if(params.data.param){
+            this.param = params.data.param;
+        }
         if(params.data.solution){
             let sol = params.data.solution as Array<string>;
             // let L: any; let K: any; let J: any; let H: any;
             let variables = ["L", "K", "J", "H"];
-            this.param = {};
+            if (!this.param) {
+                this.param = {};
+            }
             for(let i = 0; i < sol.length; i++){
                 let currVar = variables[i];
                 this.param[currVar] = params.data.solution[i];
             }
-        }
-        if(params.data.param){
-            this.param = params.data.param;
         }
         if(params.data.gamificationEnabled){
             this.gamificationEnabled = params.data.gamificationEnabled;

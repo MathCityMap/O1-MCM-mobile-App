@@ -573,6 +573,17 @@ ion-list:not(.vector-input-list){
     &:after{
         content: ' MP';
     }
+    &.in-icon-modal {
+        display: block!important;
+        text-align: center;
+        .subscore {
+            text-align: center;
+            font-size: 16px;
+        }
+        &:after{
+            content: unset;
+        }
+    }
 }
 
 .image-container{
@@ -1078,7 +1089,8 @@ ion-modal {
                 font-size: 24px;
             }
             .solutionTable {
-                margin-left: 45%;
+                margin-left: 50%;
+                transform: translate(-50%, 0);
             }
             .blank{
                 display: inline-block;

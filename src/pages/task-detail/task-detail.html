@@ -66,17 +66,17 @@
             <div class="on-the-edge-container" *ngIf="taskDetails">
                 <ion-grid no-padding>
                     <ion-row>
-                        <ion-col *ngIf="route.isHintsEnabled()">
-                            <button ion-button icon-only round color="primary" class="hint" [disabled]="false" *ngIf="task && task.hasHintMessage(1)" (click)="showHint(1)">
+                        <ion-col *ngIf="route.isHintsEnabled() && task && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
+                            <button ion-button icon-only round color="primary" class="hint" [disabled]="false" *ngIf="task.hasHintMessage(1)" (click)="showHint(1)">
                                 <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-activated.svg"/>
                                 <img *ngIf="taskDetails.hint1" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>
                             </button>
-                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint1" *ngIf="task && task.hasHintMessage(2)" (click)="showHint(2)">
+                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint1" *ngIf="task.hasHintMessage(2)" (click)="showHint(2)">
                                 <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="round" src="./assets/icons/icon_hint-activated.svg"/>
                                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>
                                 <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>
                             </button>
-                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint2" *ngIf="task && task.hasHintMessage(3)" (click)="showHint(3)">
+                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint2" *ngIf="task.hasHintMessage(3)" (click)="showHint(3)">
                                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="round" src="./assets/icons/icon_hint-activated.svg"/>
                                 <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>
                                 <img *ngIf="!taskDetails.hint2" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>
@@ -121,7 +121,7 @@
                             </button>
                             <!-- skip task -->
                             <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"
-                            *ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2)) && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
+                            *ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))">
                                 <img class="round" src="./assets/icons/icon_skip.svg"/>
                             </button>
                             <!-- show next task -->
@@ -163,8 +163,8 @@
        <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->
         <div class="card evaluation" *ngIf="route && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed || taskDetails?.saved)"
         [ngClass]="{'saved' : taskDetails?.saved, 'perfect' : taskDetails?.solved && route.isAnswerFeedbackEnabled(), 'good': taskDetails?.solvedLow && route.isAnswerFeedbackEnabled(), 'failed' : taskDetails?.failed && route.isAnswerFeedbackEnabled() }">
-            <div class="head">
-                <div *ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled()">
+            <div class="head" *ngIf="task.solutionType !== 'info'">
+                <div *ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled() && task && task.solutionType !== 'info'">
                     <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">
                         <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>
                     </div>
@@ -172,7 +172,7 @@
                         <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>
                     </ng-template>
                 </div>
-                <div *ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled()">
+                <div *ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled() && task && task.solutionType !== 'info'">
                     <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;good_luck_next_time&quot;); else elseBlock">
                         <ion-label text-wrap>{{ route.getNarrativeString("good_luck_next_time") }}</ion-label>
                     </div>
@@ -180,7 +180,7 @@
                         <ion-label text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>
                     </ng-template>
                 </div>
-                <div *ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled()">
+                <div *ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled() && task && task.solutionType !== 'info'">
                     <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">
                         <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>
                     </div>
