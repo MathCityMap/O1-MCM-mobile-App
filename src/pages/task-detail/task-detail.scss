@@ -295,7 +295,9 @@ page-task-detail {
                         text-align: center;
                         white-space: normal;
                         overflow-wrap: break-word;
-
+                        @media (max-width: 320px) {
+                            font-size: 10px;
+                        }
                         .answer {
                             @each $rating, $color in $ratings {
                                 &.#{$rating} {
