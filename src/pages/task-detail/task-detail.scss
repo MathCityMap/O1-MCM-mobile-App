@@ -295,7 +295,7 @@ page-task-detail {
                         text-align: center;
                         white-space: normal;
                         overflow-wrap: break-word;
-                        @media (max-width: 320px) {
+                        @media (max-width: 400px) {
                             font-size: 10px;
                         }
                         .answer {

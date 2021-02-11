@@ -64360,6 +64360,12 @@ page-task-detail .card.subtasks .accordion .accordion_content .answer_container 
   overflow-wrap: break-word;
 }
 
+@media (max-width: 400px) {
+  page-task-detail .card.subtasks .accordion .accordion_content .answer_container {
+    font-size: 10px;
+  }
+}
+
 page-task-detail .card.subtasks .accordion .accordion_content .answer_container .answer.perfect {
   color: #3DCC68;
 }

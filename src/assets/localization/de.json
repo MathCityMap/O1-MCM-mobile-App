@@ -1165,6 +1165,6 @@
   "a_alert_set_right_answer_1_low": "Du hast die Aufgabe auf Anhieb gelöst. Deine Lösung {{L}} ist ok.",
   "a_alert_set_right_answer_2_low": "Deine Lösung {{L}} ist ok.",
   "a_alert_set_right_answer_3_low": "Zwar hast du anscheinend geraten, aber deine Lösung {{L}} ist ok.",
-  "a_alert_subtask_right_answer": "Du hast die Aufgabe in {{tries}} Versuchen Gelöst. Deine Lösung {{L}} ist richtig.",
-  "a_alert_subtask_right_answer_low": "Du hast die Aufgabe in {{tries}} Versuchen Gelöst. Deine Lösung {{L}} ist ok."
+  "a_alert_subtask_right_answer": "Du hast die Aufgabe in {{tries}} Versuchen gelöst. Deine Lösung {{L}} ist richtig.",
+  "a_alert_subtask_right_answer_low": "Du hast die Aufgabe in {{tries}} Versuchen gelöst. Deine Lösung {{L}} ist ok."
 }
