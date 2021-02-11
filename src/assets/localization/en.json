@@ -1167,6 +1167,8 @@
   "a_alert_set_right_answer_3_low": "Although you seem to have guessed, your answer {{L}} is ok.",
   "a_alert_subtask_right_answer": "You have completed the task in {{tries}} attempts. Your solution {{L}} is right.",
   "a_alert_subtask_right_answer_low": "You completed the task in {{tries}} attempts. Your solution {{L}} is ok.",
+  "a_alert_subtask_right_answer_flawless": "Great! You have solved the task perfectly. Your solution '{{L}}' is correct.",
+  "a_info_task_finished_message": "Thank you for reading. Now move on to the next task.",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

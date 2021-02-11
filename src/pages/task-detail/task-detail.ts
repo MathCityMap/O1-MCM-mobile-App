@@ -304,28 +304,30 @@ export class TaskDetail {
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
         if (!this.rootTask && this.route.isAnswerFeedbackEnabled() && this.task.solutionType != 'info') {
-            if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
-                this.maxScore = 40 * this.specialSolution.components.length;
-                if (this.maxScore > 200) {
-                    this.maxScore = 200;
-                }
-            } else if (this.task.solutionType == 'set') {
-                this.maxScore = 40 * this.specialSolution.length;
-                if (this.maxScore > 200) {
-                    this.maxScore = 200;
-                }
-            } else if (this.task.solutionType == 'blanks') {
-                let scorePerQuestion = this.specialSolution.settings.check_type === 'strict' ? 40 : (this.specialSolution.settings.check_type === 'normal' ? 30 : 20);
-                let amountOfQuestions = this.specialSolution.features.length;
-                this.maxScore = scorePerQuestion * amountOfQuestions;
-                if (this.maxScore > 200) {
-                    this.maxScore = 200;
-                }
-            } else {
-                this.maxScore = 100;
-            }
+            // Logic used to get different max scores for different task formats which has been sospended for now
+            // if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
+            //     this.maxScore = 40 * this.specialSolution.components.length;
+            //     if (this.maxScore > 200) {
+            //         this.maxScore = 200;
+            //     }
+            // } else if (this.task.solutionType == 'set') {
+            //     this.maxScore = 40 * this.specialSolution.length;
+            //     if (this.maxScore > 200) {
+            //         this.maxScore = 200;
+            //     }
+            // } else if (this.task.solutionType == 'blanks') {
+            //     let scorePerQuestion = this.specialSolution.settings.check_type === 'strict' ? 40 : (this.specialSolution.settings.check_type === 'normal' ? 30 : 20);
+            //     let amountOfQuestions = this.specialSolution.features.length;
+            //     this.maxScore = scorePerQuestion * amountOfQuestions;
+            //     if (this.maxScore > 200) {
+            //         this.maxScore = 200;
+            //     }
+            // } else {
+            //     this.maxScore = 100;
+            // }
+            this.maxScore = 100;
             this.orangeScore = this.maxScore / 2;
-            this.penalty = Math.floor(this.maxScore) / 10;
+            this.penalty = Math.floor(this.maxScore) * 0.15;
             this.minScore = Math.floor(this.maxScore) / 10;
         } else {
             this.maxScore = 0;
@@ -343,7 +345,7 @@ export class TaskDetail {
             }
             this.subTaskScore = Math.floor(this.maxScore / scorableTaskCount);
             this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
-            this.penalty = Math.floor(this.maxScore) / 10;
+            this.penalty = Math.floor(this.maxScore) * 0.15;
             this.minScore = Math.floor(this.maxScore ) / 10;
         }
 
@@ -351,7 +353,7 @@ export class TaskDetail {
             this.subTaskScore = this.navParams.get('score');
             this.maxScore = this.subTaskScore;
             this.orangeScore = this.maxScore / 2;
-            this.penalty = Math.floor(this.maxScore) / 10;
+            this.penalty = Math.floor(this.maxScore) * 0.15;
             this.minScore = Math.floor(this.maxScore ) / 10;
         }
 
@@ -966,16 +968,17 @@ export class TaskDetail {
                 if (this.rootTask && !this.subTasksRequired) {
                     if (this.taskDetails.tries == 0) {
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        else if (this.task.solutionType == "info") message = "a_info_task_finished_message";
                         else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1';
-                        else message = 'a_alert_right_answer_1';
+                        else message = 'a_alert_subtask_right_answer';
                     } else {
-                        message = 'a_alert_subtask_right_answer';
+                        message = 'a_alert_subtask_right_answer_1';
                     }
                 } else {
                     switch (this.taskDetails.tries) {
                         case 0:
                             if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "info") message = "";
+                            else if (this.task.solutionType == "info") message = "a_info_task_finished_message";
                             else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1';
                             else message = 'a_alert_right_answer_1';
                             break;
@@ -1063,26 +1066,22 @@ export class TaskDetail {
                 message = this.route.getNarrativeString(message);
             }
             let modal;
-            if (!(this.task.solutionType === "info")) {
                 if (this.route.isAnswerFeedbackEnabled()) {
                     let data = {
-                        title: title,
+                        title: this.task.solutionType === 'info' ? 'hide' : title,
                         message: message,
-                        solution: solution,
+                        solution: this.task.solutionType === 'info' ? undefined : solution,
                         modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
                         gamificationEnabled: !this.gamificationIsDisabled,
                         narrativeEnabled: this.route.isNarrativeEnabled(),
                         narrative: this.app.activeNarrative,
                         param: {tries: this.taskDetails.tries+1},
-                        buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() ? [bSampleSolution, bNextTask] : [bNextTask])
+                        buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
                     };
-                    if (!this.rootTask || (this.rootTask && this.subTasksRequired) && (this.taskDetails.tries > 1 || (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0))) {
+                    if (this.task.solutionType !== 'info' && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
                         data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
-                    } else if (!this.rootTask || (this.rootTask && this.subTasksRequired) && (this.taskDetails.tries <= 1)) {
-                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP';
-                    } else if (!this.rootTask || (this.rootTask && this.subTasksRequired)) {
-                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP';
                     }
+                    console.log(data);
                     modal = this.modalCtrl.create(MCMIconModal, data, {
                         showBackdrop: true,
                         enableBackdropDismiss: true,
@@ -1107,7 +1106,6 @@ export class TaskDetail {
                     }
                 });
                 modal.present();
-            }
             if(this.sessionInfo != null){
                 let details = JSON.stringify({score: this.taskDetails.score, solution: solution, quality: solved});
                 this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
@@ -1140,6 +1138,8 @@ export class TaskDetail {
                 case 2:
                 case 3:
                 case 4:
+                case 5:
+                case 6:
                     if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                     else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
                     else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
@@ -1300,13 +1300,6 @@ export class TaskDetail {
             modal.present();
         }
         await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
-        if (this.task.solutionType === 'info') {
-            if (this.rootTask) {
-                this.goToNextSubtask();
-            } else {
-                this.closeDetails(false);
-            }
-        }
     }
 
     CalculateScore(solutionType: string, solved: string) {
@@ -1361,26 +1354,26 @@ export class TaskDetail {
                 let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
                 if (dotAnswer < solutionList[0]) {
                     if (this.taskDetails.tries > 0) {
-                        let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
                         if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     } else {
-                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
                         if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
                 } else {
                     if (this.taskDetails.tries > 0) {
-                        let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer) - ((this.taskDetails.tries - 1) * this.penalty);
+                        let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
                         if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     } else {
-                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
+                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
                         if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
@@ -1417,10 +1410,10 @@ export class TaskDetail {
         console.log("FinalScore: " + this.score.score);
     }
 
-    CalculateOrangeScore(borderLeft: number, borderRight: number, value: number): number {
+    CalculateOrangeScore(borderLeft: number, borderRight: number, value: number, possibleScore: number): number {
         let intervalLenght = Math.abs(borderRight - borderLeft);
         console.log("borderRight " + borderRight + "  BorderLeft " + borderLeft);
-        let xVal = (Math.abs(value - borderLeft) / intervalLenght) * this.maxScore;
+        let xVal = (Math.abs(value - borderLeft) / intervalLenght) * possibleScore;
         let score = Math.round(xVal);
 
         if (score < this.minScore) return this.minScore;
@@ -1428,17 +1421,10 @@ export class TaskDetail {
     }
 
     private bestPossibleScore() {
-        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
-            let tempScore = 0;
-            for (let task of this.solvedSubtasks) {
-                tempScore += task.score
-            }
-            if(this.taskDetails.tries <= 1){
-                tempScore += this.maxScore;
-            }
-            return tempScore;
+        if (this.rootTask && this.subTasksRequired) {
+            return this.maxScore;
         }
-        return this.maxScore
+        return 100;
     }
 
     private possibleScore(){
@@ -2008,9 +1994,17 @@ export class TaskDetail {
                     //if the orange interval is below the green
                     let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
                     if (dotAnswer < solutionList[0]) {
-                        taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer);
+                        if (this.taskDetails.tries > 0) {
+                            taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
+                        } else {
+                            taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
+                        }
                     } else {
-                        taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer);
+                        if (this.taskDetails.tries > 0) {
+                            taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
+                        } else {
+                            taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
+                        }
                     }
                 }
             }
@@ -2051,13 +2045,25 @@ export class TaskDetail {
                 }
             }
         } else {
+            let orangediff = 0
             if (this.taskDetails.tries > 1) {
-                if (taskScore - this.penalty * (this.taskDetails.tries - 1) > this.minScore) {
-                    calculation = taskScore + 'MP - ' + this.penalty + 'MP'
+                orangediff = this.maxScore - (this.taskDetails.tries - 1) * this.penalty - taskScore;
+            }
+            else {
+                orangediff = this.maxScore - taskScore;
+            }
+            console.log('ORANGEDIFF', orangediff);
+            if (this.taskDetails.tries > 1) {
                     if (this.taskDetails.tries > 2) {
-                        calculation += ' * ' + (this.taskDetails.tries - 1);
+                        calculation = this.maxScore + 'MP - ' + (this.taskDetails.tries - 1) + ' x ' + this.penalty + 'MP';
+                    } else {
+                        calculation = this.maxScore + 'MP - ' + this.penalty + 'MP'
                     }
-                }
+                    if (orangediff > 0) {
+                        calculation += ' -' + orangediff + 'MP';
+                    }
+            } else if (orangediff > 0) {
+                calculation = this.maxScore + 'MP - ' + orangediff + 'MP';
             }
         }
         return calculation;

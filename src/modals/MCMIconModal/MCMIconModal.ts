@@ -44,7 +44,11 @@ export class MCMIconModal{
             this.modalType = params.data.modalType;
             this.buttons = params.data.buttons;
             if(params.data.title){
-                this.title = params.data.title;
+                if (params.data.title === 'hide') {
+                    this.title = undefined
+                } else {
+                    this.title = params.data.title;
+                }
             }else{
                 switch (this.modalType){
                     case MCMModalType.hint:
