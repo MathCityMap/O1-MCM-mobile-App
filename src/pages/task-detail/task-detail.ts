@@ -2041,7 +2041,7 @@ export class TaskDetail {
                 if (numbersArray[score] == 1 && score != "0") {
                     calculation += score + 'MP';
                 } else if (score != "0") {
-                    calculation += numbersArray[score] + ' * ' + score + 'MP';
+                    calculation += numbersArray[score] + ' x ' + score + 'MP';
                 }
             }
         } else {
@@ -2052,7 +2052,6 @@ export class TaskDetail {
             else {
                 orangediff = this.maxScore - taskScore;
             }
-            console.log('ORANGEDIFF', orangediff);
             if (this.taskDetails.tries > 1) {
                     if (this.taskDetails.tries > 2) {
                         calculation = this.maxScore + 'MP - ' + (this.taskDetails.tries - 1) + ' x ' + this.penalty + 'MP';
