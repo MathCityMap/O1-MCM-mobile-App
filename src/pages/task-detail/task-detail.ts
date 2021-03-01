@@ -1,4 +1,4 @@
-import {Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {OrmService} from '../../services/orm-service';
@@ -96,7 +96,8 @@ export class TaskDetail {
         private app: MyApp,
         private photoViewer: PhotoViewer,
         private spinnerDialog: SpinnerDialog,
-        private imageService: ImagesService
+        private imageService: ImagesService,
+        private cdRef: ChangeDetectorRef
     ) {
     }
 
@@ -193,51 +194,6 @@ export class TaskDetail {
         this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
-        if (this.task.solutionType === 'blanks') {
-            this.specialSolution = this.task.getSolution();
-            let blankMatch;
-            let blankText: string = this.specialSolution.val
-            while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
-                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {return answer.id === blankMatch[1]}) : null;
-                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
-            }
-            let blankContainer = document.getElementById('blankContainer');
-            blankContainer.innerHTML = blankText;
-            let inputs = blankContainer.getElementsByClassName('blankInput');
-            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
-                let answers = [];
-                for (let input of Array.from(inputs)) {
-                    answers.push({id: input.id, answer: "", solved: null})
-                }
-                this.taskDetails.answerMultipleChoice = answers;
-            }
-            for (let input of Array.from(inputs)) {
-                input.addEventListener('input', (event: any) => {
-                    let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {return answer.id === input.id});
-                    answerElement.answer = event.currentTarget.innerText;
-                });
-            }
-        }
-        if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
-            this.specialSolution = this.task.getSolution();
-            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
-                let answerArray = [];
-                for (let i = 0; i < this.specialSolution.components.length; i++) {
-                    let component = this.specialSolution.components[i];
-                    answerArray.push({name: component.name, answer: '', solved: null});
-                }
-                this.taskDetails.answerMultipleChoice = answerArray;
-            }
-        } else if (this.task.solutionType === 'set') {
-            this.specialSolution = this.task.getSolution();
-            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
-                let answerArray = [];
-                for (let i = 0; i < this.specialSolution.length; i++) {
-                    answerArray.push({answer: '', solved: null});
-                }
-                this.taskDetails.answerMultipleChoice = answerArray;
-            }
-        }
         if (this.task.subtasks && this.task.subtasks.length > 0) {
             this.solvedSubtasks = [];
             for (let task of this.task.subtasks) {
@@ -286,6 +242,57 @@ export class TaskDetail {
                 }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
 
                 subtaskModal.present();
+            }
+            //Force template to reload so blankContainer exists when it should.
+            this.cdRef.detectChanges();
+        }
+        if (this.task.solutionType === 'blanks') {
+            this.specialSolution = this.task.getSolution();
+            let blankMatch;
+            let blankText: string = this.specialSolution.val
+            while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
+                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {return answer.id === blankMatch[1]}) : null;
+                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
+            }
+            let blankContainer = document.getElementById('blankContainer');
+            if (blankContainer) {
+                blankContainer.innerHTML = blankText;
+                let inputs = blankContainer.getElementsByClassName('blankInput');
+                if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                    let answers = [];
+                    for (let input of Array.from(inputs)) {
+                        answers.push({id: input.id, answer: "", solved: null})
+                    }
+                    this.taskDetails.answerMultipleChoice = answers;
+                }
+                for (let input of Array.from(inputs)) {
+                    input.addEventListener('input', (event: any) => {
+                        let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
+                            return answer.id === input.id
+                        });
+                        answerElement.answer = event.currentTarget.innerText;
+                    });
+                }
+            }
+        }
+        if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
+            this.specialSolution = this.task.getSolution();
+            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                let answerArray = [];
+                for (let i = 0; i < this.specialSolution.components.length; i++) {
+                    let component = this.specialSolution.components[i];
+                    answerArray.push({name: component.name, answer: '', solved: null});
+                }
+                this.taskDetails.answerMultipleChoice = answerArray;
+            }
+        } else if (this.task.solutionType === 'set') {
+            this.specialSolution = this.task.getSolution();
+            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                let answerArray = [];
+                for (let i = 0; i < this.specialSolution.length; i++) {
+                    answerArray.push({answer: '', solved: null});
+                }
+                this.taskDetails.answerMultipleChoice = answerArray;
             }
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();

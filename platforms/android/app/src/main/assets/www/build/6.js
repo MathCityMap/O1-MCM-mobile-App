@@ -1,1 +1,113 @@
-webpackJsonp([6],{930:function(n,l,t){"use strict";function e(n){return r["ɵvid"](0,[(n()(),r["ɵeld"](0,null,null,1,"iframe",[["allow","geolocation"],["ion-fixed",""]],[[8,"src",5]],null,null,null,null)),(n()(),r["ɵted"](null,["\n    "]))],null,function(n,l){n(l,0,0,l.component.sanitizedUrl)})}function a(n){return r["ɵvid"](0,[(n()(),r["ɵeld"](0,null,null,5,"ion-content",[["class","fullscreen"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,L.b,L.a)),r["ɵdid"](4374528,null,0,y.a,[C.a,k.a,S.a,r.ElementRef,r.Renderer,U.a,z.a,r.NgZone,[2,E.a],[2,P.a]],null,null),(n()(),r["ɵted"](1,["\n    "])),(n()(),r["ɵand"](16777216,null,0,1,null,e)),r["ɵdid"](16384,null,0,_.k,[r.ViewContainerRef,r.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),r["ɵted"](1,["\n"])),(n()(),r["ɵted"](null,["\n"]))],function(n,l){n(l,4,0,l.component.currentLang)},function(n,l){n(l,0,0,r["ɵnov"](l,1).statusbarPadding,r["ɵnov"](l,1)._hasRefresher)})}Object.defineProperty(l,"__esModule",{value:!0});var r=t(1),u=(t(0),t(17),t(96)),i=(t(43),t(56)),o=t(28),s=function(){return function(n,l,t,e,a,r){this.navCtrl=n,this.navParams=l,this.iab=t,this.translateService=e,this.sanitizer=a,this.alertCtrl=r,this.languageUrl={de:"portal",en:"portal-en",es:"portal-es",pt:"portal-pt",fr:"portail",it:"portale",sk:"portal-sk",id:"portal-id",tr:"portal-tr",el:"πύλη",zh:"入口"},this.currentLang=this.translateService.currentLang?this.translateService.currentLang:this.translateService.defaultLang,this.sanitizedUrl=this.sanitizer.bypassSecurityTrustResourceUrl(o.b.WEBSERVER_URL+"en/"+this.languageUrl[this.currentLang])}}(),d=function(){return function(){}}(),c=t(605),p=t(606),f=t(607),m=t(608),g=t(609),h=t(610),v=t(611),R=t(612),b=t(613),L=t(276),y=t(35),C=t(4),k=t(8),S=t(14),U=t(11),z=t(54),E=t(6),P=t(24),_=t(12),F=t(13),j=t(22),w=t(111),I=r["ɵcrt"]({encapsulation:2,styles:[],data:{}}),M=r["ɵccf"]("page-portal",s,function(n){return r["ɵvid"](0,[(n()(),r["ɵeld"](0,null,null,1,"page-portal",[],null,null,null,a,I)),r["ɵdid"](49152,null,0,s,[P.a,F.a,u.a,j.a,i.c,w.a],null,null)],null,null)},{},{},[]),N=t(23),O=t(275),T=t(91);t.d(l,"PortalPageModuleNgFactory",function(){return V});var V=r["ɵcmf"](d,[],function(n){return r["ɵmod"]([r["ɵmpd"](512,r.ComponentFactoryResolver,r["ɵCodegenComponentFactoryResolver"],[[8,[c.a,p.a,f.a,m.a,g.a,h.a,v.a,R.a,b.a,M]],[3,r.ComponentFactoryResolver],r.NgModuleRef]),r["ɵmpd"](4608,_.m,_.l,[r.LOCALE_ID]),r["ɵmpd"](4608,N.k,N.k,[]),r["ɵmpd"](4608,N.c,N.c,[]),r["ɵmpd"](512,_.b,_.b,[]),r["ɵmpd"](512,N.j,N.j,[]),r["ɵmpd"](512,N.d,N.d,[]),r["ɵmpd"](512,N.i,N.i,[]),r["ɵmpd"](512,O.a,O.a,[]),r["ɵmpd"](512,O.b,O.b,[]),r["ɵmpd"](512,d,d,[]),r["ɵmpd"](256,T.a,s,[])])})}});
+webpackJsonp([6],{
+
+/***/ 1130:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalPageModule", function() { return PortalPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__portal__ = __webpack_require__(1147);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PortalPageModule = /** @class */ (function () {
+    function PortalPageModule() {
+    }
+    PortalPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__portal__["a" /* PortalPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__portal__["a" /* PortalPage */]),
+            ],
+        })
+    ], PortalPageModule);
+    return PortalPageModule;
+}());
+
+//# sourceMappingURL=portal.module.js.map
+
+/***/ }),
+
+/***/ 1147:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(25);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the PortalPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PortalPage = /** @class */ (function () {
+    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.iab = iab;
+        this.translateService = translateService;
+        this.sanitizer = sanitizer;
+        this.alertCtrl = alertCtrl;
+        this.languageUrl = {
+            de: 'portal',
+            en: 'portal-en',
+            es: 'portal-es',
+            pt: 'portal-pt',
+            fr: 'portail',
+            it: 'portale',
+            sk: 'portal-sk',
+            id: 'portal-id',
+            tr: 'portal-tr',
+            el: 'πύλη',
+            zh: '入口'
+        };
+        this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
+        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
+    }
+    PortalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-portal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/portal/portal.html"*/'<ion-content class="fullscreen">\n    <iframe ion-fixed *ngIf="currentLang" allow="geolocation" [src]="sanitizedUrl">\n    </iframe>\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/portal/portal.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    ], PortalPage);
+    return PortalPage;
+}());
+
+//# sourceMappingURL=portal.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=6.js.map

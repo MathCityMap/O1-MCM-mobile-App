@@ -1,1 +1,146 @@
-webpackJsonp([8],{928:function(l,n,e){"use strict";function u(l){return t["ɵvid"](0,[(l()(),t["ɵeld"](0,null,null,1,"mcm-header",[],null,null,null,g.b,g.a)),t["ɵdid"](114688,null,0,_.a,[w.a,R.a,C.a,k.a,D.a,N.a],null,null),(l()(),t["ɵted"](null,["\n"])),(l()(),t["ɵeld"](0,null,null,38,"ion-content",[["class","has-header pattern-bg"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,E.b,E.a)),t["ɵdid"](4374528,null,0,M.a,[P.a,x.a,L.a,t.ElementRef,t.Renderer,V.a,j.a,t.NgZone,[2,C.a],[2,w.a]],null,null),(l()(),t["ɵted"](1,["\n\n    "])),(l()(),t["ɵeld"](0,null,1,34,"div",[["class","card"]],null,null,null,null,null)),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵeld"](0,null,null,3,"a",[["href","#"],["onclick","window.open('https://mathcitymap.eu/de/', '_system', 'location=yes'); return false;"]],null,null,null,null,null)),(l()(),t["ɵted"](null,["\n            "])),(l()(),t["ɵeld"](0,null,null,0,"img",[["class","responsive"],["src","./assets/images/mcm_logo_white.png"]],null,null,null,null,null)),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵeld"](0,null,null,2,"ion-label",[],null,null,null,null,null)),t["ɵdid"](16384,null,0,F.a,[P.a,t.ElementRef,t.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),t["ɵted"](null,["MathCityMap"])),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵeld"](0,null,null,6,"p",[],null,null,null,null,null)),(l()(),t["ɵted"](null,["\n            ",""])),t["ɵpid"](131072,I.a,[O.a,t.ChangeDetectorRef]),(l()(),t["ɵeld"](0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t["ɵeld"](0,null,null,0,"br",[],null,null,null,null,null)),(l()(),t["ɵted"](null,["\n            ","\n        "])),t["ɵpid"](131072,I.a,[O.a,t.ChangeDetectorRef]),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵeld"](0,null,null,3,"ion-label",[],null,null,null,null,null)),t["ɵdid"](16384,null,0,F.a,[P.a,t.ElementRef,t.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),t["ɵted"](null,["",""])),t["ɵpid"](131072,I.a,[O.a,t.ChangeDetectorRef]),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵeld"](0,null,null,1,"p",[],[[8,"innerHTML",1]],null,null,null,null)),t["ɵpid"](131072,I.a,[O.a,t.ChangeDetectorRef]),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵeld"](0,null,null,3,"ion-label",[],null,null,null,null,null)),t["ɵdid"](16384,null,0,F.a,[P.a,t.ElementRef,t.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(l()(),t["ɵted"](null,["",""])),t["ɵpid"](131072,I.a,[O.a,t.ChangeDetectorRef]),(l()(),t["ɵted"](null,["\n        "])),(l()(),t["ɵeld"](0,null,null,1,"p",[],null,null,null,null,null)),(l()(),t["ɵted"](null,["",""])),(l()(),t["ɵted"](null,["\n    "])),(l()(),t["ɵted"](1,["\n\n"])),(l()(),t["ɵted"](null,["\n"]))],function(l,n){l(n,1,0)},function(l,n){var e=n.component;l(n,3,0,t["ɵnov"](n,4).statusbarPadding,t["ɵnov"](n,4)._hasRefresher);l(n,18,0,t["ɵunv"](n,18,0,t["ɵnov"](n,19).transform("a_about_mcm_project")));l(n,22,0,t["ɵunv"](n,22,0,t["ɵnov"](n,23).transform("a_about_mcm_portal")));l(n,27,0,t["ɵunv"](n,27,0,t["ɵnov"](n,28).transform("a_about_mcm_responsibility_title")));l(n,30,0,t["ɵunv"](n,30,0,t["ɵnov"](n,31).transform("a_about_mcm_responsibility")));l(n,35,0,t["ɵunv"](n,35,0,t["ɵnov"](n,36).transform("a_about_version")));l(n,39,0,e.versionNumber)})}Object.defineProperty(n,"__esModule",{value:!0});var t=e(1),a=(e(0),e(17),e(292)),r=this&&this.__awaiter||function(l,n,e,u){return new(e||(e=Promise))(function(t,a){function r(l){try{i(u.next(l))}catch(l){a(l)}}function o(l){try{i(u.throw(l))}catch(l){a(l)}}function i(l){l.done?t(l.value):new e(function(n){n(l.value)}).then(r,o)}i((u=u.apply(l,n||[])).next())})},o=this&&this.__generator||function(l,n){function e(e){return function(r){return function(e){if(u)throw new TypeError("Generator is already executing.");for(;o;)try{if(u=1,t&&(a=t[2&e[0]?"return":e[0]?"throw":"next"])&&!(a=a.call(t,e[1])).done)return a;switch(t=0,a&&(e=[0,a.value]),e[0]){case 0:case 1:a=e;break;case 4:return o.label++,{value:e[1],done:!1};case 5:o.label++,t=e[1],e=[0];continue;case 7:e=o.ops.pop(),o.trys.pop();continue;default:if(a=o.trys,!(a=a.length>0&&a[a.length-1])&&(6===e[0]||2===e[0])){o=0;continue}if(3===e[0]&&(!a||e[1]>a[0]&&e[1]<a[3])){o.label=e[1];break}if(6===e[0]&&o.label<a[1]){o.label=a[1],a=e;break}if(a&&o.label<a[2]){o.label=a[2],o.ops.push(e);break}a[2]&&o.ops.pop(),o.trys.pop();continue}e=n.call(l,o)}catch(l){e=[6,l],t=0}finally{u=a=0}if(5&e[0])throw e[1];return{value:e[0]?e[1]:void 0,done:!0}}([e,r])}}var u,t,a,r,o={label:0,sent:function(){if(1&a[0])throw a[1];return a[1]},trys:[],ops:[]};return r={next:e(0),throw:e(1),return:e(2)},"function"==typeof Symbol&&(r[Symbol.iterator]=function(){return this}),r},InfoPage=function(){function InfoPage(l,n,e,u){this.navCtrl=l,this.navParams=n,this.appVersion=e,this.platform=u,this.versionNumber="unknown"}return InfoPage.prototype.ionViewDidLoad=function(){return r(this,void 0,void 0,function(){var l;return o(this,function(n){switch(n.label){case 0:return console.log("ionViewDidLoad InfoPage"),this.platform.is("cordova")?(l=this,[4,this.appVersion.getVersionNumber()]):[3,2];case 1:l.versionNumber=n.sent(),n.label=2;case 2:return[2]}})})},InfoPage}(),i=e(188),d=function(){return function(){}}(),s=e(605),c=e(606),p=e(607),f=e(608),m=e(609),h=e(610),b=e(611),v=e(612),y=e(613),g=e(278),_=e(141),w=e(24),R=e(13),C=e(6),k=e(53),D=e(48),N=e(26),E=e(276),M=e(35),P=e(4),x=e(8),L=e(14),V=e(11),j=e(54),F=e(49),I=e(38),O=e(22),S=t["ɵcrt"]({encapsulation:2,styles:[],data:{}}),T=t["ɵccf"]("page-info",InfoPage,function(l){return t["ɵvid"](0,[(l()(),t["ɵeld"](0,null,null,1,"page-info",[],null,null,null,u,S)),t["ɵdid"](49152,null,0,InfoPage,[w.a,R.a,a.a,x.a],null,null)],null,null)},{},{},[]),A=e(12),G=e(23),H=e(76),J=e(275),Z=e(43),q=e(91);e.d(n,"InfoPageModuleNgFactory",function(){return z});var z=t["ɵcmf"](d,[],function(l){return t["ɵmod"]([t["ɵmpd"](512,t.ComponentFactoryResolver,t["ɵCodegenComponentFactoryResolver"],[[8,[s.a,c.a,p.a,f.a,m.a,h.a,b.a,v.a,y.a,T]],[3,t.ComponentFactoryResolver],t.NgModuleRef]),t["ɵmpd"](4608,A.m,A.l,[t.LOCALE_ID]),t["ɵmpd"](4608,G.k,G.k,[]),t["ɵmpd"](4608,G.c,G.c,[]),t["ɵmpd"](4608,H.a,H.a,[]),t["ɵmpd"](512,A.b,A.b,[]),t["ɵmpd"](512,G.j,G.j,[]),t["ɵmpd"](512,G.d,G.d,[]),t["ɵmpd"](512,G.i,G.i,[]),t["ɵmpd"](512,J.a,J.a,[]),t["ɵmpd"](512,J.b,J.b,[]),t["ɵmpd"](512,Z.a,Z.a,[]),t["ɵmpd"](512,i.a,i.a,[]),t["ɵmpd"](512,d,d,[]),t["ɵmpd"](256,q.a,InfoPage,[])])})}});
+webpackJsonp([8],{
+
+/***/ 1127:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfoPageModule", function() { return InfoPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info__ = __webpack_require__(1143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(234);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var InfoPageModule = /** @class */ (function () {
+    function InfoPageModule() {
+    }
+    InfoPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__info__["a" /* InfoPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__info__["a" /* InfoPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */],
+            ],
+        })
+    ], InfoPageModule);
+    return InfoPageModule;
+}());
+
+//# sourceMappingURL=info.module.js.map
+
+/***/ }),
+
+/***/ 1143:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(629);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+/**
+ * Generated class for the InfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var InfoPage = /** @class */ (function () {
+    function InfoPage(navCtrl, navParams, appVersion, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appVersion = appVersion;
+        this.platform = platform;
+        this.versionNumber = 'unknown';
+    }
+    InfoPage.prototype.ionViewDidLoad = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        console.log('ionViewDidLoad InfoPage');
+                        if (!this.platform.is('cordova')) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.appVersion.getVersionNumber()];
+                    case 1:
+                        _a.versionNumber = _b.sent();
+                        _b.label = 2;
+                    case 2: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    InfoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-info',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/info/info.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header pattern-bg">\n\n    <div class="card">\n        <a href="#" onclick="window.open(\'https://mathcitymap.eu/de/\', \'_system\', \'location=yes\'); return false;">\n            <img class="responsive" src="./assets/images/mcm_logo_white.png">\n        </a>\n        <ion-label>MathCityMap</ion-label>\n        <p>\n            {{\'a_about_mcm_project\' | translate}}<br><br>\n            {{ \'a_about_mcm_portal\' | translate}}\n        </p>\n        <ion-label>{{ \'a_about_mcm_responsibility_title\' | translate}}</ion-label>\n        <p [innerHtml]=" \'a_about_mcm_responsibility\' | translate "></p>\n        <ion-label>{{ \'a_about_version\' | translate}}</ion-label>\n        <p>{{versionNumber}}</p>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/info/info.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__["a" /* AppVersion */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]])
+    ], InfoPage);
+    return InfoPage;
+}());
+
+//# sourceMappingURL=info.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=8.js.map
