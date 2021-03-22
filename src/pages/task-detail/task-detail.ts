@@ -254,7 +254,7 @@ export class TaskDetail {
                 let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {return answer.id === blankMatch[1]}) : null;
                 blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
             }
-            let blankContainer = document.getElementById('blankContainer');
+            let blankContainer = document.getElementById('blankContainer_' + this.task.id);
             if (blankContainer) {
                 blankContainer.innerHTML = blankText;
                 let inputs = blankContainer.getElementsByClassName('blankInput');
@@ -977,9 +977,9 @@ export class TaskDetail {
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                         else if (this.task.solutionType == "info") message = "a_info_task_finished_message";
                         else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1';
-                        else message = 'a_alert_subtask_right_answer';
+                        else message = 'a_alert_subtask_right_answer_flawless';
                     } else {
-                        message = 'a_alert_subtask_right_answer_1';
+                        message = 'a_alert_subtask_right_answer';
                     }
                 } else {
                     switch (this.taskDetails.tries) {

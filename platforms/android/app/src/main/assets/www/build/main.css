@@ -64124,17 +64124,17 @@ page-task-detail .task-content .vector-input-list.list-md .item-input.ng-valid.i
   color: #036d99;
 }
 
-page-task-detail .task-content #blankContainer {
+page-task-detail .task-content .blankContainer {
   padding-bottom: 5px;
   text-transform: none;
 }
 
-page-task-detail .task-content #blankContainer.disabled .blankInput {
+page-task-detail .task-content .blankContainer.disabled .blankInput {
   pointer-events: none;
   color: #a6a6a6;
 }
 
-page-task-detail .task-content #blankContainer .blankInput {
+page-task-detail .task-content .blankContainer .blankInput {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
@@ -64147,11 +64147,11 @@ page-task-detail .task-content #blankContainer .blankInput {
   font-size: inherit;
 }
 
-page-task-detail .task-content #blankContainer .blankInput:focus {
+page-task-detail .task-content .blankContainer .blankInput:focus {
   border-bottom: 1px solid #036d99;
 }
 
-page-task-detail .task-content #blankContainer .blankInput.disabled {
+page-task-detail .task-content .blankContainer .blankInput.disabled {
   pointer-events: none;
   color: #a6a6a6;
 }

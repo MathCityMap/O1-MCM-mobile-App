@@ -1141,5 +1141,16 @@
   "p_cw_contact_request_info": "See kasutaja soovib teiega ühendust võtta. Kui nõustute taotlusega, jagatakse teie e-posti aadressi kasutajaga.",
   "p_cw_deny_request": "Lükka taotlus tagasi",
   "p_cw_send_details": "Saada kontaktinfo",
-  "p_cw_contact_dialog_info": "Kasutaja peab nõustuma teie taotlusega tema kontaktandmete saamiseks. Teid teavitatakse kohe, kui kasutaja on reageerinud."
+  "p_cw_contact_dialog_info": "Kasutaja peab nõustuma teie taotlusega tema kontaktandmete saamiseks. Teid teavitatakse kohe, kui kasutaja on reageerinud.",
+  "a_info_task_finished_message": "Täname lugemast. Nüüd liikuge järgmise ülesande juurde.",
+  "a_alert_subtask_right_answer_flawless": "Suurepärane! Olete ülesande hästi lahendanud. Teie lahendus „{{L}}” on õige.",
+  "a_alert_subtask_right_answer_low": "Lahendasite ülesande {{try}} katsel. Teie lahendus {{L}} on ok.",
+  "a_alert_subtask_right_answer": "Lahendasite ülesande {{try}} katsega. Teie lahendus {{L}} on õige.",
+  "a_alert_set_right_answer_3_low": "Kuigi näib, et olete lahendust mõistatanud, on teie vastus {{L}} korras.",
+  "a_alert_set_right_answer_2_low": "Teie vastus {{L}} on ok",
+  "a_alert_set_right_answer_1_low": "Te lahendasite ülesande esimesel katsel. Teie vastus {{L}} on ok.",
+  "a_alert_set_right_answer_3": "Suurepärane! Te lahendasite ülesande esimesel katsel. Teie vastus {{L}} on õige.",
+  "a_alert_set_right_answer_2": "Teie vastus {{L}} on õige.",
+  "a_alert_set_right_answer_1": "Kuigi näib, et olete mõistatanud, on teie vastus {{L}} õige.",
+  "p_mc_add_answer": "Lisage vastus"
 }
