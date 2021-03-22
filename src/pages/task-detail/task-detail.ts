@@ -1156,79 +1156,82 @@ export class TaskDetail {
             switch (tries) {
                 case 0:
                 case 1:
-                    if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
-                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
-                    else message = 'a_alert_false_answer_1';
-                    buttons = [
-                        {
-                            title: 'a_alert_close',
-                            callback: function () {
-                                modal.dismiss();
+                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries)) {
+                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
+                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
+                        else message = 'a_alert_false_answer_1';
+                        buttons = [
+                            {
+                                title: 'a_alert_close',
+                                callback: function () {
+                                    modal.dismiss();
+                                }
                             }
-                        }
-                    ];
-                    break;
+                        ];
+                        break;
+                    }
                 case 2:
                 case 3:
                 case 4:
                 case 5:
                 case 6:
-                    if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                    else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
-                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
-                    else message = 'a_alert_false_answer_2';
-                    if(!this.route.isHintsEnabled() || this.rootTask) {
-                        if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
-                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
-                        else message = 'a_alert_false_answer_1';
-                    }
-                    let bShowHint = {
-                        title: 'a_t_show_hint',
-                        callback: function () {
-                        modal.dismiss().then(() => {
-                            let index = 1;
-                            //number of tries already increased
-                            if (tries == 3) {
-                                let temp = that.getNextAvailableHint();
-                                if (temp < 2) index = temp;
-                                else index = 2;
-                            } else if (tries == 4) {
-                                let temp = that.getNextAvailableHint();
-                                if (temp < 3) index = temp;
-                                else index = 3;
-                            }
-                            that.showHint(index);
-                            });
-                        }};
-                    let thiss = this;
-                    let bShowSubtask = {
-                        title: 'a_t_show_subtask',
-                        callback: function () {
-                            modal.dismiss().then(() => {
-                                thiss.openSubtask()
-                            })
+                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries)) {
+                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
+                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
+                        else message = 'a_alert_false_answer_2';
+                        if (!this.route.isHintsEnabled() || this.rootTask) {
+                            if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
+                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
+                            else message = 'a_alert_false_answer_1';
                         }
-                    }
-                    let bClose = {
-                        title: 'a_alert_close',
-                        callback: function () {
-                        modal.dismiss();
-                    }};
-                    if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
-                        buttons = [bShowSubtask, bShowHint, bClose];
-                    }
-                    else if(this.route.isHintsEnabled() && !this.rootTask) {
-                       buttons = [bShowHint, bClose];
-                    }
-                    else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
-                        buttons = [bShowSubtask, bClose];
-                    }
-                    else {
-                        buttons = [bClose];
-                    }
+                        let bShowHint = {
+                            title: 'a_t_show_hint',
+                            callback: function () {
+                                modal.dismiss().then(() => {
+                                    let index = 1;
+                                    //number of tries already increased
+                                    if (tries == 3) {
+                                        let temp = that.getNextAvailableHint();
+                                        if (temp < 2) index = temp;
+                                        else index = 2;
+                                    } else if (tries == 4) {
+                                        let temp = that.getNextAvailableHint();
+                                        if (temp < 3) index = temp;
+                                        else index = 3;
+                                    }
+                                    that.showHint(index);
+                                });
+                            }
+                        };
+                        let thiss = this;
+                        let bShowSubtask = {
+                            title: 'a_t_show_subtask',
+                            callback: function () {
+                                modal.dismiss().then(() => {
+                                    thiss.openSubtask()
+                                })
+                            }
+                        }
+                        let bClose = {
+                            title: 'a_alert_close',
+                            callback: function () {
+                                modal.dismiss();
+                            }
+                        };
+                        if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                            buttons = [bShowSubtask, bShowHint, bClose];
+                        } else if (this.route.isHintsEnabled() && !this.rootTask) {
+                            buttons = [bShowHint, bClose];
+                        } else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                            buttons = [bShowSubtask, bClose];
+                        } else {
+                            buttons = [bClose];
+                        }
 
-                    break;
+                        break;
+                    }
                 default:
                     message = 'a_t_skip_msg';
                     let bSampleSolution = {
@@ -1305,7 +1308,7 @@ export class TaskDetail {
                     narrative: this.app.activeNarrative,
                     buttons: buttons
                 }
-                if (!this.rootTask || (this.rootTask && this.subTasksRequired)) {
+                if (!this.rootTask || (this.rootTask && this.subTasksRequired) && !(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries)) {
                     data['score'] = this.taskDetails.tries > 1 ? '-' + this.penalty : '0';
                 }
                 modal = this.modalCtrl.create(MCMIconModal, data , {

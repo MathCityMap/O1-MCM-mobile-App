@@ -1815,96 +1815,100 @@ var TaskDetail = /** @class */ (function () {
                             switch (tries_1) {
                                 case 0:
                                 case 1:
-                                    if (this.task.solutionType == "gps")
-                                        message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                    else if (this.task.solutionType == "blanks")
-                                        message = 'a_alert_blanks_false_answer_1';
-                                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
-                                        message = 'a_alert_set_false_answer_1';
-                                    else
-                                        message = 'a_alert_false_answer_1';
-                                    buttons = [
-                                        {
-                                            title: 'a_alert_close',
-                                            callback: function () {
-                                                modal_2.dismiss();
-                                            }
-                                        }
-                                    ];
-                                    break;
-                                case 2:
-                                case 3:
-                                case 4:
-                                case 5:
-                                case 6:
-                                    if (this.task.solutionType == "gps")
-                                        message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                                    else if (this.task.solutionType == "blanks")
-                                        message = 'a_alert_blanks_false_answer_2';
-                                    else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
-                                        message = 'a_alert_set_false_answer_2';
-                                    else
-                                        message = 'a_alert_false_answer_2';
-                                    if (!this.route.isHintsEnabled() || this.rootTask) {
-                                        if (this.task.solutionType == "blanks")
+                                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries_1)) {
+                                        if (this.task.solutionType == "gps")
+                                            message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                        else if (this.task.solutionType == "blanks")
                                             message = 'a_alert_blanks_false_answer_1';
                                         else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
                                             message = 'a_alert_set_false_answer_1';
                                         else
                                             message = 'a_alert_false_answer_1';
-                                    }
-                                    bShowHint = {
-                                        title: 'a_t_show_hint',
-                                        callback: function () {
-                                            modal_2.dismiss().then(function () {
-                                                var index = 1;
-                                                //number of tries already increased
-                                                if (tries_1 == 3) {
-                                                    var temp = that.getNextAvailableHint();
-                                                    if (temp < 2)
-                                                        index = temp;
-                                                    else
-                                                        index = 2;
+                                        buttons = [
+                                            {
+                                                title: 'a_alert_close',
+                                                callback: function () {
+                                                    modal_2.dismiss();
                                                 }
-                                                else if (tries_1 == 4) {
-                                                    var temp = that.getNextAvailableHint();
-                                                    if (temp < 3)
-                                                        index = temp;
-                                                    else
-                                                        index = 3;
-                                                }
-                                                that.showHint(index);
-                                            });
+                                            }
+                                        ];
+                                        break;
+                                    }
+                                case 2:
+                                case 3:
+                                case 4:
+                                case 5:
+                                case 6:
+                                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries_1)) {
+                                        if (this.task.solutionType == "gps")
+                                            message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                                        else if (this.task.solutionType == "blanks")
+                                            message = 'a_alert_blanks_false_answer_2';
+                                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                            message = 'a_alert_set_false_answer_2';
+                                        else
+                                            message = 'a_alert_false_answer_2';
+                                        if (!this.route.isHintsEnabled() || this.rootTask) {
+                                            if (this.task.solutionType == "blanks")
+                                                message = 'a_alert_blanks_false_answer_1';
+                                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals')
+                                                message = 'a_alert_set_false_answer_1';
+                                            else
+                                                message = 'a_alert_false_answer_1';
                                         }
-                                    };
-                                    thiss_1 = this;
-                                    bShowSubtask = {
-                                        title: 'a_t_show_subtask',
-                                        callback: function () {
-                                            modal_2.dismiss().then(function () {
-                                                thiss_1.openSubtask();
-                                            });
+                                        bShowHint = {
+                                            title: 'a_t_show_hint',
+                                            callback: function () {
+                                                modal_2.dismiss().then(function () {
+                                                    var index = 1;
+                                                    //number of tries already increased
+                                                    if (tries_1 == 3) {
+                                                        var temp = that.getNextAvailableHint();
+                                                        if (temp < 2)
+                                                            index = temp;
+                                                        else
+                                                            index = 2;
+                                                    }
+                                                    else if (tries_1 == 4) {
+                                                        var temp = that.getNextAvailableHint();
+                                                        if (temp < 3)
+                                                            index = temp;
+                                                        else
+                                                            index = 3;
+                                                    }
+                                                    that.showHint(index);
+                                                });
+                                            }
+                                        };
+                                        thiss_1 = this;
+                                        bShowSubtask = {
+                                            title: 'a_t_show_subtask',
+                                            callback: function () {
+                                                modal_2.dismiss().then(function () {
+                                                    thiss_1.openSubtask();
+                                                });
+                                            }
+                                        };
+                                        bClose = {
+                                            title: 'a_alert_close',
+                                            callback: function () {
+                                                modal_2.dismiss();
+                                            }
+                                        };
+                                        if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                                            buttons = [bShowSubtask, bShowHint, bClose];
                                         }
-                                    };
-                                    bClose = {
-                                        title: 'a_alert_close',
-                                        callback: function () {
-                                            modal_2.dismiss();
+                                        else if (this.route.isHintsEnabled() && !this.rootTask) {
+                                            buttons = [bShowHint, bClose];
                                         }
-                                    };
-                                    if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
-                                        buttons = [bShowSubtask, bShowHint, bClose];
+                                        else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                                            buttons = [bShowSubtask, bClose];
+                                        }
+                                        else {
+                                            buttons = [bClose];
+                                        }
+                                        break;
                                     }
-                                    else if (this.route.isHintsEnabled() && !this.rootTask) {
-                                        buttons = [bShowHint, bClose];
-                                    }
-                                    else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
-                                        buttons = [bShowSubtask, bClose];
-                                    }
-                                    else {
-                                        buttons = [bClose];
-                                    }
-                                    break;
                                 default:
                                     message = 'a_t_skip_msg';
                                     bSampleSolution = {
@@ -1985,7 +1989,7 @@ var TaskDetail = /** @class */ (function () {
                                     narrative: this.app.activeNarrative,
                                     buttons: buttons
                                 };
-                                if (!this.rootTask || (this.rootTask && this.subTasksRequired)) {
+                                if (!this.rootTask || (this.rootTask && this.subTasksRequired) && !(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries_1)) {
                                     data['score'] = this.taskDetails.tries > 1 ? '-' + this.penalty : '0';
                                 }
                                 modal_2 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], data, {
