@@ -62253,6 +62253,12 @@ progress-bar .progress-inner[_ngcontent-c0] {
   transform: translate3d(19px, 0, 0);
 }
 
+ion-nav h1, ion-nav h2, ion-nav h3, ion-nav h4, ion-nav h5, ion-nav h6, ion-nav p, ion-nav span, ion-nav body, ion-nav ion-app.ios, ion-nav ion-app.md {
+  -webkit-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
+}
+
 @font-face {
   font-family: 'NunitoSemibold';
   src: url("../assets/fonts/nunito/Nunito-SemiBold.ttf") format("truetype");

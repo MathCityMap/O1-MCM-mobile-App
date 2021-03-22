@@ -1431,3 +1431,9 @@ progress-bar{
         }
     }
 }
+
+ion-nav {
+    h1, h2, h3, h4, h5, h6, p, span, body, ion-app.ios, ion-app.md {
+        hyphens: manual;
+    }
+}
