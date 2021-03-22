@@ -121,7 +121,7 @@ TimeoutError.prototype.name = "TimeoutError";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_chat_and_session_service__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(622);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_app_component__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_pipes_search_pipe__ = __webpack_require__(627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_pipes_search_pipe__ = __webpack_require__(626);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

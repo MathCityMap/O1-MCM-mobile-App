@@ -58,6 +58,7 @@ export class TaskDetail {
     private taskDetails: TaskState;
     private subTaskIndex: number;
     private subTaskScore: number = 0;
+    private lastSubtaskBonus: number = 0;
     private rootTask: Task;
     private score: Score;
     private gamificationIsDisabled = false;
@@ -344,21 +345,43 @@ export class TaskDetail {
         }
 
         if (this.task.subtasks && this.subTasksRequired) {
-            let scorableTaskCount = 1;
+            let scorableTaskCount = this.task.solutionType === 'info' ? 0 : 1;
             for (let task of this.task.subtasks) {
                 if (task.solutionType != 'info') {
                     scorableTaskCount++;
                 }
             }
-            this.subTaskScore = Math.floor(this.maxScore / scorableTaskCount);
-            this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
+            this.subTaskScore = Math.floor(100 / scorableTaskCount);
+            if (this.task.solutionType === 'info') {
+                this.maxScore = 0;
+                if ((this.maxScore - this.subTaskScore * scorableTaskCount) > 0) {
+                    this.lastSubtaskBonus = (this.maxScore - this.subTaskScore * scorableTaskCount);
+                }
+            } else {
+                this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
+            }
             this.penalty = Math.floor(this.maxScore) * 0.15;
             this.minScore = Math.floor(this.maxScore ) / 10;
         }
 
         if (this.rootTask && this.subTasksRequired && this.task.solutionType !== 'info') {
-            this.subTaskScore = this.navParams.get('score');
-            this.maxScore = this.subTaskScore;
+            let scorableTaskCount = this.rootTask.solutionType === 'info' ? 0 : 1;
+            for (let task of this.rootTask.subtasks) {
+                if (task.solutionType != 'info') {
+                    scorableTaskCount++;
+                }
+            }
+            this.subTaskScore = Math.floor(100 / scorableTaskCount);
+            if (this.task.solutionType === 'info') {
+                this.maxScore = 0;
+            } else {
+                if (this.rootTask.solutionType === 'info') {
+                    if ((100 - this.subTaskScore * scorableTaskCount) > 0) {
+                        this.lastSubtaskBonus = (100 - this.subTaskScore * scorableTaskCount);
+                    }
+                }
+                this.maxScore = this.subTaskScore + (this.subTaskIndex === this.rootTask.subtasks.length - 1 ? this.lastSubtaskBonus : 0);
+            }
             this.orangeScore = this.maxScore / 2;
             this.penalty = Math.floor(this.maxScore) * 0.15;
             this.minScore = Math.floor(this.maxScore ) / 10;
@@ -841,9 +864,13 @@ export class TaskDetail {
     In session mode where the users are force assigned a task, it allows to continue with the next task
      */
     async completeTask(){
-        this.taskDetails.score = this.maxScore;
-        if (!this.rootTask) {
-            this.score.score += this.taskDetails.score;
+        if (this.task.solutionType === 'info' && this.task.subtasks && this.task.subtasks.length > 0) {
+            this.CalculateScore('info', 'solved')
+        } else {
+            this.taskDetails.score = this.maxScore;
+            if (!this.rootTask) {
+                this.score.score += this.taskDetails.score;
+            }
         }
         this.taskSolved("solved", [""]);
     }
@@ -1085,7 +1112,7 @@ export class TaskDetail {
                         param: {tries: this.taskDetails.tries+1},
                         buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
                     };
-                    if (this.task.solutionType !== 'info' && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
+                    if ((this.task.solutionType !== 'info' && ( !this.task.subtasks || !(this.task.subtasks.length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
                         data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
                     }
                     console.log(data);
@@ -1402,6 +1429,10 @@ export class TaskDetail {
                     this.score.score += this.taskDetails.score;
                 }
             }
+        }
+
+        if (solutionType === 'info') {
+            this.taskDetails.score = 0;
         }
 
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
@@ -1928,12 +1959,13 @@ export class TaskDetail {
     }
 
     openSubtask(index?) {
+        console.log('we opening a subtask');
         let rootTask = this.rootTask ? this.rootTask : this.task;
         if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.subtasks.length) return;
         if (!index && index !== 0) {
             index = this.solvedSubtasks.length
         }
-        return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index, score: this.subTaskScore});
+        return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index});
     }
 
     changeSubtaskAccordionState(subtask) {
@@ -1992,6 +2024,10 @@ export class TaskDetail {
                     taskScore = this.maxScore;
             }
 
+            if (solutionType == "info") {
+                taskScore = 0;
+            }
+
             if (solutionType == "range") {
                 if (solved == "solved") {
                         taskScore = this.maxScore;
@@ -2048,7 +2084,7 @@ export class TaskDetail {
                 if (numbersArray[score] == 1 && score != "0") {
                     calculation += score + 'MP';
                 } else if (score != "0") {
-                    calculation += numbersArray[score] + ' x ' + score + 'MP';
+                    calculation += numbersArray[score] + ' x ' + (score ? score + 'MP' : '');
                 }
             }
         } else {

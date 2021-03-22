@@ -556,7 +556,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_modals_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(110);
@@ -658,6 +658,7 @@ var TaskDetail = /** @class */ (function () {
         this.solvedSubtasks = [];
         this.activeAccordions = [];
         this.subTaskScore = 0;
+        this.lastSubtaskBonus = 0;
         this.gamificationIsDisabled = false;
         this.answerIndex = null;
         this.blankRegex = /\*\*([^*]+)\*\*/g;
@@ -732,22 +733,22 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.ionViewWillEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var _a, _b, _c, _d, _e, _i, _f, task, subtaskDetails, subtaskModal_1, subtaskModal_2, blankMatch_1, blankText, savedAnswer, blankContainer, inputs, answers, _g, _h, input, _loop_1, _j, _k, input, answerArray, i, component, answerArray, i, _l, details, scorableTaskCount, _m, _o, task, gpsType, points, buttonCount, startCharCode, i;
-            return __generator(this, function (_p) {
-                switch (_p.label) {
+            var _a, _b, _c, _d, _e, _i, _f, task, subtaskDetails, subtaskModal_1, subtaskModal_2, blankMatch_1, blankText, savedAnswer, blankContainer, inputs, answers, _g, _h, input, _loop_1, _j, _k, input, answerArray, i, component, answerArray, i, _l, details, scorableTaskCount, _m, _o, task, scorableTaskCount, _p, _q, task, gpsType, points, buttonCount, startCharCode, i;
+            return __generator(this, function (_r) {
+                switch (_r.label) {
                     case 0:
                         console.log('TasksMap ionViewWillEnter()');
                         this.routeId = this.navParams.get('routeId');
                         _a = this;
                         return [4 /*yield*/, this.ormService.findRouteById(this.routeId)];
                     case 1:
-                        _a.route = _p.sent();
+                        _a.route = _r.sent();
                         this.taskId = this.navParams.get('taskId');
                         this.subTaskIndex = this.navParams.get('subTaskIndex');
                         _b = this;
                         return [4 /*yield*/, this.ormService.findTaskById(this.taskId)];
                     case 2:
-                        _b.task = _p.sent();
+                        _b.task = _r.sent();
                         if (this.subTaskIndex || this.subTaskIndex === 0) {
                             this.rootTask = this.task;
                             this.task = this.rootTask.subtasks[this.subTaskIndex];
@@ -759,7 +760,7 @@ var TaskDetail = /** @class */ (function () {
                         _e = (_d = this.route).getScoreForUser;
                         return [4 /*yield*/, this.ormService.getActiveUser()];
                     case 3:
-                        _c.score = _e.apply(_d, [_p.sent()]);
+                        _c.score = _e.apply(_d, [_r.sent()]);
                         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
                         if (this.task.subtasks && this.task.subtasks.length > 0) {
                             this.solvedSubtasks = [];
@@ -868,7 +869,7 @@ var TaskDetail = /** @class */ (function () {
                         _l = this;
                         return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
                     case 4:
-                        _l.sessionInfo = _p.sent();
+                        _l.sessionInfo = _r.sent();
                         // Add event of user entering trail when session active
                         if (this.sessionInfo != null && !this.task) {
                             details = JSON.stringify({ title: this.task.title });
@@ -914,21 +915,46 @@ var TaskDetail = /** @class */ (function () {
                             this.minScore = 0;
                         }
                         if (this.task.subtasks && this.subTasksRequired) {
-                            scorableTaskCount = 1;
+                            scorableTaskCount = this.task.solutionType === 'info' ? 0 : 1;
                             for (_m = 0, _o = this.task.subtasks; _m < _o.length; _m++) {
                                 task = _o[_m];
                                 if (task.solutionType != 'info') {
                                     scorableTaskCount++;
                                 }
                             }
-                            this.subTaskScore = Math.floor(this.maxScore / scorableTaskCount);
-                            this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
+                            this.subTaskScore = Math.floor(100 / scorableTaskCount);
+                            if (this.task.solutionType === 'info') {
+                                this.maxScore = 0;
+                                if ((this.maxScore - this.subTaskScore * scorableTaskCount) > 0) {
+                                    this.lastSubtaskBonus = (this.maxScore - this.subTaskScore * scorableTaskCount);
+                                }
+                            }
+                            else {
+                                this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
+                            }
                             this.penalty = Math.floor(this.maxScore) * 0.15;
                             this.minScore = Math.floor(this.maxScore) / 10;
                         }
                         if (this.rootTask && this.subTasksRequired && this.task.solutionType !== 'info') {
-                            this.subTaskScore = this.navParams.get('score');
-                            this.maxScore = this.subTaskScore;
+                            scorableTaskCount = this.rootTask.solutionType === 'info' ? 0 : 1;
+                            for (_p = 0, _q = this.rootTask.subtasks; _p < _q.length; _p++) {
+                                task = _q[_p];
+                                if (task.solutionType != 'info') {
+                                    scorableTaskCount++;
+                                }
+                            }
+                            this.subTaskScore = Math.floor(100 / scorableTaskCount);
+                            if (this.task.solutionType === 'info') {
+                                this.maxScore = 0;
+                            }
+                            else {
+                                if (this.rootTask.solutionType === 'info') {
+                                    if ((100 - this.subTaskScore * scorableTaskCount) > 0) {
+                                        this.lastSubtaskBonus = (100 - this.subTaskScore * scorableTaskCount);
+                                    }
+                                }
+                                this.maxScore = this.subTaskScore + (this.subTaskIndex === this.rootTask.subtasks.length - 1 ? this.lastSubtaskBonus : 0);
+                            }
                             this.orangeScore = this.maxScore / 2;
                             this.penalty = Math.floor(this.maxScore) * 0.15;
                             this.minScore = Math.floor(this.maxScore) / 10;
@@ -1442,9 +1468,14 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.completeTask = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.taskDetails.score = this.maxScore;
-                if (!this.rootTask) {
-                    this.score.score += this.taskDetails.score;
+                if (this.task.solutionType === 'info' && this.task.subtasks && this.task.subtasks.length > 0) {
+                    this.CalculateScore('info', 'solved');
+                }
+                else {
+                    this.taskDetails.score = this.maxScore;
+                    if (!this.rootTask) {
+                        this.score.score += this.taskDetails.score;
+                    }
                 }
                 this.taskSolved("solved", [""]);
                 return [2 /*return*/];
@@ -1739,7 +1770,7 @@ var TaskDetail = /** @class */ (function () {
                                     param: { tries: this.taskDetails.tries + 1 },
                                     buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
                                 };
-                                if (this.task.solutionType !== 'info' && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
+                                if ((this.task.solutionType !== 'info' && (!this.task.subtasks || !(this.task.subtasks.length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
                                     data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
                                 }
                                 console.log(data);
@@ -2089,6 +2120,9 @@ var TaskDetail = /** @class */ (function () {
                     this.score.score += this.taskDetails.score;
                 }
             }
+        }
+        if (solutionType === 'info') {
+            this.taskDetails.score = 0;
         }
         if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
             var tempScore = this.taskDetails.score;
@@ -2583,13 +2617,14 @@ var TaskDetail = /** @class */ (function () {
         }
     };
     TaskDetail.prototype.openSubtask = function (index) {
+        console.log('we opening a subtask');
         var rootTask = this.rootTask ? this.rootTask : this.task;
         if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.subtasks.length)
             return;
         if (!index && index !== 0) {
             index = this.solvedSubtasks.length;
         }
-        return this.navCtrl.push(TaskDetail_1, { taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index, score: this.subTaskScore });
+        return this.navCtrl.push(TaskDetail_1, { taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index });
     };
     TaskDetail.prototype.changeSubtaskAccordionState = function (subtask) {
         var activeAccordion = this.activeAccordions.find(function (entry) { return entry === subtask; });
@@ -2647,6 +2682,9 @@ var TaskDetail = /** @class */ (function () {
         var solutionType = this.task.solutionType;
         if (solutionType == "value" || solutionType == "multiple_choice" || solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
             taskScore = this.maxScore;
+        }
+        if (solutionType == "info") {
+            taskScore = 0;
         }
         if (solutionType == "range") {
             if (solved == "solved") {
@@ -2711,7 +2749,7 @@ var TaskDetail = /** @class */ (function () {
                     calculation += score + 'MP';
                 }
                 else if (score != "0") {
-                    calculation += numbersArray[score] + ' x ' + score + 'MP';
+                    calculation += numbersArray[score] + ' x ' + (score ? score + 'MP' : '');
                 }
             }
         }
@@ -2816,11 +2854,11 @@ var TaskDetail = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline__ = __webpack_require__(1135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_offline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(624);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(623);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(623);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__ = __webpack_require__(1138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__);
