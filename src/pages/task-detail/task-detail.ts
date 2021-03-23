@@ -1166,7 +1166,7 @@ export class TaskDetail {
             switch (tries) {
                 case 0:
                 case 1:
-                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries)) {
+                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 2 === tries)) {
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                         else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
                         else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
@@ -1186,7 +1186,7 @@ export class TaskDetail {
                 case 4:
                 case 5:
                 case 6:
-                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries)) {
+                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 2 === tries)) {
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                         else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
                         else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';

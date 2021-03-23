@@ -1826,7 +1826,7 @@ var TaskDetail = /** @class */ (function () {
                             switch (tries_1) {
                                 case 0:
                                 case 1:
-                                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries_1)) {
+                                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 2 === tries_1)) {
                                         if (this.task.solutionType == "gps")
                                             message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                                         else if (this.task.solutionType == "blanks")
@@ -1850,7 +1850,7 @@ var TaskDetail = /** @class */ (function () {
                                 case 4:
                                 case 5:
                                 case 6:
-                                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries_1)) {
+                                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 2 === tries_1)) {
                                         if (this.task.solutionType == "gps")
                                             message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                                         else if (this.task.solutionType == "blanks")
@@ -2690,7 +2690,6 @@ var TaskDetail = /** @class */ (function () {
                 }
             }
         }
-        console.log('Special Type answered', isAnswered);
         return isAnswered;
     };
     TaskDetail.prototype.generateSubtaskScoreCalculationString = function (solved) {
