@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1129:
+/***/ 1128:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(234);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -538,7 +538,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1145:
+/***/ 1144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -560,7 +560,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__ = __webpack_require__(1138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_conic_gradient__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_images_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_storage__ = __webpack_require__(61);
@@ -1727,7 +1727,7 @@ var TasksMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1146:
+/***/ 1145:
 /***/ (function(module, exports) {
 
 /**

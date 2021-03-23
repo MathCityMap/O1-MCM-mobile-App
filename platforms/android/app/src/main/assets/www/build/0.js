@@ -733,7 +733,7 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.ionViewWillEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var _a, _b, _c, _d, _e, _i, _f, task, subtaskDetails, subtaskModal_1, subtaskModal_2, blankMatch_1, blankText, savedAnswer, blankContainer, inputs, answers, _g, _h, input, _loop_1, _j, _k, input, answerArray, i, component, answerArray, i, _l, details, scorableTaskCount, _m, _o, task, scorableTaskCount, _p, _q, task, gpsType, points, buttonCount, startCharCode, i;
+            var _a, _b, _c, _d, _e, _i, _f, task, subtaskDetails, subtaskModal_1, subtaskModal_2, blankMatch_1, blankText, placeholderCount_1, savedAnswer, blankContainer, inputs, answers, _g, _h, input, _loop_1, _j, _k, input, answerArray, i, component, answerArray, i, _l, details, scorableTaskCount, _m, _o, task, scorableTaskCount, _p, _q, task, gpsType, points, buttonCount, startCharCode, i;
             return __generator(this, function (_r) {
                 switch (_r.label) {
                     case 0:
@@ -815,9 +815,16 @@ var TaskDetail = /** @class */ (function () {
                         if (this.task.solutionType === 'blanks') {
                             this.specialSolution = this.task.getSolution();
                             blankText = this.specialSolution.val;
+                            placeholderCount_1 = [];
                             while ((blankMatch_1 = this.blankRegex.exec(blankText)) !== null) {
-                                savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(function (answer) { return answer.id === blankMatch_1[1]; }) : null;
-                                blankText = blankText.replace(blankMatch_1[0], "<span id=\"" + blankMatch_1[1] + "\" class=\"blankInput " + ((savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : "") + "\" role=\"textbox\" contenteditable>" + (savedAnswer ? savedAnswer.answer : "") + "</span>");
+                                savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(function (answer) { return answer.id === blankMatch_1[1] && answer.count == (placeholderCount_1[blankMatch_1[1]] ? placeholderCount_1[blankMatch_1[1]] : 0); }) : null;
+                                blankText = blankText.replace(blankMatch_1[0], "<span id=\"" + blankMatch_1[1] + "\" data-count=\"" + (placeholderCount_1[blankMatch_1[1]] ? placeholderCount_1[blankMatch_1[1]] : '0') + "\" class=\"blankInput " + ((savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : "") + "\" role=\"textbox\" contenteditable>" + (savedAnswer ? savedAnswer.answer : "") + "</span>");
+                                if (!placeholderCount_1[blankMatch_1[1]]) {
+                                    placeholderCount_1[blankMatch_1[1]] = 1;
+                                }
+                                else {
+                                    placeholderCount_1[blankMatch_1[1]]++;
+                                }
                             }
                             blankContainer = document.getElementById('blankContainer_' + this.task.id);
                             if (blankContainer) {
@@ -827,14 +834,18 @@ var TaskDetail = /** @class */ (function () {
                                     answers = [];
                                     for (_g = 0, _h = Array.from(inputs); _g < _h.length; _g++) {
                                         input = _h[_g];
-                                        answers.push({ id: input.id, answer: "", solved: null });
+                                        if (input instanceof HTMLElement) {
+                                            answers.push({ id: input.id, answer: "", solved: null, count: input.dataset.count });
+                                        }
                                     }
                                     this.taskDetails.answerMultipleChoice = answers;
                                 }
                                 _loop_1 = function (input) {
                                     input.addEventListener('input', function (event) {
                                         var answerElement = _this.taskDetails.answerMultipleChoice.find(function (answer) {
-                                            return answer.id === input.id;
+                                            if (input instanceof HTMLElement) {
+                                                return answer.id === input.id && answer.count == input.dataset.count;
+                                            }
                                         });
                                         answerElement.answer = event.currentTarget.innerText;
                                     });
@@ -2679,6 +2690,7 @@ var TaskDetail = /** @class */ (function () {
                 }
             }
         }
+        console.log('Special Type answered', isAnswered);
         return isAnswered;
     };
     TaskDetail.prototype.generateSubtaskScoreCalculationString = function (solved) {

@@ -251,9 +251,15 @@ export class TaskDetail {
             this.specialSolution = this.task.getSolution();
             let blankMatch;
             let blankText: string = this.specialSolution.val
+            let placeholderCount = [];
             while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
-                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {return answer.id === blankMatch[1]}) : null;
-                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
+                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)}) : null;
+                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
+                if (!placeholderCount[blankMatch[1]]) {
+                    placeholderCount[blankMatch[1]] = 1;
+                } else {
+                    placeholderCount[blankMatch[1]]++
+                }
             }
             let blankContainer = document.getElementById('blankContainer_' + this.task.id);
             if (blankContainer) {
@@ -262,17 +268,21 @@ export class TaskDetail {
                 if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
                     let answers = [];
                     for (let input of Array.from(inputs)) {
-                        answers.push({id: input.id, answer: "", solved: null})
+                        if (input instanceof HTMLElement) {
+                            answers.push({id: input.id, answer: "", solved: null, count: input.dataset.count})
+                        }
                     }
                     this.taskDetails.answerMultipleChoice = answers;
                 }
                 for (let input of Array.from(inputs)) {
                     input.addEventListener('input', (event: any) => {
-                        let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
-                            return answer.id === input.id
+                            let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
+                                if (input instanceof HTMLElement) {
+                                    return answer.id === input.id && answer.count == input.dataset.count
+                                }
+                            });
+                            answerElement.answer = event.currentTarget.innerText;
                         });
-                        answerElement.answer = event.currentTarget.innerText;
-                    });
                 }
             }
         }

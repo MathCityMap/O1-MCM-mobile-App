@@ -6285,11 +6285,11 @@ var map = {
 		297
 	],
 	"../pages/dashboard/dashboard.module": [
-		1123,
+		1124,
 		4
 	],
 	"../pages/home/home.module": [
-		1124,
+		1123,
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
@@ -6301,7 +6301,7 @@ var map = {
 		2
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1129,
+		1128,
 		1
 	],
 	"../pages/info/info.module": [
@@ -6309,15 +6309,15 @@ var map = {
 		8
 	],
 	"../pages/onboarding/onboarding.module": [
-		1128,
+		1129,
 		7
 	],
 	"../pages/portal/portal.module": [
-		1130,
+		1131,
 		6
 	],
 	"../pages/settings/settings.module": [
-		1131,
+		1130,
 		5
 	],
 	"../pages/task-detail/task-detail.module": [
@@ -11551,15 +11551,15 @@ var AppModule = /** @class */ (function () {
                 }, {
                     links: [
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
