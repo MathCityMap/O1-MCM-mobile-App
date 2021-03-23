@@ -10,7 +10,7 @@
           "NSLocationWhenInUseUsageDescription": [
             {
               "xml": "<string>MathCityMap would like to know your position to show distance to available routes.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires access to your location when the screen is on and the app is displayed.</string>",
@@ -20,7 +20,7 @@
           "NSBluetoothAlwaysUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires constant Bluetooth access to function properly.</string>",
@@ -30,7 +30,7 @@
           "NSBluetoothPeripheralUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires Bluetooth access to function properly.</string>",
@@ -40,7 +40,7 @@
           "NSCalendarsUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to calendar.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires calendar access to function properly.</string>",
@@ -50,7 +50,7 @@
           "NSCameraUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires camera access to function properly.</string>",
@@ -60,7 +60,7 @@
           "NSContactsUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires contacts access to function properly.</string>",
@@ -70,7 +70,7 @@
           "NSMicrophoneUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to microphone.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires microphone access to function properly.</string>",
@@ -80,7 +80,7 @@
           "NSMotionUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to motion detection.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires motion detection access to function properly.</string>",
@@ -90,7 +90,7 @@
           "NSPhotoLibraryUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to photo library.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires photo library access to function properly.</string>",
@@ -100,7 +100,7 @@
           "NSRemindersUsageDescription": [
             {
               "xml": "<string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>",
-              "count": 39
+              "count": 40
             },
             {
               "xml": "<string>This app requires reminders access to function properly.</string>",
@@ -110,7 +110,7 @@
           "CFBundleLocalizations": [
             {
               "xml": "<array><string>de</string><string>en</string><string>ar</string><string>el</string><string>es</string><string>et</string><string>fa</string><string>fr</string><string>id</string><string>it</string><string>pt</string><string>sk</string><string>tr</string><string>zh</string></array>",
-              "count": 39
+              "count": 40
             }
           ],
           "NSLocationAlwaysAndWhenInUseUsageDescription": [
@@ -132,13 +132,13 @@
           "UISupportedInterfaceOrientations": [
             {
               "xml": "<array><string>UIInterfaceOrientationPortrait</string><string>UIInterfaceOrientationPortraitUpsideDown</string></array>",
-              "count": 39
+              "count": 40
             }
           ],
           "UISupportedInterfaceOrientations~ipad": [
             {
               "xml": "<array><string>UIInterfaceOrientationPortrait</string><string>UIInterfaceOrientationPortraitUpsideDown</string><string>UIInterfaceOrientationLandscapeLeft</string><string>UIInterfaceOrientationLandscapeRight</string></array>",
-              "count": 39
+              "count": 40
             }
           ]
         }
