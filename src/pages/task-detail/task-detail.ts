@@ -1479,6 +1479,7 @@ export class TaskDetail {
     }
 
     private possibleScore(){
+        console.log('calculating Possible Score');
         if(this.taskDetails){
             if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
                 let tempScore = 0;
@@ -1490,6 +1491,26 @@ export class TaskDetail {
                 }
                 else{
                     tempScore += this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+                }
+                if (this.solvedSubtasks.length < this.task.subtasks.length) {
+                    let subtaskCount = 0;
+                    for (let subtask of this.task.subtasks) {
+                        if (subtask.solutionType !== 'info') {
+                            subtaskCount++
+                        }
+                    }
+                    let solvedSubtaskCount = 0;
+                    for (let subtask of this.solvedSubtasks) {
+                        let actualTask = this.task.subtasks.find(
+                            task => {return task.id === subtask.taskId}
+                            );
+                        if (actualTask.solutionType !== 'info') {
+                            solvedSubtaskCount++
+                        }
+                    }
+                    for (let i = 0; i < subtaskCount - solvedSubtaskCount; i++) {
+                        tempScore += this.subTaskScore;
+                    }
                 }
                 return tempScore;
             }

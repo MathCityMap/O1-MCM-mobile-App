@@ -2169,6 +2169,7 @@ var TaskDetail = /** @class */ (function () {
         return 100;
     };
     TaskDetail.prototype.possibleScore = function () {
+        console.log('calculating Possible Score');
         if (this.taskDetails) {
             if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
                 var tempScore = 0;
@@ -2181,6 +2182,30 @@ var TaskDetail = /** @class */ (function () {
                 }
                 else {
                     tempScore += this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+                }
+                if (this.solvedSubtasks.length < this.task.subtasks.length) {
+                    var subtaskCount = 0;
+                    for (var _b = 0, _c = this.task.subtasks; _b < _c.length; _b++) {
+                        var subtask = _c[_b];
+                        if (subtask.solutionType !== 'info') {
+                            subtaskCount++;
+                        }
+                    }
+                    var solvedSubtaskCount = 0;
+                    var _loop_3 = function (subtask) {
+                        var actualTask = this_1.task.subtasks.find(function (task) { return task.id === subtask.taskId; });
+                        if (actualTask.solutionType !== 'info') {
+                            solvedSubtaskCount++;
+                        }
+                    };
+                    var this_1 = this;
+                    for (var _d = 0, _e = this.solvedSubtasks; _d < _e.length; _d++) {
+                        var subtask = _e[_d];
+                        _loop_3(subtask);
+                    }
+                    for (var i = 0; i < subtaskCount - solvedSubtaskCount; i++) {
+                        tempScore += this.subTaskScore;
+                    }
                 }
                 return tempScore;
             }
