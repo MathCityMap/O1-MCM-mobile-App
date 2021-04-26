@@ -188,7 +188,7 @@ export class TaskDetail {
         this.task = await this.ormService.findTaskById(this.taskId);
         if (this.subTaskIndex || this.subTaskIndex === 0) {
             this.rootTask = this.task;
-            this.task = this.rootTask.subtasks[this.subTaskIndex]
+            this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex]
         }
         this.subTasksRequired = this.route.isSubtaskRequired();
         console.log("Opened Task: ", this.task);
@@ -197,7 +197,7 @@ export class TaskDetail {
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         if (this.task.subtasks && this.task.subtasks.length > 0) {
             this.solvedSubtasks = [];
-            for (let task of this.task.subtasks) {
+            for (let task of this.task.getSubtasksInOrder()) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
                 if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved || subtaskDetails.skipped) {
                     this.solvedSubtasks.push(subtaskDetails);
@@ -1479,7 +1479,6 @@ export class TaskDetail {
     }
 
     private possibleScore(){
-        console.log('calculating Possible Score');
         if(this.taskDetails){
             if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
                 let tempScore = 0;
@@ -1999,7 +1998,7 @@ export class TaskDetail {
         if (!index && index !== 0) {
             index = this.solvedSubtasks.length
         }
-        return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.subtasks[index].title, subTaskIndex: index});
+        return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.getSubtasksInOrder()[index].title, subTaskIndex: index});
     }
 
     changeSubtaskAccordionState(subtask) {

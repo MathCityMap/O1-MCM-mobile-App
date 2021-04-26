@@ -82,6 +82,7 @@ export abstract class DBC {
       "lang_code",
       "visible",
       "task_id",
+      "position"
     ],
     [
       "INTEGER",
@@ -107,6 +108,7 @@ export abstract class DBC {
       "TEXT",
       "TIMESTAMP",
       "VARCHAR",
+      "INTEGER",
       "INTEGER",
       "INTEGER"
     ],
@@ -135,6 +137,7 @@ export abstract class DBC {
       "NOT NULL",
       "(2)",
       "(1) NOT NULL DEFAULT 1",
+      "",
       ""
     ]
   )
