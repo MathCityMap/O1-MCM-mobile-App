@@ -33,6 +33,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "../../../../../node_modules/rxjs";
 import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
+import {polyline} from "leaflet";
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
@@ -509,6 +510,8 @@ export class TasksMap implements OnInit, OnDestroy {
 
     this.taskList = await this.route.getTasks();
 
+    let geoJSON = this.route.getPathGeoJson();
+
     for(let i = 0; i < this.taskList.length; i++){
         let task: Task = this.taskList[i];
         if (!this.state.isShowingAllTasks && !this.state.visibleTasks[task.position]) {
@@ -533,7 +536,23 @@ export class TasksMap implements OnInit, OnDestroy {
             // remove task from skipped array
             this.state.skippedTaskIds.splice(this.state.skippedTaskIds.indexOf(task.id), 1);
       }
-      markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
+      let layerGroup = L.layerGroup();
+      if (geoJSON) {
+          let taskGeoJson = geoJSON.data.features.find(data => {
+              return data.properties.task_id === task.id;
+          });
+          if (taskGeoJson) {
+              for (let coordinateArray of taskGeoJson.geometry.coordinates) {
+                  coordinateArray = coordinateArray.reverse();
+              }
+              let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
+                  color: taskGeoJson.properties.color,
+                  dashArray: "10 10"
+              });
+              layerGroup.addLayer(polyline);
+          }
+      }
+      layerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
           if (this.state.selectedTask == task) {
               this.gototask(task.id, task.title);
           } else {
@@ -546,9 +565,11 @@ export class TasksMap implements OnInit, OnDestroy {
               this.map.panTo( [task.lat, task.lon] );
           }
       }));
+      markerGroup.addLayer(layerGroup);
     }
     this.map.addLayer(markerGroup);
     this.markerGroup = markerGroup;
+    console.log("adding Marker Group to map", this.map);
   }
 
   async loadMap() {

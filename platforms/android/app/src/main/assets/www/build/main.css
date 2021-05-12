@@ -38150,6 +38150,30 @@ routes-map .detail-box {
   margin-bottom: 4px;
 }
 
+.path-info .walk ion-icon {
+  color: #036d99;
+}
+
+.path-info .bike ion-icon {
+  color: #3DCC68;
+}
+
+.path-info .car ion-icon {
+  color: #E62B25;
+}
+
+.path-info .public ion-icon {
+  color: #f3b100;
+}
+
+.path-info .sum-label {
+  min-width: 75%;
+}
+
+.path-info .sum-data {
+  margin-left: 1em;
+}
+
 .footer .button.play img {
   width: 20px;
   height: 20px;

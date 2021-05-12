@@ -127,6 +127,36 @@
     }
 }
 
+.path-info {
+    .walk {
+        ion-icon {
+            color: color($colors, primary);
+        }
+    }
+    .bike {
+        ion-icon {
+            color: color($colors, success);
+        }
+    }
+    .car {
+        ion-icon {
+            color: color($colors, error);
+        }
+    }
+    .public {
+        ion-icon {
+            color: color($colors, secondary);
+        }
+    }
+    .sum-label {
+        min-width: 75%;
+    }
+
+    .sum-data {
+        margin-left: 1em;
+    }
+}
+
 .footer{
     .button{
         &.play{

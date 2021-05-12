@@ -1169,5 +1169,11 @@
   "a_alert_subtask_right_answer_low": "Du hast die Aufgabe in {{tries}} Versuchen gelöst. Deine Lösung {{L}} ist ok.",
   "a_alert_subtask_right_answer_flawless": "Super! Du hast die Aufgabe perfekt gelöst. Deine Lösung '{{L}}' ist richtig.",
   "a_info_task_finished_message": "Danke fürs Lesen. Gehe nun weiter zur nächsten Aufgabe.",
-  "p_mc_add_answer": "Antwort hinzufügen"
+  "p_mc_add_answer": "Antwort hinzufügen",
+  "p_groups_alreadymember": "Du bist bereits Mitglied dieser Gruppe.",
+  "p_error_unauthorized_edit": "Sie sind leider nicht befugt diese Aufgabe zu editieren.",
+  "p_error_empty_fields": "Ein oder mehrere Felder in der Lösung sind leer.",
+  "p_error_gps_points": "Bitte legen Sie Bezugspunkte für die GPS-Aufgabe fest.",
+  "a_r_path": "Pfad",
+  "a_r_path_sum": "Gesamtlänge:"
 }

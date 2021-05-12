@@ -35,6 +35,7 @@ import {Storage} from "@ionic/storage";
 import {AddSavedTasks16013795030000} from "../migration/16013795030000-AddSavedTasks";
 import {AddSubtasks16026790930000} from "../migration/16026790930000-AddSubtasks";
 import {AddPositionField16194302450000} from "../migration/16194302450000-AddPositionField";
+import {AddPathFields16208100470000} from "../migration/16208100470000-AddPathFields";
 
 
 @Injectable()
@@ -80,7 +81,8 @@ export class OrmService {
             AddZipMapFields15783117210000,
             AddSavedTasks16013795030000,
             AddSubtasks16026790930000,
-            AddPositionField16194302450000
+            AddPositionField16194302450000,
+            AddPathFields16208100470000
         ];
         if (sqliteAvailable) {
             this.connection = await createConnection({

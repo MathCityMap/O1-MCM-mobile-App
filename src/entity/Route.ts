@@ -79,6 +79,12 @@ export class Route {
     @Column({name: 'map_date'})
     mapDate: string;
 
+    @Column({name: 'path_geojson'})
+    pathGeojson: string;
+
+    @Column({name: 'path_info'})
+    pathInfo: string;
+
     // TODO: change table's schema
     /*@Column("simple-json")
     narrativeStrings: { welcome: string, welcomeMessage: string, ending: string, aboutObject: string,
@@ -409,6 +415,20 @@ export class Route {
     //TODO Move this to individual tasks
     isSubtaskRequired() {
         return this.getAttributes().useSubtasks === "true";
+    }
+
+    getPathGeoJson() {
+        if (this.pathGeojson) {
+            return JSON.parse(this.pathGeojson);
+        }
+        return null;
+    }
+
+    getPathInfo() {
+        if (this.pathInfo) {
+            return JSON.parse(this.pathInfo);
+        }
+        return null;
     }
 
 }

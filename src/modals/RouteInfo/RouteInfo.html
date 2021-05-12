@@ -107,6 +107,32 @@
             <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>
         </div>
 
+        <div class="path-info" *ngIf="route && route.getPathInfo()">
+            <ion-label>{{ 'a_r_path' | translate }}</ion-label>
+            <ion-row>
+                <ion-col class="walk">
+                    <ion-icon name="md-walk"></ion-icon>
+                    {{route.getPathInfo()['path_walk']['lengthText']}}
+                </ion-col>
+                <ion-col class="bike">
+                    <ion-icon name="md-bicycle" color="green"></ion-icon>
+                    {{route.getPathInfo()['path_bike']['lengthText']}}
+                </ion-col>
+                <ion-col class="car">
+                    <ion-icon name="md-car" color="red"></ion-icon>
+                    {{route.getPathInfo()['path_car']['lengthText']}}
+                </ion-col>
+                <ion-col class="public">
+                    <ion-icon name="md-train" color="yellow"></ion-icon>
+                    {{route.getPathInfo()['path_public']['lengthText']}}
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="sum-label">{{'a_r_path_sum' | translate}}</ion-col>
+                <ion-col class="sum-data">{{route.getPathInfo()['path_sum']['lengthText']}}</ion-col>
+            </ion-row>
+        </div>
+
         <ion-label>{{ 'a_r_tags' | translate }}</ion-label>
         <p *ngIf="route">{{ route.tags }}</p>
     </div>
