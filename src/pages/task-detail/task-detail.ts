@@ -950,8 +950,8 @@ export class TaskDetail {
             if (skip) {
                 this.taskDetails.skipped = true;
                 await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+                goToNextTaskById(this.task.id, skip);
             }
-            goToNextTaskById(this.task.id, skip);
         }
         // necessary because of bug which does not update URL
         this.deepLinker.navChange('back');

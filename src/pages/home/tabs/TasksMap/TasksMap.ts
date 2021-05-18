@@ -99,6 +99,7 @@ export class TasksMap implements OnInit, OnDestroy {
 
     private sessionTimeTimer = Observable.interval(TasksMap.UPDATE_SESSION_TIME_INTERVAL_IN_SECS * 1000);
     private sessionTimeSubscription: Subscription;
+    private redrawingMarkers = false;
 
   constructor(
     public navCtrl: NavController,
@@ -268,7 +269,7 @@ export class TasksMap implements OnInit, OnDestroy {
               this.saveMapStateToLocalStorage();
               this.sessionInfo.started = true;
               await this.chatAndSessionService.updateSession(this.sessionInfo);
-              this.redrawMarker();
+              await this.redrawMarker();
               return;
           }
       }
@@ -325,7 +326,7 @@ export class TasksMap implements OnInit, OnDestroy {
               }
           }
       }
-      this.redrawMarker();
+      await this.redrawMarker();
   }
 
   private showGuidedTrailModalWithDelay(delay) {
@@ -345,6 +346,7 @@ export class TasksMap implements OnInit, OnDestroy {
   private forceStartFromTask( taskId ){
       let selectedTask = this.taskList.filter(x => x.id == taskId).pop();
       this.state.selectedTask = selectedTask;
+      console.debug("forceStartFromTask");
       this.state.visibleTasks = {};
       this.state.visibleTasks[selectedTask.position] = true;
       this.state.isShowingAllTasks = false;
@@ -374,10 +376,11 @@ export class TasksMap implements OnInit, OnDestroy {
     }
 
   markerGroup: any = null;
+  pathGroup: any = null;
 
    async initializeMap() {
       this.currentScore = this.score.score;
-      this.redrawMarker();
+      // await this.redrawMarker();
       this.gpsService.isLocationOn();
       // This should fix the gray tiles and missing marker issue on android
       if(this.map != null){
@@ -443,6 +446,10 @@ export class TasksMap implements OnInit, OnDestroy {
 
 
   async redrawMarker(){
+    if (this.redrawingMarkers) {
+        return;
+    }
+    this.redrawingMarkers = true;
     if (!this.map) {
       return;
     }
@@ -451,6 +458,18 @@ export class TasksMap implements OnInit, OnDestroy {
         this.map.removeLayer(this.markerGroup);
         this.markerGroup = null;
     }
+    if (this.pathGroup != null) {
+        console.warn('removing pathGroup');
+        for (let layer of this.pathGroup) {
+            this.map.removeLayer(layer);
+        }
+        this.pathGroup = null;
+    }
+    // this.map.eachLayer(layer => {
+    //     if ((layer instanceof L.Polyline) || (layer instanceof L.Marker)) {
+    //         this.map.removeLayer(layer);
+    //     }
+    // })
     let markerGroup = (L as any).markerClusterGroup({
         maxClusterRadius: 30,
         iconCreateFunction: function (cluster) {
@@ -511,6 +530,7 @@ export class TasksMap implements OnInit, OnDestroy {
     this.taskList = await this.route.getTasks();
 
     let geoJSON = this.route.getPathGeoJson();
+    let pathGroup = [];
 
     for(let i = 0; i < this.taskList.length; i++){
         let task: Task = this.taskList[i];
@@ -536,23 +556,32 @@ export class TasksMap implements OnInit, OnDestroy {
             // remove task from skipped array
             this.state.skippedTaskIds.splice(this.state.skippedTaskIds.indexOf(task.id), 1);
       }
-      let layerGroup = L.layerGroup();
       if (geoJSON) {
-          let taskGeoJson = geoJSON.data.features.find(data => {
-              return data.properties.task_id === task.id;
+          let taskGeoJsons = geoJSON.data.features.filter(data => {
+              //don't match types because some are string and some are numbers for some reason
+              return data.properties.task_id == task.id;
           });
-          if (taskGeoJson) {
-              for (let coordinateArray of taskGeoJson.geometry.coordinates) {
-                  coordinateArray = coordinateArray.reverse();
+          console.log("GEO JSON", taskGeoJsons, task);
+          if (taskGeoJsons) {
+              for (let taskGeoJson of taskGeoJsons) {
+                  // for (let coordinateArray of taskGeoJson.geometry.coordinates) {
+                  //     coordinateArray = coordinateArray.reverse();
+                  // }
+                  let GeoJsonLayer = L.geoJSON(taskGeoJson, {
+                      style: function(feature) {
+                          return {color: feature.properties.color, dashArray: "10 10"};
+                        }
+                  });
+                  // let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
+                  //     color: taskGeoJson.properties.color,
+                  //     dashArray: "10 10"
+                  // });
+                  this.map.addLayer(GeoJsonLayer);
+                  pathGroup.push(GeoJsonLayer);
               }
-              let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
-                  color: taskGeoJson.properties.color,
-                  dashArray: "10 10"
-              });
-              layerGroup.addLayer(polyline);
           }
       }
-      layerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
+      markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
           if (this.state.selectedTask == task) {
               this.gototask(task.id, task.title);
           } else {
@@ -565,11 +594,13 @@ export class TasksMap implements OnInit, OnDestroy {
               this.map.panTo( [task.lat, task.lon] );
           }
       }));
-      markerGroup.addLayer(layerGroup);
     }
+    // this.map.addLayer(pathGroup);
     this.map.addLayer(markerGroup);
+    console.log("MAP AFTER UPDATE", this.map);
     this.markerGroup = markerGroup;
-    console.log("adding Marker Group to map", this.map);
+    this.pathGroup = pathGroup;
+    this.redrawingMarkers = false;
   }
 
   async loadMap() {
@@ -789,6 +820,7 @@ export class TasksMap implements OnInit, OnDestroy {
     if(skip){
         this.state.skippedTaskIds.push(task.id);
     }
+      console.debug("goToNextTask");
     // task.position == index + 1
     this.state.selectedTask = this.taskList[task.position % this.taskList.length];
     this.state.visibleTasks[this.state.selectedTask.position] = true;
@@ -927,7 +959,7 @@ export class TasksMap implements OnInit, OnDestroy {
       }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
       modal.present();
   }
-
+    task
   async gototask(taskId: number, taskName: string) {
        if(this.taskBlocked){
            console.log('session in preparation.');

@@ -5259,12 +5259,12 @@ var ComponentsModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_language_service__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_chat_and_session_service__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_screen_orientation__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_screen_orientation__ = __webpack_require__(581);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_storage__ = __webpack_require__(61);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -6450,27 +6450,27 @@ var map = {
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1134,
+		1127,
 		3
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1127,
+		1128,
 		2
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1128,
+		1129,
 		1
 	],
 	"../pages/info/info.module": [
-		1129,
+		1130,
 		8
 	],
 	"../pages/onboarding/onboarding.module": [
-		1130,
+		1131,
 		7
 	],
 	"../pages/portal/portal.module": [
-		1131,
+		1133,
 		6
 	],
 	"../pages/settings/settings.module": [
@@ -6478,7 +6478,7 @@ var map = {
 		5
 	],
 	"../pages/task-detail/task-detail.module": [
-		1133,
+		1134,
 		0
 	]
 };
@@ -9833,7 +9833,7 @@ var CenteredTask = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 580:
+/***/ 578:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9841,7 +9841,7 @@ var CenteredTask = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(579);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(145);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9937,7 +9937,7 @@ var MCMTermsAndConditionsModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 581:
+/***/ 579:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11195,225 +11195,11 @@ var SearchPipe = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMIntroModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var MCMIntroModal = /** @class */ (function () {
-    function MCMIntroModal(params) {
-        this.buttons = params.data.buttons;
-        this.narrative = params.data.narrative;
-        this.title = params.data.title;
-        this.message = params.data.message;
-    }
-    MCMIntroModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-intro-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/'<div class="modal card icon intro has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{narrative}}/modal-intro.svg"/>\n        <h2>{{ title | translate}}</h2>\n        <p [innerHtml]=" message | translate "></p>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */]])
-    ], MCMIntroModal);
-    return MCMIntroModal;
-}());
-
-//# sourceMappingURL=MCMIntroModal.js.map
-
-/***/ }),
-
-/***/ 629:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMSessionFinishedModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(238);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var MCMSessionFinishedModal = /** @class */ (function () {
-    function MCMSessionFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
-        var _this = this;
-        this.viewCtrl = viewCtrl;
-        this.navCtrl = navCtrl;
-        this.appCtrl = appCtrl;
-        this.navParams = navParams;
-        this.session = navParams.data.session;
-        this.score = navParams.data.score;
-        this.tasks = navParams.data.tasks;
-        this.numberOfSolvedTasks = 0;
-        var solvedTasks = this.score.getTasksSolved();
-        var solvedLowTasks = this.score.getTasksSolvedLow();
-        var savedTasks = this.score.getTasksSaved();
-        this.tasks.map(function (task) {
-            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
-                _this.numberOfSolvedTasks++;
-            }
-        });
-        if (navParams.data.narrative) {
-            this.narrative = navParams.data.narrative;
-            switch (this.narrative) {
-                case 'pirates':
-                    this.iconPath = 'pirates/';
-                    break;
-                default:
-                    this.iconPath = '';
-            }
-        }
-        else {
-            this.iconPath = '';
-        }
-    }
-    // ionViewDidEnter() {
-    //     setTimeout(() => {
-    //         this.input.setFocus();
-    //     }, 150);
-    // }
-    MCMSessionFinishedModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMSessionFinishedModal.prototype.backToStart = function () {
-        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
-        this.cancel();
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMSessionFinishedModal.prototype, "input", void 0);
-    MCMSessionFinishedModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-session-finished-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-session-finished.svg"/>\n        <h2>{{\'a_private_session_finished_title\' | translate}}</h2>\n        <p class="main-text">{{session.goodbye_message}}</p>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="backToStart()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */]])
-    ], MCMSessionFinishedModal);
-    return MCMSessionFinishedModal;
-}());
-
-//# sourceMappingURL=MCMSessionFinishedModal.js.map
-
-/***/ }),
-
-/***/ 630:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTrailFinishedModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(238);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var MCMTrailFinishedModal = /** @class */ (function () {
-    function MCMTrailFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
-        var _this = this;
-        this.viewCtrl = viewCtrl;
-        this.navCtrl = navCtrl;
-        this.appCtrl = appCtrl;
-        this.navParams = navParams;
-        this.score = navParams.data.score;
-        this.tasks = navParams.data.tasks;
-        this.callback = navParams.data.callback;
-        this.numberOfSolvedTasks = 0;
-        var solvedTasks = this.score.getTasksSolved();
-        var solvedLowTasks = this.score.getTasksSolvedLow();
-        var savedTasks = this.score.getTasksSaved();
-        this.tasks.map(function (task) {
-            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
-                _this.numberOfSolvedTasks++;
-            }
-        });
-        if (navParams.data.narrative) {
-            this.narrative = navParams.data.narrative;
-            switch (this.narrative) {
-                case 'pirates':
-                    this.iconPath = 'pirates/';
-                    break;
-                default:
-                    this.iconPath = '';
-            }
-        }
-        else {
-            this.iconPath = '';
-        }
-    }
-    // ionViewDidEnter() {
-    //     setTimeout(() => {
-    //         this.input.setFocus();
-    //     }, 150);
-    // }
-    MCMTrailFinishedModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMTrailFinishedModal.prototype.backToStart = function () {
-        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
-        this.cancel();
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMTrailFinishedModal.prototype, "input", void 0);
-    MCMTrailFinishedModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-trail-finished-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-trail-finished.svg"/>\n        <h2>{{\'a_trail_finished_title\' | translate }}</h2>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="callback()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */]])
-    ], MCMTrailFinishedModal);
-    return MCMTrailFinishedModal;
-}());
-
-//# sourceMappingURL=MCMTrailFinishedModal.js.map
-
-/***/ }),
-
-/***/ 632:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(578);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
@@ -11577,6 +11363,220 @@ var MCMRouteByCodeModal = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 629:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMIntroModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var MCMIntroModal = /** @class */ (function () {
+    function MCMIntroModal(params) {
+        this.buttons = params.data.buttons;
+        this.narrative = params.data.narrative;
+        this.title = params.data.title;
+        this.message = params.data.message;
+    }
+    MCMIntroModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-intro-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/'<div class="modal card icon intro has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{narrative}}/modal-intro.svg"/>\n        <h2>{{ title | translate}}</h2>\n        <p [innerHtml]=" message | translate "></p>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */]])
+    ], MCMIntroModal);
+    return MCMIntroModal;
+}());
+
+//# sourceMappingURL=MCMIntroModal.js.map
+
+/***/ }),
+
+/***/ 630:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMSessionFinishedModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(238);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var MCMSessionFinishedModal = /** @class */ (function () {
+    function MCMSessionFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
+        var _this = this;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.appCtrl = appCtrl;
+        this.navParams = navParams;
+        this.session = navParams.data.session;
+        this.score = navParams.data.score;
+        this.tasks = navParams.data.tasks;
+        this.numberOfSolvedTasks = 0;
+        var solvedTasks = this.score.getTasksSolved();
+        var solvedLowTasks = this.score.getTasksSolvedLow();
+        var savedTasks = this.score.getTasksSaved();
+        this.tasks.map(function (task) {
+            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
+                _this.numberOfSolvedTasks++;
+            }
+        });
+        if (navParams.data.narrative) {
+            this.narrative = navParams.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        }
+        else {
+            this.iconPath = '';
+        }
+    }
+    // ionViewDidEnter() {
+    //     setTimeout(() => {
+    //         this.input.setFocus();
+    //     }, 150);
+    // }
+    MCMSessionFinishedModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMSessionFinishedModal.prototype.backToStart = function () {
+        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
+        this.cancel();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMSessionFinishedModal.prototype, "input", void 0);
+    MCMSessionFinishedModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-session-finished-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-session-finished.svg"/>\n        <h2>{{\'a_private_session_finished_title\' | translate}}</h2>\n        <p class="main-text">{{session.goodbye_message}}</p>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="backToStart()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */]])
+    ], MCMSessionFinishedModal);
+    return MCMSessionFinishedModal;
+}());
+
+//# sourceMappingURL=MCMSessionFinishedModal.js.map
+
+/***/ }),
+
+/***/ 631:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTrailFinishedModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(238);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var MCMTrailFinishedModal = /** @class */ (function () {
+    function MCMTrailFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
+        var _this = this;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.appCtrl = appCtrl;
+        this.navParams = navParams;
+        this.score = navParams.data.score;
+        this.tasks = navParams.data.tasks;
+        this.callback = navParams.data.callback;
+        this.numberOfSolvedTasks = 0;
+        var solvedTasks = this.score.getTasksSolved();
+        var solvedLowTasks = this.score.getTasksSolvedLow();
+        var savedTasks = this.score.getTasksSaved();
+        this.tasks.map(function (task) {
+            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
+                _this.numberOfSolvedTasks++;
+            }
+        });
+        if (navParams.data.narrative) {
+            this.narrative = navParams.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        }
+        else {
+            this.iconPath = '';
+        }
+    }
+    // ionViewDidEnter() {
+    //     setTimeout(() => {
+    //         this.input.setFocus();
+    //     }, 150);
+    // }
+    MCMTrailFinishedModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMTrailFinishedModal.prototype.backToStart = function () {
+        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
+        this.cancel();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMTrailFinishedModal.prototype, "input", void 0);
+    MCMTrailFinishedModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-trail-finished-modal',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-trail-finished.svg"/>\n        <h2>{{\'a_trail_finished_title\' | translate }}</h2>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="callback()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavParams */]])
+    ], MCMTrailFinishedModal);
+    return MCMTrailFinishedModal;
+}());
+
+//# sourceMappingURL=MCMTrailFinishedModal.js.map
+
+/***/ }),
+
 /***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11600,7 +11600,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(403);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_sqlite__ = __webpack_require__(198);
@@ -11628,11 +11628,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(574);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_broadcast_service__ = __webpack_require__(1114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(622);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(630);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modals_CenteredTask_CenteredTask__ = __webpack_require__(576);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__services_gps_service__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__ionic_native_location_accuracy__ = __webpack_require__(402);
@@ -11645,11 +11645,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__pages_chat_chat_module__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_local_notifications__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_in_app_browser__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_app_version__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_app_version__ = __webpack_require__(632);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__ionic_native_media__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50_angular_progress_bar__ = __webpack_require__(1120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ionic_native_screen_orientation__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__ionic_native_screen_orientation__ = __webpack_require__(581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(631);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__directives_directives_module__ = __webpack_require__(1123);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -11738,14 +11738,14 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["a" /* IonicStorageModule */].forRoot(),

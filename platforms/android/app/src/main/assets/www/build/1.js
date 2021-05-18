@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1128:
+/***/ 1129:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(234);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -538,7 +538,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1144:
+/***/ 1145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -560,23 +560,23 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__ = __webpack_require__(1140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_conic_gradient__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_images_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_storage__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(622);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(630);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__chat_chat__ = __webpack_require__(626);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_chat_and_session_service__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(631);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -686,7 +686,9 @@ var TasksMap = /** @class */ (function () {
         this.showSessionEnds = false;
         this.taskBlocked = false;
         this.sessionTimeTimer = __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__["Observable"].interval(TasksMap_1.UPDATE_SESSION_TIME_INTERVAL_IN_SECS * 1000);
+        this.redrawingMarkers = false;
         this.markerGroup = null;
+        this.pathGroup = null;
         /*this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
         this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
         this.taskOpenIcon.clusterColor = '#036D99';
@@ -830,10 +832,10 @@ var TasksMap = /** @class */ (function () {
                 switch (_c.label) {
                     case 0:
                         console.log('TasksMap ionViewDidEnter()');
-                        if (!(this.sessionInfo != null)) return [3 /*break*/, 5];
+                        if (!(this.sessionInfo != null)) return [3 /*break*/, 6];
                         details = JSON.stringify({});
                         this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
-                        if (!(this.sessionInfo.started === false)) return [3 /*break*/, 5];
+                        if (!(this.sessionInfo.started === false)) return [3 /*break*/, 6];
                         this.showAllTasks();
                         this.resetTasks();
                         if (!(this.sessionInfo.sessionUser.assigned_task_id != 0)) return [3 /*break*/, 2];
@@ -862,20 +864,22 @@ var TasksMap = /** @class */ (function () {
                         return [4 /*yield*/, this.chatAndSessionService.updateSession(this.sessionInfo)];
                     case 4:
                         _c.sent();
-                        this.redrawMarker();
-                        return [2 /*return*/];
+                        return [4 /*yield*/, this.redrawMarker()];
                     case 5:
-                        if (!this.navParams.data.tasksMapState) return [3 /*break*/, 6];
+                        _c.sent();
+                        return [2 /*return*/];
+                    case 6:
+                        if (!this.navParams.data.tasksMapState) return [3 /*break*/, 7];
                         console.log("3");
                         this.state = this.navParams.data.tasksMapState;
                         if (this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))) {
                             this.goToNextTask(this.state.selectedTask, true);
                         }
-                        return [3 /*break*/, 8];
-                    case 6:
+                        return [3 /*break*/, 9];
+                    case 7:
                         _b = this;
                         return [4 /*yield*/, this.getMapStateFromLocalStorage()];
-                    case 7:
+                    case 8:
                         _b.state = _c.sent();
                         console.log(this.state);
                         if (this.taskToSkip) {
@@ -921,9 +925,10 @@ var TasksMap = /** @class */ (function () {
                                 this.showGuidedTrailModalWithDelay(500);
                             }
                         }
-                        _c.label = 8;
-                    case 8:
-                        this.redrawMarker();
+                        _c.label = 9;
+                    case 9: return [4 /*yield*/, this.redrawMarker()];
+                    case 10:
+                        _c.sent();
                         return [2 /*return*/];
                 }
             });
@@ -947,6 +952,7 @@ var TasksMap = /** @class */ (function () {
     TasksMap.prototype.forceStartFromTask = function (taskId) {
         var selectedTask = this.taskList.filter(function (x) { return x.id == taskId; }).pop();
         this.state.selectedTask = selectedTask;
+        console.debug("forceStartFromTask");
         this.state.visibleTasks = {};
         this.state.visibleTasks[selectedTask.position] = true;
         this.state.isShowingAllTasks = false;
@@ -975,7 +981,7 @@ var TasksMap = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 this.currentScore = this.score.score;
-                this.redrawMarker();
+                // await this.redrawMarker();
                 this.gpsService.isLocationOn();
                 // This should fix the gray tiles and missing marker issue on android
                 if (this.map != null) {
@@ -1066,10 +1072,14 @@ var TasksMap = /** @class */ (function () {
     TasksMap.prototype.redrawMarker = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var markerGroup, _a, geoJSON, _loop_1, this_1, i;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var _i, _a, layer, markerGroup, _b, geoJSON, pathGroup, _loop_1, this_1, i;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
+                        if (this.redrawingMarkers) {
+                            return [2 /*return*/];
+                        }
+                        this.redrawingMarkers = true;
                         if (!this.map) {
                             return [2 /*return*/];
                         }
@@ -1077,6 +1087,14 @@ var TasksMap = /** @class */ (function () {
                             console.warn('removing markerGroup');
                             this.map.removeLayer(this.markerGroup);
                             this.markerGroup = null;
+                        }
+                        if (this.pathGroup != null) {
+                            console.warn('removing pathGroup');
+                            for (_i = 0, _a = this.pathGroup; _i < _a.length; _i++) {
+                                layer = _a[_i];
+                                this.map.removeLayer(layer);
+                            }
+                            this.pathGroup = null;
                         }
                         markerGroup = __WEBPACK_IMPORTED_MODULE_2_leaflet__["markerClusterGroup"]({
                             maxClusterRadius: 30,
@@ -1137,11 +1155,12 @@ var TasksMap = /** @class */ (function () {
                                 });
                             },
                         });
-                        _a = this;
+                        _b = this;
                         return [4 /*yield*/, this.route.getTasks()];
                     case 1:
-                        _a.taskList = _b.sent();
+                        _b.taskList = _c.sent();
                         geoJSON = this.route.getPathGeoJson();
+                        pathGroup = [];
                         _loop_1 = function (i) {
                             var task = this_1.taskList[i];
                             if (!this_1.state.isShowingAllTasks && !this_1.state.visibleTasks[task.position]) {
@@ -1169,24 +1188,33 @@ var TasksMap = /** @class */ (function () {
                                 // remove task from skipped array
                                 this_1.state.skippedTaskIds.splice(this_1.state.skippedTaskIds.indexOf(task.id), 1);
                             }
-                            var layerGroup = __WEBPACK_IMPORTED_MODULE_2_leaflet__["layerGroup"]();
                             if (geoJSON) {
-                                var taskGeoJson = geoJSON.data.features.find(function (data) {
-                                    return data.properties.task_id === task.id;
+                                var taskGeoJsons = geoJSON.data.features.filter(function (data) {
+                                    //don't match types because some are string and some are numbers for some reason
+                                    return data.properties.task_id == task.id;
                                 });
-                                if (taskGeoJson) {
-                                    for (var _i = 0, _a = taskGeoJson.geometry.coordinates; _i < _a.length; _i++) {
-                                        var coordinateArray = _a[_i];
-                                        coordinateArray = coordinateArray.reverse();
+                                console.log("GEO JSON", taskGeoJsons, task);
+                                if (taskGeoJsons) {
+                                    for (var _i = 0, taskGeoJsons_1 = taskGeoJsons; _i < taskGeoJsons_1.length; _i++) {
+                                        var taskGeoJson = taskGeoJsons_1[_i];
+                                        // for (let coordinateArray of taskGeoJson.geometry.coordinates) {
+                                        //     coordinateArray = coordinateArray.reverse();
+                                        // }
+                                        var GeoJsonLayer = __WEBPACK_IMPORTED_MODULE_2_leaflet__["geoJSON"](taskGeoJson, {
+                                            style: function (feature) {
+                                                return { color: feature.properties.color, dashArray: "10 10" };
+                                            }
+                                        });
+                                        // let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
+                                        //     color: taskGeoJson.properties.color,
+                                        //     dashArray: "10 10"
+                                        // });
+                                        this_1.map.addLayer(GeoJsonLayer);
+                                        pathGroup.push(GeoJsonLayer);
                                     }
-                                    var polyline_1 = new __WEBPACK_IMPORTED_MODULE_2_leaflet__["Polyline"](taskGeoJson.geometry.coordinates, {
-                                        color: taskGeoJson.properties.color,
-                                        dashArray: "10 10"
-                                    });
-                                    layerGroup.addLayer(polyline_1);
                                 }
                             }
-                            layerGroup.addLayer(__WEBPACK_IMPORTED_MODULE_2_leaflet__["marker"]([task.lat, task.lon], { icon: icon }).on('click', function () {
+                            markerGroup.addLayer(__WEBPACK_IMPORTED_MODULE_2_leaflet__["marker"]([task.lat, task.lon], { icon: icon }).on('click', function () {
                                 if (_this.state.selectedTask == task) {
                                     _this.gototask(task.id, task.title);
                                 }
@@ -1200,15 +1228,17 @@ var TasksMap = /** @class */ (function () {
                                     _this.map.panTo([task.lat, task.lon]);
                                 }
                             }));
-                            markerGroup.addLayer(layerGroup);
                         };
                         this_1 = this;
                         for (i = 0; i < this.taskList.length; i++) {
                             _loop_1(i);
                         }
+                        // this.map.addLayer(pathGroup);
                         this.map.addLayer(markerGroup);
+                        console.log("MAP AFTER UPDATE", this.map);
                         this.markerGroup = markerGroup;
-                        console.log("adding Marker Group to map", this.map);
+                        this.pathGroup = pathGroup;
+                        this.redrawingMarkers = false;
                         return [2 /*return*/];
                 }
             });
@@ -1404,6 +1434,7 @@ var TasksMap = /** @class */ (function () {
         if (skip) {
             this.state.skippedTaskIds.push(task.id);
         }
+        console.debug("goToNextTask");
         // task.position == index + 1
         this.state.selectedTask = this.taskList[task.position % this.taskList.length];
         this.state.visibleTasks[this.state.selectedTask.position] = true;
@@ -1747,7 +1778,7 @@ var TasksMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1145:
+/***/ 1146:
 /***/ (function(module, exports) {
 
 /**
