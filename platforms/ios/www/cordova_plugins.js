@@ -574,6 +574,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/es6-promise-plugin/www/promise.js",
       "pluginId": "es6-promise-plugin",
       "runs": true
+    },
+    {
+      "id": "cordova-plugin-wkwebview-inject-cookie.cookiesync",
+      "file": "plugins/cordova-plugin-wkwebview-inject-cookie/www/cookiesync.js",
+      "pluginId": "cordova-plugin-wkwebview-inject-cookie",
+      "clobbers": [
+        "wkWebView"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -605,6 +613,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-sqlite-storage": "5.1.0",
     "cordova.plugins.diagnostic": "6.0.2",
-    "es6-promise-plugin": "4.2.2"
+    "es6-promise-plugin": "4.2.2",
+    "cordova-plugin-wkwebview-inject-cookie": "1.0.2"
   };
 });

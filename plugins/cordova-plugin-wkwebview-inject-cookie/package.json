@@ -1,0 +1,63 @@
+{
+  "_from": "cordova-plugin-wkwebview-inject-cookie",
+  "_id": "cordova-plugin-wkwebview-inject-cookie@1.0.6",
+  "_inBundle": false,
+  "_integrity": "sha512-F6VW3h/oX9ARkH4q3ARSjrA1mcAbJ/I6su4F+5snJt7b8/4CHptnciGdOF1OY36rxUSHtJiVDYdVHIs8vc2w/A==",
+  "_location": "/cordova-plugin-wkwebview-inject-cookie",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-wkwebview-inject-cookie",
+    "name": "cordova-plugin-wkwebview-inject-cookie",
+    "escapedName": "cordova-plugin-wkwebview-inject-cookie",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-wkwebview-inject-cookie/-/cordova-plugin-wkwebview-inject-cookie-1.0.6.tgz",
+  "_shasum": "0a8e995303410e8fea6dc52d98bf59068b1f7562",
+  "_spec": "cordova-plugin-wkwebview-inject-cookie",
+  "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
+  "author": {
+    "name": "Christian-W. Budde",
+    "email": "CWBudde@pcjv.de"
+  },
+  "bugs": {
+    "url": "https://github.com/CWBudde/cordova-plugin-wkwebview-inject-cookie/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-wkwebview-inject-cookie",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova plugin to inject a dummy cookie in a WKWebView instance. This is necessary to get the sync process started.",
+  "homepage": "https://github.com/CWBudde/cordova-plugin-wkwebview-inject-cookie#readme",
+  "keywords": [
+    "cookies",
+    "cordova",
+    "ecosystem:cordova",
+    "first",
+    "get",
+    "init",
+    "install",
+    "plugin",
+    "sync",
+    "wkwebview"
+  ],
+  "license": "Unlicense",
+  "main": "index.js",
+  "name": "cordova-plugin-wkwebview-inject-cookie",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CWBudde/cordova-plugin-wkwebview-inject-cookie.git"
+  },
+  "version": "1.0.6"
+}

@@ -86,6 +86,9 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-wkwebview-inject-cookie": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {

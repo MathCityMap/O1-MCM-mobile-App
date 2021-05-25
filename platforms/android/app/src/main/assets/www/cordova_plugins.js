@@ -579,6 +579,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-sqlite-storage": "5.1.0",
     "cordova.plugins.diagnostic": "6.0.2",
-    "cordova-plugin-inappbrowser": "4.0.0"
+    "cordova-plugin-inappbrowser": "4.0.0",
+    "cordova-plugin-wkwebview-inject-cookie": "1.0.2"
   };
 });

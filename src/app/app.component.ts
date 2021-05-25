@@ -9,6 +9,7 @@ import { ChatAndSessionService } from '../services/chat-and-session-service';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from "@ionic/storage";
+import {Helper} from "../classes/Helper";
 
 
 
@@ -44,6 +45,9 @@ export class MyApp {
       // statusBar.styleDefault();
       // statusBar.show();
         if(platform.is('cordova')){
+            if ((<any>window).wkWebView) {
+                (<any>window).wkWebView.injectCookie(Helper.WEBSERVER_URL);
+            }
             if(platform.is('tablet')){
                 //force landscape mode on tablets
                 screenOrientation.lock(screenOrientation.ORIENTATIONS.LANDSCAPE);
