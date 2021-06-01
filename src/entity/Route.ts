@@ -91,10 +91,9 @@ export class Route {
         wellDone: string, notPerfect: string, firstGo: string, wrongAnswer: string, tryAgain: string, takeHint: string,
         skipTask: string, congratulations: string, goodLuck: string };*/
 
-    /*
+
     @Column({name: 'lang_code'})
     langCode: string;
-    */
 
     tasks: Task[];
 
@@ -154,6 +153,9 @@ export class Route {
 
     @OneToMany(type => Score, score => score.route, {eager: true})
     scores: Score[];
+
+    @Column({name: 'min_zoom'})
+    min_zoom: number
 
     async getTaskCount(): Promise<number> {
         if(this.tasks) return this.tasks.length;

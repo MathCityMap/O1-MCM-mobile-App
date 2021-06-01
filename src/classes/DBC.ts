@@ -169,7 +169,8 @@ export abstract class DBC {
             "map_filename",
             "map_date",
             "path_geojson",
-            "path_info"
+            "path_info",
+            "min_zoom"
         ],
         [
             "INTEGER",
@@ -195,7 +196,8 @@ export abstract class DBC {
             "TEXT",
             "TEXT",
             "TEXT",
-            "TEXT"
+            "TEXT",
+            "INTEGER"
         ],
         [
             "PRIMARY KEY AUTOINCREMENT",
@@ -217,6 +219,7 @@ export abstract class DBC {
             "NOT NULL",
             "",
             "(2)",
+            "",
             "",
             "",
             "",
