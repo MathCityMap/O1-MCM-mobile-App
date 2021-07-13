@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 1134:
+/***/ 1135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPageModule", function() { return SettingsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OnboardingPageModule", function() { return OnboardingPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__settings__ = __webpack_require__(1151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__onboarding__ = __webpack_require__(1150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(234);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -20,40 +20,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SettingsPageModule = /** @class */ (function () {
-    function SettingsPageModule() {
+var OnboardingPageModule = /** @class */ (function () {
+    function OnboardingPageModule() {
     }
-    SettingsPageModule = __decorate([
+    OnboardingPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_2__onboarding__["a" /* OnboardingPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__onboarding__["a" /* OnboardingPage */]),
                 __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */]
             ],
         })
-    ], SettingsPageModule);
-    return SettingsPageModule;
+    ], OnboardingPageModule);
+    return OnboardingPageModule;
 }());
 
-//# sourceMappingURL=settings.module.js.map
+//# sourceMappingURL=onboarding.module.js.map
 
 /***/ }),
 
-/***/ 1151:
+/***/ 1150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OnboardingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_spinner_dialog__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_modals_service__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_language_service__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -103,110 +100,79 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-
-
-
-var SettingsPage = /** @class */ (function () {
-    function SettingsPage(navCtrl, navParams, translateService, spinner, ormService, modalsService, languageService, helper) {
+var OnboardingPage = /** @class */ (function () {
+    function OnboardingPage(navCtrl, navParams, http, sanitizer, translate) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.translateService = translateService;
-        this.spinner = spinner;
-        this.ormService = ormService;
-        this.modalsService = modalsService;
-        this.languageService = languageService;
-        this.helper = helper;
-        this.developerMode = false;
-        this.availableLanguages = languageService.getAvailableLanguages();
-        this.translatedLangs = [];
+        this.http = http;
+        this.sanitizer = sanitizer;
+        this.translate = translate;
     }
-    SettingsPage.prototype.ionViewDidLoad = function () {
+    OnboardingPage.prototype.ionViewWillLoad = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, _i, _b, lang, _c, _d, _e;
-            return __generator(this, function (_f) {
-                switch (_f.label) {
+            var slide3Response, slide4Response, slide5Response, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        console.log('ionViewDidLoad SettingsPage');
-                        _a = this;
-                        return [4 /*yield*/, this.languageService.getLanguage()];
+                        _a.trys.push([0, 4, , 5]);
+                        return [4 /*yield*/, this.http.get('./assets/icons/onboarding/slide-3.svg', { responseType: 'text' }).toPromise()];
                     case 1:
-                        _a.language = _f.sent();
-                        _i = 0, _b = this.availableLanguages;
-                        _f.label = 2;
+                        slide3Response = _a.sent();
+                        slide3Response = this.translateSvg(slide3Response, [{ key: 'start', translateString: 'a_onboarding_slide3_svg' }]);
+                        this.slide3Svg = this.sanitizer.bypassSecurityTrustHtml(slide3Response);
+                        return [4 /*yield*/, this.http.get('./assets/icons/onboarding/slide-4.svg', { responseType: 'text' }).toPromise()];
                     case 2:
-                        if (!(_i < _b.length)) return [3 /*break*/, 5];
-                        lang = _b[_i];
-                        _d = (_c = this.translatedLangs).push;
-                        _e = {};
-                        return [4 /*yield*/, this.translateService.instant('a_language_' + lang)];
+                        slide4Response = _a.sent();
+                        slide4Response = this.translateSvg(slide4Response, [{ key: 'check', translateString: 'a_btn_check_answer' }]);
+                        this.slide4Svg = this.sanitizer.bypassSecurityTrustHtml(slide4Response);
+                        return [4 /*yield*/, this.http.get('./assets/icons/onboarding/slide-5.svg', { responseType: 'text' }).toPromise()];
                     case 3:
-                        _d.apply(_c, [(_e.value = _f.sent(), _e.id = lang, _e)]);
-                        _f.label = 4;
+                        slide5Response = _a.sent();
+                        slide5Response = this.translateSvg(slide5Response, [{ key: 'solution', translateString: 'a_onboarding_slide5_svg' }]);
+                        this.slide5Svg = this.sanitizer.bypassSecurityTrustHtml(slide5Response);
+                        return [3 /*break*/, 5];
                     case 4:
-                        _i++;
-                        return [3 /*break*/, 2];
-                    case 5:
-                        this.translatedLangs.sort(function (a, b) {
-                            if (a.value < b.value) {
-                                return -1;
-                            }
-                            if (a.value > b.value) {
-                                return 1;
-                            }
-                            return 0;
-                        });
-                        this.developerMode = this.helper.getDevMode();
-                        return [2 /*return*/];
+                        e_1 = _a.sent();
+                        console.error('HTTPERROR', e_1);
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
-    SettingsPage.prototype.onChangeLanguage = function (language) {
-        this.languageService.setLanguage(language);
+    OnboardingPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad OnboardingPage');
     };
-    SettingsPage.prototype.openOnboarding = function () {
-        this.navCtrl.push('OnboardingPage');
+    OnboardingPage.prototype.translateSvg = function (svg, toTranslate) {
+        for (var _i = 0, toTranslate_1 = toTranslate; _i < toTranslate_1.length; _i++) {
+            var pair = toTranslate_1[_i];
+            var regex = new RegExp("{{" + pair.key + "}}", 'g');
+            svg = svg.replace(regex, this.translate.instant(pair.translateString));
+        }
+        return svg;
     };
-    SettingsPage.prototype.deleteAppData = function () {
-        var _this = this;
-        this.modalsService.showDialog('a_main_settings_delCache', 'a_main_settings_delCache_confirm', 'no', function () { }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.spinner.show(null, this.translateService.instant('a_main_settings_delCache'), true);
-                        return [4 /*yield*/, this.ormService.removeAllDownloadedData()];
-                    case 1:
-                        _a.sent();
-                        this.spinner.hide();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
+    OnboardingPage.prototype.goToHomePage = function () {
+        if (this.navCtrl.canGoBack()) {
+            this.navCtrl.pop();
+        }
+        else {
+            this.navCtrl.setRoot('HomePage');
+        }
     };
-    SettingsPage.prototype.switchDevMode = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.helper.setDevMode(this.developerMode + '')];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    SettingsPage = __decorate([
+    OnboardingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-settings',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/settings/settings.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header pattern-bg">\n\n    <div class="card select">\n        <ion-label>{{\'a_settings_language\' | translate}}{{language != \'en\' ? \' / LANGUAGE\' : \'\'}}</ion-label>\n        <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">\n            <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>\n        </ion-select>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round (click)="openOnboarding()">{{\'a_settings_onboarding\' | translate }}</button>\n    </div>\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_expert\' | translate }}</ion-label>\n    </div>\n    <div class="card">\n        <ion-label>{{\'a_settings_editing\' | translate }}</ion-label>\n        <ion-item no-lines no-padding>\n            <p item-content>{{\'a_settings_editing_text\' | translate }}</p>\n            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>\n        </ion-item>\n    </div>\n<!--    <div class="card has-button-on-the-edge">\n        <ion-label>{{\'a_settings_console\' | translate }}</ion-label>\n        <p item-content>{{\'a_settings_console_text\' | translate }}</p>\n        <ion-item>\n            <ion-input type="text" placeholder="######"></ion-input>\n        </ion-item>\n        <button class="on-the-edge" ion-button small round>{{\'a_settings_console_button\' | translate }}</button>\n    </div>-->\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_data\' | translate }}</ion-label>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round color="danger" (click)="deleteAppData()">{{\'a_main_settings_delCache\' | translate }}</button>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/settings/settings.html"*/,
+            selector: 'page-onboarding',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/onboarding/onboarding.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="true">\n        <ion-buttons right>\n            <button ion-button icon-only (click)="goToHomePage()">\n                <img class="header-icon" src="assets/icons/icon_close-modal.svg"/>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content slides class="has-header transparent padding top bottom">\n    <ion-slides pager="true">\n        <ion-slide>\n            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-1.svg"></object>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide1_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide1_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-2.svg"></object>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide2_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide2_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide3Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide3_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide3_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide4Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide4_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide4_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide5Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide5_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide5_text\' | translate"></p>\n                <button ion-button round (click)="goToHomePage()">{{ \'a_onboarding_slide5_button\' | translate }}</button>\n            </div>\n        </ion-slide>\n    </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/onboarding/onboarding.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_spinner_dialog__["a" /* SpinnerDialog */], __WEBPACK_IMPORTED_MODULE_4__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_5__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_6__services_language_service__["a" /* LanguageService */], __WEBPACK_IMPORTED_MODULE_7__classes_Helper__["b" /* Helper */]])
-    ], SettingsPage);
-    return SettingsPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */]])
+    ], OnboardingPage);
+    return OnboardingPage;
 }());
 
-//# sourceMappingURL=settings.js.map
+//# sourceMappingURL=onboarding.js.map
 
 /***/ })
 
