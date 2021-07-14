@@ -268,14 +268,16 @@ export class RoutesMapPage implements OnInit, OnDestroy {
                 style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
                 center: [8.66158515, 50.1208566], // Frankfurt-am Main
                 zoom: 16,
-                container: 'map'
+                container: 'map',
+                trackResize: false
             });
         } else {
             this.map = new mapboxgl.Map({
                 style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
                 center: [8.66158515, 50.1208566], // Frankfurt-am Main
                 zoom: 16,
-                container: 'mapDownloaded'
+                container: 'mapDownloaded',
+                trackResize: false
             });
         }
         this.loadImagesToMap();
