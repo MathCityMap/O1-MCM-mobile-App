@@ -93,6 +93,7 @@
 
         <ion-label>{{ 'a_action_settings' | translate }}</ion-label>
         <p *ngIf="route">
+            <ion-row *ngIf="route.code">{{'trail_code' | translate}}: {{ route.code }}</ion-row>
             <ion-row>{{ 'p_session_sorting_score' | translate }}: {{route.getSettingStringValue("gamification", translateService)}}</ion-row>
             <ion-row>{{ 't_samplesolution' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>
             <ion-row>{{ 'a_hints' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>
