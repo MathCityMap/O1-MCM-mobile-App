@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 1134:
+/***/ 1135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalPageModule", function() { return PortalPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__portal__ = __webpack_require__(1149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__portal__ = __webpack_require__(1150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var PortalPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1149:
+/***/ 1150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -71,13 +71,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var PortalPage = /** @class */ (function () {
-    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer, alertCtrl) {
+    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.iab = iab;
         this.translateService = translateService;
         this.sanitizer = sanitizer;
-        this.alertCtrl = alertCtrl;
         this.languageUrl = {
             de: 'portal',
             en: 'portal-en',
@@ -100,7 +99,7 @@ var PortalPage = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */]])
     ], PortalPage);
     return PortalPage;
 }());

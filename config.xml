@@ -150,6 +150,9 @@
                 <string>zh</string>
             </array>
         </config-file>
+        <config-file parent="NSCrossWebsiteTrackingUsageDescription" target="*-Info.plist">
+            <string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
+        </config-file>
     </platform>
     <allow-navigation href="*" />
     <allow-navigation href="http://10.0.1.51:8100" />

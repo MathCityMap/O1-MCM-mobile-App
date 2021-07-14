@@ -259,6 +259,9 @@
             <string>zh</string>
         </array>
     </config-file>
+    <config-file parent="NSCrossWebsiteTrackingUsageDescription" target="*-Info.plist">
+        <string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
+    </config-file>
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="true" />

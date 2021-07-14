@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {TranslateService} from "@ngx-translate/core";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -37,7 +37,7 @@ export class PortalPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public iab: InAppBrowser, private translateService: TranslateService,
-                private sanitizer: DomSanitizer, private alertCtrl: AlertController) {
+                private sanitizer: DomSanitizer) {
         this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
         this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(Helper.WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
     }

@@ -87,10 +87,10 @@
 		ED96C1459EE945C7A32BAF93 /* Diagnostic_Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = E69CFE30AE994634979FE99B /* Diagnostic_Camera.m */; };
 		F0FE69582E404C898E2A2C31 /* JJzip.h in Sources */ = {isa = PBXBuildFile; fileRef = B8330E60271047EF9D704573 /* JJzip.h */; };
 		F1B3221977BB4C61A605C659 /* CDVGlobalization.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BDEE54D19945939BA93511 /* CDVGlobalization.m */; };
+		F270DC34CECC4CF8AA236221 /* WKWebViewInjectCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A1F18009144C5A410B7C8 /* WKWebViewInjectCookie.m */; };
 		FA32708E27AD4DA693C0D938 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 41474F3CCF364FBD9D772566 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-w -DSQLITE_THREADSAFE=1 -DSQLITE_DEFAULT_SYNCHRONOUS=3 -DSQLITE_DEFAULT_MEMSTATUS=0 -DSQLITE_OMIT_DECLTYPE -DSQLITE_OMIT_DEPRECATED -DSQLITE_OMIT_PROGRESS_CALLBACK -DSQLITE_OMIT_SHARED_CACHE -DSQLITE_TEMP_STORE=2 -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_RTREE -DSQLITE_DEFAULT_PAGE_SIZE=4096"; }; };
 		FE4FD9970BA448E182150ED4 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F23C07B9734BDF97FA51EA /* AFHTTPSessionManager.m */; };
 		FE8A087479A0429BB03A9E56 /* Diagnostic_Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EFD1175D654D67A7E6E907 /* Diagnostic_Motion.m */; };
-		F270DC34CECC4CF8AA236221 /* WKWebViewInjectCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 164A1F18009144C5A410B7C8 /* WKWebViewInjectCookie.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +128,7 @@
 		0C79E129B014412194327224 /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVWKWebViewEngine.h; path = "cordova-plugin-ionic-webview/CDVWKWebViewEngine.h"; sourceTree = "<group>"; };
 		0E23B307BD004B94AAEFB43F /* CDVOrientation.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVOrientation.m; path = "cordova-plugin-screen-orientation/CDVOrientation.m"; sourceTree = "<group>"; };
 		14BDEE54D19945939BA93511 /* CDVGlobalization.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVGlobalization.m; path = "cordova-plugin-globalization/CDVGlobalization.m"; sourceTree = "<group>"; };
+		164A1F18009144C5A410B7C8 /* WKWebViewInjectCookie.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = WKWebViewInjectCookie.m; path = "cordova-plugin-wkwebview-inject-cookie/WKWebViewInjectCookie.m"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* MathCityMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathCityMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +152,7 @@
 		3047A5111AB8059700498E2A /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
 		304A09D1769948F6B8E89393 /* Diagnostic_Wifi.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = Diagnostic_Wifi.h; path = cordova.plugins.diagnostic/Diagnostic_Wifi.h; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MathCityMap-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MathCityMap-Prefix.pch"; sourceTree = "<group>"; };
+		352BC21ADBC846ABA03C3976 /* WKWebViewInjectCookie.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = WKWebViewInjectCookie.h; path = "cordova-plugin-wkwebview-inject-cookie/WKWebViewInjectCookie.h"; sourceTree = "<group>"; };
 		365023DD5CFC4EAE8C62CE2A /* Diagnostic_Notifications.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Diagnostic_Notifications.m; path = cordova.plugins.diagnostic/Diagnostic_Notifications.m; sourceTree = "<group>"; };
 		3688998D782C4C23B20485D0 /* Diagnostic_Microphone.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Diagnostic_Microphone.m; path = cordova.plugins.diagnostic/Diagnostic_Microphone.m; sourceTree = "<group>"; };
 		36AF333301FD4FF7BD3F2A35 /* CDVReachability.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVReachability.m; path = "cordova-plugin-network-information/CDVReachability.m"; sourceTree = "<group>"; };
@@ -274,8 +276,6 @@
 		FAA5DC0B0C8A42CBBA375BDA /* Diagnostic_Contacts.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Diagnostic_Contacts.m; path = cordova.plugins.diagnostic/Diagnostic_Contacts.m; sourceTree = "<group>"; };
 		FABCA724BF4842BEA95ED870 /* CoreBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		FEB99ECEF9834746A95209C5 /* APPNotificationContent.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = APPNotificationContent.h; path = "cordova-plugin-local-notification/APPNotificationContent.h"; sourceTree = "<group>"; };
-		164A1F18009144C5A410B7C8 /* WKWebViewInjectCookie.m */ = {isa = PBXFileReference; name = "WKWebViewInjectCookie.m"; path = "cordova-plugin-wkwebview-inject-cookie/WKWebViewInjectCookie.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
-		352BC21ADBC846ABA03C3976 /* WKWebViewInjectCookie.h */ = {isa = PBXFileReference; name = "WKWebViewInjectCookie.h"; path = "cordova-plugin-wkwebview-inject-cookie/WKWebViewInjectCookie.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
