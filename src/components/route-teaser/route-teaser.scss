@@ -137,6 +137,7 @@ route-teaser {
     $info-type: location grade downloaded finished key;
     .icon, .icon > span{
         line-height: 1.2;
+        position: relative;
         &:before{
             display: inline-block;
             position: relative;
@@ -157,7 +158,7 @@ route-teaser {
         display: none;
         width: 100%;
         background-color: rgba(3, 109, 153, 0.05);
-        padding: $global-small-padding $global-small-padding;
+        padding: $global-small-padding $global-medium-padding;
     }
 
 
@@ -221,10 +222,12 @@ route-teaser {
         }
         .secondary {
             display: flex;
-            & > :nth-child(2){
-                margin-left: $global-medium-padding;
-                margin-right: $global-medium-padding;
-                //padding-left: $global-medium-padding;
+            justify-content: space-between;
+            .evaluation {
+                flex: unset;
+            }
+            & > :not(:first-child) {
+                padding-left: $global-base-padding/2;
                 &:after{
                     content: '';
                     position: absolute;

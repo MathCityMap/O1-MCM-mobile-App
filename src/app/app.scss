@@ -1249,21 +1249,21 @@ mcm-progress-bar{
     .ratings {
         display: flex;
         max-height: $global-base-padding;
+        margin-left: $global-small-padding/2;
     }
     .rating{
         margin-left: $global-small-padding/2;
-        & > *, &:before{
-            display: inline-block;
-            vertical-align: middle;
-        }
+        display: flex;
+        align-items: center;
         p{
             margin: 0;
+            line-height: 1.2;
         }
         &:before{
             content: '';
             @include size(8px);
             border-radius: 50%;
-            margin-right: $global-small-padding/2;
+            margin-right: $global-small-padding/3;
         }
 
         @each $rating, $color in $ratings {
