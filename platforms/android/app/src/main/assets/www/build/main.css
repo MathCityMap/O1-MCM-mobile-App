@@ -61809,9 +61809,9 @@ ion-modal .modal.card.icon .score {
 }
 
 ion-modal .modal.card.icon .solutionTable {
-  margin-left: 50%;
-  -webkit-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 ion-modal .modal.card.icon .blank {

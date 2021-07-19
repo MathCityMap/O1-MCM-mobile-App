@@ -420,14 +420,14 @@ export class Route {
     }
 
     getPathGeoJson() {
-        if (this.pathGeojson) {
+        if (this.pathGeojson && this.pathInfo !== 'undefined') {
             return JSON.parse(this.pathGeojson);
         }
         return null;
     }
 
     getPathInfo() {
-        if (this.pathInfo) {
+        if (this.pathInfo && this.pathInfo !== 'undefined') {
             return JSON.parse(this.pathInfo);
         }
         return null;
