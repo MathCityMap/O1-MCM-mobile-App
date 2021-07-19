@@ -67,9 +67,6 @@
     <feature name="LocalNotification">
         <param name="ios-package" value="APPLocalNotification" />
     </feature>
-    <feature name="Media">
-        <param name="ios-package" value="CDVSound" />
-    </feature>
     <feature name="SpinnerDialog">
         <param name="ios-package" value="CDVSpinnerDialog" />
     </feature>
@@ -277,7 +274,6 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
     <preference name="deployment-target" value="11.0" />
-    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="ScrollEnabled" value="false" />
@@ -290,4 +286,8 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
+    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
 </widget>

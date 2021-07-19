@@ -53,9 +53,6 @@
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-media": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-native-spinner": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -88,6 +85,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-wkwebview-inject-cookie": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-media": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },

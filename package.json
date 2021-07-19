@@ -129,7 +129,6 @@
       "com-sarriaroman-photoviewer": {},
       "cordova-plugin-app-version": {},
       "com.jjdltc.cordova.plugin.zip": {},
-      "cordova-plugin-media": {},
       "cordova-plugin-file-transfer": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-ionic-keyboard": {},
@@ -147,7 +146,10 @@
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-wkwebview-inject-cookie": {}
+      "cordova-plugin-wkwebview-inject-cookie": {},
+      "cordova-plugin-media": {
+        "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
+      }
     },
     "platforms": [
       "android",

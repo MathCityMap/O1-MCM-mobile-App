@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		006DA73941C04A1EBB355B97 /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C9CA57576E4996B398F315 /* CDVSound.m */; };
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		022A61C101F54808870E99CE /* APPNotificationOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = E079813E9BCB40DCB69B430B /* APPNotificationOptions.m */; };
 		03DF967361774196B4D8F388 /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4E5B0B6E604DDF9C0BAA38 /* SQLitePlugin.m */; };
@@ -91,6 +90,7 @@
 		FA32708E27AD4DA693C0D938 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 41474F3CCF364FBD9D772566 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-w -DSQLITE_THREADSAFE=1 -DSQLITE_DEFAULT_SYNCHRONOUS=3 -DSQLITE_DEFAULT_MEMSTATUS=0 -DSQLITE_OMIT_DECLTYPE -DSQLITE_OMIT_DEPRECATED -DSQLITE_OMIT_PROGRESS_CALLBACK -DSQLITE_OMIT_SHARED_CACHE -DSQLITE_TEMP_STORE=2 -DSQLITE_OMIT_LOAD_EXTENSION -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_RTREE -DSQLITE_DEFAULT_PAGE_SIZE=4096"; }; };
 		FE4FD9970BA448E182150ED4 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F23C07B9734BDF97FA51EA /* AFHTTPSessionManager.m */; };
 		FE8A087479A0429BB03A9E56 /* Diagnostic_Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EFD1175D654D67A7E6E907 /* Diagnostic_Motion.m */; };
+		99005A3AD2F24A01861B1600 /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE52A4B04D34217A5DC1911 /* CDVSound.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,11 +170,9 @@
 		42DA43281ACE4554B2CC5273 /* AddressBook.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		43DA86C6F20F41E096E6FDE9 /* CDVLocation.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVLocation.m; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; };
 		45EE570AE0B1486CB464DD8E /* CDVAssetLibraryFilesystem.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVAssetLibraryFilesystem.m; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.m"; sourceTree = "<group>"; };
-		46C9CA57576E4996B398F315 /* CDVSound.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVSound.m; path = "cordova-plugin-media/CDVSound.m"; sourceTree = "<group>"; };
 		4A5418F8A8214C4FAAB36F37 /* CDVLocalFilesystem.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVLocalFilesystem.m; path = "cordova-plugin-file/CDVLocalFilesystem.m"; sourceTree = "<group>"; };
 		4D999647373B4793A5DA600A /* CDVIonicKeyboard.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVIonicKeyboard.m; path = "cordova-plugin-ionic-keyboard/CDVIonicKeyboard.m"; sourceTree = "<group>"; };
 		4F07DD6BFD1F49D982C6B9E2 /* APPBadge.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = APPBadge.m; path = "cordova-plugin-badge/APPBadge.m"; sourceTree = "<group>"; };
-		4F62B13BE4244407A90DE7A3 /* CDVSound.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVSound.h; path = "cordova-plugin-media/CDVSound.h"; sourceTree = "<group>"; };
 		5117BB5E1CCF49DEAA5B3C71 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = "cordova-plugin-advanced-http/AFURLRequestSerialization.m"; sourceTree = "<group>"; };
 		516ED2D4432149D9A96351E0 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; };
 		524634D0E3FD4FC295D5780B /* CustomPSPDFThreadSafeMutableDictionary.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CustomPSPDFThreadSafeMutableDictionary.m; path = "cordova-sqlite-storage/CustomPSPDFThreadSafeMutableDictionary.m"; sourceTree = "<group>"; };
@@ -276,6 +274,8 @@
 		FAA5DC0B0C8A42CBBA375BDA /* Diagnostic_Contacts.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Diagnostic_Contacts.m; path = cordova.plugins.diagnostic/Diagnostic_Contacts.m; sourceTree = "<group>"; };
 		FABCA724BF4842BEA95ED870 /* CoreBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		FEB99ECEF9834746A95209C5 /* APPNotificationContent.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = APPNotificationContent.h; path = "cordova-plugin-local-notification/APPNotificationContent.h"; sourceTree = "<group>"; };
+		5CE52A4B04D34217A5DC1911 /* CDVSound.m */ = {isa = PBXFileReference; name = "CDVSound.m"; path = "cordova-plugin-media/CDVSound.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		0A96D21684184D72BFE627B2 /* CDVSound.h */ = {isa = PBXFileReference; name = "CDVSound.h"; path = "cordova-plugin-media/CDVSound.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,8 +486,6 @@
 				F20EC62900A54D26A3010578 /* APPNotificationOptions.h */,
 				F08B64E05A0F49C3824D9F1B /* UNUserNotificationCenter+APPLocalNotification.h */,
 				D68E1DE5BC6742BF844B7DCC /* UNNotificationRequest+APPLocalNotification.h */,
-				46C9CA57576E4996B398F315 /* CDVSound.m */,
-				4F62B13BE4244407A90DE7A3 /* CDVSound.h */,
 				F3218E22D60A4096AB7B757E /* CDVSpinnerDialog.m */,
 				C937DCD6AADC46788046AD4E /* CDVSpinnerDialog.h */,
 				5D05F4A6181D411482A352D1 /* CDVConnection.m */,
@@ -533,6 +531,8 @@
 				7384706DD86F4946A2E0A43B /* Diagnostic_Motion.h */,
 				164A1F18009144C5A410B7C8 /* WKWebViewInjectCookie.m */,
 				352BC21ADBC846ABA03C3976 /* WKWebViewInjectCookie.h */,
+				5CE52A4B04D34217A5DC1911 /* CDVSound.m */,
+				0A96D21684184D72BFE627B2 /* CDVSound.h */,
 			);
 			name = Plugins;
 			path = MathCityMap/Plugins;
@@ -733,7 +733,6 @@
 				022A61C101F54808870E99CE /* APPNotificationOptions.m in Sources */,
 				900FCEBF4F2640F29AA95489 /* UNUserNotificationCenter+APPLocalNotification.m in Sources */,
 				21D9762DA7994E73979FED3F /* UNNotificationRequest+APPLocalNotification.m in Sources */,
-				006DA73941C04A1EBB355B97 /* CDVSound.m in Sources */,
 				C292B2D4D81343C28A5AC053 /* CDVSpinnerDialog.m in Sources */,
 				16AF7BCFBBF94C1DB4C4DA66 /* CDVConnection.m in Sources */,
 				83F6305588134E2891FA2A57 /* CDVReachability.m in Sources */,
@@ -757,6 +756,7 @@
 				CBCE8CB301DA4E4EA4FB2F14 /* Diagnostic_Reminders.m in Sources */,
 				FE8A087479A0429BB03A9E56 /* Diagnostic_Motion.m in Sources */,
 				F270DC34CECC4CF8AA236221 /* WKWebViewInjectCookie.m in Sources */,
+				99005A3AD2F24A01861B1600 /* CDVSound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

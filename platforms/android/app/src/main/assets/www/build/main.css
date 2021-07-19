@@ -61814,6 +61814,10 @@ ion-modal .modal.card.icon .solutionTable {
   margin-right: auto;
 }
 
+ion-modal .modal.card.icon .solutionTable td {
+  word-break: normal;
+}
+
 ion-modal .modal.card.icon .blank {
   display: inline-block;
   min-width: 15px;
