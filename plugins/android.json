@@ -35,9 +35,6 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -65,9 +62,6 @@
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -88,6 +82,12 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-media": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },

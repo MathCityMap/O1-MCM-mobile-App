@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget android-versionCode="3127" id="de.autentek.mathcitymap" ios-CFBundleVersion="3.1.2.7" version="3.1.2.7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="CDVWebViewEngine">
+        <param name="ios-package" value="CDVWebViewEngine" />
+    </feature>
+    <feature name="LaunchScreen">
+        <param name="ios-package" value="CDVLaunchScreen" />
+    </feature>
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
@@ -67,6 +73,9 @@
     <feature name="LocalNotification">
         <param name="ios-package" value="APPLocalNotification" />
     </feature>
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
     <feature name="SpinnerDialog">
         <param name="ios-package" value="CDVSpinnerDialog" />
     </feature>
@@ -79,13 +88,12 @@
     <feature name="CDVOrientation">
         <param name="ios-package" value="CDVOrientation" />
     </feature>
-    <feature name="SplashScreen">
-        <param name="ios-package" value="CDVSplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" />
         <param name="onload" value="true" />
+    </feature>
+    <feature name="WKWebViewInjectCookie">
+        <param name="ios-package" value="WKWebViewInjectCookie" />
     </feature>
     <feature name="SQLitePlugin">
         <param name="ios-package" value="SQLitePlugin" />
@@ -133,9 +141,6 @@
     <feature name="Diagnostic_Motion">
         <param name="ios-package" value="Diagnostic_Motion" />
         <param name="onload" value="true" />
-    </feature>
-    <feature name="WKWebViewInjectCookie">
-        <param name="ios-package" value="WKWebViewInjectCookie" />
     </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
@@ -264,7 +269,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="EnableViewportScale" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
-    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="MediaTypesRequiringUserActionForPlayback" value="none" />
     <preference name="SuppressesIncrementalRendering" value="false" />
     <preference name="SuppressesLongPressGesture" value="false" />
     <preference name="Suppresses3DTouchGesture" value="false" />
@@ -274,6 +279,7 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
     <preference name="deployment-target" value="11.0" />
+    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="ScrollEnabled" value="false" />
@@ -286,8 +292,4 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
-    <feature name="Media">
-        <param name="ios-package" value="CDVSound" />
-    </feature>
-    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
 </widget>

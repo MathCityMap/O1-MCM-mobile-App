@@ -51,6 +51,7 @@ export class ChatPage {
     private currentPosition: number = 0;
     private durationInterval;
     private positionInterval;
+    private durCheckInterval;
 
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
@@ -458,14 +459,44 @@ export class ChatPage {
         }, 60000);
     }
 
-    stopRecording() {
+    async stopRecording() {
         this.audio.stopRecord();
-        if(this.durationInterval){
+        if (this.durationInterval) {
             clearInterval(this.durationInterval);
             this.durationInterval = null;
         }
+        if (this.platform.is('ios')) {
+            this.audio.setVolume(0);
+            this.audio.play();
+            this.audioDuration = await this.getAudioDuration();
+            this.audio.pause();
+            this.audio.setVolume(1);
+            this.audio.seekTo(0);
+        } else {
+            this.audioDuration = await this.getAudioDuration();
+        }
         this.startAudioRecord = 0;
         this.canPlayback = true;
+    }
+
+    async getAudioDuration (): Promise<number> {
+        return new Promise<number>((resolve) => {
+            this.durCheckInterval = window.setInterval(() => {
+                console.log("Looking for File Duration");
+                if (this.audio.getDuration() != -1) {
+                    // this.currentAudioFile.setVolume(1.0);
+                    this.clearAudioDurationInterval();
+                    resolve(this.audio.getDuration() * 1000);
+                }
+            }, 1000);
+        });
+    }
+
+    private clearAudioDurationInterval () {
+        if (this.durCheckInterval) {
+            clearInterval(this.durCheckInterval);
+            this.durCheckInterval = null;
+        }
     }
 
     playAudio(message?, index?) {

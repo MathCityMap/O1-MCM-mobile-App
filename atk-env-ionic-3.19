@@ -5,7 +5,7 @@ ENV_NAME=ionic-3.19.1
 echo $ATK_ENV | grep "$ENV_NAME" &> /dev/null && echo "Environment $ENV_NAME is already active" && exit
 
 previousNodeVersion=`node --version`
-if [ "$previousNodeVersion" != "v8.8.0" ]
+if [ "$previousNodeVersion" != "v14.17.3" ]
 
 	then
 	if ! [ -e /usr/local/opt/nvm/nvm.sh ] &> /dev/null
@@ -15,8 +15,8 @@ if [ "$previousNodeVersion" != "v8.8.0" ]
 	fi
 	export NVM_DIR=~/.nvm
 	source /usr/local/opt/nvm/nvm.sh
-	echo "Switching to Node v8.8.0"
-	nvm install v8.8.0
+	echo "Switching to Node v14.17.3"
+	nvm install v14.17.3
 	SWITCHED_NODE_VERSION=true
 fi
 [ -z "$ATK_ENV" ] && export ATK_ENV="$ENV_NAME" || export ATK_ENV="$ATK_ENV,$ENV_NAME"
@@ -32,14 +32,13 @@ function check_global_npm_package {
         echo " done"
 }
 
-check_global_npm_package cordova@7.1.0
-check_global_npm_package ionic@3.19.1
+check_global_npm_package cordova@10.0.0
+check_global_npm_package ionic@5.4.16
 check_global_npm_package plugman@2.0.0
-check_global_npm_package yarn@1.17.3
 
-echo "Shall I run 'yarn install' for you? [Y/n]"
+echo "Shall I run 'npm install' for you? [Y/n]"
 read line
-[ "$line" = "n" -o "$line" = "N" ] || yarn install
+[ "$line" = "n" -o "$line" = "N" ] || npm install
 
 bash
 [ -n "$SWITCHED_NODE_VERSION" ] && echo "Switching to previous node version: $previousNodeVersion"
