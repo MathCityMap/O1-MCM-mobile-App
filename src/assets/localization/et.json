@@ -1136,8 +1136,8 @@
   "p_cw_contact_dialog_info": "Kasutaja peab nõustuma teie taotlusega tema kontaktandmete saamiseks. Teid teavitatakse kohe, kui kasutaja on reageerinud.",
   "a_info_task_finished_message": "Täname lugemast. Nüüd liikuge järgmise ülesande juurde.",
   "a_alert_subtask_right_answer_flawless": "Suurepärane! Olete ülesande hästi lahendanud. Teie lahendus „{{L}}” on õige.",
-  "a_alert_subtask_right_answer_low": "Lahendasite ülesande {{try}} katsel. Teie lahendus {{L}} on ok.",
-  "a_alert_subtask_right_answer": "Lahendasite ülesande {{try}} katsega. Teie lahendus {{L}} on õige.",
+  "a_alert_subtask_right_answer_low": "Lahendasite ülesande {{tries}} katsel. Teie lahendus {{L}} on ok.",
+  "a_alert_subtask_right_answer": "Lahendasite ülesande {{tries}} katsega. Teie lahendus {{L}} on õige.",
   "a_alert_set_right_answer_3_low": "Kuigi näib, et olete lahendust mõistatanud, on teie vastus {{L}} korras.",
   "a_alert_set_right_answer_2_low": "Teie vastus {{L}} on ok",
   "a_alert_set_right_answer_1_low": "Te lahendasite ülesande esimesel katsel. Teie vastus {{L}} on ok.",
@@ -1171,5 +1171,7 @@
   "p_error_gps_points": "Määratlege GPS-ülesande seotud punktid.",
   "p_error_empty_fields": "Üks või mitu lahendi välja on tühi.",
   "p_error_unauthorized_edit": "Kahjuks pole teil õigust seda ülesannet muuta.",
-  "p_groups_alreadymember": "Olete juba selle grupi liige."
+  "p_groups_alreadymember": "Olete juba selle grupi liige.",
+  "a_trailcode": "Raja kood",
+  "p_blanks_instructions_check_type": "Kui lünka on oodatud numbrid, üksikud tähed või väga lühikesed sõnad, valige kontrolli meetodiks \"range\""
 }

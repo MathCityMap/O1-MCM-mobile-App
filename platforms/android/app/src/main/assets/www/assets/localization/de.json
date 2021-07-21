@@ -1046,7 +1046,7 @@
   "p_st_create": "Unteraufgabe erstellen für",
   "p_change_order": "Ändere die Reihenfolge",
   "p_upload_img_subtask": "Lade ein passendes Bild für deine Unteraufgabe hoch. Sollte kein Bild ausgewählt werden, wird automatisch das Bild der Hauptaufgabe verwendet.",
-  "p_task_no_subtasks_consider_creating": "Diese Aufgabe enthält bisher keine Unteraufgaben. Unteraufgaben machen insbesondere bei komplexen Aufgaben mit vielen Lösungsschritten Sinn.",
+  "p_task_no_subtasks_consider_creating": "Diese Aufgabe enthält bisher keine Unteraufgaben. Unteraufgaben können dabei helfen, komplexere Aufgaben in überschaubare Teilaufgaben zu zerlegen. Legen Sie dazu das komplexe Problem als Hauptaufgabe an und gliedern Sie mit Hilfe der Unteraufgaben den erwarten Lösungsprozess in mehrere Teilschritte.",
   "p_r_answer_feedback": "Ergebnisse überprüfen",
   "p_r_answer_feedback_help": "Deaktiviere diese Option, damit die MCM-App dem User kein Feedback bezüglich der Richtigkeit seiner Antwort gibt. Antworten können weiterhin eingetippt und gespeichert werden.",
   "p_task_creation_success": "Aufgabe wurde erfolgreich erstellt",
@@ -1189,5 +1189,6 @@
   "p_error_blanks_no_check_type": "Prüfmodus des Lückentextes nicht festgelegt",
   "p_answer_correct": "Korrekte Antwort",
   "p_answer_wrong": "Falsche Antwort",
-  "a_trailcode": "Trail Code"
+  "a_trailcode": "Trail Code",
+  "p_blanks_instructions_check_type": "Wenn nach Zahlen, einzelnen Buchstaben oder sehr kurzen Worten im Lückentext gesucht wird, bitte den Prüfmodus \"streng\" auswählen."
 }

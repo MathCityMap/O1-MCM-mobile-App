@@ -1171,5 +1171,7 @@
   "p_error_gps_points": "Määratlege GPS-ülesande seotud punktid.",
   "p_error_empty_fields": "Üks või mitu lahendi välja on tühi.",
   "p_error_unauthorized_edit": "Kahjuks pole teil õigust seda ülesannet muuta.",
-  "p_groups_alreadymember": "Olete juba selle grupi liige."
+  "p_groups_alreadymember": "Olete juba selle grupi liige.",
+  "a_trailcode": "Raja kood",
+  "p_blanks_instructions_check_type": "Kui lünka on oodatud numbrid, üksikud tähed või väga lühikesed sõnad, valige kontrolli meetodiks \"range\""
 }

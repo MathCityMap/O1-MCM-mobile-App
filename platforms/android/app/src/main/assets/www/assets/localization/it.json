@@ -1130,7 +1130,7 @@
   "p_st_deleted_error": "La sotto-attività non può essere eliminata",
   "p_st_deleted": "Sotto-attività eliminata",
   "p_st_delete": "Elimina la sotto-attività",
-  "a_title_activity_subtask_view": "Sotto-attività  {{corrente}} di {{conteggio}}",
+  "a_title_activity_subtask_view": "Sotto-attività  {{current}} di {{count}}",
   "p_subtasks": "Sotto-attività",
   "p_new_subtask": "Nuova sotto-attività",
   "a_subtaskinfo_required_progress_message": "Non hai ancora completato tutte le sotto-attività. Tocca <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/> per completare le restanti sotto-attività.",

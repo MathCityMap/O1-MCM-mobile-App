@@ -1046,7 +1046,7 @@
   "p_st_create": "Create subtask for",
   "p_change_order": "Change order",
   "p_upload_img_subtask": "Please upload a representative image for your subtask. An image from the parent task will be used if none is provided.",
-  "p_task_no_subtasks_consider_creating": "This task has no subtasks yet. Consider adding subtasks, if your task is complex and requires many steps to solve it.",
+  "p_task_no_subtasks_consider_creating": "This task does not yet contain any subtasks. Subtasks can help break down more complex tasks into manageable subtasks. To do this, create the complex problem as the main task and use the subtasks to break down the expected solution process into several sub-steps.",
   "p_r_answer_feedback": "Check Answers",
   "p_r_answer_feedback_help": "Disable this option so that the MCM app does not give the user any feedback regarding the correctness of his answer. Answers can still be typed in and saved.",
   "p_task_creation_success": "Task creation successful",
@@ -1190,6 +1190,7 @@
   "p_answer_correct": "Correct answer",
   "p_answer_wrong": "Wrong answer",
   "a_trailcode": "Trail Code",
+  "p_blanks_instructions_check_type": "If you are looking for numbers, individual letters or very short words in the gap, please select the \"strict\" test mode.",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

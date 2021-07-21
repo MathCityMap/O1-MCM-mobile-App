@@ -1134,7 +1134,7 @@
   "p_st_deleted_error": "No se ha podido eliminar la subtarea",
   "p_st_deleted": "Subtarea eliminada",
   "p_st_delete": "Eliminar subtarea",
-  "a_title_activity_subtask_view": "Subtarea {{actual}} de {{conteo}}",
+  "a_title_activity_subtask_view": "Subtarea {{current}} de {{count}}",
   "p_subtasks": "Subtareas",
   "p_new_subtask": "Nueva subtarea",
   "p_subtask_count": "Subtarea de conteo",

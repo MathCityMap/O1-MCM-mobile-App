@@ -33,7 +33,7 @@
   "p_fill_in_the_blanks": "Empleneu els espais en blanc",
   "a_alert_saved_answer_title": "Desat!",
   "p_error_unauthorized_edit": "No esteu autoritzats a editar aquesta tasca.",
-  "a_alert_set_right_answer_2": "La vostra resposta {{L}} és correcte.",
+  "a_alert_set_right_answer_2": "La teva resposta {{L}} és correcte.",
   "a_subtaskinfo_required_letsgo": "Endavant",
   "a_task_score": "La vostra puntuació",
   "p_solution_type": "Format de la tasca",
@@ -47,5 +47,8 @@
   "page_navigation": "Navegació per la pàgina",
   "pdf_third_upload": "Full de treball (millorada)",
   "a_trail_description": "Definició de la ruta",
-  "fts_global_search_fields": "Camps de cerca"
+  "fts_global_search_fields": "Camps de cerca",
+  "a_alert_set_right_answer_1_low": "Has completat la tasca a la primera. La teva resposta {{L}} és correcte.",
+  "a_onboarding_slide4_title": "Fer Matemàtiques",
+  "a_onboarding_slide3_title": "Carregar i començar"
 }
