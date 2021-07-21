@@ -688,7 +688,6 @@
   "a_list_noDownloads": "It seems that you do not have any saved trails yet! Go to trail browsing and download them to find here 😉",
   "a_route_default_share": "Hey, look at this trail I found:",
   "a_settings_editing": "Management functionality",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Moritz Baumann-Wehner<br/>Simone Jablonski<br/>Simon Barlovits<br/>Gregor Milicic",
   "p_map_dimension": "Dimensions of the map",
   "p_map_width": "Width",
   "p_map_height": "Height",
@@ -1191,6 +1190,7 @@
   "p_answer_wrong": "Wrong answer",
   "a_trailcode": "Trail Code",
   "p_blanks_instructions_check_type": "If you are looking for numbers, individual letters or very short words in the gap, please select the \"strict\" test mode.",
+  "a_about_mcm_responsibility": "Prof. Dr. Matthias Ludwig<br/>Sina Wetzel<br/>Ken Oehler<br/>Dr. Iwan Gurjanow<br/>Dr. Simone Jablonski<br/>Simon Barlovits<br/>Jos Fabiunke",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

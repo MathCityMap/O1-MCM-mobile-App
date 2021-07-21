@@ -688,7 +688,6 @@
   "a_list_noDownloads": "Es scheint, dass du noch keine gespeicherten Trails hast! Gehe zur Trailsuche und lade sie herunter, um sie hier zu finden 😉",
   "a_route_default_share": "Hey, schau mal was für eine Trail ich gefunden habe:",
   "a_settings_editing": "Verwaltungsfunktion",
-  "a_about_mcm_responsibility": "Matthias Ludwig<br/>Iwan Gurjanow<br/>Moritz Baumann-Wehner<br/>Simone Jablonski<br/>Simon Barlovits<br/>Gregor Milicic",
   "p_map_dimension": "Maße des Kartenausschnitts",
   "p_map_width": "Breite",
   "p_map_height": "Höhe",
@@ -1190,5 +1189,6 @@
   "p_answer_correct": "Korrekte Antwort",
   "p_answer_wrong": "Falsche Antwort",
   "a_trailcode": "Trail Code",
-  "p_blanks_instructions_check_type": "Wenn nach Zahlen, einzelnen Buchstaben oder sehr kurzen Worten im Lückentext gesucht wird, bitte den Prüfmodus \"streng\" auswählen."
+  "p_blanks_instructions_check_type": "Wenn nach Zahlen, einzelnen Buchstaben oder sehr kurzen Worten im Lückentext gesucht wird, bitte den Prüfmodus \"streng\" auswählen.",
+  "a_about_mcm_responsibility": "Prof. Dr. Matthias Ludwig<br/>Sina Wetzel<br/>Ken Oehler<br/>Dr. Iwan Gurjanow<br/>Dr. Simone Jablonski<br/>Simon Barlovits<br/>Jos Fabiunke"
 }
