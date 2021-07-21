@@ -1,5 +1,5 @@
 #!/bin/bash
-ENV_NAME=ionic-3.19.1
+ENV_NAME=ionic-mcm
 
 # exit if environment is already active
 echo $ATK_ENV | grep "$ENV_NAME" &> /dev/null && echo "Environment $ENV_NAME is already active" && exit
