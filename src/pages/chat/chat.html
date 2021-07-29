@@ -32,7 +32,7 @@
                         <!--TODO Remove user from data-->
                         <!--{{msg.userName}}&nbsp;&nbsp;-->
                         <!-- TODO Time Format -->
-                        &nbsp;{{msg.time | date:'medium' }}</p>
+                        &nbsp;{{msg.time + timeZoneOpposite | localizedDate:'medium' }}</p>
                 </div>
             </div>
         </div>

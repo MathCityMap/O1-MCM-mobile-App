@@ -2,7 +2,7 @@
     <div class="modal-content">
         <img class="head-icon" src="./assets/icons/{{narrative}}/modal-intro.svg"/>
         <h2>{{ title | translate}}</h2>
-        <p [innerHtml]=" message | translate "></p>
+        <p [innerHtml]=" message | translate : {TITLE: routeTitle} "></p>
     </div>
 
     <div class="on-the-edge-container">

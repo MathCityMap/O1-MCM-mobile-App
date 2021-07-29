@@ -12,6 +12,23 @@
     <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
+    <key>CFBundleLocalizations</key>
+    <array>
+      <string>de</string>
+      <string>en</string>
+      <string>ar</string>
+      <string>el</string>
+      <string>es</string>
+      <string>et</string>
+      <string>fa</string>
+      <string>fr</string>
+      <string>id</string>
+      <string>it</string>
+      <string>pt</string>
+      <string>sk</string>
+      <string>tr</string>
+      <string>zh</string>
+    </array>
     <key>CFBundleName</key>
     <string>$(PRODUCT_NAME)</string>
     <key>CFBundlePackageType</key>
@@ -24,28 +41,6 @@
     <string>3.1.2.8</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
-    <key>NSMainNibFile</key>
-    <string/>
-    <key>NSMainNibFile~ipad</key>
-    <string/>
-    <key>UILaunchStoryboardName</key>
-    <string>CDVLaunchScreen</string>
-    <key>UIRequiresFullScreen</key>
-    <true/>
-    <key>UISupportedInterfaceOrientations</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-      <string>UIInterfaceOrientationPortraitUpsideDown</string>
-    </array>
-    <key>UISupportedInterfaceOrientations~ipad</key>
-    <array>
-      <string>UIInterfaceOrientationPortrait</string>
-      <string>UIInterfaceOrientationLandscapeLeft</string>
-      <string>UIInterfaceOrientationPortraitUpsideDown</string>
-      <string>UIInterfaceOrientationLandscapeRight</string>
-    </array>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>
@@ -99,8 +94,6 @@
         </dict>
       </dict>
     </dict>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>MathCityMap would like to know your position to show distance to available routes.</string>
     <key>NSBluetoothAlwaysUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>
     <key>NSBluetoothPeripheralUsageDescription</key>
@@ -111,6 +104,18 @@
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
     <key>NSContactsUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
+    <key>NSCrossWebsiteTrackingUsageDescription</key>
+    <string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>MathCityMap would like to know your position to show distance to available routes.</string>
+    <key>NSMainNibFile</key>
+    <string/>
+    <key>NSMainNibFile~ipad</key>
+    <string/>
     <key>NSMicrophoneUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to microphone.</string>
     <key>NSMotionUsageDescription</key>
@@ -119,28 +124,23 @@
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to photo library.</string>
     <key>NSRemindersUsageDescription</key>
     <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
-    <key>CFBundleLocalizations</key>
+    <key>UILaunchStoryboardName</key>
+    <string>CDVLaunchScreen</string>
+    <key>UIRequiresFullScreen</key>
+    <true/>
+    <key>UISupportedInterfaceOrientations</key>
     <array>
-      <string>de</string>
-      <string>en</string>
-      <string>ar</string>
-      <string>el</string>
-      <string>es</string>
-      <string>et</string>
-      <string>fa</string>
-      <string>fr</string>
-      <string>id</string>
-      <string>it</string>
-      <string>pt</string>
-      <string>sk</string>
-      <string>tr</string>
-      <string>zh</string>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
     </array>
-    <key>NSCrossWebsiteTrackingUsageDescription</key>
-    <string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+      <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationPortraitUpsideDown</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
   </dict>
 </plist>

@@ -12,6 +12,10 @@ import {Storage} from "@ionic/storage";
 import {Helper} from "../classes/Helper";
 import {DashboardPage} from "../pages/dashboard/dashboard";
 import {ModalsService} from "../services/modals-service";
+import {HomePage} from "../pages/home/home";
+import {RoutesListPage} from "../pages/home/tabs/RoutesList/RoutesList";
+import {RoutesMapPage} from "../pages/home/tabs/RoutesMap/RoutesMap";
+import {PortalPage} from "../pages/portal/portal";
 
 
 
@@ -65,6 +69,11 @@ export class MyApp {
           let activeNav = app.getActiveNavs()[0];
           let rootNav = app.getRootNav();
 
+          if (rootNav.getActive().component.name === HomePage.name
+              && (activeNav.getActive().component.name === "RoutesListPage" || activeNav.getActive().component.name === RoutesMapPage.name || activeNav.getActive().component.name === PortalPage.name)) {
+              activeNav.parent.select(0);
+              return;
+          }
           if (activeNav.getActive().component.name === DashboardPage.name) {
               const alert = alertCtrl.create({
                   title: translate.instant("a_alert_confirm_close"),

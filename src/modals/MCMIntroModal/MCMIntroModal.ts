@@ -11,6 +11,7 @@ export class MCMIntroModal {
     message: string;
     buttons: any[];
     narrative: string;
+    routeTitle: string;
 
     constructor(params: NavParams) {
 
@@ -18,6 +19,7 @@ export class MCMIntroModal {
         this.narrative = params.data.narrative;
         this.title = params.data.title;
         this.message = params.data.message;
+        this.routeTitle = params.data.routeTitle
 
 
     }

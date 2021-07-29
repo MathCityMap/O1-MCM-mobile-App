@@ -52,6 +52,7 @@ export class ChatPage {
     private durationInterval;
     private positionInterval;
     private durCheckInterval;
+    private timeZoneOpposite: number = 0;
 
     private recordState: RecordStateEnum = RecordStateEnum.Idle;
 
@@ -106,6 +107,8 @@ export class ChatPage {
     }
 
     ionViewDidEnter() {
+        let timezoneOffset = new Date().getTimezoneOffset();
+        this.timeZoneOpposite = (timezoneOffset * 60000)
         //get message list
         this.getMsg();
 
@@ -187,7 +190,7 @@ export class ChatPage {
             userName: this.user.name,
             userAvatar: this.user.avatar,
             toUserId: this.toUser.token,
-            time: Date.now() - (timezoneOffset * 60000),
+            time: Date.now() + (timezoneOffset * 60000),
             message: this.editorMsg,
             media: [],
             status: 'pending'

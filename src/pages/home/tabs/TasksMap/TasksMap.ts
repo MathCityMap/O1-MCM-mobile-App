@@ -1052,6 +1052,7 @@ export class TasksMap implements OnInit, OnDestroy {
                 message: message,
                 modalType: MCMModalType.hint,
                 narrative: this.app.activeNarrative,
+                routeTitle: this.route.title,
                 buttons: [
                     {
                         title: 'a_alert_close',

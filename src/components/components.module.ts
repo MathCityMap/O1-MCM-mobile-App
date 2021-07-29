@@ -12,11 +12,13 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { LazyLoadImagesDirective } from '../directives/ngx-lazy-load-images.directive';
 
 import { RouteTeaserComponent } from "./route-teaser/route-teaser";
+import {LocalizedDatePipe} from "../app/pipes/localDate.pipe";
 
 const components = [
     MCMHeaderComponent,
     DistancePipe,
     SearchPipe,
+    LocalizedDatePipe,
     MCMProgressBarComponent,
 	McmImageComponent,
     LazyLoadImagesDirective
