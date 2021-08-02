@@ -114,8 +114,12 @@ export class MyApp {
                   return;
               } else {
                   rootNav.pop();
-                  return
+                  return;
               }
+          }
+          if(activeNav.canGoBack()) {
+              activeNav.pop();
+              return;
           }
       });
     statusBar.backgroundColorByHexString('#035f87'); // set status bar color
