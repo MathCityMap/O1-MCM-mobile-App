@@ -1,1 +1,2094 @@
-webpackJsonp([1],{947:function(n,e,t){"use strict";function l(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,3,"ion-label",[],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""])),I["ɵpid"](131072,rn.a,[un.a,I.ChangeDetectorRef])],null,function(n,e){n(e,2,0,I["ɵunv"](e,2,0,I["ɵnov"](e,3).transform("a_private_session_countdown")))})}function s(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,3,"ion-label",[],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""])),I["ɵpid"](131072,rn.a,[un.a,I.ChangeDetectorRef])],null,function(n,e){n(e,2,0,I["ɵunv"](e,2,0,I["ɵnov"](e,3).transform("a_private_session_timer")))})}function i(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,3,"ion-label",[],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""])),I["ɵpid"](131072,rn.a,[un.a,I.ChangeDetectorRef])],null,function(n,e){n(e,2,0,I["ɵunv"](e,2,0,I["ɵnov"](e,3).transform("a_private_session_ends")))})}function o(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,29,"ion-row",[["class","session row"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,cn.a,[],null,null),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,4,"ion-col",[["class","countdown col"],["col",""]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,0,"img",[["class","icon countdown"],["src","./assets/icons/countdown.svg"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,11,"ion-col",[["class","col"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵand"](16777216,null,null,1,null,l)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵand"](16777216,null,null,1,null,s)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵand"](16777216,null,null,1,null,i)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,6,"ion-col",[["class","col"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,2,"ion-label",[],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,[""," Min"])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                "]))],function(n,e){var t=e.component;n(e,13,0,t.countdownBeforeSession);n(e,16,0,0==t.countdownBeforeSession);n(e,19,0,t.showSessionEnds)},function(n,e){n(e,27,0,e.component.countdownOrTimerForSession)})}function a(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,2,"ion-label",[],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""]))],null,function(n,e){n(e,2,0,e.component.user.name)})}function r(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,2,"ion-label",[],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""]))],null,function(n,e){n(e,2,0,e.component.sessionInfo.sessionUser.team_name)})}function u(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,20,"ion-row",[["class","current row"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,cn.a,[],null,null),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,8,"ion-col",[["class","col"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵand"](16777216,null,null,1,null,a)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵand"](16777216,null,null,1,null,r)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,6,"ion-col",[["class","col"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,2,"ion-label",[["class","score"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                "]))],function(n,e){var t=e.component;n(e,7,0,!t.sessionInfo);n(e,10,0,t.sessionInfo)},function(n,e){n(e,18,0,e.component.currentScore)})}function c(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,0,"img",[["class","icon arrow"],["src","./assets/icons/up.svg"]],null,null,null,null,null))],null,null)}function d(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,0,"img",[["class","icon arrow"],["src","./assets/icons/down.svg"]],null,null,null,null,null))],null,null)}function h(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,30,"ion-row",[["class","row"]],null,null,null,null,null)),I["ɵdid"](278528,null,0,hn.i,[I.IterableDiffers,I.KeyValueDiffers,I.ElementRef,I.Renderer],{ngClass:[0,"ngClass"]},null),I["ɵpod"]({self:0}),I["ɵdid"](16384,null,0,cn.a,[],null,null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,8,"ion-col",[["class","chart col"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                            "])),(n()(),I["ɵand"](16777216,null,null,1,null,c)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                            "])),(n()(),I["ɵand"](16777216,null,null,1,null,d)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵted"](null,["\n\n                        "])),(n()(),I["ɵeld"](0,null,null,6,"ion-col",[["class","col"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                            "])),(n()(),I["ɵeld"](0,null,null,2,"ion-label",[],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""])),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,6,"ion-col",[["class","col"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,dn.a,[],null,null),(n()(),I["ɵted"](null,["\n                            "])),(n()(),I["ɵeld"](0,null,null,2,"ion-label",[["class","score"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,on.a,[an.a,I.ElementRef,I.Renderer,[8,null],[8,null],[8,null],[8,null]],null,null),(n()(),I["ɵted"](null,["",""])),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵted"](null,["\n                    "]))],function(n,e){var t=e.component;n(e,1,0,n(e,2,0,e.context.$implicit.self));n(e,9,0,t.chatAndSessionService.getLeaderboard().length>1&&0==e.context.index&&!e.context.$implicit.self);n(e,12,0,t.chatAndSessionService.getLeaderboard().length>1&&0!=e.context.index&&!e.context.$implicit.self)},function(n,e){n(e,20,0,e.context.$implicit.team_name);n(e,28,0,e.context.$implicit.score)})}function p(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,4,"div",[],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵand"](16777216,null,null,1,null,h)),I["ɵdid"](802816,null,0,hn.j,[I.ViewContainerRef,I.TemplateRef,I.IterableDiffers],{ngForOf:[0,"ngForOf"]},null),(n()(),I["ɵted"](null,["\n                "]))],function(n,e){n(e,3,0,e.component.chatAndSessionService.getLeaderboard())},null)}function f(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,14,"div",[["class","detail-box"],["id","ranking"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n            "])),(n()(),I["ɵeld"](0,null,null,11,"ion-grid",[["class","table grid"]],null,null,null,null,null)),I["ɵdid"](16384,null,0,pn.a,[],null,null),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵand"](16777216,null,null,1,null,o)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵand"](16777216,null,null,1,null,u)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵand"](16777216,null,null,1,null,p)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n            "])),(n()(),I["ɵted"](null,["\n        "]))],function(n,e){var t=e.component;n(e,6,0,null!=t.sessionInfo&&t.showCountdownOrTimer);n(e,9,0,t.route.isAnswerFeedbackEnabled()&&!t.gamificationIsDisabled&&t.currentScore&&t.currentScore>0&&(null==t.sessionInfo||!t.sessionInfo.session.has_leaderboard));n(e,12,0,null!=t.sessionInfo&&t.sessionInfo.session.has_leaderboard&&t.route.isAnswerFeedbackEnabled())},null)}function m(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,5,"button",[["color","danger"],["ion-fab",""]],[[8,"hidden",0]],[[null,"click"]],function(n,e,t){var l=!0;if("click"===e){l=!1!==n.component.displayResetTasksModal()&&l}return l},fn.b,fn.a)),I["ɵdid"](49152,[[4,4],[2,4]],0,mn.a,[an.a,I.ElementRef,I.Renderer],{color:[0,"color"]},null),(n()(),I["ɵted"](0,["\n                        "])),(n()(),I["ɵeld"](0,null,0,1,"ion-icon",[["name","icon-restart"],["role","img"]],[[2,"hide",null]],null,null,null,null)),I["ɵdid"](147456,null,0,vn.a,[an.a,I.ElementRef,I.Renderer],{name:[0,"name"]},null),(n()(),I["ɵted"](0,["\n                    "]))],function(n,e){n(e,1,0,"danger");n(e,4,0,"icon-restart")},function(n,e){n(e,0,0,null!=e.component.sessionInfo);n(e,3,0,I["ɵnov"](e,4)._hidden)})}function v(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,5,"button",[["color","danger"],["ion-fab",""]],null,[[null,"click"]],function(n,e,t){var l=!0;if("click"===e){l=!1!==n.component.sessionFinished()&&l}return l},fn.b,fn.a)),I["ɵdid"](49152,[[4,4],[2,4]],0,mn.a,[an.a,I.ElementRef,I.Renderer],{color:[0,"color"]},null),(n()(),I["ɵted"](0,["\n                        "])),(n()(),I["ɵeld"](0,null,0,1,"ion-icon",[["name","icon-exit"],["role","img"]],[[2,"hide",null]],null,null,null,null)),I["ɵdid"](147456,null,0,vn.a,[an.a,I.ElementRef,I.Renderer],{name:[0,"name"]},null),(n()(),I["ɵted"](0,["\n                    "]))],function(n,e){n(e,1,0,"danger");n(e,4,0,"icon-exit")},function(n,e){n(e,3,0,I["ɵnov"](e,4)._hidden)})}function g(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,5,"button",[["color","primary"],["ion-fab",""]],null,[[null,"click"]],function(n,e,t){var l=!0;if("click"===e){l=!1!==n.component.navigateToChat()&&l}return l},fn.b,fn.a)),I["ɵdid"](49152,[[4,4],[2,4]],0,mn.a,[an.a,I.ElementRef,I.Renderer],{color:[0,"color"]},null),(n()(),I["ɵted"](0,["\n                        "])),(n()(),I["ɵeld"](0,null,0,1,"ion-icon",[["name","icon-chat"],["role","img"]],[[2,"hide",null]],null,null,null,null)),I["ɵdid"](147456,null,0,vn.a,[an.a,I.ElementRef,I.Renderer],{name:[0,"name"]},null),(n()(),I["ɵted"](0,["\n                    "]))],function(n,e){n(e,1,0,"primary");n(e,4,0,"icon-chat")},function(n,e){n(e,3,0,I["ɵnov"](e,4)._hidden)})}function k(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,3,"span",[["class","badge-top-right"]],null,null,null,null,null)),I["ɵdid"](278528,null,0,hn.i,[I.IterableDiffers,I.KeyValueDiffers,I.ElementRef,I.Renderer],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),I["ɵpod"]({"badge-no-show":0}),(n()(),I["ɵted"](null,["",""]))],function(n,e){n(e,1,0,"badge-top-right",n(e,2,0,0==e.component.chatAndSessionService.getNewMsgNumber()))},function(n,e){n(e,3,0,e.component.chatAndSessionService.getNewMsgNumber())})}function b(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,3,"span",[["class","badge-top-right"]],null,null,null,null,null)),I["ɵdid"](278528,null,0,hn.i,[I.IterableDiffers,I.KeyValueDiffers,I.ElementRef,I.Renderer],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),I["ɵpod"]({"badge-no-show":0}),(n()(),I["ɵted"](null,["",""]))],function(n,e){n(e,1,0,"badge-top-right",n(e,2,0,0==e.component.chatAndSessionService.getNewMsgNumber()))},function(n,e){n(e,3,0,e.component.chatAndSessionService.getNewMsgNumber())})}function T(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,6,"div",[["class","image-container"],["tappable",""]],null,[[null,"click"]],function(n,e,t){var l=!0,s=n.component;if("click"===e){l=!1!==s.gototask(s.state.selectedTask.id,s.state.selectedTask.title)&&l}return l},null,null)),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵeld"](0,null,null,3,"div",[["class","cover"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,0,"img",[["class","thumb"]],[[8,"src",4]],null,null,null,null)),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵted"](null,["\n            "]))],null,function(n,e){n(e,4,0,e.component.state.selectedTask.getImageURL())})}function S(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,29,"div",[["class","text-container"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵeld"](0,null,null,10,"div",[["class","segmented-box"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,7,"div",[["class","title segement"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,1,"span",[["tappable",""]],null,[[null,"click"]],function(n,e,t){var l=!0,s=n.component;if("click"===e){l=!1!==s.gototask(s.state.selectedTask.id,s.state.selectedTask.title)&&l}return l},null,null)),(n()(),I["ɵted"](null,["#",""])),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,1,"h2",[["tappable",""]],null,[[null,"click"]],function(n,e,t){var l=!0,s=n.component;if("click"===e){l=!1!==s.gototask(s.state.selectedTask.id,s.state.selectedTask.title)&&l}return l},null,null)),(n()(),I["ɵted"](null,["",""])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵeld"](0,null,null,14,"div",[["class","segmented-box bottom"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,9,"div",[["class","segement buttons"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵeld"](0,null,null,6,"div",[["class","text-right"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n                            "])),(n()(),I["ɵeld"](0,null,null,3,"button",[["ion-button",""],["round",""],["small",""]],null,[[null,"click"]],function(n,e,t){var l=!0,s=n.component;if("click"===e){l=!1!==s.gototask(s.state.selectedTask.id,s.state.selectedTask.title)&&l}return l},gn.b,gn.a)),I["ɵdid"](1097728,null,0,kn.a,[[8,""],an.a,I.ElementRef,I.Renderer],{small:[0,"small"],round:[1,"round"]},null),(n()(),I["ɵted"](0,["",""])),I["ɵpid"](131072,rn.a,[un.a,I.ChangeDetectorRef]),(n()(),I["ɵted"](null,["\n                        "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵted"](null,["\n            "]))],function(n,e){n(e,23,0,"","")},function(n,e){var t=e.component;n(e,7,0,t.state.selectedTask.position);n(e,10,0,t.state.selectedTask.title);n(e,24,0,I["ɵunv"](e,24,0,I["ɵnov"](e,25).transform("a_alert_show_task")))})}function w(n){return I["ɵvid"](0,[I["ɵqud"](402653184,1,{mapContainer:0}),(n()(),I["ɵeld"](0,null,null,1,"mcm-header",[],null,null,null,bn.b,bn.a)),I["ɵdid"](114688,null,0,Tn.a,[Sn.a,wn.a,In.a,E.a,P.a,x.a],null,null),(n()(),I["ɵted"](null,["\n"])),(n()(),I["ɵeld"](0,null,null,66,"ion-content",[["class","has-header map tasks"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,yn.b,yn.a)),I["ɵdid"](4374528,null,0,_n.a,[an.a,Rn.a,Cn.a,I.ElementRef,I.Renderer,Mn.a,Ln.a,I.NgZone,[2,In.a],[2,Sn.a]],null,null),(n()(),I["ɵted"](1,["\n    "])),(n()(),I["ɵeld"](0,null,0,62,"div",[["ion-fixed",""]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n        "])),(n()(),I["ɵeld"](0,null,null,0,"div",[["class","map-view"],["id","tasks-map"]],null,null,null,null,null)),(n()(),I["ɵted"](null,["\n\n        "])),(n()(),I["ɵand"](16777216,null,null,1,null,f)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n\n        "])),(n()(),I["ɵeld"](0,null,null,54,"div",[["class","detail-box"],["id","details"]],null,null,null,null,null)),I["ɵdid"](278528,null,0,hn.i,[I.IterableDiffers,I.KeyValueDiffers,I.ElementRef,I.Renderer],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),I["ɵpod"]({open:0}),(n()(),I["ɵted"](null,["\n\n            "])),(n()(),I["ɵeld"](0,null,null,43,"ion-fab",[["right",""],["top",""]],null,null,null,xn.b,xn.a)),I["ɵdid"](1228800,null,2,An.a,[Rn.a],null,null),I["ɵqud"](603979776,2,{_mainButton:0}),I["ɵqud"](603979776,3,{_fabLists:1}),(n()(),I["ɵted"](0,["\n                "])),(n()(),I["ɵeld"](0,null,0,3,"button",[["color","primary"],["ion-fab",""]],null,[[null,"click"]],function(n,e,t){var l=!0,s=n.component;if("click"===e){l=!1!=(s.fabListOpen=!s.fabListOpen)&&l}return l},fn.b,fn.a)),I["ɵdid"](49152,[[2,4]],0,mn.a,[an.a,I.ElementRef,I.Renderer],{color:[0,"color"]},null),(n()(),I["ɵeld"](0,null,0,1,"ion-icon",[["name","more"],["role","img"]],[[2,"hide",null]],null,null,null,null)),I["ɵdid"](147456,null,0,vn.a,[an.a,I.ElementRef,I.Renderer],{name:[0,"name"]},null),(n()(),I["ɵted"](0,["\n                "])),(n()(),I["ɵeld"](0,null,0,29,"ion-fab-list",[["side","top"]],null,null,null,null,null)),I["ɵdid"](16384,[[3,4]],1,En.a,[I.ElementRef,I.Renderer,an.a,Rn.a],null,null),I["ɵqud"](603979776,4,{_setbuttons:1}),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵand"](16777216,null,null,1,null,m)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,5,"button",[["color","primary"],["ion-fab",""]],[[8,"hidden",0]],[[null,"click"]],function(n,e,t){var l=!0;if("click"===e){l=!1!==n.component.selectStartPoint()&&l}return l},fn.b,fn.a)),I["ɵdid"](49152,[[4,4],[2,4]],0,mn.a,[an.a,I.ElementRef,I.Renderer],{color:[0,"color"]},null),(n()(),I["ɵted"](0,["\n                        "])),(n()(),I["ɵeld"](0,null,0,1,"ion-icon",[["name","icon-starting-point"],["role","img"]],[[2,"hide",null]],null,null,null,null)),I["ɵdid"](147456,null,0,vn.a,[an.a,I.ElementRef,I.Renderer],{name:[0,"name"]},null),(n()(),I["ɵted"](0,["\n                    "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵeld"](0,null,null,5,"button",[["color","danger"],["ion-fab",""]],[[8,"hidden",0]],[[null,"click"]],function(n,e,t){var l=!0;if("click"===e){l=!1!==n.component.showAllTasks()&&l}return l},fn.b,fn.a)),I["ɵdid"](49152,[[4,4],[2,4]],0,mn.a,[an.a,I.ElementRef,I.Renderer],{color:[0,"color"]},null),(n()(),I["ɵted"](0,["\n                        "])),(n()(),I["ɵeld"](0,null,0,1,"ion-icon",[["name","icon-visibility"],["role","img"]],[[2,"hide",null]],null,null,null,null)),I["ɵdid"](147456,null,0,vn.a,[an.a,I.ElementRef,I.Renderer],{name:[0,"name"]},null),(n()(),I["ɵted"](0,["\n                    "])),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵand"](16777216,null,null,1,null,v)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵand"](16777216,null,null,1,null,g)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                    "])),(n()(),I["ɵand"](16777216,null,null,1,null,k)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n                "])),(n()(),I["ɵted"](0,["\n                "])),(n()(),I["ɵand"](16777216,null,0,1,null,b)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](0,["\n            "])),(n()(),I["ɵted"](null,["\n\n            "])),(n()(),I["ɵand"](16777216,null,null,1,null,T)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n            "])),(n()(),I["ɵand"](16777216,null,null,1,null,S)),I["ɵdid"](16384,null,0,hn.k,[I.ViewContainerRef,I.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),I["ɵted"](null,["\n        "])),(n()(),I["ɵted"](null,["\n    "])),(n()(),I["ɵted"](1,["\n"])),(n()(),I["ɵted"](null,["\n"]))],function(n,e){var t=e.component;n(e,2,0);n(e,12,0,!t.gamificationIsDisabled&&t.currentScore&&t.currentScore>0||null!=t.sessionInfo&&t.showCountdownOrTimer);n(e,15,0,"detail-box",n(e,16,0,t.state.selectedTask));n(e,24,0,"primary");n(e,26,0,"more");n(e,33,0,null==t.sessionInfo);n(e,36,0,"primary");n(e,39,0,"icon-starting-point");n(e,43,0,"danger");n(e,46,0,"icon-visibility");n(e,50,0,null!=t.sessionInfo);n(e,53,0,null!=t.sessionInfo);n(e,56,0,null!=t.sessionInfo&&t.fabListOpen);n(e,60,0,null!=t.sessionInfo&&!t.fabListOpen);n(e,64,0,t.state.selectedTask);n(e,67,0,t.state.selectedTask)},function(n,e){var t=e.component;n(e,4,0,I["ɵnov"](e,5).statusbarPadding,I["ɵnov"](e,5)._hasRefresher);n(e,25,0,I["ɵnov"](e,26)._hidden);n(e,35,0,!t.state.isShowingAllTasks||t.assignedTask());n(e,38,0,I["ɵnov"](e,39)._hidden);n(e,42,0,t.state.isShowingAllTasks||t.assignedTask());n(e,45,0,I["ɵnov"](e,46)._hidden)})}Object.defineProperty(e,"__esModule",{value:!0});var I=t(1),y=(t(0),t(17),t(38)),_=t(139),R=(t(635),t(955),t(21)),C=t(632),M=t(35),L=t(297),x=t(27),A=t(78),E=t(43),N=(t(958),t(960),t(42)),O=(t(57),t(49)),U=t(140),D=t(280),B=t(299),P=t(50),z=t(300),F=t(194),G=t(62),V=t(3),j=t(295),K=t(301),W=this&&this.__awaiter||function(n,e,t,l){return new(t||(t=Promise))(function(s,i){function o(n){try{r(l.next(n))}catch(n){i(n)}}function a(n){try{r(l.throw(n))}catch(n){i(n)}}function r(n){n.done?s(n.value):new t(function(e){e(n.value)}).then(o,a)}r((l=l.apply(n,e||[])).next())})},Z=this&&this.__generator||function(n,e){function t(t){return function(o){return function(t){if(l)throw new TypeError("Generator is already executing.");for(;a;)try{if(l=1,s&&(i=s[2&t[0]?"return":t[0]?"throw":"next"])&&!(i=i.call(s,t[1])).done)return i;switch(s=0,i&&(t=[0,i.value]),t[0]){case 0:case 1:i=t;break;case 4:return a.label++,{value:t[1],done:!1};case 5:a.label++,s=t[1],t=[0];continue;case 7:t=a.ops.pop(),a.trys.pop();continue;default:if(i=a.trys,!(i=i.length>0&&i[i.length-1])&&(6===t[0]||2===t[0])){a=0;continue}if(3===t[0]&&(!i||t[1]>i[0]&&t[1]<i[3])){a.label=t[1];break}if(6===t[0]&&a.label<i[1]){a.label=i[1],i=t;break}if(i&&a.label<i[2]){a.label=i[2],a.ops.push(t);break}i[2]&&a.ops.pop(),a.trys.pop();continue}t=e.call(n,a)}catch(n){t=[6,n],s=0}finally{l=i=0}if(5&t[0])throw t[1];return{value:t[0]?t[1]:void 0,done:!0}}([t,o])}}var l,s,i,o,a={label:0,sent:function(){if(1&i[0])throw i[1];return i[1]},trys:[],ops:[]};return o={next:t(0),throw:t(1),return:t(2)},"function"==typeof Symbol&&(o[Symbol.iterator]=function(){return this}),o},J=function(){function TasksMap(e,t,l,s,i,o,a,r,u,c,d,h,p,f){var m=this;this.navCtrl=e,this.navParams=t,this.events=l,this.ormService=s,this.deepLinker=i,this.gpsService=o,this.modalsService=a,this.imagesService=r,this.storage=u,this.spinner=c,this.modalCtrl=d,this.chatAndSessionService=h,this.app=p,this.helper=f,this.state={selectedTask:null,isShowingAllTasks:!1,visibleTasks:{},skippedTaskIds:[],selectedStartTask:!1,showIntroModal:!1,showGuidedTrailModal:!1},this.stateKey="savedMapStateByRoute",this.taskToSkip=null,this.gamificationIsDisabled=!1,this.isUserInsideMap=!0,this.user=null,this.countdownBeforeSession=!1,this.startInterval=!1,this.showCountdownOrTimer=!1,this.showSessionEnds=!1,this.taskBlocked=!1,this.sessionTimeTimer=j.Observable.interval(1e3*n.UPDATE_SESSION_TIME_INTERVAL_IN_SECS),this.redrawingMarkers=!1,this.markerGroup=null,this.pathGroup=null,this.chatAndSessionService.init(),this.events.subscribe("user:kicked",function(n){"self"==n?(console.log("userKicked"),m.sessionKicked(),m.events.unsubscribe("user:kicked",null)):console.log("Someone else was kicked.")}),this.events.subscribe("session:updated",function(n){console.log("Session has been updated"),m.updateSession(n)}),this.events.subscribe("user:assigned_task",function(n){console.log("User has been assigned task with id: "+n),m.sessionInfo.sessionUser.assigned_task_id=n,m.forceStartFromTask(n),m.redrawMarker()})}return n=TasksMap,TasksMap.prototype.isTrailCompleted=function(){return this.route.isAnswerFeedbackEnabled()?this.taskList&&this.score.getTasksSolved().length+this.score.getTasksSolvedLow().length+this.score.getTasksFailed().length==this.taskList.length:this.score.getTasksSaved()&&this.score.getTasksSaved().length==this.taskList.length},TasksMap.prototype.showTrailCompletedAlert=function(){var n=this,e=this.modalCtrl.create(K.a,{score:this.score,tasks:this.taskList,narrative:this.app.activeNarrative,callback:function(){e.dismiss().then(function(){n.route.completed=!0,n.route.completedDate=(new Date).toDateString().split(" ").slice(1).join(" "),n.ormService.saveAndFireChangedEvent(n.route)})}},{cssClass:this.app.activeNarrative});e.present()},TasksMap.prototype.ionViewWillEnter=function(){return W(this,void 0,void 0,function(){var n,e,t,l=this;return Z(this,function(s){switch(s.label){case 0:return console.log("TasksMap ionViewWillEnter()"),console.log(this.navCtrl),this.routeId=this.navParams.get("routeId"),console.log(this.routeId),n=this,[4,this.ormService.findRouteById(this.routeId)];case 1:return n.route=s.sent(),this.gamificationIsDisabled=this.route.isGamificationDisabled(),e=this,[4,this.ormService.getActiveUser()];case 2:return e.user=s.sent(),this.score=this.route.getScoreForUser(this.user),t=this.chatAndSessionService.getSessionInfo(),this.updateSession(t),this.events.publish("narrativeChange",this.route.getNarrativeName()),this.updateIcons(),[4,this.loadMap()];case 3:return s.sent(),setTimeout(function(){return W(l,void 0,void 0,function(){return Z(this,function(n){switch(n.label){case 0:return[4,this.initializeMap()];case 1:return n.sent(),this.spinner.hide(),this.isTrailCompleted()&&!this.route.completed&&this.showTrailCompletedAlert(),[2]}})})},100),[2]}})})},TasksMap.prototype.ionViewDidEnter=function(){return W(this,void 0,void 0,function(){var n,e,t,l=this;return Z(this,function(s){switch(s.label){case 0:return console.log("TasksMap ionViewDidEnter()"),null==this.sessionInfo?[3,6]:(n=JSON.stringify({}),this.chatAndSessionService.addUserEvent("event_trail_opened",n,"0"),!1!==this.sessionInfo.started?[3,6]:(this.showAllTasks(),this.resetTasks(),0==this.sessionInfo.sessionUser.assigned_task_id?[3,2]:(e=this,[4,this.route.getTasks()])));case 1:return e.taskList=s.sent(),this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id),this.route.isNarrativeEnabled()&&this.showIntroModal().then(function(){l.state.showIntroModal=!1}),[3,3];case 2:this.route.isNarrativeEnabled()&&this.showIntroModal().then(function(){l.state.showIntroModal=!1,l.showGuidedTrailModalWithDelay(500)}),s.label=3;case 3:return this.saveMapStateToLocalStorage(),this.sessionInfo.started=!0,[4,this.chatAndSessionService.updateSession(this.sessionInfo)];case 4:return s.sent(),[4,this.redrawMarker()];case 5:return s.sent(),[2];case 6:return this.navParams.data.tasksMapState?(console.log("3"),this.state=this.navParams.data.tasksMapState,(this.taskToSkip||this.state.selectedStartTask&&(this.score.getTasksSolved().indexOf(this.state.selectedTask.id)>-1||this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id)>-1))&&this.goToNextTask(this.state.selectedTask,!0),[3,9]):[3,7];case 7:return t=this,[4,this.getMapStateFromLocalStorage()];case 8:t.state=s.sent(),console.log(this.state),this.taskToSkip&&(this.goToNextTask(this.taskToSkip,!0),this.taskToSkip=null),this.state?this.state.showIntroModal&&this.route.isNarrativeEnabled()?this.showIntroModal().then(function(){l.state.showIntroModal=!1,l.saveMapStateToLocalStorage(),l.state.showGuidedTrailModal&&l.showGuidedTrailModalWithDelay(500)}):this.state.showGuidedTrailModal&&this.showGuidedTrailModalWithDelay(500):(this.state=this.navParams.data.tasksMapState={selectedTask:this.navParams.get("selectedTask"),isShowingAllTasks:!1,visibleTasks:{},skippedTaskIds:[],selectedStartTask:!1,showIntroModal:!1,showGuidedTrailModal:!1},this.state.isShowingAllTasks=!this.state.selectedTask,this.state.selectedTask?this.state.visibleTasks[this.state.selectedTask.position]=!0:this.route.isNarrativeEnabled()?this.showIntroModal().then(function(){l.showGuidedTrailModalWithDelay(500)}):this.showGuidedTrailModalWithDelay(500)),s.label=9;case 9:return[4,this.redrawMarker()];case 10:return s.sent(),[2]}})})},TasksMap.prototype.showGuidedTrailModalWithDelay=function(n){var e=this;this.state.showGuidedTrailModal=!1,setTimeout(function(){var n=this;e.modalsService.showDialog("a_guided_trail_title","a_guided_trail","no",function(){},"yes",function(){return W(n,void 0,void 0,function(){return Z(this,function(n){return e.selectStartPoint(),e.state.selectedStartTask=!0,[2]})})},e.app.activeNarrative)},n)},TasksMap.prototype.forceStartFromTask=function(n){var e=this.taskList.filter(function(e){return e.id==n}).pop();this.state.selectedTask=e,console.debug("forceStartFromTask"),this.state.visibleTasks={},this.state.visibleTasks[e.position]=!0,this.state.isShowingAllTasks=!1,this.state.showGuidedTrailModal=!1,this.centerSelectedTask()},TasksMap.prototype.ngOnInit=function(){},TasksMap.prototype.ngOnDestroy=function(){this.sessionSubscription&&(this.sessionSubscription.unsubscribe(),this.sessionSubscription=null),this.watchSubscription&&(this.watchSubscription.unsubscribe(),this.watchSubscription=null),this.events.unsubscribe("user:kicked"),this.events.unsubscribe("session:updated"),this.events.unsubscribe("user:assigned_task"),this.events.publish("narrativeChange","default")},TasksMap.prototype.initializeMap=function(){return W(this,void 0,void 0,function(){return Z(this,function(n){return this.currentScore=this.score.score,this.gpsService.isLocationOn(),null!=this.map&&this.map.invalidateSize(),[2]})})},TasksMap.prototype.updateSession=function(n){var e=this;console.log(this.routeId),console.log(n),n&&n.session?this.routeId!=n.session.trail_id?(console.log("active session belongs to different trail"),this.sessionInfo=null):(this.sessionInfo=n,console.log("active session: "+n.session.code),this.sessionTimeSubscription&&this.sessionTimeSubscription.unsubscribe(),this.sessionTime(),this.sessionTimeSubscription=this.sessionTimeTimer.subscribe(function(n){e.sessionTime()})):(console.log("no active session"),this.sessionInfo=null)},TasksMap.prototype.getMapStateFromLocalStorage=function(){return W(this,void 0,void 0,function(){var n,e;return Z(this,function(t){switch(t.label){case 0:return[4,this.storage.get(this.stateKey)];case 1:return(n=t.sent())&&n[this.routeId]?(e=n[this.routeId],console.log(this.navParams),e.selectedTask=this.navParams.get("selectedTask"),[2,e]):[2,null]}})})},TasksMap.prototype.saveMapStateToLocalStorage=function(){return W(this,void 0,void 0,function(){var n;return Z(this,function(e){switch(e.label){case 0:return[4,this.storage.get(this.stateKey)];case 1:return(n=e.sent())||(n={}),n[this.routeId]=this.state,[2,this.storage.set(this.stateKey,n)]}})})},TasksMap.prototype.ionViewWillLeave=function(){return W(this,void 0,void 0,function(){return Z(this,function(n){return this.saveMapStateToLocalStorage(),[2]})})},TasksMap.prototype.assignedTask=function(){return null!=this.sessionInfo&&this.sessionInfo.session.assign_tasks},TasksMap.prototype.redrawMarker=function(){return W(this,void 0,void 0,function(){var n,e,t,l,s,i,o,a,r,u=this;return Z(this,function(c){switch(c.label){case 0:if(this.redrawingMarkers)return[2];if(this.redrawingMarkers=!0,!this.map)return[2];if(null!=this.markerGroup&&(console.warn("removing markerGroup"),this.map.removeLayer(this.markerGroup),this.markerGroup=null),null!=this.pathGroup){for(console.warn("removing pathGroup"),n=0,e=this.pathGroup;n<e.length;n++)this.map.removeLayer(e[n]);this.pathGroup=null}return t=_.markerClusterGroup({maxClusterRadius:30,iconCreateFunction:function(n){var e=n.getChildCount(),t=n.getAllChildMarkers(),l="marker-cluster marker-cluster-";l+=e<10?"small":e<100?"medium":"large";var s={},i=0;t.map(function(n){n.options.icon.clusterColor&&(i++,s[n.options.icon.clusterColor]?s[n.options.icon.clusterColor]+=1:s[n.options.icon.clusterColor]=1)});var o="",a="",r=Object.keys(s);if(1==r.length)o="background-color: "+r[0];else{var u="",c=0;r.map(function(n){var e=s[n],t=Math.round(e/i*100);c>0&&(u+=", "),u+=n+" 0 "+(c+=t)+"%"});a='<img src="'+new ConicGradient({stops:u,size:24}).png+'"></img>'}return new _.DivIcon({html:'<div style="'+o+'">'+a+"<span>"+e+"</span></div>",className:l,iconSize:new _.Point(40,40)})}}),l=this,[4,this.route.getTasks()];case 1:for(l.taskList=c.sent(),s=this.route.getPathGeoJson(),i=[],o=function(n){var e=a.taskList[n];if(!a.state.isShowingAllTasks&&!a.state.visibleTasks[e.position])return"continue";var l=a.taskOpenIcon,o=!0;if(a.score.getTasksSaved().indexOf(e.id)>-1?l=a.taskSavedIcon:a.score.getTasksSolved().indexOf(e.id)>-1?l=a.taskDonePerfectIcon:a.score.getTasksSolvedLow().indexOf(e.id)>-1?l=a.taskDoneIcon:a.score.getTasksFailed().indexOf(e.id)>-1?l=a.taskFailedIcon:a.state.skippedTaskIds.indexOf(e.id)>-1&&(l=a.taskSkippedIcon,o=!1),o&&a.state.skippedTaskIds.indexOf(e.id)>-1&&a.state.skippedTaskIds.splice(a.state.skippedTaskIds.indexOf(e.id),1),s){var r=s.data.features.filter(function(n){return n.properties.task_id==e.id});if(console.log("GEO JSON",r,e),r)for(var c=0,d=r;c<d.length;c++){var h=_.geoJSON(d[c],{style:function(n){return{color:n.properties.color,dashArray:"10 10"}}});a.map.addLayer(h),i.push(h)}}t.addLayer(_.marker([e.lat,e.lon],{icon:l}).on("click",function(){if(u.state.selectedTask==e)u.gototask(e.id,e.title);else{if(null!=u.sessionInfo){var n=JSON.stringify({});u.chatAndSessionService.addUserEvent("event_task_previewed",n,e.id.toString())}u.state.selectedTask=e,u.map.panTo([e.lat,e.lon])}}))},a=this,r=0;r<this.taskList.length;r++)o(r);return this.map.addLayer(t),console.log("MAP AFTER UPDATE",this.map),this.markerGroup=t,this.pathGroup=i,this.redrawingMarkers=!1,[2]}})})},TasksMap.prototype.loadMap=function(){return W(this,void 0,void 0,function(){var n,e,t,l,s,i,o,a,r=this;return Z(this,function(u){switch(u.label){case 0:return n=this.route.getTilesMap(this.app.activeNarrative),e=this.route.getTilesServerSubdomains(this.app.activeNarrative),null!=this.map?[3,2]:(this.map=_.map("tasks-map",{attributionControl:!1,zoom:18,trackResize:!1,maxBounds:this.route.getBoundingBoxLatLng()}),_.control.attribution({position:"bottomleft",prefix:"Leaflet"}).addTo(this.map),this.map.fitBounds(this.route.getViewBoundingBoxLatLng()),this.map.on("click",function(n){r.state.selectedTask=null}),t=this.map,[4,C.a.initialize()]);case 1:u.sent(),l=R.b.calculateZoom(this.route.getViewBoundingBoxLatLng()),s=_.tileLayer.offline(n,C.a,{attribution:"&copy; mapbox.com",subdomains:e,minZoom:l.min_zoom,maxZoom:l.max_zoom,tileSize:256,crossOrigin:!0,detectRetina:!0,bounds:this.route.getBoundingBoxLatLng()}),this.gpsService.getCurrentPosition().then(function(n){n&&n.coords&&(console.debug("found you"),r.userMarker=_.marker([n.coords.latitude,n.coords.longitude],{icon:r.userPositionIcon}).on("click",function(){}),r.userMarker.setRotationOrigin("center center"),r.userMarker.addTo(r.map),r.watchSubscription&&r.watchSubscription.unsubscribe(),r.watchSubscription=r.gpsService.watchPosition().subscribe(function(n){if(n&&n.coords){var e=new _.LatLng(n.coords.latitude,n.coords.longitude);if(r.map.getBounds().contains(e)){if(r.isUserInsideMap||r.userMarker.setIcon(r.userPositionIcon),r.userMarker.setLatLng(e),null!=r.prevPos){var t=R.b.getAngle(r.prevPos,n.coords);r.userMarker.setRotationAngle(t)}r.isUserInsideMap=!0}else r.isUserInsideMap&&r.userMarker.setIcon(r.userPositionArrow),r.updateUserLocationArrow(e),r.isUserInsideMap=!1;r.prevPos=n.coords}}),r.map.on("moveend",function(n){r.isUserInsideMap||r.updateUserLocationArrow(new _.LatLng(r.prevPos.latitude,r.prevPos.longitude))}))}).catch(function(n){console.error("Location error: "+JSON.stringify(n))}),i=this.ormService.getTileURLsAsObject(this.route),o=!this.route.isNarrativeEnabled(),a=this,s.getTileUrl=function(n){var e=_.TileLayer.prototype.getTileUrl.call(this,n),t=this._getStorageKey(e);return i[t]?Promise.resolve(a.imagesService.getOfflineURL(t,!1,o)):Promise.resolve(e)},s.addTo(t),this.map.fitBounds(this.route.getViewBoundingBoxLatLng()),s.on("offline:below-min-zoom-error",function(){alert("Can not save tiles below minimum zoom level.")}),s.on("offline:save-start",function(n){console.debug(n),console.debug("Saving "+n.nTilesToSave+" tiles.")}),s.on("offline:save-end",function(){alert("All the tiles were saved.")}),s.on("offline:save-error",function(n){console.error("Error when saving tiles: "+n)}),s.on("offline:remove-start",function(){console.debug("Removing tiles.")}),s.on("offline:remove-end",function(){alert("All the tiles were removed.")}),s.on("offline:remove-error",function(n){console.error("Error when removing tiles: "+n)}),null!=this.state.selectedTask&&this.centerSelectedTask(),u.label=2;case 2:return[2]}})})},TasksMap.prototype.updateUserLocationArrow=function(n){if(n){var e=this.map.getBounds(),t=_.GeometryUtil.bearing(this.map.getCenter(),n),l=_.GeometryUtil.bearing(this.map.getCenter(),e.getNorthEast()),s=_.GeometryUtil.length([e.getNorthWest(),e.getNorthEast()])/2,i=_.GeometryUtil.length([e.getSouthWest(),e.getNorthWest()])/2,o=0;t<0&&(t+=360),o=t>=l&&t<=180-l||t>=180+l&&t<=360-l?Math.abs(s/Math.sin(t*(Math.PI/180))):Math.abs(i/Math.cos(t*(Math.PI/180)));var a=_.GeometryUtil.destination(this.map.getCenter(),t,.9*o);this.userMarker.setLatLng(a),this.userMarker.setRotationAngle(t)}},TasksMap.prototype.centerSelectedTask=function(){this.map.panTo([this.state.selectedTask.lat,this.state.selectedTask.lon])},TasksMap.prototype.goToNextTaskById=function(n,e){var t=this;this.taskList.forEach(function(l){l.id!=n||t.goToNextTask(l,e)})},TasksMap.prototype.goToNextTask=function(n,e){e&&this.state.skippedTaskIds.push(n.id),console.debug("goToNextTask"),this.state.selectedTask=this.taskList[n.position%this.taskList.length],this.state.visibleTasks[this.state.selectedTask.position]=!0,this.centerSelectedTask(),this.saveMapStateToLocalStorage()},TasksMap.prototype.selectStartPoint=function(){return W(this,void 0,void 0,function(){var n;return Z(this,function(e){return n=this,console.log("Active Narrative is: "+this.app.activeNarrative),[2,this.modalsService.presentTaskListModal(this.route,this.score,this.state,this.app.activeNarrative,this.navCtrl,function(e){if(console.debug("back in tasksMap"),n.state.selectedTask=e,n.state.visibleTasks={},n.state.visibleTasks[e.position]=!0,n.state.isShowingAllTasks=!1,n.centerSelectedTask(),n.redrawMarker(),null!=n.sessionInfo){var t=JSON.stringify({title:n.state.selectedTask.title});n.chatAndSessionService.addUserEvent("event_trail_start_from_task",t,n.state.selectedTask.id.toString())}})]})})},TasksMap.prototype.showAllTasks=function(){this.state.isShowingAllTasks=!0,this.redrawMarker()},TasksMap.prototype.displayResetTasksModal=function(){var n=this;this.modalsService.showDialog("a_route_detail_settings_resetTasks","a_route_detail_settings_resetTasks_msg","no",function(){},"yes",function(){return W(n,void 0,void 0,function(){return Z(this,function(n){switch(n.label){case 0:return[4,this.resetTasks()];case 1:return n.sent(),this.showGuidedTrailModalWithDelay(50),[2]}})})},this.app.activeNarrative)},TasksMap.prototype.resetTasks=function(){var n=this;return new Promise(function(e){n.ormService.deleteUserScore(n.score).then(function(){return W(n,void 0,void 0,function(){var n;return Z(this,function(t){switch(t.label){case 0:return this.score=new L.a,this.state=this.navParams.data.tasksMapState={selectedTask:null,isShowingAllTasks:!0,visibleTasks:{},skippedTaskIds:[],selectedStartTask:!1,showIntroModal:!0,showGuidedTrailModal:!0},this.taskList?[3,2]:(n=this,[4,this.route.getTasks()]);case 1:n.taskList=t.sent(),t.label=2;case 2:return null!=this.sessionInfo&&0!=this.sessionInfo.sessionUser.assigned_task_id&&this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id),this.route.completed=!1,this.route.completedDate=null,[4,this.saveMapStateToLocalStorage()];case 3:return t.sent(),[4,this.ormService.saveAndFireChangedEvent(this.route)];case 4:return t.sent(),[4,this.redrawMarker()];case 5:return t.sent(),e(),[2]}})})})})},TasksMap.prototype.sessionFinished=function(){return W(this,void 0,void 0,function(){var n=this;return Z(this,function(e){return this.modalsService.showDialog("a_private_session_quit","a_private_session_quit_text","no",function(){},"yes",function(){if(n.modalCtrl.create(z.a,{session:n.sessionInfo.session,score:n.score,tasks:n.taskList,narrative:n.app.activeNarrative},{cssClass:n.app.activeNarrative}).present(),null!=n.sessionInfo){var e=JSON.stringify({});n.chatAndSessionService.addUserEvent("event_session_leave",e,"0")}n.chatAndSessionService.exitActiveSession(),n.sessionTimeSubscription&&n.sessionTimeSubscription.unsubscribe()},this.app.activeNarrative),[2]})})},TasksMap.prototype.sessionKicked=function(){return W(this,void 0,void 0,function(){var n,e;return Z(this,function(t){return n=this,(e=this.modalCtrl.create(D.a,{title:"a_private_session_kicked",message:"a_private_session_kicked_text",modalType:U.a.hint,type:"text",gamificationEnabled:!1,narrativeEnabled:this.route.isNarrativeEnabled(),narrative:this.app.activeNarrative,buttons:[{title:"a_g_ok",callback:function(){e.dismiss();var t=n.modalCtrl.create(z.a,{session:n.sessionInfo.session,score:n.score,tasks:n.taskList,narrative:this.app.activeNarrative},{showBackdrop:!0,enableBackdropDismiss:!1});null!=n.sessionInfo&&n.chatAndSessionService.exitActiveSession(),n.sessionTimeSubscription&&n.sessionTimeSubscription.unsubscribe(),t.present()}}]},{showBackdrop:!0,enableBackdropDismiss:!0,cssClass:this.app.activeNarrative})).present(),[2]})})},TasksMap.prototype.gototask=function(n,e){return W(this,void 0,void 0,function(){var t,l=this;return Z(this,function(s){return this.taskBlocked?(console.log("session in preparation."),[2]):(console.debug("taskId",n),t=this,this.navCtrl.push("TaskDetail",{taskId:n,headerTitle:e,routeId:this.routeId,goToNextTaskById:function(n,e){t.goToNextTaskById(n,e)}},{},function(){l.deepLinker.navChange("forward")}),[2])})})},TasksMap.prototype.navigateToChat=function(){return W(this,void 0,void 0,function(){var n;return Z(this,function(e){return console.debug("showChat"),null!=this.sessionInfo&&(n=JSON.stringify({}),this.chatAndSessionService.addUserEvent("event_trail_chat_open",n,"0")),this.navCtrl.push(F.a,{val:"chatseite",headerTitle:this.sessionInfo.session.name}),[2]})})},TasksMap.prototype.sessionTime=function(){if(null==this.sessionInfo)return this.startInterval=!1,void(this.sessionTimeSubscription&&this.sessionTimeSubscription.unsubscribe());var n=this.sessionInfo.session,e=V().unix(),t=V(n.starts_at).unix(),l=V(n.ends_at).unix(),s=t-e,i=Math.floor(s/60),o=Math.floor((l-e)/60);if(e>t-3600&&e<l)this.startInterval=!0,e<t&&e<l&&(this.showCountdownOrTimer=!0,this.countdownBeforeSession=!0,this.countdownOrTimerForSession=i,this.taskBlocked=!0),e>t&&e<l&&(this.showCountdownOrTimer=!0,this.countdownOrTimerForSession=o,this.countdownBeforeSession=!1,this.taskBlocked=!1);else{this.startInterval=!1,this.sessionTimeSubscription&&this.sessionTimeSubscription.unsubscribe(),this.showSessionEnds=!0,this.taskBlocked=!1;this.modalCtrl.create(z.a,{session:this.sessionInfo.session,score:this.score,tasks:this.taskList,narrative:this.app.activeNarrative},{cssClass:this.app.activeNarrative}).present()}},TasksMap.prototype.showIntroModal=function(){var n=this;return new Promise(function(e){var t="a_alert_welcome",l="a_alert_welcome_msg";n.route.isNarrativeEnabled()&&(t=n.route.getNarrativeString(t),l=n.route.getNarrativeString(l));var s=n.modalCtrl.create(B.a,{title:t,message:l,modalType:U.a.hint,narrative:n.app.activeNarrative,routeTitle:n.route.title,buttons:[{title:"a_alert_close",callback:function(){s.dismiss(),e()}}]},{cssClass:n.app.activeNarrative});s.present()})},TasksMap.prototype.updateIcons=function(){switch(this.app.activeNarrative){case"pirates":this.userPositionIcon=_.icon({iconUrl:"./assets/icons/pirates/mapposition.png",iconSize:[100,100],iconAnchor:[50,50],className:"marker userPosition"}),this.userPositionArrow=_.icon({iconUrl:"./assets/icons/userDirection.png",iconSize:[36,36],iconAnchor:[18,18],className:"marker userArrow"}),this.taskOpenIcon=_.icon({iconUrl:"assets/icons/pirates/marker-task-open.png",iconSize:[50,50],iconAnchor:[25,25],className:"marker"}),this.taskSkippedIcon=_.icon({iconUrl:"assets/icons/pirates/marker-task-skipped.png",iconSize:[50,50],iconAnchor:[25,25],className:"marker"}),this.taskSavedIcon=_.icon({iconUrl:"assets/icons/marker-task-saved.png",iconSize:[35,48],iconAnchor:[17.5,43],className:"marker"}),this.taskDoneIcon=_.icon({iconUrl:"assets/icons/pirates/marker-task-good.png",iconSize:[50,50],iconAnchor:[25,25],className:"marker"}),this.taskDonePerfectIcon=_.icon({iconUrl:"assets/icons/pirates/marker-task-perfect.png",iconSize:[50,50],iconAnchor:[25,25],className:"marker"}),this.taskFailedIcon=_.icon({iconUrl:"assets/icons/pirates/marker-task-failed.png",iconSize:[50,50],iconAnchor:[25,25],className:"marker"}),this.taskOpenIcon.clusterColor="#AA2000",this.taskSkippedIcon.clusterColor="#b2b2b2",this.taskSavedIcon.clusterColor="#6E38B9",this.taskDoneIcon.clusterColor="#FFC033",this.taskDonePerfectIcon.clusterColor="#33CC00",this.taskFailedIcon.clusterColor="#333333";break;default:this.userPositionIcon=_.icon({iconUrl:"./assets/icons/mapposition.png",iconSize:[100,100],iconAnchor:[50,50],className:"marker userPosition"}),this.userPositionArrow=_.icon({iconUrl:"./assets/icons/userDirection.png",iconSize:[36,36],iconAnchor:[18,18],className:"marker userArrow"}),this.taskOpenIcon=_.icon({iconUrl:"assets/icons/marker-task-open.png",iconSize:[35,48],iconAnchor:[17.5,43],className:"marker"}),this.taskSkippedIcon=_.icon({iconUrl:"assets/icons/marker-task-skipped.png",iconSize:[35,48],iconAnchor:[17.5,43],className:"marker"}),this.taskSavedIcon=_.icon({iconUrl:"assets/icons/marker-task-saved.png",iconSize:[35,48],iconAnchor:[17.5,43],className:"marker"}),this.taskDoneIcon=_.icon({iconUrl:"assets/icons/marker-task-good.png",iconSize:[35,48],iconAnchor:[17.5,43],className:"marker"}),this.taskDonePerfectIcon=_.icon({iconUrl:"assets/icons/marker-task-perfect.png",iconSize:[35,48],iconAnchor:[17.5,43],className:"marker"}),this.taskFailedIcon=_.icon({iconUrl:"assets/icons/marker-task-failed.png",iconSize:[35,48],iconAnchor:[17.5,43],className:"marker"}),this.taskOpenIcon.clusterColor="#036D99",this.taskSkippedIcon.clusterColor="#B2B2B2",this.taskSavedIcon.clusterColor="#6E38B9",this.taskDoneIcon.clusterColor="#F3B100",this.taskDonePerfectIcon.clusterColor="#4CAF50",this.taskFailedIcon.clusterColor="#E62B25"}},TasksMap.UPDATE_SESSION_TIME_INTERVAL_IN_SECS=15,TasksMap;var n}(),q=t(188),H=function(){return function(){}}(),$=t(619),Y=t(620),Q=t(621),X=t(622),nn=t(623),en=t(624),tn=t(625),ln=t(626),sn=t(627),on=t(51),an=t(4),rn=t(39),un=t(23),cn=t(99),dn=t(97),hn=t(11),pn=t(98),fn=t(953),mn=t(138),vn=t(61),gn=t(26),kn=t(19),bn=t(279),Tn=t(141),Sn=t(24),wn=t(13),In=t(6),yn=t(277),_n=t(36),Rn=t(8),Cn=t(14),Mn=t(12),Ln=t(56),xn=t(952),An=t(278),En=t(199),Nn=t(113),On=t(195),Un=I["ɵcrt"]({encapsulation:2,styles:[],data:{}}),Dn=I["ɵccf"]("page-tasks-map",J,function(n){return I["ɵvid"](0,[(n()(),I["ɵeld"](0,null,null,1,"page-tasks-map",[],null,null,null,w,Un)),I["ɵdid"](245760,null,0,J,[Sn.a,wn.a,Nn.a,M.a,x.a,A.a,E.a,N.a,On.a,O.a,P.a,G.a,U.b,R.b],null,null)],function(n,e){n(e,1,0)},null)},{},{},[]),Bn=t(25),Pn=t(77),zn=t(142),Fn=t(143),Gn=t(145),Vn=t(144),jn=t(189),Kn=t(276),Wn=t(94);t.d(e,"TasksMapPageModuleNgFactory",function(){return Zn});var Zn=I["ɵcmf"](H,[],function(n){return I["ɵmod"]([I["ɵmpd"](512,I.ComponentFactoryResolver,I["ɵCodegenComponentFactoryResolver"],[[8,[$.a,Y.a,Q.a,X.a,nn.a,en.a,tn.a,ln.a,sn.a,Dn]],[3,I.ComponentFactoryResolver],I.NgModuleRef]),I["ɵmpd"](4608,hn.m,hn.l,[I.LOCALE_ID]),I["ɵmpd"](4608,Bn.k,Bn.k,[]),I["ɵmpd"](4608,Bn.c,Bn.c,[]),I["ɵmpd"](4608,Pn.a,Pn.a,[]),I["ɵmpd"](4608,zn.b,zn.a,[]),I["ɵmpd"](4608,Fn.a,Fn.b,[]),I["ɵmpd"](4608,Gn.b,Gn.a,[]),I["ɵmpd"](4608,Vn.b,Vn.a,[]),I["ɵmpd"](4608,un.a,un.a,[jn.a,zn.b,Fn.a,Gn.b,Vn.b,un.b,un.c]),I["ɵmpd"](512,hn.b,hn.b,[]),I["ɵmpd"](512,Bn.j,Bn.j,[]),I["ɵmpd"](512,Bn.d,Bn.d,[]),I["ɵmpd"](512,Bn.i,Bn.i,[]),I["ɵmpd"](512,Kn.a,Kn.a,[]),I["ɵmpd"](512,Kn.b,Kn.b,[]),I["ɵmpd"](512,y.a,y.a,[]),I["ɵmpd"](512,q.a,q.a,[]),I["ɵmpd"](512,H,H,[]),I["ɵmpd"](256,Wn.a,J,[]),I["ɵmpd"](256,un.c,void 0,[]),I["ɵmpd"](256,un.b,void 0,[])])})},952:function(n,e,t){"use strict";function l(n){return s["ɵvid"](0,[s["ɵncd"](null,0)],null,null)}t.d(e,"a",function(){return i}),e.b=l;var s=t(1),i=s["ɵcrt"]({encapsulation:2,styles:[],data:{}})},953:function(n,e,t){"use strict";function l(n){return s["ɵvid"](2,[(n()(),s["ɵeld"](0,null,null,1,"ion-icon",[["class","fab-close-icon"],["name","close"],["role","img"]],[[2,"hide",null]],null,null,null,null)),s["ɵdid"](147456,null,0,i.a,[o.a,s.ElementRef,s.Renderer],{name:[0,"name"]},null),(n()(),s["ɵeld"](0,null,null,1,"span",[["class","button-inner"]],null,null,null,null,null)),s["ɵncd"](null,0),(n()(),s["ɵeld"](0,null,null,0,"div",[["class","button-effect"]],null,null,null,null,null))],function(n,e){n(e,1,0,"close")},function(n,e){n(e,0,0,s["ɵnov"](e,1)._hidden)})}t.d(e,"a",function(){return a}),e.b=l;var s=t(1),i=t(61),o=t(4),a=s["ɵcrt"]({encapsulation:2,styles:[],data:{}})},955:function(n,e,t){"use strict";var l,s,i;!function(o){s=[t(956),t(957)],void 0===(i="function"==typeof(l=o)?l.apply(e,s):l)||(n.exports=i)}(function(n,e){})},956:function(n,e,t){"use strict";var l,s,i;!function(o,a){s=[t(139)],void 0===(i="function"==typeof(l=o)?l.apply(e,s):l)||(n.exports=i)}(function(n){n.TileLayer.Offline=n.TileLayer.extend({initialize:function(e,t,l){this._url=e,this._tilesDb=t,(l=n.Util.setOptions(this,l)).detectRetina&&n.Browser.retina&&l.maxZoom>0&&(l.tileSize=Math.floor(l.tileSize/2),l.zoomReverse?(l.zoomOffset--,l.minZoom++):(l.zoomOffset++,l.maxZoom--),l.minZoom=Math.max(0,l.minZoom)),"string"==typeof l.subdomains&&(l.subdomains=l.subdomains.split("")),n.Browser.android||this.on("tileunload",this._onTileRemove)},createTile:function(e,t){var l=document.createElement("img");return n.DomEvent.on(l,"load",n.bind(this._tileOnLoad,this,t,l)),n.DomEvent.on(l,"error",n.bind(this._tileOnError,this,t,l)),this.options.crossOrigin&&(l.crossOrigin=""),l.alt="",l.setAttribute("role","presentation"),this.getTileUrl(e).then(function(n){l.src=n}).catch(function(n){throw n}),l},getTileUrl:function(e){var t=n.TileLayer.prototype.getTileUrl.call(this,e),l=this._getStorageKey(t);return this._tilesDb.getItem(l).then(function(n){return n&&"object"==typeof n?URL.createObjectURL(n):t}).catch(function(n){throw n})},getTileUrls:function(e,t){var l=[],s=this._url;this.setUrl(this._url.replace("{z}",t),!0);for(var i=n.bounds(e.min.divideBy(this.getTileSize().x).floor(),e.max.divideBy(this.getTileSize().x).floor()),o=i.min.x;o<=i.max.x;o++)for(var a=i.min.y;a<=i.max.y;a++){var r=new n.Point(o,a),u=n.TileLayer.prototype.getTileUrl.call(this,r);l.push({key:this._getStorageKey(u),url:u})}return this.setUrl(s,!0),l},_getStorageKey:function(n){var e=null;if(n.indexOf("{s}")){var t=new RegExp("["+this.options.subdomains.join("|")+"].");e=n.replace(t,this.options.subdomains[0]+".")}return e||n}}),n.tileLayer.offline=function(e,t,l){return new n.TileLayer.Offline(e,t,l)}},window)},957:function(n,e,t){"use strict";var l,s,i;!function(o,a){s=[t(139)],void 0===(i="function"==typeof(l=o)?l.apply(e,s):l)||(n.exports=i)}(function(n){n.Control.Offline=n.Control.extend({options:{position:"topleft",saveButtonHtml:"S",saveButtonTitle:"Save tiles",removeButtonHtml:"R",removeButtonTitle:"Remove tiles",minZoom:0,maxZoom:19,confirmSavingCallback:null,confirmRemovalCallback:null},initialize:function(e,t,l){this._baseLayer=e,this._tilesDb=t,n.Util.setOptions(this,l)},onAdd:function(e){var t=n.DomUtil.create("div","leaflet-control-offline leaflet-bar");return this._createButton(this.options.saveButtonHtml,this.options.saveButtonTitle,"save-tiles-button",t,this._saveTiles),this._createButton(this.options.removeButtonHtml,this.options.removeButtonTitle,"remove-tiles-button",t,this._removeTiles),t},_createButton:function(e,t,l,s,i){var o=n.DomUtil.create("a",l,s);return o.innerHTML=e,o.href="#",o.title=t,n.DomEvent.disableClickPropagation(o),n.DomEvent.on(o,"click",n.DomEvent.stop),n.DomEvent.on(o,"click",i,this),n.DomEvent.on(o,"click",this._refocusOnMap,this),o},_saveTiles:function(){var e=this,t=null,l=[],s=[],i=this._map.getZoom(),o=this._map.getBounds();if(i<this.options.minZoom)e._baseLayer.fire("offline:below-min-zoom-error");else{for(var a=i;a<=this.options.maxZoom;a++)l.push(a);for(var r=0;r<l.length;r++)t=n.bounds(this._map.project(o.getNorthWest(),l[r]),this._map.project(o.getSouthEast(),l[r])),s=s.concat(this._baseLayer.getTileUrls(t,l[r]));var u=function(){e._baseLayer.fire("offline:save-start",{nTilesToSave:s.length}),e._tilesDb.saveTiles(s).then(function(){e._baseLayer.fire("offline:save-end")}).catch(function(n){e._baseLayer.fire("offline:save-error",{error:n})})};this.options.confirmSavingCallback?this.options.confirmSavingCallback(s.length,u):u()}},_removeTiles:function(){var n=this,e=function(){n._baseLayer.fire("offline:remove-start"),n._tilesDb.clear().then(function(){n._baseLayer.fire("offline:remove-end")}).catch(function(e){n._baseLayer.fire("offline:remove-error",{error:e})})};n.options.confirmRemovalCallback?n.options.confirmRemovalCallback(e):e()}}),n.control.offline=function(e,t,l){return new n.Control.Offline(e,t,l)}},window)},958:function(n,e){!function(){var n=L.Marker.prototype._initIcon,e=L.Marker.prototype._setPos,t="msTransform"===L.DomUtil.TRANSFORM;L.Marker.addInitHook(function(){var n=this.options.icon&&this.options.icon.options&&this.options.icon.options.iconAnchor;n&&(n=n[0]+"px "+n[1]+"px"),this.options.rotationOrigin=this.options.rotationOrigin||n||"center bottom",this.options.rotationAngle=this.options.rotationAngle||0,this.on("drag",function(n){n.target._applyRotation()})}),L.Marker.include({_initIcon:function(){n.call(this)},_setPos:function(n){e.call(this,n),this._applyRotation()},_applyRotation:function(){this.options.rotationAngle&&(this._icon.style[L.DomUtil.TRANSFORM+"Origin"]=this.options.rotationOrigin,t?this._icon.style[L.DomUtil.TRANSFORM]="rotate("+this.options.rotationAngle+"deg)":this._icon.style[L.DomUtil.TRANSFORM]+=" rotateZ("+this.options.rotationAngle+"deg)")},setRotationAngle:function(n){return this.options.rotationAngle=n,this.update(),this},setRotationOrigin:function(n){return this.options.rotationOrigin=n,this.update(),this}})}()},960:function(n,e){!function(){var n=Math.PI,e=2*n,t=n/180,l=document.createElement("div");document.head.appendChild(l);var s=self.ConicGradient=function(n){s.all.push(this),n=n||{},this.canvas=document.createElement("canvas"),this.context=this.canvas.getContext("2d"),this.repeating=!!n.repeating,this.size=n.size||Math.max(innerWidth,innerHeight),this.canvas.width=this.canvas.height=this.size;this.stops=((o=n.stops)||"").split(/\s*,(?![^(]*\))\s*/),this.from=0;for(var e=0;e<this.stops.length;e++)if(this.stops[e]){var t=this.stops[e]=new s.ColorStop(this,this.stops[e]);t.next&&(this.stops.splice(e+1,0,t.next),e++)}else this.stops.splice(e,1),e--;if(0==this.stops[0].color.indexOf("from")&&(this.from=360*this.stops[0].pos,this.stops.shift()),void 0===this.stops[0].pos)this.stops[0].pos=0;else if(this.stops[0].pos>0){var l=this.stops[0].clone();l.pos=0,this.stops.unshift(l)}if(void 0===this.stops[this.stops.length-1].pos)this.stops[this.stops.length-1].pos=1;else if(!this.repeating&&this.stops[this.stops.length-1].pos<1){var i=this.stops[this.stops.length-1].clone();i.pos=1,this.stops.push(i)}if(this.stops.forEach(function(n,e){if(void 0===n.pos){for(var t=e+1;this[t];t++)if(void 0!==this[t].pos){n.pos=this[e-1].pos+(this[t].pos-this[e-1].pos)/(t-e+1);break}}else e>0&&(n.pos=Math.max(n.pos,this[e-1].pos))},this.stops),this.repeating){var o,a=(o=this.stops.slice())[o.length-1].pos-o[0].pos;for(e=0;this.stops[this.stops.length-1].pos<1&&e<1e4;e++)for(var r=0;r<o.length;r++){var u=o[r].clone();u.pos+=(e+1)*a,this.stops.push(u)}}this.paint()};s.all=[],s.prototype={toString:function(){return"url('"+this.dataURL+"')"},get dataURL(){return"data:image/svg+xml,"+encodeURIComponent(this.svg)},get blobURL(){return URL.createObjectURL(new Blob([this.svg],{type:"image/svg+xml"}))},get svg(){return'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><image width="100" height="100%" xlink:href="'+this.png+'" /></svg></svg>'},get png(){return this.canvas.toDataURL()},get r(){return Math.sqrt(2)*this.size/2},paint:function(){var n,e,l,s=this.context,i=this.r,o=this.size/2,a=0,r=this.stops[a];s.translate(this.size/2,this.size/2),s.rotate(-90*t),s.rotate(this.from*t),s.translate(-this.size/2,-this.size/2);for(var u=0;u<360;){if(u/360+1e-5>=r.pos){do{n=r,r=this.stops[++a]}while(r&&r!=n&&r.pos===n.pos);if(!r)break;var c=n.color+""==r.color+""&&n!=r;e=n.color.map(function(n,e){return r.color[e]-n})}l=(u/360-n.pos)/(r.pos-n.pos);var d=c?r.color:e.map(function(e,t){var s=e*l+n.color[t];return t<3?255&s:s});if(s.fillStyle="rgba("+d.join(",")+")",s.beginPath(),s.moveTo(o,o),c)var h=360*(r.pos-n.pos);else h=.5;var p=u*t,f=(p=Math.min(360*t,p))+h*t;f=Math.min(360*t,f+.02),s.arc(o,o,i,p,f),s.closePath(),s.fill(),u+=h}}},s.ColorStop=function(n,t){if(this.gradient=n,t){var l=t.match(/^(.+?)(?:\s+([\d.]+)(%|deg|turn|grad|rad)?)?(?:\s+([\d.]+)(%|deg|turn|grad|rad)?)?\s*$/);if(this.color=s.ColorStop.colorToRGBA(l[1]),l[2]){var i=l[3];"%"==i||"0"===l[2]&&!i?this.pos=l[2]/100:"turn"==i?this.pos=+l[2]:"deg"==i?this.pos=l[2]/360:"grad"==i?this.pos=l[2]/400:"rad"==i&&(this.pos=l[2]/e)}l[4]&&(this.next=new s.ColorStop(n,l[1]+" "+l[4]+l[5]))}},s.ColorStop.prototype={clone:function(){var n=new s.ColorStop(this.gradient);return n.color=this.color,n.pos=this.pos,n},toString:function(){return"rgba("+this.color.join(", ")+") "+100*this.pos+"%"}},s.ColorStop.colorToRGBA=function(n){if(!Array.isArray(n)&&-1==n.indexOf("from")){l.style.color=n;var e=getComputedStyle(l).color.match(/rgba?\(([\d.]+), ([\d.]+), ([\d.]+)(?:, ([\d.]+))?\)/);return e&&(e.shift(),(e=e.map(function(n){return+n}))[3]=isNaN(e[3])?1:e[3]),e||[0,0,0,0]}return n}}(),self.StyleFix&&function(){var n=document.createElement("p");n.style.backgroundImage="conic-gradient(white, black)",n.style.backgroundImage=PrefixFree.prefix+"conic-gradient(white, black)",n.style.backgroundImage||StyleFix.register(function(n,e){return n.indexOf("conic-gradient")>-1&&(n=n.replace(/(?:repeating-)?conic-gradient\(\s*((?:\([^()]+\)|[^;()}])+?)\)/g,function(n,e){return new ConicGradient({stops:e,repeating:n.indexOf("repeating-")>-1})})),n})}()}});
+webpackJsonp([1],{
+
+/***/ 1149:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TasksMapPageModule", function() { return TasksMapPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var TasksMapPageModule = /** @class */ (function () {
+    function TasksMapPageModule() {
+    }
+    TasksMapPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_3__TasksMap__["a" /* TasksMap */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__TasksMap__["a" /* TasksMap */]),
+                __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */].forChild(),
+                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
+            ],
+        })
+    ], TasksMapPageModule);
+    return TasksMapPageModule;
+}());
+
+//# sourceMappingURL=TasksMap.module.js.map
+
+/***/ }),
+
+/***/ 1155:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1156), __webpack_require__(1157)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports === 'object' && module.exports) {
+        module.exports = factory(require('./TileLayer.Offline'), require('./Control.Offline'));
+    }
+}(function (TileLayerOffline, ControlOffline) {
+}));
+
+
+/***/ }),
+
+/***/ 1156:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (factory, window) {
+
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(112)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports === 'object' && module.exports) {
+        module.exports = factory(require('leaflet'));
+    } else if (typeof window !== 'undefined') {
+        if (typeof window.L === 'undefined') {
+            throw 'Leaflet must be loaded first!';
+        }
+        factory(window.L);
+    }
+}(function (L) {
+
+    /**
+     * The Offline Layer should work in the same way as the Tile Layer does
+     * when there are no offline tile images saved.
+     */
+    L.TileLayer.Offline = L.TileLayer.extend({
+
+        /**
+         * Constructor of the layer.
+         * 
+         * @param {String} url URL of the tile map provider.
+         * @param {Object} tilesDb An object that implements a certain interface
+         * so it's able to serve as the database layer to save and remove the tiles.
+         * @param {Object} options This is the same options parameter as the Leaflet
+         * Tile Layer, there are no additional parameters. Check their documentation
+         * for up-to-date information.
+         */
+        initialize: function (url, tilesDb, options) {
+            this._url = url;
+            this._tilesDb = tilesDb;
+
+            options = L.Util.setOptions(this, options);
+
+            if (options.detectRetina && L.Browser.retina && options.maxZoom > 0) {
+                options.tileSize = Math.floor(options.tileSize / 2);
+
+                if (!options.zoomReverse) {
+                    options.zoomOffset++;
+                    options.maxZoom--;
+                } else {
+                    options.zoomOffset--;
+                    options.minZoom++;
+                }
+
+                options.minZoom = Math.max(0, options.minZoom);
+            }
+
+            if (typeof options.subdomains === 'string') {
+                options.subdomains = options.subdomains.split('');
+            }
+
+            if (!L.Browser.android) {
+                this.on('tileunload', this._onTileRemove);
+            }
+        },
+
+        /**
+         * Overrides the method from the Tile Layer. Loads a tile given its
+         * coordinates.
+         * 
+         * @param {Object} coords Coordinates of the tile.
+         * @param {Function} done A callback to be called when the tile has been
+         * loaded.
+         * @returns {HTMLElement} An <img> HTML element with the appropriate
+         * image URL.
+         */
+        createTile: function (coords, done) {
+            var tile = document.createElement('img');
+
+            L.DomEvent.on(tile, 'load', L.bind(this._tileOnLoad, this, done, tile));
+            L.DomEvent.on(tile, 'error', L.bind(this._tileOnError, this, done, tile));
+
+            if (this.options.crossOrigin) {
+                tile.crossOrigin = '';
+            }
+
+            tile.alt = '';
+
+            tile.setAttribute('role', 'presentation');
+
+            this.getTileUrl(coords).then(function (url) {
+                tile.src = url;
+            }).catch(function (err) {
+                throw err;
+            });
+
+            return tile;
+        },
+
+        /**
+         * Overrides the method from the Tile Layer. Returns the URL for a tile
+         * given its coordinates. It tries to get the tile image offline first,
+         * then if it fails, it falls back to the original Tile Layer
+         * implementation.
+         * 
+         * @param {Object} coords Coordinates of the tile.
+         * @returns {String} The URL for a tile image.
+         */
+        getTileUrl: function (coords) {
+            var url = L.TileLayer.prototype.getTileUrl.call(this, coords);
+            var dbStorageKey = this._getStorageKey(url);
+
+            var resultPromise = this._tilesDb.getItem(dbStorageKey).then(function (data) {
+                if (data && typeof data === 'object') {
+                    return URL.createObjectURL(data);
+                }
+                return url;
+            }).catch(function (err) {
+                throw err;
+            });
+
+            return resultPromise;
+        },
+
+        /**
+         * Gets the URLs for all the tiles that are inside the given bounds.
+         * Every element of the result array is in this format:
+         * {key: <String>, url: <String>}. The key is the key used on the
+         * database layer to find the tile image offline. The URL is the
+         * location from where the tile image will be downloaded.
+         * 
+         * @param {Object} bounds The bounding box of the tiles.
+         * @param {Number} zoom The zoom level of the bounding box.
+         * @returns {Array} An array containing all the URLs inside the given
+         * bounds.
+         */
+        getTileUrls: function (bounds, zoom) {
+            var tiles = [];
+            var originalurl = this._url;
+
+            this.setUrl(this._url.replace('{z}', zoom), true);
+
+            var tileBounds = L.bounds(
+                bounds.min.divideBy(this.getTileSize().x).floor(),
+                bounds.max.divideBy(this.getTileSize().x).floor()
+            );
+
+            for (var i = tileBounds.min.x; i <= tileBounds.max.x; i++) {
+                for (var j = tileBounds.min.y; j <= tileBounds.max.y; j++) {
+                    var tilePoint = new L.Point(i, j);
+                    var url = L.TileLayer.prototype.getTileUrl.call(this, tilePoint);
+
+                    tiles.push({
+                        'key': this._getStorageKey(url),
+                        'url': url,
+                    });
+                }
+            }
+
+            this.setUrl(originalurl, true);
+
+            return tiles;
+        },
+
+        /**
+         * Determines the key that will be used on the database layer given
+         * a URL.
+         * 
+         * @param {String} url The URL of a tile image.
+         * @returns {String} The key that will be used on the database layer
+         * to find a tile image.
+         */
+        _getStorageKey: function (url) {
+            var key = null;
+
+            if (url.indexOf('{s}')) {
+                var regexstring = new RegExp('[' + this.options.subdomains.join('|') + ']\.');
+                key = url.replace(regexstring, this.options.subdomains['0'] + '.');
+            }
+
+            return key || url;
+        },
+    });
+
+    /**
+     * Factory function as suggested by the Leaflet team.
+     * 
+     * @param {String} url URL of the tile map provider.
+     * @param {Object} tilesDb An object that implements a certain interface
+     * so it's able to serve as the database layer to save and remove the tiles.
+     * @param {Object} options This is the same options parameter as the Leaflet
+     * Tile Layer, there are no additional parameters. Check their documentation
+     * for up-to-date information.
+     */
+    L.tileLayer.offline = function (url, tilesDb, options) {
+        return new L.TileLayer.Offline(url, tilesDb, options);
+    };
+}, window));
+
+
+/***/ }),
+
+/***/ 1157:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (factory, window) {
+
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(112)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports === 'object' && module.exports) {
+        module.exports = factory(require('leaflet'));
+    } else if (typeof window !== 'undefined') {
+        if (typeof window.L === 'undefined') {
+            throw 'Leaflet must be loaded first!';
+        }
+        factory(window.L);
+    }
+}(function (L) {
+
+    /**
+     * The Offline Control to be used together with the Offline Layer.
+     */
+    L.Control.Offline = L.Control.extend({
+        options: {
+            position: 'topleft',
+            saveButtonHtml: 'S',
+            saveButtonTitle: 'Save tiles',
+            removeButtonHtml: 'R',
+            removeButtonTitle: 'Remove tiles',
+            minZoom: 0,
+            maxZoom: 19,
+            confirmSavingCallback: null,
+            confirmRemovalCallback: null
+        },
+
+        /**
+         * Constructor of the control.
+         * 
+         * @param {Object} baseLayer The Offline Layer to work together with the
+         * control.
+         * @param {Object} tilesDb An object that implements a certain interface
+         * so it's able to serve as the database layer to save and remove the tiles.
+         * @param {Object} options This is the same parameter as the Leaflet
+         * Control, but it has some additions. Check the README for more.
+         */
+        initialize: function (baseLayer, tilesDb, options) {
+            this._baseLayer = baseLayer;
+            this._tilesDb = tilesDb;
+
+            L.Util.setOptions(this, options);
+        },
+
+        /**
+         * Creates the container DOM element for the control and add listeners
+         * on relevant map events.
+         * 
+         * @param {Object} map The Leaflet map.
+         * @returns {HTMLElement} The DOM element for the control.
+         */
+        onAdd: function (map) {
+            var container = L.DomUtil.create('div', 'leaflet-control-offline leaflet-bar');
+
+            this._createButton(this.options.saveButtonHtml, this.options.saveButtonTitle, 'save-tiles-button', container, this._saveTiles);
+            this._createButton(this.options.removeButtonHtml, this.options.removeButtonTitle, 'remove-tiles-button', container, this._removeTiles);
+
+            return container;
+        },
+
+        /**
+         * Auxiliary method that creates a button DOM element.
+         * 
+         * @param {String} html The HTML that will be used inside the button
+         * DOM element.
+         * @param {String} title The title of the button DOM element.
+         * @param {String} className The class name for the button DOM element.
+         * @param {HTMLElement} container The container DOM element for the
+         * buttons.
+         * @param {Function} fn A function that will be executed when the button
+         * is clicked.
+         * @returns {HTMLElement} A button DOM element.
+         */
+        _createButton: function (html, title, className, container, fn) {
+            var link = L.DomUtil.create('a', className, container);
+            link.innerHTML = html;
+            link.href = '#';
+            link.title = title;
+
+            L.DomEvent.disableClickPropagation(link);
+            L.DomEvent.on(link, 'click', L.DomEvent.stop);
+            L.DomEvent.on(link, 'click', fn, this);
+            L.DomEvent.on(link, 'click', this._refocusOnMap, this);
+
+            return link;
+        },
+
+        /**
+         * The function executed when the button to save tiles is clicked.
+         */
+        _saveTiles: function () {
+            var self = this;
+
+            var bounds = null;
+            var zoomLevels = [];
+            var tileUrls = [];
+            var currentZoom = this._map.getZoom();
+            var latlngBounds = this._map.getBounds();
+
+            if (currentZoom < this.options.minZoom) {
+                self._baseLayer.fire('offline:below-min-zoom-error');
+
+                return;
+            }
+
+            for (var zoom = currentZoom; zoom <= this.options.maxZoom; zoom++) {
+                zoomLevels.push(zoom);
+            }
+
+            for (var i = 0; i < zoomLevels.length; i++) {
+                bounds = L.bounds(this._map.project(latlngBounds.getNorthWest(), zoomLevels[i]),
+                    this._map.project(latlngBounds.getSouthEast(), zoomLevels[i]));
+                tileUrls = tileUrls.concat(this._baseLayer.getTileUrls(bounds, zoomLevels[i]));
+            }
+
+            var continueSaveTiles = function () {
+                self._baseLayer.fire('offline:save-start', {
+                    nTilesToSave: tileUrls.length
+                });
+
+                self._tilesDb.saveTiles(tileUrls).then(function () {
+                    self._baseLayer.fire('offline:save-end');
+                }).catch(function (err) {
+                    self._baseLayer.fire('offline:save-error', {
+                        error: err
+                    });
+                });
+            };
+
+            if (this.options.confirmSavingCallback) {
+                this.options.confirmSavingCallback(tileUrls.length, continueSaveTiles);
+            } else {
+                continueSaveTiles();
+            }
+        },
+
+        /**
+         * The function executed when the button to remove tiles is clicked.
+         */
+        _removeTiles: function () {
+            var self = this;
+
+            var continueRemoveTiles = function () {
+                self._baseLayer.fire('offline:remove-start');
+
+                self._tilesDb.clear().then(function () {
+                    self._baseLayer.fire('offline:remove-end');
+                }).catch(function (err) {
+                    self._baseLayer.fire('offline:remove-error', {
+                        error: err
+                    });
+                });
+            };
+
+            if (self.options.confirmRemovalCallback) {
+                self.options.confirmRemovalCallback(continueRemoveTiles);
+            } else {
+                continueRemoveTiles();
+            }
+        }
+    });
+
+    /**
+     * Factory function as suggested by the Leaflet team.
+     * 
+     * @param {Object} baseLayer The Offline Layer to work together with the
+     * control.
+     * @param {Object} tilesDb An object that implements a certain interface
+     * so it's able to serve as the database layer to save and remove the tiles.
+     * @param {Object} options This is the same parameter as the Leaflet
+     * Control, but it has some additions. Check the README for more.
+     */
+    L.control.offline = function (baseLayer, tilesDb, options) {
+        return new L.Control.Offline(baseLayer, tilesDb, options);
+    };
+}, window));
+
+
+/***/ }),
+
+/***/ 1158:
+/***/ (function(module, exports) {
+
+(function() {
+    // save these original methods before they are overwritten
+    var proto_initIcon = L.Marker.prototype._initIcon;
+    var proto_setPos = L.Marker.prototype._setPos;
+
+    var oldIE = (L.DomUtil.TRANSFORM === 'msTransform');
+
+    L.Marker.addInitHook(function () {
+        var iconOptions = this.options.icon && this.options.icon.options;
+        var iconAnchor = iconOptions && this.options.icon.options.iconAnchor;
+        if (iconAnchor) {
+            iconAnchor = (iconAnchor[0] + 'px ' + iconAnchor[1] + 'px');
+        }
+        this.options.rotationOrigin = this.options.rotationOrigin || iconAnchor || 'center bottom' ;
+        this.options.rotationAngle = this.options.rotationAngle || 0;
+
+        // Ensure marker keeps rotated during dragging
+        this.on('drag', function(e) { e.target._applyRotation(); });
+    });
+
+    L.Marker.include({
+        _initIcon: function() {
+            proto_initIcon.call(this);
+        },
+
+        _setPos: function (pos) {
+            proto_setPos.call(this, pos);
+            this._applyRotation();
+        },
+
+        _applyRotation: function () {
+            if(this.options.rotationAngle) {
+                this._icon.style[L.DomUtil.TRANSFORM+'Origin'] = this.options.rotationOrigin;
+
+                if(oldIE) {
+                    // for IE 9, use the 2D rotation
+                    this._icon.style[L.DomUtil.TRANSFORM] = 'rotate(' + this.options.rotationAngle + 'deg)';
+                } else {
+                    // for modern browsers, prefer the 3D accelerated version
+                    this._icon.style[L.DomUtil.TRANSFORM] += ' rotateZ(' + this.options.rotationAngle + 'deg)';
+                }
+            }
+        },
+
+        setRotationAngle: function(angle) {
+            this.options.rotationAngle = angle;
+            this.update();
+            return this;
+        },
+
+        setRotationOrigin: function(origin) {
+            this.options.rotationOrigin = origin;
+            this.update();
+            return this;
+        }
+    });
+})();
+
+
+/***/ }),
+
+/***/ 1160:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TasksMap; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline__ = __webpack_require__(1155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_offline__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Score__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_angular_navigation_deep_linker__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_gps_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__ = __webpack_require__(1158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_conic_gradient__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_images_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__chat_chat__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_chat_and_session_service__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(648);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var TasksMap = /** @class */ (function () {
+    function TasksMap(navCtrl, navParams, events, ormService, deepLinker, gpsService, modalsService, imagesService, storage, spinner, modalCtrl, chatAndSessionService, app, helper) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.events = events;
+        this.ormService = ormService;
+        this.deepLinker = deepLinker;
+        this.gpsService = gpsService;
+        this.modalsService = modalsService;
+        this.imagesService = imagesService;
+        this.storage = storage;
+        this.spinner = spinner;
+        this.modalCtrl = modalCtrl;
+        this.chatAndSessionService = chatAndSessionService;
+        this.app = app;
+        this.helper = helper;
+        this.state = {
+            selectedTask: null,
+            isShowingAllTasks: false,
+            visibleTasks: {},
+            skippedTaskIds: [],
+            selectedStartTask: false,
+            showIntroModal: false,
+            showGuidedTrailModal: false
+        };
+        this.stateKey = "savedMapStateByRoute";
+        this.taskToSkip = null;
+        this.gamificationIsDisabled = false;
+        this.isUserInsideMap = true;
+        this.user = null;
+        this.countdownBeforeSession = false;
+        this.startInterval = false;
+        this.showCountdownOrTimer = false;
+        //private refreshIntervalId: any = null;
+        this.showSessionEnds = false;
+        this.taskBlocked = false;
+        this.sessionTimeTimer = __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__["Observable"].interval(TasksMap_1.UPDATE_SESSION_TIME_INTERVAL_IN_SECS * 1000);
+        this.redrawingMarkers = false;
+        this.markerGroup = null;
+        this.pathGroup = null;
+        /*this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+        this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskOpenIcon.clusterColor = '#036D99';
+        this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskSkippedIcon.clusterColor = '#B2B2B2';
+        this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskDoneIcon.clusterColor = '#F3B100';
+        this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskDonePerfectIcon.clusterColor = '#4CAF50';
+        this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+        this.taskFailedIcon.clusterColor = '#E62B25';*/
+        this.chatAndSessionService.init();
+        this.events.subscribe('user:kicked', function (user) {
+            if (user == 'self') {
+                console.log("userKicked");
+                _this.sessionKicked();
+                _this.events.unsubscribe('user:kicked', null);
+            }
+            else {
+                console.log("Someone else was kicked.");
+            }
+        });
+        this.events.subscribe('session:updated', function (sessionInfo) {
+            console.log('Session has been updated');
+            _this.updateSession(sessionInfo);
+        });
+        this.events.subscribe('user:assigned_task', function (taskId) {
+            console.log('User has been assigned task with id: ' + taskId);
+            _this.sessionInfo.sessionUser.assigned_task_id = taskId;
+            _this.forceStartFromTask(taskId);
+            _this.redrawMarker();
+        });
+    }
+    TasksMap_1 = TasksMap;
+    TasksMap.prototype.isTrailCompleted = function () {
+        if (this.route.isAnswerFeedbackEnabled()) {
+            return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
+        }
+        else {
+            return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.taskList.length;
+        }
+    };
+    TasksMap.prototype.showTrailCompletedAlert = function () {
+        var that = this;
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */], {
+            score: this.score,
+            tasks: this.taskList,
+            narrative: this.app.activeNarrative,
+            callback: function () {
+                modal.dismiss().then(function () {
+                    that.route.completed = true;
+                    that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+                    that.ormService.saveAndFireChangedEvent(that.route);
+                });
+            }
+        }, { cssClass: this.app.activeNarrative });
+        modal.present();
+        // let that = this;
+        // let title = 'a_alert_congrats';
+        // let message = 'a_alert_congrats_msg';
+        // if (this.route.isNarrativeEnabled()) {
+        //   title = this.route.getNarrativeString(title);
+        //   message = this.route.getNarrativeString(message);
+        // }
+        // let modal = this.modalCtrl.create(MCMIconModal,  {
+        //     title: title,
+        //     message: message,
+        //     modalType: MCMModalType.solved,
+        //     param: {TITLE: this.route.title},
+        //     narrativeEnabled: this.route.isNarrativeEnabled(),
+        //     narrative: this.app.activeNarrative,
+        //     buttons: [
+        //         {
+        //             title: 'a_alert_close',
+        //             callback: function(){
+        //                 modal.dismiss().then(() => {
+        //                     that.route.completed = true;
+        //                     that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+        //                     that.ormService.saveAndFireChangedEvent(that.route);
+        //                 });
+        //             }
+        //         }
+        //     ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+        // modal.present();
+    };
+    TasksMap.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var _a, _b, sessionInfo;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        console.log('TasksMap ionViewWillEnter()');
+                        console.log(this.navCtrl);
+                        this.routeId = this.navParams.get('routeId');
+                        console.log(this.routeId);
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.findRouteById(this.routeId)];
+                    case 1:
+                        _a.route = _c.sent();
+                        this.gamificationIsDisabled = this.route.isGamificationDisabled();
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getActiveUser()];
+                    case 2:
+                        _b.user = _c.sent();
+                        this.score = this.route.getScoreForUser(this.user);
+                        sessionInfo = this.chatAndSessionService.getSessionInfo();
+                        this.updateSession(sessionInfo);
+                        this.events.publish('narrativeChange', this.route.getNarrativeName());
+                        this.updateIcons();
+                        return [4 /*yield*/, this.loadMap()];
+                    case 3:
+                        _c.sent();
+                        setTimeout(function () { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: 
+                                    // adding markers immediately after map initialization caused marker cluster problems -> use timeout
+                                    return [4 /*yield*/, this.initializeMap()];
+                                    case 1:
+                                        // adding markers immediately after map initialization caused marker cluster problems -> use timeout
+                                        _a.sent();
+                                        this.spinner.hide();
+                                        if (this.isTrailCompleted() && !this.route.completed) {
+                                            this.showTrailCompletedAlert();
+                                        }
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); }, 100);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    TasksMap.prototype.ionViewDidEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var details, _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        console.log('TasksMap ionViewDidEnter()');
+                        if (!(this.sessionInfo != null)) return [3 /*break*/, 6];
+                        details = JSON.stringify({});
+                        this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
+                        if (!(this.sessionInfo.started === false)) return [3 /*break*/, 6];
+                        this.showAllTasks();
+                        this.resetTasks();
+                        if (!(this.sessionInfo.sessionUser.assigned_task_id != 0)) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.route.getTasks()];
+                    case 1:
+                        _a.taskList = _c.sent();
+                        this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                        if (this.route.isNarrativeEnabled()) {
+                            this.showIntroModal().then(function () {
+                                _this.state.showIntroModal = false;
+                            });
+                        }
+                        return [3 /*break*/, 3];
+                    case 2:
+                        if (this.route.isNarrativeEnabled()) {
+                            this.showIntroModal().then(function () {
+                                _this.state.showIntroModal = false;
+                                _this.showGuidedTrailModalWithDelay(500);
+                            });
+                        }
+                        _c.label = 3;
+                    case 3:
+                        this.saveMapStateToLocalStorage();
+                        this.sessionInfo.started = true;
+                        return [4 /*yield*/, this.chatAndSessionService.updateSession(this.sessionInfo)];
+                    case 4:
+                        _c.sent();
+                        return [4 /*yield*/, this.redrawMarker()];
+                    case 5:
+                        _c.sent();
+                        return [2 /*return*/];
+                    case 6:
+                        if (!this.navParams.data.tasksMapState) return [3 /*break*/, 7];
+                        console.log("3");
+                        this.state = this.navParams.data.tasksMapState;
+                        if (this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))) {
+                            this.goToNextTask(this.state.selectedTask, true);
+                        }
+                        return [3 /*break*/, 9];
+                    case 7:
+                        _b = this;
+                        return [4 /*yield*/, this.getMapStateFromLocalStorage()];
+                    case 8:
+                        _b.state = _c.sent();
+                        console.log(this.state);
+                        if (this.taskToSkip) {
+                            this.goToNextTask(this.taskToSkip, true);
+                            this.taskToSkip = null;
+                        }
+                        if (!this.state) {
+                            // attach state to navParams so that state is restored when moving back in history (from task detail view)
+                            this.state = this.navParams.data.tasksMapState = {
+                                selectedTask: this.navParams.get("selectedTask"),
+                                isShowingAllTasks: false,
+                                visibleTasks: {},
+                                skippedTaskIds: [],
+                                selectedStartTask: false,
+                                showIntroModal: false,
+                                showGuidedTrailModal: false // GuidedTrail Modal will be displayed on first start anyway
+                            };
+                            this.state.isShowingAllTasks = !this.state.selectedTask;
+                            if (this.state.selectedTask) {
+                                this.state.visibleTasks[this.state.selectedTask.position] = true;
+                            }
+                            else if (this.route.isNarrativeEnabled()) {
+                                this.showIntroModal().then(function () {
+                                    _this.showGuidedTrailModalWithDelay(500);
+                                });
+                            }
+                            else {
+                                this.showGuidedTrailModalWithDelay(500);
+                            }
+                        }
+                        else {
+                            if (this.state.showIntroModal && this.route.isNarrativeEnabled()) {
+                                this.showIntroModal().then(function () {
+                                    var that = _this;
+                                    that.state.showIntroModal = false;
+                                    _this.saveMapStateToLocalStorage();
+                                    if (_this.state.showGuidedTrailModal) {
+                                        _this.showGuidedTrailModalWithDelay(500);
+                                    }
+                                });
+                            }
+                            else if (this.state.showGuidedTrailModal) {
+                                this.showGuidedTrailModalWithDelay(500);
+                            }
+                        }
+                        _c.label = 9;
+                    case 9: return [4 /*yield*/, this.redrawMarker()];
+                    case 10:
+                        _c.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    TasksMap.prototype.showGuidedTrailModalWithDelay = function (delay) {
+        var that = this;
+        this.state.showGuidedTrailModal = false;
+        setTimeout(function () {
+            var _this = this;
+            that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail', 'no', function () {
+            }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    that.selectStartPoint();
+                    that.state.selectedStartTask = true;
+                    return [2 /*return*/];
+                });
+            }); }, that.app.activeNarrative);
+        }, delay);
+    };
+    TasksMap.prototype.forceStartFromTask = function (taskId) {
+        var selectedTask = this.taskList.filter(function (x) { return x.id == taskId; }).pop();
+        this.state.selectedTask = selectedTask;
+        console.debug("forceStartFromTask");
+        this.state.visibleTasks = {};
+        this.state.visibleTasks[selectedTask.position] = true;
+        this.state.isShowingAllTasks = false;
+        this.state.showGuidedTrailModal = false;
+        this.centerSelectedTask();
+    };
+    TasksMap.prototype.ngOnInit = function () {
+        // this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
+    };
+    TasksMap.prototype.ngOnDestroy = function () {
+        if (this.sessionSubscription) {
+            this.sessionSubscription.unsubscribe();
+            this.sessionSubscription = null;
+        }
+        if (this.watchSubscription) {
+            this.watchSubscription.unsubscribe();
+            this.watchSubscription = null;
+        }
+        // Unsubscribe events:
+        this.events.unsubscribe('user:kicked');
+        this.events.unsubscribe('session:updated');
+        this.events.unsubscribe('user:assigned_task');
+        this.events.publish('narrativeChange', 'default');
+    };
+    TasksMap.prototype.initializeMap = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.currentScore = this.score.score;
+                // await this.redrawMarker();
+                this.gpsService.isLocationOn();
+                // This should fix the gray tiles and missing marker issue on android
+                if (this.map != null) {
+                    this.map.invalidateSize();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    TasksMap.prototype.updateSession = function (sessionInfo) {
+        var _this = this;
+        console.log(this.routeId);
+        console.log(sessionInfo);
+        if (sessionInfo && sessionInfo.session) {
+            if (this.routeId != sessionInfo.session.trail_id) {
+                console.log("active session belongs to different trail");
+                this.sessionInfo = null;
+            }
+            else {
+                this.sessionInfo = sessionInfo;
+                console.log('active session: ' + sessionInfo.session.code);
+                if (this.sessionTimeSubscription) {
+                    this.sessionTimeSubscription.unsubscribe();
+                }
+                this.sessionTime();
+                this.sessionTimeSubscription = this.sessionTimeTimer.subscribe(function (tick) {
+                    _this.sessionTime();
+                });
+            }
+        }
+        else {
+            console.log('no active session');
+            this.sessionInfo = null;
+        }
+    };
+    TasksMap.prototype.getMapStateFromLocalStorage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var mapState, state;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.get(this.stateKey)];
+                    case 1:
+                        mapState = _a.sent();
+                        if (mapState && mapState[this.routeId]) {
+                            state = mapState[this.routeId];
+                            console.log(this.navParams);
+                            state.selectedTask = this.navParams.get("selectedTask");
+                            return [2 /*return*/, state];
+                        }
+                        return [2 /*return*/, null];
+                }
+            });
+        });
+    };
+    TasksMap.prototype.saveMapStateToLocalStorage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var mapState;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.get(this.stateKey)];
+                    case 1:
+                        mapState = _a.sent();
+                        if (!mapState) {
+                            mapState = {};
+                        }
+                        mapState[this.routeId] = this.state;
+                        return [2 /*return*/, this.storage.set(this.stateKey, mapState)];
+                }
+            });
+        });
+    };
+    TasksMap.prototype.ionViewWillLeave = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.saveMapStateToLocalStorage();
+                return [2 /*return*/];
+            });
+        });
+    };
+    TasksMap.prototype.assignedTask = function () {
+        if (this.sessionInfo == null) {
+            return false;
+        }
+        else {
+            return this.sessionInfo.session.assign_tasks;
+        }
+    };
+    TasksMap.prototype.redrawMarker = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var _i, _a, layer, markerGroup, _b, geoJSON, pathGroup, _loop_1, this_1, i;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (this.redrawingMarkers) {
+                            return [2 /*return*/];
+                        }
+                        this.redrawingMarkers = true;
+                        if (!this.map) {
+                            return [2 /*return*/];
+                        }
+                        if (this.markerGroup != null) {
+                            console.warn('removing markerGroup');
+                            this.map.removeLayer(this.markerGroup);
+                            this.markerGroup = null;
+                        }
+                        if (this.pathGroup != null) {
+                            console.warn('removing pathGroup');
+                            for (_i = 0, _a = this.pathGroup; _i < _a.length; _i++) {
+                                layer = _a[_i];
+                                this.map.removeLayer(layer);
+                            }
+                            this.pathGroup = null;
+                        }
+                        markerGroup = __WEBPACK_IMPORTED_MODULE_2_leaflet__["markerClusterGroup"]({
+                            maxClusterRadius: 30,
+                            iconCreateFunction: function (cluster) {
+                                var childCount = cluster.getChildCount();
+                                var markers = cluster.getAllChildMarkers();
+                                var className = 'marker-cluster marker-cluster-';
+                                if (childCount < 10) {
+                                    className += 'small';
+                                }
+                                else if (childCount < 100) {
+                                    className += 'medium';
+                                }
+                                else {
+                                    className += 'large';
+                                }
+                                var colorOccurrences = {};
+                                var numberOfColoredMarkers = 0;
+                                markers.map(function (marker) {
+                                    if (marker.options.icon.clusterColor) {
+                                        numberOfColoredMarkers++;
+                                        if (colorOccurrences[marker.options.icon.clusterColor]) {
+                                            colorOccurrences[marker.options.icon.clusterColor] += 1;
+                                        }
+                                        else {
+                                            colorOccurrences[marker.options.icon.clusterColor] = 1;
+                                        }
+                                    }
+                                });
+                                var style = '';
+                                var img = '';
+                                var colors = Object.keys(colorOccurrences);
+                                if (colors.length == 1) {
+                                    style = "background-color: " + colors[0];
+                                }
+                                else {
+                                    var stops_1 = '';
+                                    var alreadyFilledPercentage_1 = 0;
+                                    colors.map(function (color) {
+                                        var n = colorOccurrences[color];
+                                        var percentage = Math.round(n / numberOfColoredMarkers * 100);
+                                        if (alreadyFilledPercentage_1 > 0) {
+                                            stops_1 += ', ';
+                                        }
+                                        alreadyFilledPercentage_1 += percentage;
+                                        stops_1 += color + " 0 " + alreadyFilledPercentage_1 + "%";
+                                    });
+                                    var gradient = new ConicGradient({
+                                        stops: stops_1,
+                                        size: 24
+                                    });
+                                    img = "<img src=\"" + gradient.png + "\"></img>";
+                                }
+                                return new __WEBPACK_IMPORTED_MODULE_2_leaflet__["DivIcon"]({
+                                    html: "<div style=\"" + style + "\">" + img + "<span>" + childCount + "</span></div>",
+                                    className: className,
+                                    iconSize: new __WEBPACK_IMPORTED_MODULE_2_leaflet__["Point"](40, 40)
+                                });
+                            },
+                        });
+                        _b = this;
+                        return [4 /*yield*/, this.route.getTasks()];
+                    case 1:
+                        _b.taskList = _c.sent();
+                        geoJSON = this.route.getPathGeoJson();
+                        pathGroup = [];
+                        _loop_1 = function (i) {
+                            var task = this_1.taskList[i];
+                            if (!this_1.state.isShowingAllTasks && !this_1.state.visibleTasks[task.position]) {
+                                return "continue";
+                            }
+                            var icon = this_1.taskOpenIcon;
+                            var removeTaskFromSkippedArray = true;
+                            if (this_1.score.getTasksSaved().indexOf(task.id) > -1) {
+                                icon = this_1.taskSavedIcon;
+                            }
+                            else if (this_1.score.getTasksSolved().indexOf(task.id) > -1) {
+                                icon = this_1.taskDonePerfectIcon;
+                            }
+                            else if (this_1.score.getTasksSolvedLow().indexOf(task.id) > -1) {
+                                icon = this_1.taskDoneIcon;
+                            }
+                            else if (this_1.score.getTasksFailed().indexOf(task.id) > -1) {
+                                icon = this_1.taskFailedIcon;
+                            }
+                            else if (this_1.state.skippedTaskIds.indexOf(task.id) > -1) {
+                                icon = this_1.taskSkippedIcon;
+                                removeTaskFromSkippedArray = false;
+                            }
+                            if (removeTaskFromSkippedArray && this_1.state.skippedTaskIds.indexOf(task.id) > -1) {
+                                // remove task from skipped array
+                                this_1.state.skippedTaskIds.splice(this_1.state.skippedTaskIds.indexOf(task.id), 1);
+                            }
+                            if (geoJSON) {
+                                var taskGeoJsons = geoJSON.data.features.filter(function (data) {
+                                    //don't match types because some are string and some are numbers for some reason
+                                    return data.properties.task_id == task.id;
+                                });
+                                console.log("GEO JSON", taskGeoJsons, task);
+                                if (taskGeoJsons) {
+                                    for (var _i = 0, taskGeoJsons_1 = taskGeoJsons; _i < taskGeoJsons_1.length; _i++) {
+                                        var taskGeoJson = taskGeoJsons_1[_i];
+                                        // for (let coordinateArray of taskGeoJson.geometry.coordinates) {
+                                        //     coordinateArray = coordinateArray.reverse();
+                                        // }
+                                        var GeoJsonLayer = __WEBPACK_IMPORTED_MODULE_2_leaflet__["geoJSON"](taskGeoJson, {
+                                            style: function (feature) {
+                                                return { color: feature.properties.color, dashArray: "10 10" };
+                                            }
+                                        });
+                                        // let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
+                                        //     color: taskGeoJson.properties.color,
+                                        //     dashArray: "10 10"
+                                        // });
+                                        this_1.map.addLayer(GeoJsonLayer);
+                                        pathGroup.push(GeoJsonLayer);
+                                    }
+                                }
+                            }
+                            markerGroup.addLayer(__WEBPACK_IMPORTED_MODULE_2_leaflet__["marker"]([task.lat, task.lon], { icon: icon }).on('click', function () {
+                                if (_this.state.selectedTask == task) {
+                                    _this.gototask(task.id, task.title);
+                                }
+                                else {
+                                    // Add event of user entering trail when session active
+                                    if (_this.sessionInfo != null) {
+                                        var details = JSON.stringify({});
+                                        _this.chatAndSessionService.addUserEvent("event_task_previewed", details, task.id.toString());
+                                    }
+                                    _this.state.selectedTask = task;
+                                    _this.map.panTo([task.lat, task.lon]);
+                                }
+                            }));
+                        };
+                        this_1 = this;
+                        for (i = 0; i < this.taskList.length; i++) {
+                            _loop_1(i);
+                        }
+                        // this.map.addLayer(pathGroup);
+                        this.map.addLayer(markerGroup);
+                        console.log("MAP AFTER UPDATE", this.map);
+                        this.markerGroup = markerGroup;
+                        this.pathGroup = pathGroup;
+                        this.redrawingMarkers = false;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    TasksMap.prototype.loadMap = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var mapquestUrl, subDomains, map, zoomLevels, offlineLayer, tiles_1, resolveOfflineURLsAsTiles_1, that_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        mapquestUrl = this.route.getTilesMap(this.app.activeNarrative);
+                        subDomains = this.route.getTilesServerSubdomains(this.app.activeNarrative);
+                        if (!(this.map == null)) return [3 /*break*/, 2];
+                        this.map = __WEBPACK_IMPORTED_MODULE_2_leaflet__["map"]('tasks-map', {
+                            attributionControl: false,
+                            zoom: 18,
+                            trackResize: false,
+                            maxBounds: this.route.getBoundingBoxLatLng()
+                        });
+                        // TODO: Replace leaflet-mapbox-gl Bridge with native MapboxGl JS implementation
+                        // (<any>L).mapboxGL({
+                        //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
+                        //     style: mapquestUrl,
+                        //     updateInterval: 0,
+                        // }).addTo(this.map);
+                        __WEBPACK_IMPORTED_MODULE_2_leaflet__["control"].attribution({ position: 'bottomleft', prefix: 'Leaflet' }).addTo(this.map);
+                        this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
+                        // this.map.setZoom(18);
+                        this.map.on('click', function (e) {
+                            //check if details open and reset content. for now just reset content
+                            // this.routeDetails = null;
+                            _this.state.selectedTask = null;
+                        });
+                        map = this.map;
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__["a" /* tilesDb */].initialize()];
+                    case 1:
+                        _a.sent();
+                        zoomLevels = __WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].calculateZoom(this.route.getViewBoundingBoxLatLng());
+                        offlineLayer = __WEBPACK_IMPORTED_MODULE_2_leaflet__["tileLayer"].offline(mapquestUrl, __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__["a" /* tilesDb */], {
+                            attribution: '&copy; mapbox.com',
+                            subdomains: subDomains,
+                            minZoom: zoomLevels.min_zoom,
+                            maxZoom: zoomLevels.max_zoom,
+                            tileSize: 256,
+                            crossOrigin: true,
+                            detectRetina: true,
+                            bounds: this.route.getBoundingBoxLatLng()
+                        });
+                        this.gpsService.getCurrentPosition()
+                            .then(function (resp) {
+                            if (resp && resp.coords) {
+                                console.debug('found you');
+                                // let markerGroup = L.featureGroup();
+                                _this.userMarker = __WEBPACK_IMPORTED_MODULE_2_leaflet__["marker"]([resp.coords.latitude, resp.coords.longitude], { icon: _this.userPositionIcon }).on('click', function () {
+                                    // alert('Marker clicked');
+                                });
+                                _this.userMarker.setRotationOrigin('center center');
+                                _this.userMarker.addTo(_this.map);
+                                if (_this.watchSubscription) {
+                                    _this.watchSubscription.unsubscribe();
+                                }
+                                _this.watchSubscription = _this.gpsService.watchPosition().subscribe(function (resp) {
+                                    if (resp && resp.coords) {
+                                        var lanlng = new __WEBPACK_IMPORTED_MODULE_2_leaflet__["LatLng"](resp.coords.latitude, resp.coords.longitude);
+                                        var bBox = _this.map.getBounds();
+                                        if (bBox.contains(lanlng)) {
+                                            // User entered visible map bounding box -> Change Icon
+                                            if (!_this.isUserInsideMap) {
+                                                _this.userMarker.setIcon(_this.userPositionIcon);
+                                            }
+                                            _this.userMarker.setLatLng(lanlng);
+                                            //Rotate the user marker
+                                            if (_this.prevPos != null) {
+                                                var angle = __WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].getAngle(_this.prevPos, resp.coords);
+                                                _this.userMarker.setRotationAngle(angle);
+                                            }
+                                            _this.isUserInsideMap = true;
+                                        }
+                                        else {
+                                            // User left visible map bounding box -> Change icon to arrow
+                                            if (_this.isUserInsideMap) {
+                                                _this.userMarker.setIcon(_this.userPositionArrow);
+                                            }
+                                            _this.updateUserLocationArrow(lanlng);
+                                            _this.isUserInsideMap = false;
+                                        }
+                                        _this.prevPos = resp.coords;
+                                    }
+                                });
+                                // Add map listener events
+                                _this.map.on('moveend', function (e) {
+                                    if (!_this.isUserInsideMap) {
+                                        _this.updateUserLocationArrow(new __WEBPACK_IMPORTED_MODULE_2_leaflet__["LatLng"](_this.prevPos.latitude, _this.prevPos.longitude));
+                                    }
+                                });
+                            }
+                        })
+                            .catch(function (error) {
+                            console.error("Location error: " + JSON.stringify(error));
+                        });
+                        tiles_1 = this.ormService.getTileURLsAsObject(this.route);
+                        resolveOfflineURLsAsTiles_1 = !this.route.isNarrativeEnabled();
+                        that_1 = this;
+                        offlineLayer.getTileUrl = function (coords) {
+                            var url = __WEBPACK_IMPORTED_MODULE_2_leaflet__["TileLayer"].prototype.getTileUrl.call(this, coords);
+                            var dbStorageKey = this._getStorageKey(url);
+                            if (tiles_1[dbStorageKey]) {
+                                return Promise.resolve(that_1.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles_1));
+                            }
+                            return Promise.resolve(url);
+                        };
+                        offlineLayer.addTo(map);
+                        this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
+                        offlineLayer.on('offline:below-min-zoom-error', function () {
+                            alert('Can not save tiles below minimum zoom level.');
+                        });
+                        offlineLayer.on('offline:save-start', function (data) {
+                            console.debug(data);
+                            console.debug('Saving ' + data.nTilesToSave + ' tiles.');
+                        });
+                        offlineLayer.on('offline:save-end', function () {
+                            alert('All the tiles were saved.');
+                        });
+                        offlineLayer.on('offline:save-error', function (err) {
+                            console.error('Error when saving tiles: ' + err);
+                        });
+                        offlineLayer.on('offline:remove-start', function () {
+                            console.debug('Removing tiles.');
+                        });
+                        offlineLayer.on('offline:remove-end', function () {
+                            alert('All the tiles were removed.');
+                        });
+                        offlineLayer.on('offline:remove-error', function (err) {
+                            console.error('Error when removing tiles: ' + err);
+                        });
+                        //centers map in the selected task
+                        if (this.state.selectedTask != null) {
+                            this.centerSelectedTask();
+                            /* todo: show only selectedTask */
+                        }
+                        _a.label = 2;
+                    case 2: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /*
+    @description: Shows direction arrow pointing towards users geolocation if he isn't inside the current boundaries
+    @param userLatLng array - [lat, lng]
+     */
+    TasksMap.prototype.updateUserLocationArrow = function (userLatLng) {
+        if (!userLatLng) {
+            return;
+        }
+        var bBox = this.map.getBounds();
+        var alpha = __WEBPACK_IMPORTED_MODULE_2_leaflet__["GeometryUtil"].bearing(this.map.getCenter(), userLatLng);
+        var beta = __WEBPACK_IMPORTED_MODULE_2_leaflet__["GeometryUtil"].bearing(this.map.getCenter(), bBox.getNorthEast());
+        var dx2 = (__WEBPACK_IMPORTED_MODULE_2_leaflet__["GeometryUtil"].length([bBox.getNorthWest(), bBox.getNorthEast()])) / 2;
+        var dy2 = (__WEBPACK_IMPORTED_MODULE_2_leaflet__["GeometryUtil"].length([bBox.getSouthWest(), bBox.getNorthWest()])) / 2;
+        var length = 0;
+        // fix negative alpha values
+        if (alpha < 0) {
+            alpha = alpha + 360;
+        }
+        // Calculate length to bounding box in direction of own position
+        if ((alpha >= beta && alpha <= (180 - beta)) ||
+            (alpha >= (180 + beta) && alpha <= (360 - beta))) {
+            length = Math.abs(dx2 / Math.sin(alpha * (Math.PI / 180)));
+        }
+        else {
+            length = Math.abs(dy2 / Math.cos(alpha * (Math.PI / 180)));
+        }
+        var closestPoint = __WEBPACK_IMPORTED_MODULE_2_leaflet__["GeometryUtil"].destination(this.map.getCenter(), alpha, 0.90 * length);
+        this.userMarker.setLatLng(closestPoint);
+        this.userMarker.setRotationAngle(alpha);
+    };
+    TasksMap.prototype.centerSelectedTask = function () {
+        this.map.panTo([this.state.selectedTask.lat, this.state.selectedTask.lon]);
+    };
+    TasksMap.prototype.goToNextTaskById = function (taskId, skip) {
+        var _this = this;
+        this.taskList.forEach(function (task) {
+            if (task.id == taskId) {
+                _this.goToNextTask(task, skip);
+                return;
+            }
+        });
+    };
+    TasksMap.prototype.goToNextTask = function (task, skip) {
+        //  setTimeout(async () => {
+        if (skip) {
+            this.state.skippedTaskIds.push(task.id);
+        }
+        console.debug("goToNextTask");
+        // task.position == index + 1
+        this.state.selectedTask = this.taskList[task.position % this.taskList.length];
+        this.state.visibleTasks[this.state.selectedTask.position] = true;
+        //this.redrawMarker();
+        this.centerSelectedTask();
+        this.saveMapStateToLocalStorage();
+        // }, 200);
+    };
+    TasksMap.prototype.selectStartPoint = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var that;
+            return __generator(this, function (_a) {
+                that = this;
+                console.log('Active Narrative is: ' + this.app.activeNarrative);
+                return [2 /*return*/, this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.app.activeNarrative, this.navCtrl, function (selectedTask) {
+                        console.debug("back in tasksMap");
+                        that.state.selectedTask = selectedTask;
+                        that.state.visibleTasks = {};
+                        that.state.visibleTasks[selectedTask.position] = true;
+                        that.state.isShowingAllTasks = false;
+                        that.centerSelectedTask();
+                        that.redrawMarker();
+                        if (that.sessionInfo != null) {
+                            var details = JSON.stringify({ title: that.state.selectedTask.title });
+                            that.chatAndSessionService.addUserEvent("event_trail_start_from_task", details, that.state.selectedTask.id.toString());
+                        }
+                    })];
+            });
+        });
+    };
+    TasksMap.prototype.showAllTasks = function () {
+        this.state.isShowingAllTasks = true;
+        this.redrawMarker();
+    };
+    TasksMap.prototype.displayResetTasksModal = function () {
+        var _this = this;
+        this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg', 'no', function () { }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.resetTasks()];
+                    case 1:
+                        _a.sent();
+                        this.showGuidedTrailModalWithDelay(50);
+                        return [2 /*return*/];
+                }
+            });
+        }); }, this.app.activeNarrative);
+    };
+    TasksMap.prototype.resetTasks = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.ormService.deleteUserScore(_this.score).then(function () { return __awaiter(_this, void 0, void 0, function () {
+                var _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            this.score = new __WEBPACK_IMPORTED_MODULE_8__entity_Score__["a" /* Score */]();
+                            this.state = this.navParams.data.tasksMapState = {
+                                selectedTask: null,
+                                isShowingAllTasks: true,
+                                visibleTasks: {},
+                                skippedTaskIds: [],
+                                selectedStartTask: false,
+                                showIntroModal: true,
+                                showGuidedTrailModal: true
+                            };
+                            if (!!this.taskList) return [3 /*break*/, 2];
+                            _a = this;
+                            return [4 /*yield*/, this.route.getTasks()];
+                        case 1:
+                            _a.taskList = _b.sent();
+                            _b.label = 2;
+                        case 2:
+                            if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
+                                this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                            }
+                            this.route.completed = false;
+                            this.route.completedDate = null;
+                            return [4 /*yield*/, this.saveMapStateToLocalStorage()];
+                        case 3:
+                            _b.sent();
+                            return [4 /*yield*/, this.ormService.saveAndFireChangedEvent(this.route)];
+                        case 4:
+                            _b.sent();
+                            return [4 /*yield*/, this.redrawMarker()];
+                        case 5:
+                            _b.sent();
+                            resolve();
+                            return [2 /*return*/];
+                    }
+                });
+            }); });
+        });
+    };
+    TasksMap.prototype.sessionFinished = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.modalsService.showDialog('a_private_session_quit', 'a_private_session_quit_text', 'no', function () { }, 'yes', function () {
+                    var modal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
+                        session: _this.sessionInfo.session,
+                        score: _this.score,
+                        tasks: _this.taskList,
+                        narrative: _this.app.activeNarrative
+                    }, { cssClass: _this.app.activeNarrative });
+                    modal.present();
+                    if (_this.sessionInfo != null) {
+                        var details = JSON.stringify({});
+                        _this.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                    }
+                    _this.chatAndSessionService.exitActiveSession();
+                    if (_this.sessionTimeSubscription) {
+                        _this.sessionTimeSubscription.unsubscribe();
+                    }
+                }, this.app.activeNarrative);
+                return [2 /*return*/];
+            });
+        });
+    };
+    TasksMap.prototype.sessionKicked = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var that, modal;
+            return __generator(this, function (_a) {
+                that = this;
+                modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_18__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                    title: 'a_private_session_kicked',
+                    message: 'a_private_session_kicked_text',
+                    modalType: __WEBPACK_IMPORTED_MODULE_17__app_app_component__["a" /* MCMModalType */].hint,
+                    type: 'text',
+                    gamificationEnabled: false,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [
+                        {
+                            title: 'a_g_ok',
+                            callback: function () {
+                                modal.dismiss();
+                                var finishedModal = that.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
+                                    session: that.sessionInfo.session,
+                                    score: that.score,
+                                    tasks: that.taskList,
+                                    narrative: this.app.activeNarrative
+                                }, {
+                                    showBackdrop: true,
+                                    enableBackdropDismiss: false
+                                });
+                                if (that.sessionInfo != null) {
+                                    that.chatAndSessionService.exitActiveSession();
+                                }
+                                if (that.sessionTimeSubscription) {
+                                    that.sessionTimeSubscription.unsubscribe();
+                                }
+                                finishedModal.present();
+                            }
+                        },
+                    ]
+                }, { showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative });
+                modal.present();
+                return [2 /*return*/];
+            });
+        });
+    };
+    TasksMap.prototype.gototask = function (taskId, taskName) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var that;
+            return __generator(this, function (_a) {
+                if (this.taskBlocked) {
+                    console.log('session in preparation.');
+                    return [2 /*return*/];
+                }
+                console.debug('taskId', taskId);
+                that = this;
+                this.navCtrl.push('TaskDetail', { taskId: taskId, headerTitle: taskName, routeId: this.routeId, goToNextTaskById: function (taskIdToSkip, skip) {
+                        that.goToNextTaskById(taskIdToSkip, skip);
+                    } }, {}, function () {
+                    // necessary because of bug which does not update URL
+                    _this.deepLinker.navChange('forward');
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    TasksMap.prototype.navigateToChat = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var details;
+            return __generator(this, function (_a) {
+                console.debug('showChat');
+                if (this.sessionInfo != null) {
+                    details = JSON.stringify({});
+                    this.chatAndSessionService.addUserEvent("event_trail_chat_open", details, "0");
+                }
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_22__chat_chat__["a" /* ChatPage */], {
+                    val: 'chatseite',
+                    headerTitle: this.sessionInfo.session.name
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    TasksMap.prototype.sessionTime = function () {
+        if (this.sessionInfo == null) {
+            this.startInterval = false;
+            if (this.sessionTimeSubscription) {
+                this.sessionTimeSubscription.unsubscribe();
+            }
+            return;
+        }
+        var session = this.sessionInfo.session;
+        var currentTimeUnix = __WEBPACK_IMPORTED_MODULE_24_moment__().unix();
+        var startTimeInUnix = __WEBPACK_IMPORTED_MODULE_24_moment__(session.starts_at).unix();
+        var endTimeInUnix = __WEBPACK_IMPORTED_MODULE_24_moment__(session.ends_at).unix();
+        var countdown = startTimeInUnix - currentTimeUnix;
+        var countdownInMin = Math.floor(countdown / 60);
+        var timerInMin = Math.floor((endTimeInUnix - currentTimeUnix) / 60);
+        if (currentTimeUnix > (startTimeInUnix - 3600) && currentTimeUnix < endTimeInUnix) {
+            this.startInterval = true;
+            if (currentTimeUnix < startTimeInUnix && currentTimeUnix < endTimeInUnix) {
+                this.showCountdownOrTimer = true;
+                this.countdownBeforeSession = true;
+                this.countdownOrTimerForSession = countdownInMin;
+                this.taskBlocked = true;
+            }
+            if (currentTimeUnix > startTimeInUnix && currentTimeUnix < endTimeInUnix) {
+                this.showCountdownOrTimer = true;
+                this.countdownOrTimerForSession = timerInMin;
+                this.countdownBeforeSession = false;
+                this.taskBlocked = false;
+            }
+        }
+        else {
+            this.startInterval = false;
+            if (this.sessionTimeSubscription) {
+                this.sessionTimeSubscription.unsubscribe();
+            }
+            this.showSessionEnds = true;
+            this.taskBlocked = false;
+            // Leave session
+            var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
+                session: this.sessionInfo.session,
+                score: this.score,
+                tasks: this.taskList,
+                narrative: this.app.activeNarrative
+            }, { cssClass: this.app.activeNarrative });
+            modal.present();
+            return;
+        }
+    };
+    TasksMap.prototype.showIntroModal = function () {
+        var _this = this;
+        return new Promise(function (success) {
+            var title = 'a_alert_welcome';
+            var message = 'a_alert_welcome_msg';
+            if (_this.route.isNarrativeEnabled()) {
+                title = _this.route.getNarrativeString(title);
+                message = _this.route.getNarrativeString(message);
+            }
+            var introModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], {
+                title: title,
+                message: message,
+                modalType: __WEBPACK_IMPORTED_MODULE_17__app_app_component__["a" /* MCMModalType */].hint,
+                narrative: _this.app.activeNarrative,
+                routeTitle: _this.route.title,
+                buttons: [
+                    {
+                        title: 'a_alert_close',
+                        callback: function () {
+                            introModal.dismiss();
+                            success();
+                        }
+                    }
+                ]
+            }, { cssClass: _this.app.activeNarrative });
+            introModal.present();
+        });
+    };
+    TasksMap.prototype.updateIcons = function () {
+        switch (this.app.activeNarrative) {
+            case 'pirates':
+                this.userPositionIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/pirates/mapposition.png", iconSize: [100, 100], iconAnchor: [50, 50], className: 'marker userPosition' }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/userDirection.png", iconSize: [36, 36], iconAnchor: [18, 18], className: 'marker userArrow' }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.taskOpenIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-open.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
+                this.taskSkippedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-skipped.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
+                this.taskSavedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-saved.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.taskDoneIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-good.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
+                this.taskDonePerfectIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-perfect.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
+                this.taskFailedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-failed.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
+                this.taskOpenIcon.clusterColor = '#AA2000';
+                this.taskSkippedIcon.clusterColor = '#b2b2b2';
+                this.taskSavedIcon.clusterColor = '#6E38B9';
+                this.taskDoneIcon.clusterColor = '#FFC033';
+                this.taskDonePerfectIcon.clusterColor = '#33CC00';
+                this.taskFailedIcon.clusterColor = '#333333';
+                break;
+            default:
+                this.userPositionIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/mapposition.png", iconSize: [100, 100], iconAnchor: [50, 50], className: 'marker userPosition' }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/userDirection.png", iconSize: [36, 36], iconAnchor: [18, 18], className: 'marker userArrow' });
+                this.taskOpenIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-open.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.taskSkippedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-skipped.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.taskSavedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-saved.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.taskDoneIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-good.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.taskDonePerfectIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-perfect.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.taskFailedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-failed.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.taskOpenIcon.clusterColor = '#036D99';
+                this.taskSkippedIcon.clusterColor = '#B2B2B2';
+                this.taskSavedIcon.clusterColor = '#6E38B9';
+                this.taskDoneIcon.clusterColor = '#F3B100';
+                this.taskDonePerfectIcon.clusterColor = '#4CAF50';
+                this.taskFailedIcon.clusterColor = '#E62B25';
+                break;
+        }
+    };
+    TasksMap.UPDATE_SESSION_TIME_INTERVAL_IN_SECS = 15;
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('tasks-map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], TasksMap.prototype, "mapContainer", void 0);
+    TasksMap = TasksMap_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-tasks-map',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header map tasks">\n    <div ion-fixed>\n        <div id="tasks-map" class="map-view"></div>\n\n        <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">\n            <ion-grid class="table">\n                <ion-row class="session" *ngIf="sessionInfo != null && this.showCountdownOrTimer">\n                    <ion-col col class="countdown">\n                        <img class="icon countdown" src="./assets/icons/countdown.svg"/>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label *ngIf="this.countdownBeforeSession">{{\'a_private_session_countdown\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.countdownBeforeSession == false">{{\'a_private_session_timer\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.showSessionEnds">{{\'a_private_session_ends\' | translate}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label>{{ countdownOrTimerForSession }} Min</ion-label>\n                    </ion-col>\n                </ion-row>\n                <ion-row class="current" *ngIf="this.route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && currentScore && currentScore > 0 && (sessionInfo==null || !sessionInfo.session.has_leaderboard)">\n                    <ion-col>\n                        <ion-label *ngIf="!sessionInfo">{{user.name}}</ion-label>\n                        <ion-label *ngIf="sessionInfo">{{sessionInfo.sessionUser.team_name}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label class="score">{{currentScore}}</ion-label>\n                    </ion-col>\n                </ion-row>\n                <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard && this.route.isAnswerFeedbackEnabled()">\n                    <ion-row [ngClass]="{\'self\' : user.self}"\n                             *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">\n                        <ion-col class="chart">\n                            <img class="icon arrow" src="./assets/icons/up.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self"/>\n                            <img class="icon arrow" src="./assets/icons/down.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self"/>\n                        </ion-col>\n\n                        <ion-col>\n                            <ion-label>{{user.team_name}}</ion-label>\n                        </ion-col>\n                        <ion-col>\n                            <ion-label class="score">{{user.score}}</ion-label>\n                        </ion-col>\n                    </ion-row>\n                </div>\n            </ion-grid>\n        </div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': state.selectedTask}">\n\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>\n                <ion-fab-list side="top">\n                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">\n                        <ion-icon name="icon-restart"></ion-icon>\n                    </button>\n                    <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">\n                        <ion-icon name="icon-starting-point"></ion-icon>\n                    </button>\n                    <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">\n                        <ion-icon name="icon-visibility"></ion-icon>\n                    </button>\n                    <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-exit"></ion-icon>\n                    </button>\n                    <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-chat"></ion-icon>\n                    </button>\n                    <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n                </ion-fab-list>\n                <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n            </ion-fab>\n\n            <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)">\n                <div class="cover">\n                    <img class="thumb" [src]="state.selectedTask.getImageURL()" />\n                </div>\n            </div>\n            <div class="text-container" *ngIf="state.selectedTask">\n                <div class="segmented-box">\n                    <div class="title segement">\n                        <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</span>\n                        <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>\n                    </div>\n                </div>\n                <div class="segmented-box bottom">\n                    <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->\n                    <!--<span class="segement">??? {{ "a_g_max_points" | translate }}</span>-->\n                    <div class="segement buttons">\n                        <div class="text-right">\n                            <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{ \'a_alert_show_task\' | translate }}</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_9_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
+            __WEBPACK_IMPORTED_MODULE_10__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_14__services_images_service__["a" /* ImagesService */],
+            __WEBPACK_IMPORTED_MODULE_15__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_23__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_17__app_app_component__["b" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */]])
+    ], TasksMap);
+    return TasksMap;
+    var TasksMap_1;
+}());
+
+//# sourceMappingURL=TasksMap.js.map
+
+/***/ }),
+
+/***/ 1161:
+/***/ (function(module, exports) {
+
+/**
+ * CSS conic-gradient() polyfill
+ * By Lea Verou — http://lea.verou.me
+ * MIT license
+ */
+
+(function(){
+
+var π = Math.PI;
+var τ = 2 * π;
+var ε = .00001;
+var deg = π/180;
+
+var dummy = document.createElement("div");
+document.head.appendChild(dummy);
+
+var _ = self.ConicGradient = function(o) {
+	var me = this;
+	_.all.push(this);
+
+	o = o || {};
+
+	this.canvas = document.createElement("canvas");
+	this.context = this.canvas.getContext("2d");
+
+	this.repeating = !!o.repeating;
+
+	this.size = o.size || Math.max(innerWidth, innerHeight);
+
+	this.canvas.width = this.canvas.height = this.size;
+
+	var stops = o.stops;
+
+	this.stops = (stops || "").split(/\s*,(?![^(]*\))\s*/); // commas that are not followed by a ) without a ( first
+
+	this.from = 0;
+
+	for (var i=0; i<this.stops.length; i++) {
+		if (this.stops[i]) {
+			var stop = this.stops[i] = new _.ColorStop(this, this.stops[i]);
+
+			if (stop.next) {
+				this.stops.splice(i+1, 0, stop.next);
+				i++;
+			}
+		}
+		else {
+			this.stops.splice(i, 1);
+			i--;
+		}
+	}
+
+	if (this.stops[0].color.indexOf('from') == 0) {
+		this.from = this.stops[0].pos*360;
+		this.stops.shift();
+	}
+	// Normalize stops
+
+	// Add dummy first stop or set first stop’s position to 0 if it doesn’t have one
+	if (this.stops[0].pos === undefined) {
+			this.stops[0].pos = 0;
+		}
+	else if (this.stops[0].pos > 0) {
+		var first = this.stops[0].clone();
+		first.pos = 0;
+		this.stops.unshift(first);
+	}
+
+	// Add dummy last stop or set first stop’s position to 100% if it doesn’t have one
+	if (this.stops[this.stops.length - 1].pos === undefined) {
+		this.stops[this.stops.length - 1].pos = 1;
+	}
+	else if (!this.repeating && this.stops[this.stops.length - 1].pos < 1) {
+		var last = this.stops[this.stops.length - 1].clone();
+		last.pos = 1;
+		this.stops.push(last);
+	}
+
+	this.stops.forEach(function(stop, i){
+		if (stop.pos === undefined) {
+			// Evenly space color stops with no position
+			for (var j=i+1; this[j]; j++) {
+				if (this[j].pos !== undefined) {
+					stop.pos = this[i-1].pos + (this[j].pos - this[i-1].pos)/(j-i+1);
+					break;
+				}
+			}
+		}
+		else if (i > 0) {
+			// Normalize color stops whose position is smaller than the position of the stop before them
+			stop.pos = Math.max(stop.pos, this[i-1].pos);
+		}
+	}, this.stops);
+
+	if (this.repeating) {
+		// Repeat color stops until >= 1
+		var stops = this.stops.slice();
+		var lastStop = stops[stops.length-1];
+		var difference = lastStop.pos - stops[0].pos;
+
+		for (var i=0; this.stops[this.stops.length-1].pos < 1 && i<10000; i++) {
+			for (var j=0; j<stops.length; j++) {
+				var s = stops[j].clone();
+				s.pos += (i+1)*difference;
+
+				this.stops.push(s);
+			}
+		}
+	}
+
+	this.paint();
+};
+
+_.all = [];
+
+_.prototype = {
+	toString: function() {
+		return "url('" + this.dataURL + "')";
+	},
+
+	get dataURL() {
+		// IE/Edge only render data-URI based background-image when the image data
+		// is escaped.
+		// Ref: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/#comment-3
+		return "data:image/svg+xml," + encodeURIComponent(this.svg);
+	},
+
+	get blobURL() {
+		// Warning: Flicker when updating due to slow blob: URL resolution :(
+		// TODO cache this and only update it when color stops change
+		return URL.createObjectURL(new Blob([this.svg], {type: "image/svg+xml"}));
+	},
+
+	get svg() {
+		return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none">' +
+			'<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">' +
+			'<image width="100" height="100%" xlink:href="' + this.png + '" /></svg></svg>';
+	},
+
+	get png() {
+		return this.canvas.toDataURL();
+	},
+
+	get r() {
+		return Math.sqrt(2) * this.size / 2;
+	},
+
+	// Paint the conical gradient on the canvas
+	// Algorithm inspired from http://jsdo.it/akm2/yr9B
+	paint: function() {
+		var c = this.context;
+
+		var radius = this.r;
+		var x = this.size / 2;
+
+		var stopIndex = 0; // The index of the current color
+		var stop = this.stops[stopIndex], prevStop;
+
+		var diff, t;
+
+		// Transform coordinate system so that angles start from the top left, like in CSS
+		c.translate(this.size/2, this.size/2);
+		c.rotate(-90*deg);
+		c.rotate(this.from*deg);
+		c.translate(-this.size/2, -this.size/2);
+
+		for (var i = 0; i < 360;) {
+			if (i/360 + ε >= stop.pos) {
+				// Switch color stop
+				do {
+					prevStop = stop;
+
+					stopIndex++;
+					stop = this.stops[stopIndex];
+				} while(stop && stop != prevStop && stop.pos === prevStop.pos);
+
+				if (!stop) {
+					break;
+				}
+
+				var sameColor = prevStop.color + "" === stop.color + "" && prevStop != stop;
+
+				diff = prevStop.color.map(function(c, i){
+					return stop.color[i] - c;
+				});
+			}
+
+			t = (i/360 - prevStop.pos) / (stop.pos - prevStop.pos);
+
+			var interpolated = sameColor? stop.color : diff.map(function(d,i){
+				var ret = d * t + prevStop.color[i];
+
+				return i < 3? ret & 255 : ret;
+			});
+
+			// Draw a series of arcs, 1deg each
+			c.fillStyle = 'rgba(' + interpolated.join(",") + ')';
+			c.beginPath();
+			c.moveTo(x, x);
+
+			if (sameColor) {
+				var θ = 360 * (stop.pos - prevStop.pos);
+			}
+			else {
+				var θ = .5;
+			}
+
+			var beginArg = i*deg;
+			beginArg = Math.min(360*deg, beginArg);
+
+			// .02: To prevent empty blank line and corresponding moire
+			// only non-alpha colors are cared now
+			var endArg = beginArg + θ*deg;
+			endArg = Math.min(360*deg, endArg + .02);
+
+			c.arc(x, x, radius, beginArg, endArg);
+
+			c.closePath();
+			c.fill();
+
+			i += θ;
+		}
+	}
+};
+
+_.ColorStop = function(gradient, stop) {
+	this.gradient = gradient;
+
+	if (stop) {
+		var parts = stop.match(/^(.+?)(?:\s+([\d.]+)(%|deg|turn|grad|rad)?)?(?:\s+([\d.]+)(%|deg|turn|grad|rad)?)?\s*$/);
+
+		this.color = _.ColorStop.colorToRGBA(parts[1]);
+
+		if (parts[2]) {
+			var unit = parts[3];
+
+			if (unit == "%" || parts[2] === "0" && !unit) {
+				this.pos = parts[2]/100;
+			}
+			else if (unit == "turn") {
+				this.pos  = +parts[2];
+			}
+			else if (unit == "deg") {
+				this.pos  = parts[2] / 360;
+			}
+			else if (unit == "grad") {
+				this.pos  = parts[2] / 400;
+			}
+			else if (unit == "rad") {
+				this.pos  = parts[2] / τ;
+			}
+		}
+
+		if (parts[4]) {
+			this.next = new _.ColorStop(gradient, parts[1] + " " + parts[4] + parts[5]);
+		}
+	}
+}
+
+_.ColorStop.prototype = {
+	clone: function() {
+		var ret = new _.ColorStop(this.gradient);
+		ret.color = this.color;
+		ret.pos = this.pos;
+
+		return ret;
+	},
+
+	toString: function() {
+		return "rgba(" + this.color.join(", ") + ") " + this.pos * 100 + "%";
+	}
+};
+
+_.ColorStop.colorToRGBA = function(color) {
+	if (!Array.isArray(color) && color.indexOf("from") == -1) {
+		dummy.style.color = color;
+
+		var rgba = getComputedStyle(dummy).color.match(/rgba?\(([\d.]+), ([\d.]+), ([\d.]+)(?:, ([\d.]+))?\)/);
+
+		if (rgba) {
+			rgba.shift();
+			rgba = rgba.map(function(a) { return +a });
+			rgba[3] = isNaN(rgba[3])? 1 : rgba[3];
+		}
+
+		return rgba || [0,0,0,0];
+	}
+
+	return color;
+};
+
+})();
+
+if (self.StyleFix) {
+	// Test if conic gradients are supported first:
+	(function(){
+		var dummy = document.createElement("p");
+		dummy.style.backgroundImage = "conic-gradient(white, black)";
+		dummy.style.backgroundImage = PrefixFree.prefix + "conic-gradient(white, black)";
+
+		if (!dummy.style.backgroundImage) {
+			// Not supported, use polyfill
+			StyleFix.register(function(css, raw) {
+				if (css.indexOf("conic-gradient") > -1) {
+					css = css.replace(/(?:repeating-)?conic-gradient\(\s*((?:\([^()]+\)|[^;()}])+?)\)/g, function(gradient, stops) {
+						return new ConicGradient({
+							stops: stops,
+							repeating: gradient.indexOf("repeating-") > -1
+						});
+					});
+				}
+
+				return css;
+			});
+		}
+	})();
+}
+
+
+/***/ })
+
+});
+//# sourceMappingURL=1.js.map
