@@ -33,7 +33,7 @@ function check_global_npm_package {
 }
 
 check_global_npm_package cordova@10.0.0
-check_global_npm_package ionic@5.4.16
+check_global_npm_package @ionic/cli@6.17.1
 check_global_npm_package plugman@2.0.0
 
 echo "Shall I run 'npm install' for you? [Y/n]"
