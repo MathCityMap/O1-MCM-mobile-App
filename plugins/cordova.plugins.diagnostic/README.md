@@ -6,6 +6,7 @@ Cordova diagnostic plugin [![Latest Stable Version](https://img.shields.io/npm/v
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Cordova diagnostic plugin ![Latest Stable Version](https://www.npmjs.com/package/cordova.plugins.diagnostic) [![Total Downloads](https://img.shields.io/npm/dt/cordova.plugins.diagnostic.svg)](https://npm-stat.com/charts.html?package=cordova.plugins.diagnostic)](#cordova-diagnostic-plugin--)
 - [Overview](#overview)
   - [Important notes](#important-notes)
     - [Minimum supported versions](#minimum-supported-versions)
@@ -216,6 +217,7 @@ Cordova diagnostic plugin [![Latest Stable Version](https://img.shields.io/npm/v
     - [requestRemoteNotificationsAuthorization()](#requestremotenotificationsauthorization)
       - [Parameters](#parameters-52)
       - [Example usage](#example-usage-53)
+    - [switchToNotificationSettings()](#switchToNotificationSettings)
   - [Microphone module](#microphone-module)
     - [isMicrophoneAuthorized()](#ismicrophoneauthorized)
       - [Parameters](#parameters-53)
@@ -306,6 +308,7 @@ Cordova diagnostic plugin [![Latest Stable Version](https://img.shields.io/npm/v
     - [Android permissions](#android-permissions)
       - [Android runtime permissions](#android-runtime-permissions)
         - ["Dangerous" runtime permissions](#dangerous-runtime-permissions)
+        - [API 29 runtime permissions](#api-29-runtime-permissions)
         - [Runtime permission groups](#runtime-permission-groups)
         - [Runtime permissions example project](#runtime-permissions-example-project)
         - [Android Camera permissions](#android-camera-permissions)
@@ -321,7 +324,7 @@ Cordova diagnostic plugin [![Latest Stable Version](https://img.shields.io/npm/v
     - [iOS](#ios-4)
 - [Release notes](#release-notes)
 - [Credits](#credits)
-- [License](#license)
+- [# License](#-license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -382,9 +385,9 @@ In order to avoid build problems with Android, please make sure you have the lat
 ## AndroidX Library
 This plugin uses/depends on the [AndroidX (Jetpack) libraries](https://developer.android.com/jetpack/androidx) (these supersede the [Android Support Library](https://developer.android.com/topic/libraries/support-library/index.html) which is no longer used by this plugin since `cordova.plugins.diagnostic@6`).
 
-This plugin pins a default version of the library in [its `plugin.xml`](https://github.com/dpa99c/cordova-diagnostic-plugin/blob/master/plugin.xml) however you can override this to specify a different version using the `ANDROIDX_VERSION` variable at plugin installation time, for example:
+This plugin pins default versions of the legacy and appcompat versions of the library  in [its `plugin.xml`](https://github.com/dpa99c/cordova-diagnostic-plugin/blob/master/plugin.xml) however you can override these to specify different versions using the `ANDROIDX_VERSION` (legacy) and `ANDROIDX_APPCOMPAT_VERSION` variables at plugin installation time, for example:
 
-    $ cordova plugin add cordova.plugins.diagnostic --variable ANDROIDX_VERSION=1.0.0
+    $ cordova plugin add cordova.plugins.diagnostic --variable ANDROIDX_VERSION=1.0.0 --variable ANDROIDX_APPCOMPAT_VERSION=1.3.1
 
 
 ## Specifying modules
@@ -1459,7 +1462,7 @@ The function is passed a single string parameter containing the error message.
  Notes for iOS:
 
 - Authorization can be requested to use location either "when in use" (only in foreground) or "always" (foreground and background).
-- This should only be called if authorization status is NOT_DETERMINED - calling it when in any other state will have no effect.
+- This should only be called if authorization status is `NOT_REQUESTED` - calling it when in any other state will have no effect.
 - When calling this function, the messages contained in the `NSLocationWhenInUseUsageDescription` and `NSLocationAlwaysAndWhenInUseUsageDescription` (iOS 11+) / `NSLocationAlwaysUsageDescription` (iOS 10)  .plist keys are displayed to the user when requesting to use location **always** or **when in use**, respectively;
 this plugin provides default messages, but you should override them with your specific reason for requesting access - see the [iOS usage description messages](#ios-usage-description-messages) section for how to customise them.
 
@@ -2280,7 +2283,7 @@ Requests camera authorization for the application.
 
 
 Notes for iOS:
-- Should only be called if authorization status is NOT_DETERMINED. Calling it when in any other state will have no effect.
+- Should only be called if authorization status is `NOT_REQUESTED`. Calling it when in any other state will have no effect.
 - When calling this function, the message contained in the `NSCameraUsageDescription` .plist key is displayed to the user;
 this plugin provides a default message, but you should override this with your specific reason for requesting access - see the [iOS usage description messages](#ios-usage-description-messages) section for how to customise it.
 
@@ -2607,6 +2610,17 @@ Requests remote notifications authorization for the application.
         omitRegistration: false
     });
 
+
+### switchToNotificationSettings()
+
+Platforms: Android
+
+Open notification settings for your app
+
+On Android versions lower than O, this will open the same page as `switchToSettings()`.
+
+    cordova.plugins.diagnostic.switchToNotificationSettings();
+
 ## Microphone module
 
 Purpose: Microphone permission to record audio.
@@ -2678,7 +2692,7 @@ Platforms: Android and iOS
 Requests microphone authorization for the application.
 
 Notes for iOS:
-- Should only be called if authorization status is NOT_DETERMINED. Calling it when in any other state will have no effect and just return the current authorization status.
+- Should only be called if authorization status is `NOT_REQUESTED`. Calling it when in any other state will have no effect and just return the current authorization status.
 - When calling this function, the message contained in the `NSMicrophoneUsageDescription` .plist key is displayed to the user;
 this plugin provides a default message, but you should override this with your specific reason for requesting access - see the [iOS usage description messages](#ios-usage-description-messages) section for how to customise it.
 
@@ -2774,7 +2788,7 @@ Platforms: Android and iOS
 Requests contacts authorization for the application.
 
 Notes for iOS:
-- Should only be called if authorization status is NOT_DETERMINED. Calling it when in any other state will have no effect and just return the current authorization status.
+- Should only be called if authorization status is `NOT_REQUESTED`. Calling it when in any other state will have no effect and just return the current authorization status.
 - When calling this function, the message contained in the `NSContactsUsageDescription` .plist key is displayed to the user;
 this plugin provides a default message, but you should override this with your specific reason for requesting access - see the [iOS usage description messages](#ios-usage-description-messages) section for how to customise it.
 
@@ -2878,7 +2892,7 @@ Platforms: Android and iOS
 Requests calendar authorization for the application.
 
 Notes for iOS:
-- Should only be called if authorization status is NOT_DETERMINED. Calling it when in any other state will have no effect and just return the current authorization status.
+- Should only be called if authorization status is `NOT_REQUESTED`. Calling it when in any other state will have no effect and just return the current authorization status.
 - When calling this function, the message contained in the `NSCalendarsUsageDescription` .plist key is displayed to the user;
 this plugin provides a default message, but you should override this with your specific reason for requesting access - see the [iOS usage description messages](#ios-usage-description-messages) section for how to customise it.
 - This relates to Calendar Events (not Calendar Reminders)
@@ -2969,7 +2983,7 @@ The function is passed a single string parameter containing the error message.
 Platforms: iOS
 
 Requests reminders authorization for the application.
-Should only be called if authorization status is NOT_DETERMINED. Calling it when in any other state will have no effect and just return the current authorization status.
+Should only be called if authorization status is `NOT_REQUESTED`. Calling it when in any other state will have no effect and just return the current authorization status.
 When calling this function, the message contained in the `NSRemindersUsageDescription` .plist key is displayed to the user;
 this plugin provides a default message, but you should override this with your specific reason for requesting access - see the [iOS usage description messages](#ios-usage-description-messages) section for how to customise it.
 
@@ -3541,6 +3555,10 @@ The plugin defines the [full list of dangersous permissions available in API 23]
 - `cordova.plugins.diagnostic.permission.READ_EXTERNAL_STORAGE`
 - `cordova.plugins.diagnostic.permission.BODY_SENSORS`
 
+##### API 29 runtime permissions
+With the introduction of Android 10, came Physical Activity permissions: https://developer.android.com/about/versions/10/privacy/changes#physical-activity-recognition.
+- `cordova.plugins.diagnostic.permission.ACTIVITY_RECOGNITION`
+
 
 ##### Runtime permission groups
 
@@ -3566,6 +3584,7 @@ Permissions are grouped as follows:
     SENSORS: [BODY_SENSORS],
     SMS: [SEND_SMS, RECEIVE_SMS, READ_SMS, RECEIVE_WAP_PUSH, RECEIVE_MMS],
     STORAGE: [READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE]
+    PHYSICAL_ACTIVITY: [ACTIVITY_RECOGNITION]
 
 ##### Runtime permissions example project
 

@@ -54,7 +54,8 @@ var Diagnostic = (function(){
             "RECEIVE_MMS": "RECEIVE_MMS",
             "WRITE_EXTERNAL_STORAGE": "WRITE_EXTERNAL_STORAGE",
             "READ_EXTERNAL_STORAGE": "READ_EXTERNAL_STORAGE",
-            "BODY_SENSORS": "BODY_SENSORS"
+            "BODY_SENSORS": "BODY_SENSORS",
+            "ACTIVITY_RECOGNITION": "ACTIVITY_RECOGNITION"
         };
 
     /**
@@ -72,7 +73,8 @@ var Diagnostic = (function(){
             "PHONE": ["READ_PHONE_STATE", "CALL_PHONE", "ADD_VOICEMAIL", "USE_SIP", "PROCESS_OUTGOING_CALLS", "READ_CALL_LOG", "WRITE_CALL_LOG"],
             "SENSORS": ["BODY_SENSORS"],
             "SMS": ["SEND_SMS", "RECEIVE_SMS", "READ_SMS", "RECEIVE_WAP_PUSH", "RECEIVE_MMS"],
-            "STORAGE": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
+            "STORAGE": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
+            "PHYSICAL_ACTIVITY": ["ACTIVITY_RECOGNITION"]
         };
 
     Diagnostic.runtimePermissionStatus = // deprecated
@@ -1038,6 +1040,17 @@ var Diagnostic = (function(){
             cordova.plugins.diagnostic.notifications.isRemoteNotificationsEnabled.apply(this, arguments);
         }else{
             throw "Diagnostic Notifications module is not installed";
+        }
+    };
+
+    /**
+     * Switches to the notification settings page in the Settings app
+     */
+    Diagnostic.switchToNotificationSettings = function() {
+        if (cordova.plugins.diagnostic.notifications){
+            cordova.plugins.diagnostic.notifications.switchToNotificationSettings.apply(this, arguments);
+        } else {
+            throw "Diagnostic notification module is not installed";
         }
     };
 

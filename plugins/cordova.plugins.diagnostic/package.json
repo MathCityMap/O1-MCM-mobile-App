@@ -1,27 +1,27 @@
 {
-  "_from": "cordova.plugins.diagnostic@6.0.2",
-  "_id": "cordova.plugins.diagnostic@6.0.2",
+  "_from": "cordova.plugins.diagnostic@6.0.4",
+  "_id": "cordova.plugins.diagnostic@6.0.4",
   "_inBundle": false,
-  "_integrity": "sha512-X3Nd0Ume1ZWndEJRtJ+BQTuTXBJfJv9hoI3PX7T/JiMMFQ/PgMwcn2DFTb27LWa65lAvMiEakMSRWmOa3/zvNg==",
+  "_integrity": "sha512-FG4taBhmWCFPzUpga5+VgkXVEO/eIkrUhgTiqHFXw+bAYI0y6rBrMtbNZnNUoYksFwXcoxZcK2m5beBflyKuPQ==",
   "_location": "/cordova.plugins.diagnostic",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "cordova.plugins.diagnostic@6.0.2",
+    "raw": "cordova.plugins.diagnostic@6.0.4",
     "name": "cordova.plugins.diagnostic",
     "escapedName": "cordova.plugins.diagnostic",
-    "rawSpec": "6.0.2",
+    "rawSpec": "6.0.4",
     "saveSpec": null,
-    "fetchSpec": "6.0.2"
+    "fetchSpec": "6.0.4"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova.plugins.diagnostic/-/cordova.plugins.diagnostic-6.0.2.tgz",
-  "_shasum": "ce3b57c18ebac1c4d6a4d1ed3ff330a61d2a5c09",
-  "_spec": "cordova.plugins.diagnostic@6.0.2",
+  "_resolved": "https://registry.npmjs.org/cordova.plugins.diagnostic/-/cordova.plugins.diagnostic-6.0.4.tgz",
+  "_shasum": "8ea85ef1a95d9269369f166c89e1616db7d29337",
+  "_spec": "cordova.plugins.diagnostic@6.0.4",
   "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
   "author": {
     "name": "Dave Alden"
@@ -82,5 +82,5 @@
     "postinstall": "node ./scripts/apply-modules.js"
   },
   "types": "./cordova.plugins.diagnostic.d.ts",
-  "version": "6.0.2"
+  "version": "6.0.4"
 }

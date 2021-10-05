@@ -55,7 +55,6 @@
     "com.jjdltc.cordova.plugin.zip": "./plugin-src/com.jjdltc.cordova.plugin.zip",
     "conic-gradient": "^1.0.0",
     "cordova": "10.0.0",
-    "cordova-android": "8.1.0",
     "cordova-custom-config": "5.1.0",
     "cordova-plugin-advanced-http": "1.6.1",
     "cordova-plugin-androidx": "3.0.0",
@@ -81,7 +80,6 @@
     "cordova-plugin-wkwebview-inject-cookie": "1.0.6",
     "cordova-sqlite-storage": "5.1.0",
     "cordova-support-android-plugin": "1.0.2",
-    "cordova.plugins.diagnostic": "6.0.3",
     "es6-promise-plugin": "^4.2.2",
     "global": "4.3.2",
     "intersection-observer": "^0.5.1",
@@ -108,8 +106,11 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.3",
+    "cordova-android": "^9.1.0",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-file-transfer": "file:plugin-src/cordova-plugin-file-transfer",
+    "cordova-plugin-splashscreen": "^6.0.0",
+    "cordova.plugins.diagnostic": "^6.0.4",
     "ng-swagger-gen": "0.11.4",
     "typescript": "2.6.2"
   },
@@ -131,9 +132,6 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-screen-orientation": {},
       "cordova-custom-config": {},
-      "cordova.plugins.diagnostic": {
-        "ANDROIDX_VERSION": "1.+"
-      },
       "cordova-plugin-androidx": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
@@ -148,11 +146,15 @@
         "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
       },
       "cordova-plugin-file-transfer": {},
+      "cordova.plugins.diagnostic": {
+        "ANDROIDX_VERSION": "1.0.0",
+        "ANDROIDX_APPCOMPAT_VERSION": "1.3.1"
+      },
       "cordova-plugin-splashscreen": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   },
   "config": {

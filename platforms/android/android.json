@@ -5,6 +5,40 @@
   },
   "config_munge": {
     "files": {
+      "app/src/main/AndroidManifest.xml": {
+        "parents": {
+          "/manifest/application": [
+            {
+              "xml": "<application android:usesCleartextTraffic=\"true\" />",
+              "count": 2,
+              "mode": "merge",
+              "id": "config.xml",
+              "oldAttrib": {
+                "android:hardwareAccelerated": "true",
+                "android:icon": "@mipmap/ic_launcher",
+                "android:label": "@string/app_name",
+                "android:requestLegacyExternalStorage": "true",
+                "android:supportsRtl": "true",
+                "android:usesCleartextTraffic": "true"
+              }
+            },
+            {
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "count": 1,
+              "mode": "merge",
+              "id": "config.xml",
+              "oldAttrib": {
+                "android:hardwareAccelerated": "true",
+                "android:icon": "@mipmap/ic_launcher",
+                "android:label": "@string/app_name",
+                "android:requestLegacyExternalStorage": "true",
+                "android:supportsRtl": "true",
+                "android:usesCleartextTraffic": "true"
+              }
+            }
+          ]
+        }
+      },
       "res/xml/config.xml": {
         "parents": {
           "/*": [
@@ -41,6 +75,10 @@
               "count": 1
             },
             {
+              "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
+              "count": 1
+            },
+            {
               "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
               "count": 1
             },
@@ -49,7 +87,15 @@
               "count": 1
             },
             {
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+              "count": 1
+            },
+            {
               "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
               "count": 1
             },
             {
@@ -65,6 +111,10 @@
               "count": 1
             },
             {
+              "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
               "xml": "<feature name=\"StatusBar\"><param name=\"android-package\" value=\"org.apache.cordova.statusbar.StatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             },
@@ -74,22 +124,6 @@
             },
             {
               "xml": "<feature name=\"SQLitePlugin\"><param name=\"android-package\" value=\"io.sqlc.SQLitePlugin\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
             }
           ]
@@ -155,14 +189,6 @@
               "count": 1
             },
             {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
-              "count": 1
-            },
-            {
               "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
               "count": 1
             },
@@ -172,6 +198,14 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
               "count": 1
             }
           ],
@@ -252,40 +286,6 @@
             }
           ]
         }
-      },
-      "app/src/main/AndroidManifest.xml": {
-        "parents": {
-          "/manifest/application": [
-            {
-              "xml": "<application android:usesCleartextTraffic=\"true\" />",
-              "count": 2,
-              "mode": "merge",
-              "id": "config.xml",
-              "oldAttrib": {
-                "android:hardwareAccelerated": "true",
-                "android:icon": "@mipmap/ic_launcher",
-                "android:label": "@string/app_name",
-                "android:requestLegacyExternalStorage": "true",
-                "android:supportsRtl": "true",
-                "android:usesCleartextTraffic": "true"
-              }
-            },
-            {
-              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
-              "count": 1,
-              "mode": "merge",
-              "id": "config.xml",
-              "oldAttrib": {
-                "android:hardwareAccelerated": "true",
-                "android:icon": "@mipmap/ic_launcher",
-                "android:label": "@string/app_name",
-                "android:requestLegacyExternalStorage": "true",
-                "android:supportsRtl": "true",
-                "android:usesCleartextTraffic": "true"
-              }
-            }
-          ]
-        }
       }
     }
   },
@@ -305,9 +305,6 @@
     "cordova-plugin-advanced-http": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-androidx": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -324,10 +321,16 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-ionic-keyboard": {
@@ -337,6 +340,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-media": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-native-spinner": {
@@ -354,32 +360,27 @@
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova.plugins.diagnostic": {
-      "ANDROIDX_VERSION": "1.+",
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-wkwebview-inject-cookie": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-media": {
+    "cordova-sqlite-storage": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-file-transfer": {
+    "cordova-support-android-plugin": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-splashscreen": {
+    "cordova.plugins.diagnostic": {
+      "ANDROIDX_VERSION": "1.0.0",
+      "ANDROIDX_APPCOMPAT_VERSION": "1.3.1",
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
@@ -664,6 +665,22 @@
       ]
     },
     {
+      "id": "cordova-plugin-file-transfer.FileTransferError",
+      "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+      "pluginId": "cordova-plugin-file-transfer",
+      "clobbers": [
+        "window.FileTransferError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-file-transfer.FileTransfer",
+      "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+      "pluginId": "cordova-plugin-file-transfer",
+      "clobbers": [
+        "window.FileTransfer"
+      ]
+    },
+    {
       "id": "cordova-plugin-geolocation.geolocation",
       "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
       "pluginId": "cordova-plugin-geolocation",
@@ -691,6 +708,14 @@
       "pluginId": "cordova-plugin-globalization",
       "clobbers": [
         "navigator.globalization"
+      ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
       ]
     },
     {
@@ -733,6 +758,22 @@
       "merges": [
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.MediaError",
+      "file": "plugins/cordova-plugin-media/www/MediaError.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.MediaError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.Media",
+      "file": "plugins/cordova-plugin-media/www/Media.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.Media"
       ]
     },
     {
@@ -780,6 +821,14 @@
       "pluginId": "cordova-plugin-screen-orientation",
       "clobbers": [
         "cordova.plugins.screenorientation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
       ]
     },
     {
@@ -885,54 +934,6 @@
       "merges": [
         "cordova.plugins.diagnostic.external_storage"
       ]
-    },
-    {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.MediaError",
-      "file": "plugins/cordova-plugin-media/www/MediaError.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.MediaError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.Media",
-      "file": "plugins/cordova-plugin-media/www/Media.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.Media"
-      ]
-    },
-    {
-      "id": "cordova-plugin-file-transfer.FileTransferError",
-      "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
-      "pluginId": "cordova-plugin-file-transfer",
-      "clobbers": [
-        "window.FileTransferError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-file-transfer.FileTransfer",
-      "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
-      "pluginId": "cordova-plugin-file-transfer",
-      "clobbers": [
-        "window.FileTransfer"
-      ]
-    },
-    {
-      "id": "cordova-plugin-splashscreen.SplashScreen",
-      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-      "pluginId": "cordova-plugin-splashscreen",
-      "clobbers": [
-        "navigator.splashscreen"
-      ]
     }
   ],
   "plugin_metadata": {
@@ -941,30 +942,30 @@
     "cordova-custom-config": "5.1.0",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-advanced-http": "1.6.2",
-    "cordova-plugin-androidx": "3.0.0",
     "cordova-plugin-androidx-adapter": "1.1.1",
     "cordova-plugin-app-version": "0.1.9",
     "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-device": "1.1.6",
+    "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-geolocation": "4.0.2",
     "cordova-plugin-globalization": "1.0.9",
+    "cordova-plugin-inappbrowser": "4.0.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-ionic-webview": "5.0.0",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-media": "5.0.3",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-request-location-accuracy": "2.2.2",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-screen-orientation": "3.0.2",
+    "cordova-plugin-splashscreen": "6.0.0",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-whitelist": "1.3.4",
-    "cordova-sqlite-storage": "5.1.0",
-    "cordova.plugins.diagnostic": "6.0.2",
-    "cordova-plugin-inappbrowser": "4.0.0",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
-    "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-file-transfer": "1.7.1",
-    "cordova-plugin-splashscreen": "6.0.0"
+    "cordova-sqlite-storage": "5.1.0",
+    "cordova-support-android-plugin": "1.0.2",
+    "cordova.plugins.diagnostic": "6.0.4"
   }
 }

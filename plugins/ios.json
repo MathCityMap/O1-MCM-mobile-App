@@ -71,9 +71,6 @@
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -87,7 +84,10 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova.plugins.diagnostic": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
+      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     }
   },
   "dependent_plugins": {

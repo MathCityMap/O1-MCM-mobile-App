@@ -79,6 +79,18 @@ export class ImagesService {
         return this.nativeBaseURL;
     }
 
+    makeDownloadUrlLegit(downloadPath: string) {
+        let pathParts = downloadPath.split('/');
+        let actualPath;
+        if (pathParts[pathParts.length - 2].length !== 1) {
+            let frontParts = pathParts.splice(0, pathParts.length - 1);
+            actualPath = frontParts.join('/') + "/m/" + pathParts.join('/');
+        } else {
+            actualPath = pathParts.join('/');
+        }
+        return actualPath;
+    }
+
     async downloadURLs(urls: string[], createThumbs: boolean, progressCallback: DownloadProgressCallback = null,
                        skipCheckForExistingFiles: boolean = false): Promise<any> {
         if (!this.isFilePluginAvailable()) {
@@ -112,7 +124,7 @@ export class ImagesService {
             }
             console.log('Starting download task for ' + task.outputName);
             let url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
-                : Helper.WEBSERVER_URL + encodeURI(task.imgFileName);
+                : Helper.MEDIASERVER_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
             setTimeout(()=>{fileTransfer.download(url, dataDirectory + task.outputName)
                 .then(() => {
                     if (!createThumbs) {
@@ -249,7 +261,7 @@ export class ImagesService {
     }
 
     getOnlineURL(imgPath: string) {
-        return imgPath.indexOf('http') !== 0 ? Helper.WEBSERVER_URL + imgPath : imgPath;
+        return imgPath.indexOf('http') !== 0 ? Helper.MEDIASERVER_URL + imgPath : imgPath;
     }
 
     fixUrlForWebview(url) {
@@ -324,7 +336,7 @@ export class ImagesService {
             return;
         }
 
-        let url = Helper.WEBSERVER_URL + 'mcm_maps/' + route.mapFileName;
+        let url = Helper.MEDIASERVER_URL + 'mcm_maps/' + route.mapFileName;
         let downloadRequest: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
         let pathToFileInString  = dataDirectory + route.mapFileName;

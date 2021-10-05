@@ -19,9 +19,6 @@
     "cordova-plugin-advanced-http": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-androidx": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -35,10 +32,16 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-ionic-keyboard": {
@@ -48,6 +51,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-media": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-native-spinner": {
@@ -62,32 +68,24 @@
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
+    "cordova-plugin-wkwebview-inject-cookie": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova.plugins.diagnostic": {
-      "ANDROIDX_VERSION": "1.+",
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-wkwebview-inject-cookie": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-media": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-splashscreen": {
+      "ANDROIDX_VERSION": "1.0.0",
+      "ANDROIDX_APPCOMPAT_VERSION": "1.3.1",
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
@@ -99,6 +97,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "es6-promise-plugin": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-support-android-plugin": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   }

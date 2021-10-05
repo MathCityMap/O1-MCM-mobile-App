@@ -482,6 +482,12 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "es6-promise-plugin.Promise",
+      "file": "plugins/es6-promise-plugin/www/promise.js",
+      "pluginId": "es6-promise-plugin",
+      "runs": true
+    },
+    {
       "id": "cordova.plugins.diagnostic.Diagnostic",
       "file": "plugins/cordova.plugins.diagnostic/www/ios/diagnostic.js",
       "pluginId": "cordova.plugins.diagnostic",
@@ -568,12 +574,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "merges": [
         "cordova.plugins.diagnostic.motion"
       ]
-    },
-    {
-      "id": "es6-promise-plugin.Promise",
-      "file": "plugins/es6-promise-plugin/www/promise.js",
-      "pluginId": "es6-promise-plugin",
-      "runs": true
     }
   ];
   module.exports.metadata = {
@@ -600,13 +600,13 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-request-location-accuracy": "2.2.2",
     "cordova-plugin-screen-orientation": "3.0.2",
-    "cordova-plugin-splashscreen": "6.0.0",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
     "cordova-sqlite-storage": "5.1.0",
     "cordova-support-android-plugin": "1.0.2",
-    "cordova.plugins.diagnostic": "6.0.2",
-    "es6-promise-plugin": "4.2.2"
+    "es6-promise-plugin": "4.2.2",
+    "cordova.plugins.diagnostic": "6.0.4",
+    "cordova-plugin-splashscreen": "6.0.0"
   };
 });
