@@ -50,9 +50,6 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-    <feature name="FileTransfer">
-        <param name="ios-package" value="CDVFileTransfer" />
-    </feature>
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
@@ -294,4 +291,7 @@
     <preference name="Hostname" value="app.mathcitymap.eu" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <feature name="FileTransfer">
+        <param name="ios-package" value="CDVFileTransfer" />
+    </feature>
 </widget>

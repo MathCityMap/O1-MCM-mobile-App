@@ -330,6 +330,14 @@ export class Task {
         }
     }
 
+    isSubtaskRequired() {
+        if(!this.isAttrObject()){
+            return false;
+        }
+        let attr = Helper.safeJsonDecode(this.attr);
+        return attr.useSubtasks === "true";
+    }
+
     getSubtasksInOrder(): Array<Task> {
         return this.subtasks.sort((a, b) => {
             if (a.position > b.position) return 1;

@@ -76,7 +76,6 @@
     "cordova-plugin-request-location-accuracy": "^2.2.2",
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-statusbar": "git+https://github.com/apache/cordova-plugin-statusbar.git",
-    "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.6",
     "cordova-sqlite-storage": "5.1.0",
     "cordova-support-android-plugin": "1.0.2",
@@ -106,9 +105,9 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.3",
-    "cordova-android": "^9.1.0",
+    "cordova-android": "^10.1.1",
     "cordova-ios": "^6.2.0",
-    "cordova-plugin-file-transfer": "file:plugin-src/cordova-plugin-file-transfer",
+    "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
     "cordova-plugin-splashscreen": "^6.0.0",
     "cordova.plugins.diagnostic": "^6.0.4",
     "ng-swagger-gen": "0.11.4",
@@ -122,7 +121,6 @@
       "cordova-plugin-advanced-http": {},
       "cordova-plugin-native-spinner": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-whitelist": {},
       "cordova-plugin-request-location-accuracy": {},
       "cordova-plugin-globalization": {},
       "com-sarriaroman-photoviewer": {},
@@ -145,12 +143,12 @@
       "cordova-plugin-media": {
         "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
       },
-      "cordova-plugin-file-transfer": {},
       "cordova.plugins.diagnostic": {
         "ANDROIDX_VERSION": "1.0.0",
         "ANDROIDX_APPCOMPAT_VERSION": "1.3.1"
       },
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-file-transfer": {}
     },
     "platforms": [
       "ios",

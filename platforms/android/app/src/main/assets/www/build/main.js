@@ -4836,12 +4836,12 @@ var Helper = /** @class */ (function () {
     /*
     GLOBAL VARS #
      */
-    // static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
-    Helper.WEBSERVER_URL = "https://dev.mathcitymap.eu/";
+    Helper.WEBSERVER_URL = "https://mathcitymap.eu/";
+    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
     Helper.MEDIASERVER_URL = "https://matismedia.eu/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
-    // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
-    Helper.API_URL = "https://dev.mathcitymap.eu/db_query_post.php";
+    Helper.API_URL = "https://mathcitymap.eu/db_query_post.php";
+    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
     Helper.REQUEST_PASS = "evilknivel2k16";
     Helper.REPLACE_TASK_IMAGE_PATH = "mcm_images/tasks/";
     Helper.REPLACE_ROUTE_IMAGE_PATH = "mcm_images/routes/";
@@ -6038,7 +6038,7 @@ var map = {
 		7
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1153,
+		1151,
 		1
 	],
 	"../pages/info/info.module": [
@@ -6050,11 +6050,11 @@ var map = {
 		3
 	],
 	"../pages/portal/portal.module": [
-		1151,
+		1152,
 		6
 	],
 	"../pages/settings/settings.module": [
-		1152,
+		1153,
 		2
 	],
 	"../pages/task-detail/task-detail.module": [
@@ -8483,6 +8483,13 @@ var Task = /** @class */ (function () {
         else {
             return "";
         }
+    };
+    Task.prototype.isSubtaskRequired = function () {
+        if (!this.isAttrObject()) {
+            return false;
+        }
+        var attr = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.attr);
+        return attr.useSubtasks === "true";
     };
     Task.prototype.getSubtasksInOrder = function () {
         return this.subtasks.sort(function (a, b) {
@@ -12244,9 +12251,9 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -12576,7 +12583,6 @@ var ModalsService = /** @class */ (function () {
             var routeInfoModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */], data);
             routeInfoModal.onDidDismiss(function (result) {
                 if (result && result.showRoute) {
-                    //will probably never showRoute;
                     self.showRoute(result.route, navCtrl, true);
                     success(result.route);
                 }
