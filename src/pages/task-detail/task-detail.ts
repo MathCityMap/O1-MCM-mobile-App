@@ -793,16 +793,21 @@ export class TaskDetail {
             let solvedTask = true;
             let detailSolutions = [];
             let solutionText = "<table class='solutionTable'>";
+            let solutionsUsed = [];
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
                 let checkAnswer = parseFloat(answer.answer.replace(",", "."));
                 let originalAnswer = this.taskDetails.answerMultipleChoice[answer.originalIndex];
-                for (let solution of solutions) {
-                    if (checkAnswer > +solution - 0.0001 && checkAnswer < +solution + 0.0001) {
-                        originalAnswer.solved = true;
-                        break;
-                    } else {
-                        originalAnswer.solved = false;
+                for (let solutionIndex in solutions) {
+                    if (solutionsUsed.indexOf(solutionIndex) === -1) {
+                        solution = solutions[solutionIndex];
+                        if (checkAnswer > +solution - 0.0001 && checkAnswer < +solution + 0.0001) {
+                            solutionsUsed.push(solutionIndex);
+                            originalAnswer.solved = true;
+                            break;
+                        } else {
+                            originalAnswer.solved = false;
+                        }
                     }
                 }
                 detailSolutions.push(answer.answer);
