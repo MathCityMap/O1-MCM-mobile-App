@@ -3,9 +3,9 @@
     <div class="task-header" [ngClass]="{'gps' : task && task.solutionType=='gps'}">
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap">
             <ion-fab bottom right *ngIf="task && task.solutionType=='gps'">
-                <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">
+                <buttone ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">
                     <span>{{item}}</span>
-                </button>
+                </buttone>
             </ion-fab>
         </div>
         <img class="image" *ngIf="task && task.solutionType!='gps' && task.image" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />

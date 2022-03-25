@@ -4186,7 +4186,7 @@ var LanguageService = /** @class */ (function () {
         this.storage = storage;
         this.isInitialized = false;
         this.initializeListeners = [];
-        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id"];
+        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et"];
     }
     LanguageService_1 = LanguageService;
     LanguageService.prototype.getAvailableLanguages = function () {
@@ -6038,7 +6038,7 @@ var map = {
 		7
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1151,
+		1150,
 		1
 	],
 	"../pages/info/info.module": [
@@ -6046,7 +6046,7 @@ var map = {
 		4
 	],
 	"../pages/onboarding/onboarding.module": [
-		1150,
+		1151,
 		3
 	],
 	"../pages/portal/portal.module": [
@@ -12250,8 +12250,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }

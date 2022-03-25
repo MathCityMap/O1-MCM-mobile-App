@@ -11,7 +11,7 @@ export class LanguageService {
     private initializeListeners = [];
 
     private static STORAGE_KEY = 'LanguageService.lang';
-    private availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id"];
+    private availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et"];
 
     constructor(private translateService: TranslateService, private platform: Platform,
                 private globalization: Globalization, private storage: Storage) {
