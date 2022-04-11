@@ -1,27 +1,27 @@
 {
-  "_from": "cordova-sqlite-storage",
-  "_id": "cordova-sqlite-storage@5.1.0",
+  "_from": "cordova-sqlite-storage@6",
+  "_id": "cordova-sqlite-storage@6.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-UmHe9yQiYblDBToh3z91WHuD6ZgmCm3VX+1QFseYQs4WVQ3+ndj22qyGby/NV0uyCgok91gB1obLjLM+9vYJEw==",
+  "_integrity": "sha512-njRloA3AICaUFztKHXoFfVcwlL7zbvyFxtdZIkK7P+MA3umILXtSKhYAQkSe2GtHr0LBNzJI5xUUqAlZl/Js0A==",
   "_location": "/cordova-sqlite-storage",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-sqlite-storage",
+    "raw": "cordova-sqlite-storage@6",
     "name": "cordova-sqlite-storage",
     "escapedName": "cordova-sqlite-storage",
-    "rawSpec": "",
+    "rawSpec": "6",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "6"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-sqlite-storage/-/cordova-sqlite-storage-5.1.0.tgz",
-  "_shasum": "ded50473525ad178fd623c3881a60662b79a3712",
-  "_spec": "cordova-sqlite-storage",
+  "_resolved": "https://registry.npmjs.org/cordova-sqlite-storage/-/cordova-sqlite-storage-6.0.0.tgz",
+  "_shasum": "25eba8eb4657d2b526c4b753747e6d1533fcb73b",
+  "_spec": "cordova-sqlite-storage@6",
   "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
   "author": {
     "name": "various"
@@ -41,10 +41,10 @@
     ]
   },
   "dependencies": {
-    "cordova-sqlite-storage-dependencies": "3.0.0"
+    "cordova-sqlite-storage-dependencies": "4.0.0"
   },
   "deprecated": false,
-  "description": "Native interface to SQLite for PhoneGap/Cordova - cordova-sqlite-storage plugin version",
+  "description": "Native interface to SQLite for PhoneGap / Cordova - cordova-sqlite-storage plugin version",
   "devDependencies": {
     "coffeescript": "1",
     "cross-spawn": "^6.0.5",
@@ -67,9 +67,9 @@
     "url": "git+https://github.com/xpbrew/cordova-sqlite-storage.git"
   },
   "scripts": {
-    "clean-spec": "rm -rf spec/[mnp]* && git cl spec/config.xml && git status --ignored",
+    "clean-spec": "rm -rf spec/[mnp]* && git cl spec/config.xml spec/package.json && git status --ignored",
     "prepare-js": "coffee -p SQLitePlugin.coffee.md > www/SQLitePlugin.js",
     "prepare-spec": "node scripts/prepareSpec.js"
   },
-  "version": "5.1.0"
+  "version": "6.0.0"
 }

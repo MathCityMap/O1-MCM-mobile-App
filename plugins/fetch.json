@@ -103,14 +103,6 @@
     "is_top_level": false,
     "variables": {}
   },
-  "cordova-sqlite-storage": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-sqlite-storage"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-ionic-keyboard": {
     "source": {
       "type": "registry",
@@ -246,6 +238,14 @@
     "source": {
       "type": "registry",
       "id": "git+https://github.com/apache/cordova-plugin-file-transfer.git"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-sqlite-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-sqlite-storage@6"
     },
     "is_top_level": true,
     "variables": {}
