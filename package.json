@@ -50,7 +50,7 @@
     "android-versions": "^1.2.2",
     "angular-linky": "^1.2.2",
     "angular-progress-bar": "1.0.0",
-    "async": "2.6.0",
+    "async": "3.2.2",
     "com-sarriaroman-photoviewer": "~1.1.18",
     "com.jjdltc.cordova.plugin.zip": "./plugin-src/com.jjdltc.cordova.plugin.zip",
     "conic-gradient": "^1.0.0",
