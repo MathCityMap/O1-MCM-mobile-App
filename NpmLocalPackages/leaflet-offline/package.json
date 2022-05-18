@@ -1,0 +1,61 @@
+{
+  "_from": "leaflet-offline@1.1.0",
+  "_id": "leaflet-offline@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-e7jGAU219NUk9CROvnI1nkhItmwvefmSFV7FV/vIUPfE1XZuCLR0umhLUZA9AU+qECoMIGgoO5o85EABwUiE5g==",
+  "_location": "/leaflet-offline",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "leaflet-offline@1.1.0",
+    "name": "leaflet-offline",
+    "escapedName": "leaflet-offline",
+    "rawSpec": "1.1.0",
+    "saveSpec": null,
+    "fetchSpec": "1.1.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/leaflet-offline/-/leaflet-offline-1.1.0.tgz",
+  "_shasum": "ab8860bc79fb1868e7275b672da4deb02222460b",
+  "_spec": "leaflet-offline@1.1.0",
+  "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
+  "author": {
+    "name": "Roberto Soares"
+  },
+  "bugs": {
+    "url": "https://github.com/robertomlsoares/leaflet-offline/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "leaflet": "^1.1.0"
+  },
+  "deprecated": false,
+  "description": "A Leaflet library that downloads map tiles and uses them offline.",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "pump": "^1.0.2"
+  },
+  "homepage": "https://github.com/robertomlsoares/leaflet-offline#readme",
+  "keywords": [
+    "leaflet",
+    "offline",
+    "map",
+    "download"
+  ],
+  "license": "GPL-2.0",
+  "main": "src/leaflet-offline.js",
+  "name": "leaflet-offline",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertomlsoares/leaflet-offline.git"
+  },
+  "version": "1.1.0"
+}
