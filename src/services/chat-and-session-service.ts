@@ -28,6 +28,7 @@ import * as moment from 'moment';
 import {SessionUserResponse} from "../app/api/models/session-user-response";
 import {SessionUsersResponse} from "../app/api/models/session-users-response";
 import {forEach} from "typescript-collections/dist/lib/arrays";
+import {SessionEventsResponse} from "../app/api/models/session-events-response";
 
 export class ChatMessage {
     messageId: string;
@@ -44,7 +45,6 @@ export class ChatMessage {
 }
 
 export class LeaderBoardItemRespone {
-
 }
 
 export class UserInfo {
@@ -60,6 +60,14 @@ export class SessionInfo {
     sessionUser: SessionUser;
     started: boolean;
     authorEvents_lastPull: number; // Unix timestamp
+}
+
+export enum SessionEventTitle {
+    AUTHOR_KICK_USER = 'event_author_kick_user',
+    AUTHOR_UPDATE_SESSION = 'event_author_update_session',
+    AUTHOR_ASSIGN_TASK = 'event_author_assign_task',
+    AUTHOR_PING_USER = 'event_author_ping_user',
+    USER_PONG_RESPONSE = 'event_pong_response'
 }
 
 @Injectable()
@@ -623,17 +631,17 @@ export class ChatAndSessionService {
         }
     }
 
-    private parseAuthorEvents(events) {
+    private parseAuthorEvents(events: SessionEventsResponse) {
         /*
         Two cases right now:
         1. Author kicks a user: If user == current session user > Leave active session
         2. Author updates session: Get updated session
          */
         let that = this;
-        events.events.forEach(function (event) {
-            if (event.title === 'event_author_kick_user') {
+        events.events.forEach((event) => {
+            if (event.title === SessionEventTitle.AUTHOR_KICK_USER) {
                 try {
-                    let details = JSON.parse(event.details);
+                    const details = JSON.parse(event.details);
                     if (details.userToken == that.transientActiveSession.sessionUser.token) {
                         that.events.publish('user:kicked', 'self');
                     } else {
@@ -642,17 +650,17 @@ export class ChatAndSessionService {
                 } catch (e) {
                     console.log("Could not parse details of author event.");
                 }
-
-            } else if (event.title === 'event_author_update_session') {
+            }
+            else if (event.title === SessionEventTitle.AUTHOR_UPDATE_SESSION) {
                 that.sessionService.getSessionByCode(that.transientActiveSession.session.code).toPromise().then(async session => {
                     that.transientActiveSession.session = session;
                     await that.updateSession(that.transientActiveSession);
                     that.events.publish('session:updated', that.transientActiveSession);
                 });
-
-            } else if (event.title === 'event_author_assign_task') {
+            }
+            else if (event.title === SessionEventTitle.AUTHOR_ASSIGN_TASK) {
                 try {
-                    let details = JSON.parse(event.details);
+                    const details = JSON.parse(event.details);
                     if (details.userToken == that.transientActiveSession.sessionUser.token) {
                         that.transientActiveSession.sessionUser.assigned_task_id = details.assigned_task_id;
                         that.updateSession(that.transientActiveSession);
@@ -661,7 +669,19 @@ export class ChatAndSessionService {
                 } catch (e) {
                     console.log(e);
                 }
-            } else {
+            }
+            else if (event.title === SessionEventTitle.AUTHOR_PING_USER) {
+                try {
+                    const details = JSON.parse(event.details);
+                    if (details.userToken === that.transientActiveSession.sessionUser.token) {
+                        const pongEventDetails: string = JSON.stringify({pingToken: details.pingToken});
+                        that.addUserEvent(SessionEventTitle.USER_PONG_RESPONSE, pongEventDetails, '0');
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+            else {
 
             }
         });
