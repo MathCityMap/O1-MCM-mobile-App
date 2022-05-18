@@ -88,7 +88,7 @@
     "jszip": "^3.2.2",
     "leaflet": "1.2.0",
     "leaflet-geometryutil": "0.7.2",
-    "leaflet-offline": "1.1.0",
+    "leaflet-offline": "file:NpmLocalPackages/leaflet-offline",
     "leaflet-rotatedmarker": "^0.2.0",
     "leaflet.markercluster": "1.1.0",
     "mapbox-gl": "^1.6.0",
