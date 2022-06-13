@@ -4857,8 +4857,8 @@ var Helper = /** @class */ (function () {
     /*
     GLOBAL VARS #
      */
-    // static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
-    Helper.WEBSERVER_URL = "https://dev.mathcitymap.eu/";
+    Helper.WEBSERVER_URL = "https://mathcitymap.eu/";
+    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
     Helper.MEDIASERVER_URL = "https://matismedia.eu/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     Helper.API_URL = "https://mathcitymap.eu/db_query_post.php";
@@ -6043,11 +6043,11 @@ var map = {
 		298
 	],
 	"../pages/dashboard/dashboard.module": [
-		1146,
+		1145,
 		9
 	],
 	"../pages/home/home.module": [
-		1145,
+		1146,
 		8
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
@@ -12266,8 +12266,8 @@ var AppModule = /** @class */ (function () {
                 }, {
                     links: [
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
@@ -12360,8 +12360,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
  */
 var ApiConfiguration = /** @class */ (function () {
     function ApiConfiguration() {
-        // rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
-        this.rootUrl = "https://api-dev.mathcitymap.eu/public/index.php";
+        this.rootUrl = "https://api.mathcitymap.eu/public/index.php"; // http://localhost/;
+        // rootUrl: string = "https://api-dev.mathcitymap.eu/public/index.php";
     }
     ApiConfiguration = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
