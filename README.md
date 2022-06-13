@@ -1,8 +1,11 @@
+## Update 18.05.2022
+Do not use yarn anymore. Consider using Node Version Manager (NVM)
+for different node versions. This project was built with node v14.17.3.
+
 ## System requirements
-Install Nodejs and npm
+Install Nodejs 14.17 and npm
 ```bash
 npm install -g ionic
-npm install -g yarn
 npm install -g cordova
 ```
 
@@ -16,10 +19,10 @@ Set Path Env to msbuildtools
 
 ## Project run instructions
 
-Run yarn to install project dependencies:
+Run npm install to install project dependencies:
 
 ```bash
-yarn
+npm install
 ```
 
 Build project:
