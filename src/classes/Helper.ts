@@ -89,8 +89,8 @@ export class Helper {
     /*
     GLOBAL VARS #
      */
-    static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
-    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
+    // static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
+    static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
     static readonly MEDIASERVER_URL: string = "https://matismedia.eu/storage/MCM/"
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"

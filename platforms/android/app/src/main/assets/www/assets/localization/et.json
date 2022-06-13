@@ -1261,5 +1261,9 @@
   "p_user_deleted_info_task": "Kahjuks pole selle ülesande autor enam kättesaadav.",
   "p_user_anonymous": "Anonüümne",
   "p_user_edit_info_2": "Muuda oma profiili.",
-  "p_user_edit_info_1": "Konto põhiandmete, näiteks ees- ja perekonnanime, muutmiseks külastage MCM-i põhilehte"
+  "p_user_edit_info_1": "Konto põhiandmete, näiteks ees- ja perekonnanime, muutmiseks külastage MCM-i põhilehte",
+  "t_usage_notice": "Märkus kasutamise kohta",
+  "t_private_usage_info": "Rada pole veel hinnatud ja avaldatud,  kuid seda saab juba kasutada! Lihtsalt jagage raja koodi või looge digitaalne klassiruum ja jagage digitaalse klassiruumi koodi.",
+  "p_error_no_grade": "Klass pole määratud.",
+  "p_solution_gps_info": "Ideaalis tuleks GPS-i ülesandeid luua ainult avatud aladel/maastikul, et saavutada kõrgeim täpsus."
 }
