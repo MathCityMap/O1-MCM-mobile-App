@@ -375,22 +375,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-media.MediaError",
-      "file": "plugins/cordova-plugin-media/www/MediaError.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.MediaError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.Media",
-      "file": "plugins/cordova-plugin-media/www/Media.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.Media"
-      ]
-    },
-    {
       "id": "cordova-plugin-native-spinner.SpinnerDialog",
       "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
       "pluginId": "cordova-plugin-native-spinner",
@@ -548,6 +532,22 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "SQLitePlugin"
       ]
+    },
+    {
+      "id": "cordova-plugin-media.MediaError",
+      "file": "plugins/cordova-plugin-media/www/MediaError.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.MediaError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.Media",
+      "file": "plugins/cordova-plugin-media/www/Media.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.Media"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -568,7 +568,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-ionic-webview": "5.0.0",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
-    "cordova-plugin-media": "5.0.3",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-request-location-accuracy": "2.2.2",
@@ -579,6 +578,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
     "cordova-support-android-plugin": "1.0.2",
     "cordova.plugins.diagnostic": "6.0.4",
-    "cordova-sqlite-storage": "6.0.0"
+    "cordova-sqlite-storage": "6.0.0",
+    "cordova-plugin-media": "5.0.3"
   };
 });

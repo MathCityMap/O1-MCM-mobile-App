@@ -53,9 +53,6 @@
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-plugin-media": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-native-spinner": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
@@ -83,6 +80,9 @@
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
     "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-plugin-media": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     }
   },
