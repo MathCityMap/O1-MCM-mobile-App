@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 1149:
+/***/ 1151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfoPageModule", function() { return InfoPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info__ = __webpack_require__(1160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info__ = __webpack_require__(1163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(235);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41,14 +41,14 @@ var InfoPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1160:
+/***/ 1163:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(649);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -130,7 +130,7 @@ var InfoPage = /** @class */ (function () {
     };
     InfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-info',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/info/info.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header pattern-bg">\n\n    <div class="card">\n        <a href="#" onclick="window.open(\'https://mathcitymap.eu/de/\', \'_system\', \'location=yes\'); return false;">\n            <img class="responsive" src="./assets/images/mcm_logo_white.png">\n        </a>\n        <ion-label>MathCityMap</ion-label>\n        <p>\n            {{\'a_about_mcm_project\' | translate}}<br><br>\n            {{ \'a_about_mcm_portal\' | translate}}\n        </p>\n        <ion-label>{{ \'a_about_mcm_responsibility_title\' | translate}}</ion-label>\n        <p [innerHtml]=" \'a_about_mcm_responsibility\' | translate "></p>\n        <ion-label>{{ \'a_about_version\' | translate}}</ion-label>\n        <p>{{versionNumber}}</p>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/info/info.html"*/,
+            selector: 'page-info',template:/*ion-inline-start:"/Users/marc.hofmann/workspace/O1-MCM-mobile-App/src/pages/info/info.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header pattern-bg">\n\n    <div class="card">\n        <a href="#" onclick="window.open(\'https://mathcitymap.eu/de/\', \'_system\', \'location=yes\'); return false;">\n            <img class="responsive" src="./assets/images/mcm_logo_white.png">\n        </a>\n        <ion-label>MathCityMap</ion-label>\n        <p>\n            {{\'a_about_mcm_project\' | translate}}<br><br>\n            {{ \'a_about_mcm_portal\' | translate}}\n        </p>\n        <ion-label>{{ \'a_about_mcm_responsibility_title\' | translate}}</ion-label>\n        <p [innerHtml]=" \'a_about_mcm_responsibility\' | translate "></p>\n        <ion-label>{{ \'a_about_version\' | translate}}</ion-label>\n        <p>{{versionNumber}}</p>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/marc.hofmann/workspace/O1-MCM-mobile-App/src/pages/info/info.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__["a" /* AppVersion */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
