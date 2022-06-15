@@ -189,7 +189,8 @@ export class TaskDetail {
             this.rootTask = this.task;
             this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex]
         }
-        this.subTasksRequired = (this.task.isSubtaskRequired() || this.route.isSubtaskRequired());
+        this.subTasksRequired = this.route.isSubtaskRequired(this.taskId);
+
         console.log("Opened Task: ", this.task);
         this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());

@@ -414,9 +414,11 @@ export class Route {
         return newString? newString : $mcmKey;
     }
 
-    //TODO Move this to individual tasks
-    isSubtaskRequired() {
-        return this.getAttributes().useSubtasks === "true";
+    isSubtaskRequired(taskId) {
+        const task2Route =  this.task2Routes.find(task2Route => {
+            return task2Route.task.id == taskId;
+        });
+        return task2Route.forceSupportTask;
     }
 
     getPathGeoJson() {

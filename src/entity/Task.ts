@@ -87,6 +87,9 @@ export class Task {
     @Column({name: 'position'})
     position: number;
 
+    @Column({name: 'ar_link'})
+    arLink: string;
+
     @ManyToMany(type => Route, route => route.tasks)
     routes: Route[]
 
@@ -328,14 +331,6 @@ export class Task {
         else{
             return "";
         }
-    }
-
-    isSubtaskRequired() {
-        if(!this.isAttrObject()){
-            return false;
-        }
-        let attr = Helper.safeJsonDecode(this.attr);
-        return attr.useSubtasks === "true";
     }
 
     getSubtasksInOrder(): Array<Task> {

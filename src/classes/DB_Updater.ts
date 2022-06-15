@@ -104,6 +104,9 @@ export class DB_Updater {
       Inserts Data from MYSQL online (represented as JSON) into sqlite database of app
     */
     private async insertJSONinSQLiteDB(data: any, table: DBC_Plan) {
+        if(table === DBC.DB_RELROUTETASK) {
+            console.log('Debug here DB_TASK');
+        }
         let sqlInsertQry = `INSERT INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
         let sqlReplaceIntoQry = `REPLACE INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
         let dbh = DB_Handler.getInstance()
@@ -122,7 +125,7 @@ export class DB_Updater {
                     if (table.fieldsType[n - 1] === "INTEGER") {
                         // integer
                         // params.push(n)
-                        params.push(Number(row[table.fields[n - 1]]))
+                        params.push(isNaN(Number(row[table.fields[n - 1]])) ? null : Number(row[table.fields[n - 1]]))
                     } else if (table.fieldsType[n - 1] === "VARCHAR"
                         || table.fieldsType[n - 1] === "TEXT"
                         || table.fieldsType[n - 1] === "TIMESTAMP") {

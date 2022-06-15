@@ -37,6 +37,9 @@ import {AddSubtasks16026790930000} from "../migration/16026790930000-AddSubtasks
 import {AddPositionField16194302450000} from "../migration/16194302450000-AddPositionField";
 import {AddPathFields16208100470000} from "../migration/16208100470000-AddPathFields";
 import {AddZoom16225449820000} from "../migration/16225449820000-AddZoom";
+import {
+    AddForceSubtaskAndArLink16552845000000
+} from '../migration/16552845000000-AddForceSubtaskAndArLink';
 
 
 @Injectable()
@@ -84,7 +87,8 @@ export class OrmService {
             AddSubtasks16026790930000,
             AddPositionField16194302450000,
             AddPathFields16208100470000,
-            AddZoom16225449820000
+            AddZoom16225449820000,
+            AddForceSubtaskAndArLink16552845000000
         ];
         if (sqliteAvailable) {
             this.connection = await createConnection({

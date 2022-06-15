@@ -82,7 +82,8 @@ export abstract class DBC {
             "lang_code",
             "visible",
             "task_id",
-            "position"
+            "position",
+            "ar_link"
         ],
         [
             "INTEGER",
@@ -110,7 +111,8 @@ export abstract class DBC {
             "VARCHAR",
             "INTEGER",
             "INTEGER",
-            "INTEGER"
+            "INTEGER",
+            "VARCHAR"
         ],
         [
             "PRIMARY KEY AUTOINCREMENT",
@@ -137,6 +139,7 @@ export abstract class DBC {
             "NOT NULL",
             "(2)",
             "(1) NOT NULL DEFAULT 1",
+            "",
             "",
             ""
         ]
@@ -233,6 +236,7 @@ export abstract class DBC {
         DBC.DATABASE_TABLE_REL_ROUTE_TASK,
         [
             "_id",
+            "force_support_tasks",
             "route_id",
             "task_id",
             "timestamp"
@@ -241,10 +245,12 @@ export abstract class DBC {
             "INTEGER",
             "INTEGER",
             "INTEGER",
+            "INTEGER",
             "TIMESTAMP"
         ],
         [
             "PRIMARY KEY AUTOINCREMENT",
+            "(1)",
             "(64) NOT NULL",
             "(64) NOT NULL",
             "NOT NULL DEFAULT CURRENT_TIMESTAMP"
