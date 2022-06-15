@@ -178,6 +178,14 @@ page-task-detail {
                 }
             }
         }
+        .ar-link {
+            margin-bottom: $global-base-padding*1.5;
+            button {
+                width: $fab-size;
+                height: $fab-size;
+                margin: 0 auto;
+            }
+        }
         .answer {
             ion-label,
             ion-label.label-ios,

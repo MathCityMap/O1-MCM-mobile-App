@@ -25,6 +25,8 @@ import {ImagesService} from "../../services/images-service";
 import * as Levenstein from 'js-levenshtein';
 import {Util} from "leaflet";
 import trim = Util.trim;
+import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
+import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -83,6 +85,9 @@ export class TaskDetail {
     private subTaskModalShown = false;
 
     private keyboardSubscriptions : Subscription = new Subscription();
+
+    private inAppBrowser: InAppBrowser = new InAppBrowser();
+    private linkHttpsPipeFilter: LinkHttpsPipe = new LinkHttpsPipe();
 
     constructor(
         public navCtrl: NavController,
@@ -2180,5 +2185,14 @@ export class TaskDetail {
         } else {
             this.goToPreviousSubtask();
         }
+    }
+
+    openLinkInBrowser(url: string) {
+        const options: InAppBrowserOptions = {
+            zoom: 'no'
+        }
+        const saveUrl = this.linkHttpsPipeFilter.transform(url);
+        this.inAppBrowser.create(saveUrl, '_system', options);
+
     }
 }

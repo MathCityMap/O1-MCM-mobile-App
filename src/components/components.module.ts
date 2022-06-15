@@ -13,12 +13,14 @@ import { LazyLoadImagesDirective } from '../directives/ngx-lazy-load-images.dire
 
 import { RouteTeaserComponent } from "./route-teaser/route-teaser";
 import {LocalizedDatePipe} from "../app/pipes/localDate.pipe";
+import {LinkHttpsPipe} from '../app/pipes/linkHttps.pipe';
 
 const components = [
     MCMHeaderComponent,
     DistancePipe,
     SearchPipe,
     LocalizedDatePipe,
+    LinkHttpsPipe,
     MCMProgressBarComponent,
 	McmImageComponent,
     LazyLoadImagesDirective
