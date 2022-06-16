@@ -6,6 +6,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ModalsService } from '../../services/modals-service';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController } from "ionic-angular/navigation/nav-controller";
+import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class RouteInfo {
                 private viewCtrl: ViewController,
                 public alertCtrl: AlertController,
                 public navCtrl: NavController,
-                public translateService: TranslateService) {
+                public translateService: TranslateService,
+                private spinnerDialog: SpinnerDialog) {
     }
 
     async ionViewWillEnter() {
@@ -49,7 +51,18 @@ export class RouteInfo {
         }
     }
 
-    async removeRoute(route: Route) {
+    async removeRoute() {
+        this.spinnerDialog.show();
         await this.ormService.removeDownloadedRoute(this.route, true);
+        this.spinnerDialog.hide();
+    }
+
+    displayRemoveTrailModal() {
+        const modalsService: ModalsService = this.viewCtrl.data.modalsService;
+        modalsService.showDialog('a_route_info_modal_removeRoute', 'a_route_info_modal_removeRoute_msg',
+            'no', () => {},
+            'yes', async () => {
+                await this.removeRoute();
+            });
     }
 }

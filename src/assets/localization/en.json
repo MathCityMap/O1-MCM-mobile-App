@@ -1302,6 +1302,9 @@
   "p_chat_error_image": "Could not process the selected image file. Please check, if the image size is too small.",
   "p_chat_error_mic_permission": "MCM has no permission to use the microphone. Audio messages are disabled. Please check your permissions.",
   "a_r_download": "Download Trail",
+  "a_r_remove_trail": "Remove Trail",
+  "a_route_info_modal_removeRoute": "Are you sure?",
+  "a_route_info_modal_removeRoute_msg": "Deleting this trail from your device will also delete all your progress.",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

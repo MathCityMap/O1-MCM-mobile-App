@@ -9,9 +9,9 @@
         <ion-grid>
             <ion-row align-items-center>
                 <ion-col col-4 class="button-container">
-                    <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute(route)">
-                        <img src="./assets/icons/delete.svg"/>
-                    </button>
+<!--                    <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute()">-->
+<!--                        <img src="./assets/icons/delete.svg"/>-->
+<!--                    </button>-->
                 </ion-col>
                 <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">
                     <div class="cover">
@@ -135,6 +135,11 @@
         <p *ngIf="route">{{ route.tags }}</p>
     </div>
 
+    <div class="card text-center transparent">
+        <button color="dark" ion-button round *ngIf="route && route.downloaded" (click)="displayRemoveTrailModal()">  <!--(click)="displayResetTasksModal()"-->
+            {{ 'a_r_remove_trail' | translate }}
+        </button>
+    </div>
 </ion-content>
 
 <ion-footer>
