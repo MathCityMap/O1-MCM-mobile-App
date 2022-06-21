@@ -64290,6 +64290,16 @@ page-task-detail .card .head .tag.secondary {
   line-height: 1.8;
 }
 
+page-task-detail .card .ar-link {
+  margin-bottom: 30px;
+}
+
+page-task-detail .card .ar-link button {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+}
+
 page-task-detail .card .answer ion-label,
 page-task-detail .card .answer ion-label.label-ios,
 page-task-detail .card .answer ion-label.label-md {

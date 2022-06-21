@@ -25,10 +25,6 @@
     "cordova-plugin-app-version": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-plugin-camera": {
-      "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
@@ -83,6 +79,10 @@
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
     "cordova-plugin-media": {
+      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-plugin-camera": {
+      "ANDROIDX_CORE_VERSION": "1.6.+",
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     }
   },

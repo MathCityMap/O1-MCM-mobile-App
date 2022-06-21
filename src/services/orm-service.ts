@@ -417,7 +417,9 @@ export class OrmService {
         }
         this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(await route.getTasks()), false);
         let state = await this.storage.get("savedMapStateByRoute");
-        delete state[route.id];
+        if (state && state[route.id]) {
+            delete state[route.id];
+        }
         this.storage.set("savedMapStateByRoute", state);
         route.downloaded = null;
         route.downloadedDate = null;

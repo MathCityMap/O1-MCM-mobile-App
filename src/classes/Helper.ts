@@ -355,6 +355,9 @@ export class Helper {
 
     public static calculateZoom(bounds: LatLngBounds){
 
+        if (!bounds) {
+            return {min_zoom: 15, max_zoom: 18};
+        }
         let width = (L as any).GeometryUtil.length([bounds.getSouthWest(), bounds.getSouthEast()]);
         let height = (L as any).GeometryUtil.length([bounds.getNorthWest(), bounds.getSouthWest()]);
 
@@ -364,12 +367,12 @@ export class Helper {
 
 
         if(area <= 0.4) {
-            return {min_zoom: 16, max_zoom: 20}
+            return {min_zoom: 16, max_zoom: 20};
         }
         else if(area <= 1.5) {
-            return {min_zoom: 16, max_zoom: 19}
+            return {min_zoom: 16, max_zoom: 19};
         }
-        else return {min_zoom: 15, max_zoom: 18}
+        else return {min_zoom: 15, max_zoom: 18};
     }
 
 }

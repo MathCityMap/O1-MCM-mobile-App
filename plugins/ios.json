@@ -28,9 +28,6 @@
     "cordova-plugin-app-version": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -84,6 +81,9 @@
     },
     "cordova-plugin-media": {
       "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
+      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-plugin-camera": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     }
   },

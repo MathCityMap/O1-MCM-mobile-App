@@ -1301,5 +1301,8 @@
   "p_chat_error_sending_message": "Es ist ein Fehler beim Senden der Nachricht aufgetreten.",
   "p_chat_error_image": "Das ausgewählte Bild konnte nicht verarbeitet werden. Dies könnte ein Indiz auf ein zu kleines Bild sein.",
   "p_chat_error_mic_permission": "MCM hat keine Erlaubnis das Mikrofon zu Verwenden. Audionachrichten sind daher nicht verfügbar. Bitte überprüfen Sie Ihre Einstellungen.",
-  "a_r_download": "Trail herunterladen"
+  "a_r_download": "Trail herunterladen",
+  "a_r_remove_trail": "Trail entfernen",
+  "a_route_info_modal_removeRoute": "Bist du sicher?",
+  "a_route_info_modal_removeRoute_msg": "Wenn du diesen Trail von deinem Gerät löschst, wird auch dein gesamter Fortschritt gelöscht."
 }

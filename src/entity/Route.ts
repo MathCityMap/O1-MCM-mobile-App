@@ -186,6 +186,9 @@ export class Route {
 
     private calcBoundingBoxAndCenter() {
         const padding: number = 0.0015;
+        if (!this.boundingBox) {
+            return;
+        }
         const jsonBB = JSON.parse(this.boundingBox);
         const jsonCenter = JSON.parse(this.center);
         if (!jsonBB) {
