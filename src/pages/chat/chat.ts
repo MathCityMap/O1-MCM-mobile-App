@@ -349,7 +349,6 @@ export class ChatPage {
         if (!(msg.userId === userId || msg.toUserId === userId)) {
             return;
         }
-        console.log('pushed new message');
         this.msgList.push(msg);
         this.changeDetector.detectChanges();
 
@@ -433,15 +432,18 @@ export class ChatPage {
 
     startRecording() {
         console.log('start recording');
+        let filename = '';
         this.pauseAudio();
 
         if(this.platform.is('android')){
-            this.fileDirectory = this.file.externalDataDirectory;
+            this.fileDirectory = this.file.dataDirectory;
+            filename =  'audioFile.aac';
         } else if(this.platform.is('ios')){
+            filename = 'audioFile.aac';
             this.fileDirectory = this.file.documentsDirectory;
         }
-        this.file.createFile(this.fileDirectory, 'audioFile.aac', true).then(filePath => {
-            this.audio = this.media.create(this.fileDirectory.replace(/^file:\/\//, '') + 'audioFile.aac');
+        this.file.createFile(this.fileDirectory, filename, true).then(filePath => {
+            this.audio = this.media.create(this.fileDirectory.replace(/^file:\/\//, '') + filename);
             //this.audio.release();
             this.startAudioRecord = new Date().getTime();
             this.audio.startRecord();
@@ -468,16 +470,16 @@ export class ChatPage {
             clearInterval(this.durationInterval);
             this.durationInterval = null;
         }
-        if (this.platform.is('ios')) {
+        //if (this.platform.is('ios')) {
             this.audio.setVolume(0);
             this.audio.play();
             this.audioDuration = await this.getAudioDuration();
             this.audio.pause();
             this.audio.setVolume(1);
             this.audio.seekTo(0);
-        } else {
-            this.audioDuration = await this.getAudioDuration();
-        }
+        //} else {
+        //    this.audioDuration = await this.getAudioDuration();
+        //}
         this.startAudioRecord = 0;
         this.canPlayback = true;
     }
@@ -486,6 +488,10 @@ export class ChatPage {
         return new Promise<number>((resolve) => {
             this.durCheckInterval = window.setInterval(() => {
                 console.log("Looking for File Duration");
+                if (!this.audio) {
+                    this.clearAudioDurationInterval();
+                    resolve(0);
+                }
                 if (this.audio.getDuration() != -1) {
                     // this.currentAudioFile.setVolume(1.0);
                     this.clearAudioDurationInterval();
@@ -515,6 +521,7 @@ export class ChatPage {
         }
 
         this.audio = this.media.create(filePath);
+
         this.audio.play();
         this.startAudioPlaying = new Date().getTime();
         this.positionInterval = window.setInterval(() => {
@@ -560,7 +567,7 @@ export class ChatPage {
     }
 
     isAudio(path: string) {
-        return (path.substring(path.lastIndexOf('.')) == '.aac');
+        return (path.substring(path.lastIndexOf('.')) == '.mp3');
     }
 
     changeButtonsStatus() {
