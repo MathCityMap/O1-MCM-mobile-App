@@ -1304,5 +1304,6 @@
   "a_r_download": "Trail herunterladen",
   "a_r_remove_trail": "Trail entfernen",
   "a_route_info_modal_removeRoute": "Bist du sicher?",
-  "a_route_info_modal_removeRoute_msg": "Wenn du diesen Trail von deinem Gerät löschst, wird auch dein gesamter Fortschritt gelöscht."
+  "a_route_info_modal_removeRoute_msg": "Wenn du diesen Trail von deinem Gerät löschst, wird auch dein gesamter Fortschritt gelöscht.",
+  "a_alert_fraction_low": "Deine Antwort ist richtig, kann aber noch gekürzt werden. Die vollständig gekürzte Lösung lautet <br/>{{L}}"
 }

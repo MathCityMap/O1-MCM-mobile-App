@@ -1222,6 +1222,22 @@ ion-modal {
             width: 20px;
             margin-bottom: -5px;
         }
+        .fraction-display-container{
+            display: inline-flex;
+            .whole-number{
+                font-size: 20px;
+            }
+            ion-grid {
+                margin-left: 2px;
+                margin-top: -2px;
+                .first-row span{
+                    border-bottom: 1px solid color($colors, dark);
+                }
+            }
+            &.clean-fraction {
+                transform: translateY(-25%);
+            }
+        }
     }
 }
 

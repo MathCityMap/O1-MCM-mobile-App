@@ -62004,6 +62004,31 @@ ion-modal .modal.card .inline_image {
   margin-bottom: -5px;
 }
 
+ion-modal .modal.card .fraction-display-container {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+ion-modal .modal.card .fraction-display-container .whole-number {
+  font-size: 20px;
+}
+
+ion-modal .modal.card .fraction-display-container ion-grid {
+  margin-left: 2px;
+  margin-top: -2px;
+}
+
+ion-modal .modal.card .fraction-display-container ion-grid .first-row span {
+  border-bottom: 1px solid #222222;
+}
+
+ion-modal .modal.card .fraction-display-container.clean-fraction {
+  -webkit-transform: translateY(-25%);
+  transform: translateY(-25%);
+}
+
 /*  ========== Progress & Evaluation =========  */
 mcm-progress-bar, .evaluation {
   position: relative;
@@ -64527,6 +64552,54 @@ page-task-detail .card.subtasks .accordion.open .accordion_content {
 page-task-detail .card.subtasks .accordion.open .accordion_arrow {
   -webkit-transform: unset;
   transform: unset;
+}
+
+page-task-detail .fraction-input-container {
+  width: 60%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+page-task-detail .fraction-input-container.hide-number-input {
+  -webkit-transform: translateX(-70%);
+  transform: translateX(-70%);
+}
+
+page-task-detail .fraction-input-container.hide-number-input .number-input-container {
+  opacity: 0;
+}
+
+page-task-detail .fraction-input-container .number-input-container {
+  width: 80%;
+}
+
+page-task-detail .fraction-input-container .number-input-container.item-input-has-focus .item-inner {
+  border-bottom: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+page-task-detail .fraction-input-container .number-input-container.item-input-has-focus .item-inner ion-input {
+  border-bottom: 1px solid #036d99;
+}
+
+page-task-detail .fraction-input-container .number-input-container .item-inner {
+  border-bottom: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+page-task-detail .fraction-input-container .number-input-container .item-inner ion-input {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+page-task-detail .fraction-input-container .first-row {
+  border-bottom: 1px solid #222222;
 }
 
 .mcm-keyboard-open .scroll-content {

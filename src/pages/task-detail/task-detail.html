@@ -42,6 +42,48 @@
                     </ion-input>
                     <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == 'text'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>
                 </ion-item>
+
+                <div class="fraction-input-container" [ngClass]="{'hide-number-input': specialSolution && specialSolution.mixed !== 'true'}" *ngIf="task && task.solutionType === 'fraction' && taskDetails && taskDetails.answerMultipleChoice">
+                    <ion-item class="number-input-container">
+                        <ion-input *ngIf="specialSolution && specialSolution.mixed === 'true'"
+                                   type="text"
+                                   readonly="true"
+                                   [(ngModel)]="taskDetails.answerMultipleChoice[2].answer"
+                                   [ngModelOptions]="{standalone: true}"
+                                   (focus)="setKeyboardOn(true, 2)"
+                                   (keyup.enter)="checkResult()">
+                        </ion-input>
+                    </ion-item>
+                    <ion-grid>
+                        <ion-row class="first-row">
+                            <ion-col>
+                                <ion-item>
+                                    <ion-input type="text"
+                                               readonly="true"
+                                               [(ngModel)]="taskDetails.answerMultipleChoice[0].answer"
+                                               [ngModelOptions]="{standalone: true}"
+                                               (focus)="setKeyboardOn(true, 0)"
+                                               (keyup.enter)="checkResult()">
+                                    </ion-input>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <ion-item>
+                                    <ion-input type="text"
+                                               readonly="true"
+                                               [(ngModel)]="taskDetails.answerMultipleChoice[1].answer"
+                                               [ngModelOptions]="{standalone: true}"
+                                               (focus)="setKeyboardOn(true, 1)"
+                                               (keyup.enter)="checkResult()">
+                                    </ion-input>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+
                 <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === 'vector_values' || task.solutionType === 'vector_intervals' || task.solutionType === 'set') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                     <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{'is-focused': answerIndex == i && keyboardVisible()}">
                         <ion-label *ngIf="task.solutionType !== 'set'" floating>{{answerField.name}}</ion-label>

@@ -197,7 +197,7 @@ export class TaskDetail {
         this.subTasksRequired = this.route.isSubtaskRequired(this.taskId);
 
         console.log("Opened Task: ", this.task);
-        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks');
+        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks' || this.task.solutionType === 'fraction');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         if (this.task.subtasks && this.task.subtasks.length > 0) {
@@ -251,6 +251,17 @@ export class TaskDetail {
             }
             //Force template to reload so blankContainer exists when it should.
             this.cdRef.detectChanges();
+        }
+        if (this.task.solutionType === 'fraction') {
+            this.specialSolution = this.task.getSolution();
+            console.log("Fraction solution", this.specialSolution);
+            if (!this.taskDetails.answerMultipleChoice || !this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                const answerArray = [{answer: ''}, {answer: ''}];
+                if (this.specialSolution.mixed === "true") {
+                    answerArray.push({answer: ''});
+                }
+                this.taskDetails.answerMultipleChoice = answerArray;
+            }
         }
         if (this.task.solutionType === 'blanks') {
             this.specialSolution = this.task.getSolution();
@@ -465,7 +476,7 @@ export class TaskDetail {
         if (this.taskDetails.skipped) {
             this.taskDetails.newTries = 0;
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set'){
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set' || this.task.solutionType === 'fraction'){
             this.subscribeCKEvents();
         }
         eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
@@ -476,7 +487,7 @@ export class TaskDetail {
         if(CustomKeyBoard.isVisible()){
             CustomKeyBoard.hide();
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set'){
+        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set' || this.task.solutionType === 'fraction'){
             this.unsubscribeCKEvents();
         }
         if(this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed){
@@ -875,6 +886,53 @@ export class TaskDetail {
                 }
                 this.taskSolved('', [blankText]);
             }
+        } else if (this.task.solutionType === 'fraction') {
+            const answers = this.taskDetails.answerMultipleChoice;
+            const solution = this.specialSolution;
+            let solvedLow = false;
+            //Check if task was solved exactly
+            let solvedTask = +solution.numerator === +answers[0].answer && +solution.denominator === +answers[1].answer && (solution.mixed === "true" ? +solution.number === +answers[2].answer : true);
+            if (!solvedTask) {
+                solvedTask = +solution.numerator / +solution.denominator === +answers[0].answer / +answers[1].answer && (solution.mixed === "true" ? +solution.number === +answers[2].answer : true);
+                if (solvedTask) {
+                    solvedLow = true;
+                }
+            }
+            const detailSolutions = [{
+                number: answers[2] ? +answers[2].answer : 0,
+                numerator: +answers[0].answer,
+                denominator: +answers[1].answer,
+                mixed: solution.mixed === "true",
+            }];
+            const displaySolution = '' +
+                `<span class="fraction-display-container ${solution.mixed !== 'true' ? 'clean-fraction' : ''}">` +
+                (solution.mixed === "true" ? `<span class="whole-number">${solution.number}</span>` : '') +
+                '    <ion-grid>' +
+                '         <ion-row class="first-row">' +
+                '            <ion-col>' +
+                `                <span>${solution.numerator}</span>` +
+                '            </ion-col>' +
+                '        </ion-row>' +
+                '        <ion-row>' +
+                '            <ion-col>' +
+                `               <span>${solution.denominator}</span>` +
+                '            </ion-col>' +
+                '        </ion-row>' +
+                '    </ion-grid>' +
+                '</span>';
+
+            console.log("DISPLAY SOLUTION FOR FRACTION", displaySolution)
+
+            if (solvedTask) {
+                this.CalculateScore("fraction", "solved");
+                this.taskSolved(solvedLow ? 'solved_low' : 'solved', [displaySolution], detailSolutions);
+            } else {
+                if (this.sessionInfo != null) {
+                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
+                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
+                this.taskSolved('', [displaySolution], detailSolutions);
+            }
         }
     }
 
@@ -1000,7 +1058,7 @@ export class TaskDetail {
     }
 
 
-    async taskSolved(solved: string, solution: string[]) {
+    async taskSolved(solved: string, solution: string[], eventSolution?: any[]) {
         let that = this;
         // Add event of user entering trail when session active
         if (!this.route.isAnswerFeedbackEnabled()) {
@@ -1064,6 +1122,7 @@ export class TaskDetail {
                 if (this.rootTask && !this.subTasksRequired) {
                     if (this.taskDetails.tries == 0) {
                         if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
+                        else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
                         else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1_low';
                         else message = 'a_alert_right_answer_1_low';
                     } else {
@@ -1074,6 +1133,7 @@ export class TaskDetail {
                         case 0:
                             if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                             else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1_low';
+                            else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
                             else message = 'a_alert_right_answer_1_low';
                             break;
                         case 1:
@@ -1082,11 +1142,13 @@ export class TaskDetail {
                         case 4:
                             if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                             else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_2_low';
+                            else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
                             else message = 'a_alert_right_answer_2_low';
                             break;
                         case 5:
                             if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
                             else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_3_low';
+                            else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
                             else message = 'a_alert_right_answer_3_low';
                             break;
                     }
@@ -1161,7 +1223,7 @@ export class TaskDetail {
                 });
                 modal.present();
             if(this.sessionInfo != null){
-                let details = JSON.stringify({score: this.taskDetails.score, solution: solution, quality: solved});
+                let details = JSON.stringify({score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved});
                 this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
             }
 
@@ -1439,7 +1501,7 @@ export class TaskDetail {
             }
         }
 
-        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
+        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks' || solutionType === 'fraction') {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
@@ -2050,7 +2112,7 @@ export class TaskDetail {
         if (!this.isSpecialTaskType) {
             return isAnswered;
         }
-        if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType == 'set' || this.task.solutionType == 'blanks') {
+        if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType == 'set' || this.task.solutionType == 'blanks' || this.task.solutionType === 'fraction') {
             for (let answerObject of this.taskDetails.answerMultipleChoice) {
                 if (answerObject.answer === "") {
                     isAnswered = false;

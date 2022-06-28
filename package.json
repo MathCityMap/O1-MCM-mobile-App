@@ -102,7 +102,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.3",
-    "cordova-android": "^10.1.1",
+    "cordova-android": "^10.1.2",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
     "cordova-plugin-media": "file:plugin-src/cordova-plugin-media",

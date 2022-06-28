@@ -153,7 +153,7 @@ export class Task {
 
     getSolution(): string {
         let solution = Helper.safeJsonDecode(this.solution);
-        if (this.solutionType === "vector_values" || this.solutionType === "vector_intervals" || this.solutionType === 'set' || this.solutionType === 'blanks') {
+        if (this.solutionType === "vector_values" || this.solutionType === "vector_intervals" || this.solutionType === 'set' || this.solutionType === 'blanks' || this.solutionType === 'fraction') {
             return solution;
         }
         if (this.solutionType != 'multiple_choice') {

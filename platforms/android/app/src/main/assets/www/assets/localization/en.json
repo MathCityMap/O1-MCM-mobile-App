@@ -1305,6 +1305,7 @@
   "a_r_remove_trail": "Remove Trail",
   "a_route_info_modal_removeRoute": "Are you sure?",
   "a_route_info_modal_removeRoute_msg": "Deleting this trail from your device will also delete all your progress.",
+  "a_alert_fraction_low": "Your answer is correct, but can still be shortened. The completely shortened solution is <br/>{{L}}",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

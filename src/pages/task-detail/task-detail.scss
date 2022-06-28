@@ -327,6 +327,40 @@ page-task-detail {
             }
         }
     }
+    .fraction-input-container {
+        &.hide-number-input {
+            transform: translateX(-70%);
+            .number-input-container {
+                opacity: 0;
+            }
+        }
+        width: 60%;
+        display: flex;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        .number-input-container {
+            width: 80%;
+            &.item-input-has-focus {
+                .item-inner {
+                    border-bottom: 0;
+                    box-shadow: none;
+                    ion-input {
+                        border-bottom: 1px solid color($colors, primary);
+                    }
+                }
+            }
+            .item-inner {
+                border-bottom: 0;
+                box-shadow: none;
+                ion-input {
+                    border-bottom: 1px solid color($colors, light-grey);
+                }
+            }
+        }
+        .first-row {
+            border-bottom: 1px solid color($colors, dark);
+        }
+    }
 }
 
 .mcm-keyboard-open{
