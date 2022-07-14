@@ -18,14 +18,10 @@
             <div class="head">
                 <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>
                 <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.subtasks.length} }}</ion-label>
+                <ion-label class="tag arLink" *ngIf="task && task.arLink" (click)="openLinkInBrowser(task.arLink)">AR</ion-label>
                 <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>
             </div>
             <p *ngIf="task">{{task.description}}</p>
-            <div class="ar-link" *ngIf="task && task.arLink">
-                <button ion-button icon-only round color="primary" (click)="openLinkInBrowser(task.arLink)">
-                    AR
-                </button>
-            </div>
             <div class="answer" *ngIf="task && task.solutionType != 'info' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                 <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
                 <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">

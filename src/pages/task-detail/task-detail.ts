@@ -27,6 +27,7 @@ import {Util} from "leaflet";
 import trim = Util.trim;
 import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
+import {SafariViewController} from '@ionic-native/safari-view-controller';
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -102,7 +103,8 @@ export class TaskDetail {
         private photoViewer: PhotoViewer,
         private spinnerDialog: SpinnerDialog,
         private imageService: ImagesService,
-        private cdRef: ChangeDetectorRef
+        private cdRef: ChangeDetectorRef,
+        private safariViewController: SafariViewController
     ) {
     }
 
@@ -2250,11 +2252,32 @@ export class TaskDetail {
     }
 
     openLinkInBrowser(url: string) {
-        const options: InAppBrowserOptions = {
-            zoom: 'no'
-        }
-        const saveUrl = this.linkHttpsPipeFilter.transform(url);
-        this.inAppBrowser.create(saveUrl, '_system', options);
-
+        this.safariViewController.isAvailable()
+            .then((available) => {
+                const saveUrl = this.linkHttpsPipeFilter.transform(url);
+                console.log(available);
+                if (available) {
+                    this.safariViewController.show({
+                        url: saveUrl,
+                        animated: false,
+                        enterReaderModeIfAvailable: false,
+                        tintColor: '#ffffff',
+                        barColor: '#036d99',
+                        controlTintColor: '#ffffff'
+                    })
+                    .subscribe((result: any) => {
+                            if(result.event === 'opened') console.log('Opened');
+                            else if(result.event === 'loaded') console.log('Loaded');
+                            else if(result.event === 'closed') console.log('Closed');
+                        },
+                        (error: any) => console.error(error)
+                    );
+                } else {
+                    const options: InAppBrowserOptions = {
+                        zoom: 'no'
+                    }
+                    this.inAppBrowser.create(saveUrl, '_system', options);
+                }
+        })
     }
 }

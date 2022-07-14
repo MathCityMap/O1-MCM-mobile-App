@@ -27,6 +27,13 @@
     <preference name="Scheme" value="https" />
     <preference name="Hostname" value="app.mathcitymap.eu" />
     <platform name="android">
+        <config-file parent="/manifest" target="AndroidManifest.xml">
+            <queries>
+                <intent>
+                    <action android:name="android.support.customtabs.action.CustomTabsService" />
+                </intent>
+            </queries>
+        </config-file>
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
             <application android:requestLegacyExternalStorage="true" />

@@ -89,6 +89,8 @@
 		EFA12CB944A14C4E8FD5F3EB /* CDVOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = BF90836E60224B9490D8E84D /* CDVOrientation.m */; };
 		F73022B19AC345CCB7006622 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACD2756829441F9AD268A5 /* CDVFile.m */; };
 		FE3BBB41FA044E18B66455AC /* Diagnostic_Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FEF7D949D4BF2B1C57A5B /* Diagnostic_Location.m */; };
+		BBC5964F7272416B8ADD82E6 /* SafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A6C9B882B44D18924E06C4 /* SafariViewController.m */; };
+		B614B4757A994C9AB7E9D56E /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC6ABD65F43491FACA1C59B /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +272,9 @@
 		FB91AE64D545453F831253A2 /* CDVSound.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVSound.h; path = "cordova-plugin-media/CDVSound.h"; sourceTree = "<group>"; };
 		FDBFBD88B95C4CF4BE6AEFE0 /* APPNotificationOptions.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = APPNotificationOptions.h; path = "cordova-plugin-local-notification/APPNotificationOptions.h"; sourceTree = "<group>"; };
 		FE53AEEAEDA84667BDBA2426 /* Diagnostic_Notifications.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Diagnostic_Notifications.m; path = cordova.plugins.diagnostic/Diagnostic_Notifications.m; sourceTree = "<group>"; };
+		81A6C9B882B44D18924E06C4 /* SafariViewController.m */ = {isa = PBXFileReference; name = "SafariViewController.m"; path = "cordova-plugin-safariviewcontroller/SafariViewController.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		D727CF15752A4945B135B5C7 /* SafariViewController.h */ = {isa = PBXFileReference; name = "SafariViewController.h"; path = "cordova-plugin-safariviewcontroller/SafariViewController.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		8BC6ABD65F43491FACA1C59B /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +299,7 @@
 				A3CBA2C99E7549A6ABA1C6EF /* EventKit.framework in Frameworks */,
 				1DE8452811F24D898D0DA14B /* CoreMotion.framework in Frameworks */,
 				0B31068168B14F698D4BF7A8 /* ImageIO.framework in Frameworks */,
+				B614B4757A994C9AB7E9D56E /* SafariServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +387,7 @@
 				2E69C63741F0455EAE525213 /* EventKit.framework */,
 				131058277BEC4FA38BC50426 /* CoreMotion.framework */,
 				A60C31DEAA10417A8F986C00 /* ImageIO.framework */,
+				8BC6ABD65F43491FACA1C59B /* SafariServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -523,6 +530,8 @@
 				84F2ED31FC9D48F19FA89B6B /* CDVCamera.h */,
 				67F2A31FE7824A4C90D51570 /* CDVJpegHeaderWriter.h */,
 				DBFD42BDFC1F497DA4CCA54A /* CDVExif.h */,
+				81A6C9B882B44D18924E06C4 /* SafariViewController.m */,
+				D727CF15752A4945B135B5C7 /* SafariViewController.h */,
 			);
 			name = Plugins;
 			path = MathCityMap/Plugins;
@@ -738,6 +747,7 @@
 				9043AE648630448BAA7A52C4 /* UIImage+CropScaleOrientation.m in Sources */,
 				9EE519F8E1454A03B65E17F4 /* CDVCamera.m in Sources */,
 				592EBB93AD17469893C737DB /* CDVJpegHeaderWriter.m in Sources */,
+				BBC5964F7272416B8ADD82E6 /* SafariViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

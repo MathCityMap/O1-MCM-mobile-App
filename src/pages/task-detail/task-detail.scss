@@ -171,19 +171,20 @@ page-task-detail {
                 &.score {
                     border-style: solid;
                 }
+                &.arLink {
+                    flex: 1;
+                    margin-right: 10%;
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    background: color($colors, success);
+                    color: color($colors, light);
+                }
                 &.secondary {
                     border-width: 2px;
                     border-style: dotted;
                     line-height: 1.8;
                 }
-            }
-        }
-        .ar-link {
-            margin-bottom: $global-base-padding*1.5;
-            button {
-                width: $fab-size;
-                height: $fab-size;
-                margin: 0 auto;
             }
         }
         .answer {

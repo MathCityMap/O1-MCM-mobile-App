@@ -108,6 +108,10 @@
         <param name="android-package" value="cordova.plugins.Diagnostic_External_Storage" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="SafariViewController">
+        <param name="android-package" value="com.customtabplugin.ChromeCustomTabPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
@@ -131,6 +135,13 @@
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
+    <config-file parent="/manifest" target="AndroidManifest.xml">
+        <queries>
+            <intent>
+                <action android:name="android.support.customtabs.action.CustomTabsService" />
+            </intent>
+        </queries>
+    </config-file>
     <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
         <application android:usesCleartextTraffic="true" />
         <application android:requestLegacyExternalStorage="true" />

@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TaskDetail } from './task-detail';
 import { ComponentsModule } from '../../components/components.module';
 import {PhotoViewer} from "@ionic-native/photo-viewer";
+import { SafariViewController } from '@ionic-native/safari-view-controller';
 
 
 
@@ -16,6 +17,6 @@ import {PhotoViewer} from "@ionic-native/photo-viewer";
     TranslateModule,
     ComponentsModule,
   ],
-  providers: [PhotoViewer]
+  providers: [PhotoViewer, SafariViewController]
 })
 export class TaskDetailPageModule {}

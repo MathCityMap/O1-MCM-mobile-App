@@ -35,6 +35,7 @@
     "@ionic-native/media": "4.4.2",
     "@ionic-native/network": "4.4.2",
     "@ionic-native/photo-viewer": "4.4.2",
+    "@ionic-native/safari-view-controller": "^4.20.0",
     "@ionic-native/screen-orientation": "3.14.0",
     "@ionic-native/spinner-dialog": "4.4.2",
     "@ionic-native/splash-screen": "4.3.0",
@@ -106,6 +107,7 @@
     "cordova-ios": "^6.2.0",
     "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
     "cordova-plugin-media": "file:plugin-src/cordova-plugin-media",
+    "cordova-plugin-safariviewcontroller": "^2.0.0",
     "cordova-plugin-splashscreen": "^6.0.0",
     "cordova-sqlite-storage": "^6.0.0",
     "cordova.plugins.diagnostic": "^6.0.4",
@@ -147,7 +149,8 @@
       },
       "cordova-plugin-camera": {
         "ANDROIDX_CORE_VERSION": "1.6.+"
-      }
+      },
+      "cordova-plugin-safariviewcontroller": {}
     },
     "platforms": [
       "ios",

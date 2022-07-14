@@ -85,6 +85,9 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-plugin-safariviewcontroller": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {
