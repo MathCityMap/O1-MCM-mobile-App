@@ -83,6 +83,7 @@
                         </ion-row>
                     </ion-grid>
                 </div>
+                <p class="text-center" *ngIf="task && task.solutionType === 'fraction' && taskDetails && taskDetails.answerMultipleChoice">{{((specialSolution && specialSolution.mixed === 'true') ? 'a_fraction_shorten_mixed' : 'a_fraction_shorten') | translate}}</p>
 
                 <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === 'vector_values' || task.solutionType === 'vector_intervals' || task.solutionType === 'set') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">
                     <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{'is-focused': answerIndex == i && keyboardVisible()}">

@@ -328,6 +328,9 @@ page-task-detail {
         }
     }
     .fraction-input-container {
+        input{
+            text-align: center;
+        }
         &.hide-number-input {
             transform: translateX(-70%);
             .number-input-container {

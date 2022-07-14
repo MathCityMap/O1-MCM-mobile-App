@@ -64565,6 +64565,10 @@ page-task-detail .fraction-input-container {
   transform: translateX(-50%);
 }
 
+page-task-detail .fraction-input-container input {
+  text-align: center;
+}
+
 page-task-detail .fraction-input-container.hide-number-input {
   -webkit-transform: translateX(-70%);
   transform: translateX(-70%);
