@@ -168,7 +168,7 @@
             },
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 13
+              "count": 21
             }
           ],
           "/*": [

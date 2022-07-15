@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage} from 'ionic-angular';
+import {IonicPage, ModalController} from 'ionic-angular';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import {Helper} from "../../classes/Helper";
 import { Storage } from "@ionic/storage";
 import {GpsService} from "../../services/gps-service";
 import {timeout} from 'promise-timeout';
+import {MCMIconModal} from '../../modals/MCMIconModal/MCMIconModal';
+import {MCMModalType} from '../../app/app.component';
+import {ChatAndSessionService} from '../../services/chat-and-session-service';
+import {OrmService} from '../../services/orm-service';
+import {ModalsService} from '../../services/modals-service';
 
 @IonicPage()
 @Component({
@@ -21,7 +26,11 @@ export class DashboardPage {
                 public navParams: NavParams,
                 private helper: Helper,
                 private storage: Storage,
-                private gpsService: GpsService) {
+                private gpsService: GpsService,
+                private chatAndSessionService: ChatAndSessionService,
+                private ormService: OrmService,
+                private modalCtrl: ModalController,
+                private modalsService: ModalsService) {
                 this.tabBarElement = document.querySelector('.tabbar');
     }
 
@@ -50,7 +59,44 @@ export class DashboardPage {
                 });
             }
         }
-        //await this.gpsService.isLocationOn();
+        console.log('check for active session');
+        let activeSession = await this.chatAndSessionService.getActiveSession();
+        if (activeSession != null) {
+            console.log('active session found');
+            let that = this;
+            let route = await this.ormService.findRouteById(activeSession.session.trail_id);
+            let modal = this.modalCtrl.create(MCMIconModal, {
+                title: 'a_session_return_title',
+                message: 'a_session_return_text',
+                type: 'text',
+                modalType: MCMModalType.hint,
+                narrativeEnabled: route.isNarrativeEnabled(),
+                narrative: route.isNarrativeEnabled() ? route.getAttributes().narrativeName : '',
+                buttons: [
+                    {
+                        title: 'a_session_return_stay',
+                        callback: function () {
+                            modal.dismiss();
+                            that.modalsService.showRoute(route, that.navCtrl);
+                        }
+                    },
+                    {
+                        title: 'a_private_session_quit',
+                        callback: function () {
+                            if (this.sessionInfo != null) {
+                                let details = JSON.stringify({});
+                                that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                            }
+                            that.chatAndSessionService.exitActiveSession();
+                            modal.dismiss();
+                            clearInterval(this.refreshIntervalId);
+                        }
+                    }
+                ]
+            }, {showBackdrop: true, enableBackdropDismiss: true});
+
+            modal.present();
+        }
 
     }
 

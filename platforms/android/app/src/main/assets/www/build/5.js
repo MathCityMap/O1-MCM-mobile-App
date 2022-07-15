@@ -10,7 +10,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RoutesList__ = __webpack_require__(1162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54,17 +54,16 @@ var RoutesListPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_promise_timeout__ = __webpack_require__(643);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_promise_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_modals_service__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_modals_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_DB_Updater__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(646);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_chat_and_session_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_app_component__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_pipes_search_pipe__ = __webpack_require__(640);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_app_component__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_pipes_search_pipe__ = __webpack_require__(640);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -109,7 +108,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-
 
 
 
@@ -178,11 +176,11 @@ var RoutesListPage = /** @class */ (function () {
     };
     RoutesListPage.prototype.ionViewWillEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var activeUser, online, e_1, quality, e_2, e_3, activeSession, that_1, route_1, modal_1, _a, _b;
+            var activeUser, online, e_1, quality, e_2, e_3, _a, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        this.pipe = new __WEBPACK_IMPORTED_MODULE_14__app_pipes_search_pipe__["a" /* SearchPipe */]();
+                        this.pipe = new __WEBPACK_IMPORTED_MODULE_13__app_pipes_search_pipe__["a" /* SearchPipe */]();
                         if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
                             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
                         }
@@ -252,63 +250,103 @@ var RoutesListPage = /** @class */ (function () {
                         });
                         return [3 /*break*/, 18];
                     case 18:
-                        console.log('check for active session');
-                        return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
-                    case 19:
-                        activeSession = _c.sent();
-                        if (!(activeSession != null)) return [3 /*break*/, 21];
-                        console.log('active session found');
-                        that_1 = this;
-                        return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
-                    case 20:
-                        route_1 = _c.sent();
-                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_12__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
-                            title: 'a_session_return_title',
-                            // imageUrl: this.task.getSolutionSampleImgSrc(),
-                            message: 'a_session_return_text',
-                            type: 'text',
-                            modalType: __WEBPACK_IMPORTED_MODULE_13__app_app_component__["a" /* MCMModalType */].hint,
-                            narrativeEnabled: route_1.isNarrativeEnabled(),
-                            narrative: this.app.activeNarrative,
-                            buttons: [
-                                {
-                                    title: 'a_session_return_stay',
-                                    callback: function () {
-                                        modal_1.dismiss();
-                                        that_1.modalsService.showRoute(route_1, that_1.navCtrl);
-                                    }
-                                },
-                                {
-                                    title: 'a_private_session_quit',
-                                    callback: function () {
-                                        if (this.sessionInfo != null) {
-                                            var details = JSON.stringify({});
-                                            that_1.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
-                                        }
-                                        that_1.chatAndSessionService.exitActiveSession();
-                                        // activeSession.sessionUser = null;
-                                        modal_1.dismiss();
-                                        clearInterval(this.refreshIntervalId);
-                                    }
-                                }
-                            ]
-                        }, { showBackdrop: true, enableBackdropDismiss: true });
-                        // modal.onDidDismiss(data => {
-                        //     if(this.sessionInfo != null){
-                        //         let details = JSON.stringify({});
-                        //         this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
-                        //     }
-                        // });
-                        modal_1.present();
-                        _c.label = 21;
-                    case 21:
+                        // console.log('check for active session');
+                        // let activeSession = await this.chatAndSessionService.getActiveSession();
+                        // if (activeSession != null) {
+                        //     console.log('active session found');
+                        //     let that = this;
+                        //     let route = await this.ormService.findRouteById(activeSession.session.trail_id);
+                        //     let modal = this.modalCtrl.create(MCMIconModal, {
+                        //         title: 'a_session_return_title',
+                        //         // imageUrl: this.task.getSolutionSampleImgSrc(),
+                        //         message: 'a_session_return_text',
+                        //         type: 'text',
+                        //         modalType: MCMModalType.hint,
+                        //         narrativeEnabled: route.isNarrativeEnabled(),
+                        //         narrative: this.app.activeNarrative,
+                        //         buttons: [
+                        //             {
+                        //                 title: 'a_session_return_stay',
+                        //                 callback: function () {
+                        //                     modal.dismiss();
+                        //                     that.modalsService.showRoute(route, that.navCtrl);
+                        //                 }
+                        //             },
+                        //             {
+                        //                 title: 'a_private_session_quit',
+                        //                 callback: function () {
+                        //                     if (this.sessionInfo != null) {
+                        //                         let details = JSON.stringify({});
+                        //                         that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                        //                     }
+                        //                     that.chatAndSessionService.exitActiveSession();
+                        //                     // activeSession.sessionUser = null;
+                        //                     modal.dismiss();
+                        //                     clearInterval(this.refreshIntervalId);
+                        //                 }
+                        //             }
+                        //         ]
+                        //     }, {showBackdrop: true, enableBackdropDismiss: true});
+                        //     // modal.onDidDismiss(data => {
+                        //     //     if(this.sessionInfo != null){
+                        //     //         let details = JSON.stringify({});
+                        //     //         this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
+                        //     //     }
+                        //     // });
+                        //     modal.present();
+                        // }
                         _a = this;
                         return [4 /*yield*/, this.ormService.getVisibleRoutes(true, this.compareFunction)];
-                    case 22:
+                    case 19:
+                        // console.log('check for active session');
+                        // let activeSession = await this.chatAndSessionService.getActiveSession();
+                        // if (activeSession != null) {
+                        //     console.log('active session found');
+                        //     let that = this;
+                        //     let route = await this.ormService.findRouteById(activeSession.session.trail_id);
+                        //     let modal = this.modalCtrl.create(MCMIconModal, {
+                        //         title: 'a_session_return_title',
+                        //         // imageUrl: this.task.getSolutionSampleImgSrc(),
+                        //         message: 'a_session_return_text',
+                        //         type: 'text',
+                        //         modalType: MCMModalType.hint,
+                        //         narrativeEnabled: route.isNarrativeEnabled(),
+                        //         narrative: this.app.activeNarrative,
+                        //         buttons: [
+                        //             {
+                        //                 title: 'a_session_return_stay',
+                        //                 callback: function () {
+                        //                     modal.dismiss();
+                        //                     that.modalsService.showRoute(route, that.navCtrl);
+                        //                 }
+                        //             },
+                        //             {
+                        //                 title: 'a_private_session_quit',
+                        //                 callback: function () {
+                        //                     if (this.sessionInfo != null) {
+                        //                         let details = JSON.stringify({});
+                        //                         that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                        //                     }
+                        //                     that.chatAndSessionService.exitActiveSession();
+                        //                     // activeSession.sessionUser = null;
+                        //                     modal.dismiss();
+                        //                     clearInterval(this.refreshIntervalId);
+                        //                 }
+                        //             }
+                        //         ]
+                        //     }, {showBackdrop: true, enableBackdropDismiss: true});
+                        //     // modal.onDidDismiss(data => {
+                        //     //     if(this.sessionInfo != null){
+                        //     //         let details = JSON.stringify({});
+                        //     //         this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
+                        //     //     }
+                        //     // });
+                        //     modal.present();
+                        // }
                         _a.items = _c.sent();
                         _b = this;
                         return [4 /*yield*/, this.ormService.getDownloadedRoutes(this.compareFunction)];
-                    case 23:
+                    case 20:
                         _b.downloadedItems = _c.sent();
                         this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
                         this.filterItems();
@@ -492,7 +530,7 @@ var RoutesListPage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */],
             __WEBPACK_IMPORTED_MODULE_10__services_gps_service__["a" /* GpsService */],
             __WEBPACK_IMPORTED_MODULE_11__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_13__app_app_component__["b" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_12__app_app_component__["b" /* MyApp */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
     ], RoutesListPage);
     return RoutesListPage;

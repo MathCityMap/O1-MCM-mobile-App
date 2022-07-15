@@ -2255,7 +2255,6 @@ export class TaskDetail {
         this.safariViewController.isAvailable()
             .then((available) => {
                 const saveUrl = this.linkHttpsPipeFilter.transform(url);
-                console.log(available);
                 if (available) {
                     this.safariViewController.show({
                         url: saveUrl,
