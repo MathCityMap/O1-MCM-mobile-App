@@ -424,6 +424,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-safariviewcontroller.SafariViewController",
+      "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
+      "pluginId": "cordova-plugin-safariviewcontroller",
+      "clobbers": [
+        "SafariViewController"
+      ]
+    },
+    {
       "id": "es6-promise-plugin.Promise",
       "file": "plugins/es6-promise-plugin/www/promise.js",
       "pluginId": "es6-promise-plugin",
@@ -435,14 +443,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "cordova-plugin-screen-orientation",
       "clobbers": [
         "cordova.plugins.screenorientation"
-      ]
-    },
-    {
-      "id": "cordova-plugin-splashscreen.SplashScreen",
-      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-      "pluginId": "cordova-plugin-splashscreen",
-      "clobbers": [
-        "navigator.splashscreen"
       ]
     },
     {
@@ -548,14 +548,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "merges": [
         "cordova.plugins.diagnostic.external_storage"
       ]
-    },
-    {
-      "id": "cordova-plugin-safariviewcontroller.SafariViewController",
-      "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
-      "pluginId": "cordova-plugin-safariviewcontroller",
-      "clobbers": [
-        "SafariViewController"
-      ]
     }
   ];
   module.exports.metadata = {
@@ -580,14 +572,13 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-request-location-accuracy": "2.2.2",
+    "cordova-plugin-safariviewcontroller": "2.0.0",
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-screen-orientation": "3.0.2",
-    "cordova-plugin-splashscreen": "6.0.0",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
     "cordova-sqlite-storage": "6.0.0",
     "cordova-support-android-plugin": "1.0.2",
-    "cordova.plugins.diagnostic": "6.0.4",
-    "cordova-plugin-safariviewcontroller": "2.0.0"
+    "cordova.plugins.diagnostic": "6.0.4"
   };
 });

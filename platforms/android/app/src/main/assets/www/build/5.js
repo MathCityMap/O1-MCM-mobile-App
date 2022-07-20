@@ -250,99 +250,9 @@ var RoutesListPage = /** @class */ (function () {
                         });
                         return [3 /*break*/, 18];
                     case 18:
-                        // console.log('check for active session');
-                        // let activeSession = await this.chatAndSessionService.getActiveSession();
-                        // if (activeSession != null) {
-                        //     console.log('active session found');
-                        //     let that = this;
-                        //     let route = await this.ormService.findRouteById(activeSession.session.trail_id);
-                        //     let modal = this.modalCtrl.create(MCMIconModal, {
-                        //         title: 'a_session_return_title',
-                        //         // imageUrl: this.task.getSolutionSampleImgSrc(),
-                        //         message: 'a_session_return_text',
-                        //         type: 'text',
-                        //         modalType: MCMModalType.hint,
-                        //         narrativeEnabled: route.isNarrativeEnabled(),
-                        //         narrative: this.app.activeNarrative,
-                        //         buttons: [
-                        //             {
-                        //                 title: 'a_session_return_stay',
-                        //                 callback: function () {
-                        //                     modal.dismiss();
-                        //                     that.modalsService.showRoute(route, that.navCtrl);
-                        //                 }
-                        //             },
-                        //             {
-                        //                 title: 'a_private_session_quit',
-                        //                 callback: function () {
-                        //                     if (this.sessionInfo != null) {
-                        //                         let details = JSON.stringify({});
-                        //                         that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
-                        //                     }
-                        //                     that.chatAndSessionService.exitActiveSession();
-                        //                     // activeSession.sessionUser = null;
-                        //                     modal.dismiss();
-                        //                     clearInterval(this.refreshIntervalId);
-                        //                 }
-                        //             }
-                        //         ]
-                        //     }, {showBackdrop: true, enableBackdropDismiss: true});
-                        //     // modal.onDidDismiss(data => {
-                        //     //     if(this.sessionInfo != null){
-                        //     //         let details = JSON.stringify({});
-                        //     //         this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
-                        //     //     }
-                        //     // });
-                        //     modal.present();
-                        // }
                         _a = this;
                         return [4 /*yield*/, this.ormService.getVisibleRoutes(true, this.compareFunction)];
                     case 19:
-                        // console.log('check for active session');
-                        // let activeSession = await this.chatAndSessionService.getActiveSession();
-                        // if (activeSession != null) {
-                        //     console.log('active session found');
-                        //     let that = this;
-                        //     let route = await this.ormService.findRouteById(activeSession.session.trail_id);
-                        //     let modal = this.modalCtrl.create(MCMIconModal, {
-                        //         title: 'a_session_return_title',
-                        //         // imageUrl: this.task.getSolutionSampleImgSrc(),
-                        //         message: 'a_session_return_text',
-                        //         type: 'text',
-                        //         modalType: MCMModalType.hint,
-                        //         narrativeEnabled: route.isNarrativeEnabled(),
-                        //         narrative: this.app.activeNarrative,
-                        //         buttons: [
-                        //             {
-                        //                 title: 'a_session_return_stay',
-                        //                 callback: function () {
-                        //                     modal.dismiss();
-                        //                     that.modalsService.showRoute(route, that.navCtrl);
-                        //                 }
-                        //             },
-                        //             {
-                        //                 title: 'a_private_session_quit',
-                        //                 callback: function () {
-                        //                     if (this.sessionInfo != null) {
-                        //                         let details = JSON.stringify({});
-                        //                         that.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
-                        //                     }
-                        //                     that.chatAndSessionService.exitActiveSession();
-                        //                     // activeSession.sessionUser = null;
-                        //                     modal.dismiss();
-                        //                     clearInterval(this.refreshIntervalId);
-                        //                 }
-                        //             }
-                        //         ]
-                        //     }, {showBackdrop: true, enableBackdropDismiss: true});
-                        //     // modal.onDidDismiss(data => {
-                        //     //     if(this.sessionInfo != null){
-                        //     //         let details = JSON.stringify({});
-                        //     //         this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
-                        //     //     }
-                        //     // });
-                        //     modal.present();
-                        // }
                         _a.items = _c.sent();
                         _b = this;
                         return [4 /*yield*/, this.ormService.getDownloadedRoutes(this.compareFunction)];

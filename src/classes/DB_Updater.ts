@@ -85,7 +85,7 @@ export class DB_Updater {
             await repo.save(routesToSave);
             console.log("UPDATED VERSION!", "version_route");
         }
-        if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
+        // if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
             // Relation needs update
             await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRelations'), DBC.DB_RELROUTETASK);
             // Update local table
@@ -96,7 +96,7 @@ export class DB_Updater {
                     "version_rel_route_task"
                 ]);
             console.log("UPDATED VERSION!", "version_rel_route_task")
-        }
+        // }
     }
 
     /*

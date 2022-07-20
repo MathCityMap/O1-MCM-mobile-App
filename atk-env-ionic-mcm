@@ -36,7 +36,6 @@ check_global_npm_package cordova@10.0.0
 check_global_npm_package @ionic/cli@6.19.0
 check_global_npm_package plugman@2.0.0
 
-export CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL=https://services.gradle.org/distributions/gradle-6.8-bin.zip
 echo "Shall I run 'npm install' for you? [Y/n]"
 read line
 [ "$line" = "n" -o "$line" = "N" ] || npm install

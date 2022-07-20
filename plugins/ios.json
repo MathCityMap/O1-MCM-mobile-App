@@ -70,9 +70,6 @@
     "cordova.plugins.diagnostic": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
-    },
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -83,10 +80,10 @@
       "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-safariviewcontroller": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-camera": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },

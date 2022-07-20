@@ -544,6 +544,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-safariviewcontroller.SafariViewController",
+      "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
+      "pluginId": "cordova-plugin-safariviewcontroller",
+      "clobbers": [
+        "SafariViewController"
+      ]
+    },
+    {
       "id": "cordova-plugin-camera.Camera",
       "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
       "pluginId": "cordova-plugin-camera",
@@ -574,14 +582,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "CameraPopoverHandle"
       ]
-    },
-    {
-      "id": "cordova-plugin-safariviewcontroller.SafariViewController",
-      "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
-      "pluginId": "cordova-plugin-safariviewcontroller",
-      "clobbers": [
-        "SafariViewController"
-      ]
     }
   ];
   module.exports.metadata = {
@@ -610,11 +610,10 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-support-android-plugin": "1.0.2",
     "es6-promise-plugin": "4.2.2",
     "cordova.plugins.diagnostic": "6.0.4",
-    "cordova-plugin-splashscreen": "6.0.0",
     "cordova-plugin-file-transfer": "2.0.0-dev",
     "cordova-sqlite-storage": "6.0.0",
     "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-camera": "6.0.0",
-    "cordova-plugin-safariviewcontroller": "2.0.0"
+    "cordova-plugin-safariviewcontroller": "2.0.0",
+    "cordova-plugin-camera": "6.0.0"
   };
 });

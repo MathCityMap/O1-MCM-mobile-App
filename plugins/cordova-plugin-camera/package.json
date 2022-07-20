@@ -16,7 +16,8 @@
     "fetchSpec": "6.0.0"
   },
   "_requiredBy": [
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-camera/-/cordova-plugin-camera-6.0.0.tgz",
   "_shasum": "083478c92cfaa59435326b5a2a28c56fa75ffdd5",
