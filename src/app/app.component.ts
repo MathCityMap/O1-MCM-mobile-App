@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, App, DeepLinker, Events, ModalCmp, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { CustomKeyBoard } from '../components/customKeyBoard/custom-keyboard';
 
 import { LanguageService } from '../services/language-service';
@@ -39,7 +38,7 @@ export class MyApp {
   keysTab: string[];
     isOpeningRoute: boolean = false;
 
-  constructor(platform: Platform, statusBar: StatusBar,private splashScreen: SplashScreen,
+  constructor(platform: Platform, statusBar: StatusBar,
               languageService: LanguageService, chatService: ChatAndSessionService,
               events: Events, app: App, alertCtrl: AlertController, translate: TranslateService, screenOrientation: ScreenOrientation,private storage: Storage, private modalService: ModalsService, private deepLinker: DeepLinker) {
 
@@ -164,7 +163,6 @@ export class MyApp {
             this.rootPage = 'HomePage';
         }
         (navigator as any).splashscreen.hide();
-        // this.splashScreen.hide();
     }
 }
 

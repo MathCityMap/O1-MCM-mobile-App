@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, Platform} from 'ionic-angular';
 
 import { Helper } from '../../classes/Helper';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { LanguageService } from '../../services/language-service';
 
 
@@ -16,8 +15,9 @@ export class HomePage {
   tab2Root = 'RoutesListPage';
   tab3Root = 'PortalPage';
 
-  constructor(private navCtrl: NavController, private platform: Platform,
-              private splashScreen: SplashScreen, private languageService: LanguageService,
+  constructor(private navCtrl: NavController,
+              private platform: Platform,
+              private languageService: LanguageService,
               private helper: Helper) {
     HomePage.nav = navCtrl;
   }
@@ -27,7 +27,6 @@ export class HomePage {
         this.languageService.initialize().then(() => {
             console.log('Platform is ready!');
             (navigator as any).splashscreen.hide();
-            // this.splashScreen.hide();
         });
     });
   }

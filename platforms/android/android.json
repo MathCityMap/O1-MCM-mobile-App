@@ -44,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 7
+              "count": 9
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
@@ -374,9 +374,6 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-support-android-plugin": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova.plugins.diagnostic": {
@@ -965,7 +962,6 @@
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
     "cordova-sqlite-storage": "6.0.0",
-    "cordova-support-android-plugin": "1.0.2",
     "cordova.plugins.diagnostic": "6.0.4"
   }
 }

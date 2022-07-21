@@ -607,7 +607,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
-    "cordova-support-android-plugin": "1.0.2",
     "es6-promise-plugin": "4.2.2",
     "cordova.plugins.diagnostic": "6.0.4",
     "cordova-plugin-file-transfer": "2.0.0-dev",
