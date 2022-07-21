@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "com.jjdltc.cordova.plugin.zip": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -17,9 +14,6 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-advanced-http": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-androidx": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-androidx-adapter": {
@@ -44,9 +38,6 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-native-spinner": {
@@ -85,13 +76,19 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-badge": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-support-android-plugin": {

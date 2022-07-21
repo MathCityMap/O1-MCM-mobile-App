@@ -63,22 +63,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "com-sarriaroman-photoviewer": {
-    "source": {
-      "type": "registry",
-      "id": "com-sarriaroman-photoviewer"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-badge": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-badge@>=0.8.5"
-    },
-    "is_top_level": false,
-    "variables": {}
-  },
   "cordova-plugin-app-version": {
     "source": {
       "type": "registry",
@@ -131,22 +115,6 @@
     "source": {
       "type": "registry",
       "id": "cordova-custom-config"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-androidx": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-androidx"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-local-notification": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-local-notification"
     },
     "is_top_level": true,
     "variables": {}
@@ -238,6 +206,30 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-camera@6.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "com-sarriaroman-photoviewer": {
+    "source": {
+      "type": "local",
+      "path": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/node_modules/com-sarriaroman-photoviewer"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-local-notification": {
+    "source": {
+      "type": "local",
+      "path": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/node_modules/cordova-plugin-local-notification"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-badge": {
+    "source": {
+      "type": "local",
+      "path": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/node_modules/cordova-plugin-badge"
     },
     "is_top_level": true,
     "variables": {}
