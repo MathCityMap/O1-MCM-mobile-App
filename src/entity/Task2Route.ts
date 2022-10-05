@@ -27,6 +27,9 @@ export class Task2Route {
   task: Task;
 
   async getTaskWithSubtasks() {
+      if (!this.task) {
+          return false;
+      }
       let repo = await OrmService.INSTANCE.getTaskRepository()
       return  await repo.createQueryBuilder("tasks")
           .where({id: this.task.id})

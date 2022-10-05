@@ -33,6 +33,8 @@ export class RouteInfo {
     async ionViewWillEnter() {
         let routeId = this.navParams.get('routeId');
         this.route = this.viewCtrl.data.route = await this.ormService.findRouteById(routeId);
+        //Fetch tasks in Route so Tools of tasks can be shown properly
+        await this.route.getTasks();
         this.totalTasks = await this.route.getTaskCount();
         let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
