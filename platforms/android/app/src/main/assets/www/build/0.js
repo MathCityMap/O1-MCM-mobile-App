@@ -11,7 +11,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_detail__ = __webpack_require__(1167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -79,7 +79,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory, window) {
 
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(113)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -283,7 +283,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory, window) {
 
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(113)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -802,28 +802,28 @@ var SafariViewController = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_modal_modal_controller__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_component__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_component__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__task_detail_map__ = __webpack_require__(1168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_customKeyBoard_custom_keyboard__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(634);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_modals_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_Subscription__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_Subscription___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_Subscription__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_photo_viewer__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__classes_Helper__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_images_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_js_levenshtein__ = __webpack_require__(1169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_js_levenshtein___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_js_levenshtein__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_in_app_browser__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_pipes_linkHttps_pipe__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_pipes_linkHttps_pipe__ = __webpack_require__(638);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_safari_view_controller__ = __webpack_require__(1160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1024,7 +1024,7 @@ var TaskDetail = /** @class */ (function () {
                     case 3:
                         _c.score = _e.apply(_d, [_r.sent()]);
                         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
-                        if (this.task.subtasks && this.task.subtasks.length > 0) {
+                        if (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
                             this.solvedSubtasks = [];
                             for (_i = 0, _f = this.task.getSubtasksInOrder(); _i < _f.length; _i++) {
                                 task = _f[_i];
@@ -1033,7 +1033,7 @@ var TaskDetail = /** @class */ (function () {
                                     this.solvedSubtasks.push(subtaskDetails);
                                 }
                             }
-                            if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.subtasks.length) {
+                            if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.getLegitSubtasks().length) {
                                 subtaskModal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
                                     type: 'text',
                                     message: this.solvedSubtasks.length == 0 ? 'a_subtaskinfo_required_message' : 'a_subtaskinfo_required_progress_message',
@@ -1155,8 +1155,14 @@ var TaskDetail = /** @class */ (function () {
                     case 4:
                         _l.sessionInfo = _r.sent();
                         // Add event of user entering trail when session active
-                        if (this.sessionInfo != null && !this.task) {
-                            details = JSON.stringify({ title: this.task.title });
+                        if (this.sessionInfo != null) {
+                            details = "";
+                            if (this.rootTask) {
+                                details = JSON.stringify({ title: this.task.title, parentId: this.rootTask.id });
+                            }
+                            else {
+                                details = JSON.stringify({ title: this.task.title });
+                            }
                             this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
                         }
                         if (this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) {
@@ -1198,9 +1204,9 @@ var TaskDetail = /** @class */ (function () {
                             this.penalty = 0;
                             this.minScore = 0;
                         }
-                        if (this.task.subtasks && this.subTasksRequired) {
+                        if (this.task.getLegitSubtasks() && this.subTasksRequired) {
                             scorableTaskCount = this.task.solutionType === 'info' ? 0 : 1;
-                            for (_m = 0, _o = this.task.subtasks; _m < _o.length; _m++) {
+                            for (_m = 0, _o = this.task.getLegitSubtasks(); _m < _o.length; _m++) {
                                 task = _o[_m];
                                 if (task.solutionType != 'info') {
                                     scorableTaskCount++;
@@ -1221,7 +1227,7 @@ var TaskDetail = /** @class */ (function () {
                         }
                         if (this.rootTask && this.subTasksRequired && this.task.solutionType !== 'info') {
                             scorableTaskCount = this.rootTask.solutionType === 'info' ? 0 : 1;
-                            for (_p = 0, _q = this.rootTask.subtasks; _p < _q.length; _p++) {
+                            for (_p = 0, _q = this.rootTask.getLegitSubtasks(); _p < _q.length; _p++) {
                                 task = _q[_p];
                                 if (task.solutionType != 'info') {
                                     scorableTaskCount++;
@@ -1237,7 +1243,7 @@ var TaskDetail = /** @class */ (function () {
                                         this.lastSubtaskBonus = (100 - this.subTaskScore * scorableTaskCount);
                                     }
                                 }
-                                this.maxScore = this.subTaskScore + (this.subTaskIndex === this.rootTask.subtasks.length - 1 ? this.lastSubtaskBonus : 0);
+                                this.maxScore = this.subTaskScore + (this.subTaskIndex === this.rootTask.getLegitSubtasks().length - 1 ? this.lastSubtaskBonus : 0);
                             }
                             this.orangeScore = this.maxScore / 2;
                             this.penalty = Math.floor(this.maxScore) * 0.15;
@@ -1802,7 +1808,7 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.completeTask = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                if (this.task.solutionType === 'info' && this.task.subtasks && this.task.subtasks.length > 0) {
+                if (this.task.solutionType === 'info' && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
                     this.CalculateScore('info', 'solved');
                 }
                 else {
@@ -1912,7 +1918,13 @@ var TaskDetail = /** @class */ (function () {
             var details;
             return __generator(this, function (_a) {
                 if (this.sessionInfo != null) {
-                    details = JSON.stringify({});
+                    details = "";
+                    if (this.rootTask) {
+                        details = JSON.stringify({ parentId: this.rootTask.id });
+                    }
+                    else {
+                        details = JSON.stringify({});
+                    }
                     this.chatAndSessionService.addUserEvent("event_task_skipped", details, this.task.id.toString());
                 }
                 this.closeDetails(true);
@@ -2110,7 +2122,7 @@ var TaskDetail = /** @class */ (function () {
                                     param: { tries: this.taskDetails.tries + 1 },
                                     buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
                                 };
-                                if ((this.task.solutionType !== 'info' && (!this.task.subtasks || !(this.task.subtasks.length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
+                                if ((this.task.solutionType !== 'info' && (!this.task.getLegitSubtasks() || !(this.task.getLegitSubtasks().length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
                                     data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
                                 }
                                 console.log(data);
@@ -2140,7 +2152,13 @@ var TaskDetail = /** @class */ (function () {
                             });
                             modal_1.present();
                             if (this.sessionInfo != null) {
-                                details = JSON.stringify({ score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved });
+                                details = "";
+                                if (this.rootTask) {
+                                    details = JSON.stringify({ score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved, parentId: this.rootTask.id });
+                                }
+                                else {
+                                    details = JSON.stringify({ score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved });
+                                }
                                 this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
                             }
                             this.taskDetails.timeSolved = new Date().getTime();
@@ -2235,13 +2253,13 @@ var TaskDetail = /** @class */ (function () {
                                                 modal_2.dismiss();
                                             }
                                         };
-                                        if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                                        if (this.route.isHintsEnabled() && (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0 && this.task.getLegitSubtasks().length !== this.solvedSubtasks.length)) {
                                             buttons = [bShowSubtask, bShowHint, bClose];
                                         }
                                         else if (this.route.isHintsEnabled() && !this.rootTask) {
                                             buttons = [bShowHint, bClose];
                                         }
-                                        else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                                        else if ((this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0 && this.task.getLegitSubtasks().length !== this.solvedSubtasks.length)) {
                                             buttons = [bShowSubtask, bClose];
                                         }
                                         else {
@@ -2256,7 +2274,13 @@ var TaskDetail = /** @class */ (function () {
                                         callback: function () {
                                             modal_2.dismiss().then(function () {
                                                 if (that.sessionInfo != null) {
-                                                    var details = JSON.stringify({});
+                                                    var details = "";
+                                                    if (that.rootTask) {
+                                                        details = JSON.stringify({ parentId: that.rootTask.id });
+                                                    }
+                                                    else {
+                                                        details = JSON.stringify({});
+                                                    }
                                                     that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
                                                 }
                                                 that.showSolutionSample(true);
@@ -2268,7 +2292,13 @@ var TaskDetail = /** @class */ (function () {
                                         callback: function () {
                                             modal_2.dismiss().then(function () {
                                                 if (that.sessionInfo != null) {
-                                                    var details = JSON.stringify({});
+                                                    var details = "";
+                                                    if (that.rootTask) {
+                                                        details = JSON.stringify({ parentId: that.rootTask.id });
+                                                    }
+                                                    else {
+                                                        details = JSON.stringify({});
+                                                    }
                                                     that.chatAndSessionService.addUserEvent("event_task_skipped", details, that.task.id.toString());
                                                 }
                                                 that.closeDetails(true);
@@ -2280,7 +2310,13 @@ var TaskDetail = /** @class */ (function () {
                                         callback: function () {
                                             modal_2.dismiss().then(function () {
                                                 if (that.sessionInfo != null) {
-                                                    var details = JSON.stringify({});
+                                                    var details = "";
+                                                    if (that.rootTask) {
+                                                        details = JSON.stringify({ parentId: that.rootTask.id });
+                                                    }
+                                                    else {
+                                                        details = JSON.stringify({});
+                                                    }
                                                     that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
                                                 }
                                                 that.taskDetails.failed = true;
@@ -2372,13 +2408,13 @@ var TaskDetail = /** @class */ (function () {
             if (this.taskDetails.tries > 0) {
                 var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
             else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -2387,13 +2423,13 @@ var TaskDetail = /** @class */ (function () {
             if (this.taskDetails.tries > 0) {
                 var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
             else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -2403,13 +2439,13 @@ var TaskDetail = /** @class */ (function () {
                 if (this.taskDetails.tries > 0) {
                     var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                     this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                         this.score.score += this.taskDetails.score;
                     }
                 }
                 else {
                     this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                         this.score.score += this.taskDetails.score;
                     }
                 }
@@ -2422,13 +2458,13 @@ var TaskDetail = /** @class */ (function () {
                     if (this.taskDetails.tries > 0) {
                         var tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
                     else {
                         this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
@@ -2437,13 +2473,13 @@ var TaskDetail = /** @class */ (function () {
                     if (this.taskDetails.tries > 0) {
                         var tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
                     else {
                         this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
@@ -2454,13 +2490,13 @@ var TaskDetail = /** @class */ (function () {
             if (this.taskDetails.tries > 0) {
                 var tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
             else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -2468,7 +2504,7 @@ var TaskDetail = /** @class */ (function () {
         if (solutionType === 'info') {
             this.taskDetails.score = 0;
         }
-        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             var tempScore = this.taskDetails.score;
             for (var _i = 0, _a = this.solvedSubtasks; _i < _a.length; _i++) {
                 var task = _a[_i];
@@ -2499,7 +2535,7 @@ var TaskDetail = /** @class */ (function () {
     };
     TaskDetail.prototype.possibleScore = function () {
         if (this.taskDetails) {
-            if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+            if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
                 var tempScore = 0;
                 for (var _i = 0, _a = this.solvedSubtasks; _i < _a.length; _i++) {
                     var task = _a[_i];
@@ -2511,9 +2547,9 @@ var TaskDetail = /** @class */ (function () {
                 else {
                     tempScore += this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
                 }
-                if (this.solvedSubtasks.length < this.task.subtasks.length) {
+                if (this.solvedSubtasks.length < this.task.getLegitSubtasks().length) {
                     var subtaskCount = 0;
-                    for (var _b = 0, _c = this.task.subtasks; _b < _c.length; _b++) {
+                    for (var _b = 0, _c = this.task.getLegitSubtasks(); _b < _c.length; _b++) {
                         var subtask = _c[_b];
                         if (subtask.solutionType !== 'info') {
                             subtaskCount++;
@@ -2521,7 +2557,7 @@ var TaskDetail = /** @class */ (function () {
                     }
                     var solvedSubtaskCount = 0;
                     var _loop_3 = function (subtask) {
-                        var actualTask = this_1.task.subtasks.find(function (task) { return task.id === subtask.taskId; });
+                        var actualTask = this_1.task.getLegitSubtasks().find(function (task) { return task.id === subtask.taskId; });
                         if (actualTask.solutionType !== 'info') {
                             solvedSubtaskCount++;
                         }
@@ -2987,7 +3023,7 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.openSubtask = function (index) {
         console.log('we opening a subtask');
         var rootTask = this.rootTask ? this.rootTask : this.task;
-        if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.subtasks.length)
+        if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.getLegitSubtasks().length)
             return;
         if (!index && index !== 0) {
             index = this.solvedSubtasks.length;
@@ -3009,7 +3045,7 @@ var TaskDetail = /** @class */ (function () {
     TaskDetail.prototype.goToNextSubtask = function () {
         var _this = this;
         var index = this.navCtrl.getActive().index;
-        if (this.subTaskIndex + 1 !== this.rootTask.subtasks.length) {
+        if (this.subTaskIndex + 1 !== this.rootTask.getLegitSubtasks().length) {
             this.openSubtask(this.subTaskIndex + 1).then(function () {
                 _this.navCtrl.remove(index);
             });
@@ -3081,7 +3117,7 @@ var TaskDetail = /** @class */ (function () {
             }
         }
         var calculation = "";
-        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             var numbersArray = [];
             for (var _i = 0, _a = this.solvedSubtasks; _i < _a.length; _i++) {
                 var task = _a[_i];
@@ -3147,7 +3183,7 @@ var TaskDetail = /** @class */ (function () {
         return calculation;
     };
     TaskDetail.prototype.displayScoreCalculation = function () {
-        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             var subtaskModal_3 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
                 type: 'text',
                 score: '(' + this.generateSubtaskScoreCalculationString('solved') + ')',
@@ -3217,7 +3253,7 @@ var TaskDetail = /** @class */ (function () {
     ], TaskDetail.prototype, "multipleChoiceView", void 0);
     TaskDetail = TaskDetail_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-task-detail',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? \'mcm-keyboard-open\' : \'\'">\n    <div class="task-header" [ngClass]="{\'gps\' : task && task.solutionType==\'gps\'}">\n        <div *ngIf="task && task.solutionType==\'gps\'" id="gpsTaskMap">\n            <ion-fab bottom right *ngIf="task && task.solutionType==\'gps\'">\n                <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">\n                    <span>{{item}}</span>\n                </button>\n            </ion-fab>\n        </div>\n        <img class="image" *ngIf="task && task.solutionType!=\'gps\' && task.image" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />\n        <img class="image" *ngIf="task && !task.image && rootTask && rootTask.image && task.solutionType !=\'gps\'" [src]="rootTask.getImageURL()" (click)="openInPhotoviewer(true)" />\n    </div>\n    <div class="task-content" [ngClass]="{\'subtask\': rootTask}">\n        <div class="transition"></div>\n        <div class="card task has-button-on-the-edge">\n\n            <div class="head">\n                <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>\n                <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.subtasks.length} }}</ion-label>\n                <ion-label class="tag arLink" *ngIf="task && task.arLink" (click)="openLinkInBrowser(task.arLink)">AR</ion-label>\n                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>\n            </div>\n            <p *ngIf="task">{{task.description}}</p>\n            <div class="answer" *ngIf="task && task.solutionType != \'info\' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                <ion-label *ngIf ="task && task.solutionType != \'gps\' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>\n                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->\n                    <ion-input (keyup.enter)="checkResult()"\n                               [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"\n                               *ngIf="task.solutionType != \'text\'"\n                               type="text"\n                               (focus)="setKeyboardOn(true)"\n                               [ngModelOptions]="{standalone: true}"\n                               readonly="true"\n                               [(ngModel)]="taskDetails.answer"\n                    >\n                    </ion-input>\n                    <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == \'text\'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>\n                </ion-item>\n\n                <div class="fraction-input-container" [ngClass]="{\'hide-number-input\': specialSolution && specialSolution.mixed !== \'true\'}" *ngIf="task && task.solutionType === \'fraction\' && taskDetails && taskDetails.answerMultipleChoice">\n                    <ion-item class="number-input-container">\n                        <ion-input *ngIf="specialSolution && specialSolution.mixed === \'true\'"\n                                   type="text"\n                                   readonly="true"\n                                   [(ngModel)]="taskDetails.answerMultipleChoice[2].answer"\n                                   [ngModelOptions]="{standalone: true}"\n                                   (focus)="setKeyboardOn(true, 2)"\n                                   (keyup.enter)="checkResult()">\n                        </ion-input>\n                    </ion-item>\n                    <ion-grid>\n                        <ion-row class="first-row">\n                            <ion-col>\n                                <ion-item>\n                                    <ion-input type="text"\n                                               readonly="true"\n                                               [(ngModel)]="taskDetails.answerMultipleChoice[0].answer"\n                                               [ngModelOptions]="{standalone: true}"\n                                               (focus)="setKeyboardOn(true, 0)"\n                                               (keyup.enter)="checkResult()">\n                                    </ion-input>\n                                </ion-item>\n                            </ion-col>\n                        </ion-row>\n                        <ion-row>\n                            <ion-col>\n                                <ion-item>\n                                    <ion-input type="text"\n                                               readonly="true"\n                                               [(ngModel)]="taskDetails.answerMultipleChoice[1].answer"\n                                               [ngModelOptions]="{standalone: true}"\n                                               (focus)="setKeyboardOn(true, 1)"\n                                               (keyup.enter)="checkResult()">\n                                    </ion-input>\n                                </ion-item>\n                            </ion-col>\n                        </ion-row>\n                    </ion-grid>\n                </div>\n                <p class="text-center" *ngIf="task && task.solutionType === \'fraction\' && taskDetails && taskDetails.answerMultipleChoice">{{((specialSolution && specialSolution.mixed === \'true\') ? \'a_fraction_shorten_mixed\' : \'a_fraction_shorten\') | translate}}</p>\n\n                <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === \'vector_values\' || task.solutionType === \'vector_intervals\' || task.solutionType === \'set\') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{\'is-focused\': answerIndex == i && keyboardVisible()}">\n                        <ion-label *ngIf="task.solutionType !== \'set\'" floating>{{answerField.name}}</ion-label>\n                        <ion-label *ngIf="task.solutionType === \'set\'" floating>{{\'a_task_set_answer\' | translate : {index: i + 1} }}</ion-label>\n                        <ion-input (keyup.enter)="checkResult()"\n                                   [disabled]="answerField.solved || (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))"\n                                   type="text"\n                                   (focus)="setKeyboardOn(true, i)"\n                                   [ngModelOptions]="{standalone: true}"\n                                   readonly="true"\n                                   [(ngModel)]="answerField.answer"\n                        >\n                        </ion-input>\n                    </ion-item>\n                </ion-list>\n                <ion-item *ngIf="task && task.solutionType === \'blanks\' && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <p [ngClass]="{\'disabled\': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))}" class="blankContainer" id="blankContainer_{{task.id}}"></p>\n                </ion-item>\n                <ion-list *ngIf="task && task.solutionType == \'multiple_choice\' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                    <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">\n                        <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>\n                        <ion-label class="multi-choice-label" text-wrap tappable>{{item.value}}</ion-label>\n                    </ion-item>\n                </ion-list>\n            </div>\n\n            <div class="on-the-edge-container" *ngIf="taskDetails">\n                <ion-grid no-padding>\n                    <ion-row>\n                        <ion-col *ngIf="route.isHintsEnabled() && task && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="false" *ngIf="task.hasHintMessage(1)" (click)="showHint(1)">\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint1" *ngIf="task.hasHintMessage(2)" (click)="showHint(2)">\n                                <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint2" *ngIf="task.hasHintMessage(3)" (click)="showHint(3)">\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint2" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()) && (task && task.solutionType != \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))"\n                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !isSpecialTypeAnswered() && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">\n                                {{ "a_btn_check_answer" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()) || (task && task.solutionType == \'info\') && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"\n                                    (click)="completeTask()">\n                                {{ "a_task_complete" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != \'info\') && (!subTasksRequired || !task.subtasks || rootTask || (task.subtasks.length === solvedSubtasks.length))">\n                            <button ion-button small round *ngIf="task && taskDetails"\n                                    [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())  && !isSpecialTypeAnswered()" (click)="checkResult()">\n                                {{ "p_save" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col>\n                            <button class="hint" ion-button icon-only round color="primary" (click)="showSolutionSample()"\n                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== \'info\'">\n                                <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>\n                            </button>\n                            <!-- open subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"\n                                    *ngIf="task.subtasks && task.subtasks.length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">\n                                <img class="round" src="./assets/icons/subtask_icon.svg"/>\n                            </button>\n                            <!-- close subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"\n                                    *ngIf="rootTask && task">\n                                <img class="round" src="./assets/icons/task_icon.svg"/>\n                            </button>\n                            <!-- skip task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"\n                            *ngIf="task && taskDetails && task.solutionType !== \'info\' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails(false)"\n                            *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"\n                                    *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                        </ion-col>\n                    </ion-row>\n                </ion-grid>\n\n            </div>\n        </div>\n\n        <div class="card subtasks" *ngIf="task && task.subtasks && task.subtasks.length > 0 && solvedSubtasks && solvedSubtasks.length > 0">\n            <ion-label>{{ "a_solved_subtasks" | translate }}</ion-label>\n            <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{\'open\': activeAccordions.indexOf(subtask.taskId) != -1}">\n                <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">\n                    <p class="task_name">#{{i+1}} {{task.getSubtasksInOrder()[i].title}}</p>\n                    <div class="rating_container">\n                        <!--                    <div class="rating" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}"></div>-->\n                    </div>\n                    <img class="accordion_arrow" src="./assets/icons/subtask_arrow.svg">\n                </div>\n                <div class="accordion_content" (click)="openSubtask(i)">\n                    <span class="description" [ngClass]="{\'compact\': subTasksRequired}">{{task.getSubtasksInOrder()[i].description}}</span>\n                    <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>\n                    <ion-label *ngIf="subTasksRequired" class="answer_container">{{ "a_task_score" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.score}}</span></ion-label>\n                    <img class="subtask-inner-arrow" src="./assets/icons/subtask_arrow.svg">\n                </div>\n            </div>\n        </div>\n\n       <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->\n        <div class="card evaluation" *ngIf="route && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed || taskDetails?.saved)"\n        [ngClass]="{\'saved\' : taskDetails?.saved, \'perfect\' : taskDetails?.solved && route.isAnswerFeedbackEnabled(), \'good\': taskDetails?.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\' : taskDetails?.failed && route.isAnswerFeedbackEnabled() }">\n            <div class="head" *ngIf="task.solutionType !== \'info\'">\n                <div *ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;good_luck_next_time&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("good_luck_next_time") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <ion-label class="tag score" *ngIf="route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!rootTask" id="keyboard-anchor"></div>\n        <div *ngIf="rootTask" id="snd-keyboard-anchor"></div>\n	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">\n                <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_did_you_know&quot;); else elseBlock">\n                    <ion-label text-wrap>{{ route.getNarrativeString("a_did_you_know") }}</ion-label>\n                </div>\n                <ng-template #elseBlock>\n                    <ion-label text-wrap>{{ "a_did_you_know" | translate }}</ion-label>\n                </ng-template>\n		    <p *ngIf="task">\n			    {{task.getSideFactsText()}}\n		    </p>\n	    </div>\n        <div *ngIf="task && task.author" class="card secondary">\n            <ion-label>{{ "author" | translate }}</ion-label>\n            <p>\n                {{task.author}}<br> {{task.mail}}\n            </p>\n        </div>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/,
+            selector: 'page-task-detail',template:/*ion-inline-start:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? \'mcm-keyboard-open\' : \'\'">\n    <div class="task-header" [ngClass]="{\'gps\' : task && task.solutionType==\'gps\'}">\n        <div *ngIf="task && task.solutionType==\'gps\'" id="gpsTaskMap">\n            <ion-fab bottom right *ngIf="task && task.solutionType==\'gps\'">\n                <button ion-fab *ngFor="let item of gpsTaskButtonLabels; let i = index" ion-fab [color]="setFabColor(i)" (click)="taskDetailMap.setMarker(i)">\n                    <span>{{item}}</span>\n                </button>\n            </ion-fab>\n        </div>\n        <img class="image" *ngIf="task && task.solutionType!=\'gps\' && task.image" [src]="task.getImageURL()" (click)="openInPhotoviewer()" />\n        <img class="image" *ngIf="task && !task.image && rootTask && rootTask.image && task.solutionType !=\'gps\'" [src]="rootTask.getImageURL()" (click)="openInPhotoviewer(true)" />\n    </div>\n    <div class="task-content" [ngClass]="{\'subtask\': rootTask}">\n        <div class="transition"></div>\n        <div class="card task has-button-on-the-edge">\n\n            <div class="head">\n                <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>\n                <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.getLegitSubtasks().length} }}</ion-label>\n                <ion-label class="tag arLink" *ngIf="task && task.arLink" (click)="openLinkInBrowser(task.arLink)">AR</ion-label>\n                <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>\n            </div>\n            <p *ngIf="task">{{task.description}}</p>\n            <div class="answer" *ngIf="task && task.solutionType != \'info\' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                <ion-label *ngIf ="task && task.solutionType != \'gps\' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>\n                <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                    <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->\n                    <ion-input (keyup.enter)="checkResult()"\n                               [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"\n                               *ngIf="task.solutionType != \'text\'"\n                               type="text"\n                               (focus)="setKeyboardOn(true)"\n                               [ngModelOptions]="{standalone: true}"\n                               readonly="true"\n                               [(ngModel)]="taskDetails.answer"\n                    >\n                    </ion-input>\n                    <ion-input [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" *ngIf="task.solutionType == \'text\'" type="text" [(ngModel)]="taskDetails.answer"></ion-input>\n                </ion-item>\n\n                <div class="fraction-input-container" [ngClass]="{\'hide-number-input\': specialSolution && specialSolution.mixed !== \'true\'}" *ngIf="task && task.solutionType === \'fraction\' && taskDetails && taskDetails.answerMultipleChoice">\n                    <ion-item class="number-input-container">\n                        <ion-input *ngIf="specialSolution && specialSolution.mixed === \'true\'"\n                                   type="text"\n                                   readonly="true"\n                                   [(ngModel)]="taskDetails.answerMultipleChoice[2].answer"\n                                   [ngModelOptions]="{standalone: true}"\n                                   (focus)="setKeyboardOn(true, 2)"\n                                   (keyup.enter)="checkResult()">\n                        </ion-input>\n                    </ion-item>\n                    <ion-grid>\n                        <ion-row class="first-row">\n                            <ion-col>\n                                <ion-item>\n                                    <ion-input type="text"\n                                               readonly="true"\n                                               [(ngModel)]="taskDetails.answerMultipleChoice[0].answer"\n                                               [ngModelOptions]="{standalone: true}"\n                                               (focus)="setKeyboardOn(true, 0)"\n                                               (keyup.enter)="checkResult()">\n                                    </ion-input>\n                                </ion-item>\n                            </ion-col>\n                        </ion-row>\n                        <ion-row>\n                            <ion-col>\n                                <ion-item>\n                                    <ion-input type="text"\n                                               readonly="true"\n                                               [(ngModel)]="taskDetails.answerMultipleChoice[1].answer"\n                                               [ngModelOptions]="{standalone: true}"\n                                               (focus)="setKeyboardOn(true, 1)"\n                                               (keyup.enter)="checkResult()">\n                                    </ion-input>\n                                </ion-item>\n                            </ion-col>\n                        </ion-row>\n                    </ion-grid>\n                </div>\n                <p class="text-center" *ngIf="task && task.solutionType === \'fraction\' && taskDetails && taskDetails.answerMultipleChoice">{{((specialSolution && specialSolution.mixed === \'true\') ? \'a_fraction_shorten_mixed\' : \'a_fraction_shorten\') | translate}}</p>\n\n                <ion-list class="vector-input-list" *ngIf="task && (task.solutionType === \'vector_values\' || task.solutionType === \'vector_intervals\' || task.solutionType === \'set\') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                    <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index" [ngClass]="{\'is-focused\': answerIndex == i && keyboardVisible()}">\n                        <ion-label *ngIf="task.solutionType !== \'set\'" floating>{{answerField.name}}</ion-label>\n                        <ion-label *ngIf="task.solutionType === \'set\'" floating>{{\'a_task_set_answer\' | translate : {index: i + 1} }}</ion-label>\n                        <ion-input (keyup.enter)="checkResult()"\n                                   [disabled]="answerField.solved || (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))"\n                                   type="text"\n                                   (focus)="setKeyboardOn(true, i)"\n                                   [ngModelOptions]="{standalone: true}"\n                                   readonly="true"\n                                   [(ngModel)]="answerField.answer"\n                        >\n                        </ion-input>\n                    </ion-item>\n                </ion-list>\n                <ion-item *ngIf="task && task.solutionType === \'blanks\' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                    <p [ngClass]="{\'disabled\': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))}" class="blankContainer" id="blankContainer_{{task.id}}"></p>\n                </ion-item>\n                <ion-list *ngIf="task && task.solutionType == \'multiple_choice\' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                    <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">\n                        <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>\n                        <ion-label class="multi-choice-label" text-wrap tappable>{{item.value}}</ion-label>\n                    </ion-item>\n                </ion-list>\n            </div>\n\n            <div class="on-the-edge-container" *ngIf="taskDetails">\n                <ion-grid no-padding>\n                    <ion-row>\n                        <ion-col *ngIf="route.isHintsEnabled() && task && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="false" *ngIf="task.hasHintMessage(1)" (click)="showHint(1)">\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint1" *ngIf="task.hasHintMessage(2)" (click)="showHint(2)">\n                                <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                            <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint2" *ngIf="task.hasHintMessage(3)" (click)="showHint(3)">\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="round" src="./assets/icons/icon_hint-activated.svg"/>\n                                <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>\n                                <img *ngIf="!taskDetails.hint2" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()) && (task && task.solutionType != \'info\')">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))"\n                            [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !isSpecialTypeAnswered() && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">\n                                {{ "a_btn_check_answer" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()) || (task && task.solutionType == \'info\') && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                            <button ion-button small round *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"\n                                    (click)="completeTask()">\n                                {{ "a_task_complete" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col *ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != \'info\') && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">\n                            <button ion-button small round *ngIf="task && taskDetails"\n                                    [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == \'range\' || task.solutionType == \'value\')  || task.solutionType != \'multiple_choice\' && !taskDetails.answer && (task.solutionType != \'gps\' || !taskDetailMap?.areAllPointsSet())  && !isSpecialTypeAnswered()" (click)="checkResult()">\n                                {{ "p_save" | translate }}\n                            </button>\n                        </ion-col>\n\n                        <ion-col>\n                            <button class="hint" ion-button icon-only round color="primary" (click)="showSolutionSample()"\n                            *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== \'info\'">\n                                <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>\n                            </button>\n                            <!-- open subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"\n                                    *ngIf="task.getLegitSubtasks() && task.getLegitSubtasks().length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">\n                                <img class="round" src="./assets/icons/subtask_icon.svg"/>\n                            </button>\n                            <!-- close subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"\n                                    *ngIf="rootTask && task">\n                                <img class="round" src="./assets/icons/task_icon.svg"/>\n                            </button>\n                            <!-- skip task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"\n                            *ngIf="task && taskDetails && task.solutionType !== \'info\' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next task -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails(false)"\n                            *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                            <!-- show next subtask -->\n                            <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"\n                                    *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">\n                                <img class="round" src="./assets/icons/icon_skip.svg"/>\n                            </button>\n                        </ion-col>\n                    </ion-row>\n                </ion-grid>\n\n            </div>\n        </div>\n\n        <div class="card subtasks" *ngIf="task && task.getLegitSubtasks() && task.getLegitSubtasks().length > 0 && solvedSubtasks && solvedSubtasks.length > 0">\n            <ion-label>{{ "a_solved_subtasks" | translate }}</ion-label>\n            <div *ngFor="let subtask of solvedSubtasks; let i = index" class="accordion" [ngClass]="{\'open\': activeAccordions.indexOf(subtask.taskId) != -1}">\n                <div class="accordion_title" (click)="changeSubtaskAccordionState(subtask.taskId)">\n                    <p class="task_name">#{{i+1}} {{task.getSubtasksInOrder()[i].title}}</p>\n                    <div class="rating_container">\n                        <!--                    <div class="rating" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}"></div>-->\n                    </div>\n                    <img class="accordion_arrow" src="./assets/icons/subtask_arrow.svg">\n                </div>\n                <div class="accordion_content" (click)="openSubtask(i)">\n                    <span class="description" [ngClass]="{\'compact\': subTasksRequired}">{{task.getSubtasksInOrder()[i].description}}</span>\n                    <ion-label class="answer_container">{{ "a_task_answer" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.answer}}</span></ion-label>\n                    <ion-label *ngIf="subTasksRequired" class="answer_container">{{ "a_task_score" | translate }}<span class="answer" [ngClass]="{\'perfect\': subtask.solved && route.isAnswerFeedbackEnabled(), \'good\': subtask.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\': subtask.failed && route.isAnswerFeedbackEnabled(), \'saved\': !route.isAnswerFeedbackEnabled()}">{{subtask.score}}</span></ion-label>\n                    <img class="subtask-inner-arrow" src="./assets/icons/subtask_arrow.svg">\n                </div>\n            </div>\n        </div>\n\n       <!-- <pre>taskDetails {{ taskDetails | json }}</pre> -->\n        <div class="card evaluation" *ngIf="route && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed || taskDetails?.saved)"\n        [ngClass]="{\'saved\' : taskDetails?.saved, \'perfect\' : taskDetails?.solved && route.isAnswerFeedbackEnabled(), \'good\': taskDetails?.solvedLow && route.isAnswerFeedbackEnabled(), \'failed\' : taskDetails?.failed && route.isAnswerFeedbackEnabled() }">\n            <div class="head" *ngIf="task.solutionType !== \'info\'">\n                <div *ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;good_luck_next_time&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("good_luck_next_time") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "good_luck_next_time" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <div *ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled() && task && task.solutionType !== \'info\'">\n                    <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_alert_congrats&quot;); else elseBlock">\n                        <ion-label text-wrap>{{ route.getNarrativeString("a_alert_congrats") }}</ion-label>\n                    </div>\n                    <ng-template #elseBlock>\n                        <ion-label text-wrap>{{ "a_alert_congrats" | translate }}</ion-label>\n                    </ng-template>\n                </div>\n                <ion-label class="tag score" *ngIf="route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && taskDetails && (taskDetails.score || taskDetails.score == 0)">+ {{taskDetails.score}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!rootTask" id="keyboard-anchor"></div>\n        <div *ngIf="rootTask" id="snd-keyboard-anchor"></div>\n	    <div *ngIf="taskDetails && task.hasSideFacts()" class="card secondary">\n                <div *ngIf="route.isNarrativeEnabled() && route.hasNarrativeString(&quot;a_did_you_know&quot;); else elseBlock">\n                    <ion-label text-wrap>{{ route.getNarrativeString("a_did_you_know") }}</ion-label>\n                </div>\n                <ng-template #elseBlock>\n                    <ion-label text-wrap>{{ "a_did_you_know" | translate }}</ion-label>\n                </ng-template>\n		    <p *ngIf="task">\n			    {{task.getSideFactsText()}}\n		    </p>\n	    </div>\n        <div *ngIf="task && task.author" class="card secondary">\n            <ion-label>{{ "author" | translate }}</ion-label>\n            <p>\n                {{task.author}}<br> {{task.mail}}\n            </p>\n        </div>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/src/pages/task-detail/task-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
@@ -3248,17 +3284,17 @@ var TaskDetail = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskDetailMap; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline__ = __webpack_require__(1156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_offline__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__ = __webpack_require__(634);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__ = __webpack_require__(1159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__);

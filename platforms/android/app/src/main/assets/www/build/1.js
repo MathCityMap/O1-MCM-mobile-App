@@ -74,7 +74,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory, window) {
 
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(113)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -278,7 +278,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (factory, window) {
 
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(113)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -532,16 +532,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TasksMap; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline__ = __webpack_require__(1156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_offline__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(633);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Score__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Score__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_gps_service__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(64);
@@ -552,18 +552,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_images_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__chat_chat__ = __webpack_require__(645);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__chat_chat__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_chat_and_session_service__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(647);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -705,8 +705,9 @@ var TasksMap = /** @class */ (function () {
         this.events.subscribe('user:assigned_task', function (taskId) {
             console.log('User has been assigned task with id: ' + taskId);
             _this.sessionInfo.sessionUser.assigned_task_id = taskId;
-            _this.forceStartFromTask(taskId);
-            _this.redrawMarker();
+            _this.forceStartFromTask(taskId).then(function () {
+                _this.redrawMarker();
+            });
         });
     }
     TasksMap_1 = TasksMap;
@@ -819,54 +820,56 @@ var TasksMap = /** @class */ (function () {
                 switch (_c.label) {
                     case 0:
                         console.log('TasksMap ionViewDidEnter()');
-                        if (!(this.sessionInfo != null)) return [3 /*break*/, 6];
+                        if (!(this.sessionInfo != null)) return [3 /*break*/, 7];
                         details = JSON.stringify({});
                         this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
-                        if (!(this.sessionInfo.started === false)) return [3 /*break*/, 6];
+                        if (!(this.sessionInfo.started === false)) return [3 /*break*/, 7];
                         this.showAllTasks();
                         this.resetTasks();
-                        if (!(this.sessionInfo.sessionUser.assigned_task_id != 0)) return [3 /*break*/, 2];
+                        if (!(this.sessionInfo.sessionUser.assigned_task_id != 0)) return [3 /*break*/, 3];
                         _a = this;
                         return [4 /*yield*/, this.route.getTasks()];
                     case 1:
                         _a.taskList = _c.sent();
-                        this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                        return [4 /*yield*/, this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id)];
+                    case 2:
+                        _c.sent();
                         if (this.route.isNarrativeEnabled()) {
                             this.showIntroModal().then(function () {
                                 _this.state.showIntroModal = false;
                             });
                         }
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 3:
                         if (this.route.isNarrativeEnabled()) {
                             this.showIntroModal().then(function () {
                                 _this.state.showIntroModal = false;
                                 _this.showGuidedTrailModalWithDelay(500);
                             });
                         }
-                        _c.label = 3;
-                    case 3:
+                        _c.label = 4;
+                    case 4:
                         this.saveMapStateToLocalStorage();
                         this.sessionInfo.started = true;
                         return [4 /*yield*/, this.chatAndSessionService.updateSession(this.sessionInfo)];
-                    case 4:
-                        _c.sent();
-                        return [4 /*yield*/, this.redrawMarker()];
                     case 5:
                         _c.sent();
-                        return [2 /*return*/];
+                        return [4 /*yield*/, this.redrawMarker()];
                     case 6:
-                        if (!this.navParams.data.tasksMapState) return [3 /*break*/, 7];
+                        _c.sent();
+                        return [2 /*return*/];
+                    case 7:
+                        if (!this.navParams.data.tasksMapState) return [3 /*break*/, 8];
                         console.log("3");
                         this.state = this.navParams.data.tasksMapState;
                         if (this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))) {
                             this.goToNextTask(this.state.selectedTask, true);
                         }
-                        return [3 /*break*/, 9];
-                    case 7:
+                        return [3 /*break*/, 10];
+                    case 8:
                         _b = this;
                         return [4 /*yield*/, this.getMapStateFromLocalStorage()];
-                    case 8:
+                    case 9:
                         _b.state = _c.sent();
                         console.log(this.state);
                         if (this.taskToSkip) {
@@ -912,9 +915,9 @@ var TasksMap = /** @class */ (function () {
                                 this.showGuidedTrailModalWithDelay(500);
                             }
                         }
-                        _c.label = 9;
-                    case 9: return [4 /*yield*/, this.redrawMarker()];
-                    case 10:
+                        _c.label = 10;
+                    case 10: return [4 /*yield*/, this.redrawMarker()];
+                    case 11:
                         _c.sent();
                         return [2 /*return*/];
                 }
@@ -937,14 +940,31 @@ var TasksMap = /** @class */ (function () {
         }, delay);
     };
     TasksMap.prototype.forceStartFromTask = function (taskId) {
-        var selectedTask = this.taskList.filter(function (x) { return x.id == taskId; }).pop();
-        this.state.selectedTask = selectedTask;
-        console.debug("forceStartFromTask");
-        this.state.visibleTasks = {};
-        this.state.visibleTasks[selectedTask.position] = true;
-        this.state.isShowingAllTasks = false;
-        this.state.showGuidedTrailModal = false;
-        this.centerSelectedTask();
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, selectedTask;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!(!this.taskList || this.taskList.length === 0)) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.route.getTasks()];
+                    case 1:
+                        _a.taskList = _b.sent();
+                        _b.label = 2;
+                    case 2:
+                        console.log('Force Start From Task', this.taskList);
+                        selectedTask = this.taskList.filter(function (x) { return x.id == taskId; }).pop();
+                        this.state.selectedTask = selectedTask;
+                        console.debug("forceStartFromTask");
+                        this.state.visibleTasks = {};
+                        this.state.visibleTasks[selectedTask.position] = true;
+                        this.state.isShowingAllTasks = false;
+                        this.state.showGuidedTrailModal = false;
+                        this.centerSelectedTask();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     TasksMap.prototype.ngOnInit = function () {
         // this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
@@ -1495,19 +1515,22 @@ var TasksMap = /** @class */ (function () {
                             _a.taskList = _b.sent();
                             _b.label = 2;
                         case 2:
-                            if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
-                                this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
-                            }
+                            if (!(this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0)) return [3 /*break*/, 4];
+                            return [4 /*yield*/, this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id)];
+                        case 3:
+                            _b.sent();
+                            _b.label = 4;
+                        case 4:
                             this.route.completed = false;
                             this.route.completedDate = null;
                             return [4 /*yield*/, this.saveMapStateToLocalStorage()];
-                        case 3:
+                        case 5:
                             _b.sent();
                             return [4 /*yield*/, this.ormService.saveAndFireChangedEvent(this.route)];
-                        case 4:
+                        case 6:
                             _b.sent();
                             return [4 /*yield*/, this.redrawMarker()];
-                        case 5:
+                        case 7:
                             _b.sent();
                             resolve();
                             return [2 /*return*/];

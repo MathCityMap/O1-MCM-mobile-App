@@ -100,8 +100,11 @@ export class Task {
     @JoinColumn({name: 'task_id'})
     task_id: Task;
 
+    /**
+     * Use "getLegitSubtasks" function to fetch subtasks in Order to fetch Subtasks from outside to avoid running into corrupted Data
+     */
     @OneToMany(type => Task, task => task.task_id)
-    subtasks: Task[];
+    private subtasks: Task[];
 
     getImageURL(asRawString: boolean = false): string {
         return ImagesService.INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
@@ -122,8 +125,8 @@ export class Task {
         if(sampleSolutionImg != ""){
             result.push(sampleSolutionImg);
         }
-        if (this.subtasks) {
-            for (let subtask of this.subtasks) {
+        if (this.getLegitSubtasks()) {
+            for (let subtask of this.getLegitSubtasks()) {
                 result = result.concat(subtask.getImagesForDownload());
             }
         }
@@ -333,8 +336,21 @@ export class Task {
         }
     }
 
+    /**
+     * Method to filter out legacy saved Supporttasks with unsupported ID
+     */
+    getLegitSubtasks(): Array<Task> {
+        const origin = this;
+        if (this.subtasks) {
+            return this.subtasks.filter((task) => {
+                return !task.id.toString().includes(origin.id.toString());
+            })
+        }
+        return null;
+    }
+
     getSubtasksInOrder(): Array<Task> {
-        return this.subtasks.sort((a, b) => {
+        return this.getLegitSubtasks().sort((a, b) => {
             if (a.position > b.position) return 1;
             if (a.position < b.position) return -1;
             return 0;

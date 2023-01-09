@@ -32,7 +32,7 @@ function check_global_npm_package {
         echo " done"
 }
 
-check_global_npm_package cordova@10.0.0
+check_global_npm_package cordova@11.0.0
 check_global_npm_package @ionic/cli@6.19.0
 check_global_npm_package plugman@2.0.0
 

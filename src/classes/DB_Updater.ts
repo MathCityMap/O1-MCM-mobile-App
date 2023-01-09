@@ -116,7 +116,7 @@ export class DB_Updater {
         }
         await db.transaction(tr => {
             var primaryCounter = table === DBC.DB_TASK ? data.tasks.length : data.length;
-            var subCounter = table === DBC.DB_TASK ? data.subtasks.length : 0;
+            var suppCounter = table === DBC.DB_TASK ? data.supporttasks.length : 0;
             for (var i = 0; i < primaryCounter; i++) {
                 let row =  table === DBC.DB_TASK ? data.tasks[i] : data[i]
                 var params = []
@@ -143,8 +143,8 @@ export class DB_Updater {
                     tr.executeSql(sqlReplaceIntoQry, params)
                 }
             }
-            for (var i = 0; i < subCounter; i++) {
-                let row =  data.subtasks[i];
+            for (var i = 0; i < suppCounter; i++) {
+                let row =  data.supporttasks[i];
                 var params = []
                 for (var n = 1; n <= table.fieldsCount; n++) {
                     // Check which data type is used in table > choose right bind
@@ -152,7 +152,7 @@ export class DB_Updater {
                         // integer
                         // params.push(n)
                         if (table.fields[n - 1] === '_id') {
-                            params.push(Number(row.task_id + row[table.fields[n - 1]]))
+                            params.push(Number(row[table.fields[n - 1]]))
                         } else if (row[table.fields[n - 1]]) {
                             params.push(Number(row[table.fields[n - 1]]))
                         } else {

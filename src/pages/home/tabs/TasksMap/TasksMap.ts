@@ -147,8 +147,9 @@ export class TasksMap implements OnInit, OnDestroy {
       this.events.subscribe('user:assigned_task', (taskId) => {
           console.log('User has been assigned task with id: ' + taskId);
           this.sessionInfo.sessionUser.assigned_task_id = taskId;
-          this.forceStartFromTask(taskId);
-          this.redrawMarker();
+          this.forceStartFromTask(taskId).then(() => {
+              this.redrawMarker();
+          });
       });
   }
 
@@ -250,7 +251,7 @@ export class TasksMap implements OnInit, OnDestroy {
 
               if (this.sessionInfo.sessionUser.assigned_task_id != 0) {
                   this.taskList = await this.route.getTasks();
-                  this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                  await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
                   if (this.route.isNarrativeEnabled()) {
                       this.showIntroModal().then(() => {
                           this.state.showIntroModal = false;
@@ -343,7 +344,11 @@ export class TasksMap implements OnInit, OnDestroy {
       }, delay);
   }
 
-  private forceStartFromTask( taskId ){
+  private async forceStartFromTask( taskId ){
+      if (!this.taskList || this.taskList.length === 0) {
+          this.taskList = await this.route.getTasks();
+      }
+      console.log('Force Start From Task', this.taskList);
       let selectedTask = this.taskList.filter(x => x.id == taskId).pop();
       this.state.selectedTask = selectedTask;
       console.debug("forceStartFromTask");
@@ -882,7 +887,7 @@ export class TasksMap implements OnInit, OnDestroy {
                   this.taskList = await this.route.getTasks();
               }
               if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
-                  this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                  await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
               }
               this.route.completed = false;
               this.route.completedDate = null;

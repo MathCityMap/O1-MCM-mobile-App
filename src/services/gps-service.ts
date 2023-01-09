@@ -105,7 +105,7 @@ export class GpsService {
      * @param {GeolocationOptions} options  The [geolocation options](https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions).
      * @returns {Observable<Geoposition>} Returns an Observable that notifies with the [position](https://developer.mozilla.org/en-US/docs/Web/API/Position) of the device, or errors.
      */
-    watchPosition(options?: GeolocationOptions): Observable<Geoposition> {
+    watchPosition(options?: GeolocationOptions): CustomReplaySubject<Geoposition> {
         if (!this.geolocationSubscription) {
             console.log("subscribing to geolocation.watchPosition()");
             if (!options) {
@@ -158,7 +158,7 @@ export class GpsService {
 class CustomReplaySubject<T> extends ReplaySubject<T> {
     public emptyCallback: Function;
 
-    protected _subscribe(subscriber: Subscriber<T>): Subscription {
+    public _subscribe(subscriber: Subscriber<T>): Subscription {
         let result = super._subscribe(subscriber);
         let originalUnsubscribe = result.unsubscribe;
         result.unsubscribe = () => {

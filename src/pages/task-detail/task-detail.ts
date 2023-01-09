@@ -202,7 +202,7 @@ export class TaskDetail {
         this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks' || this.task.solutionType === 'fraction');
         this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
-        if (this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             this.solvedSubtasks = [];
             for (let task of this.task.getSubtasksInOrder()) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
@@ -210,7 +210,7 @@ export class TaskDetail {
                     this.solvedSubtasks.push(subtaskDetails);
                 }
             }
-            if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.subtasks.length) {
+            if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.getLegitSubtasks().length) {
                 let subtaskModal = this.modalCtrl.create(MCMIconModal, {
                     type: 'text',
                     message: this.solvedSubtasks.length == 0 ? 'a_subtaskinfo_required_message' : 'a_subtaskinfo_required_progress_message',
@@ -326,8 +326,13 @@ export class TaskDetail {
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         // Add event of user entering trail when session active
-        if(this.sessionInfo != null && !this.task){
-            let details = JSON.stringify({title: this.task.title});
+        if(this.sessionInfo != null){
+            let details = "";
+            if (this.rootTask) {
+                details = JSON.stringify({title: this.task.title, parentId: this.rootTask.id});
+            } else {
+                details = JSON.stringify({title: this.task.title});
+            }
             this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
         }
 
@@ -372,9 +377,9 @@ export class TaskDetail {
             this.minScore = 0;
         }
 
-        if (this.task.subtasks && this.subTasksRequired) {
+        if (this.task.getLegitSubtasks() && this.subTasksRequired) {
             let scorableTaskCount = this.task.solutionType === 'info' ? 0 : 1;
-            for (let task of this.task.subtasks) {
+            for (let task of this.task.getLegitSubtasks()) {
                 if (task.solutionType != 'info') {
                     scorableTaskCount++;
                 }
@@ -394,7 +399,7 @@ export class TaskDetail {
 
         if (this.rootTask && this.subTasksRequired && this.task.solutionType !== 'info') {
             let scorableTaskCount = this.rootTask.solutionType === 'info' ? 0 : 1;
-            for (let task of this.rootTask.subtasks) {
+            for (let task of this.rootTask.getLegitSubtasks()) {
                 if (task.solutionType != 'info') {
                     scorableTaskCount++;
                 }
@@ -408,7 +413,7 @@ export class TaskDetail {
                         this.lastSubtaskBonus = (100 - this.subTaskScore * scorableTaskCount);
                     }
                 }
-                this.maxScore = this.subTaskScore + (this.subTaskIndex === this.rootTask.subtasks.length - 1 ? this.lastSubtaskBonus : 0);
+                this.maxScore = this.subTaskScore + (this.subTaskIndex === this.rootTask.getLegitSubtasks().length - 1 ? this.lastSubtaskBonus : 0);
             }
             this.orangeScore = this.maxScore / 2;
             this.penalty = Math.floor(this.maxScore) * 0.15;
@@ -944,7 +949,7 @@ export class TaskDetail {
     In session mode where the users are force assigned a task, it allows to continue with the next task
      */
     async completeTask(){
-        if (this.task.solutionType === 'info' && this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.task.solutionType === 'info' && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             this.CalculateScore('info', 'solved')
         } else {
             this.taskDetails.score = this.maxScore;
@@ -1039,7 +1044,12 @@ export class TaskDetail {
             },
             'yes', async () => {
                 if(this.sessionInfo != null){
-                    let details = JSON.stringify({});
+                    let details = "";
+                    if (this.rootTask) {
+                        details = JSON.stringify({parentId: this.rootTask.id});
+                    } else {
+                        details = JSON.stringify({});
+                    }
                     this.chatAndSessionService.addUserEvent("event_task_skipped", details, this.task.id.toString());
                 }
                 this.closeDetails(true);
@@ -1196,7 +1206,7 @@ export class TaskDetail {
                         param: {tries: this.taskDetails.tries+1},
                         buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
                     };
-                    if ((this.task.solutionType !== 'info' && ( !this.task.subtasks || !(this.task.subtasks.length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
+                    if ((this.task.solutionType !== 'info' && ( !this.task.getLegitSubtasks() || !(this.task.getLegitSubtasks().length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
                         data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
                     }
                     console.log(data);
@@ -1225,7 +1235,12 @@ export class TaskDetail {
                 });
                 modal.present();
             if(this.sessionInfo != null){
-                let details = JSON.stringify({score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved});
+                let details = "";
+                if (this.rootTask) {
+                    details = JSON.stringify({score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved, parentId: this.rootTask.id});
+                } else {
+                    details = JSON.stringify({score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved});
+                }
                 this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
             }
 
@@ -1304,11 +1319,11 @@ export class TaskDetail {
                                 modal.dismiss();
                             }
                         };
-                        if (this.route.isHintsEnabled() && (this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                        if (this.route.isHintsEnabled() && (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0 && this.task.getLegitSubtasks().length !== this.solvedSubtasks.length)) {
                             buttons = [bShowSubtask, bShowHint, bClose];
                         } else if (this.route.isHintsEnabled() && !this.rootTask) {
                             buttons = [bShowHint, bClose];
-                        } else if ((this.task.subtasks && this.task.subtasks.length > 0 && this.task.subtasks.length !== this.solvedSubtasks.length)) {
+                        } else if ((this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0 && this.task.getLegitSubtasks().length !== this.solvedSubtasks.length)) {
                             buttons = [bShowSubtask, bClose];
                         } else {
                             buttons = [bClose];
@@ -1323,7 +1338,12 @@ export class TaskDetail {
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if(that.sessionInfo != null){
-                                    let details = JSON.stringify({});
+                                    let details = "";
+                                    if (that.rootTask) {
+                                        details = JSON.stringify({parentId: that.rootTask.id});
+                                    } else {
+                                        details = JSON.stringify({});
+                                    }
                                     that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
                                 }
                                 that.showSolutionSample(true);
@@ -1334,7 +1354,12 @@ export class TaskDetail {
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if(that.sessionInfo != null){
-                                    let details = JSON.stringify({});
+                                    let details = "";
+                                    if (that.rootTask) {
+                                        details = JSON.stringify({parentId: that.rootTask.id});
+                                    } else {
+                                        details = JSON.stringify({});
+                                    }
                                     that.chatAndSessionService.addUserEvent("event_task_skipped", details, that.task.id.toString());
                                 }
                                 that.closeDetails(true);
@@ -1345,7 +1370,12 @@ export class TaskDetail {
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if(that.sessionInfo != null){
-                                    let details = JSON.stringify({});
+                                    let details = "";
+                                    if (that.rootTask) {
+                                        details = JSON.stringify({parentId: that.rootTask.id});
+                                    } else {
+                                        details = JSON.stringify({});
+                                    }
                                     that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
                                 }
                                 that.taskDetails.failed = true;
@@ -1428,12 +1458,12 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             } else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -1443,12 +1473,12 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             } else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -1459,12 +1489,12 @@ export class TaskDetail {
                 if (this.taskDetails.tries > 0) {
                     let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                     this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                         this.score.score += this.taskDetails.score;
                     }
                 } else {
                     this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                    if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                         this.score.score += this.taskDetails.score;
                     }
                 }
@@ -1477,12 +1507,12 @@ export class TaskDetail {
                     if (this.taskDetails.tries > 0) {
                         let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     } else {
                         this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
@@ -1490,12 +1520,12 @@ export class TaskDetail {
                     if (this.taskDetails.tries > 0) {
                         let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
                         this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     } else {
                         this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
@@ -1507,12 +1537,12 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             } else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0)) {
+                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -1522,7 +1552,7 @@ export class TaskDetail {
             this.taskDetails.score = 0;
         }
 
-        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             let tempScore = this.taskDetails.score;
             for (let task of this.solvedSubtasks) {
                 tempScore += task.score
@@ -1554,7 +1584,7 @@ export class TaskDetail {
 
     private possibleScore(){
         if(this.taskDetails){
-            if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+            if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
                 let tempScore = 0;
                 for (let task of this.solvedSubtasks) {
                     tempScore += task.score
@@ -1565,16 +1595,16 @@ export class TaskDetail {
                 else{
                     tempScore += this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
                 }
-                if (this.solvedSubtasks.length < this.task.subtasks.length) {
+                if (this.solvedSubtasks.length < this.task.getLegitSubtasks().length) {
                     let subtaskCount = 0;
-                    for (let subtask of this.task.subtasks) {
+                    for (let subtask of this.task.getLegitSubtasks()) {
                         if (subtask.solutionType !== 'info') {
                             subtaskCount++
                         }
                     }
                     let solvedSubtaskCount = 0;
                     for (let subtask of this.solvedSubtasks) {
-                        let actualTask = this.task.subtasks.find(
+                        let actualTask = this.task.getLegitSubtasks().find(
                             task => {return task.id === subtask.taskId}
                             );
                         if (actualTask.solutionType !== 'info') {
@@ -2068,7 +2098,7 @@ export class TaskDetail {
     openSubtask(index?) {
         console.log('we opening a subtask');
         let rootTask = this.rootTask ? this.rootTask : this.task;
-        if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.subtasks.length) return;
+        if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.getLegitSubtasks().length) return;
         if (!index && index !== 0) {
             index = this.solvedSubtasks.length
         }
@@ -2089,7 +2119,7 @@ export class TaskDetail {
 
     goToNextSubtask(){
         const index = this.navCtrl.getActive().index;
-        if (this.subTaskIndex + 1 !== this.rootTask.subtasks.length) {
+        if (this.subTaskIndex + 1 !== this.rootTask.getLegitSubtasks().length) {
             this.openSubtask(this.subTaskIndex + 1).then(() => {
                 this.navCtrl.remove(index);
             })
@@ -2159,7 +2189,7 @@ export class TaskDetail {
                 }
             }
         let calculation = "";
-        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             let numbersArray = [];
             for (let task of this.solvedSubtasks) {
                 if (!numbersArray[task.score]) {
@@ -2219,7 +2249,7 @@ export class TaskDetail {
     }
 
     displayScoreCalculation() {
-        if (this.subTasksRequired && this.task.subtasks && this.task.subtasks.length > 0) {
+        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             let subtaskModal = this.modalCtrl.create(MCMIconModal, {
                 type: 'text',
                 score: '(' + this.generateSubtaskScoreCalculationString('solved') + ')',

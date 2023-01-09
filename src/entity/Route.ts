@@ -120,16 +120,18 @@ export class Route {
         }
         if (this.task2Routes) {
             this.task2Routes.sort((a, b) => a.id - b.id);
-            this.tasks = []
-            for (let index in this.task2Routes) {
-                const value = this.task2Routes[index];
-                let task = await value.getTaskWithSubtasks();
-                if (!task) {
-                    continue;
-                }
-                task.position = +index + 1;
-                this.tasks.push(task)
-            }
+            this.tasks = await Promise.all(this.task2Routes.map(async (value, index) => {
+                    let task = await value.getTaskWithSubtasks();
+                    if (!task) {
+                        return Promise.resolve(undefined);
+                    }
+                    task.position = index + 1;
+                    return Promise.resolve(task);
+                })
+            );
+            this.tasks = this.tasks.filter(task => {
+                return !!task
+            });
         } else {
             // relation was not loaded yet -> reload route to get tasks
             this.tasks = await (await OrmService.INSTANCE.findRouteById(this.id)).getTasks();
