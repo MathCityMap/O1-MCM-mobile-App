@@ -47,7 +47,7 @@
     "@types/youtube": "0.0.29",
     "angular-linky": "^1.2.2",
     "angular-progress-bar": "1.0.0",
-    "async": "2.6.0",
+    "async": "2.6.4",
     "com.jjdltc.cordova.plugin.zip": "./plugin-src/com.jjdltc.cordova.plugin.zip",
     "conic-gradient": "^1.0.0",
     "cordova": "10.0.0",
