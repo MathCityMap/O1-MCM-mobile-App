@@ -102,7 +102,7 @@
     "cordova-plugin-local-notification": "file:plugin-src/cordova-plugin-local-notification",
     "cordova-plugin-media": "file:plugin-src/cordova-plugin-media",
     "cordova-plugin-safariviewcontroller": "^2.0.0",
-      "cordova-sqlite-storage": "file:plugin-src/cordova-sqlite-storage",
+    "cordova-sqlite-storage": "file:plugin-src/cordova-sqlite-storage",
     "cordova.plugins.diagnostic": "^6.0.4",
     "ng-swagger-gen": "0.11.4",
     "typescript": "2.7.2"
