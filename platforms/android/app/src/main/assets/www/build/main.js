@@ -1,1422 +1,17 @@
 webpackJsonp([10],{
 
-/***/ 1074:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InitialMigration1513274191111; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var InitialMigration1513274191111 = /** @class */ (function () {
-    function InitialMigration1513274191111() {
-    }
-    InitialMigration1513274191111.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_state (_id INTEGER PRIMARY KEY AUTOINCREMENT,option VARCHAR (64) NOT NULL,value VARCHAR (256) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,lat VARCHAR (64) NOT NULL,lon VARCHAR (64) NOT NULL,title TEXT NOT NULL,description TEXT NOT NULL,image TEXT ,solution_type TEXT NOT NULL,solution TEXT NOT NULL,hint1 TEXT ,hint2 TEXT ,hint3 TEXT ,assistive_equipment TEXT ,author TEXT ,mail TEXT ,grade VARCHAR (2) NOT NULL DEFAULT '13',tags TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,solutionsample TEXT NOT NULL,attr TEXT ,create_date TIMESTAMP NOT NULL,lang_code VARCHAR (2))")];
-                    case 2:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_route (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,title TEXT NOT NULL,country_code TEXT NOT NULL,city TEXT NOT NULL,image TEXT ,code VARCHAR (64),grade TEXT (64),tags VARCHAR ,duration VARCHAR (64),length VARCHAR (64),bounding_box TEXT ,center TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,description TEXT ,create_date TIMESTAMP NOT NULL,attr TEXT TEXT)")];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_rel_route_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,route_id INTEGER (64) NOT NULL,task_id INTEGER (64) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
-                    case 4:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_users (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR (32) NOT NULL,create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
-                    case 5:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_score (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER (64) NOT NULL,route_id INTEGER (64) NOT NULL,score INTEGER (64) NOT NULL,tasks_solved TEXT ,tasks_solved_low TEXT ,task_details TEXT ,time INTEGER (64),distance INTEGER (64))")];
-                    case 6:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    InitialMigration1513274191111.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return InitialMigration1513274191111;
-}());
-
-//# sourceMappingURL=1513274191111-InitialMigration.js.map
-
-/***/ }),
-
-/***/ 1075:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FailedTaskMigration1515428187000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var FailedTaskMigration1515428187000 = /** @class */ (function () {
-    function FailedTaskMigration1515428187000() {
-    }
-    FailedTaskMigration1515428187000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD tasks_failed TEXT")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    FailedTaskMigration1515428187000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return FailedTaskMigration1515428187000;
-}());
-
-//# sourceMappingURL=1515428187000-failedTaskMigration.js.map
-
-/***/ }),
-
-/***/ 1076:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var User = /** @class */ (function () {
-    function User() {
-    }
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
-        __metadata("design:type", Number)
-    ], User.prototype, "id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 32 }),
-        __metadata("design:type", String)
-    ], User.prototype, "name", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'create_date' }),
-        __metadata("design:type", String)
-    ], User.prototype, "createDate", void 0);
-    User = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_users')
-    ], User);
-    return User;
-}());
-
-//# sourceMappingURL=User.js.map
-
-/***/ }),
-
-/***/ 1077:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return State; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var State = /** @class */ (function () {
-    function State() {
-    }
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
-        __metadata("design:type", Number)
-    ], State.prototype, "id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 64 }),
-        __metadata("design:type", String)
-    ], State.prototype, "option", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 256 }),
-        __metadata("design:type", String)
-    ], State.prototype, "value", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], State.prototype, "timestamp", void 0);
-    State = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_state')
-    ], State);
-    return State;
-}());
-
-//# sourceMappingURL=State.js.map
-
-/***/ }),
-
-/***/ 1078:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskState; });
-var TaskState = /** @class */ (function () {
-    function TaskState() {
-        this.saved = false;
-        this.solved = false;
-        this.solvedLow = false;
-        this.skipped = false;
-        this.failed = false;
-        this.hint1 = false;
-        this.hint2 = false;
-        this.hint3 = false;
-        this.tries = 0;
-        this.newTries = 0; //newTries since user has skipped the task and opened again
-        this.answer = "";
-        this.answerMultipleChoice = [];
-        this.timeFirstOpen = 0;
-        this.timeSolved = 0;
-        this.score = 0;
-        this.penalty = 0;
-    }
-    TaskState.prototype.getTaskDetailAsJSON = function () {
-        return JSON.stringify({
-            taskId: +this.taskId,
-            saved: this.saved,
-            solved: this.solved,
-            solvedLow: this.solvedLow,
-            skipped: this.skipped,
-            failed: this.failed,
-            hint1: this.hint1,
-            hint2: this.hint2,
-            hint3: this.hint3,
-            tries: +this.tries,
-            newTries: +this.newTries,
-            answer: this.answer,
-            answerMultipleChoice: this.answerMultipleChoice,
-            timeFirstOpen: +this.timeFirstOpen,
-            timeSolved: +this.timeSolved,
-            score: +this.score,
-            penalty: this.penalty
-        });
-    };
-    TaskState.getTaskStateAsJSONArray = function (taskDetails) {
-        var result = [];
-        taskDetails.forEach(function (details) {
-            result.push(details.getTaskDetailAsJSON());
-        });
-        return JSON.stringify(result);
-    };
-    TaskState.prototype.getAllTaskState = function (jsonArray) {
-        var flags = JSON.parse(jsonArray);
-        var taskDetails = [];
-        for (var i = 0; i < flags.length; i++) {
-            taskDetails.push(this.getTaskStateByTask(flags[i]));
-        }
-        return taskDetails;
-    };
-    TaskState.prototype.findDetailsForTask = function (taskId, jsonArray) {
-        var flags = JSON.parse(jsonArray);
-        for (var i = 0; i < flags.length; i++) {
-            var detail_1 = this.getTaskStateByTask(flags[i]);
-            if (detail_1.taskId == taskId) {
-                return detail_1;
-            }
-        }
-        var detail = new TaskState();
-        detail.taskId = taskId;
-        return detail;
-    };
-    TaskState.prototype.getTaskStateByTask = function (jsonObject) {
-        var flags = JSON.parse(jsonObject);
-        var taskState = new TaskState();
-        taskState.taskId = flags.taskId;
-        taskState.saved = flags.saved;
-        taskState.solved = flags.solved;
-        taskState.solvedLow = flags.solvedLow;
-        taskState.skipped = flags.skipped;
-        taskState.failed = flags.failed;
-        taskState.hint1 = flags.hint1;
-        taskState.hint2 = flags.hint2;
-        taskState.hint3 = flags.hint3;
-        taskState.tries = flags.tries;
-        taskState.newTries = flags.newTries;
-        taskState.answer = flags.answer;
-        taskState.answerMultipleChoice = flags.answerMultipleChoice;
-        taskState.timeFirstOpen = flags.timeFirstOpen;
-        taskState.timeSolved = flags.timeSolved;
-        taskState.score = flags.score;
-        taskState.penalty = flags.penalty;
-        return taskState;
-    };
-    return TaskState;
-}());
-
-//# sourceMappingURL=TaskState.js.map
-
-/***/ }),
-
-/***/ 1080:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddImageUrlAndDownloadedFlagMigration1513679923000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddImageUrlAndDownloadedFlagMigration1513679923000 = /** @class */ (function () {
-    function AddImageUrlAndDownloadedFlagMigration1513679923000() {
-    }
-    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloaded INTEGER(1)")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddImageUrlAndDownloadedFlagMigration1513679923000;
-}());
-
-//# sourceMappingURL=1513679923000-AddImageUrlAndDownloadedFlagMigration.js.map
-
-/***/ }),
-
-/***/ 1081:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CacheManagerMCM; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(1082);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(633);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(45);
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-var CacheManagerMCM = /** @class */ (function () {
-    function CacheManagerMCM() {
-    }
-    CacheManagerMCM.getTilesCoverageMinMaxZoom = function (pBB, pZoomMin, pZoomMax) {
-        var result = new Array();
-        for (var zoomLevel = pZoomMin; zoomLevel <= pZoomMax; zoomLevel++) {
-            console.debug("Calculating ZOOM: " + zoomLevel);
-            var resultForZoom = CacheManagerMCM.getTilesCoverageZoom(pBB, zoomLevel);
-            console.debug("Result.size: " + resultForZoom.length);
-            result = result.concat(resultForZoom);
-            console.debug("Result.concat.size: " + result.length);
-        }
-        return result;
-    };
-    CacheManagerMCM.getTilesCoverageZoom = function (pBB, pZoomLevel) {
-        var result = new Array();
-        var mapTileUpperBound = 1 << pZoomLevel;
-        console.debug("shift attributes " + mapTileUpperBound);
-        console.debug("south: " + pBB.getSouth() + " east: " + pBB.getEast());
-        console.debug("north: " + pBB.getNorth() + " west: " + pBB.getWest());
-        var lowerRight = CacheManagerMCM.getMapTileFromCoordinates(pBB.getSouth(), pBB.getEast(), pZoomLevel);
-        var upperLeft = CacheManagerMCM.getMapTileFromCoordinates(pBB.getNorth(), pBB.getWest(), pZoomLevel);
-        console.debug("lowerRight " + lowerRight + " upperLeft " + upperLeft);
-        var width = lowerRight.x - upperLeft.x + 1;
-        if (width <= 0) {
-            width += mapTileUpperBound;
-        }
-        console.debug("Width: " + width + " " + typeof width);
-        var height = lowerRight.y - upperLeft.y + 1;
-        if (height <= 0) {
-            height += mapTileUpperBound;
-        }
-        console.debug("Height: " + height + " " + typeof height);
-        for (var i = 0; i < width; i++) {
-            for (var j = 0; j < height; j++) {
-                var x = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.x + i, mapTileUpperBound);
-                var y = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.y + j, mapTileUpperBound);
-                result.push(new __WEBPACK_IMPORTED_MODULE_0__Helper__["c" /* MapTile */](pZoomLevel, x, y));
-            }
-        }
-        console.debug("Result.length = " + result.length);
-        return result;
-    };
-    CacheManagerMCM.getMapTileFromCoordinates = function (aLat, aLon, zoom) {
-        var z = 1 << zoom;
-        var y = Math.floor((1 - Math.log(Math.tan(aLat * Math.PI / 180) + 1 / Math.cos(aLat * Math.PI / 180)) / Math.PI) / 2 * z);
-        var x = Math.floor((aLon + 180) / 360 * z);
-        console.debug("aLat: " + aLat + " aLon: " + aLon + " zoom: " + zoom + " => x: " + x + " y: " + y);
-        return new __WEBPACK_IMPORTED_MODULE_3_leaflet__["Point"](x, y);
-    };
-    CacheManagerMCM.downloadTiles = function (route, pZoomMin, pZoomMax, callback) {
-        return __awaiter(this, void 0, void 0, function () {
-            var tiles, tilesUrls, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2__tilesDb__["a" /* tilesDb */].initialize()];
-                    case 1:
-                        _a.sent();
-                        tilesUrls = tiles.map(function (tile) {
-                            var domain = route.getTilesServerSubdomains(route.getNarrativeName())[Math.floor(Math.random() * route.getTilesServerSubdomains(route.getNarrativeName()).length)];
-                            return route.getTilesMap(route.getNarrativeName()).replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
-                        });
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.downloadURLs(tilesUrls, false, callback, true)];
-                    case 3:
-                        _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _a.sent();
-                        console.debug("remove already added tiles because download failed or was aborted");
-                        throw e_1;
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /*    static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
-            //const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
-            await tilesDb.initialize();
-            tilesDb.removeItems(CacheManagerMCM.getTileURLs(pBB, pZoomMin, pZoomMax));
-        }*/
-    CacheManagerMCM.getTileURLs = function (route, pZoomMin, pZoomMax) {
-        var tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
-        return tiles.map(function (tile) { return route.getTilesMap(route.getNarrativeName()).replace('{s}', __WEBPACK_IMPORTED_MODULE_0__Helper__["b" /* Helper */].subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)); });
-    };
-    return CacheManagerMCM;
-}());
-
-//# sourceMappingURL=CacheManagerMCM.js.map
-
-/***/ }),
-
-/***/ 1082:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyMath; });
-var MyMath = /** @class */ (function () {
-    function MyMath() {
-    }
-    MyMath.mod = function (n, m) {
-        if (n > 0) {
-            return n % m;
-        }
-        var nn = n;
-        while (nn < 0) {
-            nn += m;
-        }
-        return nn;
-    };
-    return MyMath;
-}());
-
-//# sourceMappingURL=MyMath.js.map
-
-/***/ }),
-
-/***/ 1083:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUnlockedColumn1516037215000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddUnlockedColumn1516037215000 = /** @class */ (function () {
-    function AddUnlockedColumn1516037215000() {
-    }
-    AddUnlockedColumn1516037215000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN unlocked INTEGER(1)")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddUnlockedColumn1516037215000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddUnlockedColumn1516037215000;
-}());
-
-//# sourceMappingURL=1516037215000-AddUnlockedColumn.js.map
-
-/***/ }),
-
-/***/ 1084:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedColumn1519817905000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddCompletedColumn1519817905000 = /** @class */ (function () {
-    function AddCompletedColumn1519817905000() {
-    }
-    AddCompletedColumn1519817905000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completed INTEGER(1)")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddCompletedColumn1519817905000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddCompletedColumn1519817905000;
-}());
-
-//# sourceMappingURL=1519817905000-AddCompletedColumn.js.map
-
-/***/ }),
-
-/***/ 1092:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC_Plan; });
-var DBC_Plan = /** @class */ (function () {
-    function DBC_Plan(tableName, fields, fieldsType, attributes) {
-        this.tableName = tableName;
-        this.fields = fields;
-        this.fieldsType = fieldsType;
-        this.attributes = attributes;
-        this.fieldsCount = fields.length;
-    }
-    DBC_Plan.prototype.getCreateStatement = function () {
-        var stmt = "CREATE TABLE IF NOT EXISTS " + this.tableName + " (";
-        for (var i = 0; i < this.fields.length; i++) {
-            stmt += this.fields[i] + " " + this.fieldsType[i] + " " + this.attributes[i];
-            if (i < this.fields.length - 1) {
-                stmt += ",";
-            }
-        }
-        return stmt + ")";
-    };
-    /*
-    returns a string for bulk statements of all available fields in the form of:
-    (field1, field2, field3, ..., fieldn)
-     */
-    DBC_Plan.prototype.getFieldsInScopes = function () {
-        var result = "(";
-        for (var i = 0; i < this.fields.length; i++) {
-            if (i < this.fields.length - 1) {
-                result += this.fields[i] + ", ";
-            }
-            else {
-                result += this.fields[i];
-            }
-        }
-        return result + ")";
-    };
-    /*
-    returns a string for bulk statements of all available field placehokder in the form of:
-    (?, ?, ?, ?)
-     */
-    DBC_Plan.prototype.getFieldsPlaceholders = function () {
-        var result = "(";
-        for (var i = 0; i < this.fields.length; i++) {
-            if (i < this.fields.length - 1) {
-                result += "?, ";
-            }
-            else {
-                result += "?";
-            }
-        }
-        return result + ")";
-    };
-    DBC_Plan.prototype.getTableName = function () {
-        return this.tableName;
-    };
-    return DBC_Plan;
-}());
-
-//# sourceMappingURL=DBC_Plan.js.map
-
-/***/ }),
-
-/***/ 1093:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddVisibleColumn1526306624000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddVisibleColumn1526306624000 = /** @class */ (function () {
-    function AddVisibleColumn1526306624000() {
-    }
-    AddVisibleColumn1526306624000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN `visible` INTEGER(1) NOT NULL DEFAULT 1")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'visible' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddVisibleColumn1526306624000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddVisibleColumn1526306624000;
-}());
-
-//# sourceMappingURL=1526306624000-AddVisibleColumn.js.map
-
-/***/ }),
-
-/***/ 1094:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLangCodeColumn1526306730000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddLangCodeColumn1526306730000 = /** @class */ (function () {
-    function AddLangCodeColumn1526306730000() {
-    }
-    AddLangCodeColumn1526306730000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN lang_code VARCHAR(2)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'lang_code' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddLangCodeColumn1526306730000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddLangCodeColumn1526306730000;
-}());
-
-//# sourceMappingURL=1526306730000-AddLangCodeColumn.js.map
-
-/***/ }),
-
-/***/ 1095:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddDownloadDateColumn15711518720000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddDownloadDateColumn15711518720000 = /** @class */ (function () {
-    function AddDownloadDateColumn15711518720000() {
-    }
-    AddDownloadDateColumn15711518720000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloadedDate VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'lang_code' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddDownloadDateColumn15711518720000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddDownloadDateColumn15711518720000;
-}());
-
-//# sourceMappingURL=15711518720000-AddDownloadDateColumn.js.map
-
-/***/ }),
-
-/***/ 1096:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedDateColumn15713974540000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddCompletedDateColumn15713974540000 = /** @class */ (function () {
-    function AddCompletedDateColumn15713974540000() {
-    }
-    AddCompletedDateColumn15713974540000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completedDate VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'lang_code' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddCompletedDateColumn15713974540000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddCompletedDateColumn15713974540000;
-}());
-
-//# sourceMappingURL=15713974540000-AddCompletedDateColumn.js.map
-
-/***/ }),
-
-/***/ 1097:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZipMapFields15783117210000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddZipMapFields15783117210000 = /** @class */ (function () {
-    function AddZipMapFields15783117210000() {
-    }
-    AddZipMapFields15783117210000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1, e_2, e_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_version VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'map_version' already exists");
-                        return [3 /*break*/, 3];
-                    case 3:
-                        _a.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_filename VARCHAR(50)")];
-                    case 4:
-                        _a.sent();
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_2 = _a.sent();
-                        console.log("column 'map_filename' already exists");
-                        return [3 /*break*/, 6];
-                    case 6:
-                        _a.trys.push([6, 8, , 9]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_date VARCHAR(50)")];
-                    case 7:
-                        _a.sent();
-                        return [3 /*break*/, 9];
-                    case 8:
-                        e_3 = _a.sent();
-                        console.log("column 'map_date' already exists");
-                        return [3 /*break*/, 9];
-                    case 9: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddZipMapFields15783117210000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddZipMapFields15783117210000;
-}());
-
-//# sourceMappingURL=15783117210000-AddZipMapFields.js.map
-
-/***/ }),
-
-/***/ 1098:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSavedTasks16013795030000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddSavedTasks16013795030000 = /** @class */ (function () {
-    function AddSavedTasks16013795030000() {
-    }
-    AddSavedTasks16013795030000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD COLUMN tasks_saved VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'tasks_saved' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddSavedTasks16013795030000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddSavedTasks16013795030000;
-}());
-
-//# sourceMappingURL=16013795030000-AddSavedTasks.js.map
-
-/***/ }),
-
-/***/ 1099:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSubtasks16026790930000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddSubtasks16026790930000 = /** @class */ (function () {
-    function AddSubtasks16026790930000() {
-    }
-    AddSubtasks16026790930000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN task_id INTEGER")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'task_id' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddSubtasks16026790930000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddSubtasks16026790930000;
-}());
-
-//# sourceMappingURL=16026790930000-AddSubtasks.js.map
-
-/***/ }),
-
 /***/ 1100:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPositionField16194302450000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventsAddRequest; });
+var EventsAddRequest = /** @class */ (function () {
+    function EventsAddRequest() {
     }
-};
-var AddPositionField16194302450000 = /** @class */ (function () {
-    function AddPositionField16194302450000() {
-    }
-    AddPositionField16194302450000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN position INTEGER")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'position' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddPositionField16194302450000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddPositionField16194302450000;
+    return EventsAddRequest;
 }());
 
-//# sourceMappingURL=16194302450000-AddPositionField.js.map
+//# sourceMappingURL=events-add-request.js.map
 
 /***/ }),
 
@@ -1424,236 +19,308 @@ var AddPositionField16194302450000 = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPathFields16208100470000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventAddRequest; });
+/* tslint:disable */
+var EventAddRequest = /** @class */ (function () {
+    function EventAddRequest() {
     }
-};
-var AddPathFields16208100470000 = /** @class */ (function () {
-    function AddPathFields16208100470000() {
-    }
-    AddPathFields16208100470000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_geojson TEXT")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_info TEXT")];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        console.log("columns 'path_geojson' and 'path_info' already exist");
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddPathFields16208100470000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddPathFields16208100470000;
+    return EventAddRequest;
 }());
 
-//# sourceMappingURL=16208100470000-AddPathFields.js.map
+//# sourceMappingURL=event-add-request.js.map
 
 /***/ }),
 
 /***/ 1102:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZoom16225449820000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+var map = {
+	"./af": 449,
+	"./af.js": 449,
+	"./ar": 450,
+	"./ar-dz": 451,
+	"./ar-dz.js": 451,
+	"./ar-kw": 452,
+	"./ar-kw.js": 452,
+	"./ar-ly": 453,
+	"./ar-ly.js": 453,
+	"./ar-ma": 454,
+	"./ar-ma.js": 454,
+	"./ar-sa": 455,
+	"./ar-sa.js": 455,
+	"./ar-tn": 456,
+	"./ar-tn.js": 456,
+	"./ar.js": 450,
+	"./az": 457,
+	"./az.js": 457,
+	"./be": 458,
+	"./be.js": 458,
+	"./bg": 459,
+	"./bg.js": 459,
+	"./bm": 460,
+	"./bm.js": 460,
+	"./bn": 461,
+	"./bn-bd": 462,
+	"./bn-bd.js": 462,
+	"./bn.js": 461,
+	"./bo": 463,
+	"./bo.js": 463,
+	"./br": 464,
+	"./br.js": 464,
+	"./bs": 465,
+	"./bs.js": 465,
+	"./ca": 466,
+	"./ca.js": 466,
+	"./cs": 467,
+	"./cs.js": 467,
+	"./cv": 468,
+	"./cv.js": 468,
+	"./cy": 469,
+	"./cy.js": 469,
+	"./da": 470,
+	"./da.js": 470,
+	"./de": 471,
+	"./de-at": 472,
+	"./de-at.js": 472,
+	"./de-ch": 473,
+	"./de-ch.js": 473,
+	"./de.js": 471,
+	"./dv": 474,
+	"./dv.js": 474,
+	"./el": 475,
+	"./el.js": 475,
+	"./en-au": 476,
+	"./en-au.js": 476,
+	"./en-ca": 477,
+	"./en-ca.js": 477,
+	"./en-gb": 478,
+	"./en-gb.js": 478,
+	"./en-ie": 479,
+	"./en-ie.js": 479,
+	"./en-il": 480,
+	"./en-il.js": 480,
+	"./en-in": 481,
+	"./en-in.js": 481,
+	"./en-nz": 482,
+	"./en-nz.js": 482,
+	"./en-sg": 483,
+	"./en-sg.js": 483,
+	"./eo": 484,
+	"./eo.js": 484,
+	"./es": 485,
+	"./es-do": 486,
+	"./es-do.js": 486,
+	"./es-mx": 487,
+	"./es-mx.js": 487,
+	"./es-us": 488,
+	"./es-us.js": 488,
+	"./es.js": 485,
+	"./et": 489,
+	"./et.js": 489,
+	"./eu": 490,
+	"./eu.js": 490,
+	"./fa": 491,
+	"./fa.js": 491,
+	"./fi": 492,
+	"./fi.js": 492,
+	"./fil": 493,
+	"./fil.js": 493,
+	"./fo": 494,
+	"./fo.js": 494,
+	"./fr": 495,
+	"./fr-ca": 496,
+	"./fr-ca.js": 496,
+	"./fr-ch": 497,
+	"./fr-ch.js": 497,
+	"./fr.js": 495,
+	"./fy": 498,
+	"./fy.js": 498,
+	"./ga": 499,
+	"./ga.js": 499,
+	"./gd": 500,
+	"./gd.js": 500,
+	"./gl": 501,
+	"./gl.js": 501,
+	"./gom-deva": 502,
+	"./gom-deva.js": 502,
+	"./gom-latn": 503,
+	"./gom-latn.js": 503,
+	"./gu": 504,
+	"./gu.js": 504,
+	"./he": 505,
+	"./he.js": 505,
+	"./hi": 506,
+	"./hi.js": 506,
+	"./hr": 507,
+	"./hr.js": 507,
+	"./hu": 508,
+	"./hu.js": 508,
+	"./hy-am": 509,
+	"./hy-am.js": 509,
+	"./id": 510,
+	"./id.js": 510,
+	"./is": 511,
+	"./is.js": 511,
+	"./it": 512,
+	"./it-ch": 513,
+	"./it-ch.js": 513,
+	"./it.js": 512,
+	"./ja": 514,
+	"./ja.js": 514,
+	"./jv": 515,
+	"./jv.js": 515,
+	"./ka": 516,
+	"./ka.js": 516,
+	"./kk": 517,
+	"./kk.js": 517,
+	"./km": 518,
+	"./km.js": 518,
+	"./kn": 519,
+	"./kn.js": 519,
+	"./ko": 520,
+	"./ko.js": 520,
+	"./ku": 521,
+	"./ku.js": 521,
+	"./ky": 522,
+	"./ky.js": 522,
+	"./lb": 523,
+	"./lb.js": 523,
+	"./lo": 524,
+	"./lo.js": 524,
+	"./lt": 525,
+	"./lt.js": 525,
+	"./lv": 526,
+	"./lv.js": 526,
+	"./me": 527,
+	"./me.js": 527,
+	"./mi": 528,
+	"./mi.js": 528,
+	"./mk": 529,
+	"./mk.js": 529,
+	"./ml": 530,
+	"./ml.js": 530,
+	"./mn": 531,
+	"./mn.js": 531,
+	"./mr": 532,
+	"./mr.js": 532,
+	"./ms": 533,
+	"./ms-my": 534,
+	"./ms-my.js": 534,
+	"./ms.js": 533,
+	"./mt": 535,
+	"./mt.js": 535,
+	"./my": 536,
+	"./my.js": 536,
+	"./nb": 537,
+	"./nb.js": 537,
+	"./ne": 538,
+	"./ne.js": 538,
+	"./nl": 539,
+	"./nl-be": 540,
+	"./nl-be.js": 540,
+	"./nl.js": 539,
+	"./nn": 541,
+	"./nn.js": 541,
+	"./oc-lnc": 542,
+	"./oc-lnc.js": 542,
+	"./pa-in": 543,
+	"./pa-in.js": 543,
+	"./pl": 544,
+	"./pl.js": 544,
+	"./pt": 545,
+	"./pt-br": 546,
+	"./pt-br.js": 546,
+	"./pt.js": 545,
+	"./ro": 547,
+	"./ro.js": 547,
+	"./ru": 548,
+	"./ru.js": 548,
+	"./sd": 549,
+	"./sd.js": 549,
+	"./se": 550,
+	"./se.js": 550,
+	"./si": 551,
+	"./si.js": 551,
+	"./sk": 552,
+	"./sk.js": 552,
+	"./sl": 553,
+	"./sl.js": 553,
+	"./sq": 554,
+	"./sq.js": 554,
+	"./sr": 555,
+	"./sr-cyrl": 556,
+	"./sr-cyrl.js": 556,
+	"./sr.js": 555,
+	"./ss": 557,
+	"./ss.js": 557,
+	"./sv": 558,
+	"./sv.js": 558,
+	"./sw": 559,
+	"./sw.js": 559,
+	"./ta": 560,
+	"./ta.js": 560,
+	"./te": 561,
+	"./te.js": 561,
+	"./tet": 562,
+	"./tet.js": 562,
+	"./tg": 563,
+	"./tg.js": 563,
+	"./th": 564,
+	"./th.js": 564,
+	"./tk": 565,
+	"./tk.js": 565,
+	"./tl-ph": 566,
+	"./tl-ph.js": 566,
+	"./tlh": 567,
+	"./tlh.js": 567,
+	"./tr": 568,
+	"./tr.js": 568,
+	"./tzl": 569,
+	"./tzl.js": 569,
+	"./tzm": 570,
+	"./tzm-latn": 571,
+	"./tzm-latn.js": 571,
+	"./tzm.js": 570,
+	"./ug-cn": 572,
+	"./ug-cn.js": 572,
+	"./uk": 573,
+	"./uk.js": 573,
+	"./ur": 574,
+	"./ur.js": 574,
+	"./uz": 575,
+	"./uz-latn": 576,
+	"./uz-latn.js": 576,
+	"./uz.js": 575,
+	"./vi": 577,
+	"./vi.js": 577,
+	"./x-pseudo": 578,
+	"./x-pseudo.js": 578,
+	"./yo": 579,
+	"./yo.js": 579,
+	"./zh-cn": 580,
+	"./zh-cn.js": 580,
+	"./zh-hk": 581,
+	"./zh-hk.js": 581,
+	"./zh-mo": 582,
+	"./zh-mo.js": 582,
+	"./zh-tw": 583,
+	"./zh-tw.js": 583
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
 };
-var AddZoom16225449820000 = /** @class */ (function () {
-    function AddZoom16225449820000() {
-    }
-    AddZoom16225449820000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN min_zoom INTEGER ")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("columns 'min_zoom' already exist");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddZoom16225449820000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddZoom16225449820000;
-}());
-
-//# sourceMappingURL=16225449820000-AddZoom.js.map
-
-/***/ }),
-
-/***/ 1103:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddForceSubtaskAndArLink16552845000000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
 };
-var AddForceSubtaskAndArLink16552845000000 = /** @class */ (function () {
-    function AddForceSubtaskAndArLink16552845000000() {
-    }
-    AddForceSubtaskAndArLink16552845000000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_rel_route_task ADD COLUMN force_support_tasks INTEGER(1) ")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN ar_link VARCHAR ")];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        console.log("columns 'force_support_tasks' and 'ar_link' already exist");
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddForceSubtaskAndArLink16552845000000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddForceSubtaskAndArLink16552845000000;
-}());
-
-//# sourceMappingURL=16552845000000-AddForceSubtaskAndArLink.js.map
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 1102;
 
 /***/ }),
 
@@ -1956,7 +623,7 @@ var DistancePipe = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMProgressBarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2233,11 +900,11 @@ var LazyLoadImagesDirective = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2436,6 +1103,21 @@ var LocalizedDatePipe = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=localDate.pipe.js.map
+
+/***/ }),
+
+/***/ 1112:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecordStateEnum; });
+var RecordStateEnum;
+(function (RecordStateEnum) {
+    RecordStateEnum[RecordStateEnum["Idle"] = 1] = "Idle";
+    RecordStateEnum[RecordStateEnum["Record"] = 2] = "Record";
+    RecordStateEnum[RecordStateEnum["Stop"] = 3] = "Stop";
+})(RecordStateEnum || (RecordStateEnum = {}));
+//# sourceMappingURL=recordStateEnum.js.map
 
 /***/ }),
 
@@ -2695,12 +1377,12 @@ var Autoresize = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(404);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(409);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(403);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(410);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(445);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(447);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(448);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1140);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2757,11 +1439,11 @@ var ApiModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrailService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -2956,15 +1638,200 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(443);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+var LanguageService = /** @class */ (function () {
+    function LanguageService(translateService, platform, globalization, storage) {
+        this.translateService = translateService;
+        this.platform = platform;
+        this.globalization = globalization;
+        this.storage = storage;
+        this.isInitialized = false;
+        this.initializeListeners = [];
+        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et"];
+    }
+    LanguageService_1 = LanguageService;
+    LanguageService.prototype.getAvailableLanguages = function () {
+        return this.availableLanguages;
+    };
+    LanguageService.prototype.initialize = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                if (this.isInitialized) {
+                    return [2 /*return*/, Promise.resolve()];
+                }
+                if (this.initializeListeners.length > 0) {
+                    // a parallel call has already been started
+                    return [2 /*return*/, new Promise(function (success) {
+                            _this.initializeListeners.push(success);
+                        })];
+                }
+                return [2 /*return*/, new Promise(function (success) { return __awaiter(_this, void 0, void 0, function () {
+                        var _this = this;
+                        var defaultLang, lang, preferredLanguage, e_1;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    defaultLang = 'en';
+                                    this.translateService.setDefaultLang(defaultLang);
+                                    this.initializeListeners.push(success);
+                                    return [4 /*yield*/, this.platform.ready()];
+                                case 1:
+                                    _a.sent();
+                                    return [4 /*yield*/, this.storage.get(LanguageService_1.STORAGE_KEY)];
+                                case 2:
+                                    lang = _a.sent();
+                                    if (!(!lang && Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginName()) === true)) return [3 /*break*/, 6];
+                                    _a.label = 3;
+                                case 3:
+                                    _a.trys.push([3, 5, , 6]);
+                                    return [4 /*yield*/, this.globalization.getPreferredLanguage()];
+                                case 4:
+                                    preferredLanguage = _a.sent();
+                                    if (preferredLanguage && preferredLanguage.value) {
+                                        lang = preferredLanguage.value;
+                                        if (lang.indexOf('-') > -1) {
+                                            lang = lang.split('-')[0];
+                                        }
+                                        if (lang.indexOf('_') > -1) {
+                                            lang = lang.split('_')[0];
+                                        }
+                                        lang = lang.toLowerCase();
+                                        if (this.availableLanguages.indexOf(lang) == -1) {
+                                            // detected language is not available
+                                            lang = null;
+                                        }
+                                    }
+                                    return [3 /*break*/, 6];
+                                case 5:
+                                    e_1 = _a.sent();
+                                    return [3 /*break*/, 6];
+                                case 6:
+                                    if (!lang) {
+                                        lang = defaultLang;
+                                    }
+                                    return [4 /*yield*/, this.translateService.use(lang)];
+                                case 7:
+                                    _a.sent();
+                                    setTimeout(function () {
+                                        // use timeout to let language switch propagate
+                                        _this.isInitialized = true;
+                                        _this.initializeListeners.map(function (success) {
+                                            success();
+                                        });
+                                        _this.initializeListeners = null;
+                                    }, 100);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); })];
+            });
+        });
+    };
+    LanguageService.prototype.getLanguage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.translateService.currentLang];
+            });
+        });
+    };
+    LanguageService.prototype.setLanguage = function (lang) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.translateService.use(lang);
+                        return [4 /*yield*/, this.storage.set(LanguageService_1.STORAGE_KEY, lang)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LanguageService.STORAGE_KEY = 'LanguageService.lang';
+    LanguageService = LanguageService_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
+    ], LanguageService);
+    return LanguageService;
+    var LanguageService_1;
+}());
+
+//# sourceMappingURL=language-service.js.map
+
+/***/ }),
+
+/***/ 118:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Updater; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(431);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3316,191 +2183,6 @@ var DB_Updater = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 118:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-var LanguageService = /** @class */ (function () {
-    function LanguageService(translateService, platform, globalization, storage) {
-        this.translateService = translateService;
-        this.platform = platform;
-        this.globalization = globalization;
-        this.storage = storage;
-        this.isInitialized = false;
-        this.initializeListeners = [];
-        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et"];
-    }
-    LanguageService_1 = LanguageService;
-    LanguageService.prototype.getAvailableLanguages = function () {
-        return this.availableLanguages;
-    };
-    LanguageService.prototype.initialize = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                if (this.isInitialized) {
-                    return [2 /*return*/, Promise.resolve()];
-                }
-                if (this.initializeListeners.length > 0) {
-                    // a parallel call has already been started
-                    return [2 /*return*/, new Promise(function (success) {
-                            _this.initializeListeners.push(success);
-                        })];
-                }
-                return [2 /*return*/, new Promise(function (success) { return __awaiter(_this, void 0, void 0, function () {
-                        var _this = this;
-                        var defaultLang, lang, preferredLanguage, e_1;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    defaultLang = 'en';
-                                    this.translateService.setDefaultLang(defaultLang);
-                                    this.initializeListeners.push(success);
-                                    return [4 /*yield*/, this.platform.ready()];
-                                case 1:
-                                    _a.sent();
-                                    return [4 /*yield*/, this.storage.get(LanguageService_1.STORAGE_KEY)];
-                                case 2:
-                                    lang = _a.sent();
-                                    if (!(!lang && Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginName()) === true)) return [3 /*break*/, 6];
-                                    _a.label = 3;
-                                case 3:
-                                    _a.trys.push([3, 5, , 6]);
-                                    return [4 /*yield*/, this.globalization.getPreferredLanguage()];
-                                case 4:
-                                    preferredLanguage = _a.sent();
-                                    if (preferredLanguage && preferredLanguage.value) {
-                                        lang = preferredLanguage.value;
-                                        if (lang.indexOf('-') > -1) {
-                                            lang = lang.split('-')[0];
-                                        }
-                                        if (lang.indexOf('_') > -1) {
-                                            lang = lang.split('_')[0];
-                                        }
-                                        lang = lang.toLowerCase();
-                                        if (this.availableLanguages.indexOf(lang) == -1) {
-                                            // detected language is not available
-                                            lang = null;
-                                        }
-                                    }
-                                    return [3 /*break*/, 6];
-                                case 5:
-                                    e_1 = _a.sent();
-                                    return [3 /*break*/, 6];
-                                case 6:
-                                    if (!lang) {
-                                        lang = defaultLang;
-                                    }
-                                    return [4 /*yield*/, this.translateService.use(lang)];
-                                case 7:
-                                    _a.sent();
-                                    setTimeout(function () {
-                                        // use timeout to let language switch propagate
-                                        _this.isInitialized = true;
-                                        _this.initializeListeners.map(function (success) {
-                                            success();
-                                        });
-                                        _this.initializeListeners = null;
-                                    }, 100);
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); })];
-            });
-        });
-    };
-    LanguageService.prototype.getLanguage = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, this.translateService.currentLang];
-            });
-        });
-    };
-    LanguageService.prototype.setLanguage = function (lang) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.translateService.use(lang);
-                        return [4 /*yield*/, this.storage.set(LanguageService_1.STORAGE_KEY, lang)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    LanguageService.STORAGE_KEY = 'LanguageService.lang';
-    LanguageService = LanguageService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
-    ], LanguageService);
-    return LanguageService;
-    var LanguageService_1;
-}());
-
-//# sourceMappingURL=language-service.js.map
-
-/***/ }),
-
 /***/ 147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3509,19 +2191,19 @@ var LanguageService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(584);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(636);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(641);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(639);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3775,7 +2457,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3877,13 +2559,13 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(549);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil__ = __webpack_require__(634);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(38);
@@ -4357,18 +3039,127 @@ var Helper = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 193:
+/***/ 191:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var Task2Route = /** @class */ (function () {
+    function Task2Route() {
+    }
+    Task2Route.prototype.getTaskWithSubtasks = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var repo;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.task) {
+                            return [2 /*return*/, false];
+                        }
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */].INSTANCE.getTaskRepository()];
+                    case 1:
+                        repo = _a.sent();
+                        return [4 /*yield*/, repo.createQueryBuilder("tasks")
+                                .where({ id: this.task.id })
+                                .leftJoinAndSelect("tasks.subtasks", "subtasks")
+                                .getOne()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
+        __metadata("design:type", Number)
+    ], Task2Route.prototype, "id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'force_support_tasks' }),
+        __metadata("design:type", Number)
+    ], Task2Route.prototype, "forceSupportTask", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */]; }, function (route) { return route.task2Routes; }),
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'route_id', referencedColumnName: 'id' }),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */])
+    ], Task2Route.prototype, "route", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */]; }, function (task) { return task.task2Routes; }, { eager: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'task_id', referencedColumnName: 'id' }),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */])
+    ], Task2Route.prototype, "task", void 0);
+    Task2Route = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_rel_route_task')
+    ], Task2Route);
+    return Task2Route;
+}());
+
+//# sourceMappingURL=Task2Route.js.map
+
+/***/ }),
+
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4659,115 +3450,6 @@ var SessionService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 211:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(577);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-var Task2Route = /** @class */ (function () {
-    function Task2Route() {
-    }
-    Task2Route.prototype.getTaskWithSubtasks = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var repo;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!this.task) {
-                            return [2 /*return*/, false];
-                        }
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */].INSTANCE.getTaskRepository()];
-                    case 1:
-                        repo = _a.sent();
-                        return [4 /*yield*/, repo.createQueryBuilder("tasks")
-                                .where({ id: this.task.id })
-                                .leftJoinAndSelect("tasks.subtasks", "subtasks")
-                                .getOne()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
-        __metadata("design:type", Number)
-    ], Task2Route.prototype, "id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'force_support_tasks' }),
-        __metadata("design:type", Number)
-    ], Task2Route.prototype, "forceSupportTask", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */]; }, function (route) { return route.task2Routes; }),
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'route_id', referencedColumnName: 'id' }),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */])
-    ], Task2Route.prototype, "route", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */]; }, function (task) { return task.task2Routes; }, { eager: true }),
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'task_id', referencedColumnName: 'id' }),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */])
-    ], Task2Route.prototype, "task", void 0);
-    Task2Route = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_rel_route_task')
-    ], Task2Route);
-    return Task2Route;
-}());
-
-//# sourceMappingURL=Task2Route.js.map
-
-/***/ }),
-
 /***/ 235:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4779,13 +3461,13 @@ var Task2Route = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(640);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(1111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(641);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4987,14 +3669,14 @@ var MCMIconModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 239:
+/***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Score; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(1078);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(806);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5167,13 +3849,13 @@ var Score = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 240:
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomKeyBoard; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5380,7 +4062,7 @@ webpackEmptyAsyncContext.id = 251;
 
 var map = {
 	"../pages/chat/chat.module": [
-		296
+		588
 	],
 	"../pages/dashboard/dashboard.module": [
 		1146,
@@ -5395,15 +4077,15 @@ var map = {
 		5
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1153,
+		1149,
 		7
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1150,
+		1153,
 		1
 	],
 	"../pages/info/info.module": [
-		1149,
+		1150,
 		4
 	],
 	"../pages/onboarding/onboarding.module": [
@@ -5411,11 +4093,11 @@ var map = {
 		3
 	],
 	"../pages/portal/portal.module": [
-		1152,
+		1154,
 		6
 	],
 	"../pages/settings/settings.module": [
-		1154,
+		1152,
 		2
 	],
 	"../pages/task-detail/task-detail.module": [
@@ -5439,53 +4121,6 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 296:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(636);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-var ChatPageModule = /** @class */ (function () {
-    function ChatPageModule() {
-    }
-    ChatPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
-                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
-            ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
-            ]
-        })
-    ], ChatPageModule);
-    return ChatPageModule;
-}());
-
-//# sourceMappingURL=chat.module.js.map
-
-/***/ }),
-
 /***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5493,40 +4128,40 @@ var ChatPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrmService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(1074);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(1075);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(1076);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(1077);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(577);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(1080);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(802);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(803);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(809);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(1081);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(810);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(1083);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(1084);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(823);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(1093);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(1094);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(833);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(1095);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(1096);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(1097);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(836);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(1098);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(1099);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(1100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(1101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(1102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(1103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(837);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(838);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(839);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(840);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(841);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(842);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6350,18 +4985,933 @@ var OrmService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 403:
+/***/ 331:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(45);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var Task = /** @class */ (function () {
+    function Task() {
+    }
+    Task_1 = Task;
+    Task.prototype.getImageURL = function (asRawString) {
+        if (asRawString === void 0) { asRawString = false; }
+        return __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
+    };
+    Task.prototype.getSingleQuotedImageURL = function () {
+        return "'" + this.getImageURL() + "'";
+    };
+    Task.prototype.getImagesForDownload = function () {
+        var result = [];
+        // Add title image
+        if (this.image) {
+            result.push(this.image);
+        }
+        // Add sample solution image if available
+        var sampleSolutionImg = this.getSolutionSampleImgSrc();
+        if (sampleSolutionImg != "") {
+            result.push(sampleSolutionImg);
+        }
+        if (this.getLegitSubtasks()) {
+            for (var _i = 0, _a = this.getLegitSubtasks(); _i < _a.length; _i++) {
+                var subtask = _a[_i];
+                result = result.concat(subtask.getImagesForDownload());
+            }
+        }
+        // Add hint images
+        return result.concat(this.getHints().filter(function (hint) {
+            return hint.type == 'image' && hint.value && hint.value.trim();
+        }).map(function (hint) { return hint.value.trim(); }));
+    };
+    Task.prototype.getSolutionOptionList = function () {
+        if (this.solutionType == 'multiple_choice') {
+            var multipleChoiceSolutionList_1 = [];
+            var temp = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
+            temp[0].forEach(function (element) {
+                multipleChoiceSolutionList_1.push({ userChecked: false, rightAnswer: false, value: element });
+            });
+            temp[1].forEach(function (element) {
+                multipleChoiceSolutionList_1[element].rightAnswer = true;
+            });
+            console.log(multipleChoiceSolutionList_1);
+            return multipleChoiceSolutionList_1;
+        }
+        else {
+            return __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
+        }
+    };
+    Task.prototype.getSolution = function () {
+        var solution = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
+        if (this.solutionType === "vector_values" || this.solutionType === "vector_intervals" || this.solutionType === 'set' || this.solutionType === 'blanks' || this.solutionType === 'fraction') {
+            return solution;
+        }
+        if (this.solutionType != 'multiple_choice') {
+            return solution[0];
+        }
+        else {
+            var solutionArray = this.getSolutionOptionList();
+            var solutionText = "";
+            for (var i = 0; i < solutionArray.length; i++) {
+                if (solutionArray[i].rightAnswer) {
+                    if (solutionText != "") {
+                        solutionText = solutionText + ", ";
+                    }
+                    solutionText = solutionText + solutionArray[i].value;
+                }
+            }
+            return solutionText;
+        }
+    };
+    Task.prototype.getSolutionList = function () {
+        var solution = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
+        var results = [];
+        solution.forEach(function (element) {
+            results.push(+element);
+        });
+        return results;
+    };
+    /*
+    Returns details of gps task.
+    Keys:
+    task - type of gps task (e.g. centerTwo, centerThree, linearFx, square, lineNoDirection, lineDirection, triangle)
+    points - the number of points the user has to place to solve the task (also number of buttons to display on map)
+    setPoints - the number of points the author had to define in the web portal. The system needs to validate the solution
+    against these points.
+    point1 (point2, point3 ... etc.) - depending on the number of 'setPoints' there are [lat, lon] arrays saved behind the keys
+     */
+    Task.prototype.getSolutionGpsValue = function (key) {
+        if (this.solutionType == "gps") {
+            var solution = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
+            return solution[key];
+        }
+        else {
+            return null;
+        }
+    };
+    Task.prototype.getSolutionSample = function () {
+        if (this.solutionSample) {
+            var sample = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solutionSample);
+            if (sample.length > 0) {
+                return sample[0];
+            }
+        }
+        return "";
+    };
+    /*
+    Returns the src of sample solution image if provided, empty string if not
+     */
+    Task.prototype.getSolutionSampleImgSrc = function () {
+        if (this.solutionSample) {
+            var sample = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solutionSample);
+            if (sample.length > 0) {
+                return (sample[1] != null) ? sample[1] : "";
+            }
+        }
+        else {
+            return "";
+        }
+    };
+    Task.prototype.getAssistiveEquipment = function () {
+        if (this.assistiveEquipment) {
+            var json = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.assistiveEquipment);
+            if (json == null) {
+                return new Array();
+            }
+            return json;
+        }
+        else {
+            return new Array();
+        }
+    };
+    Task.prototype.getHint = function (index) {
+        var hint = this.getHintObject(index);
+        if (hint) {
+            return hint;
+        }
+        return null;
+    };
+    Task.prototype.hasHintMessage = function (index) {
+        var hint = this.getHint(index);
+        if (!hint)
+            return;
+        else {
+            if (hint.value)
+                return true;
+            else
+                return false;
+        }
+    };
+    Task.prototype.getHintObject = function (index) {
+        var hint;
+        switch (index) {
+            case 1:
+                hint = this.hint1;
+                break;
+            case 2:
+                hint = this.hint2;
+                break;
+            case 3:
+                hint = this.hint3;
+                break;
+        }
+        if (hint && hint.length > 0) {
+            var array = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(hint);
+            if (array.length >= 2) {
+                return {
+                    type: array[0],
+                    value: array[1]
+                };
+            }
+        }
+        return null;
+    };
+    Task.prototype.getHints = function () {
+        var result = [];
+        for (var i = 1; i <= 3; i++) {
+            var hint = this.getHintObject(i);
+            if (hint) {
+                result.push(hint);
+            }
+        }
+        return result;
+    };
+    Task.prototype.isAttrObject = function () {
+        if (this.attr == null) {
+            return false;
+        }
+        try {
+            JSON.parse(this.attr);
+        }
+        catch (e) {
+            return false;
+        }
+        return true;
+    };
+    Task.prototype.hasSideFacts = function () {
+        // make sure the attr field is available (old tasks dont have one)
+        if (!this.isAttrObject()) {
+            return false;
+        }
+        var attr = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.attr);
+        if (attr.hasOwnProperty('side_facts')) {
+            var side_facts = attr.side_facts;
+            if (side_facts.hasOwnProperty('text')) {
+                return side_facts.text != "";
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    };
+    Task.prototype.getSideFactsText = function () {
+        if (this.hasSideFacts()) {
+            var attr = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.attr);
+            return attr.side_facts.text;
+        }
+        else {
+            return "";
+        }
+    };
+    /**
+     * Method to filter out legacy saved Supporttasks with unsupported ID
+     */
+    Task.prototype.getLegitSubtasks = function () {
+        var origin = this;
+        if (this.subtasks) {
+            return this.subtasks.filter(function (task) {
+                return !task.id.toString().includes(origin.id.toString());
+            });
+        }
+        return null;
+    };
+    Task.prototype.getSubtasksInOrder = function () {
+        return this.getLegitSubtasks().sort(function (a, b) {
+            if (a.position > b.position)
+                return 1;
+            if (a.position < b.position)
+                return -1;
+            return 0;
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
+        __metadata("design:type", Number)
+    ], Task.prototype, "id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'user_id' }),
+        __metadata("design:type", Number)
+    ], Task.prototype, "userId", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 1 }),
+        __metadata("design:type", String)
+    ], Task.prototype, "public", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", Number)
+    ], Task.prototype, "lat", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", Number)
+    ], Task.prototype, "lon", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "title", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "description", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "image", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'solution_type' }),
+        __metadata("design:type", String)
+    ], Task.prototype, "solutionType", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "solution", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "hint1", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "hint2", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "hint3", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'assistive_equipment' }),
+        __metadata("design:type", String)
+    ], Task.prototype, "assistiveEquipment", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "author", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "mail", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 2 }),
+        __metadata("design:type", String)
+    ], Task.prototype, "grade", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "tags", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'create_date' }),
+        __metadata("design:type", String)
+    ], Task.prototype, "createDate", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "timestamp", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "attr", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'solutionsample' }),
+        __metadata("design:type", String)
+    ], Task.prototype, "solutionSample", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'lang_code' }),
+        __metadata("design:type", String)
+    ], Task.prototype, "langCode", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'position' }),
+        __metadata("design:type", Number)
+    ], Task.prototype, "position", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'ar_link' }),
+        __metadata("design:type", String)
+    ], Task.prototype, "arLink", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["d" /* ManyToMany */])(function (type) { return __WEBPACK_IMPORTED_MODULE_1__Route__["a" /* Route */]; }, function (route) { return route.tasks; }),
+        __metadata("design:type", Array)
+    ], Task.prototype, "routes", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["g" /* OneToMany */])(function (type) { return __WEBPACK_IMPORTED_MODULE_3__Task2Route__["a" /* Task2Route */]; }, function (task2Route) { return task2Route.task; }),
+        __metadata("design:type", Array)
+    ], Task.prototype, "task2Routes", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return Task_1; }, function (task) { return task.subtasks; }),
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'task_id' }),
+        __metadata("design:type", Task)
+    ], Task.prototype, "task_id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["g" /* OneToMany */])(function (type) { return Task_1; }, function (task) { return task.task_id; }),
+        __metadata("design:type", Array)
+    ], Task.prototype, "subtasks", void 0);
+    Task = Task_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_task')
+    ], Task);
+    return Task;
+    var Task_1;
+}());
+
+//# sourceMappingURL=Task.js.map
+
+/***/ }),
+
+/***/ 353:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var WebSQLObject = /** @class */ (function (_super) {
+    __extends(WebSQLObject, _super);
+    function WebSQLObject() {
+        return _super.call(this, openDatabase('mcm', '1.0', 'MCM DB', 2 * 1024 * 1024)) || this;
+    }
+    WebSQLObject.prototype.executeSql = function (statement, params) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._objectInstance.transaction(function (tx) {
+                console.debug(statement);
+                tx.executeSql(statement, params, function (tx, results) {
+                    resolve(results);
+                }, function (tx, error) {
+                    reject(error);
+                });
+            });
+        });
+    };
+    return WebSQLObject;
+}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["b" /* SQLiteObject */]));
+var WebSQL = /** @class */ (function (_super) {
+    __extends(WebSQL, _super);
+    function WebSQL() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    WebSQL.prototype.create = function (config) {
+        return new Promise(function (resolve, reject) {
+            resolve(new WebSQLObject());
+        });
+    };
+    return WebSQL;
+}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]));
+var DB_Handler = /** @class */ (function () {
+    function DB_Handler() {
+        this.mSQLite = null;
+        this.mDB = null;
+        this.mReady = false;
+        this.cache = {};
+    }
+    DB_Handler.getInstance = function () {
+        if (this.mInstance === null) {
+            this.mInstance = new DB_Handler();
+        }
+        return this.mInstance;
+    };
+    DB_Handler.prototype.ready = function () {
+        var _this = this;
+        if (this.mReady) {
+            return Promise.resolve();
+        }
+        return new Promise(function (resolve, reject) {
+            _this.mSQLite = Object(__WEBPACK_IMPORTED_MODULE_3__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginName()) === true ? new __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]() : new WebSQL();
+            _this.mSQLite.create({
+                name: 'mcm_db.sqlite3',
+                location: 'default'
+            })
+                .then(function (db) {
+                _this.mDB = db;
+                _this.mReady = true;
+                console.log('Connected to DB');
+                // it's ok to always run onCreate because SQL has IF EXISTS
+                _this.onCreate().then(function () {
+                    _this.mReady = true;
+                    resolve();
+                });
+            })
+                .catch(function (e) {
+                console.error('Error connecting to DB', JSON.stringify(e));
+                reject(e);
+            });
+        });
+    };
+    DB_Handler.prototype.onCreate = function () {
+        var _this = this;
+        // Create Tables
+        var CREATE_STATE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.getCreateStatement();
+        var CREATE_TASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_TASK.getCreateStatement();
+        var CREATE_ROUTE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_ROUTE.getCreateStatement();
+        var CREATE_RELROUTETASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_RELROUTETASK.getCreateStatement();
+        var CREATE_USERS_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_USERS.getCreateStatement();
+        var CREATE_SCORE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_SCORE.getCreateStatement();
+        return new Promise(function (resolve, reject) {
+            Promise.all([
+                _this.mDB.executeSql(CREATE_STATE_TABLE, null),
+                _this.mDB.executeSql(CREATE_TASK_TABLE, null),
+                _this.mDB.executeSql(CREATE_ROUTE_TABLE, null),
+                _this.mDB.executeSql(CREATE_RELROUTETASK_TABLE, null),
+                _this.mDB.executeSql(CREATE_USERS_TABLE, null),
+                _this.mDB.executeSql(CREATE_SCORE_TABLE, null)
+            ]).then(function () {
+                resolve();
+            }).catch(function (error) {
+                reject(error);
+            });
+        });
+    };
+    DB_Handler.prototype.initTableVersions = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var sql = "INSERT INTO " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE + " (" + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + ") VALUES (?,?)";
+            Promise.all([
+                _this.mDB.executeSql(sql, ["version_task", "0"]),
+                _this.mDB.executeSql(sql, ["version_route", "0"]),
+                _this.mDB.executeSql(sql, ["version_rel_route_task", "0"])
+            ]).then(function () {
+                resolve();
+            }).catch(reject);
+        });
+    };
+    // TODO:
+    /*
+    Get the table versions in a hashmap
+     */
+    DB_Handler.prototype._getTableVersions = function (data) {
+        var result = new __WEBPACK_IMPORTED_MODULE_2_typescript_collections__["Dictionary"]();
+        for (var i = 0; i < data.rows.length; i++) {
+            var row = data.rows.item(i);
+            result.setValue(row.option, row.value);
+        }
+        return result;
+    };
+    DB_Handler.prototype.getDB = function () {
+        return this.mDB;
+    };
+    DB_Handler.prototype.getTableVersions = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var sqlQuery = "SELECT " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + " FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE;
+            _this.mDB.executeSql(sqlQuery, [])
+                .then(function (result) {
+                console.log("TABLE VERSIONS:", result.rows.length);
+                // console.log(JSON.stringify(result.rows.item(1).option))
+                if (result.rows.length < 3) {
+                    console.warn("ZERO RESULTS: call initTableVersions");
+                    _this.initTableVersions().then(function () {
+                        console.log("RECEIVED RESULTS, REPEATING SQL");
+                        _this.mDB.executeSql(sqlQuery, []).then(function (result) {
+                            console.log("RECEIVED RESULTS", result.rows.length);
+                            resolve(_this._getTableVersions(result));
+                        }).catch(reject);
+                    }).catch(reject);
+                }
+                else {
+                    // we have results
+                    resolve(_this._getTableVersions(result));
+                }
+            })
+                .catch(function (error) {
+                console.error("DB_Handler.getTableVersions(): Error:", error);
+                reject(error);
+            });
+        });
+    };
+    //  Wird im ImageDownloader verwendet, dieser benötigt von allen Trails die Infos public und image
+    // 15.05.18 - Select only public trails
+    DB_Handler.prototype.getTrailsImageInfo = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.mDB.executeSql("SELECT public,image FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_ROUTE + " WHERE public = 1", null)
+                .then(function (result) {
+                var info = null;
+                for (var i = 0; i < result.rows.length; i++) {
+                    var item = [result.rows.item(i).public, result.rows.item(i).image];
+                    if (info === null) {
+                        info = [item];
+                    }
+                    else {
+                        info.push(item);
+                    }
+                }
+                resolve(info);
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+    };
+    DB_Handler.mInstance = null;
+    return DB_Handler;
+}());
+
+//# sourceMappingURL=DB_Handler.js.map
+
+/***/ }),
+
+/***/ 354:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(831);
+
+
+var DBC = /** @class */ (function () {
+    function DBC() {
+    }
+    DBC.initialize = function () {
+        if (DBC.MAP_DB === null) {
+            DBC.MAP_DB = new __WEBPACK_IMPORTED_MODULE_0_typescript_collections__["Dictionary"]();
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_REL_ROUTE_TASK, DBC.DB_RELROUTETASK);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_ROUTE, DBC.DB_ROUTE);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_STATE, DBC.DB_STATE);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_TASK, DBC.DB_TASK);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_USERS, DBC.DB_USERS);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_SCORE, DBC.DB_SCORE);
+        }
+    };
+    DBC.DATABASE_NAME = "mcm_app";
+    DBC.DATABASE_VERSION = 32;
+    // // Table names (For table definitions look at the corresponding classes DBC_tablename)
+    DBC.DATABASE_TABLE_STATE = "mcm_state";
+    DBC.DATABASE_TABLE_TASK = "mcm_task";
+    DBC.DATABASE_TABLE_TASKMETA = "mcm_task_meta";
+    DBC.DATABASE_TABLE_ROUTE = "mcm_route";
+    DBC.DATABASE_TABLE_ROUTEMETA = "mcm_route_meta";
+    DBC.DATABASE_TABLE_REL_ROUTE_TASK = "mcm_rel_route_task";
+    DBC.DATABASE_TABLE_USERS = "mcm_users";
+    DBC.DATABASE_TABLE_SCORE = "mcm_score";
+    // // Option Names for STATE DB
+    DBC.ON_ROUTE_DATA = "route_id_data_dl";
+    DBC.ON_ROUTE_DONE = "route_id_done";
+    DBC.ON_ROUTE_PRIVATE_ACCESS = "route_id_private_access";
+    DBC.ON_TASK_HINT1_TAKEN = "task_id_hint1_taken";
+    DBC.ON_TASK_HINT2_TAKEN = "task_id_hint2_taken";
+    DBC.ON_TASK_HINT3_TAKEN = "task_id_hint3_taken";
+    DBC.ON_TASK_SOLVED = "task_id_solved";
+    DBC.ON_TASK_SOLVED_LOW = "task_id_solved_low";
+    DBC.ON_ACTIVE_USER = "active_user";
+    DBC.ON_GAMIFICATION = "gamification";
+    // /* TABLE DEFINITIONS */
+    // // DB_STATE
+    DBC.DB_STATE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_STATE, [
+        "_id",
+        "option",
+        "value",
+        "timestamp"
+    ], [
+        "INTEGER",
+        "VARCHAR",
+        "VARCHAR",
+        "TIMESTAMP"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(64) NOT NULL",
+        "(256) NOT NULL",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    ]);
+    // //DB_TASK
+    DBC.DB_TASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_TASK, [
+        "_id",
+        "user_id",
+        "public",
+        "lat",
+        "lon",
+        "title",
+        "description",
+        "image",
+        "solution_type",
+        "solution",
+        "hint1",
+        "hint2",
+        "hint3",
+        "assistive_equipment",
+        "author",
+        "mail",
+        "grade",
+        "tags",
+        "timestamp",
+        "solutionsample",
+        "attr",
+        "create_date",
+        "lang_code",
+        "visible",
+        "task_id",
+        "position",
+        "ar_link"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR",
+        "VARCHAR",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "VARCHAR",
+        "TEXT",
+        "TIMESTAMP",
+        "TEXT",
+        "TEXT",
+        "TIMESTAMP",
+        "VARCHAR",
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "NOT NULL",
+        "(1) NOT NULL",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "NOT NULL",
+        "NOT NULL",
+        "",
+        "NOT NULL",
+        "NOT NULL",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "(2) NOT NULL DEFAULT '13'",
+        "",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
+        "NOT NULL",
+        "",
+        "NOT NULL",
+        "(2)",
+        "(1) NOT NULL DEFAULT 1",
+        "",
+        "",
+        ""
+    ]);
+    // DB_ROUTE
+    DBC.DB_ROUTE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_ROUTE, [
+        "_id",
+        "user_id",
+        "public",
+        "title",
+        "country_code",
+        "city",
+        "image",
+        "code",
+        "grade",
+        "tags",
+        "duration",
+        "length",
+        "bounding_box",
+        "center",
+        "timestamp",
+        "description",
+        "create_date",
+        "attr",
+        "lang_code",
+        "map_version",
+        "map_filename",
+        "map_date",
+        "path_geojson",
+        "path_info",
+        "min_zoom"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "VARCHAR",
+        "TEXT",
+        "VARCHAR",
+        "VARCHAR",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TIMESTAMP",
+        "TEXT",
+        "TIMESTAMP",
+        "TEXT",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "INTEGER"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "NOT NULL",
+        "(1) NOT NULL",
+        "NOT NULL",
+        "NOT NULL",
+        "NOT NULL",
+        "",
+        "(64)",
+        "(64)",
+        "",
+        "(64)",
+        "(64)",
+        "",
+        "",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
+        "",
+        "NOT NULL",
+        "",
+        "(2)",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ]);
+    // // DB_RELROUTETASK
+    DBC.DB_RELROUTETASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_REL_ROUTE_TASK, [
+        "_id",
+        "force_support_tasks",
+        "route_id",
+        "task_id",
+        "timestamp"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "TIMESTAMP"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(1)",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    ]);
+    // // DB_USERS
+    DBC.DB_USERS = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_USERS, [
+        "_id",
+        "name",
+        "create_date"
+    ], [
+        "INTEGER",
+        "VARCHAR",
+        "TIMESTAMP"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(32) NOT NULL",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    ]);
+    // // DB_SCORE
+    DBC.DB_SCORE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_SCORE, [
+        "_id",
+        "user_id",
+        "route_id",
+        "score",
+        "tasks_solved",
+        "tasks_solved_low",
+        "task_details",
+        "time",
+        "distance"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "INTEGER",
+        "INTEGER",
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "",
+        "",
+        "",
+        "(64)",
+        "(64)"
+    ]);
+    /*
+    DB MAP: Tablename -> DB Instance
+     */
+    DBC.MAP_DB = null;
+    return DBC;
+}());
+
+DBC.initialize();
+//# sourceMappingURL=DBC.js.map
+
+/***/ }),
+
+/***/ 444:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6522,18 +6072,18 @@ var SessionUserService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 404:
+/***/ 445:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionChatService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6798,18 +6348,18 @@ var SessionChatService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 409:
+/***/ 447:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionEventService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -7001,18 +6551,18 @@ var SessionEventService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 410:
+/***/ 448:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserLeaderboardService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -7101,13 +6651,13 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(578);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(1079);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(807);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -7601,921 +7151,6 @@ var ImagesService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 577:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(45);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var Task = /** @class */ (function () {
-    function Task() {
-    }
-    Task_1 = Task;
-    Task.prototype.getImageURL = function (asRawString) {
-        if (asRawString === void 0) { asRawString = false; }
-        return __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
-    };
-    Task.prototype.getSingleQuotedImageURL = function () {
-        return "'" + this.getImageURL() + "'";
-    };
-    Task.prototype.getImagesForDownload = function () {
-        var result = [];
-        // Add title image
-        if (this.image) {
-            result.push(this.image);
-        }
-        // Add sample solution image if available
-        var sampleSolutionImg = this.getSolutionSampleImgSrc();
-        if (sampleSolutionImg != "") {
-            result.push(sampleSolutionImg);
-        }
-        if (this.getLegitSubtasks()) {
-            for (var _i = 0, _a = this.getLegitSubtasks(); _i < _a.length; _i++) {
-                var subtask = _a[_i];
-                result = result.concat(subtask.getImagesForDownload());
-            }
-        }
-        // Add hint images
-        return result.concat(this.getHints().filter(function (hint) {
-            return hint.type == 'image' && hint.value && hint.value.trim();
-        }).map(function (hint) { return hint.value.trim(); }));
-    };
-    Task.prototype.getSolutionOptionList = function () {
-        if (this.solutionType == 'multiple_choice') {
-            var multipleChoiceSolutionList_1 = [];
-            var temp = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
-            temp[0].forEach(function (element) {
-                multipleChoiceSolutionList_1.push({ userChecked: false, rightAnswer: false, value: element });
-            });
-            temp[1].forEach(function (element) {
-                multipleChoiceSolutionList_1[element].rightAnswer = true;
-            });
-            console.log(multipleChoiceSolutionList_1);
-            return multipleChoiceSolutionList_1;
-        }
-        else {
-            return __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
-        }
-    };
-    Task.prototype.getSolution = function () {
-        var solution = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
-        if (this.solutionType === "vector_values" || this.solutionType === "vector_intervals" || this.solutionType === 'set' || this.solutionType === 'blanks' || this.solutionType === 'fraction') {
-            return solution;
-        }
-        if (this.solutionType != 'multiple_choice') {
-            return solution[0];
-        }
-        else {
-            var solutionArray = this.getSolutionOptionList();
-            var solutionText = "";
-            for (var i = 0; i < solutionArray.length; i++) {
-                if (solutionArray[i].rightAnswer) {
-                    if (solutionText != "") {
-                        solutionText = solutionText + ", ";
-                    }
-                    solutionText = solutionText + solutionArray[i].value;
-                }
-            }
-            return solutionText;
-        }
-    };
-    Task.prototype.getSolutionList = function () {
-        var solution = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
-        var results = [];
-        solution.forEach(function (element) {
-            results.push(+element);
-        });
-        return results;
-    };
-    /*
-    Returns details of gps task.
-    Keys:
-    task - type of gps task (e.g. centerTwo, centerThree, linearFx, square, lineNoDirection, lineDirection, triangle)
-    points - the number of points the user has to place to solve the task (also number of buttons to display on map)
-    setPoints - the number of points the author had to define in the web portal. The system needs to validate the solution
-    against these points.
-    point1 (point2, point3 ... etc.) - depending on the number of 'setPoints' there are [lat, lon] arrays saved behind the keys
-     */
-    Task.prototype.getSolutionGpsValue = function (key) {
-        if (this.solutionType == "gps") {
-            var solution = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solution);
-            return solution[key];
-        }
-        else {
-            return null;
-        }
-    };
-    Task.prototype.getSolutionSample = function () {
-        if (this.solutionSample) {
-            var sample = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solutionSample);
-            if (sample.length > 0) {
-                return sample[0];
-            }
-        }
-        return "";
-    };
-    /*
-    Returns the src of sample solution image if provided, empty string if not
-     */
-    Task.prototype.getSolutionSampleImgSrc = function () {
-        if (this.solutionSample) {
-            var sample = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.solutionSample);
-            if (sample.length > 0) {
-                return (sample[1] != null) ? sample[1] : "";
-            }
-        }
-        else {
-            return "";
-        }
-    };
-    Task.prototype.getAssistiveEquipment = function () {
-        if (this.assistiveEquipment) {
-            var json = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.assistiveEquipment);
-            if (json == null) {
-                return new Array();
-            }
-            return json;
-        }
-        else {
-            return new Array();
-        }
-    };
-    Task.prototype.getHint = function (index) {
-        var hint = this.getHintObject(index);
-        if (hint) {
-            return hint;
-        }
-        return null;
-    };
-    Task.prototype.hasHintMessage = function (index) {
-        var hint = this.getHint(index);
-        if (!hint)
-            return;
-        else {
-            if (hint.value)
-                return true;
-            else
-                return false;
-        }
-    };
-    Task.prototype.getHintObject = function (index) {
-        var hint;
-        switch (index) {
-            case 1:
-                hint = this.hint1;
-                break;
-            case 2:
-                hint = this.hint2;
-                break;
-            case 3:
-                hint = this.hint3;
-                break;
-        }
-        if (hint && hint.length > 0) {
-            var array = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(hint);
-            if (array.length >= 2) {
-                return {
-                    type: array[0],
-                    value: array[1]
-                };
-            }
-        }
-        return null;
-    };
-    Task.prototype.getHints = function () {
-        var result = [];
-        for (var i = 1; i <= 3; i++) {
-            var hint = this.getHintObject(i);
-            if (hint) {
-                result.push(hint);
-            }
-        }
-        return result;
-    };
-    Task.prototype.isAttrObject = function () {
-        if (this.attr == null) {
-            return false;
-        }
-        try {
-            JSON.parse(this.attr);
-        }
-        catch (e) {
-            return false;
-        }
-        return true;
-    };
-    Task.prototype.hasSideFacts = function () {
-        // make sure the attr field is available (old tasks dont have one)
-        if (!this.isAttrObject()) {
-            return false;
-        }
-        var attr = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.attr);
-        if (attr.hasOwnProperty('side_facts')) {
-            var side_facts = attr.side_facts;
-            if (side_facts.hasOwnProperty('text')) {
-                return side_facts.text != "";
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    };
-    Task.prototype.getSideFactsText = function () {
-        if (this.hasSideFacts()) {
-            var attr = __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */].safeJsonDecode(this.attr);
-            return attr.side_facts.text;
-        }
-        else {
-            return "";
-        }
-    };
-    /**
-     * Method to filter out legacy saved Supporttasks with unsupported ID
-     */
-    Task.prototype.getLegitSubtasks = function () {
-        var origin = this;
-        if (this.subtasks) {
-            return this.subtasks.filter(function (task) {
-                return !task.id.toString().includes(origin.id.toString());
-            });
-        }
-        return null;
-    };
-    Task.prototype.getSubtasksInOrder = function () {
-        return this.getLegitSubtasks().sort(function (a, b) {
-            if (a.position > b.position)
-                return 1;
-            if (a.position < b.position)
-                return -1;
-            return 0;
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
-        __metadata("design:type", Number)
-    ], Task.prototype, "id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'user_id' }),
-        __metadata("design:type", Number)
-    ], Task.prototype, "userId", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 1 }),
-        __metadata("design:type", String)
-    ], Task.prototype, "public", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", Number)
-    ], Task.prototype, "lat", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", Number)
-    ], Task.prototype, "lon", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "title", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "description", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "image", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'solution_type' }),
-        __metadata("design:type", String)
-    ], Task.prototype, "solutionType", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "solution", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "hint1", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "hint2", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "hint3", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'assistive_equipment' }),
-        __metadata("design:type", String)
-    ], Task.prototype, "assistiveEquipment", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "author", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "mail", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 2 }),
-        __metadata("design:type", String)
-    ], Task.prototype, "grade", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "tags", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'create_date' }),
-        __metadata("design:type", String)
-    ], Task.prototype, "createDate", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "timestamp", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], Task.prototype, "attr", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'solutionsample' }),
-        __metadata("design:type", String)
-    ], Task.prototype, "solutionSample", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'lang_code' }),
-        __metadata("design:type", String)
-    ], Task.prototype, "langCode", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'position' }),
-        __metadata("design:type", Number)
-    ], Task.prototype, "position", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'ar_link' }),
-        __metadata("design:type", String)
-    ], Task.prototype, "arLink", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["d" /* ManyToMany */])(function (type) { return __WEBPACK_IMPORTED_MODULE_1__Route__["a" /* Route */]; }, function (route) { return route.tasks; }),
-        __metadata("design:type", Array)
-    ], Task.prototype, "routes", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["g" /* OneToMany */])(function (type) { return __WEBPACK_IMPORTED_MODULE_3__Task2Route__["a" /* Task2Route */]; }, function (task2Route) { return task2Route.task; }),
-        __metadata("design:type", Array)
-    ], Task.prototype, "task2Routes", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return Task_1; }, function (task) { return task.subtasks; }),
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'task_id' }),
-        __metadata("design:type", Task)
-    ], Task.prototype, "task_id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["g" /* OneToMany */])(function (type) { return Task_1; }, function (task) { return task.task_id; }),
-        __metadata("design:type", Array)
-    ], Task.prototype, "subtasks", void 0);
-    Task = Task_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_task')
-    ], Task);
-    return Task;
-    var Task_1;
-}());
-
-//# sourceMappingURL=Task.js.map
-
-/***/ }),
-
-/***/ 579:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-
-
-
-
-var WebSQLObject = /** @class */ (function (_super) {
-    __extends(WebSQLObject, _super);
-    function WebSQLObject() {
-        return _super.call(this, openDatabase('mcm', '1.0', 'MCM DB', 2 * 1024 * 1024)) || this;
-    }
-    WebSQLObject.prototype.executeSql = function (statement, params) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._objectInstance.transaction(function (tx) {
-                console.debug(statement);
-                tx.executeSql(statement, params, function (tx, results) {
-                    resolve(results);
-                }, function (tx, error) {
-                    reject(error);
-                });
-            });
-        });
-    };
-    return WebSQLObject;
-}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["b" /* SQLiteObject */]));
-var WebSQL = /** @class */ (function (_super) {
-    __extends(WebSQL, _super);
-    function WebSQL() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    WebSQL.prototype.create = function (config) {
-        return new Promise(function (resolve, reject) {
-            resolve(new WebSQLObject());
-        });
-    };
-    return WebSQL;
-}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]));
-var DB_Handler = /** @class */ (function () {
-    function DB_Handler() {
-        this.mSQLite = null;
-        this.mDB = null;
-        this.mReady = false;
-        this.cache = {};
-    }
-    DB_Handler.getInstance = function () {
-        if (this.mInstance === null) {
-            this.mInstance = new DB_Handler();
-        }
-        return this.mInstance;
-    };
-    DB_Handler.prototype.ready = function () {
-        var _this = this;
-        if (this.mReady) {
-            return Promise.resolve();
-        }
-        return new Promise(function (resolve, reject) {
-            _this.mSQLite = Object(__WEBPACK_IMPORTED_MODULE_3__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginName()) === true ? new __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]() : new WebSQL();
-            _this.mSQLite.create({
-                name: 'mcm_db.sqlite3',
-                location: 'default'
-            })
-                .then(function (db) {
-                _this.mDB = db;
-                _this.mReady = true;
-                console.log('Connected to DB');
-                // it's ok to always run onCreate because SQL has IF EXISTS
-                _this.onCreate().then(function () {
-                    _this.mReady = true;
-                    resolve();
-                });
-            })
-                .catch(function (e) {
-                console.error('Error connecting to DB', JSON.stringify(e));
-                reject(e);
-            });
-        });
-    };
-    DB_Handler.prototype.onCreate = function () {
-        var _this = this;
-        // Create Tables
-        var CREATE_STATE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.getCreateStatement();
-        var CREATE_TASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_TASK.getCreateStatement();
-        var CREATE_ROUTE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_ROUTE.getCreateStatement();
-        var CREATE_RELROUTETASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_RELROUTETASK.getCreateStatement();
-        var CREATE_USERS_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_USERS.getCreateStatement();
-        var CREATE_SCORE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_SCORE.getCreateStatement();
-        return new Promise(function (resolve, reject) {
-            Promise.all([
-                _this.mDB.executeSql(CREATE_STATE_TABLE, null),
-                _this.mDB.executeSql(CREATE_TASK_TABLE, null),
-                _this.mDB.executeSql(CREATE_ROUTE_TABLE, null),
-                _this.mDB.executeSql(CREATE_RELROUTETASK_TABLE, null),
-                _this.mDB.executeSql(CREATE_USERS_TABLE, null),
-                _this.mDB.executeSql(CREATE_SCORE_TABLE, null)
-            ]).then(function () {
-                resolve();
-            }).catch(function (error) {
-                reject(error);
-            });
-        });
-    };
-    DB_Handler.prototype.initTableVersions = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var sql = "INSERT INTO " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE + " (" + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + ") VALUES (?,?)";
-            Promise.all([
-                _this.mDB.executeSql(sql, ["version_task", "0"]),
-                _this.mDB.executeSql(sql, ["version_route", "0"]),
-                _this.mDB.executeSql(sql, ["version_rel_route_task", "0"])
-            ]).then(function () {
-                resolve();
-            }).catch(reject);
-        });
-    };
-    // TODO:
-    /*
-    Get the table versions in a hashmap
-     */
-    DB_Handler.prototype._getTableVersions = function (data) {
-        var result = new __WEBPACK_IMPORTED_MODULE_2_typescript_collections__["Dictionary"]();
-        for (var i = 0; i < data.rows.length; i++) {
-            var row = data.rows.item(i);
-            result.setValue(row.option, row.value);
-        }
-        return result;
-    };
-    DB_Handler.prototype.getDB = function () {
-        return this.mDB;
-    };
-    DB_Handler.prototype.getTableVersions = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var sqlQuery = "SELECT " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + " FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE;
-            _this.mDB.executeSql(sqlQuery, [])
-                .then(function (result) {
-                console.log("TABLE VERSIONS:", result.rows.length);
-                // console.log(JSON.stringify(result.rows.item(1).option))
-                if (result.rows.length < 3) {
-                    console.warn("ZERO RESULTS: call initTableVersions");
-                    _this.initTableVersions().then(function () {
-                        console.log("RECEIVED RESULTS, REPEATING SQL");
-                        _this.mDB.executeSql(sqlQuery, []).then(function (result) {
-                            console.log("RECEIVED RESULTS", result.rows.length);
-                            resolve(_this._getTableVersions(result));
-                        }).catch(reject);
-                    }).catch(reject);
-                }
-                else {
-                    // we have results
-                    resolve(_this._getTableVersions(result));
-                }
-            })
-                .catch(function (error) {
-                console.error("DB_Handler.getTableVersions(): Error:", error);
-                reject(error);
-            });
-        });
-    };
-    //  Wird im ImageDownloader verwendet, dieser benötigt von allen Trails die Infos public und image
-    // 15.05.18 - Select only public trails
-    DB_Handler.prototype.getTrailsImageInfo = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.mDB.executeSql("SELECT public,image FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_ROUTE + " WHERE public = 1", null)
-                .then(function (result) {
-                var info = null;
-                for (var i = 0; i < result.rows.length; i++) {
-                    var item = [result.rows.item(i).public, result.rows.item(i).image];
-                    if (info === null) {
-                        info = [item];
-                    }
-                    else {
-                        info.push(item);
-                    }
-                }
-                resolve(info);
-            })
-                .catch(function (error) {
-                reject(error);
-            });
-        });
-    };
-    DB_Handler.mInstance = null;
-    return DB_Handler;
-}());
-
-//# sourceMappingURL=DB_Handler.js.map
-
-/***/ }),
-
-/***/ 580:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(1092);
-
-
-var DBC = /** @class */ (function () {
-    function DBC() {
-    }
-    DBC.initialize = function () {
-        if (DBC.MAP_DB === null) {
-            DBC.MAP_DB = new __WEBPACK_IMPORTED_MODULE_0_typescript_collections__["Dictionary"]();
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_REL_ROUTE_TASK, DBC.DB_RELROUTETASK);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_ROUTE, DBC.DB_ROUTE);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_STATE, DBC.DB_STATE);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_TASK, DBC.DB_TASK);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_USERS, DBC.DB_USERS);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_SCORE, DBC.DB_SCORE);
-        }
-    };
-    DBC.DATABASE_NAME = "mcm_app";
-    DBC.DATABASE_VERSION = 32;
-    // // Table names (For table definitions look at the corresponding classes DBC_tablename)
-    DBC.DATABASE_TABLE_STATE = "mcm_state";
-    DBC.DATABASE_TABLE_TASK = "mcm_task";
-    DBC.DATABASE_TABLE_TASKMETA = "mcm_task_meta";
-    DBC.DATABASE_TABLE_ROUTE = "mcm_route";
-    DBC.DATABASE_TABLE_ROUTEMETA = "mcm_route_meta";
-    DBC.DATABASE_TABLE_REL_ROUTE_TASK = "mcm_rel_route_task";
-    DBC.DATABASE_TABLE_USERS = "mcm_users";
-    DBC.DATABASE_TABLE_SCORE = "mcm_score";
-    // // Option Names for STATE DB
-    DBC.ON_ROUTE_DATA = "route_id_data_dl";
-    DBC.ON_ROUTE_DONE = "route_id_done";
-    DBC.ON_ROUTE_PRIVATE_ACCESS = "route_id_private_access";
-    DBC.ON_TASK_HINT1_TAKEN = "task_id_hint1_taken";
-    DBC.ON_TASK_HINT2_TAKEN = "task_id_hint2_taken";
-    DBC.ON_TASK_HINT3_TAKEN = "task_id_hint3_taken";
-    DBC.ON_TASK_SOLVED = "task_id_solved";
-    DBC.ON_TASK_SOLVED_LOW = "task_id_solved_low";
-    DBC.ON_ACTIVE_USER = "active_user";
-    DBC.ON_GAMIFICATION = "gamification";
-    // /* TABLE DEFINITIONS */
-    // // DB_STATE
-    DBC.DB_STATE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_STATE, [
-        "_id",
-        "option",
-        "value",
-        "timestamp"
-    ], [
-        "INTEGER",
-        "VARCHAR",
-        "VARCHAR",
-        "TIMESTAMP"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(64) NOT NULL",
-        "(256) NOT NULL",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
-    ]);
-    // //DB_TASK
-    DBC.DB_TASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_TASK, [
-        "_id",
-        "user_id",
-        "public",
-        "lat",
-        "lon",
-        "title",
-        "description",
-        "image",
-        "solution_type",
-        "solution",
-        "hint1",
-        "hint2",
-        "hint3",
-        "assistive_equipment",
-        "author",
-        "mail",
-        "grade",
-        "tags",
-        "timestamp",
-        "solutionsample",
-        "attr",
-        "create_date",
-        "lang_code",
-        "visible",
-        "task_id",
-        "position",
-        "ar_link"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "VARCHAR",
-        "VARCHAR",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "VARCHAR",
-        "TEXT",
-        "TIMESTAMP",
-        "TEXT",
-        "TEXT",
-        "TIMESTAMP",
-        "VARCHAR",
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "VARCHAR"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "NOT NULL",
-        "(1) NOT NULL",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "NOT NULL",
-        "NOT NULL",
-        "",
-        "NOT NULL",
-        "NOT NULL",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "(2) NOT NULL DEFAULT '13'",
-        "",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
-        "NOT NULL",
-        "",
-        "NOT NULL",
-        "(2)",
-        "(1) NOT NULL DEFAULT 1",
-        "",
-        "",
-        ""
-    ]);
-    // DB_ROUTE
-    DBC.DB_ROUTE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_ROUTE, [
-        "_id",
-        "user_id",
-        "public",
-        "title",
-        "country_code",
-        "city",
-        "image",
-        "code",
-        "grade",
-        "tags",
-        "duration",
-        "length",
-        "bounding_box",
-        "center",
-        "timestamp",
-        "description",
-        "create_date",
-        "attr",
-        "lang_code",
-        "map_version",
-        "map_filename",
-        "map_date",
-        "path_geojson",
-        "path_info",
-        "min_zoom"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "VARCHAR",
-        "TEXT",
-        "VARCHAR",
-        "VARCHAR",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TIMESTAMP",
-        "TEXT",
-        "TIMESTAMP",
-        "TEXT",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "INTEGER"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "NOT NULL",
-        "(1) NOT NULL",
-        "NOT NULL",
-        "NOT NULL",
-        "NOT NULL",
-        "",
-        "(64)",
-        "(64)",
-        "",
-        "(64)",
-        "(64)",
-        "",
-        "",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
-        "",
-        "NOT NULL",
-        "",
-        "(2)",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ]);
-    // // DB_RELROUTETASK
-    DBC.DB_RELROUTETASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_REL_ROUTE_TASK, [
-        "_id",
-        "force_support_tasks",
-        "route_id",
-        "task_id",
-        "timestamp"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "TIMESTAMP"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(1)",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
-    ]);
-    // // DB_USERS
-    DBC.DB_USERS = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_USERS, [
-        "_id",
-        "name",
-        "create_date"
-    ], [
-        "INTEGER",
-        "VARCHAR",
-        "TIMESTAMP"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(32) NOT NULL",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
-    ]);
-    // // DB_SCORE
-    DBC.DB_SCORE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_SCORE, [
-        "_id",
-        "user_id",
-        "route_id",
-        "score",
-        "tasks_solved",
-        "tasks_solved_low",
-        "task_details",
-        "time",
-        "distance"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "INTEGER",
-        "INTEGER",
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "",
-        "",
-        "",
-        "(64)",
-        "(64)"
-    ]);
-    /*
-    DB MAP: Tablename -> DB Instance
-     */
-    DBC.MAP_DB = null;
-    return DBC;
-}());
-
-DBC.initialize();
-//# sourceMappingURL=DBC.js.map
-
-/***/ }),
-
 /***/ 585:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8842,6 +7477,53 @@ var CenteredTask = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=CenteredTask.js.map
+
+/***/ }),
+
+/***/ 588:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var ChatPageModule = /** @class */ (function () {
+    function ChatPageModule() {
+    }
+    ChatPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
+                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
+            ]
+        })
+    ], ChatPageModule);
+    return ChatPageModule;
+}());
+
+//# sourceMappingURL=chat.module.js.map
 
 /***/ }),
 
@@ -9383,14 +8065,1320 @@ var tilesDb = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(64);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+var DashboardPage = /** @class */ (function () {
+    function DashboardPage(navCtrl, navParams, helper, storage, gpsService, chatAndSessionService, ormService, modalCtrl, modalsService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.helper = helper;
+        this.storage = storage;
+        this.gpsService = gpsService;
+        this.chatAndSessionService = chatAndSessionService;
+        this.ormService = ormService;
+        this.modalCtrl = modalCtrl;
+        this.modalsService = modalsService;
+        this.tabBarElement = document.querySelector('.tabbar');
+    }
+    DashboardPage.prototype.ngOnInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, e_1, activeSession, that_1, route_1, modal_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        /**
+                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
+                         * from the default one (Frankfurt) for a few seconds
+                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
+                         */
+                        _a = this;
+                        return [4 /*yield*/, this.storage.get('devMode')];
+                    case 1:
+                        /**
+                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
+                         * from the default one (Frankfurt) for a few seconds
+                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
+                         */
+                        _a.devMode = ((_b.sent()) === 'true');
+                        if (!!this.gpsService.getLastPosition()) return [3 /*break*/, 5];
+                        _b.label = 2;
+                    case 2:
+                        _b.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
+                                console.error("Error loading GPS data", err);
+                            }), 2000)];
+                    case 3:
+                        _b.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _b.sent();
+                        console.log("could not obtain position: " + e_1.message);
+                        // make position check async
+                        this.gpsService.getCurrentPosition().then(function (position) {
+                            if (position && position.coords) {
+                            }
+                        }, function (err) {
+                            console.error("Error loading GPS data", err);
+                        });
+                        return [3 /*break*/, 5];
+                    case 5:
+                        console.log('check for active session');
+                        return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
+                    case 6:
+                        activeSession = _b.sent();
+                        if (!(activeSession != null)) return [3 /*break*/, 8];
+                        console.log('active session found');
+                        that_1 = this;
+                        return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
+                    case 7:
+                        route_1 = _b.sent();
+                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                            title: 'a_session_return_title',
+                            message: 'a_session_return_text',
+                            type: 'text',
+                            modalType: __WEBPACK_IMPORTED_MODULE_9__app_app_component__["a" /* MCMModalType */].hint,
+                            narrativeEnabled: route_1.isNarrativeEnabled(),
+                            narrative: route_1.isNarrativeEnabled() ? route_1.getAttributes().narrativeName : '',
+                            buttons: [
+                                {
+                                    title: 'a_session_return_stay',
+                                    callback: function () {
+                                        modal_1.dismiss();
+                                        that_1.modalsService.showRoute(route_1, that_1.navCtrl);
+                                    }
+                                },
+                                {
+                                    title: 'a_private_session_quit',
+                                    callback: function () {
+                                        if (this.sessionInfo != null) {
+                                            var details = JSON.stringify({});
+                                            that_1.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                                        }
+                                        that_1.chatAndSessionService.exitActiveSession();
+                                        modal_1.dismiss();
+                                        clearInterval(this.refreshIntervalId);
+                                    }
+                                }
+                            ]
+                        }, { showBackdrop: true, enableBackdropDismiss: true });
+                        modal_1.present();
+                        _b.label = 8;
+                    case 8: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DashboardPage.prototype.pushSettingsPage = function () {
+        this.navCtrl.push('SettingsPage');
+    };
+    DashboardPage.prototype.pushInfoPage = function () {
+        this.navCtrl.push('InfoPage');
+    };
+    DashboardPage.prototype.switchTab = function (index, addRoute) {
+        if (addRoute === void 0) { addRoute = false; }
+        if (addRoute) {
+            this.helper.setActivateAddRoute(true);
+        }
+        if (index == 3 && !this.devMode) {
+            return;
+        }
+        this.navCtrl.parent.select(index);
+    };
+    DashboardPage.prototype.ionViewWillEnter = function () {
+        this.devMode = this.helper.getDevMode();
+        if (this.tabBarElement != null) {
+            this.tabBarElement.style.display = 'none';
+        }
+    };
+    DashboardPage.prototype.ionViewDidLeave = function () {
+        this.tabBarElement.style.display = 'flex';
+    };
+    DashboardPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-dashboard',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/'<ion-content class="padding top bottom">\n    <div class="stretch-container">\n        <img class="logo" src="./assets/images/mcm-logo-white.svg">\n\n        <div class="secondary">\n            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">\n                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}\n            </button>\n            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">\n                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}\n            </button>\n        </div>\n\n        <div class="tiles">\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(1)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_browse_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_browse_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/browse.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2, true)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_add_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_add_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/add.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_downloads_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_downloads_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile" [ngClass]="{\'disabled\' : !devMode}">\n                <ion-item tappable no-lines (click)="switchTab(3)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_create_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_create_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/create.svg">\n                    </div>\n                </ion-item>\n            </div>\n        </div>\n    </div>\n</ion-content>\n\n<!--<div ion-fixed>-->\n    <!--<img style="z-index: 12; display: block; position: relative;" margin-top padding-top src="https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/1-fan-foam-finger-sticker-31468-300x300.png">-->\n    <!--<p> G⃣   O⃣    W⃣   O⃣   M⃣   B⃣   A⃣   T⃣   S⃣    G⃣   O⃣ </p>-->\n    <!--<p>🐎  🎀  𝒲🌺𝓂𝒷𝒶𝓉𝓈 𝒶𝓇𝑒 𝓈𝒽💞𝓇𝓉-𝓁𝑒𝑔𝑔𝑒𝒹, <b>𝓂𝓊𝓈𝒸𝓊𝓁𝒶𝓇</b> 𝓆𝓊𝒶𝒹𝓇𝓊𝓅𝑒𝒹𝒶𝓁 𝓂𝒶𝓇𝓈𝓊𝓅𝒾𝒶𝓁𝓈 𝓉𝒽𝒶𝓉 𝒶𝓇𝑒 𝓃𝒶𝓉𝒾𝓋𝑒 𝓉🍪 𝒜𝓊𝓈𝓉𝓇𝒶𝓁𝒾𝒶. 𝒯𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝒷🌞𝓊𝓉 𝟣 𝓂 𝒾𝓃 𝓁𝑒𝓃𝑔𝓉𝒽 𝓌𝒾𝓉𝒽 𝓈𝓂𝒶𝓁𝓁, 𝓈𝓉𝓊𝒷𝒷𝓎 𝓉𝒶𝒾𝓁𝓈. 𝒯𝒽𝑒𝓇𝑒 𝒶𝓇𝑒 𝓉𝒽𝓇𝑒𝑒 𝑒𝓍𝓉𝒶𝓃𝓉 𝓈𝓅𝑒𝒸𝒾𝑒𝓈 𝒶𝓃𝒹 𝓉𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝓁𝓁 𝓂𝑒𝓂𝒷𝑒𝓇𝓈 🏵𝒻 𝓉𝒽𝑒 𝒻𝒶𝓂𝒾𝓁𝓎 𝒱🍩𝓂𝒷𝒶𝓉𝒾𝒹𝒶𝑒.  🎀  🐎</p>-->\n    <!--<img margin-top padding-top style="position: absolute; top: 0;" src="https://cdn.britannica.com/88/81288-050-3084149B/Phascolomis-Vombatus-ursinus.jpg">-->\n<!--</div>-->\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__["a" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__["a" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_6__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_11__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_12__services_modals_service__["a" /* ModalsService */]])
+    ], DashboardPage);
+    return DashboardPage;
+}());
+
+//# sourceMappingURL=dashboard.js.map
+
+/***/ }),
+
+/***/ 638:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesMapPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+//import 'leaflet-offline';
+
+
+
+
+
+
+
+
+
+
+
+// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
+var RoutesMapPage = /** @class */ (function () {
+    function RoutesMapPage(updater, ormService, modalsService, navCtrl, spinner, translateService, gpsService, helper, navParams, languageService) {
+        var _this = this;
+        this.updater = updater;
+        this.ormService = ormService;
+        this.modalsService = modalsService;
+        this.navCtrl = navCtrl;
+        this.spinner = spinner;
+        this.translateService = translateService;
+        this.gpsService = gpsService;
+        this.helper = helper;
+        this.navParams = navParams;
+        this.languageService = languageService;
+        this.markerGroup = null;
+        this.merkerMapBoxGroup = null;
+        this.eventSubscription = this.ormService.eventEmitter.subscribe(function (event) { return __awaiter(_this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 3];
+                        if (!!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 1:
+                        _a.routes = _b.sent();
+                        _b.label = 2;
+                    case 2:
+                        this.redrawMapBoxMarker();
+                        console.log("REDRAWED");
+                        this.routeDetails = null;
+                        _b.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); });
+    }
+    RoutesMapPage.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        console.log("ionViewWillEnter:");
+                        this.gpsService.isLocationOn();
+                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 5];
+                        if (!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 1:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 4];
+                    case 2:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 3:
+                        _b.routes = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        this.redrawMapBoxMarker();
+                        _c.label = 5;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.ngOnInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.isFilePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
+                if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
+                    if (this.navParams.data.showAllRoutes)
+                        this.showAllRoutes = true;
+                    else
+                        this.showAllRoutes = false;
+                }
+                this.languageService.initialize().then(function () { return __awaiter(_this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                //this.loadMap();
+                                this.loadMapBox();
+                                return [4 /*yield*/, this.initializeMap()];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
+            });
+        });
+    };
+    RoutesMapPage.prototype.ngOnDestroy = function () {
+        this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
+        if (this.eventSubscription) {
+            this.eventSubscription.unsubscribe();
+            this.eventSubscription = null;
+        }
+        if (this.watchSubscription) {
+            this.watchSubscription.unsubscribe();
+            this.watchSubscription = null;
+        }
+    };
+    RoutesMapPage.prototype.initializeMap = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var activeUser, online, e_1, _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0: return [4 /*yield*/, this.ormService.getActiveUser()];
+                    case 1:
+                        activeUser = _c.sent();
+                        if (!!activeUser) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.modalsService.showNoInternetModalIfOffline()];
+                    case 2:
+                        online = _c.sent();
+                        if (!online) return [3 /*break*/, 6];
+                        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+                        _c.label = 3;
+                    case 3:
+                        _c.trys.push([3, 5, , 6]);
+                        return [4 /*yield*/, this.updater.checkForUpdates()];
+                    case 4:
+                        _c.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        e_1 = _c.sent();
+                        console.error('caught error while checking for updates:');
+                        console.error(e_1);
+                        return [3 /*break*/, 6];
+                    case 6:
+                        if (!this.showAllRoutes) return [3 /*break*/, 8];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 7:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 10];
+                    case 8:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 9:
+                        _b.routes = _c.sent();
+                        _c.label = 10;
+                    case 10:
+                        this.map.on('load', function () {
+                            var waiting = function () {
+                                if (!_this.map.isStyleLoaded()) {
+                                    setTimeout(waiting, 200);
+                                }
+                                else {
+                                    _this.redrawMapBoxMarker();
+                                }
+                            };
+                            waiting();
+                        });
+                        this.spinner.hide();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.redrawMapBoxMarker = function () {
+        var map = this.map;
+        //clean layers to be redrawn
+        if (this.map.getLayer('unclustered-point')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('unclustered-point');
+            this.markerGroup = null;
+        }
+        if (this.map.getLayer('clusters')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('clusters');
+            this.markerGroup = null;
+        }
+        if (this.map.getLayer('cluster-count')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('cluster-count');
+            this.markerGroup = null;
+        }
+        var GeoJson = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        for (var route in this.routes) {
+            var icon = void 0;
+            if (this.routes[route].downloaded) {
+                if (this.routes[route].completed) {
+                    icon = 'completed-route';
+                }
+                else {
+                    icon = 'downloaded-route';
+                }
+            }
+            else if (this.routes[route].public == "1") {
+                icon = 'public-route';
+            }
+            else {
+                icon = 'private-route';
+            }
+            var routeCenter = this.routes[route].getCenterLatLng();
+            var data = {
+                "type": "Feature",
+                "properties": {
+                    'routeIndex': route,
+                    'icon': icon
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        routeCenter.lng,
+                        routeCenter.lat
+                    ]
+                }
+            };
+            GeoJson.features.push(data);
+        }
+        if (this.map.getSource("routes"))
+            this.map.getSource('routes').setData(GeoJson);
+        else {
+            this.map.addSource("routes", {
+                type: "geojson",
+                data: GeoJson,
+                cluster: true,
+                clusterRadius: 30
+            });
+        }
+        this.map.addLayer({
+            id: "clusters",
+            type: "circle",
+            source: "routes",
+            filter: ["has", "point_count"],
+            paint: {
+                'circle-color': '#11b4da',
+                'circle-radius': 20
+            }
+        });
+        map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-size': 15
+            }
+        });
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['!', ['has', 'point_count']],
+            layout: {
+                'icon-size': 0.23,
+                'icon-image': ['get', 'icon'],
+                'icon-allow-overlap': true
+            }
+        });
+    };
+    RoutesMapPage.prototype.loadMapBox = function () {
+        var _this = this;
+        var isLoadedViaHttp = window.location.href.indexOf('http') === 0;
+        var keepPositionBecauseOfReload = false;
+        __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.accessToken = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].accessToken;
+        //Either draws the map for all routes or for downloaded ones only
+        if (this.showAllRoutes) {
+            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566],
+                zoom: 16,
+                container: 'map',
+                trackResize: false
+            });
+        }
+        else {
+            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566],
+                zoom: 16,
+                container: 'mapDownloaded',
+                trackResize: false
+            });
+        }
+        this.loadImagesToMap();
+        this.map.touchZoomRotate.disableRotation();
+        //removes labels for points of interest
+        this.map.on('load', function () {
+            _this.map.style.stylesheet.layers.forEach(function (layer) {
+                if (layer.id === "poi-label") {
+                    _this.map.removeLayer(layer.id);
+                }
+            });
+        });
+        if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
+            keepPositionBecauseOfReload = true;
+            var startIndex = window.location.search.indexOf('pos=') + 4;
+            var bboxString = window.location.search.substring(startIndex).split("&|/")[0]
+                .replace(/LngLat\(/g, '')
+                .replace(/%20/g, ' ')
+                .replace(/\)/g, '');
+            console.log("BBOX: ", bboxString);
+            var coords = bboxString.split(",").map(parseFloat);
+            var bounds = [[coords[0], coords[1]], [coords[2], coords[3]]];
+            console.log("BOUNDS: ", bounds);
+            this.map.fitBounds(bounds);
+        }
+        this.map.on('click', function (e) {
+            //check if details open and reset content. for now just reset content
+            _this.routeDetails = null;
+            console.log('cleared route details');
+        });
+        var that = this;
+        //Zoom clusters
+        that.map.on('click', 'clusters', function (e) {
+            var features = that.map.queryRenderedFeatures(e.point, {
+                layers: ['clusters']
+            });
+            var clusterId = features[0].properties.cluster_id;
+            that.map.getSource('routes').getClusterExpansionZoom(clusterId, function (err, zoom) {
+                if (err)
+                    return;
+                that.map.easeTo({
+                    center: features[0].geometry.coordinates,
+                    zoom: zoom
+                });
+            });
+        });
+        that.map.on('click', 'unclustered-point', function (e) {
+            return __awaiter(this, void 0, void 0, function () {
+                var features, index, route, _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            features = that.map.queryRenderedFeatures(e.point, {
+                                layers: ['unclustered-point']
+                            });
+                            index = features[0].properties.routeIndex;
+                            route = that.routes[index];
+                            if (!(that.routeDetails == route)) return [3 /*break*/, 1];
+                            that.modalsService.showRoute(route, that.navCtrl);
+                            return [3 /*break*/, 5];
+                        case 1:
+                            if (!route.downloaded) return [3 /*break*/, 3];
+                            that.isRouteDownloaded = 'downloaded';
+                            console.log("THIS.ROUTE: ", route);
+                            _a = that;
+                            return [4 /*yield*/, that.ormService.findRouteByCode(route.code)];
+                        case 2:
+                            _a.routeDetails = _b.sent();
+                            return [3 /*break*/, 4];
+                        case 3:
+                            that.routeDetails = route;
+                            that.isRouteDownloaded = null;
+                            _b.label = 4;
+                        case 4:
+                            that.map.panTo(features[0].geometry.coordinates);
+                            _b.label = 5;
+                        case 5: return [2 /*return*/];
+                    }
+                });
+            });
+        });
+        if (isLoadedViaHttp) {
+            // when loaded via http (for development), keep track of map position
+            this.map.on('moveend', function (event) {
+                var bounds = _this.map.getBounds();
+                var boundsString = bounds.toString();
+                boundsString = boundsString.substring(13, boundsString.length - 1);
+                window.history.replaceState({}, "", window.location.origin + "?pos=" + boundsString + "/" + window.location.hash);
+            });
+        }
+        this.gpsService.getCurrentPosition()
+            .then(function (resp) {
+            if (resp && resp.coords) {
+                console.warn('found you');
+                // let markerGroup = L.featureGroup();
+                var el = document.createElement('div');
+                el.className = 'marker';
+                el.style.backgroundImage = "url(assets/icons/mapposition.png)";
+                el.style.backgroundSize = 'cover';
+                el.style.width = 100 + 'px';
+                el.style.height = 100 + 'px';
+                el.addEventListener('click', function () {
+                    //window.alert(marker.properties.message);
+                    console.log("HEY clicked");
+                });
+                _this.mapBoxUserMarker = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Marker(el)
+                    .setLngLat([resp.coords.longitude, resp.coords.latitude])
+                    .addTo(_this.map);
+                if (!keepPositionBecauseOfReload) {
+                    _this.map.panTo([resp.coords.longitude, resp.coords.latitude]);
+                }
+                if (_this.watchSubscription) {
+                    _this.watchSubscription.unsubscribe();
+                }
+                _this.watchSubscription = _this.gpsService.watchPosition().subscribe(function (resp) {
+                    if (resp && resp.coords) {
+                        var lnglat = [resp.coords.longitude, resp.coords.latitude];
+                        _this.mapBoxUserMarker.setLngLat(lnglat);
+                        //Rotate the user marker
+                        if (_this.prevPos != null) {
+                            var angle = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].getAngle(_this.prevPos, resp.coords);
+                            _this.mapBoxUserMarker.setRotation(angle);
+                        }
+                        _this.prevPos = resp.coords;
+                    }
+                });
+            }
+        })
+            .catch(function (error) {
+            console.log("error: ", error);
+            console.error("Location error: " + JSON.stringify(error));
+        });
+    };
+    RoutesMapPage.prototype.doDownload = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalsService.doDownload(this.routeDetails)];
+                    case 1:
+                        _a.sent();
+                        console.log("DID DOWNLOAD");
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.presentRouteInfoModal = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl)];
+                    case 1:
+                        _a.routeDetails = _b.sent();
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.showRouteDetail = function (item) {
+        var _this = this;
+        console.log("##### ROUTE: ", item);
+        this.modalsService.showRoute(item, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.reactOnRemovedRoute()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    RoutesMapPage.prototype.switchToList = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
+                return [2 /*return*/];
+            });
+        });
+    };
+    RoutesMapPage.prototype.reactOnRemovedRoute = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 1:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 4];
+                    case 2:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 3:
+                        _b.routes = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.loadImagesToMap = function () {
+        var map = this.map;
+        map.loadImage('assets/icons/marker-route-private.png', function (error, image) {
+            map.addImage('private-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-public.png', function (error, image) {
+            map.addImage('public-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-downloaded.png', function (error, image) {
+            map.addImage('downloaded-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-done.png', function (error, image) {
+            map.addImage('completed-route', image);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], RoutesMapPage.prototype, "mapContainer", void 0);
+    RoutesMapPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'routes-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/'<ion-content class="map routes" no-bounce>\n    <div ion-fixed>\n\n        <div *ngIf="showAllRoutes" id="map" class="map-view"></div>\n        <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': routeDetails != null}" lazy-load-images image-size="s">\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>\n            </ion-fab>\n\n            <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"\n                          [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"\n            ></route-teaser>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_11__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_13__services_language_service__["a" /* LanguageService */]])
+    ], RoutesMapPage);
+    return RoutesMapPage;
+}());
+
+//# sourceMappingURL=RoutesMap.js.map
+
+/***/ }),
+
+/***/ 639:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(19);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the PortalPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PortalPage = /** @class */ (function () {
+    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.iab = iab;
+        this.translateService = translateService;
+        this.sanitizer = sanitizer;
+        this.languageUrl = {
+            de: 'portal',
+            en: 'portal-en',
+            es: 'portal-es',
+            pt: 'portal-pt',
+            fr: 'portail',
+            it: 'portale',
+            sk: 'portal-sk',
+            id: 'portal-id',
+            tr: 'portal-tr',
+            el: 'πύλη',
+            zh: '入口'
+        };
+        this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
+        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
+    }
+    PortalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-portal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/'<ion-content class="fullscreen">\n    <iframe ion-fixed *ngIf="currentLang" allow="geolocation" [src]="sanitizedUrl">\n    </iframe>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */]])
+    ], PortalPage);
+    return PortalPage;
+}());
+
+//# sourceMappingURL=portal.js.map
+
+/***/ }),
+
+/***/ 64:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(586);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__ = __webpack_require__(118);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+var ModalsService = /** @class */ (function () {
+    function ModalsService(modalCtrl, ormService, alertCtrl, deepLinker, translateService, spinner, dbUpdater, helper) {
+        this.modalCtrl = modalCtrl;
+        this.ormService = ormService;
+        this.alertCtrl = alertCtrl;
+        this.deepLinker = deepLinker;
+        this.translateService = translateService;
+        this.spinner = spinner;
+        this.dbUpdater = dbUpdater;
+        this.helper = helper;
+    }
+    ModalsService.prototype.doDownload = function (route) {
+        return __awaiter(this, void 0, void 0, function () {
+            var cancelHasBeenClicked, data, downloadModal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.showNoInternetModalIfOffline()];
+                    case 1:
+                        if (!(_a.sent())) {
+                            return [2 /*return*/];
+                        }
+                        console.log("doDownload " + JSON.stringify(route.id));
+                        cancelHasBeenClicked = false;
+                        data = {
+                            total: 0,
+                            currentProgress: 0,
+                            cancelCallback: function () {
+                                console.log("cancel has been clicked");
+                                cancelHasBeenClicked = true;
+                            },
+                            titleKey: 'a_rdl_title_map'
+                        };
+                        downloadModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */], data, {
+                            showBackdrop: true,
+                            enableBackdropDismiss: false
+                        });
+                        downloadModal.present();
+                        return [4 /*yield*/, this.ormService.downloadRoute(route, function (doneDownload, totalDownload, titleKey) {
+                                data.total = totalDownload;
+                                data.currentProgress = doneDownload;
+                                if (titleKey) {
+                                    data.titleKey = titleKey;
+                                }
+                                if (data.updateView) {
+                                    data.updateView();
+                                }
+                                // make sure that updated values are bound to DOM
+                                return cancelHasBeenClicked;
+                            }, this.dbUpdater)];
+                    case 2:
+                        _a.sent();
+                        downloadModal.dismiss();
+                        return [2 /*return*/, !cancelHasBeenClicked];
+                }
+            });
+        });
+    };
+    ModalsService.prototype.showRoute = function (route, navCtrl, startRoute, selectedTask) {
+        if (startRoute === void 0) { startRoute = false; }
+        if (selectedTask === void 0) { selectedTask = null; }
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!route.downloaded) return [3 /*break*/, 2];
+                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
+                        return [4 /*yield*/, this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))];
+                    case 1:
+                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
+                        _a.sent();
+                        if (startRoute) {
+                            this.navigateToRoute(route, navCtrl, null);
+                            return [2 /*return*/];
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.presentRouteInfoModal(route, navCtrl)];
+                    case 3:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ModalsService.prototype.showDialog = function (titleKey, messageKey, button1Key, button1Handler, button2Key, button2Handler, narrative) {
+        if (narrative === void 0) { narrative = 'default'; }
+        return __awaiter(this, void 0, void 0, function () {
+            var buttons, confirm;
+            return __generator(this, function (_a) {
+                button1Key = button1Key || 'a_g_ok';
+                buttons = [{
+                        text: this.translateService.instant(button1Key),
+                        handler: button1Handler
+                    }];
+                if (button2Key && button2Handler) {
+                    buttons.push({
+                        text: this.translateService.instant(button2Key),
+                        handler: button2Handler
+                    });
+                }
+                confirm = this.alertCtrl.create({
+                    title: titleKey ? this.translateService.instant(titleKey) : null,
+                    message: messageKey ? this.translateService.instant(messageKey) : null,
+                    buttons: buttons,
+                    cssClass: narrative
+                });
+                confirm.present();
+                return [2 /*return*/, confirm];
+            });
+        });
+    };
+    ModalsService.prototype.showYesNoDialog = function (titleKey, messageKey, yesKey, noKey) {
+        var _this = this;
+        yesKey = yesKey || 'yes';
+        noKey = noKey || 'no';
+        return new Promise(function (resolve, reject) {
+            _this.showDialog(titleKey, messageKey, yesKey, function () { return resolve(true); }, noKey, function () { return resolve(false); });
+        });
+    };
+    ModalsService.prototype.navigateToRoute = function (route, navCtrl, selectedTask) {
+        var _this = this;
+        if (selectedTask === void 0) { selectedTask = null; }
+        this.spinner.show(null, null, false);
+        setTimeout(function () {
+            if (navCtrl.parent && navCtrl.parent.parent) {
+                navCtrl.parent.parent.push('TasksMap', {
+                    routeId: route.id,
+                    headerTitle: route.title,
+                    selectedTask: selectedTask
+                }, {}, function () {
+                    // necessary because of bug which does not update URL
+                    _this.deepLinker.navChange('forward');
+                });
+            }
+            else if (navCtrl.parent == null) {
+                navCtrl.push('TasksMap', {
+                    routeId: route.id,
+                    headerTitle: route.title,
+                    selectedTask: selectedTask
+                }, {}, function () {
+                    // necessary because of bug which does not update URL
+                    _this.deepLinker.navChange('forward');
+                });
+            }
+        }, 10);
+    };
+    ModalsService.prototype.presentRouteInfoModal = function (route, navCtrl) {
+        var _this = this;
+        var self = this;
+        return new Promise(function (success) {
+            //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
+            var data = {
+                routeId: route.id,
+                modalsService: _this,
+                route: null
+            };
+            var routeInfoModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */], data);
+            routeInfoModal.onDidDismiss(function (result) {
+                if (result && result.showRoute) {
+                    self.showRoute(result.route, navCtrl, true);
+                    success(result.route);
+                }
+                else {
+                    // route is set by RouteInfo
+                    success(data.route);
+                }
+            });
+            routeInfoModal.present();
+        });
+    };
+    ModalsService.prototype.presentTaskListModal = function (route, score, state, narrative, navCtrl, callback) {
+        if (narrative === void 0) { narrative = 'default'; }
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var testModal, _a, _b, _c, _d;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
+                    case 0:
+                        _b = (_a = this.modalCtrl).create;
+                        _c = [__WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */]];
+                        _d = {
+                            route: route,
+                            score: score,
+                            state: state
+                        };
+                        return [4 /*yield*/, route.getTasks()];
+                    case 1:
+                        testModal = _b.apply(_a, _c.concat([(_d.tasks = _e.sent(),
+                                _d.modalsService = this,
+                                _d), { cssClass: narrative }]));
+                        testModal.onDidDismiss(function (data) {
+                            /* coming from List/Map View */
+                            if (data && data.route != null && navCtrl != null && !callback)
+                                _this.navigateToRoute(data.route, navCtrl, data.selectedTask);
+                            else if (data && data.selectedTask != null && navCtrl != null && callback)
+                                callback(data.selectedTask);
+                            /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
+                        });
+                        testModal.present();
+                        return [2 /*return*/, testModal];
+                }
+            });
+        });
+    };
+    ModalsService.prototype.showNoInternetModalIfOffline = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var quality;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.helper.isOnline) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.helper.checkConnection()];
+                    case 1:
+                        quality = _a.sent();
+                        if (!(quality == __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["a" /* ConnectionQuality */].FAST)) return [3 /*break*/, 2];
+                        return [2 /*return*/, true];
+                    case 2: return [4 /*yield*/, this.showYesNoDialog('a_slow_connection_title', 'a_slow_connection', 'a_alert_continue', 'a_alert_cancel')];
+                    case 3: return [2 /*return*/, _a.sent()];
+                    case 4: return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, this.showDialog(null, 'a_toast_need_internet_for_update')];
+                    case 6:
+                        _a.sent();
+                        return [2 /*return*/, false];
+                    case 7: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ModalsService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1__orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_7_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
+            __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["b" /* Helper */]])
+    ], ModalsService);
+    return ModalsService;
+}());
+
+//# sourceMappingURL=modals-service.js.map
+
+/***/ }),
+
+/***/ 640:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(19);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var SearchPipe = /** @class */ (function () {
+    function SearchPipe() {
+    }
+    SearchPipe.prototype.transform = function (value, keys, term) {
+        if (!term)
+            return value;
+        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
+        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
+        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
+        return result;
+    };
+    SearchPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'search'
+        })
+    ], SearchPipe);
+    return SearchPipe;
+}());
+
+//# sourceMappingURL=search.pipe.js.map
+
+/***/ }),
+
+/***/ 641:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var LinkHttpsPipe = /** @class */ (function () {
+    /**
+     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+    */
+    function LinkHttpsPipe() {
+    }
+    LinkHttpsPipe.prototype.transform = function (url) {
+        url = url.replace('http://', 'https://');
+        return url.startsWith("https://") ? url : "https://" + url;
+    };
+    LinkHttpsPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'linkHttps'
+        })
+        /**
+         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+        */
+    ], LinkHttpsPipe);
+    return LinkHttpsPipe;
+}());
+
+//# sourceMappingURL=linkHttps.pipe.js.map
+
+/***/ }),
+
+/***/ 642:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(547);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__ = __webpack_require__(548);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__ = __webpack_require__(953);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__ = __webpack_require__(1112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_Helper__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
@@ -10002,6 +9990,7 @@ var ChatPage = /** @class */ (function () {
         this.clearPositionInterval(message);
         if (this.audio) {
             this.audio.pause();
+            this.canPlayback = true;
         }
     };
     ChatPage.prototype.isAudio = function (path) {
@@ -10066,1312 +10055,6 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 637:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(19);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var SearchPipe = /** @class */ (function () {
-    function SearchPipe() {
-    }
-    SearchPipe.prototype.transform = function (value, keys, term) {
-        if (!term)
-            return value;
-        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
-        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
-        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
-        return result;
-    };
-    SearchPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'search'
-        })
-    ], SearchPipe);
-    return SearchPipe;
-}());
-
-//# sourceMappingURL=search.pipe.js.map
-
-/***/ }),
-
-/***/ 638:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var LinkHttpsPipe = /** @class */ (function () {
-    /**
-     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-    */
-    function LinkHttpsPipe() {
-    }
-    LinkHttpsPipe.prototype.transform = function (url) {
-        url = url.replace('http://', 'https://');
-        return url.startsWith("https://") ? url : "https://" + url;
-    };
-    LinkHttpsPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'linkHttps'
-        })
-        /**
-         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-        */
-    ], LinkHttpsPipe);
-    return LinkHttpsPipe;
-}());
-
-//# sourceMappingURL=linkHttps.pipe.js.map
-
-/***/ }),
-
-/***/ 639:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(640);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(64);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-var DashboardPage = /** @class */ (function () {
-    function DashboardPage(navCtrl, navParams, helper, storage, gpsService, chatAndSessionService, ormService, modalCtrl, modalsService) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.helper = helper;
-        this.storage = storage;
-        this.gpsService = gpsService;
-        this.chatAndSessionService = chatAndSessionService;
-        this.ormService = ormService;
-        this.modalCtrl = modalCtrl;
-        this.modalsService = modalsService;
-        this.tabBarElement = document.querySelector('.tabbar');
-    }
-    DashboardPage.prototype.ngOnInit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, e_1, activeSession, that_1, route_1, modal_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        /**
-                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
-                         * from the default one (Frankfurt) for a few seconds
-                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
-                         */
-                        _a = this;
-                        return [4 /*yield*/, this.storage.get('devMode')];
-                    case 1:
-                        /**
-                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
-                         * from the default one (Frankfurt) for a few seconds
-                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
-                         */
-                        _a.devMode = ((_b.sent()) === 'true');
-                        if (!!this.gpsService.getLastPosition()) return [3 /*break*/, 5];
-                        _b.label = 2;
-                    case 2:
-                        _b.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
-                                console.error("Error loading GPS data", err);
-                            }), 2000)];
-                    case 3:
-                        _b.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _b.sent();
-                        console.log("could not obtain position: " + e_1.message);
-                        // make position check async
-                        this.gpsService.getCurrentPosition().then(function (position) {
-                            if (position && position.coords) {
-                            }
-                        }, function (err) {
-                            console.error("Error loading GPS data", err);
-                        });
-                        return [3 /*break*/, 5];
-                    case 5:
-                        console.log('check for active session');
-                        return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
-                    case 6:
-                        activeSession = _b.sent();
-                        if (!(activeSession != null)) return [3 /*break*/, 8];
-                        console.log('active session found');
-                        that_1 = this;
-                        return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
-                    case 7:
-                        route_1 = _b.sent();
-                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
-                            title: 'a_session_return_title',
-                            message: 'a_session_return_text',
-                            type: 'text',
-                            modalType: __WEBPACK_IMPORTED_MODULE_9__app_app_component__["a" /* MCMModalType */].hint,
-                            narrativeEnabled: route_1.isNarrativeEnabled(),
-                            narrative: route_1.isNarrativeEnabled() ? route_1.getAttributes().narrativeName : '',
-                            buttons: [
-                                {
-                                    title: 'a_session_return_stay',
-                                    callback: function () {
-                                        modal_1.dismiss();
-                                        that_1.modalsService.showRoute(route_1, that_1.navCtrl);
-                                    }
-                                },
-                                {
-                                    title: 'a_private_session_quit',
-                                    callback: function () {
-                                        if (this.sessionInfo != null) {
-                                            var details = JSON.stringify({});
-                                            that_1.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
-                                        }
-                                        that_1.chatAndSessionService.exitActiveSession();
-                                        modal_1.dismiss();
-                                        clearInterval(this.refreshIntervalId);
-                                    }
-                                }
-                            ]
-                        }, { showBackdrop: true, enableBackdropDismiss: true });
-                        modal_1.present();
-                        _b.label = 8;
-                    case 8: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    DashboardPage.prototype.pushSettingsPage = function () {
-        this.navCtrl.push('SettingsPage');
-    };
-    DashboardPage.prototype.pushInfoPage = function () {
-        this.navCtrl.push('InfoPage');
-    };
-    DashboardPage.prototype.switchTab = function (index, addRoute) {
-        if (addRoute === void 0) { addRoute = false; }
-        if (addRoute) {
-            this.helper.setActivateAddRoute(true);
-        }
-        if (index == 3 && !this.devMode) {
-            return;
-        }
-        this.navCtrl.parent.select(index);
-    };
-    DashboardPage.prototype.ionViewWillEnter = function () {
-        this.devMode = this.helper.getDevMode();
-        if (this.tabBarElement != null) {
-            this.tabBarElement.style.display = 'none';
-        }
-    };
-    DashboardPage.prototype.ionViewDidLeave = function () {
-        this.tabBarElement.style.display = 'flex';
-    };
-    DashboardPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-dashboard',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/'<ion-content class="padding top bottom">\n    <div class="stretch-container">\n        <img class="logo" src="./assets/images/mcm-logo-white.svg">\n\n        <div class="secondary">\n            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">\n                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}\n            </button>\n            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">\n                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}\n            </button>\n        </div>\n\n        <div class="tiles">\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(1)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_browse_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_browse_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/browse.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2, true)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_add_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_add_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/add.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_downloads_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_downloads_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile" [ngClass]="{\'disabled\' : !devMode}">\n                <ion-item tappable no-lines (click)="switchTab(3)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_create_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_create_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/create.svg">\n                    </div>\n                </ion-item>\n            </div>\n        </div>\n    </div>\n</ion-content>\n\n<!--<div ion-fixed>-->\n    <!--<img style="z-index: 12; display: block; position: relative;" margin-top padding-top src="https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/1-fan-foam-finger-sticker-31468-300x300.png">-->\n    <!--<p> G⃣   O⃣    W⃣   O⃣   M⃣   B⃣   A⃣   T⃣   S⃣    G⃣   O⃣ </p>-->\n    <!--<p>🐎  🎀  𝒲🌺𝓂𝒷𝒶𝓉𝓈 𝒶𝓇𝑒 𝓈𝒽💞𝓇𝓉-𝓁𝑒𝑔𝑔𝑒𝒹, <b>𝓂𝓊𝓈𝒸𝓊𝓁𝒶𝓇</b> 𝓆𝓊𝒶𝒹𝓇𝓊𝓅𝑒𝒹𝒶𝓁 𝓂𝒶𝓇𝓈𝓊𝓅𝒾𝒶𝓁𝓈 𝓉𝒽𝒶𝓉 𝒶𝓇𝑒 𝓃𝒶𝓉𝒾𝓋𝑒 𝓉🍪 𝒜𝓊𝓈𝓉𝓇𝒶𝓁𝒾𝒶. 𝒯𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝒷🌞𝓊𝓉 𝟣 𝓂 𝒾𝓃 𝓁𝑒𝓃𝑔𝓉𝒽 𝓌𝒾𝓉𝒽 𝓈𝓂𝒶𝓁𝓁, 𝓈𝓉𝓊𝒷𝒷𝓎 𝓉𝒶𝒾𝓁𝓈. 𝒯𝒽𝑒𝓇𝑒 𝒶𝓇𝑒 𝓉𝒽𝓇𝑒𝑒 𝑒𝓍𝓉𝒶𝓃𝓉 𝓈𝓅𝑒𝒸𝒾𝑒𝓈 𝒶𝓃𝒹 𝓉𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝓁𝓁 𝓂𝑒𝓂𝒷𝑒𝓇𝓈 🏵𝒻 𝓉𝒽𝑒 𝒻𝒶𝓂𝒾𝓁𝓎 𝒱🍩𝓂𝒷𝒶𝓉𝒾𝒹𝒶𝑒.  🎀  🐎</p>-->\n    <!--<img margin-top padding-top style="position: absolute; top: 0;" src="https://cdn.britannica.com/88/81288-050-3084149B/Phascolomis-Vombatus-ursinus.jpg">-->\n<!--</div>-->\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__["a" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_6__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_10__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_12__services_modals_service__["a" /* ModalsService */]])
-    ], DashboardPage);
-    return DashboardPage;
-}());
-
-//# sourceMappingURL=dashboard.js.map
-
-/***/ }),
-
-/***/ 64:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalsService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(585);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(586);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__ = __webpack_require__(117);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-var ModalsService = /** @class */ (function () {
-    function ModalsService(modalCtrl, ormService, alertCtrl, deepLinker, translateService, spinner, dbUpdater, helper) {
-        this.modalCtrl = modalCtrl;
-        this.ormService = ormService;
-        this.alertCtrl = alertCtrl;
-        this.deepLinker = deepLinker;
-        this.translateService = translateService;
-        this.spinner = spinner;
-        this.dbUpdater = dbUpdater;
-        this.helper = helper;
-    }
-    ModalsService.prototype.doDownload = function (route) {
-        return __awaiter(this, void 0, void 0, function () {
-            var cancelHasBeenClicked, data, downloadModal;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.showNoInternetModalIfOffline()];
-                    case 1:
-                        if (!(_a.sent())) {
-                            return [2 /*return*/];
-                        }
-                        console.log("doDownload " + JSON.stringify(route.id));
-                        cancelHasBeenClicked = false;
-                        data = {
-                            total: 0,
-                            currentProgress: 0,
-                            cancelCallback: function () {
-                                console.log("cancel has been clicked");
-                                cancelHasBeenClicked = true;
-                            },
-                            titleKey: 'a_rdl_title_map'
-                        };
-                        downloadModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */], data, {
-                            showBackdrop: true,
-                            enableBackdropDismiss: false
-                        });
-                        downloadModal.present();
-                        return [4 /*yield*/, this.ormService.downloadRoute(route, function (doneDownload, totalDownload, titleKey) {
-                                data.total = totalDownload;
-                                data.currentProgress = doneDownload;
-                                if (titleKey) {
-                                    data.titleKey = titleKey;
-                                }
-                                if (data.updateView) {
-                                    data.updateView();
-                                }
-                                // make sure that updated values are bound to DOM
-                                return cancelHasBeenClicked;
-                            }, this.dbUpdater)];
-                    case 2:
-                        _a.sent();
-                        downloadModal.dismiss();
-                        return [2 /*return*/, !cancelHasBeenClicked];
-                }
-            });
-        });
-    };
-    ModalsService.prototype.showRoute = function (route, navCtrl, startRoute, selectedTask) {
-        if (startRoute === void 0) { startRoute = false; }
-        if (selectedTask === void 0) { selectedTask = null; }
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!route.downloaded) return [3 /*break*/, 2];
-                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
-                        return [4 /*yield*/, this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))];
-                    case 1:
-                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
-                        _a.sent();
-                        if (startRoute) {
-                            this.navigateToRoute(route, navCtrl, null);
-                            return [2 /*return*/];
-                        }
-                        _a.label = 2;
-                    case 2: return [4 /*yield*/, this.presentRouteInfoModal(route, navCtrl)];
-                    case 3:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ModalsService.prototype.showDialog = function (titleKey, messageKey, button1Key, button1Handler, button2Key, button2Handler, narrative) {
-        if (narrative === void 0) { narrative = 'default'; }
-        return __awaiter(this, void 0, void 0, function () {
-            var buttons, confirm;
-            return __generator(this, function (_a) {
-                button1Key = button1Key || 'a_g_ok';
-                buttons = [{
-                        text: this.translateService.instant(button1Key),
-                        handler: button1Handler
-                    }];
-                if (button2Key && button2Handler) {
-                    buttons.push({
-                        text: this.translateService.instant(button2Key),
-                        handler: button2Handler
-                    });
-                }
-                confirm = this.alertCtrl.create({
-                    title: titleKey ? this.translateService.instant(titleKey) : null,
-                    message: messageKey ? this.translateService.instant(messageKey) : null,
-                    buttons: buttons,
-                    cssClass: narrative
-                });
-                confirm.present();
-                return [2 /*return*/, confirm];
-            });
-        });
-    };
-    ModalsService.prototype.showYesNoDialog = function (titleKey, messageKey, yesKey, noKey) {
-        var _this = this;
-        yesKey = yesKey || 'yes';
-        noKey = noKey || 'no';
-        return new Promise(function (resolve, reject) {
-            _this.showDialog(titleKey, messageKey, yesKey, function () { return resolve(true); }, noKey, function () { return resolve(false); });
-        });
-    };
-    ModalsService.prototype.navigateToRoute = function (route, navCtrl, selectedTask) {
-        var _this = this;
-        if (selectedTask === void 0) { selectedTask = null; }
-        this.spinner.show(null, null, false);
-        setTimeout(function () {
-            if (navCtrl.parent && navCtrl.parent.parent) {
-                navCtrl.parent.parent.push('TasksMap', {
-                    routeId: route.id,
-                    headerTitle: route.title,
-                    selectedTask: selectedTask
-                }, {}, function () {
-                    // necessary because of bug which does not update URL
-                    _this.deepLinker.navChange('forward');
-                });
-            }
-            else if (navCtrl.parent == null) {
-                navCtrl.push('TasksMap', {
-                    routeId: route.id,
-                    headerTitle: route.title,
-                    selectedTask: selectedTask
-                }, {}, function () {
-                    // necessary because of bug which does not update URL
-                    _this.deepLinker.navChange('forward');
-                });
-            }
-        }, 10);
-    };
-    ModalsService.prototype.presentRouteInfoModal = function (route, navCtrl) {
-        var _this = this;
-        var self = this;
-        return new Promise(function (success) {
-            //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
-            var data = {
-                routeId: route.id,
-                modalsService: _this,
-                route: null
-            };
-            var routeInfoModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */], data);
-            routeInfoModal.onDidDismiss(function (result) {
-                if (result && result.showRoute) {
-                    self.showRoute(result.route, navCtrl, true);
-                    success(result.route);
-                }
-                else {
-                    // route is set by RouteInfo
-                    success(data.route);
-                }
-            });
-            routeInfoModal.present();
-        });
-    };
-    ModalsService.prototype.presentTaskListModal = function (route, score, state, narrative, navCtrl, callback) {
-        if (narrative === void 0) { narrative = 'default'; }
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var testModal, _a, _b, _c, _d;
-            return __generator(this, function (_e) {
-                switch (_e.label) {
-                    case 0:
-                        _b = (_a = this.modalCtrl).create;
-                        _c = [__WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */]];
-                        _d = {
-                            route: route,
-                            score: score,
-                            state: state
-                        };
-                        return [4 /*yield*/, route.getTasks()];
-                    case 1:
-                        testModal = _b.apply(_a, _c.concat([(_d.tasks = _e.sent(),
-                                _d.modalsService = this,
-                                _d), { cssClass: narrative }]));
-                        testModal.onDidDismiss(function (data) {
-                            /* coming from List/Map View */
-                            if (data && data.route != null && navCtrl != null && !callback)
-                                _this.navigateToRoute(data.route, navCtrl, data.selectedTask);
-                            else if (data && data.selectedTask != null && navCtrl != null && callback)
-                                callback(data.selectedTask);
-                            /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
-                        });
-                        testModal.present();
-                        return [2 /*return*/, testModal];
-                }
-            });
-        });
-    };
-    ModalsService.prototype.showNoInternetModalIfOffline = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var quality;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!this.helper.isOnline) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.helper.checkConnection()];
-                    case 1:
-                        quality = _a.sent();
-                        if (!(quality == __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["a" /* ConnectionQuality */].FAST)) return [3 /*break*/, 2];
-                        return [2 /*return*/, true];
-                    case 2: return [4 /*yield*/, this.showYesNoDialog('a_slow_connection_title', 'a_slow_connection', 'a_alert_continue', 'a_alert_cancel')];
-                    case 3: return [2 /*return*/, _a.sent()];
-                    case 4: return [3 /*break*/, 7];
-                    case 5: return [4 /*yield*/, this.showDialog(null, 'a_toast_need_internet_for_update')];
-                    case 6:
-                        _a.sent();
-                        return [2 /*return*/, false];
-                    case 7: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ModalsService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1__orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_7_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
-            __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-            __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["b" /* Helper */]])
-    ], ModalsService);
-    return ModalsService;
-}());
-
-//# sourceMappingURL=modals-service.js.map
-
-/***/ }),
-
-/***/ 641:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesMapPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-//import 'leaflet-offline';
-
-
-
-
-
-
-
-
-
-
-
-// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
-var RoutesMapPage = /** @class */ (function () {
-    function RoutesMapPage(updater, ormService, modalsService, navCtrl, spinner, translateService, gpsService, helper, navParams, languageService) {
-        var _this = this;
-        this.updater = updater;
-        this.ormService = ormService;
-        this.modalsService = modalsService;
-        this.navCtrl = navCtrl;
-        this.spinner = spinner;
-        this.translateService = translateService;
-        this.gpsService = gpsService;
-        this.helper = helper;
-        this.navParams = navParams;
-        this.languageService = languageService;
-        this.markerGroup = null;
-        this.merkerMapBoxGroup = null;
-        this.eventSubscription = this.ormService.eventEmitter.subscribe(function (event) { return __awaiter(_this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 3];
-                        if (!!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 1:
-                        _a.routes = _b.sent();
-                        _b.label = 2;
-                    case 2:
-                        this.redrawMapBoxMarker();
-                        console.log("REDRAWED");
-                        this.routeDetails = null;
-                        _b.label = 3;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); });
-    }
-    RoutesMapPage.prototype.ionViewWillEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        console.log("ionViewWillEnter:");
-                        this.gpsService.isLocationOn();
-                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 5];
-                        if (!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 1:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 4];
-                    case 2:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 3:
-                        _b.routes = _c.sent();
-                        _c.label = 4;
-                    case 4:
-                        this.redrawMapBoxMarker();
-                        _c.label = 5;
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.ngOnInit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                this.isFilePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
-                if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
-                    if (this.navParams.data.showAllRoutes)
-                        this.showAllRoutes = true;
-                    else
-                        this.showAllRoutes = false;
-                }
-                this.languageService.initialize().then(function () { return __awaiter(_this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0:
-                                //this.loadMap();
-                                this.loadMapBox();
-                                return [4 /*yield*/, this.initializeMap()];
-                            case 1:
-                                _a.sent();
-                                return [2 /*return*/];
-                        }
-                    });
-                }); });
-                return [2 /*return*/];
-            });
-        });
-    };
-    RoutesMapPage.prototype.ngOnDestroy = function () {
-        this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
-        if (this.eventSubscription) {
-            this.eventSubscription.unsubscribe();
-            this.eventSubscription = null;
-        }
-        if (this.watchSubscription) {
-            this.watchSubscription.unsubscribe();
-            this.watchSubscription = null;
-        }
-    };
-    RoutesMapPage.prototype.initializeMap = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var activeUser, online, e_1, _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0: return [4 /*yield*/, this.ormService.getActiveUser()];
-                    case 1:
-                        activeUser = _c.sent();
-                        if (!!activeUser) return [3 /*break*/, 6];
-                        return [4 /*yield*/, this.modalsService.showNoInternetModalIfOffline()];
-                    case 2:
-                        online = _c.sent();
-                        if (!online) return [3 /*break*/, 6];
-                        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-                        _c.label = 3;
-                    case 3:
-                        _c.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, this.updater.checkForUpdates()];
-                    case 4:
-                        _c.sent();
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_1 = _c.sent();
-                        console.error('caught error while checking for updates:');
-                        console.error(e_1);
-                        return [3 /*break*/, 6];
-                    case 6:
-                        if (!this.showAllRoutes) return [3 /*break*/, 8];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 7:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 10];
-                    case 8:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 9:
-                        _b.routes = _c.sent();
-                        _c.label = 10;
-                    case 10:
-                        this.map.on('load', function () {
-                            var waiting = function () {
-                                if (!_this.map.isStyleLoaded()) {
-                                    setTimeout(waiting, 200);
-                                }
-                                else {
-                                    _this.redrawMapBoxMarker();
-                                }
-                            };
-                            waiting();
-                        });
-                        this.spinner.hide();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.redrawMapBoxMarker = function () {
-        var map = this.map;
-        //clean layers to be redrawn
-        if (this.map.getLayer('unclustered-point')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('unclustered-point');
-            this.markerGroup = null;
-        }
-        if (this.map.getLayer('clusters')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('clusters');
-            this.markerGroup = null;
-        }
-        if (this.map.getLayer('cluster-count')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('cluster-count');
-            this.markerGroup = null;
-        }
-        var GeoJson = {
-            "type": "FeatureCollection",
-            "features": []
-        };
-        for (var route in this.routes) {
-            var icon = void 0;
-            if (this.routes[route].downloaded) {
-                if (this.routes[route].completed) {
-                    icon = 'completed-route';
-                }
-                else {
-                    icon = 'downloaded-route';
-                }
-            }
-            else if (this.routes[route].public == "1") {
-                icon = 'public-route';
-            }
-            else {
-                icon = 'private-route';
-            }
-            var routeCenter = this.routes[route].getCenterLatLng();
-            var data = {
-                "type": "Feature",
-                "properties": {
-                    'routeIndex': route,
-                    'icon': icon
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        routeCenter.lng,
-                        routeCenter.lat
-                    ]
-                }
-            };
-            GeoJson.features.push(data);
-        }
-        if (this.map.getSource("routes"))
-            this.map.getSource('routes').setData(GeoJson);
-        else {
-            this.map.addSource("routes", {
-                type: "geojson",
-                data: GeoJson,
-                cluster: true,
-                clusterRadius: 30
-            });
-        }
-        this.map.addLayer({
-            id: "clusters",
-            type: "circle",
-            source: "routes",
-            filter: ["has", "point_count"],
-            paint: {
-                'circle-color': '#11b4da',
-                'circle-radius': 20
-            }
-        });
-        map.addLayer({
-            id: 'cluster-count',
-            type: 'symbol',
-            source: 'routes',
-            filter: ['has', 'point_count'],
-            layout: {
-                'text-field': '{point_count_abbreviated}',
-                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-                'text-size': 15
-            }
-        });
-        map.addLayer({
-            id: 'unclustered-point',
-            type: 'symbol',
-            source: 'routes',
-            filter: ['!', ['has', 'point_count']],
-            layout: {
-                'icon-size': 0.23,
-                'icon-image': ['get', 'icon'],
-                'icon-allow-overlap': true
-            }
-        });
-    };
-    RoutesMapPage.prototype.loadMapBox = function () {
-        var _this = this;
-        var isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-        var keepPositionBecauseOfReload = false;
-        __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.accessToken = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].accessToken;
-        //Either draws the map for all routes or for downloaded ones only
-        if (this.showAllRoutes) {
-            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
-                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-                center: [8.66158515, 50.1208566],
-                zoom: 16,
-                container: 'map',
-                trackResize: false
-            });
-        }
-        else {
-            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
-                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-                center: [8.66158515, 50.1208566],
-                zoom: 16,
-                container: 'mapDownloaded',
-                trackResize: false
-            });
-        }
-        this.loadImagesToMap();
-        this.map.touchZoomRotate.disableRotation();
-        //removes labels for points of interest
-        this.map.on('load', function () {
-            _this.map.style.stylesheet.layers.forEach(function (layer) {
-                if (layer.id === "poi-label") {
-                    _this.map.removeLayer(layer.id);
-                }
-            });
-        });
-        if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
-            keepPositionBecauseOfReload = true;
-            var startIndex = window.location.search.indexOf('pos=') + 4;
-            var bboxString = window.location.search.substring(startIndex).split("&|/")[0]
-                .replace(/LngLat\(/g, '')
-                .replace(/%20/g, ' ')
-                .replace(/\)/g, '');
-            console.log("BBOX: ", bboxString);
-            var coords = bboxString.split(",").map(parseFloat);
-            var bounds = [[coords[0], coords[1]], [coords[2], coords[3]]];
-            console.log("BOUNDS: ", bounds);
-            this.map.fitBounds(bounds);
-        }
-        this.map.on('click', function (e) {
-            //check if details open and reset content. for now just reset content
-            _this.routeDetails = null;
-            console.log('cleared route details');
-        });
-        var that = this;
-        //Zoom clusters
-        that.map.on('click', 'clusters', function (e) {
-            var features = that.map.queryRenderedFeatures(e.point, {
-                layers: ['clusters']
-            });
-            var clusterId = features[0].properties.cluster_id;
-            that.map.getSource('routes').getClusterExpansionZoom(clusterId, function (err, zoom) {
-                if (err)
-                    return;
-                that.map.easeTo({
-                    center: features[0].geometry.coordinates,
-                    zoom: zoom
-                });
-            });
-        });
-        that.map.on('click', 'unclustered-point', function (e) {
-            return __awaiter(this, void 0, void 0, function () {
-                var features, index, route, _a;
-                return __generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0:
-                            features = that.map.queryRenderedFeatures(e.point, {
-                                layers: ['unclustered-point']
-                            });
-                            index = features[0].properties.routeIndex;
-                            route = that.routes[index];
-                            if (!(that.routeDetails == route)) return [3 /*break*/, 1];
-                            that.modalsService.showRoute(route, that.navCtrl);
-                            return [3 /*break*/, 5];
-                        case 1:
-                            if (!route.downloaded) return [3 /*break*/, 3];
-                            that.isRouteDownloaded = 'downloaded';
-                            console.log("THIS.ROUTE: ", route);
-                            _a = that;
-                            return [4 /*yield*/, that.ormService.findRouteByCode(route.code)];
-                        case 2:
-                            _a.routeDetails = _b.sent();
-                            return [3 /*break*/, 4];
-                        case 3:
-                            that.routeDetails = route;
-                            that.isRouteDownloaded = null;
-                            _b.label = 4;
-                        case 4:
-                            that.map.panTo(features[0].geometry.coordinates);
-                            _b.label = 5;
-                        case 5: return [2 /*return*/];
-                    }
-                });
-            });
-        });
-        if (isLoadedViaHttp) {
-            // when loaded via http (for development), keep track of map position
-            this.map.on('moveend', function (event) {
-                var bounds = _this.map.getBounds();
-                var boundsString = bounds.toString();
-                boundsString = boundsString.substring(13, boundsString.length - 1);
-                window.history.replaceState({}, "", window.location.origin + "?pos=" + boundsString + "/" + window.location.hash);
-            });
-        }
-        this.gpsService.getCurrentPosition()
-            .then(function (resp) {
-            if (resp && resp.coords) {
-                console.warn('found you');
-                // let markerGroup = L.featureGroup();
-                var el = document.createElement('div');
-                el.className = 'marker';
-                el.style.backgroundImage = "url(assets/icons/mapposition.png)";
-                el.style.backgroundSize = 'cover';
-                el.style.width = 100 + 'px';
-                el.style.height = 100 + 'px';
-                el.addEventListener('click', function () {
-                    //window.alert(marker.properties.message);
-                    console.log("HEY clicked");
-                });
-                _this.mapBoxUserMarker = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Marker(el)
-                    .setLngLat([resp.coords.longitude, resp.coords.latitude])
-                    .addTo(_this.map);
-                if (!keepPositionBecauseOfReload) {
-                    _this.map.panTo([resp.coords.longitude, resp.coords.latitude]);
-                }
-                if (_this.watchSubscription) {
-                    _this.watchSubscription.unsubscribe();
-                }
-                _this.watchSubscription = _this.gpsService.watchPosition().subscribe(function (resp) {
-                    if (resp && resp.coords) {
-                        var lnglat = [resp.coords.longitude, resp.coords.latitude];
-                        _this.mapBoxUserMarker.setLngLat(lnglat);
-                        //Rotate the user marker
-                        if (_this.prevPos != null) {
-                            var angle = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].getAngle(_this.prevPos, resp.coords);
-                            _this.mapBoxUserMarker.setRotation(angle);
-                        }
-                        _this.prevPos = resp.coords;
-                    }
-                });
-            }
-        })
-            .catch(function (error) {
-            console.log("error: ", error);
-            console.error("Location error: " + JSON.stringify(error));
-        });
-    };
-    RoutesMapPage.prototype.doDownload = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.modalsService.doDownload(this.routeDetails)];
-                    case 1:
-                        _a.sent();
-                        console.log("DID DOWNLOAD");
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.presentRouteInfoModal = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl)];
-                    case 1:
-                        _a.routeDetails = _b.sent();
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.showRouteDetail = function (item) {
-        var _this = this;
-        console.log("##### ROUTE: ", item);
-        this.modalsService.showRoute(item, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.reactOnRemovedRoute()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-    };
-    RoutesMapPage.prototype.switchToList = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
-                return [2 /*return*/];
-            });
-        });
-    };
-    RoutesMapPage.prototype.reactOnRemovedRoute = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 1:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 4];
-                    case 2:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 3:
-                        _b.routes = _c.sent();
-                        _c.label = 4;
-                    case 4:
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.loadImagesToMap = function () {
-        var map = this.map;
-        map.loadImage('assets/icons/marker-route-private.png', function (error, image) {
-            map.addImage('private-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-public.png', function (error, image) {
-            map.addImage('public-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-downloaded.png', function (error, image) {
-            map.addImage('downloaded-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-done.png', function (error, image) {
-            map.addImage('completed-route', image);
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-    ], RoutesMapPage.prototype, "mapContainer", void 0);
-    RoutesMapPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'routes-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/'<ion-content class="map routes" no-bounce>\n    <div ion-fixed>\n\n        <div *ngIf="showAllRoutes" id="map" class="map-view"></div>\n        <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': routeDetails != null}" lazy-load-images image-size="s">\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>\n            </ion-fab>\n\n            <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"\n                          [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"\n            ></route-teaser>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_8__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-            __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_13__services_language_service__["a" /* LanguageService */]])
-    ], RoutesMapPage);
-    return RoutesMapPage;
-}());
-
-//# sourceMappingURL=RoutesMap.js.map
-
-/***/ }),
-
-/***/ 642:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(19);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-/**
- * Generated class for the PortalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var PortalPage = /** @class */ (function () {
-    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.iab = iab;
-        this.translateService = translateService;
-        this.sanitizer = sanitizer;
-        this.languageUrl = {
-            de: 'portal',
-            en: 'portal-en',
-            es: 'portal-es',
-            pt: 'portal-pt',
-            fr: 'portail',
-            it: 'portale',
-            sk: 'portal-sk',
-            id: 'portal-id',
-            tr: 'portal-tr',
-            el: 'πύλη',
-            zh: '入口'
-        };
-        this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
-        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
-    }
-    PortalPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-portal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/'<ion-content class="fullscreen">\n    <iframe ion-fixed *ngIf="currentLang" allow="geolocation" [src]="sanitizedUrl">\n    </iframe>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */]])
-    ], PortalPage);
-    return PortalPage;
-}());
-
-//# sourceMappingURL=portal.js.map
-
-/***/ }),
-
 /***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11381,7 +10064,7 @@ var PortalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(591);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11781,22 +10464,22 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(549);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(402);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(547);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(443);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(589);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1130);
@@ -11816,20 +10499,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(646);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(587);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(401);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(405);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(446);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(644);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(548);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(590);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(584);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(647);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11915,16 +10598,16 @@ var AppModule = /** @class */ (function () {
                     swipeBackEnabled: false
                 }, {
                     links: [
-                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -11990,7 +10673,7 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 70:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12028,13 +10711,13 @@ var ApiConfiguration = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GpsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(399);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(401);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(302);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -12309,44 +10992,1664 @@ var CustomReplaySubject = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 79:
+/***/ 802:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
-/**
- * Base class for API services
- */
-var BaseService = /** @class */ (function () {
-    function BaseService(config, http) {
-        this.config = config;
-        this.http = http;
-    }
-    Object.defineProperty(BaseService.prototype, "rootUrl", {
-        /**
-         * Returns the root url for API operations. If not set directly in this
-         * service, will fallback to ApiConfiguration.rootUrl.
-         */
-        get: function () {
-            return this._rootUrl || this.config.rootUrl;
-        },
-        /**
-         * Sets the root URL for API operations in this service.
-         */
-        set: function (rootUrl) {
-            this._rootUrl = rootUrl;
-        },
-        enumerable: true,
-        configurable: true
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InitialMigration1513274191111; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-    return BaseService;
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var InitialMigration1513274191111 = /** @class */ (function () {
+    function InitialMigration1513274191111() {
+    }
+    InitialMigration1513274191111.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_state (_id INTEGER PRIMARY KEY AUTOINCREMENT,option VARCHAR (64) NOT NULL,value VARCHAR (256) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,lat VARCHAR (64) NOT NULL,lon VARCHAR (64) NOT NULL,title TEXT NOT NULL,description TEXT NOT NULL,image TEXT ,solution_type TEXT NOT NULL,solution TEXT NOT NULL,hint1 TEXT ,hint2 TEXT ,hint3 TEXT ,assistive_equipment TEXT ,author TEXT ,mail TEXT ,grade VARCHAR (2) NOT NULL DEFAULT '13',tags TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,solutionsample TEXT NOT NULL,attr TEXT ,create_date TIMESTAMP NOT NULL,lang_code VARCHAR (2))")];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_route (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,title TEXT NOT NULL,country_code TEXT NOT NULL,city TEXT NOT NULL,image TEXT ,code VARCHAR (64),grade TEXT (64),tags VARCHAR ,duration VARCHAR (64),length VARCHAR (64),bounding_box TEXT ,center TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,description TEXT ,create_date TIMESTAMP NOT NULL,attr TEXT TEXT)")];
+                    case 3:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_rel_route_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,route_id INTEGER (64) NOT NULL,task_id INTEGER (64) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
+                    case 4:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_users (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR (32) NOT NULL,create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
+                    case 5:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_score (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER (64) NOT NULL,route_id INTEGER (64) NOT NULL,score INTEGER (64) NOT NULL,tasks_solved TEXT ,tasks_solved_low TEXT ,task_details TEXT ,time INTEGER (64),distance INTEGER (64))")];
+                    case 6:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    InitialMigration1513274191111.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return InitialMigration1513274191111;
 }());
 
-//# sourceMappingURL=base-service.js.map
+//# sourceMappingURL=1513274191111-InitialMigration.js.map
 
 /***/ }),
 
-/***/ 88:
+/***/ 803:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FailedTaskMigration1515428187000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var FailedTaskMigration1515428187000 = /** @class */ (function () {
+    function FailedTaskMigration1515428187000() {
+    }
+    FailedTaskMigration1515428187000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD tasks_failed TEXT")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    FailedTaskMigration1515428187000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return FailedTaskMigration1515428187000;
+}());
+
+//# sourceMappingURL=1515428187000-failedTaskMigration.js.map
+
+/***/ }),
+
+/***/ 804:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var User = /** @class */ (function () {
+    function User() {
+    }
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
+        __metadata("design:type", Number)
+    ], User.prototype, "id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 32 }),
+        __metadata("design:type", String)
+    ], User.prototype, "name", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'create_date' }),
+        __metadata("design:type", String)
+    ], User.prototype, "createDate", void 0);
+    User = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_users')
+    ], User);
+    return User;
+}());
+
+//# sourceMappingURL=User.js.map
+
+/***/ }),
+
+/***/ 805:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return State; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var State = /** @class */ (function () {
+    function State() {
+    }
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
+        __metadata("design:type", Number)
+    ], State.prototype, "id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 64 }),
+        __metadata("design:type", String)
+    ], State.prototype, "option", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 256 }),
+        __metadata("design:type", String)
+    ], State.prototype, "value", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], State.prototype, "timestamp", void 0);
+    State = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_state')
+    ], State);
+    return State;
+}());
+
+//# sourceMappingURL=State.js.map
+
+/***/ }),
+
+/***/ 806:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskState; });
+var TaskState = /** @class */ (function () {
+    function TaskState() {
+        this.saved = false;
+        this.solved = false;
+        this.solvedLow = false;
+        this.skipped = false;
+        this.failed = false;
+        this.hint1 = false;
+        this.hint2 = false;
+        this.hint3 = false;
+        this.tries = 0;
+        this.newTries = 0; //newTries since user has skipped the task and opened again
+        this.answer = "";
+        this.answerMultipleChoice = [];
+        this.timeFirstOpen = 0;
+        this.timeSolved = 0;
+        this.score = 0;
+        this.penalty = 0;
+    }
+    TaskState.prototype.getTaskDetailAsJSON = function () {
+        return JSON.stringify({
+            taskId: +this.taskId,
+            saved: this.saved,
+            solved: this.solved,
+            solvedLow: this.solvedLow,
+            skipped: this.skipped,
+            failed: this.failed,
+            hint1: this.hint1,
+            hint2: this.hint2,
+            hint3: this.hint3,
+            tries: +this.tries,
+            newTries: +this.newTries,
+            answer: this.answer,
+            answerMultipleChoice: this.answerMultipleChoice,
+            timeFirstOpen: +this.timeFirstOpen,
+            timeSolved: +this.timeSolved,
+            score: +this.score,
+            penalty: this.penalty
+        });
+    };
+    TaskState.getTaskStateAsJSONArray = function (taskDetails) {
+        var result = [];
+        taskDetails.forEach(function (details) {
+            result.push(details.getTaskDetailAsJSON());
+        });
+        return JSON.stringify(result);
+    };
+    TaskState.prototype.getAllTaskState = function (jsonArray) {
+        var flags = JSON.parse(jsonArray);
+        var taskDetails = [];
+        for (var i = 0; i < flags.length; i++) {
+            taskDetails.push(this.getTaskStateByTask(flags[i]));
+        }
+        return taskDetails;
+    };
+    TaskState.prototype.findDetailsForTask = function (taskId, jsonArray) {
+        var flags = JSON.parse(jsonArray);
+        for (var i = 0; i < flags.length; i++) {
+            var detail_1 = this.getTaskStateByTask(flags[i]);
+            if (detail_1.taskId == taskId) {
+                return detail_1;
+            }
+        }
+        var detail = new TaskState();
+        detail.taskId = taskId;
+        return detail;
+    };
+    TaskState.prototype.getTaskStateByTask = function (jsonObject) {
+        var flags = JSON.parse(jsonObject);
+        var taskState = new TaskState();
+        taskState.taskId = flags.taskId;
+        taskState.saved = flags.saved;
+        taskState.solved = flags.solved;
+        taskState.solvedLow = flags.solvedLow;
+        taskState.skipped = flags.skipped;
+        taskState.failed = flags.failed;
+        taskState.hint1 = flags.hint1;
+        taskState.hint2 = flags.hint2;
+        taskState.hint3 = flags.hint3;
+        taskState.tries = flags.tries;
+        taskState.newTries = flags.newTries;
+        taskState.answer = flags.answer;
+        taskState.answerMultipleChoice = flags.answerMultipleChoice;
+        taskState.timeFirstOpen = flags.timeFirstOpen;
+        taskState.timeSolved = flags.timeSolved;
+        taskState.score = flags.score;
+        taskState.penalty = flags.penalty;
+        return taskState;
+    };
+    return TaskState;
+}());
+
+//# sourceMappingURL=TaskState.js.map
+
+/***/ }),
+
+/***/ 809:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddImageUrlAndDownloadedFlagMigration1513679923000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddImageUrlAndDownloadedFlagMigration1513679923000 = /** @class */ (function () {
+    function AddImageUrlAndDownloadedFlagMigration1513679923000() {
+    }
+    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloaded INTEGER(1)")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddImageUrlAndDownloadedFlagMigration1513679923000;
+}());
+
+//# sourceMappingURL=1513679923000-AddImageUrlAndDownloadedFlagMigration.js.map
+
+/***/ }),
+
+/***/ 810:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CacheManagerMCM; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(45);
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var CacheManagerMCM = /** @class */ (function () {
+    function CacheManagerMCM() {
+    }
+    CacheManagerMCM.getTilesCoverageMinMaxZoom = function (pBB, pZoomMin, pZoomMax) {
+        var result = new Array();
+        for (var zoomLevel = pZoomMin; zoomLevel <= pZoomMax; zoomLevel++) {
+            console.debug("Calculating ZOOM: " + zoomLevel);
+            var resultForZoom = CacheManagerMCM.getTilesCoverageZoom(pBB, zoomLevel);
+            console.debug("Result.size: " + resultForZoom.length);
+            result = result.concat(resultForZoom);
+            console.debug("Result.concat.size: " + result.length);
+        }
+        return result;
+    };
+    CacheManagerMCM.getTilesCoverageZoom = function (pBB, pZoomLevel) {
+        var result = new Array();
+        var mapTileUpperBound = 1 << pZoomLevel;
+        console.debug("shift attributes " + mapTileUpperBound);
+        console.debug("south: " + pBB.getSouth() + " east: " + pBB.getEast());
+        console.debug("north: " + pBB.getNorth() + " west: " + pBB.getWest());
+        var lowerRight = CacheManagerMCM.getMapTileFromCoordinates(pBB.getSouth(), pBB.getEast(), pZoomLevel);
+        var upperLeft = CacheManagerMCM.getMapTileFromCoordinates(pBB.getNorth(), pBB.getWest(), pZoomLevel);
+        console.debug("lowerRight " + lowerRight + " upperLeft " + upperLeft);
+        var width = lowerRight.x - upperLeft.x + 1;
+        if (width <= 0) {
+            width += mapTileUpperBound;
+        }
+        console.debug("Width: " + width + " " + typeof width);
+        var height = lowerRight.y - upperLeft.y + 1;
+        if (height <= 0) {
+            height += mapTileUpperBound;
+        }
+        console.debug("Height: " + height + " " + typeof height);
+        for (var i = 0; i < width; i++) {
+            for (var j = 0; j < height; j++) {
+                var x = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.x + i, mapTileUpperBound);
+                var y = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.y + j, mapTileUpperBound);
+                result.push(new __WEBPACK_IMPORTED_MODULE_0__Helper__["c" /* MapTile */](pZoomLevel, x, y));
+            }
+        }
+        console.debug("Result.length = " + result.length);
+        return result;
+    };
+    CacheManagerMCM.getMapTileFromCoordinates = function (aLat, aLon, zoom) {
+        var z = 1 << zoom;
+        var y = Math.floor((1 - Math.log(Math.tan(aLat * Math.PI / 180) + 1 / Math.cos(aLat * Math.PI / 180)) / Math.PI) / 2 * z);
+        var x = Math.floor((aLon + 180) / 360 * z);
+        console.debug("aLat: " + aLat + " aLon: " + aLon + " zoom: " + zoom + " => x: " + x + " y: " + y);
+        return new __WEBPACK_IMPORTED_MODULE_3_leaflet__["Point"](x, y);
+    };
+    CacheManagerMCM.downloadTiles = function (route, pZoomMin, pZoomMax, callback) {
+        return __awaiter(this, void 0, void 0, function () {
+            var tiles, tilesUrls, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2__tilesDb__["a" /* tilesDb */].initialize()];
+                    case 1:
+                        _a.sent();
+                        tilesUrls = tiles.map(function (tile) {
+                            var domain = route.getTilesServerSubdomains(route.getNarrativeName())[Math.floor(Math.random() * route.getTilesServerSubdomains(route.getNarrativeName()).length)];
+                            return route.getTilesMap(route.getNarrativeName()).replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
+                        });
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.downloadURLs(tilesUrls, false, callback, true)];
+                    case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _a.sent();
+                        console.debug("remove already added tiles because download failed or was aborted");
+                        throw e_1;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /*    static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
+            //const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
+            await tilesDb.initialize();
+            tilesDb.removeItems(CacheManagerMCM.getTileURLs(pBB, pZoomMin, pZoomMax));
+        }*/
+    CacheManagerMCM.getTileURLs = function (route, pZoomMin, pZoomMax) {
+        var tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
+        return tiles.map(function (tile) { return route.getTilesMap(route.getNarrativeName()).replace('{s}', __WEBPACK_IMPORTED_MODULE_0__Helper__["b" /* Helper */].subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)); });
+    };
+    return CacheManagerMCM;
+}());
+
+//# sourceMappingURL=CacheManagerMCM.js.map
+
+/***/ }),
+
+/***/ 811:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyMath; });
+var MyMath = /** @class */ (function () {
+    function MyMath() {
+    }
+    MyMath.mod = function (n, m) {
+        if (n > 0) {
+            return n % m;
+        }
+        var nn = n;
+        while (nn < 0) {
+            nn += m;
+        }
+        return nn;
+    };
+    return MyMath;
+}());
+
+//# sourceMappingURL=MyMath.js.map
+
+/***/ }),
+
+/***/ 822:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUnlockedColumn1516037215000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddUnlockedColumn1516037215000 = /** @class */ (function () {
+    function AddUnlockedColumn1516037215000() {
+    }
+    AddUnlockedColumn1516037215000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN unlocked INTEGER(1)")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddUnlockedColumn1516037215000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddUnlockedColumn1516037215000;
+}());
+
+//# sourceMappingURL=1516037215000-AddUnlockedColumn.js.map
+
+/***/ }),
+
+/***/ 823:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedColumn1519817905000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddCompletedColumn1519817905000 = /** @class */ (function () {
+    function AddCompletedColumn1519817905000() {
+    }
+    AddCompletedColumn1519817905000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completed INTEGER(1)")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddCompletedColumn1519817905000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddCompletedColumn1519817905000;
+}());
+
+//# sourceMappingURL=1519817905000-AddCompletedColumn.js.map
+
+/***/ }),
+
+/***/ 831:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC_Plan; });
+var DBC_Plan = /** @class */ (function () {
+    function DBC_Plan(tableName, fields, fieldsType, attributes) {
+        this.tableName = tableName;
+        this.fields = fields;
+        this.fieldsType = fieldsType;
+        this.attributes = attributes;
+        this.fieldsCount = fields.length;
+    }
+    DBC_Plan.prototype.getCreateStatement = function () {
+        var stmt = "CREATE TABLE IF NOT EXISTS " + this.tableName + " (";
+        for (var i = 0; i < this.fields.length; i++) {
+            stmt += this.fields[i] + " " + this.fieldsType[i] + " " + this.attributes[i];
+            if (i < this.fields.length - 1) {
+                stmt += ",";
+            }
+        }
+        return stmt + ")";
+    };
+    /*
+    returns a string for bulk statements of all available fields in the form of:
+    (field1, field2, field3, ..., fieldn)
+     */
+    DBC_Plan.prototype.getFieldsInScopes = function () {
+        var result = "(";
+        for (var i = 0; i < this.fields.length; i++) {
+            if (i < this.fields.length - 1) {
+                result += this.fields[i] + ", ";
+            }
+            else {
+                result += this.fields[i];
+            }
+        }
+        return result + ")";
+    };
+    /*
+    returns a string for bulk statements of all available field placehokder in the form of:
+    (?, ?, ?, ?)
+     */
+    DBC_Plan.prototype.getFieldsPlaceholders = function () {
+        var result = "(";
+        for (var i = 0; i < this.fields.length; i++) {
+            if (i < this.fields.length - 1) {
+                result += "?, ";
+            }
+            else {
+                result += "?";
+            }
+        }
+        return result + ")";
+    };
+    DBC_Plan.prototype.getTableName = function () {
+        return this.tableName;
+    };
+    return DBC_Plan;
+}());
+
+//# sourceMappingURL=DBC_Plan.js.map
+
+/***/ }),
+
+/***/ 832:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddVisibleColumn1526306624000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddVisibleColumn1526306624000 = /** @class */ (function () {
+    function AddVisibleColumn1526306624000() {
+    }
+    AddVisibleColumn1526306624000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN `visible` INTEGER(1) NOT NULL DEFAULT 1")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'visible' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddVisibleColumn1526306624000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddVisibleColumn1526306624000;
+}());
+
+//# sourceMappingURL=1526306624000-AddVisibleColumn.js.map
+
+/***/ }),
+
+/***/ 833:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLangCodeColumn1526306730000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddLangCodeColumn1526306730000 = /** @class */ (function () {
+    function AddLangCodeColumn1526306730000() {
+    }
+    AddLangCodeColumn1526306730000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN lang_code VARCHAR(2)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'lang_code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddLangCodeColumn1526306730000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddLangCodeColumn1526306730000;
+}());
+
+//# sourceMappingURL=1526306730000-AddLangCodeColumn.js.map
+
+/***/ }),
+
+/***/ 834:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddDownloadDateColumn15711518720000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddDownloadDateColumn15711518720000 = /** @class */ (function () {
+    function AddDownloadDateColumn15711518720000() {
+    }
+    AddDownloadDateColumn15711518720000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloadedDate VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'lang_code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddDownloadDateColumn15711518720000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddDownloadDateColumn15711518720000;
+}());
+
+//# sourceMappingURL=15711518720000-AddDownloadDateColumn.js.map
+
+/***/ }),
+
+/***/ 835:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedDateColumn15713974540000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddCompletedDateColumn15713974540000 = /** @class */ (function () {
+    function AddCompletedDateColumn15713974540000() {
+    }
+    AddCompletedDateColumn15713974540000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completedDate VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'lang_code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddCompletedDateColumn15713974540000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddCompletedDateColumn15713974540000;
+}());
+
+//# sourceMappingURL=15713974540000-AddCompletedDateColumn.js.map
+
+/***/ }),
+
+/***/ 836:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZipMapFields15783117210000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddZipMapFields15783117210000 = /** @class */ (function () {
+    function AddZipMapFields15783117210000() {
+    }
+    AddZipMapFields15783117210000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1, e_2, e_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_version VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'map_version' already exists");
+                        return [3 /*break*/, 3];
+                    case 3:
+                        _a.trys.push([3, 5, , 6]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_filename VARCHAR(50)")];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        e_2 = _a.sent();
+                        console.log("column 'map_filename' already exists");
+                        return [3 /*break*/, 6];
+                    case 6:
+                        _a.trys.push([6, 8, , 9]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_date VARCHAR(50)")];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        e_3 = _a.sent();
+                        console.log("column 'map_date' already exists");
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddZipMapFields15783117210000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddZipMapFields15783117210000;
+}());
+
+//# sourceMappingURL=15783117210000-AddZipMapFields.js.map
+
+/***/ }),
+
+/***/ 837:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSavedTasks16013795030000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddSavedTasks16013795030000 = /** @class */ (function () {
+    function AddSavedTasks16013795030000() {
+    }
+    AddSavedTasks16013795030000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD COLUMN tasks_saved VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'tasks_saved' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddSavedTasks16013795030000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddSavedTasks16013795030000;
+}());
+
+//# sourceMappingURL=16013795030000-AddSavedTasks.js.map
+
+/***/ }),
+
+/***/ 838:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSubtasks16026790930000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddSubtasks16026790930000 = /** @class */ (function () {
+    function AddSubtasks16026790930000() {
+    }
+    AddSubtasks16026790930000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN task_id INTEGER")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'task_id' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddSubtasks16026790930000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddSubtasks16026790930000;
+}());
+
+//# sourceMappingURL=16026790930000-AddSubtasks.js.map
+
+/***/ }),
+
+/***/ 839:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPositionField16194302450000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddPositionField16194302450000 = /** @class */ (function () {
+    function AddPositionField16194302450000() {
+    }
+    AddPositionField16194302450000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN position INTEGER")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'position' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddPositionField16194302450000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddPositionField16194302450000;
+}());
+
+//# sourceMappingURL=16194302450000-AddPositionField.js.map
+
+/***/ }),
+
+/***/ 840:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPathFields16208100470000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddPathFields16208100470000 = /** @class */ (function () {
+    function AddPathFields16208100470000() {
+    }
+    AddPathFields16208100470000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_geojson TEXT")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_info TEXT")];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log("columns 'path_geojson' and 'path_info' already exist");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddPathFields16208100470000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddPathFields16208100470000;
+}());
+
+//# sourceMappingURL=16208100470000-AddPathFields.js.map
+
+/***/ }),
+
+/***/ 841:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZoom16225449820000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddZoom16225449820000 = /** @class */ (function () {
+    function AddZoom16225449820000() {
+    }
+    AddZoom16225449820000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN min_zoom INTEGER ")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("columns 'min_zoom' already exist");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddZoom16225449820000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddZoom16225449820000;
+}());
+
+//# sourceMappingURL=16225449820000-AddZoom.js.map
+
+/***/ }),
+
+/***/ 842:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddForceSubtaskAndArLink16552845000000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddForceSubtaskAndArLink16552845000000 = /** @class */ (function () {
+    function AddForceSubtaskAndArLink16552845000000() {
+    }
+    AddForceSubtaskAndArLink16552845000000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_rel_route_task ADD COLUMN force_support_tasks INTEGER(1) ")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN ar_link VARCHAR ")];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log("columns 'force_support_tasks' and 'ar_link' already exist");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddForceSubtaskAndArLink16552845000000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddForceSubtaskAndArLink16552845000000;
+}());
+
+//# sourceMappingURL=16552845000000-AddForceSubtaskAndArLink.js.map
+
+/***/ }),
+
+/***/ 85:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12355,8 +12658,8 @@ var BaseService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Score__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Task2Route__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Score__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Task2Route__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(76);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -12888,6 +13191,43 @@ var Route = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 89:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
+/**
+ * Base class for API services
+ */
+var BaseService = /** @class */ (function () {
+    function BaseService(config, http) {
+        this.config = config;
+        this.http = http;
+    }
+    Object.defineProperty(BaseService.prototype, "rootUrl", {
+        /**
+         * Returns the root url for API operations. If not set directly in this
+         * service, will fallback to ApiConfiguration.rootUrl.
+         */
+        get: function () {
+            return this._rootUrl || this.config.rootUrl;
+        },
+        /**
+         * Sets the root URL for API operations in this service.
+         */
+        set: function (rootUrl) {
+            this._rootUrl = rootUrl;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return BaseService;
+}());
+
+//# sourceMappingURL=base-service.js.map
+
+/***/ }),
+
 /***/ 90:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12900,25 +13240,25 @@ var Route = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatAndSessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(403);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(404);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(405);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(445);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(446);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(409);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(950);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(951);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(410);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(447);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(448);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -13790,345 +14130,6 @@ var ChatAndSessionService = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=chat-and-session-service.js.map
-
-/***/ }),
-
-/***/ 950:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventsAddRequest; });
-var EventsAddRequest = /** @class */ (function () {
-    function EventsAddRequest() {
-    }
-    return EventsAddRequest;
-}());
-
-//# sourceMappingURL=events-add-request.js.map
-
-/***/ }),
-
-/***/ 951:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventAddRequest; });
-/* tslint:disable */
-var EventAddRequest = /** @class */ (function () {
-    function EventAddRequest() {
-    }
-    return EventAddRequest;
-}());
-
-//# sourceMappingURL=event-add-request.js.map
-
-/***/ }),
-
-/***/ 952:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": 412,
-	"./af.js": 412,
-	"./ar": 413,
-	"./ar-dz": 414,
-	"./ar-dz.js": 414,
-	"./ar-kw": 415,
-	"./ar-kw.js": 415,
-	"./ar-ly": 416,
-	"./ar-ly.js": 416,
-	"./ar-ma": 417,
-	"./ar-ma.js": 417,
-	"./ar-sa": 418,
-	"./ar-sa.js": 418,
-	"./ar-tn": 419,
-	"./ar-tn.js": 419,
-	"./ar.js": 413,
-	"./az": 420,
-	"./az.js": 420,
-	"./be": 421,
-	"./be.js": 421,
-	"./bg": 422,
-	"./bg.js": 422,
-	"./bm": 423,
-	"./bm.js": 423,
-	"./bn": 424,
-	"./bn-bd": 425,
-	"./bn-bd.js": 425,
-	"./bn.js": 424,
-	"./bo": 426,
-	"./bo.js": 426,
-	"./br": 427,
-	"./br.js": 427,
-	"./bs": 428,
-	"./bs.js": 428,
-	"./ca": 429,
-	"./ca.js": 429,
-	"./cs": 430,
-	"./cs.js": 430,
-	"./cv": 431,
-	"./cv.js": 431,
-	"./cy": 432,
-	"./cy.js": 432,
-	"./da": 433,
-	"./da.js": 433,
-	"./de": 434,
-	"./de-at": 435,
-	"./de-at.js": 435,
-	"./de-ch": 436,
-	"./de-ch.js": 436,
-	"./de.js": 434,
-	"./dv": 437,
-	"./dv.js": 437,
-	"./el": 438,
-	"./el.js": 438,
-	"./en-au": 439,
-	"./en-au.js": 439,
-	"./en-ca": 440,
-	"./en-ca.js": 440,
-	"./en-gb": 441,
-	"./en-gb.js": 441,
-	"./en-ie": 442,
-	"./en-ie.js": 442,
-	"./en-il": 443,
-	"./en-il.js": 443,
-	"./en-in": 444,
-	"./en-in.js": 444,
-	"./en-nz": 445,
-	"./en-nz.js": 445,
-	"./en-sg": 446,
-	"./en-sg.js": 446,
-	"./eo": 447,
-	"./eo.js": 447,
-	"./es": 448,
-	"./es-do": 449,
-	"./es-do.js": 449,
-	"./es-mx": 450,
-	"./es-mx.js": 450,
-	"./es-us": 451,
-	"./es-us.js": 451,
-	"./es.js": 448,
-	"./et": 452,
-	"./et.js": 452,
-	"./eu": 453,
-	"./eu.js": 453,
-	"./fa": 454,
-	"./fa.js": 454,
-	"./fi": 455,
-	"./fi.js": 455,
-	"./fil": 456,
-	"./fil.js": 456,
-	"./fo": 457,
-	"./fo.js": 457,
-	"./fr": 458,
-	"./fr-ca": 459,
-	"./fr-ca.js": 459,
-	"./fr-ch": 460,
-	"./fr-ch.js": 460,
-	"./fr.js": 458,
-	"./fy": 461,
-	"./fy.js": 461,
-	"./ga": 462,
-	"./ga.js": 462,
-	"./gd": 463,
-	"./gd.js": 463,
-	"./gl": 464,
-	"./gl.js": 464,
-	"./gom-deva": 465,
-	"./gom-deva.js": 465,
-	"./gom-latn": 466,
-	"./gom-latn.js": 466,
-	"./gu": 467,
-	"./gu.js": 467,
-	"./he": 468,
-	"./he.js": 468,
-	"./hi": 469,
-	"./hi.js": 469,
-	"./hr": 470,
-	"./hr.js": 470,
-	"./hu": 471,
-	"./hu.js": 471,
-	"./hy-am": 472,
-	"./hy-am.js": 472,
-	"./id": 473,
-	"./id.js": 473,
-	"./is": 474,
-	"./is.js": 474,
-	"./it": 475,
-	"./it-ch": 476,
-	"./it-ch.js": 476,
-	"./it.js": 475,
-	"./ja": 477,
-	"./ja.js": 477,
-	"./jv": 478,
-	"./jv.js": 478,
-	"./ka": 479,
-	"./ka.js": 479,
-	"./kk": 480,
-	"./kk.js": 480,
-	"./km": 481,
-	"./km.js": 481,
-	"./kn": 482,
-	"./kn.js": 482,
-	"./ko": 483,
-	"./ko.js": 483,
-	"./ku": 484,
-	"./ku.js": 484,
-	"./ky": 485,
-	"./ky.js": 485,
-	"./lb": 486,
-	"./lb.js": 486,
-	"./lo": 487,
-	"./lo.js": 487,
-	"./lt": 488,
-	"./lt.js": 488,
-	"./lv": 489,
-	"./lv.js": 489,
-	"./me": 490,
-	"./me.js": 490,
-	"./mi": 491,
-	"./mi.js": 491,
-	"./mk": 492,
-	"./mk.js": 492,
-	"./ml": 493,
-	"./ml.js": 493,
-	"./mn": 494,
-	"./mn.js": 494,
-	"./mr": 495,
-	"./mr.js": 495,
-	"./ms": 496,
-	"./ms-my": 497,
-	"./ms-my.js": 497,
-	"./ms.js": 496,
-	"./mt": 498,
-	"./mt.js": 498,
-	"./my": 499,
-	"./my.js": 499,
-	"./nb": 500,
-	"./nb.js": 500,
-	"./ne": 501,
-	"./ne.js": 501,
-	"./nl": 502,
-	"./nl-be": 503,
-	"./nl-be.js": 503,
-	"./nl.js": 502,
-	"./nn": 504,
-	"./nn.js": 504,
-	"./oc-lnc": 505,
-	"./oc-lnc.js": 505,
-	"./pa-in": 506,
-	"./pa-in.js": 506,
-	"./pl": 507,
-	"./pl.js": 507,
-	"./pt": 508,
-	"./pt-br": 509,
-	"./pt-br.js": 509,
-	"./pt.js": 508,
-	"./ro": 510,
-	"./ro.js": 510,
-	"./ru": 511,
-	"./ru.js": 511,
-	"./sd": 512,
-	"./sd.js": 512,
-	"./se": 513,
-	"./se.js": 513,
-	"./si": 514,
-	"./si.js": 514,
-	"./sk": 515,
-	"./sk.js": 515,
-	"./sl": 516,
-	"./sl.js": 516,
-	"./sq": 517,
-	"./sq.js": 517,
-	"./sr": 518,
-	"./sr-cyrl": 519,
-	"./sr-cyrl.js": 519,
-	"./sr.js": 518,
-	"./ss": 520,
-	"./ss.js": 520,
-	"./sv": 521,
-	"./sv.js": 521,
-	"./sw": 522,
-	"./sw.js": 522,
-	"./ta": 523,
-	"./ta.js": 523,
-	"./te": 524,
-	"./te.js": 524,
-	"./tet": 525,
-	"./tet.js": 525,
-	"./tg": 526,
-	"./tg.js": 526,
-	"./th": 527,
-	"./th.js": 527,
-	"./tk": 528,
-	"./tk.js": 528,
-	"./tl-ph": 529,
-	"./tl-ph.js": 529,
-	"./tlh": 530,
-	"./tlh.js": 530,
-	"./tr": 531,
-	"./tr.js": 531,
-	"./tzl": 532,
-	"./tzl.js": 532,
-	"./tzm": 533,
-	"./tzm-latn": 534,
-	"./tzm-latn.js": 534,
-	"./tzm.js": 533,
-	"./ug-cn": 535,
-	"./ug-cn.js": 535,
-	"./uk": 536,
-	"./uk.js": 536,
-	"./ur": 537,
-	"./ur.js": 537,
-	"./uz": 538,
-	"./uz-latn": 539,
-	"./uz-latn.js": 539,
-	"./uz.js": 538,
-	"./vi": 540,
-	"./vi.js": 540,
-	"./x-pseudo": 541,
-	"./x-pseudo.js": 541,
-	"./yo": 542,
-	"./yo.js": 542,
-	"./zh-cn": 543,
-	"./zh-cn.js": 543,
-	"./zh-hk": 544,
-	"./zh-hk.js": 544,
-	"./zh-mo": 545,
-	"./zh-mo.js": 545,
-	"./zh-tw": 546,
-	"./zh-tw.js": 546
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 952;
-
-/***/ }),
-
-/***/ 953:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecordStateEnum; });
-var RecordStateEnum;
-(function (RecordStateEnum) {
-    RecordStateEnum[RecordStateEnum["Idle"] = 1] = "Idle";
-    RecordStateEnum[RecordStateEnum["Record"] = 2] = "Record";
-    RecordStateEnum[RecordStateEnum["Stop"] = 3] = "Stop";
-})(RecordStateEnum || (RecordStateEnum = {}));
-//# sourceMappingURL=recordStateEnum.js.map
 
 /***/ })
 

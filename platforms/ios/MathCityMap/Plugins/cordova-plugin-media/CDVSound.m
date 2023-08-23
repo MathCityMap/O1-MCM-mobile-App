@@ -24,6 +24,7 @@
 #define HTTP_SCHEME_PREFIX @"http://"
 #define HTTPS_SCHEME_PREFIX @"https://"
 #define CDVFILE_PREFIX @"cdvfile://"
+#define FILE_PREFIX @"file://"
 
 @implementation CDVSound
 
@@ -70,6 +71,9 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
             resourceURL = [NSURL URLWithString:resourcePath];
         }
     } else {
+        if ([resourcePath hasPrefix:FILE_PREFIX]) { // Support file scheme
+            resourcePath = [resourcePath substringFromIndex:[FILE_PREFIX length]];
+        }
         // if resourcePath is not from FileSystem put in tmp dir, else attempt to use provided resource path
         NSString* tmpPath = [NSTemporaryDirectory()stringByStandardizingPath];
         BOOL isTmp = [resourcePath rangeOfString:tmpPath].location != NSNotFound;
@@ -114,6 +118,9 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
             resourceURL = [NSURL URLWithString:resourcePath];
         }
     } else {
+        if ([resourcePath hasPrefix:FILE_PREFIX]) { // Support file scheme
+            resourcePath = [resourcePath substringFromIndex:[FILE_PREFIX length]];
+        }
         // attempt to find file path in www directory or LocalFileSystem.TEMPORARY directory
         filePath = [self.commandDelegate pathForResource:resourcePath];
         if (filePath == nil) {
@@ -581,6 +588,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
 
         BOOL isPlaying = (avPlayer.rate > 0 && !avPlayer.error);
         BOOL isReadyToSeek = (avPlayer.status == AVPlayerStatusReadyToPlay) && (avPlayer.currentItem.status == AVPlayerItemStatusReadyToPlay);
+        float currentPlaybackRate = avPlayer.rate;
 
         // CB-10535:
         // When dealing with remote files, we can get into a situation where we start playing before AVPlayer has had the time to buffer the file to be played.
@@ -590,7 +598,11 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
                  toleranceBefore: kCMTimeZero
                   toleranceAfter: kCMTimeZero
                completionHandler: ^(BOOL finished) {
-                   if (isPlaying) [avPlayer play];
+                   if (isPlaying) {
+                       [avPlayer play];
+                       // [avPlayer play] sets the rate to 1, so we need to set it again after seeking
+                       [avPlayer setRate:currentPlaybackRate];
+                   };
                }];
         } else {
             NSString* errMsg = @"AVPlayerItem cannot service a seek request with a completion handler until its status is AVPlayerItemStatusReadyToPlay.";
@@ -621,6 +633,7 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
                 avPlayer = nil;
             }
             if (! keepAvAudioSessionAlwaysActive && self.avSession && ! [self isPlayingOrRecording]) {
+                [self.avSession setCategory:AVAudioSessionCategorySoloAmbient error:nil];
                 [self.avSession setActive:NO error:nil];
                 self.avSession = nil;
             }
@@ -645,6 +658,10 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
     if (avPlayer) {
        CMTime time = [avPlayer currentTime];
        position = CMTimeGetSeconds(time);
+    }
+
+    if (isnan(position)){
+        position = -1;
     }
 
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDouble:position];
@@ -833,6 +850,10 @@ BOOL keepAvAudioSessionAlwaysActive = NO;
 -(void)itemStalledPlaying:(NSNotification *) notification {
     // Will be called when playback stalls due to buffer empty
     NSLog(@"Stalled playback");
+    NSString* errMsg = @"stalled_playback";
+    NSString* mediaId = self.currMediaId;
+    [self onStatus:MEDIA_ERROR mediaId:mediaId param:
+     [self createAbortError:errMsg]];
 }
 
 - (void)onMemoryWarning

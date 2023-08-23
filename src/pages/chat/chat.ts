@@ -563,6 +563,7 @@ export class ChatPage {
         this.clearPositionInterval(message);
         if (this.audio) {
           this.audio.pause();
+          this.canPlayback = true;
         }
     }
 

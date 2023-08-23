@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="30113" id="de.uni_frankfurt.mathcitymap" ios-CFBundleVersion="1" version="3.1.10" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="30115" id="de.uni_frankfurt.mathcitymap" ios-CFBundleVersion="1" version="3.1.11" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="PhotoViewer">
+        <param name="android-package" value="com.sarriaroman.PhotoViewer.PhotoViewer" />
+    </feature>
     <feature name="JJzip">
         <param name="android-package" value="com.jjdltc.cordova.plugin.zip.JJzip" />
     </feature>
@@ -32,6 +35,9 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
     <feature name="Media">
         <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
     </feature>
@@ -51,11 +57,8 @@
     <feature name="SQLitePlugin">
         <param name="android-package" value="io.sqlc.SQLitePlugin" />
     </feature>
-    <feature name="PhotoViewer">
-        <param name="android-package" value="com.sarriaroman.PhotoViewer.PhotoViewer" />
-    </feature>
-    <feature name="LocalNotification">
-        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    <feature name="Badge">
+        <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
     </feature>
     <feature name="CDVIonicKeyboard">
         <param name="android-package" onload="true" value="io.ionic.keyboard.CDVIonicKeyboard" />
@@ -105,9 +108,6 @@
         <param name="android-package" value="cordova.plugins.Diagnostic_External_Storage" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="Badge">
-        <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
-    </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
@@ -154,8 +154,8 @@
     <preference name="ScrollEnabled" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="23" />
-    <preference name="android-targetSdkVersion" value="31" />
-    <preference name="android-compileSdkVersion" value="31" />
+    <preference name="android-targetSdkVersion" value="33" />
+    <preference name="android-compileSdkVersion" value="33" />
     <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />

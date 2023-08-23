@@ -67,14 +67,7 @@
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
-    "cordova-plugin-media": {
-      "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-safariviewcontroller": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-camera": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "com-sarriaroman-photoviewer": {
@@ -85,6 +78,13 @@
     },
     "cordova-plugin-badge": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-plugin-media": {
+      "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
+      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     }
   },
   "dependent_plugins": {

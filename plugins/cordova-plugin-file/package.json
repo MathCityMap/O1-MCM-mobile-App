@@ -1,28 +1,28 @@
 {
-  "_from": "cordova-plugin-file@^6.0.0",
-  "_id": "cordova-plugin-file@6.0.2",
+  "_from": "cordova-plugin-file@^8.0.0",
+  "_id": "cordova-plugin-file@8.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-m7cughw327CjONN/qjzsTpSesLaeybksQh420/gRuSXJX5Zt9NfgsSbqqKDon6jnQ9Mm7h7imgyO2uJ34XMBtA==",
+  "_integrity": "sha512-pgxCJtDjDKzyeqvrn0KnDubf9b1VLv+OyWTXjUR7T52o7oGDUkR3ubT89i/1ugHtRU6mY7XIGHD4drUByDQClw==",
   "_location": "/cordova-plugin-file",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-file@^6.0.0",
+    "raw": "cordova-plugin-file@^8.0.0",
     "name": "cordova-plugin-file",
     "escapedName": "cordova-plugin-file",
-    "rawSpec": "^6.0.0",
+    "rawSpec": "^8.0.0",
     "saveSpec": null,
-    "fetchSpec": "^6.0.0"
+    "fetchSpec": "^8.0.0"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-6.0.2.tgz",
-  "_shasum": "f3911479f8357e9aacb5576674f8d95b31a1fb20",
-  "_spec": "cordova-plugin-file@^6.0.0",
-  "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-8.0.0.tgz",
+  "_shasum": "e46fd696dabc3d8d79723caefa1804becd91356f",
+  "_spec": "cordova-plugin-file@^8.0.0",
+  "_where": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App",
   "author": {
     "name": "Apache Software Foundation"
   },
@@ -43,13 +43,7 @@
   "deprecated": false,
   "description": "Cordova File Plugin",
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-semistandard": "^11.0.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-node": "^5.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "@cordova/eslint-config": "^5.0.0"
   },
   "engines": {
     "cordovaDependencies": {
@@ -57,6 +51,12 @@
         "cordova-android": ">=6.3.0"
       },
       "7.0.0": {
+        "cordova-android": ">=10.0.0"
+      },
+      "8.0.0": {
+        "cordova-android": ">=12.0.0"
+      },
+      "9.0.0": {
         "cordova": ">100"
       }
     }
@@ -79,9 +79,9 @@
     "url": "git+https://github.com/apache/cordova-plugin-file.git"
   },
   "scripts": {
-    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint src && node node_modules/eslint/bin/eslint tests",
-    "test": "npm run eslint"
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
   "types": "./types/index.d.ts",
-  "version": "6.0.2"
+  "version": "8.0.0"
 }

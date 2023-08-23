@@ -21,11 +21,9 @@ description: Record and play audio on the device.
 #         under the License.
 -->
 
-|AppVeyor|Travis CI|
-|:-:|:-:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-media?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-media)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-media.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-media)|
-
 # cordova-plugin-media
+
+[![Android Testsuite](https://github.com/apache/cordova-plugin-media/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-media/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-media/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-media/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-media/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-media/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-media/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-media/actions/workflows/lint.yml)
 
 
 This plugin provides the ability to record and play back audio files on a device.
@@ -74,6 +72,8 @@ var media = new Media(src, mediaSuccess, [mediaError], [mediaStatus]);
 - __mediaError__: (Optional) The callback that executes if an error occurs. It takes an integer error code. _(Function)_
 
 - __mediaStatus__: (Optional) The callback that executes to indicate status changes. It takes a integer status code. _(Function)_
+
+- __mediaDurationUpdate__: (Optional) the callback that executes when the file's duration updates and is available. _(Function)_
 
 __NOTE__: `cdvfile` path is supported as `src` parameter:
 ```javascript
@@ -236,6 +236,10 @@ var timerDur = setInterval(function() {
     }
 }, 100);
 ```
+
+#### Android Quirk
+
+Newer versions of Android have aggressive routines that limit background processing. If you are trying to get the duration while your app is in the background longer than roughly 5 minutes, you will get more consistent results by using the [`mediaDurationUpdate` callback of the constructor](#parameters). 
 
 ## media.pause
 
@@ -658,6 +662,7 @@ Stops recording an audio file.
 ### Supported Platforms
 
 - iOS
+- Android (API 23+)
 
 ### Parameters
 

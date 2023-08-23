@@ -28,6 +28,8 @@ import android.provider.OpenableColumns;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import org.apache.cordova.CordovaPreferences;
 import org.apache.cordova.CordovaResourceApi;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,14 +38,15 @@ public class ContentFilesystem extends Filesystem {
 
     private final Context context;
 
-	public ContentFilesystem(Context context, CordovaResourceApi resourceApi) {
-		super(Uri.parse("content://"), "content", resourceApi);
+	public ContentFilesystem(Context context, CordovaResourceApi resourceApi, CordovaPreferences preferences) {
+		super(Uri.parse("content://"), "content", resourceApi, preferences);
         this.context = context;
 	}
 
     @Override
     public Uri toNativeUri(LocalFilesystemURL inputURL) {
-        String authorityAndPath = inputURL.uri.getEncodedPath().substring(this.name.length() + 2);
+        String encodedPath = inputURL.uri.getEncodedPath();
+        String authorityAndPath = encodedPath.substring(encodedPath.indexOf(this.name) + 1 + this.name.length() + 2);
         if (authorityAndPath.length() < 2) {
             return null;
         }
@@ -68,11 +71,9 @@ public class ContentFilesystem extends Filesystem {
         if (subPath.length() > 0) {
             subPath = subPath.substring(1);
         }
-        Uri.Builder b = new Uri.Builder()
-            .scheme(LocalFilesystemURL.FILESYSTEM_PROTOCOL)
-            .authority("localhost")
-            .path(name)
-            .appendPath(inputURL.getAuthority());
+
+        Uri.Builder b = createLocalUriBuilder().appendPath(inputURL.getAuthority());
+
         if (subPath.length() > 0) {
             b.appendEncodedPath(subPath);
         }
