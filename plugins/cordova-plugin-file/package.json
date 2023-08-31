@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-file@^8.0.0",
+  "_from": "cordova-plugin-file@8.0.0",
   "_id": "cordova-plugin-file@8.0.0",
   "_inBundle": false,
   "_integrity": "sha512-pgxCJtDjDKzyeqvrn0KnDubf9b1VLv+OyWTXjUR7T52o7oGDUkR3ubT89i/1ugHtRU6mY7XIGHD4drUByDQClw==",
   "_location": "/cordova-plugin-file",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-file@^8.0.0",
+    "raw": "cordova-plugin-file@8.0.0",
     "name": "cordova-plugin-file",
     "escapedName": "cordova-plugin-file",
-    "rawSpec": "^8.0.0",
+    "rawSpec": "8.0.0",
     "saveSpec": null,
-    "fetchSpec": "^8.0.0"
+    "fetchSpec": "8.0.0"
   },
   "_requiredBy": [
     "#DEV:/",
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-8.0.0.tgz",
   "_shasum": "e46fd696dabc3d8d79723caefa1804becd91356f",
-  "_spec": "cordova-plugin-file@^8.0.0",
+  "_spec": "cordova-plugin-file@8.0.0",
   "_where": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App",
   "author": {
     "name": "Apache Software Foundation"

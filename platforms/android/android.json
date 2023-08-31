@@ -17,9 +17,9 @@
                 "android:hardwareAccelerated": "true",
                 "android:icon": "@mipmap/ic_launcher",
                 "android:label": "@string/app_name",
-                "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
-                "android:usesCleartextTraffic": "true"
+                "android:usesCleartextTraffic": "true",
+                "android:requestLegacyExternalStorage": "true"
               }
             },
             {
@@ -31,7 +31,6 @@
                 "android:hardwareAccelerated": "true",
                 "android:icon": "@mipmap/ic_launcher",
                 "android:label": "@string/app_name",
-                "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
                 "android:usesCleartextTraffic": "true"
               }
@@ -44,7 +43,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 5
+              "count": 3
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",

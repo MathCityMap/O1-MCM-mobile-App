@@ -93,7 +93,7 @@
   "devDependencies": {
     "@ionic/app-scripts": "3.2.3",
     "com-sarriaroman-photoviewer": "file:plugin-src/com-sarriaroman-photoviewer",
-    "cordova-android": "^12.0.0",
+    "cordova-android": "^12.0.1",
     "cordova-ios": "^6.2.0",
     "cordova-plugin-badge": "file:plugin-src/cordova-plugin-badge",
     "cordova-plugin-camera": "git+https://github.com/jalios/cordova-plugin-camera.git",
@@ -140,7 +140,8 @@
       "cordova-plugin-camera": {
         "ANDROIDX_CORE_VERSION": "1.6.+"
       },
-      "cordova-plugin-media": {}
+      "cordova-plugin-media": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "ios",

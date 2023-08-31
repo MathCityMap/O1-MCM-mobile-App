@@ -823,7 +823,7 @@ var SafariViewController = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_js_levenshtein__ = __webpack_require__(1169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_js_levenshtein___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_js_levenshtein__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_in_app_browser__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_pipes_linkHttps_pipe__ = __webpack_require__(641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_pipes_linkHttps_pipe__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_safari_view_controller__ = __webpack_require__(1160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1729,7 +1729,10 @@ var TaskDetail = /** @class */ (function () {
                             var htmlElement = document.getElementById(answer_6.id);
                             htmlElement.classList.add('disabled');
                         }
-                        var regex = new RegExp('\\*\\*' + answer_6.id.replace(/\//g, '\\/') + '\\*\\*');
+                        var escapeRegExp = function (text) {
+                            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+                        };
+                        var regex = new RegExp('\\*\\*' + escapeRegExp(answer_6.id) + '\\*\\*');
                         var blankMatch = regex.exec(blankText);
                         blankText = blankText.replace(blankMatch[0], "<span class=\"blank " + (answer_6.solved ? 'correct' : 'false') + "\">" + answer_6.answer + "</span>");
                         detailSolutions.push(answer_6.answer);
