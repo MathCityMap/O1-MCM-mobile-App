@@ -28,6 +28,7 @@ page-task-detail {
         width: 100%;
         top: 0;
         left: 0;
+        min-height: 44vh;
         max-height: 88vh;
         img {
             width: 100%;
@@ -200,7 +201,23 @@ page-task-detail {
             border-color: color($colors, grey);
             box-shadow: none;
             p {
-                color: color($colors, grey);
+                margin: 0;
+                font-size: 90%;
+                line-height: 1.33;
+                color: color($colors, greygrey);
+            }
+
+            .feedback{
+                margin-top: 20px;
+                border-top: 2px dotted #a6a6a6;
+                padding-top: 20px;
+                .label{
+                    &:after {
+                        content: url("../assets/icons/arrow-r.svg");
+                        width: 16px;
+                        height: auto;
+                    }
+                }
             }
         }
 
@@ -328,6 +345,7 @@ page-task-detail {
             }
         }
     }
+
     .fraction-input-container {
         input{
             text-align: center;
