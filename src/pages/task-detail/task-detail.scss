@@ -202,7 +202,6 @@ page-task-detail {
             box-shadow: none;
             p {
                 margin: 0;
-                font-size: 90%;
                 line-height: 1.33;
                 color: color($colors, greygrey);
             }
@@ -212,6 +211,8 @@ page-task-detail {
                 border-top: 2px dotted #a6a6a6;
                 padding-top: 20px;
                 .label{
+                    display: flex;
+                    justify-content: space-between;
                     &:after {
                         content: url("../assets/icons/arrow-r.svg");
                         width: 16px;

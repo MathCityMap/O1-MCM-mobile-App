@@ -1,7 +1,8 @@
 <div class="modal card has-button-on-the-edge">
     <div class="modal-content">
-        <h2>WIP: REPORT PROBLEM</h2>
-        <p>WIP: PLEASE REPORT THE PROBLEM</p>
+        <h2>{{ 'a_task_popup_title' | translate }}</h2>
+        <p>{{ 'a_task_popup_text' | translate }}</p>
+        <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>
         <ion-item>
             <ion-select multiple="true" interface="popover">
                 <ion-option value="test1">test1</ion-option>
@@ -9,11 +10,15 @@
                 <ion-option value="test3">test3</ion-option>
             </ion-select>
         </ion-item>
+        <ion-label>{{ "a_task_popup_information" | translate }}</ion-label>
         <ion-item>
             <ion-input #input
                        type="text">
             </ion-input>
         </ion-item>
+        <button ion-button clear icon-only round end>
+            <ion-icon name="md-camera"></ion-icon>
+        </button>
         <span *ngIf="showError">
             {{ 'a_private_route_failed' | translate }}
         </span>
@@ -21,6 +26,6 @@
 
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>
-        <button ion-button small round >WIP: SEND</button>
+        <button ion-button small round >{{ "a_task_popup_send" | translate }}</button>
     </div>
 </div>

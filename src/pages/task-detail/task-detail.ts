@@ -2333,8 +2333,8 @@ export class TaskDetail {
         };
         const confirmationModal = this.modalCtrl.create(MCMIconModal, {
             type: 'text',
-            title: "Are you sure?",
-            message: "testMessage",
+            title: "a_task_feedback_alert_title",
+            message: "a_task_feedback_alert_text",
             modalType: MCMModalType.general,
             narrativeEnabled: this.route.isNarrativeEnabled(),
             narrative: this.app.activeNarrative,
@@ -2346,7 +2346,7 @@ export class TaskDetail {
                     }
                 },
                 {
-                    title: 'gogogo',
+                    title: 'a_alert_continue',
                     callback: () => {
                         feedbackOpenFunction();
                         confirmationModal.dismiss();
