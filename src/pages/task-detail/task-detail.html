@@ -254,7 +254,7 @@
             <p>
                 {{task.author}}
             </p>
-            <div class="feedback">
+            <div class="feedback" (click)="reportProblem()">
                 <ion-label>{{ "a_task_feedback_label" | translate }}</ion-label>
                 <p>{{ "a_task_feedback_introduction" | translate }}</p>
             </div>

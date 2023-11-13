@@ -1,4 +1,4 @@
-<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'no-icon' : modalType == 4 || modalType == 8, 'hint': modalType == 1,'failed': modalType == 2, 'perfect': modalType == 3, 'good': modalType == 5}">
+<div class="modal card icon has-button-on-the-edge" [ngClass]="{'no-icon': type != 'image', 'no-icon' : modalType == 4 || modalType == 8 || modalType == 9, 'hint': modalType == 1,'failed': modalType == 2, 'perfect': modalType == 3, 'good': modalType == 5}">
 
      <div class="modal-content" *ngIf="modalType != 4">
         <img class="head-icon" *ngIf="modalType == 1 && type != 'image' && type != 'video'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>
@@ -10,7 +10,7 @@
         <h2>{{title | translate}}</h2>
 
         <!-- image hint -->
-        <mcm-image *ngIf=" type == 'image' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
+        <mcm-image *ngIf="type == 'image'" [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
 
         <!-- video hint -->
         <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>
@@ -18,17 +18,16 @@
          <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != '0'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>
 
         <!-- text hint -->
-        <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
+        <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7 || modalType == 9" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>
     <div class="modal-content" *ngIf="modalType == 4">
-        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/modal-rating-perfect.svg"/>
         <h2>{{title | translate}}</h2>
 
-        <!-- image hint -->
+        <!-- image -->
         <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
 
-        <!-- text hint --><p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>
+        <!-- text --><p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>
 
     </div>
 
