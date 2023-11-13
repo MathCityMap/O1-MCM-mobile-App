@@ -1,0 +1,26 @@
+<div class="modal card has-button-on-the-edge">
+    <div class="modal-content">
+        <h2>WIP: REPORT PROBLEM</h2>
+        <p>WIP: PLEASE REPORT THE PROBLEM</p>
+        <ion-item>
+            <ion-select multiple="true" interface="popover">
+                <ion-option value="test1">test1</ion-option>
+                <ion-option value="test2">test2</ion-option>
+                <ion-option value="test3">test3</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-input #input
+                       type="text">
+            </ion-input>
+        </ion-item>
+        <span *ngIf="showError">
+            {{ 'a_private_route_failed' | translate }}
+        </span>
+    </div>
+
+    <div class="on-the-edge-container">
+        <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>
+        <button ion-button small round >WIP: SEND</button>
+    </div>
+</div>
