@@ -162,14 +162,17 @@ page-task-detail, page-task-group-detail {
             }
             .tag {
                 flex: none;
-                border-width: 1px;
-                border-color: #B2B2B2;
-                border-radius: 12px;
-                height: 24px;
+                border-width: 0;
+                border-radius: 50px;
+                height: 34px;
                 padding: 0 12px;
-                color: #B2B2B2;
+                background-color: color($colors, light-grey);
                 &.score {
                     border-style: solid;
+                    letter-spacing: 0;
+                    &:after{
+                        //opacity: 0.22;
+                    }
                 }
                 &.arLink {
                     flex: 1;
@@ -366,6 +369,98 @@ page-task-detail, page-task-group-detail {
         }
     }
 }
+
+
+
+page-task-group-detail {
+    .task-content {
+    }
+    .card {
+        z-index: 2;
+        &.task {
+            p {
+                margin-bottom: 4px;
+            }
+        }
+
+        $space-push: 34px;
+
+        &.task-list{
+            &-head{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: -#{$space-push};
+                padding-bottom: $space-push;
+                background-color: color($colors, light-grey-tint);
+                & > *{
+                    margin: 0;
+                }
+                .count{
+                    font-family: 'NunitoExtraBold', Arial, sans-serif;
+                    color: color($colors, dark);
+                    margin-right: 8px;
+                    font-size: 106%;
+                }
+            }
+            .task-list-item{
+                &:not(:first-of-type){
+                    padding-top: $global-base-padding;
+                    border-top: 2px dotted color($colors, light-grey);
+                    margin-top: $global-base-padding;
+                }
+                &.detail-box{
+                    padding: 0;
+                    .image-container{
+                        $circle-size: 15vw;
+                        width: $circle-size;
+                        height: $circle-size;
+                    }
+                    .text-container{
+                        h2{
+                            color: color($colors, dark);
+                        }
+                    }
+                    .score{
+                        flex: none;
+                        border-width: 1px;
+                        border-radius: 50px;
+                        height: 30px;
+                        padding: 0 12px;
+                        color: color($colors, dark);
+                        background-color: color($colors, light-grey);
+                        margin: 0 0 0 4px;
+                        &:after{
+                            transform: scale(0.8) translateY(5%);
+                        }
+                    }
+                }
+            }
+            &-evaluation{
+                background-color: color($colors, primary);
+                margin: -#{$space-push} $global-base-padding $global-base-padding;
+                padding: $space-push $global-base-padding $global-base-padding;
+                .score{
+                    height: 34px;
+                    padding: 10px 12px;
+                    border-radius: 50px;
+                    border-color: color($colors, primary);
+                    color: color($colors, primary);
+                    &:after{
+                        filter: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
 
 .mcm-keyboard-open{
     .scroll-content{

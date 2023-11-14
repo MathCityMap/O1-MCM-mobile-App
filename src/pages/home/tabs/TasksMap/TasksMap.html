@@ -80,15 +80,15 @@
             </div>
             <div class="text-container" *ngIf="state.selectedTask">
                 <div class="segmented-box">
-                    <div class="title segement">
+                    <div class="title segment">
                         <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</span>
                         <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>
                     </div>
                 </div>
                 <div class="segmented-box bottom">
                     <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
-                    <!--<span class="segement">??? {{ "a_g_max_points" | translate }}</span>-->
-                    <div class="segement buttons">
+                    <!--<span class="segment">??? {{ "a_g_max_points" | translate }}</span>-->
+                    <div class="segment buttons">
                         <div class="text-right">
                             <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{ 'a_alert_show_task' | translate }}</button>
                         </div>

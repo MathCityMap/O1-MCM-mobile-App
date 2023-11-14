@@ -571,7 +571,11 @@ ion-list:not(.vector-input-list){
     justify-content: center;
     flex: none;
     &:after{
+        //content: url("../assets/icons/score.svg");
+        //filter: brightness(0);
         content: ' MP';
+        margin-left: 2px;
+        transform: scale(0.8) translateY(5%);
     }
     &.in-icon-modal {
         display: block!important;
@@ -700,7 +704,7 @@ ion-list:not(.vector-input-list){
             &:not(:first-child){
                 margin-top: 2px;
             }
-            .segement{
+            .segment{
                 flex: 1;
                 &.title{
                     overflow: hidden;
