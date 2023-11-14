@@ -1,0 +1,24 @@
+<mcm-header></mcm-header>
+<ion-content no-bounce class="has-header padding bottom">
+    <div class="task-header">
+<!--        <img class="image" [src]="task.getImageURL()" />-->
+        <img class="image" src="https://arbordayblog.org/wp-content/uploads/2018/08/park-trees-iStock-530485146.jpg" />
+    </div>
+    <div class="task-content">
+        <div class="transition"></div>
+
+        <div class="card task">
+            <div class="head">
+                <ion-label>{{ "a_title_activity_task_view" | translate }}</ion-label>
+            </div>
+            <p>task.description</p>
+        </div>
+
+        <div class="card secondary">
+            <ion-label>{{ "author" | translate }}</ion-label>
+            <p>
+                task.author
+            </p>
+        </div>
+    </div>
+</ion-content>
