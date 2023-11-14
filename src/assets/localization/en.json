@@ -1322,6 +1322,7 @@
     "a_task_popup_title": "Task Feedback",
     "a_task_popup_text": "Enter your feedback for this task",
     "a_task_popup_reason": "Reason",
+    "a_task_popup_image": "Image",
     "a_task_popup_information": "Additional information",
     "a_task_popup_send": "Send"
 }

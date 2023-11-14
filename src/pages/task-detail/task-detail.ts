@@ -2340,7 +2340,7 @@ export class TaskDetail {
             narrative: this.app.activeNarrative,
             buttons: [
                 {
-                    title: 'a_alert_close',
+                    title: 'a_alert_cancel',
                     callback: () => {
                         confirmationModal.dismiss();
                     }
