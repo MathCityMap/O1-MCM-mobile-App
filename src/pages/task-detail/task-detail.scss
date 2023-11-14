@@ -392,6 +392,7 @@ page-task-group-detail {
                 justify-content: space-between;
                 margin-bottom: -#{$space-push};
                 padding-bottom: $space-push;
+                padding-top: 24px;
                 background-color: color($colors, light-grey-tint);
                 & > *{
                     margin: 0;
@@ -444,6 +445,7 @@ page-task-group-detail {
                     height: 34px;
                     padding: 10px 12px;
                     border-radius: 50px;
+                    border-width: 1px;
                     border-color: color($colors, primary);
                     color: color($colors, primary);
                     &:after{
@@ -451,6 +453,9 @@ page-task-group-detail {
                     }
                 }
             }
+        }
+        &.skip{
+            padding: $global-base-padding $global-base-padding 0;
         }
     }
 }
