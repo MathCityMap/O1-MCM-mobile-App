@@ -76,6 +76,7 @@ export class TasksMap implements OnInit, OnDestroy {
     taskDonePerfectIcon;
     taskFailedIcon;
     taskSavedIcon;
+    taskGroupIcon;
 
     userPositionIcon;
     userPositionArrow;
@@ -117,18 +118,6 @@ export class TasksMap implements OnInit, OnDestroy {
     private app: MyApp,
     private helper: Helper
   ) {
-
-      /*this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-      this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-      this.taskOpenIcon.clusterColor = '#036D99';
-      this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-      this.taskSkippedIcon.clusterColor = '#B2B2B2';
-      this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-      this.taskDoneIcon.clusterColor = '#F3B100';
-      this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-      this.taskDonePerfectIcon.clusterColor = '#4CAF50';
-      this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-      this.taskFailedIcon.clusterColor = '#E62B25';*/
       this.chatAndSessionService.init();
       this.events.subscribe('user:kicked', (user) => {
           if(user == 'self'){
@@ -1096,12 +1085,13 @@ export class TasksMap implements OnInit, OnDestroy {
             default:
                 this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
                 this.userPositionArrow = L.icon({iconUrl:"./assets/icons/userDirection.png" , iconSize: [36, 36], iconAnchor: [18, 18], className:'marker userArrow'});
-                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/marker-task-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/marker-task-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-                this.taskSavedIcon = L.icon({iconUrl:'assets/icons/marker-task-saved.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/marker-task-good.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/marker-task-perfect.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/marker-task-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
+                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/map/task-open.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
+                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/map/task-skipped.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
+                this.taskSavedIcon = L.icon({iconUrl:'assets/icons/map/task-saved.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
+                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/map/task-good.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
+                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/map/task-perfect.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
+                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/map/task-failed.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
+                this.taskGroupIcon = L.icon({iconUrl:'assets/icons/map/task-group-open.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
                 this.taskOpenIcon.clusterColor = '#036D99';
                 this.taskSkippedIcon.clusterColor = '#B2B2B2';
                 this.taskSavedIcon.clusterColor = '#6E38B9';
