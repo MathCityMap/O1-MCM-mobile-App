@@ -700,6 +700,16 @@ ion-list:not(.vector-input-list){
             align-items: stretch;
             &.bottom{
                 align-items: center;
+                .count{
+                    display: flex;
+                    align-items: center;
+                    color: color($colors, greygrey);
+                    &:before{
+                        content: url("../assets/icons/finished.svg");
+                        @include size(12px);
+                        margin: 0 8px 0 12px;
+                    }
+                }
             }
             &:not(:first-child){
                 margin-top: 2px;
@@ -711,7 +721,7 @@ ion-list:not(.vector-input-list){
                     padding-right: 10px;
                 }
                 ion-label, ion-label.label-ios, ion-label.label-md{
-                    margin-bottom: 0px;
+                    margin-bottom: 0;
                     span{
                         display: inline-block;
                     }

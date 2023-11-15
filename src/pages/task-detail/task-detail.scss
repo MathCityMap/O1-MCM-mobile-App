@@ -429,6 +429,15 @@ page-task-group-detail {
                             }
                         }
                     }
+                    &.#{nth(map-keys($ratings), 1)}{
+                        .image-container {
+                            .cover {
+                                &:after {
+                                    padding-left: 25%;
+                                }
+                            }
+                        }
+                    }
 
                     .image-container{
                         $circle-size: 14vw;
