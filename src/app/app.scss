@@ -570,6 +570,7 @@ ion-list:not(.vector-input-list){
     align-items: center;
     justify-content: center;
     flex: none;
+    font-family: 'NunitoExtrabold', Arial, sans-serif;
     &:after{
         //content: url("../assets/icons/score.svg");
         //filter: brightness(0);
@@ -600,7 +601,6 @@ ion-list:not(.vector-input-list){
         box-sizing: border-box;
         overflow: hidden;
         background: no-repeat center/50% url("../assets/icons/placeholder.svg") color($colors, light-grey);
-        @include box-shadow(0.2);
         &:before {
             content: '';
             display: block;
