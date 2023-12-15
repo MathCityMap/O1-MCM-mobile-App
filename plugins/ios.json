@@ -83,11 +83,11 @@
     "cordova-plugin-wkwebview-inject-cookie": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova.plugins.diagnostic": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     }
   },
   "dependent_plugins": {

@@ -83,7 +83,8 @@ export abstract class DBC {
             "visible",
             "task_id",
             "position",
-            "ar_link"
+            "ar_link",
+            "code"
         ],
         [
             "INTEGER",
@@ -112,6 +113,7 @@ export abstract class DBC {
             "INTEGER",
             "INTEGER",
             "INTEGER",
+            "VARCHAR",
             "VARCHAR"
         ],
         [
@@ -139,6 +141,7 @@ export abstract class DBC {
             "NOT NULL",
             "(2)",
             "(1) NOT NULL DEFAULT 1",
+            "",
             "",
             "",
             ""

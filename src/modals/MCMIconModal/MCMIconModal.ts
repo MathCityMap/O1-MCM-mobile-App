@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { MCMModalType } from '../../app/app.component';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { Platform } from 'ionic-angular';
+import {ModalController, Platform} from 'ionic-angular';
 import { ImagesService } from '../../services/images-service';
+import {MCMReportProblemModal} from "../MCMReportProblemModal/MCMReportProblemModal";
 
 
 @Component({
@@ -28,12 +29,13 @@ export class MCMIconModal{
     score: string;
     narrative: string;
     iconPath: string;
+    taskCode: string;
 
     windowWith: number;
     videoWith: number;
     videoHeight: number;
 
-    constructor(params: NavParams, private viewCtrl: ViewController, platform: Platform, public imagesService: ImagesService) {
+    constructor(params: NavParams, private viewCtrl: ViewController, platform: Platform, public imagesService: ImagesService, public modalCtrl: ModalController) {
         this.windowWith = platform.width();
         this.videoWith = this.windowWith - 80;
         this.videoHeight = this.videoWith * 0.7476923077;
@@ -68,6 +70,7 @@ export class MCMIconModal{
             this.taskDescription = params.data.taskDescription;
             this.message = params.data.message;
             this.messages = params.data.messages;
+            this.taskCode = params.data.taskCode;
             this.imageUrl = params.data.imageUrl;
             this.type = params.data.type;
             if (this.type == 'video' && this.message) {
@@ -143,4 +146,37 @@ export class MCMIconModal{
         }
     }
 
+    reportProblem() {
+        const feedbackOpenFunction = () => {
+            const problemReportModal = this.modalCtrl.create(MCMReportProblemModal, {
+                taskCode: this.taskCode
+            });
+            problemReportModal.present();
+        };
+        const confirmationModal = this.modalCtrl.create(MCMIconModal, {
+            type: 'text',
+            title: "a_task_feedback_alert_title",
+            message: "a_task_feedback_alert_text",
+            modalType: MCMModalType.general,
+            buttons: [
+                {
+                    title: 'a_alert_cancel',
+                    callback: () => {
+                        confirmationModal.dismiss();
+                    }
+                },
+                {
+                    title: 'a_alert_continue',
+                    callback: () => {
+                        feedbackOpenFunction();
+                        confirmationModal.dismiss();
+                    }
+                }
+            ]
+
+        }, {showBackdrop: true, enableBackdropDismiss: true});
+        confirmationModal.present();
+    }
+
+    protected readonly MCMModalType = MCMModalType;
 }

@@ -172,8 +172,8 @@
   },
   "cordova-sqlite-storage": {
     "source": {
-      "type": "registry",
-      "id": "cordova-sqlite-storage@6"
+      "type": "local",
+      "path": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/node_modules/cordova-sqlite-storage"
     },
     "is_top_level": true,
     "variables": {}

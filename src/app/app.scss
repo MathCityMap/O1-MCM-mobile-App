@@ -1248,6 +1248,12 @@ ion-modal {
                     .image-file{
                         flex-basis: 100%;
                         margin: 8px 0;
+                        img {
+                            max-height: 100px;
+                            max-width: 50%;
+                            margin: auto;
+                            border-radius: 5px;
+                        }
                     }
                     .button{
                         &.remove{

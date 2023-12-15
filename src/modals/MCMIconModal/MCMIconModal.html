@@ -28,12 +28,12 @@
 
     </div>
 
-    <div class="modal-content" *ngIf="modalType == 4">
+    <div class="modal-content" *ngIf="modalType == MCMModalType.sampleSolution">
         <h2>{{title | translate}}</h2>
         <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
         <p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>
 
-        <div class="feedback">
+        <div class="feedback" (click)="reportProblem()">
             <ion-label>{{ "a_task_feedback_label" | translate }}</ion-label>
             <p>{{ "a_task_feedback_introduction" | translate }}</p>
         </div>

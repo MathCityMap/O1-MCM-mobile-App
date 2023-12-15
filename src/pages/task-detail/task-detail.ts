@@ -1007,6 +1007,7 @@ export class TaskDetail {
             title: 't_samplesolution',
             imageUrl: this.task.getSolutionSampleImgSrc(),
             messages: messages,
+            taskCode: this.task.code,
             modalType: MCMModalType.sampleSolution,
             narrativeEnabled: this.route.isNarrativeEnabled(),
             narrative: this.app.activeNarrative,
@@ -2327,7 +2328,7 @@ export class TaskDetail {
     reportProblem() {
         const feedbackOpenFunction = () => {
             const problemReportModal = this.modalCtrl.create(MCMReportProblemModal, {
-                taskCode: this.task.id
+                taskCode: this.task.code
             });
             problemReportModal.present();
         };

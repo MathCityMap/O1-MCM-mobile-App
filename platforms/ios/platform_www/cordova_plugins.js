@@ -482,14 +482,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-sqlite-storage.SQLitePlugin",
-      "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
-      "pluginId": "cordova-sqlite-storage",
-      "clobbers": [
-        "SQLitePlugin"
-      ]
-    },
-    {
       "id": "cordova.plugins.diagnostic.Diagnostic",
       "file": "plugins/cordova.plugins.diagnostic/www/ios/diagnostic.js",
       "pluginId": "cordova.plugins.diagnostic",
@@ -582,6 +574,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/es6-promise-plugin/www/promise.js",
       "pluginId": "es6-promise-plugin",
       "runs": true
+    },
+    {
+      "id": "cordova-sqlite-storage.SQLitePlugin",
+      "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+      "pluginId": "cordova-sqlite-storage",
+      "clobbers": [
+        "SQLitePlugin"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -610,8 +610,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
-    "cordova-sqlite-storage": "6.0.0",
     "cordova.plugins.diagnostic": "6.0.4",
-    "es6-promise-plugin": "4.2.2"
+    "es6-promise-plugin": "4.2.2",
+    "cordova-sqlite-storage": "5.1.0"
   };
 });
