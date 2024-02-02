@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1158:
+/***/ 1153:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -525,7 +525,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1170:
+/***/ 1167:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -548,23 +548,23 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__ = __webpack_require__(1165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient__ = __webpack_require__(1171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient__ = __webpack_require__(1168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_conic_gradient__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_images_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_app_component__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(646);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(645);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_chat_and_session_service__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(648);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1137,7 +1137,7 @@ var TasksMap = /** @class */ (function () {
                             var icon = this_1.taskOpenIcon;
                             if (task.taskFormat === __WEBPACK_IMPORTED_MODULE_8__entity_Task__["b" /* TaskFormat */].GROUP) {
                                 // TODO add proper Logic for task Icon
-                                icon = this_1.taskSavedIcon;
+                                icon = this_1.getMarkerForGroup(task);
                             }
                             else {
                                 var removeTaskFromSkippedArray = true;
@@ -1584,7 +1584,7 @@ var TasksMap = /** @class */ (function () {
                 console.debug('taskId', taskId);
                 that = this;
                 if (taskFormat === __WEBPACK_IMPORTED_MODULE_8__entity_Task__["b" /* TaskFormat */].GROUP) {
-                    this.navCtrl.push('TaskDetail', {
+                    this.navCtrl.push('TaskGroupDetail', {
                         taskId: taskId,
                         headerTitle: taskName,
                         routeId: this.routeId,
@@ -1828,6 +1828,69 @@ var TasksMap = /** @class */ (function () {
                 break;
         }
     };
+    TasksMap.prototype.getMarkerForGroup = function (group) {
+        var _this = this;
+        //Circle Generation done using https://codepen.io/wmetz/pen/ONoRmV as reference
+        var polarToCartesian = function (centerX, centerY, radius, angleInDegrees) {
+            var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+            return {
+                x: centerX + (radius * Math.cos(angleInRadians)),
+                y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        };
+        var describeArc = function (x, y, radius, startAngle, endAngle) {
+            var start = polarToCartesian(x, y, radius, endAngle), end = polarToCartesian(x, y, radius, startAngle), arcSweep = endAngle - startAngle <= 180 ? '0' : '1', d = [
+                'M', start.x, start.y,
+                'A', radius, radius, 0, arcSweep, 0, end.x, end.y
+            ].join(' ');
+            return d;
+        };
+        var getClassStringForSubtask = function (task) {
+            if (_this.score.getTasksSaved().indexOf(task.id) > -1) {
+                return "saved";
+            }
+            if (_this.score.getTasksSolved().indexOf(task.id) > -1) {
+                return "solved";
+            }
+            if (_this.score.getTasksSolvedLow().indexOf(task.id) > -1) {
+                return "solved-low";
+            }
+            if (_this.score.getTasksFailed().indexOf(task.id) > -1) {
+                return "failed";
+            }
+            if (_this.state.skippedTaskIds.indexOf(task.id) > -1) {
+                return "skipped";
+            }
+            return "";
+        };
+        var subtasks = group.getSubtasksInOrder();
+        var svg = "<svg viewBox=\"0 0 37 51.024\" xmlns=\"http://www.w3.org/2000/svg\">\n                            <defs>\n                                <style>\n                                    .cls-1 {\n                                        fill: #036d99;\n                                    }\n                                    .cls-3 {\n                                        filter: url(#Pfad_177)\n                                    }\n                                    #segmented-circle {\n                                        stroke: rgb(255, 255, 255);\n                                        stroke-width: 35;\n                                        fill: none;\n                                    }\n                                    .saved {\n                                        stroke: #6e38b9\n                                    }\n                                    .solved {\n                                        stroke: #08bb27\n                                    }\n                                    .solved-low {\n                                        stroke: #f3b100\n                                    }\n                                    .failed {\n                                        stroke: #f35800;\n                                    }\n                                    .skipped {\n                                        stroke: #b2b2b2\n                                    }\n                                </style>\n                                <filter id=\"Pfad_177\" x=\"0\" y=\"0\" width=\"37\" height=\"51.024\" filterUnits=\"userSpaceOnUse\">\n                                    <feOffset dy=\"1\" input=\"SourceAlpha\"/>\n                                    <feGaussianBlur stdDeviation=\"0.5\" result=\"blur\"/>\n                                    <feFlood flood-opacity=\"0.549\"/>\n                                    <feComposite operator=\"in\" in2=\"blur\"/>\n                                    <feComposite in=\"SourceGraphic\" in2=\"SourceGraphic\"/>\n                                </filter>\n                            </defs>\n                            <g transform=\"translate(1.5 0.5)\">\n                                <g class=\"cls-3\" transform=\"matrix(1, 0, 0, 1, -1.5, -0.5)\" style=\"\">\n                                    <path  class=\"cls-1\" d=\"M-717.081,1567.17c-8.481,0-17.066,6-17.066,17.481,0,5.182,2.562,11.775,7.615,19.594a99.025,99.025,0,0,0,7.408,10.014,2.7,2.7,0,0,0,2.038.935h.005a2.7,2.7,0,0,0,2.037-.927,94.877,94.877,0,0,0,7.35-9.921c5.008-7.774,7.547-14.4,7.547-19.694C-700.147,1574.358-707.11,1567.17-717.081,1567.17Z\" transform=\"translate(735.65 -1566.67)\"></path>\n                                </g>\n                                <text style=\"white-space: pre; fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 18px;\" x=\"12\" y=\"23\">" + subtasks.length + "</text>\n                                <g id=\"segmented-circle\" class=\"circle-container\" transform=\"matrix(0.088463, 0, 0, 0.088463, -29, -5)\">\n<!--                                    <path d=\"M 520.42 114.166 C 473.976 114.166 431.059 138.944 407.837 179.166\"></path>-->\n<!--                                    <path class=\"skipped\" d=\"M 407.837 179.166 C 384.615 219.388 384.615 268.944 407.837 309.166\"></path>-->\n<!--                                    <path class=\"solved-low\" d=\"M 407.837 309.166 C 431.059 349.388 473.976 374.166 520.42 374.166\"></path>-->\n<!--                                    <path class=\"saved\" d=\"M 520.42 374.166 C 566.865 374.166 609.781 349.388 633.003 309.166\"></path>-->\n<!--                                    <path class=\"solved\" d=\"M 633.003 309.166 C 656.226 268.944 656.226 219.388 633.003 179.166\"></path>-->\n<!--                                    <path class=\"failed\" d=\"M 633.003 179.166 C 609.781 138.944 566.865 114.166 520.42 114.166\"></path>-->\n                                </g>\n                            </g>\n                        </svg>";
+        var div = document.createElement('div');
+        div.classList.add("group-marker");
+        div.innerHTML = svg;
+        var segmentLength = 360 / subtasks.length;
+        var prevStartAngle = 0;
+        var prevEndAngle = 0;
+        var segment = "";
+        if (subtasks.length === 1) {
+            segment = "<circle cx=\"520\" cy=\"244\" r=\"130\" class=\"" + getClassStringForSubtask(subtasks[0]) + "\"/>";
+        }
+        else {
+            for (var i = 1; i <= subtasks.length; i++) {
+                prevStartAngle = prevEndAngle;
+                prevEndAngle = segmentLength * i;
+                segment += "<path class=\"" + getClassStringForSubtask(subtasks[i - 1]) + "\" d=\"" + describeArc(520, 244, 130, prevStartAngle, prevEndAngle) + "\"/>";
+            }
+        }
+        var circleContainer = div.getElementsByClassName('circle-container')[0];
+        circleContainer.innerHTML = segment;
+        return new __WEBPACK_IMPORTED_MODULE_2_leaflet__["DivIcon"]({
+            html: div.outerHTML,
+            iconSize: [34, 48],
+            iconAnchor: [17, 43],
+            className: 'marker'
+        });
+    };
     TasksMap.prototype.getSolvedSubtaskCount = function (task) {
         var count = 0;
         for (var _i = 0, _a = task.getLegitSubtasks(); _i < _a.length; _i++) {
@@ -1872,7 +1935,7 @@ var TasksMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1171:
+/***/ 1168:
 /***/ (function(module, exports) {
 
 /**

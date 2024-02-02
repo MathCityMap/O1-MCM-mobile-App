@@ -367,8 +367,8 @@ export class Task {
 
     getSubtasksInOrder(): Array<Task> {
         return this.getLegitSubtasks().sort((a, b) => {
-            if (a.position > b.position) return 1;
-            if (a.position < b.position) return -1;
+            if (a.positionInParent > b.positionInParent) return 1;
+            if (a.positionInParent < b.positionInParent) return -1;
             return 0;
         })
     }

@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 1159:
+/***/ 1160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1161);
@@ -32,10 +32,10 @@ var TaskDetailPageModule = /** @class */ (function () {
     TaskDetailPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__task_group_detail__["a" /* TaskGroupDetailPage */],
+                __WEBPACK_IMPORTED_MODULE_3__task_group_detail__["a" /* TaskGroupDetail */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__task_group_detail__["a" /* TaskGroupDetailPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__task_group_detail__["a" /* TaskGroupDetail */]),
                 __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */],
                 __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */],
             ],
@@ -313,11 +313,11 @@ var SafariViewController = (function (_super) {
 
 /***/ }),
 
-/***/ 1172:
+/***/ 1175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskGroupDetailPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskGroupDetail; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -331,23 +331,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var TaskGroupDetailPage = /** @class */ (function () {
-    function TaskGroupDetailPage(navCtrl, navParams) {
+var TaskGroupDetail = /** @class */ (function () {
+    function TaskGroupDetail(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
-    ], TaskGroupDetailPage.prototype, "content", void 0);
-    TaskGroupDetailPage = __decorate([
+    ], TaskGroupDetail.prototype, "content", void 0);
+    TaskGroupDetail = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n<!--        <img class="image" [src]="task.getImageURL()" />-->\n        <img class="image" src="https://image.newyorkcity.de/wp-content/uploads/2013/02/Central-Park.jpg.webp" />\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskgroup_task_group" | translate }}</ion-label>\n            </div>\n            <p>This gotta be the introduction to a task group, a group of subtasks, that help figure out a mathematic problem from different angles. Fresh, frech and fun!\n<!--                {{task.group.description}}--></p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskgroup_tasks" | translate }}</ion-label>\n            <ion-label class="count text-right">1 / 4</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div class="task-list-item detail-box solved good">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" src="https://cdn.britannica.com/95/156695-131-FF89C9FA/oak-tree.jpg" />\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>Task Title</h2>\n                    </div>\n                    <ion-label class="tag score">25</ion-label>\n                </div>\n                <div class="task-list-item detail-box">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" src="https://cdn.britannica.com/95/156695-131-FF89C9FA/oak-tree.jpg" />\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>Task Title</h2>\n                    </div>\n                    <ion-label class="tag score">25</ion-label>\n                </div>\n            </div>\n        </div>\n        <div class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskgroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">100</ion-label>\n            </div>\n        </div>\n\n        <div class="card transparent skip">\n            <button ion-button block default round color="danger">{{\'a_taskgroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div class="card secondary">\n            <ion-label>{{ "a_taskgroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskgroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
-    ], TaskGroupDetailPage);
-    return TaskGroupDetailPage;
+    ], TaskGroupDetail);
+    return TaskGroupDetail;
 }());
 
 //# sourceMappingURL=task-group-detail.js.map

@@ -496,7 +496,7 @@ export class TasksMap implements OnDestroy {
 
             if (task.taskFormat === TaskFormat.GROUP) {
                 // TODO add proper Logic for task Icon
-                icon = this.taskSavedIcon;
+                icon = this.getMarkerForGroup(task);
             } else {
                 let removeTaskFromSkippedArray = true;
                 if (this.score.getTasksSaved().indexOf(task.id) > -1) {
@@ -1159,24 +1159,123 @@ export class TasksMap implements OnDestroy {
                 this.taskDoneIcon.clusterColor = '#F3B100';
                 this.taskDonePerfectIcon.clusterColor = '#4CAF50';
                 this.taskFailedIcon.clusterColor = '#E62B25';
-                // TODO GROUP MARKER
-                // return new L.DivIcon({
-                //     html: `<div style="${style}">
-                //                 <svg class="marker-base"></svg>
-                //                 <span>${childCount}</span>
-                //                 <svg id="segmented-circle" viewBox="0 0 320 320" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                //                     <path class="filled" d="M 236.41208279802152 54.827790731256826 A 130 130 0 0 0 160 30"></path>
-                //                     <path class="filled" d="M 283.63734711837 119.82779073125684 A 130 130 0 0 0 236.41208279802152 54.827790731256826"></path>
-                //                     <path class="filled" d="M 283.63734711837 200.17220926874316 A 130 130 0 0 0 283.63734711837 119.82779073125684"></path>
-                //                     <path d="M 236.41208279802152 265.1722092687432 A 130 130 0 0 0 283.63734711837 200.17220926874316"></path>
-                //                     <path d="M 160 290 A 130 130 0 0 0 236.41208279802152 265.1722092687432"></path>
-                //                     <path d="M 83.58791720197851 265.1722092687432 A 130 130 0 0 0 160 290"></path>
-                //                 </svg>
-                //             </div>`,
-                //     iconSize: new L.Point(40, 40)
-                // });
                 break;
         }
+    }
+
+    getMarkerForGroup(group: Task) {
+        //Circle Generation done using https://codepen.io/wmetz/pen/ONoRmV as reference
+        const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
+            var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+            return {
+                x: centerX + (radius * Math.cos(angleInRadians)),
+                y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        };
+        const describeArc = (x, y, radius, startAngle, endAngle) => {
+            var start = polarToCartesian(x, y, radius, endAngle),
+                end = polarToCartesian(x, y, radius, startAngle),
+                arcSweep = endAngle - startAngle <= 180 ? '0' : '1',
+                d = [
+                    'M', start.x, start.y,
+                    'A', radius, radius, 0, arcSweep, 0, end.x, end.y
+                ].join(' ');
+            return d;
+        };
+
+        const getClassStringForSubtask = (task: Task) => {
+            if (this.score.getTasksSaved().indexOf(task.id) > -1) {
+                return "saved";
+            }
+            if (this.score.getTasksSolved().indexOf(task.id) > -1) {
+                return "solved";
+            }
+            if (this.score.getTasksSolvedLow().indexOf(task.id) > -1) {
+                return "solved-low";
+            }
+            if (this.score.getTasksFailed().indexOf(task.id) > -1) {
+                return "failed";
+            }
+            if (this.state.skippedTaskIds.indexOf(task.id) > -1) {
+                return "skipped";
+            }
+            return "";
+        }
+        const subtasks = group.getSubtasksInOrder();
+        const svg = `<svg viewBox="0 0 37 51.024" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: #036d99;
+                                    }
+                                    .cls-3 {
+                                        filter: url(#Pfad_177)
+                                    }
+                                    #segmented-circle {
+                                        stroke: rgb(255, 255, 255);
+                                        stroke-width: 35;
+                                        fill: none;
+                                    }
+                                    .saved {
+                                        stroke: #6e38b9
+                                    }
+                                    .solved {
+                                        stroke: #08bb27
+                                    }
+                                    .solved-low {
+                                        stroke: #f3b100
+                                    }
+                                    .failed {
+                                        stroke: #f35800;
+                                    }
+                                    .skipped {
+                                        stroke: #b2b2b2
+                                    }
+                                </style>
+                                <filter id="Pfad_177" x="0" y="0" width="37" height="51.024" filterUnits="userSpaceOnUse">
+                                    <feOffset dy="1" input="SourceAlpha"/>
+                                    <feGaussianBlur stdDeviation="0.5" result="blur"/>
+                                    <feFlood flood-opacity="0.549"/>
+                                    <feComposite operator="in" in2="blur"/>
+                                    <feComposite in="SourceGraphic" in2="SourceGraphic"/>
+                                </filter>
+                            </defs>
+                            <g transform="translate(1.5 0.5)">
+                                <g class="cls-3" transform="matrix(1, 0, 0, 1, -1.5, -0.5)" style="">
+                                    <path  class="cls-1" d="M-717.081,1567.17c-8.481,0-17.066,6-17.066,17.481,0,5.182,2.562,11.775,7.615,19.594a99.025,99.025,0,0,0,7.408,10.014,2.7,2.7,0,0,0,2.038.935h.005a2.7,2.7,0,0,0,2.037-.927,94.877,94.877,0,0,0,7.35-9.921c5.008-7.774,7.547-14.4,7.547-19.694C-700.147,1574.358-707.11,1567.17-717.081,1567.17Z" transform="translate(735.65 -1566.67)"></path>
+                                </g>
+                                <text style="white-space: pre; fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 18px;" x="12" y="23">${subtasks.length}</text>
+                                <g id="segmented-circle" class="circle-container" transform="matrix(0.088463, 0, 0, 0.088463, -29, -5)">
+                                </g>
+                            </g>
+                        </svg>`
+        const div = document.createElement('div')
+        div.classList.add("group-marker");
+        div.innerHTML = svg;
+        let segmentLength = 360 / subtasks.length;
+        let prevStartAngle = 0;
+        let prevEndAngle = 0;
+        let segment = "";
+
+        if (subtasks.length === 1) {
+            segment = `<circle cx="520" cy="244" r="130" class="${getClassStringForSubtask(subtasks[0])}"/>`
+        } else {
+            for (let i = 1; i <= subtasks.length; i++) {
+                prevStartAngle = prevEndAngle;
+                prevEndAngle = segmentLength * i;
+                segment += `<path class="${getClassStringForSubtask(subtasks[i-1])}" d="${describeArc(520, 244, 130, prevStartAngle, prevEndAngle)}"/>`
+            }
+        }
+
+        const circleContainer = div.getElementsByClassName('circle-container')[0];
+        circleContainer.innerHTML = segment;
+
+        return new L.DivIcon({
+            html: div.outerHTML,
+            iconSize: [34, 48],
+            iconAnchor: [17, 43],
+            className: 'marker'
+        });
     }
 
     getSolvedSubtaskCount(task: Task) {

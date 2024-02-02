@@ -1,0 +1,54 @@
+<svg viewBox="0 0 37 51.024" width="37" height="51.024" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .cls-1 {
+                fill: #036d99;
+            }
+            .cls-3 {
+                filter: url(#Pfad_177)
+            }
+            #segmented-circle {
+                stroke: rgb(255, 255, 255);
+                stroke-width: 35;
+                fill: none;
+            }
+            .saved {
+                stroke: #6e38b9
+            }
+            .solved {
+                stroke: #08bb27
+            }
+            .solved-low {
+                stroke: #f3b100
+            }
+            .failed {
+                stroke: #f35800;
+            }
+            .skipped {
+                stroke: #b2b2b2
+            }
+        </style>
+        <filter id="Pfad_177" x="0" y="0" width="37" height="51.024" filterUnits="userSpaceOnUse">
+            <feOffset dy="1" input="SourceAlpha"/>
+            <feGaussianBlur stdDeviation="0.5" result="blur"/>
+            <feFlood flood-opacity="0.549"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic" in2="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g transform="translate(1.5 0.5)">
+        <g class="cls-3" transform="matrix(1, 0, 0, 1, -1.5, -0.5)" style="">
+            <path  class="cls-1" d="M-717.081,1567.17c-8.481,0-17.066,6-17.066,17.481,0,5.182,2.562,11.775,7.615,19.594a99.025,99.025,0,0,0,7.408,10.014,2.7,2.7,0,0,0,2.038.935h.005a2.7,2.7,0,0,0,2.037-.927,94.877,94.877,0,0,0,7.35-9.921c5.008-7.774,7.547-14.4,7.547-19.694C-700.147,1574.358-707.11,1567.17-717.081,1567.17Z" transform="translate(735.65 -1566.67)"></path>
+        </g>
+        <text style="white-space: pre; fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 18px;" x="12" y="23">6</text>
+        <g id="segmented-circle" class="circle-container" transform="matrix(0.088463, 0, 0, 0.088463, -29, -5)">
+<!--            <circle cx="520" cy="244" r="130"></circle>-->
+            <path d="M 520.42 114.166 C 473.976 114.166 431.059 138.944 407.837 179.166"></path>
+            <path class="skipped" d="M 407.837 179.166 C 384.615 219.388 384.615 268.944 407.837 309.166"></path>
+            <path class="solved-low" d="M 407.837 309.166 C 431.059 349.388 473.976 374.166 520.42 374.166"></path>
+            <path class="saved" d="M 520.42 374.166 C 566.865 374.166 609.781 349.388 633.003 309.166"></path>
+            <path class="solved" d="M 633.003 309.166 C 656.226 268.944 656.226 219.388 633.003 179.166"></path>
+            <path class="failed" d="M 633.003 179.166 C 609.781 138.944 566.865 114.166 520.42 114.166"></path>
+        </g>
+    </g>
+</svg>
