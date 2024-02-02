@@ -10,6 +10,7 @@ import {Route} from "../entity/Route";
 import {Http} from "@angular/http";
 import {HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpEvent} from "@angular/common/http";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {Camera, CameraOptions} from "@ionic-native/camera";
 
 @Injectable()
 export class ImagesService {
@@ -23,8 +24,14 @@ export class ImagesService {
     private filePluginAvailable: boolean;
     private dataDirectory: DirectoryEntry;
 
-    constructor(private fileManager: File, private platform: Platform, private transfer: FileTransfer,
-                private http: Http, private httpClient: HttpClient, private sanitizer : DomSanitizer) {
+    constructor(
+        private fileManager: File,
+        private platform: Platform,
+        private transfer: FileTransfer,
+        private http: Http,
+        private httpClient: HttpClient,
+        private sanitizer : DomSanitizer,
+        private camera: Camera) {
         ImagesService.INSTANCE = this;
         this.init();
     }
@@ -124,7 +131,7 @@ export class ImagesService {
             }
             console.log('Starting download task for ' + task.outputName);
             let url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
-                : Helper.MEDIASERVER_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
+                : Helper.MEDIASERVER_IMAGE_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
             setTimeout(()=>{fileTransfer.download(url, dataDirectory + task.outputName)
                 .then(() => {
                     if (!createThumbs) {
@@ -261,7 +268,7 @@ export class ImagesService {
     }
 
     getOnlineURL(imgPath: string) {
-        return imgPath.indexOf('http') !== 0 ? Helper.MEDIASERVER_URL + imgPath : imgPath;
+        return imgPath.indexOf('http') !== 0 ? Helper.MEDIASERVER_IMAGE_URL + imgPath : imgPath;
     }
 
     fixUrlForWebview(url) {
@@ -336,7 +343,7 @@ export class ImagesService {
             return;
         }
 
-        let url = Helper.MEDIASERVER_URL + 'mcm_maps/' + route.mapFileName;
+        let url = Helper.MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName;
         let downloadRequest: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
         let pathToFileInString  = dataDirectory + route.mapFileName;
@@ -366,15 +373,45 @@ export class ImagesService {
                 })
             }, error).catch((err) => {console.log("ERROR DOWNLOADING: ", err)});
         });
-
-
-
-
     }
 
+    async getImageFromUserGallery(): Promise<{imageData: string, base64: string }> {
+        const options: CameraOptions = {
+            quality: 75,
+            targetHeight: 512,
+            targetWidth: 512,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            correctOrientation: true,
+            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        };
+        try {
+            const imageData = await this.camera.getPicture(options)
+            return {imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData};
+        } catch (err) {
+            throw err;
+        }
+    }
 
+    async getImageFromCamera(): Promise<{imageData: string, base64: string }> {
+        const options: CameraOptions = {
+            quality: 75,
+            targetHeight: 512,
+            targetWidth: 512,
+            correctOrientation: true,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+        };
 
-
+        try {
+            const imageData = await this.camera.getPicture(options);
+            return {imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData};
+        } catch (err) {
+            throw err;
+        }
+    }
 
 }
 

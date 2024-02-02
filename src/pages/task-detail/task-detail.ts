@@ -28,6 +28,7 @@ import trim = Util.trim;
 import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
 import {SafariViewController} from '@ionic-native/safari-view-controller';
+import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
 
 /**
  * Generated class for the TaskDetailPage page.
@@ -85,7 +86,7 @@ export class TaskDetail {
     private subTasksRequired;
     private subTaskModalShown = false;
 
-    private keyboardSubscriptions : Subscription = new Subscription();
+    private keyboardSubscriptions: Subscription = new Subscription();
 
     private inAppBrowser: InAppBrowser = new InAppBrowser();
     private linkHttpsPipeFilter: LinkHttpsPipe = new LinkHttpsPipe();
@@ -111,7 +112,7 @@ export class TaskDetail {
     /*
       Custom Keyboard subscribe
     */
-    subscribeCKEvents(){
+    subscribeCKEvents() {
         // Initialize a new Keyboard subscription in case the old one was unsubscribed
         this.keyboardSubscriptions = new Subscription();
 
@@ -119,18 +120,16 @@ export class TaskDetail {
         // Here we add the clicked key value to the string
         this.keyboardSubscriptions.add(
             CustomKeyBoard.onCKClick.subscribe((key) => {
-                    if((this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) || !this.route.isAnswerFeedbackEnabled()){
+                    if ((this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) || !this.route.isAnswerFeedbackEnabled()) {
                         if (key === "C") {
                             if (this.answerIndex != null) {
                                 this.taskDetails.answerMultipleChoice[this.answerIndex].answer = "";
                             } else {
                                 this.taskDetails.answer = "";
                             }
-                        }
-                        else if (key === "✔") { // ✔
+                        } else if (key === "✔") { // ✔
                             this.checkResult();
-                        }
-                        else {
+                        } else {
                             if (this.answerIndex != null) {
                                 this.taskDetails.answerMultipleChoice[this.answerIndex].answer += key;
                             } else {
@@ -139,8 +138,12 @@ export class TaskDetail {
                         }
                     }
                 },
-                err => {console.log(err);},
-                () => {console.log('onCKClick subscribed.');}
+                err => {
+                    console.log(err);
+                },
+                () => {
+                    console.log('onCKClick subscribed.');
+                }
             )
         );
 
@@ -156,8 +159,12 @@ export class TaskDetail {
                         this.taskDetails.answer = this.taskDetails.answer.slice(0, this.taskDetails.answer.length - 1);
                     }
                 },
-                err => {console.log(err)},
-                () => {console.log('onDeleteClick subscribed.');}
+                err => {
+                    console.log(err)
+                },
+                () => {
+                    console.log('onDeleteClick subscribed.');
+                }
             )
         );
 
@@ -166,8 +173,12 @@ export class TaskDetail {
                 () => {
                     this.setKeyboardOn(false);
                 },
-                err => {console.log(err)},
-                () => {console.log('onCKHide subscribed.');}
+                err => {
+                    console.log(err)
+                },
+                () => {
+                    console.log('onCKHide subscribed.');
+                }
             )
         );
     }
@@ -175,7 +186,7 @@ export class TaskDetail {
     /*
     Custom Keyboard unsubscribe
      */
-    private unsubscribeCKEvents(){
+    private unsubscribeCKEvents() {
         this.keyboardSubscriptions.unsubscribe();
     }
 
@@ -271,7 +282,9 @@ export class TaskDetail {
             let blankText: string = this.specialSolution.val
             let placeholderCount = [];
             while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
-                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)}) : null;
+                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
+                    return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
+                }) : null;
                 blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
                 if (!placeholderCount[blankMatch[1]]) {
                     placeholderCount[blankMatch[1]] = 1;
@@ -294,13 +307,13 @@ export class TaskDetail {
                 }
                 for (let input of Array.from(inputs)) {
                     input.addEventListener('input', (event: any) => {
-                            let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
-                                if (input instanceof HTMLElement) {
-                                    return answer.id === input.id && answer.count == input.dataset.count
-                                }
-                            });
-                            answerElement.answer = event.currentTarget.innerText;
+                        let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
+                            if (input instanceof HTMLElement) {
+                                return answer.id === input.id && answer.count == input.dataset.count
+                            }
                         });
+                        answerElement.answer = event.currentTarget.innerText;
+                    });
                 }
             }
         }
@@ -326,7 +339,7 @@ export class TaskDetail {
         }
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         // Add event of user entering trail when session active
-        if(this.sessionInfo != null){
+        if (this.sessionInfo != null) {
             let details = "";
             if (this.rootTask) {
                 details = JSON.stringify({title: this.task.title, parentId: this.rootTask.id});
@@ -336,7 +349,7 @@ export class TaskDetail {
             this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
         }
 
-        if(this.taskDetails.timeSolved == 0 && !this.taskDetails.failed){
+        if (this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) {
             // Do not display last entered answer
             this.taskDetails.answer = "";
         }
@@ -394,7 +407,7 @@ export class TaskDetail {
                 this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
             }
             this.penalty = Math.floor(this.maxScore) * 0.15;
-            this.minScore = Math.floor(this.maxScore ) / 10;
+            this.minScore = Math.floor(this.maxScore) / 10;
         }
 
         if (this.rootTask && this.subTasksRequired && this.task.solutionType !== 'info') {
@@ -417,7 +430,7 @@ export class TaskDetail {
             }
             this.orangeScore = this.maxScore / 2;
             this.penalty = Math.floor(this.maxScore) * 0.15;
-            this.minScore = Math.floor(this.maxScore ) / 10;
+            this.minScore = Math.floor(this.maxScore) / 10;
         }
 
         if (this.score.score == null) this.score.score = 0;
@@ -470,8 +483,7 @@ export class TaskDetail {
             let buttonCount = this.task.getSolutionGpsValue("points");
             if (buttonCount != null) {
                 buttonCount = parseInt(buttonCount);
-            }
-            else {
+            } else {
                 buttonCount = 0;
             }
             let startCharCode = "A".charCodeAt(0);
@@ -483,21 +495,21 @@ export class TaskDetail {
         if (this.taskDetails.skipped) {
             this.taskDetails.newTries = 0;
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set' || this.task.solutionType === 'fraction'){
+        if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.subscribeCKEvents();
         }
         eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
     }
 
-    async ionViewWillLeave(){
+    async ionViewWillLeave() {
         // Hide keyboard if still visible
-        if(CustomKeyBoard.isVisible()){
+        if (CustomKeyBoard.isVisible()) {
             CustomKeyBoard.hide();
         }
-        if(this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' ||this.task.solutionType === 'set' || this.task.solutionType === 'fraction'){
+        if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.unsubscribeCKEvents();
         }
-        if(this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed){
+        if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed) {
             //This guaratees that the state is updated before the map opens and gets the information.
             if (this.navParams.get('goToNextTaskById')) {
                 let goToNextTaskById = this.navParams.get('goToNextTaskById');
@@ -505,12 +517,13 @@ export class TaskDetail {
             }
         }
     }
+
     // Show keyboard
     public setKeyboardOn(state, answerIndex = null) {
         let that = this;
         this.answerIndex = answerIndex;
         if (state && this.task.solutionType != "gps") {
-            CustomKeyBoard.show(function(){
+            CustomKeyBoard.show(function () {
                 // Scroll input field into view (may happen that the field is hidden by keyboard)
                 if (!that.rootTask) {
                     that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
@@ -558,7 +571,7 @@ export class TaskDetail {
                     needUpdate = true;
                 }
                 title = 'a_btn_hint1';
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     let details = JSON.stringify({});
                     this.chatAndSessionService.addUserEvent("event_took_hint1", details, this.task.id.toString());
                 }
@@ -570,7 +583,7 @@ export class TaskDetail {
                     needUpdate = true;
                 }
                 title = 'a_btn_hint2';
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     let details = JSON.stringify({});
                     this.chatAndSessionService.addUserEvent("event_took_hint2", details, this.task.id.toString());
                 }
@@ -579,7 +592,7 @@ export class TaskDetail {
                 if (!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed) {
                     //only update if task is not solved
                     this.taskDetails.hint3 = true;
-                    if(this.sessionInfo != null){
+                    if (this.sessionInfo != null) {
                         let details = JSON.stringify({});
                         this.chatAndSessionService.addUserEvent("event_took_hint3", details, this.task.id.toString());
                     }
@@ -610,11 +623,11 @@ export class TaskDetail {
 
         }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
         hintModal.onDidDismiss(click => {
-            if(this.sessionInfo != null){
+            if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
                 this.chatAndSessionService.addUserEvent("event_hint_closed", details, this.task.id.toString());
             }
-            });
+        });
         hintModal.present();
     }
 
@@ -630,12 +643,12 @@ export class TaskDetail {
 
         if (this.task.solutionType == "value") {
             let f_answer = parseFloat(answer);
-            let f_solution  = parseFloat(this.task.getSolution());
+            let f_solution = parseFloat(this.task.getSolution());
             if (f_answer.toString() == f_solution.toString()) {
                 this.CalculateScore("value", "solved");
                 this.taskSolved('solved', solution);
             } else {
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
                 this.taskSolved('', solution);
@@ -664,7 +677,7 @@ export class TaskDetail {
                 this.CalculateScore("multiple_choice", "solved");
                 this.taskSolved('solved', solution);
             } else {
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     details = JSON.stringify({solution: checkedByUser, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
@@ -691,13 +704,13 @@ export class TaskDetail {
                         this.CalculateScore("range", "solved_low");
                         this.taskSolved('solved_low', solution);
                     } else {
-                        if(this.sessionInfo != null){
+                        if (this.sessionInfo != null) {
                             this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                         }
                         this.taskSolved('', ['']);
                     }
                 } else {
-                    if(this.sessionInfo != null){
+                    if (this.sessionInfo != null) {
                         this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                     }
                     this.taskSolved('', ['']);
@@ -758,9 +771,9 @@ export class TaskDetail {
             solutionText += "</table>"
             if (solvedTask) {
                 this.CalculateScore("vector_values", "solved");
-                this.taskSolved('solved',[solutionText]);
+                this.taskSolved('solved', [solutionText]);
             } else {
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
@@ -786,9 +799,9 @@ export class TaskDetail {
             solutionText += "</table>"
             if (solvedTask) {
                 this.CalculateScore("vector_intervals", "solved");
-                this.taskSolved('solved',[solutionText]);
+                this.taskSolved('solved', [solutionText]);
             } else {
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
@@ -801,18 +814,22 @@ export class TaskDetail {
                 answers.push(answer);
             }
             answers.sort((a, b) => {
-                    if (parseFloat(a.answer) > parseFloat(b.answer)) {
-                        return 1;
-                    } else if (parseFloat(a.answer) === parseFloat(b.answer)) {
-                        return 0;
-                    } else {
-                        return -1;
-                    }
+                if (parseFloat(a.answer) > parseFloat(b.answer)) {
+                    return 1;
+                } else if (parseFloat(a.answer) === parseFloat(b.answer)) {
+                    return 0;
+                } else {
+                    return -1;
+                }
             });
             let solutions = this.specialSolution.sort((a, b) => {
-                if (parseFloat(a) > parseFloat(b)) {return 1;}
-                else if (parseFloat(a) === parseFloat(b)) {return 0;}
-                else {return -1;}
+                if (parseFloat(a) > parseFloat(b)) {
+                    return 1;
+                } else if (parseFloat(a) === parseFloat(b)) {
+                    return 0;
+                } else {
+                    return -1;
+                }
             });
             let solvedTask = true;
             let detailSolutions = [];
@@ -843,9 +860,9 @@ export class TaskDetail {
             solutionText += "</table>"
             if (solvedTask) {
                 this.CalculateScore("set", "solved");
-                this.taskSolved('solved',[solutionText]);
+                this.taskSolved('solved', [solutionText]);
             } else {
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
@@ -889,9 +906,9 @@ export class TaskDetail {
             }
             if (solvedTask) {
                 this.CalculateScore("blanks", "solved");
-                this.taskSolved('solved',[blankText]);
+                this.taskSolved('solved', [blankText]);
             } else {
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                 }
@@ -952,7 +969,7 @@ export class TaskDetail {
     It allows users to complete a task, when they think that they are finished and mark it accordingly so
     In session mode where the users are force assigned a task, it allows to continue with the next task
      */
-    async completeTask(){
+    async completeTask() {
         if (this.task.solutionType === 'info' && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             this.CalculateScore('info', 'solved')
         } else {
@@ -976,7 +993,7 @@ export class TaskDetail {
         let solutionSample = this.task.getSolutionSample();
         let solutionSrc = this.task.getSolutionSampleImgSrc();
         let messages = [];
-        if ((!solutionSample  || solutionSample.length == 0) && (!solutionSrc || solutionSrc.length == 0)) {
+        if ((!solutionSample || solutionSample.length == 0) && (!solutionSrc || solutionSrc.length == 0)) {
             messages = [
                 'a_msg_no_solutionsample',
                 'p_t_solution',
@@ -990,6 +1007,7 @@ export class TaskDetail {
             title: 't_samplesolution',
             imageUrl: this.task.getSolutionSampleImgSrc(),
             messages: messages,
+            taskCode: this.task.code,
             modalType: MCMModalType.sampleSolution,
             narrativeEnabled: this.route.isNarrativeEnabled(),
             narrative: this.app.activeNarrative,
@@ -1006,7 +1024,7 @@ export class TaskDetail {
             ]
         }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
         modal.onDidDismiss(data => {
-            if(this.sessionInfo != null){
+            if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
                 this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
             }
@@ -1015,7 +1033,7 @@ export class TaskDetail {
     }
 
 
-    async closeDetails(skip?: boolean, ) {
+    async closeDetails(skip?: boolean,) {
         if (this.rootTask) {
             if (skip) {
                 this.taskDetails.skipped = true;
@@ -1047,7 +1065,7 @@ export class TaskDetail {
             'no', () => {
             },
             'yes', async () => {
-                if(this.sessionInfo != null){
+                if (this.sessionInfo != null) {
                     let details = "";
                     if (this.rootTask) {
                         details = JSON.stringify({parentId: this.rootTask.id});
@@ -1177,7 +1195,8 @@ export class TaskDetail {
                     modal.dismiss().then(() => {
                         that.showSolutionSample(true);
                     });
-                }};
+                }
+            };
             let subTaskOkay = {
                 title: 'okay',
                 callback: function () {
@@ -1192,58 +1211,68 @@ export class TaskDetail {
                     modal.dismiss().then(() => {
                         that.closeDetails(false);
                     });
-                }};
+                }
+            };
             if (this.route.isNarrativeEnabled()) {
                 title = this.route.getNarrativeString(title);
                 message = this.route.getNarrativeString(message);
             }
             let modal;
-                if (this.route.isAnswerFeedbackEnabled()) {
-                    let data = {
-                        title: this.task.solutionType === 'info' ? 'hide' : title,
-                        message: message,
-                        solution: this.task.solutionType === 'info' ? undefined : solution,
-                        modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
-                        gamificationEnabled: !this.gamificationIsDisabled,
-                        narrativeEnabled: this.route.isNarrativeEnabled(),
-                        narrative: this.app.activeNarrative,
-                        param: {tries: this.taskDetails.tries+1},
-                        buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
-                    };
-                    if ((this.task.solutionType !== 'info' && ( !this.task.getLegitSubtasks() || !(this.task.getLegitSubtasks().length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
-                        data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
-                    }
-                    console.log(data);
-                    modal = this.modalCtrl.create(MCMIconModal, data, {
-                        showBackdrop: true,
-                        enableBackdropDismiss: true,
-                        cssClass: this.app.activeNarrative
-                    });
-                } else {
-                    modal = this.modalCtrl.create(MCMIconModal, {
-                        title: 'a_alert_saved_answer_title',
-                        message: 'a_alert_saved_answer_message',
-                        modalType: MCMModalType.saved,
-                        gamificationEnabled: !this.gamificationIsDisabled,
-                        narrativeEnabled: this.route.isNarrativeEnabled(),
-                        narrative: this.app.activeNarrative,
-                        buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
-                    }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            if (this.route.isAnswerFeedbackEnabled()) {
+                let data = {
+                    title: this.task.solutionType === 'info' ? 'hide' : title,
+                    message: message,
+                    solution: this.task.solutionType === 'info' ? undefined : solution,
+                    modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    param: {tries: this.taskDetails.tries + 1},
+                    buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
+                };
+                if ((this.task.solutionType !== 'info' && (!this.task.getLegitSubtasks() || !(this.task.getLegitSubtasks().length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
+                    data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
                 }
-                modal.onDidDismiss((data) => {
-                    console.log(data);
-                    if (data && data.showMap) {
-                        /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
-                        this.navCtrl.pop();
-                    }
+                console.log(data);
+                modal = this.modalCtrl.create(MCMIconModal, data, {
+                    showBackdrop: true,
+                    enableBackdropDismiss: true,
+                    cssClass: this.app.activeNarrative
                 });
-                modal.present();
-            if(this.sessionInfo != null){
+            } else {
+                modal = this.modalCtrl.create(MCMIconModal, {
+                    title: 'a_alert_saved_answer_title',
+                    message: 'a_alert_saved_answer_message',
+                    modalType: MCMModalType.saved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
+                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            }
+            modal.onDidDismiss((data) => {
+                console.log(data);
+                if (data && data.showMap) {
+                    /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
+                    this.navCtrl.pop();
+                }
+            });
+            modal.present();
+            if (this.sessionInfo != null) {
                 let details = "";
                 if (this.rootTask) {
-                    details = JSON.stringify({score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved, parentId: this.rootTask.id});
+                    details = JSON.stringify({
+                        score: this.taskDetails.score,
+                        solution: eventSolution ? eventSolution : solution,
+                        quality: solved,
+                        parentId: this.rootTask.id
+                    });
                 } else {
-                    details = JSON.stringify({score: this.taskDetails.score, solution: eventSolution ? eventSolution : solution, quality: solved});
+                    details = JSON.stringify({
+                        score: this.taskDetails.score,
+                        solution: eventSolution ? eventSolution : solution,
+                        quality: solved
+                    });
                 }
                 this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
             }
@@ -1341,7 +1370,7 @@ export class TaskDetail {
                         title: 't_samplesolution',
                         callback: function () {
                             modal.dismiss().then(() => {
-                                if(that.sessionInfo != null){
+                                if (that.sessionInfo != null) {
                                     let details = "";
                                     if (that.rootTask) {
                                         details = JSON.stringify({parentId: that.rootTask.id});
@@ -1352,12 +1381,13 @@ export class TaskDetail {
                                 }
                                 that.showSolutionSample(true);
                             });
-                        }};
+                        }
+                    };
                     let bSkipTask = {
                         title: 'a_skipTask',
                         callback: function () {
                             modal.dismiss().then(() => {
-                                if(that.sessionInfo != null){
+                                if (that.sessionInfo != null) {
                                     let details = "";
                                     if (that.rootTask) {
                                         details = JSON.stringify({parentId: that.rootTask.id});
@@ -1368,12 +1398,13 @@ export class TaskDetail {
                                 }
                                 that.closeDetails(true);
                             });
-                        }};
+                        }
+                    };
                     let bFailTask = {
                         title: 'okay',
                         callback: function () {
                             modal.dismiss().then(() => {
-                                if(that.sessionInfo != null){
+                                if (that.sessionInfo != null) {
                                     let details = "";
                                     if (that.rootTask) {
                                         details = JSON.stringify({parentId: that.rootTask.id});
@@ -1391,14 +1422,15 @@ export class TaskDetail {
                                     }
                                 });
                             });
-                        }};
+                        }
+                    };
                     if (this.rootTask && this.route.isSampleSolutionEnabled()) {
                         buttons = [bSampleSolution, bFailTask];
                     } else if (this.rootTask) {
                         buttons = [bFailTask];
-                    } else if (this.route.isSampleSolutionEnabled()){
+                    } else if (this.route.isSampleSolutionEnabled()) {
                         buttons = [bSampleSolution, bSkipTask];
-                    }  else {
+                    } else {
                         buttons = [bSkipTask];
                     }
 
@@ -1413,7 +1445,7 @@ export class TaskDetail {
             if (this.route.isNarrativeEnabled()) {
                 title = this.route.getNarrativeString(title);
                 message = this.route.getNarrativeString(message);
-              }
+            }
             let modal;
             if (this.route.isAnswerFeedbackEnabled()) {
                 let data = {
@@ -1429,7 +1461,7 @@ export class TaskDetail {
                 if (!this.rootTask || (this.rootTask && this.subTasksRequired) && !(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries)) {
                     data['score'] = this.taskDetails.tries > 1 ? '-' + this.penalty : '0';
                 }
-                modal = this.modalCtrl.create(MCMIconModal, data , {
+                modal = this.modalCtrl.create(MCMIconModal, data, {
                     showBackdrop: true,
                     enableBackdropDismiss: true,
                     cssClass: this.app.activeNarrative
@@ -1441,7 +1473,8 @@ export class TaskDetail {
                         modal.dismiss().then(() => {
                             that.closeDetails(false);
                         });
-                    }};
+                    }
+                };
                 modal = this.modalCtrl.create(MCMIconModal, {
                     title: 'a_alert_saved_answer_title',
                     message: 'a_alert_saved_answer_message',
@@ -1586,17 +1619,16 @@ export class TaskDetail {
         return 100;
     }
 
-    private possibleScore(){
-        if(this.taskDetails){
+    private possibleScore() {
+        if (this.taskDetails) {
             if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
                 let tempScore = 0;
                 for (let task of this.solvedSubtasks) {
                     tempScore += task.score
                 }
-                if(this.taskDetails.tries == 0){
+                if (this.taskDetails.tries == 0) {
                     tempScore += this.maxScore;
-                }
-                else{
+                } else {
                     tempScore += this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
                 }
                 if (this.solvedSubtasks.length < this.task.getLegitSubtasks().length) {
@@ -1609,8 +1641,10 @@ export class TaskDetail {
                     let solvedSubtaskCount = 0;
                     for (let subtask of this.solvedSubtasks) {
                         let actualTask = this.task.getLegitSubtasks().find(
-                            task => {return task.id === subtask.taskId}
-                            );
+                            task => {
+                                return task.id === subtask.taskId
+                            }
+                        );
                         if (actualTask.solutionType !== 'info') {
                             solvedSubtaskCount++
                         }
@@ -1621,14 +1655,12 @@ export class TaskDetail {
                 }
                 return tempScore;
             }
-            if(this.taskDetails.tries == 0){
+            if (this.taskDetails.tries == 0) {
                 return this.maxScore;
-            }
-            else{
+            } else {
                 return this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
             }
-        }
-        else{
+        } else {
             return this.maxScore
         }
     }
@@ -1647,8 +1679,7 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.maxScore;
             }
             if (!this.rootTask) {
@@ -1659,8 +1690,7 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.orangeScore;
             }
             if (!this.rootTask) {
@@ -1710,8 +1740,7 @@ export class TaskDetail {
             if (currBearing > leftGreen && currBearing < (angle + tempGreen)) bearingSolution = 2;
             else if (currBearing > leftOrange && currBearing < (angle + tempOrange)) bearingSolution = 1;
             else bearingSolution = 0;
-        }
-        else {
+        } else {
             if (currBearing > leftGreen || currBearing < (angle + tempGreen)) bearingSolution = 2;
             else if (currBearing > leftOrange || currBearing < (angle + tempOrange)) bearingSolution = 1;
             else bearingSolution = 0;
@@ -1722,16 +1751,14 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.maxScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        }
-        else if (bearingSolution > 0 && lenghtSolution > 0) {
+        } else if (bearingSolution > 0 && lenghtSolution > 0) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
@@ -1763,8 +1790,7 @@ export class TaskDetail {
             let lenght = edgesLength[i];
 
             if (lenght > distance - tempGreen && lenght < distance + tempGreen) {
-            }
-            else if (lenght > distance - tempOrange && lenght < +tempOrange) allGreen = false;
+            } else if (lenght > distance - tempOrange && lenght < +tempOrange) allGreen = false;
             else {
                 allOrange = false;
                 allGreen = false;
@@ -1777,28 +1803,25 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.maxScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        }
-        else if (allOrange) {
+        } else if (allOrange) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            } else{
+            } else {
                 this.taskDetails.score = this.orangeScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        }
-        else this.taskSolved('', solution);
+        } else this.taskSolved('', solution);
     }
 
     CalculateSquare(pointA: L.Marker, pointB: L.Marker, pointC: L.Marker, pointD: L.Marker, distance: number) {
@@ -1823,8 +1846,7 @@ export class TaskDetail {
             let lenght = edgesLength[i];
 
             if (lenght > distance - tempGreen && lenght < distance + tempGreen) {
-            }
-            else if (lenght > distance - tempOrange && lenght < +tempOrange) allGreen = false;
+            } else if (lenght > distance - tempOrange && lenght < +tempOrange) allGreen = false;
             else {
                 allOrange = false;
                 allGreen = false;
@@ -1844,28 +1866,25 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.maxScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        }
-        else if (allOrange && diagonalSolution > 0) {
+        } else if (allOrange && diagonalSolution > 0) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            } else{
+            } else {
                 this.taskDetails.score = this.orangeScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        }
-        else this.taskSolved('', solution);
+        } else this.taskSolved('', solution);
     }
 
     CalculateCenterTwoP(pointA: L.LatLng, pointB: L.LatLng, currPosition: L.Marker) {
@@ -1884,28 +1903,25 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.maxScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        }
-        else if (delta < tempOrange) {
+        } else if (delta < tempOrange) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            } else{
+            } else {
                 this.taskDetails.score = this.orangeScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        }
-        else this.taskSolved('', solution);
+        } else this.taskSolved('', solution);
     }
 
 
@@ -1928,28 +1944,25 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.maxScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        }
-        else if (deltaAB < tempOrange && deltaBC < tempOrange) {
+        } else if (deltaAB < tempOrange && deltaBC < tempOrange) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            } else{
+            } else {
                 this.taskDetails.score = this.orangeScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        }
-        else this.taskSolved('', solution);
+        } else this.taskSolved('', solution);
     }
 
 
@@ -2010,29 +2023,25 @@ export class TaskDetail {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.maxScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        }
-        else if (solutionSlope > 0 && solutionY > 0) {
+        } else if (solutionSlope > 0 && solutionY > 0) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-            }
-            else{
+            } else {
                 this.taskDetails.score = this.orangeScore;
             }
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        }
-        else this.taskSolved('', solutionFail);
+        } else this.taskSolved('', solutionFail);
     }
 
     //Possibly add this to the MyMath class
@@ -2041,8 +2050,7 @@ export class TaskDetail {
         if (map != null) {
             let closestOnLine = (L as any).GeometryUtil.closestOnSegment(map, p, start, final);
             return (L as any).GeometryUtil.length([p, closestOnLine]);
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -2085,7 +2093,7 @@ export class TaskDetail {
         return result;
     }
 
-    openInPhotoviewer(useRoot=  false) {
+    openInPhotoviewer(useRoot = false) {
         if (Helper.isPluginAvailable(PhotoViewer)) {
             this.spinnerDialog.show();
             setTimeout(() => {
@@ -2106,7 +2114,12 @@ export class TaskDetail {
         if (!index && index !== 0) {
             index = this.solvedSubtasks.length
         }
-        return this.navCtrl.push(TaskDetail, {taskId: this.taskId, routeId: this.routeId, headerTitle: rootTask.getSubtasksInOrder()[index].title, subTaskIndex: index});
+        return this.navCtrl.push(TaskDetail, {
+            taskId: this.taskId,
+            routeId: this.routeId,
+            headerTitle: rootTask.getSubtasksInOrder()[index].title,
+            subTaskIndex: index
+        });
     }
 
     changeSubtaskAccordionState(subtask) {
@@ -2121,7 +2134,7 @@ export class TaskDetail {
         console.log("New Accordion State", this.activeAccordions);
     }
 
-    goToNextSubtask(){
+    goToNextSubtask() {
         const index = this.navCtrl.getActive().index;
         if (this.subTaskIndex + 1 !== this.rootTask.getLegitSubtasks().length) {
             this.openSubtask(this.subTaskIndex + 1).then(() => {
@@ -2132,7 +2145,7 @@ export class TaskDetail {
         }
     }
 
-    goToPreviousSubtask(){
+    goToPreviousSubtask() {
         const index = this.navCtrl.getActive().index;
         if (this.subTaskIndex - 1 >= 0) {
             this.openSubtask(this.subTaskIndex - 1).then(() => {
@@ -2161,37 +2174,37 @@ export class TaskDetail {
     generateSubtaskScoreCalculationString(solved) {
         let taskScore;
         let solutionType = this.task.solutionType;
-            if (solutionType == "value" || solutionType == "multiple_choice" || solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
-                    taskScore = this.maxScore;
-            }
+        if (solutionType == "value" || solutionType == "multiple_choice" || solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
+            taskScore = this.maxScore;
+        }
 
-            if (solutionType == "info") {
-                taskScore = 0;
-            }
+        if (solutionType == "info") {
+            taskScore = 0;
+        }
 
-            if (solutionType == "range") {
-                if (solved == "solved") {
-                        taskScore = this.maxScore;
-                } else if (solved == "solved_low") {
-                    let solutionList = this.task.getSolutionList();
+        if (solutionType == "range") {
+            if (solved == "solved") {
+                taskScore = this.maxScore;
+            } else if (solved == "solved_low") {
+                let solutionList = this.task.getSolutionList();
 
-                    //if the orange interval is below the green
-                    let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
-                    if (dotAnswer < solutionList[0]) {
-                        if (this.taskDetails.tries > 0) {
-                            taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
-                        } else {
-                            taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
-                        }
+                //if the orange interval is below the green
+                let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                if (dotAnswer < solutionList[0]) {
+                    if (this.taskDetails.tries > 0) {
+                        taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
                     } else {
-                        if (this.taskDetails.tries > 0) {
-                            taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
-                        } else {
-                            taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
-                        }
+                        taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
+                    }
+                } else {
+                    if (this.taskDetails.tries > 0) {
+                        taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
+                    } else {
+                        taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
                     }
                 }
             }
+        }
         let calculation = "";
         if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             let numbersArray = [];
@@ -2202,14 +2215,13 @@ export class TaskDetail {
                     numbersArray[task.score]++;
                 }
             }
-            if(this.taskDetails.tries <= 1) {
+            if (this.taskDetails.tries <= 1) {
                 if (!numbersArray[taskScore]) {
                     numbersArray[taskScore] = 1;
                 } else {
                     numbersArray[taskScore]++;
                 }
-            }
-            else {
+            } else {
                 let tempScore = taskScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
                 if (!numbersArray[tempScore]) {
                     numbersArray[tempScore] = 1;
@@ -2232,19 +2244,18 @@ export class TaskDetail {
             let orangediff = 0
             if (this.taskDetails.tries > 1) {
                 orangediff = this.maxScore - (this.taskDetails.tries - 1) * this.penalty - taskScore;
-            }
-            else {
+            } else {
                 orangediff = this.maxScore - taskScore;
             }
             if (this.taskDetails.tries > 1) {
-                    if (this.taskDetails.tries > 2) {
-                        calculation = this.maxScore + 'MP - ' + (this.taskDetails.tries - 1) + ' x ' + this.penalty + 'MP';
-                    } else {
-                        calculation = this.maxScore + 'MP - ' + this.penalty + 'MP'
-                    }
-                    if (orangediff > 0) {
-                        calculation += ' -' + orangediff + 'MP';
-                    }
+                if (this.taskDetails.tries > 2) {
+                    calculation = this.maxScore + 'MP - ' + (this.taskDetails.tries - 1) + ' x ' + this.penalty + 'MP';
+                } else {
+                    calculation = this.maxScore + 'MP - ' + this.penalty + 'MP'
+                }
+                if (orangediff > 0) {
+                    calculation += ' -' + orangediff + 'MP';
+                }
             } else if (orangediff > 0) {
                 calculation = this.maxScore + 'MP - ' + orangediff + 'MP';
             }
@@ -2254,7 +2265,7 @@ export class TaskDetail {
 
     displayScoreCalculation() {
         if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
-            let subtaskModal = this.modalCtrl.create(MCMIconModal, {
+            let scoreModal = this.modalCtrl.create(MCMIconModal, {
                 type: 'text',
                 score: '(' + this.generateSubtaskScoreCalculationString('solved') + ')',
                 gamificationEnabled: !this.gamificationIsDisabled,
@@ -2265,14 +2276,14 @@ export class TaskDetail {
                     {
                         title: 'a_alert_close',
                         callback: function () {
-                            subtaskModal.dismiss();
+                            scoreModal.dismiss();
                         }
                     }
                 ]
 
             }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
 
-            subtaskModal.present();
+            scoreModal.present();
         }
     }
 
@@ -2298,19 +2309,53 @@ export class TaskDetail {
                         barColor: '#036d99',
                         controlTintColor: '#ffffff'
                     })
-                    .subscribe((result: any) => {
-                            if(result.event === 'opened') console.log('Opened');
-                            else if(result.event === 'loaded') console.log('Loaded');
-                            else if(result.event === 'closed') console.log('Closed');
-                        },
-                        (error: any) => console.error(error)
-                    );
+                        .subscribe((result: any) => {
+                                if (result.event === 'opened') console.log('Opened');
+                                else if (result.event === 'loaded') console.log('Loaded');
+                                else if (result.event === 'closed') console.log('Closed');
+                            },
+                            (error: any) => console.error(error)
+                        );
                 } else {
                     const options: InAppBrowserOptions = {
                         zoom: 'no'
                     }
                     this.inAppBrowser.create(saveUrl, '_system', options);
                 }
-        })
+            })
+    }
+
+    reportProblem() {
+        const feedbackOpenFunction = () => {
+            const problemReportModal = this.modalCtrl.create(MCMReportProblemModal, {
+                taskCode: this.task.code
+            });
+            problemReportModal.present();
+        };
+        const confirmationModal = this.modalCtrl.create(MCMIconModal, {
+            type: 'text',
+            title: "a_task_feedback_alert_title",
+            message: "a_task_feedback_alert_text",
+            modalType: MCMModalType.general,
+            narrativeEnabled: this.route.isNarrativeEnabled(),
+            narrative: this.app.activeNarrative,
+            buttons: [
+                {
+                    title: 'a_alert_cancel',
+                    callback: () => {
+                        confirmationModal.dismiss();
+                    }
+                },
+                {
+                    title: 'a_alert_continue',
+                    callback: () => {
+                        feedbackOpenFunction();
+                        confirmationModal.dismiss();
+                    }
+                }
+            ]
+
+        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+        confirmationModal.present();
     }
 }

@@ -4,13 +4,13 @@ import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../s
 import {SessionUser} from "../../app/api/models/session-user";
 import {Session} from "../../app/api/models/session";
 import {SessionUserResponse} from "../../app/api/models/session-user-response";
-import {Camera, CameraOptions} from "@ionic-native/camera";
 import {File} from "@ionic-native/file";
 import {Media, MediaObject} from "@ionic-native/media";
 import {RecordStateEnum} from "./recordStateEnum";
 import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
+import {ImagesService} from "../../services/images-service";
 
 @IonicPage()
 @Component({
@@ -64,9 +64,9 @@ export class ChatPage {
                 private events: Events,
                 private changeDetector: ChangeDetectorRef,
                 private chatAndSessionService: ChatAndSessionService,
-                private camera: Camera,
                 private photoViewer: PhotoViewer,
-                private spinnerDialog: SpinnerDialog) {
+                private spinnerDialog: SpinnerDialog,
+                private imageService: ImagesService) {
 
         this.chatService.getUserInfo()
             .then((res) => {
@@ -281,45 +281,23 @@ export class ChatPage {
     async getImage() {
         this.setInputWrapButtons(false);
 
-        const options: CameraOptions = {
-            quality: 100,
-            targetHeight: 512,
-            targetWidth: 512,
-            destinationType: this.camera.DestinationType.DATA_URL,
-            encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE,
-            correctOrientation: true,
-            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-            allowEdit: true
-        };
-
-        this.camera.getPicture(options).then(async (imageData) => {
-           this.editorImg = imageData;
-           this.localPath = 'data:image/jpeg;base64,' + imageData;
-        }, (err) => {
+        this.imageService.getImageFromUserGallery().then(res => {
+            this.editorImg = res.imageData;
+            this.localPath = res.base64;
+        }).catch(err => {
+            // Handle error
             console.log("ERROR#####: ", err);
             this.setInputWrapButtons(true);
-            // Handle error
         });
     }
 
     openCamera() {
         this.setInputWrapButtons(false);
 
-        const options: CameraOptions = {
-            quality: 100,
-            targetHeight: 512,
-            targetWidth: 512,
-            correctOrientation: true,
-            destinationType: this.camera.DestinationType.DATA_URL,
-            encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE,
-        };
-
-        this.camera.getPicture(options).then(async (imageData) => {
-            this.editorImg = imageData;
-            this.localPath = 'data:image/jpeg;base64,' + imageData;
-        }, (err) => {
+        this.imageService.getImageFromCamera().then(res => {
+            this.editorImg = res.imageData;
+            this.localPath = res.base64;
+        }).catch(err => {
             // Handle error
             console.log("Camera issue:" + err);
             this.setInputWrapButtons(true);

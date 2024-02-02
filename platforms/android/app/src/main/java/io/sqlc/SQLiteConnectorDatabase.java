@@ -10,9 +10,13 @@ import android.util.Log;
 
 import java.io.File;
 
+import java.lang.IllegalArgumentException;
 import java.lang.Number;
 
 import java.sql.SQLException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.cordova.CallbackContext;
 

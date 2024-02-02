@@ -1,6 +1,6 @@
 webpackJsonp([10],{
 
-/***/ 1108:
+/***/ 1111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15,7 +15,7 @@ var EventsAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1109:
+/***/ 1112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31,280 +31,280 @@ var EventAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1110:
+/***/ 1113:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 452,
-	"./af.js": 452,
-	"./ar": 453,
-	"./ar-dz": 454,
-	"./ar-dz.js": 454,
-	"./ar-kw": 455,
-	"./ar-kw.js": 455,
-	"./ar-ly": 456,
-	"./ar-ly.js": 456,
-	"./ar-ma": 457,
-	"./ar-ma.js": 457,
-	"./ar-sa": 458,
-	"./ar-sa.js": 458,
-	"./ar-tn": 459,
-	"./ar-tn.js": 459,
-	"./ar.js": 453,
-	"./az": 460,
-	"./az.js": 460,
-	"./be": 461,
-	"./be.js": 461,
-	"./bg": 462,
-	"./bg.js": 462,
-	"./bm": 463,
-	"./bm.js": 463,
-	"./bn": 464,
-	"./bn-bd": 465,
-	"./bn-bd.js": 465,
-	"./bn.js": 464,
-	"./bo": 466,
-	"./bo.js": 466,
-	"./br": 467,
-	"./br.js": 467,
-	"./bs": 468,
-	"./bs.js": 468,
-	"./ca": 469,
-	"./ca.js": 469,
-	"./cs": 470,
-	"./cs.js": 470,
-	"./cv": 471,
-	"./cv.js": 471,
-	"./cy": 472,
-	"./cy.js": 472,
-	"./da": 473,
-	"./da.js": 473,
-	"./de": 474,
-	"./de-at": 475,
-	"./de-at.js": 475,
-	"./de-ch": 476,
-	"./de-ch.js": 476,
-	"./de.js": 474,
-	"./dv": 477,
-	"./dv.js": 477,
-	"./el": 478,
-	"./el.js": 478,
-	"./en-au": 479,
-	"./en-au.js": 479,
-	"./en-ca": 480,
-	"./en-ca.js": 480,
-	"./en-gb": 481,
-	"./en-gb.js": 481,
-	"./en-ie": 482,
-	"./en-ie.js": 482,
-	"./en-il": 483,
-	"./en-il.js": 483,
-	"./en-in": 484,
-	"./en-in.js": 484,
-	"./en-nz": 485,
-	"./en-nz.js": 485,
-	"./en-sg": 486,
-	"./en-sg.js": 486,
-	"./eo": 487,
-	"./eo.js": 487,
-	"./es": 488,
-	"./es-do": 489,
-	"./es-do.js": 489,
-	"./es-mx": 490,
-	"./es-mx.js": 490,
-	"./es-us": 491,
-	"./es-us.js": 491,
-	"./es.js": 488,
-	"./et": 492,
-	"./et.js": 492,
-	"./eu": 493,
-	"./eu.js": 493,
-	"./fa": 494,
-	"./fa.js": 494,
-	"./fi": 495,
-	"./fi.js": 495,
-	"./fil": 496,
-	"./fil.js": 496,
-	"./fo": 497,
-	"./fo.js": 497,
-	"./fr": 498,
-	"./fr-ca": 499,
-	"./fr-ca.js": 499,
-	"./fr-ch": 500,
-	"./fr-ch.js": 500,
-	"./fr.js": 498,
-	"./fy": 501,
-	"./fy.js": 501,
-	"./ga": 502,
-	"./ga.js": 502,
-	"./gd": 503,
-	"./gd.js": 503,
-	"./gl": 504,
-	"./gl.js": 504,
-	"./gom-deva": 505,
-	"./gom-deva.js": 505,
-	"./gom-latn": 506,
-	"./gom-latn.js": 506,
-	"./gu": 507,
-	"./gu.js": 507,
-	"./he": 508,
-	"./he.js": 508,
-	"./hi": 509,
-	"./hi.js": 509,
-	"./hr": 510,
-	"./hr.js": 510,
-	"./hu": 511,
-	"./hu.js": 511,
-	"./hy-am": 512,
-	"./hy-am.js": 512,
-	"./id": 513,
-	"./id.js": 513,
-	"./is": 514,
-	"./is.js": 514,
-	"./it": 515,
-	"./it-ch": 516,
-	"./it-ch.js": 516,
-	"./it.js": 515,
-	"./ja": 517,
-	"./ja.js": 517,
-	"./jv": 518,
-	"./jv.js": 518,
-	"./ka": 519,
-	"./ka.js": 519,
-	"./kk": 520,
-	"./kk.js": 520,
-	"./km": 521,
-	"./km.js": 521,
-	"./kn": 522,
-	"./kn.js": 522,
-	"./ko": 523,
-	"./ko.js": 523,
-	"./ku": 524,
-	"./ku.js": 524,
-	"./ky": 525,
-	"./ky.js": 525,
-	"./lb": 526,
-	"./lb.js": 526,
-	"./lo": 527,
-	"./lo.js": 527,
-	"./lt": 528,
-	"./lt.js": 528,
-	"./lv": 529,
-	"./lv.js": 529,
-	"./me": 530,
-	"./me.js": 530,
-	"./mi": 531,
-	"./mi.js": 531,
-	"./mk": 532,
-	"./mk.js": 532,
-	"./ml": 533,
-	"./ml.js": 533,
-	"./mn": 534,
-	"./mn.js": 534,
-	"./mr": 535,
-	"./mr.js": 535,
-	"./ms": 536,
-	"./ms-my": 537,
-	"./ms-my.js": 537,
-	"./ms.js": 536,
-	"./mt": 538,
-	"./mt.js": 538,
-	"./my": 539,
-	"./my.js": 539,
-	"./nb": 540,
-	"./nb.js": 540,
-	"./ne": 541,
-	"./ne.js": 541,
-	"./nl": 542,
-	"./nl-be": 543,
-	"./nl-be.js": 543,
-	"./nl.js": 542,
-	"./nn": 544,
-	"./nn.js": 544,
-	"./oc-lnc": 545,
-	"./oc-lnc.js": 545,
-	"./pa-in": 546,
-	"./pa-in.js": 546,
-	"./pl": 547,
-	"./pl.js": 547,
-	"./pt": 548,
-	"./pt-br": 549,
-	"./pt-br.js": 549,
-	"./pt.js": 548,
-	"./ro": 550,
-	"./ro.js": 550,
-	"./ru": 551,
-	"./ru.js": 551,
-	"./sd": 552,
-	"./sd.js": 552,
-	"./se": 553,
-	"./se.js": 553,
-	"./si": 554,
-	"./si.js": 554,
-	"./sk": 555,
-	"./sk.js": 555,
-	"./sl": 556,
-	"./sl.js": 556,
-	"./sq": 557,
-	"./sq.js": 557,
-	"./sr": 558,
-	"./sr-cyrl": 559,
-	"./sr-cyrl.js": 559,
-	"./sr.js": 558,
-	"./ss": 560,
-	"./ss.js": 560,
-	"./sv": 561,
-	"./sv.js": 561,
-	"./sw": 562,
-	"./sw.js": 562,
-	"./ta": 563,
-	"./ta.js": 563,
-	"./te": 564,
-	"./te.js": 564,
-	"./tet": 565,
-	"./tet.js": 565,
-	"./tg": 566,
-	"./tg.js": 566,
-	"./th": 567,
-	"./th.js": 567,
-	"./tk": 568,
-	"./tk.js": 568,
-	"./tl-ph": 569,
-	"./tl-ph.js": 569,
-	"./tlh": 570,
-	"./tlh.js": 570,
-	"./tr": 571,
-	"./tr.js": 571,
-	"./tzl": 572,
-	"./tzl.js": 572,
-	"./tzm": 573,
-	"./tzm-latn": 574,
-	"./tzm-latn.js": 574,
-	"./tzm.js": 573,
-	"./ug-cn": 575,
-	"./ug-cn.js": 575,
-	"./uk": 576,
-	"./uk.js": 576,
-	"./ur": 577,
-	"./ur.js": 577,
-	"./uz": 578,
-	"./uz-latn": 579,
-	"./uz-latn.js": 579,
-	"./uz.js": 578,
-	"./vi": 580,
-	"./vi.js": 580,
-	"./x-pseudo": 581,
-	"./x-pseudo.js": 581,
-	"./yo": 582,
-	"./yo.js": 582,
-	"./zh-cn": 583,
-	"./zh-cn.js": 583,
-	"./zh-hk": 584,
-	"./zh-hk.js": 584,
-	"./zh-mo": 585,
-	"./zh-mo.js": 585,
-	"./zh-tw": 586,
-	"./zh-tw.js": 586
+	"./af": 454,
+	"./af.js": 454,
+	"./ar": 455,
+	"./ar-dz": 456,
+	"./ar-dz.js": 456,
+	"./ar-kw": 457,
+	"./ar-kw.js": 457,
+	"./ar-ly": 458,
+	"./ar-ly.js": 458,
+	"./ar-ma": 459,
+	"./ar-ma.js": 459,
+	"./ar-sa": 460,
+	"./ar-sa.js": 460,
+	"./ar-tn": 461,
+	"./ar-tn.js": 461,
+	"./ar.js": 455,
+	"./az": 462,
+	"./az.js": 462,
+	"./be": 463,
+	"./be.js": 463,
+	"./bg": 464,
+	"./bg.js": 464,
+	"./bm": 465,
+	"./bm.js": 465,
+	"./bn": 466,
+	"./bn-bd": 467,
+	"./bn-bd.js": 467,
+	"./bn.js": 466,
+	"./bo": 468,
+	"./bo.js": 468,
+	"./br": 469,
+	"./br.js": 469,
+	"./bs": 470,
+	"./bs.js": 470,
+	"./ca": 471,
+	"./ca.js": 471,
+	"./cs": 472,
+	"./cs.js": 472,
+	"./cv": 473,
+	"./cv.js": 473,
+	"./cy": 474,
+	"./cy.js": 474,
+	"./da": 475,
+	"./da.js": 475,
+	"./de": 476,
+	"./de-at": 477,
+	"./de-at.js": 477,
+	"./de-ch": 478,
+	"./de-ch.js": 478,
+	"./de.js": 476,
+	"./dv": 479,
+	"./dv.js": 479,
+	"./el": 480,
+	"./el.js": 480,
+	"./en-au": 481,
+	"./en-au.js": 481,
+	"./en-ca": 482,
+	"./en-ca.js": 482,
+	"./en-gb": 483,
+	"./en-gb.js": 483,
+	"./en-ie": 484,
+	"./en-ie.js": 484,
+	"./en-il": 485,
+	"./en-il.js": 485,
+	"./en-in": 486,
+	"./en-in.js": 486,
+	"./en-nz": 487,
+	"./en-nz.js": 487,
+	"./en-sg": 488,
+	"./en-sg.js": 488,
+	"./eo": 489,
+	"./eo.js": 489,
+	"./es": 490,
+	"./es-do": 491,
+	"./es-do.js": 491,
+	"./es-mx": 492,
+	"./es-mx.js": 492,
+	"./es-us": 493,
+	"./es-us.js": 493,
+	"./es.js": 490,
+	"./et": 494,
+	"./et.js": 494,
+	"./eu": 495,
+	"./eu.js": 495,
+	"./fa": 496,
+	"./fa.js": 496,
+	"./fi": 497,
+	"./fi.js": 497,
+	"./fil": 498,
+	"./fil.js": 498,
+	"./fo": 499,
+	"./fo.js": 499,
+	"./fr": 500,
+	"./fr-ca": 501,
+	"./fr-ca.js": 501,
+	"./fr-ch": 502,
+	"./fr-ch.js": 502,
+	"./fr.js": 500,
+	"./fy": 503,
+	"./fy.js": 503,
+	"./ga": 504,
+	"./ga.js": 504,
+	"./gd": 505,
+	"./gd.js": 505,
+	"./gl": 506,
+	"./gl.js": 506,
+	"./gom-deva": 507,
+	"./gom-deva.js": 507,
+	"./gom-latn": 508,
+	"./gom-latn.js": 508,
+	"./gu": 509,
+	"./gu.js": 509,
+	"./he": 510,
+	"./he.js": 510,
+	"./hi": 511,
+	"./hi.js": 511,
+	"./hr": 512,
+	"./hr.js": 512,
+	"./hu": 513,
+	"./hu.js": 513,
+	"./hy-am": 514,
+	"./hy-am.js": 514,
+	"./id": 515,
+	"./id.js": 515,
+	"./is": 516,
+	"./is.js": 516,
+	"./it": 517,
+	"./it-ch": 518,
+	"./it-ch.js": 518,
+	"./it.js": 517,
+	"./ja": 519,
+	"./ja.js": 519,
+	"./jv": 520,
+	"./jv.js": 520,
+	"./ka": 521,
+	"./ka.js": 521,
+	"./kk": 522,
+	"./kk.js": 522,
+	"./km": 523,
+	"./km.js": 523,
+	"./kn": 524,
+	"./kn.js": 524,
+	"./ko": 525,
+	"./ko.js": 525,
+	"./ku": 526,
+	"./ku.js": 526,
+	"./ky": 527,
+	"./ky.js": 527,
+	"./lb": 528,
+	"./lb.js": 528,
+	"./lo": 529,
+	"./lo.js": 529,
+	"./lt": 530,
+	"./lt.js": 530,
+	"./lv": 531,
+	"./lv.js": 531,
+	"./me": 532,
+	"./me.js": 532,
+	"./mi": 533,
+	"./mi.js": 533,
+	"./mk": 534,
+	"./mk.js": 534,
+	"./ml": 535,
+	"./ml.js": 535,
+	"./mn": 536,
+	"./mn.js": 536,
+	"./mr": 537,
+	"./mr.js": 537,
+	"./ms": 538,
+	"./ms-my": 539,
+	"./ms-my.js": 539,
+	"./ms.js": 538,
+	"./mt": 540,
+	"./mt.js": 540,
+	"./my": 541,
+	"./my.js": 541,
+	"./nb": 542,
+	"./nb.js": 542,
+	"./ne": 543,
+	"./ne.js": 543,
+	"./nl": 544,
+	"./nl-be": 545,
+	"./nl-be.js": 545,
+	"./nl.js": 544,
+	"./nn": 546,
+	"./nn.js": 546,
+	"./oc-lnc": 547,
+	"./oc-lnc.js": 547,
+	"./pa-in": 548,
+	"./pa-in.js": 548,
+	"./pl": 549,
+	"./pl.js": 549,
+	"./pt": 550,
+	"./pt-br": 551,
+	"./pt-br.js": 551,
+	"./pt.js": 550,
+	"./ro": 552,
+	"./ro.js": 552,
+	"./ru": 553,
+	"./ru.js": 553,
+	"./sd": 554,
+	"./sd.js": 554,
+	"./se": 555,
+	"./se.js": 555,
+	"./si": 556,
+	"./si.js": 556,
+	"./sk": 557,
+	"./sk.js": 557,
+	"./sl": 558,
+	"./sl.js": 558,
+	"./sq": 559,
+	"./sq.js": 559,
+	"./sr": 560,
+	"./sr-cyrl": 561,
+	"./sr-cyrl.js": 561,
+	"./sr.js": 560,
+	"./ss": 562,
+	"./ss.js": 562,
+	"./sv": 563,
+	"./sv.js": 563,
+	"./sw": 564,
+	"./sw.js": 564,
+	"./ta": 565,
+	"./ta.js": 565,
+	"./te": 566,
+	"./te.js": 566,
+	"./tet": 567,
+	"./tet.js": 567,
+	"./tg": 568,
+	"./tg.js": 568,
+	"./th": 569,
+	"./th.js": 569,
+	"./tk": 570,
+	"./tk.js": 570,
+	"./tl-ph": 571,
+	"./tl-ph.js": 571,
+	"./tlh": 572,
+	"./tlh.js": 572,
+	"./tr": 573,
+	"./tr.js": 573,
+	"./tzl": 574,
+	"./tzl.js": 574,
+	"./tzm": 575,
+	"./tzm-latn": 576,
+	"./tzm-latn.js": 576,
+	"./tzm.js": 575,
+	"./ug-cn": 577,
+	"./ug-cn.js": 577,
+	"./uk": 578,
+	"./uk.js": 578,
+	"./ur": 579,
+	"./ur.js": 579,
+	"./uz": 580,
+	"./uz-latn": 581,
+	"./uz-latn.js": 581,
+	"./uz.js": 580,
+	"./vi": 582,
+	"./vi.js": 582,
+	"./x-pseudo": 583,
+	"./x-pseudo.js": 583,
+	"./yo": 584,
+	"./yo.js": 584,
+	"./zh-cn": 585,
+	"./zh-cn.js": 585,
+	"./zh-hk": 586,
+	"./zh-hk.js": 586,
+	"./zh-mo": 587,
+	"./zh-mo.js": 587,
+	"./zh-tw": 588,
+	"./zh-tw.js": 588
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -320,11 +320,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1110;
+webpackContext.id = 1113;
 
 /***/ }),
 
-/***/ 1112:
+/***/ 1115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -339,12 +339,12 @@ var RecordStateEnum;
 
 /***/ }),
 
-/***/ 1130:
+/***/ 1133:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createTranslateLoader;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1134);
 
 function createTranslateLoader(httpClient) {
     return new __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](httpClient, './assets/localization/', '.json');
@@ -353,7 +353,7 @@ function createTranslateLoader(httpClient) {
 
 /***/ }),
 
-/***/ 1135:
+/***/ 1138:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -391,15 +391,15 @@ var BroadcastService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1136:
+/***/ 1139:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YoutubePlayerModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_youtube_player_service__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_youtube_player_service__ = __webpack_require__(634);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -436,13 +436,13 @@ var YoutubePlayerModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1137:
+/***/ 1140:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YoutubePlayerComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_youtube_player_service__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_youtube_player_service__ = __webpack_require__(634);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -535,7 +535,7 @@ var YoutubePlayerComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1138:
+/***/ 1141:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -588,26 +588,28 @@ var Autoresize = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1139:
+/***/ 1142:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(448);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(450);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(447);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(590);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -639,7 +641,8 @@ var ApiModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__["a" /* SessionEventService */],
                 __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__["a" /* SessionUserService */],
                 __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__["a" /* SessionUserLeaderboardService */],
-                __WEBPACK_IMPORTED_MODULE_8__services_trail_service__["a" /* TrailService */]
+                __WEBPACK_IMPORTED_MODULE_8__services_trail_service__["a" /* TrailService */],
+                __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__["a" /* ProblemReportService */]
             ],
         })
     ], ApiModule);
@@ -650,16 +653,16 @@ var ApiModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1140:
+/***/ 1143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrailService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
@@ -760,13 +763,13 @@ var TrailService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 1144:
+/***/ 1147:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__ = __webpack_require__(1145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__ = __webpack_require__(1148);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -792,13 +795,13 @@ var DirectivesModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1145:
+/***/ 1148:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SafeInnerHtmlDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__ = __webpack_require__(120);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -852,7 +855,274 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 117:
+/***/ 116:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMModalType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(640);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(643);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var MCMModalType;
+(function (MCMModalType) {
+    MCMModalType[MCMModalType["hint"] = 1] = "hint";
+    MCMModalType[MCMModalType["error"] = 2] = "error";
+    MCMModalType[MCMModalType["solved"] = 3] = "solved";
+    MCMModalType[MCMModalType["sampleSolution"] = 4] = "sampleSolution";
+    MCMModalType[MCMModalType["solvedLow"] = 5] = "solvedLow";
+    MCMModalType[MCMModalType["saved"] = 6] = "saved";
+    MCMModalType[MCMModalType["subtask"] = 7] = "subtask";
+    MCMModalType[MCMModalType["calculation"] = 8] = "calculation";
+    MCMModalType[MCMModalType["general"] = 9] = "general";
+})(MCMModalType || (MCMModalType = {}));
+var MyApp = /** @class */ (function () {
+    function MyApp(platform, statusBar, languageService, chatService, events, app, alertCtrl, translate, screenOrientation, storage, modalService, deepLinker) {
+        var _this = this;
+        this.storage = storage;
+        this.modalService = modalService;
+        this.deepLinker = deepLinker;
+        this.rootPage = 'HomePage';
+        this.activeNarrative = 'default';
+        this.isOpeningRoute = false;
+        var that = this;
+        platform.ready().then(function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, languageService.initialize()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.setRootPage()];
+                    case 2:
+                        _a.sent();
+                        // Okay, so the platform is ready and our plugins are available.
+                        // Here you can do any higher level native things you might need.
+                        // statusBar.styleDefault();
+                        // statusBar.show();
+                        if (platform.is('cordova')) {
+                            if (window.wkWebView) {
+                                window.wkWebView.injectCookie(__WEBPACK_IMPORTED_MODULE_9__classes_Helper__["b" /* Helper */].WEBSERVER_URL);
+                            }
+                            if (platform.is('tablet')) {
+                                //force landscape mode on tablets
+                                screenOrientation.lock(screenOrientation.ORIENTATIONS.LANDSCAPE);
+                            }
+                            else {
+                                //force portrait mode on phones
+                                screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+                            }
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+        platform.registerBackButtonAction(function () { return __awaiter(_this, void 0, void 0, function () {
+            var _this = this;
+            var activeNav, rootNav, alert_1, tasksMap;
+            return __generator(this, function (_a) {
+                activeNav = app.getActiveNavs()[0];
+                rootNav = app.getRootNav();
+                if (rootNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_12__pages_home_home__["a" /* HomePage */].name
+                    && (activeNav.getActive().component.name === "RoutesListPage" || activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__["a" /* RoutesMapPage */].name || activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__["a" /* PortalPage */].name)) {
+                    activeNav.parent.select(0);
+                    return [2 /*return*/];
+                }
+                if (activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__["a" /* DashboardPage */].name) {
+                    alert_1 = alertCtrl.create({
+                        title: translate.instant("a_alert_confirm_close"),
+                        buttons: [{
+                                text: translate.instant("no"),
+                                role: 'cancel'
+                            }, {
+                                text: translate.instant("yes"),
+                                handler: function () {
+                                    platform.exitApp();
+                                }
+                            }]
+                    });
+                    alert_1.present();
+                    return [2 /*return*/];
+                }
+                if (activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalCmp */].name) {
+                    activeNav.getActive().dismiss();
+                    return [2 /*return*/];
+                }
+                if (rootNav.canGoBack()) {
+                    if (rootNav.getActive().component.name === 'TasksMap') {
+                        tasksMap = rootNav.getActive().instance;
+                        if (tasksMap.sessionInfo != null) {
+                            tasksMap.sessionFinished();
+                        }
+                        else {
+                            if (!this.isOpeningRoute) {
+                                this.isOpeningRoute = true;
+                                rootNav.pop({}, function () {
+                                    // necessary because of bug which does not update URL
+                                    _this.deepLinker.navChange('back');
+                                });
+                                this.modalService.showRoute(tasksMap.route, rootNav).then(function () { return __awaiter(_this, void 0, void 0, function () {
+                                    return __generator(this, function (_a) {
+                                        this.isOpeningRoute = false;
+                                        return [2 /*return*/];
+                                    });
+                                }); });
+                            }
+                        }
+                        return [2 /*return*/];
+                    }
+                    else {
+                        rootNav.pop();
+                        return [2 /*return*/];
+                    }
+                }
+                if (activeNav.canGoBack()) {
+                    activeNav.pop();
+                    return [2 /*return*/];
+                }
+                return [2 /*return*/];
+            });
+        }); });
+        statusBar.backgroundColorByHexString('#035f87'); // set status bar color
+        // Keyboard key tab (used in the app.html template)
+        var decimalSeparator = window.navigator.language.substring(0, 2) == 'en' ? '.' : ',';
+        this.keysTab = [
+            "1", "2", "3", "C",
+            "4", "5", "6", "",
+            "7", "8", "9", "",
+            "-", "0", decimalSeparator, "✔"
+        ]; // ✔
+        // chatService.init();
+        events.subscribe('narrativeChange', function (narrative) {
+            _this.activeNarrative = narrative;
+        });
+    }
+    MyApp.prototype.ngOnInit = function () {
+        __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */].hide();
+    };
+    // Event emitter
+    MyApp.prototype.keyClick = function (k) {
+        console.log('Event emitter - key: ', k);
+    };
+    MyApp.prototype.isFirstStart = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var OnboardingHasAlreadyBeenShown;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.get('OnboardingHasBeenShown')];
+                    case 1:
+                        OnboardingHasAlreadyBeenShown = _a.sent();
+                        if (!OnboardingHasAlreadyBeenShown) {
+                            this.storage.set('OnboardingHasBeenShown', true);
+                        }
+                        return [2 /*return*/, !OnboardingHasAlreadyBeenShown];
+                }
+            });
+        });
+    };
+    MyApp.prototype.setRootPage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.isFirstStart()];
+                    case 1:
+                        if (_a.sent()) {
+                            this.rootPage = 'OnboardingPage';
+                        }
+                        else {
+                            this.rootPage = 'HomePage';
+                        }
+                        navigator.splashscreen.hide();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/app/app.html"*/'<ion-nav [root]="rootPage" [class]="activeNarrative"></ion-nav>\n<custom-keyboard [keysTab]="keysTab"\n                 (keyClick)="keyClick($event)"\n                 [colNb]=4\n                 class="kb-light">\n</custom-keyboard>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/app/app.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_4__services_language_service__["a" /* LanguageService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__["a" /* ScreenOrientation */], __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* DeepLinker */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -860,7 +1130,7 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1037,21 +1307,21 @@ var LanguageService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Updater; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1401,27 +1671,18 @@ var DB_Updater = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 147:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMModalType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMIconModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(638);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(640);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1431,251 +1692,185 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
+
+
+
+
+
+
+
+var MCMIconModal = /** @class */ (function () {
+    function MCMIconModal(params, viewCtrl, platform, imagesService, modalCtrl) {
+        this.viewCtrl = viewCtrl;
+        this.imagesService = imagesService;
+        this.modalCtrl = modalCtrl;
+        this.gamificationEnabled = false;
+        this.narrativeEnabled = false;
+        this.MCMModalType = __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */];
+        this.windowWith = platform.width();
+        this.videoWith = this.windowWith - 80;
+        this.videoHeight = this.videoWith * 0.7476923077;
+        if (!params.data.modalType) {
+            console.warn("Please provide the modalType!");
+        }
+        else {
+            this.modalType = params.data.modalType;
+            this.buttons = params.data.buttons;
+            if (params.data.title) {
+                if (params.data.title === 'hide') {
+                    this.title = undefined;
+                }
+                else {
+                    this.title = params.data.title;
+                }
             }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+            else {
+                switch (this.modalType) {
+                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].hint:
+                        this.title = "a_btn_hint1";
+                        break;
+                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].error:
+                        this.title = "a_alert_false_answer_title";
+                        break;
+                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].solved:
+                        this.title = "a_alert_right_answer_title";
+                        break;
+                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].solvedLow:
+                        this.title = "a_alert_right_answer_title_low";
+                        break;
+                }
+            }
+            this.taskDescription = params.data.taskDescription;
+            this.message = params.data.message;
+            this.messages = params.data.messages;
+            this.taskCode = params.data.taskCode;
+            this.imageUrl = params.data.imageUrl;
+            this.type = params.data.type;
+            if (this.type == 'video' && this.message) {
+                var parts = this.message.split('v=');
+                if (parts.length == 2) {
+                    this.videoId = parts[1];
+                }
+            }
+        }
+        if (params.data.param) {
+            this.param = params.data.param;
+        }
+        if (params.data.solution) {
+            var sol = params.data.solution;
+            // let L: any; let K: any; let J: any; let H: any;
+            var variables = ["L", "K", "J", "H"];
+            if (!this.param) {
+                this.param = {};
+            }
+            for (var i = 0; i < sol.length; i++) {
+                var currVar = variables[i];
+                this.param[currVar] = params.data.solution[i];
+            }
+        }
+        if (params.data.gamificationEnabled) {
+            this.gamificationEnabled = params.data.gamificationEnabled;
+        }
+        if (params.data.narrativeEnabled) {
+            this.narrativeEnabled = params.data.narrativeEnabled;
+        }
+        if (params.data.narrative) {
+            this.narrative = params.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        }
+        else {
+            this.iconPath = '';
+        }
+        if (params.data.score) {
+            this.score = params.data.score;
+        }
+        this.linkyOptions = {
+            replaceFn: function (match) {
+                console.log("href = ", match.getAnchorHref());
+                console.log("text = ", match.getAnchorText());
+                return '<a href="' + match.getAnchorHref() + '">' + match.getAnchorText() + '</a>';
+            }
+        };
+        // replace the ###KEY### in titles and messages
+        if (this.narrativeEnabled) {
+            for (var key in this.param) {
+                this.title = this.title.replace("###" + key + "###", this.param[key]);
+                this.message = this.message.replace("###" + key + "###", this.param[key]);
+            }
+        }
     }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var MCMModalType;
-(function (MCMModalType) {
-    MCMModalType[MCMModalType["hint"] = 1] = "hint";
-    MCMModalType[MCMModalType["error"] = 2] = "error";
-    MCMModalType[MCMModalType["solved"] = 3] = "solved";
-    MCMModalType[MCMModalType["sampleSolution"] = 4] = "sampleSolution";
-    MCMModalType[MCMModalType["solvedLow"] = 5] = "solvedLow";
-    MCMModalType[MCMModalType["saved"] = 6] = "saved";
-    MCMModalType[MCMModalType["subtask"] = 7] = "subtask";
-    MCMModalType[MCMModalType["calculation"] = 8] = "calculation";
-})(MCMModalType || (MCMModalType = {}));
-var MyApp = /** @class */ (function () {
-    function MyApp(platform, statusBar, languageService, chatService, events, app, alertCtrl, translate, screenOrientation, storage, modalService, deepLinker) {
+    MCMIconModal_1 = MCMIconModal;
+    MCMIconModal.prototype.ionViewDidEnter = function () {
+        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+    };
+    MCMIconModal.prototype.dismiss = function (backToMap) {
+        if (backToMap) {
+            this.viewCtrl.dismiss({ showMap: true });
+        }
+        else {
+            this.viewCtrl.dismiss();
+        }
+    };
+    MCMIconModal.prototype.reportProblem = function () {
         var _this = this;
-        this.storage = storage;
-        this.modalService = modalService;
-        this.deepLinker = deepLinker;
-        this.rootPage = 'HomePage';
-        this.activeNarrative = 'default';
-        this.isOpeningRoute = false;
-        var that = this;
-        platform.ready().then(function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, languageService.initialize()];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.setRootPage()];
-                    case 2:
-                        _a.sent();
-                        // Okay, so the platform is ready and our plugins are available.
-                        // Here you can do any higher level native things you might need.
-                        // statusBar.styleDefault();
-                        // statusBar.show();
-                        if (platform.is('cordova')) {
-                            if (window.wkWebView) {
-                                window.wkWebView.injectCookie(__WEBPACK_IMPORTED_MODULE_9__classes_Helper__["b" /* Helper */].WEBSERVER_URL);
-                            }
-                            if (platform.is('tablet')) {
-                                //force landscape mode on tablets
-                                screenOrientation.lock(screenOrientation.ORIENTATIONS.LANDSCAPE);
-                            }
-                            else {
-                                //force portrait mode on phones
-                                screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
-                            }
-                        }
-                        return [2 /*return*/];
-                }
+        var feedbackOpenFunction = function () {
+            var problemReportModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__["a" /* MCMReportProblemModal */], {
+                taskCode: _this.taskCode
             });
-        }); });
-        platform.registerBackButtonAction(function () { return __awaiter(_this, void 0, void 0, function () {
-            var _this = this;
-            var activeNav, rootNav, alert_1, tasksMap;
-            return __generator(this, function (_a) {
-                activeNav = app.getActiveNavs()[0];
-                rootNav = app.getRootNav();
-                if (rootNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_12__pages_home_home__["a" /* HomePage */].name
-                    && (activeNav.getActive().component.name === "RoutesListPage" || activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__["a" /* RoutesMapPage */].name || activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__["a" /* PortalPage */].name)) {
-                    activeNav.parent.select(0);
-                    return [2 /*return*/];
-                }
-                if (activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__["a" /* DashboardPage */].name) {
-                    alert_1 = alertCtrl.create({
-                        title: translate.instant("a_alert_confirm_close"),
-                        buttons: [{
-                                text: translate.instant("no"),
-                                role: 'cancel'
-                            }, {
-                                text: translate.instant("yes"),
-                                handler: function () {
-                                    platform.exitApp();
-                                }
-                            }]
-                    });
-                    alert_1.present();
-                    return [2 /*return*/];
-                }
-                if (activeNav.getActive().component.name === __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalCmp */].name) {
-                    activeNav.getActive().dismiss();
-                    return [2 /*return*/];
-                }
-                if (rootNav.canGoBack()) {
-                    if (rootNav.getActive().component.name === 'TasksMap') {
-                        tasksMap = rootNav.getActive().instance;
-                        if (tasksMap.sessionInfo != null) {
-                            tasksMap.sessionFinished();
-                        }
-                        else {
-                            if (!this.isOpeningRoute) {
-                                this.isOpeningRoute = true;
-                                rootNav.pop({}, function () {
-                                    // necessary because of bug which does not update URL
-                                    _this.deepLinker.navChange('back');
-                                });
-                                this.modalService.showRoute(tasksMap.route, rootNav).then(function () { return __awaiter(_this, void 0, void 0, function () {
-                                    return __generator(this, function (_a) {
-                                        this.isOpeningRoute = false;
-                                        return [2 /*return*/];
-                                    });
-                                }); });
-                            }
-                        }
-                        return [2 /*return*/];
+            problemReportModal.present();
+        };
+        var confirmationModal = this.modalCtrl.create(MCMIconModal_1, {
+            type: 'text',
+            title: "a_task_feedback_alert_title",
+            message: "a_task_feedback_alert_text",
+            modalType: __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].general,
+            buttons: [
+                {
+                    title: 'a_alert_cancel',
+                    callback: function () {
+                        confirmationModal.dismiss();
                     }
-                    else {
-                        rootNav.pop();
-                        return [2 /*return*/];
+                },
+                {
+                    title: 'a_alert_continue',
+                    callback: function () {
+                        feedbackOpenFunction();
+                        confirmationModal.dismiss();
                     }
                 }
-                if (activeNav.canGoBack()) {
-                    activeNav.pop();
-                    return [2 /*return*/];
-                }
-                return [2 /*return*/];
-            });
-        }); });
-        statusBar.backgroundColorByHexString('#035f87'); // set status bar color
-        // Keyboard key tab (used in the app.html template)
-        var decimalSeparator = window.navigator.language.substring(0, 2) == 'en' ? '.' : ',';
-        this.keysTab = [
-            "1", "2", "3", "C",
-            "4", "5", "6", "",
-            "7", "8", "9", "",
-            "-", "0", decimalSeparator, "✔"
-        ]; // ✔
-        // chatService.init();
-        events.subscribe('narrativeChange', function (narrative) {
-            _this.activeNarrative = narrative;
-        });
-    }
-    MyApp.prototype.ngOnInit = function () {
-        __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */].hide();
+            ]
+        }, { showBackdrop: true, enableBackdropDismiss: true });
+        confirmationModal.present();
     };
-    // Event emitter
-    MyApp.prototype.keyClick = function (k) {
-        console.log('Event emitter - key: ', k);
-    };
-    MyApp.prototype.isFirstStart = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var OnboardingHasAlreadyBeenShown;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.storage.get('OnboardingHasBeenShown')];
-                    case 1:
-                        OnboardingHasAlreadyBeenShown = _a.sent();
-                        if (!OnboardingHasAlreadyBeenShown) {
-                            this.storage.set('OnboardingHasBeenShown', true);
-                        }
-                        return [2 /*return*/, !OnboardingHasAlreadyBeenShown];
-                }
-            });
-        });
-    };
-    MyApp.prototype.setRootPage = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.isFirstStart()];
-                    case 1:
-                        if (_a.sent()) {
-                            this.rootPage = 'OnboardingPage';
-                        }
-                        else {
-                            this.rootPage = 'HomePage';
-                        }
-                        navigator.splashscreen.hide();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/app/app.html"*/'<ion-nav [root]="rootPage" [class]="activeNarrative"></ion-nav>\n<custom-keyboard [keysTab]="keysTab"\n                 (keyClick)="keyClick($event)"\n                 [colNb]=4\n                 class="kb-light">\n</custom-keyboard>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/app/app.html"*/
+    MCMIconModal = MCMIconModal_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge"\n     [ngClass]="{\'no-icon\': type != \'image\',\n                 \'no-icon\' : modalType == 4 || modalType == 8 || modalType == 9,\n                 \'hint\': modalType == 1,\n                 \'failed\': modalType == 2,\n                 \'perfect\': modalType == 3,\n                 \'good\': modalType == 5}"\n>\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <img class="head-icon" *ngIf="modalType == 7" src="./assets/icons/{{iconPath}}modal-subtask-info.svg" />\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf="type == \'image\'" [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != \'0\'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7 || modalType == 9" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n\n    <div class="modal-content" *ngIf="modalType == MCMModalType.sampleSolution">\n        <h2>{{title | translate}}</h2>\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n        <p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n        <div class="feedback" (click)="reportProblem()">\n            <ion-label>{{ "a_task_feedback_label" | translate }}</ion-label>\n            <p>{{ "a_task_feedback_introduction" | translate }}</p>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" [ngClass]="{\'col-33\': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_4__services_language_service__["a" /* LanguageService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Events */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__["a" /* ScreenOrientation */], __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* DeepLinker */]])
-    ], MyApp);
-    return MyApp;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ModalController */]])
+    ], MCMIconModal);
+    return MCMIconModal;
+    var MCMIconModal_1;
 }());
 
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=MCMIconModal.js.map
 
 /***/ }),
 
-/***/ 149:
+/***/ 150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(118);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1766,7 +1961,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 19:
+/***/ 17:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1777,16 +1972,16 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil__ = __webpack_require__(636);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_leaflet_geometryutil__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common_http__ = __webpack_require__(35);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2202,12 +2397,14 @@ var Helper = /** @class */ (function () {
     /*
     GLOBAL VARS #
      */
-    Helper.WEBSERVER_URL = "https://mathcitymap.eu/";
-    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
-    Helper.MEDIASERVER_URL = "https://matismedia.eu/storage/MCM/";
+    // static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
+    Helper.WEBSERVER_URL = "https://dev.mathcitymap.eu/";
+    // static readonly MEDIASERVER_BASE_URL: string = "https://matismedia.eu"
+    Helper.MEDIASERVER_BASE_URL = "https://sb-medienserver.matismedia.eu";
+    Helper.MEDIASERVER_IMAGE_URL = Helper_1.MEDIASERVER_BASE_URL + "/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
-    Helper.API_URL = "https://mathcitymap.eu/db_query_post.php";
-    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
+    // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
+    Helper.API_URL = "https://dev.mathcitymap.eu/db_query_post.php";
     Helper.REQUEST_PASS = "evilknivel2k16";
     Helper.REPLACE_TASK_IMAGE_PATH = "mcm_images/tasks/";
     Helper.REPLACE_ROUTE_IMAGE_PATH = "mcm_images/routes/";
@@ -2257,14 +2454,14 @@ var Helper = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 191:
+/***/ 192:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2366,16 +2563,16 @@ var Task2Route = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 213:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
@@ -2668,24 +2865,24 @@ var SessionService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(846);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(847);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(845);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(636);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(846);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(848);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(849);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(847);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(849);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(850);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(639);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2734,167 +2931,14 @@ var ComponentsModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 236:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMIconModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(45);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-var MCMIconModal = /** @class */ (function () {
-    function MCMIconModal(params, viewCtrl, platform, imagesService) {
-        this.viewCtrl = viewCtrl;
-        this.imagesService = imagesService;
-        this.gamificationEnabled = false;
-        this.narrativeEnabled = false;
-        this.windowWith = platform.width();
-        this.videoWith = this.windowWith - 80;
-        this.videoHeight = this.videoWith * 0.7476923077;
-        if (!params.data.modalType) {
-            console.warn("Please provide the modalType!");
-        }
-        else {
-            this.modalType = params.data.modalType;
-            this.buttons = params.data.buttons;
-            if (params.data.title) {
-                if (params.data.title === 'hide') {
-                    this.title = undefined;
-                }
-                else {
-                    this.title = params.data.title;
-                }
-            }
-            else {
-                switch (this.modalType) {
-                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].hint:
-                        this.title = "a_btn_hint1";
-                        break;
-                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].error:
-                        this.title = "a_alert_false_answer_title";
-                        break;
-                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].solved:
-                        this.title = "a_alert_right_answer_title";
-                        break;
-                    case __WEBPACK_IMPORTED_MODULE_2__app_app_component__["a" /* MCMModalType */].solvedLow:
-                        this.title = "a_alert_right_answer_title_low";
-                        break;
-                }
-            }
-            this.taskDescription = params.data.taskDescription;
-            this.message = params.data.message;
-            this.messages = params.data.messages;
-            this.imageUrl = params.data.imageUrl;
-            this.type = params.data.type;
-            if (this.type == 'video' && this.message) {
-                var parts = this.message.split('v=');
-                if (parts.length == 2) {
-                    this.videoId = parts[1];
-                }
-            }
-        }
-        if (params.data.param) {
-            this.param = params.data.param;
-        }
-        if (params.data.solution) {
-            var sol = params.data.solution;
-            // let L: any; let K: any; let J: any; let H: any;
-            var variables = ["L", "K", "J", "H"];
-            if (!this.param) {
-                this.param = {};
-            }
-            for (var i = 0; i < sol.length; i++) {
-                var currVar = variables[i];
-                this.param[currVar] = params.data.solution[i];
-            }
-        }
-        if (params.data.gamificationEnabled) {
-            this.gamificationEnabled = params.data.gamificationEnabled;
-        }
-        if (params.data.narrativeEnabled) {
-            this.narrativeEnabled = params.data.narrativeEnabled;
-        }
-        if (params.data.narrative) {
-            this.narrative = params.data.narrative;
-            switch (this.narrative) {
-                case 'pirates':
-                    this.iconPath = 'pirates/';
-                    break;
-                default:
-                    this.iconPath = '';
-            }
-        }
-        else {
-            this.iconPath = '';
-        }
-        if (params.data.score) {
-            this.score = params.data.score;
-        }
-        this.linkyOptions = {
-            replaceFn: function (match) {
-                console.log("href = ", match.getAnchorHref());
-                console.log("text = ", match.getAnchorText());
-                return '<a href="' + match.getAnchorHref() + '">' + match.getAnchorText() + '</a>';
-            }
-        };
-        // replace the ###KEY### in titles and messages
-        if (this.narrativeEnabled) {
-            for (var key in this.param) {
-                this.title = this.title.replace("###" + key + "###", this.param[key]);
-                this.message = this.message.replace("###" + key + "###", this.param[key]);
-            }
-        }
-    }
-    MCMIconModal.prototype.ionViewDidEnter = function () {
-        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
-    };
-    MCMIconModal.prototype.dismiss = function (backToMap) {
-        if (backToMap) {
-            this.viewCtrl.dismiss({ showMap: true });
-        }
-        else {
-            this.viewCtrl.dismiss();
-        }
-    };
-    MCMIconModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge" [ngClass]="{\'no-icon\': type != \'image\', \'no-icon\' : modalType == 4 || modalType == 8, \'hint\': modalType == 1,\'failed\': modalType == 2, \'perfect\': modalType == 3, \'good\': modalType == 5}">\n\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <img class="head-icon" *ngIf="modalType == 7" src="./assets/icons/{{iconPath}}modal-subtask-info.svg" />\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf=" type == \'image\' " [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != \'0\'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n    <div class="modal-content" *ngIf="modalType == 4">\n        <img class="head-icon" *ngIf="!imageUrl && modalType != 4" src="./assets/icons/modal-rating-perfect.svg"/>\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- text hint --><p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" [ngClass]="{\'col-33\': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__services_images_service__["a" /* ImagesService */]])
-    ], MCMIconModal);
-    return MCMIconModal;
-}());
-
-//# sourceMappingURL=MCMIconModal.js.map
-
-/***/ }),
-
 /***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Score; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(808);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3258,128 +3302,19 @@ var CustomKeyBoard = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 251:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 251;
-
-/***/ }),
-
-/***/ 295:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"../pages/chat/chat.module": [
-		588
-	],
-	"../pages/dashboard/dashboard.module": [
-		1147,
-		9
-	],
-	"../pages/home/home.module": [
-		1146,
-		8
-	],
-	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1148,
-		5
-	],
-	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1150,
-		7
-	],
-	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1149,
-		1
-	],
-	"../pages/info/info.module": [
-		1151,
-		4
-	],
-	"../pages/onboarding/onboarding.module": [
-		1152,
-		3
-	],
-	"../pages/portal/portal.module": [
-		1153,
-		6
-	],
-	"../pages/settings/settings.module": [
-		1154,
-		2
-	],
-	"../pages/task-detail/task-detail.module": [
-		1155,
-		0
-	]
-};
-function webpackAsyncContext(req) {
-	var ids = map[req];
-	if(!ids)
-		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
-		return __webpack_require__(ids[0]);
-	});
-};
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = 295;
-module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 30:
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrmService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMReportProblemModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(802);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(803);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(804);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(805);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(809);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(810);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(822);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(832);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(833);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(834);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(835);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(836);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(837);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(838);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(839);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(840);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(841);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(842);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_component__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3424,6 +3359,313 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+
+
+
+
+
+
+
+
+var MCMReportProblemModal = /** @class */ (function () {
+    function MCMReportProblemModal(viewCtrl, navParams, imageService, prService, modalCtrl) {
+        this.viewCtrl = viewCtrl;
+        this.imageService = imageService;
+        this.prService = prService;
+        this.modalCtrl = modalCtrl;
+        this.problemTypes = [
+            { key: "no_exist", value: "a_reportType_no_exist" },
+            { key: "access_restricted", value: "a_reportType_access_restricted" },
+            { key: "pin_wrong", value: "a_reportType_pin_wrong" },
+            { key: "data_wrong", value: "a_reportType_data_wrong" },
+            { key: "values_wrong", value: "a_reportType_values_wrong" },
+            { key: "solution_wrong", value: "a_reportType_solution_wrong" },
+            { key: "misc", value: "a_reportType_misc" },
+        ];
+        this.selectedProblems = [];
+        this.information = "";
+        this.taskCode = navParams.data.taskCode;
+    }
+    MCMReportProblemModal.prototype.ionViewDidEnter = function () {
+    };
+    MCMReportProblemModal.prototype.getImageFromGallery = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.imageService.getImageFromUserGallery()];
+                    case 1:
+                        _a.image = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMReportProblemModal.prototype.getImageFromCamera = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.imageService.getImageFromCamera()];
+                    case 1:
+                        _a.image = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMReportProblemModal.prototype.resetImage = function () {
+        this.image = undefined;
+    };
+    MCMReportProblemModal.prototype.sendReport = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var imageUrls, blob, promises, _i, _a, problemType, successModal_1, e_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 6, , 7]);
+                        imageUrls = void 0;
+                        if (!this.image) return [3 /*break*/, 2];
+                        blob = this.prService.convertDataUriToBlob(this.image.base64);
+                        return [4 /*yield*/, this.prService.uploadImage(blob, this.taskCode)];
+                    case 1:
+                        imageUrls = _b.sent();
+                        _b.label = 2;
+                    case 2:
+                        promises = [];
+                        for (_i = 0, _a = this.selectedProblems; _i < _a.length; _i++) {
+                            problemType = _a[_i];
+                            promises.push(this.prService.sendReports(this.taskCode, problemType, this.information, (imageUrls ? __WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + imageUrls.responseData.mediumUrl : "")));
+                        }
+                        return [4 /*yield*/, Promise.all(promises)];
+                    case 3:
+                        _b.sent();
+                        successModal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                            type: 'text',
+                            title: "a_task_feedback_success_title",
+                            message: "a_task_feedback_success_text",
+                            modalType: __WEBPACK_IMPORTED_MODULE_7__app_app_component__["a" /* MCMModalType */].general,
+                            buttons: [
+                                {
+                                    title: 'a_alert_continue',
+                                    callback: function () {
+                                        successModal_1.dismiss();
+                                    }
+                                }
+                            ]
+                        }, { showBackdrop: true, enableBackdropDismiss: true });
+                        return [4 /*yield*/, this.viewCtrl.dismiss()];
+                    case 4:
+                        _b.sent();
+                        return [4 /*yield*/, successModal_1.present()];
+                    case 5:
+                        _b.sent();
+                        return [3 /*break*/, 7];
+                    case 6:
+                        e_1 = _b.sent();
+                        this.showError = true;
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMReportProblemModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMReportProblemModal.prototype, "input", void 0);
+    MCMReportProblemModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/'<div class="modal card icon report has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-feedback.svg"/>\n        <h2>{{ \'a_task_popup_title\' | translate }}</h2>\n        <p class="text-center">{{ \'a_task_popup_text\' | translate }}</p>\n        <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>\n\n        <ion-item>\n            <ion-select multiple="true" interface="alert" [(ngModel)]="selectedProblems">\n                <ion-option *ngFor="let problem of problemTypes" [value]="problem.key">{{problem.value | translate}}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-label>{{ "a_task_popup_information" | translate }}</ion-label>\n        <ion-item>\n            <textarea #input item-content name="background" [(ngModel)]="information" rows="3"></textarea>\n        </ion-item>\n\n        <ion-item class="image">\n            <ion-label>{{ "a_task_popup_image" | translate }}</ion-label>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromGallery()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n            <button *ngIf="image" ion-button clear icon-only round end item-content class="remove" (click)="resetImage()">\n                <ion-icon name="md-close"></ion-icon>\n            </button>\n            <div *ngIf="image" item-content  class="image-file">\n                <img [src]="image.base64" alt="image-preview"/>\n            </div>\n        </ion-item>\n\n        <span *ngIf="showError">\n            {{ \'a_reportError_unknown\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!selectedProblems || selectedProblems.length == 0 || !information || information == \'\'" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__services_images_service__["a" /* ImagesService */],
+            __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__["a" /* ProblemReportService */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */]])
+    ], MCMReportProblemModal);
+    return MCMReportProblemModal;
+}());
+
+//# sourceMappingURL=MCMReportProblemModal.js.map
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 252;
+
+/***/ }),
+
+/***/ 296:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/chat/chat.module": [
+		593
+	],
+	"../pages/dashboard/dashboard.module": [
+		1150,
+		9
+	],
+	"../pages/home/home.module": [
+		1149,
+		8
+	],
+	"../pages/home/tabs/RoutesList/RoutesList.module": [
+		1151,
+		5
+	],
+	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
+		1152,
+		7
+	],
+	"../pages/home/tabs/TasksMap/TasksMap.module": [
+		1154,
+		1
+	],
+	"../pages/info/info.module": [
+		1153,
+		4
+	],
+	"../pages/onboarding/onboarding.module": [
+		1157,
+		3
+	],
+	"../pages/portal/portal.module": [
+		1156,
+		6
+	],
+	"../pages/settings/settings.module": [
+		1155,
+		2
+	],
+	"../pages/task-detail/task-detail.module": [
+		1158,
+		0
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 296;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 30:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrmService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_typeorm__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(805);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(806);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(807);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(824);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(825);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(837);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(838);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(839);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(840);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(841);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(842);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(843);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(844);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__ = __webpack_require__(845);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
 
 
 
@@ -3511,7 +3753,8 @@ var OrmService = /** @class */ (function () {
                             __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__["a" /* AddPositionField16194302450000 */],
                             __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__["a" /* AddPathFields16208100470000 */],
                             __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__["a" /* AddZoom16225449820000 */],
-                            __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__["a" /* AddForceSubtaskAndArLink16552845000000 */]
+                            __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__["a" /* AddForceSubtaskAndArLink16552845000000 */],
+                            __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__["a" /* AddTaskCode17026521590000 */]
                         ];
                         if (!sqliteAvailable) return [3 /*break*/, 4];
                         _a = this;
@@ -4203,16 +4446,16 @@ var OrmService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 331:
+/***/ 332:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4574,6 +4817,10 @@ var Task = /** @class */ (function () {
         __metadata("design:type", String)
     ], Task.prototype, "arLink", void 0);
     __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], Task.prototype, "code", void 0);
+    __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["d" /* ManyToMany */])(function (type) { return __WEBPACK_IMPORTED_MODULE_1__Route__["a" /* Route */]; }, function (route) { return route.tasks; }),
         __metadata("design:type", Array)
     ], Task.prototype, "routes", void 0);
@@ -4601,14 +4848,590 @@ var Task = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 353:
+/***/ 34:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(809);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(338);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+var ImagesService = /** @class */ (function () {
+    function ImagesService(fileManager, platform, transfer, http, httpClient, sanitizer, camera) {
+        this.fileManager = fileManager;
+        this.platform = platform;
+        this.transfer = transfer;
+        this.http = http;
+        this.httpClient = httpClient;
+        this.sanitizer = sanitizer;
+        this.camera = camera;
+        this.isInitialized = false;
+        this.downloadQueue = null;
+        this.offlineImageUrlCache = {};
+        this.offlineThumbnailUrlCache = {};
+        this.lazyLoadedImagesCache = {};
+        ImagesService_1.INSTANCE = this;
+        this.init();
+    }
+    ImagesService_1 = ImagesService;
+    ImagesService.prototype.saveThumb = function (newFileName, base64, fileManager) {
+        console.log("saving thumbnail to " + newFileName);
+        // var url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+        fetch(base64)
+            .then(function (res) {
+            res.blob().then(function (blob) {
+                fileManager.writeFile(fileManager.dataDirectory, newFileName, blob, { replace: true }).then(function (val) {
+                }, function (error) { return console.error("Write error: " + JSON.stringify(error)); })
+                    .catch(function (error) { return console.error("Write error: " + JSON.stringify(error)); });
+            }, function (error) { return console.error("Blob error: " + JSON.stringify(error)); })
+                .catch(function (error) { return console.error("Blob error: " + JSON.stringify(error)); });
+        })
+            .then(function (blob) { return console.log(blob); });
+    };
+    ImagesService.prototype.resizedataURL = function (datas, wantedWidth, wantedHeight) {
+        return new Promise(function (resolve, reject) {
+            var img = document.createElement('img');
+            img.onload = function () {
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                canvas.width = wantedWidth;
+                canvas.height = wantedHeight;
+                ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
+                var dataURI = canvas.toDataURL();
+                resolve(dataURI);
+            };
+            img.src = datas;
+        });
+    };
+    ImagesService.prototype.isFilePluginAvailable = function () {
+        return this.filePluginAvailable;
+    };
+    ImagesService.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (this.isInitialized) {
+                            return [2 /*return*/, this.nativeBaseURL];
+                        }
+                        return [4 /*yield*/, this.platform.ready()];
+                    case 1:
+                        _b.sent();
+                        this.filePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
+                        if (!this.filePluginAvailable) return [3 /*break*/, 3];
+                        _a = this;
+                        return [4 /*yield*/, this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)];
+                    case 2:
+                        _a.dataDirectory = _b.sent();
+                        this.nativeBaseURL = this.dataDirectory.nativeURL;
+                        _b.label = 3;
+                    case 3:
+                        this.isInitialized = true;
+                        return [2 /*return*/, this.nativeBaseURL];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.makeDownloadUrlLegit = function (downloadPath) {
+        var pathParts = downloadPath.split('/');
+        var actualPath;
+        if (pathParts[pathParts.length - 2].length !== 1) {
+            var frontParts = pathParts.splice(0, pathParts.length - 1);
+            actualPath = frontParts.join('/') + "/m/" + pathParts.join('/');
+        }
+        else {
+            actualPath = pathParts.join('/');
+        }
+        return actualPath;
+    };
+    ImagesService.prototype.downloadURLs = function (urls, createThumbs, progressCallback, skipCheckForExistingFiles) {
+        if (progressCallback === void 0) { progressCallback = null; }
+        if (skipCheckForExistingFiles === void 0) { skipCheckForExistingFiles = false; }
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var promiseError, fileTransfer, dataDirectory, fileManager, resizedataURL, saveThumb, totalDownload, alreadyDownloaded, that, promise, _loop_1, this_1, i;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.isFilePluginAvailable()) {
+                            return [2 /*return*/];
+                        }
+                        promiseError = null;
+                        fileTransfer = this.transfer.create();
+                        dataDirectory = this.fileManager.dataDirectory;
+                        fileManager = this.fileManager;
+                        resizedataURL = this.resizedataURL;
+                        saveThumb = this.saveThumb;
+                        totalDownload = urls.length;
+                        alreadyDownloaded = 0;
+                        that = this;
+                        this.downloadQueue = __WEBPACK_IMPORTED_MODULE_5_async___default.a.queue(function (task, continueCallback) {
+                            function callback() {
+                                alreadyDownloaded++;
+                                console.log("download progress: " + alreadyDownloaded + "/" + totalDownload + " - " + task.imgFileName);
+                                if (task.callback) {
+                                    task.callback(alreadyDownloaded, totalDownload, task.imgFileName);
+                                }
+                                if (progressCallback) {
+                                    if (progressCallback(alreadyDownloaded, totalDownload, task.imgFileName)) {
+                                        // user aborted download process
+                                        that.downloadQueue.kill();
+                                        promiseError("user canceled download");
+                                        return;
+                                    }
+                                }
+                                continueCallback();
+                            }
+                            console.log('Starting download task for ' + task.outputName);
+                            var url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
+                                : __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
+                            setTimeout(function () {
+                                fileTransfer.download(url, dataDirectory + task.outputName)
+                                    .then(function () {
+                                    if (!createThumbs) {
+                                        callback();
+                                        return;
+                                    }
+                                    fileManager.readAsDataURL(dataDirectory, task.outputName)
+                                        .then(function (dataURI) {
+                                        resizedataURL(dataURI, 120, 120)
+                                            .then(function (resizedBase64) {
+                                            saveThumb(that.getLocalThumbFileName(task.imgFileName), resizedBase64, fileManager);
+                                            callback();
+                                        })
+                                            .catch(function (error) {
+                                            console.error("saveThumb error " + JSON.stringify(error));
+                                            callback();
+                                        });
+                                    }, function (error) {
+                                        console.error("readAsDataURL error: " + JSON.stringify(error));
+                                        callback();
+                                    })
+                                        .catch(function (error) {
+                                        console.error("readAsDataURL error: " + JSON.stringify(error));
+                                        callback();
+                                    });
+                                })
+                                    .catch(function (error) {
+                                    console.error("Error downloading image " + task.imgFileName);
+                                    callback();
+                                });
+                            }, 50);
+                        }, 8);
+                        promise = new Promise(function (success, error) {
+                            promiseError = error;
+                            _this.downloadQueue.drain = success;
+                        });
+                        _loop_1 = function () {
+                            var imgFileName, outputName, file, _a, _b;
+                            return __generator(this, function (_c) {
+                                switch (_c.label) {
+                                    case 0:
+                                        imgFileName = urls[i];
+                                        // No image in task
+                                        if (!imgFileName || imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
+                                            return [2 /*return*/, "continue"];
+                                        }
+                                        outputName = this_1.getLocalFileName(imgFileName);
+                                        file = void 0;
+                                        _a = !skipCheckForExistingFiles;
+                                        if (!_a) return [3 /*break*/, 2];
+                                        _b = null;
+                                        return [4 /*yield*/, this_1.fileManager.getFile(this_1.dataDirectory, outputName, { create: false })
+                                                .then(function (res) { return res; }, function (err) { return null; })];
+                                    case 1:
+                                        _a = _b !== (file = _c.sent());
+                                        _c.label = 2;
+                                    case 2:
+                                        if (_a) {
+                                            file.file(function (file) {
+                                                if (file.size <= 0) {
+                                                    // Path not empty and file does not exist - download from url
+                                                    _this.downloadQueue.push({
+                                                        fileTransfer: fileTransfer,
+                                                        imgFileName: imgFileName,
+                                                        outputName: outputName,
+                                                        callback: urls.length == 1 ? progressCallback : null
+                                                    }, function () {
+                                                        console.log("Finished downloading " + outputName);
+                                                    });
+                                                }
+                                                else {
+                                                    alreadyDownloaded++;
+                                                    if (progressCallback) {
+                                                        console.log("Already downloaded: " + outputName);
+                                                        progressCallback(alreadyDownloaded, totalDownload, imgFileName);
+                                                    }
+                                                }
+                                            }, function (error) {
+                                                // file could not be read
+                                                _this.downloadQueue.push({
+                                                    fileTransfer: fileTransfer,
+                                                    imgFileName: imgFileName,
+                                                    outputName: outputName,
+                                                    callback: urls.length == 1 ? progressCallback : null
+                                                }, function () {
+                                                    console.log("Finished downloading " + outputName);
+                                                });
+                                            });
+                                        }
+                                        else {
+                                            // Path not empty and file does not exist - download from url
+                                            console.log("Adding to download queue: " + outputName);
+                                            this_1.downloadQueue.push({
+                                                fileTransfer: fileTransfer,
+                                                imgFileName: imgFileName,
+                                                outputName: outputName,
+                                                callback: urls.length == 1 ? progressCallback : null
+                                            }, function () {
+                                                console.log("Finished downloading " + outputName);
+                                            });
+                                        }
+                                        return [2 /*return*/];
+                                }
+                            });
+                        };
+                        this_1 = this;
+                        i = 0;
+                        _a.label = 1;
+                    case 1:
+                        if (!(i < urls.length)) return [3 /*break*/, 4];
+                        return [5 /*yield**/, _loop_1()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        i++;
+                        return [3 /*break*/, 1];
+                    case 4:
+                        if (this.downloadQueue.length() === 0) {
+                            return [2 /*return*/];
+                        }
+                        return [2 /*return*/, promise];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.getLocalFileName = function (imgPath, isMapTile) {
+        if (isMapTile === void 0) { isMapTile = false; }
+        if (imgPath.indexOf('http') === 0) {
+            // strip hostname
+            imgPath = imgPath.substring(imgPath.indexOf('/', 9) + 1);
+            var queryIndex = imgPath.indexOf('?');
+            if (queryIndex > 0) {
+                // strip query
+                imgPath = imgPath.substring(0, queryIndex);
+            }
+        }
+        return isMapTile ? 'tiles/' + imgPath.replace('v4/mapbox.streets/', '') :
+            imgPath.replace(/\/| |@/g, '_');
+    };
+    ImagesService.prototype.getLocalThumbFileName = function (imgPath) {
+        return 'thumb_' + this.getLocalFileName(imgPath);
+    };
+    ImagesService.prototype.getOfflineURL = function (imgPath, asThumbNail, isMapTile, asRawString) {
+        if (asThumbNail === void 0) { asThumbNail = false; }
+        if (isMapTile === void 0) { isMapTile = false; }
+        if (asRawString === void 0) { asRawString = false; }
+        if (asThumbNail) {
+            return this.offlineThumbnailUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath])
+                : this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
+                        : this.getOnlineURL(imgPath)));
+        }
+        if (asRawString) {
+            return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
+                : this.offlineImageUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
+                        : this.getOnlineURL(imgPath));
+        }
+        return this.offlineImageUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineImageUrlCache[imgPath])
+            : this.fixUrlForWebview(this.offlineImageUrlCache[imgPath] =
+                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
+                    : this.getOnlineURL(imgPath)));
+    };
+    ImagesService.prototype.getOnlineURL = function (imgPath) {
+        return imgPath.indexOf('http') !== 0 ? __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + imgPath : imgPath;
+    };
+    ImagesService.prototype.fixUrlForWebview = function (url) {
+        if (!this.platform.is('cordova'))
+            return url;
+        var fixedUrl = window.Ionic.WebView.convertFileSrc(url);
+        //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
+        if (fixedUrl.includes('mcm_images_tasks')) {
+            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
+        }
+        return fixedUrl;
+    };
+    ImagesService.prototype.removeDownloadedURLs = function (urls, removeThumbs) {
+        if (removeThumbs === void 0) { removeThumbs = true; }
+        return __awaiter(this, void 0, void 0, function () {
+            var _loop_2, this_2, i;
+            return __generator(this, function (_a) {
+                if (!this.dataDirectory) {
+                    return [2 /*return*/];
+                }
+                _loop_2 = function () {
+                    var imgFileName = urls[i];
+                    // No image in task
+                    if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
+                        return "continue";
+                    }
+                    var outputName = this_2.getLocalFileName(imgFileName);
+                    this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
+                        file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
+                    }, function () { return console.log("could not delete file " + outputName); });
+                    if (removeThumbs) {
+                        outputName = this_2.getLocalThumbFileName(imgFileName);
+                        this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
+                            file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
+                        }, function () { return console.log("could not delete file " + outputName); });
+                    }
+                };
+                this_2 = this;
+                for (i = 0; i < urls.length; i++) {
+                    _loop_2();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    /**
+     *
+     * @param {string} imgPath
+     * @param {string} imageSize 's', 'thumb', 'xl' or 'xxl'
+     * @returns {Promise<string>}
+     */
+    ImagesService.prototype.getAsyncImageURL = function (imgPath, imageSize) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var lastSlashIndex;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (imageSize) {
+                            lastSlashIndex = imgPath.lastIndexOf('/');
+                            imgPath = imgPath.substring(0, lastSlashIndex) + '/' + imageSize + imgPath.substring(lastSlashIndex);
+                        }
+                        if (this.lazyLoadedImagesCache[imgPath]) {
+                            return [2 /*return*/, this.lazyLoadedImagesCache[imgPath]];
+                        }
+                        if (!this.dataDirectory) return [3 /*break*/, 2];
+                        // we need to check for downloaded files
+                        return [4 /*yield*/, new Promise(function (success) {
+                                _this.downloadURLs([imgPath], false, function (alreadyDownloaded, totalDownload, url) {
+                                    if (url == imgPath) {
+                                        success();
+                                    }
+                                    return false;
+                                }, false);
+                            })];
+                    case 1:
+                        // we need to check for downloaded files
+                        _a.sent();
+                        _a.label = 2;
+                    case 2: return [2 /*return*/, this.lazyLoadedImagesCache[imgPath] = this.getOfflineURL(imgPath)];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.downloadAndUnzip = function (route, progressCallback, tileCallback) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, downloadRequest, dataDirectory, pathToFileInString;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!window.JJzip) {
+                            // JJZip is only available on native platforms. In browser we don't need to download
+                            return [2 /*return*/];
+                        }
+                        url = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName;
+                        downloadRequest = this.transfer.create();
+                        dataDirectory = this.fileManager.dataDirectory;
+                        pathToFileInString = dataDirectory + route.mapFileName;
+                        return [4 /*yield*/, new Promise(function (success, error) {
+                                downloadRequest.onProgress(function (progress) {
+                                    if (progress.loaded && progress.total && progress.loaded < progress.total) {
+                                        if (progress.total > 0) {
+                                            if (progressCallback(Math.round(100 * (progress.loaded / progress.total)))) {
+                                                error('download was canceled');
+                                                downloadRequest.abort();
+                                            }
+                                        }
+                                    }
+                                });
+                                downloadRequest.download(url, pathToFileInString).then(function (result) {
+                                    window.JJzip.unzip(pathToFileInString, { target: dataDirectory + '/tiles' }, function (data) {
+                                        /* Wow everything goes good, but just in case verify data.success */
+                                        console.log("victory");
+                                        console.log("victory " + JSON.stringify(data));
+                                        success();
+                                    }, function (error) {
+                                        /* Wow something goes wrong, check the error.message */
+                                        console.log("no victory :(((");
+                                        console.log(error);
+                                    });
+                                }, error).catch(function (err) { console.log("ERROR DOWNLOADING: ", err); });
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.getImageFromUserGallery = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var options, imageData, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = {
+                            quality: 75,
+                            targetHeight: 512,
+                            targetWidth: 512,
+                            destinationType: this.camera.DestinationType.DATA_URL,
+                            encodingType: this.camera.EncodingType.JPEG,
+                            mediaType: this.camera.MediaType.PICTURE,
+                            correctOrientation: true,
+                            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.camera.getPicture(options)];
+                    case 2:
+                        imageData = _a.sent();
+                        return [2 /*return*/, { imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData }];
+                    case 3:
+                        err_1 = _a.sent();
+                        throw err_1;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.getImageFromCamera = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var options, imageData, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = {
+                            quality: 75,
+                            targetHeight: 512,
+                            targetWidth: 512,
+                            correctOrientation: true,
+                            destinationType: this.camera.DestinationType.DATA_URL,
+                            encodingType: this.camera.EncodingType.JPEG,
+                            mediaType: this.camera.MediaType.PICTURE,
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.camera.getPicture(options)];
+                    case 2:
+                        imageData = _a.sent();
+                        return [2 /*return*/, { imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData }];
+                    case 3:
+                        err_2 = _a.sent();
+                        throw err_2;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ImagesService = ImagesService_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["c" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__["a" /* Camera */]])
+    ], ImagesService);
+    return ImagesService;
+    var ImagesService_1;
+}());
+
+//# sourceMappingURL=images-service.js.map
+
+/***/ }),
+
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
 var __extends = (this && this.__extends) || (function () {
@@ -4810,14 +5633,14 @@ var DB_Handler = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 354:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(831);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(833);
 
 
 var DBC = /** @class */ (function () {
@@ -4902,7 +5725,8 @@ var DBC = /** @class */ (function () {
         "visible",
         "task_id",
         "position",
-        "ar_link"
+        "ar_link",
+        "code"
     ], [
         "INTEGER",
         "INTEGER",
@@ -4930,6 +5754,7 @@ var DBC = /** @class */ (function () {
         "INTEGER",
         "INTEGER",
         "INTEGER",
+        "VARCHAR",
         "VARCHAR"
     ], [
         "PRIMARY KEY AUTOINCREMENT",
@@ -4956,6 +5781,7 @@ var DBC = /** @class */ (function () {
         "NOT NULL",
         "(2)",
         "(1) NOT NULL DEFAULT 1",
+        "",
         "",
         "",
         ""
@@ -5118,7 +5944,7 @@ DBC.initialize();
 
 /***/ }),
 
-/***/ 360:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5169,7 +5995,7 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5179,8 +6005,8 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__ = __webpack_require__(64);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5338,7 +6164,7 @@ var RouteInfo = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 362:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5447,16 +6273,16 @@ var CenteredTask = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 447:
+/***/ 449:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
@@ -5619,16 +6445,16 @@ var SessionUserService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 448:
+/***/ 450:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionChatService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
@@ -5895,523 +6721,16 @@ var SessionChatService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 45:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(807);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(46);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-var ImagesService = /** @class */ (function () {
-    function ImagesService(fileManager, platform, transfer, http, httpClient, sanitizer) {
-        this.fileManager = fileManager;
-        this.platform = platform;
-        this.transfer = transfer;
-        this.http = http;
-        this.httpClient = httpClient;
-        this.sanitizer = sanitizer;
-        this.isInitialized = false;
-        this.downloadQueue = null;
-        this.offlineImageUrlCache = {};
-        this.offlineThumbnailUrlCache = {};
-        this.lazyLoadedImagesCache = {};
-        ImagesService_1.INSTANCE = this;
-        this.init();
-    }
-    ImagesService_1 = ImagesService;
-    ImagesService.prototype.saveThumb = function (newFileName, base64, fileManager) {
-        console.log("saving thumbnail to " + newFileName);
-        // var url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
-        fetch(base64)
-            .then(function (res) {
-            res.blob().then(function (blob) {
-                fileManager.writeFile(fileManager.dataDirectory, newFileName, blob, { replace: true }).then(function (val) {
-                }, function (error) { return console.error("Write error: " + JSON.stringify(error)); })
-                    .catch(function (error) { return console.error("Write error: " + JSON.stringify(error)); });
-            }, function (error) { return console.error("Blob error: " + JSON.stringify(error)); })
-                .catch(function (error) { return console.error("Blob error: " + JSON.stringify(error)); });
-        })
-            .then(function (blob) { return console.log(blob); });
-    };
-    ImagesService.prototype.resizedataURL = function (datas, wantedWidth, wantedHeight) {
-        return new Promise(function (resolve, reject) {
-            var img = document.createElement('img');
-            img.onload = function () {
-                var canvas = document.createElement('canvas');
-                var ctx = canvas.getContext('2d');
-                canvas.width = wantedWidth;
-                canvas.height = wantedHeight;
-                ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
-                var dataURI = canvas.toDataURL();
-                resolve(dataURI);
-            };
-            img.src = datas;
-        });
-    };
-    ImagesService.prototype.isFilePluginAvailable = function () {
-        return this.filePluginAvailable;
-    };
-    ImagesService.prototype.init = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (this.isInitialized) {
-                            return [2 /*return*/, this.nativeBaseURL];
-                        }
-                        return [4 /*yield*/, this.platform.ready()];
-                    case 1:
-                        _b.sent();
-                        this.filePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
-                        if (!this.filePluginAvailable) return [3 /*break*/, 3];
-                        _a = this;
-                        return [4 /*yield*/, this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)];
-                    case 2:
-                        _a.dataDirectory = _b.sent();
-                        this.nativeBaseURL = this.dataDirectory.nativeURL;
-                        _b.label = 3;
-                    case 3:
-                        this.isInitialized = true;
-                        return [2 /*return*/, this.nativeBaseURL];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.makeDownloadUrlLegit = function (downloadPath) {
-        var pathParts = downloadPath.split('/');
-        var actualPath;
-        if (pathParts[pathParts.length - 2].length !== 1) {
-            var frontParts = pathParts.splice(0, pathParts.length - 1);
-            actualPath = frontParts.join('/') + "/m/" + pathParts.join('/');
-        }
-        else {
-            actualPath = pathParts.join('/');
-        }
-        return actualPath;
-    };
-    ImagesService.prototype.downloadURLs = function (urls, createThumbs, progressCallback, skipCheckForExistingFiles) {
-        if (progressCallback === void 0) { progressCallback = null; }
-        if (skipCheckForExistingFiles === void 0) { skipCheckForExistingFiles = false; }
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var promiseError, fileTransfer, dataDirectory, fileManager, resizedataURL, saveThumb, totalDownload, alreadyDownloaded, that, promise, _loop_1, this_1, i;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!this.isFilePluginAvailable()) {
-                            return [2 /*return*/];
-                        }
-                        promiseError = null;
-                        fileTransfer = this.transfer.create();
-                        dataDirectory = this.fileManager.dataDirectory;
-                        fileManager = this.fileManager;
-                        resizedataURL = this.resizedataURL;
-                        saveThumb = this.saveThumb;
-                        totalDownload = urls.length;
-                        alreadyDownloaded = 0;
-                        that = this;
-                        this.downloadQueue = __WEBPACK_IMPORTED_MODULE_5_async___default.a.queue(function (task, continueCallback) {
-                            function callback() {
-                                alreadyDownloaded++;
-                                console.log("download progress: " + alreadyDownloaded + "/" + totalDownload + " - " + task.imgFileName);
-                                if (task.callback) {
-                                    task.callback(alreadyDownloaded, totalDownload, task.imgFileName);
-                                }
-                                if (progressCallback) {
-                                    if (progressCallback(alreadyDownloaded, totalDownload, task.imgFileName)) {
-                                        // user aborted download process
-                                        that.downloadQueue.kill();
-                                        promiseError("user canceled download");
-                                        return;
-                                    }
-                                }
-                                continueCallback();
-                            }
-                            console.log('Starting download task for ' + task.outputName);
-                            var url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
-                                : __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
-                            setTimeout(function () {
-                                fileTransfer.download(url, dataDirectory + task.outputName)
-                                    .then(function () {
-                                    if (!createThumbs) {
-                                        callback();
-                                        return;
-                                    }
-                                    fileManager.readAsDataURL(dataDirectory, task.outputName)
-                                        .then(function (dataURI) {
-                                        resizedataURL(dataURI, 120, 120)
-                                            .then(function (resizedBase64) {
-                                            saveThumb(that.getLocalThumbFileName(task.imgFileName), resizedBase64, fileManager);
-                                            callback();
-                                        })
-                                            .catch(function (error) {
-                                            console.error("saveThumb error " + JSON.stringify(error));
-                                            callback();
-                                        });
-                                    }, function (error) {
-                                        console.error("readAsDataURL error: " + JSON.stringify(error));
-                                        callback();
-                                    })
-                                        .catch(function (error) {
-                                        console.error("readAsDataURL error: " + JSON.stringify(error));
-                                        callback();
-                                    });
-                                })
-                                    .catch(function (error) {
-                                    console.error("Error downloading image " + task.imgFileName);
-                                    callback();
-                                });
-                            }, 50);
-                        }, 8);
-                        promise = new Promise(function (success, error) {
-                            promiseError = error;
-                            _this.downloadQueue.drain = success;
-                        });
-                        _loop_1 = function () {
-                            var imgFileName, outputName, file, _a, _b;
-                            return __generator(this, function (_c) {
-                                switch (_c.label) {
-                                    case 0:
-                                        imgFileName = urls[i];
-                                        // No image in task
-                                        if (!imgFileName || imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
-                                            return [2 /*return*/, "continue"];
-                                        }
-                                        outputName = this_1.getLocalFileName(imgFileName);
-                                        file = void 0;
-                                        _a = !skipCheckForExistingFiles;
-                                        if (!_a) return [3 /*break*/, 2];
-                                        _b = null;
-                                        return [4 /*yield*/, this_1.fileManager.getFile(this_1.dataDirectory, outputName, { create: false })
-                                                .then(function (res) { return res; }, function (err) { return null; })];
-                                    case 1:
-                                        _a = _b !== (file = _c.sent());
-                                        _c.label = 2;
-                                    case 2:
-                                        if (_a) {
-                                            file.file(function (file) {
-                                                if (file.size <= 0) {
-                                                    // Path not empty and file does not exist - download from url
-                                                    _this.downloadQueue.push({
-                                                        fileTransfer: fileTransfer,
-                                                        imgFileName: imgFileName,
-                                                        outputName: outputName,
-                                                        callback: urls.length == 1 ? progressCallback : null
-                                                    }, function () {
-                                                        console.log("Finished downloading " + outputName);
-                                                    });
-                                                }
-                                                else {
-                                                    alreadyDownloaded++;
-                                                    if (progressCallback) {
-                                                        console.log("Already downloaded: " + outputName);
-                                                        progressCallback(alreadyDownloaded, totalDownload, imgFileName);
-                                                    }
-                                                }
-                                            }, function (error) {
-                                                // file could not be read
-                                                _this.downloadQueue.push({
-                                                    fileTransfer: fileTransfer,
-                                                    imgFileName: imgFileName,
-                                                    outputName: outputName,
-                                                    callback: urls.length == 1 ? progressCallback : null
-                                                }, function () {
-                                                    console.log("Finished downloading " + outputName);
-                                                });
-                                            });
-                                        }
-                                        else {
-                                            // Path not empty and file does not exist - download from url
-                                            console.log("Adding to download queue: " + outputName);
-                                            this_1.downloadQueue.push({
-                                                fileTransfer: fileTransfer,
-                                                imgFileName: imgFileName,
-                                                outputName: outputName,
-                                                callback: urls.length == 1 ? progressCallback : null
-                                            }, function () {
-                                                console.log("Finished downloading " + outputName);
-                                            });
-                                        }
-                                        return [2 /*return*/];
-                                }
-                            });
-                        };
-                        this_1 = this;
-                        i = 0;
-                        _a.label = 1;
-                    case 1:
-                        if (!(i < urls.length)) return [3 /*break*/, 4];
-                        return [5 /*yield**/, _loop_1()];
-                    case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3:
-                        i++;
-                        return [3 /*break*/, 1];
-                    case 4:
-                        if (this.downloadQueue.length() === 0) {
-                            return [2 /*return*/];
-                        }
-                        return [2 /*return*/, promise];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.getLocalFileName = function (imgPath, isMapTile) {
-        if (isMapTile === void 0) { isMapTile = false; }
-        if (imgPath.indexOf('http') === 0) {
-            // strip hostname
-            imgPath = imgPath.substring(imgPath.indexOf('/', 9) + 1);
-            var queryIndex = imgPath.indexOf('?');
-            if (queryIndex > 0) {
-                // strip query
-                imgPath = imgPath.substring(0, queryIndex);
-            }
-        }
-        return isMapTile ? 'tiles/' + imgPath.replace('v4/mapbox.streets/', '') :
-            imgPath.replace(/\/| |@/g, '_');
-    };
-    ImagesService.prototype.getLocalThumbFileName = function (imgPath) {
-        return 'thumb_' + this.getLocalFileName(imgPath);
-    };
-    ImagesService.prototype.getOfflineURL = function (imgPath, asThumbNail, isMapTile, asRawString) {
-        if (asThumbNail === void 0) { asThumbNail = false; }
-        if (isMapTile === void 0) { isMapTile = false; }
-        if (asRawString === void 0) { asRawString = false; }
-        if (asThumbNail) {
-            return this.offlineThumbnailUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath])
-                : this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath] =
-                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
-                        : this.getOnlineURL(imgPath)));
-        }
-        if (asRawString) {
-            return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
-                : this.offlineImageUrlCache[imgPath] =
-                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
-                        : this.getOnlineURL(imgPath));
-        }
-        return this.offlineImageUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineImageUrlCache[imgPath])
-            : this.fixUrlForWebview(this.offlineImageUrlCache[imgPath] =
-                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
-                    : this.getOnlineURL(imgPath)));
-    };
-    ImagesService.prototype.getOnlineURL = function (imgPath) {
-        return imgPath.indexOf('http') !== 0 ? __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_URL + imgPath : imgPath;
-    };
-    ImagesService.prototype.fixUrlForWebview = function (url) {
-        if (!this.platform.is('cordova'))
-            return url;
-        var fixedUrl = window.Ionic.WebView.convertFileSrc(url);
-        //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
-        if (fixedUrl.includes('mcm_images_tasks')) {
-            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
-        }
-        return fixedUrl;
-    };
-    ImagesService.prototype.removeDownloadedURLs = function (urls, removeThumbs) {
-        if (removeThumbs === void 0) { removeThumbs = true; }
-        return __awaiter(this, void 0, void 0, function () {
-            var _loop_2, this_2, i;
-            return __generator(this, function (_a) {
-                if (!this.dataDirectory) {
-                    return [2 /*return*/];
-                }
-                _loop_2 = function () {
-                    var imgFileName = urls[i];
-                    // No image in task
-                    if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
-                        return "continue";
-                    }
-                    var outputName = this_2.getLocalFileName(imgFileName);
-                    this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
-                        file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
-                    }, function () { return console.log("could not delete file " + outputName); });
-                    if (removeThumbs) {
-                        outputName = this_2.getLocalThumbFileName(imgFileName);
-                        this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
-                            file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
-                        }, function () { return console.log("could not delete file " + outputName); });
-                    }
-                };
-                this_2 = this;
-                for (i = 0; i < urls.length; i++) {
-                    _loop_2();
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    /**
-     *
-     * @param {string} imgPath
-     * @param {string} imageSize 's', 'thumb', 'xl' or 'xxl'
-     * @returns {Promise<string>}
-     */
-    ImagesService.prototype.getAsyncImageURL = function (imgPath, imageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var lastSlashIndex;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (imageSize) {
-                            lastSlashIndex = imgPath.lastIndexOf('/');
-                            imgPath = imgPath.substring(0, lastSlashIndex) + '/' + imageSize + imgPath.substring(lastSlashIndex);
-                        }
-                        if (this.lazyLoadedImagesCache[imgPath]) {
-                            return [2 /*return*/, this.lazyLoadedImagesCache[imgPath]];
-                        }
-                        if (!this.dataDirectory) return [3 /*break*/, 2];
-                        // we need to check for downloaded files
-                        return [4 /*yield*/, new Promise(function (success) {
-                                _this.downloadURLs([imgPath], false, function (alreadyDownloaded, totalDownload, url) {
-                                    if (url == imgPath) {
-                                        success();
-                                    }
-                                    return false;
-                                }, false);
-                            })];
-                    case 1:
-                        // we need to check for downloaded files
-                        _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/, this.lazyLoadedImagesCache[imgPath] = this.getOfflineURL(imgPath)];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.downloadAndUnzip = function (route, progressCallback, tileCallback) {
-        return __awaiter(this, void 0, void 0, function () {
-            var url, downloadRequest, dataDirectory, pathToFileInString;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!window.JJzip) {
-                            // JJZip is only available on native platforms. In browser we don't need to download
-                            return [2 /*return*/];
-                        }
-                        url = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_URL + 'mcm_maps/' + route.mapFileName;
-                        downloadRequest = this.transfer.create();
-                        dataDirectory = this.fileManager.dataDirectory;
-                        pathToFileInString = dataDirectory + route.mapFileName;
-                        return [4 /*yield*/, new Promise(function (success, error) {
-                                downloadRequest.onProgress(function (progress) {
-                                    if (progress.loaded && progress.total && progress.loaded < progress.total) {
-                                        if (progress.total > 0) {
-                                            if (progressCallback(Math.round(100 * (progress.loaded / progress.total)))) {
-                                                error('download was canceled');
-                                                downloadRequest.abort();
-                                            }
-                                        }
-                                    }
-                                });
-                                downloadRequest.download(url, pathToFileInString).then(function (result) {
-                                    window.JJzip.unzip(pathToFileInString, { target: dataDirectory + '/tiles' }, function (data) {
-                                        /* Wow everything goes good, but just in case verify data.success */
-                                        console.log("victory");
-                                        console.log("victory " + JSON.stringify(data));
-                                        success();
-                                    }, function (error) {
-                                        /* Wow something goes wrong, check the error.message */
-                                        console.log("no victory :(((");
-                                        console.log(error);
-                                    });
-                                }, error).catch(function (err) { console.log("ERROR DOWNLOADING: ", err); });
-                            })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ImagesService = ImagesService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["c" /* DomSanitizer */]])
-    ], ImagesService);
-    return ImagesService;
-    var ImagesService_1;
-}());
-
-//# sourceMappingURL=images-service.js.map
-
-/***/ }),
-
-/***/ 450:
+/***/ 452:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionEventService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
@@ -6605,16 +6924,16 @@ var SessionEventService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 451:
+/***/ 453:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserLeaderboardService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
@@ -6698,50 +7017,88 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 588:
+/***/ 590:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProblemReportService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
 
 
-var ChatPageModule = /** @class */ (function () {
-    function ChatPageModule() {
+var ProblemReportService = /** @class */ (function (_super) {
+    __extends(ProblemReportService, _super);
+    function ProblemReportService(config, http) {
+        return _super.call(this, config, http) || this;
     }
-    ChatPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
-                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
-            ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
-            ]
-        })
-    ], ChatPageModule);
-    return ChatPageModule;
-}());
+    ProblemReportService.prototype.uploadImage = function (file, taskCode) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]().append('Authorization', 'Basic bWF0aGNpdHltYXA6bWNtMjAxNg==');
+        // headers = headers.append('Content-Type', 'multipart/form-data;')
+        //     .append('Accept', 'application/json')
+        var body = new FormData();
+        body.append('file', file, taskCode + ".jpg");
+        body.append('appKey', "mcm");
+        body.append('filename', taskCode + ".jpg");
+        body.append('mediaType', 'image');
+        body.append('mediaCategory', 'pr');
+        console.log('REQUEST BODY', body);
+        console.log('REQUEST HEADER', headers);
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */].MEDIASERVER_BASE_URL + "/mcm/uploadImage", body, { headers: headers }).toPromise();
+    };
+    ProblemReportService.prototype.sendReports = function (taskCode, problemType, text, imageUrl) {
+        return this.http.post(this.rootUrl + "/problem-reports/tasks/new", { taskCode: taskCode, problemType: problemType, text: text, imageUrl: imageUrl }).toPromise();
+    };
+    ProblemReportService.prototype.convertDataUriToBlob = function (dataURI) {
+        // convert base64 to raw binary data held in a string
+        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+        var byteString = atob(dataURI.split(',')[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length);
+        // create a view into the buffer
+        var ia = new Uint8Array(ab);
+        // set the bytes of the buffer to the correct values
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        // write the ArrayBuffer to a blob, and you're done
+        return new Blob([ab], { type: mimeString });
+    };
+    ProblemReportService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__api_configuration__["a" /* ApiConfiguration */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+    ], ProblemReportService);
+    return ProblemReportService;
+}(__WEBPACK_IMPORTED_MODULE_3__base_service__["a" /* BaseService */]));
 
-//# sourceMappingURL=chat.module.js.map
+//# sourceMappingURL=problem-report.service.js.map
 
 /***/ }),
 
@@ -6754,7 +7111,7 @@ var ChatPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(592);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(120);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6858,7 +7215,7 @@ var MCMTermsAndConditionsModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7010,7 +7367,86 @@ var MCMJoinSessionModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 632:
+/***/ 593:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var ChatPageModule = /** @class */ (function () {
+    function ChatPageModule() {
+    }
+    ChatPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
+                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
+            ]
+        })
+    ], ChatPageModule);
+    return ChatPageModule;
+}());
+
+//# sourceMappingURL=chat.module.js.map
+
+/***/ }),
+
+/***/ 63:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+/* tslint:disable */
+
+/**
+ * Contains global configuration for API services
+ */
+var ApiConfiguration = /** @class */ (function () {
+    function ApiConfiguration() {
+        // rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
+        this.rootUrl = "https://api-dev.mathcitymap.eu/public/index.php";
+    }
+    ApiConfiguration = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    ], ApiConfiguration);
+    return ApiConfiguration;
+}());
+
+//# sourceMappingURL=api-configuration.js.map
+
+/***/ }),
+
+/***/ 634:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7020,7 +7456,7 @@ var MCMJoinSessionModal = /** @class */ (function () {
 /* unused harmony export defaultSizes */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YoutubePlayerService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -7153,13 +7589,13 @@ var YoutubePlayerService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 633:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return tilesDb; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(34);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -7279,13 +7715,13 @@ var tilesDb = {
 
 /***/ }),
 
-/***/ 636:
+/***/ 638:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7317,7 +7753,7 @@ var SearchPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 637:
+/***/ 639:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7355,25 +7791,25 @@ var LinkHttpsPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 638:
+/***/ 640:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(641);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_chat_and_session_service__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7578,325 +8014,7 @@ var DashboardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 64:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalsService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__ = __webpack_require__(118);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-var ModalsService = /** @class */ (function () {
-    function ModalsService(modalCtrl, ormService, alertCtrl, deepLinker, translateService, spinner, dbUpdater, helper) {
-        this.modalCtrl = modalCtrl;
-        this.ormService = ormService;
-        this.alertCtrl = alertCtrl;
-        this.deepLinker = deepLinker;
-        this.translateService = translateService;
-        this.spinner = spinner;
-        this.dbUpdater = dbUpdater;
-        this.helper = helper;
-    }
-    ModalsService.prototype.doDownload = function (route) {
-        return __awaiter(this, void 0, void 0, function () {
-            var cancelHasBeenClicked, data, downloadModal;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.showNoInternetModalIfOffline()];
-                    case 1:
-                        if (!(_a.sent())) {
-                            return [2 /*return*/];
-                        }
-                        console.log("doDownload " + JSON.stringify(route.id));
-                        cancelHasBeenClicked = false;
-                        data = {
-                            total: 0,
-                            currentProgress: 0,
-                            cancelCallback: function () {
-                                console.log("cancel has been clicked");
-                                cancelHasBeenClicked = true;
-                            },
-                            titleKey: 'a_rdl_title_map'
-                        };
-                        downloadModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */], data, {
-                            showBackdrop: true,
-                            enableBackdropDismiss: false
-                        });
-                        downloadModal.present();
-                        return [4 /*yield*/, this.ormService.downloadRoute(route, function (doneDownload, totalDownload, titleKey) {
-                                data.total = totalDownload;
-                                data.currentProgress = doneDownload;
-                                if (titleKey) {
-                                    data.titleKey = titleKey;
-                                }
-                                if (data.updateView) {
-                                    data.updateView();
-                                }
-                                // make sure that updated values are bound to DOM
-                                return cancelHasBeenClicked;
-                            }, this.dbUpdater)];
-                    case 2:
-                        _a.sent();
-                        downloadModal.dismiss();
-                        return [2 /*return*/, !cancelHasBeenClicked];
-                }
-            });
-        });
-    };
-    ModalsService.prototype.showRoute = function (route, navCtrl, startRoute, selectedTask) {
-        if (startRoute === void 0) { startRoute = false; }
-        if (selectedTask === void 0) { selectedTask = null; }
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!route.downloaded) return [3 /*break*/, 2];
-                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
-                        return [4 /*yield*/, this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))];
-                    case 1:
-                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
-                        _a.sent();
-                        if (startRoute) {
-                            this.navigateToRoute(route, navCtrl, null);
-                            return [2 /*return*/];
-                        }
-                        _a.label = 2;
-                    case 2: return [4 /*yield*/, this.presentRouteInfoModal(route, navCtrl)];
-                    case 3:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ModalsService.prototype.showDialog = function (titleKey, messageKey, button1Key, button1Handler, button2Key, button2Handler, narrative) {
-        if (narrative === void 0) { narrative = 'default'; }
-        return __awaiter(this, void 0, void 0, function () {
-            var buttons, confirm;
-            return __generator(this, function (_a) {
-                button1Key = button1Key || 'a_g_ok';
-                buttons = [{
-                        text: this.translateService.instant(button1Key),
-                        handler: button1Handler
-                    }];
-                if (button2Key && button2Handler) {
-                    buttons.push({
-                        text: this.translateService.instant(button2Key),
-                        handler: button2Handler
-                    });
-                }
-                confirm = this.alertCtrl.create({
-                    title: titleKey ? this.translateService.instant(titleKey) : null,
-                    message: messageKey ? this.translateService.instant(messageKey) : null,
-                    buttons: buttons,
-                    cssClass: narrative
-                });
-                confirm.present();
-                return [2 /*return*/, confirm];
-            });
-        });
-    };
-    ModalsService.prototype.showYesNoDialog = function (titleKey, messageKey, yesKey, noKey) {
-        var _this = this;
-        yesKey = yesKey || 'yes';
-        noKey = noKey || 'no';
-        return new Promise(function (resolve, reject) {
-            _this.showDialog(titleKey, messageKey, yesKey, function () { return resolve(true); }, noKey, function () { return resolve(false); });
-        });
-    };
-    ModalsService.prototype.navigateToRoute = function (route, navCtrl, selectedTask) {
-        var _this = this;
-        if (selectedTask === void 0) { selectedTask = null; }
-        this.spinner.show(null, null, false);
-        setTimeout(function () {
-            if (navCtrl.parent && navCtrl.parent.parent) {
-                navCtrl.parent.parent.push('TasksMap', {
-                    routeId: route.id,
-                    headerTitle: route.title,
-                    selectedTask: selectedTask
-                }, {}, function () {
-                    // necessary because of bug which does not update URL
-                    _this.deepLinker.navChange('forward');
-                });
-            }
-            else if (navCtrl.parent == null) {
-                navCtrl.push('TasksMap', {
-                    routeId: route.id,
-                    headerTitle: route.title,
-                    selectedTask: selectedTask
-                }, {}, function () {
-                    // necessary because of bug which does not update URL
-                    _this.deepLinker.navChange('forward');
-                });
-            }
-        }, 10);
-    };
-    ModalsService.prototype.presentRouteInfoModal = function (route, navCtrl) {
-        var _this = this;
-        var self = this;
-        return new Promise(function (success) {
-            //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
-            var data = {
-                routeId: route.id,
-                modalsService: _this,
-                route: null
-            };
-            var routeInfoModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */], data);
-            routeInfoModal.onDidDismiss(function (result) {
-                if (result && result.showRoute) {
-                    self.showRoute(result.route, navCtrl, true);
-                    success(result.route);
-                }
-                else {
-                    // route is set by RouteInfo
-                    success(data.route);
-                }
-            });
-            routeInfoModal.present();
-        });
-    };
-    ModalsService.prototype.presentTaskListModal = function (route, score, state, narrative, navCtrl, callback) {
-        if (narrative === void 0) { narrative = 'default'; }
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var testModal, _a, _b, _c, _d;
-            return __generator(this, function (_e) {
-                switch (_e.label) {
-                    case 0:
-                        _b = (_a = this.modalCtrl).create;
-                        _c = [__WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */]];
-                        _d = {
-                            route: route,
-                            score: score,
-                            state: state
-                        };
-                        return [4 /*yield*/, route.getTasks()];
-                    case 1:
-                        testModal = _b.apply(_a, _c.concat([(_d.tasks = _e.sent(),
-                                _d.modalsService = this,
-                                _d), { cssClass: narrative }]));
-                        testModal.onDidDismiss(function (data) {
-                            /* coming from List/Map View */
-                            if (data && data.route != null && navCtrl != null && !callback)
-                                _this.navigateToRoute(data.route, navCtrl, data.selectedTask);
-                            else if (data && data.selectedTask != null && navCtrl != null && callback)
-                                callback(data.selectedTask);
-                            /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
-                        });
-                        testModal.present();
-                        return [2 /*return*/, testModal];
-                }
-            });
-        });
-    };
-    ModalsService.prototype.showNoInternetModalIfOffline = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var quality;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!this.helper.isOnline) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.helper.checkConnection()];
-                    case 1:
-                        quality = _a.sent();
-                        if (!(quality == __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["a" /* ConnectionQuality */].FAST)) return [3 /*break*/, 2];
-                        return [2 /*return*/, true];
-                    case 2: return [4 /*yield*/, this.showYesNoDialog('a_slow_connection_title', 'a_slow_connection', 'a_alert_continue', 'a_alert_cancel')];
-                    case 3: return [2 /*return*/, _a.sent()];
-                    case 4: return [3 /*break*/, 7];
-                    case 5: return [4 /*yield*/, this.showDialog(null, 'a_toast_need_internet_for_update')];
-                    case 6:
-                        _a.sent();
-                        return [2 /*return*/, false];
-                    case 7: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ModalsService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1__orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_7_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
-            __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-            __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["b" /* Helper */]])
-    ], ModalsService);
-    return ModalsService;
-}());
-
-//# sourceMappingURL=modals-service.js.map
-
-/***/ }),
-
-/***/ 640:
+/***/ 642:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7904,20 +8022,20 @@ var ModalsService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8515,17 +8633,17 @@ var RoutesMapPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 641:
+/***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8585,704 +8703,16 @@ var PortalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 642:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__ = __webpack_require__(589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__ = __webpack_require__(590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__ = __webpack_require__(1112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(63);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-var ChatPage = /** @class */ (function () {
-    function ChatPage(navParams, file, media, platform, chatService, events, changeDetector, chatAndSessionService, camera, photoViewer, spinnerDialog) {
-        var _this = this;
-        this.file = file;
-        this.media = media;
-        this.platform = platform;
-        this.chatService = chatService;
-        this.events = events;
-        this.changeDetector = changeDetector;
-        this.chatAndSessionService = chatAndSessionService;
-        this.camera = camera;
-        this.photoViewer = photoViewer;
-        this.spinnerDialog = spinnerDialog;
-        this.msgList = [];
-        this.editorMsg = '';
-        this.editorImg = null;
-        this.showEmojiPicker = false;
-        this.isScrolledToBottom = true;
-        this.localPath = null;
-        this.audioFilePath = null;
-        this.fileDirectory = null;
-        this.audioIndex = null;
-        this.canPlayback = true;
-        this.showTextArea = true;
-        this.audioPlaying = false;
-        this.showAudioButtons = true;
-        this.showPictureButtons = true;
-        this.startAudioRecord = 0;
-        this.startAudioPlaying = 0;
-        this.audioDuration = 0;
-        this.currentPosition = 0;
-        this.timeZoneOpposite = 0;
-        this.recordState = __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Idle;
-        this.chatService.getUserInfo()
-            .then(function (res) {
-            _this.user = res;
-        });
-        // TODO Does chat.ts need access to all session objects? refactor!
-        this.chatService.getActiveSession().then(function (res) {
-            _this.sessionUser = res.sessionUser;
-            _this.session = res.session;
-            _this.sessionInfo = res;
-            // TODO sender, receiver(s) is handlet automaticly from session parameters.
-            // teams, which are *not* admin of a session, get as receiver the admin
-            // the admin of a sessionget as recivers *all* users from a session
-            // TODO gui should have an option to select a team as active receiver.
-            var defaultReceiver = _this.chatService.getReceivers()[0];
-            _this.toUser = {
-                id: defaultReceiver.id,
-                name: defaultReceiver.team_name,
-                token: defaultReceiver.token
-            };
-        });
-    }
-    ChatPage.prototype.ionViewWillLeave = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var details;
-            return __generator(this, function (_a) {
-                // unsubscribe
-                this.events.unsubscribe('chat:received');
-                if (this.scrollEndSubscription) {
-                    this.scrollEndSubscription.unsubscribe();
-                    this.scrollEndSubscription = null;
-                }
-                this.chatService.setUserSeesNewMessages(false);
-                if (this.sessionInfo != null) {
-                    details = JSON.stringify({});
-                    this.chatAndSessionService.addUserEvent("event_trail_chat_close", details, "0");
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    ChatPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        var timezoneOffset = new Date().getTimezoneOffset();
-        this.timeZoneOpposite = (timezoneOffset * 60000);
-        //get message list
-        this.getMsg();
-        // Subscribe to received  new message events
-        this.events.subscribe('chat:received', function (msg) {
-            _this.pushNewMsg(msg);
-        });
-        this.scrollEndSubscription = this.content.ionScrollEnd.subscribe(function (event) {
-            if (!event || !event.scrollElement)
-                return;
-            var height = event.scrollElement.children[0].scrollHeight;
-            var scrolledToBottom = height - event.scrollHeight - event.scrollTop < 0;
-            if (_this.isScrolledToBottom != scrolledToBottom) {
-                console.debug("isScrolledToBottom: " + scrolledToBottom);
-                _this.chatService.setUserSeesNewMessages(scrolledToBottom);
-            }
-            _this.isScrolledToBottom = scrolledToBottom;
-        });
-        this.chatService.setUserSeesNewMessages(true);
-        this.chatAndSessionService.setNewMsgNumber(0);
-    };
-    ChatPage.prototype.onFocus = function () {
-        this.showEmojiPicker = false;
-        this.content.resize();
-    };
-    ChatPage.prototype.switchEmojiPicker = function () {
-        this.showEmojiPicker = !this.showEmojiPicker;
-        if (!this.showEmojiPicker) {
-            this.focus();
-        }
-        else {
-            this.setTextareaScroll();
-        }
-        this.content.resize();
-        this.scrollToBottom();
-    };
-    /**
-     * @name getMsg
-     * @returns {Promise<ChatMessage[]>}
-     */
-    ChatPage.prototype.getMsg = function () {
-        var _this = this;
-        var chatMsgs = [];
-        this.chatService.getReceivers().forEach(function (receiver) {
-            chatMsgs.push(_this.chatService
-                .getMsgList(_this.sessionInfo, receiver.token).toPromise()
-                .then(function (res) {
-                _this.msgList = res;
-                _this.scrollToBottom();
-            }));
-        });
-        Promise.all(chatMsgs).then(function () {
-            console.debug('received all messages!');
-        });
-    };
-    /**
-     * @name sendMsg
-     */
-    ChatPage.prototype.sendMsg = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var timezoneOffset, newMsg, blob, myFormData, resultPath, details, audioType_1, details;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.setInputWrapButtons(true);
-                        //does not allow sending empty messages
-                        if (this.editorMsg.trim() == '' && !this.editorImg && this.recordState != __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Stop)
-                            return [2 /*return*/];
-                        //failsafe to stop you from seding more than 1 time of message
-                        if ((this.editorMsg && this.editorImg) ||
-                            (this.editorMsg && this.recordState == __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Stop) ||
-                            (this.editorImg && this.recordState == __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Stop))
-                            return [2 /*return*/];
-                        timezoneOffset = new Date().getTimezoneOffset();
-                        newMsg = {
-                            messageId: null,
-                            userId: this.user.token,
-                            userName: this.user.name,
-                            userAvatar: this.user.avatar,
-                            toUserId: this.toUser.token,
-                            time: Date.now() + (timezoneOffset * 60000),
-                            message: this.editorMsg,
-                            media: [],
-                            status: 'pending'
-                        };
-                        this.editorMsg = '';
-                        if (!this.editorImg) return [3 /*break*/, 2];
-                        this.localPath = null;
-                        blob = new Blob([this.editorImg], { type: 'image/jpeg' });
-                        myFormData = new FormData();
-                        myFormData.append('media', blob, 'image.jpeg');
-                        return [4 /*yield*/, this.chatAndSessionService.postMedia(myFormData, this.sessionInfo)];
-                    case 1:
-                        resultPath = _a.sent();
-                        this.editorImg = null;
-                        if (resultPath) {
-                            newMsg.media.push(resultPath);
-                            details = JSON.stringify({ 'message': resultPath });
-                            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
-                        }
-                        else {
-                            console.log("ERROR: unable to send media");
-                            return [2 /*return*/];
-                        }
-                        return [3 /*break*/, 5];
-                    case 2:
-                        if (!(this.recordState == __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Stop)) return [3 /*break*/, 4];
-                        if (!this.canPlayback) {
-                            this.pauseAudio();
-                        }
-                        this.recordState = __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Idle;
-                        audioType_1 = 'aac';
-                        return [4 /*yield*/, this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(function (data) { return __awaiter(_this, void 0, void 0, function () {
-                                var blob, myFormData, resultPath, details;
-                                return __generator(this, function (_a) {
-                                    switch (_a.label) {
-                                        case 0:
-                                            blob = new Blob([data], { type: 'audio/' + audioType_1 });
-                                            myFormData = new FormData();
-                                            myFormData.append('media', blob, 'audio.' + audioType_1);
-                                            myFormData.append('mediaDuration', this.audioDuration.toString());
-                                            newMsg.audioDuration = this.audioDuration;
-                                            this.audioDuration = 0;
-                                            return [4 /*yield*/, this.chatAndSessionService.postMedia(myFormData, this.sessionInfo)];
-                                        case 1:
-                                            resultPath = _a.sent();
-                                            //newMsg.isAudio = true;
-                                            this.audio = null;
-                                            if (resultPath) {
-                                                newMsg.media.push(resultPath);
-                                                details = JSON.stringify({ 'message': resultPath });
-                                                this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
-                                            }
-                                            else {
-                                                console.log("ERROR: unnable to send media");
-                                                return [2 /*return*/];
-                                            }
-                                            return [2 /*return*/];
-                                    }
-                                });
-                            }); }).catch(function (err) {
-                                console.log("ERROR: ", err);
-                            })];
-                    case 3:
-                        _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        if (this.sessionInfo != null) {
-                            details = JSON.stringify({ 'message': newMsg.message });
-                            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
-                        }
-                        _a.label = 5;
-                    case 5:
-                        if (!this.showEmojiPicker) {
-                            this.focus();
-                        }
-                        return [4 /*yield*/, this.chatService.checkForNewMessages(this.sessionInfo)];
-                    case 6:
-                        _a.sent();
-                        this.chatService.sendMsg(newMsg, this.sessionInfo)
-                            .then(function (msgs) {
-                            msgs.forEach(function (msg) {
-                                var index = _this.getMsgIndexById(msg.messageId);
-                                if (msg.messageId && index !== -1) {
-                                    _this.msgList[index].status = 'success';
-                                }
-                                else {
-                                    msg.status = 'success';
-                                    _this.isScrolledToBottom = true;
-                                    _this.pushNewMsg(msg);
-                                }
-                            });
-                        });
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
-     * @name imageChat
-     */
-    ChatPage.prototype.getImage = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var options;
-            return __generator(this, function (_a) {
-                this.setInputWrapButtons(false);
-                options = {
-                    quality: 100,
-                    targetHeight: 512,
-                    targetWidth: 512,
-                    destinationType: this.camera.DestinationType.DATA_URL,
-                    encodingType: this.camera.EncodingType.JPEG,
-                    mediaType: this.camera.MediaType.PICTURE,
-                    correctOrientation: true,
-                    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-                    allowEdit: true
-                };
-                this.camera.getPicture(options).then(function (imageData) { return __awaiter(_this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        this.editorImg = imageData;
-                        this.localPath = 'data:image/jpeg;base64,' + imageData;
-                        return [2 /*return*/];
-                    });
-                }); }, function (err) {
-                    console.log("ERROR#####: ", err);
-                    _this.setInputWrapButtons(true);
-                    // Handle error
-                });
-                return [2 /*return*/];
-            });
-        });
-    };
-    ChatPage.prototype.openCamera = function () {
-        var _this = this;
-        this.setInputWrapButtons(false);
-        var options = {
-            quality: 100,
-            targetHeight: 512,
-            targetWidth: 512,
-            correctOrientation: true,
-            destinationType: this.camera.DestinationType.DATA_URL,
-            encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE,
-        };
-        this.camera.getPicture(options).then(function (imageData) { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.editorImg = imageData;
-                this.localPath = 'data:image/jpeg;base64,' + imageData;
-                return [2 /*return*/];
-            });
-        }); }, function (err) {
-            // Handle error
-            console.log("Camera issue:" + err);
-            _this.setInputWrapButtons(true);
-        });
-    };
-    ChatPage.prototype.removeImage = function () {
-        this.localPath = null;
-        this.editorImg = null;
-        this.setInputWrapButtons(true);
-    };
-    /**
-     * @name pushNewMsg
-     * @param msg
-     */
-    ChatPage.prototype.pushNewMsg = function (msg) {
-        var userId = this.user.token;
-        // check if msg already displayed
-        if (this.getMsgIndexById(msg.messageId) >= 0) {
-            return;
-        }
-        // Verify user relationships
-        if (!(msg.userId === userId || msg.toUserId === userId)) {
-            return;
-        }
-        this.msgList.push(msg);
-        this.changeDetector.detectChanges();
-        if (this.isScrolledToBottom) {
-            this.scrollToBottom();
-        }
-    };
-    ChatPage.prototype.getMsgIndexById = function (id) {
-        return this.msgList.findIndex(function (e) { return e.messageId === id; });
-    };
-    ChatPage.prototype.scrollToBottom = function () {
-        var _this = this;
-        setTimeout(function () {
-            if (_this.content && _this.content.scrollToBottom) {
-                _this.content.scrollToBottom();
-            }
-        }, 200);
-    };
-    ChatPage.prototype.focus = function () {
-        if (this.messageInput && this.messageInput.nativeElement) {
-            this.messageInput.nativeElement.focus();
-        }
-    };
-    ChatPage.prototype.setTextareaScroll = function () {
-        var textarea = this.messageInput.nativeElement;
-        textarea.scrollTop = textarea.scrollHeight;
-    };
-    ChatPage.prototype.micButtonClick = function () {
-        this.showTextArea = false;
-        this.showPictureButtons = false;
-        switch (this.recordState) {
-            case __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Record:
-                this.recordState = __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Stop;
-                this.stopRecording();
-                break;
-            case __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Stop:
-                this.recordState = __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Idle;
-                this.showTextArea = true;
-                this.showPictureButtons = true;
-                this.pauseAudio();
-                break;
-            default:
-                this.recordState = __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Record;
-                this.startRecording();
-                break;
-        }
-    };
-    ChatPage.prototype.updateAudioDuration = function () {
-        var now = new Date().getTime();
-        this.audioDuration = now - this.startAudioRecord;
-    };
-    ChatPage.prototype.updateAudioPosition = function (message) {
-        var _this = this;
-        var now = new Date().getTime();
-        if (message) {
-            if ((now - this.startAudioPlaying) < message.audioDuration) {
-                message.currentPosition = now - this.startAudioPlaying;
-            }
-            else {
-                message.currentPosition = message.audioDuration;
-                setTimeout(function () {
-                    _this.clearPositionInterval(message);
-                }, 1000);
-            }
-        }
-        else {
-            if ((now - this.startAudioPlaying) < this.audioDuration) {
-                this.currentPosition = now - this.startAudioPlaying;
-            }
-            else {
-                this.currentPosition = this.audioDuration;
-                setTimeout(function () {
-                    _this.clearPositionInterval();
-                }, 1000);
-            }
-        }
-    };
-    ChatPage.prototype.startRecording = function () {
-        var _this = this;
-        console.log('start recording');
-        var filename = '';
-        this.pauseAudio();
-        if (this.platform.is('android')) {
-            this.fileDirectory = this.file.dataDirectory;
-            filename = 'audioFile.aac';
-        }
-        else if (this.platform.is('ios')) {
-            filename = 'audioFile.aac';
-            this.fileDirectory = this.file.documentsDirectory;
-        }
-        this.file.createFile(this.fileDirectory, filename, true).then(function (filePath) {
-            _this.audio = _this.media.create(_this.fileDirectory.replace(/^file:\/\//, '') + filename);
-            //this.audio.release();
-            _this.startAudioRecord = new Date().getTime();
-            _this.audio.startRecord();
-            _this.updateAudioDuration();
-            _this.durationInterval = window.setInterval(function () {
-                _this.updateAudioDuration();
-            }, 1000);
-            _this.audioFilePath = filePath.toInternalURL();
-        }).catch(function (err) { console.log("creation file error:", err); });
-        // Stop Recording after 1 minute
-        setTimeout(function () {
-            if (_this.recordState != __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Idle) {
-                _this.recordState = __WEBPACK_IMPORTED_MODULE_6__recordStateEnum__["a" /* RecordStateEnum */].Stop;
-                _this.stopRecording();
-            }
-        }, 60000);
-    };
-    ChatPage.prototype.stopRecording = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        this.audio.stopRecord();
-                        if (this.durationInterval) {
-                            clearInterval(this.durationInterval);
-                            this.durationInterval = null;
-                        }
-                        //if (this.platform.is('ios')) {
-                        this.audio.setVolume(0);
-                        this.audio.play();
-                        _a = this;
-                        return [4 /*yield*/, this.getAudioDuration()];
-                    case 1:
-                        _a.audioDuration = _b.sent();
-                        this.audio.pause();
-                        this.audio.setVolume(1);
-                        this.audio.seekTo(0);
-                        //} else {
-                        //    this.audioDuration = await this.getAudioDuration();
-                        //}
-                        this.startAudioRecord = 0;
-                        this.canPlayback = true;
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ChatPage.prototype.getAudioDuration = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (resolve) {
-                        _this.durCheckInterval = window.setInterval(function () {
-                            console.log("Looking for File Duration");
-                            if (!_this.audio) {
-                                _this.clearAudioDurationInterval();
-                                resolve(0);
-                            }
-                            if (_this.audio.getDuration() != -1) {
-                                // this.currentAudioFile.setVolume(1.0);
-                                _this.clearAudioDurationInterval();
-                                resolve(_this.audio.getDuration() * 1000);
-                            }
-                        }, 1000);
-                    })];
-            });
-        });
-    };
-    ChatPage.prototype.clearAudioDurationInterval = function () {
-        if (this.durCheckInterval) {
-            clearInterval(this.durCheckInterval);
-            this.durCheckInterval = null;
-        }
-    };
-    ChatPage.prototype.playAudio = function (message, index) {
-        var _this = this;
-        if (this.audioPlaying) {
-            this.pauseAudio();
-        }
-        var filePath = null;
-        if (message)
-            filePath = message.media[0];
-        if (filePath)
-            this.audioIndex = index;
-        else {
-            this.canPlayback = false;
-            filePath = this.audioFilePath;
-        }
-        this.audio = this.media.create(filePath);
-        this.audio.play();
-        this.startAudioPlaying = new Date().getTime();
-        this.positionInterval = window.setInterval(function () {
-            _this.updateAudioPosition(message);
-        }, 10);
-        this.audio.setVolume(0.8);
-        this.audio.onStatusUpdate.subscribe(function (status) {
-            switch (status) {
-                case 2:// Running
-                    _this.audioPlaying = true;
-                    break;
-                case 3: // Paused
-                case 4:// Finished/Stopped
-                    if (!isNaN(index))
-                        _this.audioIndex = null;
-                    else
-                        _this.canPlayback = true;
-                    _this.audio.release();
-                    _this.audioPlaying = false;
-                    _this.clearPositionInterval(message);
-                    break;
-            }
-        });
-    };
-    ChatPage.prototype.clearPositionInterval = function (message) {
-        if (this.positionInterval) {
-            if (message) {
-                message.currentPosition = 0;
-            }
-            else {
-                this.currentPosition = 0;
-            }
-            clearInterval(this.positionInterval);
-            this.positionInterval = null;
-        }
-    };
-    ChatPage.prototype.pauseAudio = function (message) {
-        this.clearPositionInterval(message);
-        if (this.audio) {
-            this.audio.pause();
-            this.canPlayback = true;
-        }
-    };
-    ChatPage.prototype.isAudio = function (path) {
-        return (path.substring(path.lastIndexOf('.')) == '.mp3');
-    };
-    ChatPage.prototype.changeButtonsStatus = function () {
-        if (this.editorMsg.length == 0) {
-            this.setInputWrapButtons(true);
-        }
-        else {
-            this.showAudioButtons = false;
-            this.showPictureButtons = false;
-        }
-    };
-    ChatPage.prototype.setInputWrapButtons = function (setValue) {
-        this.showTextArea = setValue;
-        this.showAudioButtons = setValue;
-        this.showPictureButtons = setValue;
-    };
-    ChatPage.prototype.openInPhotoviewer = function (image) {
-        var _this = this;
-        if (__WEBPACK_IMPORTED_MODULE_8__classes_Helper__["b" /* Helper */].isPluginAvailable(__WEBPACK_IMPORTED_MODULE_7__ionic_native_photo_viewer__["a" /* PhotoViewer */])) {
-            this.spinnerDialog.show();
-            setTimeout(function () {
-                // use short timeout to let spinner dialog appear
-                _this.photoViewer.show(image);
-                setTimeout(function () {
-                    // photoviewer doesn't have callback when user closes it => hide spinner in background
-                    _this.spinnerDialog.hide();
-                }, 1000);
-            }, 100);
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
-    ], ChatPage.prototype, "content", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('chat_input'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-    ], ChatPage.prototype, "messageInput", void 0);
-    ChatPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-chat',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/'<mcm-header></mcm-header>\n\n<ion-content class="has-header">\n    <div class="message-wrap">\n        <div *ngFor="let msg of msgList; let i = index"\n             class="message"\n             [class.left]=" msg.userId === toUser.token "\n             [class.right]=" msg.userId === user.token ">\n            <!--TODO Remove user-image from data-->\n            <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->\n            <ion-spinner name="dots" *ngIf="msg.status === \'pending\' && (msg.media.length==0 || !isAudio(msg.media[0]))"></ion-spinner>\n            <!-- Non-audio Message -->\n            <div class="msg-detail">\n                <div class="msg-content" [ngClass]="{\'audio\': msg.media.length>0 && isAudio(msg.media[0])}">\n\n                    <!-- Text Message -->\n                    <p *ngIf="msg.message" class="line-breaker ">{{msg.message}}</p>\n\n                    <!-- Image Message -->\n                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" (click)="openInPhotoviewer(msg.media[0])" src="{{msg.media[0]}}">\n\n                    <!-- Audio Message -->\n                    <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])" >\n                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg, i)"><ion-icon name="md-play"></ion-icon></button>\n                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio(msg)"><ion-icon name="md-square"></ion-icon></button>\n                        <mcm-progress-bar [currentProgress]="msg.currentPosition" [total]="msg.audioDuration" [isAudio]="true" [isAudioPlaying]="audioIndex == i"></mcm-progress-bar>\n                    </div>\n\n                </div>\n                <div class="msg-info">\n                    <p>\n                        <!--TODO Remove user from data-->\n                        <!--{{msg.userName}}&nbsp;&nbsp;-->\n                        <!-- TODO Time Format -->\n                        &nbsp;{{msg.time + timeZoneOpposite | localizedDate:\'medium\' }}</p>\n                </div>\n            </div>\n        </div>\n\n    </div>\n</ion-content>\n<ion-footer no-border class="input">\n    <div class="input-wrap">\n        <!-- ######### TEXT ######### -->\n        <textarea *ngIf="showTextArea"\n                  autoresize\n                  id="textarea"\n                  #chat_input\n                  [placeholder]="\'a_chat_type_message\' | translate"\n                  [(ngModel)]="editorMsg"\n                  (keyup.enter)="sendMsg()"\n                  (input)="changeButtonsStatus()"\n                  (focusin)="onFocus()">\n        </textarea>\n\n        <!-- ######### AUDIO ########## -->\n        <div class="message-input-buttons audio" *ngIf="showAudioButtons" [ngClass]="{\'active\': recordState == 2 || recordState == 3}">\n            <!-- Playback for Local Audio -->\n            <div *ngIf="recordState == 3">\n                <button ion-button clear icon-only round start *ngIf="canPlayback" (click)="playAudio()">\n                    <ion-icon name="md-play"></ion-icon>\n                </button>\n                <button ion-button clear icon-only round start *ngIf="!canPlayback" (click)="pauseAudio()">\n                    <ion-icon name="md-pause"></ion-icon>\n                </button>\n            </div>\n\n            <button ion-button clear icon-only round end (click)="micButtonClick()" [ngClass]="{\'recording\': recordState == 2}">\n                <ion-icon *ngIf="recordState == 1" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 2" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 3" name="md-trash"></ion-icon>\n            </button>\n            <p no-margin *ngIf="recordState == 2">{{ \'a_chat_recording_message\' | translate }} {{audioDuration | date : \'mm:ss\'}}</p>\n            <mcm-progress-bar *ngIf="recordState == 3" [currentProgress]="currentPosition" [total]="audioDuration" [isAudio]="true" [isAudioPlaying]="!canPlayback"></mcm-progress-bar>\n        </div>\n\n        <!-- ######### PICTURES ######## -->\n        <div class="message-input-buttons" *ngIf="showPictureButtons">\n            <button ion-button clear icon-only round end (click)="getImage()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button ion-button clear icon-only round end (click)="openCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n        </div>\n\n        <div class="image-previewer" *ngIf="localPath">\n            <img class="msg-image" src="{{localPath}}">\n            <button class="msg-close-button" ion-button icon-only clear round end (click)="removeImage()">\n                <ion-icon name="md-trash"></ion-icon>\n            </button>\n        </div>\n    </div>\n    <button class="send" no-padding ion-button round item-right (click)="sendMsg()" *ngIf="recordState != 2">\n        <img src="./assets/icons/send.svg"/>\n    </button>\n</ion-footer>\n\n\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_file__["a" /* File */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_media__["a" /* Media */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"],
-            __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_camera__["a" /* Camera */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_photo_viewer__["a" /* PhotoViewer */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
-    ], ChatPage);
-    return ChatPage;
-}());
-
-//# sourceMappingURL=chat.js.map
-
-/***/ }),
-
-/***/ 643:
+/***/ 644:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(591);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -9445,7 +8875,668 @@ var MCMRouteByCodeModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 644:
+/***/ 645:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_images_service__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+var ChatPage = /** @class */ (function () {
+    function ChatPage(navParams, file, media, platform, chatService, events, changeDetector, chatAndSessionService, photoViewer, spinnerDialog, imageService) {
+        var _this = this;
+        this.file = file;
+        this.media = media;
+        this.platform = platform;
+        this.chatService = chatService;
+        this.events = events;
+        this.changeDetector = changeDetector;
+        this.chatAndSessionService = chatAndSessionService;
+        this.photoViewer = photoViewer;
+        this.spinnerDialog = spinnerDialog;
+        this.imageService = imageService;
+        this.msgList = [];
+        this.editorMsg = '';
+        this.editorImg = null;
+        this.showEmojiPicker = false;
+        this.isScrolledToBottom = true;
+        this.localPath = null;
+        this.audioFilePath = null;
+        this.fileDirectory = null;
+        this.audioIndex = null;
+        this.canPlayback = true;
+        this.showTextArea = true;
+        this.audioPlaying = false;
+        this.showAudioButtons = true;
+        this.showPictureButtons = true;
+        this.startAudioRecord = 0;
+        this.startAudioPlaying = 0;
+        this.audioDuration = 0;
+        this.currentPosition = 0;
+        this.timeZoneOpposite = 0;
+        this.recordState = __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Idle;
+        this.chatService.getUserInfo()
+            .then(function (res) {
+            _this.user = res;
+        });
+        // TODO Does chat.ts need access to all session objects? refactor!
+        this.chatService.getActiveSession().then(function (res) {
+            _this.sessionUser = res.sessionUser;
+            _this.session = res.session;
+            _this.sessionInfo = res;
+            // TODO sender, receiver(s) is handlet automaticly from session parameters.
+            // teams, which are *not* admin of a session, get as receiver the admin
+            // the admin of a sessionget as recivers *all* users from a session
+            // TODO gui should have an option to select a team as active receiver.
+            var defaultReceiver = _this.chatService.getReceivers()[0];
+            _this.toUser = {
+                id: defaultReceiver.id,
+                name: defaultReceiver.team_name,
+                token: defaultReceiver.token
+            };
+        });
+    }
+    ChatPage.prototype.ionViewWillLeave = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var details;
+            return __generator(this, function (_a) {
+                // unsubscribe
+                this.events.unsubscribe('chat:received');
+                if (this.scrollEndSubscription) {
+                    this.scrollEndSubscription.unsubscribe();
+                    this.scrollEndSubscription = null;
+                }
+                this.chatService.setUserSeesNewMessages(false);
+                if (this.sessionInfo != null) {
+                    details = JSON.stringify({});
+                    this.chatAndSessionService.addUserEvent("event_trail_chat_close", details, "0");
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    ChatPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        var timezoneOffset = new Date().getTimezoneOffset();
+        this.timeZoneOpposite = (timezoneOffset * 60000);
+        //get message list
+        this.getMsg();
+        // Subscribe to received  new message events
+        this.events.subscribe('chat:received', function (msg) {
+            _this.pushNewMsg(msg);
+        });
+        this.scrollEndSubscription = this.content.ionScrollEnd.subscribe(function (event) {
+            if (!event || !event.scrollElement)
+                return;
+            var height = event.scrollElement.children[0].scrollHeight;
+            var scrolledToBottom = height - event.scrollHeight - event.scrollTop < 0;
+            if (_this.isScrolledToBottom != scrolledToBottom) {
+                console.debug("isScrolledToBottom: " + scrolledToBottom);
+                _this.chatService.setUserSeesNewMessages(scrolledToBottom);
+            }
+            _this.isScrolledToBottom = scrolledToBottom;
+        });
+        this.chatService.setUserSeesNewMessages(true);
+        this.chatAndSessionService.setNewMsgNumber(0);
+    };
+    ChatPage.prototype.onFocus = function () {
+        this.showEmojiPicker = false;
+        this.content.resize();
+    };
+    ChatPage.prototype.switchEmojiPicker = function () {
+        this.showEmojiPicker = !this.showEmojiPicker;
+        if (!this.showEmojiPicker) {
+            this.focus();
+        }
+        else {
+            this.setTextareaScroll();
+        }
+        this.content.resize();
+        this.scrollToBottom();
+    };
+    /**
+     * @name getMsg
+     * @returns {Promise<ChatMessage[]>}
+     */
+    ChatPage.prototype.getMsg = function () {
+        var _this = this;
+        var chatMsgs = [];
+        this.chatService.getReceivers().forEach(function (receiver) {
+            chatMsgs.push(_this.chatService
+                .getMsgList(_this.sessionInfo, receiver.token).toPromise()
+                .then(function (res) {
+                _this.msgList = res;
+                _this.scrollToBottom();
+            }));
+        });
+        Promise.all(chatMsgs).then(function () {
+            console.debug('received all messages!');
+        });
+    };
+    /**
+     * @name sendMsg
+     */
+    ChatPage.prototype.sendMsg = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var timezoneOffset, newMsg, blob, myFormData, resultPath, details, audioType_1, details;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.setInputWrapButtons(true);
+                        //does not allow sending empty messages
+                        if (this.editorMsg.trim() == '' && !this.editorImg && this.recordState != __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Stop)
+                            return [2 /*return*/];
+                        //failsafe to stop you from seding more than 1 time of message
+                        if ((this.editorMsg && this.editorImg) ||
+                            (this.editorMsg && this.recordState == __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Stop) ||
+                            (this.editorImg && this.recordState == __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Stop))
+                            return [2 /*return*/];
+                        timezoneOffset = new Date().getTimezoneOffset();
+                        newMsg = {
+                            messageId: null,
+                            userId: this.user.token,
+                            userName: this.user.name,
+                            userAvatar: this.user.avatar,
+                            toUserId: this.toUser.token,
+                            time: Date.now() + (timezoneOffset * 60000),
+                            message: this.editorMsg,
+                            media: [],
+                            status: 'pending'
+                        };
+                        this.editorMsg = '';
+                        if (!this.editorImg) return [3 /*break*/, 2];
+                        this.localPath = null;
+                        blob = new Blob([this.editorImg], { type: 'image/jpeg' });
+                        myFormData = new FormData();
+                        myFormData.append('media', blob, 'image.jpeg');
+                        return [4 /*yield*/, this.chatAndSessionService.postMedia(myFormData, this.sessionInfo)];
+                    case 1:
+                        resultPath = _a.sent();
+                        this.editorImg = null;
+                        if (resultPath) {
+                            newMsg.media.push(resultPath);
+                            details = JSON.stringify({ 'message': resultPath });
+                            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+                        }
+                        else {
+                            console.log("ERROR: unable to send media");
+                            return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 5];
+                    case 2:
+                        if (!(this.recordState == __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Stop)) return [3 /*break*/, 4];
+                        if (!this.canPlayback) {
+                            this.pauseAudio();
+                        }
+                        this.recordState = __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Idle;
+                        audioType_1 = 'aac';
+                        return [4 /*yield*/, this.file.readAsArrayBuffer(this.fileDirectory, 'audioFile.aac').then(function (data) { return __awaiter(_this, void 0, void 0, function () {
+                                var blob, myFormData, resultPath, details;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0:
+                                            blob = new Blob([data], { type: 'audio/' + audioType_1 });
+                                            myFormData = new FormData();
+                                            myFormData.append('media', blob, 'audio.' + audioType_1);
+                                            myFormData.append('mediaDuration', this.audioDuration.toString());
+                                            newMsg.audioDuration = this.audioDuration;
+                                            this.audioDuration = 0;
+                                            return [4 /*yield*/, this.chatAndSessionService.postMedia(myFormData, this.sessionInfo)];
+                                        case 1:
+                                            resultPath = _a.sent();
+                                            //newMsg.isAudio = true;
+                                            this.audio = null;
+                                            if (resultPath) {
+                                                newMsg.media.push(resultPath);
+                                                details = JSON.stringify({ 'message': resultPath });
+                                                this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+                                            }
+                                            else {
+                                                console.log("ERROR: unnable to send media");
+                                                return [2 /*return*/];
+                                            }
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            }); }).catch(function (err) {
+                                console.log("ERROR: ", err);
+                            })];
+                    case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        if (this.sessionInfo != null) {
+                            details = JSON.stringify({ 'message': newMsg.message });
+                            this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
+                        }
+                        _a.label = 5;
+                    case 5:
+                        if (!this.showEmojiPicker) {
+                            this.focus();
+                        }
+                        return [4 /*yield*/, this.chatService.checkForNewMessages(this.sessionInfo)];
+                    case 6:
+                        _a.sent();
+                        this.chatService.sendMsg(newMsg, this.sessionInfo)
+                            .then(function (msgs) {
+                            msgs.forEach(function (msg) {
+                                var index = _this.getMsgIndexById(msg.messageId);
+                                if (msg.messageId && index !== -1) {
+                                    _this.msgList[index].status = 'success';
+                                }
+                                else {
+                                    msg.status = 'success';
+                                    _this.isScrolledToBottom = true;
+                                    _this.pushNewMsg(msg);
+                                }
+                            });
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @name imageChat
+     */
+    ChatPage.prototype.getImage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.setInputWrapButtons(false);
+                this.imageService.getImageFromUserGallery().then(function (res) {
+                    _this.editorImg = res.imageData;
+                    _this.localPath = res.base64;
+                }).catch(function (err) {
+                    // Handle error
+                    console.log("ERROR#####: ", err);
+                    _this.setInputWrapButtons(true);
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    ChatPage.prototype.openCamera = function () {
+        var _this = this;
+        this.setInputWrapButtons(false);
+        this.imageService.getImageFromCamera().then(function (res) {
+            _this.editorImg = res.imageData;
+            _this.localPath = res.base64;
+        }).catch(function (err) {
+            // Handle error
+            console.log("Camera issue:" + err);
+            _this.setInputWrapButtons(true);
+        });
+    };
+    ChatPage.prototype.removeImage = function () {
+        this.localPath = null;
+        this.editorImg = null;
+        this.setInputWrapButtons(true);
+    };
+    /**
+     * @name pushNewMsg
+     * @param msg
+     */
+    ChatPage.prototype.pushNewMsg = function (msg) {
+        var userId = this.user.token;
+        // check if msg already displayed
+        if (this.getMsgIndexById(msg.messageId) >= 0) {
+            return;
+        }
+        // Verify user relationships
+        if (!(msg.userId === userId || msg.toUserId === userId)) {
+            return;
+        }
+        this.msgList.push(msg);
+        this.changeDetector.detectChanges();
+        if (this.isScrolledToBottom) {
+            this.scrollToBottom();
+        }
+    };
+    ChatPage.prototype.getMsgIndexById = function (id) {
+        return this.msgList.findIndex(function (e) { return e.messageId === id; });
+    };
+    ChatPage.prototype.scrollToBottom = function () {
+        var _this = this;
+        setTimeout(function () {
+            if (_this.content && _this.content.scrollToBottom) {
+                _this.content.scrollToBottom();
+            }
+        }, 200);
+    };
+    ChatPage.prototype.focus = function () {
+        if (this.messageInput && this.messageInput.nativeElement) {
+            this.messageInput.nativeElement.focus();
+        }
+    };
+    ChatPage.prototype.setTextareaScroll = function () {
+        var textarea = this.messageInput.nativeElement;
+        textarea.scrollTop = textarea.scrollHeight;
+    };
+    ChatPage.prototype.micButtonClick = function () {
+        this.showTextArea = false;
+        this.showPictureButtons = false;
+        switch (this.recordState) {
+            case __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Record:
+                this.recordState = __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Stop;
+                this.stopRecording();
+                break;
+            case __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Stop:
+                this.recordState = __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Idle;
+                this.showTextArea = true;
+                this.showPictureButtons = true;
+                this.pauseAudio();
+                break;
+            default:
+                this.recordState = __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Record;
+                this.startRecording();
+                break;
+        }
+    };
+    ChatPage.prototype.updateAudioDuration = function () {
+        var now = new Date().getTime();
+        this.audioDuration = now - this.startAudioRecord;
+    };
+    ChatPage.prototype.updateAudioPosition = function (message) {
+        var _this = this;
+        var now = new Date().getTime();
+        if (message) {
+            if ((now - this.startAudioPlaying) < message.audioDuration) {
+                message.currentPosition = now - this.startAudioPlaying;
+            }
+            else {
+                message.currentPosition = message.audioDuration;
+                setTimeout(function () {
+                    _this.clearPositionInterval(message);
+                }, 1000);
+            }
+        }
+        else {
+            if ((now - this.startAudioPlaying) < this.audioDuration) {
+                this.currentPosition = now - this.startAudioPlaying;
+            }
+            else {
+                this.currentPosition = this.audioDuration;
+                setTimeout(function () {
+                    _this.clearPositionInterval();
+                }, 1000);
+            }
+        }
+    };
+    ChatPage.prototype.startRecording = function () {
+        var _this = this;
+        console.log('start recording');
+        var filename = '';
+        this.pauseAudio();
+        if (this.platform.is('android')) {
+            this.fileDirectory = this.file.dataDirectory;
+            filename = 'audioFile.aac';
+        }
+        else if (this.platform.is('ios')) {
+            filename = 'audioFile.aac';
+            this.fileDirectory = this.file.documentsDirectory;
+        }
+        this.file.createFile(this.fileDirectory, filename, true).then(function (filePath) {
+            _this.audio = _this.media.create(_this.fileDirectory.replace(/^file:\/\//, '') + filename);
+            //this.audio.release();
+            _this.startAudioRecord = new Date().getTime();
+            _this.audio.startRecord();
+            _this.updateAudioDuration();
+            _this.durationInterval = window.setInterval(function () {
+                _this.updateAudioDuration();
+            }, 1000);
+            _this.audioFilePath = filePath.toInternalURL();
+        }).catch(function (err) { console.log("creation file error:", err); });
+        // Stop Recording after 1 minute
+        setTimeout(function () {
+            if (_this.recordState != __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Idle) {
+                _this.recordState = __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__["a" /* RecordStateEnum */].Stop;
+                _this.stopRecording();
+            }
+        }, 60000);
+    };
+    ChatPage.prototype.stopRecording = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        this.audio.stopRecord();
+                        if (this.durationInterval) {
+                            clearInterval(this.durationInterval);
+                            this.durationInterval = null;
+                        }
+                        //if (this.platform.is('ios')) {
+                        this.audio.setVolume(0);
+                        this.audio.play();
+                        _a = this;
+                        return [4 /*yield*/, this.getAudioDuration()];
+                    case 1:
+                        _a.audioDuration = _b.sent();
+                        this.audio.pause();
+                        this.audio.setVolume(1);
+                        this.audio.seekTo(0);
+                        //} else {
+                        //    this.audioDuration = await this.getAudioDuration();
+                        //}
+                        this.startAudioRecord = 0;
+                        this.canPlayback = true;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ChatPage.prototype.getAudioDuration = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (resolve) {
+                        _this.durCheckInterval = window.setInterval(function () {
+                            console.log("Looking for File Duration");
+                            if (!_this.audio) {
+                                _this.clearAudioDurationInterval();
+                                resolve(0);
+                            }
+                            if (_this.audio.getDuration() != -1) {
+                                // this.currentAudioFile.setVolume(1.0);
+                                _this.clearAudioDurationInterval();
+                                resolve(_this.audio.getDuration() * 1000);
+                            }
+                        }, 1000);
+                    })];
+            });
+        });
+    };
+    ChatPage.prototype.clearAudioDurationInterval = function () {
+        if (this.durCheckInterval) {
+            clearInterval(this.durCheckInterval);
+            this.durCheckInterval = null;
+        }
+    };
+    ChatPage.prototype.playAudio = function (message, index) {
+        var _this = this;
+        if (this.audioPlaying) {
+            this.pauseAudio();
+        }
+        var filePath = null;
+        if (message)
+            filePath = message.media[0];
+        if (filePath)
+            this.audioIndex = index;
+        else {
+            this.canPlayback = false;
+            filePath = this.audioFilePath;
+        }
+        this.audio = this.media.create(filePath);
+        this.audio.play();
+        this.startAudioPlaying = new Date().getTime();
+        this.positionInterval = window.setInterval(function () {
+            _this.updateAudioPosition(message);
+        }, 10);
+        this.audio.setVolume(0.8);
+        this.audio.onStatusUpdate.subscribe(function (status) {
+            switch (status) {
+                case 2:// Running
+                    _this.audioPlaying = true;
+                    break;
+                case 3: // Paused
+                case 4:// Finished/Stopped
+                    if (!isNaN(index))
+                        _this.audioIndex = null;
+                    else
+                        _this.canPlayback = true;
+                    _this.audio.release();
+                    _this.audioPlaying = false;
+                    _this.clearPositionInterval(message);
+                    break;
+            }
+        });
+    };
+    ChatPage.prototype.clearPositionInterval = function (message) {
+        if (this.positionInterval) {
+            if (message) {
+                message.currentPosition = 0;
+            }
+            else {
+                this.currentPosition = 0;
+            }
+            clearInterval(this.positionInterval);
+            this.positionInterval = null;
+        }
+    };
+    ChatPage.prototype.pauseAudio = function (message) {
+        this.clearPositionInterval(message);
+        if (this.audio) {
+            this.audio.pause();
+            this.canPlayback = true;
+        }
+    };
+    ChatPage.prototype.isAudio = function (path) {
+        return (path.substring(path.lastIndexOf('.')) == '.mp3');
+    };
+    ChatPage.prototype.changeButtonsStatus = function () {
+        if (this.editorMsg.length == 0) {
+            this.setInputWrapButtons(true);
+        }
+        else {
+            this.showAudioButtons = false;
+            this.showPictureButtons = false;
+        }
+    };
+    ChatPage.prototype.setInputWrapButtons = function (setValue) {
+        this.showTextArea = setValue;
+        this.showAudioButtons = setValue;
+        this.showPictureButtons = setValue;
+    };
+    ChatPage.prototype.openInPhotoviewer = function (image) {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_7__classes_Helper__["b" /* Helper */].isPluginAvailable(__WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__["a" /* PhotoViewer */])) {
+            this.spinnerDialog.show();
+            setTimeout(function () {
+                // use short timeout to let spinner dialog appear
+                _this.photoViewer.show(image);
+                setTimeout(function () {
+                    // photoviewer doesn't have callback when user closes it => hide spinner in background
+                    _this.spinnerDialog.hide();
+                }, 1000);
+            }, 100);
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+    ], ChatPage.prototype, "content", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('chat_input'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], ChatPage.prototype, "messageInput", void 0);
+    ChatPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-chat',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/'<mcm-header></mcm-header>\n\n<ion-content class="has-header">\n    <div class="message-wrap">\n        <div *ngFor="let msg of msgList; let i = index"\n             class="message"\n             [class.left]=" msg.userId === toUser.token "\n             [class.right]=" msg.userId === user.token ">\n            <!--TODO Remove user-image from data-->\n            <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->\n            <ion-spinner name="dots" *ngIf="msg.status === \'pending\' && (msg.media.length==0 || !isAudio(msg.media[0]))"></ion-spinner>\n            <!-- Non-audio Message -->\n            <div class="msg-detail">\n                <div class="msg-content" [ngClass]="{\'audio\': msg.media.length>0 && isAudio(msg.media[0])}">\n\n                    <!-- Text Message -->\n                    <p *ngIf="msg.message" class="line-breaker ">{{msg.message}}</p>\n\n                    <!-- Image Message -->\n                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" (click)="openInPhotoviewer(msg.media[0])" src="{{msg.media[0]}}">\n\n                    <!-- Audio Message -->\n                    <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])" >\n                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg, i)"><ion-icon name="md-play"></ion-icon></button>\n                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio(msg)"><ion-icon name="md-square"></ion-icon></button>\n                        <mcm-progress-bar [currentProgress]="msg.currentPosition" [total]="msg.audioDuration" [isAudio]="true" [isAudioPlaying]="audioIndex == i"></mcm-progress-bar>\n                    </div>\n\n                </div>\n                <div class="msg-info">\n                    <p>\n                        <!--TODO Remove user from data-->\n                        <!--{{msg.userName}}&nbsp;&nbsp;-->\n                        <!-- TODO Time Format -->\n                        &nbsp;{{msg.time + timeZoneOpposite | localizedDate:\'medium\' }}</p>\n                </div>\n            </div>\n        </div>\n\n    </div>\n</ion-content>\n<ion-footer no-border class="input">\n    <div class="input-wrap">\n        <!-- ######### TEXT ######### -->\n        <textarea *ngIf="showTextArea"\n                  autoresize\n                  id="textarea"\n                  #chat_input\n                  [placeholder]="\'a_chat_type_message\' | translate"\n                  [(ngModel)]="editorMsg"\n                  (keyup.enter)="sendMsg()"\n                  (input)="changeButtonsStatus()"\n                  (focusin)="onFocus()">\n        </textarea>\n\n        <!-- ######### AUDIO ########## -->\n        <div class="message-input-buttons audio" *ngIf="showAudioButtons" [ngClass]="{\'active\': recordState == 2 || recordState == 3}">\n            <!-- Playback for Local Audio -->\n            <div *ngIf="recordState == 3">\n                <button ion-button clear icon-only round start *ngIf="canPlayback" (click)="playAudio()">\n                    <ion-icon name="md-play"></ion-icon>\n                </button>\n                <button ion-button clear icon-only round start *ngIf="!canPlayback" (click)="pauseAudio()">\n                    <ion-icon name="md-pause"></ion-icon>\n                </button>\n            </div>\n\n            <button ion-button clear icon-only round end (click)="micButtonClick()" [ngClass]="{\'recording\': recordState == 2}">\n                <ion-icon *ngIf="recordState == 1" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 2" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 3" name="md-trash"></ion-icon>\n            </button>\n            <p no-margin *ngIf="recordState == 2">{{ \'a_chat_recording_message\' | translate }} {{audioDuration | date : \'mm:ss\'}}</p>\n            <mcm-progress-bar *ngIf="recordState == 3" [currentProgress]="currentPosition" [total]="audioDuration" [isAudio]="true" [isAudioPlaying]="!canPlayback"></mcm-progress-bar>\n        </div>\n\n        <!-- ######### PICTURES ######## -->\n        <div class="message-input-buttons" *ngIf="showPictureButtons">\n            <button ion-button clear icon-only round end (click)="getImage()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button ion-button clear icon-only round end (click)="openCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n        </div>\n\n        <div class="image-previewer" *ngIf="localPath">\n            <img class="msg-image" src="{{localPath}}">\n            <button class="msg-close-button" ion-button icon-only clear round end (click)="removeImage()">\n                <ion-icon name="md-trash"></ion-icon>\n            </button>\n        </div>\n    </div>\n    <button class="send" no-padding ion-button round item-right (click)="sendMsg()" *ngIf="recordState != 2">\n        <img src="./assets/icons/send.svg"/>\n    </button>\n</ion-footer>\n\n\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__["a" /* Media */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"],
+            __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__["a" /* PhotoViewer */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_9__services_images_service__["a" /* ImagesService */]])
+    ], ChatPage);
+    return ChatPage;
+}());
+
+//# sourceMappingURL=chat.js.map
+
+/***/ }),
+
+/***/ 647:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9484,7 +9575,7 @@ var MCMIntroModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 645:
+/***/ 648:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9492,7 +9583,7 @@ var MCMIntroModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9572,7 +9663,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 646:
+/***/ 649:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9580,7 +9671,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9660,13 +9751,331 @@ var MCMTrailFinishedModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 648:
+/***/ 65:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalsService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__ = __webpack_require__(119);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+var ModalsService = /** @class */ (function () {
+    function ModalsService(modalCtrl, ormService, alertCtrl, deepLinker, translateService, spinner, dbUpdater, helper) {
+        this.modalCtrl = modalCtrl;
+        this.ormService = ormService;
+        this.alertCtrl = alertCtrl;
+        this.deepLinker = deepLinker;
+        this.translateService = translateService;
+        this.spinner = spinner;
+        this.dbUpdater = dbUpdater;
+        this.helper = helper;
+    }
+    ModalsService.prototype.doDownload = function (route) {
+        return __awaiter(this, void 0, void 0, function () {
+            var cancelHasBeenClicked, data, downloadModal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.showNoInternetModalIfOffline()];
+                    case 1:
+                        if (!(_a.sent())) {
+                            return [2 /*return*/];
+                        }
+                        console.log("doDownload " + JSON.stringify(route.id));
+                        cancelHasBeenClicked = false;
+                        data = {
+                            total: 0,
+                            currentProgress: 0,
+                            cancelCallback: function () {
+                                console.log("cancel has been clicked");
+                                cancelHasBeenClicked = true;
+                            },
+                            titleKey: 'a_rdl_title_map'
+                        };
+                        downloadModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */], data, {
+                            showBackdrop: true,
+                            enableBackdropDismiss: false
+                        });
+                        downloadModal.present();
+                        return [4 /*yield*/, this.ormService.downloadRoute(route, function (doneDownload, totalDownload, titleKey) {
+                                data.total = totalDownload;
+                                data.currentProgress = doneDownload;
+                                if (titleKey) {
+                                    data.titleKey = titleKey;
+                                }
+                                if (data.updateView) {
+                                    data.updateView();
+                                }
+                                // make sure that updated values are bound to DOM
+                                return cancelHasBeenClicked;
+                            }, this.dbUpdater)];
+                    case 2:
+                        _a.sent();
+                        downloadModal.dismiss();
+                        return [2 /*return*/, !cancelHasBeenClicked];
+                }
+            });
+        });
+    };
+    ModalsService.prototype.showRoute = function (route, navCtrl, startRoute, selectedTask) {
+        if (startRoute === void 0) { startRoute = false; }
+        if (selectedTask === void 0) { selectedTask = null; }
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!route.downloaded) return [3 /*break*/, 2];
+                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
+                        return [4 /*yield*/, this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))];
+                    case 1:
+                        // 15.05.18 - Perform dataset refresh of related tasks of the route if online
+                        _a.sent();
+                        if (startRoute) {
+                            this.navigateToRoute(route, navCtrl, null);
+                            return [2 /*return*/];
+                        }
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.presentRouteInfoModal(route, navCtrl)];
+                    case 3:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ModalsService.prototype.showDialog = function (titleKey, messageKey, button1Key, button1Handler, button2Key, button2Handler, narrative) {
+        if (narrative === void 0) { narrative = 'default'; }
+        return __awaiter(this, void 0, void 0, function () {
+            var buttons, confirm;
+            return __generator(this, function (_a) {
+                button1Key = button1Key || 'a_g_ok';
+                buttons = [{
+                        text: this.translateService.instant(button1Key),
+                        handler: button1Handler
+                    }];
+                if (button2Key && button2Handler) {
+                    buttons.push({
+                        text: this.translateService.instant(button2Key),
+                        handler: button2Handler
+                    });
+                }
+                confirm = this.alertCtrl.create({
+                    title: titleKey ? this.translateService.instant(titleKey) : null,
+                    message: messageKey ? this.translateService.instant(messageKey) : null,
+                    buttons: buttons,
+                    cssClass: narrative
+                });
+                confirm.present();
+                return [2 /*return*/, confirm];
+            });
+        });
+    };
+    ModalsService.prototype.showYesNoDialog = function (titleKey, messageKey, yesKey, noKey) {
+        var _this = this;
+        yesKey = yesKey || 'yes';
+        noKey = noKey || 'no';
+        return new Promise(function (resolve, reject) {
+            _this.showDialog(titleKey, messageKey, yesKey, function () { return resolve(true); }, noKey, function () { return resolve(false); });
+        });
+    };
+    ModalsService.prototype.navigateToRoute = function (route, navCtrl, selectedTask) {
+        var _this = this;
+        if (selectedTask === void 0) { selectedTask = null; }
+        this.spinner.show(null, null, false);
+        setTimeout(function () {
+            if (navCtrl.parent && navCtrl.parent.parent) {
+                navCtrl.parent.parent.push('TasksMap', {
+                    routeId: route.id,
+                    headerTitle: route.title,
+                    selectedTask: selectedTask
+                }, {}, function () {
+                    // necessary because of bug which does not update URL
+                    _this.deepLinker.navChange('forward');
+                });
+            }
+            else if (navCtrl.parent == null) {
+                navCtrl.push('TasksMap', {
+                    routeId: route.id,
+                    headerTitle: route.title,
+                    selectedTask: selectedTask
+                }, {}, function () {
+                    // necessary because of bug which does not update URL
+                    _this.deepLinker.navChange('forward');
+                });
+            }
+        }, 10);
+    };
+    ModalsService.prototype.presentRouteInfoModal = function (route, navCtrl) {
+        var _this = this;
+        var self = this;
+        return new Promise(function (success) {
+            //Passing navCtrl to prevent issues of dismissing 2 modals and having no navCtrl to use for showRoute.
+            var data = {
+                routeId: route.id,
+                modalsService: _this,
+                route: null
+            };
+            var routeInfoModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */], data);
+            routeInfoModal.onDidDismiss(function (result) {
+                if (result && result.showRoute) {
+                    self.showRoute(result.route, navCtrl, true);
+                    success(result.route);
+                }
+                else {
+                    // route is set by RouteInfo
+                    success(data.route);
+                }
+            });
+            routeInfoModal.present();
+        });
+    };
+    ModalsService.prototype.presentTaskListModal = function (route, score, state, narrative, navCtrl, callback) {
+        if (narrative === void 0) { narrative = 'default'; }
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            var testModal, _a, _b, _c, _d;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
+                    case 0:
+                        _b = (_a = this.modalCtrl).create;
+                        _c = [__WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */]];
+                        _d = {
+                            route: route,
+                            score: score,
+                            state: state
+                        };
+                        return [4 /*yield*/, route.getTasks()];
+                    case 1:
+                        testModal = _b.apply(_a, _c.concat([(_d.tasks = _e.sent(),
+                                _d.modalsService = this,
+                                _d), { cssClass: narrative }]));
+                        testModal.onDidDismiss(function (data) {
+                            /* coming from List/Map View */
+                            if (data && data.route != null && navCtrl != null && !callback)
+                                _this.navigateToRoute(data.route, navCtrl, data.selectedTask);
+                            else if (data && data.selectedTask != null && navCtrl != null && callback)
+                                callback(data.selectedTask);
+                            /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
+                        });
+                        testModal.present();
+                        return [2 /*return*/, testModal];
+                }
+            });
+        });
+    };
+    ModalsService.prototype.showNoInternetModalIfOffline = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var quality;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.helper.isOnline) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.helper.checkConnection()];
+                    case 1:
+                        quality = _a.sent();
+                        if (!(quality == __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["a" /* ConnectionQuality */].FAST)) return [3 /*break*/, 2];
+                        return [2 /*return*/, true];
+                    case 2: return [4 /*yield*/, this.showYesNoDialog('a_slow_connection_title', 'a_slow_connection', 'a_alert_continue', 'a_alert_cancel')];
+                    case 3: return [2 /*return*/, _a.sent()];
+                    case 4: return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, this.showDialog(null, 'a_toast_need_internet_for_update')];
+                    case 6:
+                        _a.sent();
+                        return [2 /*return*/, false];
+                    case 7: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ModalsService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1__orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_7_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
+            __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["b" /* Helper */]])
+    ], ModalsService);
+    return ModalsService;
+}());
+
+//# sourceMappingURL=modals-service.js.map
+
+/***/ }),
+
+/***/ 650:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(655);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -9674,7 +10083,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 653:
+/***/ 655:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9682,57 +10091,58 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular_linky__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(360);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(644);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(644);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(591);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(592);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(645);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(300);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(587);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9793,6 +10203,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -9803,6 +10214,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */],
                 __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */],
                 __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__["a" /* MCMRouteByCodeModal */], __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__["a" /* MCMReportProblemModal */],
                 __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */],
                 __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__["a" /* Autoresize */],
                 __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */]
@@ -9818,14 +10230,14 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -9851,6 +10263,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */],
                 __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */],
                 __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__["a" /* MCMRouteByCodeModal */], __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__["a" /* MCMReportProblemModal */],
                 __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */],
                 __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */]
             ],
@@ -9891,51 +10304,56 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 75:
+/***/ 76:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-/* tslint:disable */
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
 /**
- * Contains global configuration for API services
+ * Base class for API services
  */
-var ApiConfiguration = /** @class */ (function () {
-    function ApiConfiguration() {
-        this.rootUrl = "https://api.mathcitymap.eu/public/index.php"; // http://localhost/;
-        // rootUrl: string = "https://api-dev.mathcitymap.eu/public/index.php";
+var BaseService = /** @class */ (function () {
+    function BaseService(config, http) {
+        this.config = config;
+        this.http = http;
     }
-    ApiConfiguration = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], ApiConfiguration);
-    return ApiConfiguration;
+    Object.defineProperty(BaseService.prototype, "rootUrl", {
+        /**
+         * Returns the root url for API operations. If not set directly in this
+         * service, will fallback to ApiConfiguration.rootUrl.
+         */
+        get: function () {
+            return this._rootUrl || this.config.rootUrl;
+        },
+        /**
+         * Sets the root URL for API operations in this service.
+         */
+        set: function (rootUrl) {
+            this._rootUrl = rootUrl;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return BaseService;
 }());
 
-//# sourceMappingURL=api-configuration.js.map
+//# sourceMappingURL=base-service.js.map
 
 /***/ }),
 
-/***/ 76:
+/***/ 77:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GpsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(303);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -10210,7 +10628,7 @@ var CustomReplaySubject = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 802:
+/***/ 804:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10294,7 +10712,7 @@ var InitialMigration1513274191111 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 803:
+/***/ 805:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10363,7 +10781,7 @@ var FailedTaskMigration1515428187000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 804:
+/***/ 806:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10404,7 +10822,7 @@ var User = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 805:
+/***/ 807:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10449,7 +10867,7 @@ var State = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 806:
+/***/ 808:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10550,7 +10968,7 @@ var TaskState = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 809:
+/***/ 811:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10619,17 +11037,17 @@ var AddImageUrlAndDownloadedFlagMigration1513679923000 = /** @class */ (function
 
 /***/ }),
 
-/***/ 810:
+/***/ 812:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CacheManagerMCM; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(811);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(813);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(34);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -10766,7 +11184,7 @@ var CacheManagerMCM = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 811:
+/***/ 813:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10791,7 +11209,7 @@ var MyMath = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 822:
+/***/ 824:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10860,7 +11278,7 @@ var AddUnlockedColumn1516037215000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 823:
+/***/ 825:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10929,7 +11347,7 @@ var AddCompletedColumn1519817905000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 831:
+/***/ 833:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10994,7 +11412,7 @@ var DBC_Plan = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 832:
+/***/ 834:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11071,7 +11489,7 @@ var AddVisibleColumn1526306624000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 833:
+/***/ 835:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11148,7 +11566,7 @@ var AddLangCodeColumn1526306730000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 834:
+/***/ 836:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11225,7 +11643,7 @@ var AddDownloadDateColumn15711518720000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 835:
+/***/ 837:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11302,7 +11720,7 @@ var AddCompletedDateColumn15713974540000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 836:
+/***/ 838:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11399,7 +11817,7 @@ var AddZipMapFields15783117210000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 837:
+/***/ 839:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11476,7 +11894,7 @@ var AddSavedTasks16013795030000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 838:
+/***/ 840:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11553,7 +11971,7 @@ var AddSubtasks16026790930000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 839:
+/***/ 841:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11630,7 +12048,7 @@ var AddPositionField16194302450000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 840:
+/***/ 842:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11710,7 +12128,7 @@ var AddPathFields16208100470000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 841:
+/***/ 843:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11787,7 +12205,7 @@ var AddZoom16225449820000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 842:
+/***/ 844:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11867,16 +12285,93 @@ var AddForceSubtaskAndArLink16552845000000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 843:
+/***/ 845:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddTaskCode17026521590000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddTaskCode17026521590000 = /** @class */ (function () {
+    function AddTaskCode17026521590000() {
+    }
+    AddTaskCode17026521590000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN code VARCHAR ")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddTaskCode17026521590000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddTaskCode17026521590000;
+}());
+
+//# sourceMappingURL=17026521590000-AddTaskCode.js.map
+
+/***/ }),
+
+/***/ 846:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return McmImageComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(64);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11960,16 +12455,16 @@ var McmImageComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 844:
+/***/ 847:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMHeaderComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -12117,7 +12612,7 @@ var MCMHeaderComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 845:
+/***/ 848:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12160,14 +12655,14 @@ var DistancePipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 846:
+/***/ 849:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMProgressBarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -12288,16 +12783,16 @@ var MCMProgressBarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 847:
+/***/ 850:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyLoadImagesDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(848);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(851);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intersection_observer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -12437,17 +12932,17 @@ var LazyLoadImagesDirective = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 849:
+/***/ 852:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -12606,19 +13101,62 @@ var RouteTeaserComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 85:
+/***/ 853:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizedDatePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LocalizedDatePipe = /** @class */ (function () {
+    function LocalizedDatePipe(translateService) {
+        this.translateService = translateService;
+    }
+    LocalizedDatePipe.prototype.transform = function (value, pattern) {
+        if (pattern === void 0) { pattern = 'mediumDate'; }
+        var datePipe = new __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* DatePipe */](this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang);
+        return datePipe.transform(value, pattern);
+    };
+    LocalizedDatePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Pipe"])({
+            name: 'localizedDate',
+            pure: false
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
+    ], LocalizedDatePipe);
+    return LocalizedDatePipe;
+}());
+
+//# sourceMappingURL=localDate.pipe.js.map
+
+/***/ }),
+
+/***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Task2Route__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Task2Route__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(77);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13148,86 +13686,6 @@ var Route = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 850:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizedDatePipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var LocalizedDatePipe = /** @class */ (function () {
-    function LocalizedDatePipe(translateService) {
-        this.translateService = translateService;
-    }
-    LocalizedDatePipe.prototype.transform = function (value, pattern) {
-        if (pattern === void 0) { pattern = 'mediumDate'; }
-        var datePipe = new __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* DatePipe */](this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang);
-        return datePipe.transform(value, pattern);
-    };
-    LocalizedDatePipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Pipe"])({
-            name: 'localizedDate',
-            pure: false
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
-    ], LocalizedDatePipe);
-    return LocalizedDatePipe;
-}());
-
-//# sourceMappingURL=localDate.pipe.js.map
-
-/***/ }),
-
-/***/ 89:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
-/**
- * Base class for API services
- */
-var BaseService = /** @class */ (function () {
-    function BaseService(config, http) {
-        this.config = config;
-        this.http = http;
-    }
-    Object.defineProperty(BaseService.prototype, "rootUrl", {
-        /**
-         * Returns the root url for API operations. If not set directly in this
-         * service, will fallback to ApiConfiguration.rootUrl.
-         */
-        get: function () {
-            return this._rootUrl || this.config.rootUrl;
-        },
-        /**
-         * Sets the root URL for API operations in this service.
-         */
-        set: function (rootUrl) {
-            this._rootUrl = rootUrl;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return BaseService;
-}());
-
-//# sourceMappingURL=base-service.js.map
-
-/***/ }),
-
 /***/ 90:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -13243,22 +13701,22 @@ var BaseService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(447);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(448);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(449);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(451);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(450);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(453);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -14133,5 +14591,5 @@ var ChatAndSessionService = /** @class */ (function () {
 
 /***/ })
 
-},[648]);
+},[650]);
 //# sourceMappingURL=main.js.map

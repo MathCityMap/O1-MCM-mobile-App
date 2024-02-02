@@ -90,6 +90,9 @@ export class Task {
     @Column({name: 'ar_link'})
     arLink: string;
 
+    @Column()
+    code: string;
+
     @ManyToMany(type => Route, route => route.tasks)
     routes: Route[]
 

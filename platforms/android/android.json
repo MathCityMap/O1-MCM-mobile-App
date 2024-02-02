@@ -17,9 +17,9 @@
                 "android:hardwareAccelerated": "true",
                 "android:icon": "@mipmap/ic_launcher",
                 "android:label": "@string/app_name",
+                "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
-                "android:usesCleartextTraffic": "true",
-                "android:requestLegacyExternalStorage": "true"
+                "android:usesCleartextTraffic": "true"
               }
             },
             {
@@ -31,6 +31,7 @@
                 "android:hardwareAccelerated": "true",
                 "android:icon": "@mipmap/ic_launcher",
                 "android:label": "@string/app_name",
+                "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
                 "android:usesCleartextTraffic": "true"
               }
@@ -43,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 3
+              "count": 5
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
@@ -119,10 +120,6 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
               "count": 1
             }
           ],
@@ -272,38 +269,6 @@
             {
               "xml": "<feature name=\"SafariViewController\"><param name=\"android-package\" value=\"com.customtabplugin.ChromeCustomTabPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic_Location\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic_Location\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic_Bluetooth\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic_Bluetooth\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic_Wifi\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic_Wifi\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic_Camera\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic_Camera\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic_Notifications\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic_Notifications\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic_NFC\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic_NFC\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Diagnostic_External_Storage\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic_External_Storage\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
             }
           ]
         }
@@ -312,93 +277,88 @@
   },
   "installed_plugins": {
     "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "com.jjdltc.cordova.plugin.zip": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-custom-config": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-file": {
       "ANDROIDX_WEBKIT_VERSION": "1.4.0",
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-advanced-http": {
       "ANDROIDX_WEBKIT_VERSION": "1.4.0",
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-androidx-adapter": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-badge": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-camera": {
       "ANDROIDX_CORE_VERSION": "1.6.+",
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-media": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-native-spinner": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-request-location-accuracy": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-safariviewcontroller": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "es6-promise-plugin": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-screen-orientation": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-wkwebview-inject-cookie": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
-    "cordova.plugins.diagnostic": {
-      "ANDROIDX_VERSION": "1.0.0",
-      "ANDROIDX_APPCOMPAT_VERSION": "1.3.1",
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {},
@@ -871,94 +831,6 @@
       "clobbers": [
         "SQLitePlugin"
       ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Location",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.location.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.location"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Bluetooth",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.bluetooth.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.bluetooth"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Wifi",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.wifi.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.wifi"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Camera",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.camera.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.camera"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Notifications",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.notifications.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.notifications"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Microphone",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.microphone.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.microphone"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Contacts",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.contacts.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.contacts"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Calendar",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.calendar.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.calendar"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_NFC",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.nfc.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.nfc"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_External_Storage",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.external_storage.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.external_storage"
-      ]
     }
   ],
   "plugin_metadata": {
@@ -988,7 +860,6 @@
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
-    "cordova-sqlite-storage": "6.0.0",
-    "cordova.plugins.diagnostic": "6.0.4"
+    "cordova-sqlite-storage": "5.1.0"
   }
 }

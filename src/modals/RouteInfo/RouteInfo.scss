@@ -105,10 +105,8 @@
                 }
             }
             &:nth-of-type(odd){
-                flex-basis: auto;
-                //flex-basis: 26%;
                 flex-grow: 0;
-                max-width: 27%;
+                flex-basis: 27%;
             }
             &:first-of-type{
                 .info-item{
