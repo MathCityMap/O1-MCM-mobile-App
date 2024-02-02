@@ -35,7 +35,7 @@ When your build fails remove platform files an readd them
 
 ```bash
 ionic cordova platform rm android
-ionic cordova platform add android@6.3.0
+ionic cordova platform add android@12
 ```
 
 To run project on android emulator run the following commands:

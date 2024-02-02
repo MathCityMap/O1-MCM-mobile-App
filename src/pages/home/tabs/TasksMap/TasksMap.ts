@@ -1159,6 +1159,22 @@ export class TasksMap implements OnDestroy {
                 this.taskDoneIcon.clusterColor = '#F3B100';
                 this.taskDonePerfectIcon.clusterColor = '#4CAF50';
                 this.taskFailedIcon.clusterColor = '#E62B25';
+                // TODO GROUP MARKER
+                // return new L.DivIcon({
+                //     html: `<div style="${style}">
+                //                 <svg class="marker-base"></svg>
+                //                 <span>${childCount}</span>
+                //                 <svg id="segmented-circle" viewBox="0 0 320 320" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                //                     <path class="filled" d="M 236.41208279802152 54.827790731256826 A 130 130 0 0 0 160 30"></path>
+                //                     <path class="filled" d="M 283.63734711837 119.82779073125684 A 130 130 0 0 0 236.41208279802152 54.827790731256826"></path>
+                //                     <path class="filled" d="M 283.63734711837 200.17220926874316 A 130 130 0 0 0 283.63734711837 119.82779073125684"></path>
+                //                     <path d="M 236.41208279802152 265.1722092687432 A 130 130 0 0 0 283.63734711837 200.17220926874316"></path>
+                //                     <path d="M 160 290 A 130 130 0 0 0 236.41208279802152 265.1722092687432"></path>
+                //                     <path d="M 83.58791720197851 265.1722092687432 A 130 130 0 0 0 160 290"></path>
+                //                 </svg>
+                //             </div>`,
+                //     iconSize: new L.Point(40, 40)
+                // });
                 break;
         }
     }
