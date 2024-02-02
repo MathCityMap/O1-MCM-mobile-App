@@ -8,7 +8,7 @@ import {Content, IonicPage, NavController, NavParams} from 'ionic-angular';
     selector: 'page-task-group-detail',
     templateUrl: 'task-group-detail.html',
 })
-export class TaskGroupDetailPage {
+export class TaskGroupDetail {
     @ViewChild(Content) content: Content;
 
     constructor(

@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1154:
+/***/ 1158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44,7 +44,7 @@ var TasksMapPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1159:
+/***/ 1162:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52,7 +52,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (factory) {
     if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1160), __webpack_require__(1161)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1163), __webpack_require__(1164)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -65,7 +65,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1160:
+/***/ 1163:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -269,7 +269,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1161:
+/***/ 1164:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -461,7 +461,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1162:
+/***/ 1165:
 /***/ (function(module, exports) {
 
 (function() {
@@ -525,7 +525,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1166:
+/***/ 1170:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -536,34 +536,35 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline__ = __webpack_require__(1159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline__ = __webpack_require__(1162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_offline__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__ = __webpack_require__(1162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_leaflet_rotatedmarker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient__ = __webpack_require__(1167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_conic_gradient__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__app_app_component__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__chat_chat__ = __webpack_require__(645);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Score__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__ = __webpack_require__(1165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient__ = __webpack_require__(1171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_conic_gradient__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_app_component__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -635,8 +636,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var TasksMap = /** @class */ (function () {
-    function TasksMap(navCtrl, navParams, events, ormService, deepLinker, gpsService, modalsService, imagesService, storage, spinner, modalCtrl, chatAndSessionService, app, helper) {
+    function TasksMap(navCtrl, navParams, events, ormService, deepLinker, gpsService, modalsService, imagesService, storage, spinner, modalCtrl, app, chatAndSessionService) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -649,9 +651,8 @@ var TasksMap = /** @class */ (function () {
         this.storage = storage;
         this.spinner = spinner;
         this.modalCtrl = modalCtrl;
-        this.chatAndSessionService = chatAndSessionService;
         this.app = app;
-        this.helper = helper;
+        this.chatAndSessionService = chatAndSessionService;
         this.state = {
             selectedTask: null,
             isShowingAllTasks: false,
@@ -669,24 +670,13 @@ var TasksMap = /** @class */ (function () {
         this.countdownBeforeSession = false;
         this.startInterval = false;
         this.showCountdownOrTimer = false;
-        //private refreshIntervalId: any = null;
         this.showSessionEnds = false;
         this.taskBlocked = false;
-        this.sessionTimeTimer = __WEBPACK_IMPORTED_MODULE_25__node_modules_rxjs__["Observable"].interval(TasksMap_1.UPDATE_SESSION_TIME_INTERVAL_IN_SECS * 1000);
+        this.sessionTimeTimer = __WEBPACK_IMPORTED_MODULE_26_rxjs__["Observable"].interval(TasksMap_1.UPDATE_SESSION_TIME_INTERVAL_IN_SECS * 1000);
         this.redrawingMarkers = false;
         this.markerGroup = null;
         this.pathGroup = null;
-        /*this.userPositionIcon = L.icon({iconUrl:"./assets/icons/icon_mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-        this.taskOpenIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-open.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-        this.taskOpenIcon.clusterColor = '#036D99';
-        this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-skipped.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-        this.taskSkippedIcon.clusterColor = '#B2B2B2';
-        this.taskDoneIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-        this.taskDoneIcon.clusterColor = '#F3B100';
-        this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-done-perfect.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-        this.taskDonePerfectIcon.clusterColor = '#4CAF50';
-        this.taskFailedIcon = L.icon({iconUrl:'assets/icons/icon_taskmarker-failed.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-        this.taskFailedIcon.clusterColor = '#E62B25';*/
+        this.TaskFormat = __WEBPACK_IMPORTED_MODULE_8__entity_Task__["b" /* TaskFormat */];
         this.chatAndSessionService.init();
         this.events.subscribe('user:kicked', function (user) {
             if (user == 'self') {
@@ -721,7 +711,7 @@ var TasksMap = /** @class */ (function () {
     };
     TasksMap.prototype.showTrailCompletedAlert = function () {
         var that = this;
-        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_26__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */], {
+        var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */], {
             score: this.score,
             tasks: this.taskList,
             narrative: this.app.activeNarrative,
@@ -734,33 +724,6 @@ var TasksMap = /** @class */ (function () {
             }
         }, { cssClass: this.app.activeNarrative });
         modal.present();
-        // let that = this;
-        // let title = 'a_alert_congrats';
-        // let message = 'a_alert_congrats_msg';
-        // if (this.route.isNarrativeEnabled()) {
-        //   title = this.route.getNarrativeString(title);
-        //   message = this.route.getNarrativeString(message);
-        // }
-        // let modal = this.modalCtrl.create(MCMIconModal,  {
-        //     title: title,
-        //     message: message,
-        //     modalType: MCMModalType.solved,
-        //     param: {TITLE: this.route.title},
-        //     narrativeEnabled: this.route.isNarrativeEnabled(),
-        //     narrative: this.app.activeNarrative,
-        //     buttons: [
-        //         {
-        //             title: 'a_alert_close',
-        //             callback: function(){
-        //                 modal.dismiss().then(() => {
-        //                     that.route.completed = true;
-        //                     that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-        //                     that.ormService.saveAndFireChangedEvent(that.route);
-        //                 });
-        //             }
-        //         }
-        //     ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-        // modal.present();
     };
     TasksMap.prototype.ionViewWillEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -966,9 +929,6 @@ var TasksMap = /** @class */ (function () {
             });
         });
     };
-    TasksMap.prototype.ngOnInit = function () {
-        // this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
-    };
     TasksMap.prototype.ngOnDestroy = function () {
         if (this.sessionSubscription) {
             this.sessionSubscription.unsubscribe();
@@ -1166,6 +1126,7 @@ var TasksMap = /** @class */ (function () {
                         return [4 /*yield*/, this.route.getTasks()];
                     case 1:
                         _b.taskList = _c.sent();
+                        console.log("Task List", this.taskList);
                         geoJSON = this.route.getPathGeoJson();
                         pathGroup = [];
                         _loop_1 = function (i) {
@@ -1174,26 +1135,32 @@ var TasksMap = /** @class */ (function () {
                                 return "continue";
                             }
                             var icon = this_1.taskOpenIcon;
-                            var removeTaskFromSkippedArray = true;
-                            if (this_1.score.getTasksSaved().indexOf(task.id) > -1) {
+                            if (task.taskFormat === __WEBPACK_IMPORTED_MODULE_8__entity_Task__["b" /* TaskFormat */].GROUP) {
+                                // TODO add proper Logic for task Icon
                                 icon = this_1.taskSavedIcon;
                             }
-                            else if (this_1.score.getTasksSolved().indexOf(task.id) > -1) {
-                                icon = this_1.taskDonePerfectIcon;
-                            }
-                            else if (this_1.score.getTasksSolvedLow().indexOf(task.id) > -1) {
-                                icon = this_1.taskDoneIcon;
-                            }
-                            else if (this_1.score.getTasksFailed().indexOf(task.id) > -1) {
-                                icon = this_1.taskFailedIcon;
-                            }
-                            else if (this_1.state.skippedTaskIds.indexOf(task.id) > -1) {
-                                icon = this_1.taskSkippedIcon;
-                                removeTaskFromSkippedArray = false;
-                            }
-                            if (removeTaskFromSkippedArray && this_1.state.skippedTaskIds.indexOf(task.id) > -1) {
-                                // remove task from skipped array
-                                this_1.state.skippedTaskIds.splice(this_1.state.skippedTaskIds.indexOf(task.id), 1);
+                            else {
+                                var removeTaskFromSkippedArray = true;
+                                if (this_1.score.getTasksSaved().indexOf(task.id) > -1) {
+                                    icon = this_1.taskSavedIcon;
+                                }
+                                else if (this_1.score.getTasksSolved().indexOf(task.id) > -1) {
+                                    icon = this_1.taskDonePerfectIcon;
+                                }
+                                else if (this_1.score.getTasksSolvedLow().indexOf(task.id) > -1) {
+                                    icon = this_1.taskDoneIcon;
+                                }
+                                else if (this_1.score.getTasksFailed().indexOf(task.id) > -1) {
+                                    icon = this_1.taskFailedIcon;
+                                }
+                                else if (this_1.state.skippedTaskIds.indexOf(task.id) > -1) {
+                                    icon = this_1.taskSkippedIcon;
+                                    removeTaskFromSkippedArray = false;
+                                }
+                                if (removeTaskFromSkippedArray && this_1.state.skippedTaskIds.indexOf(task.id) > -1) {
+                                    // remove task from skipped array
+                                    this_1.state.skippedTaskIds.splice(this_1.state.skippedTaskIds.indexOf(task.id), 1);
+                                }
                             }
                             if (geoJSON) {
                                 var taskGeoJsons = geoJSON.data.features.filter(function (data) {
@@ -1223,7 +1190,7 @@ var TasksMap = /** @class */ (function () {
                             }
                             markerGroup.addLayer(__WEBPACK_IMPORTED_MODULE_2_leaflet__["marker"]([task.lat, task.lon], { icon: icon }).on('click', function () {
                                 if (_this.state.selectedTask == task) {
-                                    _this.gototask(task.id, task.title);
+                                    _this.gototask(task.id, task.title, task.taskFormat);
                                 }
                                 else {
                                     // Add event of user entering trail when session active
@@ -1437,18 +1404,14 @@ var TasksMap = /** @class */ (function () {
         });
     };
     TasksMap.prototype.goToNextTask = function (task, skip) {
-        //  setTimeout(async () => {
         if (skip) {
             this.state.skippedTaskIds.push(task.id);
         }
         console.debug("goToNextTask");
-        // task.position == index + 1
         this.state.selectedTask = this.taskList[task.position % this.taskList.length];
         this.state.visibleTasks[this.state.selectedTask.position] = true;
-        //this.redrawMarker();
         this.centerSelectedTask();
         this.saveMapStateToLocalStorage();
-        // }, 200);
     };
     TasksMap.prototype.selectStartPoint = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -1478,7 +1441,8 @@ var TasksMap = /** @class */ (function () {
     };
     TasksMap.prototype.displayResetTasksModal = function () {
         var _this = this;
-        this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg', 'no', function () { }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
+        this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg', 'no', function () {
+        }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.resetTasks()];
@@ -1498,7 +1462,7 @@ var TasksMap = /** @class */ (function () {
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
-                            this.score = new __WEBPACK_IMPORTED_MODULE_8__entity_Score__["a" /* Score */]();
+                            this.score = new __WEBPACK_IMPORTED_MODULE_9__entity_Score__["a" /* Score */]();
                             this.state = this.navParams.data.tasksMapState = {
                                 selectedTask: null,
                                 isShowingAllTasks: true,
@@ -1543,8 +1507,9 @@ var TasksMap = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                this.modalsService.showDialog('a_private_session_quit', 'a_private_session_quit_text', 'no', function () { }, 'yes', function () {
-                    var modal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
+                this.modalsService.showDialog('a_private_session_quit', 'a_private_session_quit_text', 'no', function () {
+                }, 'yes', function () {
+                    var modal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
                         session: _this.sessionInfo.session,
                         score: _this.score,
                         tasks: _this.taskList,
@@ -1569,10 +1534,10 @@ var TasksMap = /** @class */ (function () {
             var that, modal;
             return __generator(this, function (_a) {
                 that = this;
-                modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_18__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_19__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
                     title: 'a_private_session_kicked',
                     message: 'a_private_session_kicked_text',
-                    modalType: __WEBPACK_IMPORTED_MODULE_17__app_app_component__["a" /* MCMModalType */].hint,
+                    modalType: __WEBPACK_IMPORTED_MODULE_18__app_app_component__["a" /* MCMModalType */].hint,
                     type: 'text',
                     gamificationEnabled: false,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
@@ -1582,7 +1547,7 @@ var TasksMap = /** @class */ (function () {
                             title: 'a_g_ok',
                             callback: function () {
                                 modal.dismiss();
-                                var finishedModal = that.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
+                                var finishedModal = that.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
                                     session: that.sessionInfo.session,
                                     score: that.score,
                                     tasks: that.taskList,
@@ -1607,7 +1572,7 @@ var TasksMap = /** @class */ (function () {
             });
         });
     };
-    TasksMap.prototype.gototask = function (taskId, taskName) {
+    TasksMap.prototype.gototask = function (taskId, taskName, taskFormat) {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
             var that;
@@ -1618,12 +1583,32 @@ var TasksMap = /** @class */ (function () {
                 }
                 console.debug('taskId', taskId);
                 that = this;
-                this.navCtrl.push('TaskDetail', { taskId: taskId, headerTitle: taskName, routeId: this.routeId, goToNextTaskById: function (taskIdToSkip, skip) {
-                        that.goToNextTaskById(taskIdToSkip, skip);
-                    } }, {}, function () {
-                    // necessary because of bug which does not update URL
-                    _this.deepLinker.navChange('forward');
-                });
+                if (taskFormat === __WEBPACK_IMPORTED_MODULE_8__entity_Task__["b" /* TaskFormat */].GROUP) {
+                    this.navCtrl.push('TaskDetail', {
+                        taskId: taskId,
+                        headerTitle: taskName,
+                        routeId: this.routeId,
+                        goToNextTaskById: function (taskIdToSkip, skip) {
+                            that.goToNextTaskById(taskIdToSkip, skip);
+                        }
+                    }, {}, function () {
+                        // necessary because of bug which does not update URL
+                        _this.deepLinker.navChange('forward');
+                    });
+                }
+                else {
+                    this.navCtrl.push('TaskDetail', {
+                        taskId: taskId,
+                        headerTitle: taskName,
+                        routeId: this.routeId,
+                        goToNextTaskById: function (taskIdToSkip, skip) {
+                            that.goToNextTaskById(taskIdToSkip, skip);
+                        }
+                    }, {}, function () {
+                        // necessary because of bug which does not update URL
+                        _this.deepLinker.navChange('forward');
+                    });
+                }
                 return [2 /*return*/];
             });
         });
@@ -1637,7 +1622,7 @@ var TasksMap = /** @class */ (function () {
                     details = JSON.stringify({});
                     this.chatAndSessionService.addUserEvent("event_trail_chat_open", details, "0");
                 }
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_22__chat_chat__["a" /* ChatPage */], {
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_23__chat_chat__["a" /* ChatPage */], {
                     val: 'chatseite',
                     headerTitle: this.sessionInfo.session.name
                 });
@@ -1654,9 +1639,9 @@ var TasksMap = /** @class */ (function () {
             return;
         }
         var session = this.sessionInfo.session;
-        var currentTimeUnix = __WEBPACK_IMPORTED_MODULE_24_moment__().unix();
-        var startTimeInUnix = __WEBPACK_IMPORTED_MODULE_24_moment__(session.starts_at).unix();
-        var endTimeInUnix = __WEBPACK_IMPORTED_MODULE_24_moment__(session.ends_at).unix();
+        var currentTimeUnix = __WEBPACK_IMPORTED_MODULE_25_moment__().unix();
+        var startTimeInUnix = __WEBPACK_IMPORTED_MODULE_25_moment__(session.starts_at).unix();
+        var endTimeInUnix = __WEBPACK_IMPORTED_MODULE_25_moment__(session.ends_at).unix();
         var countdown = startTimeInUnix - currentTimeUnix;
         var countdownInMin = Math.floor(countdown / 60);
         var timerInMin = Math.floor((endTimeInUnix - currentTimeUnix) / 60);
@@ -1683,7 +1668,7 @@ var TasksMap = /** @class */ (function () {
             this.showSessionEnds = true;
             this.taskBlocked = false;
             // Leave session
-            var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_21__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
+            var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
                 session: this.sessionInfo.session,
                 score: this.score,
                 tasks: this.taskList,
@@ -1702,10 +1687,10 @@ var TasksMap = /** @class */ (function () {
                 title = _this.route.getNarrativeString(title);
                 message = _this.route.getNarrativeString(message);
             }
-            var introModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_19__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], {
+            var introModal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], {
                 title: title,
                 message: message,
-                modalType: __WEBPACK_IMPORTED_MODULE_17__app_app_component__["a" /* MCMModalType */].hint,
+                modalType: __WEBPACK_IMPORTED_MODULE_18__app_app_component__["a" /* MCMModalType */].hint,
                 narrative: _this.app.activeNarrative,
                 routeTitle: _this.route.title,
                 buttons: [
@@ -1724,14 +1709,54 @@ var TasksMap = /** @class */ (function () {
     TasksMap.prototype.updateIcons = function () {
         switch (this.app.activeNarrative) {
             case 'pirates':
-                this.userPositionIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/pirates/mapposition.png", iconSize: [100, 100], iconAnchor: [50, 50], className: 'marker userPosition' }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.userPositionArrow = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/userDirection.png", iconSize: [36, 36], iconAnchor: [18, 18], className: 'marker userArrow' }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.taskOpenIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-open.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
-                this.taskSkippedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-skipped.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
-                this.taskSavedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-saved.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
-                this.taskDoneIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-good.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
-                this.taskDonePerfectIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-perfect.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
-                this.taskFailedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/pirates/marker-task-failed.png', iconSize: [50, 50], iconAnchor: [25, 25], className: 'marker' });
+                this.userPositionIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: "./assets/icons/pirates/mapposition.png",
+                    iconSize: [100, 100],
+                    iconAnchor: [50, 50],
+                    className: 'marker userPosition'
+                }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: "./assets/icons/userDirection.png",
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18],
+                    className: 'marker userArrow'
+                }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.taskOpenIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/pirates/marker-task-open.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskSkippedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/pirates/marker-task-skipped.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskSavedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/marker-task-saved.png',
+                    iconSize: [35, 48],
+                    iconAnchor: [17.5, 43],
+                    className: 'marker'
+                });
+                this.taskDoneIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/pirates/marker-task-good.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskDonePerfectIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/pirates/marker-task-perfect.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskFailedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/pirates/marker-task-failed.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
                 this.taskOpenIcon.clusterColor = '#AA2000';
                 this.taskSkippedIcon.clusterColor = '#b2b2b2';
                 this.taskSavedIcon.clusterColor = '#6E38B9';
@@ -1740,14 +1765,60 @@ var TasksMap = /** @class */ (function () {
                 this.taskFailedIcon.clusterColor = '#333333';
                 break;
             default:
-                this.userPositionIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/mapposition.png", iconSize: [100, 100], iconAnchor: [50, 50], className: 'marker userPosition' }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.userPositionArrow = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: "./assets/icons/userDirection.png", iconSize: [36, 36], iconAnchor: [18, 18], className: 'marker userArrow' });
-                this.taskOpenIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-open.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
-                this.taskSkippedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-skipped.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
-                this.taskSavedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-saved.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
-                this.taskDoneIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-good.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
-                this.taskDonePerfectIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-perfect.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
-                this.taskFailedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({ iconUrl: 'assets/icons/marker-task-failed.png', iconSize: [35, 48], iconAnchor: [17.5, 43], className: 'marker' });
+                this.userPositionIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: "./assets/icons/mapposition.png",
+                    iconSize: [100, 100],
+                    iconAnchor: [50, 50],
+                    className: 'marker userPosition'
+                }); //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: "./assets/icons/userDirection.png",
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18],
+                    className: 'marker userArrow'
+                });
+                this.taskOpenIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/map/task-open.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskSkippedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/map/task-skipped.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskSavedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/map/task-saved.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskDoneIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/map/task-good.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskDonePerfectIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/map/task-perfect.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskFailedIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/map/task-failed.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskGroupIcon = __WEBPACK_IMPORTED_MODULE_2_leaflet__["icon"]({
+                    iconUrl: 'assets/icons/map/task-group-open.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
                 this.taskOpenIcon.clusterColor = '#036D99';
                 this.taskSkippedIcon.clusterColor = '#B2B2B2';
                 this.taskSavedIcon.clusterColor = '#6E38B9';
@@ -1757,6 +1828,19 @@ var TasksMap = /** @class */ (function () {
                 break;
         }
     };
+    TasksMap.prototype.getSolvedSubtaskCount = function (task) {
+        var count = 0;
+        for (var _i = 0, _a = task.getLegitSubtasks(); _i < _a.length; _i++) {
+            var subtask = _a[_i];
+            if (this.score.getTasksSaved().indexOf(subtask.id) > -1 ||
+                this.score.getTasksSolved().indexOf(subtask.id) > -1 ||
+                this.score.getTasksSolvedLow().indexOf(subtask.id) > -1 ||
+                this.score.getTasksFailed().indexOf(subtask.id) > -1) {
+                count++;
+            }
+        }
+        return count;
+    };
     TasksMap.UPDATE_SESSION_TIME_INTERVAL_IN_SECS = 15;
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('tasks-map'),
@@ -1764,22 +1848,21 @@ var TasksMap = /** @class */ (function () {
     ], TasksMap.prototype, "mapContainer", void 0);
     TasksMap = TasksMap_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-tasks-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header map tasks">\n    <div ion-fixed>\n        <div id="tasks-map" class="map-view"></div>\n\n        <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">\n            <ion-grid class="table">\n                <ion-row class="session" *ngIf="sessionInfo != null && this.showCountdownOrTimer">\n                    <ion-col col class="countdown">\n                        <img class="icon countdown" src="./assets/icons/countdown.svg"/>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label *ngIf="this.countdownBeforeSession">{{\'a_private_session_countdown\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.countdownBeforeSession == false">{{\'a_private_session_timer\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.showSessionEnds">{{\'a_private_session_ends\' | translate}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label>{{ countdownOrTimerForSession }} Min</ion-label>\n                    </ion-col>\n                </ion-row>\n                <ion-row class="current" *ngIf="this.route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && currentScore && currentScore > 0 && (sessionInfo==null || !sessionInfo.session.has_leaderboard)">\n                    <ion-col>\n                        <ion-label *ngIf="!sessionInfo">{{user.name}}</ion-label>\n                        <ion-label *ngIf="sessionInfo">{{sessionInfo.sessionUser.team_name}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label class="score">{{currentScore}}</ion-label>\n                    </ion-col>\n                </ion-row>\n                <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard && this.route.isAnswerFeedbackEnabled()">\n                    <ion-row [ngClass]="{\'self\' : user.self}"\n                             *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">\n                        <ion-col class="chart">\n                            <img class="icon arrow" src="./assets/icons/up.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self"/>\n                            <img class="icon arrow" src="./assets/icons/down.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self"/>\n                        </ion-col>\n\n                        <ion-col>\n                            <ion-label>{{user.team_name}}</ion-label>\n                        </ion-col>\n                        <ion-col>\n                            <ion-label class="score">{{user.score}}</ion-label>\n                        </ion-col>\n                    </ion-row>\n                </div>\n            </ion-grid>\n        </div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': state.selectedTask}">\n\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>\n                <ion-fab-list side="top">\n                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">\n                        <ion-icon name="icon-restart"></ion-icon>\n                    </button>\n                    <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">\n                        <ion-icon name="icon-starting-point"></ion-icon>\n                    </button>\n                    <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">\n                        <ion-icon name="icon-visibility"></ion-icon>\n                    </button>\n                    <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-exit"></ion-icon>\n                    </button>\n                    <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-chat"></ion-icon>\n                    </button>\n                    <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n                </ion-fab-list>\n                <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n            </ion-fab>\n\n            <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)">\n                <div class="cover">\n                    <img class="thumb" [src]="state.selectedTask.getImageURL()" />\n                </div>\n            </div>\n            <div class="text-container" *ngIf="state.selectedTask">\n                <div class="segmented-box">\n                    <div class="title segement">\n                        <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">#{{state.selectedTask.position}}</span>\n                        <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{state.selectedTask.title}}</h2>\n                    </div>\n                </div>\n                <div class="segmented-box bottom">\n                    <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->\n                    <!--<span class="segement">??? {{ "a_g_max_points" | translate }}</span>-->\n                    <div class="segement buttons">\n                        <div class="text-right">\n                            <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{ \'a_alert_show_task\' | translate }}</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/
+            selector: 'page-tasks-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header map tasks">\n    <div ion-fixed>\n        <div id="tasks-map" class="map-view"></div>\n\n        <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">\n            <ion-grid class="table">\n                <ion-row class="session" *ngIf="sessionInfo != null && this.showCountdownOrTimer">\n                    <ion-col col class="countdown">\n                        <img class="icon countdown" src="./assets/icons/countdown.svg"/>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label *ngIf="this.countdownBeforeSession">{{\'a_private_session_countdown\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.countdownBeforeSession == false">{{\'a_private_session_timer\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.showSessionEnds">{{\'a_private_session_ends\' | translate}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label>{{ countdownOrTimerForSession }} Min</ion-label>\n                    </ion-col>\n                </ion-row>\n                <ion-row class="current" *ngIf="this.route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && currentScore && currentScore > 0 && (sessionInfo==null || !sessionInfo.session.has_leaderboard)">\n                    <ion-col>\n                        <ion-label *ngIf="!sessionInfo">{{user.name}}</ion-label>\n                        <ion-label *ngIf="sessionInfo">{{sessionInfo.sessionUser.team_name}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label class="score">{{currentScore}}</ion-label>\n                    </ion-col>\n                </ion-row>\n                <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard && this.route.isAnswerFeedbackEnabled()">\n                    <ion-row [ngClass]="{\'self\' : user.self}"\n                             *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">\n                        <ion-col class="chart">\n                            <img class="icon arrow" src="./assets/icons/up.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self"/>\n                            <img class="icon arrow" src="./assets/icons/down.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self"/>\n                        </ion-col>\n\n                        <ion-col>\n                            <ion-label>{{user.team_name}}</ion-label>\n                        </ion-col>\n                        <ion-col>\n                            <ion-label class="score">{{user.score}}</ion-label>\n                        </ion-col>\n                    </ion-row>\n                </div>\n            </ion-grid>\n        </div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': state.selectedTask}">\n\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>\n                <ion-fab-list side="top">\n                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">\n                        <ion-icon name="icon-restart"></ion-icon>\n                    </button>\n                    <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">\n                        <ion-icon name="icon-starting-point"></ion-icon>\n                    </button>\n                    <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">\n                        <ion-icon name="icon-visibility"></ion-icon>\n                    </button>\n                    <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-exit"></ion-icon>\n                    </button>\n                    <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-chat"></ion-icon>\n                    </button>\n                    <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n                </ion-fab-list>\n                <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n            </ion-fab>\n\n            <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">\n                <div class="cover">\n                    <img class="thumb" [src]="state.selectedTask.getImageURL()" />\n                </div>\n            </div>\n            <div class="text-container" *ngIf="state.selectedTask">\n                <div class="segmented-box">\n                    <div class="title segment">\n                        <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">#{{state.selectedTask.position}}\n                        </span>\n                        <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">\n                            {{state.selectedTask.title}}\n                        </h2>\n                    </div>\n                </div>\n<!--                TODO Show when task group, count progress-->\n                <div *ngIf="state.selectedTask.taskFormat === TaskFormat.GROUP" class="segmented-box bottom task-group">\n                    <span>{{ "a_taskgroup_task_group" | translate }}:</span>\n                    <span class="count">{{getSolvedSubtaskCount(state.selectedTask)}} / {{state.selectedTask.getLegitSubtasks().length}}</span>\n                </div>\n                <div *ngIf="state.selectedTask.taskFormat !== TaskFormat.GROUP" class="segmented-box bottom">\n                    <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->\n                    <!--<span class="segment">??? {{ "a_g_max_points" | translate }}</span>-->\n                    <div class="segment buttons">\n                        <div class="text-right">\n                            <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">{{ \'a_alert_show_task\' | translate }}</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Events */],
             __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_9_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
-            __WEBPACK_IMPORTED_MODULE_10__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_14__services_images_service__["a" /* ImagesService */],
-            __WEBPACK_IMPORTED_MODULE_15__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-            __WEBPACK_IMPORTED_MODULE_20_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_23__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_17__app_app_component__["b" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */]])
+            __WEBPACK_IMPORTED_MODULE_10_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
+            __WEBPACK_IMPORTED_MODULE_11__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_12__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_15__services_images_service__["a" /* ImagesService */],
+            __WEBPACK_IMPORTED_MODULE_16__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_17__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_21_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_18__app_app_component__["b" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_24__services_chat_and_session_service__["a" /* ChatAndSessionService */]])
     ], TasksMap);
     return TasksMap;
     var TasksMap_1;
@@ -1789,7 +1872,7 @@ var TasksMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1167:
+/***/ 1171:
 /***/ (function(module, exports) {
 
 /**

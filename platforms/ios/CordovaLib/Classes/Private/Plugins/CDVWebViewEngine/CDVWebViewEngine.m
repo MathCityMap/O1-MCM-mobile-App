@@ -204,6 +204,7 @@
     // re-create WKWebView, since we need to update configuration
     WKWebView* wkWebView = [[WKWebView alloc] initWithFrame:self.engineWebView.frame configuration:configuration];
     wkWebView.UIDelegate = self.uiDelegate;
+    wkWebView.inspectable = YES;
 
     /*
      * This is where the "OverrideUserAgent" is handled. This will replace the entire UserAgent

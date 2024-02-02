@@ -52,9 +52,6 @@
     "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
@@ -88,6 +85,9 @@
     },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {

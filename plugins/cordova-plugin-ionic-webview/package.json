@@ -1,28 +1,28 @@
 {
-  "_from": "cordova-plugin-ionic-webview@5.0.0",
-  "_id": "cordova-plugin-ionic-webview@5.0.0",
+  "_from": "cordova-plugin-ionic-webview@5.0.1",
+  "_id": "cordova-plugin-ionic-webview@5.0.1",
   "_inBundle": false,
-  "_integrity": "sha512-Wq0kCanxubK/JroTW4Mp5soayScnRyiY1eCkbwiz1Dyt1xHOiOW/v+1miqtBHtnZhcXw25TulCKAVJzkNBdmyg==",
+  "_integrity": "sha512-dF3x7ee8s7ITPImz8WG5HFMnzMW1LaCve+Pdm5WzonKxcwkmMsPrW2zoWuIFBTWjXvFyNoxprzRn6aq/WotvKg==",
   "_location": "/cordova-plugin-ionic-webview",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-ionic-webview@5.0.0",
+    "raw": "cordova-plugin-ionic-webview@5.0.1",
     "name": "cordova-plugin-ionic-webview",
     "escapedName": "cordova-plugin-ionic-webview",
-    "rawSpec": "5.0.0",
+    "rawSpec": "5.0.1",
     "saveSpec": null,
-    "fetchSpec": "5.0.0"
+    "fetchSpec": "5.0.1"
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-5.0.0.tgz",
-  "_shasum": "d58741af85754d80da82c7f673842a3e71bde630",
-  "_spec": "cordova-plugin-ionic-webview@5.0.0",
-  "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-ionic-webview/-/cordova-plugin-ionic-webview-5.0.1.tgz",
+  "_shasum": "01c4f2c820509c4869cff0a80ba8577c09615bdf",
+  "_spec": "cordova-plugin-ionic-webview@5.0.1",
+  "_where": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App",
   "author": {
     "name": "Ionic Team"
   },
@@ -103,5 +103,5 @@
     "sync_plugin_xml": "sync-cordova-xml package.json plugin.xml --output=plugin.xml",
     "version": "npm run sync_plugin_xml && git add plugin.xml"
   },
-  "version": "5.0.0"
+  "version": "5.0.1"
 }

@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 1158:
+/***/ 1160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,10 +9,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_detail__ = __webpack_require__(1170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_detail__ = __webpack_require__(1173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -49,488 +49,7 @@ var TaskDetailPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1159:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-(function (factory) {
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1160), __webpack_require__(1161)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === 'object' && module.exports) {
-        module.exports = factory(require('./TileLayer.Offline'), require('./Control.Offline'));
-    }
-}(function (TileLayerOffline, ControlOffline) {
-}));
-
-
-/***/ }),
-
-/***/ 1160:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-(function (factory, window) {
-
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === 'object' && module.exports) {
-        module.exports = factory(require('leaflet'));
-    } else if (typeof window !== 'undefined') {
-        if (typeof window.L === 'undefined') {
-            throw 'Leaflet must be loaded first!';
-        }
-        factory(window.L);
-    }
-}(function (L) {
-
-    /**
-     * The Offline Layer should work in the same way as the Tile Layer does
-     * when there are no offline tile images saved.
-     */
-    L.TileLayer.Offline = L.TileLayer.extend({
-
-        /**
-         * Constructor of the layer.
-         * 
-         * @param {String} url URL of the tile map provider.
-         * @param {Object} tilesDb An object that implements a certain interface
-         * so it's able to serve as the database layer to save and remove the tiles.
-         * @param {Object} options This is the same options parameter as the Leaflet
-         * Tile Layer, there are no additional parameters. Check their documentation
-         * for up-to-date information.
-         */
-        initialize: function (url, tilesDb, options) {
-            this._url = url;
-            this._tilesDb = tilesDb;
-
-            options = L.Util.setOptions(this, options);
-
-            if (options.detectRetina && L.Browser.retina && options.maxZoom > 0) {
-                options.tileSize = Math.floor(options.tileSize / 2);
-
-                if (!options.zoomReverse) {
-                    options.zoomOffset++;
-                    options.maxZoom--;
-                } else {
-                    options.zoomOffset--;
-                    options.minZoom++;
-                }
-
-                options.minZoom = Math.max(0, options.minZoom);
-            }
-
-            if (typeof options.subdomains === 'string') {
-                options.subdomains = options.subdomains.split('');
-            }
-
-            if (!L.Browser.android) {
-                this.on('tileunload', this._onTileRemove);
-            }
-        },
-
-        /**
-         * Overrides the method from the Tile Layer. Loads a tile given its
-         * coordinates.
-         * 
-         * @param {Object} coords Coordinates of the tile.
-         * @param {Function} done A callback to be called when the tile has been
-         * loaded.
-         * @returns {HTMLElement} An <img> HTML element with the appropriate
-         * image URL.
-         */
-        createTile: function (coords, done) {
-            var tile = document.createElement('img');
-
-            L.DomEvent.on(tile, 'load', L.bind(this._tileOnLoad, this, done, tile));
-            L.DomEvent.on(tile, 'error', L.bind(this._tileOnError, this, done, tile));
-
-            if (this.options.crossOrigin) {
-                tile.crossOrigin = '';
-            }
-
-            tile.alt = '';
-
-            tile.setAttribute('role', 'presentation');
-
-            this.getTileUrl(coords).then(function (url) {
-                tile.src = url;
-            }).catch(function (err) {
-                throw err;
-            });
-
-            return tile;
-        },
-
-        /**
-         * Overrides the method from the Tile Layer. Returns the URL for a tile
-         * given its coordinates. It tries to get the tile image offline first,
-         * then if it fails, it falls back to the original Tile Layer
-         * implementation.
-         * 
-         * @param {Object} coords Coordinates of the tile.
-         * @returns {String} The URL for a tile image.
-         */
-        getTileUrl: function (coords) {
-            var url = L.TileLayer.prototype.getTileUrl.call(this, coords);
-            var dbStorageKey = this._getStorageKey(url);
-
-            var resultPromise = this._tilesDb.getItem(dbStorageKey).then(function (data) {
-                if (data && typeof data === 'object') {
-                    return URL.createObjectURL(data);
-                }
-                return url;
-            }).catch(function (err) {
-                throw err;
-            });
-
-            return resultPromise;
-        },
-
-        /**
-         * Gets the URLs for all the tiles that are inside the given bounds.
-         * Every element of the result array is in this format:
-         * {key: <String>, url: <String>}. The key is the key used on the
-         * database layer to find the tile image offline. The URL is the
-         * location from where the tile image will be downloaded.
-         * 
-         * @param {Object} bounds The bounding box of the tiles.
-         * @param {Number} zoom The zoom level of the bounding box.
-         * @returns {Array} An array containing all the URLs inside the given
-         * bounds.
-         */
-        getTileUrls: function (bounds, zoom) {
-            var tiles = [];
-            var originalurl = this._url;
-
-            this.setUrl(this._url.replace('{z}', zoom), true);
-
-            var tileBounds = L.bounds(
-                bounds.min.divideBy(this.getTileSize().x).floor(),
-                bounds.max.divideBy(this.getTileSize().x).floor()
-            );
-
-            for (var i = tileBounds.min.x; i <= tileBounds.max.x; i++) {
-                for (var j = tileBounds.min.y; j <= tileBounds.max.y; j++) {
-                    var tilePoint = new L.Point(i, j);
-                    var url = L.TileLayer.prototype.getTileUrl.call(this, tilePoint);
-
-                    tiles.push({
-                        'key': this._getStorageKey(url),
-                        'url': url,
-                    });
-                }
-            }
-
-            this.setUrl(originalurl, true);
-
-            return tiles;
-        },
-
-        /**
-         * Determines the key that will be used on the database layer given
-         * a URL.
-         * 
-         * @param {String} url The URL of a tile image.
-         * @returns {String} The key that will be used on the database layer
-         * to find a tile image.
-         */
-        _getStorageKey: function (url) {
-            var key = null;
-
-            if (url.indexOf('{s}')) {
-                var regexstring = new RegExp('[' + this.options.subdomains.join('|') + ']\.');
-                key = url.replace(regexstring, this.options.subdomains['0'] + '.');
-            }
-
-            return key || url;
-        },
-    });
-
-    /**
-     * Factory function as suggested by the Leaflet team.
-     * 
-     * @param {String} url URL of the tile map provider.
-     * @param {Object} tilesDb An object that implements a certain interface
-     * so it's able to serve as the database layer to save and remove the tiles.
-     * @param {Object} options This is the same options parameter as the Leaflet
-     * Tile Layer, there are no additional parameters. Check their documentation
-     * for up-to-date information.
-     */
-    L.tileLayer.offline = function (url, tilesDb, options) {
-        return new L.TileLayer.Offline(url, tilesDb, options);
-    };
-}, window));
-
-
-/***/ }),
-
 /***/ 1161:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-(function (factory, window) {
-
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === 'object' && module.exports) {
-        module.exports = factory(require('leaflet'));
-    } else if (typeof window !== 'undefined') {
-        if (typeof window.L === 'undefined') {
-            throw 'Leaflet must be loaded first!';
-        }
-        factory(window.L);
-    }
-}(function (L) {
-
-    /**
-     * The Offline Control to be used together with the Offline Layer.
-     */
-    L.Control.Offline = L.Control.extend({
-        options: {
-            position: 'topleft',
-            saveButtonHtml: 'S',
-            saveButtonTitle: 'Save tiles',
-            removeButtonHtml: 'R',
-            removeButtonTitle: 'Remove tiles',
-            minZoom: 0,
-            maxZoom: 19,
-            confirmSavingCallback: null,
-            confirmRemovalCallback: null
-        },
-
-        /**
-         * Constructor of the control.
-         * 
-         * @param {Object} baseLayer The Offline Layer to work together with the
-         * control.
-         * @param {Object} tilesDb An object that implements a certain interface
-         * so it's able to serve as the database layer to save and remove the tiles.
-         * @param {Object} options This is the same parameter as the Leaflet
-         * Control, but it has some additions. Check the README for more.
-         */
-        initialize: function (baseLayer, tilesDb, options) {
-            this._baseLayer = baseLayer;
-            this._tilesDb = tilesDb;
-
-            L.Util.setOptions(this, options);
-        },
-
-        /**
-         * Creates the container DOM element for the control and add listeners
-         * on relevant map events.
-         * 
-         * @param {Object} map The Leaflet map.
-         * @returns {HTMLElement} The DOM element for the control.
-         */
-        onAdd: function (map) {
-            var container = L.DomUtil.create('div', 'leaflet-control-offline leaflet-bar');
-
-            this._createButton(this.options.saveButtonHtml, this.options.saveButtonTitle, 'save-tiles-button', container, this._saveTiles);
-            this._createButton(this.options.removeButtonHtml, this.options.removeButtonTitle, 'remove-tiles-button', container, this._removeTiles);
-
-            return container;
-        },
-
-        /**
-         * Auxiliary method that creates a button DOM element.
-         * 
-         * @param {String} html The HTML that will be used inside the button
-         * DOM element.
-         * @param {String} title The title of the button DOM element.
-         * @param {String} className The class name for the button DOM element.
-         * @param {HTMLElement} container The container DOM element for the
-         * buttons.
-         * @param {Function} fn A function that will be executed when the button
-         * is clicked.
-         * @returns {HTMLElement} A button DOM element.
-         */
-        _createButton: function (html, title, className, container, fn) {
-            var link = L.DomUtil.create('a', className, container);
-            link.innerHTML = html;
-            link.href = '#';
-            link.title = title;
-
-            L.DomEvent.disableClickPropagation(link);
-            L.DomEvent.on(link, 'click', L.DomEvent.stop);
-            L.DomEvent.on(link, 'click', fn, this);
-            L.DomEvent.on(link, 'click', this._refocusOnMap, this);
-
-            return link;
-        },
-
-        /**
-         * The function executed when the button to save tiles is clicked.
-         */
-        _saveTiles: function () {
-            var self = this;
-
-            var bounds = null;
-            var zoomLevels = [];
-            var tileUrls = [];
-            var currentZoom = this._map.getZoom();
-            var latlngBounds = this._map.getBounds();
-
-            if (currentZoom < this.options.minZoom) {
-                self._baseLayer.fire('offline:below-min-zoom-error');
-
-                return;
-            }
-
-            for (var zoom = currentZoom; zoom <= this.options.maxZoom; zoom++) {
-                zoomLevels.push(zoom);
-            }
-
-            for (var i = 0; i < zoomLevels.length; i++) {
-                bounds = L.bounds(this._map.project(latlngBounds.getNorthWest(), zoomLevels[i]),
-                    this._map.project(latlngBounds.getSouthEast(), zoomLevels[i]));
-                tileUrls = tileUrls.concat(this._baseLayer.getTileUrls(bounds, zoomLevels[i]));
-            }
-
-            var continueSaveTiles = function () {
-                self._baseLayer.fire('offline:save-start', {
-                    nTilesToSave: tileUrls.length
-                });
-
-                self._tilesDb.saveTiles(tileUrls).then(function () {
-                    self._baseLayer.fire('offline:save-end');
-                }).catch(function (err) {
-                    self._baseLayer.fire('offline:save-error', {
-                        error: err
-                    });
-                });
-            };
-
-            if (this.options.confirmSavingCallback) {
-                this.options.confirmSavingCallback(tileUrls.length, continueSaveTiles);
-            } else {
-                continueSaveTiles();
-            }
-        },
-
-        /**
-         * The function executed when the button to remove tiles is clicked.
-         */
-        _removeTiles: function () {
-            var self = this;
-
-            var continueRemoveTiles = function () {
-                self._baseLayer.fire('offline:remove-start');
-
-                self._tilesDb.clear().then(function () {
-                    self._baseLayer.fire('offline:remove-end');
-                }).catch(function (err) {
-                    self._baseLayer.fire('offline:remove-error', {
-                        error: err
-                    });
-                });
-            };
-
-            if (self.options.confirmRemovalCallback) {
-                self.options.confirmRemovalCallback(continueRemoveTiles);
-            } else {
-                continueRemoveTiles();
-            }
-        }
-    });
-
-    /**
-     * Factory function as suggested by the Leaflet team.
-     * 
-     * @param {Object} baseLayer The Offline Layer to work together with the
-     * control.
-     * @param {Object} tilesDb An object that implements a certain interface
-     * so it's able to serve as the database layer to save and remove the tiles.
-     * @param {Object} options This is the same parameter as the Leaflet
-     * Control, but it has some additions. Check the README for more.
-     */
-    L.control.offline = function (baseLayer, tilesDb, options) {
-        return new L.Control.Offline(baseLayer, tilesDb, options);
-    };
-}, window));
-
-
-/***/ }),
-
-/***/ 1162:
-/***/ (function(module, exports) {
-
-(function() {
-    // save these original methods before they are overwritten
-    var proto_initIcon = L.Marker.prototype._initIcon;
-    var proto_setPos = L.Marker.prototype._setPos;
-
-    var oldIE = (L.DomUtil.TRANSFORM === 'msTransform');
-
-    L.Marker.addInitHook(function () {
-        var iconOptions = this.options.icon && this.options.icon.options;
-        var iconAnchor = iconOptions && this.options.icon.options.iconAnchor;
-        if (iconAnchor) {
-            iconAnchor = (iconAnchor[0] + 'px ' + iconAnchor[1] + 'px');
-        }
-        this.options.rotationOrigin = this.options.rotationOrigin || iconAnchor || 'center bottom' ;
-        this.options.rotationAngle = this.options.rotationAngle || 0;
-
-        // Ensure marker keeps rotated during dragging
-        this.on('drag', function(e) { e.target._applyRotation(); });
-    });
-
-    L.Marker.include({
-        _initIcon: function() {
-            proto_initIcon.call(this);
-        },
-
-        _setPos: function (pos) {
-            proto_setPos.call(this, pos);
-            this._applyRotation();
-        },
-
-        _applyRotation: function () {
-            if(this.options.rotationAngle) {
-                this._icon.style[L.DomUtil.TRANSFORM+'Origin'] = this.options.rotationOrigin;
-
-                if(oldIE) {
-                    // for IE 9, use the 2D rotation
-                    this._icon.style[L.DomUtil.TRANSFORM] = 'rotate(' + this.options.rotationAngle + 'deg)';
-                } else {
-                    // for modern browsers, prefer the 3D accelerated version
-                    this._icon.style[L.DomUtil.TRANSFORM] += ' rotateZ(' + this.options.rotationAngle + 'deg)';
-                }
-            }
-        },
-
-        setRotationAngle: function(angle) {
-            this.options.rotationAngle = angle;
-            this.update();
-            return this;
-        },
-
-        setRotationOrigin: function(origin) {
-            this.options.rotationOrigin = origin;
-            this.update();
-            return this;
-        }
-    });
-})();
-
-
-/***/ }),
-
-/***/ 1163:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -794,7 +313,488 @@ var SafariViewController = (function (_super) {
 
 /***/ }),
 
-/***/ 1170:
+/***/ 1162:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (factory) {
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(1163), __webpack_require__(1164)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports === 'object' && module.exports) {
+        module.exports = factory(require('./TileLayer.Offline'), require('./Control.Offline'));
+    }
+}(function (TileLayerOffline, ControlOffline) {
+}));
+
+
+/***/ }),
+
+/***/ 1163:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (factory, window) {
+
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports === 'object' && module.exports) {
+        module.exports = factory(require('leaflet'));
+    } else if (typeof window !== 'undefined') {
+        if (typeof window.L === 'undefined') {
+            throw 'Leaflet must be loaded first!';
+        }
+        factory(window.L);
+    }
+}(function (L) {
+
+    /**
+     * The Offline Layer should work in the same way as the Tile Layer does
+     * when there are no offline tile images saved.
+     */
+    L.TileLayer.Offline = L.TileLayer.extend({
+
+        /**
+         * Constructor of the layer.
+         * 
+         * @param {String} url URL of the tile map provider.
+         * @param {Object} tilesDb An object that implements a certain interface
+         * so it's able to serve as the database layer to save and remove the tiles.
+         * @param {Object} options This is the same options parameter as the Leaflet
+         * Tile Layer, there are no additional parameters. Check their documentation
+         * for up-to-date information.
+         */
+        initialize: function (url, tilesDb, options) {
+            this._url = url;
+            this._tilesDb = tilesDb;
+
+            options = L.Util.setOptions(this, options);
+
+            if (options.detectRetina && L.Browser.retina && options.maxZoom > 0) {
+                options.tileSize = Math.floor(options.tileSize / 2);
+
+                if (!options.zoomReverse) {
+                    options.zoomOffset++;
+                    options.maxZoom--;
+                } else {
+                    options.zoomOffset--;
+                    options.minZoom++;
+                }
+
+                options.minZoom = Math.max(0, options.minZoom);
+            }
+
+            if (typeof options.subdomains === 'string') {
+                options.subdomains = options.subdomains.split('');
+            }
+
+            if (!L.Browser.android) {
+                this.on('tileunload', this._onTileRemove);
+            }
+        },
+
+        /**
+         * Overrides the method from the Tile Layer. Loads a tile given its
+         * coordinates.
+         * 
+         * @param {Object} coords Coordinates of the tile.
+         * @param {Function} done A callback to be called when the tile has been
+         * loaded.
+         * @returns {HTMLElement} An <img> HTML element with the appropriate
+         * image URL.
+         */
+        createTile: function (coords, done) {
+            var tile = document.createElement('img');
+
+            L.DomEvent.on(tile, 'load', L.bind(this._tileOnLoad, this, done, tile));
+            L.DomEvent.on(tile, 'error', L.bind(this._tileOnError, this, done, tile));
+
+            if (this.options.crossOrigin) {
+                tile.crossOrigin = '';
+            }
+
+            tile.alt = '';
+
+            tile.setAttribute('role', 'presentation');
+
+            this.getTileUrl(coords).then(function (url) {
+                tile.src = url;
+            }).catch(function (err) {
+                throw err;
+            });
+
+            return tile;
+        },
+
+        /**
+         * Overrides the method from the Tile Layer. Returns the URL for a tile
+         * given its coordinates. It tries to get the tile image offline first,
+         * then if it fails, it falls back to the original Tile Layer
+         * implementation.
+         * 
+         * @param {Object} coords Coordinates of the tile.
+         * @returns {String} The URL for a tile image.
+         */
+        getTileUrl: function (coords) {
+            var url = L.TileLayer.prototype.getTileUrl.call(this, coords);
+            var dbStorageKey = this._getStorageKey(url);
+
+            var resultPromise = this._tilesDb.getItem(dbStorageKey).then(function (data) {
+                if (data && typeof data === 'object') {
+                    return URL.createObjectURL(data);
+                }
+                return url;
+            }).catch(function (err) {
+                throw err;
+            });
+
+            return resultPromise;
+        },
+
+        /**
+         * Gets the URLs for all the tiles that are inside the given bounds.
+         * Every element of the result array is in this format:
+         * {key: <String>, url: <String>}. The key is the key used on the
+         * database layer to find the tile image offline. The URL is the
+         * location from where the tile image will be downloaded.
+         * 
+         * @param {Object} bounds The bounding box of the tiles.
+         * @param {Number} zoom The zoom level of the bounding box.
+         * @returns {Array} An array containing all the URLs inside the given
+         * bounds.
+         */
+        getTileUrls: function (bounds, zoom) {
+            var tiles = [];
+            var originalurl = this._url;
+
+            this.setUrl(this._url.replace('{z}', zoom), true);
+
+            var tileBounds = L.bounds(
+                bounds.min.divideBy(this.getTileSize().x).floor(),
+                bounds.max.divideBy(this.getTileSize().x).floor()
+            );
+
+            for (var i = tileBounds.min.x; i <= tileBounds.max.x; i++) {
+                for (var j = tileBounds.min.y; j <= tileBounds.max.y; j++) {
+                    var tilePoint = new L.Point(i, j);
+                    var url = L.TileLayer.prototype.getTileUrl.call(this, tilePoint);
+
+                    tiles.push({
+                        'key': this._getStorageKey(url),
+                        'url': url,
+                    });
+                }
+            }
+
+            this.setUrl(originalurl, true);
+
+            return tiles;
+        },
+
+        /**
+         * Determines the key that will be used on the database layer given
+         * a URL.
+         * 
+         * @param {String} url The URL of a tile image.
+         * @returns {String} The key that will be used on the database layer
+         * to find a tile image.
+         */
+        _getStorageKey: function (url) {
+            var key = null;
+
+            if (url.indexOf('{s}')) {
+                var regexstring = new RegExp('[' + this.options.subdomains.join('|') + ']\.');
+                key = url.replace(regexstring, this.options.subdomains['0'] + '.');
+            }
+
+            return key || url;
+        },
+    });
+
+    /**
+     * Factory function as suggested by the Leaflet team.
+     * 
+     * @param {String} url URL of the tile map provider.
+     * @param {Object} tilesDb An object that implements a certain interface
+     * so it's able to serve as the database layer to save and remove the tiles.
+     * @param {Object} options This is the same options parameter as the Leaflet
+     * Tile Layer, there are no additional parameters. Check their documentation
+     * for up-to-date information.
+     */
+    L.tileLayer.offline = function (url, tilesDb, options) {
+        return new L.TileLayer.Offline(url, tilesDb, options);
+    };
+}, window));
+
+
+/***/ }),
+
+/***/ 1164:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (factory, window) {
+
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(115)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof exports === 'object' && module.exports) {
+        module.exports = factory(require('leaflet'));
+    } else if (typeof window !== 'undefined') {
+        if (typeof window.L === 'undefined') {
+            throw 'Leaflet must be loaded first!';
+        }
+        factory(window.L);
+    }
+}(function (L) {
+
+    /**
+     * The Offline Control to be used together with the Offline Layer.
+     */
+    L.Control.Offline = L.Control.extend({
+        options: {
+            position: 'topleft',
+            saveButtonHtml: 'S',
+            saveButtonTitle: 'Save tiles',
+            removeButtonHtml: 'R',
+            removeButtonTitle: 'Remove tiles',
+            minZoom: 0,
+            maxZoom: 19,
+            confirmSavingCallback: null,
+            confirmRemovalCallback: null
+        },
+
+        /**
+         * Constructor of the control.
+         * 
+         * @param {Object} baseLayer The Offline Layer to work together with the
+         * control.
+         * @param {Object} tilesDb An object that implements a certain interface
+         * so it's able to serve as the database layer to save and remove the tiles.
+         * @param {Object} options This is the same parameter as the Leaflet
+         * Control, but it has some additions. Check the README for more.
+         */
+        initialize: function (baseLayer, tilesDb, options) {
+            this._baseLayer = baseLayer;
+            this._tilesDb = tilesDb;
+
+            L.Util.setOptions(this, options);
+        },
+
+        /**
+         * Creates the container DOM element for the control and add listeners
+         * on relevant map events.
+         * 
+         * @param {Object} map The Leaflet map.
+         * @returns {HTMLElement} The DOM element for the control.
+         */
+        onAdd: function (map) {
+            var container = L.DomUtil.create('div', 'leaflet-control-offline leaflet-bar');
+
+            this._createButton(this.options.saveButtonHtml, this.options.saveButtonTitle, 'save-tiles-button', container, this._saveTiles);
+            this._createButton(this.options.removeButtonHtml, this.options.removeButtonTitle, 'remove-tiles-button', container, this._removeTiles);
+
+            return container;
+        },
+
+        /**
+         * Auxiliary method that creates a button DOM element.
+         * 
+         * @param {String} html The HTML that will be used inside the button
+         * DOM element.
+         * @param {String} title The title of the button DOM element.
+         * @param {String} className The class name for the button DOM element.
+         * @param {HTMLElement} container The container DOM element for the
+         * buttons.
+         * @param {Function} fn A function that will be executed when the button
+         * is clicked.
+         * @returns {HTMLElement} A button DOM element.
+         */
+        _createButton: function (html, title, className, container, fn) {
+            var link = L.DomUtil.create('a', className, container);
+            link.innerHTML = html;
+            link.href = '#';
+            link.title = title;
+
+            L.DomEvent.disableClickPropagation(link);
+            L.DomEvent.on(link, 'click', L.DomEvent.stop);
+            L.DomEvent.on(link, 'click', fn, this);
+            L.DomEvent.on(link, 'click', this._refocusOnMap, this);
+
+            return link;
+        },
+
+        /**
+         * The function executed when the button to save tiles is clicked.
+         */
+        _saveTiles: function () {
+            var self = this;
+
+            var bounds = null;
+            var zoomLevels = [];
+            var tileUrls = [];
+            var currentZoom = this._map.getZoom();
+            var latlngBounds = this._map.getBounds();
+
+            if (currentZoom < this.options.minZoom) {
+                self._baseLayer.fire('offline:below-min-zoom-error');
+
+                return;
+            }
+
+            for (var zoom = currentZoom; zoom <= this.options.maxZoom; zoom++) {
+                zoomLevels.push(zoom);
+            }
+
+            for (var i = 0; i < zoomLevels.length; i++) {
+                bounds = L.bounds(this._map.project(latlngBounds.getNorthWest(), zoomLevels[i]),
+                    this._map.project(latlngBounds.getSouthEast(), zoomLevels[i]));
+                tileUrls = tileUrls.concat(this._baseLayer.getTileUrls(bounds, zoomLevels[i]));
+            }
+
+            var continueSaveTiles = function () {
+                self._baseLayer.fire('offline:save-start', {
+                    nTilesToSave: tileUrls.length
+                });
+
+                self._tilesDb.saveTiles(tileUrls).then(function () {
+                    self._baseLayer.fire('offline:save-end');
+                }).catch(function (err) {
+                    self._baseLayer.fire('offline:save-error', {
+                        error: err
+                    });
+                });
+            };
+
+            if (this.options.confirmSavingCallback) {
+                this.options.confirmSavingCallback(tileUrls.length, continueSaveTiles);
+            } else {
+                continueSaveTiles();
+            }
+        },
+
+        /**
+         * The function executed when the button to remove tiles is clicked.
+         */
+        _removeTiles: function () {
+            var self = this;
+
+            var continueRemoveTiles = function () {
+                self._baseLayer.fire('offline:remove-start');
+
+                self._tilesDb.clear().then(function () {
+                    self._baseLayer.fire('offline:remove-end');
+                }).catch(function (err) {
+                    self._baseLayer.fire('offline:remove-error', {
+                        error: err
+                    });
+                });
+            };
+
+            if (self.options.confirmRemovalCallback) {
+                self.options.confirmRemovalCallback(continueRemoveTiles);
+            } else {
+                continueRemoveTiles();
+            }
+        }
+    });
+
+    /**
+     * Factory function as suggested by the Leaflet team.
+     * 
+     * @param {Object} baseLayer The Offline Layer to work together with the
+     * control.
+     * @param {Object} tilesDb An object that implements a certain interface
+     * so it's able to serve as the database layer to save and remove the tiles.
+     * @param {Object} options This is the same parameter as the Leaflet
+     * Control, but it has some additions. Check the README for more.
+     */
+    L.control.offline = function (baseLayer, tilesDb, options) {
+        return new L.Control.Offline(baseLayer, tilesDb, options);
+    };
+}, window));
+
+
+/***/ }),
+
+/***/ 1165:
+/***/ (function(module, exports) {
+
+(function() {
+    // save these original methods before they are overwritten
+    var proto_initIcon = L.Marker.prototype._initIcon;
+    var proto_setPos = L.Marker.prototype._setPos;
+
+    var oldIE = (L.DomUtil.TRANSFORM === 'msTransform');
+
+    L.Marker.addInitHook(function () {
+        var iconOptions = this.options.icon && this.options.icon.options;
+        var iconAnchor = iconOptions && this.options.icon.options.iconAnchor;
+        if (iconAnchor) {
+            iconAnchor = (iconAnchor[0] + 'px ' + iconAnchor[1] + 'px');
+        }
+        this.options.rotationOrigin = this.options.rotationOrigin || iconAnchor || 'center bottom' ;
+        this.options.rotationAngle = this.options.rotationAngle || 0;
+
+        // Ensure marker keeps rotated during dragging
+        this.on('drag', function(e) { e.target._applyRotation(); });
+    });
+
+    L.Marker.include({
+        _initIcon: function() {
+            proto_initIcon.call(this);
+        },
+
+        _setPos: function (pos) {
+            proto_setPos.call(this, pos);
+            this._applyRotation();
+        },
+
+        _applyRotation: function () {
+            if(this.options.rotationAngle) {
+                this._icon.style[L.DomUtil.TRANSFORM+'Origin'] = this.options.rotationOrigin;
+
+                if(oldIE) {
+                    // for IE 9, use the 2D rotation
+                    this._icon.style[L.DomUtil.TRANSFORM] = 'rotate(' + this.options.rotationAngle + 'deg)';
+                } else {
+                    // for modern browsers, prefer the 3D accelerated version
+                    this._icon.style[L.DomUtil.TRANSFORM] += ' rotateZ(' + this.options.rotationAngle + 'deg)';
+                }
+            }
+        },
+
+        setRotationAngle: function(angle) {
+            this.options.rotationAngle = angle;
+            this.update();
+            return this;
+        },
+
+        setRotationOrigin: function(origin) {
+            this.options.rotationOrigin = origin;
+            this.update();
+            return this;
+        }
+    });
+})();
+
+
+/***/ }),
+
+/***/ 1173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -805,8 +805,8 @@ var SafariViewController = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_app_component__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__task_detail_map__ = __webpack_require__(1171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__task_detail_map__ = __webpack_require__(1174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(636);
@@ -820,12 +820,12 @@ var SafariViewController = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_js_levenshtein__ = __webpack_require__(1172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_js_levenshtein__ = __webpack_require__(1175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_js_levenshtein___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_js_levenshtein__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_in_app_browser__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_pipes_linkHttps_pipe__ = __webpack_require__(639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_safari_view_controller__ = __webpack_require__(1163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_pipes_linkHttps_pipe__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_native_safari_view_controller__ = __webpack_require__(1161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3347,7 +3347,7 @@ var TaskDetail = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1171:
+/***/ 1174:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3357,15 +3357,15 @@ var TaskDetail = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet_markercluster__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline__ = __webpack_require__(1159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline__ = __webpack_require__(1162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_offline__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__ = __webpack_require__(636);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__ = __webpack_require__(1162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__ = __webpack_require__(1165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet_rotatedmarker__);
 /**
  * Created by Iwan Gurjanow on 19.02.2018.
@@ -3785,7 +3785,7 @@ var TaskDetailMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1172:
+/***/ 1175:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

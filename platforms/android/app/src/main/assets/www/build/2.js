@@ -1,15 +1,18 @@
 webpackJsonp([2],{
 
-/***/ 1155:
+/***/ 1159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPageModule", function() { return SettingsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskDetailPageModule", function() { return TaskDetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__settings__ = __webpack_require__(1168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,40 +23,51 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SettingsPageModule = /** @class */ (function () {
-    function SettingsPageModule() {
+
+
+
+var TaskDetailPageModule = /** @class */ (function () {
+    function TaskDetailPageModule() {
     }
-    SettingsPageModule = __decorate([
+    TaskDetailPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */],
+                __WEBPACK_IMPORTED_MODULE_3__task_group_detail__["a" /* TaskGroupDetailPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__settings__["a" /* SettingsPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__task_group_detail__["a" /* TaskGroupDetailPage */]),
+                __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["b" /* TranslateModule */],
+                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */],
             ],
+            providers: [__WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__["a" /* PhotoViewer */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__["a" /* SafariViewController */]]
         })
-    ], SettingsPageModule);
-    return SettingsPageModule;
+    ], TaskDetailPageModule);
+    return TaskDetailPageModule;
 }());
 
-//# sourceMappingURL=settings.module.js.map
+//# sourceMappingURL=task-group-detail.module.js.map
 
 /***/ }),
 
-/***/ 1168:
+/***/ 1161:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SafariViewController; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_spinner_dialog__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_language_service__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,150 +77,280 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+
+
+
+/**
+ * @name Safari View Controller
+ * @description
+ * For displaying read-only web content.
+ *
+ * Requires Cordova plugin: `cordova-plugin-safariviewcontroller`. For more info, please see the [Safari View Controller plugin docs](https://github.com/EddyVerbruggen/cordova-plugin-safariviewcontroller).
+ *
+ * @usage
+ * ```typescript
+ * import { SafariViewController } from '@ionic-native/safari-view-controller';
+ *
+ * constructor(private safariViewController: SafariViewController) { }
+ *
+ * ...
+ *
+ * this.safariViewController.isAvailable()
+ *   .then((available: boolean) => {
+ *       if (available) {
+ *
+ *         this.safariViewController.show({
+ *           url: 'http://ionic.io',
+ *           hidden: false,
+ *           animated: false,
+ *           transition: 'curl',
+ *           enterReaderModeIfAvailable: true,
+ *           tintColor: '#ff0000'
+ *         })
+ *         .subscribe((result: any) => {
+ *             if(result.event === 'opened') console.log('Opened');
+ *             else if(result.event === 'loaded') console.log('Loaded');
+ *             else if(result.event === 'closed') console.log('Closed');
+ *           },
+ *           (error: any) => console.error(error)
+ *         );
+ *
+ *       } else {
+ *         // use fallback browser, example InAppBrowser
+ *       }
+ *     }
+ *   );
+ * ```
+ * @interfaces
+ * SafariViewControllerOptions
+ */
+var SafariViewController = (function (_super) {
+    __extends(SafariViewController, _super);
+    function SafariViewController() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Checks if SafariViewController is available
+     * @returns {Promise<boolean>}
+     */
+    /**
+       * Checks if SafariViewController is available
+       * @returns {Promise<boolean>}
+       */
+    SafariViewController.prototype.isAvailable = /**
+       * Checks if SafariViewController is available
+       * @returns {Promise<boolean>}
+       */
+    function () { return; };
+    /**
+     * Shows Safari View Controller
+     * @param options {SafariViewControllerOptions} optional
+     * @returns {Observable<any>}
+     */
+    /**
+       * Shows Safari View Controller
+       * @param options {SafariViewControllerOptions} optional
+       * @returns {Observable<any>}
+       */
+    SafariViewController.prototype.show = /**
+       * Shows Safari View Controller
+       * @param options {SafariViewControllerOptions} optional
+       * @returns {Observable<any>}
+       */
+    function (options) { return; };
+    /**
+     * Hides Safari View Controller
+     */
+    /**
+       * Hides Safari View Controller
+       */
+    SafariViewController.prototype.hide = /**
+       * Hides Safari View Controller
+       */
+    function () { return; };
+    /**
+     * Tries to connect to the  Chrome's custom tabs service. you must call this method before calling any of the other methods listed below.
+     * @returns {Promise<any>}
+     */
+    /**
+       * Tries to connect to the  Chrome's custom tabs service. you must call this method before calling any of the other methods listed below.
+       * @returns {Promise<any>}
+       */
+    SafariViewController.prototype.connectToService = /**
+       * Tries to connect to the  Chrome's custom tabs service. you must call this method before calling any of the other methods listed below.
+       * @returns {Promise<any>}
+       */
+    function () { return; };
+    /**
+     * Call this method whenever there's a chance the user will open an external url.
+     * @returns {Promise<any>}
+     */
+    /**
+       * Call this method whenever there's a chance the user will open an external url.
+       * @returns {Promise<any>}
+       */
+    SafariViewController.prototype.warmUp = /**
+       * Call this method whenever there's a chance the user will open an external url.
+       * @returns {Promise<any>}
+       */
+    function () { return; };
+    /**
+     * For even better performance optimization, call this methods if there's more than a 50% chance the user will open a certain URL.
+     * @param url{string}
+     * @returns {Promise<any>}
+     */
+    /**
+       * For even better performance optimization, call this methods if there's more than a 50% chance the user will open a certain URL.
+       * @param url{string}
+       * @returns {Promise<any>}
+       */
+    SafariViewController.prototype.mayLaunchUrl = /**
+       * For even better performance optimization, call this methods if there's more than a 50% chance the user will open a certain URL.
+       * @param url{string}
+       * @returns {Promise<any>}
+       */
+    function (url) { return; };
+    SafariViewController.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    ];
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Promise)
+    ], SafariViewController.prototype, "isAvailable", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+            successIndex: 1,
+            errorIndex: 2,
+            observable: true
+        }),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"])
+    ], SafariViewController.prototype, "show", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Promise)
+    ], SafariViewController.prototype, "hide", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Promise)
+    ], SafariViewController.prototype, "connectToService", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", Promise)
+    ], SafariViewController.prototype, "warmUp", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [String]),
+        __metadata("design:returntype", Promise)
+    ], SafariViewController.prototype, "mayLaunchUrl", null);
+    /**
+     * @name Safari View Controller
+     * @description
+     * For displaying read-only web content.
+     *
+     * Requires Cordova plugin: `cordova-plugin-safariviewcontroller`. For more info, please see the [Safari View Controller plugin docs](https://github.com/EddyVerbruggen/cordova-plugin-safariviewcontroller).
+     *
+     * @usage
+     * ```typescript
+     * import { SafariViewController } from '@ionic-native/safari-view-controller';
+     *
+     * constructor(private safariViewController: SafariViewController) { }
+     *
+     * ...
+     *
+     * this.safariViewController.isAvailable()
+     *   .then((available: boolean) => {
+     *       if (available) {
+     *
+     *         this.safariViewController.show({
+     *           url: 'http://ionic.io',
+     *           hidden: false,
+     *           animated: false,
+     *           transition: 'curl',
+     *           enterReaderModeIfAvailable: true,
+     *           tintColor: '#ff0000'
+     *         })
+     *         .subscribe((result: any) => {
+     *             if(result.event === 'opened') console.log('Opened');
+     *             else if(result.event === 'loaded') console.log('Loaded');
+     *             else if(result.event === 'closed') console.log('Closed');
+     *           },
+     *           (error: any) => console.error(error)
+     *         );
+     *
+     *       } else {
+     *         // use fallback browser, example InAppBrowser
+     *       }
+     *     }
+     *   );
+     * ```
+     * @interfaces
+     * SafariViewControllerOptions
+     */
+    SafariViewController = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["h" /* Plugin */])({
+            pluginName: 'SafariViewController',
+            plugin: 'cordova-plugin-safariviewcontroller',
+            pluginRef: 'SafariViewController',
+            repo: 'https://github.com/EddyVerbruggen/cordova-plugin-safariviewcontroller',
+            platforms: ['Android', 'iOS']
+        })
+    ], SafariViewController);
+    return SafariViewController;
+}(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["g" /* IonicNativePlugin */]));
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 1172:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskGroupDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
 
-
-
-
-
-
-
-var SettingsPage = /** @class */ (function () {
-    function SettingsPage(navCtrl, navParams, translateService, spinner, ormService, modalsService, languageService, helper) {
+var TaskGroupDetailPage = /** @class */ (function () {
+    function TaskGroupDetailPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.translateService = translateService;
-        this.spinner = spinner;
-        this.ormService = ormService;
-        this.modalsService = modalsService;
-        this.languageService = languageService;
-        this.helper = helper;
-        this.developerMode = false;
-        this.availableLanguages = languageService.getAvailableLanguages();
-        this.translatedLangs = [];
     }
-    SettingsPage.prototype.ionViewDidLoad = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, _i, _b, lang, _c, _d, _e;
-            return __generator(this, function (_f) {
-                switch (_f.label) {
-                    case 0:
-                        console.log('ionViewDidLoad SettingsPage');
-                        _a = this;
-                        return [4 /*yield*/, this.languageService.getLanguage()];
-                    case 1:
-                        _a.language = _f.sent();
-                        _i = 0, _b = this.availableLanguages;
-                        _f.label = 2;
-                    case 2:
-                        if (!(_i < _b.length)) return [3 /*break*/, 5];
-                        lang = _b[_i];
-                        _d = (_c = this.translatedLangs).push;
-                        _e = {};
-                        return [4 /*yield*/, this.translateService.instant('a_language_' + lang)];
-                    case 3:
-                        _d.apply(_c, [(_e.value = _f.sent(), _e.id = lang, _e)]);
-                        _f.label = 4;
-                    case 4:
-                        _i++;
-                        return [3 /*break*/, 2];
-                    case 5:
-                        this.translatedLangs.sort(function (a, b) {
-                            if (a.value < b.value) {
-                                return -1;
-                            }
-                            if (a.value > b.value) {
-                                return 1;
-                            }
-                            return 0;
-                        });
-                        this.developerMode = this.helper.getDevMode();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    SettingsPage.prototype.onChangeLanguage = function (language) {
-        this.languageService.setLanguage(language);
-    };
-    SettingsPage.prototype.openOnboarding = function () {
-        this.navCtrl.push('OnboardingPage');
-    };
-    SettingsPage.prototype.deleteAppData = function () {
-        var _this = this;
-        this.modalsService.showDialog('a_main_settings_delCache', 'a_main_settings_delCache_confirm', 'no', function () { }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.spinner.show(null, this.translateService.instant('a_main_settings_delCache'), true);
-                        return [4 /*yield*/, this.ormService.removeAllDownloadedData()];
-                    case 1:
-                        _a.sent();
-                        this.spinner.hide();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-    };
-    SettingsPage.prototype.switchDevMode = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.helper.setDevMode(this.developerMode + '')];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    SettingsPage = __decorate([
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+    ], TaskGroupDetailPage.prototype, "content", void 0);
+    TaskGroupDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-settings',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/settings/settings.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header pattern-bg">\n\n    <div class="card select">\n        <ion-label>{{\'a_settings_language\' | translate}}{{language != \'en\' ? \' / LANGUAGE\' : \'\'}}</ion-label>\n        <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">\n            <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>\n        </ion-select>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round (click)="openOnboarding()">{{\'a_settings_onboarding\' | translate }}</button>\n    </div>\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_expert\' | translate }}</ion-label>\n    </div>\n    <div class="card">\n        <ion-label>{{\'a_settings_editing\' | translate }}</ion-label>\n        <ion-item no-lines no-padding>\n            <p item-content>{{\'a_settings_editing_text\' | translate }}</p>\n            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>\n        </ion-item>\n    </div>\n<!--    <div class="card has-button-on-the-edge">\n        <ion-label>{{\'a_settings_console\' | translate }}</ion-label>\n        <p item-content>{{\'a_settings_console_text\' | translate }}</p>\n        <ion-item>\n            <ion-input type="text" placeholder="######"></ion-input>\n        </ion-item>\n        <button class="on-the-edge" ion-button small round>{{\'a_settings_console_button\' | translate }}</button>\n    </div>-->\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_data\' | translate }}</ion-label>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round color="danger" (click)="deleteAppData()">{{\'a_main_settings_delCache\' | translate }}</button>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/settings/settings.html"*/,
+            selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n<!--        <img class="image" [src]="task.getImageURL()" />-->\n        <img class="image" src="https://image.newyorkcity.de/wp-content/uploads/2013/02/Central-Park.jpg.webp" />\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskgroup_task_group" | translate }}</ion-label>\n            </div>\n            <p>This gotta be the introduction to a task group, a group of subtasks, that help figure out a mathematic problem from different angles. Fresh, frech and fun!\n<!--                {{task.group.description}}--></p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskgroup_tasks" | translate }}</ion-label>\n            <ion-label class="count text-right">1 / 4</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div class="task-list-item detail-box solved good">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" src="https://cdn.britannica.com/95/156695-131-FF89C9FA/oak-tree.jpg" />\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>Task Title</h2>\n                    </div>\n                    <ion-label class="tag score">25</ion-label>\n                </div>\n                <div class="task-list-item detail-box">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" src="https://cdn.britannica.com/95/156695-131-FF89C9FA/oak-tree.jpg" />\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>Task Title</h2>\n                    </div>\n                    <ion-label class="tag score">25</ion-label>\n                </div>\n            </div>\n        </div>\n        <div class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskgroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">100</ion-label>\n            </div>\n        </div>\n\n        <div class="card transparent skip">\n            <button ion-button block default round color="danger">{{\'a_taskgroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div class="card secondary">\n            <ion-label>{{ "a_taskgroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskgroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_spinner_dialog__["a" /* SpinnerDialog */], __WEBPACK_IMPORTED_MODULE_4__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_5__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_6__services_language_service__["a" /* LanguageService */], __WEBPACK_IMPORTED_MODULE_7__classes_Helper__["b" /* Helper */]])
-    ], SettingsPage);
-    return SettingsPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], TaskGroupDetailPage);
+    return TaskGroupDetailPage;
 }());
 
-//# sourceMappingURL=settings.js.map
+//# sourceMappingURL=task-group-detail.js.map
 
 /***/ })
 

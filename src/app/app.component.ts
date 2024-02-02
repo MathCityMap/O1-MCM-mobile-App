@@ -10,7 +10,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {Storage} from "@ionic/storage";
 import {Helper} from "../classes/Helper";
 import {DashboardPage} from "../pages/dashboard/dashboard";
-import {TaskGroupDetailPage} from "../pages/task-group-detail/task-group-detail";
+import {TaskGroupDetail} from "../pages/task-group-detail/task-group-detail";
 import {ModalsService} from "../services/modals-service";
 import {HomePage} from "../pages/home/home";
 import {RoutesListPage} from "../pages/home/tabs/RoutesList/RoutesList";

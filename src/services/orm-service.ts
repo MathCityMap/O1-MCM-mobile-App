@@ -41,6 +41,7 @@ import {
     AddForceSubtaskAndArLink16552845000000
 } from '../migration/16552845000000-AddForceSubtaskAndArLink';
 import {AddTaskCode17026521590000} from "../migration/17026521590000-AddTaskCode";
+import {RenameParentIdAndAddTaskFormatAndPosition17067919700000} from "../migration/17067919700000-RenameParentIdAndAddTaskFormatAndPosition";
 
 
 @Injectable()
@@ -90,7 +91,8 @@ export class OrmService {
             AddPathFields16208100470000,
             AddZoom16225449820000,
             AddForceSubtaskAndArLink16552845000000,
-            AddTaskCode17026521590000
+            AddTaskCode17026521590000,
+            RenameParentIdAndAddTaskFormatAndPosition17067919700000
         ];
         if (sqliteAvailable) {
             this.connection = await createConnection({

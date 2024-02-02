@@ -60,7 +60,6 @@
     "cordova-plugin-globalization": "~1.0.9",
     "cordova-plugin-inappbrowser": "4.0.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-ionic-webview": "5.0.0",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-request-location-accuracy": "^2.2.2",
@@ -99,6 +98,7 @@
     "cordova-plugin-camera": "git+https://github.com/jalios/cordova-plugin-camera.git",
     "cordova-plugin-file": "^8.0.0",
     "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
+    "cordova-plugin-ionic-webview": "^5.0.1",
     "cordova-plugin-local-notification": "file:plugin-src/cordova-plugin-local-notification",
     "cordova-plugin-media": "git+https://github.com/apache/cordova-plugin-media.git",
     "cordova-plugin-safariviewcontroller": "^2.0.0",
@@ -124,7 +124,6 @@
       "cordova-custom-config": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-androidx-adapter": {},
-      "cordova-plugin-ionic-webview": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-wkwebview-inject-cookie": {},
       "cordova.plugins.diagnostic": {
@@ -141,10 +140,12 @@
         "ANDROIDX_CORE_VERSION": "1.6.+"
       },
       "cordova-plugin-media": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   },
   "config": {

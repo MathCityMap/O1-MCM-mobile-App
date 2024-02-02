@@ -115,12 +115,11 @@ export class DB_Updater {
             await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
         }
         await db.transaction(tr => {
-            var primaryCounter = table === DBC.DB_TASK ? data.tasks.length : data.length;
-            var suppCounter = table === DBC.DB_TASK ? data.supporttasks.length : 0;
-            for (var i = 0; i < primaryCounter; i++) {
+            let entryCount = table === DBC.DB_TASK ? data.tasks.length : data.length;
+            for (let i = 0; i < entryCount; i++) {
                 let row =  table === DBC.DB_TASK ? data.tasks[i] : data[i]
-                var params = []
-                for (var n = 1; n <= table.fieldsCount; n++) {
+                let params = []
+                for (let n = 1; n <= table.fieldsCount; n++) {
                     // Check which data type is used in table > choose right bind
                     if (table.fieldsType[n - 1] === "INTEGER") {
                         // integer
@@ -143,40 +142,52 @@ export class DB_Updater {
                     tr.executeSql(sqlReplaceIntoQry, params)
                 }
             }
-            for (var i = 0; i < suppCounter; i++) {
-                let row =  data.supporttasks[i];
-                var params = []
-                for (var n = 1; n <= table.fieldsCount; n++) {
-                    // Check which data type is used in table > choose right bind
-                    if (table.fieldsType[n - 1] === "INTEGER") {
-                        // integer
-                        // params.push(n)
-                        if (table.fields[n - 1] === '_id') {
-                            params.push(Number(row[table.fields[n - 1]]))
-                        } else if (row[table.fields[n - 1]]) {
-                            params.push(Number(row[table.fields[n - 1]]))
-                        } else {
-                            params.push(0);
+            if (table === DBC.DB_TASK) {
+                // We add subtasks here;
+                let subCounters = [
+                    {entry: "supporttasks", count: data['supporttasks'].length},
+                    {entry: "subtasksV2", count: data['subtasksV2'].length}
+                ];
+                console.log('Doing the subcounters', subCounters);
+                console.log('For Data', data);
+                for (let counter of subCounters) {
+                    console.log('parsing '+ counter.entry, data[counter.entry]);
+                    for (let i = 0; i < counter.count; i++) {
+                        let row =  data[counter.entry][i];
+                        let params = [];
+                        for (let n = 1; n <= table.fieldsCount; n++) {
+                            // Check which data type is used in table > choose right bind
+                            if (table.fieldsType[n - 1] === "INTEGER") {
+                                // integer
+                                // params.push(n)
+                                if (table.fields[n - 1] === '_id') {
+                                    params.push(Number(row[table.fields[n - 1]]))
+                                } else if (row[table.fields[n - 1]]) {
+                                    params.push(Number(row[table.fields[n - 1]]))
+                                } else {
+                                    params.push(0);
+                                }
+                            } else if (table.fieldsType[n - 1] === "VARCHAR"
+                                || table.fieldsType[n - 1] === "TEXT"
+                                || table.fieldsType[n - 1] === "TIMESTAMP") {
+                                // params.push(n)
+                                if (row[table.fields[n - 1]]) {
+                                    params.push(row[table.fields[n - 1]])
+                                } else {
+                                    params.push("");
+                                }
+                            } else {
+                                console.warn("Caution: Datatype not Integer, Varchar or Text!");
+                            }
                         }
-                    } else if (table.fieldsType[n - 1] === "VARCHAR"
-                        || table.fieldsType[n - 1] === "TEXT"
-                        || table.fieldsType[n - 1] === "TIMESTAMP") {
-                        // params.push(n)
-                        if (row[table.fields[n - 1]]) {
-                            params.push(row[table.fields[n - 1]])
-                        } else {
-                            params.push("");
+                        if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
+                            tr.executeSql(sqlInsertQry, params)
                         }
-                    } else {
-                        console.warn("Caution: Datatype not Integer, Varchar or Text!");
+                        else{
+                            // For tasks: Replace rows when refreshing the trail
+                            tr.executeSql(sqlReplaceIntoQry, params)
+                        }
                     }
-                }
-                if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
-                    tr.executeSql(sqlInsertQry, params)
-                }
-                else{
-                    // For tasks: Replace rows when refreshing the trail
-                    tr.executeSql(sqlReplaceIntoQry, params)
                 }
             }
         }).catch(error => {

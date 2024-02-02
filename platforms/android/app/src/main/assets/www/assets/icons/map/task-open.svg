@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37" height="51.024" viewBox="0 0 37 51.024">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #036d99;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+
+      .cls-3 {
+        filter: url(#Pfad_177);
+      }
+    </style>
+    <filter id="Pfad_177" x="0" y="0" width="37" height="51.024" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="0.5" result="blur"/>
+      <feFlood flood-opacity="0.549"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="marker_-_task" data-name="marker - task" transform="translate(1.5 0.5)">
+    <g class="cls-3" transform="matrix(1, 0, 0, 1, -1.5, -0.5)">
+      <path id="Pfad_177-2" data-name="Pfad 177" class="cls-1" d="M-717.081,1567.17c-8.481,0-17.066,6-17.066,17.481,0,5.182,2.562,11.775,7.615,19.594a99.025,99.025,0,0,0,7.408,10.014,2.7,2.7,0,0,0,2.038.935h.005a2.7,2.7,0,0,0,2.037-.927,94.877,94.877,0,0,0,7.35-9.921c5.008-7.774,7.547-14.4,7.547-19.694C-700.147,1574.358-707.11,1567.17-717.081,1567.17Z" transform="translate(735.65 -1566.67)"/>
+    </g>
+    <path id="Pfad_178" data-name="Pfad 178" class="cls-2" d="M-701.286,1592.343a6.183,6.183,0,0,1-6.182,6.181,6.182,6.182,0,0,1-6.182-6.183,6.182,6.182,0,0,1,6.182-6.181A6.182,6.182,0,0,1-701.286,1592.343Z" transform="translate(724.65 -1575.161)"/>
+  </g>
+</svg>

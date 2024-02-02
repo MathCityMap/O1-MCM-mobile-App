@@ -4,6 +4,13 @@ import { Helper } from '../classes/Helper';
 import { Task2Route } from './Task2Route';
 import { ImagesService } from '../services/images-service';
 
+export enum TaskFormat {
+    DEFAULT = "default",
+    GROUP = "taskgroup",
+    SUBTASK = "subtask",
+    SUPPORT = "supporttask"
+}
+
 @Entity('mcm_task')
 export class Task {
 // CREATE TABLE IF NOT EXISTS mcm_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,lat VARCHAR (64) NOT NULL,lon VARCHAR (64) NOT NULL,title TEXT NOT NULL,description TEXT NOT NULL,image TEXT ,
@@ -100,8 +107,14 @@ export class Task {
     task2Routes: Task2Route[];
 
     @ManyToOne(type => Task, task => task.subtasks)
-    @JoinColumn({name: 'task_id'})
+    @JoinColumn({name: 'parent_task_id'})
     task_id: Task;
+
+    @Column({name: 'task_format'})
+    taskFormat: TaskFormat;
+
+    @Column({name: 'position_in_parent'})
+    positionInParent: number;
 
     /**
      * Use "getLegitSubtasks" function to fetch subtasks in Order to fetch Subtasks from outside to avoid running into corrupted Data

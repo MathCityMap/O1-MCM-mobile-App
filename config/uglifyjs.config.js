@@ -31,7 +31,8 @@ module.exports = {
             'AddPathFields16208100470000',
             'AddZoom16225449820000',
             'AddForceSubtaskAndArLink16552845000000',
-            'AddTaskCode17026521590000']
+            'AddTaskCode17026521590000',
+            'RenameParentIdAndAddTaskFormatAndPosition17067919700000']
     },
 
     /**

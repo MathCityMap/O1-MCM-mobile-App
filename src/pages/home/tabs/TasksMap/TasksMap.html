@@ -73,7 +73,7 @@
                 <span [ngClass]="{'badge-no-show': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>
             </ion-fab>
 
-            <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title)">
+            <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">
                 <div class="cover">
                     <img class="thumb" [src]="state.selectedTask.getImageURL()" />
                 </div>
@@ -81,28 +81,27 @@
             <div class="text-container" *ngIf="state.selectedTask">
                 <div class="segmented-box">
                     <div class="title segment">
-                        <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">
-                            #{{state.selectedTask.position}}
+                        <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">#{{state.selectedTask.position}}
                         </span>
-                        <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title)">
+                        <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">
                             {{state.selectedTask.title}}
                         </h2>
                     </div>
                 </div>
 <!--                TODO Show when task group, count progress-->
-                <div class="segmented-box bottom task-group">
+                <div *ngIf="state.selectedTask.taskFormat === TaskFormat.GROUP" class="segmented-box bottom task-group">
                     <span>{{ "a_taskgroup_task_group" | translate }}:</span>
-                    <span class="count">1 / 4</span>
+                    <span class="count">{{getSolvedSubtaskCount(state.selectedTask)}} / {{state.selectedTask.getLegitSubtasks().length}}</span>
                 </div>
-<!--                <div class="segmented-box bottom">-->
-<!--                    &lt;!&ndash;TODO FUTUTRE GAMIFICATION INTEGRATION&ndash;&gt;-->
-<!--                    &lt;!&ndash;<span class="segment">??? {{ "a_g_max_points" | translate }}</span>&ndash;&gt;-->
-<!--                    <div class="segment buttons">-->
-<!--                        <div class="text-right">-->
-<!--                            <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title)">{{ 'a_alert_show_task' | translate }}</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div *ngIf="state.selectedTask.taskFormat !== TaskFormat.GROUP" class="segmented-box bottom">
+                    <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->
+                    <!--<span class="segment">??? {{ "a_g_max_points" | translate }}</span>-->
+                    <div class="segment buttons">
+                        <div class="text-right">
+                            <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">{{ 'a_alert_show_task' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

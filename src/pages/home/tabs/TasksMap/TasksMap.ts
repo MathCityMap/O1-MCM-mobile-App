@@ -1,74 +1,72 @@
-import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
 
-import { Helper } from '../../../../classes/Helper';
-import { tilesDb } from '../../../../classes/tilesDb';
+import {Helper} from '../../../../classes/Helper';
+import {tilesDb} from '../../../../classes/tilesDb';
 
-import { OrmService } from '../../../../services/orm-service';
-import { Route } from '../../../../entity/Route';
-import { Task } from '../../../../entity/Task';
-import { Score } from '../../../../entity/Score';
+import {OrmService} from '../../../../services/orm-service';
+import {Route} from '../../../../entity/Route';
+import {Task, TaskFormat} from '../../../../entity/Task';
+import {Score} from '../../../../entity/Score';
 
-import { DeepLinker } from 'ionic-angular/navigation/deep-linker';
+import {DeepLinker} from 'ionic-angular/navigation/deep-linker';
 
-import { GpsService} from  '../../../../services/gps-service';
-import { ModalsService } from '../../../../services/modals-service';
+import {GpsService} from '../../../../services/gps-service';
+import {ModalsService} from '../../../../services/modals-service';
 import 'leaflet-rotatedmarker';
 import 'conic-gradient';
 
-import { ImagesService } from '../../../../services/images-service';
-import { Storage } from '@ionic/storage';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import {ImagesService} from '../../../../services/images-service';
+import {Storage} from '@ionic/storage';
+import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {MCMModalType, MyApp} from "../../../../app/app.component";
-import { MCMIconModal } from "../../../../modals/MCMIconModal/MCMIconModal";
-import { MCMIntroModal } from "../../../../modals/MCMIntroModal/MCMIntroModal";
-import { ModalController} from "ionic-angular/components/modal/modal-controller";
-import { MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
-import { ChatPage } from "../../../chat/chat";
-import { ChatAndSessionService, SessionInfo } from '../../../../services/chat-and-session-service';
-import { Subscription } from 'rxjs/Subscription';
+import {MCMIconModal} from "../../../../modals/MCMIconModal/MCMIconModal";
+import {MCMIntroModal} from "../../../../modals/MCMIntroModal/MCMIntroModal";
+import {ModalController} from "ionic-angular/components/modal/modal-controller";
+import {MCMSessionFinishedModal} from "../../../../modals/MCMSessionFinishedModal/MCMSessionFinishedModal";
+import {ChatPage} from "../../../chat/chat";
+import {ChatAndSessionService, SessionInfo} from '../../../../services/chat-and-session-service';
+import {Subscription} from 'rxjs/Subscription';
 import * as moment from 'moment';
-import {Observable} from "../../../../../node_modules/rxjs";
+import {Observable} from "rxjs";
 import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
-import {polyline} from "leaflet";
-// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 declare var ConicGradient: any;
 
 @IonicPage({
-  segment: 'TasksMap/:routeId'
+    segment: 'TasksMap/:routeId'
 })
 @Component({
-  selector: 'page-tasks-map',
-  templateUrl: 'TasksMap.html'
+    selector: 'page-tasks-map',
+    templateUrl: 'TasksMap.html'
 })
-export class TasksMap implements OnInit, OnDestroy {
+export class TasksMap implements OnDestroy {
     @ViewChild('tasks-map') mapContainer: ElementRef;
 
     private static UPDATE_SESSION_TIME_INTERVAL_IN_SECS: number = 15;
 
-  private map: any;
-  private routeId: number;
-  private route: Route;
-  private taskList: Task[];
+    private map: any;
+    private routeId: number;
+    protected route: Route;
+    private taskList: Task[];
 
-  private state: TaskMapState = {
-      selectedTask: null,
-      isShowingAllTasks: false,
-      visibleTasks : {},
-      skippedTaskIds: [],
-      selectedStartTask: false,
-      showIntroModal: false,
-      showGuidedTrailModal: false
-  };
-  private score: Score;
-  private stateKey: string = "savedMapStateByRoute";
-  private taskToSkip: Task= null;
-  private gamificationIsDisabled = false;
+    protected state: TaskMapState = {
+        selectedTask: null,
+        isShowingAllTasks: false,
+        visibleTasks: {},
+        skippedTaskIds: [],
+        selectedStartTask: false,
+        showIntroModal: false,
+        showGuidedTrailModal: false
+    };
+    private score: Score;
+    private stateKey: string = "savedMapStateByRoute";
+    private taskToSkip: Task = null;
+    protected gamificationIsDisabled = false;
 
     taskOpenIcon;
     taskSkippedIcon;
@@ -94,7 +92,6 @@ export class TasksMap implements OnInit, OnDestroy {
     private countdownBeforeSession: boolean = false;
     private startInterval: boolean = false;
     private showCountdownOrTimer: boolean = false;
-    //private refreshIntervalId: any = null;
     private showSessionEnds: boolean = false;
     private taskBlocked: boolean = false;
 
@@ -102,254 +99,217 @@ export class TasksMap implements OnInit, OnDestroy {
     private sessionTimeSubscription: Subscription;
     private redrawingMarkers = false;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public events: Events,
-    private ormService: OrmService,
-    private deepLinker: DeepLinker,
-    private gpsService: GpsService,
-    private modalsService: ModalsService,
-    private imagesService: ImagesService,
-    private storage: Storage,
-    private spinner: SpinnerDialog,
-    private modalCtrl: ModalController,
-    private chatAndSessionService: ChatAndSessionService,
-    private app: MyApp,
-    private helper: Helper
-  ) {
-      this.chatAndSessionService.init();
-      this.events.subscribe('user:kicked', (user) => {
-          if(user == 'self'){
-              console.log("userKicked");
-              this.sessionKicked();
-              this.events.unsubscribe('user:kicked', null);
-          }
-          else{
-              console.log("Someone else was kicked.")
-          }
-      });
-      this.events.subscribe('session:updated', (sessionInfo) => {
-         console.log('Session has been updated');
-          this.updateSession(sessionInfo);
-      });
-      this.events.subscribe('user:assigned_task', (taskId) => {
-          console.log('User has been assigned task with id: ' + taskId);
-          this.sessionInfo.sessionUser.assigned_task_id = taskId;
-          this.forceStartFromTask(taskId).then(() => {
-              this.redrawMarker();
-          });
-      });
-  }
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        public events: Events,
+        private ormService: OrmService,
+        private deepLinker: DeepLinker,
+        private gpsService: GpsService,
+        private modalsService: ModalsService,
+        private imagesService: ImagesService,
+        private storage: Storage,
+        private spinner: SpinnerDialog,
+        private modalCtrl: ModalController,
+        private app: MyApp,
+        protected chatAndSessionService: ChatAndSessionService,
+    ) {
+        this.chatAndSessionService.init();
+        this.events.subscribe('user:kicked', (user) => {
+            if (user == 'self') {
+                console.log("userKicked");
+                this.sessionKicked();
+                this.events.unsubscribe('user:kicked', null);
+            } else {
+                console.log("Someone else was kicked.")
+            }
+        });
+        this.events.subscribe('session:updated', (sessionInfo) => {
+            console.log('Session has been updated');
+            this.updateSession(sessionInfo);
+        });
+        this.events.subscribe('user:assigned_task', (taskId) => {
+            console.log('User has been assigned task with id: ' + taskId);
+            this.sessionInfo.sessionUser.assigned_task_id = taskId;
+            this.forceStartFromTask(taskId).then(() => {
+                this.redrawMarker();
+            });
+        });
+    }
 
-  isTrailCompleted(){
-      if (this.route.isAnswerFeedbackEnabled()) {
-          return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
-      } else {
-          return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.taskList.length;
-      }
-  }
+    isTrailCompleted() {
+        if (this.route.isAnswerFeedbackEnabled()) {
+            return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
+        } else {
+            return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.taskList.length;
+        }
+    }
 
-  showTrailCompletedAlert(){
-      let that = this;
-      let modal = this.modalCtrl.create(MCMTrailFinishedModal,
-          {
-              score: this.score,
-              tasks: this.taskList,
-              narrative: this.app.activeNarrative,
-              callback: function() {
-                  modal.dismiss().then(() => {
-                      that.route.completed = true;
-                      that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-                      that.ormService.saveAndFireChangedEvent(that.route);
-                  });
-              }
-          }, {cssClass: this.app.activeNarrative});
-      modal.present();
-      // let that = this;
-      // let title = 'a_alert_congrats';
-      // let message = 'a_alert_congrats_msg';
-      // if (this.route.isNarrativeEnabled()) {
-      //   title = this.route.getNarrativeString(title);
-      //   message = this.route.getNarrativeString(message);
-      // }
-      // let modal = this.modalCtrl.create(MCMIconModal,  {
-      //     title: title,
-      //     message: message,
-      //     modalType: MCMModalType.solved,
-      //     param: {TITLE: this.route.title},
-      //     narrativeEnabled: this.route.isNarrativeEnabled(),
-      //     narrative: this.app.activeNarrative,
-      //     buttons: [
-      //         {
-      //             title: 'a_alert_close',
-      //             callback: function(){
-      //                 modal.dismiss().then(() => {
-      //                     that.route.completed = true;
-      //                     that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-      //                     that.ormService.saveAndFireChangedEvent(that.route);
-      //                 });
-      //             }
-      //         }
-      //     ]}, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-      // modal.present();
-  }
+    showTrailCompletedAlert() {
+        let that = this;
+        let modal = this.modalCtrl.create(MCMTrailFinishedModal,
+            {
+                score: this.score,
+                tasks: this.taskList,
+                narrative: this.app.activeNarrative,
+                callback: function () {
+                    modal.dismiss().then(() => {
+                        that.route.completed = true;
+                        that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+                        that.ormService.saveAndFireChangedEvent(that.route);
+                    });
+                }
+            }, {cssClass: this.app.activeNarrative});
+        modal.present();
+    }
 
 
-  async ionViewWillEnter() {
-    console.log('TasksMap ionViewWillEnter()');
-    console.log(this.navCtrl);
-    this.routeId = this.navParams.get('routeId');
-    console.log(this.routeId);
-    this.route = await this.ormService.findRouteById(this.routeId);
-    this.gamificationIsDisabled = this.route.isGamificationDisabled();
-    this.user = await this.ormService.getActiveUser();
-    this.score = this.route.getScoreForUser(this.user);
-    let sessionInfo = this.chatAndSessionService.getSessionInfo();
-    this.updateSession(sessionInfo);
-    this.events.publish('narrativeChange', this.route.getNarrativeName());
+    async ionViewWillEnter() {
+        console.log('TasksMap ionViewWillEnter()');
+        console.log(this.navCtrl);
+        this.routeId = this.navParams.get('routeId');
+        console.log(this.routeId);
+        this.route = await this.ormService.findRouteById(this.routeId);
+        this.gamificationIsDisabled = this.route.isGamificationDisabled();
+        this.user = await this.ormService.getActiveUser();
+        this.score = this.route.getScoreForUser(this.user);
+        let sessionInfo = this.chatAndSessionService.getSessionInfo();
+        this.updateSession(sessionInfo);
+        this.events.publish('narrativeChange', this.route.getNarrativeName());
 
-    this.updateIcons();
+        this.updateIcons();
 
-      await this.loadMap();
-      setTimeout(async () => {
-          // adding markers immediately after map initialization caused marker cluster problems -> use timeout
-          await this.initializeMap();
-          this.spinner.hide();
-          if(this.isTrailCompleted() && !this.route.completed){
-              this.showTrailCompletedAlert();
-          }
-      }, 100);
-  }
+        await this.loadMap();
+        setTimeout(async () => {
+            // adding markers immediately after map initialization caused marker cluster problems -> use timeout
+            await this.initializeMap();
+            this.spinner.hide();
+            if (this.isTrailCompleted() && !this.route.completed) {
+                this.showTrailCompletedAlert();
+            }
+        }, 100);
+    }
 
-  async ionViewDidEnter(){
-      console.log('TasksMap ionViewDidEnter()');
-      /*
-      When a session is active and started the first time:
-      Reset all tasks
-      If user was automatically assigned a task, display only that task
-       */
-      if(this.sessionInfo != null) {
-          // Add event of user entering trail when session active
-          let details = JSON.stringify({});
-          this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
+    async ionViewDidEnter() {
+        console.log('TasksMap ionViewDidEnter()');
+        /*
+        When a session is active and started the first time:
+        Reset all tasks
+        If user was automatically assigned a task, display only that task
+         */
+        if (this.sessionInfo != null) {
+            // Add event of user entering trail when session active
+            let details = JSON.stringify({});
+            this.chatAndSessionService.addUserEvent("event_trail_opened", details, "0");
 
-          if (this.sessionInfo.started === false) {
-              this.showAllTasks();
-              this.resetTasks();
+            if (this.sessionInfo.started === false) {
+                this.showAllTasks();
+                this.resetTasks();
 
-              if (this.sessionInfo.sessionUser.assigned_task_id != 0) {
-                  this.taskList = await this.route.getTasks();
-                  await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
-                  if (this.route.isNarrativeEnabled()) {
-                      this.showIntroModal().then(() => {
-                          this.state.showIntroModal = false;
-                      })
-                  }
-              }
-              else {
-                  if (this.route.isNarrativeEnabled()) {
-                      this.showIntroModal().then(() => {
-                          this.state.showIntroModal = false;
-                          this.showGuidedTrailModalWithDelay(500);
-                      })
-                  }
-              }
+                if (this.sessionInfo.sessionUser.assigned_task_id != 0) {
+                    this.taskList = await this.route.getTasks();
+                    await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                    if (this.route.isNarrativeEnabled()) {
+                        this.showIntroModal().then(() => {
+                            this.state.showIntroModal = false;
+                        })
+                    }
+                } else {
+                    if (this.route.isNarrativeEnabled()) {
+                        this.showIntroModal().then(() => {
+                            this.state.showIntroModal = false;
+                            this.showGuidedTrailModalWithDelay(500);
+                        })
+                    }
+                }
 
-              this.saveMapStateToLocalStorage();
-              this.sessionInfo.started = true;
-              await this.chatAndSessionService.updateSession(this.sessionInfo);
-              await this.redrawMarker();
-              return;
-          }
-      }
+                this.saveMapStateToLocalStorage();
+                this.sessionInfo.started = true;
+                await this.chatAndSessionService.updateSession(this.sessionInfo);
+                await this.redrawMarker();
+                return;
+            }
+        }
 
-      if (this.navParams.data.tasksMapState) {
-          console.log("3");
-          this.state = this.navParams.data.tasksMapState;
-          if(this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))){
-              this.goToNextTask(this.state.selectedTask, true);
-          }
-      } else {
-          this.state = await this.getMapStateFromLocalStorage();
-          console.log(this.state);
-          if(this.taskToSkip){
-              this.goToNextTask(this.taskToSkip, true);
-              this.taskToSkip = null;
-          }
-          if(!this.state){
-              // attach state to navParams so that state is restored when moving back in history (from task detail view)
-              this.state = this.navParams.data.tasksMapState = {
-                  selectedTask: this.navParams.get("selectedTask"),
-                  isShowingAllTasks: false,
-                  visibleTasks: {},
-                  skippedTaskIds: [],
-                  selectedStartTask: false,
-                  showIntroModal: false, // Intro Modal for narratives will be displayed on first start anyway
-                  showGuidedTrailModal: false // GuidedTrail Modal will be displayed on first start anyway
-              };
-              this.state.isShowingAllTasks = !this.state.selectedTask;
-              if (this.state.selectedTask) {
-                  this.state.visibleTasks[this.state.selectedTask.position] = true;
-              }
-              else if (this.route.isNarrativeEnabled()) {
-                  this.showIntroModal().then(() => {
-                      this.showGuidedTrailModalWithDelay(500);
-                  });
-              }
-              else {
-                  this.showGuidedTrailModalWithDelay(500);
-              }
-          }
-          else{
-              if(this.state.showIntroModal && this.route.isNarrativeEnabled()){
-                  this.showIntroModal().then(() => {
-                      const that = this;
-                      that.state.showIntroModal = false;
-                      this.saveMapStateToLocalStorage();
-                      if(this.state.showGuidedTrailModal){
-                          this.showGuidedTrailModalWithDelay(500);
-                      }
-                  });
-              }else if(this.state.showGuidedTrailModal){
-                  this.showGuidedTrailModalWithDelay(500);
-              }
-          }
-      }
-      await this.redrawMarker();
-  }
+        if (this.navParams.data.tasksMapState) {
+            console.log("3");
+            this.state = this.navParams.data.tasksMapState;
+            if (this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))) {
+                this.goToNextTask(this.state.selectedTask, true);
+            }
+        } else {
+            this.state = await this.getMapStateFromLocalStorage();
+            console.log(this.state);
+            if (this.taskToSkip) {
+                this.goToNextTask(this.taskToSkip, true);
+                this.taskToSkip = null;
+            }
+            if (!this.state) {
+                // attach state to navParams so that state is restored when moving back in history (from task detail view)
+                this.state = this.navParams.data.tasksMapState = {
+                    selectedTask: this.navParams.get("selectedTask"),
+                    isShowingAllTasks: false,
+                    visibleTasks: {},
+                    skippedTaskIds: [],
+                    selectedStartTask: false,
+                    showIntroModal: false, // Intro Modal for narratives will be displayed on first start anyway
+                    showGuidedTrailModal: false // GuidedTrail Modal will be displayed on first start anyway
+                };
+                this.state.isShowingAllTasks = !this.state.selectedTask;
+                if (this.state.selectedTask) {
+                    this.state.visibleTasks[this.state.selectedTask.position] = true;
+                } else if (this.route.isNarrativeEnabled()) {
+                    this.showIntroModal().then(() => {
+                        this.showGuidedTrailModalWithDelay(500);
+                    });
+                } else {
+                    this.showGuidedTrailModalWithDelay(500);
+                }
+            } else {
+                if (this.state.showIntroModal && this.route.isNarrativeEnabled()) {
+                    this.showIntroModal().then(() => {
+                        const that = this;
+                        that.state.showIntroModal = false;
+                        this.saveMapStateToLocalStorage();
+                        if (this.state.showGuidedTrailModal) {
+                            this.showGuidedTrailModalWithDelay(500);
+                        }
+                    });
+                } else if (this.state.showGuidedTrailModal) {
+                    this.showGuidedTrailModalWithDelay(500);
+                }
+            }
+        }
+        await this.redrawMarker();
+    }
 
-  private showGuidedTrailModalWithDelay(delay) {
-      const that = this;
-      this.state.showGuidedTrailModal = false;
-      setTimeout(function () {
-          that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
-              'no', () => {
-              },
-              'yes', async () => {
-                  that.selectStartPoint();
-                  that.state.selectedStartTask = true;
-              }, that.app.activeNarrative);
-      }, delay);
-  }
+    private showGuidedTrailModalWithDelay(delay) {
+        const that = this;
+        this.state.showGuidedTrailModal = false;
+        setTimeout(function () {
+            that.modalsService.showDialog('a_guided_trail_title', 'a_guided_trail',
+                'no', () => {
+                },
+                'yes', async () => {
+                    that.selectStartPoint();
+                    that.state.selectedStartTask = true;
+                }, that.app.activeNarrative);
+        }, delay);
+    }
 
-  private async forceStartFromTask( taskId ){
-      if (!this.taskList || this.taskList.length === 0) {
-          this.taskList = await this.route.getTasks();
-      }
-      console.log('Force Start From Task', this.taskList);
-      let selectedTask = this.taskList.filter(x => x.id == taskId).pop();
-      this.state.selectedTask = selectedTask;
-      console.debug("forceStartFromTask");
-      this.state.visibleTasks = {};
-      this.state.visibleTasks[selectedTask.position] = true;
-      this.state.isShowingAllTasks = false;
-      this.state.showGuidedTrailModal = false;
-      this.centerSelectedTask();
-  }
-
-    ngOnInit() {
-        // this.sessionSubscription = this.chatAndSessionService.getSubject().subscribe(this.updateSession);
+    private async forceStartFromTask(taskId) {
+        if (!this.taskList || this.taskList.length === 0) {
+            this.taskList = await this.route.getTasks();
+        }
+        console.log('Force Start From Task', this.taskList);
+        let selectedTask = this.taskList.filter(x => x.id == taskId).pop();
+        this.state.selectedTask = selectedTask;
+        console.debug("forceStartFromTask");
+        this.state.visibleTasks = {};
+        this.state.visibleTasks[selectedTask.position] = true;
+        this.state.isShowingAllTasks = false;
+        this.state.showGuidedTrailModal = false;
+        this.centerSelectedTask();
     }
 
     ngOnDestroy() {
@@ -369,22 +329,22 @@ export class TasksMap implements OnInit, OnDestroy {
         this.events.publish('narrativeChange', 'default');
     }
 
-  markerGroup: any = null;
-  pathGroup: any = null;
+    markerGroup: any = null;
+    pathGroup: any = null;
 
-   async initializeMap() {
-      this.currentScore = this.score.score;
-      // await this.redrawMarker();
-      this.gpsService.isLocationOn();
-      // This should fix the gray tiles and missing marker issue on android
-      if(this.map != null){
-          this.map.invalidateSize();
-      }
-  }
+    async initializeMap() {
+        this.currentScore = this.score.score;
+        // await this.redrawMarker();
+        this.gpsService.isLocationOn();
+        // This should fix the gray tiles and missing marker issue on android
+        if (this.map != null) {
+            this.map.invalidateSize();
+        }
+    }
 
     updateSession(sessionInfo: SessionInfo) {
-       console.log(this.routeId);
-       console.log(sessionInfo);
+        console.log(this.routeId);
+        console.log(sessionInfo);
         if (sessionInfo && sessionInfo.session) {
             if (this.routeId != sessionInfo.session.trail_id) {
                 console.log(`active session belongs to different trail`);
@@ -392,7 +352,7 @@ export class TasksMap implements OnInit, OnDestroy {
             } else {
                 this.sessionInfo = sessionInfo;
                 console.log('active session: ' + sessionInfo.session.code);
-                if(this.sessionTimeSubscription){
+                if (this.sessionTimeSubscription) {
                     this.sessionTimeSubscription.unsubscribe();
                 }
                 this.sessionTime();
@@ -406,249 +366,256 @@ export class TasksMap implements OnInit, OnDestroy {
         }
     }
 
-    async getMapStateFromLocalStorage(){
-      let mapState = await this.storage.get(this.stateKey);
-      if(mapState && mapState[this.routeId]){
-          let state = mapState[this.routeId];
-          console.log(this.navParams);
-          state.selectedTask = this.navParams.get("selectedTask");
-          return state;
-      }
-      return null;
-  }
-
-  async saveMapStateToLocalStorage(){
-      let mapState = await this.storage.get(this.stateKey);
-      if(!mapState){
-          mapState = {};
-      }
-      mapState[this.routeId] = this.state;
-      return this.storage.set(this.stateKey, mapState);
-  }
-
-  async ionViewWillLeave(){
-    this.saveMapStateToLocalStorage();
-  }
-
-    assignedTask(){
-       if(this.sessionInfo == null){
-           return false
-       }else{
-           return this.sessionInfo.session.assign_tasks;
-       }
-    }
-
-
-  async redrawMarker(){
-    if (this.redrawingMarkers) {
-        return;
-    }
-    this.redrawingMarkers = true;
-    if (!this.map) {
-      return;
-    }
-    if (this.markerGroup != null) {
-        console.warn('removing markerGroup');
-        this.map.removeLayer(this.markerGroup);
-        this.markerGroup = null;
-    }
-    if (this.pathGroup != null) {
-        console.warn('removing pathGroup');
-        for (let layer of this.pathGroup) {
-            this.map.removeLayer(layer);
+    async getMapStateFromLocalStorage() {
+        let mapState = await this.storage.get(this.stateKey);
+        if (mapState && mapState[this.routeId]) {
+            let state = mapState[this.routeId];
+            console.log(this.navParams);
+            state.selectedTask = this.navParams.get("selectedTask");
+            return state;
         }
-        this.pathGroup = null;
+        return null;
     }
-    // this.map.eachLayer(layer => {
-    //     if ((layer instanceof L.Polyline) || (layer instanceof L.Marker)) {
-    //         this.map.removeLayer(layer);
-    //     }
-    // })
-    let markerGroup = (L as any).markerClusterGroup({
-        maxClusterRadius: 30,
-        iconCreateFunction: function (cluster) {
-            let childCount = cluster.getChildCount();
-            let markers = cluster.getAllChildMarkers();
-            let className = 'marker-cluster marker-cluster-';
-            if (childCount < 10) {
-                className += 'small';
-            } else if (childCount < 100) {
-                className += 'medium';
-            } else {
-                className += 'large';
+
+    async saveMapStateToLocalStorage() {
+        let mapState = await this.storage.get(this.stateKey);
+        if (!mapState) {
+            mapState = {};
+        }
+        mapState[this.routeId] = this.state;
+        return this.storage.set(this.stateKey, mapState);
+    }
+
+    async ionViewWillLeave() {
+        this.saveMapStateToLocalStorage();
+    }
+
+    assignedTask() {
+        if (this.sessionInfo == null) {
+            return false
+        } else {
+            return this.sessionInfo.session.assign_tasks;
+        }
+    }
+
+
+    async redrawMarker() {
+        if (this.redrawingMarkers) {
+            return;
+        }
+        this.redrawingMarkers = true;
+        if (!this.map) {
+            return;
+        }
+        if (this.markerGroup != null) {
+            console.warn('removing markerGroup');
+            this.map.removeLayer(this.markerGroup);
+            this.markerGroup = null;
+        }
+        if (this.pathGroup != null) {
+            console.warn('removing pathGroup');
+            for (let layer of this.pathGroup) {
+                this.map.removeLayer(layer);
             }
-            let colorOccurrences = {};
-            let numberOfColoredMarkers = 0;
-            markers.map(marker => {
-                if (marker.options.icon.clusterColor) {
-                    numberOfColoredMarkers++;
-                    if (colorOccurrences[marker.options.icon.clusterColor]) {
-                        colorOccurrences[marker.options.icon.clusterColor] += 1;
-                    } else {
-                        colorOccurrences[marker.options.icon.clusterColor] = 1;
+            this.pathGroup = null;
+        }
+        // this.map.eachLayer(layer => {
+        //     if ((layer instanceof L.Polyline) || (layer instanceof L.Marker)) {
+        //         this.map.removeLayer(layer);
+        //     }
+        // })
+        let markerGroup = (L as any).markerClusterGroup({
+            maxClusterRadius: 30,
+            iconCreateFunction: function (cluster) {
+                let childCount = cluster.getChildCount();
+                let markers = cluster.getAllChildMarkers();
+                let className = 'marker-cluster marker-cluster-';
+                if (childCount < 10) {
+                    className += 'small';
+                } else if (childCount < 100) {
+                    className += 'medium';
+                } else {
+                    className += 'large';
+                }
+                let colorOccurrences = {};
+                let numberOfColoredMarkers = 0;
+                markers.map(marker => {
+                    if (marker.options.icon.clusterColor) {
+                        numberOfColoredMarkers++;
+                        if (colorOccurrences[marker.options.icon.clusterColor]) {
+                            colorOccurrences[marker.options.icon.clusterColor] += 1;
+                        } else {
+                            colorOccurrences[marker.options.icon.clusterColor] = 1;
+                        }
+                    }
+                });
+                let style = '';
+                let img = '';
+                let colors = Object.keys(colorOccurrences);
+                if (colors.length == 1) {
+                    style = `background-color: ${colors[0]}`;
+                } else {
+                    let stops = '';
+                    let alreadyFilledPercentage = 0;
+                    colors.map(color => {
+                        let n = colorOccurrences[color];
+                        let percentage = Math.round(n / numberOfColoredMarkers * 100);
+                        if (alreadyFilledPercentage > 0) {
+                            stops += ', ';
+                        }
+                        alreadyFilledPercentage += percentage;
+                        stops += `${color} 0 ${alreadyFilledPercentage}%`
+                    });
+
+                    let gradient = new ConicGradient({
+                        stops: stops,
+                        size: 24
+                    });
+                    img = `<img src="${gradient.png}"></img>`;
+                }
+                return new L.DivIcon({
+                    html: `<div style="${style}">${img}<span>${childCount}</span></div>`,
+                    className: className,
+                    iconSize: new L.Point(40, 40)
+                });
+            },
+        });
+
+        this.taskList = await this.route.getTasks();
+        console.log("Task List", this.taskList);
+
+        let geoJSON = this.route.getPathGeoJson();
+        let pathGroup = [];
+
+        for (let i = 0; i < this.taskList.length; i++) {
+            let task: Task = this.taskList[i];
+            if (!this.state.isShowingAllTasks && !this.state.visibleTasks[task.position]) {
+                continue;
+            }
+            let icon = this.taskOpenIcon;
+
+            if (task.taskFormat === TaskFormat.GROUP) {
+                // TODO add proper Logic for task Icon
+                icon = this.taskSavedIcon;
+            } else {
+                let removeTaskFromSkippedArray = true;
+                if (this.score.getTasksSaved().indexOf(task.id) > -1) {
+                    icon = this.taskSavedIcon;
+                } else if (this.score.getTasksSolved().indexOf(task.id) > -1) {
+                    icon = this.taskDonePerfectIcon;
+                } else if (this.score.getTasksSolvedLow().indexOf(task.id) > -1) {
+                    icon = this.taskDoneIcon;
+                } else if (this.score.getTasksFailed().indexOf(task.id) > -1) {
+                    icon = this.taskFailedIcon;
+                } else if (this.state.skippedTaskIds.indexOf(task.id) > -1) {
+                    icon = this.taskSkippedIcon;
+                    removeTaskFromSkippedArray = false;
+                }
+
+                if (removeTaskFromSkippedArray && this.state.skippedTaskIds.indexOf(task.id) > -1) {
+                    // remove task from skipped array
+                    this.state.skippedTaskIds.splice(this.state.skippedTaskIds.indexOf(task.id), 1);
+                }
+            }
+            if (geoJSON) {
+                let taskGeoJsons = geoJSON.data.features.filter(data => {
+                    //don't match types because some are string and some are numbers for some reason
+                    return data.properties.task_id == task.id;
+                });
+                console.log("GEO JSON", taskGeoJsons, task);
+                if (taskGeoJsons) {
+                    for (let taskGeoJson of taskGeoJsons) {
+                        // for (let coordinateArray of taskGeoJson.geometry.coordinates) {
+                        //     coordinateArray = coordinateArray.reverse();
+                        // }
+                        let GeoJsonLayer = L.geoJSON(taskGeoJson, {
+                            style: function (feature) {
+                                return {color: feature.properties.color, dashArray: "10 10"};
+                            }
+                        });
+                        // let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
+                        //     color: taskGeoJson.properties.color,
+                        //     dashArray: "10 10"
+                        // });
+                        this.map.addLayer(GeoJsonLayer);
+                        pathGroup.push(GeoJsonLayer);
                     }
                 }
-            });
-            let style = '';
-            let img = '';
-            let colors = Object.keys(colorOccurrences);
-            if (colors.length == 1) {
-                style=`background-color: ${colors[0]}`;
-            } else {
-                let stops = '';
-                let alreadyFilledPercentage = 0;
-                colors.map(color => {
-                    let n = colorOccurrences[color];
-                    let percentage = Math.round(n / numberOfColoredMarkers * 100);
-                    if (alreadyFilledPercentage > 0) {
-                        stops += ', ';
-                    }
-                    alreadyFilledPercentage += percentage;
-                    stops += `${color} 0 ${alreadyFilledPercentage}%`
-                });
-
-                let gradient = new ConicGradient({
-                    stops: stops,
-                    size: 24
-                });
-                img=`<img src="${gradient.png}"></img>`;
             }
-            return new L.DivIcon({
-                html: `<div style="${style}">${img}<span>${childCount}</span></div>`,
-                className: className,
-                iconSize: new L.Point(40, 40)
-            });
-        },
-    });
-
-    this.taskList = await this.route.getTasks();
-
-    let geoJSON = this.route.getPathGeoJson();
-    let pathGroup = [];
-
-    for(let i = 0; i < this.taskList.length; i++){
-        let task: Task = this.taskList[i];
-        if (!this.state.isShowingAllTasks && !this.state.visibleTasks[task.position]) {
-            continue;
+            markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
+                if (this.state.selectedTask == task) {
+                    this.gototask(task.id, task.title, task.taskFormat);
+                } else {
+                    // Add event of user entering trail when session active
+                    if (this.sessionInfo != null) {
+                        let details = JSON.stringify({});
+                        this.chatAndSessionService.addUserEvent("event_task_previewed", details, task.id.toString());
+                    }
+                    this.state.selectedTask = task;
+                    this.map.panTo([task.lat, task.lon]);
+                }
+            }));
         }
-        let icon = this.taskOpenIcon;
-
-        let removeTaskFromSkippedArray = true;
-        if (this.score.getTasksSaved().indexOf(task.id) > -1) {
-            icon = this.taskSavedIcon;
-        }else if(this.score.getTasksSolved().indexOf(task.id) > -1){
-            icon = this.taskDonePerfectIcon;
-        }else if(this.score.getTasksSolvedLow().indexOf(task.id) > -1){
-            icon = this.taskDoneIcon;
-        }else  if(this.score.getTasksFailed().indexOf(task.id) > -1){
-            icon = this.taskFailedIcon;
-        }else if(this.state.skippedTaskIds.indexOf(task.id) > -1){
-          icon = this.taskSkippedIcon;
-          removeTaskFromSkippedArray = false;
-      }
-      if (removeTaskFromSkippedArray && this.state.skippedTaskIds.indexOf(task.id) > -1) {
-            // remove task from skipped array
-            this.state.skippedTaskIds.splice(this.state.skippedTaskIds.indexOf(task.id), 1);
-      }
-      if (geoJSON) {
-          let taskGeoJsons = geoJSON.data.features.filter(data => {
-              //don't match types because some are string and some are numbers for some reason
-              return data.properties.task_id == task.id;
-          });
-          console.log("GEO JSON", taskGeoJsons, task);
-          if (taskGeoJsons) {
-              for (let taskGeoJson of taskGeoJsons) {
-                  // for (let coordinateArray of taskGeoJson.geometry.coordinates) {
-                  //     coordinateArray = coordinateArray.reverse();
-                  // }
-                  let GeoJsonLayer = L.geoJSON(taskGeoJson, {
-                      style: function(feature) {
-                          return {color: feature.properties.color, dashArray: "10 10"};
-                        }
-                  });
-                  // let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
-                  //     color: taskGeoJson.properties.color,
-                  //     dashArray: "10 10"
-                  // });
-                  this.map.addLayer(GeoJsonLayer);
-                  pathGroup.push(GeoJsonLayer);
-              }
-          }
-      }
-      markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
-          if (this.state.selectedTask == task) {
-              this.gototask(task.id, task.title);
-          } else {
-              // Add event of user entering trail when session active
-              if(this.sessionInfo != null){
-                  let details = JSON.stringify({});
-                  this.chatAndSessionService.addUserEvent("event_task_previewed", details, task.id.toString());
-              }
-              this.state.selectedTask = task;
-              this.map.panTo( [task.lat, task.lon] );
-          }
-      }));
+        // this.map.addLayer(pathGroup);
+        this.map.addLayer(markerGroup);
+        console.log("MAP AFTER UPDATE", this.map);
+        this.markerGroup = markerGroup;
+        this.pathGroup = pathGroup;
+        this.redrawingMarkers = false;
     }
-    // this.map.addLayer(pathGroup);
-    this.map.addLayer(markerGroup);
-    console.log("MAP AFTER UPDATE", this.map);
-    this.markerGroup = markerGroup;
-    this.pathGroup = pathGroup;
-    this.redrawingMarkers = false;
-  }
 
-  async loadMap() {
-      //const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
-      let mapquestUrl = /*Helper.mapquestUrl*/ this.route.getTilesMap(this.app.activeNarrative);
-      let subDomains = this.route.getTilesServerSubdomains(this.app.activeNarrative);//Helper.subDomains;
+    async loadMap() {
+        //const center = [50.1208566, 8.66158515]; // Frankfurt-am Main
+        let mapquestUrl = /*Helper.mapquestUrl*/ this.route.getTilesMap(this.app.activeNarrative);
+        let subDomains = this.route.getTilesServerSubdomains(this.app.activeNarrative);//Helper.subDomains;
 
-      //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
-      // const corner1 = L.latLng(38.4313915, 27.1212443)
-      // const corner2 = L.latLng(38.4114794, 27.1431646)
-      // const bbox = JSON.parse(this.route.bounding_box);
-      // const corner1 = bbox[0];
-      // const corner2 = bbox[1];
-      // const bounds: L.latLngBounds = L.latLngBounds(corner1, corner2)
+        //[[38.4298915,27.1227443],[38.4129794,27.1416646]]
+        // const corner1 = L.latLng(38.4313915, 27.1212443)
+        // const corner2 = L.latLng(38.4114794, 27.1431646)
+        // const bbox = JSON.parse(this.route.bounding_box);
+        // const corner1 = bbox[0];
+        // const corner2 = bbox[1];
+        // const bounds: L.latLngBounds = L.latLngBounds(corner1, corner2)
 
 
-      if (this.map == null) {
-          this.map = L.map('tasks-map', {
-              attributionControl: false,
-              zoom: 18,
-              trackResize: false, // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
-              maxBounds: this.route.getBoundingBoxLatLng()
-          });
+        if (this.map == null) {
+            this.map = L.map('tasks-map', {
+                attributionControl: false,
+                zoom: 18,
+                trackResize: false, // if map gets resized when not visible (when keyboard shows up) it can get into undefined state
+                maxBounds: this.route.getBoundingBoxLatLng()
+            });
 
-          // TODO: Replace leaflet-mapbox-gl Bridge with native MapboxGl JS implementation
-          // (<any>L).mapboxGL({
-          //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
-          //     style: mapquestUrl,
-          //     updateInterval: 0,
-          // }).addTo(this.map);
+            // TODO: Replace leaflet-mapbox-gl Bridge with native MapboxGl JS implementation
+            // (<any>L).mapboxGL({
+            //     accessToken: "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww",
+            //     style: mapquestUrl,
+            //     updateInterval: 0,
+            // }).addTo(this.map);
 
-          L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
-          this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
-          // this.map.setZoom(18);
-          this.map.on('click', e => {
-              //check if details open and reset content. for now just reset content
-              // this.routeDetails = null;
-              this.state.selectedTask = null;
-          })
-          let map = this.map;
-          await tilesDb.initialize();
-          let zoomLevels = Helper.calculateZoom(this.route.getViewBoundingBoxLatLng());
-          let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
-              attribution: '&copy; mapbox.com',
-              subdomains: subDomains,
-              minZoom: zoomLevels.min_zoom,
-              maxZoom: zoomLevels.max_zoom,
-              tileSize: 256,
-              crossOrigin: true,
-              detectRetina: true,
-              bounds: this.route.getBoundingBoxLatLng()
-          });
+            L.control.attribution({position: 'bottomleft', prefix: 'Leaflet'}).addTo(this.map);
+            this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
+            // this.map.setZoom(18);
+            this.map.on('click', e => {
+                //check if details open and reset content. for now just reset content
+                // this.routeDetails = null;
+                this.state.selectedTask = null;
+            })
+            let map = this.map;
+            await tilesDb.initialize();
+            let zoomLevels = Helper.calculateZoom(this.route.getViewBoundingBoxLatLng());
+            let offlineLayer = (L.tileLayer as any).offline(mapquestUrl, tilesDb, {
+                attribution: '&copy; mapbox.com',
+                subdomains: subDomains,
+                minZoom: zoomLevels.min_zoom,
+                maxZoom: zoomLevels.max_zoom,
+                tileSize: 256,
+                crossOrigin: true,
+                detectRetina: true,
+                bounds: this.route.getBoundingBoxLatLng()
+            });
 
-          this.gpsService.getCurrentPosition()
+            this.gpsService.getCurrentPosition()
                 .then(resp => {
                     if (resp && resp.coords) {
                         console.debug('found you');
@@ -667,22 +634,21 @@ export class TasksMap implements OnInit, OnDestroy {
                             if (resp && resp.coords) {
                                 const lanlng = new L.LatLng(resp.coords.latitude, resp.coords.longitude);
                                 let bBox = this.map.getBounds();
-                                if(bBox.contains(lanlng)){
+                                if (bBox.contains(lanlng)) {
                                     // User entered visible map bounding box -> Change Icon
-                                    if(!this.isUserInsideMap){
+                                    if (!this.isUserInsideMap) {
                                         this.userMarker.setIcon(this.userPositionIcon);
                                     }
                                     this.userMarker.setLatLng(lanlng);
                                     //Rotate the user marker
-                                    if(this.prevPos!=null) {
+                                    if (this.prevPos != null) {
                                         let angle = Helper.getAngle(this.prevPos, resp.coords);
                                         this.userMarker.setRotationAngle(angle);
                                     }
                                     this.isUserInsideMap = true;
-                                }
-                                else{
+                                } else {
                                     // User left visible map bounding box -> Change icon to arrow
-                                    if(this.isUserInsideMap){
+                                    if (this.isUserInsideMap) {
                                         this.userMarker.setIcon(this.userPositionArrow);
                                     }
                                     this.updateUserLocationArrow(lanlng);
@@ -694,7 +660,7 @@ export class TasksMap implements OnInit, OnDestroy {
 
                         // Add map listener events
                         this.map.on('moveend', e => {
-                            if(!this.isUserInsideMap){
+                            if (!this.isUserInsideMap) {
                                 this.updateUserLocationArrow(new L.LatLng(this.prevPos.latitude, this.prevPos.longitude))
                             }
                         });
@@ -706,129 +672,124 @@ export class TasksMap implements OnInit, OnDestroy {
                     console.error(`Location error: ${JSON.stringify(error)}`);
                 });
 
-          const tiles = this.ormService.getTileURLsAsObject(this.route);
-          const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
-          let that = this;
-          offlineLayer.getTileUrl = function (coords) {
-              var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
-              var dbStorageKey = this._getStorageKey(url);
+            const tiles = this.ormService.getTileURLsAsObject(this.route);
+            const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
+            let that = this;
+            offlineLayer.getTileUrl = function (coords) {
+                var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
+                var dbStorageKey = this._getStorageKey(url);
 
-              if (tiles[dbStorageKey]) {
-                  return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles));
-              }
-              return Promise.resolve(url);
+                if (tiles[dbStorageKey]) {
+                    return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles));
+                }
+                return Promise.resolve(url);
 
-          };
+            };
 
-          offlineLayer.addTo(map);
+            offlineLayer.addTo(map);
 
-          this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
+            this.map.fitBounds(this.route.getViewBoundingBoxLatLng());
 
-          offlineLayer.on('offline:below-min-zoom-error', function () {
-              alert('Can not save tiles below minimum zoom level.');
-          });
+            offlineLayer.on('offline:below-min-zoom-error', function () {
+                alert('Can not save tiles below minimum zoom level.');
+            });
 
-          offlineLayer.on('offline:save-start', function (data) {
-              console.debug(data);
-              console.debug('Saving ' + data.nTilesToSave + ' tiles.');
-          });
+            offlineLayer.on('offline:save-start', function (data) {
+                console.debug(data);
+                console.debug('Saving ' + data.nTilesToSave + ' tiles.');
+            });
 
-          offlineLayer.on('offline:save-end', function () {
-              alert('All the tiles were saved.');
-          });
+            offlineLayer.on('offline:save-end', function () {
+                alert('All the tiles were saved.');
+            });
 
-          offlineLayer.on('offline:save-error', function (err) {
-              console.error('Error when saving tiles: ' + err);
-          });
+            offlineLayer.on('offline:save-error', function (err) {
+                console.error('Error when saving tiles: ' + err);
+            });
 
-          offlineLayer.on('offline:remove-start', function () {
-              console.debug('Removing tiles.');
-          });
+            offlineLayer.on('offline:remove-start', function () {
+                console.debug('Removing tiles.');
+            });
 
-          offlineLayer.on('offline:remove-end', function () {
-              alert('All the tiles were removed.');
-          });
+            offlineLayer.on('offline:remove-end', function () {
+                alert('All the tiles were removed.');
+            });
 
-          offlineLayer.on('offline:remove-error', function (err) {
-              console.error('Error when removing tiles: ' + err);
-          });
+            offlineLayer.on('offline:remove-error', function (err) {
+                console.error('Error when removing tiles: ' + err);
+            });
 
-          //centers map in the selected task
-          if(this.state.selectedTask != null){
-            this.centerSelectedTask()
-            /* todo: show only selectedTask */
-          }
-      }
-  }
+            //centers map in the selected task
+            if (this.state.selectedTask != null) {
+                this.centerSelectedTask()
+                /* todo: show only selectedTask */
+            }
+        }
+    }
 
-  /*
-  @description: Shows direction arrow pointing towards users geolocation if he isn't inside the current boundaries
-  @param userLatLng array - [lat, lng]
-   */
-  updateUserLocationArrow(userLatLng){
-       if(!userLatLng){
-           return;
-       }
-      let bBox = this.map.getBounds();
-      let alpha = (L as any).GeometryUtil.bearing(this.map.getCenter(), userLatLng);
-      let beta = (L as any).GeometryUtil.bearing(this.map.getCenter(), bBox.getNorthEast());
-      let dx2 = ((L as any).GeometryUtil.length([bBox.getNorthWest(), bBox.getNorthEast()])) / 2;
-      let dy2 = ((L as any).GeometryUtil.length([bBox.getSouthWest(), bBox.getNorthWest()])) / 2;
-      let length = 0;
+    /*
+    @description: Shows direction arrow pointing towards users geolocation if he isn't inside the current boundaries
+    @param userLatLng array - [lat, lng]
+     */
+    updateUserLocationArrow(userLatLng) {
+        if (!userLatLng) {
+            return;
+        }
+        let bBox = this.map.getBounds();
+        let alpha = (L as any).GeometryUtil.bearing(this.map.getCenter(), userLatLng);
+        let beta = (L as any).GeometryUtil.bearing(this.map.getCenter(), bBox.getNorthEast());
+        let dx2 = ((L as any).GeometryUtil.length([bBox.getNorthWest(), bBox.getNorthEast()])) / 2;
+        let dy2 = ((L as any).GeometryUtil.length([bBox.getSouthWest(), bBox.getNorthWest()])) / 2;
+        let length = 0;
 
-      // fix negative alpha values
-      if(alpha < 0){
-          alpha = alpha + 360;
-      }
+        // fix negative alpha values
+        if (alpha < 0) {
+            alpha = alpha + 360;
+        }
 
-      // Calculate length to bounding box in direction of own position
-      if(
-          (alpha >= beta && alpha <= (180 - beta)) ||
-          (alpha >= (180 + beta) && alpha <= (360 - beta))
-      ){
-          length = Math.abs(dx2 / Math.sin(alpha * (Math.PI / 180)));
-      }
-      else{
-          length = Math.abs(dy2 / Math.cos(alpha * (Math.PI / 180)));
-      }
-      let closestPoint = (L as any).GeometryUtil.destination(this.map.getCenter(), alpha, 0.90 * length);
-      this.userMarker.setLatLng(closestPoint);
-      this.userMarker.setRotationAngle(alpha);
-  }
+        // Calculate length to bounding box in direction of own position
+        if (
+            (alpha >= beta && alpha <= (180 - beta)) ||
+            (alpha >= (180 + beta) && alpha <= (360 - beta))
+        ) {
+            length = Math.abs(dx2 / Math.sin(alpha * (Math.PI / 180)));
+        } else {
+            length = Math.abs(dy2 / Math.cos(alpha * (Math.PI / 180)));
+        }
+        let closestPoint = (L as any).GeometryUtil.destination(this.map.getCenter(), alpha, 0.90 * length);
+        this.userMarker.setLatLng(closestPoint);
+        this.userMarker.setRotationAngle(alpha);
+    }
 
-  centerSelectedTask(){
-    this.map.panTo( [this.state.selectedTask.lat, this.state.selectedTask.lon] );
-  }
+    centerSelectedTask() {
+        this.map.panTo([this.state.selectedTask.lat, this.state.selectedTask.lon]);
+    }
 
-  goToNextTaskById(taskId: number, skip?: boolean){
-      this.taskList.forEach(task => {
-            if(task.id == taskId){
+    goToNextTaskById(taskId: number, skip?: boolean) {
+        this.taskList.forEach(task => {
+            if (task.id == taskId) {
                 this.goToNextTask(task, skip);
                 return;
             }
-      });
-  }
-
-  goToNextTask(task: Task, skip?: boolean){
-   //  setTimeout(async () => {
-    if(skip){
-        this.state.skippedTaskIds.push(task.id);
+        });
     }
-      console.debug("goToNextTask");
-    // task.position == index + 1
-    this.state.selectedTask = this.taskList[task.position % this.taskList.length];
-    this.state.visibleTasks[this.state.selectedTask.position] = true;
-    //this.redrawMarker();
-    this.centerSelectedTask();
-    this.saveMapStateToLocalStorage();
-   // }, 200);
-  }
 
-  async selectStartPoint(){
-    /* open the damn modal again */
-    let that = this;
-    console.log('Active Narrative is: ' + this.app.activeNarrative);
-    return this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.app.activeNarrative, this.navCtrl, function(selectedTask: Task){
+    goToNextTask(task: Task, skip?: boolean) {
+        if (skip) {
+            this.state.skippedTaskIds.push(task.id);
+        }
+        console.debug("goToNextTask");
+        this.state.selectedTask = this.taskList[task.position % this.taskList.length];
+        this.state.visibleTasks[this.state.selectedTask.position] = true;
+        this.centerSelectedTask();
+        this.saveMapStateToLocalStorage();
+    }
+
+    async selectStartPoint() {
+        /* open the damn modal again */
+        let that = this;
+        console.log('Active Narrative is: ' + this.app.activeNarrative);
+        return this.modalsService.presentTaskListModal(this.route, this.score, this.state, this.app.activeNarrative, this.navCtrl, function (selectedTask: Task) {
             console.debug("back in tasksMap");
             that.state.selectedTask = selectedTask;
             that.state.visibleTasks = {};
@@ -836,156 +797,171 @@ export class TasksMap implements OnInit, OnDestroy {
             that.state.isShowingAllTasks = false;
             that.centerSelectedTask();
             that.redrawMarker();
-            if(that.sessionInfo != null){
-            let details = JSON.stringify({title: that.state.selectedTask.title});
-            that.chatAndSessionService.addUserEvent("event_trail_start_from_task", details, that.state.selectedTask.id.toString());
+            if (that.sessionInfo != null) {
+                let details = JSON.stringify({title: that.state.selectedTask.title});
+                that.chatAndSessionService.addUserEvent("event_trail_start_from_task", details, that.state.selectedTask.id.toString());
+            }
+        });
+    }
+
+    showAllTasks() {
+        this.state.isShowingAllTasks = true;
+        this.redrawMarker();
+    }
+
+    displayResetTasksModal() {
+        this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
+            'no', () => {
+            },
+            'yes', async () => {
+                await this.resetTasks();
+                this.showGuidedTrailModalWithDelay(50);
+            }, this.app.activeNarrative);
+    }
+
+    resetTasks() {
+        return new Promise(resolve => {
+            this.ormService.deleteUserScore(this.score).then(async () => {
+                this.score = new Score();
+                this.state = this.navParams.data.tasksMapState = {
+                    selectedTask: null,
+                    isShowingAllTasks: true,
+                    visibleTasks: {},
+                    skippedTaskIds: [],
+                    selectedStartTask: false,
+                    showIntroModal: true,
+                    showGuidedTrailModal: true
+                };
+                if (!this.taskList) {
+                    this.taskList = await this.route.getTasks();
+                }
+                if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
+                    await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
+                }
+                this.route.completed = false;
+                this.route.completedDate = null;
+                await this.saveMapStateToLocalStorage();
+                await this.ormService.saveAndFireChangedEvent(this.route);
+                await this.redrawMarker();
+                resolve();
+            });
+        });
+    }
+
+    async sessionFinished() {
+        this.modalsService.showDialog('a_private_session_quit', 'a_private_session_quit_text',
+            'no', () => {
+            },
+            'yes', () => {
+                let modal = this.modalCtrl.create(MCMSessionFinishedModal,
+                    {
+                        session: this.sessionInfo.session,
+                        score: this.score,
+                        tasks: this.taskList,
+                        narrative: this.app.activeNarrative
+                    }, {cssClass: this.app.activeNarrative});
+                modal.present();
+                if (this.sessionInfo != null) {
+                    let details = JSON.stringify({});
+                    this.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                }
+                this.chatAndSessionService.exitActiveSession();
+                if (this.sessionTimeSubscription) {
+                    this.sessionTimeSubscription.unsubscribe();
+                }
+            }, this.app.activeNarrative);
+    }
+
+    async sessionKicked() {
+        let that = this;
+        let modal = this.modalCtrl.create(MCMIconModal, {
+            title: 'a_private_session_kicked',
+            message: 'a_private_session_kicked_text',
+            modalType: MCMModalType.hint,
+            type: 'text',
+            gamificationEnabled: false,
+            narrativeEnabled: this.route.isNarrativeEnabled(),
+            narrative: this.app.activeNarrative,
+            buttons: [
+                {
+                    title: 'a_g_ok',
+                    callback: function () {
+                        modal.dismiss();
+                        let finishedModal = that.modalCtrl.create(MCMSessionFinishedModal,
+                            {
+                                session: that.sessionInfo.session,
+                                score: that.score,
+                                tasks: that.taskList,
+                                narrative: this.app.activeNarrative
+                            }, {
+                                showBackdrop: true,
+                                enableBackdropDismiss: false
+                            });
+                        if (that.sessionInfo != null) {
+                            that.chatAndSessionService.exitActiveSession();
+                        }
+                        if (that.sessionTimeSubscription) {
+                            that.sessionTimeSubscription.unsubscribe();
+                        }
+                        finishedModal.present();
+                    }
+                },
+            ]
+        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+        modal.present();
+    }
+
+    async gototask(taskId: number, taskName: string, taskFormat: TaskFormat) {
+        if (this.taskBlocked) {
+            console.log('session in preparation.');
+            return;
         }
-    });
-    /* this.showOnlyCurrentlySelectedTadk(); */
-    /*   */
-  }
+        console.debug('taskId', taskId);
+        let that = this;
+        if (taskFormat === TaskFormat.GROUP) {
+            this.navCtrl.push('TaskGroupDetail', {
+                taskId: taskId,
+                headerTitle: taskName,
+                routeId: this.routeId,
+                goToNextTaskById: function (taskIdToSkip: number, skip?: boolean) {
+                    that.goToNextTaskById(taskIdToSkip, skip);
+                }
+            }, {}, () => {
+                // necessary because of bug which does not update URL
+                this.deepLinker.navChange('forward');
+            });
+        } else {
+            this.navCtrl.push('TaskDetail', {
+                taskId: taskId,
+                headerTitle: taskName,
+                routeId: this.routeId,
+                goToNextTaskById: function (taskIdToSkip: number, skip?: boolean) {
+                    that.goToNextTaskById(taskIdToSkip, skip);
+                }
+            }, {}, () => {
+                // necessary because of bug which does not update URL
+                this.deepLinker.navChange('forward');
+            });
+        }
+    }
 
-  showAllTasks() {
-      this.state.isShowingAllTasks = true;
-      this.redrawMarker();
-  }
+    async navigateToChat() {
+        console.debug('showChat');
+        if (this.sessionInfo != null) {
+            let details = JSON.stringify({});
+            this.chatAndSessionService.addUserEvent("event_trail_chat_open", details, "0");
+        }
+        this.navCtrl.push(ChatPage, {
+            val: 'chatseite',
+            headerTitle: this.sessionInfo.session.name
+        });
 
-  displayResetTasksModal() {
-      this.modalsService.showDialog('a_route_detail_settings_resetTasks', 'a_route_detail_settings_resetTasks_msg',
-          'no', () => {},
-          'yes', async () => {
-              await this.resetTasks();
-              this.showGuidedTrailModalWithDelay(50);
-          }, this.app.activeNarrative);
-  }
-
-  resetTasks(){
-      return new Promise(resolve => {
-          this.ormService.deleteUserScore(this.score).then(async () => {
-              this.score = new Score();
-              this.state = this.navParams.data.tasksMapState = {
-                  selectedTask: null,
-                  isShowingAllTasks: true,
-                  visibleTasks: {},
-                  skippedTaskIds: [],
-                  selectedStartTask: false,
-                  showIntroModal: true,
-                  showGuidedTrailModal: true
-              };
-              if (!this.taskList) {
-                  this.taskList = await this.route.getTasks();
-              }
-              if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
-                  await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
-              }
-              this.route.completed = false;
-              this.route.completedDate = null;
-              await this.saveMapStateToLocalStorage();
-              await this.ormService.saveAndFireChangedEvent(this.route);
-              await this.redrawMarker();
-              resolve();
-          });
-      });
-   }
-
-  async sessionFinished() {
-      this.modalsService.showDialog('a_private_session_quit', 'a_private_session_quit_text',
-          'no', () => {},
-          'yes', () => {
-              let modal = this.modalCtrl.create(MCMSessionFinishedModal,
-                  {
-                      session: this.sessionInfo.session,
-                      score: this.score,
-                      tasks: this.taskList,
-                      narrative: this.app.activeNarrative
-                  }, {cssClass: this.app.activeNarrative});
-              modal.present();
-              if(this.sessionInfo != null){
-                  let details = JSON.stringify({});
-                  this.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
-              }
-              this.chatAndSessionService.exitActiveSession();
-              if(this.sessionTimeSubscription){
-                  this.sessionTimeSubscription.unsubscribe();
-              }
-          },this.app.activeNarrative);
-
-      // btn = () => {
-      //     this.navCtrl.push('TasksMap', {'routeId' : this.route.id});
-      // };
-  }
-
-  async sessionKicked(){
-       let that = this;
-      let modal = this.modalCtrl.create(MCMIconModal, {
-          title: 'a_private_session_kicked',
-          message: 'a_private_session_kicked_text',
-          modalType: MCMModalType.hint,
-          type: 'text',
-          gamificationEnabled: false,
-          narrativeEnabled: this.route.isNarrativeEnabled(),
-          narrative: this.app.activeNarrative,
-          buttons: [
-              {
-                  title: 'a_g_ok',
-                  callback: function () {
-                      modal.dismiss();
-                      let finishedModal = that.modalCtrl.create(MCMSessionFinishedModal,
-                          {
-                              session: that.sessionInfo.session,
-                              score: that.score,
-                              tasks: that.taskList,
-                              narrative: this.app.activeNarrative
-                          },{
-                              showBackdrop: true,
-                              enableBackdropDismiss: false
-                          });
-                      if(that.sessionInfo != null){
-                          that.chatAndSessionService.exitActiveSession();
-                      }
-                      if(that.sessionTimeSubscription){
-                          that.sessionTimeSubscription.unsubscribe();
-                      }
-                      finishedModal.present();
-                  }
-              },
-          ]
-      }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-      modal.present();
-  }
-    task
-  async gototask(taskId: number, taskName: string) {
-       if(this.taskBlocked){
-           console.log('session in preparation.');
-           return;
-       }
-    console.debug('taskId', taskId);
-    let that = this;
-    this.navCtrl.push('TaskDetail', {taskId: taskId, headerTitle: taskName, routeId: this.routeId, goToNextTaskById: function(taskIdToSkip: number, skip?: boolean){
-            that.goToNextTaskById(taskIdToSkip, skip);
-        }}, {}, () => {
-      // necessary because of bug which does not update URL
-      this.deepLinker.navChange('forward');
-    });
-  }
-
-  async navigateToChat() {
-      console.debug('showChat');
-      if(this.sessionInfo != null){
-          let details = JSON.stringify({});
-          this.chatAndSessionService.addUserEvent("event_trail_chat_open", details, "0");
-      }
-    this.navCtrl.push(ChatPage, {
-        val: 'chatseite',
-        headerTitle: this.sessionInfo.session.name
-    });
-
-  }
+    }
 
     private sessionTime() {
         if (this.sessionInfo == null) {
             this.startInterval = false;
-            if(this.sessionTimeSubscription){
+            if (this.sessionTimeSubscription) {
                 this.sessionTimeSubscription.unsubscribe();
             }
             return;
@@ -996,7 +972,7 @@ export class TasksMap implements OnInit, OnDestroy {
         let endTimeInUnix = moment(session.ends_at).unix();
         let countdown = startTimeInUnix - currentTimeUnix;
         let countdownInMin = Math.floor(countdown / 60);
-        let timerInMin = Math.floor((endTimeInUnix -currentTimeUnix) / 60);
+        let timerInMin = Math.floor((endTimeInUnix - currentTimeUnix) / 60);
 
         if (currentTimeUnix > (startTimeInUnix - 3600) && currentTimeUnix < endTimeInUnix) {
             this.startInterval = true;
@@ -1006,7 +982,7 @@ export class TasksMap implements OnInit, OnDestroy {
                 this.countdownOrTimerForSession = countdownInMin;
                 this.taskBlocked = true;
             }
-            if (currentTimeUnix > startTimeInUnix && currentTimeUnix < endTimeInUnix ) {
+            if (currentTimeUnix > startTimeInUnix && currentTimeUnix < endTimeInUnix) {
                 this.showCountdownOrTimer = true;
                 this.countdownOrTimerForSession = timerInMin;
                 this.countdownBeforeSession = false;
@@ -1014,7 +990,7 @@ export class TasksMap implements OnInit, OnDestroy {
             }
         } else {
             this.startInterval = false;
-            if(this.sessionTimeSubscription){
+            if (this.sessionTimeSubscription) {
                 this.sessionTimeSubscription.unsubscribe();
             }
             this.showSessionEnds = true;
@@ -1066,14 +1042,54 @@ export class TasksMap implements OnInit, OnDestroy {
 
         switch (this.app.activeNarrative) {
             case 'pirates':
-                this.userPositionIcon = L.icon({iconUrl:"./assets/icons/pirates/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.userPositionArrow = L.icon({iconUrl:"./assets/icons/userDirection.png" , iconSize: [36, 36], iconAnchor: [18, 18], className:'marker userArrow'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-open.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
-                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-skipped.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
-                this.taskSavedIcon = L.icon({iconUrl:'assets/icons/marker-task-saved.png' , iconSize: [35, 48], iconAnchor: [17.5, 43], className:'marker'});
-                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-good.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
-                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-perfect.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
-                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/pirates/marker-task-failed.png' , iconSize: [50, 50], iconAnchor: [25, 25], className:'marker'});
+                this.userPositionIcon = L.icon({
+                    iconUrl: "./assets/icons/pirates/mapposition.png",
+                    iconSize: [100, 100],
+                    iconAnchor: [50, 50],
+                    className: 'marker userPosition'
+                });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = L.icon({
+                    iconUrl: "./assets/icons/userDirection.png",
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18],
+                    className: 'marker userArrow'
+                });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.taskOpenIcon = L.icon({
+                    iconUrl: 'assets/icons/pirates/marker-task-open.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskSkippedIcon = L.icon({
+                    iconUrl: 'assets/icons/pirates/marker-task-skipped.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskSavedIcon = L.icon({
+                    iconUrl: 'assets/icons/marker-task-saved.png',
+                    iconSize: [35, 48],
+                    iconAnchor: [17.5, 43],
+                    className: 'marker'
+                });
+                this.taskDoneIcon = L.icon({
+                    iconUrl: 'assets/icons/pirates/marker-task-good.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskDonePerfectIcon = L.icon({
+                    iconUrl: 'assets/icons/pirates/marker-task-perfect.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
+                this.taskFailedIcon = L.icon({
+                    iconUrl: 'assets/icons/pirates/marker-task-failed.png',
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25],
+                    className: 'marker'
+                });
 
                 this.taskOpenIcon.clusterColor = '#AA2000';
                 this.taskSkippedIcon.clusterColor = '#b2b2b2';
@@ -1083,15 +1099,60 @@ export class TasksMap implements OnInit, OnDestroy {
                 this.taskFailedIcon.clusterColor = '#333333';
                 break;
             default:
-                this.userPositionIcon = L.icon({iconUrl:"./assets/icons/mapposition.png" , iconSize: [100, 100], iconAnchor: [50, 50], className:'marker userPosition'});       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
-                this.userPositionArrow = L.icon({iconUrl:"./assets/icons/userDirection.png" , iconSize: [36, 36], iconAnchor: [18, 18], className:'marker userArrow'});
-                this.taskOpenIcon = L.icon({iconUrl:'assets/icons/map/task-open.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
-                this.taskSkippedIcon = L.icon({iconUrl:'assets/icons/map/task-skipped.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
-                this.taskSavedIcon = L.icon({iconUrl:'assets/icons/map/task-saved.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
-                this.taskDoneIcon = L.icon({iconUrl:'assets/icons/map/task-good.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
-                this.taskDonePerfectIcon = L.icon({iconUrl:'assets/icons/map/task-perfect.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
-                this.taskFailedIcon = L.icon({iconUrl:'assets/icons/map/task-failed.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
-                this.taskGroupIcon = L.icon({iconUrl:'assets/icons/map/task-group-open.svg' , iconSize: [34, 48], iconAnchor: [17, 43], className:'marker'});
+                this.userPositionIcon = L.icon({
+                    iconUrl: "./assets/icons/mapposition.png",
+                    iconSize: [100, 100],
+                    iconAnchor: [50, 50],
+                    className: 'marker userPosition'
+                });       //, shadowUrl: './assets/icons/icon_mapposition-shadow.png', shadowSize: [38, 41]});
+                this.userPositionArrow = L.icon({
+                    iconUrl: "./assets/icons/userDirection.png",
+                    iconSize: [36, 36],
+                    iconAnchor: [18, 18],
+                    className: 'marker userArrow'
+                });
+                this.taskOpenIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-open.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskSkippedIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-skipped.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskSavedIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-saved.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskDoneIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-good.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskDonePerfectIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-perfect.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskFailedIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-failed.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
+                this.taskGroupIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-group-open.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
                 this.taskOpenIcon.clusterColor = '#036D99';
                 this.taskSkippedIcon.clusterColor = '#B2B2B2';
                 this.taskSavedIcon.clusterColor = '#6E38B9';
@@ -1102,7 +1163,22 @@ export class TasksMap implements OnInit, OnDestroy {
         }
     }
 
+    getSolvedSubtaskCount(task: Task) {
+        let count = 0;
+        for (let subtask of task.getLegitSubtasks()) {
+            if (this.score.getTasksSaved().indexOf(subtask.id) > -1 ||
+                this.score.getTasksSolved().indexOf(subtask.id) > -1 ||
+                this.score.getTasksSolvedLow().indexOf(subtask.id) > -1 ||
+                this.score.getTasksFailed().indexOf(subtask.id) > -1
+            ) {
+             count++;
+            }
+        }
+        return count;
+    }
 
+
+    protected readonly TaskFormat = TaskFormat;
 }
 
 export interface TaskMapState {

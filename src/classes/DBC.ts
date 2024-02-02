@@ -81,10 +81,12 @@ export abstract class DBC {
             "create_date",
             "lang_code",
             "visible",
-            "task_id",
+            "parent_task_id",
             "position",
             "ar_link",
-            "code"
+            "code",
+            "task_format",
+            "position_in_parent"
         ],
         [
             "INTEGER",
@@ -114,7 +116,9 @@ export abstract class DBC {
             "INTEGER",
             "INTEGER",
             "VARCHAR",
-            "VARCHAR"
+            "VARCHAR",
+            "VARCHAR",
+            "INTEGER"
         ],
         [
             "PRIMARY KEY AUTOINCREMENT",
@@ -141,6 +145,8 @@ export abstract class DBC {
             "NOT NULL",
             "(2)",
             "(1) NOT NULL DEFAULT 1",
+            "",
+            "",
             "",
             "",
             "",

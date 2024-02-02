@@ -66,10 +66,6 @@
     <feature name="CDVIonicKeyboard">
         <param name="ios-package" onload="true" value="CDVIonicKeyboard" />
     </feature>
-    <allow-navigation href="ionic://*" />
-    <feature name="IonicWebView">
-        <param name="ios-package" value="CDVWKWebViewEngine" />
-    </feature>
     <feature name="LocalNotification">
         <param name="ios-package" value="APPLocalNotification" />
     </feature>
@@ -144,6 +140,10 @@
     </feature>
     <feature name="SQLitePlugin">
         <param name="ios-package" value="SQLitePlugin" />
+    </feature>
+    <allow-navigation href="ionic://*" />
+    <feature name="IonicWebView">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
     </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
@@ -281,10 +281,10 @@
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
-    <preference name="deployment-target" value="11.0" />
     <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="deployment-target" value="11.0" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="23" />
     <preference name="android-targetSdkVersion" value="33" />

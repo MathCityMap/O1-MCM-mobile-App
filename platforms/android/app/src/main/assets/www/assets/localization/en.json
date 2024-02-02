@@ -1396,5 +1396,13 @@
   "a_reportError_unknown": "An unexpected error occured. Try again later.",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
-  "a_onboarding_slide4_svg": "Check"
+  "a_onboarding_slide4_svg": "Check",
+
+
+  "a_taskgroup_task_group": "Task Group",
+  "a_taskgroup_tasks": "Tasks",
+  "a_taskgroup_score_total": "Total Score",
+  "a_taskgroup_skip_button": "Skip Task Group",
+  "a_taskgroup_skip_info": "Info",
+  "a_taskgroup_skip_info_text": "By skipping the task group all unresolved tasks will be set as „skipped“ and you can move on to the next main task. But you can return to try unresolved tasks part anytime!"
 }

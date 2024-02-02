@@ -5,7 +5,6 @@
     "ImageIO.framework": 1,
     "CoreLocation.framework": 5,
     "AVFoundation.framework": 3,
-    "WebKit.framework": 1,
     "UserNotifications.framework": 2,
     "CoreTelephony.framework": 1,
     "SafariServices.framework": 1,
@@ -14,5 +13,6 @@
     "Contacts.framework": 1,
     "AddressBook.framework": 1,
     "EventKit.framework": 2,
-    "CoreMotion.framework": 1
+    "CoreMotion.framework": 1,
+    "WebKit.framework": 1
 }
