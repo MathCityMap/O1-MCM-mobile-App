@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 1159:
+/***/ 1158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1162);
@@ -313,7 +313,7 @@ var SafariViewController = (function (_super) {
 
 /***/ }),
 
-/***/ 1171:
+/***/ 1170:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -321,8 +321,11 @@ var SafariViewController = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_modals_service__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__ = __webpack_require__(64);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -372,14 +375,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
+
+
 var TaskGroupDetail = /** @class */ (function () {
-    function TaskGroupDetail(navCtrl, navParams, ormService, modalsService, chatAndSessionService, deepLinker) {
+    function TaskGroupDetail(navCtrl, navParams, ormService, modalsService, chatAndSessionService, deepLinker, photoViewer, spinnerDialog) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.ormService = ormService;
         this.modalsService = modalsService;
         this.chatAndSessionService = chatAndSessionService;
         this.deepLinker = deepLinker;
+        this.photoViewer = photoViewer;
+        this.spinnerDialog = spinnerDialog;
         this.subtasks = [];
         this.groupIsFinished = false;
     }
@@ -409,7 +417,6 @@ var TaskGroupDetail = /** @class */ (function () {
                     case 4:
                         _f.sessionInfo = _g.sent();
                         this.subtasks = this.group.getSubtasksInOrder();
-                        console.log('IonViewWillEnter TaskGroupDetail');
                         this.groupIsFinished = this.checkIfGroupIsFinished();
                         return [2 /*return*/];
                 }
@@ -486,6 +493,17 @@ var TaskGroupDetail = /** @class */ (function () {
             return maxScore - (taskDetails.tries - 1) * penalty > minScore ? maxScore - (taskDetails.tries - 1) * penalty : minScore;
         }
     };
+    TaskGroupDetail.prototype.getTotalScoreForGroup = function () {
+        var score = 0;
+        for (var _i = 0, _a = this.subtasks; _i < _a.length; _i++) {
+            var task = _a[_i];
+            var taskDetails = this.score.getTaskStateForTask(task.id);
+            if (this.isTaskFinished(task) && !taskDetails.skipped) {
+                return taskDetails.score;
+            }
+        }
+        return score;
+    };
     TaskGroupDetail.prototype.openSubtask = function (task) {
         return this.navCtrl.push("TaskDetail", {
             taskId: task.id,
@@ -495,7 +513,7 @@ var TaskGroupDetail = /** @class */ (function () {
     };
     TaskGroupDetail.prototype.skipGroup = function () {
         var _this = this;
-        this.modalsService.showDialog('a_skipGroup', 'a_skipGroup_confirm', 'no', function () {
+        this.modalsService.showDialog('a_taskGroup_skip_button', 'a_taskGroup_skip_confirm', 'no', function () {
         }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
             var _i, _a, task, taskDetails, goToNextTaskById;
             return __generator(this, function (_b) {
@@ -549,20 +567,36 @@ var TaskGroupDetail = /** @class */ (function () {
         }
         return finished;
     };
+    TaskGroupDetail.prototype.openInPhotoviewer = function () {
+        var _this = this;
+        if (__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].isPluginAvailable(__WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__["a" /* PhotoViewer */])) {
+            this.spinnerDialog.show();
+            setTimeout(function () {
+                // use short timeout to let spinner dialog appear
+                _this.photoViewer.show(_this.group.getImageURL(true));
+                setTimeout(function () {
+                    // photoviewer doesn't have callback when user closes it => hide spinner in background
+                    _this.spinnerDialog.hide();
+                }, 1000);
+            }, 100);
+        }
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
     ], TaskGroupDetail.prototype, "content", void 0);
     TaskGroupDetail = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n        <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" />\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskgroup_task_group" | translate }}</ion-label>\n            </div>\n            <p *ngIf="group">{{group.description}}</p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskgroup_tasks" | translate }}</ion-label>\n            <ion-label *ngIf="group" class="count text-right">{{getSolvedSubtaskCount()}} / {{group.getLegitSubtasks().length}}</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div *ngFor="let subtask of subtasks" class="task-list-item detail-box" [ngClass]="getAdditionalSubtaskClasses(subtask)" (click)="openSubtask(subtask)">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" [src]="subtask.getImageURL()" />\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>{{subtask.title}}</h2>\n                    </div>\n                    <ion-label class="tag score">{{getScoreForTask(subtask)}}</ion-label>\n                </div>\n            </div>\n        </div>\n        <div class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskgroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">100</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card transparent skip" >\n            <button ion-button block default round color="danger" (click)="skipGroup()">{{\'a_taskgroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card secondary">\n            <ion-label>{{ "a_taskgroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskgroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
+            selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n        <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_task_group" | translate }}</ion-label>\n            </div>\n            <p *ngIf="group">{{group.description}}</p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskGroup_tasks" | translate }}</ion-label>\n            <ion-label *ngIf="group" class="count text-right">{{getSolvedSubtaskCount()}} / {{group.getLegitSubtasks().length}}</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div *ngFor="let subtask of subtasks" class="task-list-item detail-box" [ngClass]="getAdditionalSubtaskClasses(subtask)" (click)="openSubtask(subtask)">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" [src]="subtask.getImageURL()" onerror="this.style.opacity=\'0\'"/>\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>{{subtask.title}}</h2>\n                    </div>\n                    <ion-label class="tag score">{{getScoreForTask(subtask)}}</ion-label>\n                </div>\n            </div>\n        </div>\n        <div class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card transparent skip" >\n            <button ion-button block default round color="danger" (click)="skipGroup()">{{\'a_taskGroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card secondary">\n            <ion-label>{{ "a_taskGroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskGroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__services_orm_service__["a" /* OrmService */],
             __WEBPACK_IMPORTED_MODULE_3__services_modals_service__["a" /* ModalsService */],
             __WEBPACK_IMPORTED_MODULE_4__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* DeepLinker */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* DeepLinker */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__["a" /* PhotoViewer */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
     ], TaskGroupDetail);
     return TaskGroupDetail;
 }());

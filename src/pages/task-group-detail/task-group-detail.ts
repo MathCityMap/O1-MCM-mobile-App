@@ -6,6 +6,9 @@ import {Task} from "../../entity/Task";
 import {Score} from "../../entity/Score";
 import {ModalsService} from "../../services/modals-service";
 import {ChatAndSessionService, SessionInfo} from "../../services/chat-and-session-service";
+import {Helper} from "../../classes/Helper";
+import {PhotoViewer} from "@ionic-native/photo-viewer";
+import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 
 @IonicPage({
     segment: ':routeId/TasksGroupDetail/:taskId'
@@ -32,7 +35,9 @@ export class TaskGroupDetail {
         public ormService: OrmService,
         private modalsService: ModalsService,
         private chatAndSessionService: ChatAndSessionService,
-        private deepLinker: DeepLinker
+        private deepLinker: DeepLinker,
+        private photoViewer: PhotoViewer,
+        private spinnerDialog: SpinnerDialog
     ) {}
 
     async ionViewWillEnter() {
@@ -113,6 +118,17 @@ export class TaskGroupDetail {
         }
     }
 
+    getTotalScoreForGroup() {
+        let score = 0;
+        for (let task of this.subtasks) {
+            let taskDetails = this.score.getTaskStateForTask(task.id);
+            if (this.isTaskFinished(task) && !taskDetails.skipped) {
+                return taskDetails.score;
+            }
+        }
+        return score;
+    }
+
     openSubtask(task: Task) {
         return this.navCtrl.push("TaskDetail", {
             taskId: task.id,
@@ -122,7 +138,7 @@ export class TaskGroupDetail {
     }
 
     skipGroup() {
-        this.modalsService.showDialog('a_skipGroup', 'a_skipGroup_confirm',
+        this.modalsService.showDialog('a_taskGroup_skip_button', 'a_taskGroup_skip_confirm',
             'no', () => {
             },
             'yes', async () => {
@@ -159,5 +175,19 @@ export class TaskGroupDetail {
             this.score.addGroupFinished(this.groupId);
         }
         return finished;
+    }
+
+    openInPhotoviewer() {
+        if (Helper.isPluginAvailable(PhotoViewer)) {
+            this.spinnerDialog.show();
+            setTimeout(() => {
+                // use short timeout to let spinner dialog appear
+                this.photoViewer.show(this.group.getImageURL(true));
+                setTimeout(() => {
+                    // photoviewer doesn't have callback when user closes it => hide spinner in background
+                    this.spinnerDialog.hide();
+                }, 1000);
+            }, 100)
+        }
     }
 }
