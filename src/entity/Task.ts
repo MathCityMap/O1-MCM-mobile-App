@@ -3,6 +3,7 @@ import { Route } from "./Route";
 import { Helper } from '../classes/Helper';
 import { Task2Route } from './Task2Route';
 import { ImagesService } from '../services/images-service';
+import {OrmService} from "../services/orm-service";
 
 export enum TaskFormat {
     DEFAULT = "default",
@@ -366,6 +367,9 @@ export class Task {
     }
 
     getSubtasksInOrder(): Array<Task> {
+        if (!this.subtasks) {
+            return null;
+        }
         return this.getLegitSubtasks().sort((a, b) => {
             if (a.positionInParent > b.positionInParent) return 1;
             if (a.positionInParent < b.positionInParent) return -1;

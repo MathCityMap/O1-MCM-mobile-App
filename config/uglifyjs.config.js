@@ -32,7 +32,8 @@ module.exports = {
             'AddZoom16225449820000',
             'AddForceSubtaskAndArLink16552845000000',
             'AddTaskCode17026521590000',
-            'RenameParentIdAndAddTaskFormatAndPosition17067919700000']
+            'RenameParentIdAndAddTaskFormatAndPosition17067919700000',
+            'AddGroupsFinished17071440460000']
     },
 
     /**

@@ -42,6 +42,7 @@ import {
 } from '../migration/16552845000000-AddForceSubtaskAndArLink';
 import {AddTaskCode17026521590000} from "../migration/17026521590000-AddTaskCode";
 import {RenameParentIdAndAddTaskFormatAndPosition17067919700000} from "../migration/17067919700000-RenameParentIdAndAddTaskFormatAndPosition";
+import {AddGroupsFinished17071440460000} from "../migration/17071440460000-AddGroupsFinished";
 
 
 @Injectable()
@@ -92,7 +93,8 @@ export class OrmService {
             AddZoom16225449820000,
             AddForceSubtaskAndArLink16552845000000,
             AddTaskCode17026521590000,
-            RenameParentIdAndAddTaskFormatAndPosition17067919700000
+            RenameParentIdAndAddTaskFormatAndPosition17067919700000,
+            AddGroupsFinished17071440460000
         ];
         if (sqliteAvailable) {
             this.connection = await createConnection({
