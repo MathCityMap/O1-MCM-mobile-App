@@ -29,6 +29,9 @@ export class Score {
     @Column({name: 'tasks_saved'})
     private tasksSaved: string = '[]';
 
+    @Column({name: 'groups_finished'})
+    private groupsFinished: string = '[]';
+
     @Column({name: 'task_details'})
     private taskDetails: string = '[]';
 
@@ -119,6 +122,31 @@ export class Score {
     getTasksSaved() : Array<number>{
         let ids: Array<number> = [];
         let jsonIds = JSON.parse(this.tasksSaved);
+        jsonIds.forEach(id => {
+            ids.push(+id);
+        });
+        return ids;
+    }
+
+    setGroupsFinished(taskIds: Array<number>){
+        this.groupsFinished = JSON.stringify(taskIds);
+    }
+
+    addGroupFinished(taskId: number){
+        let idList = this.getGroupsFinished();
+        if(idList.indexOf(taskId) == -1){
+            idList.push(taskId);
+        }
+        this.setGroupsFinished(idList);
+    }
+
+    getGroupsFinished() : Array<number>{
+        let ids: Array<number> = [];
+        let jsonIds = JSON.parse(this.groupsFinished);
+        // Fallback for Scores created before this field existed
+        if (!jsonIds) {
+            return ids;
+        }
         jsonIds.forEach(id => {
             ids.push(+id);
         });

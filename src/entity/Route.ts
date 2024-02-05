@@ -1,7 +1,5 @@
-import {
-    Entity, PrimaryGeneratedColumn, Column, OneToMany
-} from "typeorm";
-import {Task} from './Task';
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Task, TaskFormat} from './Task';
 import {Helper} from '../classes/Helper';
 import {LatLng, LatLngBounds} from 'leaflet';
 import {Score} from "./Score";
@@ -164,9 +162,28 @@ export class Route {
     min_zoom: number
 
     async getTaskCount(): Promise<number> {
-        if(this.tasks) return this.tasks.length;
+        let allTasks: Task[];
+        if(this.tasks) {
+            allTasks = this.tasks;
+        }
         if (this.task2Routes) {
-            return this.task2Routes.length;
+            allTasks = this.task2Routes.map(t2R => {
+                return t2R.task;
+            });
+        }
+        if (allTasks) {
+            let tasks = allTasks.filter(task => {return task.taskFormat !== TaskFormat.GROUP});
+            let groups = allTasks.filter(task => {return task.taskFormat === TaskFormat.GROUP});
+            let count = tasks.length;
+            for (let group of groups) {
+                if (!group.getLegitSubtasks()) {
+                    // relation was not loaded yet -> reload group to get tasks
+                    count += (await OrmService.INSTANCE.findTaskById(group.id)).getLegitSubtasks().length;
+                } else {
+                    count += group.getLegitSubtasks().length;
+                }
+            }
+            return count;
         } else {
             // relation was not loaded yet -> reload route to get tasks
             await (await OrmService.INSTANCE.findRouteById(this.id)).getTaskCount();
@@ -427,7 +444,7 @@ export class Route {
         const task2Route =  this.task2Routes.find(task2Route => {
             return task2Route.task.id == taskId;
         });
-        return task2Route.forceSupportTask;
+        return task2Route ? task2Route.forceSupportTask : false;
     }
 
     getPathGeoJson() {

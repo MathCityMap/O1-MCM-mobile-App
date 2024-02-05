@@ -510,7 +510,7 @@ export class TaskDetail {
             this.unsubscribeCKEvents();
         }
         if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed) {
-            //This guaratees that the state is updated before the map opens and gets the information.
+            //This guarantees that the state is updated before the map opens and gets the information.
             if (this.navParams.get('goToNextTaskById')) {
                 let goToNextTaskById = this.navParams.get('goToNextTaskById');
                 goToNextTaskById(this.task.id, false);
@@ -1041,14 +1041,14 @@ export class TaskDetail {
                 return this.goToNextSubtask();
             }
         }
-        //This guaratees that the state is updated before the map opens and gets the information.
+        //This guarantees that the state is updated before the map opens and gets the information.
+        if (skip) {
+            this.taskDetails.skipped = true;
+            await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+        }
         if (this.navParams.get('goToNextTaskById')) {
             let goToNextTaskById = this.navParams.get('goToNextTaskById');
-            if (skip) {
-                this.taskDetails.skipped = true;
-                await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
-                goToNextTaskById(this.task.id, skip);
-            }
+            goToNextTaskById(this.task.id, skip);
         }
         // necessary because of bug which does not update URL
         this.deepLinker.navChange('back');

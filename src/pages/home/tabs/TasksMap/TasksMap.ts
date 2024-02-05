@@ -920,7 +920,7 @@ export class TasksMap implements OnDestroy {
         let that = this;
         if (taskFormat === TaskFormat.GROUP) {
             this.navCtrl.push('TaskGroupDetail', {
-                taskId: taskId,
+                groupId: taskId,
                 headerTitle: taskName,
                 routeId: this.routeId,
                 goToNextTaskById: function (taskIdToSkip: number, skip?: boolean) {
@@ -1196,7 +1196,8 @@ export class TasksMap implements OnDestroy {
             if (this.score.getTasksFailed().indexOf(task.id) > -1) {
                 return "failed";
             }
-            if (this.state.skippedTaskIds.indexOf(task.id) > -1) {
+            let taskDetails = this.score.getTaskStateForTask(task.id);
+            if (taskDetails.skipped) {
                 return "skipped";
             }
             return "";
@@ -1258,12 +1259,9 @@ export class TasksMap implements OnDestroy {
     getSolvedSubtaskCount(task: Task) {
         let count = 0;
         for (let subtask of task.getLegitSubtasks()) {
-            if (this.score.getTasksSaved().indexOf(subtask.id) > -1 ||
-                this.score.getTasksSolved().indexOf(subtask.id) > -1 ||
-                this.score.getTasksSolvedLow().indexOf(subtask.id) > -1 ||
-                this.score.getTasksFailed().indexOf(subtask.id) > -1
-            ) {
-             count++;
+            let taskDetails = this.score.getTaskStateForTask(subtask.id);
+            if (taskDetails.saved || taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || taskDetails.skipped) {
+                count++;
             }
         }
         return count;

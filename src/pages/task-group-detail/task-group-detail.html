@@ -1,65 +1,52 @@
 <mcm-header></mcm-header>
 <ion-content no-bounce class="has-header padding bottom">
     <div class="task-header">
-<!--        <img class="image" [src]="task.getImageURL()" />-->
-        <img class="image" src="https://image.newyorkcity.de/wp-content/uploads/2013/02/Central-Park.jpg.webp" />
+        <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>
     </div>
     <div class="task-content">
         <div class="transition"></div>
 
         <div class="card task">
             <div class="head">
-                <ion-label>{{ "a_taskgroup_task_group" | translate }}</ion-label>
+                <ion-label>{{ "a_taskGroup_task_group" | translate }}</ion-label>
             </div>
-            <p>This gotta be the introduction to a task group, a group of subtasks, that help figure out a mathematic problem from different angles. Fresh, frech and fun!
-<!--                {{task.group.description}}--></p>
+            <p *ngIf="group">{{group.description}}</p>
         </div>
 
         <div class="card task-list-head">
-            <ion-label>{{ "a_taskgroup_tasks" | translate }}</ion-label>
-            <ion-label class="count text-right">1 / 4</ion-label>
+            <ion-label>{{ "a_taskGroup_tasks" | translate }}</ion-label>
+            <ion-label *ngIf="group" class="count text-right">{{getSolvedSubtaskCount()}} / {{group.getLegitSubtasks().length}}</ion-label>
         </div>
         <div class="card task-list">
             <div class="task-list-container">
-                <div class="task-list-item detail-box solved good">
+                <div *ngFor="let subtask of subtasks" class="task-list-item detail-box" [ngClass]="getAdditionalSubtaskClasses(subtask)" (click)="openSubtask(subtask)">
                     <div tappable class="image-container">
                         <div class="cover">
-                            <img alt="preview" class="thumb" src="https://cdn.britannica.com/95/156695-131-FF89C9FA/oak-tree.jpg" />
+                            <img alt="preview" class="thumb" [src]="subtask.getImageURL()" onerror="this.style.opacity='0'"/>
                         </div>
                     </div>
                     <div class="text-container">
-                        <h2>Task Title</h2>
+                        <h2>{{subtask.title}}</h2>
                     </div>
-                    <ion-label class="tag score">25</ion-label>
-                </div>
-                <div class="task-list-item detail-box">
-                    <div tappable class="image-container">
-                        <div class="cover">
-                            <img alt="preview" class="thumb" src="https://cdn.britannica.com/95/156695-131-FF89C9FA/oak-tree.jpg" />
-                        </div>
-                    </div>
-                    <div class="text-container">
-                        <h2>Task Title</h2>
-                    </div>
-                    <ion-label class="tag score">25</ion-label>
+                    <ion-label class="tag score">{{getScoreForTask(subtask)}}</ion-label>
                 </div>
             </div>
         </div>
         <div class="card task-list-evaluation evaluation">
             <div class="head">
-                <ion-label>{{ "a_taskgroup_score_total" | translate }}</ion-label>
-                <ion-label class="tag score">100</ion-label>
+                <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>
+                <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>
             </div>
         </div>
 
-        <div class="card transparent skip">
-            <button ion-button block default round color="danger">{{'a_taskgroup_skip_button' | translate }}</button>
+        <div *ngIf="!groupIsFinished" class="card transparent skip" >
+            <button ion-button block default round color="danger" (click)="skipGroup()">{{'a_taskGroup_skip_button' | translate }}</button>
         </div>
 
-        <div class="card secondary">
-            <ion-label>{{ "a_taskgroup_skip_info" | translate }}</ion-label>
+        <div *ngIf="!groupIsFinished" class="card secondary">
+            <ion-label>{{ "a_taskGroup_skip_info" | translate }}</ion-label>
             <p>
-                {{ "a_taskgroup_skip_info_text" | translate }}
+                {{ "a_taskGroup_skip_info_text" | translate }}
             </p>
         </div>
     </div>

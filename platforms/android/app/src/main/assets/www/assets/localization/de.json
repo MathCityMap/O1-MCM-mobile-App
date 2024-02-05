@@ -1393,5 +1393,21 @@
   "a_reportType_values_wrong": "Erhobene Messwerte in Musterlösung stimmen nicht",
   "a_reportType_solution_wrong": "Anderer Fehler in Musterlösung",
   "a_reportType_misc": "Sonstiges",
-  "a_reportError_unknown": "Es ist ein unerwarteter Fehler aufgetreten, versuche es später erneut."
+  "a_reportError_unknown": "Es ist ein unerwarteter Fehler aufgetreten, versuche es später erneut.",
+  "p_content_gallery": "Content Gallery",
+  "p_learning_group": "Learning Group",
+  "p_sa_student_tasks": "Student Tasks",
+  "p_dc_onboarding_restart_tooltip": "Show the tutorial once again",
+  "p_onboard_basic_desc": "First, give the your task a title and describe what needs to be done.",
+  "p_onboard_pos_desc": "Then select the position for your task clicking on the map on the right side.",
+  "p_onboard_sol_desc": "Choose a task format and define the parameters of your task as well as a sample solution.",
+  "p_onboard_hint_desc": "If you want, you can provide up to 3 hints to support other to solve your task.",
+  "p_onboard_create_desc": "After you filled all the fields, just click on the button to create you task!",
+  "a_taskGroup_task_group": "Task Group",
+  "a_taskGroup_tasks": "Tasks",
+  "a_taskGroup_score_total": "Total Score",
+  "a_taskGroup_skip_button": "Skip Task Group",
+  "a_taskGroup_skip_info": "Info",
+  "a_taskGroup_skip_info_text": "By skipping the task group all unresolved tasks will be set as „skipped“ and you can move on to the next main task. But you can return to try unresolved tasks part anytime!",
+  "a_taskGroup_skip_confirm": "Do you want to skip all unsolved tasks in this group?"
 }
