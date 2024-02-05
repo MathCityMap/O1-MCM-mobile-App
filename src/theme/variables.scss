@@ -41,7 +41,7 @@ $colors: (
   mid-grey:       #b2b2b2,
   light-grey:     #e5e5e5,
   light-grey-tint:#F2F2F2,
-  saved:          #6E38B9,
+  saved:          #7D3FD4,
 
   fab-color-1:    #034562,
   fab-color-2:    #036D99,
@@ -137,7 +137,7 @@ $tabs:(
 $ratings:(
     perfect: color($colors, success),
     good: color($colors, secondary),
-    failed: color($colors, error),
+    failed: color($colors, danger),
     skipped: color($colors, grey),
     saved: color($colors, saved),
 );

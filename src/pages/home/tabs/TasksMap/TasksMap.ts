@@ -1188,10 +1188,10 @@ export class TasksMap implements OnDestroy {
                 return "saved";
             }
             if (this.score.getTasksSolved().indexOf(task.id) > -1) {
-                return "solved";
+                return "perfect";
             }
             if (this.score.getTasksSolvedLow().indexOf(task.id) > -1) {
-                return "solved-low";
+                return "good";
             }
             if (this.score.getTasksFailed().indexOf(task.id) > -1) {
                 return "failed";
@@ -1202,34 +1202,11 @@ export class TasksMap implements OnDestroy {
             return "";
         }
         const subtasks = group.getSubtasksInOrder();
-        const svg = `<svg viewBox="0 0 37 51.024" xmlns="http://www.w3.org/2000/svg">
+        const svg = `<svg viewBox="0 0 38 51.024" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <style>
-                                    .cls-1 {
-                                        fill: #036d99;
-                                    }
-                                    .cls-3 {
+                                    .shadow {
                                         filter: url(#Pfad_177)
-                                    }
-                                    #segmented-circle {
-                                        stroke: rgb(255, 255, 255);
-                                        stroke-width: 35;
-                                        fill: none;
-                                    }
-                                    .saved {
-                                        stroke: #6e38b9
-                                    }
-                                    .solved {
-                                        stroke: #08bb27
-                                    }
-                                    .solved-low {
-                                        stroke: #f3b100
-                                    }
-                                    .failed {
-                                        stroke: #f35800;
-                                    }
-                                    .skipped {
-                                        stroke: #b2b2b2
                                     }
                                 </style>
                                 <filter id="Pfad_177" x="0" y="0" width="37" height="51.024" filterUnits="userSpaceOnUse">
@@ -1241,16 +1218,16 @@ export class TasksMap implements OnDestroy {
                                 </filter>
                             </defs>
                             <g transform="translate(1.5 0.5)">
-                                <g class="cls-3" transform="matrix(1, 0, 0, 1, -1.5, -0.5)" style="">
-                                    <path  class="cls-1" d="M-717.081,1567.17c-8.481,0-17.066,6-17.066,17.481,0,5.182,2.562,11.775,7.615,19.594a99.025,99.025,0,0,0,7.408,10.014,2.7,2.7,0,0,0,2.038.935h.005a2.7,2.7,0,0,0,2.037-.927,94.877,94.877,0,0,0,7.35-9.921c5.008-7.774,7.547-14.4,7.547-19.694C-700.147,1574.358-707.11,1567.17-717.081,1567.17Z" transform="translate(735.65 -1566.67)"></path>
+                                <g class="shadow" transform="matrix(1, 0, 0, 1, -1.5, -0.5)" style="">
+                                    <path class="marker-base" d="M-717.081,1567.17c-8.481,0-17.066,6-17.066,17.481,0,5.182,2.562,11.775,7.615,19.594a99.025,99.025,0,0,0,7.408,10.014,2.7,2.7,0,0,0,2.038.935h.005a2.7,2.7,0,0,0,2.037-.927,94.877,94.877,0,0,0,7.35-9.921c5.008-7.774,7.547-14.4,7.547-19.694C-700.147,1574.358-707.11,1567.17-717.081,1567.17Z" transform="translate(735.65 -1566.67)"></path>
                                 </g>
-                                <text style="white-space: pre; fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 18px;" x="12" y="23">${subtasks.length}</text>
-                                <g id="segmented-circle" class="circle-container" transform="matrix(0.088463, 0, 0, 0.088463, -29, -5)">
+                                <text class="segment-counter" x="17" y="22.5">${subtasks.length}</text>
+                                <g class="segment-container" transform="matrix(0.088463, 0, 0, 0.088463, -29, -5)">
                                 </g>
                             </g>
                         </svg>`
         const div = document.createElement('div')
-        div.classList.add("group-marker");
+        div.classList.add("marker-task-group");
         div.innerHTML = svg;
         let segmentLength = 360 / subtasks.length;
         let prevStartAngle = 0;
@@ -1258,22 +1235,22 @@ export class TasksMap implements OnDestroy {
         let segment = "";
 
         if (subtasks.length === 1) {
-            segment = `<circle cx="520" cy="244" r="130" class="${getClassStringForSubtask(subtasks[0])}"/>`
+            segment = `<circle cx="520" cy="244" r="140" class="${getClassStringForSubtask(subtasks[0])}"/>`
         } else {
             for (let i = 1; i <= subtasks.length; i++) {
                 prevStartAngle = prevEndAngle;
                 prevEndAngle = segmentLength * i;
-                segment += `<path class="${getClassStringForSubtask(subtasks[i-1])}" d="${describeArc(520, 244, 130, prevStartAngle, prevEndAngle)}"/>`
+                segment += `<path class="segment-part ${getClassStringForSubtask(subtasks[i-1])}" d="${describeArc(520, 244, 140, prevStartAngle, prevEndAngle)}"/>`
             }
         }
 
-        const circleContainer = div.getElementsByClassName('circle-container')[0];
+        const circleContainer = div.getElementsByClassName('segment-container')[0];
         circleContainer.innerHTML = segment;
 
         return new L.DivIcon({
             html: div.outerHTML,
-            iconSize: [34, 48],
-            iconAnchor: [17, 43],
+            iconSize: [38, 54],
+            iconAnchor: [19, 43],
             className: 'marker'
         });
     }
