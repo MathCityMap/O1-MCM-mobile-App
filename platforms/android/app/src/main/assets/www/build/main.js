@@ -4725,7 +4725,7 @@ var MCMReportProblemModal = /** @class */ (function () {
     ], MCMReportProblemModal.prototype, "input", void 0);
     MCMReportProblemModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/'<div class="modal card icon report has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-feedback.svg"/>\n        <h2>{{ \'a_task_popup_title\' | translate }}</h2>\n        <p class="text-center">{{ \'a_task_popup_text\' | translate }}</p>\n        <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>\n\n        <ion-item>\n            <ion-select multiple="true" interface="alert" [(ngModel)]="selectedProblems">\n                <ion-option *ngFor="let problem of problemTypes" [value]="problem.key">{{problem.value | translate}}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-label>{{ "a_task_popup_information" | translate }}</ion-label>\n        <ion-item>\n            <textarea #input item-content name="background" [(ngModel)]="information" rows="3"></textarea>\n        </ion-item>\n\n        <ion-item class="image">\n            <ion-label>{{ "a_task_popup_image" | translate }}</ion-label>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromGallery()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n            <button *ngIf="image" ion-button clear icon-only round end item-content class="remove" (click)="resetImage()">\n                <ion-icon name="md-close"></ion-icon>\n            </button>\n            <div *ngIf="image" item-content  class="image-file">\n                <img [src]="image.base64" alt="image-preview"/>\n            </div>\n        </ion-item>\n\n        <span *ngIf="showError">\n            {{ \'a_reportError_unknown\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!selectedProblems || selectedProblems.length == 0 || !information || information == \'\'" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/
+            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/'<div class="modal card icon report has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-feedback.svg"/>\n        <h2>{{ \'a_task_popup_title\' | translate }}</h2>\n        <p class="text-center">{{ \'a_task_popup_text\' | translate }}</p>\n        <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>\n\n        <ion-item>\n            <ion-select multiple="true" [(ngModel)]="selectedProblems" [selectOptions]="{title: (\'a_task_popup_reason\' | translate)}" [cancelText]="\'a_alert_cancel\' | translate" [okText]="\'a_g_ok\' | translate">\n                <ion-option *ngFor="let problem of problemTypes" [value]="problem.key">{{problem.value | translate}}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-label>{{ "a_task_popup_information" | translate }}</ion-label>\n        <ion-item>\n            <textarea #input item-content name="background" [(ngModel)]="information" rows="3"></textarea>\n        </ion-item>\n\n        <ion-item class="image">\n            <ion-label>{{ "a_task_popup_image" | translate }}</ion-label>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromGallery()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n            <button *ngIf="image" ion-button clear icon-only round end item-content class="remove" (click)="resetImage()">\n                <ion-icon name="md-close"></ion-icon>\n            </button>\n            <div *ngIf="image" item-content  class="image-file">\n                <img [src]="image.base64" alt="image-preview"/>\n            </div>\n        </ion-item>\n\n        <span *ngIf="showError">\n            {{ \'a_reportError_unknown\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!selectedProblems || selectedProblems.length == 0 || !information || information == \'\'" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */],
@@ -4773,7 +4773,7 @@ var map = {
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1154,
+		1155,
 		6
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
@@ -4781,19 +4781,19 @@ var map = {
 		8
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1161,
+		1158,
 		1
 	],
 	"../pages/info/info.module": [
-		1155,
+		1159,
 		5
 	],
 	"../pages/onboarding/onboarding.module": [
-		1159,
+		1156,
 		4
 	],
 	"../pages/portal/portal.module": [
-		1156,
+		1154,
 		7
 	],
 	"../pages/settings/settings.module": [
@@ -4805,7 +4805,7 @@ var map = {
 		0
 	],
 	"../pages/task-group-detail/task-group-detail.module": [
-		1158,
+		1161,
 		2
 	]
 };
@@ -10392,7 +10392,7 @@ var MCMRouteByCodeModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 647:
+/***/ 646:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10431,7 +10431,7 @@ var MCMIntroModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 648:
+/***/ 647:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10519,7 +10519,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 649:
+/***/ 648:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10975,11 +10975,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(587);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(646);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(645);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(593);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(594);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(647);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(589);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(302);
@@ -10992,11 +10992,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(591);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(448);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(649);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(592);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(586);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(648);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11088,14 +11088,14 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
