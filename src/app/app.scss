@@ -1369,13 +1369,15 @@ ion-alert{
     &.multiple-select-alert{
         .alert-checkbox{
             &-group{
-                max-height: 66vh;
-            }
-            .icon{
-                top: 1px;
+                max-height: 70vh;
             }
             &-button{
-                align-items: baseline;
+                .button-inner{
+                    align-items: baseline;
+                }
+            }
+            &-icon{
+                top: 1px;
             }
             &-label{
                 white-space: normal;
