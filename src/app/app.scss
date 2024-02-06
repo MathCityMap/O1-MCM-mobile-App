@@ -1293,6 +1293,11 @@ ion-modal {
                 textarea{
                     width: 100%;
                 }
+                .select{
+                    &-text{
+                        white-space: normal;
+                    }
+                }
                 &.image{
                     .item-inner{
                         padding-right: 0;
@@ -1355,6 +1360,26 @@ ion-modal {
             }
             &.clean-fraction {
                 transform: translateY(-25%);
+            }
+        }
+    }
+}
+
+ion-alert{
+    &.multiple-select-alert{
+        .alert-checkbox{
+            &-group{
+                max-height: 66vh;
+            }
+            .icon{
+                top: 1px;
+            }
+            &-button{
+                align-items: baseline;
+            }
+            &-label{
+                white-space: normal;
+                font-family: 'NunitoSemibold', Arial, sans-serif;
             }
         }
     }
