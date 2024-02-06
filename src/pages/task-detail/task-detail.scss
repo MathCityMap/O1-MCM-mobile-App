@@ -210,9 +210,11 @@ page-task-detail, page-task-group-detail {
             }
 
             .feedback{
-                margin-top: 20px;
-                border-top: 2px dotted #a6a6a6;
-                padding-top: 20px;
+                &:not(:first-child){
+                    border-top: 2px dotted #a6a6a6;
+                    margin-top: 20px;
+                    padding-top: 20px;
+                }
                 .label{
                     display: flex;
                     justify-content: space-between;
