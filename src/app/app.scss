@@ -1367,6 +1367,9 @@ ion-modal {
 
 ion-alert{
     &.multiple-select-alert{
+        .alert-wrapper{
+            max-width: 80vw;
+        }
         .alert-checkbox{
             &-group{
                 max-height: 70vh;
