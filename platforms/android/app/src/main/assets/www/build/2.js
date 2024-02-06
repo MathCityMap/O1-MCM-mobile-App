@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 1161:
+/***/ 1159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1162);
@@ -313,7 +313,7 @@ var SafariViewController = (function (_super) {
 
 /***/ }),
 
-/***/ 1176:
+/***/ 1171:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -459,17 +459,22 @@ var TaskGroupDetail = /** @class */ (function () {
         var classString = "";
         var taskDetails = this.score.getTaskStateForTask(task.id);
         if (this.isTaskFinished(task)) {
-            classString += "solved";
+            if (!taskDetails.skipped) {
+                classString += "solved";
+            }
             if (taskDetails.solved) {
                 classString += " perfect";
             }
-            if (taskDetails.solvedLow || taskDetails.saved) {
+            else if (taskDetails.solvedLow) {
                 classString += " good";
             }
-            if (taskDetails.failed) {
+            else if (taskDetails.saved) {
+                classString += " saved";
+            }
+            else if (taskDetails.failed) {
                 classString += " failed";
             }
-            if (taskDetails.skipped) {
+            else if (taskDetails.skipped) {
                 classString += " skipped";
             }
         }
@@ -477,7 +482,7 @@ var TaskGroupDetail = /** @class */ (function () {
     };
     TaskGroupDetail.prototype.getScoreForTask = function (task) {
         var taskDetails = this.score.getTaskStateForTask(task.id);
-        if (this.isTaskFinished(task) && !taskDetails.skipped) {
+        if (this.isTaskFinished(task) && (!taskDetails.skipped)) {
             return taskDetails.score;
         }
         var maxScore = task.solutionType !== 'info' ? 100 : 0;
@@ -587,7 +592,7 @@ var TaskGroupDetail = /** @class */ (function () {
     ], TaskGroupDetail.prototype, "content", void 0);
     TaskGroupDetail = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n        <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_task_group" | translate }}</ion-label>\n            </div>\n            <p *ngIf="group">{{group.description}}</p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskGroup_tasks" | translate }}</ion-label>\n            <ion-label *ngIf="group" class="count text-right">{{getSolvedSubtaskCount()}} / {{group.getLegitSubtasks().length}}</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div *ngFor="let subtask of subtasks" class="task-list-item detail-box" [ngClass]="getAdditionalSubtaskClasses(subtask)" (click)="openSubtask(subtask)">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" [src]="subtask.getImageURL()" onerror="this.style.opacity=\'0\'"/>\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>{{subtask.title}}</h2>\n                    </div>\n                    <ion-label class="tag score">{{getScoreForTask(subtask)}}</ion-label>\n                </div>\n            </div>\n        </div>\n        <div class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card transparent skip" >\n            <button ion-button block default round color="danger" (click)="skipGroup()">{{\'a_taskGroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card secondary">\n            <ion-label>{{ "a_taskGroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskGroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
+            selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n        <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_task_group" | translate }}</ion-label>\n            </div>\n            <p *ngIf="group">{{group.description}}</p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskGroup_tasks" | translate }}</ion-label>\n            <ion-label *ngIf="group" class="count text-right">{{getSolvedSubtaskCount()}} / {{group.getLegitSubtasks().length}}</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div *ngFor="let subtask of subtasks" class="task-list-item detail-box" [ngClass]="getAdditionalSubtaskClasses(subtask)" (click)="openSubtask(subtask)">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" [src]="subtask.getImageURL()" onerror="this.style.opacity=\'0\'"/>\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>{{subtask.title}}</h2>\n                    </div>\n                    <ion-label *ngIf="route && route.isAnswerFeedbackEnabled()" class="tag score">{{getScoreForTask(subtask)}}</ion-label>\n                </div>\n            </div>\n        </div>\n        <div *ngIf="route && route.isAnswerFeedbackEnabled()" class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card transparent skip" >\n            <button ion-button block default round color="danger" (click)="skipGroup()">{{\'a_taskGroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card secondary">\n            <ion-label>{{ "a_taskGroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskGroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],

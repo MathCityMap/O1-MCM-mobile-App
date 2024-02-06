@@ -28,11 +28,11 @@
                     <div class="text-container">
                         <h2>{{subtask.title}}</h2>
                     </div>
-                    <ion-label class="tag score">{{getScoreForTask(subtask)}}</ion-label>
+                    <ion-label *ngIf="route && route.isAnswerFeedbackEnabled()" class="tag score">{{getScoreForTask(subtask)}}</ion-label>
                 </div>
             </div>
         </div>
-        <div class="card task-list-evaluation evaluation">
+        <div *ngIf="route && route.isAnswerFeedbackEnabled()" class="card task-list-evaluation evaluation">
             <div class="head">
                 <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>
                 <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>

@@ -20,7 +20,7 @@ import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 export class TaskGroupDetail {
     @ViewChild(Content) content: Content;
 
-    private route: Route;
+    protected route: Route;
     private routeId: number;
     private groupId: number;
     protected group: Task;
@@ -83,17 +83,18 @@ export class TaskGroupDetail {
         let classString = "";
         const taskDetails = this.score.getTaskStateForTask(task.id);
         if (this.isTaskFinished(task)) {
-            classString += "solved";
+            if (!taskDetails.skipped) {
+                classString += "solved";
+            }
             if (taskDetails.solved) {
                 classString += " perfect";
-            }
-            if (taskDetails.solvedLow || taskDetails.saved) {
+            } else if (taskDetails.solvedLow) {
                 classString += " good";
-            }
-            if (taskDetails.failed) {
+            } else if (taskDetails.saved) {
+                classString += " saved";
+            } else if (taskDetails.failed) {
                 classString += " failed";
-            }
-            if (taskDetails.skipped) {
+            } else if (taskDetails.skipped) {
                 classString += " skipped";
             }
         }
@@ -102,7 +103,7 @@ export class TaskGroupDetail {
 
     getScoreForTask(task: Task) {
         const taskDetails = this.score.getTaskStateForTask(task.id);
-        if (this.isTaskFinished(task) && !taskDetails.skipped) {
+        if (this.isTaskFinished(task) && (!taskDetails.skipped)) {
             return taskDetails.score;
         }
         const maxScore = task.solutionType !== 'info' ? 100 : 0;

@@ -987,6 +987,7 @@ export class TaskDetail {
                 this.score.addFailedTask(this.task.id);
             }
             this.taskDetails.score = 0;
+            this.taskDetails.skipped = false;
             this.taskDetails.failed = true;
             this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
         }

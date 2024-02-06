@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1158:
+/***/ 1160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(237);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -525,7 +525,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1170:
+/***/ 1172:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -548,23 +548,23 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__ = __webpack_require__(1166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient__ = __webpack_require__(1171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient__ = __webpack_require__(1173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_conic_gradient__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_images_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__app_app_component__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(645);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_chat_and_session_service__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -703,17 +703,17 @@ var TasksMap = /** @class */ (function () {
     TasksMap_1 = TasksMap;
     TasksMap.prototype.isTrailCompleted = function () {
         if (this.route.isAnswerFeedbackEnabled()) {
-            return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
+            return (this.scoreTaskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.scoreTaskList.length);
         }
         else {
-            return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.taskList.length;
+            return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.scoreTaskList.length;
         }
     };
     TasksMap.prototype.showTrailCompletedAlert = function () {
         var that = this;
         var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */], {
             score: this.score,
-            tasks: this.taskList,
+            tasks: this.scoreTaskList,
             narrative: this.app.activeNarrative,
             callback: function () {
                 modal.dismiss().then(function () {
@@ -778,9 +778,9 @@ var TasksMap = /** @class */ (function () {
     TasksMap.prototype.ionViewDidEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var details, _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var details, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         console.log('TasksMap ionViewDidEnter()');
                         if (!(this.sessionInfo != null)) return [3 /*break*/, 7];
@@ -790,13 +790,12 @@ var TasksMap = /** @class */ (function () {
                         this.showAllTasks();
                         this.resetTasks();
                         if (!(this.sessionInfo.sessionUser.assigned_task_id != 0)) return [3 /*break*/, 3];
-                        _a = this;
-                        return [4 /*yield*/, this.route.getTasks()];
+                        return [4 /*yield*/, this.refreshTaskLists()];
                     case 1:
-                        _a.taskList = _c.sent();
+                        _b.sent();
                         return [4 /*yield*/, this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id)];
                     case 2:
-                        _c.sent();
+                        _b.sent();
                         if (this.route.isNarrativeEnabled()) {
                             this.showIntroModal().then(function () {
                                 _this.state.showIntroModal = false;
@@ -810,16 +809,16 @@ var TasksMap = /** @class */ (function () {
                                 _this.showGuidedTrailModalWithDelay(500);
                             });
                         }
-                        _c.label = 4;
+                        _b.label = 4;
                     case 4:
                         this.saveMapStateToLocalStorage();
                         this.sessionInfo.started = true;
                         return [4 /*yield*/, this.chatAndSessionService.updateSession(this.sessionInfo)];
                     case 5:
-                        _c.sent();
+                        _b.sent();
                         return [4 /*yield*/, this.redrawMarker()];
                     case 6:
-                        _c.sent();
+                        _b.sent();
                         return [2 /*return*/];
                     case 7:
                         if (!this.navParams.data.tasksMapState) return [3 /*break*/, 8];
@@ -830,10 +829,10 @@ var TasksMap = /** @class */ (function () {
                         }
                         return [3 /*break*/, 10];
                     case 8:
-                        _b = this;
+                        _a = this;
                         return [4 /*yield*/, this.getMapStateFromLocalStorage()];
                     case 9:
-                        _b.state = _c.sent();
+                        _a.state = _b.sent();
                         console.log(this.state);
                         if (this.taskToSkip) {
                             this.goToNextTask(this.taskToSkip, true);
@@ -878,10 +877,10 @@ var TasksMap = /** @class */ (function () {
                                 this.showGuidedTrailModalWithDelay(500);
                             }
                         }
-                        _c.label = 10;
+                        _b.label = 10;
                     case 10: return [4 /*yield*/, this.redrawMarker()];
                     case 11:
-                        _c.sent();
+                        _b.sent();
                         return [2 /*return*/];
                 }
             });
@@ -904,19 +903,18 @@ var TasksMap = /** @class */ (function () {
     };
     TasksMap.prototype.forceStartFromTask = function (taskId) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, selectedTask;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var selectedTask;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        if (!(!this.taskList || this.taskList.length === 0)) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.route.getTasks()];
+                        if (!(!this.mapTaskList || this.mapTaskList.length === 0)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.refreshTaskLists()];
                     case 1:
-                        _a.taskList = _b.sent();
-                        _b.label = 2;
+                        _a.sent();
+                        _a.label = 2;
                     case 2:
-                        console.log('Force Start From Task', this.taskList);
-                        selectedTask = this.taskList.filter(function (x) { return x.id == taskId; }).pop();
+                        console.log('Force Start From Task', this.mapTaskList);
+                        selectedTask = this.mapTaskList.filter(function (x) { return x.id == taskId; }).pop();
                         this.state.selectedTask = selectedTask;
                         console.debug("forceStartFromTask");
                         this.state.visibleTasks = {};
@@ -1039,9 +1037,9 @@ var TasksMap = /** @class */ (function () {
     TasksMap.prototype.redrawMarker = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var _i, _a, layer, markerGroup, _b, geoJSON, pathGroup, _loop_1, this_1, i;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var _i, _a, layer, markerGroup, geoJSON, pathGroup, _loop_1, this_1, i;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         if (this.redrawingMarkers) {
                             return [2 /*return*/];
@@ -1122,15 +1120,15 @@ var TasksMap = /** @class */ (function () {
                                 });
                             },
                         });
-                        _b = this;
-                        return [4 /*yield*/, this.route.getTasks()];
+                        return [4 /*yield*/, this.refreshTaskLists()];
                     case 1:
-                        _b.taskList = _c.sent();
-                        console.log("Task List", this.taskList);
+                        _b.sent();
+                        console.log("Map Tasks", this.mapTaskList);
+                        console.log("Score Tasks", this.scoreTaskList);
                         geoJSON = this.route.getPathGeoJson();
                         pathGroup = [];
                         _loop_1 = function (i) {
-                            var task = this_1.taskList[i];
+                            var task = this_1.mapTaskList[i];
                             if (!this_1.state.isShowingAllTasks && !this_1.state.visibleTasks[task.position]) {
                                 return "continue";
                             }
@@ -1204,7 +1202,7 @@ var TasksMap = /** @class */ (function () {
                             }));
                         };
                         this_1 = this;
-                        for (i = 0; i < this.taskList.length; i++) {
+                        for (i = 0; i < this.mapTaskList.length; i++) {
                             _loop_1(i);
                         }
                         // this.map.addLayer(pathGroup);
@@ -1396,7 +1394,7 @@ var TasksMap = /** @class */ (function () {
     };
     TasksMap.prototype.goToNextTaskById = function (taskId, skip) {
         var _this = this;
-        this.taskList.forEach(function (task) {
+        this.mapTaskList.forEach(function (task) {
             if (task.id == taskId) {
                 _this.goToNextTask(task, skip);
                 return;
@@ -1408,7 +1406,7 @@ var TasksMap = /** @class */ (function () {
             this.state.skippedTaskIds.push(task.id);
         }
         console.debug("goToNextTask");
-        this.state.selectedTask = this.taskList[task.position % this.taskList.length];
+        this.state.selectedTask = this.mapTaskList[task.position % this.mapTaskList.length];
         this.state.visibleTasks[this.state.selectedTask.position] = true;
         this.centerSelectedTask();
         this.saveMapStateToLocalStorage();
@@ -1458,9 +1456,8 @@ var TasksMap = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve) {
             _this.ormService.deleteUserScore(_this.score).then(function () { return __awaiter(_this, void 0, void 0, function () {
-                var _a;
-                return __generator(this, function (_b) {
-                    switch (_b.label) {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
                         case 0:
                             this.score = new __WEBPACK_IMPORTED_MODULE_9__entity_Score__["a" /* Score */]();
                             this.state = this.navParams.data.tasksMapState = {
@@ -1472,30 +1469,29 @@ var TasksMap = /** @class */ (function () {
                                 showIntroModal: true,
                                 showGuidedTrailModal: true
                             };
-                            if (!!this.taskList) return [3 /*break*/, 2];
-                            _a = this;
-                            return [4 /*yield*/, this.route.getTasks()];
+                            if (!!this.mapTaskList) return [3 /*break*/, 2];
+                            return [4 /*yield*/, this.refreshTaskLists()];
                         case 1:
-                            _a.taskList = _b.sent();
-                            _b.label = 2;
+                            _a.sent();
+                            _a.label = 2;
                         case 2:
                             if (!(this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0)) return [3 /*break*/, 4];
                             return [4 /*yield*/, this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id)];
                         case 3:
-                            _b.sent();
-                            _b.label = 4;
+                            _a.sent();
+                            _a.label = 4;
                         case 4:
                             this.route.completed = false;
                             this.route.completedDate = null;
                             return [4 /*yield*/, this.saveMapStateToLocalStorage()];
                         case 5:
-                            _b.sent();
+                            _a.sent();
                             return [4 /*yield*/, this.ormService.saveAndFireChangedEvent(this.route)];
                         case 6:
-                            _b.sent();
+                            _a.sent();
                             return [4 /*yield*/, this.redrawMarker()];
                         case 7:
-                            _b.sent();
+                            _a.sent();
                             resolve();
                             return [2 /*return*/];
                     }
@@ -1512,7 +1508,7 @@ var TasksMap = /** @class */ (function () {
                     var modal = _this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
                         session: _this.sessionInfo.session,
                         score: _this.score,
-                        tasks: _this.taskList,
+                        tasks: _this.scoreTaskList,
                         narrative: _this.app.activeNarrative
                     }, { cssClass: _this.app.activeNarrative });
                     modal.present();
@@ -1550,7 +1546,7 @@ var TasksMap = /** @class */ (function () {
                                 var finishedModal = that.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
                                     session: that.sessionInfo.session,
                                     score: that.score,
-                                    tasks: that.taskList,
+                                    tasks: that.mapTaskList,
                                     narrative: this.app.activeNarrative
                                 }, {
                                     showBackdrop: true,
@@ -1671,7 +1667,7 @@ var TasksMap = /** @class */ (function () {
             var modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], {
                 session: this.sessionInfo.session,
                 score: this.score,
-                tasks: this.taskList,
+                tasks: this.scoreTaskList,
                 narrative: this.app.activeNarrative
             }, { cssClass: this.app.activeNarrative });
             modal.present();
@@ -1874,7 +1870,7 @@ var TasksMap = /** @class */ (function () {
         var prevEndAngle = 0;
         var segment = "";
         if (subtasks.length === 1) {
-            segment = "<circle cx=\"520\" cy=\"244\" r=\"140\" class=\"" + getClassStringForSubtask(subtasks[0]) + "\"/>";
+            segment = "<circle cx=\"520\" cy=\"244\" r=\"140\" class=\"segment-part " + getClassStringForSubtask(subtasks[0]) + "\"/>";
         }
         else {
             for (var i = 1; i <= subtasks.length; i++) {
@@ -1892,16 +1888,66 @@ var TasksMap = /** @class */ (function () {
             className: 'marker'
         });
     };
-    TasksMap.prototype.getSolvedSubtaskCount = function (task) {
-        var count = 0;
+    TasksMap.prototype.getFinishedSubtaskCounters = function (task) {
+        var counters = {
+            total: 0,
+            solved: 0,
+            solvedLow: 0,
+            failed: 0,
+            saved: 0,
+            skipped: 0
+        };
         for (var _i = 0, _a = task.getLegitSubtasks(); _i < _a.length; _i++) {
             var subtask = _a[_i];
             var taskDetails = this.score.getTaskStateForTask(subtask.id);
-            if (taskDetails.saved || taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || taskDetails.skipped) {
-                count++;
+            if (taskDetails.solved) {
+                counters.total++;
+                counters.solved++;
+                continue;
+            }
+            if (taskDetails.solvedLow) {
+                counters.total++;
+                counters.solvedLow++;
+                continue;
+            }
+            if (taskDetails.failed) {
+                counters.total++;
+                counters.failed++;
+                continue;
+            }
+            if (taskDetails.saved) {
+                counters.total++;
+                counters.saved++;
+                continue;
+            }
+            if (taskDetails.skipped) {
+                counters.total++;
+                counters.skipped++;
             }
         }
-        return count;
+        return counters;
+    };
+    TasksMap.prototype.refreshTaskLists = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, scoredTasks, groups, _i, groups_1, group;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.route.getTasks()];
+                    case 1:
+                        _a.mapTaskList = _b.sent();
+                        scoredTasks = this.mapTaskList.filter(function (task) { return task.taskFormat !== __WEBPACK_IMPORTED_MODULE_8__entity_Task__["b" /* TaskFormat */].GROUP; });
+                        groups = this.mapTaskList.filter(function (task) { return task.taskFormat === __WEBPACK_IMPORTED_MODULE_8__entity_Task__["b" /* TaskFormat */].GROUP; });
+                        for (_i = 0, groups_1 = groups; _i < groups_1.length; _i++) {
+                            group = groups_1[_i];
+                            scoredTasks = scoredTasks.concat(group.getLegitSubtasks());
+                        }
+                        this.scoreTaskList = scoredTasks;
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     TasksMap.UPDATE_SESSION_TIME_INTERVAL_IN_SECS = 15;
     __decorate([
@@ -1910,7 +1956,7 @@ var TasksMap = /** @class */ (function () {
     ], TasksMap.prototype, "mapContainer", void 0);
     TasksMap = TasksMap_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-tasks-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header map tasks">\n    <div ion-fixed>\n        <div id="tasks-map" class="map-view"></div>\n\n        <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">\n            <ion-grid class="table">\n                <ion-row class="session" *ngIf="sessionInfo != null && this.showCountdownOrTimer">\n                    <ion-col col class="countdown">\n                        <img class="icon countdown" src="./assets/icons/countdown.svg"/>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label *ngIf="this.countdownBeforeSession">{{\'a_private_session_countdown\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.countdownBeforeSession == false">{{\'a_private_session_timer\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.showSessionEnds">{{\'a_private_session_ends\' | translate}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label>{{ countdownOrTimerForSession }} Min</ion-label>\n                    </ion-col>\n                </ion-row>\n                <ion-row class="current" *ngIf="this.route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && currentScore && currentScore > 0 && (sessionInfo==null || !sessionInfo.session.has_leaderboard)">\n                    <ion-col>\n                        <ion-label *ngIf="!sessionInfo">{{user.name}}</ion-label>\n                        <ion-label *ngIf="sessionInfo">{{sessionInfo.sessionUser.team_name}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label class="score">{{currentScore}}</ion-label>\n                    </ion-col>\n                </ion-row>\n                <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard && this.route.isAnswerFeedbackEnabled()">\n                    <ion-row [ngClass]="{\'self\' : user.self}"\n                             *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">\n                        <ion-col class="chart">\n                            <img class="icon arrow" src="./assets/icons/up.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self"/>\n                            <img class="icon arrow" src="./assets/icons/down.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self"/>\n                        </ion-col>\n\n                        <ion-col>\n                            <ion-label>{{user.team_name}}</ion-label>\n                        </ion-col>\n                        <ion-col>\n                            <ion-label class="score">{{user.score}}</ion-label>\n                        </ion-col>\n                    </ion-row>\n                </div>\n            </ion-grid>\n        </div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': state.selectedTask}">\n\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>\n                <ion-fab-list side="top">\n                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">\n                        <ion-icon name="icon-restart"></ion-icon>\n                    </button>\n                    <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">\n                        <ion-icon name="icon-starting-point"></ion-icon>\n                    </button>\n                    <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">\n                        <ion-icon name="icon-visibility"></ion-icon>\n                    </button>\n                    <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-exit"></ion-icon>\n                    </button>\n                    <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-chat"></ion-icon>\n                    </button>\n                    <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n                </ion-fab-list>\n                <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n            </ion-fab>\n\n            <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">\n                <div class="cover">\n                    <img class="thumb" [src]="state.selectedTask.getImageURL()" />\n                </div>\n            </div>\n            <div class="text-container" *ngIf="state.selectedTask">\n                <div class="segmented-box">\n                    <div class="title segment">\n                        <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">#{{state.selectedTask.position}}\n                        </span>\n                        <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">\n                            {{state.selectedTask.title}}\n                        </h2>\n                    </div>\n                </div>\n<!--                TODO Show when task group, count progress-->\n                <div *ngIf="state.selectedTask.taskFormat === TaskFormat.GROUP" class="segmented-box bottom task-group">\n                    <span>{{ "a_taskGroup_task_group" | translate }}:</span>\n                    <span class="count">{{getSolvedSubtaskCount(state.selectedTask)}} / {{state.selectedTask.getLegitSubtasks().length}}</span>\n                    <div class="evaluation">\n                        <div class="ratings">\n                            <div class="rating perfect">\n                                <span class="label">0</span>\n                            </div>\n                            <div class="rating good">\n                                <span class="label">0</span>\n                            </div>\n                            <div class="rating failed">\n                                <span class="label">0</span>\n                            </div>\n                            <div class="rating saved">\n                                <span class="label">0</span>\n                            </div>\n                            <div class="rating skipped">\n                                <span class="label">0</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <div *ngIf="state.selectedTask.taskFormat !== TaskFormat.GROUP" class="segmented-box bottom">\n                    <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->\n                    <!--<span class="segment">??? {{ "a_g_max_points" | translate }}</span>-->\n                    <div class="segment buttons">\n                        <div class="text-right">\n                            <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">{{ \'a_alert_show_task\' | translate }}</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/
+            selector: 'page-tasks-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header map tasks">\n    <div ion-fixed>\n        <div id="tasks-map" class="map-view"></div>\n\n        <div id="ranking" class="detail-box" *ngIf="(!gamificationIsDisabled && currentScore && currentScore > 0) || (sessionInfo != null && this.showCountdownOrTimer)">\n            <ion-grid class="table">\n                <ion-row class="session" *ngIf="sessionInfo != null && this.showCountdownOrTimer">\n                    <ion-col col class="countdown">\n                        <img class="icon countdown" src="./assets/icons/countdown.svg"/>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label *ngIf="this.countdownBeforeSession">{{\'a_private_session_countdown\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.countdownBeforeSession == false">{{\'a_private_session_timer\' | translate}}</ion-label>\n                        <ion-label *ngIf="this.showSessionEnds">{{\'a_private_session_ends\' | translate}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label>{{ countdownOrTimerForSession }} Min</ion-label>\n                    </ion-col>\n                </ion-row>\n                <ion-row class="current" *ngIf="this.route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && currentScore && currentScore > 0 && (sessionInfo==null || !sessionInfo.session.has_leaderboard)">\n                    <ion-col>\n                        <ion-label *ngIf="!sessionInfo">{{user.name}}</ion-label>\n                        <ion-label *ngIf="sessionInfo">{{sessionInfo.sessionUser.team_name}}</ion-label>\n                    </ion-col>\n                    <ion-col>\n                        <ion-label class="score">{{currentScore}}</ion-label>\n                    </ion-col>\n                </ion-row>\n                <div *ngIf="sessionInfo !=null && sessionInfo.session.has_leaderboard && this.route.isAnswerFeedbackEnabled()">\n                    <ion-row [ngClass]="{\'self\' : user.self}"\n                             *ngFor="let user of chatAndSessionService.getLeaderboard(); let i = index">\n                        <ion-col class="chart">\n                            <img class="icon arrow" src="./assets/icons/up.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i == 0 && !user.self"/>\n                            <img class="icon arrow" src="./assets/icons/down.svg"\n                                 *ngIf="chatAndSessionService.getLeaderboard().length > 1 && i != 0 && !user.self"/>\n                        </ion-col>\n\n                        <ion-col>\n                            <ion-label>{{user.team_name}}</ion-label>\n                        </ion-col>\n                        <ion-col>\n                            <ion-label class="score">{{user.score}}</ion-label>\n                        </ion-col>\n                    </ion-row>\n                </div>\n            </ion-grid>\n        </div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': state.selectedTask}">\n\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="fabListOpen = !fabListOpen"><ion-icon name="more"></ion-icon></button>\n                <ion-fab-list side="top">\n                    <button [hidden]="sessionInfo != null" color="danger" ion-fab (click)="displayResetTasksModal()" *ngIf="sessionInfo == null">\n                        <ion-icon name="icon-restart"></ion-icon>\n                    </button>\n                    <button color="primary" [hidden]="!state.isShowingAllTasks || assignedTask()" ion-fab (click)="selectStartPoint()">\n                        <ion-icon name="icon-starting-point"></ion-icon>\n                    </button>\n                    <button color="danger" [hidden]="state.isShowingAllTasks || assignedTask()" ion-fab (click)="showAllTasks()">\n                        <ion-icon name="icon-visibility"></ion-icon>\n                    </button>\n                    <button color="danger" ion-fab (click)="sessionFinished()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-exit"></ion-icon>\n                    </button>\n                    <button ion-fab color="primary" (click)="navigateToChat()" *ngIf="sessionInfo != null">\n                        <ion-icon name="icon-chat"></ion-icon>\n                    </button>\n                    <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n                </ion-fab-list>\n                <span [ngClass]="{\'badge-no-show\': chatAndSessionService.getNewMsgNumber() == 0}" class="badge-top-right" *ngIf="sessionInfo != null && !fabListOpen">{{chatAndSessionService.getNewMsgNumber()}}</span>\n            </ion-fab>\n\n            <div tappable class="image-container" *ngIf="state.selectedTask" (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">\n                <div class="cover">\n                    <img class="thumb" [src]="state.selectedTask.getImageURL()" />\n                </div>\n            </div>\n            <div class="text-container" *ngIf="state.selectedTask">\n                <div class="segmented-box">\n                    <div class="title segment">\n                        <span tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">#{{state.selectedTask.position}}\n                        </span>\n                        <h2 tappable (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">\n                            {{state.selectedTask.title}}\n                        </h2>\n                    </div>\n                </div>\n<!--                TODO Show when task group, count progress-->\n                <div *ngIf="state.selectedTask.taskFormat === TaskFormat.GROUP" class="segmented-box bottom task-group">\n                    <span>{{ "a_taskGroup_task_group" | translate }}:</span>\n                    <span class="count">{{getFinishedSubtaskCounters(state.selectedTask).total}} / {{state.selectedTask.getLegitSubtasks().length}}</span>\n                    <div class="evaluation">\n                        <div *ngIf="route.isAnswerFeedbackEnabled()" class="evaluation">\n                            <div class="ratings">\n                                <div class="rating perfect">\n                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).solved}}</span>\n                                </div>\n                                <div class="rating good">\n                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).solvedLow}}</span>\n                                </div>\n                                <div class="rating failed">\n                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).failed}}</span>\n                                </div>\n                                <div class="rating skipped">\n                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).skipped}}</span>\n                                </div>\n                            </div>\n                        </div>\n                        <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">\n                            <div class="rating saved">\n                                <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).saved}}</span>\n                            </div>\n                            <div class="rating skipped">\n                                <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).skipped}}</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <div *ngIf="state.selectedTask.taskFormat !== TaskFormat.GROUP" class="segmented-box bottom">\n                    <!--TODO FUTUTRE GAMIFICATION INTEGRATION-->\n                    <!--<span class="segment">??? {{ "a_g_max_points" | translate }}</span>-->\n                    <div class="segment buttons">\n                        <div class="text-right">\n                            <button ion-button small round (click)="gototask(state.selectedTask.id, state.selectedTask.title, state.selectedTask.taskFormat)">{{ \'a_alert_show_task\' | translate }}</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/TasksMap/TasksMap.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
@@ -1934,7 +1980,7 @@ var TasksMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1171:
+/***/ 1173:
 /***/ (function(module, exports) {
 
 /**

@@ -66241,6 +66241,10 @@ ion-modal .modal.card.report .item textarea {
   width: 100%;
 }
 
+ion-modal .modal.card.report .item .select-text {
+  white-space: normal;
+}
+
 ion-modal .modal.card.report .item.image .item-inner {
   padding-right: 0;
 }
@@ -66316,6 +66320,30 @@ ion-modal .modal.card .fraction-display-container ion-grid .first-row span {
 ion-modal .modal.card .fraction-display-container.clean-fraction {
   -webkit-transform: translateY(-25%);
   transform: translateY(-25%);
+}
+
+ion-alert.multiple-select-alert .alert-wrapper {
+  max-width: 80vw;
+}
+
+ion-alert.multiple-select-alert .alert-checkbox-group {
+  max-height: 70vh;
+}
+
+ion-alert.multiple-select-alert .alert-checkbox-button .button-inner {
+  -webkit-box-align: baseline;
+  -webkit-align-items: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+ion-alert.multiple-select-alert .alert-checkbox-icon {
+  top: 1px;
+}
+
+ion-alert.multiple-select-alert .alert-checkbox-label {
+  white-space: normal;
+  font-family: 'NunitoSemibold', Arial, sans-serif;
 }
 
 /*  ========== Progress & Evaluation =========  */
@@ -68646,9 +68674,9 @@ page-task-detail .card.secondary p, page-task-group-detail .card.secondary p {
   color: #808080;
 }
 
-page-task-detail .card.secondary .feedback, page-task-group-detail .card.secondary .feedback {
-  margin-top: 20px;
+page-task-detail .card.secondary .feedback:not(:first-child), page-task-group-detail .card.secondary .feedback:not(:first-child) {
   border-top: 2px dotted #a6a6a6;
+  margin-top: 20px;
   padding-top: 20px;
 }
 

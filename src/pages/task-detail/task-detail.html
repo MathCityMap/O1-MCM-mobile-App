@@ -249,9 +249,9 @@
 			    {{task.getSideFactsText()}}
 		    </p>
 	    </div>
-        <div *ngIf="task && task.author" class="card secondary">
-            <ion-label>{{ "author" | translate }}</ion-label>
-            <p>
+        <div class="card secondary">
+            <ion-label *ngIf="task && task.author">{{ "author" | translate }}</ion-label>
+            <p *ngIf="task && task.author">
                 {{task.author}}
             </p>
             <div class="feedback" (click)="reportProblem()">

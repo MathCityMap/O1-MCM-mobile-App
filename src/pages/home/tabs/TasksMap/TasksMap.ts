@@ -33,7 +33,6 @@ import {Subscription} from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "rxjs";
 import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 declare var ConicGradient: any;
 
@@ -52,7 +51,8 @@ export class TasksMap implements OnDestroy {
     private map: any;
     private routeId: number;
     protected route: Route;
-    private taskList: Task[];
+    private mapTaskList: Task[];
+    private scoreTaskList: Task[];
 
     protected state: TaskMapState = {
         selectedTask: null,
@@ -139,9 +139,9 @@ export class TasksMap implements OnDestroy {
 
     isTrailCompleted() {
         if (this.route.isAnswerFeedbackEnabled()) {
-            return (this.taskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.taskList.length);
+            return (this.scoreTaskList && this.score.getTasksSolved().length + this.score.getTasksSolvedLow().length + this.score.getTasksFailed().length == this.scoreTaskList.length);
         } else {
-            return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.taskList.length;
+            return this.score.getTasksSaved() && this.score.getTasksSaved().length == this.scoreTaskList.length;
         }
     }
 
@@ -150,7 +150,7 @@ export class TasksMap implements OnDestroy {
         let modal = this.modalCtrl.create(MCMTrailFinishedModal,
             {
                 score: this.score,
-                tasks: this.taskList,
+                tasks: this.scoreTaskList,
                 narrative: this.app.activeNarrative,
                 callback: function () {
                     modal.dismiss().then(() => {
@@ -207,7 +207,7 @@ export class TasksMap implements OnDestroy {
                 this.resetTasks();
 
                 if (this.sessionInfo.sessionUser.assigned_task_id != 0) {
-                    this.taskList = await this.route.getTasks();
+                    await this.refreshTaskLists();
                     await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
                     if (this.route.isNarrativeEnabled()) {
                         this.showIntroModal().then(() => {
@@ -298,11 +298,11 @@ export class TasksMap implements OnDestroy {
     }
 
     private async forceStartFromTask(taskId) {
-        if (!this.taskList || this.taskList.length === 0) {
-            this.taskList = await this.route.getTasks();
+        if (!this.mapTaskList || this.mapTaskList.length === 0) {
+            await this.refreshTaskLists()
         }
-        console.log('Force Start From Task', this.taskList);
-        let selectedTask = this.taskList.filter(x => x.id == taskId).pop();
+        console.log('Force Start From Task', this.mapTaskList);
+        let selectedTask = this.mapTaskList.filter(x => x.id == taskId).pop();
         this.state.selectedTask = selectedTask;
         console.debug("forceStartFromTask");
         this.state.visibleTasks = {};
@@ -481,14 +481,13 @@ export class TasksMap implements OnDestroy {
             },
         });
 
-        this.taskList = await this.route.getTasks();
-        console.log("Task List", this.taskList);
+        await this.refreshTaskLists();
 
         let geoJSON = this.route.getPathGeoJson();
         let pathGroup = [];
 
-        for (let i = 0; i < this.taskList.length; i++) {
-            let task: Task = this.taskList[i];
+        for (let i = 0; i < this.mapTaskList.length; i++) {
+            let task: Task = this.mapTaskList[i];
             if (!this.state.isShowingAllTasks && !this.state.visibleTasks[task.position]) {
                 continue;
             }
@@ -766,7 +765,7 @@ export class TasksMap implements OnDestroy {
     }
 
     goToNextTaskById(taskId: number, skip?: boolean) {
-        this.taskList.forEach(task => {
+        this.mapTaskList.forEach(task => {
             if (task.id == taskId) {
                 this.goToNextTask(task, skip);
                 return;
@@ -779,7 +778,7 @@ export class TasksMap implements OnDestroy {
             this.state.skippedTaskIds.push(task.id);
         }
         console.debug("goToNextTask");
-        this.state.selectedTask = this.taskList[task.position % this.taskList.length];
+        this.state.selectedTask = this.mapTaskList[task.position % this.mapTaskList.length];
         this.state.visibleTasks[this.state.selectedTask.position] = true;
         this.centerSelectedTask();
         this.saveMapStateToLocalStorage();
@@ -832,8 +831,8 @@ export class TasksMap implements OnDestroy {
                     showIntroModal: true,
                     showGuidedTrailModal: true
                 };
-                if (!this.taskList) {
-                    this.taskList = await this.route.getTasks();
+                if (!this.mapTaskList) {
+                    await this.refreshTaskLists()
                 }
                 if (this.sessionInfo != null && this.sessionInfo.sessionUser.assigned_task_id != 0) {
                     await this.forceStartFromTask(this.sessionInfo.sessionUser.assigned_task_id);
@@ -857,7 +856,7 @@ export class TasksMap implements OnDestroy {
                     {
                         session: this.sessionInfo.session,
                         score: this.score,
-                        tasks: this.taskList,
+                        tasks: this.scoreTaskList,
                         narrative: this.app.activeNarrative
                     }, {cssClass: this.app.activeNarrative});
                 modal.present();
@@ -891,7 +890,7 @@ export class TasksMap implements OnDestroy {
                             {
                                 session: that.sessionInfo.session,
                                 score: that.score,
-                                tasks: that.taskList,
+                                tasks: that.mapTaskList,
                                 narrative: this.app.activeNarrative
                             }, {
                                 showBackdrop: true,
@@ -1000,7 +999,7 @@ export class TasksMap implements OnDestroy {
                 {
                     session: this.sessionInfo.session,
                     score: this.score,
-                    tasks: this.taskList,
+                    tasks: this.scoreTaskList,
                     narrative: this.app.activeNarrative
                 }, {cssClass: this.app.activeNarrative});
             modal.present();
@@ -1236,7 +1235,7 @@ export class TasksMap implements OnDestroy {
         let segment = "";
 
         if (subtasks.length === 1) {
-            segment = `<circle cx="520" cy="244" r="140" class="${getClassStringForSubtask(subtasks[0])}"/>`
+            segment = `<circle cx="520" cy="244" r="140" class="segment-part ${getClassStringForSubtask(subtasks[0])}"/>`
         } else {
             for (let i = 1; i <= subtasks.length; i++) {
                 prevStartAngle = prevEndAngle;
@@ -1256,15 +1255,53 @@ export class TasksMap implements OnDestroy {
         });
     }
 
-    getSolvedSubtaskCount(task: Task) {
-        let count = 0;
+    getFinishedSubtaskCounters(task: Task) {
+        let counters = {
+            total: 0,
+            solved: 0,
+            solvedLow: 0,
+            failed: 0,
+            saved: 0,
+            skipped: 0
+        };
         for (let subtask of task.getLegitSubtasks()) {
             let taskDetails = this.score.getTaskStateForTask(subtask.id);
-            if (taskDetails.saved || taskDetails.solved || taskDetails.solvedLow || taskDetails.failed || taskDetails.skipped) {
-                count++;
+            if (taskDetails.solved) {
+                counters.total++
+                counters.solved++
+                continue;
+            }
+            if (taskDetails.solvedLow) {
+                counters.total++
+                counters.solvedLow++
+                continue;
+            }
+            if (taskDetails.failed) {
+                counters.total++
+                counters.failed++
+                continue;
+            }
+            if (taskDetails.saved) {
+                counters.total++
+                counters.saved++
+                continue;
+            }
+            if (taskDetails.skipped) {
+                counters.total++
+                counters.skipped++
             }
         }
-        return count;
+        return counters;
+    }
+
+    async refreshTaskLists() {
+        this.mapTaskList = await this.route.getTasks();
+        let scoredTasks = this.mapTaskList.filter(task => {return task.taskFormat !== TaskFormat.GROUP});
+        const groups = this.mapTaskList.filter(task => {return task.taskFormat === TaskFormat.GROUP});
+        for (let group of groups) {
+            scoredTasks = scoredTasks.concat(group.getLegitSubtasks());
+        }
+        this.scoreTaskList = scoredTasks;
     }
 
 

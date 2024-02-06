@@ -91,23 +91,30 @@
 <!--                TODO Show when task group, count progress-->
                 <div *ngIf="state.selectedTask.taskFormat === TaskFormat.GROUP" class="segmented-box bottom task-group">
                     <span>{{ "a_taskGroup_task_group" | translate }}:</span>
-                    <span class="count">{{getSolvedSubtaskCount(state.selectedTask)}} / {{state.selectedTask.getLegitSubtasks().length}}</span>
+                    <span class="count">{{getFinishedSubtaskCounters(state.selectedTask).total}} / {{state.selectedTask.getLegitSubtasks().length}}</span>
                     <div class="evaluation">
-                        <div class="ratings">
-                            <div class="rating perfect">
-                                <span class="label">0</span>
+                        <div *ngIf="route.isAnswerFeedbackEnabled()" class="evaluation">
+                            <div class="ratings">
+                                <div class="rating perfect">
+                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).solved}}</span>
+                                </div>
+                                <div class="rating good">
+                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).solvedLow}}</span>
+                                </div>
+                                <div class="rating failed">
+                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).failed}}</span>
+                                </div>
+                                <div class="rating skipped">
+                                    <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).skipped}}</span>
+                                </div>
                             </div>
-                            <div class="rating good">
-                                <span class="label">0</span>
-                            </div>
-                            <div class="rating failed">
-                                <span class="label">0</span>
-                            </div>
+                        </div>
+                        <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">
                             <div class="rating saved">
-                                <span class="label">0</span>
+                                <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).saved}}</span>
                             </div>
                             <div class="rating skipped">
-                                <span class="label">0</span>
+                                <span class="label">{{getFinishedSubtaskCounters(state.selectedTask).skipped}}</span>
                             </div>
                         </div>
                     </div>
