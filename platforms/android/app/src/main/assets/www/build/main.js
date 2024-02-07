@@ -1,6 +1,6 @@
 webpackJsonp([11],{
 
-/***/ 1105:
+/***/ 1113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15,7 +15,7 @@ var EventsAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1106:
+/***/ 1114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31,7 +31,7 @@ var EventAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1107:
+/***/ 1115:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -320,789 +320,7 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1107;
-
-/***/ }),
-
-/***/ 1109:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return McmImageComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(64);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the McmImageComponent component.
- *
- * This component shall encapsulate all functionality regarding images, e.g. downloading, resizing
- * or viewing in fullscreen.
- */
-var McmImageComponent = /** @class */ (function () {
-    function McmImageComponent(imagesService, photoViewerPlugin, spinnerDialog) {
-        this.imagesService = imagesService;
-        this.photoViewerPlugin = photoViewerPlugin;
-        this.spinnerDialog = spinnerDialog;
-        this.offline = true;
-        this.fullWidth = false;
-        this.photoViewer = false;
-        this.click = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-    }
-    McmImageComponent.prototype.ngOnChanges = function () {
-        this.imageUrl = this.offline ? this.imagesService.getOfflineURL(this.src)
-            : this.imagesService.getOnlineURL(this.src);
-    };
-    McmImageComponent.prototype.onClick = function ($event) {
-        var _this = this;
-        this.click.next($event);
-        if (this.photoViewer && __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */].isPluginAvailable(__WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */])) {
-            this.spinnerDialog.show();
-            setTimeout(function () {
-                // use short timeout to let spinner dialog appear
-                _this.photoViewerPlugin.show(_this.offline ? _this.imagesService.getOfflineURL(_this.src, undefined, undefined, true) : _this.imageUrl);
-                setTimeout(function () {
-                    // photoviewer doesn't have callback when user closes it => hide spinner in background
-                    _this.spinnerDialog.hide();
-                }, 1000);
-            }, 100);
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", String)
-    ], McmImageComponent.prototype, "src", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], McmImageComponent.prototype, "offline", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], McmImageComponent.prototype, "fullWidth", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], McmImageComponent.prototype, "photoViewer", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
-    ], McmImageComponent.prototype, "click", void 0);
-    McmImageComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-image',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/'<!-- Generated template for the McmImageComponent component -->\n<img [src]="imageUrl" [ngClass]="{\'full-width\': fullWidth}" (click)="onClick($event)"/>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
-    ], McmImageComponent);
-    return McmImageComponent;
-}());
-
-//# sourceMappingURL=mcm-image.js.map
-
-/***/ }),
-
-/***/ 1110:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMHeaderComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-var MCMHeaderComponent = /** @class */ (function () {
-    function MCMHeaderComponent(navCtrl, navParams, viewCtrl, modalService, modalCtrl, deepLinker) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.modalService = modalService;
-        this.modalCtrl = modalCtrl;
-        this.deepLinker = deepLinker;
-        this.showBackButton = false;
-        this.transparent = false;
-        this.isOpeningRoute = false;
-        this.currentpage = this.viewCtrl.name;
-    }
-    MCMHeaderComponent.prototype.retriveTitle = function () {
-        //console.log('currentpage ',this.currentpage);
-        if (this.navParams && this.navParams.data.headerTitle) {
-            return this.navParams.data.headerTitle;
-        }
-        if (this.currentpage == 'InfoPage') {
-            return 'a_about_mcm_title';
-        }
-        if (this.currentpage == 'SettingsPage') {
-            return 'a_action_settings';
-        }
-        if (this.currentpage == 'ModalCmp') {
-            return '';
-        }
-        return this.currentpage;
-    };
-    MCMHeaderComponent.prototype.ngOnInit = function () {
-        this.showBackButton = this.navCtrl.canGoBack();
-        if (this.currentpage == 'ModalCmp') {
-            this.transparent = true;
-        }
-    };
-    MCMHeaderComponent.prototype.goToDashboard = function () {
-        var _this = this;
-        this.navCtrl.setRoot('DashboardPage').then(function () {
-            _this.navCtrl.popToRoot();
-        });
-    };
-    MCMHeaderComponent.prototype.goBack = function () {
-        var _this = this;
-        console.log('Header going back');
-        if (this.viewCtrl.instance.goBack) {
-            return this.viewCtrl.instance.goBack();
-        }
-        if (this.currentpage === 'TasksMap') {
-            var tasksMap = this.navCtrl.getActive().instance;
-            if (tasksMap.sessionInfo != null) {
-                console.log('go back from active session');
-                console.log(tasksMap.route.id);
-                tasksMap.sessionFinished();
-            }
-            else {
-                if (!this.isOpeningRoute) {
-                    this.isOpeningRoute = true;
-                    this.navCtrl.pop({}, function () {
-                        // necessary because of bug which does not update URL
-                        _this.deepLinker.navChange('back');
-                    });
-                    this.modalService.showRoute(tasksMap.route, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            this.isOpeningRoute = false;
-                            return [2 /*return*/];
-                        });
-                    }); });
-                }
-            }
-        }
-        else {
-            this.navCtrl.pop({}, function () {
-                // necessary because of bug which does not update URL
-                _this.deepLinker.navChange('back');
-            });
-        }
-    };
-    MCMHeaderComponent.prototype.closeModal = function () {
-        this.viewCtrl.dismiss(this.modalCtrl);
-    };
-    MCMHeaderComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-header',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">\n        <ion-buttons left>\n            <button ion-button icon-only *ngIf="showBackButton && currentpage != \'ModalCmp\'" (click)="goBack()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n            <button ion-button icon-only *ngIf="currentpage == \'ModalCmp\'" (click)="closeModal()">\n                <!--<img class="header-icon" src="assets/icons/icon_close-modal.svg"/>-->\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n        </ion-buttons>\n        <ion-title>{{ retriveTitle() | translate }}</ion-title>\n        <ion-buttons end></ion-buttons>\n    </ion-toolbar>\n</ion-header>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__["a" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* DeepLinker */]])
-    ], MCMHeaderComponent);
-    return MCMHeaderComponent;
-}());
-
-//# sourceMappingURL=mcm-header.component.js.map
-
-/***/ }),
-
-/***/ 1111:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DistancePipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-/*
- * this is still pretty basic and could defenitely use some rework in terms of international scale and number notation
- * so far the functiuonalities are:
- * - checks if the value is over o km and if so, then converts m to km and adds the correct unit
-*/
-var DistancePipe = /** @class */ (function () {
-    function DistancePipe() {
-    }
-    DistancePipe.prototype.transform = function (value, unit) {
-        /*     console.log('value', value); */
-        if (value > 0 && value < 1000) {
-            return value + ' ' + unit;
-        }
-        else if (value > 1000) {
-            return (Math.round(value / 100) / 10) + ' km';
-        }
-        else if (value <= 0) {
-            return 0 + ' ' + unit;
-        }
-    };
-    DistancePipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'distance' })
-    ], DistancePipe);
-    return DistancePipe;
-}());
-
-//# sourceMappingURL=distance.pipe.js.map
-
-/***/ }),
-
-/***/ 1112:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMProgressBarComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-var MCMProgressBarComponent = /** @class */ (function () {
-    function MCMProgressBarComponent(helper) {
-        this.helper = helper;
-    }
-    MCMProgressBarComponent.prototype.ngOnChanges = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var data, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!(this.route && this.route.scores)) return [3 /*break*/, 5];
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
-                    case 2:
-                        data = _a.sent();
-                        this.currentProgress = data.currentProgress;
-                        this.total = data.totalTasks;
-                        this.progressWidth = (100 / this.total) * this.currentProgress;
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        console.log(e_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [3 /*break*/, 6];
-                    case 5:
-                        if (this.total && this.currentProgress) {
-                            this.progressWidth = (100 / this.total) * this.currentProgress;
-                        }
-                        _a.label = 6;
-                    case 6: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
-    ], MCMProgressBarComponent.prototype, "route", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], MCMProgressBarComponent.prototype, "isAudioPlaying", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], MCMProgressBarComponent.prototype, "isAudio", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Number)
-    ], MCMProgressBarComponent.prototype, "remainingTime", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Number)
-    ], MCMProgressBarComponent.prototype, "currentProgress", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Number)
-    ], MCMProgressBarComponent.prototype, "total", void 0);
-    MCMProgressBarComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-progress-bar',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/'<span *ngIf="!isAudio">{{ currentProgress }} / {{ total }}</span>\n<div class="container progress-vertical route">\n    <div class="bar" [ngStyle]="{\'width\': ((100/total)*currentProgress) +\'%\'}"></div>\n</div>\n<!-- +900 to display 00:00 remaining only a short time-->\n<span *ngIf="isAudio && isAudioPlaying" class="audio">{{ (total - currentProgress)+900 | date: \'mm:ss\' }} </span>\n<span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: \'mm:ss\' }} </span>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
-    ], MCMProgressBarComponent);
-    return MCMProgressBarComponent;
-}());
-
-//# sourceMappingURL=mcm-progress-bar.js.map
-
-/***/ }),
-
-/***/ 1113:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyLoadImagesDirective; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(1114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intersection_observer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-/**
- * Angular Lazy Loading Images Directive
- *
- * The library allows to lazy load images from your web application
- * using the MutationObserver and the IntersectionObserver. Images will be loaded as
- * soon as they enter the viewport in a non-blocking way.
- */
-var LazyLoadImagesDirective = /** @class */ (function () {
-    function LazyLoadImagesDirective(element, renderer, ngZone, platformId, imagesService) {
-        this.renderer = renderer;
-        this.ngZone = ngZone;
-        this.platformId = platformId;
-        this.imagesService = imagesService;
-        this.rootElement = element.nativeElement;
-    }
-    LazyLoadImagesDirective.prototype.init = function () {
-        var _this = this;
-        this.registerIntersectionObserver();
-        this.observeDOMChanges(this.rootElement, function () {
-            var imagesFoundInDOM = _this.getAllImagesToLazyLoad(_this.rootElement);
-            imagesFoundInDOM.forEach(function (image) { return _this.intersectionObserver.observe(image); });
-        });
-    };
-    LazyLoadImagesDirective.prototype.ngOnInit = function () {
-        var _this = this;
-        if (!this.isBrowser()) {
-            return;
-        }
-        this.ngZone.runOutsideAngular(function () { return _this.init(); });
-    };
-    LazyLoadImagesDirective.prototype.ngOnDestroy = function () {
-        if (this.intersectionObserver) {
-            this.intersectionObserver.disconnect();
-        }
-    };
-    LazyLoadImagesDirective.prototype.isBrowser = function () {
-        return Object(__WEBPACK_IMPORTED_MODULE_1__angular_common__["j" /* isPlatformBrowser */])(this.platformId);
-    };
-    LazyLoadImagesDirective.prototype.registerIntersectionObserver = function () {
-        var _this = this;
-        this.intersectionObserver = new IntersectionObserver(function (images) { return images.forEach(function (image) { return _this.onIntersectionChange(image); }); }, this.intersectionObserverConfig instanceof Object ? this.intersectionObserverConfig : undefined);
-        return this.intersectionObserver;
-    };
-    LazyLoadImagesDirective.prototype.observeDOMChanges = function (rootElement, onChange) {
-        // Create a Mutation Observer instance
-        var observer = new MutationObserver(function (mutations) { return onChange(mutations); });
-        // Observer Configuration
-        var observerConfig = {
-            attributes: true,
-            characterData: true,
-            childList: true,
-            subtree: true
-        };
-        // Observe Directive DOM Node
-        observer.observe(rootElement, observerConfig);
-        // Fire onChange callback to check current DOM nodes
-        onChange();
-        return observer;
-    };
-    LazyLoadImagesDirective.prototype.getAllImagesToLazyLoad = function (pageNode) {
-        return Array.from(pageNode.querySelectorAll('img[data-src], [data-srcset], [data-background-src], img[data-async-src], [data-async-background-src]'));
-    };
-    LazyLoadImagesDirective.prototype.onIntersectionChange = function (image) {
-        if (!image.isIntersecting) {
-            return;
-        }
-        this.onImageAppearsInViewport(image.target);
-    };
-    LazyLoadImagesDirective.prototype.onImageAppearsInViewport = function (image) {
-        var _this = this;
-        if (image.dataset.asyncSrc) {
-            this.imagesService.getAsyncImageURL(image.dataset.asyncSrc, this.imageSize).then(function (asyncSrc) {
-                _this.renderer.setAttribute(image, 'src', asyncSrc);
-            });
-            this.renderer.removeAttribute(image, 'data-async-src');
-        }
-        if (image.dataset.src) {
-            this.renderer.setAttribute(image, 'src', image.dataset.src);
-            this.renderer.removeAttribute(image, 'data-src');
-        }
-        if (image.dataset.srcset) {
-            this.renderer.setAttribute(image, 'srcset', image.dataset.srcset);
-            this.renderer.removeAttribute(image, 'data-srcset');
-        }
-        if (image.dataset.asyncBackgroundSrc) {
-            this.imagesService.getAsyncImageURL(image.dataset.asyncBackgroundSrc, this.imageSize).then(function (asyncSrc) {
-                _this.renderer.setStyle(image, 'background-image', "url(" + asyncSrc + ")");
-            });
-            this.renderer.removeAttribute(image, 'data-async-background-src');
-        }
-        if (image.dataset.backgroundSrc) {
-            this.renderer.setStyle(image, 'background-image', "url(" + image.dataset.backgroundSrc + ")");
-            this.renderer.removeAttribute(image, 'data-background-src');
-        }
-        // Stop observing the current target
-        if (this.intersectionObserver) {
-            this.intersectionObserver.unobserve(image);
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('lazy-load-images'),
-        __metadata("design:type", Object)
-    ], LazyLoadImagesDirective.prototype, "intersectionObserverConfig", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('image-size'),
-        __metadata("design:type", String)
-    ], LazyLoadImagesDirective.prototype, "imageSize", void 0);
-    LazyLoadImagesDirective = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
-            selector: '[lazy-load-images]'
-        }),
-        __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_0__angular_core__["PLATFORM_ID"])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], Object, __WEBPACK_IMPORTED_MODULE_3__services_images_service__["a" /* ImagesService */]])
-    ], LazyLoadImagesDirective);
-    return LazyLoadImagesDirective;
-}());
-
-//# sourceMappingURL=ngx-lazy-load-images.directive.js.map
-
-/***/ }),
-
-/***/ 1115:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-var RouteTeaserComponent = /** @class */ (function () {
-    function RouteTeaserComponent(modalsService, ormService, helper, dbUpdater, translateService) {
-        this.modalsService = modalsService;
-        this.ormService = ormService;
-        this.helper = helper;
-        this.dbUpdater = dbUpdater;
-        this.translateService = translateService;
-        this.downloadRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.removeRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.currentProgress = 0;
-        this.total = 0;
-        this.completedRadius = 339.292;
-    }
-    RouteTeaserComponent.prototype.ngOnChanges = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, data;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (!(this.route && this.route.downloaded)) return [3 /*break*/, 3];
-                        _a = this;
-                        return [4 /*yield*/, this.route.getTaskCount()];
-                    case 1:
-                        _a.total = _b.sent();
-                        if (!this.route.scores) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
-                    case 2:
-                        data = _b.sent();
-                        this.currentProgress = data.currentProgress;
-                        this.completedRadius = this.calculatePercentage();
-                        _b.label = 3;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RouteTeaserComponent.prototype.calculatePercentage = function () {
-        var c = 2 * Math.PI * 54;
-        var completedPercentage = (1 / this.total) * this.currentProgress;
-        return c * (1 - completedPercentage);
-    };
-    RouteTeaserComponent.prototype.doDownload = function (event, route) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        event.stopPropagation();
-                        return [4 /*yield*/, this.modalsService.doDownload(route)];
-                    case 1:
-                        if (_a.sent()) {
-                            this.downloadRoute.emit({ route: route });
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RouteTeaserComponent.prototype.deleteRoute = function (event, route) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        event.stopPropagation();
-                        return [4 /*yield*/, this.ormService.removeDownloadedRoute(route, true)];
-                    case 1:
-                        if (_a.sent()) {
-                            this.removeRoute.emit();
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
-    ], RouteTeaserComponent.prototype, "route", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], RouteTeaserComponent.prototype, "isOnline", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", Object)
-    ], RouteTeaserComponent.prototype, "downloadRoute", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", Object)
-    ], RouteTeaserComponent.prototype, "removeRoute", void 0);
-    RouteTeaserComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'route-teaser',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/'<div class="main">\n    <div *ngIf="route" class="container image" [ngClass]="{\'downloaded\' : !!route.downloaded, \'completed\': !!route.completed}">\n        <svg class="progress" width="120" height="120" viewBox="0 0 120 120">\n            <circle class="progress__meter" cx="60" cy="60" r="54" stroke-width="12"></circle>\n            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{\'stroke-dasharray\': 339.292, \'stroke-dashoffset\': completedRadius}"></circle>\n        </svg>\n        <div class="cover">\n            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n        </div>\n        <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>\n    </div>\n\n    <div *ngIf="route" class="container text">\n        <h2 class="item-text-wrap">{{route.title}}</h2>\n        <div class="bottom">\n            <div class="text">\n            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: \'m\'}}</span>\n            <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>\n            </div>\n            <div *ngIf="route" class="container buttons">\n                <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">\n                    <img src="./assets/icons/download.svg"/>\n                </button>\n                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">\n                    <img src="./assets/icons/delete.svg"/>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="secondary">\n    <span class="icon key" no-margin>{{route.code}}</span>\n    <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>\n    <!--<mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>-->\n    <div class="evaluation">\n        <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>\n        <p class="icon finished" *ngIf="!route?.completed">{{currentProgress}} / {{total}}</p>\n        <div class="ratings" *ngIf="route?.scores && route.isAnswerFeedbackEnabled()">\n            <div class="rating perfect">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating good">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolvedLow().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating failed">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksFailed().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n        <div class="ratings" *ngIf="route?.scores && !route.isAnswerFeedbackEnabled()">\n            <div class="rating saved">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSaved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n    </div>\n\n    <!--Dummy just for quick testing purposes  -->\n    <!--<div class="evaluation">-->\n        <!--<span class="icon finished">Oct 21 2019</span>-->\n        <!--<div class="ratings">-->\n            <!--<div class="rating perfect"><p>1</p></div>-->\n            <!--<div class="rating good"><p>3</p></div>-->\n            <!--<div class="rating failed"><p>20</p></div>-->\n        <!--</div>-->\n    <!--</div>-->\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */]])
-    ], RouteTeaserComponent);
-    return RouteTeaserComponent;
-}());
-
-//# sourceMappingURL=route-teaser.js.map
-
-/***/ }),
-
-/***/ 1116:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizedDatePipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var LocalizedDatePipe = /** @class */ (function () {
-    function LocalizedDatePipe(translateService) {
-        this.translateService = translateService;
-    }
-    LocalizedDatePipe.prototype.transform = function (value, pattern) {
-        if (pattern === void 0) { pattern = 'mediumDate'; }
-        var datePipe = new __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* DatePipe */](this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang);
-        return datePipe.transform(value, pattern);
-    };
-    LocalizedDatePipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Pipe"])({
-            name: 'localizedDate',
-            pure: false
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
-    ], LocalizedDatePipe);
-    return LocalizedDatePipe;
-}());
-
-//# sourceMappingURL=localDate.pipe.js.map
+webpackContext.id = 1115;
 
 /***/ }),
 
@@ -1384,7 +602,7 @@ var Autoresize = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(449);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(453);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(590);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1583,7 +801,7 @@ var DirectivesModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SafeInnerHtmlDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__ = __webpack_require__(120);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1645,19 +863,19 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(591);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(589);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(640);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(641);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(643);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1908,9 +1126,194 @@ var MyApp = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+var LanguageService = /** @class */ (function () {
+    function LanguageService(translateService, platform, globalization, storage) {
+        this.translateService = translateService;
+        this.platform = platform;
+        this.globalization = globalization;
+        this.storage = storage;
+        this.isInitialized = false;
+        this.initializeListeners = [];
+        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et"];
+    }
+    LanguageService_1 = LanguageService;
+    LanguageService.prototype.getAvailableLanguages = function () {
+        return this.availableLanguages;
+    };
+    LanguageService.prototype.initialize = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                if (this.isInitialized) {
+                    return [2 /*return*/, Promise.resolve()];
+                }
+                if (this.initializeListeners.length > 0) {
+                    // a parallel call has already been started
+                    return [2 /*return*/, new Promise(function (success) {
+                            _this.initializeListeners.push(success);
+                        })];
+                }
+                return [2 /*return*/, new Promise(function (success) { return __awaiter(_this, void 0, void 0, function () {
+                        var _this = this;
+                        var defaultLang, lang, preferredLanguage, e_1;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    defaultLang = 'en';
+                                    this.translateService.setDefaultLang(defaultLang);
+                                    this.initializeListeners.push(success);
+                                    return [4 /*yield*/, this.platform.ready()];
+                                case 1:
+                                    _a.sent();
+                                    return [4 /*yield*/, this.storage.get(LanguageService_1.STORAGE_KEY)];
+                                case 2:
+                                    lang = _a.sent();
+                                    if (!(!lang && Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginName()) === true)) return [3 /*break*/, 6];
+                                    _a.label = 3;
+                                case 3:
+                                    _a.trys.push([3, 5, , 6]);
+                                    return [4 /*yield*/, this.globalization.getPreferredLanguage()];
+                                case 4:
+                                    preferredLanguage = _a.sent();
+                                    if (preferredLanguage && preferredLanguage.value) {
+                                        lang = preferredLanguage.value;
+                                        if (lang.indexOf('-') > -1) {
+                                            lang = lang.split('-')[0];
+                                        }
+                                        if (lang.indexOf('_') > -1) {
+                                            lang = lang.split('_')[0];
+                                        }
+                                        lang = lang.toLowerCase();
+                                        if (this.availableLanguages.indexOf(lang) == -1) {
+                                            // detected language is not available
+                                            lang = null;
+                                        }
+                                    }
+                                    return [3 /*break*/, 6];
+                                case 5:
+                                    e_1 = _a.sent();
+                                    return [3 /*break*/, 6];
+                                case 6:
+                                    if (!lang) {
+                                        lang = defaultLang;
+                                    }
+                                    return [4 /*yield*/, this.translateService.use(lang)];
+                                case 7:
+                                    _a.sent();
+                                    setTimeout(function () {
+                                        // use timeout to let language switch propagate
+                                        _this.isInitialized = true;
+                                        _this.initializeListeners.map(function (success) {
+                                            success();
+                                        });
+                                        _this.initializeListeners = null;
+                                    }, 100);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); })];
+            });
+        });
+    };
+    LanguageService.prototype.getLanguage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.translateService.currentLang];
+            });
+        });
+    };
+    LanguageService.prototype.setLanguage = function (lang) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.translateService.use(lang);
+                        return [4 /*yield*/, this.storage.set(LanguageService_1.STORAGE_KEY, lang)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LanguageService.STORAGE_KEY = 'LanguageService.lang';
+    LanguageService = LanguageService_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
+    ], LanguageService);
+    return LanguageService;
+    var LanguageService_1;
+}());
+
+//# sourceMappingURL=language-service.js.map
+
+/***/ }),
+
+/***/ 119:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Updater; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
@@ -2280,191 +1683,6 @@ var DB_Updater = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 120:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-var LanguageService = /** @class */ (function () {
-    function LanguageService(translateService, platform, globalization, storage) {
-        this.translateService = translateService;
-        this.platform = platform;
-        this.globalization = globalization;
-        this.storage = storage;
-        this.isInitialized = false;
-        this.initializeListeners = [];
-        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et"];
-    }
-    LanguageService_1 = LanguageService;
-    LanguageService.prototype.getAvailableLanguages = function () {
-        return this.availableLanguages;
-    };
-    LanguageService.prototype.initialize = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                if (this.isInitialized) {
-                    return [2 /*return*/, Promise.resolve()];
-                }
-                if (this.initializeListeners.length > 0) {
-                    // a parallel call has already been started
-                    return [2 /*return*/, new Promise(function (success) {
-                            _this.initializeListeners.push(success);
-                        })];
-                }
-                return [2 /*return*/, new Promise(function (success) { return __awaiter(_this, void 0, void 0, function () {
-                        var _this = this;
-                        var defaultLang, lang, preferredLanguage, e_1;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    defaultLang = 'en';
-                                    this.translateService.setDefaultLang(defaultLang);
-                                    this.initializeListeners.push(success);
-                                    return [4 /*yield*/, this.platform.ready()];
-                                case 1:
-                                    _a.sent();
-                                    return [4 /*yield*/, this.storage.get(LanguageService_1.STORAGE_KEY)];
-                                case 2:
-                                    lang = _a.sent();
-                                    if (!(!lang && Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginName()) === true)) return [3 /*break*/, 6];
-                                    _a.label = 3;
-                                case 3:
-                                    _a.trys.push([3, 5, , 6]);
-                                    return [4 /*yield*/, this.globalization.getPreferredLanguage()];
-                                case 4:
-                                    preferredLanguage = _a.sent();
-                                    if (preferredLanguage && preferredLanguage.value) {
-                                        lang = preferredLanguage.value;
-                                        if (lang.indexOf('-') > -1) {
-                                            lang = lang.split('-')[0];
-                                        }
-                                        if (lang.indexOf('_') > -1) {
-                                            lang = lang.split('_')[0];
-                                        }
-                                        lang = lang.toLowerCase();
-                                        if (this.availableLanguages.indexOf(lang) == -1) {
-                                            // detected language is not available
-                                            lang = null;
-                                        }
-                                    }
-                                    return [3 /*break*/, 6];
-                                case 5:
-                                    e_1 = _a.sent();
-                                    return [3 /*break*/, 6];
-                                case 6:
-                                    if (!lang) {
-                                        lang = defaultLang;
-                                    }
-                                    return [4 /*yield*/, this.translateService.use(lang)];
-                                case 7:
-                                    _a.sent();
-                                    setTimeout(function () {
-                                        // use timeout to let language switch propagate
-                                        _this.isInitialized = true;
-                                        _this.initializeListeners.map(function (success) {
-                                            success();
-                                        });
-                                        _this.initializeListeners = null;
-                                    }, 100);
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); })];
-            });
-        });
-    };
-    LanguageService.prototype.getLanguage = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, this.translateService.currentLang];
-            });
-        });
-    };
-    LanguageService.prototype.setLanguage = function (lang) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.translateService.use(lang);
-                        return [4 /*yield*/, this.storage.set(LanguageService_1.STORAGE_KEY, lang)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    LanguageService.STORAGE_KEY = 'LanguageService.lang';
-    LanguageService = LanguageService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
-    ], LanguageService);
-    return LanguageService;
-    var LanguageService_1;
-}());
-
-//# sourceMappingURL=language-service.js.map
-
-/***/ }),
-
 /***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2657,6 +1875,105 @@ var MCMIconModal = /** @class */ (function () {
 /***/ }),
 
 /***/ 150:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(118);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(navCtrl, platform, languageService, helper) {
+        this.navCtrl = navCtrl;
+        this.platform = platform;
+        this.languageService = languageService;
+        this.helper = helper;
+        this.tab1Root = 'DashboardPage';
+        this.tab2Root = 'RoutesListPage';
+        this.tab3Root = 'PortalPage';
+        HomePage_1.nav = navCtrl;
+    }
+    HomePage_1 = HomePage;
+    HomePage.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.platform.ready().then(function () {
+                    _this.languageService.initialize().then(function () {
+                        console.log('Platform is ready!');
+                        navigator.splashscreen.hide();
+                    });
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    HomePage = HomePage_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>\n    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_3__services_language_service__["a" /* LanguageService */],
+            __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
+    ], HomePage);
+    return HomePage;
+    var HomePage_1;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3074,105 +2391,6 @@ var Task = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=Task.js.map
-
-/***/ }),
-
-/***/ 151:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(120);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, platform, languageService, helper) {
-        this.navCtrl = navCtrl;
-        this.platform = platform;
-        this.languageService = languageService;
-        this.helper = helper;
-        this.tab1Root = 'DashboardPage';
-        this.tab2Root = 'RoutesListPage';
-        this.tab3Root = 'PortalPage';
-        HomePage_1.nav = navCtrl;
-    }
-    HomePage_1 = HomePage;
-    HomePage.prototype.ionViewWillEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                this.platform.ready().then(function () {
-                    _this.languageService.initialize().then(function () {
-                        console.log('Platform is ready!');
-                        navigator.splashscreen.hide();
-                    });
-                });
-                return [2 /*return*/];
-            });
-        });
-    };
-    HomePage = HomePage_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>\n    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_3__services_language_service__["a" /* LanguageService */],
-            __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
-    ], HomePage);
-    return HomePage;
-    var HomePage_1;
-}());
-
-//# sourceMappingURL=home.js.map
 
 /***/ }),
 
@@ -3675,7 +2893,7 @@ var Helper = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4086,18 +3304,18 @@ var SessionService = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(1109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(848);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(849);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(850);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(851);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(1116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(852);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(854);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(855);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(639);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4353,13 +3571,13 @@ var Score = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 241:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomKeyBoard; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4553,7 +3771,7 @@ var CustomKeyBoard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(590);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_component__ = __webpack_require__(116);
@@ -4762,18 +3980,18 @@ webpackEmptyAsyncContext.id = 253;
 
 var map = {
 	"../pages/chat/chat.module": [
-		593
+		591
 	],
 	"../pages/dashboard/dashboard.module": [
-		1154,
+		1152,
 		10
 	],
 	"../pages/home/home.module": [
-		1152,
+		1151,
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1151,
+		1154,
 		6
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
@@ -4781,7 +3999,7 @@ var map = {
 		8
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1160,
+		1157,
 		1
 	],
 	"../pages/info/info.module": [
@@ -4789,23 +4007,23 @@ var map = {
 		5
 	],
 	"../pages/onboarding/onboarding.module": [
-		1157,
+		1156,
 		4
 	],
 	"../pages/portal/portal.module": [
-		1156,
+		1159,
 		7
 	],
 	"../pages/settings/settings.module": [
-		1158,
+		1161,
 		3
 	],
 	"../pages/task-detail/task-detail.module": [
-		1161,
+		1160,
 		0
 	],
 	"../pages/task-group-detail/task-group-detail.module": [
-		1159,
+		1158,
 		2
 	]
 };
@@ -4838,7 +4056,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(805);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(806);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(807);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(811);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(34);
@@ -6800,7 +6018,7 @@ DBC.initialize();
 
 /***/ }),
 
-/***/ 361:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6851,7 +6069,7 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7020,7 +6238,7 @@ var RouteInfo = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7126,271 +6344,6 @@ var CenteredTask = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=CenteredTask.js.map
-
-/***/ }),
-
-/***/ 365:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTermsAndConditionsModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(119);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-var MCMTermsAndConditionsModal = /** @class */ (function () {
-    function MCMTermsAndConditionsModal(navParams, modalCtrl, viewCtrl, inAppBrowser) {
-        this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.viewCtrl = viewCtrl;
-        this.inAppBrowser = inAppBrowser;
-        this.tacCheckbox = false;
-        this.session = this.navParams.data.session;
-        this.navCtrl = this.navParams.data.navCtrl;
-    }
-    MCMTermsAndConditionsModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMTermsAndConditionsModal.prototype.addJoinSession = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var modal;
-            return __generator(this, function (_a) {
-                modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], { session: this.session, navCtrl: this.navCtrl });
-                this.cancel();
-                modal.present();
-                return [2 /*return*/];
-            });
-        });
-    };
-    MCMTermsAndConditionsModal.prototype.openTermsAndConditions = function () {
-        this.inAppBrowser.create("https://mathcitymap.eu/de/datenschutzerklaerung/", "_blank");
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMTermsAndConditionsModal.prototype, "input", void 0);
-    MCMTermsAndConditionsModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-terms-and-conditions-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{ \'a_terms_and_conditions_title\' | translate }}</h2>\n        <p class="terms" [innerHTML]="\'a_terms_and_conditions_text\' | translate" (click)="openTermsAndConditions()"></p>\n        <ion-item>\n            <ion-label>{{ \'a_terms_and_conditions_checkbox\' | translate }}</ion-label>\n            <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_terms_and_conditions_continue" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
-    ], MCMTermsAndConditionsModal);
-    return MCMTermsAndConditionsModal;
-}());
-
-//# sourceMappingURL=MCMTermsAndConditionsModal.js.map
-
-/***/ }),
-
-/***/ 366:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMJoinSessionModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-var MCMJoinSessionModal = /** @class */ (function () {
-    function MCMJoinSessionModal(viewCtrl, navParams, ormService, modalsService, sessionService) {
-        this.viewCtrl = viewCtrl;
-        this.navParams = navParams;
-        this.ormService = ormService;
-        this.modalsService = modalsService;
-        this.sessionService = sessionService;
-        this.teamMemberArray = [];
-        this.codeInput = false;
-        this.session = navParams.data.session;
-        this.navCtrl = navParams.data.navCtrl;
-    }
-    MCMJoinSessionModal.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.input.setFocus();
-        }, 150);
-    };
-    MCMJoinSessionModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMJoinSessionModal.prototype.start = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var route, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (this.teamMemberNames != null && this.teamMemberNames != "") {
-                            this.teamMemberArray.push(this.teamMemberNames);
-                            this.teamMemberNames = "";
-                        }
-                        return [4 /*yield*/, this.ormService.findRouteById(this.session.trail_id)];
-                    case 1:
-                        route = _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 5, , 6]);
-                        return [4 /*yield*/, this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray)];
-                    case 3:
-                        _a.sent();
-                        this.cancel();
-                        return [4 /*yield*/, this.ormService.unlockRoute(route)];
-                    case 4:
-                        _a.sent();
-                        this.modalsService.showRoute(route, this.navCtrl);
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_1 = _a.sent();
-                        this.cancel();
-                        this.modalsService.showDialog('a_session_not_available_yet', 'a_session_not_available_yet_text', 'a_g_ok', function () { });
-                        return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MCMJoinSessionModal.prototype.checkInputField = function () {
-        if (this.teamName != "" && this.teamName != null) {
-            if (this.teamMemberNames != "" && this.teamMemberNames != null) {
-                this.codeInput = true;
-            }
-            else if (this.teamMemberArray.length != 0) {
-                this.codeInput = true;
-            }
-            else {
-                this.codeInput = false;
-            }
-        }
-        else {
-            this.codeInput = false;
-        }
-        return this.codeInput;
-    };
-    MCMJoinSessionModal.prototype.addTeamMemberName = function (name) {
-        if (this.teamMemberNames != "" && this.teamMemberNames != null) {
-            this.teamMemberArray.push(name);
-            this.teamMemberNames = '';
-        }
-    };
-    MCMJoinSessionModal.prototype.removeTeamMemberName = function (index) {
-        this.teamMemberArray.splice(index, 1);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMJoinSessionModal.prototype, "input", void 0);
-    MCMJoinSessionModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-join-session-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/'<div class="modal icon card has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-session-join.svg"/>\n        <h2>"{{session.name}}"</h2>\n        <p class="main-text">{{session.welcome_message}}</p>\n\n            <ion-label>{{ "a_team_name" | translate }}</ion-label>\n            <ion-item>\n                <ion-input #input type="text" [(ngModel)]="teamName"></ion-input>\n            </ion-item>\n\n            <div class="input-container">\n                <ion-label>{{ "a_team_members" | translate }}</ion-label>\n                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">\n                    <ion-item>\n                        <ion-input [disabled]="true" value="{{ teamMember }}"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>\n                </div>\n                <div class="input-main">\n                    <ion-item>\n                        <ion-input #input type="text" [(ngModel)]="teamMemberNames"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/add.svg" (click)="addTeamMemberName(teamMemberNames)" />\n                </div>\n            </div>\n\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="start()" [disabled]="!checkInputField()">{{ "a_session_enter" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */]])
-    ], MCMJoinSessionModal);
-    return MCMJoinSessionModal;
-}());
-
-//# sourceMappingURL=MCMJoinSessionModal.js.map
 
 /***/ }),
 
@@ -8138,7 +7091,7 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 592:
+/***/ 590:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8223,7 +7176,7 @@ var ProblemReportService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 593:
+/***/ 591:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8231,7 +7184,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(644);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(237);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -8267,6 +7220,271 @@ var ChatPageModule = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=chat.module.js.map
+
+/***/ }),
+
+/***/ 593:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTermsAndConditionsModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(120);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var MCMTermsAndConditionsModal = /** @class */ (function () {
+    function MCMTermsAndConditionsModal(navParams, modalCtrl, viewCtrl, inAppBrowser) {
+        this.navParams = navParams;
+        this.modalCtrl = modalCtrl;
+        this.viewCtrl = viewCtrl;
+        this.inAppBrowser = inAppBrowser;
+        this.tacCheckbox = false;
+        this.session = this.navParams.data.session;
+        this.navCtrl = this.navParams.data.navCtrl;
+    }
+    MCMTermsAndConditionsModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMTermsAndConditionsModal.prototype.addJoinSession = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var modal;
+            return __generator(this, function (_a) {
+                modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], { session: this.session, navCtrl: this.navCtrl });
+                this.cancel();
+                modal.present();
+                return [2 /*return*/];
+            });
+        });
+    };
+    MCMTermsAndConditionsModal.prototype.openTermsAndConditions = function () {
+        this.inAppBrowser.create("https://mathcitymap.eu/de/datenschutzerklaerung/", "_blank");
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMTermsAndConditionsModal.prototype, "input", void 0);
+    MCMTermsAndConditionsModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-terms-and-conditions-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{ \'a_terms_and_conditions_title\' | translate }}</h2>\n        <p class="terms" [innerHTML]="\'a_terms_and_conditions_text\' | translate" (click)="openTermsAndConditions()"></p>\n        <ion-item>\n            <ion-label>{{ \'a_terms_and_conditions_checkbox\' | translate }}</ion-label>\n            <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_terms_and_conditions_continue" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+    ], MCMTermsAndConditionsModal);
+    return MCMTermsAndConditionsModal;
+}());
+
+//# sourceMappingURL=MCMTermsAndConditionsModal.js.map
+
+/***/ }),
+
+/***/ 594:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMJoinSessionModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+var MCMJoinSessionModal = /** @class */ (function () {
+    function MCMJoinSessionModal(viewCtrl, navParams, ormService, modalsService, sessionService) {
+        this.viewCtrl = viewCtrl;
+        this.navParams = navParams;
+        this.ormService = ormService;
+        this.modalsService = modalsService;
+        this.sessionService = sessionService;
+        this.teamMemberArray = [];
+        this.codeInput = false;
+        this.session = navParams.data.session;
+        this.navCtrl = navParams.data.navCtrl;
+    }
+    MCMJoinSessionModal.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.input.setFocus();
+        }, 150);
+    };
+    MCMJoinSessionModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMJoinSessionModal.prototype.start = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var route, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (this.teamMemberNames != null && this.teamMemberNames != "") {
+                            this.teamMemberArray.push(this.teamMemberNames);
+                            this.teamMemberNames = "";
+                        }
+                        return [4 /*yield*/, this.ormService.findRouteById(this.session.trail_id)];
+                    case 1:
+                        route = _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 5, , 6]);
+                        return [4 /*yield*/, this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray)];
+                    case 3:
+                        _a.sent();
+                        this.cancel();
+                        return [4 /*yield*/, this.ormService.unlockRoute(route)];
+                    case 4:
+                        _a.sent();
+                        this.modalsService.showRoute(route, this.navCtrl);
+                        return [3 /*break*/, 6];
+                    case 5:
+                        e_1 = _a.sent();
+                        this.cancel();
+                        this.modalsService.showDialog('a_session_not_available_yet', 'a_session_not_available_yet_text', 'a_g_ok', function () { });
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMJoinSessionModal.prototype.checkInputField = function () {
+        if (this.teamName != "" && this.teamName != null) {
+            if (this.teamMemberNames != "" && this.teamMemberNames != null) {
+                this.codeInput = true;
+            }
+            else if (this.teamMemberArray.length != 0) {
+                this.codeInput = true;
+            }
+            else {
+                this.codeInput = false;
+            }
+        }
+        else {
+            this.codeInput = false;
+        }
+        return this.codeInput;
+    };
+    MCMJoinSessionModal.prototype.addTeamMemberName = function (name) {
+        if (this.teamMemberNames != "" && this.teamMemberNames != null) {
+            this.teamMemberArray.push(name);
+            this.teamMemberNames = '';
+        }
+    };
+    MCMJoinSessionModal.prototype.removeTeamMemberName = function (index) {
+        this.teamMemberArray.splice(index, 1);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMJoinSessionModal.prototype, "input", void 0);
+    MCMJoinSessionModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-join-session-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/'<div class="modal icon card has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-session-join.svg"/>\n        <h2>"{{session.name}}"</h2>\n        <p class="main-text">{{session.welcome_message}}</p>\n\n            <ion-label>{{ "a_team_name" | translate }}</ion-label>\n            <ion-item>\n                <ion-input #input type="text" [(ngModel)]="teamName"></ion-input>\n            </ion-item>\n\n            <div class="input-container">\n                <ion-label>{{ "a_team_members" | translate }}</ion-label>\n                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">\n                    <ion-item>\n                        <ion-input [disabled]="true" value="{{ teamMember }}"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>\n                </div>\n                <div class="input-main">\n                    <ion-item>\n                        <ion-input #input type="text" [(ngModel)]="teamMemberNames"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/add.svg" (click)="addTeamMemberName(teamMemberNames)" />\n                </div>\n            </div>\n\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="start()" [disabled]="!checkInputField()">{{ "a_session_enter" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */]])
+    ], MCMJoinSessionModal);
+    return MCMJoinSessionModal;
+}());
+
+//# sourceMappingURL=MCMJoinSessionModal.js.map
 
 /***/ }),
 
@@ -8571,175 +7789,79 @@ var tilesDb = {
 
 /***/ }),
 
-/***/ 639:
+/***/ 638:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+
+
+var SearchPipe = /** @class */ (function () {
+    function SearchPipe() {
     }
-};
-
-
-
-
-
-
-
-var MCMRouteByCodeModal = /** @class */ (function () {
-    function MCMRouteByCodeModal(ormService, modalCtrl, viewCtrl, sessionService, navParams) {
-        this.ormService = ormService;
-        this.modalCtrl = modalCtrl;
-        this.viewCtrl = viewCtrl;
-        this.sessionService = sessionService;
-        this.navParams = navParams;
-        this.code = '';
-        this.codeInput = false;
-        this.navCtrl = navParams.data.navCtrl;
-    }
-    MCMRouteByCodeModal_1 = MCMRouteByCodeModal;
-    MCMRouteByCodeModal.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.input.setFocus();
-        }, 150);
+    SearchPipe.prototype.transform = function (value, keys, term) {
+        if (!term)
+            return value;
+        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
+        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
+        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
+        return result;
     };
-    MCMRouteByCodeModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMRouteByCodeModal.prototype.checkInputField = function () {
-        if (this.code.length >= 4) {
-            return this.codeInput = true;
-        }
-        else {
-            return this.codeInput = false;
-        }
-    };
-    MCMRouteByCodeModal.prototype.addTrailOrSessionByCode = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var route, session, e_1, modal;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormService.findRouteByCode(this.code)];
-                    case 1:
-                        route = _a.sent();
-                        if (!!route) return [3 /*break*/, 6];
-                        session = void 0;
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, this.sessionService.getSessionByCode(this.code).toPromise()];
-                    case 3:
-                        session = _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _a.sent();
-                        return [3 /*break*/, 5];
-                    case 5:
-                        if (session) {
-                            modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], {
-                                session: session,
-                                navCtrl: this.navCtrl
-                            });
-                            this.cancel();
-                            modal.present();
-                        }
-                        else {
-                            this.showError = true;
-                        }
-                        return [3 /*break*/, 8];
-                    case 6: return [4 /*yield*/, this.ormService.unlockRoute(route)];
-                    case 7:
-                        _a.sent();
-                        this.viewCtrl.dismiss(route);
-                        _a.label = 8;
-                    case 8: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MCMRouteByCodeModal.show = function (navCtrl, modalCtrl, translateService, modalsService) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (success) {
-                        var modal = modalCtrl.create(MCMRouteByCodeModal_1, { navCtrl: navCtrl });
-                        modal.onDidDismiss(function (route) {
-                            if (route) {
-                                modalsService.showDialog(null, translateService.instant('a_private_route_added', { 'T': route.title }), translateService.instant('a_g_ok'), function () {
-                                    modalsService.presentRouteInfoModal(route, navCtrl);
-                                });
-                            }
-                            success(route);
-                        });
-                        modal.present();
-                    })];
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMRouteByCodeModal.prototype, "input", void 0);
-    MCMRouteByCodeModal = MCMRouteByCodeModal_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__["a" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* NavParams */]])
-    ], MCMRouteByCodeModal);
-    return MCMRouteByCodeModal;
-    var MCMRouteByCodeModal_1;
+    SearchPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'search'
+        })
+    ], SearchPipe);
+    return SearchPipe;
 }());
 
-//# sourceMappingURL=MCMRouteByCodeModal.js.map
+//# sourceMappingURL=search.pipe.js.map
+
+/***/ }),
+
+/***/ 639:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var LinkHttpsPipe = /** @class */ (function () {
+    /**
+     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+    */
+    function LinkHttpsPipe() {
+    }
+    LinkHttpsPipe.prototype.transform = function (url) {
+        url = url.replace('http://', 'https://');
+        return url.startsWith("https://") ? url : "https://" + url;
+    };
+    LinkHttpsPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'linkHttps'
+        })
+        /**
+         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+        */
+    ], LinkHttpsPipe);
+    return LinkHttpsPipe;
+}());
+
+//# sourceMappingURL=linkHttps.pipe.js.map
 
 /***/ }),
 
@@ -8755,7 +7877,7 @@ var MCMRouteByCodeModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(641);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(116);
@@ -8966,7 +8088,7 @@ var DashboardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 641:
+/***/ 642:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8977,17 +8099,17 @@ var DashboardPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -9585,14 +8707,14 @@ var RoutesMapPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 642:
+/***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
@@ -9655,83 +8777,7 @@ var PortalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 643:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var SearchPipe = /** @class */ (function () {
-    function SearchPipe() {
-    }
-    SearchPipe.prototype.transform = function (value, keys, term) {
-        if (!term)
-            return value;
-        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
-        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
-        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
-        return result;
-    };
-    SearchPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'search'
-        })
-    ], SearchPipe);
-    return SearchPipe;
-}());
-
-//# sourceMappingURL=search.pipe.js.map
-
-/***/ }),
-
 /***/ 644:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var LinkHttpsPipe = /** @class */ (function () {
-    /**
-     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-    */
-    function LinkHttpsPipe() {
-    }
-    LinkHttpsPipe.prototype.transform = function (url) {
-        url = url.replace('http://', 'https://');
-        return url.startsWith("https://") ? url : "https://" + url;
-    };
-    LinkHttpsPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'linkHttps'
-        })
-        /**
-         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-        */
-    ], LinkHttpsPipe);
-    return LinkHttpsPipe;
-}());
-
-//# sourceMappingURL=linkHttps.pipe.js.map
-
-/***/ }),
-
-/***/ 645:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9740,7 +8786,7 @@ var LinkHttpsPipe = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(592);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
@@ -10392,6 +9438,178 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 645:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+var MCMRouteByCodeModal = /** @class */ (function () {
+    function MCMRouteByCodeModal(ormService, modalCtrl, viewCtrl, sessionService, navParams) {
+        this.ormService = ormService;
+        this.modalCtrl = modalCtrl;
+        this.viewCtrl = viewCtrl;
+        this.sessionService = sessionService;
+        this.navParams = navParams;
+        this.code = '';
+        this.codeInput = false;
+        this.navCtrl = navParams.data.navCtrl;
+    }
+    MCMRouteByCodeModal_1 = MCMRouteByCodeModal;
+    MCMRouteByCodeModal.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.input.setFocus();
+        }, 150);
+    };
+    MCMRouteByCodeModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMRouteByCodeModal.prototype.checkInputField = function () {
+        if (this.code.length >= 4) {
+            return this.codeInput = true;
+        }
+        else {
+            return this.codeInput = false;
+        }
+    };
+    MCMRouteByCodeModal.prototype.addTrailOrSessionByCode = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var route, session, e_1, modal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.ormService.findRouteByCode(this.code)];
+                    case 1:
+                        route = _a.sent();
+                        if (!!route) return [3 /*break*/, 6];
+                        session = void 0;
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, this.sessionService.getSessionByCode(this.code).toPromise()];
+                    case 3:
+                        session = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 5:
+                        if (session) {
+                            modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], {
+                                session: session,
+                                navCtrl: this.navCtrl
+                            });
+                            this.cancel();
+                            modal.present();
+                        }
+                        else {
+                            this.showError = true;
+                        }
+                        return [3 /*break*/, 8];
+                    case 6: return [4 /*yield*/, this.ormService.unlockRoute(route)];
+                    case 7:
+                        _a.sent();
+                        this.viewCtrl.dismiss(route);
+                        _a.label = 8;
+                    case 8: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMRouteByCodeModal.show = function (navCtrl, modalCtrl, translateService, modalsService) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (success) {
+                        var modal = modalCtrl.create(MCMRouteByCodeModal_1, { navCtrl: navCtrl });
+                        modal.onDidDismiss(function (route) {
+                            if (route) {
+                                modalsService.showDialog(null, translateService.instant('a_private_route_added', { 'T': route.title }), translateService.instant('a_g_ok'), function () {
+                                    modalsService.presentRouteInfoModal(route, navCtrl);
+                                });
+                            }
+                            success(route);
+                        });
+                        modal.present();
+                    })];
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMRouteByCodeModal.prototype, "input", void 0);
+    MCMRouteByCodeModal = MCMRouteByCodeModal_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__["a" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* NavParams */]])
+    ], MCMRouteByCodeModal);
+    return MCMRouteByCodeModal;
+    var MCMRouteByCodeModal_1;
+}());
+
+//# sourceMappingURL=MCMRouteByCodeModal.js.map
+
+/***/ }),
+
 /***/ 647:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10439,7 +9657,7 @@ var MCMIntroModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10527,7 +9745,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10615,15 +9833,15 @@ var MCMTrailFinishedModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__ = __webpack_require__(119);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10947,21 +10165,21 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(35);
@@ -10969,18 +10187,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular_linky__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(594);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1141);
@@ -10989,13 +10207,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(591);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(592);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(591);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(589);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
@@ -11084,18 +10302,18 @@ var AppModule = /** @class */ (function () {
                     swipeBackEnabled: false
                 }, {
                     links: [
-                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -13379,13 +12597,795 @@ var AddGroupsFinished17071440460000 = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 848:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return McmImageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(64);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the McmImageComponent component.
+ *
+ * This component shall encapsulate all functionality regarding images, e.g. downloading, resizing
+ * or viewing in fullscreen.
+ */
+var McmImageComponent = /** @class */ (function () {
+    function McmImageComponent(imagesService, photoViewerPlugin, spinnerDialog) {
+        this.imagesService = imagesService;
+        this.photoViewerPlugin = photoViewerPlugin;
+        this.spinnerDialog = spinnerDialog;
+        this.offline = true;
+        this.fullWidth = false;
+        this.photoViewer = false;
+        this.click = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    McmImageComponent.prototype.ngOnChanges = function () {
+        this.imageUrl = this.offline ? this.imagesService.getOfflineURL(this.src)
+            : this.imagesService.getOnlineURL(this.src);
+    };
+    McmImageComponent.prototype.onClick = function ($event) {
+        var _this = this;
+        this.click.next($event);
+        if (this.photoViewer && __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */].isPluginAvailable(__WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */])) {
+            this.spinnerDialog.show();
+            setTimeout(function () {
+                // use short timeout to let spinner dialog appear
+                _this.photoViewerPlugin.show(_this.offline ? _this.imagesService.getOfflineURL(_this.src, undefined, undefined, true) : _this.imageUrl);
+                setTimeout(function () {
+                    // photoviewer doesn't have callback when user closes it => hide spinner in background
+                    _this.spinnerDialog.hide();
+                }, 1000);
+            }, 100);
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], McmImageComponent.prototype, "src", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], McmImageComponent.prototype, "offline", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], McmImageComponent.prototype, "fullWidth", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], McmImageComponent.prototype, "photoViewer", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
+    ], McmImageComponent.prototype, "click", void 0);
+    McmImageComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-image',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/'<!-- Generated template for the McmImageComponent component -->\n<img [src]="imageUrl" [ngClass]="{\'full-width\': fullWidth}" (click)="onClick($event)"/>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
+    ], McmImageComponent);
+    return McmImageComponent;
+}());
+
+//# sourceMappingURL=mcm-image.js.map
+
+/***/ }),
+
+/***/ 849:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMHeaderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var MCMHeaderComponent = /** @class */ (function () {
+    function MCMHeaderComponent(navCtrl, navParams, viewCtrl, modalService, modalCtrl, deepLinker) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
+        this.modalService = modalService;
+        this.modalCtrl = modalCtrl;
+        this.deepLinker = deepLinker;
+        this.showBackButton = false;
+        this.transparent = false;
+        this.isOpeningRoute = false;
+        this.currentpage = this.viewCtrl.name;
+    }
+    MCMHeaderComponent.prototype.retriveTitle = function () {
+        //console.log('currentpage ',this.currentpage);
+        if (this.navParams && this.navParams.data.headerTitle) {
+            return this.navParams.data.headerTitle;
+        }
+        if (this.currentpage == 'InfoPage') {
+            return 'a_about_mcm_title';
+        }
+        if (this.currentpage == 'SettingsPage') {
+            return 'a_action_settings';
+        }
+        if (this.currentpage == 'ModalCmp') {
+            return '';
+        }
+        return this.currentpage;
+    };
+    MCMHeaderComponent.prototype.ngOnInit = function () {
+        this.showBackButton = this.navCtrl.canGoBack();
+        if (this.currentpage == 'ModalCmp') {
+            this.transparent = true;
+        }
+    };
+    MCMHeaderComponent.prototype.goToDashboard = function () {
+        var _this = this;
+        this.navCtrl.setRoot('DashboardPage').then(function () {
+            _this.navCtrl.popToRoot();
+        });
+    };
+    MCMHeaderComponent.prototype.goBack = function () {
+        var _this = this;
+        console.log('Header going back');
+        if (this.viewCtrl.instance.goBack) {
+            return this.viewCtrl.instance.goBack();
+        }
+        if (this.currentpage === 'TasksMap') {
+            var tasksMap = this.navCtrl.getActive().instance;
+            if (tasksMap.sessionInfo != null) {
+                console.log('go back from active session');
+                console.log(tasksMap.route.id);
+                tasksMap.sessionFinished();
+            }
+            else {
+                if (!this.isOpeningRoute) {
+                    this.isOpeningRoute = true;
+                    this.navCtrl.pop({}, function () {
+                        // necessary because of bug which does not update URL
+                        _this.deepLinker.navChange('back');
+                    });
+                    this.modalService.showRoute(tasksMap.route, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            this.isOpeningRoute = false;
+                            return [2 /*return*/];
+                        });
+                    }); });
+                }
+            }
+        }
+        else {
+            this.navCtrl.pop({}, function () {
+                // necessary because of bug which does not update URL
+                _this.deepLinker.navChange('back');
+            });
+        }
+    };
+    MCMHeaderComponent.prototype.closeModal = function () {
+        this.viewCtrl.dismiss(this.modalCtrl);
+    };
+    MCMHeaderComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-header',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">\n        <ion-buttons left>\n            <button ion-button icon-only *ngIf="showBackButton && currentpage != \'ModalCmp\'" (click)="goBack()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n            <button ion-button icon-only *ngIf="currentpage == \'ModalCmp\'" (click)="closeModal()">\n                <!--<img class="header-icon" src="assets/icons/icon_close-modal.svg"/>-->\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n        </ion-buttons>\n        <ion-title>{{ retriveTitle() | translate }}</ion-title>\n        <ion-buttons end></ion-buttons>\n    </ion-toolbar>\n</ion-header>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__["a" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* DeepLinker */]])
+    ], MCMHeaderComponent);
+    return MCMHeaderComponent;
+}());
+
+//# sourceMappingURL=mcm-header.component.js.map
+
+/***/ }),
+
+/***/ 850:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DistancePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+/*
+ * this is still pretty basic and could defenitely use some rework in terms of international scale and number notation
+ * so far the functiuonalities are:
+ * - checks if the value is over o km and if so, then converts m to km and adds the correct unit
+*/
+var DistancePipe = /** @class */ (function () {
+    function DistancePipe() {
+    }
+    DistancePipe.prototype.transform = function (value, unit) {
+        /*     console.log('value', value); */
+        if (value > 0 && value < 1000) {
+            return value + ' ' + unit;
+        }
+        else if (value > 1000) {
+            return (Math.round(value / 100) / 10) + ' km';
+        }
+        else if (value <= 0) {
+            return 0 + ' ' + unit;
+        }
+    };
+    DistancePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'distance' })
+    ], DistancePipe);
+    return DistancePipe;
+}());
+
+//# sourceMappingURL=distance.pipe.js.map
+
+/***/ }),
+
+/***/ 851:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMProgressBarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+var MCMProgressBarComponent = /** @class */ (function () {
+    function MCMProgressBarComponent(helper) {
+        this.helper = helper;
+    }
+    MCMProgressBarComponent.prototype.ngOnChanges = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.route && this.route.scores)) return [3 /*break*/, 5];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
+                    case 2:
+                        data = _a.sent();
+                        this.currentProgress = data.currentProgress;
+                        this.total = data.totalTasks;
+                        this.progressWidth = (100 / this.total) * this.currentProgress;
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        if (this.total && this.currentProgress) {
+                            this.progressWidth = (100 / this.total) * this.currentProgress;
+                        }
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
+    ], MCMProgressBarComponent.prototype, "route", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], MCMProgressBarComponent.prototype, "isAudioPlaying", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], MCMProgressBarComponent.prototype, "isAudio", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], MCMProgressBarComponent.prototype, "remainingTime", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], MCMProgressBarComponent.prototype, "currentProgress", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], MCMProgressBarComponent.prototype, "total", void 0);
+    MCMProgressBarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-progress-bar',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/'<span *ngIf="!isAudio">{{ currentProgress }} / {{ total }}</span>\n<div class="container progress-vertical route">\n    <div class="bar" [ngStyle]="{\'width\': ((100/total)*currentProgress) +\'%\'}"></div>\n</div>\n<!-- +900 to display 00:00 remaining only a short time-->\n<span *ngIf="isAudio && isAudioPlaying" class="audio">{{ (total - currentProgress)+900 | date: \'mm:ss\' }} </span>\n<span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: \'mm:ss\' }} </span>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
+    ], MCMProgressBarComponent);
+    return MCMProgressBarComponent;
+}());
+
+//# sourceMappingURL=mcm-progress-bar.js.map
+
+/***/ }),
+
+/***/ 852:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyLoadImagesDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(853);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intersection_observer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+/**
+ * Angular Lazy Loading Images Directive
+ *
+ * The library allows to lazy load images from your web application
+ * using the MutationObserver and the IntersectionObserver. Images will be loaded as
+ * soon as they enter the viewport in a non-blocking way.
+ */
+var LazyLoadImagesDirective = /** @class */ (function () {
+    function LazyLoadImagesDirective(element, renderer, ngZone, platformId, imagesService) {
+        this.renderer = renderer;
+        this.ngZone = ngZone;
+        this.platformId = platformId;
+        this.imagesService = imagesService;
+        this.rootElement = element.nativeElement;
+    }
+    LazyLoadImagesDirective.prototype.init = function () {
+        var _this = this;
+        this.registerIntersectionObserver();
+        this.observeDOMChanges(this.rootElement, function () {
+            var imagesFoundInDOM = _this.getAllImagesToLazyLoad(_this.rootElement);
+            imagesFoundInDOM.forEach(function (image) { return _this.intersectionObserver.observe(image); });
+        });
+    };
+    LazyLoadImagesDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        if (!this.isBrowser()) {
+            return;
+        }
+        this.ngZone.runOutsideAngular(function () { return _this.init(); });
+    };
+    LazyLoadImagesDirective.prototype.ngOnDestroy = function () {
+        if (this.intersectionObserver) {
+            this.intersectionObserver.disconnect();
+        }
+    };
+    LazyLoadImagesDirective.prototype.isBrowser = function () {
+        return Object(__WEBPACK_IMPORTED_MODULE_1__angular_common__["j" /* isPlatformBrowser */])(this.platformId);
+    };
+    LazyLoadImagesDirective.prototype.registerIntersectionObserver = function () {
+        var _this = this;
+        this.intersectionObserver = new IntersectionObserver(function (images) { return images.forEach(function (image) { return _this.onIntersectionChange(image); }); }, this.intersectionObserverConfig instanceof Object ? this.intersectionObserverConfig : undefined);
+        return this.intersectionObserver;
+    };
+    LazyLoadImagesDirective.prototype.observeDOMChanges = function (rootElement, onChange) {
+        // Create a Mutation Observer instance
+        var observer = new MutationObserver(function (mutations) { return onChange(mutations); });
+        // Observer Configuration
+        var observerConfig = {
+            attributes: true,
+            characterData: true,
+            childList: true,
+            subtree: true
+        };
+        // Observe Directive DOM Node
+        observer.observe(rootElement, observerConfig);
+        // Fire onChange callback to check current DOM nodes
+        onChange();
+        return observer;
+    };
+    LazyLoadImagesDirective.prototype.getAllImagesToLazyLoad = function (pageNode) {
+        return Array.from(pageNode.querySelectorAll('img[data-src], [data-srcset], [data-background-src], img[data-async-src], [data-async-background-src]'));
+    };
+    LazyLoadImagesDirective.prototype.onIntersectionChange = function (image) {
+        if (!image.isIntersecting) {
+            return;
+        }
+        this.onImageAppearsInViewport(image.target);
+    };
+    LazyLoadImagesDirective.prototype.onImageAppearsInViewport = function (image) {
+        var _this = this;
+        if (image.dataset.asyncSrc) {
+            this.imagesService.getAsyncImageURL(image.dataset.asyncSrc, this.imageSize).then(function (asyncSrc) {
+                _this.renderer.setAttribute(image, 'src', asyncSrc);
+            });
+            this.renderer.removeAttribute(image, 'data-async-src');
+        }
+        if (image.dataset.src) {
+            this.renderer.setAttribute(image, 'src', image.dataset.src);
+            this.renderer.removeAttribute(image, 'data-src');
+        }
+        if (image.dataset.srcset) {
+            this.renderer.setAttribute(image, 'srcset', image.dataset.srcset);
+            this.renderer.removeAttribute(image, 'data-srcset');
+        }
+        if (image.dataset.asyncBackgroundSrc) {
+            this.imagesService.getAsyncImageURL(image.dataset.asyncBackgroundSrc, this.imageSize).then(function (asyncSrc) {
+                _this.renderer.setStyle(image, 'background-image', "url(" + asyncSrc + ")");
+            });
+            this.renderer.removeAttribute(image, 'data-async-background-src');
+        }
+        if (image.dataset.backgroundSrc) {
+            this.renderer.setStyle(image, 'background-image', "url(" + image.dataset.backgroundSrc + ")");
+            this.renderer.removeAttribute(image, 'data-background-src');
+        }
+        // Stop observing the current target
+        if (this.intersectionObserver) {
+            this.intersectionObserver.unobserve(image);
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('lazy-load-images'),
+        __metadata("design:type", Object)
+    ], LazyLoadImagesDirective.prototype, "intersectionObserverConfig", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('image-size'),
+        __metadata("design:type", String)
+    ], LazyLoadImagesDirective.prototype, "imageSize", void 0);
+    LazyLoadImagesDirective = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
+            selector: '[lazy-load-images]'
+        }),
+        __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_0__angular_core__["PLATFORM_ID"])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], Object, __WEBPACK_IMPORTED_MODULE_3__services_images_service__["a" /* ImagesService */]])
+    ], LazyLoadImagesDirective);
+    return LazyLoadImagesDirective;
+}());
+
+//# sourceMappingURL=ngx-lazy-load-images.directive.js.map
+
+/***/ }),
+
+/***/ 854:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+var RouteTeaserComponent = /** @class */ (function () {
+    function RouteTeaserComponent(modalsService, ormService, helper, dbUpdater, translateService) {
+        this.modalsService = modalsService;
+        this.ormService = ormService;
+        this.helper = helper;
+        this.dbUpdater = dbUpdater;
+        this.translateService = translateService;
+        this.downloadRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.removeRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.currentProgress = 0;
+        this.total = 0;
+        this.completedRadius = 339.292;
+    }
+    RouteTeaserComponent.prototype.ngOnChanges = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, data;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!(this.route && this.route.downloaded)) return [3 /*break*/, 3];
+                        _a = this;
+                        return [4 /*yield*/, this.route.getTaskCount()];
+                    case 1:
+                        _a.total = _b.sent();
+                        if (!this.route.scores) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
+                    case 2:
+                        data = _b.sent();
+                        this.currentProgress = data.currentProgress;
+                        this.completedRadius = this.calculatePercentage();
+                        _b.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RouteTeaserComponent.prototype.calculatePercentage = function () {
+        var c = 2 * Math.PI * 54;
+        var completedPercentage = (1 / this.total) * this.currentProgress;
+        return c * (1 - completedPercentage);
+    };
+    RouteTeaserComponent.prototype.doDownload = function (event, route) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        event.stopPropagation();
+                        return [4 /*yield*/, this.modalsService.doDownload(route)];
+                    case 1:
+                        if (_a.sent()) {
+                            this.downloadRoute.emit({ route: route });
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RouteTeaserComponent.prototype.deleteRoute = function (event, route) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        event.stopPropagation();
+                        return [4 /*yield*/, this.ormService.removeDownloadedRoute(route, true)];
+                    case 1:
+                        if (_a.sent()) {
+                            this.removeRoute.emit();
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
+    ], RouteTeaserComponent.prototype, "route", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], RouteTeaserComponent.prototype, "isOnline", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", Object)
+    ], RouteTeaserComponent.prototype, "downloadRoute", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", Object)
+    ], RouteTeaserComponent.prototype, "removeRoute", void 0);
+    RouteTeaserComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'route-teaser',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/'<div class="main">\n    <div *ngIf="route" class="container image" [ngClass]="{\'downloaded\' : !!route.downloaded, \'completed\': !!route.completed}">\n        <svg class="progress" width="120" height="120" viewBox="0 0 120 120">\n            <circle class="progress__meter" cx="60" cy="60" r="54" stroke-width="12"></circle>\n            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{\'stroke-dasharray\': 339.292, \'stroke-dashoffset\': completedRadius}"></circle>\n        </svg>\n        <div class="cover">\n            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n        </div>\n        <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>\n    </div>\n\n    <div *ngIf="route" class="container text">\n        <h2 class="item-text-wrap">{{route.title}}</h2>\n        <div class="bottom">\n            <div class="text">\n            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: \'m\'}}</span>\n            <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>\n            </div>\n            <div *ngIf="route" class="container buttons">\n                <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">\n                    <img src="./assets/icons/download.svg"/>\n                </button>\n                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">\n                    <img src="./assets/icons/delete.svg"/>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="secondary">\n    <span class="icon key" no-margin>{{route.code}}</span>\n    <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>\n    <!--<mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>-->\n    <div class="evaluation">\n        <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>\n        <p class="icon finished" *ngIf="!route?.completed">{{currentProgress}} / {{total}}</p>\n        <div class="ratings" *ngIf="route?.scores && route.isAnswerFeedbackEnabled()">\n            <div class="rating perfect">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating good">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolvedLow().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating failed">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksFailed().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n        <div class="ratings" *ngIf="route?.scores && !route.isAnswerFeedbackEnabled()">\n            <div class="rating saved">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSaved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n    </div>\n\n    <!--Dummy just for quick testing purposes  -->\n    <!--<div class="evaluation">-->\n        <!--<span class="icon finished">Oct 21 2019</span>-->\n        <!--<div class="ratings">-->\n            <!--<div class="rating perfect"><p>1</p></div>-->\n            <!--<div class="rating good"><p>3</p></div>-->\n            <!--<div class="rating failed"><p>20</p></div>-->\n        <!--</div>-->\n    <!--</div>-->\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */]])
+    ], RouteTeaserComponent);
+    return RouteTeaserComponent;
+}());
+
+//# sourceMappingURL=route-teaser.js.map
+
+/***/ }),
+
+/***/ 855:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizedDatePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LocalizedDatePipe = /** @class */ (function () {
+    function LocalizedDatePipe(translateService) {
+        this.translateService = translateService;
+    }
+    LocalizedDatePipe.prototype.transform = function (value, pattern) {
+        if (pattern === void 0) { pattern = 'mediumDate'; }
+        var datePipe = new __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* DatePipe */](this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang);
+        return datePipe.transform(value, pattern);
+    };
+    LocalizedDatePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Pipe"])({
+            name: 'localizedDate',
+            pure: false
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
+    ], LocalizedDatePipe);
+    return LocalizedDatePipe;
+}());
+
+//# sourceMappingURL=localDate.pipe.js.map
+
+/***/ }),
+
 /***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
@@ -13964,7 +13964,7 @@ var Route = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatAndSessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(215);
@@ -13977,8 +13977,8 @@ var Route = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(452);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(453);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_moment__);

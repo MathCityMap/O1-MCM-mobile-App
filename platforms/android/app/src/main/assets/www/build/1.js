@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1160:
+/***/ 1157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TasksMap__ = __webpack_require__(1170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(237);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -525,7 +525,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 1172:
+/***/ 1170:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -541,14 +541,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Score__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__ = __webpack_require__(1166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_leaflet_rotatedmarker__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient__ = __webpack_require__(1173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient__ = __webpack_require__(1171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_conic_gradient___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_conic_gradient__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_images_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_storage__ = __webpack_require__(51);
@@ -558,11 +558,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(644);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_chat_and_session_service__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1123,8 +1123,6 @@ var TasksMap = /** @class */ (function () {
                         return [4 /*yield*/, this.refreshTaskLists()];
                     case 1:
                         _b.sent();
-                        console.log("Map Tasks", this.mapTaskList);
-                        console.log("Score Tasks", this.scoreTaskList);
                         geoJSON = this.route.getPathGeoJson();
                         pathGroup = [];
                         _loop_1 = function (i) {
@@ -1980,7 +1978,7 @@ var TasksMap = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1173:
+/***/ 1171:
 /***/ (function(module, exports) {
 
 /**
