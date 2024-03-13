@@ -89,14 +89,14 @@ export class Helper {
     /*
     GLOBAL VARS #
      */
-    // static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
-    static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
-    // static readonly MEDIASERVER_BASE_URL: string = "https://matismedia.eu"
-    static readonly MEDIASERVER_BASE_URL: string = "https://sb-medienserver.matismedia.eu"
+    static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
+    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
+    static readonly MEDIASERVER_BASE_URL: string = "https://matismedia.eu"
+    // static readonly MEDIASERVER_BASE_URL: string = "https://sb-medienserver.matismedia.eu"
     static readonly MEDIASERVER_IMAGE_URL: string = Helper.MEDIASERVER_BASE_URL + "/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
-    // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
-    static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
+    static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
+    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
     static readonly REQUEST_PASS: string = "evilknivel2k16"
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"

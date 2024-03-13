@@ -17,7 +17,7 @@
        under the License.
  */
 
-package de.autentek.mathcitymap;
+package de.uni_frankfurt.mathcitymap;
 
 import android.os.Bundle;
 

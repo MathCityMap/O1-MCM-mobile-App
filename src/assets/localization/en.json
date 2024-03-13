@@ -1408,8 +1408,9 @@
   "a_taskGroup_score_total": "Total Score",
   "a_taskGroup_skip_button": "Skip Task Group",
   "a_taskGroup_skip_info": "Info",
-  "a_taskGroup_skip_info_text": "By skipping the task group all unresolved tasks will be set as „skipped“ and you can move on to the next main task. But you can return to try unresolved tasks part anytime!",
+  "a_taskGroup_skip_info_text": "By skipping the task group all unresolved tasks will be set as „skipped“ and you can move on to the next main task. But you can return to try the unresolved tasks anytime!",
   "a_taskGroup_skip_confirm": "Do you want to skip all unsolved tasks in this group?",
+  "p_filter_by_lang": "Filter by Language",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

@@ -50,7 +50,7 @@
     "async": "2.6.0",
     "com.jjdltc.cordova.plugin.zip": "./plugin-src/com.jjdltc.cordova.plugin.zip",
     "conic-gradient": "^1.0.0",
-    "cordova": "10.0.0",
+    "cordova": "^12.0.0",
     "cordova-custom-config": "5.1.0",
     "cordova-plugin-advanced-http": "1.6.1",
     "cordova-plugin-androidx-adapter": "1.1.1",

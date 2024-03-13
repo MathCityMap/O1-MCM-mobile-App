@@ -540,7 +540,7 @@
   "a_private_session_ends": "Session ist abgelaufen!",
   "a_chat_type_message": "Nachricht schreiben",
   "a_chat_reply": "Antworten",
-  "a_terms_and_conditions_text": "By joining a session I understand and agree that for the time of the session. information will be shared with the mathcitymap.eu server. The used information includes location and current trail progress data. Only the session leader has access to the transmitted data to organize the digital math trail classroom. The data will be deleted after 3 months. Read more on data protection <a>here</a>.",
+  "a_terms_and_conditions_text": "Durch die Teilnahme an einem Digitalen Klassenzimmer erkläre ich mich damit einverstanden, dass während der Sitzung Informationen an den Server mathcitymap.eu übermittelt werden. Die übermittelten Informationen umfassen Standort- und aktuellen Trail-Fortschrittsdaten. Nur der Sitzungsleiter hat Zugriff auf die übermittelten Daten, um den digitalen Mathematikpfad im Klassenzimmer zu organisieren. Die Daten werden nach 3 Monaten gelöscht. Weitere Informationen zum Datenschutz findest du <a>hier</a>.",
   "p_cookie_message": "Diese Webseite speichert Cookies auf Ihrem Computer. Mithilfe dieser Cookies kann Ihr Aufenthalt auf Sie <strong>individuell zugeschnitten</strong> werden. Weiterhin erheben wir (konform zur europäischen Datenschutzverordnung) Nutzungsstatistiken während Ihres Besuches. Möchten Sie MathCityMap erlauben Nutzungsstatistiken zu erheben?",
   "slug_cookie_gdpr_url": "https://mathcitymap.eu/de/datenschutzerklaerung/",
   "p_cookie_gdpr_title": "Zur Datenschutzerklärung",
@@ -1403,11 +1403,12 @@
   "p_onboard_sol_desc": "Choose a task format and define the parameters of your task as well as a sample solution.",
   "p_onboard_hint_desc": "If you want, you can provide up to 3 hints to support other to solve your task.",
   "p_onboard_create_desc": "After you filled all the fields, just click on the button to create you task!",
-  "a_taskGroup_task_group": "Task Group",
-  "a_taskGroup_tasks": "Tasks",
-  "a_taskGroup_score_total": "Total Score",
-  "a_taskGroup_skip_button": "Skip Task Group",
+  "a_taskGroup_task_group": "Aufgabengruppe",
+  "a_taskGroup_tasks": "Aufgaben",
+  "a_taskGroup_score_total": "Gesamtpunktzahl",
+  "a_taskGroup_skip_button": "Aufgabengruppe überspringen",
   "a_taskGroup_skip_info": "Info",
-  "a_taskGroup_skip_info_text": "By skipping the task group all unresolved tasks will be set as „skipped“ and you can move on to the next main task. But you can return to try unresolved tasks part anytime!",
-  "a_taskGroup_skip_confirm": "Do you want to skip all unsolved tasks in this group?"
+  "a_taskGroup_skip_info_text": "Durch das Überspringen der Aufgabengruppe werden alle ungelösten Aufgaben als „übersprungen“ markiert, und du kannst mit der nächsten Hauptaufgabe fortfahren. Du kannst jedoch jederzeit zurückkehren, um die ungelösten Aufgaben zu bearbeiten!",
+  "a_taskGroup_skip_confirm": "Möchtest du alle ungelösten Aufgaben in dieser Gruppe überspringen?",
+  "p_filter_by_lang": "Filter by Language"
 }

@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 1158:
+/***/ 1160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1162);
@@ -313,7 +313,7 @@ var SafariViewController = (function (_super) {
 
 /***/ }),
 
-/***/ 1172:
+/***/ 1173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -462,20 +462,22 @@ var TaskGroupDetail = /** @class */ (function () {
             if (!taskDetails.skipped) {
                 classString += "solved";
             }
-            if (taskDetails.solved) {
-                classString += " perfect";
-            }
-            else if (taskDetails.solvedLow) {
-                classString += " good";
+            if (this.route.isAnswerFeedbackEnabled()) {
+                if (taskDetails.solved) {
+                    classString += " perfect";
+                }
+                else if (taskDetails.solvedLow) {
+                    classString += " good";
+                }
+                else if (taskDetails.failed) {
+                    classString += " failed";
+                }
+                else if (taskDetails.skipped) {
+                    classString += " skipped";
+                }
             }
             else if (taskDetails.saved) {
                 classString += " saved";
-            }
-            else if (taskDetails.failed) {
-                classString += " failed";
-            }
-            else if (taskDetails.skipped) {
-                classString += " skipped";
             }
         }
         return classString;

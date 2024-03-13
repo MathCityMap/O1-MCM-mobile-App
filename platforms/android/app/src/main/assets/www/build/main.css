@@ -66645,12 +66645,14 @@ ion-nav h1, ion-nav h2, ion-nav h3, ion-nav h4, ion-nav h5, ion-nav h6, ion-nav 
 }
 
 h1, h2, h3, h4, h5, h6, p, span, body, ion-app.ios, ion-app.md {
-  -webkit-font-smoothing: antialiased;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-  word-break: break-word;
   font-family: 'NunitoSemibold', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  white-space: normal;
+  -webkit-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 h1 {
