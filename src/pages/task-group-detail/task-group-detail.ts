@@ -86,16 +86,18 @@ export class TaskGroupDetail {
             if (!taskDetails.skipped) {
                 classString += "solved";
             }
-            if (taskDetails.solved) {
-                classString += " perfect";
-            } else if (taskDetails.solvedLow) {
-                classString += " good";
+            if (this.route.isAnswerFeedbackEnabled()) {
+                if (taskDetails.solved) {
+                    classString += " perfect";
+                } else if (taskDetails.solvedLow) {
+                    classString += " good";
+                } else if (taskDetails.failed) {
+                    classString += " failed";
+                } else if (taskDetails.skipped) {
+                    classString += " skipped";
+                }
             } else if (taskDetails.saved) {
                 classString += " saved";
-            } else if (taskDetails.failed) {
-                classString += " failed";
-            } else if (taskDetails.skipped) {
-                classString += " skipped";
             }
         }
         return classString;
