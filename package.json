@@ -103,7 +103,7 @@
     "cordova-plugin-media": "git+https://github.com/apache/cordova-plugin-media.git",
     "cordova-plugin-safariviewcontroller": "^2.0.0",
     "cordova-sqlite-storage": "file:plugin-src/cordova-sqlite-storage",
-    "cordova.plugins.diagnostic": "^6.0.4",
+    "cordova.plugins.diagnostic": "^7.1.4",
     "ng-swagger-gen": "0.11.4",
     "typescript": "2.7.2"
   },
