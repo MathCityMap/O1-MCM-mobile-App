@@ -8,6 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NavController } from "ionic-angular/navigation/nav-controller";
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 
+declare var MathJax;
+
 
 @Component({
     selector: 'route-info',
@@ -38,7 +40,7 @@ export class RouteInfo {
         this.totalTasks = await this.route.getTaskCount();
         let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
-        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+        MathJax.typeset();
     }
 
     async doDownload(route: Route) {

@@ -4,83 +4,69 @@
   <script data-ionic="inject">
     (function(w){var i=w.Ionic=w.Ionic||{};i.version='3.9.10';i.angular='4.4.4';i.staticDir='build/';})(window);
   </script>
-  <meta charset="UTF-8">
-  <title>Ionic App</title>
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
+    <meta charset="UTF-8">
+    <title>Ionic App</title>
+    <meta name="viewport"
+          content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
 
-  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4e8ef7">
+    <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4e8ef7">
 
-  <!-- add to homescreen for ios -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <!-- The polyfills js is generated during the build process -->
-  <script src="build/polyfills.js"></script>
+    <!-- The polyfills js is generated during the build process -->
+    <script src="build/polyfills.js"></script>
 
-  <!-- cordova.js required for cordova apps -->
-  <script src="cordova.js"></script>
-<!--    &lt;!&ndash; Mapbox GL &ndash;&gt;-->
-<!--    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css" rel='stylesheet' />-->
+    <!-- cordova.js required for cordova apps -->
+    <script src="cordova.js"></script>
+    <!--    &lt;!&ndash; Mapbox GL &ndash;&gt;-->
+    <!--    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css" rel='stylesheet' />-->
 
-  <!-- un-comment this code to enable service worker
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('service worker installed'))
-        .catch(err => console.error('Error', err));
-    }
-  </script>-->
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.error('Error', err));
+      }
+    </script>-->
 
-  <link href="build/main.css" rel="stylesheet">
-  <link href="assets/leaflet.css" rel="stylesheet">
-  <link href="assets/MarkerCluster.Default.css" rel="stylesheet">
-  <link href="assets/MarkerCluster.css" rel="stylesheet">
+    <link href="build/main.css" rel="stylesheet">
+    <link href="assets/leaflet.css" rel="stylesheet">
+    <link href="assets/MarkerCluster.Default.css" rel="stylesheet">
+    <link href="assets/MarkerCluster.css" rel="stylesheet">
 
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Register.StartupHook("HTML-CSS Jax Startup",function () {
-          var HTMLCSS = MathJax.OutputJax["HTML-CSS"];
-          HTMLCSS.Font.checkWebFont = function (check,font,callback) {
-            if (check.time(callback)) return;
-            if (check.total === 0) {
-              HTMLCSS.Font.testFont(font);
-              setTimeout(check,200);
-            } else {callback(check.STATUS.OK)}
-          }
-        });
-        MathJax.Hub.Config({
-            extensions: ["tex2jax.js"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-            tex2jax: {
-                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-                processEscapes: true
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ["\\(", "\\)"]],
+                displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+                processEscapes: true,
+                packages: ['base', 'ams']
             },
-            TeX: {
-              extensions: ["AMSmath.js","AMSsymbols.js"],
-              noErrors: {disabled: true}
-           },
-           styles: {
-           ".MathJax span": {"font-size":  "16px"}
-           }
-        });
-
-  </script>
-    <script type="text/javascript" async
-            src="assets/MathJax/MathJax.js">
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
     </script>
+    <script src="assets/MathJax/MathJax.js" id="MathJax-script"></script>
+
+<!--    <script type="text/javascript" src="assets/MathJax/MathJax.js?delayStartupUntil=configured"></script>-->
 </head>
 
 <body>
-    <!-- Ionic's root component and where the app will load -->
-    <ion-app></ion-app>
-    <!-- The vendor js is generated during the build process
-        It contains all of the dependencies in node_modules -->
-    <script src="build/vendor.js"></script>
-    <!-- The main bundle js is generated during the build process -->
-    <script src="build/main.js"></script>
+<!-- Ionic's root component and where the app will load -->
+<ion-app></ion-app>
+<!-- The vendor js is generated during the build process
+    It contains all of the dependencies in node_modules -->
+<script src="build/vendor.js"></script>
+<!-- The main bundle js is generated during the build process -->
+<script src="build/main.js"></script>
 </body>
 </html>

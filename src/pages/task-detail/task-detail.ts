@@ -30,6 +30,8 @@ import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
 import {SafariViewController} from '@ionic-native/safari-view-controller';
 import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
 
+declare var MathJax;
+
 /**
  * Generated class for the TaskDetailPage page.
  *
@@ -191,9 +193,8 @@ export class TaskDetail {
     }
 
     async ionViewDidEnter() {
-        console.log('TasksMap ionViewDidEnter()');
-
-        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+        console.log('TaskDetail ionViewDidEnter()');
+        MathJax.typeset();
     }
 
     async ionViewWillEnter() {
@@ -442,7 +443,7 @@ export class TaskDetail {
         if (this.task.solutionType == 'multiple_choice') {
             this.multipleChoiceView.changes.subscribe(data => {
                 console.log("MultipleChoiceChildData", data);
-                eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+                MathJax.typeset();
             })
             if (this.taskDetails.solved || this.taskDetails.solvedLow) {
                 this.multipleChoiceList = this.taskDetails.answerMultipleChoice;
@@ -498,7 +499,7 @@ export class TaskDetail {
         if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.subscribeCKEvents();
         }
-        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+        MathJax.typeset();
     }
 
     async ionViewWillLeave() {
