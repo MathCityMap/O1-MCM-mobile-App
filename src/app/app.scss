@@ -954,8 +954,8 @@ ion-list:not(.vector-input-list){
         margin-bottom: 0;
     }
     &.has-button-on-the-edge{
-        margin-bottom: $global-base-padding*1.5;
-        padding-bottom: $global-base-padding*1.5;
+        margin-bottom: $global-base-padding*2.5;
+        padding-bottom: $global-base-padding*2.5;
     }
     button{
         &.on-the-edge{
@@ -1366,11 +1366,13 @@ ion-modal {
 }
 
 ion-alert{
+    &.select-alert,
     &.multiple-select-alert{
         .alert-wrapper{
             max-width: 80vw;
         }
-        .alert-checkbox{
+        .alert-checkbox,
+        .alert-radio{
             &-group{
                 max-height: 70vh;
             }

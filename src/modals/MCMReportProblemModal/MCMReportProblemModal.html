@@ -6,7 +6,7 @@
         <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>
 
         <ion-item>
-            <ion-select multiple="true" [(ngModel)]="selectedProblems" [selectOptions]="{title: ('a_task_popup_reason' | translate)}" [cancelText]="'a_alert_cancel' | translate" [okText]="'a_g_ok' | translate">
+            <ion-select multiple="false" [(ngModel)]="selectedProblems" [selectOptions]="{title: ('a_task_popup_reason' | translate)}" [cancelText]="'a_alert_cancel' | translate" [okText]="'a_g_ok' | translate">
                 <ion-option *ngFor="let problem of problemTypes" [value]="problem.key">{{problem.value | translate}}</ion-option>
             </ion-select>
         </ion-item>
