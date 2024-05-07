@@ -54,4 +54,4 @@ read line
 [ "$line" = "n" -o "$line" = "N" ] || npm install
 
 bash
-[ -n "$SWITCHED_NODE_VERSION" ] && echo "Switching to previous node version: $previousNodeVersion"
+[ -n "$SWITCHED_NODE_VERSION" ] && echo "Switching to previous node version: $previousNodeVersion" && N_PREFIX=$HOME/.local n $previousNodeVersion

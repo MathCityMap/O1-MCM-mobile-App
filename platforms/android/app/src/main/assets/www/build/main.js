@@ -35,276 +35,276 @@ var EventAddRequest = /** @class */ (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 454,
-	"./af.js": 454,
-	"./ar": 455,
-	"./ar-dz": 456,
-	"./ar-dz.js": 456,
-	"./ar-kw": 457,
-	"./ar-kw.js": 457,
-	"./ar-ly": 458,
-	"./ar-ly.js": 458,
-	"./ar-ma": 459,
-	"./ar-ma.js": 459,
-	"./ar-sa": 460,
-	"./ar-sa.js": 460,
-	"./ar-tn": 461,
-	"./ar-tn.js": 461,
-	"./ar.js": 455,
-	"./az": 462,
-	"./az.js": 462,
-	"./be": 463,
-	"./be.js": 463,
-	"./bg": 464,
-	"./bg.js": 464,
-	"./bm": 465,
-	"./bm.js": 465,
-	"./bn": 466,
-	"./bn-bd": 467,
-	"./bn-bd.js": 467,
-	"./bn.js": 466,
-	"./bo": 468,
-	"./bo.js": 468,
-	"./br": 469,
-	"./br.js": 469,
-	"./bs": 470,
-	"./bs.js": 470,
-	"./ca": 471,
-	"./ca.js": 471,
-	"./cs": 472,
-	"./cs.js": 472,
-	"./cv": 473,
-	"./cv.js": 473,
-	"./cy": 474,
-	"./cy.js": 474,
-	"./da": 475,
-	"./da.js": 475,
-	"./de": 476,
-	"./de-at": 477,
-	"./de-at.js": 477,
-	"./de-ch": 478,
-	"./de-ch.js": 478,
-	"./de.js": 476,
-	"./dv": 479,
-	"./dv.js": 479,
-	"./el": 480,
-	"./el.js": 480,
-	"./en-au": 481,
-	"./en-au.js": 481,
-	"./en-ca": 482,
-	"./en-ca.js": 482,
-	"./en-gb": 483,
-	"./en-gb.js": 483,
-	"./en-ie": 484,
-	"./en-ie.js": 484,
-	"./en-il": 485,
-	"./en-il.js": 485,
-	"./en-in": 486,
-	"./en-in.js": 486,
-	"./en-nz": 487,
-	"./en-nz.js": 487,
-	"./en-sg": 488,
-	"./en-sg.js": 488,
-	"./eo": 489,
-	"./eo.js": 489,
-	"./es": 490,
-	"./es-do": 491,
-	"./es-do.js": 491,
-	"./es-mx": 492,
-	"./es-mx.js": 492,
-	"./es-us": 493,
-	"./es-us.js": 493,
-	"./es.js": 490,
-	"./et": 494,
-	"./et.js": 494,
-	"./eu": 495,
-	"./eu.js": 495,
-	"./fa": 496,
-	"./fa.js": 496,
-	"./fi": 497,
-	"./fi.js": 497,
-	"./fil": 498,
-	"./fil.js": 498,
-	"./fo": 499,
-	"./fo.js": 499,
-	"./fr": 500,
-	"./fr-ca": 501,
-	"./fr-ca.js": 501,
-	"./fr-ch": 502,
-	"./fr-ch.js": 502,
-	"./fr.js": 500,
-	"./fy": 503,
-	"./fy.js": 503,
-	"./ga": 504,
-	"./ga.js": 504,
-	"./gd": 505,
-	"./gd.js": 505,
-	"./gl": 506,
-	"./gl.js": 506,
-	"./gom-deva": 507,
-	"./gom-deva.js": 507,
-	"./gom-latn": 508,
-	"./gom-latn.js": 508,
-	"./gu": 509,
-	"./gu.js": 509,
-	"./he": 510,
-	"./he.js": 510,
-	"./hi": 511,
-	"./hi.js": 511,
-	"./hr": 512,
-	"./hr.js": 512,
-	"./hu": 513,
-	"./hu.js": 513,
-	"./hy-am": 514,
-	"./hy-am.js": 514,
-	"./id": 515,
-	"./id.js": 515,
-	"./is": 516,
-	"./is.js": 516,
-	"./it": 517,
-	"./it-ch": 518,
-	"./it-ch.js": 518,
-	"./it.js": 517,
-	"./ja": 519,
-	"./ja.js": 519,
-	"./jv": 520,
-	"./jv.js": 520,
-	"./ka": 521,
-	"./ka.js": 521,
-	"./kk": 522,
-	"./kk.js": 522,
-	"./km": 523,
-	"./km.js": 523,
-	"./kn": 524,
-	"./kn.js": 524,
-	"./ko": 525,
-	"./ko.js": 525,
-	"./ku": 526,
-	"./ku.js": 526,
-	"./ky": 527,
-	"./ky.js": 527,
-	"./lb": 528,
-	"./lb.js": 528,
-	"./lo": 529,
-	"./lo.js": 529,
-	"./lt": 530,
-	"./lt.js": 530,
-	"./lv": 531,
-	"./lv.js": 531,
-	"./me": 532,
-	"./me.js": 532,
-	"./mi": 533,
-	"./mi.js": 533,
-	"./mk": 534,
-	"./mk.js": 534,
-	"./ml": 535,
-	"./ml.js": 535,
-	"./mn": 536,
-	"./mn.js": 536,
-	"./mr": 537,
-	"./mr.js": 537,
-	"./ms": 538,
-	"./ms-my": 539,
-	"./ms-my.js": 539,
-	"./ms.js": 538,
-	"./mt": 540,
-	"./mt.js": 540,
-	"./my": 541,
-	"./my.js": 541,
-	"./nb": 542,
-	"./nb.js": 542,
-	"./ne": 543,
-	"./ne.js": 543,
-	"./nl": 544,
-	"./nl-be": 545,
-	"./nl-be.js": 545,
-	"./nl.js": 544,
-	"./nn": 546,
-	"./nn.js": 546,
-	"./oc-lnc": 547,
-	"./oc-lnc.js": 547,
-	"./pa-in": 548,
-	"./pa-in.js": 548,
-	"./pl": 549,
-	"./pl.js": 549,
-	"./pt": 550,
-	"./pt-br": 551,
-	"./pt-br.js": 551,
-	"./pt.js": 550,
-	"./ro": 552,
-	"./ro.js": 552,
-	"./ru": 553,
-	"./ru.js": 553,
-	"./sd": 554,
-	"./sd.js": 554,
-	"./se": 555,
-	"./se.js": 555,
-	"./si": 556,
-	"./si.js": 556,
-	"./sk": 557,
-	"./sk.js": 557,
-	"./sl": 558,
-	"./sl.js": 558,
-	"./sq": 559,
-	"./sq.js": 559,
-	"./sr": 560,
-	"./sr-cyrl": 561,
-	"./sr-cyrl.js": 561,
-	"./sr.js": 560,
-	"./ss": 562,
-	"./ss.js": 562,
-	"./sv": 563,
-	"./sv.js": 563,
-	"./sw": 564,
-	"./sw.js": 564,
-	"./ta": 565,
-	"./ta.js": 565,
-	"./te": 566,
-	"./te.js": 566,
-	"./tet": 567,
-	"./tet.js": 567,
-	"./tg": 568,
-	"./tg.js": 568,
-	"./th": 569,
-	"./th.js": 569,
-	"./tk": 570,
-	"./tk.js": 570,
-	"./tl-ph": 571,
-	"./tl-ph.js": 571,
-	"./tlh": 572,
-	"./tlh.js": 572,
-	"./tr": 573,
-	"./tr.js": 573,
-	"./tzl": 574,
-	"./tzl.js": 574,
-	"./tzm": 575,
-	"./tzm-latn": 576,
-	"./tzm-latn.js": 576,
-	"./tzm.js": 575,
-	"./ug-cn": 577,
-	"./ug-cn.js": 577,
-	"./uk": 578,
-	"./uk.js": 578,
-	"./ur": 579,
-	"./ur.js": 579,
-	"./uz": 580,
-	"./uz-latn": 581,
-	"./uz-latn.js": 581,
-	"./uz.js": 580,
-	"./vi": 582,
-	"./vi.js": 582,
-	"./x-pseudo": 583,
-	"./x-pseudo.js": 583,
-	"./yo": 584,
-	"./yo.js": 584,
-	"./zh-cn": 585,
-	"./zh-cn.js": 585,
-	"./zh-hk": 586,
-	"./zh-hk.js": 586,
-	"./zh-mo": 587,
-	"./zh-mo.js": 587,
-	"./zh-tw": 588,
-	"./zh-tw.js": 588
+	"./af": 455,
+	"./af.js": 455,
+	"./ar": 456,
+	"./ar-dz": 457,
+	"./ar-dz.js": 457,
+	"./ar-kw": 458,
+	"./ar-kw.js": 458,
+	"./ar-ly": 459,
+	"./ar-ly.js": 459,
+	"./ar-ma": 460,
+	"./ar-ma.js": 460,
+	"./ar-sa": 461,
+	"./ar-sa.js": 461,
+	"./ar-tn": 462,
+	"./ar-tn.js": 462,
+	"./ar.js": 456,
+	"./az": 463,
+	"./az.js": 463,
+	"./be": 464,
+	"./be.js": 464,
+	"./bg": 465,
+	"./bg.js": 465,
+	"./bm": 466,
+	"./bm.js": 466,
+	"./bn": 467,
+	"./bn-bd": 468,
+	"./bn-bd.js": 468,
+	"./bn.js": 467,
+	"./bo": 469,
+	"./bo.js": 469,
+	"./br": 470,
+	"./br.js": 470,
+	"./bs": 471,
+	"./bs.js": 471,
+	"./ca": 472,
+	"./ca.js": 472,
+	"./cs": 473,
+	"./cs.js": 473,
+	"./cv": 474,
+	"./cv.js": 474,
+	"./cy": 475,
+	"./cy.js": 475,
+	"./da": 476,
+	"./da.js": 476,
+	"./de": 477,
+	"./de-at": 478,
+	"./de-at.js": 478,
+	"./de-ch": 479,
+	"./de-ch.js": 479,
+	"./de.js": 477,
+	"./dv": 480,
+	"./dv.js": 480,
+	"./el": 481,
+	"./el.js": 481,
+	"./en-au": 482,
+	"./en-au.js": 482,
+	"./en-ca": 483,
+	"./en-ca.js": 483,
+	"./en-gb": 484,
+	"./en-gb.js": 484,
+	"./en-ie": 485,
+	"./en-ie.js": 485,
+	"./en-il": 486,
+	"./en-il.js": 486,
+	"./en-in": 487,
+	"./en-in.js": 487,
+	"./en-nz": 488,
+	"./en-nz.js": 488,
+	"./en-sg": 489,
+	"./en-sg.js": 489,
+	"./eo": 490,
+	"./eo.js": 490,
+	"./es": 491,
+	"./es-do": 492,
+	"./es-do.js": 492,
+	"./es-mx": 493,
+	"./es-mx.js": 493,
+	"./es-us": 494,
+	"./es-us.js": 494,
+	"./es.js": 491,
+	"./et": 495,
+	"./et.js": 495,
+	"./eu": 496,
+	"./eu.js": 496,
+	"./fa": 497,
+	"./fa.js": 497,
+	"./fi": 498,
+	"./fi.js": 498,
+	"./fil": 499,
+	"./fil.js": 499,
+	"./fo": 500,
+	"./fo.js": 500,
+	"./fr": 501,
+	"./fr-ca": 502,
+	"./fr-ca.js": 502,
+	"./fr-ch": 503,
+	"./fr-ch.js": 503,
+	"./fr.js": 501,
+	"./fy": 504,
+	"./fy.js": 504,
+	"./ga": 505,
+	"./ga.js": 505,
+	"./gd": 506,
+	"./gd.js": 506,
+	"./gl": 507,
+	"./gl.js": 507,
+	"./gom-deva": 508,
+	"./gom-deva.js": 508,
+	"./gom-latn": 509,
+	"./gom-latn.js": 509,
+	"./gu": 510,
+	"./gu.js": 510,
+	"./he": 511,
+	"./he.js": 511,
+	"./hi": 512,
+	"./hi.js": 512,
+	"./hr": 513,
+	"./hr.js": 513,
+	"./hu": 514,
+	"./hu.js": 514,
+	"./hy-am": 515,
+	"./hy-am.js": 515,
+	"./id": 516,
+	"./id.js": 516,
+	"./is": 517,
+	"./is.js": 517,
+	"./it": 518,
+	"./it-ch": 519,
+	"./it-ch.js": 519,
+	"./it.js": 518,
+	"./ja": 520,
+	"./ja.js": 520,
+	"./jv": 521,
+	"./jv.js": 521,
+	"./ka": 522,
+	"./ka.js": 522,
+	"./kk": 523,
+	"./kk.js": 523,
+	"./km": 524,
+	"./km.js": 524,
+	"./kn": 525,
+	"./kn.js": 525,
+	"./ko": 526,
+	"./ko.js": 526,
+	"./ku": 527,
+	"./ku.js": 527,
+	"./ky": 528,
+	"./ky.js": 528,
+	"./lb": 529,
+	"./lb.js": 529,
+	"./lo": 530,
+	"./lo.js": 530,
+	"./lt": 531,
+	"./lt.js": 531,
+	"./lv": 532,
+	"./lv.js": 532,
+	"./me": 533,
+	"./me.js": 533,
+	"./mi": 534,
+	"./mi.js": 534,
+	"./mk": 535,
+	"./mk.js": 535,
+	"./ml": 536,
+	"./ml.js": 536,
+	"./mn": 537,
+	"./mn.js": 537,
+	"./mr": 538,
+	"./mr.js": 538,
+	"./ms": 539,
+	"./ms-my": 540,
+	"./ms-my.js": 540,
+	"./ms.js": 539,
+	"./mt": 541,
+	"./mt.js": 541,
+	"./my": 542,
+	"./my.js": 542,
+	"./nb": 543,
+	"./nb.js": 543,
+	"./ne": 544,
+	"./ne.js": 544,
+	"./nl": 545,
+	"./nl-be": 546,
+	"./nl-be.js": 546,
+	"./nl.js": 545,
+	"./nn": 547,
+	"./nn.js": 547,
+	"./oc-lnc": 548,
+	"./oc-lnc.js": 548,
+	"./pa-in": 549,
+	"./pa-in.js": 549,
+	"./pl": 550,
+	"./pl.js": 550,
+	"./pt": 551,
+	"./pt-br": 552,
+	"./pt-br.js": 552,
+	"./pt.js": 551,
+	"./ro": 553,
+	"./ro.js": 553,
+	"./ru": 554,
+	"./ru.js": 554,
+	"./sd": 555,
+	"./sd.js": 555,
+	"./se": 556,
+	"./se.js": 556,
+	"./si": 557,
+	"./si.js": 557,
+	"./sk": 558,
+	"./sk.js": 558,
+	"./sl": 559,
+	"./sl.js": 559,
+	"./sq": 560,
+	"./sq.js": 560,
+	"./sr": 561,
+	"./sr-cyrl": 562,
+	"./sr-cyrl.js": 562,
+	"./sr.js": 561,
+	"./ss": 563,
+	"./ss.js": 563,
+	"./sv": 564,
+	"./sv.js": 564,
+	"./sw": 565,
+	"./sw.js": 565,
+	"./ta": 566,
+	"./ta.js": 566,
+	"./te": 567,
+	"./te.js": 567,
+	"./tet": 568,
+	"./tet.js": 568,
+	"./tg": 569,
+	"./tg.js": 569,
+	"./th": 570,
+	"./th.js": 570,
+	"./tk": 571,
+	"./tk.js": 571,
+	"./tl-ph": 572,
+	"./tl-ph.js": 572,
+	"./tlh": 573,
+	"./tlh.js": 573,
+	"./tr": 574,
+	"./tr.js": 574,
+	"./tzl": 575,
+	"./tzl.js": 575,
+	"./tzm": 576,
+	"./tzm-latn": 577,
+	"./tzm-latn.js": 577,
+	"./tzm.js": 576,
+	"./ug-cn": 578,
+	"./ug-cn.js": 578,
+	"./uk": 579,
+	"./uk.js": 579,
+	"./ur": 580,
+	"./ur.js": 580,
+	"./uz": 581,
+	"./uz-latn": 582,
+	"./uz-latn.js": 582,
+	"./uz.js": 581,
+	"./vi": 583,
+	"./vi.js": 583,
+	"./x-pseudo": 584,
+	"./x-pseudo.js": 584,
+	"./yo": 585,
+	"./yo.js": 585,
+	"./zh-cn": 586,
+	"./zh-cn.js": 586,
+	"./zh-hk": 587,
+	"./zh-hk.js": 587,
+	"./zh-mo": 588,
+	"./zh-mo.js": 588,
+	"./zh-tw": 589,
+	"./zh-tw.js": 589
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -596,13 +596,13 @@ var Autoresize = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(451);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(452);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(454);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(592);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -863,19 +863,19 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(591);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(640);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(642);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(644);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -987,6 +987,39 @@ var MyApp = /** @class */ (function () {
                 }
             });
         }); });
+        // MathJax.Hub.Register.StartupHook("HTML-CSS Jax Startup", function () {
+        //     var HTMLCSS = MathJax.OutputJax["HTML-CSS"];
+        //     HTMLCSS.Font.checkWebFont = function (check, font, callback) {
+        //         if (check.time(callback)) return;
+        //         if (check.total === 0) {
+        //             HTMLCSS.Font.testFont(font);
+        //             setTimeout(check, 200);
+        //         } else {
+        //             callback(check.STATUS.OK)
+        //         }
+        //     }
+        // });
+        // MathJax.Hub.Config({
+        //     extensions: ["tex2jax.js"],
+        //     jax: ["input/TeX", "output/HTML-CSS"],
+        //     tex2jax: {
+        //         inlineMath: [['$', '$'], ["\\(", "\\)"]],
+        //         displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+        //         processEscapes: true
+        //     },
+        //     TeX: {
+        //         extensions: ["AMSmath.js", "AMSsymbols.js"],
+        //         noErrors: {disabled: true}
+        //     },
+        //     "HTML-CSS": {
+        //         fonts: ["TeX"]
+        //     },
+        //     styles: {
+        //         ".MathJax span": {"font-size": "16px"}
+        //     }
+        // });
+        // MathJax.Hub.Configured();
+        // console.log("Initialized MathJax", MathJax);
         platform.registerBackButtonAction(function () { return __awaiter(_this, void 0, void 0, function () {
             var _this = this;
             var activeNav, rootNav, alert_1, tasksMap;
@@ -1191,7 +1224,7 @@ var LanguageService = /** @class */ (function () {
         this.storage = storage;
         this.isInitialized = false;
         this.initializeListeners = [];
-        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et"];
+        this.availableLanguages = ["en", "de", "it", "fr", "es", "pt", "sk", "tr", "zh", "el", "id", "et", "is"];
     }
     LanguageService_1 = LanguageService;
     LanguageService.prototype.getAvailableLanguages = function () {
@@ -1819,7 +1852,7 @@ var MCMIconModal = /** @class */ (function () {
     }
     MCMIconModal_1 = MCMIconModal;
     MCMIconModal.prototype.ionViewDidEnter = function () {
-        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+        MathJax.typeset();
     };
     MCMIconModal.prototype.dismiss = function (backToMap) {
         if (backToMap) {
@@ -3571,13 +3604,13 @@ var Score = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 239:
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomKeyBoard; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3771,7 +3804,7 @@ var CustomKeyBoard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(592);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_component__ = __webpack_require__(116);
@@ -3980,10 +4013,10 @@ webpackEmptyAsyncContext.id = 253;
 
 var map = {
 	"../pages/chat/chat.module": [
-		591
+		593
 	],
 	"../pages/dashboard/dashboard.module": [
-		1152,
+		1153,
 		10
 	],
 	"../pages/home/home.module": [
@@ -3991,39 +4024,39 @@ var map = {
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1153,
+		1152,
 		6
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1159,
+		1154,
 		8
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1158,
+		1159,
 		1
 	],
 	"../pages/info/info.module": [
-		1154,
+		1155,
 		5
 	],
 	"../pages/onboarding/onboarding.module": [
-		1155,
+		1156,
 		4
 	],
 	"../pages/portal/portal.module": [
-		1156,
+		1157,
 		7
 	],
 	"../pages/settings/settings.module": [
-		1157,
+		1158,
 		3
 	],
 	"../pages/task-detail/task-detail.module": [
-		1161,
+		1160,
 		0
 	],
 	"../pages/task-group-detail/task-group-detail.module": [
-		1160,
+		1161,
 		2
 	]
 };
@@ -6169,7 +6202,7 @@ var RouteInfo = /** @class */ (function () {
                     case 4:
                         score = _e.apply(_d, [_f.sent()]);
                         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
-                        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+                        MathJax.typeset();
                         return [2 /*return*/];
                 }
             });
@@ -6347,7 +6380,272 @@ var CenteredTask = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 449:
+/***/ 366:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTermsAndConditionsModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(367);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(120);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var MCMTermsAndConditionsModal = /** @class */ (function () {
+    function MCMTermsAndConditionsModal(navParams, modalCtrl, viewCtrl, inAppBrowser) {
+        this.navParams = navParams;
+        this.modalCtrl = modalCtrl;
+        this.viewCtrl = viewCtrl;
+        this.inAppBrowser = inAppBrowser;
+        this.tacCheckbox = false;
+        this.session = this.navParams.data.session;
+        this.navCtrl = this.navParams.data.navCtrl;
+    }
+    MCMTermsAndConditionsModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMTermsAndConditionsModal.prototype.addJoinSession = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var modal;
+            return __generator(this, function (_a) {
+                modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], { session: this.session, navCtrl: this.navCtrl });
+                this.cancel();
+                modal.present();
+                return [2 /*return*/];
+            });
+        });
+    };
+    MCMTermsAndConditionsModal.prototype.openTermsAndConditions = function () {
+        this.inAppBrowser.create("https://mathcitymap.eu/de/datenschutzerklaerung/", "_blank");
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMTermsAndConditionsModal.prototype, "input", void 0);
+    MCMTermsAndConditionsModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-terms-and-conditions-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{ \'a_terms_and_conditions_title\' | translate }}</h2>\n        <p class="terms" [innerHTML]="\'a_terms_and_conditions_text\' | translate" (click)="openTermsAndConditions()"></p>\n        <ion-item>\n            <ion-label>{{ \'a_terms_and_conditions_checkbox\' | translate }}</ion-label>\n            <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_terms_and_conditions_continue" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
+    ], MCMTermsAndConditionsModal);
+    return MCMTermsAndConditionsModal;
+}());
+
+//# sourceMappingURL=MCMTermsAndConditionsModal.js.map
+
+/***/ }),
+
+/***/ 367:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMJoinSessionModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+var MCMJoinSessionModal = /** @class */ (function () {
+    function MCMJoinSessionModal(viewCtrl, navParams, ormService, modalsService, sessionService) {
+        this.viewCtrl = viewCtrl;
+        this.navParams = navParams;
+        this.ormService = ormService;
+        this.modalsService = modalsService;
+        this.sessionService = sessionService;
+        this.teamMemberArray = [];
+        this.codeInput = false;
+        this.session = navParams.data.session;
+        this.navCtrl = navParams.data.navCtrl;
+    }
+    MCMJoinSessionModal.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.input.setFocus();
+        }, 150);
+    };
+    MCMJoinSessionModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMJoinSessionModal.prototype.start = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var route, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (this.teamMemberNames != null && this.teamMemberNames != "") {
+                            this.teamMemberArray.push(this.teamMemberNames);
+                            this.teamMemberNames = "";
+                        }
+                        return [4 /*yield*/, this.ormService.findRouteById(this.session.trail_id)];
+                    case 1:
+                        route = _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 5, , 6]);
+                        return [4 /*yield*/, this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray)];
+                    case 3:
+                        _a.sent();
+                        this.cancel();
+                        return [4 /*yield*/, this.ormService.unlockRoute(route)];
+                    case 4:
+                        _a.sent();
+                        this.modalsService.showRoute(route, this.navCtrl);
+                        return [3 /*break*/, 6];
+                    case 5:
+                        e_1 = _a.sent();
+                        this.cancel();
+                        this.modalsService.showDialog('a_session_not_available_yet', 'a_session_not_available_yet_text', 'a_g_ok', function () { });
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMJoinSessionModal.prototype.checkInputField = function () {
+        if (this.teamName != "" && this.teamName != null) {
+            if (this.teamMemberNames != "" && this.teamMemberNames != null) {
+                this.codeInput = true;
+            }
+            else if (this.teamMemberArray.length != 0) {
+                this.codeInput = true;
+            }
+            else {
+                this.codeInput = false;
+            }
+        }
+        else {
+            this.codeInput = false;
+        }
+        return this.codeInput;
+    };
+    MCMJoinSessionModal.prototype.addTeamMemberName = function (name) {
+        if (this.teamMemberNames != "" && this.teamMemberNames != null) {
+            this.teamMemberArray.push(name);
+            this.teamMemberNames = '';
+        }
+    };
+    MCMJoinSessionModal.prototype.removeTeamMemberName = function (index) {
+        this.teamMemberArray.splice(index, 1);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMJoinSessionModal.prototype, "input", void 0);
+    MCMJoinSessionModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-join-session-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/'<div class="modal icon card has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-session-join.svg"/>\n        <h2>"{{session.name}}"</h2>\n        <p class="main-text">{{session.welcome_message}}</p>\n\n            <ion-label>{{ "a_team_name" | translate }}</ion-label>\n            <ion-item>\n                <ion-input #input type="text" [(ngModel)]="teamName"></ion-input>\n            </ion-item>\n\n            <div class="input-container">\n                <ion-label>{{ "a_team_members" | translate }}</ion-label>\n                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">\n                    <ion-item>\n                        <ion-input [disabled]="true" value="{{ teamMember }}"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>\n                </div>\n                <div class="input-main">\n                    <ion-item>\n                        <ion-input #input type="text" [(ngModel)]="teamMemberNames"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/add.svg" (click)="addTeamMemberName(teamMemberNames)" />\n                </div>\n            </div>\n\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="start()" [disabled]="!checkInputField()">{{ "a_session_enter" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */]])
+    ], MCMJoinSessionModal);
+    return MCMJoinSessionModal;
+}());
+
+//# sourceMappingURL=MCMJoinSessionModal.js.map
+
+/***/ }),
+
+/***/ 450:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6519,7 +6817,7 @@ var SessionUserService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 450:
+/***/ 451:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6795,7 +7093,7 @@ var SessionChatService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 452:
+/***/ 453:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6998,7 +7296,7 @@ var SessionEventService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 453:
+/***/ 454:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7091,7 +7389,7 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 590:
+/***/ 592:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7176,7 +7474,7 @@ var ProblemReportService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 591:
+/***/ 593:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7184,7 +7482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(646);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(237);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -7220,271 +7518,6 @@ var ChatPageModule = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=chat.module.js.map
-
-/***/ }),
-
-/***/ 593:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTermsAndConditionsModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(594);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(120);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-var MCMTermsAndConditionsModal = /** @class */ (function () {
-    function MCMTermsAndConditionsModal(navParams, modalCtrl, viewCtrl, inAppBrowser) {
-        this.navParams = navParams;
-        this.modalCtrl = modalCtrl;
-        this.viewCtrl = viewCtrl;
-        this.inAppBrowser = inAppBrowser;
-        this.tacCheckbox = false;
-        this.session = this.navParams.data.session;
-        this.navCtrl = this.navParams.data.navCtrl;
-    }
-    MCMTermsAndConditionsModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMTermsAndConditionsModal.prototype.addJoinSession = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var modal;
-            return __generator(this, function (_a) {
-                modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], { session: this.session, navCtrl: this.navCtrl });
-                this.cancel();
-                modal.present();
-                return [2 /*return*/];
-            });
-        });
-    };
-    MCMTermsAndConditionsModal.prototype.openTermsAndConditions = function () {
-        this.inAppBrowser.create("https://mathcitymap.eu/de/datenschutzerklaerung/", "_blank");
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMTermsAndConditionsModal.prototype, "input", void 0);
-    MCMTermsAndConditionsModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-terms-and-conditions-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{ \'a_terms_and_conditions_title\' | translate }}</h2>\n        <p class="terms" [innerHTML]="\'a_terms_and_conditions_text\' | translate" (click)="openTermsAndConditions()"></p>\n        <ion-item>\n            <ion-label>{{ \'a_terms_and_conditions_checkbox\' | translate }}</ion-label>\n            <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_terms_and_conditions_continue" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
-    ], MCMTermsAndConditionsModal);
-    return MCMTermsAndConditionsModal;
-}());
-
-//# sourceMappingURL=MCMTermsAndConditionsModal.js.map
-
-/***/ }),
-
-/***/ 594:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMJoinSessionModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-var MCMJoinSessionModal = /** @class */ (function () {
-    function MCMJoinSessionModal(viewCtrl, navParams, ormService, modalsService, sessionService) {
-        this.viewCtrl = viewCtrl;
-        this.navParams = navParams;
-        this.ormService = ormService;
-        this.modalsService = modalsService;
-        this.sessionService = sessionService;
-        this.teamMemberArray = [];
-        this.codeInput = false;
-        this.session = navParams.data.session;
-        this.navCtrl = navParams.data.navCtrl;
-    }
-    MCMJoinSessionModal.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.input.setFocus();
-        }, 150);
-    };
-    MCMJoinSessionModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMJoinSessionModal.prototype.start = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var route, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (this.teamMemberNames != null && this.teamMemberNames != "") {
-                            this.teamMemberArray.push(this.teamMemberNames);
-                            this.teamMemberNames = "";
-                        }
-                        return [4 /*yield*/, this.ormService.findRouteById(this.session.trail_id)];
-                    case 1:
-                        route = _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 5, , 6]);
-                        return [4 /*yield*/, this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray)];
-                    case 3:
-                        _a.sent();
-                        this.cancel();
-                        return [4 /*yield*/, this.ormService.unlockRoute(route)];
-                    case 4:
-                        _a.sent();
-                        this.modalsService.showRoute(route, this.navCtrl);
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_1 = _a.sent();
-                        this.cancel();
-                        this.modalsService.showDialog('a_session_not_available_yet', 'a_session_not_available_yet_text', 'a_g_ok', function () { });
-                        return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MCMJoinSessionModal.prototype.checkInputField = function () {
-        if (this.teamName != "" && this.teamName != null) {
-            if (this.teamMemberNames != "" && this.teamMemberNames != null) {
-                this.codeInput = true;
-            }
-            else if (this.teamMemberArray.length != 0) {
-                this.codeInput = true;
-            }
-            else {
-                this.codeInput = false;
-            }
-        }
-        else {
-            this.codeInput = false;
-        }
-        return this.codeInput;
-    };
-    MCMJoinSessionModal.prototype.addTeamMemberName = function (name) {
-        if (this.teamMemberNames != "" && this.teamMemberNames != null) {
-            this.teamMemberArray.push(name);
-            this.teamMemberNames = '';
-        }
-    };
-    MCMJoinSessionModal.prototype.removeTeamMemberName = function (index) {
-        this.teamMemberArray.splice(index, 1);
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMJoinSessionModal.prototype, "input", void 0);
-    MCMJoinSessionModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-join-session-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/'<div class="modal icon card has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-session-join.svg"/>\n        <h2>"{{session.name}}"</h2>\n        <p class="main-text">{{session.welcome_message}}</p>\n\n            <ion-label>{{ "a_team_name" | translate }}</ion-label>\n            <ion-item>\n                <ion-input #input type="text" [(ngModel)]="teamName"></ion-input>\n            </ion-item>\n\n            <div class="input-container">\n                <ion-label>{{ "a_team_members" | translate }}</ion-label>\n                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">\n                    <ion-item>\n                        <ion-input [disabled]="true" value="{{ teamMember }}"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>\n                </div>\n                <div class="input-main">\n                    <ion-item>\n                        <ion-input #input type="text" [(ngModel)]="teamMemberNames"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/add.svg" (click)="addTeamMemberName(teamMemberNames)" />\n                </div>\n            </div>\n\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="start()" [disabled]="!checkInputField()">{{ "a_session_enter" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */]])
-    ], MCMJoinSessionModal);
-    return MCMJoinSessionModal;
-}());
-
-//# sourceMappingURL=MCMJoinSessionModal.js.map
 
 /***/ }),
 
@@ -7865,7 +7898,179 @@ var LinkHttpsPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 640:
+/***/ 641:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+var MCMRouteByCodeModal = /** @class */ (function () {
+    function MCMRouteByCodeModal(ormService, modalCtrl, viewCtrl, sessionService, navParams) {
+        this.ormService = ormService;
+        this.modalCtrl = modalCtrl;
+        this.viewCtrl = viewCtrl;
+        this.sessionService = sessionService;
+        this.navParams = navParams;
+        this.code = '';
+        this.codeInput = false;
+        this.navCtrl = navParams.data.navCtrl;
+    }
+    MCMRouteByCodeModal_1 = MCMRouteByCodeModal;
+    MCMRouteByCodeModal.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.input.setFocus();
+        }, 150);
+    };
+    MCMRouteByCodeModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMRouteByCodeModal.prototype.checkInputField = function () {
+        if (this.code.length >= 4) {
+            return this.codeInput = true;
+        }
+        else {
+            return this.codeInput = false;
+        }
+    };
+    MCMRouteByCodeModal.prototype.addTrailOrSessionByCode = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var route, session, e_1, modal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.ormService.findRouteByCode(this.code)];
+                    case 1:
+                        route = _a.sent();
+                        if (!!route) return [3 /*break*/, 6];
+                        session = void 0;
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, this.sessionService.getSessionByCode(this.code).toPromise()];
+                    case 3:
+                        session = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 5:
+                        if (session) {
+                            modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], {
+                                session: session,
+                                navCtrl: this.navCtrl
+                            });
+                            this.cancel();
+                            modal.present();
+                        }
+                        else {
+                            this.showError = true;
+                        }
+                        return [3 /*break*/, 8];
+                    case 6: return [4 /*yield*/, this.ormService.unlockRoute(route)];
+                    case 7:
+                        _a.sent();
+                        this.viewCtrl.dismiss(route);
+                        _a.label = 8;
+                    case 8: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMRouteByCodeModal.show = function (navCtrl, modalCtrl, translateService, modalsService) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (success) {
+                        var modal = modalCtrl.create(MCMRouteByCodeModal_1, { navCtrl: navCtrl });
+                        modal.onDidDismiss(function (route) {
+                            if (route) {
+                                modalsService.showDialog(null, translateService.instant('a_private_route_added', { 'T': route.title }), translateService.instant('a_g_ok'), function () {
+                                    modalsService.presentRouteInfoModal(route, navCtrl);
+                                });
+                            }
+                            success(route);
+                        });
+                        modal.present();
+                    })];
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMRouteByCodeModal.prototype, "input", void 0);
+    MCMRouteByCodeModal = MCMRouteByCodeModal_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__["a" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* NavParams */]])
+    ], MCMRouteByCodeModal);
+    return MCMRouteByCodeModal;
+    var MCMRouteByCodeModal_1;
+}());
+
+//# sourceMappingURL=MCMRouteByCodeModal.js.map
+
+/***/ }),
+
+/***/ 642:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7877,7 +8082,7 @@ var LinkHttpsPipe = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(640);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(116);
@@ -8088,7 +8293,7 @@ var DashboardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 642:
+/***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8106,7 +8311,7 @@ var DashboardPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1116);
@@ -8707,7 +8912,7 @@ var RoutesMapPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 643:
+/***/ 644:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8777,7 +8982,7 @@ var PortalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 644:
+/***/ 646:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8786,7 +8991,7 @@ var PortalPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(594);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
@@ -9438,178 +9643,6 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 645:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(593);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-var MCMRouteByCodeModal = /** @class */ (function () {
-    function MCMRouteByCodeModal(ormService, modalCtrl, viewCtrl, sessionService, navParams) {
-        this.ormService = ormService;
-        this.modalCtrl = modalCtrl;
-        this.viewCtrl = viewCtrl;
-        this.sessionService = sessionService;
-        this.navParams = navParams;
-        this.code = '';
-        this.codeInput = false;
-        this.navCtrl = navParams.data.navCtrl;
-    }
-    MCMRouteByCodeModal_1 = MCMRouteByCodeModal;
-    MCMRouteByCodeModal.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.input.setFocus();
-        }, 150);
-    };
-    MCMRouteByCodeModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMRouteByCodeModal.prototype.checkInputField = function () {
-        if (this.code.length >= 4) {
-            return this.codeInput = true;
-        }
-        else {
-            return this.codeInput = false;
-        }
-    };
-    MCMRouteByCodeModal.prototype.addTrailOrSessionByCode = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var route, session, e_1, modal;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormService.findRouteByCode(this.code)];
-                    case 1:
-                        route = _a.sent();
-                        if (!!route) return [3 /*break*/, 6];
-                        session = void 0;
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, this.sessionService.getSessionByCode(this.code).toPromise()];
-                    case 3:
-                        session = _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _a.sent();
-                        return [3 /*break*/, 5];
-                    case 5:
-                        if (session) {
-                            modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], {
-                                session: session,
-                                navCtrl: this.navCtrl
-                            });
-                            this.cancel();
-                            modal.present();
-                        }
-                        else {
-                            this.showError = true;
-                        }
-                        return [3 /*break*/, 8];
-                    case 6: return [4 /*yield*/, this.ormService.unlockRoute(route)];
-                    case 7:
-                        _a.sent();
-                        this.viewCtrl.dismiss(route);
-                        _a.label = 8;
-                    case 8: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MCMRouteByCodeModal.show = function (navCtrl, modalCtrl, translateService, modalsService) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (success) {
-                        var modal = modalCtrl.create(MCMRouteByCodeModal_1, { navCtrl: navCtrl });
-                        modal.onDidDismiss(function (route) {
-                            if (route) {
-                                modalsService.showDialog(null, translateService.instant('a_private_route_added', { 'T': route.title }), translateService.instant('a_g_ok'), function () {
-                                    modalsService.presentRouteInfoModal(route, navCtrl);
-                                });
-                            }
-                            success(route);
-                        });
-                        modal.present();
-                    })];
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMRouteByCodeModal.prototype, "input", void 0);
-    MCMRouteByCodeModal = MCMRouteByCodeModal_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__["a" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* NavParams */]])
-    ], MCMRouteByCodeModal);
-    return MCMRouteByCodeModal;
-    var MCMRouteByCodeModal_1;
-}());
-
-//# sourceMappingURL=MCMRouteByCodeModal.js.map
-
-/***/ }),
-
 /***/ 647:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10165,7 +10198,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(590);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(182);
@@ -10179,7 +10212,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(35);
@@ -10194,9 +10227,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(645);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(593);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(594);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(367);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(648);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(364);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
@@ -10207,13 +10240,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(591);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(452);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(594);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(589);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(591);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(649);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
@@ -10303,17 +10336,17 @@ var AppModule = /** @class */ (function () {
                 }, {
                     links: [
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -13964,22 +13997,22 @@ var Route = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatAndSessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(450);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(451);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(452);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(453);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(454);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(88);

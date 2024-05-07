@@ -66614,6 +66614,10 @@ ion-nav h1, ion-nav h2, ion-nav h3, ion-nav h4, ion-nav h5, ion-nav h6, ion-nav 
   hyphens: manual;
 }
 
+mjx-math {
+  font-size: 16px;
+}
+
 @font-face {
   font-family: 'NunitoSemibold';
   src: url("../assets/fonts/nunito/Nunito-SemiBold.ttf") format("truetype");

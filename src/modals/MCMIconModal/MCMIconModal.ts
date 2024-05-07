@@ -6,6 +6,7 @@ import {ModalController, Platform} from 'ionic-angular';
 import { ImagesService } from '../../services/images-service';
 import {MCMReportProblemModal} from "../MCMReportProblemModal/MCMReportProblemModal";
 
+declare var MathJax;
 
 @Component({
     selector: 'mcm-icon-modal',
@@ -135,7 +136,7 @@ export class MCMIconModal{
     }
 
     ionViewDidEnter() {
-        eval('MathJax.Hub.Queue(["Typeset", MathJax.Hub])');
+        MathJax.typeset();
     }
 
     dismiss(backToMap?: boolean){
