@@ -38,6 +38,6 @@
 
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>
-        <button ion-button small round [disabled]="!selectedProblems || selectedProblems.length == 0 || !information || information == ''" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>
+        <button ion-button small round [disabled]="!selectedProblems || selectedProblems.length == 0 || !information || information == '' || sendingReport" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>
     </div>
 </div>

@@ -30,6 +30,7 @@ export class MCMReportProblemModal {
     selectedProblems: Array<string> = [];
     information: string = "";
     image: {imageData: string, base64: string};
+    sendingReport = false;
 
     constructor(
         private viewCtrl: ViewController,
@@ -57,6 +58,8 @@ export class MCMReportProblemModal {
     }
 
     async sendReport() {
+        if (this.sendingReport) return;
+        this.sendingReport = true;
         try {
         let imageUrls;
         if (this.image) {
@@ -86,6 +89,8 @@ export class MCMReportProblemModal {
         await successModal.present();
         } catch (e) {
             this.showError = true;
+        } finally {
+            this.sendingReport = false;
         }
     }
 
