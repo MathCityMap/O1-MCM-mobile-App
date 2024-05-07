@@ -1377,7 +1377,7 @@
   "a_task_feedback_label": "Probleme?",
   "a_task_feedback_introduction": "Hast du Probleme mit dieser Aufgabe, der Musterlösung oder möchtest Verbesserungen hinzufügen? Hilf dem Ersteller und lass es ihn wissen!",
   "a_task_feedback_alert_title": "Vorsicht!",
-  "a_task_feedback_alert_text": "Du solltest ein Problem nur dann melden, wenn es wirklich ein Problem mit der Aufgabe gibt, das dich daran hindert, sie zu lösen. Willst du weitermachen?",
+  "a_task_feedback_alert_text": "Du solltest ein Problem nur dann melden, wenn es wirklich ein Problem mit der Aufgabe gibt, das dich daran hindert, sie zu lösen. Wenn du ein Problem meldest, achte bitte auf eine respektvolle Sprache; falls du ein Bild hochlädst, achte bitte darauf, dass dort keine Personen abgebildet sind. Willst du fortfahren?",
   "a_task_popup_title": "Problem Melden",
   "a_task_popup_text": "Beschreibe dein Problem mit dieser Aufgabe",
   "a_task_popup_reason": "Grund",

@@ -1377,7 +1377,7 @@
   "a_task_feedback_label": "Problems?",
   "a_task_feedback_introduction": "Troubles with this task, the sample solution or any improvements to add? Help the creators and let them know!",
   "a_task_feedback_alert_title": "Careful!",
-  "a_task_feedback_alert_text": "You should only report a problem if there really is a problem with the task that keeps you from solving it. Do you want to continue?",
+  "a_task_feedback_alert_text": "You should only report a problem if there really is a problem with the task that keeps you from solving it. When reporting a problem, please use respectful language; if you upload a picture, please make sure that no people are included in it. Do you want to continue?",
   "a_task_popup_title": "Task Feedback",
   "a_task_popup_text": "Enter your feedback for this task",
   "a_task_popup_reason": "Reason",
