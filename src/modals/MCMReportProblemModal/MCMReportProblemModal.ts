@@ -27,7 +27,7 @@ export class MCMReportProblemModal {
         {key: "solution_wrong", value: "a_reportType_solution_wrong"},
         {key: "misc", value: "a_reportType_misc"},
     ];
-    selectedProblems: Array<string> = [];
+    selectedProblem: string = "";
     information: string = "";
     image: {imageData: string, base64: string};
     sendingReport = false;
@@ -66,11 +66,7 @@ export class MCMReportProblemModal {
             let blob = this.prService.convertDataUriToBlob(this.image.base64);
             imageUrls = await this.prService.uploadImage(blob, this.taskCode);
         }
-        let promises = [];
-        for (let problemType of this.selectedProblems) {
-            promises.push(this.prService.sendReports(this.taskCode, problemType, this.information, (imageUrls ? Helper.MEDIASERVER_IMAGE_URL + imageUrls.responseData.mediumUrl : "")));
-        }
-        await Promise.all(promises);
+        await this.prService.sendReports(this.taskCode, this.selectedProblem, this.information, (imageUrls ? Helper.MEDIASERVER_IMAGE_URL + imageUrls.responseData.mediumUrl : ""))
         const successModal = this.modalCtrl.create(MCMIconModal, {
             type: 'text',
             title: "a_task_feedback_success_title",

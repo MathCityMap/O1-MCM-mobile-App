@@ -6,7 +6,7 @@
         <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>
 
         <ion-item>
-            <ion-select multiple="false" [(ngModel)]="selectedProblems" [selectOptions]="{title: ('a_task_popup_reason' | translate)}" [cancelText]="'a_alert_cancel' | translate" [okText]="'a_g_ok' | translate">
+            <ion-select multiple="false" [(ngModel)]="selectedProblem" [selectOptions]="{title: ('a_task_popup_reason' | translate)}" [cancelText]="'a_alert_cancel' | translate" [okText]="'a_g_ok' | translate">
                 <ion-option *ngFor="let problem of problemTypes" [value]="problem.key">{{problem.value | translate}}</ion-option>
             </ion-select>
         </ion-item>
@@ -38,6 +38,6 @@
 
     <div class="on-the-edge-container">
         <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>
-        <button ion-button small round [disabled]="!selectedProblems || selectedProblems.length == 0 || !information || information == '' || sendingReport" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>
+        <button ion-button small round [disabled]="!selectedProblem || selectedProblem == '' || !information || information == '' || sendingReport" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>
     </div>
 </div>
