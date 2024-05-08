@@ -87,7 +87,7 @@
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
+      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     }
   },
   "dependent_plugins": {

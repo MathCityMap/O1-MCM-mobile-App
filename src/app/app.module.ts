@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -58,6 +58,7 @@ import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {MCMTrailFinishedModal} from "../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
 import {DirectivesModule} from "../directives/directives.module";
 import {MCMReportProblemModal} from "../modals/MCMReportProblemModal/MCMReportProblemModal";
+import {ZoomService} from "../services/zoom-service";
 
 
 @NgModule({
@@ -120,6 +121,7 @@ import {MCMReportProblemModal} from "../modals/MCMReportProblemModal/MCMReportPr
         OrmService,
         ImagesService,
         BroadcastService,
+        ZoomService,
         ModalsService,
         GpsService,
         LanguageService,
@@ -132,7 +134,8 @@ import {MCMReportProblemModal} from "../modals/MCMReportProblemModal/MCMReportPr
         Camera,
         Media,
         ScreenOrientation,
-        {provide: ErrorHandler, useClass: IonicErrorHandler}
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        {provide: HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig}
     ]
 })
 export class AppModule {

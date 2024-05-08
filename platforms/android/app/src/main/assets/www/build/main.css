@@ -65814,8 +65814,8 @@ ion-list:not(.vector-input-list) > * {
 }
 
 .card.has-button-on-the-edge {
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  margin-bottom: 50px;
+  padding-bottom: 50px;
 }
 
 .card button.on-the-edge {
@@ -66322,26 +66322,34 @@ ion-modal .modal.card .fraction-display-container.clean-fraction {
   transform: translateY(-25%);
 }
 
-ion-alert.multiple-select-alert .alert-wrapper {
+ion-alert.select-alert .alert-wrapper, ion-alert.multiple-select-alert .alert-wrapper {
   max-width: 80vw;
 }
 
-ion-alert.multiple-select-alert .alert-checkbox-group {
+ion-alert.select-alert .alert-checkbox-group,
+ion-alert.select-alert .alert-radio-group, ion-alert.multiple-select-alert .alert-checkbox-group,
+ion-alert.multiple-select-alert .alert-radio-group {
   max-height: 70vh;
 }
 
-ion-alert.multiple-select-alert .alert-checkbox-button .button-inner {
+ion-alert.select-alert .alert-checkbox-button .button-inner,
+ion-alert.select-alert .alert-radio-button .button-inner, ion-alert.multiple-select-alert .alert-checkbox-button .button-inner,
+ion-alert.multiple-select-alert .alert-radio-button .button-inner {
   -webkit-box-align: baseline;
   -webkit-align-items: baseline;
   -ms-flex-align: baseline;
   align-items: baseline;
 }
 
-ion-alert.multiple-select-alert .alert-checkbox-icon {
+ion-alert.select-alert .alert-checkbox-icon,
+ion-alert.select-alert .alert-radio-icon, ion-alert.multiple-select-alert .alert-checkbox-icon,
+ion-alert.multiple-select-alert .alert-radio-icon {
   top: 1px;
 }
 
-ion-alert.multiple-select-alert .alert-checkbox-label {
+ion-alert.select-alert .alert-checkbox-label,
+ion-alert.select-alert .alert-radio-label, ion-alert.multiple-select-alert .alert-checkbox-label,
+ion-alert.multiple-select-alert .alert-radio-label {
   white-space: normal;
   font-family: 'NunitoSemibold', Arial, sans-serif;
 }
@@ -66616,6 +66624,18 @@ ion-nav h1, ion-nav h2, ion-nav h3, ion-nav h4, ion-nav h5, ion-nav h6, ion-nav 
 
 mjx-math {
   font-size: 16px;
+}
+
+.app-container {
+  overflow: scroll;
+  height: 100%;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+#app-frame {
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
 
 @font-face {

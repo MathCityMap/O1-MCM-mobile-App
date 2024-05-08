@@ -33,6 +33,7 @@ import {Subscription} from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "rxjs";
 import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
+import {ZoomService} from "../../../../services/zoom-service";
 
 declare var ConicGradient: any;
 
@@ -113,6 +114,7 @@ export class TasksMap implements OnDestroy {
         private modalCtrl: ModalController,
         private app: MyApp,
         protected chatAndSessionService: ChatAndSessionService,
+        private zoom: ZoomService
     ) {
         this.chatAndSessionService.init();
         this.events.subscribe('user:kicked', (user) => {
@@ -166,6 +168,7 @@ export class TasksMap implements OnDestroy {
 
     async ionViewWillEnter() {
         console.log('TasksMap ionViewWillEnter()');
+        this.zoom.disableZooming();
         console.log(this.navCtrl);
         this.routeId = this.navParams.get('routeId');
         console.log(this.routeId);
@@ -387,6 +390,7 @@ export class TasksMap implements OnDestroy {
     }
 
     async ionViewWillLeave() {
+        this.zoom.enableZooming();
         this.saveMapStateToLocalStorage();
     }
 

@@ -15,6 +15,7 @@ import {HomePage} from "../pages/home/home";
 import {RoutesListPage} from "../pages/home/tabs/RoutesList/RoutesList";
 import {RoutesMapPage} from "../pages/home/tabs/RoutesMap/RoutesMap";
 import {PortalPage} from "../pages/portal/portal";
+import {ZoomService} from "../services/zoom-service";
 
 
 export enum MCMModalType {
@@ -41,7 +42,9 @@ export class MyApp {
 
     constructor(platform: Platform, statusBar: StatusBar,
                 languageService: LanguageService, chatService: ChatAndSessionService,
-                events: Events, app: App, alertCtrl: AlertController, translate: TranslateService, screenOrientation: ScreenOrientation, private storage: Storage, private modalService: ModalsService, private deepLinker: DeepLinker) {
+                events: Events, app: App, alertCtrl: AlertController,
+                translate: TranslateService, screenOrientation: ScreenOrientation, zoom: ZoomService,
+                private storage: Storage, private modalService: ModalsService, private deepLinker: DeepLinker) {
 
         let that = this;
         platform.ready().then(async () => {
@@ -64,6 +67,8 @@ export class MyApp {
                 }
             }
         });
+
+        zoom.init();
 
         platform.registerBackButtonAction(async () => {
             let activeNav = app.getActiveNavs()[0];
@@ -131,7 +136,6 @@ export class MyApp {
             "4", "5", "6", "",
             "7", "8", "9", "",
             "-", "0", decimalSeparator, "✔"]; // ✔
-        // chatService.init();
 
         events.subscribe('narrativeChange', (narrative) => {
             this.activeNarrative = narrative;

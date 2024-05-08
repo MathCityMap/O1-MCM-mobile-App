@@ -4,6 +4,7 @@ import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {TranslateService} from "@ngx-translate/core";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {Helper} from "../../classes/Helper";
+import {ZoomService} from "../../services/zoom-service";
 
 /**
  * Generated class for the PortalPage page.
@@ -37,9 +38,17 @@ export class PortalPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public iab: InAppBrowser, private translateService: TranslateService,
-                private sanitizer: DomSanitizer) {
+                private sanitizer: DomSanitizer, private zoom: ZoomService) {
         this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
         this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(Helper.WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
+    }
+
+    ionViewWillEnter() {
+        this.zoom.disableZooming();
+    }
+
+    ionViewWillLeave() {
+        this.zoom.enableZooming();
     }
 }
 

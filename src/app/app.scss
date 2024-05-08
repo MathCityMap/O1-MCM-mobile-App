@@ -1612,3 +1612,13 @@ ion-nav {
 mjx-math {
     font-size: 16px;
 }
+
+.app-container {
+    overflow: scroll;
+    height: 100%;
+    transform: scale(1);
+}
+
+#app-frame {
+    transform-origin: 0 0;
+}
