@@ -12,6 +12,7 @@ import {Storage} from "@ionic/storage";
 import {File} from "@ionic-native/file";
 import 'leaflet-geometryutil';
 import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
+import {MAPBOX_ACCESS_TOKEN, SERVER_REQUEST_PASS} from "../env/env";
 
 export class MapTile {
     constructor(private pZoomLevel: number, private pX: number, private pY: number
@@ -38,6 +39,8 @@ export enum ConnectionQuality {
     NONE
 }
 
+
+// FIXME CLEANUP UNUSED CODE AND VARIABLES
 @Injectable()
 export class Helper {
     public static INSTANCE: Helper;
@@ -97,13 +100,14 @@ export class Helper {
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
     // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
-    static readonly REQUEST_PASS: string = "evilknivel2k16"
+    // FIXME HIDE FROM PUBLIC REPO
+    static readonly REQUEST_PASS: string = SERVER_REQUEST_PASS
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"
     // public static ProgressDialog updater_dialog = null
     static readonly mapCode: string = "mapbox.streets"
-    static readonly accessToken: string = "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww"
-    static readonly mapquestUrl = `https://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}@2x.png?&tilesize=256&access_token=${Helper.accessToken}`
+    // FIXME HIDE FROM PUBLIC REPO
+    static readonly mapquestUrl = `https://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}@2x.png?&tilesize=256&access_token=${MAPBOX_ACCESS_TOKEN}`
     static readonly subDomains = ['a', 'b', 'c', 'd'];
 
     // public static OnlineTileSourceBase mbTileSource = new XYTileSource("MapBoxSatelliteLabelled",
@@ -139,8 +143,7 @@ export class Helper {
     private activateAddRouteModal: boolean = false;
 
     constructor(private http: Http, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
-                private platform: Platform, private ormService: OrmService, private storage: Storage,
-                private file: File) {
+                private platform: Platform, private ormService: OrmService, private storage: Storage) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();

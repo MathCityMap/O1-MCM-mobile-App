@@ -8,6 +8,7 @@ import {User} from './User';
 import {TranslateService} from '@ngx-translate/core';
 import {OrmService} from '../services/orm-service';
 import {GpsService} from '../services/gps-service';
+import {MAPBOX_ACCESS_TOKEN} from "../env/env";
 
 @Entity('mcm_route')
 export class Route {
@@ -343,7 +344,7 @@ export class Route {
             switch (narrative) {
                 case 'pirates':
                     // return 'mapbox://styles/igurjanow/ck0ezs4vd02ou1co75ep12pyz';
-                    return 'https://{s}.api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ';
+                    return 'https://api.mapbox.com/styles/v1/igurjanow/ck0ezs4vd02ou1co75ep12pyz/tiles/256/{z}/{x}/{y}@2x?access_token='+MAPBOX_ACCESS_TOKEN
                 default:
                     // return 'mapbox://styles/mapbox/outdoors-v11';
                     return Helper.mapquestUrl

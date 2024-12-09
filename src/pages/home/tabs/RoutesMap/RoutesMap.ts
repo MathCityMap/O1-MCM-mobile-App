@@ -28,6 +28,7 @@ import {LanguageService} from '../../../../services/language-service';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
 import {forEach} from "typescript-collections/dist/lib/arrays";
 import {ZoomService} from "../../../../services/zoom-service";
+import {MAPBOX_ACCESS_TOKEN} from "../../../../env/env";
 
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
@@ -264,7 +265,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         let isLoadedViaHttp = window.location.href.indexOf('http') === 0
         let keepPositionBecauseOfReload = false;
 
-        mapboxgl.accessToken = Helper.accessToken;
+        mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
         //Either draws the map for all routes or for downloaded ones only
         if (this.showAllRoutes) {

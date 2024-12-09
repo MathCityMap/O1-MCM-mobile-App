@@ -1,3 +1,8 @@
+## 09.12.2024:
+This Readme is not up to date and information and instructions in it need to be reviewed, if you know someone familiar with the repository it would be preferred to ask them for reference otherwise use this at your own discretion
+
+Before getting a working connection to the server you need to set a valid request_password in env.ts, all env variables can be taken from env.ts.example
+
 ## Update 18.05.2022
 Do not use yarn anymore. Consider using Node Version Manager (NVM)
 for different node versions. This project was built with node v14.17.3.
