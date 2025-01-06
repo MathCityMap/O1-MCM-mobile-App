@@ -17,7 +17,7 @@ for n in $(find . -name *.xml)
      | sed -e "s/###\([^#]*\)###/{{\1}}/g" > $basedir/src/assets/localization/$lang.json
 done
 # add missing english keys from german file
-xq -s '.[0] * .[1]' $basedir/src/assets/localization/de.json $basedir/src/assets/localization/en.json > $basedir/src/assets/localization/en.tmp.json
+jq -s '.[0] * .[1]' $basedir/src/assets/localization/de.json $basedir/src/assets/localization/en.json > $basedir/src/assets/localization/en.tmp.json
 mv $basedir/src/assets/localization/en.tmp.json $basedir/src/assets/localization/en.json
 popd $tmpdir
 rm -rf $tmpdir

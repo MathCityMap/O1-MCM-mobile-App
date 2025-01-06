@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 
 declare var Hammer;
 
+//FIXME Can probably be removed, disabled for now since it's better to use the native accessibility zoom feature of device
+
 @Injectable()
 export class ZoomService {
     appFrameElement: HTMLElement;
@@ -41,25 +43,25 @@ export class ZoomService {
     }
 
     resetZoom() {
-        let transform = `scale(1)`;
-        this.appFrameElement.style.transform = transform;
-        this.appFrameElement.style.webkitTransform = transform;
-        this.fixIosDisplayAfterZoom();
-        this.lastScale = 1;
+        // let transform = `scale(1)`;
+        // this.appFrameElement.style.transform = transform;
+        // this.appFrameElement.style.webkitTransform = transform;
+        // this.fixIosDisplayAfterZoom();
+        // this.lastScale = 1;
     }
 
     disableZooming() {
-        this.resetZoom();
-        this.hammerManager.get("pinch").set({enable: false});
+        // this.resetZoom();
+        // this.hammerManager.get("pinch").set({enable: false});
     }
 
     enableZooming() {
-        this.hammerManager.get("pinch").set({enable: true});
+        // this.hammerManager.get("pinch").set({enable: true});
     }
 
     fixIosDisplayAfterZoom() {
         // We reset the overflow of the container surrounding the zoomed frame so that iOS webview understands that he needs to calculate the scroll area again
-        this.appFrameElement.parentElement.style.overflow = "hidden";
-        setTimeout(() => {this.appFrameElement.parentElement.style.overflow = "scroll"});
+        // this.appFrameElement.parentElement.style.overflow = "hidden";
+        // setTimeout(() => {this.appFrameElement.parentElement.style.overflow = "scroll"});
     }
 }

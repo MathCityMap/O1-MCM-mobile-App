@@ -68,7 +68,7 @@ export class MyApp {
             }
         });
 
-        zoom.init();
+        // zoom.init();
 
         platform.registerBackButtonAction(async () => {
             let activeNav = app.getActiveNavs()[0];

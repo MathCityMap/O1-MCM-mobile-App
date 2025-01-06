@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "com.jjdltc.cordova.plugin.zip": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
@@ -87,6 +84,9 @@
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
     "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     }
   },

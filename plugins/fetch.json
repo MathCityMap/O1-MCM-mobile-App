@@ -175,14 +175,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "com-sarriaroman-photoviewer": {
-    "source": {
-      "type": "local",
-      "path": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/node_modules/com-sarriaroman-photoviewer"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-local-notification": {
     "source": {
       "type": "local",
@@ -227,6 +219,14 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-ionic-webview@5.0.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "com-sarriaroman-photoviewer": {
+    "source": {
+      "type": "local",
+      "path": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/node_modules/com-sarriaroman-photoviewer"
     },
     "is_top_level": true,
     "variables": {}

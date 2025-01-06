@@ -67482,6 +67482,7 @@ routes-map .detail-box {
 
 .card.basic-info .col {
   width: unset;
+  max-width: 33%;
 }
 
 .card.basic-info .col:nth-of-type(even) {
