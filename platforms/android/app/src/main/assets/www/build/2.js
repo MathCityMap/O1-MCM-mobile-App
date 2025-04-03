@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 1162:
+/***/ 1154:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,10 +9,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__task_group_detail__ = __webpack_require__(1170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_safari_view_controller__ = __webpack_require__(1156);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -49,7 +49,7 @@ var TaskDetailPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1164:
+/***/ 1156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -313,7 +313,7 @@ var SafariViewController = (function (_super) {
 
 /***/ }),
 
-/***/ 1175:
+/***/ 1170:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -321,11 +321,11 @@ var SafariViewController = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_chat_and_session_service__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -336,10 +336,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -350,8 +351,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };

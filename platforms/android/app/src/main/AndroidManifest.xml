@@ -12,6 +12,7 @@
         <provider android:authorities="${applicationId}.cdv.core.file.provider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/cdv_core_file_provider_paths" />
         </provider>
+        <activity android:name="com.sarriaroman.PhotoViewer.PhotoActivity" android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <provider android:authorities="${applicationId}.cordova.plugin.camera.provider" android:exported="false" android:grantUriPermissions="true" android:name="org.apache.cordova.camera.FileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/camera_provider_paths" />
         </provider>
@@ -21,7 +22,6 @@
         <receiver android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.TriggerReceiver" />
         <receiver android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.ClearReceiver" />
         <activity android:exported="false" android:launchMode="singleInstance" android:name="de.appplant.cordova.plugin.localnotification.ClickReceiver" android:theme="@android:style/Theme.Translucent" />
-        <activity android:name="com.sarriaroman.PhotoViewer.PhotoActivity" android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
     </application>
     <queries>
         <intent>
@@ -43,6 +43,8 @@
             <action android:name="android.support.customtabs.action.CustomTabsService" />
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -53,6 +55,4 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

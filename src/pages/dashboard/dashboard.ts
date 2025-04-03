@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController} from 'ionic-angular';
-import { NavController } from 'ionic-angular/navigation/nav-controller';
+import {IonicPage, ModalController, NavController} from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import {Helper} from "../../classes/Helper";
 import { Storage } from "@ionic/storage";

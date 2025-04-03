@@ -1,6 +1,6 @@
 webpackJsonp([11],{
 
-/***/ 1107:
+/***/ 1099:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15,7 +15,7 @@ var EventsAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1108:
+/***/ 1100:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31,280 +31,284 @@ var EventAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1109:
+/***/ 1101:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 453,
-	"./af.js": 453,
-	"./ar": 454,
-	"./ar-dz": 455,
-	"./ar-dz.js": 455,
-	"./ar-kw": 456,
-	"./ar-kw.js": 456,
-	"./ar-ly": 457,
-	"./ar-ly.js": 457,
-	"./ar-ma": 458,
-	"./ar-ma.js": 458,
-	"./ar-sa": 459,
-	"./ar-sa.js": 459,
-	"./ar-tn": 460,
-	"./ar-tn.js": 460,
-	"./ar.js": 454,
-	"./az": 461,
-	"./az.js": 461,
-	"./be": 462,
-	"./be.js": 462,
-	"./bg": 463,
-	"./bg.js": 463,
-	"./bm": 464,
-	"./bm.js": 464,
-	"./bn": 465,
-	"./bn-bd": 466,
-	"./bn-bd.js": 466,
-	"./bn.js": 465,
-	"./bo": 467,
-	"./bo.js": 467,
-	"./br": 468,
-	"./br.js": 468,
-	"./bs": 469,
-	"./bs.js": 469,
-	"./ca": 470,
-	"./ca.js": 470,
-	"./cs": 471,
-	"./cs.js": 471,
-	"./cv": 472,
-	"./cv.js": 472,
-	"./cy": 473,
-	"./cy.js": 473,
-	"./da": 474,
-	"./da.js": 474,
-	"./de": 475,
-	"./de-at": 476,
-	"./de-at.js": 476,
-	"./de-ch": 477,
-	"./de-ch.js": 477,
-	"./de.js": 475,
-	"./dv": 478,
-	"./dv.js": 478,
-	"./el": 479,
-	"./el.js": 479,
-	"./en-au": 480,
-	"./en-au.js": 480,
-	"./en-ca": 481,
-	"./en-ca.js": 481,
-	"./en-gb": 482,
-	"./en-gb.js": 482,
-	"./en-ie": 483,
-	"./en-ie.js": 483,
-	"./en-il": 484,
-	"./en-il.js": 484,
-	"./en-in": 485,
-	"./en-in.js": 485,
-	"./en-nz": 486,
-	"./en-nz.js": 486,
-	"./en-sg": 487,
-	"./en-sg.js": 487,
-	"./eo": 488,
-	"./eo.js": 488,
-	"./es": 489,
-	"./es-do": 490,
-	"./es-do.js": 490,
-	"./es-mx": 491,
-	"./es-mx.js": 491,
-	"./es-us": 492,
-	"./es-us.js": 492,
-	"./es.js": 489,
-	"./et": 493,
-	"./et.js": 493,
-	"./eu": 494,
-	"./eu.js": 494,
-	"./fa": 495,
-	"./fa.js": 495,
-	"./fi": 496,
-	"./fi.js": 496,
-	"./fil": 497,
-	"./fil.js": 497,
-	"./fo": 498,
-	"./fo.js": 498,
-	"./fr": 499,
-	"./fr-ca": 500,
-	"./fr-ca.js": 500,
-	"./fr-ch": 501,
-	"./fr-ch.js": 501,
-	"./fr.js": 499,
-	"./fy": 502,
-	"./fy.js": 502,
-	"./ga": 503,
-	"./ga.js": 503,
-	"./gd": 504,
-	"./gd.js": 504,
-	"./gl": 505,
-	"./gl.js": 505,
-	"./gom-deva": 506,
-	"./gom-deva.js": 506,
-	"./gom-latn": 507,
-	"./gom-latn.js": 507,
-	"./gu": 508,
-	"./gu.js": 508,
-	"./he": 509,
-	"./he.js": 509,
-	"./hi": 510,
-	"./hi.js": 510,
-	"./hr": 511,
-	"./hr.js": 511,
-	"./hu": 512,
-	"./hu.js": 512,
-	"./hy-am": 513,
-	"./hy-am.js": 513,
-	"./id": 514,
-	"./id.js": 514,
-	"./is": 515,
-	"./is.js": 515,
-	"./it": 516,
-	"./it-ch": 517,
-	"./it-ch.js": 517,
-	"./it.js": 516,
-	"./ja": 518,
-	"./ja.js": 518,
-	"./jv": 519,
-	"./jv.js": 519,
-	"./ka": 520,
-	"./ka.js": 520,
-	"./kk": 521,
-	"./kk.js": 521,
-	"./km": 522,
-	"./km.js": 522,
-	"./kn": 523,
-	"./kn.js": 523,
-	"./ko": 524,
-	"./ko.js": 524,
-	"./ku": 525,
-	"./ku.js": 525,
-	"./ky": 526,
-	"./ky.js": 526,
-	"./lb": 527,
-	"./lb.js": 527,
-	"./lo": 528,
-	"./lo.js": 528,
-	"./lt": 529,
-	"./lt.js": 529,
-	"./lv": 530,
-	"./lv.js": 530,
-	"./me": 531,
-	"./me.js": 531,
-	"./mi": 532,
-	"./mi.js": 532,
-	"./mk": 533,
-	"./mk.js": 533,
-	"./ml": 534,
-	"./ml.js": 534,
-	"./mn": 535,
-	"./mn.js": 535,
-	"./mr": 536,
-	"./mr.js": 536,
-	"./ms": 537,
-	"./ms-my": 538,
-	"./ms-my.js": 538,
-	"./ms.js": 537,
-	"./mt": 539,
-	"./mt.js": 539,
-	"./my": 540,
-	"./my.js": 540,
-	"./nb": 541,
-	"./nb.js": 541,
-	"./ne": 542,
-	"./ne.js": 542,
-	"./nl": 543,
-	"./nl-be": 544,
-	"./nl-be.js": 544,
-	"./nl.js": 543,
-	"./nn": 545,
-	"./nn.js": 545,
-	"./oc-lnc": 546,
-	"./oc-lnc.js": 546,
-	"./pa-in": 547,
-	"./pa-in.js": 547,
-	"./pl": 548,
-	"./pl.js": 548,
-	"./pt": 549,
-	"./pt-br": 550,
-	"./pt-br.js": 550,
-	"./pt.js": 549,
-	"./ro": 551,
-	"./ro.js": 551,
-	"./ru": 552,
-	"./ru.js": 552,
-	"./sd": 553,
-	"./sd.js": 553,
-	"./se": 554,
-	"./se.js": 554,
-	"./si": 555,
-	"./si.js": 555,
-	"./sk": 556,
-	"./sk.js": 556,
-	"./sl": 557,
-	"./sl.js": 557,
-	"./sq": 558,
-	"./sq.js": 558,
-	"./sr": 559,
-	"./sr-cyrl": 560,
-	"./sr-cyrl.js": 560,
-	"./sr.js": 559,
-	"./ss": 561,
-	"./ss.js": 561,
-	"./sv": 562,
-	"./sv.js": 562,
-	"./sw": 563,
-	"./sw.js": 563,
-	"./ta": 564,
-	"./ta.js": 564,
-	"./te": 565,
-	"./te.js": 565,
-	"./tet": 566,
-	"./tet.js": 566,
-	"./tg": 567,
-	"./tg.js": 567,
-	"./th": 568,
-	"./th.js": 568,
-	"./tk": 569,
-	"./tk.js": 569,
-	"./tl-ph": 570,
-	"./tl-ph.js": 570,
-	"./tlh": 571,
-	"./tlh.js": 571,
-	"./tr": 572,
-	"./tr.js": 572,
-	"./tzl": 573,
-	"./tzl.js": 573,
-	"./tzm": 574,
-	"./tzm-latn": 575,
-	"./tzm-latn.js": 575,
-	"./tzm.js": 574,
-	"./ug-cn": 576,
-	"./ug-cn.js": 576,
-	"./uk": 577,
-	"./uk.js": 577,
-	"./ur": 578,
-	"./ur.js": 578,
-	"./uz": 579,
-	"./uz-latn": 580,
-	"./uz-latn.js": 580,
-	"./uz.js": 579,
-	"./vi": 581,
-	"./vi.js": 581,
-	"./x-pseudo": 582,
-	"./x-pseudo.js": 582,
-	"./yo": 583,
-	"./yo.js": 583,
-	"./zh-cn": 584,
-	"./zh-cn.js": 584,
-	"./zh-hk": 585,
-	"./zh-hk.js": 585,
-	"./zh-mo": 586,
-	"./zh-mo.js": 586,
-	"./zh-tw": 587,
-	"./zh-tw.js": 587
+	"./af": 437,
+	"./af.js": 437,
+	"./ar": 438,
+	"./ar-dz": 439,
+	"./ar-dz.js": 439,
+	"./ar-kw": 440,
+	"./ar-kw.js": 440,
+	"./ar-ly": 441,
+	"./ar-ly.js": 441,
+	"./ar-ma": 442,
+	"./ar-ma.js": 442,
+	"./ar-ps": 443,
+	"./ar-ps.js": 443,
+	"./ar-sa": 444,
+	"./ar-sa.js": 444,
+	"./ar-tn": 445,
+	"./ar-tn.js": 445,
+	"./ar.js": 438,
+	"./az": 446,
+	"./az.js": 446,
+	"./be": 447,
+	"./be.js": 447,
+	"./bg": 448,
+	"./bg.js": 448,
+	"./bm": 449,
+	"./bm.js": 449,
+	"./bn": 450,
+	"./bn-bd": 451,
+	"./bn-bd.js": 451,
+	"./bn.js": 450,
+	"./bo": 452,
+	"./bo.js": 452,
+	"./br": 453,
+	"./br.js": 453,
+	"./bs": 454,
+	"./bs.js": 454,
+	"./ca": 455,
+	"./ca.js": 455,
+	"./cs": 456,
+	"./cs.js": 456,
+	"./cv": 457,
+	"./cv.js": 457,
+	"./cy": 458,
+	"./cy.js": 458,
+	"./da": 459,
+	"./da.js": 459,
+	"./de": 460,
+	"./de-at": 461,
+	"./de-at.js": 461,
+	"./de-ch": 462,
+	"./de-ch.js": 462,
+	"./de.js": 460,
+	"./dv": 463,
+	"./dv.js": 463,
+	"./el": 464,
+	"./el.js": 464,
+	"./en-au": 465,
+	"./en-au.js": 465,
+	"./en-ca": 466,
+	"./en-ca.js": 466,
+	"./en-gb": 467,
+	"./en-gb.js": 467,
+	"./en-ie": 468,
+	"./en-ie.js": 468,
+	"./en-il": 469,
+	"./en-il.js": 469,
+	"./en-in": 470,
+	"./en-in.js": 470,
+	"./en-nz": 471,
+	"./en-nz.js": 471,
+	"./en-sg": 472,
+	"./en-sg.js": 472,
+	"./eo": 473,
+	"./eo.js": 473,
+	"./es": 474,
+	"./es-do": 475,
+	"./es-do.js": 475,
+	"./es-mx": 476,
+	"./es-mx.js": 476,
+	"./es-us": 477,
+	"./es-us.js": 477,
+	"./es.js": 474,
+	"./et": 478,
+	"./et.js": 478,
+	"./eu": 479,
+	"./eu.js": 479,
+	"./fa": 480,
+	"./fa.js": 480,
+	"./fi": 481,
+	"./fi.js": 481,
+	"./fil": 482,
+	"./fil.js": 482,
+	"./fo": 483,
+	"./fo.js": 483,
+	"./fr": 484,
+	"./fr-ca": 485,
+	"./fr-ca.js": 485,
+	"./fr-ch": 486,
+	"./fr-ch.js": 486,
+	"./fr.js": 484,
+	"./fy": 487,
+	"./fy.js": 487,
+	"./ga": 488,
+	"./ga.js": 488,
+	"./gd": 489,
+	"./gd.js": 489,
+	"./gl": 490,
+	"./gl.js": 490,
+	"./gom-deva": 491,
+	"./gom-deva.js": 491,
+	"./gom-latn": 492,
+	"./gom-latn.js": 492,
+	"./gu": 493,
+	"./gu.js": 493,
+	"./he": 494,
+	"./he.js": 494,
+	"./hi": 495,
+	"./hi.js": 495,
+	"./hr": 496,
+	"./hr.js": 496,
+	"./hu": 497,
+	"./hu.js": 497,
+	"./hy-am": 498,
+	"./hy-am.js": 498,
+	"./id": 499,
+	"./id.js": 499,
+	"./is": 500,
+	"./is.js": 500,
+	"./it": 501,
+	"./it-ch": 502,
+	"./it-ch.js": 502,
+	"./it.js": 501,
+	"./ja": 503,
+	"./ja.js": 503,
+	"./jv": 504,
+	"./jv.js": 504,
+	"./ka": 505,
+	"./ka.js": 505,
+	"./kk": 506,
+	"./kk.js": 506,
+	"./km": 507,
+	"./km.js": 507,
+	"./kn": 508,
+	"./kn.js": 508,
+	"./ko": 509,
+	"./ko.js": 509,
+	"./ku": 510,
+	"./ku-kmr": 511,
+	"./ku-kmr.js": 511,
+	"./ku.js": 510,
+	"./ky": 512,
+	"./ky.js": 512,
+	"./lb": 513,
+	"./lb.js": 513,
+	"./lo": 514,
+	"./lo.js": 514,
+	"./lt": 515,
+	"./lt.js": 515,
+	"./lv": 516,
+	"./lv.js": 516,
+	"./me": 517,
+	"./me.js": 517,
+	"./mi": 518,
+	"./mi.js": 518,
+	"./mk": 519,
+	"./mk.js": 519,
+	"./ml": 520,
+	"./ml.js": 520,
+	"./mn": 521,
+	"./mn.js": 521,
+	"./mr": 522,
+	"./mr.js": 522,
+	"./ms": 523,
+	"./ms-my": 524,
+	"./ms-my.js": 524,
+	"./ms.js": 523,
+	"./mt": 525,
+	"./mt.js": 525,
+	"./my": 526,
+	"./my.js": 526,
+	"./nb": 527,
+	"./nb.js": 527,
+	"./ne": 528,
+	"./ne.js": 528,
+	"./nl": 529,
+	"./nl-be": 530,
+	"./nl-be.js": 530,
+	"./nl.js": 529,
+	"./nn": 531,
+	"./nn.js": 531,
+	"./oc-lnc": 532,
+	"./oc-lnc.js": 532,
+	"./pa-in": 533,
+	"./pa-in.js": 533,
+	"./pl": 534,
+	"./pl.js": 534,
+	"./pt": 535,
+	"./pt-br": 536,
+	"./pt-br.js": 536,
+	"./pt.js": 535,
+	"./ro": 537,
+	"./ro.js": 537,
+	"./ru": 538,
+	"./ru.js": 538,
+	"./sd": 539,
+	"./sd.js": 539,
+	"./se": 540,
+	"./se.js": 540,
+	"./si": 541,
+	"./si.js": 541,
+	"./sk": 542,
+	"./sk.js": 542,
+	"./sl": 543,
+	"./sl.js": 543,
+	"./sq": 544,
+	"./sq.js": 544,
+	"./sr": 545,
+	"./sr-cyrl": 546,
+	"./sr-cyrl.js": 546,
+	"./sr.js": 545,
+	"./ss": 547,
+	"./ss.js": 547,
+	"./sv": 548,
+	"./sv.js": 548,
+	"./sw": 549,
+	"./sw.js": 549,
+	"./ta": 550,
+	"./ta.js": 550,
+	"./te": 551,
+	"./te.js": 551,
+	"./tet": 552,
+	"./tet.js": 552,
+	"./tg": 553,
+	"./tg.js": 553,
+	"./th": 554,
+	"./th.js": 554,
+	"./tk": 555,
+	"./tk.js": 555,
+	"./tl-ph": 556,
+	"./tl-ph.js": 556,
+	"./tlh": 557,
+	"./tlh.js": 557,
+	"./tr": 558,
+	"./tr.js": 558,
+	"./tzl": 559,
+	"./tzl.js": 559,
+	"./tzm": 560,
+	"./tzm-latn": 561,
+	"./tzm-latn.js": 561,
+	"./tzm.js": 560,
+	"./ug-cn": 562,
+	"./ug-cn.js": 562,
+	"./uk": 563,
+	"./uk.js": 563,
+	"./ur": 564,
+	"./ur.js": 564,
+	"./uz": 565,
+	"./uz-latn": 566,
+	"./uz-latn.js": 566,
+	"./uz.js": 565,
+	"./vi": 567,
+	"./vi.js": 567,
+	"./x-pseudo": 568,
+	"./x-pseudo.js": 568,
+	"./yo": 569,
+	"./yo.js": 569,
+	"./zh-cn": 570,
+	"./zh-cn.js": 570,
+	"./zh-hk": 571,
+	"./zh-hk.js": 571,
+	"./zh-mo": 572,
+	"./zh-mo.js": 572,
+	"./zh-tw": 573,
+	"./zh-tw.js": 573
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -320,20 +324,20 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1109;
+webpackContext.id = 1101;
 
 /***/ }),
 
-/***/ 1111:
+/***/ 1103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return McmImageComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -417,16 +421,15 @@ var McmImageComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1112:
+/***/ 1104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMHeaderComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_modals_service__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -437,10 +440,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -451,8 +455,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -471,7 +475,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-
 
 
 
@@ -560,12 +563,12 @@ var MCMHeaderComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'mcm-header',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">\n        <ion-buttons left>\n            <button ion-button icon-only *ngIf="showBackButton && currentpage != \'ModalCmp\'" (click)="goBack()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n            <button ion-button icon-only *ngIf="currentpage == \'ModalCmp\'" (click)="closeModal()">\n                <!--<img class="header-icon" src="assets/icons/icon_close-modal.svg"/>-->\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n        </ion-buttons>\n        <ion-title>{{ retriveTitle() | translate }}</ion-title>\n        <ion-buttons end></ion-buttons>\n    </ion-toolbar>\n</ion-header>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__["a" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["p" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["k" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* DeepLinker */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_3__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* DeepLinker */]])
     ], MCMHeaderComponent);
     return MCMHeaderComponent;
 }());
@@ -574,7 +577,7 @@ var MCMHeaderComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1113:
+/***/ 1105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -617,7 +620,7 @@ var DistancePipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1114:
+/***/ 1106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -635,10 +638,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -649,8 +653,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -745,16 +749,16 @@ var MCMProgressBarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1115:
+/***/ 1107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyLoadImagesDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(1116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(1108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intersection_observer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(35);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -894,17 +898,17 @@ var LazyLoadImagesDirective = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1117:
+/***/ 1109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -916,10 +920,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -930,8 +935,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -1063,12 +1068,12 @@ var RouteTeaserComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1118:
+/***/ 1110:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizedDatePipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1106,7 +1111,7 @@ var LocalizedDatePipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1119:
+/***/ 1111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1121,12 +1126,12 @@ var RecordStateEnum;
 
 /***/ }),
 
-/***/ 1137:
+/***/ 1129:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createTranslateLoader;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1130);
 
 function createTranslateLoader(httpClient) {
     return new __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](httpClient, './assets/localization/', '.json');
@@ -1135,7 +1140,7 @@ function createTranslateLoader(httpClient) {
 
 /***/ }),
 
-/***/ 1142:
+/***/ 1134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1173,15 +1178,15 @@ var BroadcastService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1143:
+/***/ 1135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YoutubePlayerModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_youtube_player_service__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_youtube_player_service__ = __webpack_require__(622);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1218,13 +1223,13 @@ var YoutubePlayerModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1144:
+/***/ 1136:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YoutubePlayerComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_youtube_player_service__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_youtube_player_service__ = __webpack_require__(622);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1317,7 +1322,7 @@ var YoutubePlayerComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1145:
+/***/ 1137:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1370,21 +1375,21 @@ var Autoresize = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1146:
+/***/ 1138:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(448);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(452);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(433);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(578);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1435,23 +1440,26 @@ var ApiModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1147:
+/***/ 1139:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrailService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -1545,7 +1553,7 @@ var TrailService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 115:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1553,20 +1561,20 @@ var TrailService = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(588);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(574);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(640);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1577,10 +1585,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -1591,8 +1600,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -1681,8 +1690,8 @@ var MyApp = /** @class */ (function () {
         }); });
         // zoom.init();
         platform.registerBackButtonAction(function () { return __awaiter(_this, void 0, void 0, function () {
-            var _this = this;
             var activeNav, rootNav, alert_1, tasksMap;
+            var _this = this;
             return __generator(this, function (_a) {
                 activeNav = app.getActiveNavs()[0];
                 rootNav = app.getRootNav();
@@ -1816,13 +1825,13 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1151:
+/***/ 1143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__ = __webpack_require__(1152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__ = __webpack_require__(1144);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1848,13 +1857,13 @@ var DirectivesModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1152:
+/***/ 1144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SafeInnerHtmlDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_in_app_browser__ = __webpack_require__(118);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1908,7 +1917,7 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 117:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1916,7 +1925,7 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(447);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(431);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1929,10 +1938,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -1943,8 +1953,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -1997,8 +2007,8 @@ var LanguageService = /** @class */ (function () {
                         })];
                 }
                 return [2 /*return*/, new Promise(function (success) { return __awaiter(_this, void 0, void 0, function () {
-                        var _this = this;
                         var defaultLang, lang, preferredLanguage, e_1;
+                        var _this = this;
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
@@ -2079,6 +2089,7 @@ var LanguageService = /** @class */ (function () {
             });
         });
     };
+    var LanguageService_1;
     LanguageService.STORAGE_KEY = 'LanguageService.lang';
     LanguageService = LanguageService_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
@@ -2086,28 +2097,27 @@ var LanguageService = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
     ], LanguageService);
     return LanguageService;
-    var LanguageService_1;
 }());
 
 //# sourceMappingURL=language-service.js.map
 
 /***/ }),
 
-/***/ 118:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Updater; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(419);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(35);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2118,10 +2128,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -2132,8 +2143,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -2469,7 +2480,7 @@ var DB_Updater = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 119:
+/***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2548,18 +2559,18 @@ var ZoomService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 150:
+/***/ 149:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMIconModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2725,6 +2736,7 @@ var MCMIconModal = /** @class */ (function () {
         }, { showBackdrop: true, enableBackdropDismiss: true });
         confirmationModal.present();
     };
+    var MCMIconModal_1;
     MCMIconModal = MCMIconModal_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge"\n     [ngClass]="{\'no-icon\': type != \'image\',\n                 \'no-icon\' : modalType == 4 || modalType == 8 || modalType == 9,\n                 \'hint\': modalType == 1,\n                 \'failed\': modalType == 2,\n                 \'perfect\': modalType == 3,\n                 \'good\': modalType == 5}"\n>\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <img class="head-icon" *ngIf="modalType == 7" src="./assets/icons/{{iconPath}}modal-subtask-info.svg" />\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf="type == \'image\'" [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != \'0\'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7 || modalType == 9" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n\n    <div class="modal-content" *ngIf="modalType == MCMModalType.sampleSolution">\n        <h2>{{title | translate}}</h2>\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n        <p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n        <div class="feedback" (click)="reportProblem()">\n            <ion-label>{{ "a_task_feedback_label" | translate }}</ion-label>\n            <p>{{ "a_task_feedback_introduction" | translate }}</p>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" [ngClass]="{\'col-33\': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
@@ -2732,14 +2744,13 @@ var MCMIconModal = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ModalController */]])
     ], MCMIconModal);
     return MCMIconModal;
-    var MCMIconModal_1;
 }());
 
 //# sourceMappingURL=MCMIconModal.js.map
 
 /***/ }),
 
-/***/ 151:
+/***/ 150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2749,7 +2760,7 @@ var MCMIconModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(35);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3020,6 +3031,7 @@ var Task = /** @class */ (function () {
             return 0;
         });
     };
+    var Task_1;
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
         __metadata("design:type", Number)
@@ -3153,14 +3165,13 @@ var Task = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_task')
     ], Task);
     return Task;
-    var Task_1;
 }());
 
 //# sourceMappingURL=Task.js.map
 
 /***/ }),
 
-/***/ 152:
+/***/ 151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3168,7 +3179,7 @@ var Task = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(115);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3179,10 +3190,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -3193,8 +3205,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -3243,6 +3255,7 @@ var HomePage = /** @class */ (function () {
             });
         });
     };
+    var HomePage_1;
     HomePage = HomePage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>\n    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/
         }),
@@ -3252,7 +3265,6 @@ var HomePage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
     ], HomePage);
     return HomePage;
-    var HomePage_1;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -3266,19 +3278,19 @@ var HomePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return MapTile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConnectionQuality; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Helper; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__env_env__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3290,10 +3302,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -3304,8 +3317,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -3346,21 +3359,21 @@ var MapTile = /** @class */ (function () {
         get: function () {
             return this.pX;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MapTile.prototype, "y", {
         get: function () {
             return this.pY;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(MapTile.prototype, "zoomLevel", {
         get: function () {
             return this.pZoomLevel;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return MapTile;
@@ -3393,8 +3406,8 @@ var Helper = /** @class */ (function () {
     Helper_1 = Helper;
     Helper.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var _a;
+            var _this = this;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -3652,6 +3665,7 @@ var Helper = /** @class */ (function () {
         else
             return { min_zoom: 15, max_zoom: 18 };
     };
+    var Helper_1;
     /*
       Intents #
        */
@@ -3695,14 +3709,14 @@ var Helper = /** @class */ (function () {
     /*
     GLOBAL VARS #
      */
-    Helper.WEBSERVER_URL = "https://mathcitymap.eu/";
-    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
-    Helper.MEDIASERVER_BASE_URL = "https://matismedia.eu";
-    // static readonly MEDIASERVER_BASE_URL: string = "https://sb-medienserver.matismedia.eu"
+    // static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
+    Helper.WEBSERVER_URL = "https://dev.mathcitymap.eu/";
+    // static readonly MEDIASERVER_BASE_URL: string = "https://matismedia.eu"
+    Helper.MEDIASERVER_BASE_URL = "https://sb-medienserver.matismedia.eu";
     Helper.MEDIASERVER_IMAGE_URL = Helper_1.MEDIASERVER_BASE_URL + "/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
-    Helper.API_URL = "https://mathcitymap.eu/db_query_post.php";
-    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
+    // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
+    Helper.API_URL = "https://dev.mathcitymap.eu/db_query_post.php";
     // FIXME HIDE FROM PUBLIC REPO
     Helper.REQUEST_PASS = __WEBPACK_IMPORTED_MODULE_11__env_env__["b" /* SERVER_REQUEST_PASS */];
     Helper.REPLACE_TASK_IMAGE_PATH = "mcm_images/tasks/";
@@ -3745,7 +3759,6 @@ var Helper = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["b" /* Storage */]])
     ], Helper);
     return Helper;
-    var Helper_1;
 }());
 
 //# sourceMappingURL=Helper.js.map
@@ -3758,7 +3771,7 @@ var Helper = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3771,10 +3784,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -3785,8 +3799,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -3873,23 +3887,26 @@ var MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyen
 
 /***/ }),
 
-/***/ 217:
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -4175,24 +4192,24 @@ var SessionService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 239:
+/***/ 235:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(1111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(1103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(644);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(1118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(1110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(631);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4241,14 +4258,14 @@ var ComponentsModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 240:
+/***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Score; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(810);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(796);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4448,13 +4465,13 @@ var Score = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 241:
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomKeyBoard; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4497,28 +4514,28 @@ var CustomKeyBoard = /** @class */ (function () {
         get: function () {
             return this.m_clickObs;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(CustomKeyBoard, "onDeleteClick", {
         get: function () {
             return this.m_deleteObs;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(CustomKeyBoard, "onCKShow", {
         get: function () {
             return this.m_showObs;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(CustomKeyBoard, "onCKHide", {
         get: function () {
             return this.m_hideObs;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     CustomKeyBoard.prototype.cKClick = function (event, key) {
@@ -4590,6 +4607,7 @@ var CustomKeyBoard = /** @class */ (function () {
         }
         return tab;
     };
+    var CustomKeyBoard_1;
     // Component reference
     CustomKeyBoard.m_component = null;
     // Observables for subscribers to get the events
@@ -4610,7 +4628,8 @@ var CustomKeyBoard = /** @class */ (function () {
         __metadata("design:type", String)
     ], CustomKeyBoard.prototype, "width", void 0);
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.visible'), Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.visible'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", Boolean)
     ], CustomKeyBoard.prototype, "visible", void 0);
     __decorate([
@@ -4632,14 +4651,13 @@ var CustomKeyBoard = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]])
     ], CustomKeyBoard);
     return CustomKeyBoard;
-    var CustomKeyBoard_1;
 }());
 
 //# sourceMappingURL=custom-keyboard.js.map
 
 /***/ }),
 
-/***/ 244:
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4647,11 +4665,11 @@ var CustomKeyBoard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(592);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(578);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_component__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_component__ = __webpack_require__(114);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4662,10 +4680,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -4676,8 +4695,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -4838,7 +4857,7 @@ var MCMReportProblemModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 255:
+/***/ 251:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -4851,59 +4870,59 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 255;
+webpackEmptyAsyncContext.id = 251;
 
 /***/ }),
 
-/***/ 299:
+/***/ 295:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/chat/chat.module": [
-		595
+		579
 	],
 	"../pages/dashboard/dashboard.module": [
-		1153,
+		1145,
 		10
 	],
 	"../pages/home/home.module": [
-		1155,
+		1146,
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1154,
+		1147,
 		6
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1160,
+		1150,
 		8
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1158,
+		1149,
 		1
 	],
 	"../pages/info/info.module": [
-		1156,
+		1153,
 		5
 	],
 	"../pages/onboarding/onboarding.module": [
-		1157,
+		1152,
 		4
 	],
 	"../pages/portal/portal.module": [
-		1159,
+		1155,
 		7
 	],
 	"../pages/settings/settings.module": [
-		1161,
+		1148,
 		3
 	],
 	"../pages/task-detail/task-detail.module": [
-		1163,
+		1151,
 		0
 	],
 	"../pages/task-group-detail/task-group-detail.module": [
-		1162,
+		1154,
 		2
 	]
 };
@@ -4918,7 +4937,7 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 299;
+webpackAsyncContext.id = 295;
 module.exports = webpackAsyncContext;
 
 /***/ }),
@@ -4932,41 +4951,41 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(806);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(807);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(808);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(809);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(792);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(795);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(813);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(814);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(799);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(800);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(826);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(827);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(803);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(804);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(357);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(836);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(837);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(813);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(814);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(838);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(839);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(840);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(815);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(816);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(817);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(841);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(842);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(843);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(844);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(845);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(846);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__ = __webpack_require__(847);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__migration_17067919700000_RenameParentIdAndAddTaskFormatAndPosition__ = __webpack_require__(848);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__migration_17071440460000_AddGroupsFinished__ = __webpack_require__(849);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__ = __webpack_require__(824);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__migration_17067919700000_RenameParentIdAndAddTaskFormatAndPosition__ = __webpack_require__(825);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__migration_17071440460000_AddGroupsFinished__ = __webpack_require__(826);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4977,10 +4996,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -4991,8 +5011,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -5438,8 +5458,8 @@ var OrmService = /** @class */ (function () {
         if (compareFn === void 0) { compareFn = null; }
         if (forceUpdateFromDb === void 0) { forceUpdateFromDb = false; }
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var repo, result;
+            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -5782,6 +5802,7 @@ var OrmService = /** @class */ (function () {
         }
         this.eventEmitter.next(OrmService_1.EVENT_ROUTES_CHANGED);
     };
+    var OrmService_1;
     OrmService.EVENT_ROUTES_CHANGED = 'EVENT_ROUTES_CHANGED';
     OrmService = OrmService_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
@@ -5789,603 +5810,29 @@ var OrmService = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_17_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_28__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_17_ionic_angular__["a" /* AlertController */]])
     ], OrmService);
     return OrmService;
-    var OrmService_1;
 }());
 
 //# sourceMappingURL=orm-service.js.map
 
 /***/ }),
 
-/***/ 34:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(811);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(340);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-var ImagesService = /** @class */ (function () {
-    function ImagesService(fileManager, platform, transfer, http, httpClient, sanitizer, camera) {
-        this.fileManager = fileManager;
-        this.platform = platform;
-        this.transfer = transfer;
-        this.http = http;
-        this.httpClient = httpClient;
-        this.sanitizer = sanitizer;
-        this.camera = camera;
-        this.isInitialized = false;
-        this.downloadQueue = null;
-        this.offlineImageUrlCache = {};
-        this.offlineThumbnailUrlCache = {};
-        this.lazyLoadedImagesCache = {};
-        ImagesService_1.INSTANCE = this;
-        this.init();
-    }
-    ImagesService_1 = ImagesService;
-    ImagesService.prototype.saveThumb = function (newFileName, base64, fileManager) {
-        console.log("saving thumbnail to " + newFileName);
-        // var url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
-        fetch(base64)
-            .then(function (res) {
-            res.blob().then(function (blob) {
-                fileManager.writeFile(fileManager.dataDirectory, newFileName, blob, { replace: true }).then(function (val) {
-                }, function (error) { return console.error("Write error: " + JSON.stringify(error)); })
-                    .catch(function (error) { return console.error("Write error: " + JSON.stringify(error)); });
-            }, function (error) { return console.error("Blob error: " + JSON.stringify(error)); })
-                .catch(function (error) { return console.error("Blob error: " + JSON.stringify(error)); });
-        })
-            .then(function (blob) { return console.log(blob); });
-    };
-    ImagesService.prototype.resizedataURL = function (datas, wantedWidth, wantedHeight) {
-        return new Promise(function (resolve, reject) {
-            var img = document.createElement('img');
-            img.onload = function () {
-                var canvas = document.createElement('canvas');
-                var ctx = canvas.getContext('2d');
-                canvas.width = wantedWidth;
-                canvas.height = wantedHeight;
-                ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
-                var dataURI = canvas.toDataURL();
-                resolve(dataURI);
-            };
-            img.src = datas;
-        });
-    };
-    ImagesService.prototype.isFilePluginAvailable = function () {
-        return this.filePluginAvailable;
-    };
-    ImagesService.prototype.init = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (this.isInitialized) {
-                            return [2 /*return*/, this.nativeBaseURL];
-                        }
-                        return [4 /*yield*/, this.platform.ready()];
-                    case 1:
-                        _b.sent();
-                        this.filePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
-                        if (!this.filePluginAvailable) return [3 /*break*/, 3];
-                        _a = this;
-                        return [4 /*yield*/, this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)];
-                    case 2:
-                        _a.dataDirectory = _b.sent();
-                        this.nativeBaseURL = this.dataDirectory.nativeURL;
-                        _b.label = 3;
-                    case 3:
-                        this.isInitialized = true;
-                        return [2 /*return*/, this.nativeBaseURL];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.makeDownloadUrlLegit = function (downloadPath) {
-        var pathParts = downloadPath.split('/');
-        var actualPath;
-        if (pathParts[pathParts.length - 2].length !== 1) {
-            var frontParts = pathParts.splice(0, pathParts.length - 1);
-            actualPath = frontParts.join('/') + "/m/" + pathParts.join('/');
-        }
-        else {
-            actualPath = pathParts.join('/');
-        }
-        return actualPath;
-    };
-    ImagesService.prototype.downloadURLs = function (urls, createThumbs, progressCallback, skipCheckForExistingFiles) {
-        if (progressCallback === void 0) { progressCallback = null; }
-        if (skipCheckForExistingFiles === void 0) { skipCheckForExistingFiles = false; }
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var promiseError, fileTransfer, dataDirectory, fileManager, resizedataURL, saveThumb, totalDownload, alreadyDownloaded, that, promise, _loop_1, this_1, i;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!this.isFilePluginAvailable()) {
-                            return [2 /*return*/];
-                        }
-                        promiseError = null;
-                        fileTransfer = this.transfer.create();
-                        dataDirectory = this.fileManager.dataDirectory;
-                        fileManager = this.fileManager;
-                        resizedataURL = this.resizedataURL;
-                        saveThumb = this.saveThumb;
-                        totalDownload = urls.length;
-                        alreadyDownloaded = 0;
-                        that = this;
-                        this.downloadQueue = __WEBPACK_IMPORTED_MODULE_5_async___default.a.queue(function (task, continueCallback) {
-                            function callback() {
-                                alreadyDownloaded++;
-                                console.log("download progress: " + alreadyDownloaded + "/" + totalDownload + " - " + task.imgFileName);
-                                if (task.callback) {
-                                    task.callback(alreadyDownloaded, totalDownload, task.imgFileName);
-                                }
-                                if (progressCallback) {
-                                    if (progressCallback(alreadyDownloaded, totalDownload, task.imgFileName)) {
-                                        // user aborted download process
-                                        that.downloadQueue.kill();
-                                        promiseError("user canceled download");
-                                        return;
-                                    }
-                                }
-                                continueCallback();
-                            }
-                            console.log('Starting download task for ' + task.outputName);
-                            var url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
-                                : __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
-                            setTimeout(function () {
-                                fileTransfer.download(url, dataDirectory + task.outputName)
-                                    .then(function () {
-                                    if (!createThumbs) {
-                                        callback();
-                                        return;
-                                    }
-                                    fileManager.readAsDataURL(dataDirectory, task.outputName)
-                                        .then(function (dataURI) {
-                                        resizedataURL(dataURI, 120, 120)
-                                            .then(function (resizedBase64) {
-                                            saveThumb(that.getLocalThumbFileName(task.imgFileName), resizedBase64, fileManager);
-                                            callback();
-                                        })
-                                            .catch(function (error) {
-                                            console.error("saveThumb error " + JSON.stringify(error));
-                                            callback();
-                                        });
-                                    }, function (error) {
-                                        console.error("readAsDataURL error: " + JSON.stringify(error));
-                                        callback();
-                                    })
-                                        .catch(function (error) {
-                                        console.error("readAsDataURL error: " + JSON.stringify(error));
-                                        callback();
-                                    });
-                                })
-                                    .catch(function (error) {
-                                    console.error("Error downloading image " + task.imgFileName);
-                                    callback();
-                                });
-                            }, 50);
-                        }, 8);
-                        promise = new Promise(function (success, error) {
-                            promiseError = error;
-                            _this.downloadQueue.drain = success;
-                        });
-                        _loop_1 = function () {
-                            var imgFileName, outputName, file, _a, _b;
-                            return __generator(this, function (_c) {
-                                switch (_c.label) {
-                                    case 0:
-                                        imgFileName = urls[i];
-                                        // No image in task
-                                        if (!imgFileName || imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
-                                            return [2 /*return*/, "continue"];
-                                        }
-                                        outputName = this_1.getLocalFileName(imgFileName);
-                                        file = void 0;
-                                        _a = !skipCheckForExistingFiles;
-                                        if (!_a) return [3 /*break*/, 2];
-                                        _b = null;
-                                        return [4 /*yield*/, this_1.fileManager.getFile(this_1.dataDirectory, outputName, { create: false })
-                                                .then(function (res) { return res; }, function (err) { return null; })];
-                                    case 1:
-                                        _a = _b !== (file = _c.sent());
-                                        _c.label = 2;
-                                    case 2:
-                                        if (_a) {
-                                            file.file(function (file) {
-                                                if (file.size <= 0) {
-                                                    // Path not empty and file does not exist - download from url
-                                                    _this.downloadQueue.push({
-                                                        fileTransfer: fileTransfer,
-                                                        imgFileName: imgFileName,
-                                                        outputName: outputName,
-                                                        callback: urls.length == 1 ? progressCallback : null
-                                                    }, function () {
-                                                        console.log("Finished downloading " + outputName);
-                                                    });
-                                                }
-                                                else {
-                                                    alreadyDownloaded++;
-                                                    if (progressCallback) {
-                                                        console.log("Already downloaded: " + outputName);
-                                                        progressCallback(alreadyDownloaded, totalDownload, imgFileName);
-                                                    }
-                                                }
-                                            }, function (error) {
-                                                // file could not be read
-                                                _this.downloadQueue.push({
-                                                    fileTransfer: fileTransfer,
-                                                    imgFileName: imgFileName,
-                                                    outputName: outputName,
-                                                    callback: urls.length == 1 ? progressCallback : null
-                                                }, function () {
-                                                    console.log("Finished downloading " + outputName);
-                                                });
-                                            });
-                                        }
-                                        else {
-                                            // Path not empty and file does not exist - download from url
-                                            console.log("Adding to download queue: " + outputName);
-                                            this_1.downloadQueue.push({
-                                                fileTransfer: fileTransfer,
-                                                imgFileName: imgFileName,
-                                                outputName: outputName,
-                                                callback: urls.length == 1 ? progressCallback : null
-                                            }, function () {
-                                                console.log("Finished downloading " + outputName);
-                                            });
-                                        }
-                                        return [2 /*return*/];
-                                }
-                            });
-                        };
-                        this_1 = this;
-                        i = 0;
-                        _a.label = 1;
-                    case 1:
-                        if (!(i < urls.length)) return [3 /*break*/, 4];
-                        return [5 /*yield**/, _loop_1()];
-                    case 2:
-                        _a.sent();
-                        _a.label = 3;
-                    case 3:
-                        i++;
-                        return [3 /*break*/, 1];
-                    case 4:
-                        if (this.downloadQueue.length() === 0) {
-                            return [2 /*return*/];
-                        }
-                        return [2 /*return*/, promise];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.getLocalFileName = function (imgPath, isMapTile) {
-        if (isMapTile === void 0) { isMapTile = false; }
-        if (imgPath.indexOf('http') === 0) {
-            // strip hostname
-            imgPath = imgPath.substring(imgPath.indexOf('/', 9) + 1);
-            var queryIndex = imgPath.indexOf('?');
-            if (queryIndex > 0) {
-                // strip query
-                imgPath = imgPath.substring(0, queryIndex);
-            }
-        }
-        return isMapTile ? 'tiles/' + imgPath.replace('v4/mapbox.streets/', '') :
-            imgPath.replace(/\/| |@/g, '_');
-    };
-    ImagesService.prototype.getLocalThumbFileName = function (imgPath) {
-        return 'thumb_' + this.getLocalFileName(imgPath);
-    };
-    ImagesService.prototype.getOfflineURL = function (imgPath, asThumbNail, isMapTile, asRawString) {
-        if (asThumbNail === void 0) { asThumbNail = false; }
-        if (isMapTile === void 0) { isMapTile = false; }
-        if (asRawString === void 0) { asRawString = false; }
-        if (asThumbNail) {
-            return this.offlineThumbnailUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath])
-                : this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath] =
-                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
-                        : this.getOnlineURL(imgPath)));
-        }
-        if (asRawString) {
-            return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
-                : this.offlineImageUrlCache[imgPath] =
-                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
-                        : this.getOnlineURL(imgPath));
-        }
-        return this.offlineImageUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineImageUrlCache[imgPath])
-            : this.fixUrlForWebview(this.offlineImageUrlCache[imgPath] =
-                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
-                    : this.getOnlineURL(imgPath)));
-    };
-    ImagesService.prototype.getOnlineURL = function (imgPath) {
-        return imgPath.indexOf('http') !== 0 ? __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + imgPath : imgPath;
-    };
-    ImagesService.prototype.fixUrlForWebview = function (url) {
-        if (!this.platform.is('cordova'))
-            return url;
-        var fixedUrl = window.Ionic.WebView.convertFileSrc(url);
-        //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
-        if (fixedUrl.includes('mcm_images_tasks')) {
-            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
-        }
-        return fixedUrl;
-    };
-    ImagesService.prototype.removeDownloadedURLs = function (urls, removeThumbs) {
-        if (removeThumbs === void 0) { removeThumbs = true; }
-        return __awaiter(this, void 0, void 0, function () {
-            var _loop_2, this_2, i;
-            return __generator(this, function (_a) {
-                if (!this.dataDirectory) {
-                    return [2 /*return*/];
-                }
-                _loop_2 = function () {
-                    var imgFileName = urls[i];
-                    // No image in task
-                    if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
-                        return "continue";
-                    }
-                    var outputName = this_2.getLocalFileName(imgFileName);
-                    this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
-                        file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
-                    }, function () { return console.log("could not delete file " + outputName); });
-                    if (removeThumbs) {
-                        outputName = this_2.getLocalThumbFileName(imgFileName);
-                        this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
-                            file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
-                        }, function () { return console.log("could not delete file " + outputName); });
-                    }
-                };
-                this_2 = this;
-                for (i = 0; i < urls.length; i++) {
-                    _loop_2();
-                }
-                return [2 /*return*/];
-            });
-        });
-    };
-    /**
-     *
-     * @param {string} imgPath
-     * @param {string} imageSize 's', 'thumb', 'xl' or 'xxl'
-     * @returns {Promise<string>}
-     */
-    ImagesService.prototype.getAsyncImageURL = function (imgPath, imageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var lastSlashIndex;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (imageSize) {
-                            lastSlashIndex = imgPath.lastIndexOf('/');
-                            imgPath = imgPath.substring(0, lastSlashIndex) + '/' + imageSize + imgPath.substring(lastSlashIndex);
-                        }
-                        if (this.lazyLoadedImagesCache[imgPath]) {
-                            return [2 /*return*/, this.lazyLoadedImagesCache[imgPath]];
-                        }
-                        if (!this.dataDirectory) return [3 /*break*/, 2];
-                        // we need to check for downloaded files
-                        return [4 /*yield*/, new Promise(function (success) {
-                                _this.downloadURLs([imgPath], false, function (alreadyDownloaded, totalDownload, url) {
-                                    if (url == imgPath) {
-                                        success();
-                                    }
-                                    return false;
-                                }, false);
-                            })];
-                    case 1:
-                        // we need to check for downloaded files
-                        _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/, this.lazyLoadedImagesCache[imgPath] = this.getOfflineURL(imgPath)];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.downloadAndUnzip = function (route, progressCallback, tileCallback) {
-        return __awaiter(this, void 0, void 0, function () {
-            var url, downloadRequest, dataDirectory, pathToFileInString;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!window.JJzip) {
-                            // JJZip is only available on native platforms. In browser we don't need to download
-                            return [2 /*return*/];
-                        }
-                        url = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName;
-                        downloadRequest = this.transfer.create();
-                        dataDirectory = this.fileManager.dataDirectory;
-                        pathToFileInString = dataDirectory + route.mapFileName;
-                        return [4 /*yield*/, new Promise(function (success, error) {
-                                downloadRequest.onProgress(function (progress) {
-                                    if (progress.loaded && progress.total && progress.loaded < progress.total) {
-                                        if (progress.total > 0) {
-                                            if (progressCallback(Math.round(100 * (progress.loaded / progress.total)))) {
-                                                error('download was canceled');
-                                                downloadRequest.abort();
-                                            }
-                                        }
-                                    }
-                                });
-                                downloadRequest.download(url, pathToFileInString).then(function (result) {
-                                    window.JJzip.unzip(pathToFileInString, { target: dataDirectory + '/tiles' }, function (data) {
-                                        /* Wow everything goes good, but just in case verify data.success */
-                                        console.log("victory");
-                                        console.log("victory " + JSON.stringify(data));
-                                        success();
-                                    }, function (error) {
-                                        /* Wow something goes wrong, check the error.message */
-                                        console.log("no victory :(((");
-                                        console.log(error);
-                                    });
-                                }, error).catch(function (err) { console.log("ERROR DOWNLOADING: ", err); });
-                            })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.getImageFromUserGallery = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var options, imageData, err_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        options = {
-                            quality: 75,
-                            targetHeight: 512,
-                            targetWidth: 512,
-                            destinationType: this.camera.DestinationType.DATA_URL,
-                            encodingType: this.camera.EncodingType.JPEG,
-                            mediaType: this.camera.MediaType.PICTURE,
-                            correctOrientation: true,
-                            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-                        };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.camera.getPicture(options)];
-                    case 2:
-                        imageData = _a.sent();
-                        return [2 /*return*/, { imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData }];
-                    case 3:
-                        err_1 = _a.sent();
-                        throw err_1;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ImagesService.prototype.getImageFromCamera = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var options, imageData, err_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        options = {
-                            quality: 75,
-                            targetHeight: 512,
-                            targetWidth: 512,
-                            correctOrientation: true,
-                            destinationType: this.camera.DestinationType.DATA_URL,
-                            encodingType: this.camera.EncodingType.JPEG,
-                            mediaType: this.camera.MediaType.PICTURE,
-                        };
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.camera.getPicture(options)];
-                    case 2:
-                        imageData = _a.sent();
-                        return [2 /*return*/, { imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData }];
-                    case 3:
-                        err_2 = _a.sent();
-                        throw err_2;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    ImagesService = ImagesService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["c" /* DomSanitizer */],
-            __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__["a" /* Camera */]])
-    ], ImagesService);
-    return ImagesService;
-    var ImagesService_1;
-}());
-
-//# sourceMappingURL=images-service.js.map
-
-/***/ }),
-
-/***/ 357:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -6581,14 +6028,14 @@ var DB_Handler = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 358:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(835);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(812);
 
 
 var DBC = /** @class */ (function () {
@@ -6898,23 +6345,603 @@ DBC.initialize();
 
 /***/ }),
 
-/***/ 448:
+/***/ 35:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(336);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+var ImagesService = /** @class */ (function () {
+    function ImagesService(fileManager, platform, transfer, http, httpClient, sanitizer, camera) {
+        this.fileManager = fileManager;
+        this.platform = platform;
+        this.transfer = transfer;
+        this.http = http;
+        this.httpClient = httpClient;
+        this.sanitizer = sanitizer;
+        this.camera = camera;
+        this.isInitialized = false;
+        this.downloadQueue = null;
+        this.offlineImageUrlCache = {};
+        this.offlineThumbnailUrlCache = {};
+        this.lazyLoadedImagesCache = {};
+        ImagesService_1.INSTANCE = this;
+        this.init();
+    }
+    ImagesService_1 = ImagesService;
+    ImagesService.prototype.saveThumb = function (newFileName, base64, fileManager) {
+        console.log("saving thumbnail to " + newFileName);
+        // var url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+        fetch(base64)
+            .then(function (res) {
+            res.blob().then(function (blob) {
+                fileManager.writeFile(fileManager.dataDirectory, newFileName, blob, { replace: true }).then(function (val) {
+                }, function (error) { return console.error("Write error: " + JSON.stringify(error)); })
+                    .catch(function (error) { return console.error("Write error: " + JSON.stringify(error)); });
+            }, function (error) { return console.error("Blob error: " + JSON.stringify(error)); })
+                .catch(function (error) { return console.error("Blob error: " + JSON.stringify(error)); });
+        })
+            .then(function (blob) { return console.log(blob); });
+    };
+    ImagesService.prototype.resizedataURL = function (datas, wantedWidth, wantedHeight) {
+        return new Promise(function (resolve, reject) {
+            var img = document.createElement('img');
+            img.onload = function () {
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                canvas.width = wantedWidth;
+                canvas.height = wantedHeight;
+                ctx.drawImage(img, 0, 0, wantedWidth, wantedHeight);
+                var dataURI = canvas.toDataURL();
+                resolve(dataURI);
+            };
+            img.src = datas;
+        });
+    };
+    ImagesService.prototype.isFilePluginAvailable = function () {
+        return this.filePluginAvailable;
+    };
+    ImagesService.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (this.isInitialized) {
+                            return [2 /*return*/, this.nativeBaseURL];
+                        }
+                        return [4 /*yield*/, this.platform.ready()];
+                    case 1:
+                        _b.sent();
+                        this.filePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
+                        if (!this.filePluginAvailable) return [3 /*break*/, 3];
+                        _a = this;
+                        return [4 /*yield*/, this.fileManager.resolveDirectoryUrl(this.fileManager.dataDirectory)];
+                    case 2:
+                        _a.dataDirectory = _b.sent();
+                        this.nativeBaseURL = this.dataDirectory.nativeURL;
+                        _b.label = 3;
+                    case 3:
+                        this.isInitialized = true;
+                        return [2 /*return*/, this.nativeBaseURL];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.makeDownloadUrlLegit = function (downloadPath) {
+        var pathParts = downloadPath.split('/');
+        var actualPath;
+        if (pathParts[pathParts.length - 2].length !== 1) {
+            var frontParts = pathParts.splice(0, pathParts.length - 1);
+            actualPath = frontParts.join('/') + "/m/" + pathParts.join('/');
+        }
+        else {
+            actualPath = pathParts.join('/');
+        }
+        return actualPath;
+    };
+    ImagesService.prototype.downloadURLs = function (urls, createThumbs, progressCallback, skipCheckForExistingFiles) {
+        if (progressCallback === void 0) { progressCallback = null; }
+        if (skipCheckForExistingFiles === void 0) { skipCheckForExistingFiles = false; }
+        return __awaiter(this, void 0, void 0, function () {
+            var promiseError, fileTransfer, dataDirectory, fileManager, resizedataURL, saveThumb, totalDownload, alreadyDownloaded, that, promise, _loop_1, this_1, i;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.isFilePluginAvailable()) {
+                            return [2 /*return*/];
+                        }
+                        promiseError = null;
+                        fileTransfer = this.transfer.create();
+                        dataDirectory = this.fileManager.dataDirectory;
+                        fileManager = this.fileManager;
+                        resizedataURL = this.resizedataURL;
+                        saveThumb = this.saveThumb;
+                        totalDownload = urls.length;
+                        alreadyDownloaded = 0;
+                        that = this;
+                        this.downloadQueue = __WEBPACK_IMPORTED_MODULE_5_async___default.a.queue(function (task, continueCallback) {
+                            function callback() {
+                                alreadyDownloaded++;
+                                console.log("download progress: " + alreadyDownloaded + "/" + totalDownload + " - " + task.imgFileName);
+                                if (task.callback) {
+                                    task.callback(alreadyDownloaded, totalDownload, task.imgFileName);
+                                }
+                                if (progressCallback) {
+                                    if (progressCallback(alreadyDownloaded, totalDownload, task.imgFileName)) {
+                                        // user aborted download process
+                                        that.downloadQueue.kill();
+                                        promiseError("user canceled download");
+                                        return;
+                                    }
+                                }
+                                continueCallback();
+                            }
+                            console.log('Starting download task for ' + task.outputName);
+                            var url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
+                                : __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
+                            setTimeout(function () {
+                                fileTransfer.download(url, dataDirectory + task.outputName)
+                                    .then(function () {
+                                    if (!createThumbs) {
+                                        callback();
+                                        return;
+                                    }
+                                    fileManager.readAsDataURL(dataDirectory, task.outputName)
+                                        .then(function (dataURI) {
+                                        resizedataURL(dataURI, 120, 120)
+                                            .then(function (resizedBase64) {
+                                            saveThumb(that.getLocalThumbFileName(task.imgFileName), resizedBase64, fileManager);
+                                            callback();
+                                        })
+                                            .catch(function (error) {
+                                            console.error("saveThumb error " + JSON.stringify(error));
+                                            callback();
+                                        });
+                                    }, function (error) {
+                                        console.error("readAsDataURL error: " + JSON.stringify(error));
+                                        callback();
+                                    })
+                                        .catch(function (error) {
+                                        console.error("readAsDataURL error: " + JSON.stringify(error));
+                                        callback();
+                                    });
+                                })
+                                    .catch(function (error) {
+                                    console.error("Error downloading image " + task.imgFileName);
+                                    callback();
+                                });
+                            }, 50);
+                        }, 8);
+                        promise = new Promise(function (success, error) {
+                            promiseError = error;
+                            _this.downloadQueue.drain = success;
+                        });
+                        _loop_1 = function () {
+                            var imgFileName, outputName, file, _a, _b;
+                            return __generator(this, function (_c) {
+                                switch (_c.label) {
+                                    case 0:
+                                        imgFileName = urls[i];
+                                        // No image in task
+                                        if (!imgFileName || imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
+                                            return [2 /*return*/, "continue"];
+                                        }
+                                        outputName = this_1.getLocalFileName(imgFileName);
+                                        file = void 0;
+                                        _a = !skipCheckForExistingFiles;
+                                        if (!_a) return [3 /*break*/, 2];
+                                        _b = null;
+                                        return [4 /*yield*/, this_1.fileManager.getFile(this_1.dataDirectory, outputName, { create: false })
+                                                .then(function (res) { return res; }, function (err) { return null; })];
+                                    case 1:
+                                        _a = _b !== (file = _c.sent());
+                                        _c.label = 2;
+                                    case 2:
+                                        if (_a) {
+                                            file.file(function (file) {
+                                                if (file.size <= 0) {
+                                                    // Path not empty and file does not exist - download from url
+                                                    _this.downloadQueue.push({
+                                                        fileTransfer: fileTransfer,
+                                                        imgFileName: imgFileName,
+                                                        outputName: outputName,
+                                                        callback: urls.length == 1 ? progressCallback : null
+                                                    }, function () {
+                                                        console.log("Finished downloading " + outputName);
+                                                    });
+                                                }
+                                                else {
+                                                    alreadyDownloaded++;
+                                                    if (progressCallback) {
+                                                        console.log("Already downloaded: " + outputName);
+                                                        progressCallback(alreadyDownloaded, totalDownload, imgFileName);
+                                                    }
+                                                }
+                                            }, function (error) {
+                                                // file could not be read
+                                                _this.downloadQueue.push({
+                                                    fileTransfer: fileTransfer,
+                                                    imgFileName: imgFileName,
+                                                    outputName: outputName,
+                                                    callback: urls.length == 1 ? progressCallback : null
+                                                }, function () {
+                                                    console.log("Finished downloading " + outputName);
+                                                });
+                                            });
+                                        }
+                                        else {
+                                            // Path not empty and file does not exist - download from url
+                                            console.log("Adding to download queue: " + outputName);
+                                            this_1.downloadQueue.push({
+                                                fileTransfer: fileTransfer,
+                                                imgFileName: imgFileName,
+                                                outputName: outputName,
+                                                callback: urls.length == 1 ? progressCallback : null
+                                            }, function () {
+                                                console.log("Finished downloading " + outputName);
+                                            });
+                                        }
+                                        return [2 /*return*/];
+                                }
+                            });
+                        };
+                        this_1 = this;
+                        i = 0;
+                        _a.label = 1;
+                    case 1:
+                        if (!(i < urls.length)) return [3 /*break*/, 4];
+                        return [5 /*yield**/, _loop_1()];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3:
+                        i++;
+                        return [3 /*break*/, 1];
+                    case 4:
+                        if (this.downloadQueue.length() === 0) {
+                            return [2 /*return*/];
+                        }
+                        return [2 /*return*/, promise];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.getLocalFileName = function (imgPath, isMapTile) {
+        if (isMapTile === void 0) { isMapTile = false; }
+        if (imgPath.indexOf('http') === 0) {
+            // strip hostname
+            imgPath = imgPath.substring(imgPath.indexOf('/', 9) + 1);
+            var queryIndex = imgPath.indexOf('?');
+            if (queryIndex > 0) {
+                // strip query
+                imgPath = imgPath.substring(0, queryIndex);
+            }
+        }
+        return isMapTile ? 'tiles/' + imgPath.replace('v4/mapbox.streets/', '') :
+            imgPath.replace(/\/| |@/g, '_');
+    };
+    ImagesService.prototype.getLocalThumbFileName = function (imgPath) {
+        return 'thumb_' + this.getLocalFileName(imgPath);
+    };
+    ImagesService.prototype.getOfflineURL = function (imgPath, asThumbNail, isMapTile, asRawString) {
+        if (asThumbNail === void 0) { asThumbNail = false; }
+        if (isMapTile === void 0) { isMapTile = false; }
+        if (asRawString === void 0) { asRawString = false; }
+        if (asThumbNail) {
+            return this.offlineThumbnailUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath])
+                : this.fixUrlForWebview(this.offlineThumbnailUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalThumbFileName(imgPath)
+                        : this.getOnlineURL(imgPath)));
+        }
+        if (asRawString) {
+            return this.offlineImageUrlCache[imgPath] ? this.offlineImageUrlCache[imgPath]
+                : this.offlineImageUrlCache[imgPath] =
+                    (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
+                        : this.getOnlineURL(imgPath));
+        }
+        return this.offlineImageUrlCache[imgPath] ? this.fixUrlForWebview(this.offlineImageUrlCache[imgPath])
+            : this.fixUrlForWebview(this.offlineImageUrlCache[imgPath] =
+                (this.nativeBaseURL ? this.nativeBaseURL + this.getLocalFileName(imgPath, isMapTile)
+                    : this.getOnlineURL(imgPath)));
+    };
+    ImagesService.prototype.getOnlineURL = function (imgPath) {
+        return imgPath.indexOf('http') !== 0 ? __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + imgPath : imgPath;
+    };
+    ImagesService.prototype.fixUrlForWebview = function (url) {
+        if (!this.platform.is('cordova'))
+            return url;
+        var fixedUrl = window.Ionic.WebView.convertFileSrc(url);
+        //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
+        if (fixedUrl.includes('mcm_images_tasks')) {
+            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
+        }
+        return fixedUrl;
+    };
+    ImagesService.prototype.removeDownloadedURLs = function (urls, removeThumbs) {
+        if (removeThumbs === void 0) { removeThumbs = true; }
+        return __awaiter(this, void 0, void 0, function () {
+            var _loop_2, this_2, i;
+            return __generator(this, function (_a) {
+                if (!this.dataDirectory) {
+                    return [2 /*return*/];
+                }
+                _loop_2 = function () {
+                    var imgFileName = urls[i];
+                    // No image in task
+                    if (imgFileName.trim() === "" || imgFileName.toLowerCase() === "null") {
+                        return "continue";
+                    }
+                    var outputName = this_2.getLocalFileName(imgFileName);
+                    this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
+                        file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
+                    }, function () { return console.log("could not delete file " + outputName); });
+                    if (removeThumbs) {
+                        outputName = this_2.getLocalThumbFileName(imgFileName);
+                        this_2.fileManager.getFile(this_2.dataDirectory, outputName, { create: false }).then(function (file) {
+                            file.remove(function () { return console.log("deleted file " + outputName); }, function () { return console.log("could not delete file " + outputName); });
+                        }, function () { return console.log("could not delete file " + outputName); });
+                    }
+                };
+                this_2 = this;
+                for (i = 0; i < urls.length; i++) {
+                    _loop_2();
+                }
+                return [2 /*return*/];
+            });
+        });
+    };
+    /**
+     *
+     * @param {string} imgPath
+     * @param {string} imageSize 's', 'thumb', 'xl' or 'xxl'
+     * @returns {Promise<string>}
+     */
+    ImagesService.prototype.getAsyncImageURL = function (imgPath, imageSize) {
+        return __awaiter(this, void 0, void 0, function () {
+            var lastSlashIndex;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (imageSize) {
+                            lastSlashIndex = imgPath.lastIndexOf('/');
+                            imgPath = imgPath.substring(0, lastSlashIndex) + '/' + imageSize + imgPath.substring(lastSlashIndex);
+                        }
+                        if (this.lazyLoadedImagesCache[imgPath]) {
+                            return [2 /*return*/, this.lazyLoadedImagesCache[imgPath]];
+                        }
+                        if (!this.dataDirectory) return [3 /*break*/, 2];
+                        // we need to check for downloaded files
+                        return [4 /*yield*/, new Promise(function (success) {
+                                _this.downloadURLs([imgPath], false, function (alreadyDownloaded, totalDownload, url) {
+                                    if (url == imgPath) {
+                                        success();
+                                    }
+                                    return false;
+                                }, false);
+                            })];
+                    case 1:
+                        // we need to check for downloaded files
+                        _a.sent();
+                        _a.label = 2;
+                    case 2: return [2 /*return*/, this.lazyLoadedImagesCache[imgPath] = this.getOfflineURL(imgPath)];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.downloadAndUnzip = function (route, progressCallback, tileCallback) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, downloadRequest, dataDirectory, pathToFileInString;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!window.JJzip) {
+                            // JJZip is only available on native platforms. In browser we don't need to download
+                            return [2 /*return*/];
+                        }
+                        url = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName;
+                        downloadRequest = this.transfer.create();
+                        dataDirectory = this.fileManager.dataDirectory;
+                        pathToFileInString = dataDirectory + route.mapFileName;
+                        return [4 /*yield*/, new Promise(function (success, error) {
+                                downloadRequest.onProgress(function (progress) {
+                                    if (progress.loaded && progress.total && progress.loaded < progress.total) {
+                                        if (progress.total > 0) {
+                                            if (progressCallback(Math.round(100 * (progress.loaded / progress.total)))) {
+                                                error('download was canceled');
+                                                downloadRequest.abort();
+                                            }
+                                        }
+                                    }
+                                });
+                                downloadRequest.download(url, pathToFileInString).then(function (result) {
+                                    window.JJzip.unzip(pathToFileInString, { target: dataDirectory + '/tiles' }, function (data) {
+                                        /* Wow everything goes good, but just in case verify data.success */
+                                        console.log("victory");
+                                        console.log("victory " + JSON.stringify(data));
+                                        success();
+                                    }, function (error) {
+                                        /* Wow something goes wrong, check the error.message */
+                                        console.log("no victory :(((");
+                                        console.log(error);
+                                    });
+                                }, error).catch(function (err) { console.log("ERROR DOWNLOADING: ", err); });
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.getImageFromUserGallery = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var options, imageData, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = {
+                            quality: 75,
+                            targetHeight: 512,
+                            targetWidth: 512,
+                            destinationType: this.camera.DestinationType.DATA_URL,
+                            encodingType: this.camera.EncodingType.JPEG,
+                            mediaType: this.camera.MediaType.PICTURE,
+                            correctOrientation: true,
+                            sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.camera.getPicture(options)];
+                    case 2:
+                        imageData = _a.sent();
+                        return [2 /*return*/, { imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData }];
+                    case 3:
+                        err_1 = _a.sent();
+                        throw err_1;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    ImagesService.prototype.getImageFromCamera = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var options, imageData, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = {
+                            quality: 75,
+                            targetHeight: 512,
+                            targetWidth: 512,
+                            correctOrientation: true,
+                            destinationType: this.camera.DestinationType.DATA_URL,
+                            encodingType: this.camera.EncodingType.JPEG,
+                            mediaType: this.camera.MediaType.PICTURE,
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.camera.getPicture(options)];
+                    case 2:
+                        imageData = _a.sent();
+                        return [2 /*return*/, { imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData }];
+                    case 3:
+                        err_2 = _a.sent();
+                        throw err_2;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    var ImagesService_1;
+    ImagesService = ImagesService_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__["c" /* DomSanitizer */],
+            __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__["a" /* Camera */]])
+    ], ImagesService);
+    return ImagesService;
+}());
+
+//# sourceMappingURL=images-service.js.map
+
+/***/ }),
+
+/***/ 432:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7070,23 +7097,26 @@ var SessionUserService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 449:
+/***/ 433:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionChatService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7346,23 +7376,26 @@ var SessionChatService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 451:
+/***/ 435:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionEventService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7549,23 +7582,26 @@ var SessionEventService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 452:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserLeaderboardService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -7642,7 +7678,7 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 589:
+/***/ 575:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7693,7 +7729,7 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 590:
+/***/ 576:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7703,8 +7739,8 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__ = __webpack_require__(65);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7715,10 +7751,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -7729,8 +7766,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -7862,7 +7899,7 @@ var RouteInfo = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 591:
+/***/ 577:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7880,10 +7917,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -7894,8 +7932,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -7971,20 +8009,23 @@ var CenteredTask = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 592:
+/***/ 578:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProblemReportService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_service__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -8056,7 +8097,54 @@ var ProblemReportService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 593:
+/***/ 579:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var ChatPageModule = /** @class */ (function () {
+    function ChatPageModule() {
+    }
+    ChatPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
+                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
+            ]
+        })
+    ], ChatPageModule);
+    return ChatPageModule;
+}());
+
+//# sourceMappingURL=chat.module.js.map
+
+/***/ }),
+
+/***/ 581:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8064,8 +8152,8 @@ var ProblemReportService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(594);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(118);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8076,10 +8164,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -8090,8 +8179,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -8160,7 +8249,7 @@ var MCMTermsAndConditionsModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 594:
+/***/ 582:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8169,8 +8258,8 @@ var MCMTermsAndConditionsModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(89);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8181,10 +8270,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -8195,8 +8285,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -8321,86 +8411,7 @@ var MCMJoinSessionModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 595:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(239);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-var ChatPageModule = /** @class */ (function () {
-    function ChatPageModule() {
-    }
-    ChatPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
-                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
-            ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
-            ]
-        })
-    ], ChatPageModule);
-    return ChatPageModule;
-}());
-
-//# sourceMappingURL=chat.module.js.map
-
-/***/ }),
-
-/***/ 63:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-/* tslint:disable */
-
-/**
- * Contains global configuration for API services
- */
-var ApiConfiguration = /** @class */ (function () {
-    function ApiConfiguration() {
-        this.rootUrl = "https://api.mathcitymap.eu/public/index.php"; // http://localhost/;
-        // rootUrl: string = "https://api-dev.mathcitymap.eu/public/index.php";
-    }
-    ApiConfiguration = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], ApiConfiguration);
-    return ApiConfiguration;
-}());
-
-//# sourceMappingURL=api-configuration.js.map
-
-/***/ }),
-
-/***/ 636:
+/***/ 622:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8412,13 +8423,16 @@ var ApiConfiguration = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__);
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8499,7 +8513,7 @@ var YoutubePlayerService = /** @class */ (function () {
             width: sizes.width || defaultSizes.width
         };
         var ytPlayer = Player();
-        return new ytPlayer(elementId, __assign({}, playerSize, { events: {
+        return new ytPlayer(elementId, __assign(__assign({}, playerSize), { events: {
                 onReady: function (ev) {
                     _this.zone.run(function () { return outputs.ready && outputs.ready.next(ev.target); });
                 },
@@ -8527,7 +8541,7 @@ var YoutubePlayerService = /** @class */ (function () {
         this.api = new __WEBPACK_IMPORTED_MODULE_1_rxjs_ReplaySubject__["ReplaySubject"](1);
         var onYouTubeIframeAPIReady = function () {
             if (win()) {
-                _this.api.next(YT());
+                _this.api.next(YT);
             }
         };
         win()['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;
@@ -8543,18 +8557,19 @@ var YoutubePlayerService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 637:
+/***/ 623:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return tilesDb; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(35);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -8565,8 +8580,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -8637,8 +8652,8 @@ var tilesDb = {
     },
     removeItems: function (keys) {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var promises, _i, keys_1, key;
+            var _this = this;
             return __generator(this, function (_a) {
                 promises = [];
                 for (_i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
@@ -8669,25 +8684,24 @@ var tilesDb = {
 
 /***/ }),
 
-/***/ 640:
+/***/ 626:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout__ = __webpack_require__(641);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_app_component__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout__ = __webpack_require__(627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_component__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8698,10 +8712,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -8712,8 +8727,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -8732,7 +8747,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-
 
 
 
@@ -8782,7 +8796,7 @@ var DashboardPage = /** @class */ (function () {
                         _b.label = 2;
                     case 2:
                         _b.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_7_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
+                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
                                 console.error("Error loading GPS data", err);
                             }), 2000)];
                     case 3:
@@ -8810,11 +8824,11 @@ var DashboardPage = /** @class */ (function () {
                         return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
                     case 7:
                         route_1 = _b.sent();
-                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_8__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
                             title: 'a_session_return_title',
                             message: 'a_session_return_text',
                             type: 'text',
-                            modalType: __WEBPACK_IMPORTED_MODULE_9__app_app_component__["a" /* MCMModalType */].hint,
+                            modalType: __WEBPACK_IMPORTED_MODULE_8__app_app_component__["a" /* MCMModalType */].hint,
                             narrativeEnabled: route_1.isNarrativeEnabled(),
                             narrative: route_1.isNarrativeEnabled() ? route_1.getAttributes().narrativeName : '',
                             buttons: [
@@ -8875,15 +8889,15 @@ var DashboardPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-dashboard',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/'<ion-content class="padding top bottom">\n    <div class="stretch-container">\n        <img class="logo" src="./assets/images/mcm-logo-white.svg">\n\n        <div class="secondary">\n            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">\n                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}\n            </button>\n            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">\n                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}\n            </button>\n        </div>\n\n        <div class="tiles">\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(1)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_browse_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_browse_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/browse.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2, true)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_add_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_add_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/add.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_downloads_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_downloads_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile" [ngClass]="{\'disabled\' : !devMode}">\n                <ion-item tappable no-lines (click)="switchTab(3)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_create_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_create_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/create.svg">\n                    </div>\n                </ion-item>\n            </div>\n        </div>\n    </div>\n</ion-content>\n\n<!--<div ion-fixed>-->\n    <!--<img style="z-index: 12; display: block; position: relative;" margin-top padding-top src="https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/1-fan-foam-finger-sticker-31468-300x300.png">-->\n    <!--<p> G⃣   O⃣    W⃣   O⃣   M⃣   B⃣   A⃣   T⃣   S⃣    G⃣   O⃣ </p>-->\n    <!--<p>🐎  🎀  𝒲🌺𝓂𝒷𝒶𝓉𝓈 𝒶𝓇𝑒 𝓈𝒽💞𝓇𝓉-𝓁𝑒𝑔𝑔𝑒𝒹, <b>𝓂𝓊𝓈𝒸𝓊𝓁𝒶𝓇</b> 𝓆𝓊𝒶𝒹𝓇𝓊𝓅𝑒𝒹𝒶𝓁 𝓂𝒶𝓇𝓈𝓊𝓅𝒾𝒶𝓁𝓈 𝓉𝒽𝒶𝓉 𝒶𝓇𝑒 𝓃𝒶𝓉𝒾𝓋𝑒 𝓉🍪 𝒜𝓊𝓈𝓉𝓇𝒶𝓁𝒾𝒶. 𝒯𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝒷🌞𝓊𝓉 𝟣 𝓂 𝒾𝓃 𝓁𝑒𝓃𝑔𝓉𝒽 𝓌𝒾𝓉𝒽 𝓈𝓂𝒶𝓁𝓁, 𝓈𝓉𝓊𝒷𝒷𝓎 𝓉𝒶𝒾𝓁𝓈. 𝒯𝒽𝑒𝓇𝑒 𝒶𝓇𝑒 𝓉𝒽𝓇𝑒𝑒 𝑒𝓍𝓉𝒶𝓃𝓉 𝓈𝓅𝑒𝒸𝒾𝑒𝓈 𝒶𝓃𝒹 𝓉𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝓁𝓁 𝓂𝑒𝓂𝒷𝑒𝓇𝓈 🏵𝒻 𝓉𝒽𝑒 𝒻𝒶𝓂𝒾𝓁𝓎 𝒱🍩𝓂𝒷𝒶𝓉𝒾𝒹𝒶𝑒.  🎀  🐎</p>-->\n    <!--<img margin-top padding-top style="position: absolute; top: 0;" src="https://cdn.britannica.com/88/81288-050-3084149B/Phascolomis-Vombatus-ursinus.jpg">-->\n<!--</div>-->\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_controller__["a" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_6__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_10__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_orm_service__["a" /* OrmService */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_5__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_orm_service__["a" /* OrmService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_12__services_modals_service__["a" /* ModalsService */]])
+            __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */]])
     ], DashboardPage);
     return DashboardPage;
 }());
@@ -8892,30 +8906,30 @@ var DashboardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 642:
+/***/ 628:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesMapPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__env_env__ = __webpack_require__(195);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -8927,10 +8941,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -8941,8 +8956,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -9091,8 +9106,8 @@ var RoutesMapPage = /** @class */ (function () {
     };
     RoutesMapPage.prototype.initializeMap = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var activeUser, online, e_1, _a, _b;
+            var _this = this;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0: return [4 /*yield*/, this.ormService.getActiveUser()];
@@ -9525,18 +9540,18 @@ var RoutesMapPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 643:
+/***/ 629:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9604,7 +9619,7 @@ var PortalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 644:
+/***/ 630:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9642,7 +9657,7 @@ var SearchPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 645:
+/***/ 631:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9680,193 +9695,21 @@ var LinkHttpsPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 646:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(593);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-var MCMRouteByCodeModal = /** @class */ (function () {
-    function MCMRouteByCodeModal(ormService, modalCtrl, viewCtrl, sessionService, navParams) {
-        this.ormService = ormService;
-        this.modalCtrl = modalCtrl;
-        this.viewCtrl = viewCtrl;
-        this.sessionService = sessionService;
-        this.navParams = navParams;
-        this.code = '';
-        this.codeInput = false;
-        this.navCtrl = navParams.data.navCtrl;
-    }
-    MCMRouteByCodeModal_1 = MCMRouteByCodeModal;
-    MCMRouteByCodeModal.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.input.setFocus();
-        }, 150);
-    };
-    MCMRouteByCodeModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMRouteByCodeModal.prototype.checkInputField = function () {
-        if (this.code.length >= 4) {
-            return this.codeInput = true;
-        }
-        else {
-            return this.codeInput = false;
-        }
-    };
-    MCMRouteByCodeModal.prototype.addTrailOrSessionByCode = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var route, session, e_1, modal;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.ormService.findRouteByCode(this.code)];
-                    case 1:
-                        route = _a.sent();
-                        if (!!route) return [3 /*break*/, 6];
-                        session = void 0;
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, this.sessionService.getSessionByCode(this.code).toPromise()];
-                    case 3:
-                        session = _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _a.sent();
-                        return [3 /*break*/, 5];
-                    case 5:
-                        if (session) {
-                            modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], {
-                                session: session,
-                                navCtrl: this.navCtrl
-                            });
-                            this.cancel();
-                            modal.present();
-                        }
-                        else {
-                            this.showError = true;
-                        }
-                        return [3 /*break*/, 8];
-                    case 6: return [4 /*yield*/, this.ormService.unlockRoute(route)];
-                    case 7:
-                        _a.sent();
-                        this.viewCtrl.dismiss(route);
-                        _a.label = 8;
-                    case 8: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    MCMRouteByCodeModal.show = function (navCtrl, modalCtrl, translateService, modalsService) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (success) {
-                        var modal = modalCtrl.create(MCMRouteByCodeModal_1, { navCtrl: navCtrl });
-                        modal.onDidDismiss(function (route) {
-                            if (route) {
-                                modalsService.showDialog(null, translateService.instant('a_private_route_added', { 'T': route.title }), translateService.instant('a_g_ok'), function () {
-                                    modalsService.presentRouteInfoModal(route, navCtrl);
-                                });
-                            }
-                            success(route);
-                        });
-                        modal.present();
-                    })];
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMRouteByCodeModal.prototype, "input", void 0);
-    MCMRouteByCodeModal = MCMRouteByCodeModal_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__["a" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_6_ionic_angular__["m" /* NavParams */]])
-    ], MCMRouteByCodeModal);
-    return MCMRouteByCodeModal;
-    var MCMRouteByCodeModal_1;
-}());
-
-//# sourceMappingURL=MCMRouteByCodeModal.js.map
-
-/***/ }),
-
-/***/ 647:
+/***/ 632:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(596);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_images_service__ = __webpack_require__(35);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9877,10 +9720,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -9891,8 +9735,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -10057,8 +9901,8 @@ var ChatPage = /** @class */ (function () {
      */
     ChatPage.prototype.sendMsg = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var timezoneOffset, newMsg, blob, myFormData, resultPath, details, audioType_1, details;
+            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -10416,11 +10260,11 @@ var ChatPage = /** @class */ (function () {
         this.audio.setVolume(0.8);
         this.audio.onStatusUpdate.subscribe(function (status) {
             switch (status) {
-                case 2:// Running
+                case 2: // Running
                     _this.audioPlaying = true;
                     break;
                 case 3: // Paused
-                case 4:// Finished/Stopped
+                case 4: // Finished/Stopped
                     if (!isNaN(index))
                         _this.audioIndex = null;
                     else
@@ -10513,7 +10357,178 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 649:
+/***/ 633:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMRouteByCodeModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_api_services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+var MCMRouteByCodeModal = /** @class */ (function () {
+    function MCMRouteByCodeModal(ormService, modalCtrl, viewCtrl, sessionService, navParams) {
+        this.ormService = ormService;
+        this.modalCtrl = modalCtrl;
+        this.viewCtrl = viewCtrl;
+        this.sessionService = sessionService;
+        this.navParams = navParams;
+        this.code = '';
+        this.codeInput = false;
+        this.navCtrl = navParams.data.navCtrl;
+    }
+    MCMRouteByCodeModal_1 = MCMRouteByCodeModal;
+    MCMRouteByCodeModal.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.input.setFocus();
+        }, 150);
+    };
+    MCMRouteByCodeModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMRouteByCodeModal.prototype.checkInputField = function () {
+        if (this.code.length >= 4) {
+            return this.codeInput = true;
+        }
+        else {
+            return this.codeInput = false;
+        }
+    };
+    MCMRouteByCodeModal.prototype.addTrailOrSessionByCode = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var route, session, e_1, modal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.ormService.findRouteByCode(this.code)];
+                    case 1:
+                        route = _a.sent();
+                        if (!!route) return [3 /*break*/, 6];
+                        session = void 0;
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, this.sessionService.getSessionByCode(this.code).toPromise()];
+                    case 3:
+                        session = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 5:
+                        if (session) {
+                            modal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_2__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], {
+                                session: session,
+                                navCtrl: this.navCtrl
+                            });
+                            this.cancel();
+                            modal.present();
+                        }
+                        else {
+                            this.showError = true;
+                        }
+                        return [3 /*break*/, 8];
+                    case 6: return [4 /*yield*/, this.ormService.unlockRoute(route)];
+                    case 7:
+                        _a.sent();
+                        this.viewCtrl.dismiss(route);
+                        _a.label = 8;
+                    case 8: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    MCMRouteByCodeModal.show = function (navCtrl, modalCtrl, translateService, modalsService) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (success) {
+                        var modal = modalCtrl.create(MCMRouteByCodeModal_1, { navCtrl: navCtrl });
+                        modal.onDidDismiss(function (route) {
+                            if (route) {
+                                modalsService.showDialog(null, translateService.instant('a_private_route_added', { 'T': route.title }), translateService.instant('a_g_ok'), function () {
+                                    modalsService.presentRouteInfoModal(route, navCtrl);
+                                });
+                            }
+                            success(route);
+                        });
+                        modal.present();
+                    })];
+            });
+        });
+    };
+    var MCMRouteByCodeModal_1;
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMRouteByCodeModal.prototype, "input", void 0);
+    MCMRouteByCodeModal = MCMRouteByCodeModal_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_3__app_api_services_session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* NavParams */]])
+    ], MCMRouteByCodeModal);
+    return MCMRouteByCodeModal;
+}());
+
+//# sourceMappingURL=MCMRouteByCodeModal.js.map
+
+/***/ }),
+
+/***/ 634:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10552,23 +10567,470 @@ var MCMIntroModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 65:
+/***/ 635:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMSessionFinishedModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(151);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var MCMSessionFinishedModal = /** @class */ (function () {
+    function MCMSessionFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
+        var _this = this;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.appCtrl = appCtrl;
+        this.navParams = navParams;
+        this.session = navParams.data.session;
+        this.score = navParams.data.score;
+        this.tasks = navParams.data.tasks;
+        this.numberOfSolvedTasks = 0;
+        var solvedTasks = this.score.getTasksSolved();
+        var solvedLowTasks = this.score.getTasksSolvedLow();
+        var savedTasks = this.score.getTasksSaved();
+        this.tasks.map(function (task) {
+            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
+                _this.numberOfSolvedTasks++;
+            }
+        });
+        if (navParams.data.narrative) {
+            this.narrative = navParams.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        }
+        else {
+            this.iconPath = '';
+        }
+    }
+    // ionViewDidEnter() {
+    //     setTimeout(() => {
+    //         this.input.setFocus();
+    //     }, 150);
+    // }
+    MCMSessionFinishedModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMSessionFinishedModal.prototype.backToStart = function () {
+        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
+        this.cancel();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMSessionFinishedModal.prototype, "input", void 0);
+    MCMSessionFinishedModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-session-finished-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-session-finished.svg"/>\n        <h2>{{\'a_private_session_finished_title\' | translate}}</h2>\n        <p class="main-text">{{session.goodbye_message}}</p>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="backToStart()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */]])
+    ], MCMSessionFinishedModal);
+    return MCMSessionFinishedModal;
+}());
+
+//# sourceMappingURL=MCMSessionFinishedModal.js.map
+
+/***/ }),
+
+/***/ 636:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTrailFinishedModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(151);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var MCMTrailFinishedModal = /** @class */ (function () {
+    function MCMTrailFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
+        var _this = this;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.appCtrl = appCtrl;
+        this.navParams = navParams;
+        this.score = navParams.data.score;
+        this.tasks = navParams.data.tasks;
+        this.callback = navParams.data.callback;
+        this.numberOfSolvedTasks = 0;
+        var solvedTasks = this.score.getTasksSolved();
+        var solvedLowTasks = this.score.getTasksSolvedLow();
+        var savedTasks = this.score.getTasksSaved();
+        this.tasks.map(function (task) {
+            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
+                _this.numberOfSolvedTasks++;
+            }
+        });
+        if (navParams.data.narrative) {
+            this.narrative = navParams.data.narrative;
+            switch (this.narrative) {
+                case 'pirates':
+                    this.iconPath = 'pirates/';
+                    break;
+                default:
+                    this.iconPath = '';
+            }
+        }
+        else {
+            this.iconPath = '';
+        }
+    }
+    // ionViewDidEnter() {
+    //     setTimeout(() => {
+    //         this.input.setFocus();
+    //     }, 150);
+    // }
+    MCMTrailFinishedModal.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    MCMTrailFinishedModal.prototype.backToStart = function () {
+        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
+        this.cancel();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
+        __metadata("design:type", Object)
+    ], MCMTrailFinishedModal.prototype, "input", void 0);
+    MCMTrailFinishedModal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-trail-finished-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-trail-finished.svg"/>\n        <h2>{{\'a_trail_finished_title\' | translate }}</h2>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="callback()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */]])
+    ], MCMTrailFinishedModal);
+    return MCMTrailFinishedModal;
+}());
+
+//# sourceMappingURL=MCMTrailFinishedModal.js.map
+
+/***/ }),
+
+/***/ 638:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(643);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 64:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+/* tslint:disable */
+
+/**
+ * Contains global configuration for API services
+ */
+var ApiConfiguration = /** @class */ (function () {
+    function ApiConfiguration() {
+        // rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
+        this.rootUrl = "https://api-dev.mathcitymap.eu/public/index.php";
+    }
+    ApiConfiguration = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    ], ApiConfiguration);
+    return ApiConfiguration;
+}());
+
+//# sourceMappingURL=api-configuration.js.map
+
+/***/ }),
+
+/***/ 643:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(576);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular_linky__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(575);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(574);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__services_zoom_service__ = __webpack_require__(117);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Translation */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_19__app_component__["b" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */],
+                __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__["a" /* MCMRouteByCodeModal */], __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__["a" /* MCMReportProblemModal */],
+                __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */],
+                __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__["a" /* Autoresize */],
+                __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_9__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_20__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_19__app_component__["b" /* MyApp */], {
+                    tabsHideOnSubPages: true,
+                    swipeBackEnabled: false
+                }, {
+                    links: [
+                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] }
+                    ]
+                }),
+                __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__["b" /* TranslateModule */].forRoot({
+                    loader: {
+                        provide: __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__["a" /* TranslateLoader */],
+                        useFactory: (__WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__["a" /* createTranslateLoader */]),
+                        deps: [__WEBPACK_IMPORTED_MODULE_20__angular_common_http__["a" /* HttpClient */]],
+                    }, useDefaultLang: true
+                }),
+                __WEBPACK_IMPORTED_MODULE_39__components_components_module__["a" /* ComponentsModule */],
+                __WEBPACK_IMPORTED_MODULE_26_angular_linky__["LinkyModule"],
+                __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__["a" /* YoutubePlayerModule */],
+                __WEBPACK_IMPORTED_MODULE_42__api_api_module__["a" /* ApiModule */],
+                __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__["ChatPageModule"],
+                __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__["a" /* ProgressBarModule */],
+                __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__["a" /* DirectivesModule */]
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicApp */]],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_19__app_component__["b" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */],
+                __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__["a" /* MCMRouteByCodeModal */], __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */],
+                __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__["a" /* MCMReportProblemModal */],
+                __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */],
+                __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */]
+            ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__["a" /* Network */],
+                __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */],
+                __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__["a" /* Diagnostic */],
+                __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__["a" /* LocationAccuracy */],
+                __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__["a" /* SQLite */],
+                __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__["a" /* File */],
+                __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__["a" /* FileTransfer */],
+                __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__["a" /* DB_Updater */],
+                __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+                __WEBPACK_IMPORTED_MODULE_23__services_orm_service__["a" /* OrmService */],
+                __WEBPACK_IMPORTED_MODULE_24__services_images_service__["a" /* ImagesService */],
+                __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__["a" /* BroadcastService */],
+                __WEBPACK_IMPORTED_MODULE_54__services_zoom_service__["a" /* ZoomService */],
+                __WEBPACK_IMPORTED_MODULE_14__services_modals_service__["a" /* ModalsService */],
+                __WEBPACK_IMPORTED_MODULE_36__services_gps_service__["a" /* GpsService */],
+                __WEBPACK_IMPORTED_MODULE_15__services_language_service__["a" /* LanguageService */],
+                __WEBPACK_IMPORTED_MODULE_40__classes_Helper__["b" /* Helper */],
+                __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+                __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__["b" /* LocalNotifications */],
+                __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__["a" /* AppVersion */],
+                __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__["a" /* Globalization */],
+                __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__["a" /* Camera */],
+                __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__["a" /* Media */],
+                __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicErrorHandler */] },
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["d" /* HAMMER_GESTURE_CONFIG */], useClass: __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["e" /* HammerGestureConfig */] }
+            ]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 66:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalsService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(575);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(576);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(591);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_DB_Updater__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10579,10 +11041,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -10593,8 +11056,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -10797,8 +11260,8 @@ var ModalsService = /** @class */ (function () {
     ModalsService.prototype.presentTaskListModal = function (route, score, state, narrative, navCtrl, callback) {
         if (narrative === void 0) { narrative = 'default'; }
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var testModal, _a, _b, _c, _d;
+            var _this = this;
             return __generator(this, function (_e) {
                 switch (_e.label) {
                     case 0:
@@ -10818,6 +11281,7 @@ var ModalsService = /** @class */ (function () {
                             /* coming from List/Map View */
                             if (data && data.route != null && navCtrl != null && !callback)
                                 _this.navigateToRoute(data.route, navCtrl, data.selectedTask);
+                            /* already on taskMap */
                             else if (data && data.selectedTask != null && navCtrl != null && callback)
                                 callback(data.selectedTask);
                             /*          else if(data && data.route != null && navCtrl != null && fromTaskMap) console.log('You wanna see the marker now?'); */
@@ -10838,7 +11302,7 @@ var ModalsService = /** @class */ (function () {
                         return [4 /*yield*/, this.helper.checkConnection()];
                     case 1:
                         quality = _a.sent();
-                        if (!(quality == __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["a" /* ConnectionQuality */].FAST)) return [3 /*break*/, 2];
+                        if (!(quality == __WEBPACK_IMPORTED_MODULE_9__classes_Helper__["a" /* ConnectionQuality */].FAST)) return [3 /*break*/, 2];
                         return [2 /*return*/, true];
                     case 2: return [4 /*yield*/, this.showYesNoDialog('a_slow_connection_title', 'a_slow_connection', 'a_alert_continue', 'a_alert_cancel')];
                     case 3: return [2 /*return*/, _a.sent()];
@@ -10854,435 +11318,19 @@ var ModalsService = /** @class */ (function () {
     };
     ModalsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_5__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular_components_modal_modal_controller__["a" /* ModalController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["k" /* ModalController */],
             __WEBPACK_IMPORTED_MODULE_1__orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_7_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["a" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__["a" /* DeepLinker */],
-            __WEBPACK_IMPORTED_MODULE_8__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-            __WEBPACK_IMPORTED_MODULE_11__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_10__classes_Helper__["b" /* Helper */]])
+            __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_10__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_9__classes_Helper__["b" /* Helper */]])
     ], ModalsService);
     return ModalsService;
 }());
 
 //# sourceMappingURL=modals-service.js.map
-
-/***/ }),
-
-/***/ 650:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMSessionFinishedModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(152);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var MCMSessionFinishedModal = /** @class */ (function () {
-    function MCMSessionFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
-        var _this = this;
-        this.viewCtrl = viewCtrl;
-        this.navCtrl = navCtrl;
-        this.appCtrl = appCtrl;
-        this.navParams = navParams;
-        this.session = navParams.data.session;
-        this.score = navParams.data.score;
-        this.tasks = navParams.data.tasks;
-        this.numberOfSolvedTasks = 0;
-        var solvedTasks = this.score.getTasksSolved();
-        var solvedLowTasks = this.score.getTasksSolvedLow();
-        var savedTasks = this.score.getTasksSaved();
-        this.tasks.map(function (task) {
-            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
-                _this.numberOfSolvedTasks++;
-            }
-        });
-        if (navParams.data.narrative) {
-            this.narrative = navParams.data.narrative;
-            switch (this.narrative) {
-                case 'pirates':
-                    this.iconPath = 'pirates/';
-                    break;
-                default:
-                    this.iconPath = '';
-            }
-        }
-        else {
-            this.iconPath = '';
-        }
-    }
-    // ionViewDidEnter() {
-    //     setTimeout(() => {
-    //         this.input.setFocus();
-    //     }, 150);
-    // }
-    MCMSessionFinishedModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMSessionFinishedModal.prototype.backToStart = function () {
-        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
-        this.cancel();
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMSessionFinishedModal.prototype, "input", void 0);
-    MCMSessionFinishedModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-session-finished-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-session-finished.svg"/>\n        <h2>{{\'a_private_session_finished_title\' | translate}}</h2>\n        <p class="main-text">{{session.goodbye_message}}</p>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="backToStart()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */]])
-    ], MCMSessionFinishedModal);
-    return MCMSessionFinishedModal;
-}());
-
-//# sourceMappingURL=MCMSessionFinishedModal.js.map
-
-/***/ }),
-
-/***/ 651:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMTrailFinishedModal; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(152);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var MCMTrailFinishedModal = /** @class */ (function () {
-    function MCMTrailFinishedModal(viewCtrl, navCtrl, appCtrl, navParams) {
-        var _this = this;
-        this.viewCtrl = viewCtrl;
-        this.navCtrl = navCtrl;
-        this.appCtrl = appCtrl;
-        this.navParams = navParams;
-        this.score = navParams.data.score;
-        this.tasks = navParams.data.tasks;
-        this.callback = navParams.data.callback;
-        this.numberOfSolvedTasks = 0;
-        var solvedTasks = this.score.getTasksSolved();
-        var solvedLowTasks = this.score.getTasksSolvedLow();
-        var savedTasks = this.score.getTasksSaved();
-        this.tasks.map(function (task) {
-            if (savedTasks.indexOf(task.id) >= 0 || solvedTasks.indexOf(task.id) >= 0 || solvedLowTasks.indexOf(task.id) >= 0) {
-                _this.numberOfSolvedTasks++;
-            }
-        });
-        if (navParams.data.narrative) {
-            this.narrative = navParams.data.narrative;
-            switch (this.narrative) {
-                case 'pirates':
-                    this.iconPath = 'pirates/';
-                    break;
-                default:
-                    this.iconPath = '';
-            }
-        }
-        else {
-            this.iconPath = '';
-        }
-    }
-    // ionViewDidEnter() {
-    //     setTimeout(() => {
-    //         this.input.setFocus();
-    //     }, 150);
-    // }
-    MCMTrailFinishedModal.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    MCMTrailFinishedModal.prototype.backToStart = function () {
-        this.appCtrl.getRootNav().popToRoot(__WEBPACK_IMPORTED_MODULE_3__pages_home_home__["a" /* HomePage */]);
-        this.cancel();
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('input'),
-        __metadata("design:type", Object)
-    ], MCMTrailFinishedModal.prototype, "input", void 0);
-    MCMTrailFinishedModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-trail-finished-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-trail-finished.svg"/>\n        <h2>{{\'a_trail_finished_title\' | translate }}</h2>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="callback()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* App */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */]])
-    ], MCMTrailFinishedModal);
-    return MCMTrailFinishedModal;
-}());
-
-//# sourceMappingURL=MCMTrailFinishedModal.js.map
-
-/***/ }),
-
-/***/ 652:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(657);
-
-
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
-/***/ 657:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(306);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(447);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular_linky__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(589);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(593);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(594);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(650);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(591);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(595);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(450);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(596);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(588);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__services_zoom_service__ = __webpack_require__(119);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Translation */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var AppModule = /** @class */ (function () {
-    function AppModule() {
-    }
-    AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_19__app_component__["b" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */],
-                __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__["a" /* MCMRouteByCodeModal */], __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__["a" /* MCMReportProblemModal */],
-                __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */],
-                __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__["a" /* Autoresize */],
-                __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */]
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_9__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_20__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_19__app_component__["b" /* MyApp */], {
-                    tabsHideOnSubPages: true,
-                    swipeBackEnabled: false
-                }, {
-                    links: [
-                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
-                    ]
-                }),
-                __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
-                __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__["b" /* TranslateModule */].forRoot({
-                    loader: {
-                        provide: __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__["a" /* TranslateLoader */],
-                        useFactory: (__WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__["a" /* createTranslateLoader */]),
-                        deps: [__WEBPACK_IMPORTED_MODULE_20__angular_common_http__["a" /* HttpClient */]],
-                    }, useDefaultLang: true
-                }),
-                __WEBPACK_IMPORTED_MODULE_39__components_components_module__["a" /* ComponentsModule */],
-                __WEBPACK_IMPORTED_MODULE_26_angular_linky__["LinkyModule"],
-                __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__["a" /* YoutubePlayerModule */],
-                __WEBPACK_IMPORTED_MODULE_42__api_api_module__["a" /* ApiModule */],
-                __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__["ChatPageModule"],
-                __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__["a" /* ProgressBarModule */],
-                __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__["a" /* DirectivesModule */]
-            ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicApp */]],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_19__app_component__["b" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__["a" /* RouteInfo */],
-                __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__["a" /* MCMDownloadProgressPopupComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__["a" /* MCMRouteByCodeModal */], __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__["a" /* MCMTermsAndConditionsModal */], __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__["a" /* MCMJoinSessionModal */], __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__["a" /* MCMSessionFinishedModal */], __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__["a" /* MCMIntroModal */], __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__["a" /* MCMTrailFinishedModal */],
-                __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__["a" /* MCMReportProblemModal */],
-                __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__["a" /* CenteredTask */],
-                __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__["a" /* CustomKeyBoard */]
-            ],
-            providers: [
-                __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__["a" /* Network */],
-                __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__["a" /* Geolocation */],
-                __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__["a" /* Diagnostic */],
-                __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__["a" /* LocationAccuracy */],
-                __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__["a" /* SQLite */],
-                __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__["a" /* File */],
-                __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__["a" /* FileTransfer */],
-                __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__["a" /* DB_Updater */],
-                __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-                __WEBPACK_IMPORTED_MODULE_23__services_orm_service__["a" /* OrmService */],
-                __WEBPACK_IMPORTED_MODULE_24__services_images_service__["a" /* ImagesService */],
-                __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__["a" /* BroadcastService */],
-                __WEBPACK_IMPORTED_MODULE_54__services_zoom_service__["a" /* ZoomService */],
-                __WEBPACK_IMPORTED_MODULE_14__services_modals_service__["a" /* ModalsService */],
-                __WEBPACK_IMPORTED_MODULE_36__services_gps_service__["a" /* GpsService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_language_service__["a" /* LanguageService */],
-                __WEBPACK_IMPORTED_MODULE_40__classes_Helper__["b" /* Helper */],
-                __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-                __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__["b" /* LocalNotifications */],
-                __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__["a" /* InAppBrowser */],
-                __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__["a" /* AppVersion */],
-                __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__["a" /* Globalization */],
-                __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__["a" /* Camera */],
-                __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__["a" /* Media */],
-                __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicErrorHandler */] },
-                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["d" /* HAMMER_GESTURE_CONFIG */], useClass: __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["e" /* HammerGestureConfig */] }
-            ]
-        })
-    ], AppModule);
-    return AppModule;
-}());
-
-//# sourceMappingURL=app.module.js.map
 
 /***/ }),
 
@@ -11313,7 +11361,7 @@ var BaseService = /** @class */ (function () {
         set: function (rootUrl) {
             this._rootUrl = rootUrl;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return BaseService;
@@ -11329,17 +11377,20 @@ var BaseService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GpsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(299);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(302);
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -11356,10 +11407,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -11370,8 +11422,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -11452,8 +11504,8 @@ var GpsService = /** @class */ (function () {
     };
     GpsService.prototype.locationAlert = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var confirm;
+            var _this = this;
             return __generator(this, function (_a) {
                 confirm = this.alertCtrl.create({
                     title: 'Location Off',
@@ -11572,6 +11624,7 @@ var GpsService = /** @class */ (function () {
     GpsService.prototype.getLastPosition = function () {
         return this.lastPosition;
     };
+    var GpsService_1;
     GpsService = GpsService_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__["a" /* Diagnostic */],
@@ -11581,7 +11634,6 @@ var GpsService = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__["a" /* Geolocation */]])
     ], GpsService);
     return GpsService;
-    var GpsService_1;
 }());
 
 var CustomReplaySubject = /** @class */ (function (_super) {
@@ -11610,16 +11662,17 @@ var CustomReplaySubject = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 806:
+/***/ 792:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InitialMigration1513274191111; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -11630,8 +11683,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -11694,16 +11747,17 @@ var InitialMigration1513274191111 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 807:
+/***/ 793:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FailedTaskMigration1515428187000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -11714,8 +11768,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -11763,7 +11817,7 @@ var FailedTaskMigration1515428187000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 808:
+/***/ 794:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11804,7 +11858,7 @@ var User = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 809:
+/***/ 795:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11849,7 +11903,7 @@ var State = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 810:
+/***/ 796:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11950,16 +12004,17 @@ var TaskState = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 813:
+/***/ 799:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddImageUrlAndDownloadedFlagMigration1513679923000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -11970,8 +12025,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12019,22 +12074,23 @@ var AddImageUrlAndDownloadedFlagMigration1513679923000 = /** @class */ (function
 
 /***/ }),
 
-/***/ 814:
+/***/ 800:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CacheManagerMCM; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(815);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(801);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(623);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(35);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12045,8 +12101,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12166,7 +12222,7 @@ var CacheManagerMCM = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 815:
+/***/ 801:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12191,16 +12247,17 @@ var MyMath = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 826:
+/***/ 803:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUnlockedColumn1516037215000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12211,8 +12268,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12260,16 +12317,17 @@ var AddUnlockedColumn1516037215000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 827:
+/***/ 804:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedColumn1519817905000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12280,8 +12338,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12329,7 +12387,7 @@ var AddCompletedColumn1519817905000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 835:
+/***/ 812:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12394,16 +12452,17 @@ var DBC_Plan = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 836:
+/***/ 813:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddVisibleColumn1526306624000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12414,8 +12473,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12471,16 +12530,17 @@ var AddVisibleColumn1526306624000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 837:
+/***/ 814:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLangCodeColumn1526306730000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12491,8 +12551,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12548,16 +12608,17 @@ var AddLangCodeColumn1526306730000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 838:
+/***/ 815:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddDownloadDateColumn15711518720000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12568,8 +12629,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12625,16 +12686,17 @@ var AddDownloadDateColumn15711518720000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 839:
+/***/ 816:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedDateColumn15713974540000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12645,8 +12707,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12702,16 +12764,17 @@ var AddCompletedDateColumn15713974540000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 840:
+/***/ 817:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZipMapFields15783117210000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12722,8 +12785,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12799,16 +12862,17 @@ var AddZipMapFields15783117210000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 841:
+/***/ 818:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSavedTasks16013795030000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12819,8 +12883,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12876,16 +12940,17 @@ var AddSavedTasks16013795030000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 842:
+/***/ 819:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSubtasks16026790930000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12896,8 +12961,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -12953,16 +13018,17 @@ var AddSubtasks16026790930000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 843:
+/***/ 820:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPositionField16194302450000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -12973,8 +13039,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13030,16 +13096,17 @@ var AddPositionField16194302450000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 844:
+/***/ 821:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPathFields16208100470000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13050,8 +13117,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13110,16 +13177,17 @@ var AddPathFields16208100470000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 845:
+/***/ 822:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZoom16225449820000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13130,8 +13198,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13187,16 +13255,17 @@ var AddZoom16225449820000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 846:
+/***/ 823:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddForceSubtaskAndArLink16552845000000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13207,8 +13276,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13267,16 +13336,17 @@ var AddForceSubtaskAndArLink16552845000000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 847:
+/***/ 824:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddTaskCode17026521590000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13287,8 +13357,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13344,16 +13414,17 @@ var AddTaskCode17026521590000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 848:
+/***/ 825:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RenameParentIdAndAddTaskFormatAndPosition17067919700000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13364,8 +13435,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13427,16 +13498,17 @@ var RenameParentIdAndAddTaskFormatAndPosition17067919700000 = /** @class */ (fun
 
 /***/ }),
 
-/***/ 849:
+/***/ 826:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddGroupsFinished17071440460000; });
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13447,8 +13519,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13510,11 +13582,11 @@ var AddGroupsFinished17071440460000 = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Score__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Score__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Task2Route__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_gps_service__ = __webpack_require__(77);
@@ -13529,10 +13601,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -13543,8 +13616,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -13599,8 +13672,8 @@ var Route = /** @class */ (function () {
     }
     Route.prototype.getTasks = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
             var _a, _b;
+            var _this = this;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -14079,7 +14152,7 @@ var Route = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 90:
+/***/ 89:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14091,25 +14164,25 @@ var Route = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatAndSessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(448);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(450);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(433);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(434);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(451);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(452);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1099);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(436);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -14121,10 +14194,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -14135,8 +14209,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -14674,8 +14748,8 @@ var ChatAndSessionService = /** @class */ (function () {
             return __generator(this, function (_a) {
                 console.log("check for new msgs ...");
                 this.receivers.forEach(function (receiver) { return __awaiter(_this, void 0, void 0, function () {
-                    var _this = this;
                     var messages;
+                    var _this = this;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, this.getNewMsgs(sessionInfo, receiver.token).toPromise()];
@@ -14953,6 +15027,7 @@ var ChatAndSessionService = /** @class */ (function () {
     ChatAndSessionService.prototype.setNewMsgNumber = function (n) {
         this.newMsgNumber = n;
     };
+    var ChatAndSessionService_1;
     ChatAndSessionService.POSITION_PUSH_INTERVAL_IN_SECS = 1;
     ChatAndSessionService.CHAT_PULL_INTERVAL_IN_SECS = 15;
     ChatAndSessionService.EVENTS_POST_INTERVAL_IN_SECS = 10;
@@ -14977,12 +15052,11 @@ var ChatAndSessionService = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
     ], ChatAndSessionService);
     return ChatAndSessionService;
-    var ChatAndSessionService_1;
 }());
 
 //# sourceMappingURL=chat-and-session-service.js.map
 
 /***/ })
 
-},[652]);
+},[638]);
 //# sourceMappingURL=main.js.map

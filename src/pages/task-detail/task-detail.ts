@@ -54,38 +54,38 @@ export class TaskDetail {
 
     // Keyboard open
     //private keyboardOpen;
-    private route: Route;
+    protected route: Route;
     private routeId: number;
     private taskId: number;
-    private task: Task;
-    private solvedSubtasks = [];
-    private activeAccordions = [];
-    private taskDetails: TaskState;
-    private subTaskIndex: number;
+    protected task: Task;
+    protected solvedSubtasks = [];
+    protected activeAccordions = [];
+    protected taskDetails: TaskState;
+    protected subTaskIndex: number;
     private subTaskScore: number = 0;
     private lastSubtaskBonus: number = 0;
-    private rootTask: Task;
+    protected rootTask: Task;
     private score: Score;
-    private gamificationIsDisabled = false;
+    protected gamificationIsDisabled = false;
 
     private minScore: number;
     private penalty: number;
     private maxScore: number;
     private orangeScore: number;
-    private isSpecialTaskType: boolean;
-    private specialSolution: any;
-    private answerIndex: any = null;
+    protected isSpecialTaskType: boolean;
+    protected specialSolution: any;
+    protected answerIndex: any = null;
     private blankRegex = /\*\*([^*]+)\*\*/g;
 
-    private multipleChoiceList: Array<any> = [];
+    protected multipleChoiceList: Array<any> = [];
 
     private sessionInfo: SessionInfo;
 
     // For GPS - tasks
-    private taskDetailMap: TaskDetailMap;
-    private gpsTaskButtonLabels: Array<string> = [];
+    protected taskDetailMap: TaskDetailMap;
+    protected gpsTaskButtonLabels: Array<string> = [];
     shownHints: number[] = [];
-    private subTasksRequired;
+    protected subTasksRequired;
     private subTaskModalShown = false;
 
     private keyboardSubscriptions: Subscription = new Subscription();
@@ -1621,7 +1621,7 @@ export class TaskDetail {
         return 100;
     }
 
-    private possibleScore() {
+    protected possibleScore() {
         if (this.taskDetails) {
             if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
                 let tempScore = 0;

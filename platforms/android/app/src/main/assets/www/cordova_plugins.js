@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
+      "id": "com-sarriaroman-photoviewer.PhotoViewer",
+      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+      "pluginId": "com-sarriaroman-photoviewer",
+      "clobbers": [
+        "PhotoViewer"
+      ]
+    },
+    {
       "id": "com.jjdltc.cordova.plugin.zip.JJzip",
       "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
       "pluginId": "com.jjdltc.cordova.plugin.zip",
@@ -548,17 +556,10 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "merges": [
         "cordova.plugins.diagnostic.external_storage"
       ]
-    },
-    {
-      "id": "com-sarriaroman-photoviewer.PhotoViewer",
-      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
-      "pluginId": "com-sarriaroman-photoviewer",
-      "clobbers": [
-        "PhotoViewer"
-      ]
     }
   ];
   module.exports.metadata = {
+    "com-sarriaroman-photoviewer": "1.1.18",
     "com.jjdltc.cordova.plugin.zip": "1.1.0",
     "cordova-custom-config": "5.1.0",
     "cordova-plugin-file": "8.0.0",
@@ -585,7 +586,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
     "cordova-sqlite-storage": "5.1.0",
-    "cordova.plugins.diagnostic": "6.0.4",
-    "com-sarriaroman-photoviewer": "1.1.18"
+    "cordova.plugins.diagnostic": "6.0.4"
   };
 });

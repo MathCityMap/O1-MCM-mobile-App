@@ -1,5 +1,4 @@
-import {NavController} from "ionic-angular/navigation/nav-controller";
-import {ModalController} from "ionic-angular/components/modal/modal-controller";
+import {NavController, ModalController} from "ionic-angular";
 import {OrmService} from './orm-service';
 import {DeepLinker} from "ionic-angular/navigation/deep-linker";
 import {Route} from '../entity/Route';

@@ -1,7 +1,6 @@
 import { Component} from '@angular/core';
-import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
-import { ViewController, ModalController, DeepLinker } from 'ionic-angular';
+import {ViewController, ModalController, DeepLinker, NavController} from 'ionic-angular';
 import {ModalsService} from "../../services/modals-service";
 
 
@@ -24,7 +23,7 @@ export class MCMHeaderComponent{
                 private deepLinker: DeepLinker) {
     }
 
-    private currentpage: string = this.viewCtrl.name;
+    protected currentpage: string = this.viewCtrl.name;
 
     retriveTitle(): string {
         //console.log('currentpage ',this.currentpage);

@@ -13,8 +13,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {MCMRouteByCodeModal} from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 import {GpsService} from '../../../../services/gps-service';
 import {ChatAndSessionService} from "../../../../services/chat-and-session-service";
-import {MCMIconModal} from "../../../../modals/MCMIconModal/MCMIconModal";
-import {MCMModalType, MyApp} from "../../../../app/app.component";
+import {MyApp} from "../../../../app/app.component";
 import {SearchPipe} from "../../../../app/pipes/search.pipe";
 
 @IonicPage()

@@ -21,7 +21,7 @@ export const defaultSizes = {
 
 @Injectable()
 export class YoutubePlayerService {
-  api: ReplaySubject<YT.Player>;
+  api: ReplaySubject<typeof YT>;
 
   private ytApiLoaded = false;
 
@@ -118,7 +118,7 @@ export class YoutubePlayerService {
     this.api = new ReplaySubject(1);
     const onYouTubeIframeAPIReady = () => {
       if (win()) {
-        this.api.next(YT());
+        this.api.next(YT);
       }
     };
     win()['onYouTubeIframeAPIReady'] = onYouTubeIframeAPIReady;

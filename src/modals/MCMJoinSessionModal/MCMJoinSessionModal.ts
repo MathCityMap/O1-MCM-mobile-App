@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import { Session } from '../../app/api/models/session';
 import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
