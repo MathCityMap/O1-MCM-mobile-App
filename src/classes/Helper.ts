@@ -1,17 +1,16 @@
 import * as L from 'leaflet';
-import {LatLng, latLngBounds, LatLngBounds} from 'leaflet';
+import {LatLng, LatLngBounds} from 'leaflet';
 import {checkAvailability} from '@ionic-native/core';
 import {Injectable} from '@angular/core';
-import {Headers, Http, RequestOptions, ResponseContentType} from '@angular/http';
+import {Headers, Http, RequestOptions} from '@angular/http';
 import {GpsService} from '../services/gps-service';
 import {Network} from '@ionic-native/network';
 import {Platform} from 'ionic-angular';
 import {Route} from '../entity/Route';
 import {OrmService} from "../services/orm-service";
 import {Storage} from "@ionic/storage";
-import {File} from "@ionic-native/file";
 import 'leaflet-geometryutil';
-import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {MAPBOX_ACCESS_TOKEN, SERVER_REQUEST_PASS} from "../env/env";
 
 export class MapTile {
@@ -99,14 +98,13 @@ export class Helper {
     static readonly MEDIASERVER_IMAGE_URL: string = Helper.MEDIASERVER_BASE_URL + "/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
-    static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
-    // FIXME HIDE FROM PUBLIC REPO
+    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
+    static readonly API_URL: string = "http://192.168.178.28/mcmmock/db_query_post.php"
     static readonly REQUEST_PASS: string = SERVER_REQUEST_PASS
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"
     // public static ProgressDialog updater_dialog = null
     static readonly mapCode: string = "mapbox.streets"
-    // FIXME HIDE FROM PUBLIC REPO
     static readonly mapquestUrl = `https://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}@2x.png?&tilesize=256&access_token=${MAPBOX_ACCESS_TOKEN}`
     static readonly subDomains = ['a', 'b', 'c', 'd'];
 

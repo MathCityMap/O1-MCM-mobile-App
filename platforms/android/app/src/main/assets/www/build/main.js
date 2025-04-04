@@ -1,6 +1,6 @@
 webpackJsonp([11],{
 
-/***/ 1099:
+/***/ 1107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15,7 +15,7 @@ var EventsAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1100:
+/***/ 1108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31,284 +31,284 @@ var EventAddRequest = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1101:
+/***/ 1110:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 437,
-	"./af.js": 437,
-	"./ar": 438,
-	"./ar-dz": 439,
-	"./ar-dz.js": 439,
-	"./ar-kw": 440,
-	"./ar-kw.js": 440,
-	"./ar-ly": 441,
-	"./ar-ly.js": 441,
-	"./ar-ma": 442,
-	"./ar-ma.js": 442,
-	"./ar-ps": 443,
-	"./ar-ps.js": 443,
-	"./ar-sa": 444,
-	"./ar-sa.js": 444,
-	"./ar-tn": 445,
-	"./ar-tn.js": 445,
-	"./ar.js": 438,
-	"./az": 446,
-	"./az.js": 446,
-	"./be": 447,
-	"./be.js": 447,
-	"./bg": 448,
-	"./bg.js": 448,
-	"./bm": 449,
-	"./bm.js": 449,
-	"./bn": 450,
-	"./bn-bd": 451,
-	"./bn-bd.js": 451,
-	"./bn.js": 450,
-	"./bo": 452,
-	"./bo.js": 452,
-	"./br": 453,
-	"./br.js": 453,
-	"./bs": 454,
-	"./bs.js": 454,
-	"./ca": 455,
-	"./ca.js": 455,
-	"./cs": 456,
-	"./cs.js": 456,
-	"./cv": 457,
-	"./cv.js": 457,
-	"./cy": 458,
-	"./cy.js": 458,
-	"./da": 459,
-	"./da.js": 459,
-	"./de": 460,
-	"./de-at": 461,
-	"./de-at.js": 461,
-	"./de-ch": 462,
-	"./de-ch.js": 462,
-	"./de.js": 460,
-	"./dv": 463,
-	"./dv.js": 463,
-	"./el": 464,
-	"./el.js": 464,
-	"./en-au": 465,
-	"./en-au.js": 465,
-	"./en-ca": 466,
-	"./en-ca.js": 466,
-	"./en-gb": 467,
-	"./en-gb.js": 467,
-	"./en-ie": 468,
-	"./en-ie.js": 468,
-	"./en-il": 469,
-	"./en-il.js": 469,
-	"./en-in": 470,
-	"./en-in.js": 470,
-	"./en-nz": 471,
-	"./en-nz.js": 471,
-	"./en-sg": 472,
-	"./en-sg.js": 472,
-	"./eo": 473,
-	"./eo.js": 473,
-	"./es": 474,
-	"./es-do": 475,
-	"./es-do.js": 475,
-	"./es-mx": 476,
-	"./es-mx.js": 476,
-	"./es-us": 477,
-	"./es-us.js": 477,
-	"./es.js": 474,
-	"./et": 478,
-	"./et.js": 478,
-	"./eu": 479,
-	"./eu.js": 479,
-	"./fa": 480,
-	"./fa.js": 480,
-	"./fi": 481,
-	"./fi.js": 481,
-	"./fil": 482,
-	"./fil.js": 482,
-	"./fo": 483,
-	"./fo.js": 483,
-	"./fr": 484,
-	"./fr-ca": 485,
-	"./fr-ca.js": 485,
-	"./fr-ch": 486,
-	"./fr-ch.js": 486,
-	"./fr.js": 484,
-	"./fy": 487,
-	"./fy.js": 487,
-	"./ga": 488,
-	"./ga.js": 488,
-	"./gd": 489,
-	"./gd.js": 489,
-	"./gl": 490,
-	"./gl.js": 490,
-	"./gom-deva": 491,
-	"./gom-deva.js": 491,
-	"./gom-latn": 492,
-	"./gom-latn.js": 492,
-	"./gu": 493,
-	"./gu.js": 493,
-	"./he": 494,
-	"./he.js": 494,
-	"./hi": 495,
-	"./hi.js": 495,
-	"./hr": 496,
-	"./hr.js": 496,
-	"./hu": 497,
-	"./hu.js": 497,
-	"./hy-am": 498,
-	"./hy-am.js": 498,
-	"./id": 499,
-	"./id.js": 499,
-	"./is": 500,
-	"./is.js": 500,
-	"./it": 501,
-	"./it-ch": 502,
-	"./it-ch.js": 502,
-	"./it.js": 501,
-	"./ja": 503,
-	"./ja.js": 503,
-	"./jv": 504,
-	"./jv.js": 504,
-	"./ka": 505,
-	"./ka.js": 505,
-	"./kk": 506,
-	"./kk.js": 506,
-	"./km": 507,
-	"./km.js": 507,
-	"./kn": 508,
-	"./kn.js": 508,
-	"./ko": 509,
-	"./ko.js": 509,
-	"./ku": 510,
-	"./ku-kmr": 511,
-	"./ku-kmr.js": 511,
-	"./ku.js": 510,
-	"./ky": 512,
-	"./ky.js": 512,
-	"./lb": 513,
-	"./lb.js": 513,
-	"./lo": 514,
-	"./lo.js": 514,
-	"./lt": 515,
-	"./lt.js": 515,
-	"./lv": 516,
-	"./lv.js": 516,
-	"./me": 517,
-	"./me.js": 517,
-	"./mi": 518,
-	"./mi.js": 518,
-	"./mk": 519,
-	"./mk.js": 519,
-	"./ml": 520,
-	"./ml.js": 520,
-	"./mn": 521,
-	"./mn.js": 521,
-	"./mr": 522,
-	"./mr.js": 522,
-	"./ms": 523,
-	"./ms-my": 524,
-	"./ms-my.js": 524,
-	"./ms.js": 523,
-	"./mt": 525,
-	"./mt.js": 525,
-	"./my": 526,
-	"./my.js": 526,
-	"./nb": 527,
-	"./nb.js": 527,
-	"./ne": 528,
-	"./ne.js": 528,
-	"./nl": 529,
-	"./nl-be": 530,
-	"./nl-be.js": 530,
-	"./nl.js": 529,
-	"./nn": 531,
-	"./nn.js": 531,
-	"./oc-lnc": 532,
-	"./oc-lnc.js": 532,
-	"./pa-in": 533,
-	"./pa-in.js": 533,
-	"./pl": 534,
-	"./pl.js": 534,
-	"./pt": 535,
-	"./pt-br": 536,
-	"./pt-br.js": 536,
-	"./pt.js": 535,
-	"./ro": 537,
-	"./ro.js": 537,
-	"./ru": 538,
-	"./ru.js": 538,
-	"./sd": 539,
-	"./sd.js": 539,
-	"./se": 540,
-	"./se.js": 540,
-	"./si": 541,
-	"./si.js": 541,
-	"./sk": 542,
-	"./sk.js": 542,
-	"./sl": 543,
-	"./sl.js": 543,
-	"./sq": 544,
-	"./sq.js": 544,
-	"./sr": 545,
-	"./sr-cyrl": 546,
-	"./sr-cyrl.js": 546,
-	"./sr.js": 545,
-	"./ss": 547,
-	"./ss.js": 547,
-	"./sv": 548,
-	"./sv.js": 548,
-	"./sw": 549,
-	"./sw.js": 549,
-	"./ta": 550,
-	"./ta.js": 550,
-	"./te": 551,
-	"./te.js": 551,
-	"./tet": 552,
-	"./tet.js": 552,
-	"./tg": 553,
-	"./tg.js": 553,
-	"./th": 554,
-	"./th.js": 554,
-	"./tk": 555,
-	"./tk.js": 555,
-	"./tl-ph": 556,
-	"./tl-ph.js": 556,
-	"./tlh": 557,
-	"./tlh.js": 557,
-	"./tr": 558,
-	"./tr.js": 558,
-	"./tzl": 559,
-	"./tzl.js": 559,
-	"./tzm": 560,
-	"./tzm-latn": 561,
-	"./tzm-latn.js": 561,
-	"./tzm.js": 560,
-	"./ug-cn": 562,
-	"./ug-cn.js": 562,
-	"./uk": 563,
-	"./uk.js": 563,
-	"./ur": 564,
-	"./ur.js": 564,
-	"./uz": 565,
-	"./uz-latn": 566,
-	"./uz-latn.js": 566,
-	"./uz.js": 565,
-	"./vi": 567,
-	"./vi.js": 567,
-	"./x-pseudo": 568,
-	"./x-pseudo.js": 568,
-	"./yo": 569,
-	"./yo.js": 569,
-	"./zh-cn": 570,
-	"./zh-cn.js": 570,
-	"./zh-hk": 571,
-	"./zh-hk.js": 571,
-	"./zh-mo": 572,
-	"./zh-mo.js": 572,
-	"./zh-tw": 573,
-	"./zh-tw.js": 573
+	"./af": 440,
+	"./af.js": 440,
+	"./ar": 441,
+	"./ar-dz": 442,
+	"./ar-dz.js": 442,
+	"./ar-kw": 443,
+	"./ar-kw.js": 443,
+	"./ar-ly": 444,
+	"./ar-ly.js": 444,
+	"./ar-ma": 445,
+	"./ar-ma.js": 445,
+	"./ar-ps": 446,
+	"./ar-ps.js": 446,
+	"./ar-sa": 447,
+	"./ar-sa.js": 447,
+	"./ar-tn": 448,
+	"./ar-tn.js": 448,
+	"./ar.js": 441,
+	"./az": 449,
+	"./az.js": 449,
+	"./be": 450,
+	"./be.js": 450,
+	"./bg": 451,
+	"./bg.js": 451,
+	"./bm": 452,
+	"./bm.js": 452,
+	"./bn": 453,
+	"./bn-bd": 454,
+	"./bn-bd.js": 454,
+	"./bn.js": 453,
+	"./bo": 455,
+	"./bo.js": 455,
+	"./br": 456,
+	"./br.js": 456,
+	"./bs": 457,
+	"./bs.js": 457,
+	"./ca": 458,
+	"./ca.js": 458,
+	"./cs": 459,
+	"./cs.js": 459,
+	"./cv": 460,
+	"./cv.js": 460,
+	"./cy": 461,
+	"./cy.js": 461,
+	"./da": 462,
+	"./da.js": 462,
+	"./de": 463,
+	"./de-at": 464,
+	"./de-at.js": 464,
+	"./de-ch": 465,
+	"./de-ch.js": 465,
+	"./de.js": 463,
+	"./dv": 466,
+	"./dv.js": 466,
+	"./el": 467,
+	"./el.js": 467,
+	"./en-au": 468,
+	"./en-au.js": 468,
+	"./en-ca": 469,
+	"./en-ca.js": 469,
+	"./en-gb": 470,
+	"./en-gb.js": 470,
+	"./en-ie": 471,
+	"./en-ie.js": 471,
+	"./en-il": 472,
+	"./en-il.js": 472,
+	"./en-in": 473,
+	"./en-in.js": 473,
+	"./en-nz": 474,
+	"./en-nz.js": 474,
+	"./en-sg": 475,
+	"./en-sg.js": 475,
+	"./eo": 476,
+	"./eo.js": 476,
+	"./es": 477,
+	"./es-do": 478,
+	"./es-do.js": 478,
+	"./es-mx": 479,
+	"./es-mx.js": 479,
+	"./es-us": 480,
+	"./es-us.js": 480,
+	"./es.js": 477,
+	"./et": 481,
+	"./et.js": 481,
+	"./eu": 482,
+	"./eu.js": 482,
+	"./fa": 483,
+	"./fa.js": 483,
+	"./fi": 484,
+	"./fi.js": 484,
+	"./fil": 485,
+	"./fil.js": 485,
+	"./fo": 486,
+	"./fo.js": 486,
+	"./fr": 487,
+	"./fr-ca": 488,
+	"./fr-ca.js": 488,
+	"./fr-ch": 489,
+	"./fr-ch.js": 489,
+	"./fr.js": 487,
+	"./fy": 490,
+	"./fy.js": 490,
+	"./ga": 491,
+	"./ga.js": 491,
+	"./gd": 492,
+	"./gd.js": 492,
+	"./gl": 493,
+	"./gl.js": 493,
+	"./gom-deva": 494,
+	"./gom-deva.js": 494,
+	"./gom-latn": 495,
+	"./gom-latn.js": 495,
+	"./gu": 496,
+	"./gu.js": 496,
+	"./he": 497,
+	"./he.js": 497,
+	"./hi": 498,
+	"./hi.js": 498,
+	"./hr": 499,
+	"./hr.js": 499,
+	"./hu": 500,
+	"./hu.js": 500,
+	"./hy-am": 501,
+	"./hy-am.js": 501,
+	"./id": 502,
+	"./id.js": 502,
+	"./is": 503,
+	"./is.js": 503,
+	"./it": 504,
+	"./it-ch": 505,
+	"./it-ch.js": 505,
+	"./it.js": 504,
+	"./ja": 506,
+	"./ja.js": 506,
+	"./jv": 507,
+	"./jv.js": 507,
+	"./ka": 508,
+	"./ka.js": 508,
+	"./kk": 509,
+	"./kk.js": 509,
+	"./km": 510,
+	"./km.js": 510,
+	"./kn": 511,
+	"./kn.js": 511,
+	"./ko": 512,
+	"./ko.js": 512,
+	"./ku": 513,
+	"./ku-kmr": 514,
+	"./ku-kmr.js": 514,
+	"./ku.js": 513,
+	"./ky": 515,
+	"./ky.js": 515,
+	"./lb": 516,
+	"./lb.js": 516,
+	"./lo": 517,
+	"./lo.js": 517,
+	"./lt": 518,
+	"./lt.js": 518,
+	"./lv": 519,
+	"./lv.js": 519,
+	"./me": 520,
+	"./me.js": 520,
+	"./mi": 521,
+	"./mi.js": 521,
+	"./mk": 522,
+	"./mk.js": 522,
+	"./ml": 523,
+	"./ml.js": 523,
+	"./mn": 524,
+	"./mn.js": 524,
+	"./mr": 525,
+	"./mr.js": 525,
+	"./ms": 526,
+	"./ms-my": 527,
+	"./ms-my.js": 527,
+	"./ms.js": 526,
+	"./mt": 528,
+	"./mt.js": 528,
+	"./my": 529,
+	"./my.js": 529,
+	"./nb": 530,
+	"./nb.js": 530,
+	"./ne": 531,
+	"./ne.js": 531,
+	"./nl": 532,
+	"./nl-be": 533,
+	"./nl-be.js": 533,
+	"./nl.js": 532,
+	"./nn": 534,
+	"./nn.js": 534,
+	"./oc-lnc": 535,
+	"./oc-lnc.js": 535,
+	"./pa-in": 536,
+	"./pa-in.js": 536,
+	"./pl": 537,
+	"./pl.js": 537,
+	"./pt": 538,
+	"./pt-br": 539,
+	"./pt-br.js": 539,
+	"./pt.js": 538,
+	"./ro": 540,
+	"./ro.js": 540,
+	"./ru": 541,
+	"./ru.js": 541,
+	"./sd": 542,
+	"./sd.js": 542,
+	"./se": 543,
+	"./se.js": 543,
+	"./si": 544,
+	"./si.js": 544,
+	"./sk": 545,
+	"./sk.js": 545,
+	"./sl": 546,
+	"./sl.js": 546,
+	"./sq": 547,
+	"./sq.js": 547,
+	"./sr": 548,
+	"./sr-cyrl": 549,
+	"./sr-cyrl.js": 549,
+	"./sr.js": 548,
+	"./ss": 550,
+	"./ss.js": 550,
+	"./sv": 551,
+	"./sv.js": 551,
+	"./sw": 552,
+	"./sw.js": 552,
+	"./ta": 553,
+	"./ta.js": 553,
+	"./te": 554,
+	"./te.js": 554,
+	"./tet": 555,
+	"./tet.js": 555,
+	"./tg": 556,
+	"./tg.js": 556,
+	"./th": 557,
+	"./th.js": 557,
+	"./tk": 558,
+	"./tk.js": 558,
+	"./tl-ph": 559,
+	"./tl-ph.js": 559,
+	"./tlh": 560,
+	"./tlh.js": 560,
+	"./tr": 561,
+	"./tr.js": 561,
+	"./tzl": 562,
+	"./tzl.js": 562,
+	"./tzm": 563,
+	"./tzm-latn": 564,
+	"./tzm-latn.js": 564,
+	"./tzm.js": 563,
+	"./ug-cn": 565,
+	"./ug-cn.js": 565,
+	"./uk": 566,
+	"./uk.js": 566,
+	"./ur": 567,
+	"./ur.js": 567,
+	"./uz": 568,
+	"./uz-latn": 569,
+	"./uz-latn.js": 569,
+	"./uz.js": 568,
+	"./vi": 570,
+	"./vi.js": 570,
+	"./x-pseudo": 571,
+	"./x-pseudo.js": 571,
+	"./yo": 572,
+	"./yo.js": 572,
+	"./zh-cn": 573,
+	"./zh-cn.js": 573,
+	"./zh-hk": 574,
+	"./zh-hk.js": 574,
+	"./zh-mo": 575,
+	"./zh-mo.js": 575,
+	"./zh-tw": 576,
+	"./zh-tw.js": 576
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -324,794 +324,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1101;
+webpackContext.id = 1110;
 
 /***/ }),
 
-/***/ 1103:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return McmImageComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(65);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the McmImageComponent component.
- *
- * This component shall encapsulate all functionality regarding images, e.g. downloading, resizing
- * or viewing in fullscreen.
- */
-var McmImageComponent = /** @class */ (function () {
-    function McmImageComponent(imagesService, photoViewerPlugin, spinnerDialog) {
-        this.imagesService = imagesService;
-        this.photoViewerPlugin = photoViewerPlugin;
-        this.spinnerDialog = spinnerDialog;
-        this.offline = true;
-        this.fullWidth = false;
-        this.photoViewer = false;
-        this.click = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-    }
-    McmImageComponent.prototype.ngOnChanges = function () {
-        this.imageUrl = this.offline ? this.imagesService.getOfflineURL(this.src)
-            : this.imagesService.getOnlineURL(this.src);
-    };
-    McmImageComponent.prototype.onClick = function ($event) {
-        var _this = this;
-        this.click.next($event);
-        if (this.photoViewer && __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */].isPluginAvailable(__WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */])) {
-            this.spinnerDialog.show();
-            setTimeout(function () {
-                // use short timeout to let spinner dialog appear
-                _this.photoViewerPlugin.show(_this.offline ? _this.imagesService.getOfflineURL(_this.src, undefined, undefined, true) : _this.imageUrl);
-                setTimeout(function () {
-                    // photoviewer doesn't have callback when user closes it => hide spinner in background
-                    _this.spinnerDialog.hide();
-                }, 1000);
-            }, 100);
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", String)
-    ], McmImageComponent.prototype, "src", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], McmImageComponent.prototype, "offline", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], McmImageComponent.prototype, "fullWidth", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], McmImageComponent.prototype, "photoViewer", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
-    ], McmImageComponent.prototype, "click", void 0);
-    McmImageComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-image',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/'<!-- Generated template for the McmImageComponent component -->\n<img [src]="imageUrl" [ngClass]="{\'full-width\': fullWidth}" (click)="onClick($event)"/>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
-    ], McmImageComponent);
-    return McmImageComponent;
-}());
-
-//# sourceMappingURL=mcm-image.js.map
-
-/***/ }),
-
-/***/ 1104:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMHeaderComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_modals_service__ = __webpack_require__(66);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-var MCMHeaderComponent = /** @class */ (function () {
-    function MCMHeaderComponent(navCtrl, navParams, viewCtrl, modalService, modalCtrl, deepLinker) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.modalService = modalService;
-        this.modalCtrl = modalCtrl;
-        this.deepLinker = deepLinker;
-        this.showBackButton = false;
-        this.transparent = false;
-        this.isOpeningRoute = false;
-        this.currentpage = this.viewCtrl.name;
-    }
-    MCMHeaderComponent.prototype.retriveTitle = function () {
-        //console.log('currentpage ',this.currentpage);
-        if (this.navParams && this.navParams.data.headerTitle) {
-            return this.navParams.data.headerTitle;
-        }
-        if (this.currentpage == 'InfoPage') {
-            return 'a_about_mcm_title';
-        }
-        if (this.currentpage == 'SettingsPage') {
-            return 'a_action_settings';
-        }
-        if (this.currentpage == 'ModalCmp') {
-            return '';
-        }
-        return this.currentpage;
-    };
-    MCMHeaderComponent.prototype.ngOnInit = function () {
-        this.showBackButton = this.navCtrl.canGoBack();
-        if (this.currentpage == 'ModalCmp') {
-            this.transparent = true;
-        }
-    };
-    MCMHeaderComponent.prototype.goToDashboard = function () {
-        var _this = this;
-        this.navCtrl.setRoot('DashboardPage').then(function () {
-            _this.navCtrl.popToRoot();
-        });
-    };
-    MCMHeaderComponent.prototype.goBack = function () {
-        var _this = this;
-        console.log('Header going back');
-        if (this.viewCtrl.instance.goBack) {
-            return this.viewCtrl.instance.goBack();
-        }
-        if (this.currentpage === 'TasksMap') {
-            var tasksMap = this.navCtrl.getActive().instance;
-            if (tasksMap.sessionInfo != null) {
-                console.log('go back from active session');
-                console.log(tasksMap.route.id);
-                tasksMap.sessionFinished();
-            }
-            else {
-                if (!this.isOpeningRoute) {
-                    this.isOpeningRoute = true;
-                    this.navCtrl.pop({}, function () {
-                        // necessary because of bug which does not update URL
-                        _this.deepLinker.navChange('back');
-                    });
-                    this.modalService.showRoute(tasksMap.route, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
-                        return __generator(this, function (_a) {
-                            this.isOpeningRoute = false;
-                            return [2 /*return*/];
-                        });
-                    }); });
-                }
-            }
-        }
-        else {
-            this.navCtrl.pop({}, function () {
-                // necessary because of bug which does not update URL
-                _this.deepLinker.navChange('back');
-            });
-        }
-    };
-    MCMHeaderComponent.prototype.closeModal = function () {
-        this.viewCtrl.dismiss(this.modalCtrl);
-    };
-    MCMHeaderComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-header',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">\n        <ion-buttons left>\n            <button ion-button icon-only *ngIf="showBackButton && currentpage != \'ModalCmp\'" (click)="goBack()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n            <button ion-button icon-only *ngIf="currentpage == \'ModalCmp\'" (click)="closeModal()">\n                <!--<img class="header-icon" src="assets/icons/icon_close-modal.svg"/>-->\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n        </ion-buttons>\n        <ion-title>{{ retriveTitle() | translate }}</ion-title>\n        <ion-buttons end></ion-buttons>\n    </ion-toolbar>\n</ion-header>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_3__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* DeepLinker */]])
-    ], MCMHeaderComponent);
-    return MCMHeaderComponent;
-}());
-
-//# sourceMappingURL=mcm-header.component.js.map
-
-/***/ }),
-
-/***/ 1105:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DistancePipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-/*
- * this is still pretty basic and could defenitely use some rework in terms of international scale and number notation
- * so far the functiuonalities are:
- * - checks if the value is over o km and if so, then converts m to km and adds the correct unit
-*/
-var DistancePipe = /** @class */ (function () {
-    function DistancePipe() {
-    }
-    DistancePipe.prototype.transform = function (value, unit) {
-        /*     console.log('value', value); */
-        if (value > 0 && value < 1000) {
-            return value + ' ' + unit;
-        }
-        else if (value > 1000) {
-            return (Math.round(value / 100) / 10) + ' km';
-        }
-        else if (value <= 0) {
-            return 0 + ' ' + unit;
-        }
-    };
-    DistancePipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'distance' })
-    ], DistancePipe);
-    return DistancePipe;
-}());
-
-//# sourceMappingURL=distance.pipe.js.map
-
-/***/ }),
-
-/***/ 1106:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMProgressBarComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-var MCMProgressBarComponent = /** @class */ (function () {
-    function MCMProgressBarComponent(helper) {
-        this.helper = helper;
-    }
-    MCMProgressBarComponent.prototype.ngOnChanges = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var data, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!(this.route && this.route.scores)) return [3 /*break*/, 5];
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
-                    case 2:
-                        data = _a.sent();
-                        this.currentProgress = data.currentProgress;
-                        this.total = data.totalTasks;
-                        this.progressWidth = (100 / this.total) * this.currentProgress;
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        console.log(e_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [3 /*break*/, 6];
-                    case 5:
-                        if (this.total && this.currentProgress) {
-                            this.progressWidth = (100 / this.total) * this.currentProgress;
-                        }
-                        _a.label = 6;
-                    case 6: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
-    ], MCMProgressBarComponent.prototype, "route", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], MCMProgressBarComponent.prototype, "isAudioPlaying", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], MCMProgressBarComponent.prototype, "isAudio", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Number)
-    ], MCMProgressBarComponent.prototype, "remainingTime", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Number)
-    ], MCMProgressBarComponent.prototype, "currentProgress", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Number)
-    ], MCMProgressBarComponent.prototype, "total", void 0);
-    MCMProgressBarComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-progress-bar',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/'<span *ngIf="!isAudio">{{ currentProgress }} / {{ total }}</span>\n<div class="container progress-vertical route">\n    <div class="bar" [ngStyle]="{\'width\': ((100/total)*currentProgress) +\'%\'}"></div>\n</div>\n<!-- +900 to display 00:00 remaining only a short time-->\n<span *ngIf="isAudio && isAudioPlaying" class="audio">{{ (total - currentProgress)+900 | date: \'mm:ss\' }} </span>\n<span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: \'mm:ss\' }} </span>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
-    ], MCMProgressBarComponent);
-    return MCMProgressBarComponent;
-}());
-
-//# sourceMappingURL=mcm-progress-bar.js.map
-
-/***/ }),
-
-/***/ 1107:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyLoadImagesDirective; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer__ = __webpack_require__(1108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_intersection_observer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_intersection_observer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(35);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-/**
- * Angular Lazy Loading Images Directive
- *
- * The library allows to lazy load images from your web application
- * using the MutationObserver and the IntersectionObserver. Images will be loaded as
- * soon as they enter the viewport in a non-blocking way.
- */
-var LazyLoadImagesDirective = /** @class */ (function () {
-    function LazyLoadImagesDirective(element, renderer, ngZone, platformId, imagesService) {
-        this.renderer = renderer;
-        this.ngZone = ngZone;
-        this.platformId = platformId;
-        this.imagesService = imagesService;
-        this.rootElement = element.nativeElement;
-    }
-    LazyLoadImagesDirective.prototype.init = function () {
-        var _this = this;
-        this.registerIntersectionObserver();
-        this.observeDOMChanges(this.rootElement, function () {
-            var imagesFoundInDOM = _this.getAllImagesToLazyLoad(_this.rootElement);
-            imagesFoundInDOM.forEach(function (image) { return _this.intersectionObserver.observe(image); });
-        });
-    };
-    LazyLoadImagesDirective.prototype.ngOnInit = function () {
-        var _this = this;
-        if (!this.isBrowser()) {
-            return;
-        }
-        this.ngZone.runOutsideAngular(function () { return _this.init(); });
-    };
-    LazyLoadImagesDirective.prototype.ngOnDestroy = function () {
-        if (this.intersectionObserver) {
-            this.intersectionObserver.disconnect();
-        }
-    };
-    LazyLoadImagesDirective.prototype.isBrowser = function () {
-        return Object(__WEBPACK_IMPORTED_MODULE_1__angular_common__["j" /* isPlatformBrowser */])(this.platformId);
-    };
-    LazyLoadImagesDirective.prototype.registerIntersectionObserver = function () {
-        var _this = this;
-        this.intersectionObserver = new IntersectionObserver(function (images) { return images.forEach(function (image) { return _this.onIntersectionChange(image); }); }, this.intersectionObserverConfig instanceof Object ? this.intersectionObserverConfig : undefined);
-        return this.intersectionObserver;
-    };
-    LazyLoadImagesDirective.prototype.observeDOMChanges = function (rootElement, onChange) {
-        // Create a Mutation Observer instance
-        var observer = new MutationObserver(function (mutations) { return onChange(mutations); });
-        // Observer Configuration
-        var observerConfig = {
-            attributes: true,
-            characterData: true,
-            childList: true,
-            subtree: true
-        };
-        // Observe Directive DOM Node
-        observer.observe(rootElement, observerConfig);
-        // Fire onChange callback to check current DOM nodes
-        onChange();
-        return observer;
-    };
-    LazyLoadImagesDirective.prototype.getAllImagesToLazyLoad = function (pageNode) {
-        return Array.from(pageNode.querySelectorAll('img[data-src], [data-srcset], [data-background-src], img[data-async-src], [data-async-background-src]'));
-    };
-    LazyLoadImagesDirective.prototype.onIntersectionChange = function (image) {
-        if (!image.isIntersecting) {
-            return;
-        }
-        this.onImageAppearsInViewport(image.target);
-    };
-    LazyLoadImagesDirective.prototype.onImageAppearsInViewport = function (image) {
-        var _this = this;
-        if (image.dataset.asyncSrc) {
-            this.imagesService.getAsyncImageURL(image.dataset.asyncSrc, this.imageSize).then(function (asyncSrc) {
-                _this.renderer.setAttribute(image, 'src', asyncSrc);
-            });
-            this.renderer.removeAttribute(image, 'data-async-src');
-        }
-        if (image.dataset.src) {
-            this.renderer.setAttribute(image, 'src', image.dataset.src);
-            this.renderer.removeAttribute(image, 'data-src');
-        }
-        if (image.dataset.srcset) {
-            this.renderer.setAttribute(image, 'srcset', image.dataset.srcset);
-            this.renderer.removeAttribute(image, 'data-srcset');
-        }
-        if (image.dataset.asyncBackgroundSrc) {
-            this.imagesService.getAsyncImageURL(image.dataset.asyncBackgroundSrc, this.imageSize).then(function (asyncSrc) {
-                _this.renderer.setStyle(image, 'background-image', "url(" + asyncSrc + ")");
-            });
-            this.renderer.removeAttribute(image, 'data-async-background-src');
-        }
-        if (image.dataset.backgroundSrc) {
-            this.renderer.setStyle(image, 'background-image', "url(" + image.dataset.backgroundSrc + ")");
-            this.renderer.removeAttribute(image, 'data-background-src');
-        }
-        // Stop observing the current target
-        if (this.intersectionObserver) {
-            this.intersectionObserver.unobserve(image);
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('lazy-load-images'),
-        __metadata("design:type", Object)
-    ], LazyLoadImagesDirective.prototype, "intersectionObserverConfig", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('image-size'),
-        __metadata("design:type", String)
-    ], LazyLoadImagesDirective.prototype, "imageSize", void 0);
-    LazyLoadImagesDirective = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
-            selector: '[lazy-load-images]'
-        }),
-        __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_0__angular_core__["PLATFORM_ID"])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"],
-            __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], Object, __WEBPACK_IMPORTED_MODULE_3__services_images_service__["a" /* ImagesService */]])
-    ], LazyLoadImagesDirective);
-    return LazyLoadImagesDirective;
-}());
-
-//# sourceMappingURL=ngx-lazy-load-images.directive.js.map
-
-/***/ }),
-
-/***/ 1109:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-var RouteTeaserComponent = /** @class */ (function () {
-    function RouteTeaserComponent(modalsService, ormService, helper, dbUpdater, translateService) {
-        this.modalsService = modalsService;
-        this.ormService = ormService;
-        this.helper = helper;
-        this.dbUpdater = dbUpdater;
-        this.translateService = translateService;
-        this.downloadRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.removeRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.currentProgress = 0;
-        this.total = 0;
-        this.completedRadius = 339.292;
-    }
-    RouteTeaserComponent.prototype.ngOnChanges = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, data;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (!(this.route && this.route.downloaded)) return [3 /*break*/, 3];
-                        _a = this;
-                        return [4 /*yield*/, this.route.getTaskCount()];
-                    case 1:
-                        _a.total = _b.sent();
-                        if (!this.route.scores) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
-                    case 2:
-                        data = _b.sent();
-                        this.currentProgress = data.currentProgress;
-                        this.completedRadius = this.calculatePercentage();
-                        _b.label = 3;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RouteTeaserComponent.prototype.calculatePercentage = function () {
-        var c = 2 * Math.PI * 54;
-        var completedPercentage = (1 / this.total) * this.currentProgress;
-        return c * (1 - completedPercentage);
-    };
-    RouteTeaserComponent.prototype.doDownload = function (event, route) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        event.stopPropagation();
-                        return [4 /*yield*/, this.modalsService.doDownload(route)];
-                    case 1:
-                        if (_a.sent()) {
-                            this.downloadRoute.emit({ route: route });
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RouteTeaserComponent.prototype.deleteRoute = function (event, route) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        event.stopPropagation();
-                        return [4 /*yield*/, this.ormService.removeDownloadedRoute(route, true)];
-                    case 1:
-                        if (_a.sent()) {
-                            this.removeRoute.emit();
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
-    ], RouteTeaserComponent.prototype, "route", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], RouteTeaserComponent.prototype, "isOnline", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", Object)
-    ], RouteTeaserComponent.prototype, "downloadRoute", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
-        __metadata("design:type", Object)
-    ], RouteTeaserComponent.prototype, "removeRoute", void 0);
-    RouteTeaserComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'route-teaser',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/'<div class="main">\n    <div *ngIf="route" class="container image" [ngClass]="{\'downloaded\' : !!route.downloaded, \'completed\': !!route.completed}">\n        <svg class="progress" width="120" height="120" viewBox="0 0 120 120">\n            <circle class="progress__meter" cx="60" cy="60" r="54" stroke-width="12"></circle>\n            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{\'stroke-dasharray\': 339.292, \'stroke-dashoffset\': completedRadius}"></circle>\n        </svg>\n        <div class="cover">\n            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n        </div>\n        <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>\n    </div>\n\n    <div *ngIf="route" class="container text">\n        <h2 class="item-text-wrap">{{route.title}}</h2>\n        <div class="bottom">\n            <div class="text">\n            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: \'m\'}}</span>\n            <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>\n            </div>\n            <div *ngIf="route" class="container buttons">\n                <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">\n                    <img src="./assets/icons/download.svg"/>\n                </button>\n                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">\n                    <img src="./assets/icons/delete.svg"/>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="secondary">\n    <span class="icon key" no-margin>{{route.code}}</span>\n    <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>\n    <!--<mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>-->\n    <div class="evaluation">\n        <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>\n        <p class="icon finished" *ngIf="!route?.completed">{{currentProgress}} / {{total}}</p>\n        <div class="ratings" *ngIf="route?.scores && route.isAnswerFeedbackEnabled()">\n            <div class="rating perfect">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating good">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolvedLow().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating failed">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksFailed().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n        <div class="ratings" *ngIf="route?.scores && !route.isAnswerFeedbackEnabled()">\n            <div class="rating saved">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSaved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n    </div>\n\n    <!--Dummy just for quick testing purposes  -->\n    <!--<div class="evaluation">-->\n        <!--<span class="icon finished">Oct 21 2019</span>-->\n        <!--<div class="ratings">-->\n            <!--<div class="rating perfect"><p>1</p></div>-->\n            <!--<div class="rating good"><p>3</p></div>-->\n            <!--<div class="rating failed"><p>20</p></div>-->\n        <!--</div>-->\n    <!--</div>-->\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */]])
-    ], RouteTeaserComponent);
-    return RouteTeaserComponent;
-}());
-
-//# sourceMappingURL=route-teaser.js.map
-
-/***/ }),
-
-/***/ 1110:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizedDatePipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var LocalizedDatePipe = /** @class */ (function () {
-    function LocalizedDatePipe(translateService) {
-        this.translateService = translateService;
-    }
-    LocalizedDatePipe.prototype.transform = function (value, pattern) {
-        if (pattern === void 0) { pattern = 'mediumDate'; }
-        var datePipe = new __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* DatePipe */](this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang);
-        return datePipe.transform(value, pattern);
-    };
-    LocalizedDatePipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Pipe"])({
-            name: 'localizedDate',
-            pure: false
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
-    ], LocalizedDatePipe);
-    return LocalizedDatePipe;
-}());
-
-//# sourceMappingURL=localDate.pipe.js.map
-
-/***/ }),
-
-/***/ 1111:
+/***/ 1112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1126,12 +343,12 @@ var RecordStateEnum;
 
 /***/ }),
 
-/***/ 1129:
+/***/ 1130:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createTranslateLoader;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__ = __webpack_require__(1131);
 
 function createTranslateLoader(httpClient) {
     return new __WEBPACK_IMPORTED_MODULE_0__ngx_translate_http_loader__["a" /* TranslateHttpLoader */](httpClient, './assets/localization/', '.json');
@@ -1140,7 +357,7 @@ function createTranslateLoader(httpClient) {
 
 /***/ }),
 
-/***/ 1134:
+/***/ 1135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1178,14 +395,14 @@ var BroadcastService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1135:
+/***/ 1136:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return YoutubePlayerModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__youtube_player_component__ = __webpack_require__(1137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_youtube_player_service__ = __webpack_require__(622);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1223,7 +440,7 @@ var YoutubePlayerModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1136:
+/***/ 1137:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1322,7 +539,7 @@ var YoutubePlayerComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1137:
+/***/ 1138:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1375,27 +592,29 @@ var Autoresize = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1138:
+/***/ 1139:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(435);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(438);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(439);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_translation_service__ = __webpack_require__(346);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1429,7 +648,8 @@ var ApiModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__["a" /* SessionUserService */],
                 __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__["a" /* SessionUserLeaderboardService */],
                 __WEBPACK_IMPORTED_MODULE_8__services_trail_service__["a" /* TrailService */],
-                __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__["a" /* ProblemReportService */]
+                __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__["a" /* ProblemReportService */],
+                __WEBPACK_IMPORTED_MODULE_10__services_translation_service__["a" /* TranslationService */]
             ],
         })
     ], ApiModule);
@@ -1437,119 +657,6 @@ var ApiModule = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=api.module.js.map
-
-/***/ }),
-
-/***/ 1139:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrailService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-/* tslint:disable */
-
-
-
-
-
-
-var TrailService = /** @class */ (function (_super) {
-    __extends(TrailService, _super);
-    function TrailService(config, http) {
-        return _super.call(this, config, http) || this;
-    }
-    /**
-     * @param trailId Trail ID
-     * @return Returns a list of FeedItems
-     */
-    TrailService.prototype.getUpcomingSessionsResponse = function (trailId) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/trail/" + trailId + "/sessions/upcoming"), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param trailId Trail ID
-     * @return Returns a list of FeedItems
-     */
-    TrailService.prototype.getUpcomingSessions = function (trailId) {
-        return this.getUpcomingSessionsResponse(trailId).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    /**
-     * @param trailId Trail ID
-     * @return Returns a list of FeedItems
-     */
-    TrailService.prototype.getSessionsResponse = function (trailId) {
-        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
-        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
-        var __body = null;
-        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/trail/" + trailId + "/sessions"), __body, {
-            headers: __headers,
-            params: __params,
-            responseType: 'json'
-        });
-        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
-            var _resp = _r;
-            var _body = null;
-            _body = _resp.body;
-            return _resp.clone({ body: _body });
-        }));
-    };
-    /**
-     * @param trailId Trail ID
-     * @return Returns a list of FeedItems
-     */
-    TrailService.prototype.getSessions = function (trailId) {
-        return this.getSessionsResponse(trailId).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
-    };
-    TrailService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
-    ], TrailService);
-    return TrailService;
-}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
-
-//# sourceMappingURL=trail.service.js.map
 
 /***/ }),
 
@@ -1561,19 +668,19 @@ var TrailService = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(574);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(577);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(628);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(631);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1825,13 +932,126 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1143:
+/***/ 1140:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrailService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* tslint:disable */
+
+
+
+
+
+
+var TrailService = /** @class */ (function (_super) {
+    __extends(TrailService, _super);
+    function TrailService(config, http) {
+        return _super.call(this, config, http) || this;
+    }
+    /**
+     * @param trailId Trail ID
+     * @return Returns a list of FeedItems
+     */
+    TrailService.prototype.getUpcomingSessionsResponse = function (trailId) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/trail/" + trailId + "/sessions/upcoming"), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param trailId Trail ID
+     * @return Returns a list of FeedItems
+     */
+    TrailService.prototype.getUpcomingSessions = function (trailId) {
+        return this.getUpcomingSessionsResponse(trailId).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    /**
+     * @param trailId Trail ID
+     * @return Returns a list of FeedItems
+     */
+    TrailService.prototype.getSessionsResponse = function (trailId) {
+        var __params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]();
+        var __headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        var __body = null;
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpRequest */]("GET", this.rootUrl + ("/trail/" + trailId + "/sessions"), __body, {
+            headers: __headers,
+            params: __params,
+            responseType: 'json'
+        });
+        return this.http.request(req).pipe(Object(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__["filter"])(function (_r) { return _r instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["f" /* HttpResponse */]; }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) {
+            var _resp = _r;
+            var _body = null;
+            _body = _resp.body;
+            return _resp.clone({ body: _body });
+        }));
+    };
+    /**
+     * @param trailId Trail ID
+     * @return Returns a list of FeedItems
+     */
+    TrailService.prototype.getSessions = function (trailId) {
+        return this.getSessionsResponse(trailId).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__["map"])(function (_r) { return _r.body; }));
+    };
+    TrailService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_configuration__["a" /* ApiConfiguration */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], TrailService);
+    return TrailService;
+}(__WEBPACK_IMPORTED_MODULE_2__base_service__["a" /* BaseService */]));
+
+//# sourceMappingURL=trail.service.js.map
+
+/***/ }),
+
+/***/ 1144:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DirectivesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__ = __webpack_require__(1144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__safe_inner_html_safe_inner_html__ = __webpack_require__(1145);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1857,7 +1077,7 @@ var DirectivesModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1144:
+/***/ 1145:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1925,9 +1145,9 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(431);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(343);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2109,15 +1329,15 @@ var LanguageService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Updater; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(337);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2569,8 +1789,8 @@ var ZoomService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_component__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2754,13 +1974,113 @@ var MCMIconModal = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(115);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(navCtrl, platform, languageService, helper) {
+        this.navCtrl = navCtrl;
+        this.platform = platform;
+        this.languageService = languageService;
+        this.helper = helper;
+        this.tab1Root = 'DashboardPage';
+        this.tab2Root = 'RoutesListPage';
+        this.tab3Root = 'PortalPage';
+        HomePage_1.nav = navCtrl;
+    }
+    HomePage_1 = HomePage;
+    HomePage.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.platform.ready().then(function () {
+                    _this.languageService.initialize().then(function () {
+                        console.log('Platform is ready!');
+                        navigator.splashscreen.hide();
+                    });
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    var HomePage_1;
+    HomePage = HomePage_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>\n    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_3__services_language_service__["a" /* LanguageService */],
+            __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 151:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TaskFormat; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3171,106 +2491,6 @@ var Task = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 151:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(115);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(navCtrl, platform, languageService, helper) {
-        this.navCtrl = navCtrl;
-        this.platform = platform;
-        this.languageService = languageService;
-        this.helper = helper;
-        this.tab1Root = 'DashboardPage';
-        this.tab2Root = 'RoutesListPage';
-        this.tab3Root = 'PortalPage';
-        HomePage_1.nav = navCtrl;
-    }
-    HomePage_1 = HomePage;
-    HomePage.prototype.ionViewWillEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                this.platform.ready().then(function () {
-                    _this.languageService.initialize().then(function () {
-                        console.log('Platform is ready!');
-                        navigator.splashscreen.hide();
-                    });
-                });
-                return [2 /*return*/];
-            });
-        });
-    };
-    var HomePage_1;
-    HomePage = HomePage_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>\n    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_3__services_language_service__["a" /* LanguageService */],
-            __WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
 /***/ 17:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3282,16 +2502,16 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__env_env__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__env_env__ = __webpack_require__(196);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3716,14 +2936,13 @@ var Helper = /** @class */ (function () {
     Helper.MEDIASERVER_IMAGE_URL = Helper_1.MEDIASERVER_BASE_URL + "/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
-    Helper.API_URL = "https://dev.mathcitymap.eu/db_query_post.php";
-    // FIXME HIDE FROM PUBLIC REPO
+    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
+    Helper.API_URL = "http://192.168.178.28/mcmmock/db_query_post.php";
     Helper.REQUEST_PASS = __WEBPACK_IMPORTED_MODULE_11__env_env__["b" /* SERVER_REQUEST_PASS */];
     Helper.REPLACE_TASK_IMAGE_PATH = "mcm_images/tasks/";
     Helper.REPLACE_ROUTE_IMAGE_PATH = "mcm_images/routes/";
     // public static ProgressDialog updater_dialog = null
     Helper.mapCode = "mapbox.streets";
-    // FIXME HIDE FROM PUBLIC REPO
     Helper.mapquestUrl = "https://{s}.tiles.mapbox.com/v4/" + Helper_1.mapCode + "/{z}/{x}/{y}@2x.png?&tilesize=256&access_token=" + __WEBPACK_IMPORTED_MODULE_11__env_env__["a" /* MAPBOX_ACCESS_TOKEN */];
     Helper.subDomains = ['a', 'b', 'c', 'd'];
     // public static OnlineTileSourceBase mbTileSource = new XYTileSource("MapBoxSatelliteLabelled",
@@ -3765,13 +2984,13 @@ var Helper = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 194:
+/***/ 195:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3875,7 +3094,7 @@ var Task2Route = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 195:
+/***/ 196:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3887,18 +3106,18 @@ var MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyen
 
 /***/ }),
 
-/***/ 213:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -4192,24 +3411,24 @@ var SessionService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(1103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mcm_image_mcm_image__ = __webpack_require__(828);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(829);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(830);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(831);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(1110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(833);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(627);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4258,14 +3477,14 @@ var ComponentsModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 237:
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Score; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(796);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(797);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4465,13 +3684,13 @@ var Score = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomKeyBoard; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4657,7 +3876,7 @@ var CustomKeyBoard = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 241:
+/***/ 242:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4665,7 +3884,7 @@ var CustomKeyBoard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(578);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(149);
@@ -4857,7 +4076,7 @@ var MCMReportProblemModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 251:
+/***/ 252:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -4870,11 +4089,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 251;
+webpackEmptyAsyncContext.id = 252;
 
 /***/ }),
 
-/***/ 295:
+/***/ 296:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -4882,7 +4101,7 @@ var map = {
 		579
 	],
 	"../pages/dashboard/dashboard.module": [
-		1145,
+		1147,
 		10
 	],
 	"../pages/home/home.module": [
@@ -4890,7 +4109,7 @@ var map = {
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1147,
+		1148,
 		6
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
@@ -4898,31 +4117,31 @@ var map = {
 		8
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1149,
+		1152,
 		1
 	],
 	"../pages/info/info.module": [
-		1153,
+		1149,
 		5
 	],
 	"../pages/onboarding/onboarding.module": [
-		1152,
+		1154,
 		4
 	],
 	"../pages/portal/portal.module": [
-		1155,
+		1153,
 		7
 	],
 	"../pages/settings/settings.module": [
-		1148,
+		1151,
 		3
 	],
 	"../pages/task-detail/task-detail.module": [
-		1151,
+		1156,
 		0
 	],
 	"../pages/task-group-detail/task-group-detail.module": [
-		1154,
+		1155,
 		2
 	]
 };
@@ -4937,7 +4156,7 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 295;
+webpackAsyncContext.id = 296;
 module.exports = webpackAsyncContext;
 
 /***/ }),
@@ -4949,43 +4168,43 @@ module.exports = webpackAsyncContext;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrmService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(792);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(793);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(794);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(795);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(793);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(794);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(795);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(796);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(799);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(800);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(800);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(801);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(803);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(805);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(813);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(815);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(815);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(816);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(817);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(818);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(819);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(820);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(821);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(822);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__ = __webpack_require__(824);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__migration_17067919700000_RenameParentIdAndAddTaskFormatAndPosition__ = __webpack_require__(825);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__migration_17071440460000_AddGroupsFinished__ = __webpack_require__(826);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(816);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(817);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(818);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(819);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(820);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(821);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(822);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(823);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(824);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__ = __webpack_require__(825);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__migration_17067919700000_RenameParentIdAndAddTaskFormatAndPosition__ = __webpack_require__(826);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__migration_17071440460000_AddGroupsFinished__ = __webpack_require__(827);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5816,14 +5035,14 @@ var OrmService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 338:
+/***/ 337:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
 var __extends = (this && this.__extends) || (function () {
@@ -6028,14 +5247,14 @@ var DB_Handler = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 339:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(813);
 
 
 var DBC = /** @class */ (function () {
@@ -6345,7 +5564,512 @@ DBC.initialize();
 
 /***/ }),
 
-/***/ 35:
+/***/ 344:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMDownloadProgressPopupComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var MCMDownloadProgressPopupComponent = /** @class */ (function () {
+    function MCMDownloadProgressPopupComponent(viewCtrl, changeDetectorRef) {
+        var _this = this;
+        this.viewCtrl = viewCtrl;
+        this.changeDetectorRef = changeDetectorRef;
+        this.data = null;
+        this.progress = 0;
+        this.data = viewCtrl.data;
+        this.data.updateView = function () {
+            // make sure that angular detects changes
+            changeDetectorRef.detectChanges();
+            _this.progress = _this.data.currentProgress == 0 ? 0 :
+                Math.round((100 / _this.data.total) * _this.data.currentProgress);
+        };
+    }
+    MCMDownloadProgressPopupComponent.prototype.onCancelClick = function () {
+        if (this.viewCtrl.data.cancelCallback) {
+            this.viewCtrl.data.cancelCallback();
+        }
+    };
+    MCMDownloadProgressPopupComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-download-progress-popup',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="head">\n        <h2>{{data.titleKey | translate}}</h2>\n    </div>\n\n    <div class="modal-content">\n        <ion-grid no-padding>\n            <ion-row>\n                <ion-col>\n                    <!--<div class="container progress-vertical download">-->\n                        <!--<div class="bar" [ngStyle]="{\'width\': ((100/data.total)*data.currentProgress) +\'%\'}"></div>-->\n                    <!--</div>-->\n                    <progress-bar [progress]="progress" [color]="\'#036d99\'"></progress-bar>\n                </ion-col>\n            </ion-row>\n            <!--<ion-row>-->\n                <!--<ion-col col-6>-->\n                    <!--<p *ngIf="data.total != 0">{{((100/data.total)*data.currentProgress).toFixed(0)}}%</p>-->\n                <!--</ion-col>-->\n                <!--<ion-col col-6 text-right>-->\n                    <!--<p class="progress-files">{{ data.currentProgress }} / {{ data.total }}</p>-->\n                <!--</ion-col>-->\n            <!--</ion-row>-->\n        </ion-grid>\n    </div>\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="onCancelClick()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]])
+    ], MCMDownloadProgressPopupComponent);
+    return MCMDownloadProgressPopupComponent;
+}());
+
+//# sourceMappingURL=mcm-download-progress-popup.component.js.map
+
+/***/ }),
+
+/***/ 345:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteInfo; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_translation_service__ = __webpack_require__(346);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+var RouteInfo = /** @class */ (function () {
+    function RouteInfo(navParams, ormService, viewCtrl, alertCtrl, navCtrl, translateService, spinnerDialog, translationService) {
+        this.navParams = navParams;
+        this.ormService = ormService;
+        this.viewCtrl = viewCtrl;
+        this.alertCtrl = alertCtrl;
+        this.navCtrl = navCtrl;
+        this.translateService = translateService;
+        this.spinnerDialog = spinnerDialog;
+        this.translationService = translationService;
+        this.currentProgress = 0;
+        this.translatePage = false;
+    }
+    RouteInfo.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var routeId, _a, _b, _c, score, _d, _e, _f;
+            return __generator(this, function (_g) {
+                switch (_g.label) {
+                    case 0:
+                        routeId = this.navParams.get('routeId');
+                        _a = this;
+                        _b = this.viewCtrl.data;
+                        return [4 /*yield*/, this.ormService.findRouteById(routeId)];
+                    case 1:
+                        _a.route = _b.route = _g.sent();
+                        //Fetch tasks in Route so Tools of tasks can be shown properly
+                        return [4 /*yield*/, this.route.getTasks()];
+                    case 2:
+                        //Fetch tasks in Route so Tools of tasks can be shown properly
+                        _g.sent();
+                        _c = this;
+                        return [4 /*yield*/, this.route.getTaskCount()];
+                    case 3:
+                        _c.totalTasks = _g.sent();
+                        _e = (_d = this.route).getScoreForUser;
+                        return [4 /*yield*/, this.ormService.getActiveUser()];
+                    case 4:
+                        score = _e.apply(_d, [_g.sent()]);
+                        this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+                        MathJax.typeset();
+                        _f = this;
+                        return [4 /*yield*/, this.translationService.getTranslationForRoute(this.route.code)];
+                    case 5:
+                        _f.translation = _g.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RouteInfo.prototype.doDownload = function (route) {
+        return __awaiter(this, void 0, void 0, function () {
+            var modalsService;
+            return __generator(this, function (_a) {
+                modalsService = this.viewCtrl.data.modalsService;
+                modalsService.doDownload(route);
+                return [2 /*return*/];
+            });
+        });
+    };
+    RouteInfo.prototype.showRoute = function (route) {
+        if (route.downloaded) {
+            this.viewCtrl.dismiss({ showRoute: true, route: route });
+        }
+    };
+    RouteInfo.prototype.removeRoute = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.spinnerDialog.show();
+                        return [4 /*yield*/, this.ormService.removeDownloadedRoute(this.route, true)];
+                    case 1:
+                        _a.sent();
+                        this.spinnerDialog.hide();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RouteInfo.prototype.displayRemoveTrailModal = function () {
+        var _this = this;
+        var modalsService = this.viewCtrl.data.modalsService;
+        modalsService.showDialog('a_route_info_modal_removeRoute', 'a_route_info_modal_removeRoute_msg', 'no', function () { }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.removeRoute()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    RouteInfo.prototype.toggleTranslation = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!!this.translation) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.translationService.getTranslationForRoute(this.route.code, true)];
+                    case 1:
+                        _a.translation = _b.sent();
+                        _b.label = 2;
+                    case 2:
+                        this.translatePage = this.translation && !this.translatePage;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RouteInfo = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'route-info',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/'<mcm-header transparent></mcm-header>\n<ion-content class="has-header transparent">\n    <div class="card title" *ngIf="route">\n        <p>{{ route.city }}, {{ route.countryCode }}</p>\n        <h1 *ngIf="!translatePage">{{ route.title }}</h1>\n        <h1 *ngIf="translatePage">{{ translation.title }}</h1>\n    </div>\n\n    <div class="image-box" *ngIf="route">\n        <ion-grid>\n            <ion-row align-items-center>\n                <ion-col col-4 class="button-container">\n<!--                    <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute()">-->\n<!--                        <img src="./assets/icons/delete.svg"/>-->\n<!--                    </button>-->\n                </ion-col>\n                <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">\n                    <div class="cover">\n                        <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n                    </div>\n                    <div class="indicator" *ngIf="route.isNarrativeEnabled()">\n                        <h3 no-margin>{{\'p_narrative_names_\' + route.getNarrativeName() | translate}}</h3>\n                        <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />\n                    </div>\n                </ion-col>\n\n                <!--TODO Sharing coming soon near your area-->\n                <ion-col col-4 class="button-container">\n                    <!--<button ion-button icon-only small round (click)="share(route)">-->\n                        <!--<img src="./assets/icons/share.svg"/>-->\n                    <!--</button>-->\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="card text-center basic-info">\n        <ion-grid no-padding>\n            <ion-row align-items-center>\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "a_t_grade" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.grade }}</span>\n                    </div>\n                    <div class="info-item border">\n                        <ion-label>{{ "a_t_distance" | translate }}</ion-label>\n                        <span *ngIf="route"> {{route.getDistance() | distance: \'m\'}} </span>\n                    </div>\n                </ion-col>\n\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "p_r_duration" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.duration }}</span>\n                    </div>\n                </ion-col>\n\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>\n                        <span>{{ totalTasks }}</span>\n                    </div>\n                    <div class="info-item border">\n                        <ion-label>{{ "a_r_length" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.length }}</span>\n                    </div>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="card text-center transparent">\n        <button *ngIf="!translation" color="dark" ion-button round (click)="toggleTranslation()">\n            dl translation\n        </button>\n        <button *ngIf="translation" color="dark" ion-button round (click)="toggleTranslation()">\n            translate\n        </button>\n    </div>\n\n    <div class="card">\n        <ion-label>{{\'current_progress\' | translate}}</ion-label>\n        <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>\n        <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">\n            <span class="icon finished">{{route.completedDate}}</span>\n            <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">\n                <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>\n                <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>\n                <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>\n            </div>\n            <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">\n                <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>\n            </div>\n        </div>\n    </div>\n\n    <div class="card">\n        <ion-label>{{ \'p_r_about\' | translate }}</ion-label>\n        <p *ngIf="route && !translatePage">{{ route.description }}</p>\n        <p *ngIf="translatePage">{{ translation.description }}</p>\n\n        <ion-label>{{ \'a_action_settings\' | translate }}</ion-label>\n        <p *ngIf="route">\n            <ion-row *ngIf="route.code">{{\'a_trailcode\' | translate}}: {{ route.code }}</ion-row>\n            <ion-row>{{ \'p_session_sorting_score\' | translate }}: {{route.getSettingStringValue("gamification", translateService)}}</ion-row>\n            <ion-row>{{ \'t_samplesolution\' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>\n            <ion-row>{{ \'a_hints\' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>\n            <ion-row>{{ \'p_r_validation\' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>\n            <ion-row>{{ \'p_r_feedback\' | translate }}: {{route.getSettingStringValue("answerFeedback", translateService)}}</ion-row>\n            <ion-row *ngIf="route.isNarrativeEnabled()">{{ \'p_narrative\' | translate }}: {{ \'p_narrative_names_\' + route.getNarrativeName() | translate }}</ion-row>\n            <ion-row *ngIf="!route.isNarrativeEnabled()">{{ \'p_narrative\' | translate }}: {{ \'p_narrative_names_none\' | translate }}</ion-row>\n        </p>\n\n        <div>\n            <ion-label>{{ \'a_r_equip\' | translate }}</ion-label>\n            <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>\n        </div>\n\n        <div class="path-info" *ngIf="route && route.getPathInfo()">\n            <ion-label>{{ \'a_r_path\' | translate }}</ion-label>\n            <ion-row>\n                <ion-col class="walk">\n                    <ion-icon name="md-walk"></ion-icon>\n                    {{route.getPathInfo()[\'path_walk\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="bike">\n                    <ion-icon name="md-bicycle" color="green"></ion-icon>\n                    {{route.getPathInfo()[\'path_bike\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="car">\n                    <ion-icon name="md-car" color="red"></ion-icon>\n                    {{route.getPathInfo()[\'path_car\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="public">\n                    <ion-icon name="md-train" color="yellow"></ion-icon>\n                    {{route.getPathInfo()[\'path_public\'][\'lengthText\']}}\n                </ion-col>\n            </ion-row>\n            <ion-row>\n                <ion-col class="sum-label">{{\'a_r_path_sum\' | translate}}</ion-col>\n                <ion-col class="sum-data">{{route.getPathInfo()[\'path_sum\'][\'lengthText\']}}</ion-col>\n            </ion-row>\n        </div>\n\n        <ion-label>{{ \'a_r_tags\' | translate }}</ion-label>\n        <p *ngIf="route">{{ route.tags }}</p>\n    </div>\n\n    <div class="card text-center transparent">\n        <button color="dark" ion-button round *ngIf="route && route.downloaded" (click)="displayRemoveTrailModal()">  <!--(click)="displayResetTasksModal()"-->\n            {{ \'a_r_remove_trail\' | translate }}\n        </button>\n    </div>\n</ion-content>\n\n<ion-footer>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && !route.downloaded"\n            (click)="doDownload(route)">\n        <img content src="./assets/icons/download.svg"> {{ \'a_r_download\' | translate }}\n    </button>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"\n            (click)="showRoute(route)">\n        <img content src="./assets/icons/play.svg"> {{ \'a_r_start\' | translate }}\n    </button>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"\n            (click)="showRoute(route)">\n        <img content src="./assets/icons/play.svg"> {{ \'a_r_continue\' | translate }}\n    </button>\n</ion-footer>\n\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__["a" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_7__app_api_services_translation_service__["a" /* TranslationService */]])
+    ], RouteInfo);
+    return RouteInfo;
+}());
+
+//# sourceMappingURL=RouteInfo.js.map
+
+/***/ }),
+
+/***/ 346:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TranslationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(46);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var TranslationService = /** @class */ (function () {
+    function TranslationService(http, apiConfig, storage) {
+        this.http = http;
+        this.apiConfig = apiConfig;
+        this.storage = storage;
+        // TODO make this configurable through settings page
+        this.translateLanguage = "en";
+        this.translateStorageBaseKey = "MCMTranslations";
+    }
+    TranslationService.prototype.getTranslationForRoute = function (code, fetchIfNotAvailable) {
+        if (fetchIfNotAvailable === void 0) { fetchIfNotAvailable = false; }
+        return __awaiter(this, void 0, void 0, function () {
+            var storageKey, trailTranslation, translations, translation;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        storageKey = this.translateStorageBaseKey + "-" + code;
+                        return [4 /*yield*/, this.storage.get(storageKey)];
+                    case 1:
+                        translations = _a.sent();
+                        if (!(!translations || !translations[this.translateLanguage] || !translations[this.translateLanguage].trail)) return [3 /*break*/, 5];
+                        if (!fetchIfNotAvailable) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.fetchRouteTranslation(code)];
+                    case 2:
+                        translation = _a.sent();
+                        if (!translation) return [3 /*break*/, 4];
+                        trailTranslation = translation;
+                        if (!translations) {
+                            translations = {};
+                        }
+                        if (!translations[this.translateLanguage]) {
+                            translations[this.translateLanguage] = {};
+                        }
+                        translations[this.translateLanguage].trail = trailTranslation;
+                        return [4 /*yield*/, this.storage.set(storageKey, translations)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        trailTranslation = translations[this.translateLanguage].trail;
+                        _a.label = 6;
+                    case 6: return [2 /*return*/, trailTranslation];
+                }
+            });
+        });
+    };
+    // TODO handle empty response
+    TranslationService.prototype.fetchRouteTranslation = function (code) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(this.apiConfig.rootUrl + "/translation/trail/by-code/" + code + "/" + this.translateLanguage).toPromise()];
+                    case 1:
+                        response = _a.sent();
+                        console.log(response.trail);
+                        return [2 /*return*/, response.trail];
+                }
+            });
+        });
+    };
+    // TODO handle empty response
+    TranslationService.prototype.fetchTaskTranslationsForRoute = function (code) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(this.apiConfig.rootUrl + "/translation/tasks/by-trail-code/" + code + "/" + this.translateLanguage).toPromise()];
+                    case 1:
+                        response = _a.sent();
+                        console.log(response.tasks);
+                        return [2 /*return*/, response.tasks];
+                }
+            });
+        });
+    };
+    TranslationService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__api_configuration__["a" /* ApiConfiguration */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
+    ], TranslationService);
+    return TranslationService;
+}());
+
+//# sourceMappingURL=translation.service.js.map
+
+/***/ }),
+
+/***/ 347:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CenteredTask; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+/**
+ * Generated class for the RouteInfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CenteredTask = /** @class */ (function () {
+    // public mustBeColored: boolean;
+    function CenteredTask(navCtrl, navParams, viewCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
+        this.tasks = [];
+    }
+    CenteredTask.prototype.showRoute = function (route, selectedTask) {
+        this.viewCtrl.dismiss({ route: route, selectedTask: selectedTask });
+    };
+    CenteredTask.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        this.route = this.navParams.get('route');
+                        this.score = this.navParams.get('score');
+                        //this.state = this.navParams.get('state');
+                        _a = this;
+                        return [4 /*yield*/, this.route.getTasks()];
+                    case 1:
+                        //this.state = this.navParams.get('state');
+                        _a.tasks = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CenteredTask.prototype.cancel = function () {
+        this.viewCtrl.dismiss();
+    };
+    CenteredTask = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'centered-task',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/'<div class="modal card task-select has-button-on-the-edge">\n\n    <div class="modal-content">\n        <h2 *ngIf="route">{{route.title}}</h2>\n        <p *ngIf="route"><b>{{ \'a_startAt\' | translate}}</b></p>\n        <div tappable class="dotted-border-bottom"\n             *ngFor="let item of tasks" (click) = "showRoute(route, item)">\n            <!--#{{item.position}} {{item.title}}-->\n            <!--&lt;!&ndash; green &ndash;&gt;<span *ngIf="score.getTasksSolved().indexOf(item.id) > -1" style="color: #4CAF50">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; red &ndash;&gt;<span *ngIf="score.getTasksFailed().indexOf(item.id) > -1" style="color: #E62B25">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; yellow &ndash;&gt;<span *ngIf="score.getTasksSolvedLow().indexOf(item.id) > -1" style="color: #F3B100">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash;alles andere&ndash;&gt;<span *ngIf="!(score.getTasksSolved().indexOf(item.id) > -1) && !(score.getTasksFailed().indexOf(item.id) > -1) && !(score.getTasksSolvedLow().indexOf(item.id) > -1)" style="color: black">#{{item.position}} {{item.title}}</span>-->\n            <!-- grau für skipped fehlt noch -->\n            <span\n                    [class.perfect]="(score.getTasksSolved().indexOf(item.id) > -1)"\n                    [class.failed]="(score.getTasksFailed().indexOf(item.id) > -1)"\n                    [class.good]="(score.getTasksSolvedLow().indexOf(item.id) > -1)">\n                    <!--[class.tasksSkippedColor]="(state.skippedTaskIds.indexOf(item.id) > -1)"-->\n                #{{item.position}} {{item.title}}\n            </span>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_view_controller__["a" /* ViewController */]])
+    ], CenteredTask);
+    return CenteredTask;
+}());
+
+//# sourceMappingURL=CenteredTask.js.map
+
+/***/ }),
+
+/***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6354,14 +6078,13 @@ DBC.initialize();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(797);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(798);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(335);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6528,7 +6251,7 @@ var ImagesService = /** @class */ (function () {
                         totalDownload = urls.length;
                         alreadyDownloaded = 0;
                         that = this;
-                        this.downloadQueue = __WEBPACK_IMPORTED_MODULE_5_async___default.a.queue(function (task, continueCallback) {
+                        this.downloadQueue = __WEBPACK_IMPORTED_MODULE_5_async__["a" /* default */].queue(function (task, continueCallback) {
                             function callback() {
                                 alreadyDownloaded++;
                                 console.log("download progress: " + alreadyDownloaded + "/" + totalDownload + " - " + task.imgFileName);
@@ -6583,7 +6306,7 @@ var ImagesService = /** @class */ (function () {
                         }, 8);
                         promise = new Promise(function (success, error) {
                             promiseError = error;
-                            _this.downloadQueue.drain = success;
+                            _this.downloadQueue.drain(success);
                         });
                         _loop_1 = function () {
                             var imgFileName, outputName, file, _a, _b;
@@ -6922,18 +6645,18 @@ var ImagesService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 432:
+/***/ 435:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7097,18 +6820,18 @@ var SessionUserService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 433:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionChatService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7376,18 +7099,18 @@ var SessionChatService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 435:
+/***/ 438:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionEventService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7582,18 +7305,18 @@ var SessionEventService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 436:
+/***/ 439:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserLeaderboardService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7678,334 +7401,36 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 575:
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMDownloadProgressPopupComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var MCMDownloadProgressPopupComponent = /** @class */ (function () {
-    function MCMDownloadProgressPopupComponent(viewCtrl, changeDetectorRef) {
-        var _this = this;
-        this.viewCtrl = viewCtrl;
-        this.changeDetectorRef = changeDetectorRef;
-        this.data = null;
-        this.progress = 0;
-        this.data = viewCtrl.data;
-        this.data.updateView = function () {
-            // make sure that angular detects changes
-            changeDetectorRef.detectChanges();
-            _this.progress = _this.data.currentProgress == 0 ? 0 :
-                Math.round((100 / _this.data.total) * _this.data.currentProgress);
-        };
-    }
-    MCMDownloadProgressPopupComponent.prototype.onCancelClick = function () {
-        if (this.viewCtrl.data.cancelCallback) {
-            this.viewCtrl.data.cancelCallback();
-        }
-    };
-    MCMDownloadProgressPopupComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-download-progress-popup',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="head">\n        <h2>{{data.titleKey | translate}}</h2>\n    </div>\n\n    <div class="modal-content">\n        <ion-grid no-padding>\n            <ion-row>\n                <ion-col>\n                    <!--<div class="container progress-vertical download">-->\n                        <!--<div class="bar" [ngStyle]="{\'width\': ((100/data.total)*data.currentProgress) +\'%\'}"></div>-->\n                    <!--</div>-->\n                    <progress-bar [progress]="progress" [color]="\'#036d99\'"></progress-bar>\n                </ion-col>\n            </ion-row>\n            <!--<ion-row>-->\n                <!--<ion-col col-6>-->\n                    <!--<p *ngIf="data.total != 0">{{((100/data.total)*data.currentProgress).toFixed(0)}}%</p>-->\n                <!--</ion-col>-->\n                <!--<ion-col col-6 text-right>-->\n                    <!--<p class="progress-files">{{ data.currentProgress }} / {{ data.total }}</p>-->\n                <!--</ion-col>-->\n            <!--</ion-row>-->\n        </ion-grid>\n    </div>\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="onCancelClick()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]])
-    ], MCMDownloadProgressPopupComponent);
-    return MCMDownloadProgressPopupComponent;
-}());
-
-//# sourceMappingURL=mcm-download-progress-popup.component.js.map
-
-/***/ }),
-
-/***/ 576:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteInfo; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__ = __webpack_require__(65);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-var RouteInfo = /** @class */ (function () {
-    function RouteInfo(navParams, ormService, viewCtrl, alertCtrl, navCtrl, translateService, spinnerDialog) {
-        this.navParams = navParams;
-        this.ormService = ormService;
-        this.viewCtrl = viewCtrl;
-        this.alertCtrl = alertCtrl;
-        this.navCtrl = navCtrl;
-        this.translateService = translateService;
-        this.spinnerDialog = spinnerDialog;
-        this.currentProgress = 0;
-    }
-    RouteInfo.prototype.ionViewWillEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var routeId, _a, _b, _c, score, _d, _e;
-            return __generator(this, function (_f) {
-                switch (_f.label) {
-                    case 0:
-                        routeId = this.navParams.get('routeId');
-                        _a = this;
-                        _b = this.viewCtrl.data;
-                        return [4 /*yield*/, this.ormService.findRouteById(routeId)];
-                    case 1:
-                        _a.route = _b.route = _f.sent();
-                        //Fetch tasks in Route so Tools of tasks can be shown properly
-                        return [4 /*yield*/, this.route.getTasks()];
-                    case 2:
-                        //Fetch tasks in Route so Tools of tasks can be shown properly
-                        _f.sent();
-                        _c = this;
-                        return [4 /*yield*/, this.route.getTaskCount()];
-                    case 3:
-                        _c.totalTasks = _f.sent();
-                        _e = (_d = this.route).getScoreForUser;
-                        return [4 /*yield*/, this.ormService.getActiveUser()];
-                    case 4:
-                        score = _e.apply(_d, [_f.sent()]);
-                        this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
-                        MathJax.typeset();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RouteInfo.prototype.doDownload = function (route) {
-        return __awaiter(this, void 0, void 0, function () {
-            var modalsService;
-            return __generator(this, function (_a) {
-                modalsService = this.viewCtrl.data.modalsService;
-                modalsService.doDownload(route);
-                return [2 /*return*/];
-            });
-        });
-    };
-    RouteInfo.prototype.showRoute = function (route) {
-        if (route.downloaded) {
-            this.viewCtrl.dismiss({ showRoute: true, route: route });
-        }
-    };
-    RouteInfo.prototype.removeRoute = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.spinnerDialog.show();
-                        return [4 /*yield*/, this.ormService.removeDownloadedRoute(this.route, true)];
-                    case 1:
-                        _a.sent();
-                        this.spinnerDialog.hide();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RouteInfo.prototype.displayRemoveTrailModal = function () {
-        var _this = this;
-        var modalsService = this.viewCtrl.data.modalsService;
-        modalsService.showDialog('a_route_info_modal_removeRoute', 'a_route_info_modal_removeRoute_msg', 'no', function () { }, 'yes', function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.removeRoute()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-    };
-    RouteInfo = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'route-info',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/'<mcm-header transparent></mcm-header>\n<ion-content class="has-header transparent">\n    <div class="card title" *ngIf="route">\n        <p>{{ route.city }}, {{ route.countryCode }}</p>\n        <h1>{{ route.title }}</h1>\n    </div>\n\n    <div class="image-box" *ngIf="route">\n        <ion-grid>\n            <ion-row align-items-center>\n                <ion-col col-4 class="button-container">\n<!--                    <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute()">-->\n<!--                        <img src="./assets/icons/delete.svg"/>-->\n<!--                    </button>-->\n                </ion-col>\n                <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">\n                    <div class="cover">\n                        <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n                    </div>\n                    <div class="indicator" *ngIf="route.isNarrativeEnabled()">\n                        <h3 no-margin>{{\'p_narrative_names_\' + route.getNarrativeName() | translate}}</h3>\n                        <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />\n                    </div>\n                </ion-col>\n\n                <!--TODO Sharing coming soon near your area-->\n                <ion-col col-4 class="button-container">\n                    <!--<button ion-button icon-only small round (click)="share(route)">-->\n                        <!--<img src="./assets/icons/share.svg"/>-->\n                    <!--</button>-->\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="card text-center basic-info">\n        <ion-grid no-padding>\n            <ion-row align-items-center>\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "a_t_grade" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.grade }}</span>\n                    </div>\n                    <div class="info-item border">\n                        <ion-label>{{ "a_t_distance" | translate }}</ion-label>\n                        <span *ngIf="route"> {{route.getDistance() | distance: \'m\'}} </span>\n                    </div>\n                </ion-col>\n\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "p_r_duration" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.duration }}</span>\n                    </div>\n                </ion-col>\n\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>\n                        <span>{{ totalTasks }}</span>\n                    </div>\n                    <div class="info-item border">\n                        <ion-label>{{ "a_r_length" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.length }}</span>\n                    </div>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="card">\n        <ion-label>{{\'current_progress\' | translate}}</ion-label>\n        <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>\n        <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">\n            <span class="icon finished">{{route.completedDate}}</span>\n            <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">\n                <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>\n                <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>\n                <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>\n            </div>\n            <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">\n                <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>\n            </div>\n        </div>\n    </div>\n\n    <div class="card">\n        <ion-label>{{ \'p_r_about\' | translate }}</ion-label>\n        <p *ngIf="route">{{ route.description }}</p>\n\n        <ion-label>{{ \'a_action_settings\' | translate }}</ion-label>\n        <p *ngIf="route">\n            <ion-row *ngIf="route.code">{{\'a_trailcode\' | translate}}: {{ route.code }}</ion-row>\n            <ion-row>{{ \'p_session_sorting_score\' | translate }}: {{route.getSettingStringValue("gamification", translateService)}}</ion-row>\n            <ion-row>{{ \'t_samplesolution\' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>\n            <ion-row>{{ \'a_hints\' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>\n            <ion-row>{{ \'p_r_validation\' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>\n            <ion-row>{{ \'p_r_feedback\' | translate }}: {{route.getSettingStringValue("answerFeedback", translateService)}}</ion-row>\n            <ion-row *ngIf="route.isNarrativeEnabled()">{{ \'p_narrative\' | translate }}: {{ \'p_narrative_names_\' + route.getNarrativeName() | translate }}</ion-row>\n            <ion-row *ngIf="!route.isNarrativeEnabled()">{{ \'p_narrative\' | translate }}: {{ \'p_narrative_names_none\' | translate }}</ion-row>\n        </p>\n\n        <div>\n            <ion-label>{{ \'a_r_equip\' | translate }}</ion-label>\n            <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>\n        </div>\n\n        <div class="path-info" *ngIf="route && route.getPathInfo()">\n            <ion-label>{{ \'a_r_path\' | translate }}</ion-label>\n            <ion-row>\n                <ion-col class="walk">\n                    <ion-icon name="md-walk"></ion-icon>\n                    {{route.getPathInfo()[\'path_walk\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="bike">\n                    <ion-icon name="md-bicycle" color="green"></ion-icon>\n                    {{route.getPathInfo()[\'path_bike\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="car">\n                    <ion-icon name="md-car" color="red"></ion-icon>\n                    {{route.getPathInfo()[\'path_car\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="public">\n                    <ion-icon name="md-train" color="yellow"></ion-icon>\n                    {{route.getPathInfo()[\'path_public\'][\'lengthText\']}}\n                </ion-col>\n            </ion-row>\n            <ion-row>\n                <ion-col class="sum-label">{{\'a_r_path_sum\' | translate}}</ion-col>\n                <ion-col class="sum-data">{{route.getPathInfo()[\'path_sum\'][\'lengthText\']}}</ion-col>\n            </ion-row>\n        </div>\n\n        <ion-label>{{ \'a_r_tags\' | translate }}</ion-label>\n        <p *ngIf="route">{{ route.tags }}</p>\n    </div>\n\n    <div class="card text-center transparent">\n        <button color="dark" ion-button round *ngIf="route && route.downloaded" (click)="displayRemoveTrailModal()">  <!--(click)="displayResetTasksModal()"-->\n            {{ \'a_r_remove_trail\' | translate }}\n        </button>\n    </div>\n</ion-content>\n\n<ion-footer>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && !route.downloaded"\n            (click)="doDownload(route)">\n        <img content src="./assets/icons/download.svg"> {{ \'a_r_download\' | translate }}\n    </button>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"\n            (click)="showRoute(route)">\n        <img content src="./assets/icons/play.svg"> {{ \'a_r_start\' | translate }}\n    </button>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"\n            (click)="showRoute(route)">\n        <img content src="./assets/icons/play.svg"> {{ \'a_r_continue\' | translate }}\n    </button>\n</ion-footer>\n\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__["a" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
-    ], RouteInfo);
-    return RouteInfo;
-}());
-
-//# sourceMappingURL=RouteInfo.js.map
-
-/***/ }),
-
-/***/ 577:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CenteredTask; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
+/* tslint:disable */
 
 /**
- * Generated class for the RouteInfoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * Contains global configuration for API services
  */
-var CenteredTask = /** @class */ (function () {
-    // public mustBeColored: boolean;
-    function CenteredTask(navCtrl, navParams, viewCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.tasks = [];
+var ApiConfiguration = /** @class */ (function () {
+    function ApiConfiguration() {
+        // rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
+        // rootUrl: string = "https://api-dev.mathcitymap.eu/public/index.php";
+        this.rootUrl = "http://192.168.178.28/mcmapi";
     }
-    CenteredTask.prototype.showRoute = function (route, selectedTask) {
-        this.viewCtrl.dismiss({ route: route, selectedTask: selectedTask });
-    };
-    CenteredTask.prototype.ionViewWillEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        this.route = this.navParams.get('route');
-                        this.score = this.navParams.get('score');
-                        //this.state = this.navParams.get('state');
-                        _a = this;
-                        return [4 /*yield*/, this.route.getTasks()];
-                    case 1:
-                        //this.state = this.navParams.get('state');
-                        _a.tasks = _b.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    CenteredTask.prototype.cancel = function () {
-        this.viewCtrl.dismiss();
-    };
-    CenteredTask = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'centered-task',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/'<div class="modal card task-select has-button-on-the-edge">\n\n    <div class="modal-content">\n        <h2 *ngIf="route">{{route.title}}</h2>\n        <p *ngIf="route"><b>{{ \'a_startAt\' | translate}}</b></p>\n        <div tappable class="dotted-border-bottom"\n             *ngFor="let item of tasks" (click) = "showRoute(route, item)">\n            <!--#{{item.position}} {{item.title}}-->\n            <!--&lt;!&ndash; green &ndash;&gt;<span *ngIf="score.getTasksSolved().indexOf(item.id) > -1" style="color: #4CAF50">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; red &ndash;&gt;<span *ngIf="score.getTasksFailed().indexOf(item.id) > -1" style="color: #E62B25">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; yellow &ndash;&gt;<span *ngIf="score.getTasksSolvedLow().indexOf(item.id) > -1" style="color: #F3B100">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash;alles andere&ndash;&gt;<span *ngIf="!(score.getTasksSolved().indexOf(item.id) > -1) && !(score.getTasksFailed().indexOf(item.id) > -1) && !(score.getTasksSolvedLow().indexOf(item.id) > -1)" style="color: black">#{{item.position}} {{item.title}}</span>-->\n            <!-- grau für skipped fehlt noch -->\n            <span\n                    [class.perfect]="(score.getTasksSolved().indexOf(item.id) > -1)"\n                    [class.failed]="(score.getTasksFailed().indexOf(item.id) > -1)"\n                    [class.good]="(score.getTasksSolvedLow().indexOf(item.id) > -1)">\n                    <!--[class.tasksSkippedColor]="(state.skippedTaskIds.indexOf(item.id) > -1)"-->\n                #{{item.position}} {{item.title}}\n            </span>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_view_controller__["a" /* ViewController */]])
-    ], CenteredTask);
-    return CenteredTask;
+    ApiConfiguration = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    ], ApiConfiguration);
+    return ApiConfiguration;
 }());
 
-//# sourceMappingURL=CenteredTask.js.map
+//# sourceMappingURL=api-configuration.js.map
 
 /***/ }),
 
@@ -8014,9 +7439,9 @@ var CenteredTask = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProblemReportService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_service__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
 var __extends = (this && this.__extends) || (function () {
@@ -8107,7 +7532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(632);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8562,8 +7987,8 @@ var YoutubePlayerService = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return tilesDb; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(36);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8688,14 +8113,90 @@ var tilesDb = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var SearchPipe = /** @class */ (function () {
+    function SearchPipe() {
+    }
+    SearchPipe.prototype.transform = function (value, keys, term) {
+        if (!term)
+            return value;
+        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
+        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
+        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
+        return result;
+    };
+    SearchPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'search'
+        })
+    ], SearchPipe);
+    return SearchPipe;
+}());
+
+//# sourceMappingURL=search.pipe.js.map
+
+/***/ }),
+
+/***/ 627:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var LinkHttpsPipe = /** @class */ (function () {
+    /**
+     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+    */
+    function LinkHttpsPipe() {
+    }
+    LinkHttpsPipe.prototype.transform = function (url) {
+        url = url.replace('http://', 'https://');
+        return url.startsWith("https://") ? url : "https://" + url;
+    };
+    LinkHttpsPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'linkHttps'
+        })
+        /**
+         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+        */
+    ], LinkHttpsPipe);
+    return LinkHttpsPipe;
+}());
+
+//# sourceMappingURL=linkHttps.pipe.js.map
+
+/***/ }),
+
+/***/ 628:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout__ = __webpack_require__(627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_component__ = __webpack_require__(114);
@@ -8906,7 +8407,7 @@ var DashboardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 628:
+/***/ 630:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8924,13 +8425,13 @@ var DashboardPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__env_env__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__env_env__ = __webpack_require__(196);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9540,7 +9041,7 @@ var RoutesMapPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 629:
+/***/ 631:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9619,82 +9120,6 @@ var PortalPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 630:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var SearchPipe = /** @class */ (function () {
-    function SearchPipe() {
-    }
-    SearchPipe.prototype.transform = function (value, keys, term) {
-        if (!term)
-            return value;
-        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
-        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
-        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
-        return result;
-    };
-    SearchPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'search'
-        })
-    ], SearchPipe);
-    return SearchPipe;
-}());
-
-//# sourceMappingURL=search.pipe.js.map
-
-/***/ }),
-
-/***/ 631:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var LinkHttpsPipe = /** @class */ (function () {
-    /**
-     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-    */
-    function LinkHttpsPipe() {
-    }
-    LinkHttpsPipe.prototype.transform = function (url) {
-        url = url.replace('http://', 'https://');
-        return url.startsWith("https://") ? url : "https://" + url;
-    };
-    LinkHttpsPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'linkHttps'
-        })
-        /**
-         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-        */
-    ], LinkHttpsPipe);
-    return LinkHttpsPipe;
-}());
-
-//# sourceMappingURL=linkHttps.pipe.js.map
-
-/***/ }),
-
 /***/ 632:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -9705,11 +9130,11 @@ var LinkHttpsPipe = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_images_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10365,7 +9790,7 @@ var ChatPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_api_services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_api_services_session_service__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10528,7 +9953,7 @@ var MCMRouteByCodeModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 634:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10567,7 +9992,7 @@ var MCMIntroModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 635:
+/***/ 636:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10575,7 +10000,7 @@ var MCMIntroModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10655,7 +10080,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 636:
+/***/ 637:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10663,7 +10088,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_home__ = __webpack_require__(150);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10749,47 +10174,18 @@ var MCMTrailFinishedModal = /** @class */ (function () {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_reflect_metadata__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_reflect_metadata___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_reflect_metadata__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_module__ = __webpack_require__(644);
 
 
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
 
 /***/ }),
 
-/***/ 64:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-/* tslint:disable */
-
-/**
- * Contains global configuration for API services
- */
-var ApiConfiguration = /** @class */ (function () {
-    function ApiConfiguration() {
-        // rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
-        this.rootUrl = "https://api-dev.mathcitymap.eu/public/index.php";
-    }
-    ApiConfiguration = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], ApiConfiguration);
-    return ApiConfiguration;
-}());
-
-//# sourceMappingURL=api-configuration.js.map
-
-/***/ }),
-
-/***/ 643:
+/***/ 644:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10797,58 +10193,58 @@ var ApiConfiguration = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(576);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular_linky__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(575);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(633);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(581);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(347);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(300);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(634);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(574);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(636);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__services_zoom_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10936,18 +10332,18 @@ var AppModule = /** @class */ (function () {
                     swipeBackEnabled: false
                 }, {
                     links: [
-                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -11023,10 +10419,10 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(575);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(576);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(347);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
@@ -11377,13 +10773,13 @@ var BaseService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GpsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(300);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(303);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11662,7 +11058,7 @@ var CustomReplaySubject = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 792:
+/***/ 793:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11747,7 +11143,7 @@ var InitialMigration1513274191111 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 793:
+/***/ 794:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11817,7 +11213,7 @@ var FailedTaskMigration1515428187000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 794:
+/***/ 795:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11858,7 +11254,7 @@ var User = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 795:
+/***/ 796:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11903,7 +11299,7 @@ var State = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 796:
+/***/ 797:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12004,7 +11400,7 @@ var TaskState = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 799:
+/***/ 800:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12074,17 +11470,17 @@ var AddImageUrlAndDownloadedFlagMigration1513679923000 = /** @class */ (function
 
 /***/ }),
 
-/***/ 800:
+/***/ 801:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CacheManagerMCM; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(801);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(802);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(623);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(36);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -12222,7 +11618,7 @@ var CacheManagerMCM = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 801:
+/***/ 802:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12247,7 +11643,7 @@ var MyMath = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 803:
+/***/ 804:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12317,7 +11713,7 @@ var AddUnlockedColumn1516037215000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 804:
+/***/ 805:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12387,7 +11783,7 @@ var AddCompletedColumn1519817905000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 812:
+/***/ 813:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12452,7 +11848,7 @@ var DBC_Plan = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 813:
+/***/ 814:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12530,7 +11926,7 @@ var AddVisibleColumn1526306624000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 814:
+/***/ 815:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12608,7 +12004,7 @@ var AddLangCodeColumn1526306730000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 815:
+/***/ 816:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12686,7 +12082,7 @@ var AddDownloadDateColumn15711518720000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 816:
+/***/ 817:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12764,7 +12160,7 @@ var AddCompletedDateColumn15713974540000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 817:
+/***/ 818:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12862,7 +12258,7 @@ var AddZipMapFields15783117210000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 818:
+/***/ 819:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12940,7 +12336,7 @@ var AddSavedTasks16013795030000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 819:
+/***/ 820:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13018,7 +12414,7 @@ var AddSubtasks16026790930000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 820:
+/***/ 821:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13096,7 +12492,7 @@ var AddPositionField16194302450000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 821:
+/***/ 822:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13177,7 +12573,7 @@ var AddPathFields16208100470000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 822:
+/***/ 823:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13255,7 +12651,7 @@ var AddZoom16225449820000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 823:
+/***/ 824:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13336,7 +12732,7 @@ var AddForceSubtaskAndArLink16552845000000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 824:
+/***/ 825:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13414,7 +12810,7 @@ var AddTaskCode17026521590000 = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 825:
+/***/ 826:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13498,7 +12894,7 @@ var RenameParentIdAndAddTaskFormatAndPosition17067919700000 = /** @class */ (fun
 
 /***/ }),
 
-/***/ 826:
+/***/ 827:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13576,21 +12972,801 @@ var AddGroupsFinished17071440460000 = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 828:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return McmImageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_images_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__ = __webpack_require__(65);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the McmImageComponent component.
+ *
+ * This component shall encapsulate all functionality regarding images, e.g. downloading, resizing
+ * or viewing in fullscreen.
+ */
+var McmImageComponent = /** @class */ (function () {
+    function McmImageComponent(imagesService, photoViewerPlugin, spinnerDialog) {
+        this.imagesService = imagesService;
+        this.photoViewerPlugin = photoViewerPlugin;
+        this.spinnerDialog = spinnerDialog;
+        this.offline = true;
+        this.fullWidth = false;
+        this.photoViewer = false;
+        this.click = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    McmImageComponent.prototype.ngOnChanges = function () {
+        this.imageUrl = this.offline ? this.imagesService.getOfflineURL(this.src)
+            : this.imagesService.getOnlineURL(this.src);
+    };
+    McmImageComponent.prototype.onClick = function ($event) {
+        var _this = this;
+        this.click.next($event);
+        if (this.photoViewer && __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */].isPluginAvailable(__WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */])) {
+            this.spinnerDialog.show();
+            setTimeout(function () {
+                // use short timeout to let spinner dialog appear
+                _this.photoViewerPlugin.show(_this.offline ? _this.imagesService.getOfflineURL(_this.src, undefined, undefined, true) : _this.imageUrl);
+                setTimeout(function () {
+                    // photoviewer doesn't have callback when user closes it => hide spinner in background
+                    _this.spinnerDialog.hide();
+                }, 1000);
+            }, 100);
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], McmImageComponent.prototype, "src", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], McmImageComponent.prototype, "offline", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], McmImageComponent.prototype, "fullWidth", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], McmImageComponent.prototype, "photoViewer", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
+    ], McmImageComponent.prototype, "click", void 0);
+    McmImageComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-image',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/'<!-- Generated template for the McmImageComponent component -->\n<img [src]="imageUrl" [ngClass]="{\'full-width\': fullWidth}" (click)="onClick($event)"/>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
+    ], McmImageComponent);
+    return McmImageComponent;
+}());
+
+//# sourceMappingURL=mcm-image.js.map
+
+/***/ }),
+
+/***/ 829:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMHeaderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_modals_service__ = __webpack_require__(66);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var MCMHeaderComponent = /** @class */ (function () {
+    function MCMHeaderComponent(navCtrl, navParams, viewCtrl, modalService, modalCtrl, deepLinker) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
+        this.modalService = modalService;
+        this.modalCtrl = modalCtrl;
+        this.deepLinker = deepLinker;
+        this.showBackButton = false;
+        this.transparent = false;
+        this.isOpeningRoute = false;
+        this.currentpage = this.viewCtrl.name;
+    }
+    MCMHeaderComponent.prototype.retriveTitle = function () {
+        //console.log('currentpage ',this.currentpage);
+        if (this.navParams && this.navParams.data.headerTitle) {
+            return this.navParams.data.headerTitle;
+        }
+        if (this.currentpage == 'InfoPage') {
+            return 'a_about_mcm_title';
+        }
+        if (this.currentpage == 'SettingsPage') {
+            return 'a_action_settings';
+        }
+        if (this.currentpage == 'ModalCmp') {
+            return '';
+        }
+        return this.currentpage;
+    };
+    MCMHeaderComponent.prototype.ngOnInit = function () {
+        this.showBackButton = this.navCtrl.canGoBack();
+        if (this.currentpage == 'ModalCmp') {
+            this.transparent = true;
+        }
+    };
+    MCMHeaderComponent.prototype.goToDashboard = function () {
+        var _this = this;
+        this.navCtrl.setRoot('DashboardPage').then(function () {
+            _this.navCtrl.popToRoot();
+        });
+    };
+    MCMHeaderComponent.prototype.goBack = function () {
+        var _this = this;
+        console.log('Header going back');
+        if (this.viewCtrl.instance.goBack) {
+            return this.viewCtrl.instance.goBack();
+        }
+        if (this.currentpage === 'TasksMap') {
+            var tasksMap = this.navCtrl.getActive().instance;
+            if (tasksMap.sessionInfo != null) {
+                console.log('go back from active session');
+                console.log(tasksMap.route.id);
+                tasksMap.sessionFinished();
+            }
+            else {
+                if (!this.isOpeningRoute) {
+                    this.isOpeningRoute = true;
+                    this.navCtrl.pop({}, function () {
+                        // necessary because of bug which does not update URL
+                        _this.deepLinker.navChange('back');
+                    });
+                    this.modalService.showRoute(tasksMap.route, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            this.isOpeningRoute = false;
+                            return [2 /*return*/];
+                        });
+                    }); });
+                }
+            }
+        }
+        else {
+            this.navCtrl.pop({}, function () {
+                // necessary because of bug which does not update URL
+                _this.deepLinker.navChange('back');
+            });
+        }
+    };
+    MCMHeaderComponent.prototype.closeModal = function () {
+        this.viewCtrl.dismiss(this.modalCtrl);
+    };
+    MCMHeaderComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-header',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">\n        <ion-buttons left>\n            <button ion-button icon-only *ngIf="showBackButton && currentpage != \'ModalCmp\'" (click)="goBack()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n            <button ion-button icon-only *ngIf="currentpage == \'ModalCmp\'" (click)="closeModal()">\n                <!--<img class="header-icon" src="assets/icons/icon_close-modal.svg"/>-->\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n        </ion-buttons>\n        <ion-title>{{ retriveTitle() | translate }}</ion-title>\n        <ion-buttons end></ion-buttons>\n    </ion-toolbar>\n</ion-header>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["p" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_3__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* DeepLinker */]])
+    ], MCMHeaderComponent);
+    return MCMHeaderComponent;
+}());
+
+//# sourceMappingURL=mcm-header.component.js.map
+
+/***/ }),
+
+/***/ 830:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DistancePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+/*
+ * this is still pretty basic and could defenitely use some rework in terms of international scale and number notation
+ * so far the functiuonalities are:
+ * - checks if the value is over o km and if so, then converts m to km and adds the correct unit
+*/
+var DistancePipe = /** @class */ (function () {
+    function DistancePipe() {
+    }
+    DistancePipe.prototype.transform = function (value, unit) {
+        /*     console.log('value', value); */
+        if (value > 0 && value < 1000) {
+            return value + ' ' + unit;
+        }
+        else if (value > 1000) {
+            return (Math.round(value / 100) / 10) + ' km';
+        }
+        else if (value <= 0) {
+            return 0 + ' ' + unit;
+        }
+    };
+    DistancePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'distance' })
+    ], DistancePipe);
+    return DistancePipe;
+}());
+
+//# sourceMappingURL=distance.pipe.js.map
+
+/***/ }),
+
+/***/ 831:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMProgressBarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+var MCMProgressBarComponent = /** @class */ (function () {
+    function MCMProgressBarComponent(helper) {
+        this.helper = helper;
+    }
+    MCMProgressBarComponent.prototype.ngOnChanges = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.route && this.route.scores)) return [3 /*break*/, 5];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
+                    case 2:
+                        data = _a.sent();
+                        this.currentProgress = data.currentProgress;
+                        this.total = data.totalTasks;
+                        this.progressWidth = (100 / this.total) * this.currentProgress;
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        if (this.total && this.currentProgress) {
+                            this.progressWidth = (100 / this.total) * this.currentProgress;
+                        }
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
+    ], MCMProgressBarComponent.prototype, "route", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], MCMProgressBarComponent.prototype, "isAudioPlaying", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], MCMProgressBarComponent.prototype, "isAudio", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], MCMProgressBarComponent.prototype, "remainingTime", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], MCMProgressBarComponent.prototype, "currentProgress", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Number)
+    ], MCMProgressBarComponent.prototype, "total", void 0);
+    MCMProgressBarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'mcm-progress-bar',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/'<span *ngIf="!isAudio">{{ currentProgress }} / {{ total }}</span>\n<div class="container progress-vertical route">\n    <div class="bar" [ngStyle]="{\'width\': ((100/total)*currentProgress) +\'%\'}"></div>\n</div>\n<!-- +900 to display 00:00 remaining only a short time-->\n<span *ngIf="isAudio && isAudioPlaying" class="audio">{{ (total - currentProgress)+900 | date: \'mm:ss\' }} </span>\n<span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: \'mm:ss\' }} </span>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
+    ], MCMProgressBarComponent);
+    return MCMProgressBarComponent;
+}());
+
+//# sourceMappingURL=mcm-progress-bar.js.map
+
+/***/ }),
+
+/***/ 832:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyLoadImagesDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_images_service__ = __webpack_require__(36);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+/**
+ * Angular Lazy Loading Images Directive
+ *
+ * The library allows to lazy load images from your web application
+ * using the MutationObserver and the IntersectionObserver. Images will be loaded as
+ * soon as they enter the viewport in a non-blocking way.
+ */
+var LazyLoadImagesDirective = /** @class */ (function () {
+    function LazyLoadImagesDirective(element, renderer, ngZone, platformId, imagesService) {
+        this.renderer = renderer;
+        this.ngZone = ngZone;
+        this.platformId = platformId;
+        this.imagesService = imagesService;
+        this.rootElement = element.nativeElement;
+    }
+    LazyLoadImagesDirective.prototype.init = function () {
+        var _this = this;
+        this.registerIntersectionObserver();
+        this.observeDOMChanges(this.rootElement, function () {
+            var imagesFoundInDOM = _this.getAllImagesToLazyLoad(_this.rootElement);
+            imagesFoundInDOM.forEach(function (image) { return _this.intersectionObserver.observe(image); });
+        });
+    };
+    LazyLoadImagesDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        if (!this.isBrowser()) {
+            return;
+        }
+        this.ngZone.runOutsideAngular(function () { return _this.init(); });
+    };
+    LazyLoadImagesDirective.prototype.ngOnDestroy = function () {
+        if (this.intersectionObserver) {
+            this.intersectionObserver.disconnect();
+        }
+    };
+    LazyLoadImagesDirective.prototype.isBrowser = function () {
+        return Object(__WEBPACK_IMPORTED_MODULE_1__angular_common__["j" /* isPlatformBrowser */])(this.platformId);
+    };
+    LazyLoadImagesDirective.prototype.registerIntersectionObserver = function () {
+        var _this = this;
+        this.intersectionObserver = new IntersectionObserver(function (images) { return images.forEach(function (image) { return _this.onIntersectionChange(image); }); }, this.intersectionObserverConfig instanceof Object ? this.intersectionObserverConfig : undefined);
+        return this.intersectionObserver;
+    };
+    LazyLoadImagesDirective.prototype.observeDOMChanges = function (rootElement, onChange) {
+        // Create a Mutation Observer instance
+        var observer = new MutationObserver(function (mutations) { return onChange(mutations); });
+        // Observer Configuration
+        var observerConfig = {
+            attributes: true,
+            characterData: true,
+            childList: true,
+            subtree: true
+        };
+        // Observe Directive DOM Node
+        observer.observe(rootElement, observerConfig);
+        // Fire onChange callback to check current DOM nodes
+        onChange();
+        return observer;
+    };
+    LazyLoadImagesDirective.prototype.getAllImagesToLazyLoad = function (pageNode) {
+        return Array.from(pageNode.querySelectorAll('img[data-src], [data-srcset], [data-background-src], img[data-async-src], [data-async-background-src]'));
+    };
+    LazyLoadImagesDirective.prototype.onIntersectionChange = function (image) {
+        if (!image.isIntersecting) {
+            return;
+        }
+        this.onImageAppearsInViewport(image.target);
+    };
+    LazyLoadImagesDirective.prototype.onImageAppearsInViewport = function (image) {
+        var _this = this;
+        if (image.dataset.asyncSrc) {
+            this.imagesService.getAsyncImageURL(image.dataset.asyncSrc, this.imageSize).then(function (asyncSrc) {
+                _this.renderer.setAttribute(image, 'src', asyncSrc);
+            });
+            this.renderer.removeAttribute(image, 'data-async-src');
+        }
+        if (image.dataset.src) {
+            this.renderer.setAttribute(image, 'src', image.dataset.src);
+            this.renderer.removeAttribute(image, 'data-src');
+        }
+        if (image.dataset.srcset) {
+            this.renderer.setAttribute(image, 'srcset', image.dataset.srcset);
+            this.renderer.removeAttribute(image, 'data-srcset');
+        }
+        if (image.dataset.asyncBackgroundSrc) {
+            this.imagesService.getAsyncImageURL(image.dataset.asyncBackgroundSrc, this.imageSize).then(function (asyncSrc) {
+                _this.renderer.setStyle(image, 'background-image', "url(" + asyncSrc + ")");
+            });
+            this.renderer.removeAttribute(image, 'data-async-background-src');
+        }
+        if (image.dataset.backgroundSrc) {
+            this.renderer.setStyle(image, 'background-image', "url(" + image.dataset.backgroundSrc + ")");
+            this.renderer.removeAttribute(image, 'data-background-src');
+        }
+        // Stop observing the current target
+        if (this.intersectionObserver) {
+            this.intersectionObserver.unobserve(image);
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('lazy-load-images'),
+        __metadata("design:type", Object)
+    ], LazyLoadImagesDirective.prototype, "intersectionObserverConfig", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('image-size'),
+        __metadata("design:type", String)
+    ], LazyLoadImagesDirective.prototype, "imageSize", void 0);
+    LazyLoadImagesDirective = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
+            selector: '[lazy-load-images]'
+        }),
+        __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_0__angular_core__["PLATFORM_ID"])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], Object, __WEBPACK_IMPORTED_MODULE_2__services_images_service__["a" /* ImagesService */]])
+    ], LazyLoadImagesDirective);
+    return LazyLoadImagesDirective;
+}());
+
+//# sourceMappingURL=ngx-lazy-load-images.directive.js.map
+
+/***/ }),
+
+/***/ 833:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+var RouteTeaserComponent = /** @class */ (function () {
+    function RouteTeaserComponent(modalsService, ormService, helper, dbUpdater, translateService) {
+        this.modalsService = modalsService;
+        this.ormService = ormService;
+        this.helper = helper;
+        this.dbUpdater = dbUpdater;
+        this.translateService = translateService;
+        this.downloadRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.removeRoute = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.currentProgress = 0;
+        this.total = 0;
+        this.completedRadius = 339.292;
+    }
+    RouteTeaserComponent.prototype.ngOnChanges = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, data;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!(this.route && this.route.downloaded)) return [3 /*break*/, 3];
+                        _a = this;
+                        return [4 /*yield*/, this.route.getTaskCount()];
+                    case 1:
+                        _a.total = _b.sent();
+                        if (!this.route.scores) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.helper.calculateProgress(this.route)];
+                    case 2:
+                        data = _b.sent();
+                        this.currentProgress = data.currentProgress;
+                        this.completedRadius = this.calculatePercentage();
+                        _b.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RouteTeaserComponent.prototype.calculatePercentage = function () {
+        var c = 2 * Math.PI * 54;
+        var completedPercentage = (1 / this.total) * this.currentProgress;
+        return c * (1 - completedPercentage);
+    };
+    RouteTeaserComponent.prototype.doDownload = function (event, route) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        event.stopPropagation();
+                        return [4 /*yield*/, this.modalsService.doDownload(route)];
+                    case 1:
+                        if (_a.sent()) {
+                            this.downloadRoute.emit({ route: route });
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RouteTeaserComponent.prototype.deleteRoute = function (event, route) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        event.stopPropagation();
+                        return [4 /*yield*/, this.ormService.removeDownloadedRoute(route, true)];
+                    case 1:
+                        if (_a.sent()) {
+                            this.removeRoute.emit();
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__entity_Route__["a" /* Route */])
+    ], RouteTeaserComponent.prototype, "route", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], RouteTeaserComponent.prototype, "isOnline", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", Object)
+    ], RouteTeaserComponent.prototype, "downloadRoute", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        __metadata("design:type", Object)
+    ], RouteTeaserComponent.prototype, "removeRoute", void 0);
+    RouteTeaserComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'route-teaser',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/'<div class="main">\n    <div *ngIf="route" class="container image" [ngClass]="{\'downloaded\' : !!route.downloaded, \'completed\': !!route.completed}">\n        <svg class="progress" width="120" height="120" viewBox="0 0 120 120">\n            <circle class="progress__meter" cx="60" cy="60" r="54" stroke-width="12"></circle>\n            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{\'stroke-dasharray\': 339.292, \'stroke-dashoffset\': completedRadius}"></circle>\n        </svg>\n        <div class="cover">\n            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n        </div>\n        <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>\n    </div>\n\n    <div *ngIf="route" class="container text">\n        <h2 class="item-text-wrap">{{route.title}}</h2>\n        <div class="bottom">\n            <div class="text">\n            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: \'m\'}}</span>\n            <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>\n            </div>\n            <div *ngIf="route" class="container buttons">\n                <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">\n                    <img src="./assets/icons/download.svg"/>\n                </button>\n                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">\n                    <img src="./assets/icons/delete.svg"/>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="secondary">\n    <span class="icon key" no-margin>{{route.code}}</span>\n    <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>\n    <!--<mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>-->\n    <div class="evaluation">\n        <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>\n        <p class="icon finished" *ngIf="!route?.completed">{{currentProgress}} / {{total}}</p>\n        <div class="ratings" *ngIf="route?.scores && route.isAnswerFeedbackEnabled()">\n            <div class="rating perfect">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating good">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolvedLow().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating failed">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksFailed().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n        <div class="ratings" *ngIf="route?.scores && !route.isAnswerFeedbackEnabled()">\n            <div class="rating saved">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSaved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n    </div>\n\n    <!--Dummy just for quick testing purposes  -->\n    <!--<div class="evaluation">-->\n        <!--<span class="icon finished">Oct 21 2019</span>-->\n        <!--<div class="ratings">-->\n            <!--<div class="rating perfect"><p>1</p></div>-->\n            <!--<div class="rating good"><p>3</p></div>-->\n            <!--<div class="rating failed"><p>20</p></div>-->\n        <!--</div>-->\n    <!--</div>-->\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_4__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__["c" /* TranslateService */]])
+    ], RouteTeaserComponent);
+    return RouteTeaserComponent;
+}());
+
+//# sourceMappingURL=route-teaser.js.map
+
+/***/ }),
+
+/***/ 834:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalizedDatePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LocalizedDatePipe = /** @class */ (function () {
+    function LocalizedDatePipe(translateService) {
+        this.translateService = translateService;
+    }
+    LocalizedDatePipe.prototype.transform = function (value, pattern) {
+        if (pattern === void 0) { pattern = 'mediumDate'; }
+        var datePipe = new __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* DatePipe */](this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang);
+        return datePipe.transform(value, pattern);
+    };
+    LocalizedDatePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Pipe"])({
+            name: 'localizedDate',
+            pure: false
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */]])
+    ], LocalizedDatePipe);
+    return LocalizedDatePipe;
+}());
+
+//# sourceMappingURL=localDate.pipe.js.map
+
+/***/ }),
+
 /***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Route; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Task2Route__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Score__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Task2Route__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env_env__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env_env__ = __webpack_require__(196);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -14164,22 +14340,22 @@ var Route = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatAndSessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(435);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1099);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(438);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(87);

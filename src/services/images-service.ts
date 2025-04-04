@@ -1,14 +1,13 @@
-import * as JSZip from 'jszip';
 import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { DirectoryEntry, File} from '@ionic-native/file';
-import {normalizeURL, Platform} from 'ionic-angular';
+import {Platform} from 'ionic-angular';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
 import { Helper } from '../classes/Helper';
 import {Route} from "../entity/Route";
 import {Http} from "@angular/http";
-import {HttpClient, HttpHeaders, HttpRequest, HttpEventType, HttpEvent} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {Camera, CameraOptions} from "@ionic-native/camera";
 
@@ -166,7 +165,7 @@ export class ImagesService {
 
         let promise = new Promise<any>((success, error) => {
             promiseError = error;
-            this.downloadQueue.drain = success;
+            this.downloadQueue.drain(success);
         });
 
         for (var i = 0; i < urls.length; i++) {

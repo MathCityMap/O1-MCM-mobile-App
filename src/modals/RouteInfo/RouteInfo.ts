@@ -7,6 +7,8 @@ import { ModalsService } from '../../services/modals-service';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController } from "ionic-angular/navigation/nav-controller";
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
+import {TranslationService} from "../../app/api/services/translation.service";
+import {TrailTranslation} from "../../app/api/models/trail-translation";
 
 declare var MathJax;
 
@@ -16,11 +18,14 @@ declare var MathJax;
     templateUrl: 'RouteInfo.html',
 })
 export class RouteInfo {
-    private route: Route;
+    protected route: Route;
 
 
-    private totalTasks: number;
+    protected totalTasks: number;
     private currentProgress = 0;
+
+    protected translation: TrailTranslation;
+    protected translatePage: boolean = false;
 
 
     constructor(public navParams: NavParams,
@@ -29,7 +34,8 @@ export class RouteInfo {
                 public alertCtrl: AlertController,
                 public navCtrl: NavController,
                 public translateService: TranslateService,
-                private spinnerDialog: SpinnerDialog) {
+                private spinnerDialog: SpinnerDialog,
+                private translationService: TranslationService) {
     }
 
     async ionViewWillEnter() {
@@ -41,6 +47,7 @@ export class RouteInfo {
         let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         MathJax.typeset();
+        this.translation = await this.translationService.getTranslationForRoute(this.route.code);
     }
 
     async doDownload(route: Route) {
@@ -68,5 +75,12 @@ export class RouteInfo {
             'yes', async () => {
                 await this.removeRoute();
             });
+    }
+
+    async toggleTranslation() {
+        if (!this.translation) {
+            this.translation = await this.translationService.getTranslationForRoute(this.route.code, true);
+        }
+        this.translatePage = this.translation && !this.translatePage;
     }
 }
