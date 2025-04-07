@@ -29,6 +29,8 @@ import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
 import {SafariViewController} from '@ionic-native/safari-view-controller';
 import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
+import {TaskTranslation} from "../../app/api/models/task-translation";
+import {TranslationService} from "../../app/api/services/translation.service";
 
 declare var MathJax;
 
@@ -93,6 +95,9 @@ export class TaskDetail {
     private inAppBrowser: InAppBrowser = new InAppBrowser();
     private linkHttpsPipeFilter: LinkHttpsPipe = new LinkHttpsPipe();
 
+    protected translation: TaskTranslation;
+    protected translatePage: boolean = false;
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -107,7 +112,8 @@ export class TaskDetail {
         private spinnerDialog: SpinnerDialog,
         private imageService: ImagesService,
         private cdRef: ChangeDetectorRef,
-        private safariViewController: SafariViewController
+        private safariViewController: SafariViewController,
+        private translationService: TranslationService
     ) {
     }
 
@@ -499,6 +505,7 @@ export class TaskDetail {
         if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.subscribeCKEvents();
         }
+        this.translation = await this.translationService.getTranslationForTask(this.taskId, this.route.code);
         MathJax.typeset();
     }
 
@@ -2359,5 +2366,12 @@ export class TaskDetail {
 
         }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
         confirmationModal.present();
+    }
+
+    async toggleTranslation() {
+        if (!this.translation) {
+            this.translation = await this.translationService.getTranslationForTask(this.taskId, this.route.code, true);
+        }
+        this.translatePage = this.translation && !this.translatePage;
     }
 }

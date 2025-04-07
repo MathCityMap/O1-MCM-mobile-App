@@ -328,7 +328,7 @@ webpackContext.id = 1110;
 
 /***/ }),
 
-/***/ 1112:
+/***/ 1111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -606,8 +606,8 @@ var Autoresize = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(435);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(578);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_translation_service__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_translation_service__ = __webpack_require__(239);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -668,19 +668,19 @@ var ApiModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(242);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(579);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(632);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1145,7 +1145,7 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1333,9 +1333,9 @@ var LanguageService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1790,7 +1790,7 @@ var ZoomService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_images_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(243);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2504,7 +2504,7 @@ var Task = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(46);
@@ -3688,6 +3688,191 @@ var Score = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TranslationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(46);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var TranslationService = /** @class */ (function () {
+    function TranslationService(http, apiConfig, storage) {
+        this.http = http;
+        this.apiConfig = apiConfig;
+        this.storage = storage;
+        // TODO make this configurable through settings page
+        this.translateLanguage = "de";
+        this.translateStorageBaseKey = "MCMTranslations";
+    }
+    TranslationService.prototype.getTranslationForRoute = function (code, fetchIfNotAvailable) {
+        if (fetchIfNotAvailable === void 0) { fetchIfNotAvailable = false; }
+        return __awaiter(this, void 0, void 0, function () {
+            var storageKey, trailTranslation, translations, translation;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        storageKey = this.translateStorageBaseKey + "-" + code;
+                        return [4 /*yield*/, this.storage.get(storageKey)];
+                    case 1:
+                        translations = _a.sent();
+                        if (!(!translations || !translations[this.translateLanguage] || !translations[this.translateLanguage].trail)) return [3 /*break*/, 5];
+                        if (!fetchIfNotAvailable) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.fetchRouteTranslation(code)];
+                    case 2:
+                        translation = _a.sent();
+                        if (!translation) return [3 /*break*/, 4];
+                        trailTranslation = translation;
+                        if (!translations) {
+                            translations = {};
+                        }
+                        if (!translations[this.translateLanguage]) {
+                            translations[this.translateLanguage] = {};
+                        }
+                        translations[this.translateLanguage].trail = trailTranslation;
+                        return [4 /*yield*/, this.storage.set(storageKey, translations)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        trailTranslation = translations[this.translateLanguage].trail;
+                        _a.label = 6;
+                    case 6: return [2 /*return*/, trailTranslation];
+                }
+            });
+        });
+    };
+    TranslationService.prototype.getTranslationForTask = function (taskId, routeCode, fetchIfNotAvailable) {
+        if (fetchIfNotAvailable === void 0) { fetchIfNotAvailable = false; }
+        return __awaiter(this, void 0, void 0, function () {
+            var storageKey, taskTranslations, storedTranslations, translations;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        storageKey = this.translateStorageBaseKey + "-" + routeCode;
+                        taskTranslations = [];
+                        return [4 /*yield*/, this.storage.get(storageKey)];
+                    case 1:
+                        storedTranslations = _a.sent();
+                        if (!(!storedTranslations || !storedTranslations[this.translateLanguage] || !storedTranslations[this.translateLanguage].tasks)) return [3 /*break*/, 5];
+                        if (!fetchIfNotAvailable) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.fetchTaskTranslationsForRoute(routeCode)];
+                    case 2:
+                        translations = _a.sent();
+                        if (!translations) return [3 /*break*/, 4];
+                        taskTranslations = translations;
+                        if (!storedTranslations) {
+                            storedTranslations = {};
+                        }
+                        if (!storedTranslations[this.translateLanguage]) {
+                            storedTranslations[this.translateLanguage] = {};
+                        }
+                        storedTranslations[this.translateLanguage].tasks = taskTranslations;
+                        return [4 /*yield*/, this.storage.set(storageKey, storedTranslations)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        taskTranslations = storedTranslations[this.translateLanguage].tasks;
+                        _a.label = 6;
+                    case 6: return [2 /*return*/, taskTranslations.find(function (translation) { return translation.taskId === taskId; })];
+                }
+            });
+        });
+    };
+    // TODO handle empty response?
+    TranslationService.prototype.fetchRouteTranslation = function (code) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(this.apiConfig.rootUrl + "/translation/trail/by-code/" + code + "/" + this.translateLanguage).toPromise()];
+                    case 1:
+                        response = _a.sent();
+                        console.log(response.trail);
+                        return [2 /*return*/, response.trail];
+                }
+            });
+        });
+    };
+    // TODO handle empty response?
+    TranslationService.prototype.fetchTaskTranslationsForRoute = function (code) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get(this.apiConfig.rootUrl + "/translation/tasks/by-trail-code/" + code + "/" + this.translateLanguage).toPromise()];
+                    case 1:
+                        response = _a.sent();
+                        console.log(response.tasks);
+                        return [2 /*return*/, response.tasks];
+                }
+            });
+        });
+    };
+    TranslationService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__api_configuration__["a" /* ApiConfiguration */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
+    ], TranslationService);
+    return TranslationService;
+}());
+
+//# sourceMappingURL=translation.service.js.map
+
+/***/ }),
+
+/***/ 242:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomKeyBoard; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(240);
@@ -3876,7 +4061,7 @@ var CustomKeyBoard = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 242:
+/***/ 243:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3885,7 +4070,7 @@ var CustomKeyBoard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_component__ = __webpack_require__(114);
@@ -4076,7 +4261,7 @@ var MCMReportProblemModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 252:
+/***/ 253:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -4089,16 +4274,16 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 252;
+webpackEmptyAsyncContext.id = 253;
 
 /***/ }),
 
-/***/ 296:
+/***/ 297:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/chat/chat.module": [
-		579
+		349
 	],
 	"../pages/dashboard/dashboard.module": [
 		1147,
@@ -4113,7 +4298,7 @@ var map = {
 		6
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1150,
+		1149,
 		8
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
@@ -4121,19 +4306,19 @@ var map = {
 		1
 	],
 	"../pages/info/info.module": [
-		1149,
+		1151,
 		5
 	],
 	"../pages/onboarding/onboarding.module": [
-		1154,
+		1150,
 		4
 	],
 	"../pages/portal/portal.module": [
-		1153,
+		1154,
 		7
 	],
 	"../pages/settings/settings.module": [
-		1151,
+		1153,
 		3
 	],
 	"../pages/task-detail/task-detail.module": [
@@ -4156,7 +4341,7 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 296;
+webpackAsyncContext.id = 297;
 module.exports = webpackAsyncContext;
 
 /***/ }),
@@ -4188,7 +4373,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(805);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(814);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(815);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__classes_Helper__ = __webpack_require__(17);
@@ -5035,13 +5220,13 @@ var OrmService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 337:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
@@ -5247,7 +5432,7 @@ var DB_Handler = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 338:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5564,7 +5749,7 @@ DBC.initialize();
 
 /***/ }),
 
-/***/ 344:
+/***/ 345:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5615,7 +5800,7 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 345:
+/***/ 346:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5627,7 +5812,7 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_navigation_nav_controller__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_spinner_dialog__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_translation_service__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_translation_service__ = __webpack_require__(239);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5813,152 +5998,6 @@ var RouteInfo = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 346:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TranslationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(46);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-var TranslationService = /** @class */ (function () {
-    function TranslationService(http, apiConfig, storage) {
-        this.http = http;
-        this.apiConfig = apiConfig;
-        this.storage = storage;
-        // TODO make this configurable through settings page
-        this.translateLanguage = "en";
-        this.translateStorageBaseKey = "MCMTranslations";
-    }
-    TranslationService.prototype.getTranslationForRoute = function (code, fetchIfNotAvailable) {
-        if (fetchIfNotAvailable === void 0) { fetchIfNotAvailable = false; }
-        return __awaiter(this, void 0, void 0, function () {
-            var storageKey, trailTranslation, translations, translation;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        storageKey = this.translateStorageBaseKey + "-" + code;
-                        return [4 /*yield*/, this.storage.get(storageKey)];
-                    case 1:
-                        translations = _a.sent();
-                        if (!(!translations || !translations[this.translateLanguage] || !translations[this.translateLanguage].trail)) return [3 /*break*/, 5];
-                        if (!fetchIfNotAvailable) return [3 /*break*/, 4];
-                        return [4 /*yield*/, this.fetchRouteTranslation(code)];
-                    case 2:
-                        translation = _a.sent();
-                        if (!translation) return [3 /*break*/, 4];
-                        trailTranslation = translation;
-                        if (!translations) {
-                            translations = {};
-                        }
-                        if (!translations[this.translateLanguage]) {
-                            translations[this.translateLanguage] = {};
-                        }
-                        translations[this.translateLanguage].trail = trailTranslation;
-                        return [4 /*yield*/, this.storage.set(storageKey, translations)];
-                    case 3:
-                        _a.sent();
-                        _a.label = 4;
-                    case 4: return [3 /*break*/, 6];
-                    case 5:
-                        trailTranslation = translations[this.translateLanguage].trail;
-                        _a.label = 6;
-                    case 6: return [2 /*return*/, trailTranslation];
-                }
-            });
-        });
-    };
-    // TODO handle empty response
-    TranslationService.prototype.fetchRouteTranslation = function (code) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.http.get(this.apiConfig.rootUrl + "/translation/trail/by-code/" + code + "/" + this.translateLanguage).toPromise()];
-                    case 1:
-                        response = _a.sent();
-                        console.log(response.trail);
-                        return [2 /*return*/, response.trail];
-                }
-            });
-        });
-    };
-    // TODO handle empty response
-    TranslationService.prototype.fetchTaskTranslationsForRoute = function (code) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.http.get(this.apiConfig.rootUrl + "/translation/tasks/by-trail-code/" + code + "/" + this.translateLanguage).toPromise()];
-                    case 1:
-                        response = _a.sent();
-                        console.log(response.tasks);
-                        return [2 /*return*/, response.tasks];
-                }
-            });
-        });
-    };
-    TranslationService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__api_configuration__["a" /* ApiConfiguration */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])
-    ], TranslationService);
-    return TranslationService;
-}());
-
-//# sourceMappingURL=translation.service.js.map
-
-/***/ }),
-
 /***/ 347:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6069,6 +6108,53 @@ var CenteredTask = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 349:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var ChatPageModule = /** @class */ (function () {
+    function ChatPageModule() {
+    }
+    ChatPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
+                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
+            ]
+        })
+    ], ChatPageModule);
+    return ChatPageModule;
+}());
+
+//# sourceMappingURL=chat.module.js.map
+
+/***/ }),
+
 /***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6078,13 +6164,13 @@ var CenteredTask = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(798);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(336);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7434,7 +7520,7 @@ var ApiConfiguration = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 578:
+/***/ 580:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7519,53 +7605,6 @@ var ProblemReportService = /** @class */ (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_3__base_service__["a" /* BaseService */]));
 
 //# sourceMappingURL=problem-report.service.js.map
-
-/***/ }),
-
-/***/ 579:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(236);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-var ChatPageModule = /** @class */ (function () {
-    function ChatPageModule() {
-    }
-    ChatPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
-                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
-            ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
-            ]
-        })
-    ], ChatPageModule);
-    return ChatPageModule;
-}());
-
-//# sourceMappingURL=chat.module.js.map
 
 /***/ }),
 
@@ -8189,948 +8228,13 @@ var LinkHttpsPipe = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout__ = __webpack_require__(629);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_component__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-var DashboardPage = /** @class */ (function () {
-    function DashboardPage(navCtrl, navParams, helper, storage, gpsService, chatAndSessionService, ormService, modalCtrl, modalsService) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.helper = helper;
-        this.storage = storage;
-        this.gpsService = gpsService;
-        this.chatAndSessionService = chatAndSessionService;
-        this.ormService = ormService;
-        this.modalCtrl = modalCtrl;
-        this.modalsService = modalsService;
-        this.tabBarElement = document.querySelector('.tabbar');
-    }
-    DashboardPage.prototype.ngOnInit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, e_1, activeSession, that_1, route_1, modal_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        /**
-                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
-                         * from the default one (Frankfurt) for a few seconds
-                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
-                         */
-                        _a = this;
-                        return [4 /*yield*/, this.storage.get('devMode')];
-                    case 1:
-                        /**
-                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
-                         * from the default one (Frankfurt) for a few seconds
-                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
-                         */
-                        _a.devMode = ((_b.sent()) === 'true');
-                        if (!!this.gpsService.getLastPosition()) return [3 /*break*/, 5];
-                        _b.label = 2;
-                    case 2:
-                        _b.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
-                                console.error("Error loading GPS data", err);
-                            }), 2000)];
-                    case 3:
-                        _b.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _b.sent();
-                        console.log("could not obtain position: " + e_1.message);
-                        // make position check async
-                        this.gpsService.getCurrentPosition().then(function (position) {
-                            if (position && position.coords) {
-                            }
-                        }, function (err) {
-                            console.error("Error loading GPS data", err);
-                        });
-                        return [3 /*break*/, 5];
-                    case 5:
-                        console.log('check for active session');
-                        return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
-                    case 6:
-                        activeSession = _b.sent();
-                        if (!(activeSession != null)) return [3 /*break*/, 8];
-                        console.log('active session found');
-                        that_1 = this;
-                        return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
-                    case 7:
-                        route_1 = _b.sent();
-                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
-                            title: 'a_session_return_title',
-                            message: 'a_session_return_text',
-                            type: 'text',
-                            modalType: __WEBPACK_IMPORTED_MODULE_8__app_app_component__["a" /* MCMModalType */].hint,
-                            narrativeEnabled: route_1.isNarrativeEnabled(),
-                            narrative: route_1.isNarrativeEnabled() ? route_1.getAttributes().narrativeName : '',
-                            buttons: [
-                                {
-                                    title: 'a_session_return_stay',
-                                    callback: function () {
-                                        modal_1.dismiss();
-                                        that_1.modalsService.showRoute(route_1, that_1.navCtrl);
-                                    }
-                                },
-                                {
-                                    title: 'a_private_session_quit',
-                                    callback: function () {
-                                        if (this.sessionInfo != null) {
-                                            var details = JSON.stringify({});
-                                            that_1.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
-                                        }
-                                        that_1.chatAndSessionService.exitActiveSession();
-                                        modal_1.dismiss();
-                                        clearInterval(this.refreshIntervalId);
-                                    }
-                                }
-                            ]
-                        }, { showBackdrop: true, enableBackdropDismiss: true });
-                        modal_1.present();
-                        _b.label = 8;
-                    case 8: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    DashboardPage.prototype.pushSettingsPage = function () {
-        this.navCtrl.push('SettingsPage');
-    };
-    DashboardPage.prototype.pushInfoPage = function () {
-        this.navCtrl.push('InfoPage');
-    };
-    DashboardPage.prototype.switchTab = function (index, addRoute) {
-        if (addRoute === void 0) { addRoute = false; }
-        if (addRoute) {
-            this.helper.setActivateAddRoute(true);
-        }
-        if (index == 3 && !this.devMode) {
-            return;
-        }
-        this.navCtrl.parent.select(index);
-    };
-    DashboardPage.prototype.ionViewWillEnter = function () {
-        this.devMode = this.helper.getDevMode();
-        if (this.tabBarElement != null) {
-            this.tabBarElement.style.display = 'none';
-        }
-    };
-    DashboardPage.prototype.ionViewDidLeave = function () {
-        this.tabBarElement.style.display = 'flex';
-    };
-    DashboardPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-dashboard',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/'<ion-content class="padding top bottom">\n    <div class="stretch-container">\n        <img class="logo" src="./assets/images/mcm-logo-white.svg">\n\n        <div class="secondary">\n            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">\n                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}\n            </button>\n            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">\n                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}\n            </button>\n        </div>\n\n        <div class="tiles">\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(1)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_browse_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_browse_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/browse.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2, true)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_add_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_add_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/add.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_downloads_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_downloads_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile" [ngClass]="{\'disabled\' : !devMode}">\n                <ion-item tappable no-lines (click)="switchTab(3)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_create_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_create_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/create.svg">\n                    </div>\n                </ion-item>\n            </div>\n        </div>\n    </div>\n</ion-content>\n\n<!--<div ion-fixed>-->\n    <!--<img style="z-index: 12; display: block; position: relative;" margin-top padding-top src="https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/1-fan-foam-finger-sticker-31468-300x300.png">-->\n    <!--<p> G⃣   O⃣    W⃣   O⃣   M⃣   B⃣   A⃣   T⃣   S⃣    G⃣   O⃣ </p>-->\n    <!--<p>🐎  🎀  𝒲🌺𝓂𝒷𝒶𝓉𝓈 𝒶𝓇𝑒 𝓈𝒽💞𝓇𝓉-𝓁𝑒𝑔𝑔𝑒𝒹, <b>𝓂𝓊𝓈𝒸𝓊𝓁𝒶𝓇</b> 𝓆𝓊𝒶𝒹𝓇𝓊𝓅𝑒𝒹𝒶𝓁 𝓂𝒶𝓇𝓈𝓊𝓅𝒾𝒶𝓁𝓈 𝓉𝒽𝒶𝓉 𝒶𝓇𝑒 𝓃𝒶𝓉𝒾𝓋𝑒 𝓉🍪 𝒜𝓊𝓈𝓉𝓇𝒶𝓁𝒾𝒶. 𝒯𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝒷🌞𝓊𝓉 𝟣 𝓂 𝒾𝓃 𝓁𝑒𝓃𝑔𝓉𝒽 𝓌𝒾𝓉𝒽 𝓈𝓂𝒶𝓁𝓁, 𝓈𝓉𝓊𝒷𝒷𝓎 𝓉𝒶𝒾𝓁𝓈. 𝒯𝒽𝑒𝓇𝑒 𝒶𝓇𝑒 𝓉𝒽𝓇𝑒𝑒 𝑒𝓍𝓉𝒶𝓃𝓉 𝓈𝓅𝑒𝒸𝒾𝑒𝓈 𝒶𝓃𝒹 𝓉𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝓁𝓁 𝓂𝑒𝓂𝒷𝑒𝓇𝓈 🏵𝒻 𝓉𝒽𝑒 𝒻𝒶𝓂𝒾𝓁𝓎 𝒱🍩𝓂𝒷𝒶𝓉𝒾𝒹𝒶𝑒.  🎀  🐎</p>-->\n    <!--<img margin-top padding-top style="position: absolute; top: 0;" src="https://cdn.britannica.com/88/81288-050-3084149B/Phascolomis-Vombatus-ursinus.jpg">-->\n<!--</div>-->\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_5__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_10__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */]])
-    ], DashboardPage);
-    return DashboardPage;
-}());
-
-//# sourceMappingURL=dashboard.js.map
-
-/***/ }),
-
-/***/ 630:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesMapPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(625);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__env_env__ = __webpack_require__(196);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-//import 'leaflet-offline';
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
-var RoutesMapPage = /** @class */ (function () {
-    function RoutesMapPage(updater, ormService, modalsService, navCtrl, spinner, translateService, gpsService, helper, navParams, languageService, zoom) {
-        var _this = this;
-        this.updater = updater;
-        this.ormService = ormService;
-        this.modalsService = modalsService;
-        this.navCtrl = navCtrl;
-        this.spinner = spinner;
-        this.translateService = translateService;
-        this.gpsService = gpsService;
-        this.helper = helper;
-        this.navParams = navParams;
-        this.languageService = languageService;
-        this.zoom = zoom;
-        this.markerGroup = null;
-        this.merkerMapBoxGroup = null;
-        this.eventSubscription = this.ormService.eventEmitter.subscribe(function (event) { return __awaiter(_this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 3];
-                        if (!!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 1:
-                        _a.routes = _b.sent();
-                        _b.label = 2;
-                    case 2:
-                        this.redrawMapBoxMarker();
-                        console.log("REDRAWED");
-                        this.routeDetails = null;
-                        _b.label = 3;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); });
-    }
-    RoutesMapPage.prototype.ionViewWillEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        console.log("ionViewWillEnter:");
-                        this.zoom.disableZooming();
-                        this.gpsService.isLocationOn();
-                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 5];
-                        if (!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 1:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 4];
-                    case 2:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 3:
-                        _b.routes = _c.sent();
-                        _c.label = 4;
-                    case 4:
-                        this.redrawMapBoxMarker();
-                        _c.label = 5;
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.ngOnInit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                this.isFilePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
-                if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
-                    if (this.navParams.data.showAllRoutes)
-                        this.showAllRoutes = true;
-                    else
-                        this.showAllRoutes = false;
-                }
-                this.languageService.initialize().then(function () { return __awaiter(_this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0:
-                                //this.loadMap();
-                                this.loadMapBox();
-                                return [4 /*yield*/, this.initializeMap()];
-                            case 1:
-                                _a.sent();
-                                return [2 /*return*/];
-                        }
-                    });
-                }); });
-                return [2 /*return*/];
-            });
-        });
-    };
-    RoutesMapPage.prototype.ngOnDestroy = function () {
-        this.zoom.enableZooming();
-        this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
-        if (this.eventSubscription) {
-            this.eventSubscription.unsubscribe();
-            this.eventSubscription = null;
-        }
-        if (this.watchSubscription) {
-            this.watchSubscription.unsubscribe();
-            this.watchSubscription = null;
-        }
-    };
-    RoutesMapPage.prototype.initializeMap = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var activeUser, online, e_1, _a, _b;
-            var _this = this;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0: return [4 /*yield*/, this.ormService.getActiveUser()];
-                    case 1:
-                        activeUser = _c.sent();
-                        if (!!activeUser) return [3 /*break*/, 6];
-                        return [4 /*yield*/, this.modalsService.showNoInternetModalIfOffline()];
-                    case 2:
-                        online = _c.sent();
-                        if (!online) return [3 /*break*/, 6];
-                        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-                        _c.label = 3;
-                    case 3:
-                        _c.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, this.updater.checkForUpdates()];
-                    case 4:
-                        _c.sent();
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_1 = _c.sent();
-                        console.error('caught error while checking for updates:');
-                        console.error(e_1);
-                        return [3 /*break*/, 6];
-                    case 6:
-                        if (!this.showAllRoutes) return [3 /*break*/, 8];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 7:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 10];
-                    case 8:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 9:
-                        _b.routes = _c.sent();
-                        _c.label = 10;
-                    case 10:
-                        this.map.on('load', function () {
-                            var waiting = function () {
-                                if (!_this.map.isStyleLoaded()) {
-                                    setTimeout(waiting, 200);
-                                }
-                                else {
-                                    _this.redrawMapBoxMarker();
-                                }
-                            };
-                            waiting();
-                        });
-                        this.spinner.hide();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.redrawMapBoxMarker = function () {
-        var map = this.map;
-        //clean layers to be redrawn
-        if (this.map.getLayer('unclustered-point')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('unclustered-point');
-            this.markerGroup = null;
-        }
-        if (this.map.getLayer('clusters')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('clusters');
-            this.markerGroup = null;
-        }
-        if (this.map.getLayer('cluster-count')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('cluster-count');
-            this.markerGroup = null;
-        }
-        var GeoJson = {
-            "type": "FeatureCollection",
-            "features": []
-        };
-        for (var route in this.routes) {
-            var icon = void 0;
-            if (this.routes[route].downloaded) {
-                if (this.routes[route].completed) {
-                    icon = 'completed-route';
-                }
-                else {
-                    icon = 'downloaded-route';
-                }
-            }
-            else if (this.routes[route].public == "1") {
-                icon = 'public-route';
-            }
-            else {
-                icon = 'private-route';
-            }
-            var routeCenter = this.routes[route].getCenterLatLng();
-            var data = {
-                "type": "Feature",
-                "properties": {
-                    'routeIndex': route,
-                    'icon': icon
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        routeCenter.lng,
-                        routeCenter.lat
-                    ]
-                }
-            };
-            GeoJson.features.push(data);
-        }
-        if (this.map.getSource("routes"))
-            this.map.getSource('routes').setData(GeoJson);
-        else {
-            this.map.addSource("routes", {
-                type: "geojson",
-                data: GeoJson,
-                cluster: true,
-                clusterRadius: 30
-            });
-        }
-        this.map.addLayer({
-            id: "clusters",
-            type: "circle",
-            source: "routes",
-            filter: ["has", "point_count"],
-            paint: {
-                'circle-color': '#11b4da',
-                'circle-radius': 20
-            }
-        });
-        map.addLayer({
-            id: 'cluster-count',
-            type: 'symbol',
-            source: 'routes',
-            filter: ['has', 'point_count'],
-            layout: {
-                'text-field': '{point_count_abbreviated}',
-                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-                'text-size': 15
-            }
-        });
-        map.addLayer({
-            id: 'unclustered-point',
-            type: 'symbol',
-            source: 'routes',
-            filter: ['!', ['has', 'point_count']],
-            layout: {
-                'icon-size': 0.23,
-                'icon-image': ['get', 'icon'],
-                'icon-allow-overlap': true
-            }
-        });
-    };
-    RoutesMapPage.prototype.loadMapBox = function () {
-        var _this = this;
-        var isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-        var keepPositionBecauseOfReload = false;
-        __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.accessToken = __WEBPACK_IMPORTED_MODULE_16__env_env__["a" /* MAPBOX_ACCESS_TOKEN */];
-        //Either draws the map for all routes or for downloaded ones only
-        if (this.showAllRoutes) {
-            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
-                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-                center: [8.66158515, 50.1208566],
-                zoom: 16,
-                container: 'map',
-                trackResize: false
-            });
-        }
-        else {
-            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
-                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-                center: [8.66158515, 50.1208566],
-                zoom: 16,
-                container: 'mapDownloaded',
-                trackResize: false
-            });
-        }
-        this.loadImagesToMap();
-        this.map.touchZoomRotate.disableRotation();
-        //removes labels for points of interest
-        this.map.on('load', function () {
-            _this.map.style.stylesheet.layers.forEach(function (layer) {
-                if (layer.id === "poi-label") {
-                    _this.map.removeLayer(layer.id);
-                }
-            });
-        });
-        if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
-            keepPositionBecauseOfReload = true;
-            var startIndex = window.location.search.indexOf('pos=') + 4;
-            var bboxString = window.location.search.substring(startIndex).split("&|/")[0]
-                .replace(/LngLat\(/g, '')
-                .replace(/%20/g, ' ')
-                .replace(/\)/g, '');
-            console.log("BBOX: ", bboxString);
-            var coords = bboxString.split(",").map(parseFloat);
-            var bounds = [[coords[0], coords[1]], [coords[2], coords[3]]];
-            console.log("BOUNDS: ", bounds);
-            this.map.fitBounds(bounds);
-        }
-        this.map.on('click', function (e) {
-            //check if details open and reset content. for now just reset content
-            _this.routeDetails = null;
-            console.log('cleared route details');
-        });
-        var that = this;
-        //Zoom clusters
-        that.map.on('click', 'clusters', function (e) {
-            var features = that.map.queryRenderedFeatures(e.point, {
-                layers: ['clusters']
-            });
-            var clusterId = features[0].properties.cluster_id;
-            that.map.getSource('routes').getClusterExpansionZoom(clusterId, function (err, zoom) {
-                if (err)
-                    return;
-                that.map.easeTo({
-                    center: features[0].geometry.coordinates,
-                    zoom: zoom
-                });
-            });
-        });
-        that.map.on('click', 'unclustered-point', function (e) {
-            return __awaiter(this, void 0, void 0, function () {
-                var features, index, route, _a;
-                return __generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0:
-                            features = that.map.queryRenderedFeatures(e.point, {
-                                layers: ['unclustered-point']
-                            });
-                            index = features[0].properties.routeIndex;
-                            route = that.routes[index];
-                            if (!(that.routeDetails == route)) return [3 /*break*/, 1];
-                            that.zoom.enableZooming();
-                            that.modalsService.showRoute(route, that.navCtrl).then(function () {
-                                that.zoom.disableZooming();
-                            });
-                            return [3 /*break*/, 5];
-                        case 1:
-                            if (!route.downloaded) return [3 /*break*/, 3];
-                            that.isRouteDownloaded = 'downloaded';
-                            console.log("THIS.ROUTE: ", route);
-                            _a = that;
-                            return [4 /*yield*/, that.ormService.findRouteByCode(route.code)];
-                        case 2:
-                            _a.routeDetails = _b.sent();
-                            return [3 /*break*/, 4];
-                        case 3:
-                            that.routeDetails = route;
-                            that.isRouteDownloaded = null;
-                            _b.label = 4;
-                        case 4:
-                            that.map.panTo(features[0].geometry.coordinates);
-                            _b.label = 5;
-                        case 5: return [2 /*return*/];
-                    }
-                });
-            });
-        });
-        if (isLoadedViaHttp) {
-            // when loaded via http (for development), keep track of map position
-            this.map.on('moveend', function (event) {
-                var bounds = _this.map.getBounds();
-                var boundsString = bounds.toString();
-                boundsString = boundsString.substring(13, boundsString.length - 1);
-                window.history.replaceState({}, "", window.location.origin + "?pos=" + boundsString + "/" + window.location.hash);
-            });
-        }
-        this.gpsService.getCurrentPosition()
-            .then(function (resp) {
-            if (resp && resp.coords) {
-                console.warn('found you');
-                // let markerGroup = L.featureGroup();
-                var el = document.createElement('div');
-                el.className = 'marker';
-                el.style.backgroundImage = "url(assets/icons/mapposition.png)";
-                el.style.backgroundSize = 'cover';
-                el.style.width = 100 + 'px';
-                el.style.height = 100 + 'px';
-                el.addEventListener('click', function () {
-                    //window.alert(marker.properties.message);
-                    console.log("HEY clicked");
-                });
-                _this.mapBoxUserMarker = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Marker(el)
-                    .setLngLat([resp.coords.longitude, resp.coords.latitude])
-                    .addTo(_this.map);
-                if (!keepPositionBecauseOfReload) {
-                    _this.map.panTo([resp.coords.longitude, resp.coords.latitude]);
-                }
-                if (_this.watchSubscription) {
-                    _this.watchSubscription.unsubscribe();
-                }
-                _this.watchSubscription = _this.gpsService.watchPosition().subscribe(function (resp) {
-                    if (resp && resp.coords) {
-                        var lnglat = [resp.coords.longitude, resp.coords.latitude];
-                        _this.mapBoxUserMarker.setLngLat(lnglat);
-                        //Rotate the user marker
-                        if (_this.prevPos != null) {
-                            var angle = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].getAngle(_this.prevPos, resp.coords);
-                            _this.mapBoxUserMarker.setRotation(angle);
-                        }
-                        _this.prevPos = resp.coords;
-                    }
-                });
-            }
-        })
-            .catch(function (error) {
-            console.log("error: ", error);
-            console.error("Location error: " + JSON.stringify(error));
-        });
-    };
-    RoutesMapPage.prototype.doDownload = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.modalsService.doDownload(this.routeDetails)];
-                    case 1:
-                        _a.sent();
-                        console.log("DID DOWNLOAD");
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.presentRouteInfoModal = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl)];
-                    case 1:
-                        _a.routeDetails = _b.sent();
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.showRouteDetail = function (item) {
-        var _this = this;
-        console.log("##### ROUTE: ", item);
-        this.zoom.enableZooming();
-        this.modalsService.showRoute(item, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.zoom.disableZooming();
-                        return [4 /*yield*/, this.reactOnRemovedRoute()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-    };
-    RoutesMapPage.prototype.switchToList = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
-                return [2 /*return*/];
-            });
-        });
-    };
-    RoutesMapPage.prototype.reactOnRemovedRoute = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 1:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 4];
-                    case 2:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 3:
-                        _b.routes = _c.sent();
-                        _c.label = 4;
-                    case 4:
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.loadImagesToMap = function () {
-        var map = this.map;
-        map.loadImage('assets/icons/marker-route-private.png', function (error, image) {
-            map.addImage('private-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-public.png', function (error, image) {
-            map.addImage('public-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-downloaded.png', function (error, image) {
-            map.addImage('downloaded-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-done.png', function (error, image) {
-            map.addImage('completed-route', image);
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-    ], RoutesMapPage.prototype, "mapContainer", void 0);
-    RoutesMapPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'routes-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/'<ion-content class="map routes" no-bounce>\n    <div ion-fixed>\n\n        <div *ngIf="showAllRoutes" id="map" class="map-view"></div>\n        <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': routeDetails != null}" lazy-load-images image-size="s">\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>\n            </ion-fab>\n\n            <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"\n                          [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"\n            ></route-teaser>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_8__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-            __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_13__services_language_service__["a" /* LanguageService */],
-            __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__["a" /* ZoomService */]])
-    ], RoutesMapPage);
-    return RoutesMapPage;
-}());
-
-//# sourceMappingURL=RoutesMap.js.map
-
-/***/ }),
-
-/***/ 631:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__ = __webpack_require__(117);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-/**
- * Generated class for the PortalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var PortalPage = /** @class */ (function () {
-    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer, zoom) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.iab = iab;
-        this.translateService = translateService;
-        this.sanitizer = sanitizer;
-        this.zoom = zoom;
-        this.languageUrl = {
-            de: 'portal',
-            en: 'portal-en',
-            es: 'portal-es',
-            pt: 'portal-pt',
-            fr: 'portail',
-            it: 'portale',
-            sk: 'portal-sk',
-            id: 'portal-id',
-            tr: 'portal-tr',
-            el: 'πύλη',
-            zh: '入口'
-        };
-        this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
-        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
-    }
-    PortalPage.prototype.ionViewWillEnter = function () {
-        this.zoom.disableZooming();
-    };
-    PortalPage.prototype.ionViewWillLeave = function () {
-        this.zoom.enableZooming();
-    };
-    PortalPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-portal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/'<ion-content class="fullscreen">\n    <iframe ion-fixed *ngIf="currentLang" allow="geolocation" [src]="sanitizedUrl">\n    </iframe>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__["a" /* ZoomService */]])
-    ], PortalPage);
-    return PortalPage;
-}());
-
-//# sourceMappingURL=portal.js.map
-
-/***/ }),
-
-/***/ 632:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(65);
@@ -9782,6 +8886,941 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 629:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_component__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+var DashboardPage = /** @class */ (function () {
+    function DashboardPage(navCtrl, navParams, helper, storage, gpsService, chatAndSessionService, ormService, modalCtrl, modalsService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.helper = helper;
+        this.storage = storage;
+        this.gpsService = gpsService;
+        this.chatAndSessionService = chatAndSessionService;
+        this.ormService = ormService;
+        this.modalCtrl = modalCtrl;
+        this.modalsService = modalsService;
+        this.tabBarElement = document.querySelector('.tabbar');
+    }
+    DashboardPage.prototype.ngOnInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, e_1, activeSession, that_1, route_1, modal_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        /**
+                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
+                         * from the default one (Frankfurt) for a few seconds
+                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
+                         */
+                        _a = this;
+                        return [4 /*yield*/, this.storage.get('devMode')];
+                    case 1:
+                        /**
+                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
+                         * from the default one (Frankfurt) for a few seconds
+                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
+                         */
+                        _a.devMode = ((_b.sent()) === 'true');
+                        if (!!this.gpsService.getLastPosition()) return [3 /*break*/, 5];
+                        _b.label = 2;
+                    case 2:
+                        _b.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
+                                console.error("Error loading GPS data", err);
+                            }), 2000)];
+                    case 3:
+                        _b.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _b.sent();
+                        console.log("could not obtain position: " + e_1.message);
+                        // make position check async
+                        this.gpsService.getCurrentPosition().then(function (position) {
+                            if (position && position.coords) {
+                            }
+                        }, function (err) {
+                            console.error("Error loading GPS data", err);
+                        });
+                        return [3 /*break*/, 5];
+                    case 5:
+                        console.log('check for active session');
+                        return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
+                    case 6:
+                        activeSession = _b.sent();
+                        if (!(activeSession != null)) return [3 /*break*/, 8];
+                        console.log('active session found');
+                        that_1 = this;
+                        return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
+                    case 7:
+                        route_1 = _b.sent();
+                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                            title: 'a_session_return_title',
+                            message: 'a_session_return_text',
+                            type: 'text',
+                            modalType: __WEBPACK_IMPORTED_MODULE_8__app_app_component__["a" /* MCMModalType */].hint,
+                            narrativeEnabled: route_1.isNarrativeEnabled(),
+                            narrative: route_1.isNarrativeEnabled() ? route_1.getAttributes().narrativeName : '',
+                            buttons: [
+                                {
+                                    title: 'a_session_return_stay',
+                                    callback: function () {
+                                        modal_1.dismiss();
+                                        that_1.modalsService.showRoute(route_1, that_1.navCtrl);
+                                    }
+                                },
+                                {
+                                    title: 'a_private_session_quit',
+                                    callback: function () {
+                                        if (this.sessionInfo != null) {
+                                            var details = JSON.stringify({});
+                                            that_1.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                                        }
+                                        that_1.chatAndSessionService.exitActiveSession();
+                                        modal_1.dismiss();
+                                        clearInterval(this.refreshIntervalId);
+                                    }
+                                }
+                            ]
+                        }, { showBackdrop: true, enableBackdropDismiss: true });
+                        modal_1.present();
+                        _b.label = 8;
+                    case 8: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DashboardPage.prototype.pushSettingsPage = function () {
+        this.navCtrl.push('SettingsPage');
+    };
+    DashboardPage.prototype.pushInfoPage = function () {
+        this.navCtrl.push('InfoPage');
+    };
+    DashboardPage.prototype.switchTab = function (index, addRoute) {
+        if (addRoute === void 0) { addRoute = false; }
+        if (addRoute) {
+            this.helper.setActivateAddRoute(true);
+        }
+        if (index == 3 && !this.devMode) {
+            return;
+        }
+        this.navCtrl.parent.select(index);
+    };
+    DashboardPage.prototype.ionViewWillEnter = function () {
+        this.devMode = this.helper.getDevMode();
+        if (this.tabBarElement != null) {
+            this.tabBarElement.style.display = 'none';
+        }
+    };
+    DashboardPage.prototype.ionViewDidLeave = function () {
+        this.tabBarElement.style.display = 'flex';
+    };
+    DashboardPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-dashboard',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/'<ion-content class="padding top bottom">\n    <div class="stretch-container">\n        <img class="logo" src="./assets/images/mcm-logo-white.svg">\n\n        <div class="secondary">\n            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">\n                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}\n            </button>\n            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">\n                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}\n            </button>\n        </div>\n\n        <div class="tiles">\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(1)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_browse_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_browse_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/browse.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2, true)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_add_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_add_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/add.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_downloads_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_downloads_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile" [ngClass]="{\'disabled\' : !devMode}">\n                <ion-item tappable no-lines (click)="switchTab(3)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_create_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_create_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/create.svg">\n                    </div>\n                </ion-item>\n            </div>\n        </div>\n    </div>\n</ion-content>\n\n<!--<div ion-fixed>-->\n    <!--<img style="z-index: 12; display: block; position: relative;" margin-top padding-top src="https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/1-fan-foam-finger-sticker-31468-300x300.png">-->\n    <!--<p> G⃣   O⃣    W⃣   O⃣   M⃣   B⃣   A⃣   T⃣   S⃣    G⃣   O⃣ </p>-->\n    <!--<p>🐎  🎀  𝒲🌺𝓂𝒷𝒶𝓉𝓈 𝒶𝓇𝑒 𝓈𝒽💞𝓇𝓉-𝓁𝑒𝑔𝑔𝑒𝒹, <b>𝓂𝓊𝓈𝒸𝓊𝓁𝒶𝓇</b> 𝓆𝓊𝒶𝒹𝓇𝓊𝓅𝑒𝒹𝒶𝓁 𝓂𝒶𝓇𝓈𝓊𝓅𝒾𝒶𝓁𝓈 𝓉𝒽𝒶𝓉 𝒶𝓇𝑒 𝓃𝒶𝓉𝒾𝓋𝑒 𝓉🍪 𝒜𝓊𝓈𝓉𝓇𝒶𝓁𝒾𝒶. 𝒯𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝒷🌞𝓊𝓉 𝟣 𝓂 𝒾𝓃 𝓁𝑒𝓃𝑔𝓉𝒽 𝓌𝒾𝓉𝒽 𝓈𝓂𝒶𝓁𝓁, 𝓈𝓉𝓊𝒷𝒷𝓎 𝓉𝒶𝒾𝓁𝓈. 𝒯𝒽𝑒𝓇𝑒 𝒶𝓇𝑒 𝓉𝒽𝓇𝑒𝑒 𝑒𝓍𝓉𝒶𝓃𝓉 𝓈𝓅𝑒𝒸𝒾𝑒𝓈 𝒶𝓃𝒹 𝓉𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝓁𝓁 𝓂𝑒𝓂𝒷𝑒𝓇𝓈 🏵𝒻 𝓉𝒽𝑒 𝒻𝒶𝓂𝒾𝓁𝓎 𝒱🍩𝓂𝒷𝒶𝓉𝒾𝒹𝒶𝑒.  🎀  🐎</p>-->\n    <!--<img margin-top padding-top style="position: absolute; top: 0;" src="https://cdn.britannica.com/88/81288-050-3084149B/Phascolomis-Vombatus-ursinus.jpg">-->\n<!--</div>-->\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_5__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */]])
+    ], DashboardPage);
+    return DashboardPage;
+}());
+
+//# sourceMappingURL=dashboard.js.map
+
+/***/ }),
+
+/***/ 631:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesMapPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__env_env__ = __webpack_require__(196);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+//import 'leaflet-offline';
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
+var RoutesMapPage = /** @class */ (function () {
+    function RoutesMapPage(updater, ormService, modalsService, navCtrl, spinner, translateService, gpsService, helper, navParams, languageService, zoom) {
+        var _this = this;
+        this.updater = updater;
+        this.ormService = ormService;
+        this.modalsService = modalsService;
+        this.navCtrl = navCtrl;
+        this.spinner = spinner;
+        this.translateService = translateService;
+        this.gpsService = gpsService;
+        this.helper = helper;
+        this.navParams = navParams;
+        this.languageService = languageService;
+        this.zoom = zoom;
+        this.markerGroup = null;
+        this.merkerMapBoxGroup = null;
+        this.eventSubscription = this.ormService.eventEmitter.subscribe(function (event) { return __awaiter(_this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 3];
+                        if (!!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 1:
+                        _a.routes = _b.sent();
+                        _b.label = 2;
+                    case 2:
+                        this.redrawMapBoxMarker();
+                        console.log("REDRAWED");
+                        this.routeDetails = null;
+                        _b.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); });
+    }
+    RoutesMapPage.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        console.log("ionViewWillEnter:");
+                        this.zoom.disableZooming();
+                        this.gpsService.isLocationOn();
+                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 5];
+                        if (!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 1:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 4];
+                    case 2:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 3:
+                        _b.routes = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        this.redrawMapBoxMarker();
+                        _c.label = 5;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.ngOnInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.isFilePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
+                if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
+                    if (this.navParams.data.showAllRoutes)
+                        this.showAllRoutes = true;
+                    else
+                        this.showAllRoutes = false;
+                }
+                this.languageService.initialize().then(function () { return __awaiter(_this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                //this.loadMap();
+                                this.loadMapBox();
+                                return [4 /*yield*/, this.initializeMap()];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
+            });
+        });
+    };
+    RoutesMapPage.prototype.ngOnDestroy = function () {
+        this.zoom.enableZooming();
+        this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
+        if (this.eventSubscription) {
+            this.eventSubscription.unsubscribe();
+            this.eventSubscription = null;
+        }
+        if (this.watchSubscription) {
+            this.watchSubscription.unsubscribe();
+            this.watchSubscription = null;
+        }
+    };
+    RoutesMapPage.prototype.initializeMap = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var activeUser, online, e_1, _a, _b;
+            var _this = this;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0: return [4 /*yield*/, this.ormService.getActiveUser()];
+                    case 1:
+                        activeUser = _c.sent();
+                        if (!!activeUser) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.modalsService.showNoInternetModalIfOffline()];
+                    case 2:
+                        online = _c.sent();
+                        if (!online) return [3 /*break*/, 6];
+                        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+                        _c.label = 3;
+                    case 3:
+                        _c.trys.push([3, 5, , 6]);
+                        return [4 /*yield*/, this.updater.checkForUpdates()];
+                    case 4:
+                        _c.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        e_1 = _c.sent();
+                        console.error('caught error while checking for updates:');
+                        console.error(e_1);
+                        return [3 /*break*/, 6];
+                    case 6:
+                        if (!this.showAllRoutes) return [3 /*break*/, 8];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 7:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 10];
+                    case 8:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 9:
+                        _b.routes = _c.sent();
+                        _c.label = 10;
+                    case 10:
+                        this.map.on('load', function () {
+                            var waiting = function () {
+                                if (!_this.map.isStyleLoaded()) {
+                                    setTimeout(waiting, 200);
+                                }
+                                else {
+                                    _this.redrawMapBoxMarker();
+                                }
+                            };
+                            waiting();
+                        });
+                        this.spinner.hide();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.redrawMapBoxMarker = function () {
+        var map = this.map;
+        //clean layers to be redrawn
+        if (this.map.getLayer('unclustered-point')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('unclustered-point');
+            this.markerGroup = null;
+        }
+        if (this.map.getLayer('clusters')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('clusters');
+            this.markerGroup = null;
+        }
+        if (this.map.getLayer('cluster-count')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('cluster-count');
+            this.markerGroup = null;
+        }
+        var GeoJson = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        for (var route in this.routes) {
+            var icon = void 0;
+            if (this.routes[route].downloaded) {
+                if (this.routes[route].completed) {
+                    icon = 'completed-route';
+                }
+                else {
+                    icon = 'downloaded-route';
+                }
+            }
+            else if (this.routes[route].public == "1") {
+                icon = 'public-route';
+            }
+            else {
+                icon = 'private-route';
+            }
+            var routeCenter = this.routes[route].getCenterLatLng();
+            var data = {
+                "type": "Feature",
+                "properties": {
+                    'routeIndex': route,
+                    'icon': icon
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        routeCenter.lng,
+                        routeCenter.lat
+                    ]
+                }
+            };
+            GeoJson.features.push(data);
+        }
+        if (this.map.getSource("routes"))
+            this.map.getSource('routes').setData(GeoJson);
+        else {
+            this.map.addSource("routes", {
+                type: "geojson",
+                data: GeoJson,
+                cluster: true,
+                clusterRadius: 30
+            });
+        }
+        this.map.addLayer({
+            id: "clusters",
+            type: "circle",
+            source: "routes",
+            filter: ["has", "point_count"],
+            paint: {
+                'circle-color': '#11b4da',
+                'circle-radius': 20
+            }
+        });
+        map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-size': 15
+            }
+        });
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['!', ['has', 'point_count']],
+            layout: {
+                'icon-size': 0.23,
+                'icon-image': ['get', 'icon'],
+                'icon-allow-overlap': true
+            }
+        });
+    };
+    RoutesMapPage.prototype.loadMapBox = function () {
+        var _this = this;
+        var isLoadedViaHttp = window.location.href.indexOf('http') === 0;
+        var keepPositionBecauseOfReload = false;
+        __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.accessToken = __WEBPACK_IMPORTED_MODULE_16__env_env__["a" /* MAPBOX_ACCESS_TOKEN */];
+        //Either draws the map for all routes or for downloaded ones only
+        if (this.showAllRoutes) {
+            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566],
+                zoom: 16,
+                container: 'map',
+                trackResize: false
+            });
+        }
+        else {
+            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566],
+                zoom: 16,
+                container: 'mapDownloaded',
+                trackResize: false
+            });
+        }
+        this.loadImagesToMap();
+        this.map.touchZoomRotate.disableRotation();
+        //removes labels for points of interest
+        this.map.on('load', function () {
+            _this.map.style.stylesheet.layers.forEach(function (layer) {
+                if (layer.id === "poi-label") {
+                    _this.map.removeLayer(layer.id);
+                }
+            });
+        });
+        if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
+            keepPositionBecauseOfReload = true;
+            var startIndex = window.location.search.indexOf('pos=') + 4;
+            var bboxString = window.location.search.substring(startIndex).split("&|/")[0]
+                .replace(/LngLat\(/g, '')
+                .replace(/%20/g, ' ')
+                .replace(/\)/g, '');
+            console.log("BBOX: ", bboxString);
+            var coords = bboxString.split(",").map(parseFloat);
+            var bounds = [[coords[0], coords[1]], [coords[2], coords[3]]];
+            console.log("BOUNDS: ", bounds);
+            this.map.fitBounds(bounds);
+        }
+        this.map.on('click', function (e) {
+            //check if details open and reset content. for now just reset content
+            _this.routeDetails = null;
+            console.log('cleared route details');
+        });
+        var that = this;
+        //Zoom clusters
+        that.map.on('click', 'clusters', function (e) {
+            var features = that.map.queryRenderedFeatures(e.point, {
+                layers: ['clusters']
+            });
+            var clusterId = features[0].properties.cluster_id;
+            that.map.getSource('routes').getClusterExpansionZoom(clusterId, function (err, zoom) {
+                if (err)
+                    return;
+                that.map.easeTo({
+                    center: features[0].geometry.coordinates,
+                    zoom: zoom
+                });
+            });
+        });
+        that.map.on('click', 'unclustered-point', function (e) {
+            return __awaiter(this, void 0, void 0, function () {
+                var features, index, route, _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            features = that.map.queryRenderedFeatures(e.point, {
+                                layers: ['unclustered-point']
+                            });
+                            index = features[0].properties.routeIndex;
+                            route = that.routes[index];
+                            if (!(that.routeDetails == route)) return [3 /*break*/, 1];
+                            that.zoom.enableZooming();
+                            that.modalsService.showRoute(route, that.navCtrl).then(function () {
+                                that.zoom.disableZooming();
+                            });
+                            return [3 /*break*/, 5];
+                        case 1:
+                            if (!route.downloaded) return [3 /*break*/, 3];
+                            that.isRouteDownloaded = 'downloaded';
+                            console.log("THIS.ROUTE: ", route);
+                            _a = that;
+                            return [4 /*yield*/, that.ormService.findRouteByCode(route.code)];
+                        case 2:
+                            _a.routeDetails = _b.sent();
+                            return [3 /*break*/, 4];
+                        case 3:
+                            that.routeDetails = route;
+                            that.isRouteDownloaded = null;
+                            _b.label = 4;
+                        case 4:
+                            that.map.panTo(features[0].geometry.coordinates);
+                            _b.label = 5;
+                        case 5: return [2 /*return*/];
+                    }
+                });
+            });
+        });
+        if (isLoadedViaHttp) {
+            // when loaded via http (for development), keep track of map position
+            this.map.on('moveend', function (event) {
+                var bounds = _this.map.getBounds();
+                var boundsString = bounds.toString();
+                boundsString = boundsString.substring(13, boundsString.length - 1);
+                window.history.replaceState({}, "", window.location.origin + "?pos=" + boundsString + "/" + window.location.hash);
+            });
+        }
+        this.gpsService.getCurrentPosition()
+            .then(function (resp) {
+            if (resp && resp.coords) {
+                console.warn('found you');
+                // let markerGroup = L.featureGroup();
+                var el = document.createElement('div');
+                el.className = 'marker';
+                el.style.backgroundImage = "url(assets/icons/mapposition.png)";
+                el.style.backgroundSize = 'cover';
+                el.style.width = 100 + 'px';
+                el.style.height = 100 + 'px';
+                el.addEventListener('click', function () {
+                    //window.alert(marker.properties.message);
+                    console.log("HEY clicked");
+                });
+                _this.mapBoxUserMarker = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Marker(el)
+                    .setLngLat([resp.coords.longitude, resp.coords.latitude])
+                    .addTo(_this.map);
+                if (!keepPositionBecauseOfReload) {
+                    _this.map.panTo([resp.coords.longitude, resp.coords.latitude]);
+                }
+                if (_this.watchSubscription) {
+                    _this.watchSubscription.unsubscribe();
+                }
+                _this.watchSubscription = _this.gpsService.watchPosition().subscribe(function (resp) {
+                    if (resp && resp.coords) {
+                        var lnglat = [resp.coords.longitude, resp.coords.latitude];
+                        _this.mapBoxUserMarker.setLngLat(lnglat);
+                        //Rotate the user marker
+                        if (_this.prevPos != null) {
+                            var angle = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].getAngle(_this.prevPos, resp.coords);
+                            _this.mapBoxUserMarker.setRotation(angle);
+                        }
+                        _this.prevPos = resp.coords;
+                    }
+                });
+            }
+        })
+            .catch(function (error) {
+            console.log("error: ", error);
+            console.error("Location error: " + JSON.stringify(error));
+        });
+    };
+    RoutesMapPage.prototype.doDownload = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalsService.doDownload(this.routeDetails)];
+                    case 1:
+                        _a.sent();
+                        console.log("DID DOWNLOAD");
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.presentRouteInfoModal = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl)];
+                    case 1:
+                        _a.routeDetails = _b.sent();
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.showRouteDetail = function (item) {
+        var _this = this;
+        console.log("##### ROUTE: ", item);
+        this.zoom.enableZooming();
+        this.modalsService.showRoute(item, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.zoom.disableZooming();
+                        return [4 /*yield*/, this.reactOnRemovedRoute()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    RoutesMapPage.prototype.switchToList = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
+                return [2 /*return*/];
+            });
+        });
+    };
+    RoutesMapPage.prototype.reactOnRemovedRoute = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 1:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 4];
+                    case 2:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 3:
+                        _b.routes = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.loadImagesToMap = function () {
+        var map = this.map;
+        map.loadImage('assets/icons/marker-route-private.png', function (error, image) {
+            map.addImage('private-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-public.png', function (error, image) {
+            map.addImage('public-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-downloaded.png', function (error, image) {
+            map.addImage('downloaded-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-done.png', function (error, image) {
+            map.addImage('completed-route', image);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], RoutesMapPage.prototype, "mapContainer", void 0);
+    RoutesMapPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'routes-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/'<ion-content class="map routes" no-bounce>\n    <div ion-fixed>\n\n        <div *ngIf="showAllRoutes" id="map" class="map-view"></div>\n        <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': routeDetails != null}" lazy-load-images image-size="s">\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>\n            </ion-fab>\n\n            <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"\n                          [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"\n            ></route-teaser>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_11__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_13__services_language_service__["a" /* LanguageService */],
+            __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__["a" /* ZoomService */]])
+    ], RoutesMapPage);
+    return RoutesMapPage;
+}());
+
+//# sourceMappingURL=RoutesMap.js.map
+
+/***/ }),
+
+/***/ 632:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__ = __webpack_require__(117);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/**
+ * Generated class for the PortalPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PortalPage = /** @class */ (function () {
+    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer, zoom) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.iab = iab;
+        this.translateService = translateService;
+        this.sanitizer = sanitizer;
+        this.zoom = zoom;
+        this.languageUrl = {
+            de: 'portal',
+            en: 'portal-en',
+            es: 'portal-es',
+            pt: 'portal-pt',
+            fr: 'portail',
+            it: 'portale',
+            sk: 'portal-sk',
+            id: 'portal-id',
+            tr: 'portal-tr',
+            el: 'πύλη',
+            zh: '入口'
+        };
+        this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
+        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
+    }
+    PortalPage.prototype.ionViewWillEnter = function () {
+        this.zoom.disableZooming();
+    };
+    PortalPage.prototype.ionViewWillLeave = function () {
+        this.zoom.enableZooming();
+    };
+    PortalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-portal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/'<ion-content class="fullscreen">\n    <iframe ion-fixed *ngIf="currentLang" allow="geolocation" [src]="sanitizedUrl">\n    </iframe>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__["a" /* ZoomService */]])
+    ], PortalPage);
+    return PortalPage;
+}());
+
+//# sourceMappingURL=portal.js.map
+
+/***/ }),
+
 /***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10193,32 +10232,32 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(336);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular_linky__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(635);
@@ -10228,23 +10267,23 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(636);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(347);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(236);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(349);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(577);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(579);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(243);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__services_zoom_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -10333,15 +10372,15 @@ var AppModule = /** @class */ (function () {
                 }, {
                     links: [
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
@@ -10419,8 +10458,8 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(347);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
@@ -10773,13 +10812,13 @@ var BaseService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GpsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(304);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
