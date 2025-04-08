@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 1152:
+/***/ 1151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -541,8 +541,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_tilesDb__ = __webpack_require__(623);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Score__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Score__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_modals_service__ = __webpack_require__(66);
@@ -558,14 +558,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_ionic_angular_components_modal_modal_controller__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(636);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__chat_chat__ = __webpack_require__(626);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_chat_and_session_service__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_zoom_service__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_zoom_service__ = __webpack_require__(118);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

@@ -16,54 +16,56 @@ export class TranslationService {
     constructor(private http: HttpClient, private apiConfig: ApiConfiguration, private storage: Storage) {
     }
 
-    async getTranslationForRoute(code: string, fetchIfNotAvailable = false) {
+    async getTranslationForRoute(code: string, fetchIfNotAvailable = false): Promise<{translation: TrailTranslation, isFetched: boolean}> {
         const storageKey = `${this.translateStorageBaseKey}-${code}`
         let trailTranslation: TrailTranslation|undefined;
         let translations: TranslationStorage = await this.storage.get(storageKey);
         if (!translations || !translations[this.translateLanguage] || !translations[this.translateLanguage].trail) {
             if (fetchIfNotAvailable) {
                 let translation = await this.fetchRouteTranslation(code);
+                if (!translations) {
+                    translations = {};
+                }
+                if (!translations[this.translateLanguage]) {
+                    translations[this.translateLanguage] = {trailFetched: false, tasksFetched: false};
+                }
                 if (translation) {
                     trailTranslation = translation;
-                    if (!translations) {
-                        translations = {};
-                    }
-                    if (!translations[this.translateLanguage]) {
-                        translations[this.translateLanguage] = {};
-                    }
-                    translations[this.translateLanguage].trail = trailTranslation;
-                    await this.storage.set(storageKey, translations);
+                    translations[this.translateLanguage].trail = translation;
                 }
+                translations[this.translateLanguage].trailFetched = true;
+                await this.storage.set(storageKey, translations);
             }
         } else {
             trailTranslation = translations[this.translateLanguage].trail;
         }
-        return trailTranslation;
+        return {translation: trailTranslation, isFetched: translations[this.translateLanguage].trailFetched};
     }
 
-    async getTranslationForTask(taskId: number, routeCode: string, fetchIfNotAvailable = false): Promise<TaskTranslation|undefined> {
+    async getTranslationForTask(taskId: number, routeCode: string, fetchIfNotAvailable = false): Promise<{ translation: TaskTranslation, isFetched: boolean}> {
         const storageKey = `${this.translateStorageBaseKey}-${routeCode}`
         let taskTranslations: TaskTranslation[] = [];
         let storedTranslations: TranslationStorage = await this.storage.get(storageKey);
         if (!storedTranslations || !storedTranslations[this.translateLanguage] || !storedTranslations[this.translateLanguage].tasks) {
             if (fetchIfNotAvailable) {
                 let translations = await this.fetchTaskTranslationsForRoute(routeCode);
+                if (!storedTranslations) {
+                    storedTranslations = {};
+                }
+                if (!storedTranslations[this.translateLanguage]) {
+                    storedTranslations[this.translateLanguage] = {trailFetched: false, tasksFetched: false};
+                }
                 if (translations) {
                     taskTranslations = translations;
-                    if (!storedTranslations) {
-                        storedTranslations = {};
-                    }
-                    if (!storedTranslations[this.translateLanguage]) {
-                        storedTranslations[this.translateLanguage] = {};
-                    }
                     storedTranslations[this.translateLanguage].tasks = taskTranslations;
-                    await this.storage.set(storageKey, storedTranslations)
                 }
+                storedTranslations[this.translateLanguage].tasksFetched = true;
+                await this.storage.set(storageKey, storedTranslations)
             }
         } else {
             taskTranslations = storedTranslations[this.translateLanguage].tasks;
         }
-        return taskTranslations.find(translation => translation.taskId === taskId);
+        return {translation: taskTranslations.find(translation => translation.taskId === taskId), isFetched: storedTranslations[this.translateLanguage].trailFetched};
     }
 
     // TODO handle empty response?

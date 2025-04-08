@@ -96,6 +96,7 @@ export class TaskDetail {
     private linkHttpsPipeFilter: LinkHttpsPipe = new LinkHttpsPipe();
 
     protected translation: TaskTranslation;
+    protected translationFetched: boolean;
     protected translatePage: boolean = false;
 
     constructor(
@@ -505,7 +506,9 @@ export class TaskDetail {
         if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.subscribeCKEvents();
         }
-        this.translation = await this.translationService.getTranslationForTask(this.taskId, this.route.code);
+        let {translation, isFetched} = await this.translationService.getTranslationForTask(this.taskId, this.route.code);
+        this.translation = translation;
+        this.translationFetched = isFetched;
         MathJax.typeset();
     }
 
@@ -2370,7 +2373,9 @@ export class TaskDetail {
 
     async toggleTranslation() {
         if (!this.translation) {
-            this.translation = await this.translationService.getTranslationForTask(this.taskId, this.route.code, true);
+            let {translation, isFetched} = await this.translationService.getTranslationForTask(this.taskId, this.route.code, true);
+            this.translation = translation;
+            this.translationFetched = isFetched;
         }
         this.translatePage = this.translation && !this.translatePage;
     }

@@ -3,7 +3,7 @@
     <div class="card title" *ngIf="route">
         <p>{{ route.city }}, {{ route.countryCode }}</p>
         <h1 *ngIf="!translatePage">{{ route.title }}</h1>
-        <h1 *ngIf="translatePage">{{ translation.title }}</h1>
+        <h1 *ngIf="translatePage" [ngClass]="{translated: translatePage}">{{ translation.title }}</h1>
     </div>
 
     <div class="image-box" *ngIf="route">
@@ -70,10 +70,10 @@
     </div>
 
     <div class="card text-center transparent">
-        <button *ngIf="!translation" color="dark" ion-button round (click)="toggleTranslation()">
+        <button *ngIf="!translation && !translationFetched" color="dark" ion-button round (click)="toggleTranslation()">
             dl translation
         </button>
-        <button *ngIf="translation" color="dark" ion-button round (click)="toggleTranslation()">
+        <button *ngIf="translation" [ngClass]="{translated: translatePage}" color="dark" ion-button round (click)="toggleTranslation()">
             translate
         </button>
     </div>
@@ -97,7 +97,7 @@
     <div class="card">
         <ion-label>{{ 'p_r_about' | translate }}</ion-label>
         <p *ngIf="route && !translatePage">{{ route.description }}</p>
-        <p *ngIf="translatePage">{{ translation.description }}</p>
+        <p *ngIf="translatePage" [ngClass]="{translated: translatePage}">{{ translation.description }}</p>
 
         <ion-label>{{ 'a_action_settings' | translate }}</ion-label>
         <p *ngIf="route">

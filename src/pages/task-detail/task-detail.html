@@ -22,7 +22,7 @@
                 <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>
             </div>
             <p *ngIf="task && (!translatePage || !translation)">{{task.description}}</p>
-            <p *ngIf="translation && translatePage">{{translation.description}}</p>
+            <p *ngIf="translation && translatePage" [ngClass]="{translated: translatePage}">{{translation.description}}</p>
             <div class="answer" *ngIf="task && task.solutionType != 'info' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
                 <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
                 <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
@@ -181,12 +181,12 @@
                             </button>
                             <!-- TODO: move to correct button (temporary translation download) -->
                             <button class="hint" ion-button icon-only round color="primary" (click)="toggleTranslation()"
-                                    *ngIf="!translation">
+                                    *ngIf="!translation && !translationFetched">
                                 <img class="round" src="./assets/icons/share.svg"/>
                             </button>
                             <!-- TODO: move to correct button (temporary translation available) -->
                             <button class="hint" ion-button icon-only round color="primary" (click)="toggleTranslation()"
-                                    *ngIf="translation">
+                                    *ngIf="translation" [ngClass]="{translated: translatePage}">
                                 <img class="round" src="./assets/icons/play.svg"/>
                             </button>
                         </ion-col>

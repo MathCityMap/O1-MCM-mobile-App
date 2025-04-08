@@ -25,6 +25,7 @@ export class RouteInfo {
     private currentProgress = 0;
 
     protected translation: TrailTranslation;
+    protected translationFetched: boolean;
     protected translatePage: boolean = false;
 
 
@@ -47,7 +48,9 @@ export class RouteInfo {
         let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         MathJax.typeset();
-        this.translation = await this.translationService.getTranslationForRoute(this.route.code);
+        let {translation, isFetched} = await this.translationService.getTranslationForRoute(this.route.code);
+        this.translation = translation;
+        this.translationFetched = isFetched;
     }
 
     async doDownload(route: Route) {
@@ -79,7 +82,9 @@ export class RouteInfo {
 
     async toggleTranslation() {
         if (!this.translation) {
-            this.translation = await this.translationService.getTranslationForRoute(this.route.code, true);
+            let {translation, isFetched} = await this.translationService.getTranslationForRoute(this.route.code, true);
+            this.translation = translation;
+            this.translationFetched = isFetched;
         }
         this.translatePage = this.translation && !this.translatePage;
     }

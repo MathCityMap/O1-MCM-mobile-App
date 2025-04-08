@@ -8,5 +8,6 @@ export interface TranslationStorage {
 export interface TranslationStorageEntry{
     trail?: TrailTranslation;
     tasks?: Array<TaskTranslation>;
+    trailFetched: boolean;
+    tasksFetched: boolean;
 }
-
