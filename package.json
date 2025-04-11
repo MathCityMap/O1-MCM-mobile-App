@@ -90,6 +90,7 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "^3.2.4",
+        "@ionic/cli": "6.19.0",
         "com-sarriaroman-photoviewer": "file:plugin-src/com-sarriaroman-photoviewer",
         "cordova-android": "^13.0.0",
         "cordova-ios": "^6.2.0",

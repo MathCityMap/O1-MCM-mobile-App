@@ -1,4 +1,4 @@
-<mcm-header></mcm-header>
+<mcm-header [ngClass]="{translated: translatePage}"></mcm-header>
 <ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
     <div class="task-header" [ngClass]="{'gps' : task && task.solutionType=='gps'}">
         <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap">
@@ -98,12 +98,12 @@
                     </ion-item>
                 </ion-list>
                 <ion-item *ngIf="task && task.solutionType === 'blanks' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-                    <p [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))}" class="blankContainer" id="blankContainer_{{task.id}}"></p>
+                    <p [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage}" class="blankContainer" id="blankContainer_{{task.id}}"></p>
                 </ion-item>
                 <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
                     <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
                         <ion-checkbox [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)" [(ngModel)]="item.userChecked"></ion-checkbox>
-                        <ion-label class="multi-choice-label" text-wrap tappable>{{item.value}}</ion-label>
+                        <ion-label class="multi-choice-label" text-wrap tappable>{{translatePage ? translation.getSolutionOptionList(task.solutionType)[i].value : item.value}}</ion-label>
                     </ion-item>
                 </ion-list>
             </div>

@@ -2,15 +2,15 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {ApiConfiguration} from "../api-configuration";
 import {TrailTranslation, TranslationTrailResponse} from "../models/trail-translation";
-import {TaskTranslation, TranslationTaskResponse} from "../models/task-translation";
+import {TranslationTaskResponse} from "../models/response-task-translation";
 import {Storage} from "@ionic/storage";
-import {TranslationStorage} from "../models/translation-storage";
+import {TaskTranslation, TranslationStorage} from "../models/translation-storage";
 
 //TODO Add feedback element to translationStorage entries to signal if and when translations (task and trail separately) have been fetched in language
 @Injectable()
 export class TranslationService {
     // TODO make this configurable through settings page
-    translateLanguage = "de"
+    translateLanguage = "pl"
     translateStorageBaseKey = "MCMTranslations"
 
     constructor(private http: HttpClient, private apiConfig: ApiConfiguration, private storage: Storage) {
@@ -39,7 +39,7 @@ export class TranslationService {
         } else {
             trailTranslation = translations[this.translateLanguage].trail;
         }
-        return {translation: trailTranslation, isFetched: translations[this.translateLanguage].trailFetched};
+        return {translation: trailTranslation, isFetched: translations && translations[this.translateLanguage] ? translations[this.translateLanguage].trailFetched : false};
     }
 
     async getTranslationForTask(taskId: number, routeCode: string, fetchIfNotAvailable = false): Promise<{ translation: TaskTranslation, isFetched: boolean}> {
@@ -56,16 +56,16 @@ export class TranslationService {
                     storedTranslations[this.translateLanguage] = {trailFetched: false, tasksFetched: false};
                 }
                 if (translations) {
-                    taskTranslations = translations;
+                    taskTranslations = translations.map(task => TaskTranslation.FromTranslationResponse(task));
                     storedTranslations[this.translateLanguage].tasks = taskTranslations;
                 }
                 storedTranslations[this.translateLanguage].tasksFetched = true;
                 await this.storage.set(storageKey, storedTranslations)
             }
         } else {
-            taskTranslations = storedTranslations[this.translateLanguage].tasks;
+            taskTranslations = storedTranslations[this.translateLanguage].tasks.map(rawTask => new TaskTranslation(rawTask));
         }
-        return {translation: taskTranslations.find(translation => translation.taskId === taskId), isFetched: storedTranslations[this.translateLanguage].trailFetched};
+        return {translation: taskTranslations.find(translation => translation.taskId === taskId), isFetched: storedTranslations && storedTranslations[this.translateLanguage] ? storedTranslations[this.translateLanguage].tasksFetched : false};
     }
 
     // TODO handle empty response?

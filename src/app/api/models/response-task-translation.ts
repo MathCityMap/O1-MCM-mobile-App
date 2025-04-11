@@ -1,8 +1,8 @@
 export interface TranslationTaskResponse {
-    tasks: Array<TaskTranslation>
+    tasks: Array<ResponseTaskTranslation>
 }
 
-export interface TaskTranslation {
+export interface ResponseTaskTranslation {
     id: number;
     language: string;
     taskId: number;
