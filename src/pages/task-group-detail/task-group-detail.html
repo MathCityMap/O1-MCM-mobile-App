@@ -10,7 +10,8 @@
             <div class="head">
                 <ion-label>{{ "a_taskGroup_task_group" | translate }}</ion-label>
             </div>
-            <p *ngIf="group">{{group.description}}</p>
+            <p *ngIf="group && (!translatePage || !translation)">{{group.description}}</p>
+            <p *ngIf="translation && translatePage" [ngClass]="{translated: translatePage}">{{translation.description}}</p>
         </div>
 
         <div class="card task-list-head">
@@ -37,6 +38,11 @@
                 <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>
                 <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>
             </div>
+        </div>
+
+        <div class="card transparent skip">
+            <button ion-button block default round color="danger" (click)="toggleTranslation()" *ngIf="!translation && !translationFetched">translate dl</button>
+            <button ion-button block default round color="danger" (click)="toggleTranslation()" *ngIf="translation" [ngClass]="{translated: translatePage}">translate</button>
         </div>
 
         <div *ngIf="!groupIsFinished" class="card transparent skip" >

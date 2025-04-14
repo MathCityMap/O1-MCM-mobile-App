@@ -101,6 +101,15 @@ export class TaskTranslation {
         return null;
     }
 
+    getSolutionSample(): string {
+        if (this.sample_solution) {
+            if (this.sample_solution.length > 0) {
+                return this.sample_solution[0];
+            }
+        }
+        return "";
+    }
+
     private static safeExtractJson(str) {
         const startObj = str.indexOf('{');
         const startArr = str.indexOf('[');

@@ -326,6 +326,7 @@ var SafariViewController = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_translation_service__ = __webpack_require__(237);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -379,8 +380,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var TaskGroupDetail = /** @class */ (function () {
-    function TaskGroupDetail(navCtrl, navParams, ormService, modalsService, chatAndSessionService, deepLinker, photoViewer, spinnerDialog) {
+    function TaskGroupDetail(navCtrl, navParams, ormService, modalsService, chatAndSessionService, deepLinker, photoViewer, spinnerDialog, translationService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.ormService = ormService;
@@ -389,36 +391,43 @@ var TaskGroupDetail = /** @class */ (function () {
         this.deepLinker = deepLinker;
         this.photoViewer = photoViewer;
         this.spinnerDialog = spinnerDialog;
+        this.translationService = translationService;
         this.subtasks = [];
         this.groupIsFinished = false;
+        this.translatePage = false;
     }
     TaskGroupDetail.prototype.ionViewWillEnter = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, _b, _c, _d, _e, _f;
-            return __generator(this, function (_g) {
-                switch (_g.label) {
+            var _a, _b, _c, _d, _e, _f, _g, translation, isFetched;
+            return __generator(this, function (_h) {
+                switch (_h.label) {
                     case 0:
                         this.routeId = this.navParams.get('routeId');
                         _a = this;
                         return [4 /*yield*/, this.ormService.findRouteById(this.routeId)];
                     case 1:
-                        _a.route = _g.sent();
+                        _a.route = _h.sent();
                         this.groupId = this.navParams.get('groupId');
                         _b = this;
                         return [4 /*yield*/, this.ormService.findTaskById(this.groupId)];
                     case 2:
-                        _b.group = _g.sent();
+                        _b.group = _h.sent();
                         _c = this;
                         _e = (_d = this.route).getScoreForUser;
                         return [4 /*yield*/, this.ormService.getActiveUser()];
                     case 3:
-                        _c.score = _e.apply(_d, [_g.sent()]);
+                        _c.score = _e.apply(_d, [_h.sent()]);
                         _f = this;
                         return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
                     case 4:
-                        _f.sessionInfo = _g.sent();
+                        _f.sessionInfo = _h.sent();
                         this.subtasks = this.group.getSubtasksInOrder();
                         this.groupIsFinished = this.checkIfGroupIsFinished();
+                        return [4 /*yield*/, this.translationService.getTranslationForTask(this.groupId, this.route.code)];
+                    case 5:
+                        _g = _h.sent(), translation = _g.translation, isFetched = _g.isFetched;
+                        this.translation = translation;
+                        this.translationFetched = isFetched;
                         return [2 /*return*/];
                 }
             });
@@ -589,13 +598,34 @@ var TaskGroupDetail = /** @class */ (function () {
             }, 100);
         }
     };
+    TaskGroupDetail.prototype.toggleTranslation = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, translation, isFetched;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!!this.translation) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.translationService.getTranslationForTask(this.groupId, this.route.code, true)];
+                    case 1:
+                        _a = _b.sent(), translation = _a.translation, isFetched = _a.isFetched;
+                        this.translation = translation;
+                        this.translationFetched = isFetched;
+                        _b.label = 2;
+                    case 2:
+                        this.translatePage = this.translation && !this.translatePage;
+                        this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.group.title;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
     ], TaskGroupDetail.prototype, "content", void 0);
     TaskGroupDetail = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n        <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_task_group" | translate }}</ion-label>\n            </div>\n            <p *ngIf="group">{{group.description}}</p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskGroup_tasks" | translate }}</ion-label>\n            <ion-label *ngIf="group" class="count text-right">{{getSolvedSubtaskCount()}} / {{group.getLegitSubtasks().length}}</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div *ngFor="let subtask of subtasks" class="task-list-item detail-box" [ngClass]="getAdditionalSubtaskClasses(subtask)" (click)="openSubtask(subtask)">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" [src]="subtask.getImageURL()" onerror="this.style.opacity=\'0\'"/>\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>{{subtask.title}}</h2>\n                    </div>\n                    <ion-label *ngIf="route && route.isAnswerFeedbackEnabled()" class="tag score">{{getScoreForTask(subtask)}}</ion-label>\n                </div>\n            </div>\n        </div>\n        <div *ngIf="route && route.isAnswerFeedbackEnabled()" class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>\n            </div>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card transparent skip" >\n            <button ion-button block default round color="danger" (click)="skipGroup()">{{\'a_taskGroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card secondary">\n            <ion-label>{{ "a_taskGroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskGroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
+            selector: 'page-task-group-detail',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/'<mcm-header></mcm-header>\n<ion-content no-bounce class="has-header padding bottom">\n    <div class="task-header">\n        <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>\n    </div>\n    <div class="task-content">\n        <div class="transition"></div>\n\n        <div class="card task">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_task_group" | translate }}</ion-label>\n            </div>\n            <p *ngIf="group && (!translatePage || !translation)">{{group.description}}</p>\n            <p *ngIf="translation && translatePage" [ngClass]="{translated: translatePage}">{{translation.description}}</p>\n        </div>\n\n        <div class="card task-list-head">\n            <ion-label>{{ "a_taskGroup_tasks" | translate }}</ion-label>\n            <ion-label *ngIf="group" class="count text-right">{{getSolvedSubtaskCount()}} / {{group.getLegitSubtasks().length}}</ion-label>\n        </div>\n        <div class="card task-list">\n            <div class="task-list-container">\n                <div *ngFor="let subtask of subtasks" class="task-list-item detail-box" [ngClass]="getAdditionalSubtaskClasses(subtask)" (click)="openSubtask(subtask)">\n                    <div tappable class="image-container">\n                        <div class="cover">\n                            <img alt="preview" class="thumb" [src]="subtask.getImageURL()" onerror="this.style.opacity=\'0\'"/>\n                        </div>\n                    </div>\n                    <div class="text-container">\n                        <h2>{{subtask.title}}</h2>\n                    </div>\n                    <ion-label *ngIf="route && route.isAnswerFeedbackEnabled()" class="tag score">{{getScoreForTask(subtask)}}</ion-label>\n                </div>\n            </div>\n        </div>\n        <div *ngIf="route && route.isAnswerFeedbackEnabled()" class="card task-list-evaluation evaluation">\n            <div class="head">\n                <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>\n                <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>\n            </div>\n        </div>\n\n        <div class="card transparent skip">\n            <button ion-button block default round color="danger" (click)="toggleTranslation()" *ngIf="!translation && !translationFetched">translate dl</button>\n            <button ion-button block default round color="danger" (click)="toggleTranslation()" *ngIf="translation" [ngClass]="{translated: translatePage}">translate</button>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card transparent skip" >\n            <button ion-button block default round color="danger" (click)="skipGroup()">{{\'a_taskGroup_skip_button\' | translate }}</button>\n        </div>\n\n        <div *ngIf="!groupIsFinished" class="card secondary">\n            <ion-label>{{ "a_taskGroup_skip_info" | translate }}</ion-label>\n            <p>\n                {{ "a_taskGroup_skip_info_text" | translate }}\n            </p>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/task-group-detail/task-group-detail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
@@ -604,7 +634,8 @@ var TaskGroupDetail = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_4__services_chat_and_session_service__["a" /* ChatAndSessionService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* DeepLinker */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__["a" /* PhotoViewer */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_8__app_api_services_translation_service__["a" /* TranslationService */]])
     ], TaskGroupDetail);
     return TaskGroupDetail;
 }());

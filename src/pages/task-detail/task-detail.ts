@@ -634,7 +634,7 @@ export class TaskDetail {
                 }
             ]
 
-        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: `${this.app.activeNarrative}${this.translatePage ? ' translated' :''}`});
         hintModal.onDidDismiss(click => {
             if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
@@ -1004,7 +1004,7 @@ export class TaskDetail {
             this.taskDetails.failed = true;
             this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
         }
-        let solutionSample = this.task.getSolutionSample();
+        let solutionSample = this.translatePage ? this.translation.getSolutionSample() : this.task.getSolutionSample();
         let solutionSrc = this.task.getSolutionSampleImgSrc();
         let messages = [];
         if ((!solutionSample || solutionSample.length == 0) && (!solutionSrc || solutionSrc.length == 0)) {

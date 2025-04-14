@@ -9,6 +9,8 @@ import {ChatAndSessionService, SessionInfo} from "../../services/chat-and-sessio
 import {Helper} from "../../classes/Helper";
 import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
+import {TaskTranslation} from "../../app/api/models/translation-storage";
+import {TranslationService} from "../../app/api/services/translation.service";
 
 @IonicPage({
     segment: ':routeId/TasksGroupDetail/:taskId'
@@ -29,6 +31,10 @@ export class TaskGroupDetail {
     protected groupIsFinished = false;
     private sessionInfo: SessionInfo;
 
+    protected translation: TaskTranslation;
+    protected translationFetched: boolean;
+    protected translatePage: boolean = false;
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -37,7 +43,8 @@ export class TaskGroupDetail {
         private chatAndSessionService: ChatAndSessionService,
         private deepLinker: DeepLinker,
         private photoViewer: PhotoViewer,
-        private spinnerDialog: SpinnerDialog
+        private spinnerDialog: SpinnerDialog,
+        private translationService: TranslationService
     ) {}
 
     async ionViewWillEnter() {
@@ -49,6 +56,9 @@ export class TaskGroupDetail {
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         this.subtasks = this.group.getSubtasksInOrder();
         this.groupIsFinished = this.checkIfGroupIsFinished();
+        let {translation, isFetched} = await this.translationService.getTranslationForTask(this.groupId, this.route.code);
+        this.translation = translation;
+        this.translationFetched = isFetched;
     }
 
     async ionViewWillLeave() {
@@ -192,5 +202,15 @@ export class TaskGroupDetail {
                 }, 1000);
             }, 100)
         }
+    }
+
+    async toggleTranslation() {
+        if (!this.translation) {
+            let {translation, isFetched} = await this.translationService.getTranslationForTask(this.groupId, this.route.code, true);
+            this.translation = translation;
+            this.translationFetched = isFetched;
+        }
+        this.translatePage = this.translation && !this.translatePage;
+        this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.group.title;
     }
 }
