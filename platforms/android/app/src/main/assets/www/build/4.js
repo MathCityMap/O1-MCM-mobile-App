@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ 1152:
+/***/ 1150:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OnboardingPageModule", function() { return OnboardingPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__onboarding__ = __webpack_require__(1168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__onboarding__ = __webpack_require__(1163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(235);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41,7 +41,7 @@ var OnboardingPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1168:
+/***/ 1163:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -162,7 +162,7 @@ var OnboardingPage = /** @class */ (function () {
     };
     OnboardingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-onboarding',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/onboarding/onboarding.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="true">\n        <ion-buttons right>\n            <button ion-button icon-only (click)="goToHomePage()">\n                <img class="header-icon" src="assets/icons/icon_close-modal.svg"/>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content slides class="has-header transparent padding top bottom">\n    <ion-slides pager="true">\n        <ion-slide>\n            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-1.svg"></object>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide1_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide1_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-2.svg"></object>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide2_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide2_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide3Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide3_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide3_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide4Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide4_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide4_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide5Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide5_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide5_text\' | translate"></p>\n                <button ion-button round (click)="goToHomePage()">{{ \'a_onboarding_slide5_button\' | translate }}</button>\n            </div>\n        </ion-slide>\n    </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/onboarding/onboarding.html"*/,
+            selector: 'page-onboarding',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/onboarding/onboarding.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="true">\n        <ion-buttons right>\n            <button ion-button icon-only (click)="goToHomePage()">\n                <img class="header-icon" src="assets/icons/icon_close-modal.svg"/>\n            </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content slides class="has-header transparent padding top bottom">\n    <ion-slides pager="true">\n        <ion-slide>\n            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-1.svg"></object>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide1_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide1_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <object type="image/svg+xml" data="./assets/icons/onboarding/slide-2.svg"></object>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide2_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide2_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide3Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide3_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide3_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide4Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide4_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide4_text\' | translate"></p>\n            </div>\n        </ion-slide>\n        <ion-slide>\n            <div class="img" [innerHTML]="slide5Svg"></div>\n            <div class="text">\n                <h1>{{ \'a_onboarding_slide5_title\' | translate }}</h1>\n                <p [innerHTML]="\'a_onboarding_slide5_text\' | translate"></p>\n                <button ion-button round (click)="goToHomePage()">{{ \'a_onboarding_slide5_button\' | translate }}</button>\n            </div>\n        </ion-slide>\n    </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/onboarding/onboarding.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],

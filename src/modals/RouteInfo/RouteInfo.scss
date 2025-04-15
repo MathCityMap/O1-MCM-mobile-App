@@ -1,194 +1,271 @@
 //  Image & Actions
 
-.image-box{
-    margin: -40px 0 -55px;
-    padding: 0 $global-base-padding;
-    z-index: 1;
-    .grid{
-        padding: 0;
-        .button-container{
-            padding: $global-small-padding $global-small-padding $global-base-padding;
-            max-width: 70px;
-            text-align: center;
-            button{
-                margin: 0;
-                padding: 0;
-                min-width: unset;
-                @include size(40px);
-            }
-        }
-    }
-    .image-container{
-        .cover{
-            @include box-shadow(0.2);
-            border: solid 4px color($colors, light);
-            overflow: hidden;
-        }
-        .indicator{
-            position: absolute;
-            bottom: -#{$global-small-padding};
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 2px 10px;
-            @include shadow-filter-hard;
+$header-height: 50vh;
+$header-space-top: 66px;
+$image-size: 56vw;
+$content-edge: 4px;
+
+.route{
+
+   &-header {
+      position: sticky;
+      display: block;
+      z-index: 0;
+      width: 100%;
+      top: 0;
+      left: 0;
+      height: $header-height;
+      background: url("../../assets/icons/bg-pattern.svg") center /100% 100% no-repeat color($colors, primary);
+      text-align: center;
+      padding: $header-space-top 20px 0;
+      box-sizing: border-box;
+      .title{
+         &-container{
+            min-height: 100px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            & > * {
-                word-break: keep-all;
-                hyphens: none;
+            justify-content: center;
+
+            & > *{
+               color: color($colors, light)!important;
             }
-            .background{
-                position: absolute;
-                z-index: -1;
-                width: 100%;
-                height: 100%;
-                left: 0;
-                top: 0;
-                right: 0;
-                bottom: 0;
+         }
+
+         font-size: 28px;
+         line-height: 1.1;
+         &-super{
+            margin-bottom: 8px;
+         }
+      }
+
+      // Narrative Themed
+
+      &.narrative{
+         background: url("../../assets/images/pirates/texture-wood.svg") center /cover no-repeat $c-secondary;
+      }
+   }
+
+
+   &-content {
+      position: relative;
+      display: block;
+      z-index: 2;
+      margin-top: calc((#{$image-size} + #{$content-edge}) * -1);
+      &:after{
+         content: '';
+         position: absolute;
+         bottom: 0;
+         z-index: -1;
+         width: 100%;
+         height: calc(100% - (#{$image-size} + #{$content-edge}));
+         background: color($colors, light-grey-tint);
+      }
+
+      & > .card {
+         z-index: 0;
+         ion-label{
+            &.title{
+               margin-bottom: $global-base-plus-padding/2;
             }
-        }
-    }
+         }
+
+         .settings{
+            ion-row{
+               display: flex;
+               justify-content: space-between;
+            }
+         }
+      }
+
+      .image{
+         &-box{
+            margin: -40px 0 -55px;
+            padding: 0 $global-base-padding;
+            display: block;
+            z-index: 2;
+            position: relative;
+            .grid{
+               padding: 0;
+               .button-container{
+                  padding: $global-small-padding $global-small-padding $global-base-padding;
+                  max-width: 70px;
+                  text-align: center;
+                  button{
+                     margin: 0;
+                     padding: 0;
+                     min-width: unset;
+                     @include size(40px);
+                  }
+               }
+            }
+         }
+
+         &-container{
+            max-width: $image-size;
+            margin: auto;
+            .cover{
+               @include box-shadow(0.2);
+               border: solid 8px color($colors, light);
+               overflow: hidden;
+            }
+            .indicator{
+               position: absolute;
+               bottom: -#{$global-small-padding};
+               left: 50%;
+               transform: translateX(-50%);
+               padding: 2px 10px;
+               @include shadow-filter-hard;
+               display: flex;
+               align-items: center;
+               & > * {
+                  word-break: keep-all;
+                  hyphens: none;
+               }
+               .background{
+                  position: absolute;
+                  z-index: -1;
+                  width: 100%;
+                  height: 100%;
+                  left: 0;
+                  top: 0;
+                  right: 0;
+                  bottom: 0;
+               }
+            }
+         }
+      }
+   }
+
 }
+
 
 
 //  Detail Infos
 
 .card{
 
-    //  Top Part
+	// Detail Core
 
-    &.title{
-        padding: $global-small-padding*1.5 $global-base-padding;
-        text-align: center;
-        p{
-            margin-bottom: 4px;
-        }
-    }
-
-    // Detail Core
-
-    &.basic-info{
-        .info-item{
-            &:not(:first-of-type){
-                margin-top: $global-small-padding / 2;
-            }
-        }
-        .row{
-            align-items: stretch;
-            flex-wrap: nowrap;
-        }
-        span{
-            color: color($colors, dark-grey);
-        }
-        .col{
-            width: unset;
-            max-width: 33%;
-            &:nth-of-type(even){
-                align-self: flex-end;
-                margin: 0 $global-small-padding;
-                .info-item{
-                    padding: 0 $global-small-padding;
-                    &:after, &:before{
-                        content: '';
-                        position: absolute;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        height: 80%;
-                        border-right: 2px dotted color($colors, light-grey);
-                    }
-                     &:before{
-                        left: 0;
-                    }
-                    &:after{
-                        right: 0;
-                    }
-                }
-            }
-            &:nth-of-type(odd){
-                flex-grow: 0;
-                flex-basis: 27%;
-            }
-            &:first-of-type{
-                .info-item{
-                    padding-right: $global-small-padding!important;
-                }
-            }
-            &:last-of-type{
-                .info-item{
-                    padding-left: $global-small-padding!important;
-                }
-            }
-        }
-        ion-label, ion-label.label-ios, ion-label.label-md{
-            margin-bottom: 4px;
-        }
-    }
+	&.basic-info{
+		.info-item{
+			&:not(:first-of-type){
+				margin-top: $global-medium-padding;
+			}
+		}
+		.row{
+			align-items: stretch;
+			flex-wrap: nowrap;
+		}
+		span{
+			color: color($colors, dark-grey);
+		}
+		.col{
+			width: unset;
+			&:nth-of-type(even){
+				align-self: flex-end;
+				margin: 0 $global-small-padding;
+				.info-item{
+					padding: 0 $global-small-padding;
+					&:after, &:before{
+						content: '';
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+						height: 80%;
+						border-right: 2px dotted color($colors, light-grey);
+					}
+					&:before{
+						left: 0;
+					}
+					&:after{
+						right: 0;
+					}
+				}
+			}
+			&:nth-of-type(odd){
+				flex-grow: 0;
+				flex-basis: 28%;
+			}
+			&:first-of-type{
+				.info-item{
+					padding-right: $global-small-padding!important;
+				}
+			}
+			&:last-of-type{
+				.info-item{
+					padding-left: $global-small-padding!important;
+				}
+			}
+		}
+		ion-label, ion-label.label-ios, ion-label.label-md{
+			margin-bottom: 4px;
+		}
+	}
 }
 
 .path-info {
-    .walk {
-        ion-icon {
-            color: color($colors, primary);
-        }
-    }
-    .bike {
-        ion-icon {
-            color: color($colors, success);
-        }
-    }
-    .car {
-        ion-icon {
-            color: color($colors, error);
-        }
-    }
-    .public {
-        ion-icon {
-            color: color($colors, secondary);
-        }
-    }
-    .sum-label {
-        min-width: 75%;
-    }
-
-    .sum-data {
-        margin-left: 1em;
-    }
+	.walk {
+		ion-icon {
+			color: color($colors, primary);
+		}
+	}
+	.bike {
+		ion-icon {
+			color: color($colors, success);
+		}
+	}
+	.car {
+		ion-icon {
+			color: color($colors, error);
+		}
+	}
+	.public {
+		ion-icon {
+			color: color($colors, secondary);
+		}
+	}
+	.sum-label {
+		min-width: 75%;
+	}
+	.sum-data {
+		margin-left: 1em;
+	}
 }
 
 .footer{
-    .button{
-        &.play{
-            img{
-                @include size(20px);
-                margin-right: $global-small-padding;
-            }
-        }
-    }
+	.button{
+		&.play{
+			img{
+				@include size(20px);
+				margin-right: $global-small-padding;
+			}
+		}
+	}
 }
 
 p{
-    margin: 0 0 $global-base-padding 0;
+	margin: 0 0 $global-base-padding 0;
 }
 h1{
-    margin: 0 0 $global-small-padding 0;
+	margin: 0 0 $global-small-padding 0;
 }
 
 
 @media screen and (min-width: 768px){
-    route-info.ion-page{
-        max-height: 90%;
-        top: 50%;
-        transform: translateY(-50%);
-        border-radius: $border-radius-basic;
-        .footer{
-            min-height: unset;
-            &:before{
-                display: none;
-            }
-            .button[large]{
-                padding-bottom: 0;
-            }
-        }
-    }
+	route-info.ion-page{
+		max-height: 90%;
+		top: 50%;
+		transform: translateY(-50%);
+		border-radius: $border-radius-basic;
+		.footer{
+			min-height: unset;
+			&:before{
+				display: none;
+			}
+			.button[large]{
+				padding-bottom: 0;
+			}
+		}
+	}
 }

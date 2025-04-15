@@ -170,7 +170,7 @@ export class Route {
         if (this.task2Routes) {
             allTasks = this.task2Routes.map(t2R => {
                 return t2R.task;
-            });
+            }).filter(task => {return !!task});
         }
         if (allTasks) {
             let tasks = allTasks.filter(task => {return task.taskFormat !== TaskFormat.GROUP});

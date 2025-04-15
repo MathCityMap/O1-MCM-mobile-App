@@ -1,17 +1,1676 @@
 webpackJsonp([11],{
 
+/***/ 1070:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InitialMigration1513274191111; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var InitialMigration1513274191111 = /** @class */ (function () {
+    function InitialMigration1513274191111() {
+    }
+    InitialMigration1513274191111.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_state (_id INTEGER PRIMARY KEY AUTOINCREMENT,option VARCHAR (64) NOT NULL,value VARCHAR (256) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,lat VARCHAR (64) NOT NULL,lon VARCHAR (64) NOT NULL,title TEXT NOT NULL,description TEXT NOT NULL,image TEXT ,solution_type TEXT NOT NULL,solution TEXT NOT NULL,hint1 TEXT ,hint2 TEXT ,hint3 TEXT ,assistive_equipment TEXT ,author TEXT ,mail TEXT ,grade VARCHAR (2) NOT NULL DEFAULT '13',tags TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,solutionsample TEXT NOT NULL,attr TEXT ,create_date TIMESTAMP NOT NULL,lang_code VARCHAR (2))")];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_route (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,title TEXT NOT NULL,country_code TEXT NOT NULL,city TEXT NOT NULL,image TEXT ,code VARCHAR (64),grade TEXT (64),tags VARCHAR ,duration VARCHAR (64),length VARCHAR (64),bounding_box TEXT ,center TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,description TEXT ,create_date TIMESTAMP NOT NULL,attr TEXT TEXT)")];
+                    case 3:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_rel_route_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,route_id INTEGER (64) NOT NULL,task_id INTEGER (64) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
+                    case 4:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_users (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR (32) NOT NULL,create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
+                    case 5:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_score (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER (64) NOT NULL,route_id INTEGER (64) NOT NULL,score INTEGER (64) NOT NULL,tasks_solved TEXT ,tasks_solved_low TEXT ,task_details TEXT ,time INTEGER (64),distance INTEGER (64))")];
+                    case 6:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    InitialMigration1513274191111.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return InitialMigration1513274191111;
+}());
+
+//# sourceMappingURL=1513274191111-InitialMigration.js.map
+
+/***/ }),
+
+/***/ 1071:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FailedTaskMigration1515428187000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var FailedTaskMigration1515428187000 = /** @class */ (function () {
+    function FailedTaskMigration1515428187000() {
+    }
+    FailedTaskMigration1515428187000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD tasks_failed TEXT")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    FailedTaskMigration1515428187000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return FailedTaskMigration1515428187000;
+}());
+
+//# sourceMappingURL=1515428187000-failedTaskMigration.js.map
+
+/***/ }),
+
+/***/ 1072:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var User = /** @class */ (function () {
+    function User() {
+    }
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
+        __metadata("design:type", Number)
+    ], User.prototype, "id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 32 }),
+        __metadata("design:type", String)
+    ], User.prototype, "name", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'create_date' }),
+        __metadata("design:type", String)
+    ], User.prototype, "createDate", void 0);
+    User = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_users')
+    ], User);
+    return User;
+}());
+
+//# sourceMappingURL=User.js.map
+
+/***/ }),
+
+/***/ 1073:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return State; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var State = /** @class */ (function () {
+    function State() {
+    }
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
+        __metadata("design:type", Number)
+    ], State.prototype, "id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 64 }),
+        __metadata("design:type", String)
+    ], State.prototype, "option", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 256 }),
+        __metadata("design:type", String)
+    ], State.prototype, "value", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
+        __metadata("design:type", String)
+    ], State.prototype, "timestamp", void 0);
+    State = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_state')
+    ], State);
+    return State;
+}());
+
+//# sourceMappingURL=State.js.map
+
+/***/ }),
+
+/***/ 1074:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskState; });
+var TaskState = /** @class */ (function () {
+    function TaskState() {
+        this.saved = false;
+        this.solved = false;
+        this.solvedLow = false;
+        this.skipped = false;
+        this.failed = false;
+        this.hint1 = false;
+        this.hint2 = false;
+        this.hint3 = false;
+        this.tries = 0;
+        this.newTries = 0; //newTries since user has skipped the task and opened again
+        this.answer = "";
+        this.answerMultipleChoice = [];
+        this.timeFirstOpen = 0;
+        this.timeSolved = 0;
+        this.score = 0;
+        this.penalty = 0;
+    }
+    TaskState.prototype.getTaskDetailAsJSON = function () {
+        return JSON.stringify({
+            taskId: +this.taskId,
+            saved: this.saved,
+            solved: this.solved,
+            solvedLow: this.solvedLow,
+            skipped: this.skipped,
+            failed: this.failed,
+            hint1: this.hint1,
+            hint2: this.hint2,
+            hint3: this.hint3,
+            tries: +this.tries,
+            newTries: +this.newTries,
+            answer: this.answer,
+            answerMultipleChoice: this.answerMultipleChoice,
+            timeFirstOpen: +this.timeFirstOpen,
+            timeSolved: +this.timeSolved,
+            score: +this.score,
+            penalty: this.penalty
+        });
+    };
+    TaskState.getTaskStateAsJSONArray = function (taskDetails) {
+        var result = [];
+        taskDetails.forEach(function (details) {
+            result.push(details.getTaskDetailAsJSON());
+        });
+        return JSON.stringify(result);
+    };
+    TaskState.prototype.getAllTaskState = function (jsonArray) {
+        var flags = JSON.parse(jsonArray);
+        var taskDetails = [];
+        for (var i = 0; i < flags.length; i++) {
+            taskDetails.push(this.getTaskStateByTask(flags[i]));
+        }
+        return taskDetails;
+    };
+    TaskState.prototype.findDetailsForTask = function (taskId, jsonArray) {
+        var flags = JSON.parse(jsonArray);
+        for (var i = 0; i < flags.length; i++) {
+            var detail_1 = this.getTaskStateByTask(flags[i]);
+            if (detail_1.taskId == taskId) {
+                return detail_1;
+            }
+        }
+        var detail = new TaskState();
+        detail.taskId = taskId;
+        return detail;
+    };
+    TaskState.prototype.getTaskStateByTask = function (jsonObject) {
+        var flags = JSON.parse(jsonObject);
+        var taskState = new TaskState();
+        taskState.taskId = flags.taskId;
+        taskState.saved = flags.saved;
+        taskState.solved = flags.solved;
+        taskState.solvedLow = flags.solvedLow;
+        taskState.skipped = flags.skipped;
+        taskState.failed = flags.failed;
+        taskState.hint1 = flags.hint1;
+        taskState.hint2 = flags.hint2;
+        taskState.hint3 = flags.hint3;
+        taskState.tries = flags.tries;
+        taskState.newTries = flags.newTries;
+        taskState.answer = flags.answer;
+        taskState.answerMultipleChoice = flags.answerMultipleChoice;
+        taskState.timeFirstOpen = flags.timeFirstOpen;
+        taskState.timeSolved = flags.timeSolved;
+        taskState.score = flags.score;
+        taskState.penalty = flags.penalty;
+        return taskState;
+    };
+    return TaskState;
+}());
+
+//# sourceMappingURL=TaskState.js.map
+
+/***/ }),
+
+/***/ 1076:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddImageUrlAndDownloadedFlagMigration1513679923000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddImageUrlAndDownloadedFlagMigration1513679923000 = /** @class */ (function () {
+    function AddImageUrlAndDownloadedFlagMigration1513679923000() {
+    }
+    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloaded INTEGER(1)")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddImageUrlAndDownloadedFlagMigration1513679923000;
+}());
+
+//# sourceMappingURL=1513679923000-AddImageUrlAndDownloadedFlagMigration.js.map
+
+/***/ }),
+
+/***/ 1077:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CacheManagerMCM; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(1078);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(623);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(35);
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var CacheManagerMCM = /** @class */ (function () {
+    function CacheManagerMCM() {
+    }
+    CacheManagerMCM.getTilesCoverageMinMaxZoom = function (pBB, pZoomMin, pZoomMax) {
+        var result = new Array();
+        for (var zoomLevel = pZoomMin; zoomLevel <= pZoomMax; zoomLevel++) {
+            console.debug("Calculating ZOOM: " + zoomLevel);
+            var resultForZoom = CacheManagerMCM.getTilesCoverageZoom(pBB, zoomLevel);
+            console.debug("Result.size: " + resultForZoom.length);
+            result = result.concat(resultForZoom);
+            console.debug("Result.concat.size: " + result.length);
+        }
+        return result;
+    };
+    CacheManagerMCM.getTilesCoverageZoom = function (pBB, pZoomLevel) {
+        var result = new Array();
+        var mapTileUpperBound = 1 << pZoomLevel;
+        console.debug("shift attributes " + mapTileUpperBound);
+        console.debug("south: " + pBB.getSouth() + " east: " + pBB.getEast());
+        console.debug("north: " + pBB.getNorth() + " west: " + pBB.getWest());
+        var lowerRight = CacheManagerMCM.getMapTileFromCoordinates(pBB.getSouth(), pBB.getEast(), pZoomLevel);
+        var upperLeft = CacheManagerMCM.getMapTileFromCoordinates(pBB.getNorth(), pBB.getWest(), pZoomLevel);
+        console.debug("lowerRight " + lowerRight + " upperLeft " + upperLeft);
+        var width = lowerRight.x - upperLeft.x + 1;
+        if (width <= 0) {
+            width += mapTileUpperBound;
+        }
+        console.debug("Width: " + width + " " + typeof width);
+        var height = lowerRight.y - upperLeft.y + 1;
+        if (height <= 0) {
+            height += mapTileUpperBound;
+        }
+        console.debug("Height: " + height + " " + typeof height);
+        for (var i = 0; i < width; i++) {
+            for (var j = 0; j < height; j++) {
+                var x = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.x + i, mapTileUpperBound);
+                var y = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.y + j, mapTileUpperBound);
+                result.push(new __WEBPACK_IMPORTED_MODULE_0__Helper__["c" /* MapTile */](pZoomLevel, x, y));
+            }
+        }
+        console.debug("Result.length = " + result.length);
+        return result;
+    };
+    CacheManagerMCM.getMapTileFromCoordinates = function (aLat, aLon, zoom) {
+        var z = 1 << zoom;
+        var y = Math.floor((1 - Math.log(Math.tan(aLat * Math.PI / 180) + 1 / Math.cos(aLat * Math.PI / 180)) / Math.PI) / 2 * z);
+        var x = Math.floor((aLon + 180) / 360 * z);
+        console.debug("aLat: " + aLat + " aLon: " + aLon + " zoom: " + zoom + " => x: " + x + " y: " + y);
+        return new __WEBPACK_IMPORTED_MODULE_3_leaflet__["Point"](x, y);
+    };
+    CacheManagerMCM.downloadTiles = function (route, pZoomMin, pZoomMax, callback) {
+        return __awaiter(this, void 0, void 0, function () {
+            var tiles, tilesUrls, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2__tilesDb__["a" /* tilesDb */].initialize()];
+                    case 1:
+                        _a.sent();
+                        tilesUrls = tiles.map(function (tile) {
+                            var domain = route.getTilesServerSubdomains(route.getNarrativeName())[Math.floor(Math.random() * route.getTilesServerSubdomains(route.getNarrativeName()).length)];
+                            return route.getTilesMap(route.getNarrativeName()).replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
+                        });
+                        _a.label = 2;
+                    case 2:
+                        _a.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.downloadURLs(tilesUrls, false, callback, true)];
+                    case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _a.sent();
+                        console.debug("remove already added tiles because download failed or was aborted");
+                        throw e_1;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /*    static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
+            //const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
+            await tilesDb.initialize();
+            tilesDb.removeItems(CacheManagerMCM.getTileURLs(pBB, pZoomMin, pZoomMax));
+        }*/
+    CacheManagerMCM.getTileURLs = function (route, pZoomMin, pZoomMax) {
+        var tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
+        return tiles.map(function (tile) { return route.getTilesMap(route.getNarrativeName()).replace('{s}', __WEBPACK_IMPORTED_MODULE_0__Helper__["b" /* Helper */].subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)); });
+    };
+    return CacheManagerMCM;
+}());
+
+//# sourceMappingURL=CacheManagerMCM.js.map
+
+/***/ }),
+
+/***/ 1078:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyMath; });
+var MyMath = /** @class */ (function () {
+    function MyMath() {
+    }
+    MyMath.mod = function (n, m) {
+        if (n > 0) {
+            return n % m;
+        }
+        var nn = n;
+        while (nn < 0) {
+            nn += m;
+        }
+        return nn;
+    };
+    return MyMath;
+}());
+
+//# sourceMappingURL=MyMath.js.map
+
+/***/ }),
+
+/***/ 1079:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUnlockedColumn1516037215000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddUnlockedColumn1516037215000 = /** @class */ (function () {
+    function AddUnlockedColumn1516037215000() {
+    }
+    AddUnlockedColumn1516037215000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN unlocked INTEGER(1)")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddUnlockedColumn1516037215000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddUnlockedColumn1516037215000;
+}());
+
+//# sourceMappingURL=1516037215000-AddUnlockedColumn.js.map
+
+/***/ }),
+
+/***/ 1080:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedColumn1519817905000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddCompletedColumn1519817905000 = /** @class */ (function () {
+    function AddCompletedColumn1519817905000() {
+    }
+    AddCompletedColumn1519817905000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completed INTEGER(1)")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddCompletedColumn1519817905000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddCompletedColumn1519817905000;
+}());
+
+//# sourceMappingURL=1519817905000-AddCompletedColumn.js.map
+
+/***/ }),
+
+/***/ 1088:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC_Plan; });
+var DBC_Plan = /** @class */ (function () {
+    function DBC_Plan(tableName, fields, fieldsType, attributes) {
+        this.tableName = tableName;
+        this.fields = fields;
+        this.fieldsType = fieldsType;
+        this.attributes = attributes;
+        this.fieldsCount = fields.length;
+    }
+    DBC_Plan.prototype.getCreateStatement = function () {
+        var stmt = "CREATE TABLE IF NOT EXISTS " + this.tableName + " (";
+        for (var i = 0; i < this.fields.length; i++) {
+            stmt += this.fields[i] + " " + this.fieldsType[i] + " " + this.attributes[i];
+            if (i < this.fields.length - 1) {
+                stmt += ",";
+            }
+        }
+        return stmt + ")";
+    };
+    /*
+    returns a string for bulk statements of all available fields in the form of:
+    (field1, field2, field3, ..., fieldn)
+     */
+    DBC_Plan.prototype.getFieldsInScopes = function () {
+        var result = "(";
+        for (var i = 0; i < this.fields.length; i++) {
+            if (i < this.fields.length - 1) {
+                result += this.fields[i] + ", ";
+            }
+            else {
+                result += this.fields[i];
+            }
+        }
+        return result + ")";
+    };
+    /*
+    returns a string for bulk statements of all available field placehokder in the form of:
+    (?, ?, ?, ?)
+     */
+    DBC_Plan.prototype.getFieldsPlaceholders = function () {
+        var result = "(";
+        for (var i = 0; i < this.fields.length; i++) {
+            if (i < this.fields.length - 1) {
+                result += "?, ";
+            }
+            else {
+                result += "?";
+            }
+        }
+        return result + ")";
+    };
+    DBC_Plan.prototype.getTableName = function () {
+        return this.tableName;
+    };
+    return DBC_Plan;
+}());
+
+//# sourceMappingURL=DBC_Plan.js.map
+
+/***/ }),
+
+/***/ 1089:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddVisibleColumn1526306624000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddVisibleColumn1526306624000 = /** @class */ (function () {
+    function AddVisibleColumn1526306624000() {
+    }
+    AddVisibleColumn1526306624000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN `visible` INTEGER(1) NOT NULL DEFAULT 1")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'visible' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddVisibleColumn1526306624000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddVisibleColumn1526306624000;
+}());
+
+//# sourceMappingURL=1526306624000-AddVisibleColumn.js.map
+
+/***/ }),
+
+/***/ 1090:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLangCodeColumn1526306730000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddLangCodeColumn1526306730000 = /** @class */ (function () {
+    function AddLangCodeColumn1526306730000() {
+    }
+    AddLangCodeColumn1526306730000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN lang_code VARCHAR(2)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'lang_code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddLangCodeColumn1526306730000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddLangCodeColumn1526306730000;
+}());
+
+//# sourceMappingURL=1526306730000-AddLangCodeColumn.js.map
+
+/***/ }),
+
+/***/ 1091:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddDownloadDateColumn15711518720000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddDownloadDateColumn15711518720000 = /** @class */ (function () {
+    function AddDownloadDateColumn15711518720000() {
+    }
+    AddDownloadDateColumn15711518720000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloadedDate VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'lang_code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddDownloadDateColumn15711518720000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddDownloadDateColumn15711518720000;
+}());
+
+//# sourceMappingURL=15711518720000-AddDownloadDateColumn.js.map
+
+/***/ }),
+
+/***/ 1092:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedDateColumn15713974540000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddCompletedDateColumn15713974540000 = /** @class */ (function () {
+    function AddCompletedDateColumn15713974540000() {
+    }
+    AddCompletedDateColumn15713974540000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completedDate VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'lang_code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddCompletedDateColumn15713974540000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddCompletedDateColumn15713974540000;
+}());
+
+//# sourceMappingURL=15713974540000-AddCompletedDateColumn.js.map
+
+/***/ }),
+
+/***/ 1093:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZipMapFields15783117210000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddZipMapFields15783117210000 = /** @class */ (function () {
+    function AddZipMapFields15783117210000() {
+    }
+    AddZipMapFields15783117210000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1, e_2, e_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_version VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'map_version' already exists");
+                        return [3 /*break*/, 3];
+                    case 3:
+                        _a.trys.push([3, 5, , 6]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_filename VARCHAR(50)")];
+                    case 4:
+                        _a.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        e_2 = _a.sent();
+                        console.log("column 'map_filename' already exists");
+                        return [3 /*break*/, 6];
+                    case 6:
+                        _a.trys.push([6, 8, , 9]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_date VARCHAR(50)")];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        e_3 = _a.sent();
+                        console.log("column 'map_date' already exists");
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddZipMapFields15783117210000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddZipMapFields15783117210000;
+}());
+
+//# sourceMappingURL=15783117210000-AddZipMapFields.js.map
+
+/***/ }),
+
+/***/ 1094:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSavedTasks16013795030000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddSavedTasks16013795030000 = /** @class */ (function () {
+    function AddSavedTasks16013795030000() {
+    }
+    AddSavedTasks16013795030000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD COLUMN tasks_saved VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'tasks_saved' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddSavedTasks16013795030000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddSavedTasks16013795030000;
+}());
+
+//# sourceMappingURL=16013795030000-AddSavedTasks.js.map
+
+/***/ }),
+
+/***/ 1095:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSubtasks16026790930000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddSubtasks16026790930000 = /** @class */ (function () {
+    function AddSubtasks16026790930000() {
+    }
+    AddSubtasks16026790930000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN task_id INTEGER")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'task_id' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddSubtasks16026790930000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddSubtasks16026790930000;
+}());
+
+//# sourceMappingURL=16026790930000-AddSubtasks.js.map
+
+/***/ }),
+
+/***/ 1096:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPositionField16194302450000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddPositionField16194302450000 = /** @class */ (function () {
+    function AddPositionField16194302450000() {
+    }
+    AddPositionField16194302450000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN position INTEGER")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'position' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddPositionField16194302450000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddPositionField16194302450000;
+}());
+
+//# sourceMappingURL=16194302450000-AddPositionField.js.map
+
+/***/ }),
+
+/***/ 1097:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPathFields16208100470000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddPathFields16208100470000 = /** @class */ (function () {
+    function AddPathFields16208100470000() {
+    }
+    AddPathFields16208100470000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_geojson TEXT")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_info TEXT")];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log("columns 'path_geojson' and 'path_info' already exist");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddPathFields16208100470000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddPathFields16208100470000;
+}());
+
+//# sourceMappingURL=16208100470000-AddPathFields.js.map
+
+/***/ }),
+
+/***/ 1098:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZoom16225449820000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var AddZoom16225449820000 = /** @class */ (function () {
+    function AddZoom16225449820000() {
+    }
+    AddZoom16225449820000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN min_zoom INTEGER ")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("columns 'min_zoom' already exist");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddZoom16225449820000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddZoom16225449820000;
+}());
+
+//# sourceMappingURL=16225449820000-AddZoom.js.map
+
+/***/ }),
+
 /***/ 1099:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventsAddRequest; });
-var EventsAddRequest = /** @class */ (function () {
-    function EventsAddRequest() {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddForceSubtaskAndArLink16552845000000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-    return EventsAddRequest;
+};
+var AddForceSubtaskAndArLink16552845000000 = /** @class */ (function () {
+    function AddForceSubtaskAndArLink16552845000000() {
+    }
+    AddForceSubtaskAndArLink16552845000000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_rel_route_task ADD COLUMN force_support_tasks INTEGER(1) ")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN ar_link VARCHAR ")];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log("columns 'force_support_tasks' and 'ar_link' already exist");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddForceSubtaskAndArLink16552845000000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddForceSubtaskAndArLink16552845000000;
 }());
 
-//# sourceMappingURL=events-add-request.js.map
+//# sourceMappingURL=16552845000000-AddForceSubtaskAndArLink.js.map
 
 /***/ }),
 
@@ -19,312 +1678,239 @@ var EventsAddRequest = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventAddRequest; });
-/* tslint:disable */
-var EventAddRequest = /** @class */ (function () {
-    function EventAddRequest() {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddTaskCode17026521590000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
-    return EventAddRequest;
+};
+var AddTaskCode17026521590000 = /** @class */ (function () {
+    function AddTaskCode17026521590000() {
+    }
+    AddTaskCode17026521590000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN code VARCHAR ")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'code' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddTaskCode17026521590000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddTaskCode17026521590000;
 }());
 
-//# sourceMappingURL=event-add-request.js.map
+//# sourceMappingURL=17026521590000-AddTaskCode.js.map
 
 /***/ }),
 
 /***/ 1101:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var map = {
-	"./af": 437,
-	"./af.js": 437,
-	"./ar": 438,
-	"./ar-dz": 439,
-	"./ar-dz.js": 439,
-	"./ar-kw": 440,
-	"./ar-kw.js": 440,
-	"./ar-ly": 441,
-	"./ar-ly.js": 441,
-	"./ar-ma": 442,
-	"./ar-ma.js": 442,
-	"./ar-ps": 443,
-	"./ar-ps.js": 443,
-	"./ar-sa": 444,
-	"./ar-sa.js": 444,
-	"./ar-tn": 445,
-	"./ar-tn.js": 445,
-	"./ar.js": 438,
-	"./az": 446,
-	"./az.js": 446,
-	"./be": 447,
-	"./be.js": 447,
-	"./bg": 448,
-	"./bg.js": 448,
-	"./bm": 449,
-	"./bm.js": 449,
-	"./bn": 450,
-	"./bn-bd": 451,
-	"./bn-bd.js": 451,
-	"./bn.js": 450,
-	"./bo": 452,
-	"./bo.js": 452,
-	"./br": 453,
-	"./br.js": 453,
-	"./bs": 454,
-	"./bs.js": 454,
-	"./ca": 455,
-	"./ca.js": 455,
-	"./cs": 456,
-	"./cs.js": 456,
-	"./cv": 457,
-	"./cv.js": 457,
-	"./cy": 458,
-	"./cy.js": 458,
-	"./da": 459,
-	"./da.js": 459,
-	"./de": 460,
-	"./de-at": 461,
-	"./de-at.js": 461,
-	"./de-ch": 462,
-	"./de-ch.js": 462,
-	"./de.js": 460,
-	"./dv": 463,
-	"./dv.js": 463,
-	"./el": 464,
-	"./el.js": 464,
-	"./en-au": 465,
-	"./en-au.js": 465,
-	"./en-ca": 466,
-	"./en-ca.js": 466,
-	"./en-gb": 467,
-	"./en-gb.js": 467,
-	"./en-ie": 468,
-	"./en-ie.js": 468,
-	"./en-il": 469,
-	"./en-il.js": 469,
-	"./en-in": 470,
-	"./en-in.js": 470,
-	"./en-nz": 471,
-	"./en-nz.js": 471,
-	"./en-sg": 472,
-	"./en-sg.js": 472,
-	"./eo": 473,
-	"./eo.js": 473,
-	"./es": 474,
-	"./es-do": 475,
-	"./es-do.js": 475,
-	"./es-mx": 476,
-	"./es-mx.js": 476,
-	"./es-us": 477,
-	"./es-us.js": 477,
-	"./es.js": 474,
-	"./et": 478,
-	"./et.js": 478,
-	"./eu": 479,
-	"./eu.js": 479,
-	"./fa": 480,
-	"./fa.js": 480,
-	"./fi": 481,
-	"./fi.js": 481,
-	"./fil": 482,
-	"./fil.js": 482,
-	"./fo": 483,
-	"./fo.js": 483,
-	"./fr": 484,
-	"./fr-ca": 485,
-	"./fr-ca.js": 485,
-	"./fr-ch": 486,
-	"./fr-ch.js": 486,
-	"./fr.js": 484,
-	"./fy": 487,
-	"./fy.js": 487,
-	"./ga": 488,
-	"./ga.js": 488,
-	"./gd": 489,
-	"./gd.js": 489,
-	"./gl": 490,
-	"./gl.js": 490,
-	"./gom-deva": 491,
-	"./gom-deva.js": 491,
-	"./gom-latn": 492,
-	"./gom-latn.js": 492,
-	"./gu": 493,
-	"./gu.js": 493,
-	"./he": 494,
-	"./he.js": 494,
-	"./hi": 495,
-	"./hi.js": 495,
-	"./hr": 496,
-	"./hr.js": 496,
-	"./hu": 497,
-	"./hu.js": 497,
-	"./hy-am": 498,
-	"./hy-am.js": 498,
-	"./id": 499,
-	"./id.js": 499,
-	"./is": 500,
-	"./is.js": 500,
-	"./it": 501,
-	"./it-ch": 502,
-	"./it-ch.js": 502,
-	"./it.js": 501,
-	"./ja": 503,
-	"./ja.js": 503,
-	"./jv": 504,
-	"./jv.js": 504,
-	"./ka": 505,
-	"./ka.js": 505,
-	"./kk": 506,
-	"./kk.js": 506,
-	"./km": 507,
-	"./km.js": 507,
-	"./kn": 508,
-	"./kn.js": 508,
-	"./ko": 509,
-	"./ko.js": 509,
-	"./ku": 510,
-	"./ku-kmr": 511,
-	"./ku-kmr.js": 511,
-	"./ku.js": 510,
-	"./ky": 512,
-	"./ky.js": 512,
-	"./lb": 513,
-	"./lb.js": 513,
-	"./lo": 514,
-	"./lo.js": 514,
-	"./lt": 515,
-	"./lt.js": 515,
-	"./lv": 516,
-	"./lv.js": 516,
-	"./me": 517,
-	"./me.js": 517,
-	"./mi": 518,
-	"./mi.js": 518,
-	"./mk": 519,
-	"./mk.js": 519,
-	"./ml": 520,
-	"./ml.js": 520,
-	"./mn": 521,
-	"./mn.js": 521,
-	"./mr": 522,
-	"./mr.js": 522,
-	"./ms": 523,
-	"./ms-my": 524,
-	"./ms-my.js": 524,
-	"./ms.js": 523,
-	"./mt": 525,
-	"./mt.js": 525,
-	"./my": 526,
-	"./my.js": 526,
-	"./nb": 527,
-	"./nb.js": 527,
-	"./ne": 528,
-	"./ne.js": 528,
-	"./nl": 529,
-	"./nl-be": 530,
-	"./nl-be.js": 530,
-	"./nl.js": 529,
-	"./nn": 531,
-	"./nn.js": 531,
-	"./oc-lnc": 532,
-	"./oc-lnc.js": 532,
-	"./pa-in": 533,
-	"./pa-in.js": 533,
-	"./pl": 534,
-	"./pl.js": 534,
-	"./pt": 535,
-	"./pt-br": 536,
-	"./pt-br.js": 536,
-	"./pt.js": 535,
-	"./ro": 537,
-	"./ro.js": 537,
-	"./ru": 538,
-	"./ru.js": 538,
-	"./sd": 539,
-	"./sd.js": 539,
-	"./se": 540,
-	"./se.js": 540,
-	"./si": 541,
-	"./si.js": 541,
-	"./sk": 542,
-	"./sk.js": 542,
-	"./sl": 543,
-	"./sl.js": 543,
-	"./sq": 544,
-	"./sq.js": 544,
-	"./sr": 545,
-	"./sr-cyrl": 546,
-	"./sr-cyrl.js": 546,
-	"./sr.js": 545,
-	"./ss": 547,
-	"./ss.js": 547,
-	"./sv": 548,
-	"./sv.js": 548,
-	"./sw": 549,
-	"./sw.js": 549,
-	"./ta": 550,
-	"./ta.js": 550,
-	"./te": 551,
-	"./te.js": 551,
-	"./tet": 552,
-	"./tet.js": 552,
-	"./tg": 553,
-	"./tg.js": 553,
-	"./th": 554,
-	"./th.js": 554,
-	"./tk": 555,
-	"./tk.js": 555,
-	"./tl-ph": 556,
-	"./tl-ph.js": 556,
-	"./tlh": 557,
-	"./tlh.js": 557,
-	"./tr": 558,
-	"./tr.js": 558,
-	"./tzl": 559,
-	"./tzl.js": 559,
-	"./tzm": 560,
-	"./tzm-latn": 561,
-	"./tzm-latn.js": 561,
-	"./tzm.js": 560,
-	"./ug-cn": 562,
-	"./ug-cn.js": 562,
-	"./uk": 563,
-	"./uk.js": 563,
-	"./ur": 564,
-	"./ur.js": 564,
-	"./uz": 565,
-	"./uz-latn": 566,
-	"./uz-latn.js": 566,
-	"./uz.js": 565,
-	"./vi": 567,
-	"./vi.js": 567,
-	"./x-pseudo": 568,
-	"./x-pseudo.js": 568,
-	"./yo": 569,
-	"./yo.js": 569,
-	"./zh-cn": 570,
-	"./zh-cn.js": 570,
-	"./zh-hk": 571,
-	"./zh-hk.js": 571,
-	"./zh-mo": 572,
-	"./zh-mo.js": 572,
-	"./zh-tw": 573,
-	"./zh-tw.js": 573
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RenameParentIdAndAddTaskFormatAndPosition17067919700000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
 };
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
+var RenameParentIdAndAddTaskFormatAndPosition17067919700000 = /** @class */ (function () {
+    function RenameParentIdAndAddTaskFormatAndPosition17067919700000() {
+    }
+    RenameParentIdAndAddTaskFormatAndPosition17067919700000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task RENAME COLUMN task_id to parent_task_id")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN task_format VARCHAR ")];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN position_in_parent INTEGER ")];
+                    case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _a.sent();
+                        console.log("columns 'parent_task_id', 'task_format' and 'position_in_parent' already exist");
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RenameParentIdAndAddTaskFormatAndPosition17067919700000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return RenameParentIdAndAddTaskFormatAndPosition17067919700000;
+}());
+
+//# sourceMappingURL=17067919700000-RenameParentIdAndAddTaskFormatAndPosition.js.map
+
+/***/ }),
+
+/***/ 1102:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddGroupsFinished17071440460000; });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
 };
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 1101;
+var AddGroupsFinished17071440460000 = /** @class */ (function () {
+    function AddGroupsFinished17071440460000() {
+    }
+    AddGroupsFinished17071440460000.prototype.up = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            var e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD COLUMN groups_finished VARCHAR(50)")];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        e_1 = _a.sent();
+                        console.log("column 'groups_finished' already exists");
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddGroupsFinished17071440460000.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    return AddGroupsFinished17071440460000;
+}());
+
+//# sourceMappingURL=17071440460000-AddGroupsFinished.js.map
 
 /***/ }),
 
@@ -409,7 +1995,7 @@ var McmImageComponent = /** @class */ (function () {
     ], McmImageComponent.prototype, "click", void 0);
     McmImageComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-image',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/'<!-- Generated template for the McmImageComponent component -->\n<img [src]="imageUrl" [ngClass]="{\'full-width\': fullWidth}" (click)="onClick($event)"/>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/
+            selector: 'mcm-image',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/'<!-- Generated template for the McmImageComponent component -->\n<img [src]="imageUrl" [ngClass]="{\'full-width\': fullWidth}" (click)="onClick($event)"/>'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-image/mcm-image.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_photo_viewer__["a" /* PhotoViewer */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_spinner_dialog__["a" /* SpinnerDialog */]])
@@ -561,7 +2147,7 @@ var MCMHeaderComponent = /** @class */ (function () {
     };
     MCMHeaderComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-header',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">\n        <ion-buttons left>\n            <button ion-button icon-only *ngIf="showBackButton && currentpage != \'ModalCmp\'" (click)="goBack()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n            <button ion-button icon-only *ngIf="currentpage == \'ModalCmp\'" (click)="closeModal()">\n                <!--<img class="header-icon" src="assets/icons/icon_close-modal.svg"/>-->\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n        </ion-buttons>\n        <ion-title>{{ retriveTitle() | translate }}</ion-title>\n        <ion-buttons end></ion-buttons>\n    </ion-toolbar>\n</ion-header>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/
+            selector: 'mcm-header',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/'<ion-header>\n    <ion-toolbar hideBackButton [attr.transparent]="transparent ? true : null">\n        <ion-buttons left>\n            <button ion-button icon-only *ngIf="showBackButton && currentpage != \'ModalCmp\'" (click)="goBack()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n            <button ion-button icon-only *ngIf="currentpage == \'ModalCmp\'" (click)="closeModal()">\n                <img class="header-icon" src="assets/icons/back.svg"/>\n            </button>\n        </ion-buttons>\n        <ion-title>{{ retriveTitle() | translate }}</ion-title>\n        <ion-buttons end>\n<!--           TODO enable translation button in detailed views-->\n           <button ion-button color="light" class="translation">\n              <img class="icon" src="assets/icons/translation-download.svg"/>\n              <div>Translation</div>\n<!--              <div>Translate</div>-->\n<!--              <div>Translated</div>-->\n           </button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-header/mcm-header.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */],
@@ -626,7 +2212,7 @@ var DistancePipe = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MCMProgressBarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -738,7 +2324,7 @@ var MCMProgressBarComponent = /** @class */ (function () {
     ], MCMProgressBarComponent.prototype, "total", void 0);
     MCMProgressBarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-progress-bar',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/'<span *ngIf="!isAudio">{{ currentProgress }} / {{ total }}</span>\n<div class="container progress-vertical route">\n    <div class="bar" [ngStyle]="{\'width\': ((100/total)*currentProgress) +\'%\'}"></div>\n</div>\n<!-- +900 to display 00:00 remaining only a short time-->\n<span *ngIf="isAudio && isAudioPlaying" class="audio">{{ (total - currentProgress)+900 | date: \'mm:ss\' }} </span>\n<span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: \'mm:ss\' }} </span>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/
+            selector: 'mcm-progress-bar',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/'<span *ngIf="!isAudio">{{ currentProgress }} / {{ total }}</span>\n<div class="container progress-vertical route">\n    <div class="bar" [ngStyle]="{\'width\': ((100/total)*currentProgress) +\'%\'}"></div>\n</div>\n<!-- +900 to display 00:00 remaining only a short time-->\n<span *ngIf="isAudio && isAudioPlaying" class="audio">{{ (total - currentProgress)+900 | date: \'mm:ss\' }} </span>\n<span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: \'mm:ss\' }} </span>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-progress-bar/mcm-progress-bar.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__classes_Helper__["b" /* Helper */]])
     ], MCMProgressBarComponent);
@@ -904,11 +2490,11 @@ var LazyLoadImagesDirective = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteTeaserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__entity_Route__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_modals_service__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ngx_translate_core__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1053,7 +2639,7 @@ var RouteTeaserComponent = /** @class */ (function () {
     ], RouteTeaserComponent.prototype, "removeRoute", void 0);
     RouteTeaserComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'route-teaser',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/'<div class="main">\n    <div *ngIf="route" class="container image" [ngClass]="{\'downloaded\' : !!route.downloaded, \'completed\': !!route.completed}">\n        <svg class="progress" width="120" height="120" viewBox="0 0 120 120">\n            <circle class="progress__meter" cx="60" cy="60" r="54" stroke-width="12"></circle>\n            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{\'stroke-dasharray\': 339.292, \'stroke-dashoffset\': completedRadius}"></circle>\n        </svg>\n        <div class="cover">\n            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n        </div>\n        <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>\n    </div>\n\n    <div *ngIf="route" class="container text">\n        <h2 class="item-text-wrap">{{route.title}}</h2>\n        <div class="bottom">\n            <div class="text">\n            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: \'m\'}}</span>\n            <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>\n            </div>\n            <div *ngIf="route" class="container buttons">\n                <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">\n                    <img src="./assets/icons/download.svg"/>\n                </button>\n                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">\n                    <img src="./assets/icons/delete.svg"/>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="secondary">\n    <span class="icon key" no-margin>{{route.code}}</span>\n    <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>\n    <!--<mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>-->\n    <div class="evaluation">\n        <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>\n        <p class="icon finished" *ngIf="!route?.completed">{{currentProgress}} / {{total}}</p>\n        <div class="ratings" *ngIf="route?.scores && route.isAnswerFeedbackEnabled()">\n            <div class="rating perfect">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating good">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolvedLow().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating failed">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksFailed().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n        <div class="ratings" *ngIf="route?.scores && !route.isAnswerFeedbackEnabled()">\n            <div class="rating saved">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSaved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n    </div>\n\n    <!--Dummy just for quick testing purposes  -->\n    <!--<div class="evaluation">-->\n        <!--<span class="icon finished">Oct 21 2019</span>-->\n        <!--<div class="ratings">-->\n            <!--<div class="rating perfect"><p>1</p></div>-->\n            <!--<div class="rating good"><p>3</p></div>-->\n            <!--<div class="rating failed"><p>20</p></div>-->\n        <!--</div>-->\n    <!--</div>-->\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/,
+            selector: 'route-teaser',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/'<div class="main">\n    <div *ngIf="route" class="container image" [ngClass]="{\'downloaded\' : !!route.downloaded, \'completed\': !!route.completed}">\n        <svg class="progress" width="120" height="120" viewBox="0 0 120 120">\n            <circle class="progress__meter" cx="60" cy="60" r="54" stroke-width="12"></circle>\n            <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{\'stroke-dasharray\': 339.292, \'stroke-dashoffset\': completedRadius}"></circle>\n        </svg>\n        <div class="cover">\n            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n        </div>\n        <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>\n    </div>\n\n    <div *ngIf="route" class="container text">\n        <h2 class="item-text-wrap">{{route.title}}</h2>\n        <div class="bottom">\n            <div class="text">\n            <span class="icon location">{{route.city}}, {{route.countryCode}} | {{route.getDistance() | distance: \'m\'}}</span>\n            <span class="icon grade" *ngIf="route.grade">{{route.grade}} +</span>\n            </div>\n            <div *ngIf="route" class="container buttons">\n                <button ion-button icon-only round color="primary" class="dot" *ngIf="!route.downloaded && isOnline" (click)="doDownload($event, route)">\n                    <img src="./assets/icons/download.svg"/>\n                </button>\n                <button ion-button icon-only round color="danger" class="dot" *ngIf="!!route.downloaded" (click)="deleteRoute($event, route)">\n                    <img src="./assets/icons/delete.svg"/>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="secondary">\n    <span class="icon key" no-margin>{{route.code}}</span>\n    <span class="icon downloaded" no-margin>{{route.downloadedDate}}</span>\n    <!--<mcm-progress-bar class="icon finished" *ngIf="route && route.downloadedDate && !route.completed" [route]="route" ></mcm-progress-bar>-->\n    <div class="evaluation">\n        <span class="icon finished" *ngIf="route?.completed">{{route?.completedDate}}</span>\n        <p class="icon finished" *ngIf="!route?.completed">{{currentProgress}} / {{total}}</p>\n        <div class="ratings" *ngIf="route?.scores && route.isAnswerFeedbackEnabled()">\n            <div class="rating perfect">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating good">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSolvedLow().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n            <div class="rating failed">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksFailed().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n        <div class="ratings" *ngIf="route?.scores && !route.isAnswerFeedbackEnabled()">\n            <div class="rating saved">\n                <p *ngIf="route?.scores[0]">{{route.scores[0].getTasksSaved().length}}</p>\n                <p *ngIf="!route?.scores[0]">0</p>\n            </div>\n        </div>\n    </div>\n\n    <!--Dummy just for quick testing purposes  -->\n    <!--<div class="evaluation">-->\n        <!--<span class="icon finished">Oct 21 2019</span>-->\n        <!--<div class="ratings">-->\n            <!--<div class="rating perfect"><p>1</p></div>-->\n            <!--<div class="rating good"><p>3</p></div>-->\n            <!--<div class="rating failed"><p>20</p></div>-->\n        <!--</div>-->\n    <!--</div>-->\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/route-teaser/route-teaser.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_modals_service__["a" /* ModalsService */],
             __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
@@ -1108,21 +2694,6 @@ var LocalizedDatePipe = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=localDate.pipe.js.map
-
-/***/ }),
-
-/***/ 1111:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecordStateEnum; });
-var RecordStateEnum;
-(function (RecordStateEnum) {
-    RecordStateEnum[RecordStateEnum["Idle"] = 1] = "Idle";
-    RecordStateEnum[RecordStateEnum["Record"] = 2] = "Record";
-    RecordStateEnum[RecordStateEnum["Stop"] = 3] = "Stop";
-})(RecordStateEnum || (RecordStateEnum = {}));
-//# sourceMappingURL=recordStateEnum.js.map
 
 /***/ }),
 
@@ -1382,14 +2953,14 @@ var Autoresize = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(435);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_session_chat_service__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_session_service__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_session_event_service__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_session_user_service__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_session_user_leaderboard_service__ = __webpack_require__(398);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_trail_service__ = __webpack_require__(1139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_problem_report_service__ = __webpack_require__(580);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1447,11 +3018,11 @@ var ApiModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrailService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -1561,19 +3132,19 @@ var TrailService = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_customKeyBoard_custom_keyboard__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_language_service__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(574);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__ = __webpack_require__(579);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_dashboard_dashboard__ = __webpack_require__(629);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_home_tabs_RoutesMap_RoutesMap__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_portal_portal__ = __webpack_require__(632);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1810,7 +3381,7 @@ var MyApp = /** @class */ (function () {
         });
     };
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/app/app.html"*/'<ion-nav [root]="rootPage" [class]="activeNarrative"></ion-nav>\n<custom-keyboard [keysTab]="keysTab"\n                 (keyClick)="keyClick($event)"\n                 [colNb]=4\n                 class="kb-light">\n</custom-keyboard>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/app/app.html"*/'<ion-nav [root]="rootPage" [class]="activeNarrative"></ion-nav>\n<custom-keyboard [keysTab]="keysTab"\n                 (keyClick)="keyClick($event)"\n                 [colNb]=4\n                 class="kb-light">\n</custom-keyboard>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_4__services_language_service__["a" /* LanguageService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */],
@@ -1921,201 +3492,15 @@ var SafeInnerHtmlDirective = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-var LanguageService = /** @class */ (function () {
-    function LanguageService(translateService, platform, globalization, storage) {
-        this.translateService = translateService;
-        this.platform = platform;
-        this.globalization = globalization;
-        this.storage = storage;
-        this.isInitialized = false;
-        this.initializeListeners = [];
-        this.availableLanguages = ["en", "de", "it", "fr", "es", "pl", "pt", "sk", "tr", "zh", "el", "id", "et", "is"];
-    }
-    LanguageService_1 = LanguageService;
-    LanguageService.prototype.getAvailableLanguages = function () {
-        return this.availableLanguages;
-    };
-    LanguageService.prototype.initialize = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                if (this.isInitialized) {
-                    return [2 /*return*/, Promise.resolve()];
-                }
-                if (this.initializeListeners.length > 0) {
-                    // a parallel call has already been started
-                    return [2 /*return*/, new Promise(function (success) {
-                            _this.initializeListeners.push(success);
-                        })];
-                }
-                return [2 /*return*/, new Promise(function (success) { return __awaiter(_this, void 0, void 0, function () {
-                        var defaultLang, lang, preferredLanguage, e_1;
-                        var _this = this;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    defaultLang = 'en';
-                                    this.translateService.setDefaultLang(defaultLang);
-                                    this.initializeListeners.push(success);
-                                    return [4 /*yield*/, this.platform.ready()];
-                                case 1:
-                                    _a.sent();
-                                    return [4 /*yield*/, this.storage.get(LanguageService_1.STORAGE_KEY)];
-                                case 2:
-                                    lang = _a.sent();
-                                    if (!(!lang && Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginName()) === true)) return [3 /*break*/, 6];
-                                    _a.label = 3;
-                                case 3:
-                                    _a.trys.push([3, 5, , 6]);
-                                    return [4 /*yield*/, this.globalization.getPreferredLanguage()];
-                                case 4:
-                                    preferredLanguage = _a.sent();
-                                    if (preferredLanguage && preferredLanguage.value) {
-                                        lang = preferredLanguage.value;
-                                        if (lang.indexOf('-') > -1) {
-                                            lang = lang.split('-')[0];
-                                        }
-                                        if (lang.indexOf('_') > -1) {
-                                            lang = lang.split('_')[0];
-                                        }
-                                        lang = lang.toLowerCase();
-                                        if (this.availableLanguages.indexOf(lang) == -1) {
-                                            // detected language is not available
-                                            lang = null;
-                                        }
-                                    }
-                                    return [3 /*break*/, 6];
-                                case 5:
-                                    e_1 = _a.sent();
-                                    return [3 /*break*/, 6];
-                                case 6:
-                                    if (!lang) {
-                                        lang = defaultLang;
-                                    }
-                                    return [4 /*yield*/, this.translateService.use(lang)];
-                                case 7:
-                                    _a.sent();
-                                    setTimeout(function () {
-                                        // use timeout to let language switch propagate
-                                        _this.isInitialized = true;
-                                        _this.initializeListeners.map(function (success) {
-                                            success();
-                                        });
-                                        _this.initializeListeners = null;
-                                    }, 100);
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); })];
-            });
-        });
-    };
-    LanguageService.prototype.getLanguage = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, this.translateService.currentLang];
-            });
-        });
-    };
-    LanguageService.prototype.setLanguage = function (lang) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.translateService.use(lang);
-                        return [4 /*yield*/, this.storage.set(LanguageService_1.STORAGE_KEY, lang)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    var LanguageService_1;
-    LanguageService.STORAGE_KEY = 'LanguageService.lang';
-    LanguageService = LanguageService_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
-    ], LanguageService);
-    return LanguageService;
-}());
-
-//# sourceMappingURL=language-service.js.map
-
-/***/ }),
-
-/***/ 116:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Updater; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DBC__ = __webpack_require__(569);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DB_Handler__ = __webpack_require__(568);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_images_service__ = __webpack_require__(35);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2480,6 +3865,192 @@ var DB_Updater = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 116:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LanguageService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+var LanguageService = /** @class */ (function () {
+    function LanguageService(translateService, platform, globalization, storage) {
+        this.translateService = translateService;
+        this.platform = platform;
+        this.globalization = globalization;
+        this.storage = storage;
+        this.isInitialized = false;
+        this.initializeListeners = [];
+        this.availableLanguages = ["en", "de", "it", "fr", "es", "pl", "pt", "sk", "tr", "zh", "el", "id", "et", "is"];
+    }
+    LanguageService_1 = LanguageService;
+    LanguageService.prototype.getAvailableLanguages = function () {
+        return this.availableLanguages;
+    };
+    LanguageService.prototype.initialize = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                if (this.isInitialized) {
+                    return [2 /*return*/, Promise.resolve()];
+                }
+                if (this.initializeListeners.length > 0) {
+                    // a parallel call has already been started
+                    return [2 /*return*/, new Promise(function (success) {
+                            _this.initializeListeners.push(success);
+                        })];
+                }
+                return [2 /*return*/, new Promise(function (success) { return __awaiter(_this, void 0, void 0, function () {
+                        var defaultLang, lang, preferredLanguage, e_1;
+                        var _this = this;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    defaultLang = 'en';
+                                    this.translateService.setDefaultLang(defaultLang);
+                                    this.initializeListeners.push(success);
+                                    return [4 /*yield*/, this.platform.ready()];
+                                case 1:
+                                    _a.sent();
+                                    return [4 /*yield*/, this.storage.get(LanguageService_1.STORAGE_KEY)];
+                                case 2:
+                                    lang = _a.sent();
+                                    if (!(!lang && Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */].getPluginName()) === true)) return [3 /*break*/, 6];
+                                    _a.label = 3;
+                                case 3:
+                                    _a.trys.push([3, 5, , 6]);
+                                    return [4 /*yield*/, this.globalization.getPreferredLanguage()];
+                                case 4:
+                                    preferredLanguage = _a.sent();
+                                    if (preferredLanguage && preferredLanguage.value) {
+                                        lang = preferredLanguage.value;
+                                        if (lang.indexOf('-') > -1) {
+                                            lang = lang.split('-')[0];
+                                        }
+                                        if (lang.indexOf('_') > -1) {
+                                            lang = lang.split('_')[0];
+                                        }
+                                        lang = lang.toLowerCase();
+                                        if (this.availableLanguages.indexOf(lang) == -1) {
+                                            // detected language is not available
+                                            lang = null;
+                                        }
+                                    }
+                                    return [3 /*break*/, 6];
+                                case 5:
+                                    e_1 = _a.sent();
+                                    return [3 /*break*/, 6];
+                                case 6:
+                                    if (!lang) {
+                                        lang = defaultLang;
+                                    }
+                                    return [4 /*yield*/, this.translateService.use(lang)];
+                                case 7:
+                                    _a.sent();
+                                    setTimeout(function () {
+                                        // use timeout to let language switch propagate
+                                        _this.isInitialized = true;
+                                        _this.initializeListeners.map(function (success) {
+                                            success();
+                                        });
+                                        _this.initializeListeners = null;
+                                    }, 100);
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); })];
+            });
+        });
+    };
+    LanguageService.prototype.getLanguage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.translateService.currentLang];
+            });
+        });
+    };
+    LanguageService.prototype.setLanguage = function (lang) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.translateService.use(lang);
+                        return [4 /*yield*/, this.storage.set(LanguageService_1.STORAGE_KEY, lang)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    var LanguageService_1;
+    LanguageService.STORAGE_KEY = 'LanguageService.lang';
+    LanguageService = LanguageService_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_globalization__["a" /* Globalization */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]])
+    ], LanguageService);
+    return LanguageService;
+}());
+
+//# sourceMappingURL=language-service.js.map
+
+/***/ }),
+
 /***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2739,7 +4310,7 @@ var MCMIconModal = /** @class */ (function () {
     var MCMIconModal_1;
     MCMIconModal = MCMIconModal_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge"\n     [ngClass]="{\'no-icon\': type != \'image\',\n                 \'no-icon\' : modalType == 4 || modalType == 8 || modalType == 9,\n                 \'hint\': modalType == 1,\n                 \'failed\': modalType == 2,\n                 \'perfect\': modalType == 3,\n                 \'good\': modalType == 5}"\n>\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <img class="head-icon" *ngIf="modalType == 7" src="./assets/icons/{{iconPath}}modal-subtask-info.svg" />\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf="type == \'image\'" [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != \'0\'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7 || modalType == 9" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n\n    <div class="modal-content" *ngIf="modalType == MCMModalType.sampleSolution">\n        <h2>{{title | translate}}</h2>\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n        <p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n        <div class="feedback" (click)="reportProblem()">\n            <ion-label>{{ "a_task_feedback_label" | translate }}</ion-label>\n            <p>{{ "a_task_feedback_introduction" | translate }}</p>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" [ngClass]="{\'col-33\': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
+            selector: 'mcm-icon-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/'<div class="modal card icon has-button-on-the-edge"\n     [ngClass]="{\'no-icon\': type != \'image\',\n                 \'no-icon\' : modalType == 4 || modalType == 8 || modalType == 9,\n                 \'hint\': modalType == 1,\n                 \'failed\': modalType == 2,\n                 \'perfect\': modalType == 3,\n                 \'good\': modalType == 5}"\n>\n     <div class="modal-content" *ngIf="modalType != 4">\n        <img class="head-icon" *ngIf="modalType == 1 && type != \'image\' && type != \'video\'" src="./assets/icons/{{iconPath}}modal-hint.svg"/>\n        <img class="head-icon" *ngIf="modalType == 2" src="./assets/icons/{{iconPath}}modal-rating-failed.svg"/>\n        <img class="head-icon" *ngIf="modalType == 3" src="./assets/icons/{{iconPath}}modal-rating-perfect.svg"/>\n        <img class="head-icon" *ngIf="modalType == 5" src="./assets/icons/{{iconPath}}modal-rating-good.svg"/>\n        <img class="head-icon" *ngIf="modalType == 6" src="./assets/icons/{{iconPath}}modal-rating-saved.svg"/>\n        <img class="head-icon" *ngIf="modalType == 7" src="./assets/icons/{{iconPath}}modal-subtask-info.svg" />\n        <h2>{{title | translate}}</h2>\n\n        <!-- image hint -->\n        <mcm-image *ngIf="type == \'image\'" [src]="message" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n\n        <!-- video hint -->\n        <youtube-player *ngIf="modalType == 1 && videoId" [videoId]="videoId" [width]="videoWith" [height]="videoHeight"></youtube-player>\n\n         <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != \'0\'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>\n\n        <!-- text hint -->\n        <p text-center *ngIf="modalType == 1 && type == \'text\' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7 || modalType == 9" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>\n\n    </div>\n\n    <div class="modal-content" *ngIf="modalType == MCMModalType.sampleSolution">\n        <h2>{{title | translate}}</h2>\n        <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>\n        <p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>\n\n        <div class="feedback" (click)="reportProblem()">\n            <ion-label>{{ "a_task_feedback_label" | translate }}</ion-label>\n            <p>{{ "a_task_feedback_introduction" | translate }}</p>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" [ngClass]="{\'col-33\': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMIconModal/MCMIconModal.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_5__services_images_service__["a" /* ImagesService */], __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["k" /* ModalController */]])
     ], MCMIconModal);
@@ -2757,9 +4328,9 @@ var MCMIconModal = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return TaskFormat; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Task2Route__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(35);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3179,7 +4750,7 @@ var Task = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_language_service__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3257,7 +4828,7 @@ var HomePage = /** @class */ (function () {
     };
     var HomePage_1;
     HomePage = HomePage_1 = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>\n    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/home.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/home/home.html"*/'<ion-tabs>\n    <ion-tab [root]="tab1Root" tabIcon="tab-home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: true}" tabIcon="tab-browse" class="home"></ion-tab>\n    <ion-tab [root]="tab2Root" [rootParams]="{showAllRoutes: false}" tabIcon="tab-downloads"></ion-tab>\n    <ion-tab [root]="tab3Root" [enabled]="helper.getDevMode()" tabIcon="tab-create"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
@@ -3282,16 +4853,16 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_network__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_leaflet_geometryutil__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__env_env__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__env_env__ = __webpack_require__(211);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3765,140 +5336,18 @@ var Helper = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 194:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-var Task2Route = /** @class */ (function () {
-    function Task2Route() {
-    }
-    Task2Route.prototype.getTaskWithSubtasks = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var repo;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!this.task) {
-                            return [2 /*return*/, false];
-                        }
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */].INSTANCE.getTaskRepository()];
-                    case 1:
-                        repo = _a.sent();
-                        return [4 /*yield*/, repo.createQueryBuilder("tasks")
-                                .where({ id: this.task.id })
-                                .leftJoinAndSelect("tasks.subtasks", "subtasks")
-                                .getOne()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
-        __metadata("design:type", Number)
-    ], Task2Route.prototype, "id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'force_support_tasks' }),
-        __metadata("design:type", Number)
-    ], Task2Route.prototype, "forceSupportTask", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */]; }, function (route) { return route.task2Routes; }),
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'route_id', referencedColumnName: 'id' }),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */])
-    ], Task2Route.prototype, "route", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */]; }, function (task) { return task.task2Routes; }, { eager: true }),
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'task_id', referencedColumnName: 'id' }),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */])
-    ], Task2Route.prototype, "task", void 0);
-    Task2Route = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_rel_route_task')
-    ], Task2Route);
-    return Task2Route;
-}());
-
-//# sourceMappingURL=Task2Route.js.map
-
-/***/ }),
-
-/***/ 195:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SERVER_REQUEST_PASS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MAPBOX_ACCESS_TOKEN; });
-var SERVER_REQUEST_PASS = "evilknivel2k16";
-var MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww";
-//# sourceMappingURL=env.js.map
-
-/***/ }),
-
-/***/ 213:
+/***/ 196:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -4192,6 +5641,128 @@ var SessionService = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ 210:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task2Route; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Task__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Route__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_orm_service__ = __webpack_require__(30);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+var Task2Route = /** @class */ (function () {
+    function Task2Route() {
+    }
+    Task2Route.prototype.getTaskWithSubtasks = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var repo;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!this.task) {
+                            return [2 /*return*/, false];
+                        }
+                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */].INSTANCE.getTaskRepository()];
+                    case 1:
+                        repo = _a.sent();
+                        return [4 /*yield*/, repo.createQueryBuilder("tasks")
+                                .where({ id: this.task.id })
+                                .leftJoinAndSelect("tasks.subtasks", "subtasks")
+                                .getOne()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
+        __metadata("design:type", Number)
+    ], Task2Route.prototype, "id", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'force_support_tasks' }),
+        __metadata("design:type", Number)
+    ], Task2Route.prototype, "forceSupportTask", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */]; }, function (route) { return route.task2Routes; }),
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'route_id', referencedColumnName: 'id' }),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__Route__["a" /* Route */])
+    ], Task2Route.prototype, "route", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["e" /* ManyToOne */])(function (type) { return __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */]; }, function (task) { return task.task2Routes; }, { eager: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["c" /* JoinColumn */])({ name: 'task_id', referencedColumnName: 'id' }),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__Task__["a" /* Task */])
+    ], Task2Route.prototype, "task", void 0);
+    Task2Route = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_rel_route_task')
+    ], Task2Route);
+    return Task2Route;
+}());
+
+//# sourceMappingURL=Task2Route.js.map
+
+/***/ }),
+
+/***/ 211:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SERVER_REQUEST_PASS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MAPBOX_ACCESS_TOKEN; });
+var SERVER_REQUEST_PASS = "evilknivel2k16";
+var MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiaWd1cmphbm93IiwiYSI6ImNpdmIyNnk1eTAwNzgyenBwajhnc2tub3cifQ.dhXaJJHqLj0_thsU2qTxww";
+//# sourceMappingURL=env.js.map
+
+/***/ }),
+
 /***/ 235:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4203,13 +5774,13 @@ var SessionService = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mcm_header_mcm_header_component__ = __webpack_require__(1104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_pipes_distance_pipe__ = __webpack_require__(1105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_pipes_search_pipe__ = __webpack_require__(627);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__mcm_progress_bar_mcm_progress_bar__ = __webpack_require__(1106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ngx_lazy_load_images_directive__ = __webpack_require__(1107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__route_teaser_route_teaser__ = __webpack_require__(1109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_pipes_localDate_pipe__ = __webpack_require__(1110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_pipes_linkHttps_pipe__ = __webpack_require__(628);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4258,14 +5829,14 @@ var ComponentsModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 237:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Score; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(796);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Route__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TaskState__ = __webpack_require__(1074);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4465,13 +6036,13 @@ var Score = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 238:
+/***/ 240:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomKeyBoard; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4646,7 +6217,7 @@ var CustomKeyBoard = /** @class */ (function () {
     ], CustomKeyBoard.prototype, "hideEmit", void 0);
     CustomKeyBoard = CustomKeyBoard_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'custom-keyboard',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/customKeyBoard/custom-keyboard.html"*/'<div (window:resize)="onWindowResize($event)" class="center" [style.width]="width">\n\n	<!-- Keyboard toolbar (Hide & delete buttons) -->\n	<div class="kb-toolbar">\n		<span style="font-size:unset"><ion-icon name="arrow-dropdown" (tap)="hideClick($event)"></ion-icon></span>\n		<span style="font-size:unset"><ion-icon name="backspace" (tap)="deleteClick($event)"></ion-icon></span>\n	</div>\n\n	<!-- Keys -->\n	<div class="kb-row" [style.zoom]="zoom" *ngFor="let n of m_main_rows">\n		<div class="kb-key-cell" *ngFor="let m of m_main_cols">\n			<div class="kb-key" (tap)="cKClick($event, keysTab[n + m])">\n				{{keysTab[n + m]}}\n			</div>\n		</div>\n	</div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/customKeyBoard/custom-keyboard.html"*/
+            selector: 'custom-keyboard',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/customKeyBoard/custom-keyboard.html"*/'<div (window:resize)="onWindowResize($event)" class="center" [style.width]="width">\n\n	<!-- Keyboard toolbar (Hide & delete buttons) -->\n	<div class="kb-toolbar">\n		<span style="font-size:unset"><ion-icon name="arrow-dropdown" (tap)="hideClick($event)"></ion-icon></span>\n		<span style="font-size:unset"><ion-icon name="backspace" (tap)="deleteClick($event)"></ion-icon></span>\n	</div>\n\n	<!-- Keys -->\n	<div class="kb-row" [style.zoom]="zoom" *ngFor="let n of m_main_rows">\n		<div class="kb-key-cell" *ngFor="let m of m_main_cols">\n			<div class="kb-key" (tap)="cKClick($event, keysTab[n + m])">\n				{{keysTab[n + m]}}\n			</div>\n		</div>\n	</div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/customKeyBoard/custom-keyboard.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"]])
     ], CustomKeyBoard);
@@ -4666,7 +6237,7 @@ var CustomKeyBoard = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_images_service__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_problem_report_service__ = __webpack_require__(580);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__MCMIconModal_MCMIconModal__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_app_component__ = __webpack_require__(114);
@@ -4842,7 +6413,7 @@ var MCMReportProblemModal = /** @class */ (function () {
     ], MCMReportProblemModal.prototype, "input", void 0);
     MCMReportProblemModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/'<div class="modal card icon report has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-feedback.svg"/>\n        <h2>{{ \'a_task_popup_title\' | translate }}</h2>\n        <p class="text-center">{{ \'a_task_popup_text\' | translate }}</p>\n        <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>\n\n        <ion-item>\n            <ion-select multiple="false" [(ngModel)]="selectedProblem" [selectOptions]="{title: (\'a_task_popup_reason\' | translate)}" [cancelText]="\'a_alert_cancel\' | translate" [okText]="\'a_g_ok\' | translate">\n                <ion-option *ngFor="let problem of problemTypes" [value]="problem.key">{{problem.value | translate}}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-label>{{ "a_task_popup_information" | translate }}</ion-label>\n        <ion-item>\n            <textarea #input item-content name="background" [(ngModel)]="information" rows="3"></textarea>\n        </ion-item>\n\n        <ion-item class="image">\n            <ion-label>{{ "a_task_popup_image" | translate }}</ion-label>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromGallery()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n            <button *ngIf="image" ion-button clear icon-only round end item-content class="remove" (click)="resetImage()">\n                <ion-icon name="md-close"></ion-icon>\n            </button>\n            <div *ngIf="image" item-content  class="image-file">\n                <img [src]="image.base64" alt="image-preview"/>\n            </div>\n        </ion-item>\n\n        <span *ngIf="showError">\n            {{ \'a_reportError_unknown\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!selectedProblem || selectedProblem == \'\' || !information || information == \'\' || sendingReport" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/
+            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/'<div class="modal card icon report has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-feedback.svg"/>\n        <h2>{{ \'a_task_popup_title\' | translate }}</h2>\n        <p class="text-center">{{ \'a_task_popup_text\' | translate }}</p>\n        <ion-label>{{ "a_task_popup_reason" | translate }}</ion-label>\n\n        <ion-item>\n            <ion-select multiple="false" [(ngModel)]="selectedProblem" [selectOptions]="{title: (\'a_task_popup_reason\' | translate)}" [cancelText]="\'a_alert_cancel\' | translate" [okText]="\'a_g_ok\' | translate">\n                <ion-option *ngFor="let problem of problemTypes" [value]="problem.key">{{problem.value | translate}}</ion-option>\n            </ion-select>\n        </ion-item>\n        <ion-label>{{ "a_task_popup_information" | translate }}</ion-label>\n        <ion-item>\n            <textarea #input item-content name="background" [(ngModel)]="information" rows="3"></textarea>\n        </ion-item>\n\n        <ion-item class="image">\n            <ion-label>{{ "a_task_popup_image" | translate }}</ion-label>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromGallery()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button *ngIf="!image" ion-button clear icon-only round end item-content (click)="getImageFromCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n            <button *ngIf="image" ion-button clear icon-only round end item-content class="remove" (click)="resetImage()">\n                <ion-icon name="md-close"></ion-icon>\n            </button>\n            <div *ngIf="image" item-content  class="image-file">\n                <img [src]="image.base64" alt="image-preview"/>\n            </div>\n        </ion-item>\n\n        <span *ngIf="showError">\n            {{ \'a_reportError_unknown\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()" >{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!selectedProblem || selectedProblem == \'\' || !information || information == \'\' || sendingReport" (click)="sendReport()" >{{ "a_task_popup_send" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMReportProblemModal/MCMReportProblemModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */],
@@ -4879,50 +6450,50 @@ webpackEmptyAsyncContext.id = 251;
 
 var map = {
 	"../pages/chat/chat.module": [
-		579
+		296
 	],
 	"../pages/dashboard/dashboard.module": [
 		1145,
 		10
 	],
 	"../pages/home/home.module": [
-		1146,
+		1149,
 		9
 	],
 	"../pages/home/tabs/RoutesList/RoutesList.module": [
-		1147,
+		1146,
 		6
 	],
 	"../pages/home/tabs/RoutesMap/RoutesMap.module": [
-		1150,
+		1147,
 		8
 	],
 	"../pages/home/tabs/TasksMap/TasksMap.module": [
-		1149,
+		1153,
 		1
 	],
 	"../pages/info/info.module": [
-		1153,
+		1148,
 		5
 	],
 	"../pages/onboarding/onboarding.module": [
-		1152,
+		1150,
 		4
 	],
 	"../pages/portal/portal.module": [
-		1155,
+		1152,
 		7
 	],
 	"../pages/settings/settings.module": [
-		1148,
+		1151,
 		3
 	],
 	"../pages/task-detail/task-detail.module": [
-		1151,
+		1154,
 		0
 	],
 	"../pages/task-group-detail/task-group-detail.module": [
-		1154,
+		1155,
 		2
 	]
 };
@@ -4942,6 +6513,53 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
+/***/ 296:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(626);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var ChatPageModule = /** @class */ (function () {
+    function ChatPageModule() {
+    }
+    ChatPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
+                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
+            ]
+        })
+    ], ChatPageModule);
+    return ChatPageModule;
+}());
+
+//# sourceMappingURL=chat.module.js.map
+
+/***/ }),
+
 /***/ 30:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4949,43 +6567,43 @@ module.exports = webpackAsyncContext;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrmService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_sqlite__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_typeorm__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(792);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(793);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(794);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(795);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__migration_1513274191111_InitialMigration__ = __webpack_require__(1070);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__migration_1515428187000_failedTaskMigration__ = __webpack_require__(1071);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__entity_User__ = __webpack_require__(1072);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__entity_State__ = __webpack_require__(1073);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__entity_Task__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(799);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__entity_Route__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__migration_1513679923000_AddImageUrlAndDownloadedFlagMigration__ = __webpack_require__(1076);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__images_service__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(800);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__classes_CacheManagerMCM__ = __webpack_require__(1077);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__entity_Score__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__entity_Task2Route__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(803);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(804);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__migration_1516037215000_AddUnlockedColumn__ = __webpack_require__(1079);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__migration_1519817905000_AddCompletedColumn__ = __webpack_require__(1080);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(813);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(814);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__classes_DB_Handler__ = __webpack_require__(568);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__migration_1526306624000_AddVisibleColumn__ = __webpack_require__(1089);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__migration_1526306730000_AddLangCodeColumn__ = __webpack_require__(1090);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(815);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(816);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(817);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__migration_15711518720000_AddDownloadDateColumn__ = __webpack_require__(1091);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__migration_15713974540000_AddCompletedDateColumn__ = __webpack_require__(1092);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__migration_15783117210000_AddZipMapFields__ = __webpack_require__(1093);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(818);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(819);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(820);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(821);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(822);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(823);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__ = __webpack_require__(824);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__migration_17067919700000_RenameParentIdAndAddTaskFormatAndPosition__ = __webpack_require__(825);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__migration_17071440460000_AddGroupsFinished__ = __webpack_require__(826);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__migration_16013795030000_AddSavedTasks__ = __webpack_require__(1094);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__migration_16026790930000_AddSubtasks__ = __webpack_require__(1095);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__migration_16194302450000_AddPositionField__ = __webpack_require__(1096);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__migration_16208100470000_AddPathFields__ = __webpack_require__(1097);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__migration_16225449820000_AddZoom__ = __webpack_require__(1098);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__migration_16552845000000_AddForceSubtaskAndArLink__ = __webpack_require__(1099);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__migration_17026521590000_AddTaskCode__ = __webpack_require__(1100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__migration_17067919700000_RenameParentIdAndAddTaskFormatAndPosition__ = __webpack_require__(1101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__migration_17071440460000_AddGroupsFinished__ = __webpack_require__(1102);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5816,535 +7434,6 @@ var OrmService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 338:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-
-
-
-
-var WebSQLObject = /** @class */ (function (_super) {
-    __extends(WebSQLObject, _super);
-    function WebSQLObject() {
-        return _super.call(this, openDatabase('mcm', '1.0', 'MCM DB', 2 * 1024 * 1024)) || this;
-    }
-    WebSQLObject.prototype.executeSql = function (statement, params) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._objectInstance.transaction(function (tx) {
-                console.debug(statement);
-                tx.executeSql(statement, params, function (tx, results) {
-                    resolve(results);
-                }, function (tx, error) {
-                    reject(error);
-                });
-            });
-        });
-    };
-    return WebSQLObject;
-}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["b" /* SQLiteObject */]));
-var WebSQL = /** @class */ (function (_super) {
-    __extends(WebSQL, _super);
-    function WebSQL() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    WebSQL.prototype.create = function (config) {
-        return new Promise(function (resolve, reject) {
-            resolve(new WebSQLObject());
-        });
-    };
-    return WebSQL;
-}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]));
-var DB_Handler = /** @class */ (function () {
-    function DB_Handler() {
-        this.mSQLite = null;
-        this.mDB = null;
-        this.mReady = false;
-        this.cache = {};
-    }
-    DB_Handler.getInstance = function () {
-        if (this.mInstance === null) {
-            this.mInstance = new DB_Handler();
-        }
-        return this.mInstance;
-    };
-    DB_Handler.prototype.ready = function () {
-        var _this = this;
-        if (this.mReady) {
-            return Promise.resolve();
-        }
-        return new Promise(function (resolve, reject) {
-            _this.mSQLite = Object(__WEBPACK_IMPORTED_MODULE_3__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginName()) === true ? new __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]() : new WebSQL();
-            _this.mSQLite.create({
-                name: 'mcm_db.sqlite3',
-                location: 'default'
-            })
-                .then(function (db) {
-                _this.mDB = db;
-                _this.mReady = true;
-                console.log('Connected to DB');
-                // it's ok to always run onCreate because SQL has IF EXISTS
-                _this.onCreate().then(function () {
-                    _this.mReady = true;
-                    resolve();
-                });
-            })
-                .catch(function (e) {
-                console.error('Error connecting to DB', JSON.stringify(e));
-                reject(e);
-            });
-        });
-    };
-    DB_Handler.prototype.onCreate = function () {
-        var _this = this;
-        // Create Tables
-        var CREATE_STATE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.getCreateStatement();
-        var CREATE_TASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_TASK.getCreateStatement();
-        var CREATE_ROUTE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_ROUTE.getCreateStatement();
-        var CREATE_RELROUTETASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_RELROUTETASK.getCreateStatement();
-        var CREATE_USERS_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_USERS.getCreateStatement();
-        var CREATE_SCORE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_SCORE.getCreateStatement();
-        return new Promise(function (resolve, reject) {
-            Promise.all([
-                _this.mDB.executeSql(CREATE_STATE_TABLE, null),
-                _this.mDB.executeSql(CREATE_TASK_TABLE, null),
-                _this.mDB.executeSql(CREATE_ROUTE_TABLE, null),
-                _this.mDB.executeSql(CREATE_RELROUTETASK_TABLE, null),
-                _this.mDB.executeSql(CREATE_USERS_TABLE, null),
-                _this.mDB.executeSql(CREATE_SCORE_TABLE, null)
-            ]).then(function () {
-                resolve();
-            }).catch(function (error) {
-                reject(error);
-            });
-        });
-    };
-    DB_Handler.prototype.initTableVersions = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var sql = "INSERT INTO " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE + " (" + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + ") VALUES (?,?)";
-            Promise.all([
-                _this.mDB.executeSql(sql, ["version_task", "0"]),
-                _this.mDB.executeSql(sql, ["version_route", "0"]),
-                _this.mDB.executeSql(sql, ["version_rel_route_task", "0"])
-            ]).then(function () {
-                resolve();
-            }).catch(reject);
-        });
-    };
-    // TODO:
-    /*
-    Get the table versions in a hashmap
-     */
-    DB_Handler.prototype._getTableVersions = function (data) {
-        var result = new __WEBPACK_IMPORTED_MODULE_2_typescript_collections__["Dictionary"]();
-        for (var i = 0; i < data.rows.length; i++) {
-            var row = data.rows.item(i);
-            result.setValue(row.option, row.value);
-        }
-        return result;
-    };
-    DB_Handler.prototype.getDB = function () {
-        return this.mDB;
-    };
-    DB_Handler.prototype.getTableVersions = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var sqlQuery = "SELECT " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + " FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE;
-            _this.mDB.executeSql(sqlQuery, [])
-                .then(function (result) {
-                console.log("TABLE VERSIONS:", result.rows.length);
-                // console.log(JSON.stringify(result.rows.item(1).option))
-                if (result.rows.length < 3) {
-                    console.warn("ZERO RESULTS: call initTableVersions");
-                    _this.initTableVersions().then(function () {
-                        console.log("RECEIVED RESULTS, REPEATING SQL");
-                        _this.mDB.executeSql(sqlQuery, []).then(function (result) {
-                            console.log("RECEIVED RESULTS", result.rows.length);
-                            resolve(_this._getTableVersions(result));
-                        }).catch(reject);
-                    }).catch(reject);
-                }
-                else {
-                    // we have results
-                    resolve(_this._getTableVersions(result));
-                }
-            })
-                .catch(function (error) {
-                console.error("DB_Handler.getTableVersions(): Error:", error);
-                reject(error);
-            });
-        });
-    };
-    //  Wird im ImageDownloader verwendet, dieser benötigt von allen Trails die Infos public und image
-    // 15.05.18 - Select only public trails
-    DB_Handler.prototype.getTrailsImageInfo = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.mDB.executeSql("SELECT public,image FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_ROUTE + " WHERE public = 1", null)
-                .then(function (result) {
-                var info = null;
-                for (var i = 0; i < result.rows.length; i++) {
-                    var item = [result.rows.item(i).public, result.rows.item(i).image];
-                    if (info === null) {
-                        info = [item];
-                    }
-                    else {
-                        info.push(item);
-                    }
-                }
-                resolve(info);
-            })
-                .catch(function (error) {
-                reject(error);
-            });
-        });
-    };
-    DB_Handler.mInstance = null;
-    return DB_Handler;
-}());
-
-//# sourceMappingURL=DB_Handler.js.map
-
-/***/ }),
-
-/***/ 339:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(812);
-
-
-var DBC = /** @class */ (function () {
-    function DBC() {
-    }
-    DBC.initialize = function () {
-        if (DBC.MAP_DB === null) {
-            DBC.MAP_DB = new __WEBPACK_IMPORTED_MODULE_0_typescript_collections__["Dictionary"]();
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_REL_ROUTE_TASK, DBC.DB_RELROUTETASK);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_ROUTE, DBC.DB_ROUTE);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_STATE, DBC.DB_STATE);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_TASK, DBC.DB_TASK);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_USERS, DBC.DB_USERS);
-            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_SCORE, DBC.DB_SCORE);
-        }
-    };
-    DBC.DATABASE_NAME = "mcm_app";
-    DBC.DATABASE_VERSION = 32;
-    // // Table names (For table definitions look at the corresponding classes DBC_tablename)
-    DBC.DATABASE_TABLE_STATE = "mcm_state";
-    DBC.DATABASE_TABLE_TASK = "mcm_task";
-    DBC.DATABASE_TABLE_TASKMETA = "mcm_task_meta";
-    DBC.DATABASE_TABLE_ROUTE = "mcm_route";
-    DBC.DATABASE_TABLE_ROUTEMETA = "mcm_route_meta";
-    DBC.DATABASE_TABLE_REL_ROUTE_TASK = "mcm_rel_route_task";
-    DBC.DATABASE_TABLE_USERS = "mcm_users";
-    DBC.DATABASE_TABLE_SCORE = "mcm_score";
-    // // Option Names for STATE DB
-    DBC.ON_ROUTE_DATA = "route_id_data_dl";
-    DBC.ON_ROUTE_DONE = "route_id_done";
-    DBC.ON_ROUTE_PRIVATE_ACCESS = "route_id_private_access";
-    DBC.ON_TASK_HINT1_TAKEN = "task_id_hint1_taken";
-    DBC.ON_TASK_HINT2_TAKEN = "task_id_hint2_taken";
-    DBC.ON_TASK_HINT3_TAKEN = "task_id_hint3_taken";
-    DBC.ON_TASK_SOLVED = "task_id_solved";
-    DBC.ON_TASK_SOLVED_LOW = "task_id_solved_low";
-    DBC.ON_ACTIVE_USER = "active_user";
-    DBC.ON_GAMIFICATION = "gamification";
-    // /* TABLE DEFINITIONS */
-    // // DB_STATE
-    DBC.DB_STATE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_STATE, [
-        "_id",
-        "option",
-        "value",
-        "timestamp"
-    ], [
-        "INTEGER",
-        "VARCHAR",
-        "VARCHAR",
-        "TIMESTAMP"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(64) NOT NULL",
-        "(256) NOT NULL",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
-    ]);
-    // //DB_TASK
-    DBC.DB_TASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_TASK, [
-        "_id",
-        "user_id",
-        "public",
-        "lat",
-        "lon",
-        "title",
-        "description",
-        "image",
-        "solution_type",
-        "solution",
-        "hint1",
-        "hint2",
-        "hint3",
-        "assistive_equipment",
-        "author",
-        "mail",
-        "grade",
-        "tags",
-        "timestamp",
-        "solutionsample",
-        "attr",
-        "create_date",
-        "lang_code",
-        "visible",
-        "parent_task_id",
-        "position",
-        "ar_link",
-        "code",
-        "task_format",
-        "position_in_parent"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "VARCHAR",
-        "VARCHAR",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "VARCHAR",
-        "TEXT",
-        "TIMESTAMP",
-        "TEXT",
-        "TEXT",
-        "TIMESTAMP",
-        "VARCHAR",
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "VARCHAR",
-        "VARCHAR",
-        "VARCHAR",
-        "INTEGER"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "NOT NULL",
-        "(1) NOT NULL",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "NOT NULL",
-        "NOT NULL",
-        "",
-        "NOT NULL",
-        "NOT NULL",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "(2) NOT NULL DEFAULT '13'",
-        "",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
-        "NOT NULL",
-        "",
-        "NOT NULL",
-        "(2)",
-        "(1) NOT NULL DEFAULT 1",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ]);
-    // DB_ROUTE
-    DBC.DB_ROUTE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_ROUTE, [
-        "_id",
-        "user_id",
-        "public",
-        "title",
-        "country_code",
-        "city",
-        "image",
-        "code",
-        "grade",
-        "tags",
-        "duration",
-        "length",
-        "bounding_box",
-        "center",
-        "timestamp",
-        "description",
-        "create_date",
-        "attr",
-        "lang_code",
-        "map_version",
-        "map_filename",
-        "map_date",
-        "path_geojson",
-        "path_info",
-        "min_zoom"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "VARCHAR",
-        "TEXT",
-        "VARCHAR",
-        "VARCHAR",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TIMESTAMP",
-        "TEXT",
-        "TIMESTAMP",
-        "TEXT",
-        "VARCHAR",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "INTEGER"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "NOT NULL",
-        "(1) NOT NULL",
-        "NOT NULL",
-        "NOT NULL",
-        "NOT NULL",
-        "",
-        "(64)",
-        "(64)",
-        "",
-        "(64)",
-        "(64)",
-        "",
-        "",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
-        "",
-        "NOT NULL",
-        "",
-        "(2)",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ]);
-    // // DB_RELROUTETASK
-    DBC.DB_RELROUTETASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_REL_ROUTE_TASK, [
-        "_id",
-        "force_support_tasks",
-        "route_id",
-        "task_id",
-        "timestamp"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "TIMESTAMP"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(1)",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
-    ]);
-    // // DB_USERS
-    DBC.DB_USERS = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_USERS, [
-        "_id",
-        "name",
-        "create_date"
-    ], [
-        "INTEGER",
-        "VARCHAR",
-        "TIMESTAMP"
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(32) NOT NULL",
-        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
-    ]);
-    // // DB_SCORE
-    DBC.DB_SCORE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_SCORE, [
-        "_id",
-        "user_id",
-        "route_id",
-        "score",
-        "tasks_solved",
-        "tasks_solved_low",
-        "task_details",
-        "time",
-        "distance"
-    ], [
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "INTEGER",
-        "TEXT",
-        "TEXT",
-        "TEXT",
-        "INTEGER",
-        "INTEGER",
-    ], [
-        "PRIMARY KEY AUTOINCREMENT",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "(64) NOT NULL",
-        "",
-        "",
-        "",
-        "(64)",
-        "(64)"
-    ]);
-    /*
-    DB MAP: Tablename -> DB Instance
-     */
-    DBC.MAP_DB = null;
-    return DBC;
-}());
-
-DBC.initialize();
-//# sourceMappingURL=DBC.js.map
-
-/***/ }),
-
 /***/ 35:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6352,16 +7441,16 @@ DBC.initialize();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ImagesService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(797);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_transfer__ = __webpack_require__(566);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async__ = __webpack_require__(1075);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_async___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_async__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_platform_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_camera__ = __webpack_require__(567);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6922,18 +8011,18 @@ var ImagesService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 432:
+/***/ 394:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7097,18 +8186,18 @@ var SessionUserService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 433:
+/***/ 395:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionChatService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7376,18 +8465,18 @@ var SessionChatService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 435:
+/***/ 397:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionEventService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7582,18 +8671,18 @@ var SessionEventService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 436:
+/***/ 398:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionUserLeaderboardService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_service__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_configuration__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operators_filter__);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -7678,7 +8767,536 @@ var SessionUserLeaderboardService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 575:
+/***/ 568:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DB_Handler; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC__ = __webpack_require__(569);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typescript_collections__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_core__ = __webpack_require__(13);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var WebSQLObject = /** @class */ (function (_super) {
+    __extends(WebSQLObject, _super);
+    function WebSQLObject() {
+        return _super.call(this, openDatabase('mcm', '1.0', 'MCM DB', 2 * 1024 * 1024)) || this;
+    }
+    WebSQLObject.prototype.executeSql = function (statement, params) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._objectInstance.transaction(function (tx) {
+                console.debug(statement);
+                tx.executeSql(statement, params, function (tx, results) {
+                    resolve(results);
+                }, function (tx, error) {
+                    reject(error);
+                });
+            });
+        });
+    };
+    return WebSQLObject;
+}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["b" /* SQLiteObject */]));
+var WebSQL = /** @class */ (function (_super) {
+    __extends(WebSQL, _super);
+    function WebSQL() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    WebSQL.prototype.create = function (config) {
+        return new Promise(function (resolve, reject) {
+            resolve(new WebSQLObject());
+        });
+    };
+    return WebSQL;
+}(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]));
+var DB_Handler = /** @class */ (function () {
+    function DB_Handler() {
+        this.mSQLite = null;
+        this.mDB = null;
+        this.mReady = false;
+        this.cache = {};
+    }
+    DB_Handler.getInstance = function () {
+        if (this.mInstance === null) {
+            this.mInstance = new DB_Handler();
+        }
+        return this.mInstance;
+    };
+    DB_Handler.prototype.ready = function () {
+        var _this = this;
+        if (this.mReady) {
+            return Promise.resolve();
+        }
+        return new Promise(function (resolve, reject) {
+            _this.mSQLite = Object(__WEBPACK_IMPORTED_MODULE_3__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */].getPluginName()) === true ? new __WEBPACK_IMPORTED_MODULE_0__ionic_native_sqlite__["a" /* SQLite */]() : new WebSQL();
+            _this.mSQLite.create({
+                name: 'mcm_db.sqlite3',
+                location: 'default'
+            })
+                .then(function (db) {
+                _this.mDB = db;
+                _this.mReady = true;
+                console.log('Connected to DB');
+                // it's ok to always run onCreate because SQL has IF EXISTS
+                _this.onCreate().then(function () {
+                    _this.mReady = true;
+                    resolve();
+                });
+            })
+                .catch(function (e) {
+                console.error('Error connecting to DB', JSON.stringify(e));
+                reject(e);
+            });
+        });
+    };
+    DB_Handler.prototype.onCreate = function () {
+        var _this = this;
+        // Create Tables
+        var CREATE_STATE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.getCreateStatement();
+        var CREATE_TASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_TASK.getCreateStatement();
+        var CREATE_ROUTE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_ROUTE.getCreateStatement();
+        var CREATE_RELROUTETASK_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_RELROUTETASK.getCreateStatement();
+        var CREATE_USERS_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_USERS.getCreateStatement();
+        var CREATE_SCORE_TABLE = __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_SCORE.getCreateStatement();
+        return new Promise(function (resolve, reject) {
+            Promise.all([
+                _this.mDB.executeSql(CREATE_STATE_TABLE, null),
+                _this.mDB.executeSql(CREATE_TASK_TABLE, null),
+                _this.mDB.executeSql(CREATE_ROUTE_TABLE, null),
+                _this.mDB.executeSql(CREATE_RELROUTETASK_TABLE, null),
+                _this.mDB.executeSql(CREATE_USERS_TABLE, null),
+                _this.mDB.executeSql(CREATE_SCORE_TABLE, null)
+            ]).then(function () {
+                resolve();
+            }).catch(function (error) {
+                reject(error);
+            });
+        });
+    };
+    DB_Handler.prototype.initTableVersions = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var sql = "INSERT INTO " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE + " (" + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + ") VALUES (?,?)";
+            Promise.all([
+                _this.mDB.executeSql(sql, ["version_task", "0"]),
+                _this.mDB.executeSql(sql, ["version_route", "0"]),
+                _this.mDB.executeSql(sql, ["version_rel_route_task", "0"])
+            ]).then(function () {
+                resolve();
+            }).catch(reject);
+        });
+    };
+    // TODO:
+    /*
+    Get the table versions in a hashmap
+     */
+    DB_Handler.prototype._getTableVersions = function (data) {
+        var result = new __WEBPACK_IMPORTED_MODULE_2_typescript_collections__["Dictionary"]();
+        for (var i = 0; i < data.rows.length; i++) {
+            var row = data.rows.item(i);
+            result.setValue(row.option, row.value);
+        }
+        return result;
+    };
+    DB_Handler.prototype.getDB = function () {
+        return this.mDB;
+    };
+    DB_Handler.prototype.getTableVersions = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var sqlQuery = "SELECT " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[1] + "," + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DB_STATE.fields[2] + " FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_STATE;
+            _this.mDB.executeSql(sqlQuery, [])
+                .then(function (result) {
+                console.log("TABLE VERSIONS:", result.rows.length);
+                // console.log(JSON.stringify(result.rows.item(1).option))
+                if (result.rows.length < 3) {
+                    console.warn("ZERO RESULTS: call initTableVersions");
+                    _this.initTableVersions().then(function () {
+                        console.log("RECEIVED RESULTS, REPEATING SQL");
+                        _this.mDB.executeSql(sqlQuery, []).then(function (result) {
+                            console.log("RECEIVED RESULTS", result.rows.length);
+                            resolve(_this._getTableVersions(result));
+                        }).catch(reject);
+                    }).catch(reject);
+                }
+                else {
+                    // we have results
+                    resolve(_this._getTableVersions(result));
+                }
+            })
+                .catch(function (error) {
+                console.error("DB_Handler.getTableVersions(): Error:", error);
+                reject(error);
+            });
+        });
+    };
+    //  Wird im ImageDownloader verwendet, dieser benötigt von allen Trails die Infos public und image
+    // 15.05.18 - Select only public trails
+    DB_Handler.prototype.getTrailsImageInfo = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.mDB.executeSql("SELECT public,image FROM " + __WEBPACK_IMPORTED_MODULE_1__DBC__["a" /* DBC */].DATABASE_TABLE_ROUTE + " WHERE public = 1", null)
+                .then(function (result) {
+                var info = null;
+                for (var i = 0; i < result.rows.length; i++) {
+                    var item = [result.rows.item(i).public, result.rows.item(i).image];
+                    if (info === null) {
+                        info = [item];
+                    }
+                    else {
+                        info.push(item);
+                    }
+                }
+                resolve(info);
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+    };
+    DB_Handler.mInstance = null;
+    return DB_Handler;
+}());
+
+//# sourceMappingURL=DB_Handler.js.map
+
+/***/ }),
+
+/***/ 569:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typescript_collections___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_typescript_collections__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__ = __webpack_require__(1088);
+
+
+var DBC = /** @class */ (function () {
+    function DBC() {
+    }
+    DBC.initialize = function () {
+        if (DBC.MAP_DB === null) {
+            DBC.MAP_DB = new __WEBPACK_IMPORTED_MODULE_0_typescript_collections__["Dictionary"]();
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_REL_ROUTE_TASK, DBC.DB_RELROUTETASK);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_ROUTE, DBC.DB_ROUTE);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_STATE, DBC.DB_STATE);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_TASK, DBC.DB_TASK);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_USERS, DBC.DB_USERS);
+            DBC.MAP_DB.setValue(DBC.DATABASE_TABLE_SCORE, DBC.DB_SCORE);
+        }
+    };
+    DBC.DATABASE_NAME = "mcm_app";
+    DBC.DATABASE_VERSION = 32;
+    // // Table names (For table definitions look at the corresponding classes DBC_tablename)
+    DBC.DATABASE_TABLE_STATE = "mcm_state";
+    DBC.DATABASE_TABLE_TASK = "mcm_task";
+    DBC.DATABASE_TABLE_TASKMETA = "mcm_task_meta";
+    DBC.DATABASE_TABLE_ROUTE = "mcm_route";
+    DBC.DATABASE_TABLE_ROUTEMETA = "mcm_route_meta";
+    DBC.DATABASE_TABLE_REL_ROUTE_TASK = "mcm_rel_route_task";
+    DBC.DATABASE_TABLE_USERS = "mcm_users";
+    DBC.DATABASE_TABLE_SCORE = "mcm_score";
+    // // Option Names for STATE DB
+    DBC.ON_ROUTE_DATA = "route_id_data_dl";
+    DBC.ON_ROUTE_DONE = "route_id_done";
+    DBC.ON_ROUTE_PRIVATE_ACCESS = "route_id_private_access";
+    DBC.ON_TASK_HINT1_TAKEN = "task_id_hint1_taken";
+    DBC.ON_TASK_HINT2_TAKEN = "task_id_hint2_taken";
+    DBC.ON_TASK_HINT3_TAKEN = "task_id_hint3_taken";
+    DBC.ON_TASK_SOLVED = "task_id_solved";
+    DBC.ON_TASK_SOLVED_LOW = "task_id_solved_low";
+    DBC.ON_ACTIVE_USER = "active_user";
+    DBC.ON_GAMIFICATION = "gamification";
+    // /* TABLE DEFINITIONS */
+    // // DB_STATE
+    DBC.DB_STATE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_STATE, [
+        "_id",
+        "option",
+        "value",
+        "timestamp"
+    ], [
+        "INTEGER",
+        "VARCHAR",
+        "VARCHAR",
+        "TIMESTAMP"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(64) NOT NULL",
+        "(256) NOT NULL",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    ]);
+    // //DB_TASK
+    DBC.DB_TASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_TASK, [
+        "_id",
+        "user_id",
+        "public",
+        "lat",
+        "lon",
+        "title",
+        "description",
+        "image",
+        "solution_type",
+        "solution",
+        "hint1",
+        "hint2",
+        "hint3",
+        "assistive_equipment",
+        "author",
+        "mail",
+        "grade",
+        "tags",
+        "timestamp",
+        "solutionsample",
+        "attr",
+        "create_date",
+        "lang_code",
+        "visible",
+        "parent_task_id",
+        "position",
+        "ar_link",
+        "code",
+        "task_format",
+        "position_in_parent"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR",
+        "VARCHAR",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "VARCHAR",
+        "TEXT",
+        "TIMESTAMP",
+        "TEXT",
+        "TEXT",
+        "TIMESTAMP",
+        "VARCHAR",
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR",
+        "VARCHAR",
+        "VARCHAR",
+        "INTEGER"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "NOT NULL",
+        "(1) NOT NULL",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "NOT NULL",
+        "NOT NULL",
+        "",
+        "NOT NULL",
+        "NOT NULL",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "(2) NOT NULL DEFAULT '13'",
+        "",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
+        "NOT NULL",
+        "",
+        "NOT NULL",
+        "(2)",
+        "(1) NOT NULL DEFAULT 1",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ]);
+    // DB_ROUTE
+    DBC.DB_ROUTE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_ROUTE, [
+        "_id",
+        "user_id",
+        "public",
+        "title",
+        "country_code",
+        "city",
+        "image",
+        "code",
+        "grade",
+        "tags",
+        "duration",
+        "length",
+        "bounding_box",
+        "center",
+        "timestamp",
+        "description",
+        "create_date",
+        "attr",
+        "lang_code",
+        "map_version",
+        "map_filename",
+        "map_date",
+        "path_geojson",
+        "path_info",
+        "min_zoom"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "VARCHAR",
+        "TEXT",
+        "VARCHAR",
+        "VARCHAR",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TIMESTAMP",
+        "TEXT",
+        "TIMESTAMP",
+        "TEXT",
+        "VARCHAR",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "INTEGER"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "NOT NULL",
+        "(1) NOT NULL",
+        "NOT NULL",
+        "NOT NULL",
+        "NOT NULL",
+        "",
+        "(64)",
+        "(64)",
+        "",
+        "(64)",
+        "(64)",
+        "",
+        "",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP",
+        "",
+        "NOT NULL",
+        "",
+        "(2)",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ]);
+    // // DB_RELROUTETASK
+    DBC.DB_RELROUTETASK = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_REL_ROUTE_TASK, [
+        "_id",
+        "force_support_tasks",
+        "route_id",
+        "task_id",
+        "timestamp"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "TIMESTAMP"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(1)",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    ]);
+    // // DB_USERS
+    DBC.DB_USERS = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_USERS, [
+        "_id",
+        "name",
+        "create_date"
+    ], [
+        "INTEGER",
+        "VARCHAR",
+        "TIMESTAMP"
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(32) NOT NULL",
+        "NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    ]);
+    // // DB_SCORE
+    DBC.DB_SCORE = new __WEBPACK_IMPORTED_MODULE_1__DBC_Plan__["a" /* DBC_Plan */](DBC.DATABASE_TABLE_SCORE, [
+        "_id",
+        "user_id",
+        "route_id",
+        "score",
+        "tasks_solved",
+        "tasks_solved_low",
+        "task_details",
+        "time",
+        "distance"
+    ], [
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "INTEGER",
+        "INTEGER",
+    ], [
+        "PRIMARY KEY AUTOINCREMENT",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "(64) NOT NULL",
+        "",
+        "",
+        "",
+        "(64)",
+        "(64)"
+    ]);
+    /*
+    DB MAP: Tablename -> DB Instance
+     */
+    DBC.MAP_DB = null;
+    return DBC;
+}());
+
+DBC.initialize();
+//# sourceMappingURL=DBC.js.map
+
+/***/ }),
+
+/***/ 574:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7718,7 +9336,7 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
     };
     MCMDownloadProgressPopupComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-download-progress-popup',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="head">\n        <h2>{{data.titleKey | translate}}</h2>\n    </div>\n\n    <div class="modal-content">\n        <ion-grid no-padding>\n            <ion-row>\n                <ion-col>\n                    <!--<div class="container progress-vertical download">-->\n                        <!--<div class="bar" [ngStyle]="{\'width\': ((100/data.total)*data.currentProgress) +\'%\'}"></div>-->\n                    <!--</div>-->\n                    <progress-bar [progress]="progress" [color]="\'#036d99\'"></progress-bar>\n                </ion-col>\n            </ion-row>\n            <!--<ion-row>-->\n                <!--<ion-col col-6>-->\n                    <!--<p *ngIf="data.total != 0">{{((100/data.total)*data.currentProgress).toFixed(0)}}%</p>-->\n                <!--</ion-col>-->\n                <!--<ion-col col-6 text-right>-->\n                    <!--<p class="progress-files">{{ data.currentProgress }} / {{ data.total }}</p>-->\n                <!--</ion-col>-->\n            <!--</ion-row>-->\n        </ion-grid>\n    </div>\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="onCancelClick()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/,
+            selector: 'mcm-download-progress-popup',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="head">\n        <h2>{{data.titleKey | translate}}</h2>\n    </div>\n\n    <div class="modal-content">\n        <ion-grid no-padding>\n            <ion-row>\n                <ion-col>\n                    <!--<div class="container progress-vertical download">-->\n                        <!--<div class="bar" [ngStyle]="{\'width\': ((100/data.total)*data.currentProgress) +\'%\'}"></div>-->\n                    <!--</div>-->\n                    <progress-bar [progress]="progress" [color]="\'#036d99\'"></progress-bar>\n                </ion-col>\n            </ion-row>\n            <!--<ion-row>-->\n                <!--<ion-col col-6>-->\n                    <!--<p *ngIf="data.total != 0">{{((100/data.total)*data.currentProgress).toFixed(0)}}%</p>-->\n                <!--</ion-col>-->\n                <!--<ion-col col-6 text-right>-->\n                    <!--<p class="progress-files">{{ data.currentProgress }} / {{ data.total }}</p>-->\n                <!--</ion-col>-->\n            <!--</ion-row>-->\n        </ion-grid>\n    </div>\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="onCancelClick()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/components/mcm-download-progress-popup/mcm-download-progress-popup.component.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectorRef"]])
     ], MCMDownloadProgressPopupComponent);
@@ -7729,7 +9347,7 @@ var MCMDownloadProgressPopupComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 576:
+/***/ 575:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7882,7 +9500,7 @@ var RouteInfo = /** @class */ (function () {
     };
     RouteInfo = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'route-info',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/'<mcm-header transparent></mcm-header>\n<ion-content class="has-header transparent">\n    <div class="card title" *ngIf="route">\n        <p>{{ route.city }}, {{ route.countryCode }}</p>\n        <h1>{{ route.title }}</h1>\n    </div>\n\n    <div class="image-box" *ngIf="route">\n        <ion-grid>\n            <ion-row align-items-center>\n                <ion-col col-4 class="button-container">\n<!--                    <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute()">-->\n<!--                        <img src="./assets/icons/delete.svg"/>-->\n<!--                    </button>-->\n                </ion-col>\n                <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">\n                    <div class="cover">\n                        <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n                    </div>\n                    <div class="indicator" *ngIf="route.isNarrativeEnabled()">\n                        <h3 no-margin>{{\'p_narrative_names_\' + route.getNarrativeName() | translate}}</h3>\n                        <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />\n                    </div>\n                </ion-col>\n\n                <!--TODO Sharing coming soon near your area-->\n                <ion-col col-4 class="button-container">\n                    <!--<button ion-button icon-only small round (click)="share(route)">-->\n                        <!--<img src="./assets/icons/share.svg"/>-->\n                    <!--</button>-->\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="card text-center basic-info">\n        <ion-grid no-padding>\n            <ion-row align-items-center>\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "a_t_grade" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.grade }}</span>\n                    </div>\n                    <div class="info-item border">\n                        <ion-label>{{ "a_t_distance" | translate }}</ion-label>\n                        <span *ngIf="route"> {{route.getDistance() | distance: \'m\'}} </span>\n                    </div>\n                </ion-col>\n\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "p_r_duration" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.duration }}</span>\n                    </div>\n                </ion-col>\n\n                <ion-col>\n                    <div class="info-item">\n                        <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>\n                        <span>{{ totalTasks }}</span>\n                    </div>\n                    <div class="info-item border">\n                        <ion-label>{{ "a_r_length" | translate }}</ion-label>\n                        <span *ngIf="route">{{ route.length }}</span>\n                    </div>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="card">\n        <ion-label>{{\'current_progress\' | translate}}</ion-label>\n        <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>\n        <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">\n            <span class="icon finished">{{route.completedDate}}</span>\n            <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">\n                <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>\n                <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>\n                <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>\n            </div>\n            <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">\n                <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>\n            </div>\n        </div>\n    </div>\n\n    <div class="card">\n        <ion-label>{{ \'p_r_about\' | translate }}</ion-label>\n        <p *ngIf="route">{{ route.description }}</p>\n\n        <ion-label>{{ \'a_action_settings\' | translate }}</ion-label>\n        <p *ngIf="route">\n            <ion-row *ngIf="route.code">{{\'a_trailcode\' | translate}}: {{ route.code }}</ion-row>\n            <ion-row>{{ \'p_session_sorting_score\' | translate }}: {{route.getSettingStringValue("gamification", translateService)}}</ion-row>\n            <ion-row>{{ \'t_samplesolution\' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>\n            <ion-row>{{ \'a_hints\' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>\n            <ion-row>{{ \'p_r_validation\' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>\n            <ion-row>{{ \'p_r_feedback\' | translate }}: {{route.getSettingStringValue("answerFeedback", translateService)}}</ion-row>\n            <ion-row *ngIf="route.isNarrativeEnabled()">{{ \'p_narrative\' | translate }}: {{ \'p_narrative_names_\' + route.getNarrativeName() | translate }}</ion-row>\n            <ion-row *ngIf="!route.isNarrativeEnabled()">{{ \'p_narrative\' | translate }}: {{ \'p_narrative_names_none\' | translate }}</ion-row>\n        </p>\n\n        <div>\n            <ion-label>{{ \'a_r_equip\' | translate }}</ion-label>\n            <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>\n        </div>\n\n        <div class="path-info" *ngIf="route && route.getPathInfo()">\n            <ion-label>{{ \'a_r_path\' | translate }}</ion-label>\n            <ion-row>\n                <ion-col class="walk">\n                    <ion-icon name="md-walk"></ion-icon>\n                    {{route.getPathInfo()[\'path_walk\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="bike">\n                    <ion-icon name="md-bicycle" color="green"></ion-icon>\n                    {{route.getPathInfo()[\'path_bike\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="car">\n                    <ion-icon name="md-car" color="red"></ion-icon>\n                    {{route.getPathInfo()[\'path_car\'][\'lengthText\']}}\n                </ion-col>\n                <ion-col class="public">\n                    <ion-icon name="md-train" color="yellow"></ion-icon>\n                    {{route.getPathInfo()[\'path_public\'][\'lengthText\']}}\n                </ion-col>\n            </ion-row>\n            <ion-row>\n                <ion-col class="sum-label">{{\'a_r_path_sum\' | translate}}</ion-col>\n                <ion-col class="sum-data">{{route.getPathInfo()[\'path_sum\'][\'lengthText\']}}</ion-col>\n            </ion-row>\n        </div>\n\n        <ion-label>{{ \'a_r_tags\' | translate }}</ion-label>\n        <p *ngIf="route">{{ route.tags }}</p>\n    </div>\n\n    <div class="card text-center transparent">\n        <button color="dark" ion-button round *ngIf="route && route.downloaded" (click)="displayRemoveTrailModal()">  <!--(click)="displayResetTasksModal()"-->\n            {{ \'a_r_remove_trail\' | translate }}\n        </button>\n    </div>\n</ion-content>\n\n<ion-footer>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && !route.downloaded"\n            (click)="doDownload(route)">\n        <img content src="./assets/icons/download.svg"> {{ \'a_r_download\' | translate }}\n    </button>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"\n            (click)="showRoute(route)">\n        <img content src="./assets/icons/play.svg"> {{ \'a_r_start\' | translate }}\n    </button>\n    <button class="play" ion-button full block no-margin no-padding large\n            *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"\n            (click)="showRoute(route)">\n        <img content src="./assets/icons/play.svg"> {{ \'a_r_continue\' | translate }}\n    </button>\n</ion-footer>\n\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/,
+            selector: 'route-info',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/'<mcm-header transparent></mcm-header>\n\n<ion-content class="has-header transparent">\n   <div class="route-header" *ngIf="route"\n         [ngClass]="{\'narrative\' : route.isNarrativeEnabled()}">\n      <div class="title-container">\n         <p class="title-super">{{ route.city }}, {{ route.countryCode }}</p>\n         <h1 class="title">{{ route.title }}</h1>\n      </div>\n   </div>\n\n   <div class="route-content">\n      <div class="image-box" *ngIf="route">\n         <ion-grid>\n            <ion-row align-items-center>\n               <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">\n                  <div class="cover">\n                     <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity=\'0\'" />\n                  </div>\n<!--                  <div class="indicator" *ngIf="route.isNarrativeEnabled()">-->\n<!--                     <h3 no-margin>{{\'p_narrative_names_\' + route.getNarrativeName() | translate}}</h3>-->\n<!--                     <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />-->\n<!--                  </div>-->\n               </ion-col>\n            </ion-row>\n         </ion-grid>\n      </div>\n\n      <div class="card text-center basic-info">\n         <ion-grid no-padding>\n            <ion-row align-items-center>\n               <ion-col>\n                  <div class="info-item">\n                     <ion-label>{{ "a_t_grade" | translate }}</ion-label>\n                     <span *ngIf="route">{{ route.grade }}</span>\n                  </div>\n                  <div class="info-item border">\n                     <ion-label>{{ "a_t_distance" | translate }}</ion-label>\n                     <span *ngIf="route"> {{route.getDistance() | distance: \'m\'}} </span>\n                  </div>\n               </ion-col>\n\n               <ion-col>\n                  <div class="info-item">\n                     <ion-label>{{ "p_r_duration" | translate }}</ion-label>\n                     <span *ngIf="route">{{ route.duration }}</span>\n                  </div>\n               </ion-col>\n\n               <ion-col>\n                  <div class="info-item">\n                     <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>\n                     <span>{{ totalTasks }}</span>\n                  </div>\n                  <div class="info-item border">\n                     <ion-label>{{ "a_r_length" | translate }}</ion-label>\n                     <span *ngIf="route">{{ route.length }}</span>\n                  </div>\n               </ion-col>\n            </ion-row>\n         </ion-grid>\n      </div>\n\n      <div class="card">\n         <ion-label class="title">{{\'current_progress\' | translate}}</ion-label>\n         <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>\n         <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">\n            <span class="icon finished">{{route.completedDate}}</span>\n            <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">\n               <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>\n               <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>\n               <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>\n            </div>\n            <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">\n               <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>\n            </div>\n         </div>\n      </div>\n\n      <div class="card">\n         <ion-label class="title">{{ \'p_r_about\' | translate }}</ion-label>\n         <p *ngIf="route">{{ route.description }}</p>\n\n         <ion-label class="title">{{ \'a_action_settings\' | translate }}</ion-label>\n         <p *ngIf="route" class="settings">\n            <ion-row *ngIf="route.code">\n               <span>{{\'a_trailcode\' | translate}}</span>\n               <span>{{ route.code }}</span>\n            </ion-row>\n            <ion-row>\n               <span>{{\'p_session_sorting_score\' | translate}}</span>\n               <span>{{route.getSettingStringValue("gamification", translateService)}}</span>\n            </ion-row>\n            <ion-row>\n               <span>{{\'t_samplesolution\' | translate}}</span>\n               <span>{{route.getSettingStringValue("sampleSolution", translateService)}}</span>\n            </ion-row>\n            <ion-row>\n               <span>{{\'a_hints\' | translate}}</span>\n               <span>{{route.getSettingStringValue("hints", translateService)}}</span>\n            </ion-row>\n            <ion-row>\n               <span>{{\'p_r_validation\' | translate}}</span>\n               <span>{{route.getSettingStringValue("answerValidation", translateService)}}</span>\n            </ion-row>\n            <ion-row>\n               <span>{{\'p_r_feedback\' | translate}}</span>\n               <span>{{route.getSettingStringValue("answerFeedback", translateService)}}</span>\n            </ion-row>\n            <ion-row *ngIf="route.isNarrativeEnabled()">\n               <span>{{\'p_narrative\' | translate}}</span>\n               <span>{{ \'p_narrative_names_\' + route.getNarrativeName() | translate }}</span>\n            </ion-row>\n            <ion-row *ngIf="!route.isNarrativeEnabled()">\n               <span>{{\'p_narrative\' | translate}}</span>\n               <span>{{ \'p_narrative_names_none\' | translate }}</span>\n            </ion-row>\n         </p>\n\n         <ion-label class="title">{{ \'a_r_equip\' | translate }}</ion-label>\n         <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>\n\n         <div class="path-info" *ngIf="route && route.getPathInfo()">\n            <ion-label class="title">{{ \'a_r_path\' | translate }}</ion-label>\n            <ion-row>\n               <ion-col class="walk">\n                  <ion-icon name="md-walk"></ion-icon>\n                  {{route.getPathInfo()[\'path_walk\'][\'lengthText\']}}\n               </ion-col>\n               <ion-col class="bike">\n                  <ion-icon name="md-bicycle" color="green"></ion-icon>\n                  {{route.getPathInfo()[\'path_bike\'][\'lengthText\']}}\n               </ion-col>\n               <ion-col class="car">\n                  <ion-icon name="md-car" color="red"></ion-icon>\n                  {{route.getPathInfo()[\'path_car\'][\'lengthText\']}}\n               </ion-col>\n               <ion-col class="public">\n                  <ion-icon name="md-train" color="yellow"></ion-icon>\n                  {{route.getPathInfo()[\'path_public\'][\'lengthText\']}}\n               </ion-col>\n            </ion-row>\n            <ion-row>\n               <ion-col class="sum-label">{{\'a_r_path_sum\' | translate}}</ion-col>\n               <ion-col class="sum-data">{{route.getPathInfo()[\'path_sum\'][\'lengthText\']}}</ion-col>\n            </ion-row>\n         </div>\n\n         <ion-label class="title">{{ \'a_r_tags\' | translate }}</ion-label>\n         <p *ngIf="route">{{ route.tags }}</p>\n      </div>\n\n      <div class="card text-center transparent">\n         <button color="dark" ion-button round *ngIf="route && route.downloaded" (click)="displayRemoveTrailModal()">  <!--(click)="displayResetTasksModal()"-->\n            {{ \'a_r_remove_trail\' | translate }}\n         </button>\n      </div>\n   </div>\n</ion-content>\n\n<ion-footer>\n   <button class="play" ion-button full block no-margin no-padding large\n           *ngIf="route && !route.downloaded"\n           (click)="doDownload(route)">\n      {{ \'a_r_download\' | translate }}\n   </button>\n   <button class="play" ion-button full block no-margin no-padding large\n           *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"\n           (click)="showRoute(route)">\n      {{ \'a_r_start\' | translate }}\n   </button>\n   <button class="play" ion-button full block no-margin no-padding large\n           *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"\n           (click)="showRoute(route)">\n      {{ \'a_r_continue\' | translate }}\n   </button>\n</ion-footer>\n\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/RouteInfo/RouteInfo.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__services_orm_service__["a" /* OrmService */],
@@ -7899,7 +9517,7 @@ var RouteInfo = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 577:
+/***/ 576:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7996,7 +9614,7 @@ var CenteredTask = /** @class */ (function () {
     };
     CenteredTask = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'centered-task',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/'<div class="modal card task-select has-button-on-the-edge">\n\n    <div class="modal-content">\n        <h2 *ngIf="route">{{route.title}}</h2>\n        <p *ngIf="route"><b>{{ \'a_startAt\' | translate}}</b></p>\n        <div tappable class="dotted-border-bottom"\n             *ngFor="let item of tasks" (click) = "showRoute(route, item)">\n            <!--#{{item.position}} {{item.title}}-->\n            <!--&lt;!&ndash; green &ndash;&gt;<span *ngIf="score.getTasksSolved().indexOf(item.id) > -1" style="color: #4CAF50">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; red &ndash;&gt;<span *ngIf="score.getTasksFailed().indexOf(item.id) > -1" style="color: #E62B25">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; yellow &ndash;&gt;<span *ngIf="score.getTasksSolvedLow().indexOf(item.id) > -1" style="color: #F3B100">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash;alles andere&ndash;&gt;<span *ngIf="!(score.getTasksSolved().indexOf(item.id) > -1) && !(score.getTasksFailed().indexOf(item.id) > -1) && !(score.getTasksSolvedLow().indexOf(item.id) > -1)" style="color: black">#{{item.position}} {{item.title}}</span>-->\n            <!-- grau für skipped fehlt noch -->\n            <span\n                    [class.perfect]="(score.getTasksSolved().indexOf(item.id) > -1)"\n                    [class.failed]="(score.getTasksFailed().indexOf(item.id) > -1)"\n                    [class.good]="(score.getTasksSolvedLow().indexOf(item.id) > -1)">\n                    <!--[class.tasksSkippedColor]="(state.skippedTaskIds.indexOf(item.id) > -1)"-->\n                #{{item.position}} {{item.title}}\n            </span>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/,
+            selector: 'centered-task',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/'<div class="modal card task-select has-button-on-the-edge">\n\n    <div class="modal-content">\n        <h2 *ngIf="route">{{route.title}}</h2>\n        <p *ngIf="route"><b>{{ \'a_startAt\' | translate}}</b></p>\n        <div tappable class="dotted-border-bottom"\n             *ngFor="let item of tasks" (click) = "showRoute(route, item)">\n            <!--#{{item.position}} {{item.title}}-->\n            <!--&lt;!&ndash; green &ndash;&gt;<span *ngIf="score.getTasksSolved().indexOf(item.id) > -1" style="color: #4CAF50">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; red &ndash;&gt;<span *ngIf="score.getTasksFailed().indexOf(item.id) > -1" style="color: #E62B25">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash; yellow &ndash;&gt;<span *ngIf="score.getTasksSolvedLow().indexOf(item.id) > -1" style="color: #F3B100">#{{item.position}} {{item.title}}</span>-->\n            <!--&lt;!&ndash;alles andere&ndash;&gt;<span *ngIf="!(score.getTasksSolved().indexOf(item.id) > -1) && !(score.getTasksFailed().indexOf(item.id) > -1) && !(score.getTasksSolvedLow().indexOf(item.id) > -1)" style="color: black">#{{item.position}} {{item.title}}</span>-->\n            <!-- grau für skipped fehlt noch -->\n            <span\n                    [class.perfect]="(score.getTasksSolved().indexOf(item.id) > -1)"\n                    [class.failed]="(score.getTasksFailed().indexOf(item.id) > -1)"\n                    [class.good]="(score.getTasksSolvedLow().indexOf(item.id) > -1)">\n                    <!--[class.tasksSkippedColor]="(state.skippedTaskIds.indexOf(item.id) > -1)"-->\n                #{{item.position}} {{item.title}}\n            </span>\n        </div>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/CenteredTask/CenteredTask.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
@@ -8009,15 +9627,15 @@ var CenteredTask = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 578:
+/***/ 580:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProblemReportService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_service__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__base_service__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_Helper__ = __webpack_require__(17);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -8094,53 +9712,6 @@ var ProblemReportService = /** @class */ (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_3__base_service__["a" /* BaseService */]));
 
 //# sourceMappingURL=problem-report.service.js.map
-
-/***/ }),
-
-/***/ 579:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatPageModule", function() { return ChatPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__chat__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_components_module__ = __webpack_require__(235);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-var ChatPageModule = /** @class */ (function () {
-    function ChatPageModule() {
-    }
-    ChatPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]),
-                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */],
-                __WEBPACK_IMPORTED_MODULE_4__components_components_module__["a" /* ComponentsModule */]
-            ],
-            entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_2__chat__["a" /* ChatPage */]
-            ]
-        })
-    ], ChatPageModule);
-    return ChatPageModule;
-}());
-
-//# sourceMappingURL=chat.module.js.map
 
 /***/ }),
 
@@ -8237,7 +9808,7 @@ var MCMTermsAndConditionsModal = /** @class */ (function () {
     ], MCMTermsAndConditionsModal.prototype, "input", void 0);
     MCMTermsAndConditionsModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-terms-and-conditions-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{ \'a_terms_and_conditions_title\' | translate }}</h2>\n        <p class="terms" [innerHTML]="\'a_terms_and_conditions_text\' | translate" (click)="openTermsAndConditions()"></p>\n        <ion-item>\n            <ion-label>{{ \'a_terms_and_conditions_checkbox\' | translate }}</ion-label>\n            <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_terms_and_conditions_continue" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/
+            selector: 'mcm-terms-and-conditions-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/'<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{ \'a_terms_and_conditions_title\' | translate }}</h2>\n        <p class="terms" [innerHTML]="\'a_terms_and_conditions_text\' | translate" (click)="openTermsAndConditions()"></p>\n        <ion-item>\n            <ion-label>{{ \'a_terms_and_conditions_checkbox\' | translate }}</ion-label>\n            <ion-checkbox [(ngModel)]="tacCheckbox"></ion-checkbox>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round [disabled]="!tacCheckbox" (click)="addJoinSession()" >{{ "a_terms_and_conditions_continue" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMTermsAndConditionsModal/MCMTermsAndConditionsModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__["a" /* InAppBrowser */]])
@@ -8399,7 +9970,7 @@ var MCMJoinSessionModal = /** @class */ (function () {
     ], MCMJoinSessionModal.prototype, "input", void 0);
     MCMJoinSessionModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-join-session-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/'<div class="modal icon card has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-session-join.svg"/>\n        <h2>"{{session.name}}"</h2>\n        <p class="main-text">{{session.welcome_message}}</p>\n\n            <ion-label>{{ "a_team_name" | translate }}</ion-label>\n            <ion-item>\n                <ion-input #input type="text" [(ngModel)]="teamName"></ion-input>\n            </ion-item>\n\n            <div class="input-container">\n                <ion-label>{{ "a_team_members" | translate }}</ion-label>\n                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">\n                    <ion-item>\n                        <ion-input [disabled]="true" value="{{ teamMember }}"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>\n                </div>\n                <div class="input-main">\n                    <ion-item>\n                        <ion-input #input type="text" [(ngModel)]="teamMemberNames"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/add.svg" (click)="addTeamMemberName(teamMemberNames)" />\n                </div>\n            </div>\n\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="start()" [disabled]="!checkInputField()">{{ "a_session_enter" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/
+            selector: 'mcm-join-session-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/'<div class="modal icon card has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/modal-session-join.svg"/>\n        <h2>"{{session.name}}"</h2>\n        <p class="main-text">{{session.welcome_message}}</p>\n\n            <ion-label>{{ "a_team_name" | translate }}</ion-label>\n            <ion-item>\n                <ion-input #input type="text" [(ngModel)]="teamName"></ion-input>\n            </ion-item>\n\n            <div class="input-container">\n                <ion-label>{{ "a_team_members" | translate }}</ion-label>\n                <div class="input-secondary" *ngFor="let teamMember of teamMemberArray; let i = index;">\n                    <ion-item>\n                        <ion-input [disabled]="true" value="{{ teamMember }}"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/remove.svg" (click)="removeTeamMemberName(i)"/>\n                </div>\n                <div class="input-main">\n                    <ion-item>\n                        <ion-input #input type="text" [(ngModel)]="teamMemberNames"></ion-input>\n                    </ion-item>\n                    <img class="" src="./assets/icons/add.svg" (click)="addTeamMemberName(teamMemberNames)" />\n                </div>\n            </div>\n\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="start()" [disabled]="!checkInputField()">{{ "a_session_enter" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMJoinSessionModal/MCMJoinSessionModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__services_orm_service__["a" /* OrmService */],
             __WEBPACK_IMPORTED_MODULE_4__services_modals_service__["a" /* ModalsService */], __WEBPACK_IMPORTED_MODULE_5__services_chat_and_session_service__["a" /* ChatAndSessionService */]])
@@ -8408,6 +9979,38 @@ var MCMJoinSessionModal = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=MCMJoinSessionModal.js.map
+
+/***/ }),
+
+/***/ 60:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+/* tslint:disable */
+
+/**
+ * Contains global configuration for API services
+ */
+var ApiConfiguration = /** @class */ (function () {
+    function ApiConfiguration() {
+        // rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
+        this.rootUrl = "https://api-dev.mathcitymap.eu/public/index.php";
+    }
+    ApiConfiguration = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    ], ApiConfiguration);
+    return ApiConfiguration;
+}());
+
+//# sourceMappingURL=api-configuration.js.map
 
 /***/ }),
 
@@ -8688,1024 +10291,13 @@ var tilesDb = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_component__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-var DashboardPage = /** @class */ (function () {
-    function DashboardPage(navCtrl, navParams, helper, storage, gpsService, chatAndSessionService, ormService, modalCtrl, modalsService) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.helper = helper;
-        this.storage = storage;
-        this.gpsService = gpsService;
-        this.chatAndSessionService = chatAndSessionService;
-        this.ormService = ormService;
-        this.modalCtrl = modalCtrl;
-        this.modalsService = modalsService;
-        this.tabBarElement = document.querySelector('.tabbar');
-    }
-    DashboardPage.prototype.ngOnInit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, e_1, activeSession, that_1, route_1, modal_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        /**
-                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
-                         * from the default one (Frankfurt) for a few seconds
-                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
-                         */
-                        _a = this;
-                        return [4 /*yield*/, this.storage.get('devMode')];
-                    case 1:
-                        /**
-                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
-                         * from the default one (Frankfurt) for a few seconds
-                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
-                         */
-                        _a.devMode = ((_b.sent()) === 'true');
-                        if (!!this.gpsService.getLastPosition()) return [3 /*break*/, 5];
-                        _b.label = 2;
-                    case 2:
-                        _b.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
-                                console.error("Error loading GPS data", err);
-                            }), 2000)];
-                    case 3:
-                        _b.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _b.sent();
-                        console.log("could not obtain position: " + e_1.message);
-                        // make position check async
-                        this.gpsService.getCurrentPosition().then(function (position) {
-                            if (position && position.coords) {
-                            }
-                        }, function (err) {
-                            console.error("Error loading GPS data", err);
-                        });
-                        return [3 /*break*/, 5];
-                    case 5:
-                        console.log('check for active session');
-                        return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
-                    case 6:
-                        activeSession = _b.sent();
-                        if (!(activeSession != null)) return [3 /*break*/, 8];
-                        console.log('active session found');
-                        that_1 = this;
-                        return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
-                    case 7:
-                        route_1 = _b.sent();
-                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
-                            title: 'a_session_return_title',
-                            message: 'a_session_return_text',
-                            type: 'text',
-                            modalType: __WEBPACK_IMPORTED_MODULE_8__app_app_component__["a" /* MCMModalType */].hint,
-                            narrativeEnabled: route_1.isNarrativeEnabled(),
-                            narrative: route_1.isNarrativeEnabled() ? route_1.getAttributes().narrativeName : '',
-                            buttons: [
-                                {
-                                    title: 'a_session_return_stay',
-                                    callback: function () {
-                                        modal_1.dismiss();
-                                        that_1.modalsService.showRoute(route_1, that_1.navCtrl);
-                                    }
-                                },
-                                {
-                                    title: 'a_private_session_quit',
-                                    callback: function () {
-                                        if (this.sessionInfo != null) {
-                                            var details = JSON.stringify({});
-                                            that_1.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
-                                        }
-                                        that_1.chatAndSessionService.exitActiveSession();
-                                        modal_1.dismiss();
-                                        clearInterval(this.refreshIntervalId);
-                                    }
-                                }
-                            ]
-                        }, { showBackdrop: true, enableBackdropDismiss: true });
-                        modal_1.present();
-                        _b.label = 8;
-                    case 8: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    DashboardPage.prototype.pushSettingsPage = function () {
-        this.navCtrl.push('SettingsPage');
-    };
-    DashboardPage.prototype.pushInfoPage = function () {
-        this.navCtrl.push('InfoPage');
-    };
-    DashboardPage.prototype.switchTab = function (index, addRoute) {
-        if (addRoute === void 0) { addRoute = false; }
-        if (addRoute) {
-            this.helper.setActivateAddRoute(true);
-        }
-        if (index == 3 && !this.devMode) {
-            return;
-        }
-        this.navCtrl.parent.select(index);
-    };
-    DashboardPage.prototype.ionViewWillEnter = function () {
-        this.devMode = this.helper.getDevMode();
-        if (this.tabBarElement != null) {
-            this.tabBarElement.style.display = 'none';
-        }
-    };
-    DashboardPage.prototype.ionViewDidLeave = function () {
-        this.tabBarElement.style.display = 'flex';
-    };
-    DashboardPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-dashboard',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/'<ion-content class="padding top bottom">\n    <div class="stretch-container">\n        <img class="logo" src="./assets/images/mcm-logo-white.svg">\n\n        <div class="secondary">\n            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">\n                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}\n            </button>\n            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">\n                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}\n            </button>\n        </div>\n\n        <div class="tiles">\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(1)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_browse_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_browse_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/browse.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2, true)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_add_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_add_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/add.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_downloads_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_downloads_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile" [ngClass]="{\'disabled\' : !devMode}">\n                <ion-item tappable no-lines (click)="switchTab(3)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_create_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_create_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/create.svg">\n                    </div>\n                </ion-item>\n            </div>\n        </div>\n    </div>\n</ion-content>\n\n<!--<div ion-fixed>-->\n    <!--<img style="z-index: 12; display: block; position: relative;" margin-top padding-top src="https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/1-fan-foam-finger-sticker-31468-300x300.png">-->\n    <!--<p> G⃣   O⃣    W⃣   O⃣   M⃣   B⃣   A⃣   T⃣   S⃣    G⃣   O⃣ </p>-->\n    <!--<p>🐎  🎀  𝒲🌺𝓂𝒷𝒶𝓉𝓈 𝒶𝓇𝑒 𝓈𝒽💞𝓇𝓉-𝓁𝑒𝑔𝑔𝑒𝒹, <b>𝓂𝓊𝓈𝒸𝓊𝓁𝒶𝓇</b> 𝓆𝓊𝒶𝒹𝓇𝓊𝓅𝑒𝒹𝒶𝓁 𝓂𝒶𝓇𝓈𝓊𝓅𝒾𝒶𝓁𝓈 𝓉𝒽𝒶𝓉 𝒶𝓇𝑒 𝓃𝒶𝓉𝒾𝓋𝑒 𝓉🍪 𝒜𝓊𝓈𝓉𝓇𝒶𝓁𝒾𝒶. 𝒯𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝒷🌞𝓊𝓉 𝟣 𝓂 𝒾𝓃 𝓁𝑒𝓃𝑔𝓉𝒽 𝓌𝒾𝓉𝒽 𝓈𝓂𝒶𝓁𝓁, 𝓈𝓉𝓊𝒷𝒷𝓎 𝓉𝒶𝒾𝓁𝓈. 𝒯𝒽𝑒𝓇𝑒 𝒶𝓇𝑒 𝓉𝒽𝓇𝑒𝑒 𝑒𝓍𝓉𝒶𝓃𝓉 𝓈𝓅𝑒𝒸𝒾𝑒𝓈 𝒶𝓃𝒹 𝓉𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝓁𝓁 𝓂𝑒𝓂𝒷𝑒𝓇𝓈 🏵𝒻 𝓉𝒽𝑒 𝒻𝒶𝓂𝒾𝓁𝓎 𝒱🍩𝓂𝒷𝒶𝓉𝒾𝒹𝒶𝑒.  🎀  🐎</p>-->\n    <!--<img margin-top padding-top style="position: absolute; top: 0;" src="https://cdn.britannica.com/88/81288-050-3084149B/Phascolomis-Vombatus-ursinus.jpg">-->\n<!--</div>-->\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_5__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__["a" /* ChatAndSessionService */],
-            __WEBPACK_IMPORTED_MODULE_10__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */]])
-    ], DashboardPage);
-    return DashboardPage;
-}());
-
-//# sourceMappingURL=dashboard.js.map
-
-/***/ }),
-
-/***/ 628:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesMapPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(625);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__env_env__ = __webpack_require__(195);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-//import 'leaflet-offline';
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
-var RoutesMapPage = /** @class */ (function () {
-    function RoutesMapPage(updater, ormService, modalsService, navCtrl, spinner, translateService, gpsService, helper, navParams, languageService, zoom) {
-        var _this = this;
-        this.updater = updater;
-        this.ormService = ormService;
-        this.modalsService = modalsService;
-        this.navCtrl = navCtrl;
-        this.spinner = spinner;
-        this.translateService = translateService;
-        this.gpsService = gpsService;
-        this.helper = helper;
-        this.navParams = navParams;
-        this.languageService = languageService;
-        this.zoom = zoom;
-        this.markerGroup = null;
-        this.merkerMapBoxGroup = null;
-        this.eventSubscription = this.ormService.eventEmitter.subscribe(function (event) { return __awaiter(_this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 3];
-                        if (!!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 1:
-                        _a.routes = _b.sent();
-                        _b.label = 2;
-                    case 2:
-                        this.redrawMapBoxMarker();
-                        console.log("REDRAWED");
-                        this.routeDetails = null;
-                        _b.label = 3;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); });
-    }
-    RoutesMapPage.prototype.ionViewWillEnter = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        console.log("ionViewWillEnter:");
-                        this.zoom.disableZooming();
-                        this.gpsService.isLocationOn();
-                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 5];
-                        if (!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 1:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 4];
-                    case 2:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 3:
-                        _b.routes = _c.sent();
-                        _c.label = 4;
-                    case 4:
-                        this.redrawMapBoxMarker();
-                        _c.label = 5;
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.ngOnInit = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                this.isFilePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
-                if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
-                    if (this.navParams.data.showAllRoutes)
-                        this.showAllRoutes = true;
-                    else
-                        this.showAllRoutes = false;
-                }
-                this.languageService.initialize().then(function () { return __awaiter(_this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0:
-                                //this.loadMap();
-                                this.loadMapBox();
-                                return [4 /*yield*/, this.initializeMap()];
-                            case 1:
-                                _a.sent();
-                                return [2 /*return*/];
-                        }
-                    });
-                }); });
-                return [2 /*return*/];
-            });
-        });
-    };
-    RoutesMapPage.prototype.ngOnDestroy = function () {
-        this.zoom.enableZooming();
-        this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
-        if (this.eventSubscription) {
-            this.eventSubscription.unsubscribe();
-            this.eventSubscription = null;
-        }
-        if (this.watchSubscription) {
-            this.watchSubscription.unsubscribe();
-            this.watchSubscription = null;
-        }
-    };
-    RoutesMapPage.prototype.initializeMap = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var activeUser, online, e_1, _a, _b;
-            var _this = this;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0: return [4 /*yield*/, this.ormService.getActiveUser()];
-                    case 1:
-                        activeUser = _c.sent();
-                        if (!!activeUser) return [3 /*break*/, 6];
-                        return [4 /*yield*/, this.modalsService.showNoInternetModalIfOffline()];
-                    case 2:
-                        online = _c.sent();
-                        if (!online) return [3 /*break*/, 6];
-                        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-                        _c.label = 3;
-                    case 3:
-                        _c.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, this.updater.checkForUpdates()];
-                    case 4:
-                        _c.sent();
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_1 = _c.sent();
-                        console.error('caught error while checking for updates:');
-                        console.error(e_1);
-                        return [3 /*break*/, 6];
-                    case 6:
-                        if (!this.showAllRoutes) return [3 /*break*/, 8];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 7:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 10];
-                    case 8:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 9:
-                        _b.routes = _c.sent();
-                        _c.label = 10;
-                    case 10:
-                        this.map.on('load', function () {
-                            var waiting = function () {
-                                if (!_this.map.isStyleLoaded()) {
-                                    setTimeout(waiting, 200);
-                                }
-                                else {
-                                    _this.redrawMapBoxMarker();
-                                }
-                            };
-                            waiting();
-                        });
-                        this.spinner.hide();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.redrawMapBoxMarker = function () {
-        var map = this.map;
-        //clean layers to be redrawn
-        if (this.map.getLayer('unclustered-point')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('unclustered-point');
-            this.markerGroup = null;
-        }
-        if (this.map.getLayer('clusters')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('clusters');
-            this.markerGroup = null;
-        }
-        if (this.map.getLayer('cluster-count')) {
-            console.log("###removing unclustered points layer");
-            this.map.removeLayer('cluster-count');
-            this.markerGroup = null;
-        }
-        var GeoJson = {
-            "type": "FeatureCollection",
-            "features": []
-        };
-        for (var route in this.routes) {
-            var icon = void 0;
-            if (this.routes[route].downloaded) {
-                if (this.routes[route].completed) {
-                    icon = 'completed-route';
-                }
-                else {
-                    icon = 'downloaded-route';
-                }
-            }
-            else if (this.routes[route].public == "1") {
-                icon = 'public-route';
-            }
-            else {
-                icon = 'private-route';
-            }
-            var routeCenter = this.routes[route].getCenterLatLng();
-            var data = {
-                "type": "Feature",
-                "properties": {
-                    'routeIndex': route,
-                    'icon': icon
-                },
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        routeCenter.lng,
-                        routeCenter.lat
-                    ]
-                }
-            };
-            GeoJson.features.push(data);
-        }
-        if (this.map.getSource("routes"))
-            this.map.getSource('routes').setData(GeoJson);
-        else {
-            this.map.addSource("routes", {
-                type: "geojson",
-                data: GeoJson,
-                cluster: true,
-                clusterRadius: 30
-            });
-        }
-        this.map.addLayer({
-            id: "clusters",
-            type: "circle",
-            source: "routes",
-            filter: ["has", "point_count"],
-            paint: {
-                'circle-color': '#11b4da',
-                'circle-radius': 20
-            }
-        });
-        map.addLayer({
-            id: 'cluster-count',
-            type: 'symbol',
-            source: 'routes',
-            filter: ['has', 'point_count'],
-            layout: {
-                'text-field': '{point_count_abbreviated}',
-                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-                'text-size': 15
-            }
-        });
-        map.addLayer({
-            id: 'unclustered-point',
-            type: 'symbol',
-            source: 'routes',
-            filter: ['!', ['has', 'point_count']],
-            layout: {
-                'icon-size': 0.23,
-                'icon-image': ['get', 'icon'],
-                'icon-allow-overlap': true
-            }
-        });
-    };
-    RoutesMapPage.prototype.loadMapBox = function () {
-        var _this = this;
-        var isLoadedViaHttp = window.location.href.indexOf('http') === 0;
-        var keepPositionBecauseOfReload = false;
-        __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.accessToken = __WEBPACK_IMPORTED_MODULE_16__env_env__["a" /* MAPBOX_ACCESS_TOKEN */];
-        //Either draws the map for all routes or for downloaded ones only
-        if (this.showAllRoutes) {
-            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
-                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-                center: [8.66158515, 50.1208566],
-                zoom: 16,
-                container: 'map',
-                trackResize: false
-            });
-        }
-        else {
-            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
-                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
-                center: [8.66158515, 50.1208566],
-                zoom: 16,
-                container: 'mapDownloaded',
-                trackResize: false
-            });
-        }
-        this.loadImagesToMap();
-        this.map.touchZoomRotate.disableRotation();
-        //removes labels for points of interest
-        this.map.on('load', function () {
-            _this.map.style.stylesheet.layers.forEach(function (layer) {
-                if (layer.id === "poi-label") {
-                    _this.map.removeLayer(layer.id);
-                }
-            });
-        });
-        if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
-            keepPositionBecauseOfReload = true;
-            var startIndex = window.location.search.indexOf('pos=') + 4;
-            var bboxString = window.location.search.substring(startIndex).split("&|/")[0]
-                .replace(/LngLat\(/g, '')
-                .replace(/%20/g, ' ')
-                .replace(/\)/g, '');
-            console.log("BBOX: ", bboxString);
-            var coords = bboxString.split(",").map(parseFloat);
-            var bounds = [[coords[0], coords[1]], [coords[2], coords[3]]];
-            console.log("BOUNDS: ", bounds);
-            this.map.fitBounds(bounds);
-        }
-        this.map.on('click', function (e) {
-            //check if details open and reset content. for now just reset content
-            _this.routeDetails = null;
-            console.log('cleared route details');
-        });
-        var that = this;
-        //Zoom clusters
-        that.map.on('click', 'clusters', function (e) {
-            var features = that.map.queryRenderedFeatures(e.point, {
-                layers: ['clusters']
-            });
-            var clusterId = features[0].properties.cluster_id;
-            that.map.getSource('routes').getClusterExpansionZoom(clusterId, function (err, zoom) {
-                if (err)
-                    return;
-                that.map.easeTo({
-                    center: features[0].geometry.coordinates,
-                    zoom: zoom
-                });
-            });
-        });
-        that.map.on('click', 'unclustered-point', function (e) {
-            return __awaiter(this, void 0, void 0, function () {
-                var features, index, route, _a;
-                return __generator(this, function (_b) {
-                    switch (_b.label) {
-                        case 0:
-                            features = that.map.queryRenderedFeatures(e.point, {
-                                layers: ['unclustered-point']
-                            });
-                            index = features[0].properties.routeIndex;
-                            route = that.routes[index];
-                            if (!(that.routeDetails == route)) return [3 /*break*/, 1];
-                            that.zoom.enableZooming();
-                            that.modalsService.showRoute(route, that.navCtrl).then(function () {
-                                that.zoom.disableZooming();
-                            });
-                            return [3 /*break*/, 5];
-                        case 1:
-                            if (!route.downloaded) return [3 /*break*/, 3];
-                            that.isRouteDownloaded = 'downloaded';
-                            console.log("THIS.ROUTE: ", route);
-                            _a = that;
-                            return [4 /*yield*/, that.ormService.findRouteByCode(route.code)];
-                        case 2:
-                            _a.routeDetails = _b.sent();
-                            return [3 /*break*/, 4];
-                        case 3:
-                            that.routeDetails = route;
-                            that.isRouteDownloaded = null;
-                            _b.label = 4;
-                        case 4:
-                            that.map.panTo(features[0].geometry.coordinates);
-                            _b.label = 5;
-                        case 5: return [2 /*return*/];
-                    }
-                });
-            });
-        });
-        if (isLoadedViaHttp) {
-            // when loaded via http (for development), keep track of map position
-            this.map.on('moveend', function (event) {
-                var bounds = _this.map.getBounds();
-                var boundsString = bounds.toString();
-                boundsString = boundsString.substring(13, boundsString.length - 1);
-                window.history.replaceState({}, "", window.location.origin + "?pos=" + boundsString + "/" + window.location.hash);
-            });
-        }
-        this.gpsService.getCurrentPosition()
-            .then(function (resp) {
-            if (resp && resp.coords) {
-                console.warn('found you');
-                // let markerGroup = L.featureGroup();
-                var el = document.createElement('div');
-                el.className = 'marker';
-                el.style.backgroundImage = "url(assets/icons/mapposition.png)";
-                el.style.backgroundSize = 'cover';
-                el.style.width = 100 + 'px';
-                el.style.height = 100 + 'px';
-                el.addEventListener('click', function () {
-                    //window.alert(marker.properties.message);
-                    console.log("HEY clicked");
-                });
-                _this.mapBoxUserMarker = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Marker(el)
-                    .setLngLat([resp.coords.longitude, resp.coords.latitude])
-                    .addTo(_this.map);
-                if (!keepPositionBecauseOfReload) {
-                    _this.map.panTo([resp.coords.longitude, resp.coords.latitude]);
-                }
-                if (_this.watchSubscription) {
-                    _this.watchSubscription.unsubscribe();
-                }
-                _this.watchSubscription = _this.gpsService.watchPosition().subscribe(function (resp) {
-                    if (resp && resp.coords) {
-                        var lnglat = [resp.coords.longitude, resp.coords.latitude];
-                        _this.mapBoxUserMarker.setLngLat(lnglat);
-                        //Rotate the user marker
-                        if (_this.prevPos != null) {
-                            var angle = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].getAngle(_this.prevPos, resp.coords);
-                            _this.mapBoxUserMarker.setRotation(angle);
-                        }
-                        _this.prevPos = resp.coords;
-                    }
-                });
-            }
-        })
-            .catch(function (error) {
-            console.log("error: ", error);
-            console.error("Location error: " + JSON.stringify(error));
-        });
-    };
-    RoutesMapPage.prototype.doDownload = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.modalsService.doDownload(this.routeDetails)];
-                    case 1:
-                        _a.sent();
-                        console.log("DID DOWNLOAD");
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.presentRouteInfoModal = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl)];
-                    case 1:
-                        _a.routeDetails = _b.sent();
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.showRouteDetail = function (item) {
-        var _this = this;
-        console.log("##### ROUTE: ", item);
-        this.zoom.enableZooming();
-        this.modalsService.showRoute(item, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.zoom.disableZooming();
-                        return [4 /*yield*/, this.reactOnRemovedRoute()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-    };
-    RoutesMapPage.prototype.switchToList = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
-                return [2 /*return*/];
-            });
-        });
-    };
-    RoutesMapPage.prototype.reactOnRemovedRoute = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        if (!this.showAllRoutes) return [3 /*break*/, 2];
-                        _a = this;
-                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
-                    case 1:
-                        _a.routes = _c.sent();
-                        return [3 /*break*/, 4];
-                    case 2:
-                        _b = this;
-                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
-                    case 3:
-                        _b.routes = _c.sent();
-                        _c.label = 4;
-                    case 4:
-                        this.redrawMapBoxMarker();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RoutesMapPage.prototype.loadImagesToMap = function () {
-        var map = this.map;
-        map.loadImage('assets/icons/marker-route-private.png', function (error, image) {
-            map.addImage('private-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-public.png', function (error, image) {
-            map.addImage('public-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-downloaded.png', function (error, image) {
-            map.addImage('downloaded-route', image);
-        });
-        map.loadImage('assets/icons/marker-route-done.png', function (error, image) {
-            map.addImage('completed-route', image);
-        });
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
-    ], RoutesMapPage.prototype, "mapContainer", void 0);
-    RoutesMapPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'routes-map',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/'<ion-content class="map routes" no-bounce>\n    <div ion-fixed>\n\n        <div *ngIf="showAllRoutes" id="map" class="map-view"></div>\n        <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': routeDetails != null}" lazy-load-images image-size="s">\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>\n            </ion-fab>\n\n            <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"\n                          [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"\n            ></route-teaser>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
-            __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
-            __WEBPACK_IMPORTED_MODULE_8__services_modals_service__["a" /* ModalsService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
-            __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_11__services_gps_service__["a" /* GpsService */],
-            __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_13__services_language_service__["a" /* LanguageService */],
-            __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__["a" /* ZoomService */]])
-    ], RoutesMapPage);
-    return RoutesMapPage;
-}());
-
-//# sourceMappingURL=RoutesMap.js.map
-
-/***/ }),
-
-/***/ 629:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__ = __webpack_require__(117);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-/**
- * Generated class for the PortalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var PortalPage = /** @class */ (function () {
-    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer, zoom) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.iab = iab;
-        this.translateService = translateService;
-        this.sanitizer = sanitizer;
-        this.zoom = zoom;
-        this.languageUrl = {
-            de: 'portal',
-            en: 'portal-en',
-            es: 'portal-es',
-            pt: 'portal-pt',
-            fr: 'portail',
-            it: 'portale',
-            sk: 'portal-sk',
-            id: 'portal-id',
-            tr: 'portal-tr',
-            el: 'πύλη',
-            zh: '入口'
-        };
-        this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
-        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
-    }
-    PortalPage.prototype.ionViewWillEnter = function () {
-        this.zoom.disableZooming();
-    };
-    PortalPage.prototype.ionViewWillLeave = function () {
-        this.zoom.enableZooming();
-    };
-    PortalPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-portal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/'<ion-content class="fullscreen">\n    <iframe ion-fixed *ngIf="currentLang" allow="geolocation" [src]="sanitizedUrl">\n    </iframe>\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__["a" /* ZoomService */]])
-    ], PortalPage);
-    return PortalPage;
-}());
-
-//# sourceMappingURL=portal.js.map
-
-/***/ }),
-
-/***/ 630:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var SearchPipe = /** @class */ (function () {
-    function SearchPipe() {
-    }
-    SearchPipe.prototype.transform = function (value, keys, term) {
-        if (!term)
-            return value;
-        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
-        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
-        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
-        return result;
-    };
-    SearchPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'search'
-        })
-    ], SearchPipe);
-    return SearchPipe;
-}());
-
-//# sourceMappingURL=search.pipe.js.map
-
-/***/ }),
-
-/***/ 631:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var LinkHttpsPipe = /** @class */ (function () {
-    /**
-     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-    */
-    function LinkHttpsPipe() {
-    }
-    LinkHttpsPipe.prototype.transform = function (url) {
-        url = url.replace('http://', 'https://');
-        return url.startsWith("https://") ? url : "https://" + url;
-    };
-    LinkHttpsPipe = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
-            name: 'linkHttps'
-        })
-        /**
-         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
-        */
-    ], LinkHttpsPipe);
-    return LinkHttpsPipe;
-}());
-
-//# sourceMappingURL=linkHttps.pipe.js.map
-
-/***/ }),
-
-/***/ 632:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(1111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_media__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__recordStateEnum__ = __webpack_require__(949);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_photo_viewer__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(65);
@@ -10336,7 +10928,7 @@ var ChatPage = /** @class */ (function () {
     ], ChatPage.prototype, "messageInput", void 0);
     ChatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-chat',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/'<mcm-header></mcm-header>\n\n<ion-content class="has-header">\n    <div class="message-wrap">\n        <div *ngFor="let msg of msgList; let i = index"\n             class="message"\n             [class.left]=" msg.userId === toUser.token "\n             [class.right]=" msg.userId === user.token ">\n            <!--TODO Remove user-image from data-->\n            <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->\n            <ion-spinner name="dots" *ngIf="msg.status === \'pending\' && (msg.media.length==0 || !isAudio(msg.media[0]))"></ion-spinner>\n            <!-- Non-audio Message -->\n            <div class="msg-detail">\n                <div class="msg-content" [ngClass]="{\'audio\': msg.media.length>0 && isAudio(msg.media[0])}">\n\n                    <!-- Text Message -->\n                    <p *ngIf="msg.message" class="line-breaker ">{{msg.message}}</p>\n\n                    <!-- Image Message -->\n                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" (click)="openInPhotoviewer(msg.media[0])" src="{{msg.media[0]}}">\n\n                    <!-- Audio Message -->\n                    <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])" >\n                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg, i)"><ion-icon name="md-play"></ion-icon></button>\n                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio(msg)"><ion-icon name="md-square"></ion-icon></button>\n                        <mcm-progress-bar [currentProgress]="msg.currentPosition" [total]="msg.audioDuration" [isAudio]="true" [isAudioPlaying]="audioIndex == i"></mcm-progress-bar>\n                    </div>\n\n                </div>\n                <div class="msg-info">\n                    <p>\n                        <!--TODO Remove user from data-->\n                        <!--{{msg.userName}}&nbsp;&nbsp;-->\n                        <!-- TODO Time Format -->\n                        &nbsp;{{msg.time + timeZoneOpposite | localizedDate:\'medium\' }}</p>\n                </div>\n            </div>\n        </div>\n\n    </div>\n</ion-content>\n<ion-footer no-border class="input">\n    <div class="input-wrap">\n        <!-- ######### TEXT ######### -->\n        <textarea *ngIf="showTextArea"\n                  autoresize\n                  id="textarea"\n                  #chat_input\n                  [placeholder]="\'a_chat_type_message\' | translate"\n                  [(ngModel)]="editorMsg"\n                  (keyup.enter)="sendMsg()"\n                  (input)="changeButtonsStatus()"\n                  (focusin)="onFocus()">\n        </textarea>\n\n        <!-- ######### AUDIO ########## -->\n        <div class="message-input-buttons audio" *ngIf="showAudioButtons" [ngClass]="{\'active\': recordState == 2 || recordState == 3}">\n            <!-- Playback for Local Audio -->\n            <div *ngIf="recordState == 3">\n                <button ion-button clear icon-only round start *ngIf="canPlayback" (click)="playAudio()">\n                    <ion-icon name="md-play"></ion-icon>\n                </button>\n                <button ion-button clear icon-only round start *ngIf="!canPlayback" (click)="pauseAudio()">\n                    <ion-icon name="md-pause"></ion-icon>\n                </button>\n            </div>\n\n            <button ion-button clear icon-only round end (click)="micButtonClick()" [ngClass]="{\'recording\': recordState == 2}">\n                <ion-icon *ngIf="recordState == 1" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 2" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 3" name="md-trash"></ion-icon>\n            </button>\n            <p no-margin *ngIf="recordState == 2">{{ \'a_chat_recording_message\' | translate }} {{audioDuration | date : \'mm:ss\'}}</p>\n            <mcm-progress-bar *ngIf="recordState == 3" [currentProgress]="currentPosition" [total]="audioDuration" [isAudio]="true" [isAudioPlaying]="!canPlayback"></mcm-progress-bar>\n        </div>\n\n        <!-- ######### PICTURES ######## -->\n        <div class="message-input-buttons" *ngIf="showPictureButtons">\n            <button ion-button clear icon-only round end (click)="getImage()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button ion-button clear icon-only round end (click)="openCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n        </div>\n\n        <div class="image-previewer" *ngIf="localPath">\n            <img class="msg-image" src="{{localPath}}">\n            <button class="msg-close-button" ion-button icon-only clear round end (click)="removeImage()">\n                <ion-icon name="md-trash"></ion-icon>\n            </button>\n        </div>\n    </div>\n    <button class="send" no-padding ion-button round item-right (click)="sendMsg()" *ngIf="recordState != 2">\n        <img src="./assets/icons/send.svg"/>\n    </button>\n</ion-footer>\n\n\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/,
+            selector: 'page-chat',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/'<mcm-header></mcm-header>\n\n<ion-content class="has-header">\n    <div class="message-wrap">\n        <div *ngFor="let msg of msgList; let i = index"\n             class="message"\n             [class.left]=" msg.userId === toUser.token "\n             [class.right]=" msg.userId === user.token ">\n            <!--TODO Remove user-image from data-->\n            <!--<img class="user-img" [src]="msg.userAvatar" alt="" src="">-->\n            <ion-spinner name="dots" *ngIf="msg.status === \'pending\' && (msg.media.length==0 || !isAudio(msg.media[0]))"></ion-spinner>\n            <!-- Non-audio Message -->\n            <div class="msg-detail">\n                <div class="msg-content" [ngClass]="{\'audio\': msg.media.length>0 && isAudio(msg.media[0])}">\n\n                    <!-- Text Message -->\n                    <p *ngIf="msg.message" class="line-breaker ">{{msg.message}}</p>\n\n                    <!-- Image Message -->\n                    <img *ngIf="msg.media.length>0 && !isAudio(msg.media[0])" (click)="openInPhotoviewer(msg.media[0])" src="{{msg.media[0]}}">\n\n                    <!-- Audio Message -->\n                    <div *ngIf="msg.media.length>0 && isAudio(msg.media[0])" >\n                        <button ion-button clear item-end large *ngIf="audioIndex == null" (click)="playAudio(msg, i)"><ion-icon name="md-play"></ion-icon></button>\n                        <button ion-button clear item-end large *ngIf="audioIndex == i" (click)="pauseAudio(msg)"><ion-icon name="md-square"></ion-icon></button>\n                        <mcm-progress-bar [currentProgress]="msg.currentPosition" [total]="msg.audioDuration" [isAudio]="true" [isAudioPlaying]="audioIndex == i"></mcm-progress-bar>\n                    </div>\n\n                </div>\n                <div class="msg-info">\n                    <p>\n                        <!--TODO Remove user from data-->\n                        <!--{{msg.userName}}&nbsp;&nbsp;-->\n                        <!-- TODO Time Format -->\n                        &nbsp;{{msg.time + timeZoneOpposite | localizedDate:\'medium\' }}</p>\n                </div>\n            </div>\n        </div>\n\n    </div>\n</ion-content>\n<ion-footer no-border class="input">\n    <div class="input-wrap">\n        <!-- ######### TEXT ######### -->\n        <textarea *ngIf="showTextArea"\n                  autoresize\n                  id="textarea"\n                  #chat_input\n                  [placeholder]="\'a_chat_type_message\' | translate"\n                  [(ngModel)]="editorMsg"\n                  (keyup.enter)="sendMsg()"\n                  (input)="changeButtonsStatus()"\n                  (focusin)="onFocus()">\n        </textarea>\n\n        <!-- ######### AUDIO ########## -->\n        <div class="message-input-buttons audio" *ngIf="showAudioButtons" [ngClass]="{\'active\': recordState == 2 || recordState == 3}">\n            <!-- Playback for Local Audio -->\n            <div *ngIf="recordState == 3">\n                <button ion-button clear icon-only round start *ngIf="canPlayback" (click)="playAudio()">\n                    <ion-icon name="md-play"></ion-icon>\n                </button>\n                <button ion-button clear icon-only round start *ngIf="!canPlayback" (click)="pauseAudio()">\n                    <ion-icon name="md-pause"></ion-icon>\n                </button>\n            </div>\n\n            <button ion-button clear icon-only round end (click)="micButtonClick()" [ngClass]="{\'recording\': recordState == 2}">\n                <ion-icon *ngIf="recordState == 1" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 2" name="md-mic"></ion-icon>\n                <ion-icon *ngIf="recordState == 3" name="md-trash"></ion-icon>\n            </button>\n            <p no-margin *ngIf="recordState == 2">{{ \'a_chat_recording_message\' | translate }} {{audioDuration | date : \'mm:ss\'}}</p>\n            <mcm-progress-bar *ngIf="recordState == 3" [currentProgress]="currentPosition" [total]="audioDuration" [isAudio]="true" [isAudioPlaying]="!canPlayback"></mcm-progress-bar>\n        </div>\n\n        <!-- ######### PICTURES ######## -->\n        <div class="message-input-buttons" *ngIf="showPictureButtons">\n            <button ion-button clear icon-only round end (click)="getImage()">\n                <ion-icon name="md-image"></ion-icon>\n            </button>\n            <button ion-button clear icon-only round end (click)="openCamera()">\n                <ion-icon name="md-camera"></ion-icon>\n            </button>\n        </div>\n\n        <div class="image-previewer" *ngIf="localPath">\n            <img class="msg-image" src="{{localPath}}">\n            <button class="msg-close-button" ion-button icon-only clear round end (click)="removeImage()">\n                <ion-icon name="md-trash"></ion-icon>\n            </button>\n        </div>\n    </div>\n    <button class="send" no-padding ion-button round item-right (click)="sendMsg()" *ngIf="recordState != 2">\n        <img src="./assets/icons/send.svg"/>\n    </button>\n</ion-footer>\n\n\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/chat/chat.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_file__["a" /* File */],
@@ -10357,6 +10949,1017 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 627:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_Helper__ = __webpack_require__(17);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var SearchPipe = /** @class */ (function () {
+    function SearchPipe() {
+    }
+    SearchPipe.prototype.transform = function (value, keys, term) {
+        if (!term)
+            return value;
+        var result = (value || []).filter(function (item) { return keys.split(',').some(function (key) { return item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key]); }); });
+        __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults = result.length;
+        console.log("searchResults", __WEBPACK_IMPORTED_MODULE_1__classes_Helper__["b" /* Helper */].searchResults);
+        return result;
+    };
+    SearchPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'search'
+        })
+    ], SearchPipe);
+    return SearchPipe;
+}());
+
+//# sourceMappingURL=search.pipe.js.map
+
+/***/ }),
+
+/***/ 628:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LinkHttpsPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var LinkHttpsPipe = /** @class */ (function () {
+    /**
+     * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+    */
+    function LinkHttpsPipe() {
+    }
+    LinkHttpsPipe.prototype.transform = function (url) {
+        url = url.replace('http://', 'https://');
+        return url.startsWith("https://") ? url : "https://" + url;
+    };
+    LinkHttpsPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
+            name: 'linkHttps'
+        })
+        /**
+         * Adds 'https://' in front of url if missing or transforms 'http://' to 'https://
+        */
+    ], LinkHttpsPipe);
+    return LinkHttpsPipe;
+}());
+
+//# sourceMappingURL=linkHttps.pipe.js.map
+
+/***/ }),
+
+/***/ 629:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_promise_timeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_app_component__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_modals_service__ = __webpack_require__(66);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+var DashboardPage = /** @class */ (function () {
+    function DashboardPage(navCtrl, navParams, helper, storage, gpsService, chatAndSessionService, ormService, modalCtrl, modalsService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.helper = helper;
+        this.storage = storage;
+        this.gpsService = gpsService;
+        this.chatAndSessionService = chatAndSessionService;
+        this.ormService = ormService;
+        this.modalCtrl = modalCtrl;
+        this.modalsService = modalsService;
+        this.tabBarElement = document.querySelector('.tabbar');
+    }
+    DashboardPage.prototype.ngOnInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, e_1, activeSession, that_1, route_1, modal_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        /**
+                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
+                         * from the default one (Frankfurt) for a few seconds
+                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
+                         */
+                        _a = this;
+                        return [4 /*yield*/, this.storage.get('devMode')];
+                    case 1:
+                        /**
+                         * The first time the app is opened it will ask for geolocation to prevent the map and list to show data
+                         * from the default one (Frankfurt) for a few seconds
+                         * The devmode variable is fetched due to not being able to do it trhough the helper service because of the delayed response.
+                         */
+                        _a.devMode = ((_b.sent()) === 'true');
+                        if (!!this.gpsService.getLastPosition()) return [3 /*break*/, 5];
+                        _b.label = 2;
+                    case 2:
+                        _b.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, Object(__WEBPACK_IMPORTED_MODULE_6_promise_timeout__["timeout"])(this.gpsService.getCurrentPosition().catch(function (err) {
+                                console.error("Error loading GPS data", err);
+                            }), 2000)];
+                    case 3:
+                        _b.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _b.sent();
+                        console.log("could not obtain position: " + e_1.message);
+                        // make position check async
+                        this.gpsService.getCurrentPosition().then(function (position) {
+                            if (position && position.coords) {
+                            }
+                        }, function (err) {
+                            console.error("Error loading GPS data", err);
+                        });
+                        return [3 /*break*/, 5];
+                    case 5:
+                        console.log('check for active session');
+                        return [4 /*yield*/, this.chatAndSessionService.getActiveSession()];
+                    case 6:
+                        activeSession = _b.sent();
+                        if (!(activeSession != null)) return [3 /*break*/, 8];
+                        console.log('active session found');
+                        that_1 = this;
+                        return [4 /*yield*/, this.ormService.findRouteById(activeSession.session.trail_id)];
+                    case 7:
+                        route_1 = _b.sent();
+                        modal_1 = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__modals_MCMIconModal_MCMIconModal__["a" /* MCMIconModal */], {
+                            title: 'a_session_return_title',
+                            message: 'a_session_return_text',
+                            type: 'text',
+                            modalType: __WEBPACK_IMPORTED_MODULE_8__app_app_component__["a" /* MCMModalType */].hint,
+                            narrativeEnabled: route_1.isNarrativeEnabled(),
+                            narrative: route_1.isNarrativeEnabled() ? route_1.getAttributes().narrativeName : '',
+                            buttons: [
+                                {
+                                    title: 'a_session_return_stay',
+                                    callback: function () {
+                                        modal_1.dismiss();
+                                        that_1.modalsService.showRoute(route_1, that_1.navCtrl);
+                                    }
+                                },
+                                {
+                                    title: 'a_private_session_quit',
+                                    callback: function () {
+                                        if (this.sessionInfo != null) {
+                                            var details = JSON.stringify({});
+                                            that_1.chatAndSessionService.addUserEvent("event_session_leave", details, "0");
+                                        }
+                                        that_1.chatAndSessionService.exitActiveSession();
+                                        modal_1.dismiss();
+                                        clearInterval(this.refreshIntervalId);
+                                    }
+                                }
+                            ]
+                        }, { showBackdrop: true, enableBackdropDismiss: true });
+                        modal_1.present();
+                        _b.label = 8;
+                    case 8: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    DashboardPage.prototype.pushSettingsPage = function () {
+        this.navCtrl.push('SettingsPage');
+    };
+    DashboardPage.prototype.pushInfoPage = function () {
+        this.navCtrl.push('InfoPage');
+    };
+    DashboardPage.prototype.switchTab = function (index, addRoute) {
+        if (addRoute === void 0) { addRoute = false; }
+        if (addRoute) {
+            this.helper.setActivateAddRoute(true);
+        }
+        if (index == 3 && !this.devMode) {
+            return;
+        }
+        this.navCtrl.parent.select(index);
+    };
+    DashboardPage.prototype.ionViewWillEnter = function () {
+        this.devMode = this.helper.getDevMode();
+        if (this.tabBarElement != null) {
+            this.tabBarElement.style.display = 'none';
+        }
+    };
+    DashboardPage.prototype.ionViewDidLeave = function () {
+        this.tabBarElement.style.display = 'flex';
+    };
+    DashboardPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-dashboard',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/'<ion-content class="padding top bottom">\n    <div class="stretch-container">\n        <img class="logo" src="./assets/images/mcm-logo-white.svg">\n\n        <div class="secondary">\n            <button ion-button clear icon-start color="light" (click)="pushSettingsPage()">\n                <img class="icon" src="./assets/icons/settings.svg">{{ "a_action_settings" | translate}}\n            </button>\n            <button ion-button clear icon-start color="light" (click)="pushInfoPage()">\n                <img class="icon" src="./assets/icons/info.svg">{{ "a_about" | translate}}\n            </button>\n        </div>\n\n        <div class="tiles">\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(1)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_browse_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_browse_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/browse.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2, true)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_add_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_add_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/add.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile">\n                <ion-item tappable no-lines (click)="switchTab(2)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_downloads_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_downloads_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/downloads.svg">\n                    </div>\n                </ion-item>\n            </div>\n            <div class="tile" [ngClass]="{\'disabled\' : !devMode}">\n                <ion-item tappable no-lines (click)="switchTab(3)">\n                    <div item-content>\n                        <div>\n                            <h2 class="title">{{\'a_dashboard_create_title\' | translate }}</h2>\n                            <p>{{\'a_dashboard_create_text\' | translate }}</p>\n                        </div>\n                        <img class="icon" src="./assets/icons/dashboard/create.svg">\n                    </div>\n                </ion-item>\n            </div>\n        </div>\n    </div>\n</ion-content>\n\n<!--<div ion-fixed>-->\n    <!--<img style="z-index: 12; display: block; position: relative;" margin-top padding-top src="https://dejpknyizje2n.cloudfront.net/svgcustom/clipart/preview/1-fan-foam-finger-sticker-31468-300x300.png">-->\n    <!--<p> G⃣   O⃣    W⃣   O⃣   M⃣   B⃣   A⃣   T⃣   S⃣    G⃣   O⃣ </p>-->\n    <!--<p>🐎  🎀  𝒲🌺𝓂𝒷𝒶𝓉𝓈 𝒶𝓇𝑒 𝓈𝒽💞𝓇𝓉-𝓁𝑒𝑔𝑔𝑒𝒹, <b>𝓂𝓊𝓈𝒸𝓊𝓁𝒶𝓇</b> 𝓆𝓊𝒶𝒹𝓇𝓊𝓅𝑒𝒹𝒶𝓁 𝓂𝒶𝓇𝓈𝓊𝓅𝒾𝒶𝓁𝓈 𝓉𝒽𝒶𝓉 𝒶𝓇𝑒 𝓃𝒶𝓉𝒾𝓋𝑒 𝓉🍪 𝒜𝓊𝓈𝓉𝓇𝒶𝓁𝒾𝒶. 𝒯𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝒷🌞𝓊𝓉 𝟣 𝓂 𝒾𝓃 𝓁𝑒𝓃𝑔𝓉𝒽 𝓌𝒾𝓉𝒽 𝓈𝓂𝒶𝓁𝓁, 𝓈𝓉𝓊𝒷𝒷𝓎 𝓉𝒶𝒾𝓁𝓈. 𝒯𝒽𝑒𝓇𝑒 𝒶𝓇𝑒 𝓉𝒽𝓇𝑒𝑒 𝑒𝓍𝓉𝒶𝓃𝓉 𝓈𝓅𝑒𝒸𝒾𝑒𝓈 𝒶𝓃𝒹 𝓉𝒽𝑒𝓎 𝒶𝓇𝑒 𝒶𝓁𝓁 𝓂𝑒𝓂𝒷𝑒𝓇𝓈 🏵𝒻 𝓉𝒽𝑒 𝒻𝒶𝓂𝒾𝓁𝓎 𝒱🍩𝓂𝒷𝒶𝓉𝒾𝒹𝒶𝑒.  🎀  🐎</p>-->\n    <!--<img margin-top padding-top style="position: absolute; top: 0;" src="https://cdn.britannica.com/88/81288-050-3084149B/Phascolomis-Vombatus-ursinus.jpg">-->\n<!--</div>-->\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/dashboard/dashboard.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_nav_params__["a" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_5__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_9__services_chat_and_session_service__["a" /* ChatAndSessionService */],
+            __WEBPACK_IMPORTED_MODULE_10__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_11__services_modals_service__["a" /* ModalsService */]])
+    ], DashboardPage);
+    return DashboardPage;
+}());
+
+//# sourceMappingURL=dashboard.js.map
+
+/***/ }),
+
+/***/ 631:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RoutesMapPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__ = __webpack_require__(625);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_markercluster__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_orm_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_modals_service__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_gps_service__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_language_service__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__ = __webpack_require__(1111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__env_env__ = __webpack_require__(211);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+//import 'leaflet-offline';
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
+var RoutesMapPage = /** @class */ (function () {
+    function RoutesMapPage(updater, ormService, modalsService, navCtrl, spinner, translateService, gpsService, helper, navParams, languageService, zoom) {
+        var _this = this;
+        this.updater = updater;
+        this.ormService = ormService;
+        this.modalsService = modalsService;
+        this.navCtrl = navCtrl;
+        this.spinner = spinner;
+        this.translateService = translateService;
+        this.gpsService = gpsService;
+        this.helper = helper;
+        this.navParams = navParams;
+        this.languageService = languageService;
+        this.zoom = zoom;
+        this.markerGroup = null;
+        this.merkerMapBoxGroup = null;
+        this.eventSubscription = this.ormService.eventEmitter.subscribe(function (event) { return __awaiter(_this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 3];
+                        if (!!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 1:
+                        _a.routes = _b.sent();
+                        _b.label = 2;
+                    case 2:
+                        this.redrawMapBoxMarker();
+                        console.log("REDRAWED");
+                        this.routeDetails = null;
+                        _b.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); });
+    }
+    RoutesMapPage.prototype.ionViewWillEnter = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        console.log("ionViewWillEnter:");
+                        this.zoom.disableZooming();
+                        this.gpsService.isLocationOn();
+                        if (!(this.map && this.map.getLayer('unclustered-point'))) return [3 /*break*/, 5];
+                        if (!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 1:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 4];
+                    case 2:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 3:
+                        _b.routes = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        this.redrawMapBoxMarker();
+                        _c.label = 5;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.ngOnInit = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                this.isFilePluginAvailable = Object(__WEBPACK_IMPORTED_MODULE_4__ionic_native_core__["i" /* checkAvailability */])(__WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginRef(), null, __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__["a" /* File */].getPluginName()) === true;
+                if (this.navParams.data && this.navParams.data.showAllRoutes != null) {
+                    if (this.navParams.data.showAllRoutes)
+                        this.showAllRoutes = true;
+                    else
+                        this.showAllRoutes = false;
+                }
+                this.languageService.initialize().then(function () { return __awaiter(_this, void 0, void 0, function () {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                //this.loadMap();
+                                this.loadMapBox();
+                                return [4 /*yield*/, this.initializeMap()];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
+            });
+        });
+    };
+    RoutesMapPage.prototype.ngOnDestroy = function () {
+        this.zoom.enableZooming();
+        this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
+        if (this.eventSubscription) {
+            this.eventSubscription.unsubscribe();
+            this.eventSubscription = null;
+        }
+        if (this.watchSubscription) {
+            this.watchSubscription.unsubscribe();
+            this.watchSubscription = null;
+        }
+    };
+    RoutesMapPage.prototype.initializeMap = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var activeUser, online, e_1, _a, _b;
+            var _this = this;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0: return [4 /*yield*/, this.ormService.getActiveUser()];
+                    case 1:
+                        activeUser = _c.sent();
+                        if (!!activeUser) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.modalsService.showNoInternetModalIfOffline()];
+                    case 2:
+                        online = _c.sent();
+                        if (!online) return [3 /*break*/, 6];
+                        this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+                        _c.label = 3;
+                    case 3:
+                        _c.trys.push([3, 5, , 6]);
+                        return [4 /*yield*/, this.updater.checkForUpdates()];
+                    case 4:
+                        _c.sent();
+                        return [3 /*break*/, 6];
+                    case 5:
+                        e_1 = _c.sent();
+                        console.error('caught error while checking for updates:');
+                        console.error(e_1);
+                        return [3 /*break*/, 6];
+                    case 6:
+                        if (!this.showAllRoutes) return [3 /*break*/, 8];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 7:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 10];
+                    case 8:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 9:
+                        _b.routes = _c.sent();
+                        _c.label = 10;
+                    case 10:
+                        this.map.on('load', function () {
+                            var waiting = function () {
+                                if (!_this.map.isStyleLoaded()) {
+                                    setTimeout(waiting, 200);
+                                }
+                                else {
+                                    _this.redrawMapBoxMarker();
+                                }
+                            };
+                            waiting();
+                        });
+                        this.spinner.hide();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.redrawMapBoxMarker = function () {
+        var map = this.map;
+        //clean layers to be redrawn
+        if (this.map.getLayer('unclustered-point')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('unclustered-point');
+            this.markerGroup = null;
+        }
+        if (this.map.getLayer('clusters')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('clusters');
+            this.markerGroup = null;
+        }
+        if (this.map.getLayer('cluster-count')) {
+            console.log("###removing unclustered points layer");
+            this.map.removeLayer('cluster-count');
+            this.markerGroup = null;
+        }
+        var GeoJson = {
+            "type": "FeatureCollection",
+            "features": []
+        };
+        for (var route in this.routes) {
+            var icon = void 0;
+            if (this.routes[route].downloaded) {
+                if (this.routes[route].completed) {
+                    icon = 'completed-route';
+                }
+                else {
+                    icon = 'downloaded-route';
+                }
+            }
+            else if (this.routes[route].public == "1") {
+                icon = 'public-route';
+            }
+            else {
+                icon = 'private-route';
+            }
+            var routeCenter = this.routes[route].getCenterLatLng();
+            var data = {
+                "type": "Feature",
+                "properties": {
+                    'routeIndex': route,
+                    'icon': icon
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        routeCenter.lng,
+                        routeCenter.lat
+                    ]
+                }
+            };
+            GeoJson.features.push(data);
+        }
+        if (this.map.getSource("routes"))
+            this.map.getSource('routes').setData(GeoJson);
+        else {
+            this.map.addSource("routes", {
+                type: "geojson",
+                data: GeoJson,
+                cluster: true,
+                clusterRadius: 30
+            });
+        }
+        this.map.addLayer({
+            id: "clusters",
+            type: "circle",
+            source: "routes",
+            filter: ["has", "point_count"],
+            paint: {
+                'circle-color': '#11b4da',
+                'circle-radius': 20
+            }
+        });
+        map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                'text-size': 15
+            }
+        });
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'symbol',
+            source: 'routes',
+            filter: ['!', ['has', 'point_count']],
+            layout: {
+                'icon-size': 0.23,
+                'icon-image': ['get', 'icon'],
+                'icon-allow-overlap': true
+            }
+        });
+    };
+    RoutesMapPage.prototype.loadMapBox = function () {
+        var _this = this;
+        var isLoadedViaHttp = window.location.href.indexOf('http') === 0;
+        var keepPositionBecauseOfReload = false;
+        __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.accessToken = __WEBPACK_IMPORTED_MODULE_16__env_env__["a" /* MAPBOX_ACCESS_TOKEN */];
+        //Either draws the map for all routes or for downloaded ones only
+        if (this.showAllRoutes) {
+            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566],
+                zoom: 16,
+                container: 'map',
+                trackResize: false
+            });
+        }
+        else {
+            this.map = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Map({
+                style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+                center: [8.66158515, 50.1208566],
+                zoom: 16,
+                container: 'mapDownloaded',
+                trackResize: false
+            });
+        }
+        this.loadImagesToMap();
+        this.map.touchZoomRotate.disableRotation();
+        //removes labels for points of interest
+        this.map.on('load', function () {
+            _this.map.style.stylesheet.layers.forEach(function (layer) {
+                if (layer.id === "poi-label") {
+                    _this.map.removeLayer(layer.id);
+                }
+            });
+        });
+        if (isLoadedViaHttp && window.location.search && window.location.search.indexOf('pos=') > -1) {
+            keepPositionBecauseOfReload = true;
+            var startIndex = window.location.search.indexOf('pos=') + 4;
+            var bboxString = window.location.search.substring(startIndex).split("&|/")[0]
+                .replace(/LngLat\(/g, '')
+                .replace(/%20/g, ' ')
+                .replace(/\)/g, '');
+            console.log("BBOX: ", bboxString);
+            var coords = bboxString.split(",").map(parseFloat);
+            var bounds = [[coords[0], coords[1]], [coords[2], coords[3]]];
+            console.log("BOUNDS: ", bounds);
+            this.map.fitBounds(bounds);
+        }
+        this.map.on('click', function (e) {
+            //check if details open and reset content. for now just reset content
+            _this.routeDetails = null;
+            console.log('cleared route details');
+        });
+        var that = this;
+        //Zoom clusters
+        that.map.on('click', 'clusters', function (e) {
+            var features = that.map.queryRenderedFeatures(e.point, {
+                layers: ['clusters']
+            });
+            var clusterId = features[0].properties.cluster_id;
+            that.map.getSource('routes').getClusterExpansionZoom(clusterId, function (err, zoom) {
+                if (err)
+                    return;
+                that.map.easeTo({
+                    center: features[0].geometry.coordinates,
+                    zoom: zoom
+                });
+            });
+        });
+        that.map.on('click', 'unclustered-point', function (e) {
+            return __awaiter(this, void 0, void 0, function () {
+                var features, index, route, _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            features = that.map.queryRenderedFeatures(e.point, {
+                                layers: ['unclustered-point']
+                            });
+                            index = features[0].properties.routeIndex;
+                            route = that.routes[index];
+                            if (!(that.routeDetails == route)) return [3 /*break*/, 1];
+                            that.zoom.enableZooming();
+                            that.modalsService.showRoute(route, that.navCtrl).then(function () {
+                                that.zoom.disableZooming();
+                            });
+                            return [3 /*break*/, 5];
+                        case 1:
+                            if (!route.downloaded) return [3 /*break*/, 3];
+                            that.isRouteDownloaded = 'downloaded';
+                            console.log("THIS.ROUTE: ", route);
+                            _a = that;
+                            return [4 /*yield*/, that.ormService.findRouteByCode(route.code)];
+                        case 2:
+                            _a.routeDetails = _b.sent();
+                            return [3 /*break*/, 4];
+                        case 3:
+                            that.routeDetails = route;
+                            that.isRouteDownloaded = null;
+                            _b.label = 4;
+                        case 4:
+                            that.map.panTo(features[0].geometry.coordinates);
+                            _b.label = 5;
+                        case 5: return [2 /*return*/];
+                    }
+                });
+            });
+        });
+        if (isLoadedViaHttp) {
+            // when loaded via http (for development), keep track of map position
+            this.map.on('moveend', function (event) {
+                var bounds = _this.map.getBounds();
+                var boundsString = bounds.toString();
+                boundsString = boundsString.substring(13, boundsString.length - 1);
+                window.history.replaceState({}, "", window.location.origin + "?pos=" + boundsString + "/" + window.location.hash);
+            });
+        }
+        this.gpsService.getCurrentPosition()
+            .then(function (resp) {
+            if (resp && resp.coords) {
+                console.warn('found you');
+                // let markerGroup = L.featureGroup();
+                var el = document.createElement('div');
+                el.className = 'marker';
+                el.style.backgroundImage = "url(assets/icons/mapposition.png)";
+                el.style.backgroundSize = 'cover';
+                el.style.width = 100 + 'px';
+                el.style.height = 100 + 'px';
+                el.addEventListener('click', function () {
+                    //window.alert(marker.properties.message);
+                    console.log("HEY clicked");
+                });
+                _this.mapBoxUserMarker = new __WEBPACK_IMPORTED_MODULE_14_mapbox_gl_dist_mapbox_gl_js___default.a.Marker(el)
+                    .setLngLat([resp.coords.longitude, resp.coords.latitude])
+                    .addTo(_this.map);
+                if (!keepPositionBecauseOfReload) {
+                    _this.map.panTo([resp.coords.longitude, resp.coords.latitude]);
+                }
+                if (_this.watchSubscription) {
+                    _this.watchSubscription.unsubscribe();
+                }
+                _this.watchSubscription = _this.gpsService.watchPosition().subscribe(function (resp) {
+                    if (resp && resp.coords) {
+                        var lnglat = [resp.coords.longitude, resp.coords.latitude];
+                        _this.mapBoxUserMarker.setLngLat(lnglat);
+                        //Rotate the user marker
+                        if (_this.prevPos != null) {
+                            var angle = __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */].getAngle(_this.prevPos, resp.coords);
+                            _this.mapBoxUserMarker.setRotation(angle);
+                        }
+                        _this.prevPos = resp.coords;
+                    }
+                });
+            }
+        })
+            .catch(function (error) {
+            console.log("error: ", error);
+            console.error("Location error: " + JSON.stringify(error));
+        });
+    };
+    RoutesMapPage.prototype.doDownload = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalsService.doDownload(this.routeDetails)];
+                    case 1:
+                        _a.sent();
+                        console.log("DID DOWNLOAD");
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.presentRouteInfoModal = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.modalsService.presentRouteInfoModal(this.routeDetails, this.navCtrl)];
+                    case 1:
+                        _a.routeDetails = _b.sent();
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.showRouteDetail = function (item) {
+        var _this = this;
+        console.log("##### ROUTE: ", item);
+        this.zoom.enableZooming();
+        this.modalsService.showRoute(item, this.navCtrl).then(function () { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.zoom.disableZooming();
+                        return [4 /*yield*/, this.reactOnRemovedRoute()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    RoutesMapPage.prototype.switchToList = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                this.navCtrl.setRoot('RoutesListPage', { showAllRoutes: this.showAllRoutes });
+                return [2 /*return*/];
+            });
+        });
+    };
+    RoutesMapPage.prototype.reactOnRemovedRoute = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        if (!this.showAllRoutes) return [3 /*break*/, 2];
+                        _a = this;
+                        return [4 /*yield*/, this.ormService.getVisibleRoutes()];
+                    case 1:
+                        _a.routes = _c.sent();
+                        return [3 /*break*/, 4];
+                    case 2:
+                        _b = this;
+                        return [4 /*yield*/, this.ormService.getDownloadedRoutes()];
+                    case 3:
+                        _b.routes = _c.sent();
+                        _c.label = 4;
+                    case 4:
+                        this.redrawMapBoxMarker();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RoutesMapPage.prototype.loadImagesToMap = function () {
+        var map = this.map;
+        map.loadImage('assets/icons/marker-route-private.png', function (error, image) {
+            map.addImage('private-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-public.png', function (error, image) {
+            map.addImage('public-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-downloaded.png', function (error, image) {
+            map.addImage('downloaded-route', image);
+        });
+        map.loadImage('assets/icons/marker-route-done.png', function (error, image) {
+            map.addImage('completed-route', image);
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('map'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
+    ], RoutesMapPage.prototype, "mapContainer", void 0);
+    RoutesMapPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'routes-map',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/'<ion-content class="map routes" no-bounce>\n    <div ion-fixed>\n\n        <div *ngIf="showAllRoutes" id="map" class="map-view"></div>\n        <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>\n\n        <div id="details" class="detail-box" [ngClass]="{\'open\': routeDetails != null}" lazy-load-images image-size="s">\n            <ion-fab right top>\n                <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>\n            </ion-fab>\n\n            <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"\n                          [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"\n            ></route-teaser>\n        </div>\n    </div>\n</ion-content>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/home/tabs/RoutesMap/RoutesMap.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__classes_DB_Updater__["a" /* DB_Updater */],
+            __WEBPACK_IMPORTED_MODULE_7__services_orm_service__["a" /* OrmService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_modals_service__["a" /* ModalsService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_spinner_dialog__["a" /* SpinnerDialog */],
+            __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_11__services_gps_service__["a" /* GpsService */],
+            __WEBPACK_IMPORTED_MODULE_6__classes_Helper__["b" /* Helper */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_13__services_language_service__["a" /* LanguageService */],
+            __WEBPACK_IMPORTED_MODULE_15__services_zoom_service__["a" /* ZoomService */]])
+    ], RoutesMapPage);
+    return RoutesMapPage;
+}());
+
+//# sourceMappingURL=RoutesMap.js.map
+
+/***/ }),
+
+/***/ 632:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_Helper__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__ = __webpack_require__(117);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/**
+ * Generated class for the PortalPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PortalPage = /** @class */ (function () {
+    function PortalPage(navCtrl, navParams, iab, translateService, sanitizer, zoom) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.iab = iab;
+        this.translateService = translateService;
+        this.sanitizer = sanitizer;
+        this.zoom = zoom;
+        this.languageUrl = {
+            de: 'portal',
+            en: 'portal-en',
+            es: 'portal-es',
+            pt: 'portal-pt',
+            fr: 'portail',
+            it: 'portale',
+            sk: 'portal-sk',
+            id: 'portal-id',
+            tr: 'portal-tr',
+            el: 'πύλη',
+            zh: '入口'
+        };
+        this.currentLang = this.translateService.currentLang ? this.translateService.currentLang : this.translateService.defaultLang;
+        this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(__WEBPACK_IMPORTED_MODULE_5__classes_Helper__["b" /* Helper */].WEBSERVER_URL + "en/" + this.languageUrl[this.currentLang]);
+    }
+    PortalPage.prototype.ionViewWillEnter = function () {
+        this.zoom.disableZooming();
+    };
+    PortalPage.prototype.ionViewWillLeave = function () {
+        this.zoom.enableZooming();
+    };
+    PortalPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-portal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/'<ion-content class="fullscreen">\n    <iframe ion-fixed *ngIf="currentLang" allow="geolocation" [src]="sanitizedUrl">\n    </iframe>\n</ion-content>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/portal/portal.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_6__services_zoom_service__["a" /* ZoomService */]])
+    ], PortalPage);
+    return PortalPage;
+}());
+
+//# sourceMappingURL=portal.js.map
+
+/***/ }),
+
 /***/ 633:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10365,7 +11968,7 @@ var ChatPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(581);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_api_services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_api_services_session_service__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10516,7 +12119,7 @@ var MCMRouteByCodeModal = /** @class */ (function () {
     ], MCMRouteByCodeModal.prototype, "input", void 0);
     MCMRouteByCodeModal = MCMRouteByCodeModal_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
+            selector: 'mcm-route-by-code-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/'<!--<div class="modal card has-button-on-the-edge">-->\n    <!--<h2>{{\'a_private_route_add_title\' | translate}}</h2>-->\n\n    <!--<div class="modal-content">-->\n        <!--<p>{{\'a_add_private_route_placeholder\' | translate}}</p>-->\n        <!--<ion-item>-->\n            <!--<ion-input #input type="text" [(ngModel)]="code"></ion-input>-->\n        <!--</ion-item>-->\n        <!--<span *ngIf="showError">-->\n            <!--{{ \'a_private_route_failed\' | translate }}-->\n        <!--</span>-->\n    <!--</div>-->\n\n    <!--<div class="on-the-edge-container">-->\n        <!--<button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>-->\n        <!--<button ion-button small round (click)="addRouteByCode()">{{ "a_private_route_add" | translate }}</button>-->\n    <!--</div>-->\n<!--</div>-->\n\n<div class="modal card has-button-on-the-edge">\n    <div class="modal-content">\n        <h2>{{\'a_private_trail_or_session_add_title\' | translate}}</h2>\n        <p>{{\'a_add_private_route_or_session_placeholder\' | translate}}</p>\n        <ion-item>\n            <ion-input #input\n                       type="text"\n                       [(ngModel)]="code">\n            </ion-input>\n        </ion-item>\n        <span *ngIf="showError">\n            {{ \'a_private_route_failed\' | translate }}\n        </span>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round color="danger" (click)="cancel()">{{ "a_alert_cancel" | translate }}</button>\n        <button ion-button small round (click)="addTrailOrSessionByCode()" [disabled]="!checkInputField()">{{ "a_private_trail_or_session_add" | translate }}</button>\n    </div>\n</div>'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMRouteByCodeModal/MCMRouteByCodeModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_3__app_api_services_session_service__["a" /* SessionService */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["m" /* NavParams */]])
@@ -10528,7 +12131,7 @@ var MCMRouteByCodeModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 634:
+/***/ 635:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10556,7 +12159,7 @@ var MCMIntroModal = /** @class */ (function () {
     }
     MCMIntroModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-intro-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/'<div class="modal card icon intro has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{narrative}}/modal-intro.svg"/>\n        <h2>{{ title | translate}}</h2>\n        <p [innerHtml]=" message | translate : {TITLE: routeTitle} "></p>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/
+            selector: 'mcm-intro-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/'<div class="modal card icon intro has-button-on-the-edge">\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{narrative}}/modal-intro.svg"/>\n        <h2>{{ title | translate}}</h2>\n        <p [innerHtml]=" message | translate : {TITLE: routeTitle} "></p>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button *ngFor="let button of buttons" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMIntroModal/MCMIntroModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_params__["a" /* NavParams */]])
     ], MCMIntroModal);
@@ -10567,7 +12170,7 @@ var MCMIntroModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 635:
+/***/ 636:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10641,7 +12244,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
     ], MCMSessionFinishedModal.prototype, "input", void 0);
     MCMSessionFinishedModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-session-finished-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-session-finished.svg"/>\n        <h2>{{\'a_private_session_finished_title\' | translate}}</h2>\n        <p class="main-text">{{session.goodbye_message}}</p>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="backToStart()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/
+            selector: 'mcm-session-finished-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-session-finished.svg"/>\n        <h2>{{\'a_private_session_finished_title\' | translate}}</h2>\n        <p class="main-text">{{session.goodbye_message}}</p>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="backToStart()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMSessionFinishedModal/MCMSessionFinishedModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
@@ -10655,7 +12258,7 @@ var MCMSessionFinishedModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 636:
+/***/ 637:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10729,7 +12332,7 @@ var MCMTrailFinishedModal = /** @class */ (function () {
     ], MCMTrailFinishedModal.prototype, "input", void 0);
     MCMTrailFinishedModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'mcm-trail-finished-modal',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-trail-finished.svg"/>\n        <h2>{{\'a_trail_finished_title\' | translate }}</h2>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="callback()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/
+            selector: 'mcm-trail-finished-modal',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/'<div class="modal card icon has-button-on-the-edge">\n\n    <div class="modal-content">\n        <img class="head-icon" src="./assets/icons/{{iconPath}}modal-trail-finished.svg"/>\n        <h2>{{\'a_trail_finished_title\' | translate }}</h2>\n        <ion-grid no-padding class="table">\n            <ion-row *ngIf="score.score && score.score != 0" class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_earned_points\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label class="score">{{score.score}}</ion-label>\n                </ion-col>\n            </ion-row>\n            <ion-row class="finish">\n                <ion-col>\n                    <ion-label>{{\'a_private_session_finished_tasks\' | translate}}</ion-label>\n                </ion-col>\n                <ion-col col-auto>\n                    <ion-label>{{numberOfSolvedTasks}} / {{tasks.length}}</ion-label>\n                </ion-col>\n            </ion-row>\n        </ion-grid>\n    </div>\n\n    <div class="on-the-edge-container">\n        <button ion-button small round (click)="callback()">{{ "a_g_ok" | translate }}</button>\n    </div>\n</div>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/modals/MCMTrailFinishedModal/MCMTrailFinishedModal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_view_controller__["a" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["l" /* NavController */],
@@ -10757,38 +12360,6 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 64:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfiguration; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-/* tslint:disable */
-
-/**
- * Contains global configuration for API services
- */
-var ApiConfiguration = /** @class */ (function () {
-    function ApiConfiguration() {
-        // rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
-        this.rootUrl = "https://api-dev.mathcitymap.eu/public/index.php";
-    }
-    ApiConfiguration = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], ApiConfiguration);
-    return ApiConfiguration;
-}());
-
-//# sourceMappingURL=api-configuration.js.map
-
-/***/ }),
-
 /***/ 643:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10797,56 +12368,56 @@ var ApiConfiguration = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_network__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_geolocation__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_sqlite__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_DB_Updater__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_http__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_file__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_file_transfer__ = __webpack_require__(566);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_spinner_dialog__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_diagnostic__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_modals_service__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_language_service__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_globalization__ = __webpack_require__(578);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_customKeyBoard_custom_keyboard__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_camera__ = __webpack_require__(567);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__app_component__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_common_http__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_translate_loader__ = __webpack_require__(1129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_images_service__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(576);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modals_RouteInfo_RouteInfo__ = __webpack_require__(575);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky__ = __webpack_require__(1132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular_linky___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular_linky__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(575);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(574);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_broadcast_service__ = __webpack_require__(1134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modals_MCMIconModal_MCMIconModal__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modals_MCMIntroModal_MCMIntroModal__ = __webpack_require__(635);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modals_MCMRouteByCodeModal_MCMRouteByCodeModal__ = __webpack_require__(633);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modals_MCMTermsAndConditionsModal_MCMTermsAndConditionsModal__ = __webpack_require__(581);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modals_MCMJoinSessionModal_MCMJoinSessionModal__ = __webpack_require__(582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modals_MCMSessionFinishedModal_MCMSessionFinishedModal__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modals_CenteredTask_CenteredTask__ = __webpack_require__(576);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__ionic_native_location_accuracy__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_ngx_youtube_player_modules_ngx_youtube_player_module__ = __webpack_require__(1135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_components_module__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__directives_autoresize__ = __webpack_require__(1137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__api_api_module__ = __webpack_require__(1138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__services_chat_and_session_service__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__pages_chat_chat_module__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__ionic_native_local_notifications__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__ionic_native_in_app_browser__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__ionic_native_app_version__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__ionic_native_media__ = __webpack_require__(537);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_49_angular_progress_bar__ = __webpack_require__(1140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(574);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__ionic_native_screen_orientation__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__modals_MCMTrailFinishedModal_MCMTrailFinishedModal__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__directives_directives_module__ = __webpack_require__(1143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__modals_MCMReportProblemModal_MCMReportProblemModal__ = __webpack_require__(241);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__services_zoom_service__ = __webpack_require__(117);
@@ -10936,18 +12507,18 @@ var AppModule = /** @class */ (function () {
                     swipeBackEnabled: false
                 }, {
                     links: [
-                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesList/RoutesList.module#RoutesListPageModule', name: 'RoutesListPage', segment: 'RoutesList', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/tabs/RoutesMap/RoutesMap.module#RoutesMapPageModule', name: 'RoutesMapPage', segment: 'RoutesMap', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/onboarding/onboarding.module#OnboardingPageModule', name: 'OnboardingPage', segment: 'onboarding', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/portal/portal.module#PortalPageModule', name: 'PortalPage', segment: 'portal', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/tabs/TasksMap/TasksMap.module#TasksMapPageModule', name: 'TasksMap', segment: 'TasksMap/:routeId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/task-detail/task-detail.module#TaskDetailPageModule', name: 'TaskDetail', segment: ':routeId/TasksDetail/:taskId', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/task-group-detail/task-group-detail.module#TaskDetailPageModule', name: 'TaskGroupDetail', segment: ':routeId/TasksGroupDetail/:taskId', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_7__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
@@ -11023,14 +12594,14 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_deep_linker__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(575);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(576);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_mcm_download_progress_popup_mcm_download_progress_popup_component__ = __webpack_require__(574);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modals_RouteInfo_RouteInfo__ = __webpack_require__(575);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(577);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modals_CenteredTask_CenteredTask__ = __webpack_require__(576);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_DB_Updater__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__classes_DB_Updater__ = __webpack_require__(115);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11334,7 +12905,7 @@ var ModalsService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 76:
+/***/ 71:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11377,13 +12948,13 @@ var BaseService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GpsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_diagnostic__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_location_accuracy__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_core__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_geolocation__ = __webpack_require__(393);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11662,1921 +13233,7 @@ var CustomReplaySubject = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 792:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InitialMigration1513274191111; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var InitialMigration1513274191111 = /** @class */ (function () {
-    function InitialMigration1513274191111() {
-    }
-    InitialMigration1513274191111.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_state (_id INTEGER PRIMARY KEY AUTOINCREMENT,option VARCHAR (64) NOT NULL,value VARCHAR (256) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,lat VARCHAR (64) NOT NULL,lon VARCHAR (64) NOT NULL,title TEXT NOT NULL,description TEXT NOT NULL,image TEXT ,solution_type TEXT NOT NULL,solution TEXT NOT NULL,hint1 TEXT ,hint2 TEXT ,hint3 TEXT ,assistive_equipment TEXT ,author TEXT ,mail TEXT ,grade VARCHAR (2) NOT NULL DEFAULT '13',tags TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,solutionsample TEXT NOT NULL,attr TEXT ,create_date TIMESTAMP NOT NULL,lang_code VARCHAR (2))")];
-                    case 2:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_route (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,public VARCHAR (1) NOT NULL,title TEXT NOT NULL,country_code TEXT NOT NULL,city TEXT NOT NULL,image TEXT ,code VARCHAR (64),grade TEXT (64),tags VARCHAR ,duration VARCHAR (64),length VARCHAR (64),bounding_box TEXT ,center TEXT ,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,description TEXT ,create_date TIMESTAMP NOT NULL,attr TEXT TEXT)")];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_rel_route_task (_id INTEGER PRIMARY KEY AUTOINCREMENT,route_id INTEGER (64) NOT NULL,task_id INTEGER (64) NOT NULL,timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
-                    case 4:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_users (_id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR (32) NOT NULL,create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)")];
-                    case 5:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("CREATE TABLE IF NOT EXISTS mcm_score (_id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER (64) NOT NULL,route_id INTEGER (64) NOT NULL,score INTEGER (64) NOT NULL,tasks_solved TEXT ,tasks_solved_low TEXT ,task_details TEXT ,time INTEGER (64),distance INTEGER (64))")];
-                    case 6:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    InitialMigration1513274191111.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return InitialMigration1513274191111;
-}());
-
-//# sourceMappingURL=1513274191111-InitialMigration.js.map
-
-/***/ }),
-
-/***/ 793:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FailedTaskMigration1515428187000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var FailedTaskMigration1515428187000 = /** @class */ (function () {
-    function FailedTaskMigration1515428187000() {
-    }
-    FailedTaskMigration1515428187000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD tasks_failed TEXT")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    FailedTaskMigration1515428187000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return FailedTaskMigration1515428187000;
-}());
-
-//# sourceMappingURL=1515428187000-failedTaskMigration.js.map
-
-/***/ }),
-
-/***/ 794:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var User = /** @class */ (function () {
-    function User() {
-    }
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
-        __metadata("design:type", Number)
-    ], User.prototype, "id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 32 }),
-        __metadata("design:type", String)
-    ], User.prototype, "name", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ name: 'create_date' }),
-        __metadata("design:type", String)
-    ], User.prototype, "createDate", void 0);
-    User = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_users')
-    ], User);
-    return User;
-}());
-
-//# sourceMappingURL=User.js.map
-
-/***/ }),
-
-/***/ 795:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return State; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_typeorm__ = __webpack_require__(6);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var State = /** @class */ (function () {
-    function State() {
-    }
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["h" /* PrimaryGeneratedColumn */])({ name: '_id' }),
-        __metadata("design:type", Number)
-    ], State.prototype, "id", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 64 }),
-        __metadata("design:type", String)
-    ], State.prototype, "option", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])({ length: 256 }),
-        __metadata("design:type", String)
-    ], State.prototype, "value", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["a" /* Column */])(),
-        __metadata("design:type", String)
-    ], State.prototype, "timestamp", void 0);
-    State = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0_typeorm__["b" /* Entity */])('mcm_state')
-    ], State);
-    return State;
-}());
-
-//# sourceMappingURL=State.js.map
-
-/***/ }),
-
-/***/ 796:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskState; });
-var TaskState = /** @class */ (function () {
-    function TaskState() {
-        this.saved = false;
-        this.solved = false;
-        this.solvedLow = false;
-        this.skipped = false;
-        this.failed = false;
-        this.hint1 = false;
-        this.hint2 = false;
-        this.hint3 = false;
-        this.tries = 0;
-        this.newTries = 0; //newTries since user has skipped the task and opened again
-        this.answer = "";
-        this.answerMultipleChoice = [];
-        this.timeFirstOpen = 0;
-        this.timeSolved = 0;
-        this.score = 0;
-        this.penalty = 0;
-    }
-    TaskState.prototype.getTaskDetailAsJSON = function () {
-        return JSON.stringify({
-            taskId: +this.taskId,
-            saved: this.saved,
-            solved: this.solved,
-            solvedLow: this.solvedLow,
-            skipped: this.skipped,
-            failed: this.failed,
-            hint1: this.hint1,
-            hint2: this.hint2,
-            hint3: this.hint3,
-            tries: +this.tries,
-            newTries: +this.newTries,
-            answer: this.answer,
-            answerMultipleChoice: this.answerMultipleChoice,
-            timeFirstOpen: +this.timeFirstOpen,
-            timeSolved: +this.timeSolved,
-            score: +this.score,
-            penalty: this.penalty
-        });
-    };
-    TaskState.getTaskStateAsJSONArray = function (taskDetails) {
-        var result = [];
-        taskDetails.forEach(function (details) {
-            result.push(details.getTaskDetailAsJSON());
-        });
-        return JSON.stringify(result);
-    };
-    TaskState.prototype.getAllTaskState = function (jsonArray) {
-        var flags = JSON.parse(jsonArray);
-        var taskDetails = [];
-        for (var i = 0; i < flags.length; i++) {
-            taskDetails.push(this.getTaskStateByTask(flags[i]));
-        }
-        return taskDetails;
-    };
-    TaskState.prototype.findDetailsForTask = function (taskId, jsonArray) {
-        var flags = JSON.parse(jsonArray);
-        for (var i = 0; i < flags.length; i++) {
-            var detail_1 = this.getTaskStateByTask(flags[i]);
-            if (detail_1.taskId == taskId) {
-                return detail_1;
-            }
-        }
-        var detail = new TaskState();
-        detail.taskId = taskId;
-        return detail;
-    };
-    TaskState.prototype.getTaskStateByTask = function (jsonObject) {
-        var flags = JSON.parse(jsonObject);
-        var taskState = new TaskState();
-        taskState.taskId = flags.taskId;
-        taskState.saved = flags.saved;
-        taskState.solved = flags.solved;
-        taskState.solvedLow = flags.solvedLow;
-        taskState.skipped = flags.skipped;
-        taskState.failed = flags.failed;
-        taskState.hint1 = flags.hint1;
-        taskState.hint2 = flags.hint2;
-        taskState.hint3 = flags.hint3;
-        taskState.tries = flags.tries;
-        taskState.newTries = flags.newTries;
-        taskState.answer = flags.answer;
-        taskState.answerMultipleChoice = flags.answerMultipleChoice;
-        taskState.timeFirstOpen = flags.timeFirstOpen;
-        taskState.timeSolved = flags.timeSolved;
-        taskState.score = flags.score;
-        taskState.penalty = flags.penalty;
-        return taskState;
-    };
-    return TaskState;
-}());
-
-//# sourceMappingURL=TaskState.js.map
-
-/***/ }),
-
-/***/ 799:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddImageUrlAndDownloadedFlagMigration1513679923000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddImageUrlAndDownloadedFlagMigration1513679923000 = /** @class */ (function () {
-    function AddImageUrlAndDownloadedFlagMigration1513679923000() {
-    }
-    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloaded INTEGER(1)")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddImageUrlAndDownloadedFlagMigration1513679923000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddImageUrlAndDownloadedFlagMigration1513679923000;
-}());
-
-//# sourceMappingURL=1513679923000-AddImageUrlAndDownloadedFlagMigration.js.map
-
-/***/ }),
-
-/***/ 800:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CacheManagerMCM; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Helper__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MyMath__ = __webpack_require__(801);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tilesDb__ = __webpack_require__(623);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_images_service__ = __webpack_require__(35);
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-var CacheManagerMCM = /** @class */ (function () {
-    function CacheManagerMCM() {
-    }
-    CacheManagerMCM.getTilesCoverageMinMaxZoom = function (pBB, pZoomMin, pZoomMax) {
-        var result = new Array();
-        for (var zoomLevel = pZoomMin; zoomLevel <= pZoomMax; zoomLevel++) {
-            console.debug("Calculating ZOOM: " + zoomLevel);
-            var resultForZoom = CacheManagerMCM.getTilesCoverageZoom(pBB, zoomLevel);
-            console.debug("Result.size: " + resultForZoom.length);
-            result = result.concat(resultForZoom);
-            console.debug("Result.concat.size: " + result.length);
-        }
-        return result;
-    };
-    CacheManagerMCM.getTilesCoverageZoom = function (pBB, pZoomLevel) {
-        var result = new Array();
-        var mapTileUpperBound = 1 << pZoomLevel;
-        console.debug("shift attributes " + mapTileUpperBound);
-        console.debug("south: " + pBB.getSouth() + " east: " + pBB.getEast());
-        console.debug("north: " + pBB.getNorth() + " west: " + pBB.getWest());
-        var lowerRight = CacheManagerMCM.getMapTileFromCoordinates(pBB.getSouth(), pBB.getEast(), pZoomLevel);
-        var upperLeft = CacheManagerMCM.getMapTileFromCoordinates(pBB.getNorth(), pBB.getWest(), pZoomLevel);
-        console.debug("lowerRight " + lowerRight + " upperLeft " + upperLeft);
-        var width = lowerRight.x - upperLeft.x + 1;
-        if (width <= 0) {
-            width += mapTileUpperBound;
-        }
-        console.debug("Width: " + width + " " + typeof width);
-        var height = lowerRight.y - upperLeft.y + 1;
-        if (height <= 0) {
-            height += mapTileUpperBound;
-        }
-        console.debug("Height: " + height + " " + typeof height);
-        for (var i = 0; i < width; i++) {
-            for (var j = 0; j < height; j++) {
-                var x = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.x + i, mapTileUpperBound);
-                var y = __WEBPACK_IMPORTED_MODULE_1__MyMath__["a" /* MyMath */].mod(upperLeft.y + j, mapTileUpperBound);
-                result.push(new __WEBPACK_IMPORTED_MODULE_0__Helper__["c" /* MapTile */](pZoomLevel, x, y));
-            }
-        }
-        console.debug("Result.length = " + result.length);
-        return result;
-    };
-    CacheManagerMCM.getMapTileFromCoordinates = function (aLat, aLon, zoom) {
-        var z = 1 << zoom;
-        var y = Math.floor((1 - Math.log(Math.tan(aLat * Math.PI / 180) + 1 / Math.cos(aLat * Math.PI / 180)) / Math.PI) / 2 * z);
-        var x = Math.floor((aLon + 180) / 360 * z);
-        console.debug("aLat: " + aLat + " aLon: " + aLon + " zoom: " + zoom + " => x: " + x + " y: " + y);
-        return new __WEBPACK_IMPORTED_MODULE_3_leaflet__["Point"](x, y);
-    };
-    CacheManagerMCM.downloadTiles = function (route, pZoomMin, pZoomMax, callback) {
-        return __awaiter(this, void 0, void 0, function () {
-            var tiles, tilesUrls, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_2__tilesDb__["a" /* tilesDb */].initialize()];
-                    case 1:
-                        _a.sent();
-                        tilesUrls = tiles.map(function (tile) {
-                            var domain = route.getTilesServerSubdomains(route.getNarrativeName())[Math.floor(Math.random() * route.getTilesServerSubdomains(route.getNarrativeName()).length)];
-                            return route.getTilesMap(route.getNarrativeName()).replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
-                        });
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, __WEBPACK_IMPORTED_MODULE_4__services_images_service__["a" /* ImagesService */].INSTANCE.downloadURLs(tilesUrls, false, callback, true)];
-                    case 3:
-                        _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _a.sent();
-                        console.debug("remove already added tiles because download failed or was aborted");
-                        throw e_1;
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /*    static async removeDownloadedTiles(pBB: LatLngBounds, pZoomMin: number, pZoomMax: number) {
-            //const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(pBB, pZoomMin, pZoomMax);
-            await tilesDb.initialize();
-            tilesDb.removeItems(CacheManagerMCM.getTileURLs(pBB, pZoomMin, pZoomMax));
-        }*/
-    CacheManagerMCM.getTileURLs = function (route, pZoomMin, pZoomMax) {
-        var tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
-        return tiles.map(function (tile) { return route.getTilesMap(route.getNarrativeName()).replace('{s}', __WEBPACK_IMPORTED_MODULE_0__Helper__["b" /* Helper */].subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)); });
-    };
-    return CacheManagerMCM;
-}());
-
-//# sourceMappingURL=CacheManagerMCM.js.map
-
-/***/ }),
-
-/***/ 801:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyMath; });
-var MyMath = /** @class */ (function () {
-    function MyMath() {
-    }
-    MyMath.mod = function (n, m) {
-        if (n > 0) {
-            return n % m;
-        }
-        var nn = n;
-        while (nn < 0) {
-            nn += m;
-        }
-        return nn;
-    };
-    return MyMath;
-}());
-
-//# sourceMappingURL=MyMath.js.map
-
-/***/ }),
-
-/***/ 803:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUnlockedColumn1516037215000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddUnlockedColumn1516037215000 = /** @class */ (function () {
-    function AddUnlockedColumn1516037215000() {
-    }
-    AddUnlockedColumn1516037215000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN unlocked INTEGER(1)")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddUnlockedColumn1516037215000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddUnlockedColumn1516037215000;
-}());
-
-//# sourceMappingURL=1516037215000-AddUnlockedColumn.js.map
-
-/***/ }),
-
-/***/ 804:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedColumn1519817905000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddCompletedColumn1519817905000 = /** @class */ (function () {
-    function AddCompletedColumn1519817905000() {
-    }
-    AddCompletedColumn1519817905000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completed INTEGER(1)")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddCompletedColumn1519817905000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddCompletedColumn1519817905000;
-}());
-
-//# sourceMappingURL=1519817905000-AddCompletedColumn.js.map
-
-/***/ }),
-
-/***/ 812:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DBC_Plan; });
-var DBC_Plan = /** @class */ (function () {
-    function DBC_Plan(tableName, fields, fieldsType, attributes) {
-        this.tableName = tableName;
-        this.fields = fields;
-        this.fieldsType = fieldsType;
-        this.attributes = attributes;
-        this.fieldsCount = fields.length;
-    }
-    DBC_Plan.prototype.getCreateStatement = function () {
-        var stmt = "CREATE TABLE IF NOT EXISTS " + this.tableName + " (";
-        for (var i = 0; i < this.fields.length; i++) {
-            stmt += this.fields[i] + " " + this.fieldsType[i] + " " + this.attributes[i];
-            if (i < this.fields.length - 1) {
-                stmt += ",";
-            }
-        }
-        return stmt + ")";
-    };
-    /*
-    returns a string for bulk statements of all available fields in the form of:
-    (field1, field2, field3, ..., fieldn)
-     */
-    DBC_Plan.prototype.getFieldsInScopes = function () {
-        var result = "(";
-        for (var i = 0; i < this.fields.length; i++) {
-            if (i < this.fields.length - 1) {
-                result += this.fields[i] + ", ";
-            }
-            else {
-                result += this.fields[i];
-            }
-        }
-        return result + ")";
-    };
-    /*
-    returns a string for bulk statements of all available field placehokder in the form of:
-    (?, ?, ?, ?)
-     */
-    DBC_Plan.prototype.getFieldsPlaceholders = function () {
-        var result = "(";
-        for (var i = 0; i < this.fields.length; i++) {
-            if (i < this.fields.length - 1) {
-                result += "?, ";
-            }
-            else {
-                result += "?";
-            }
-        }
-        return result + ")";
-    };
-    DBC_Plan.prototype.getTableName = function () {
-        return this.tableName;
-    };
-    return DBC_Plan;
-}());
-
-//# sourceMappingURL=DBC_Plan.js.map
-
-/***/ }),
-
-/***/ 813:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddVisibleColumn1526306624000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddVisibleColumn1526306624000 = /** @class */ (function () {
-    function AddVisibleColumn1526306624000() {
-    }
-    AddVisibleColumn1526306624000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN `visible` INTEGER(1) NOT NULL DEFAULT 1")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'visible' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddVisibleColumn1526306624000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddVisibleColumn1526306624000;
-}());
-
-//# sourceMappingURL=1526306624000-AddVisibleColumn.js.map
-
-/***/ }),
-
-/***/ 814:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddLangCodeColumn1526306730000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddLangCodeColumn1526306730000 = /** @class */ (function () {
-    function AddLangCodeColumn1526306730000() {
-    }
-    AddLangCodeColumn1526306730000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN lang_code VARCHAR(2)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'lang_code' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddLangCodeColumn1526306730000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddLangCodeColumn1526306730000;
-}());
-
-//# sourceMappingURL=1526306730000-AddLangCodeColumn.js.map
-
-/***/ }),
-
-/***/ 815:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddDownloadDateColumn15711518720000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddDownloadDateColumn15711518720000 = /** @class */ (function () {
-    function AddDownloadDateColumn15711518720000() {
-    }
-    AddDownloadDateColumn15711518720000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN downloadedDate VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'lang_code' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddDownloadDateColumn15711518720000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddDownloadDateColumn15711518720000;
-}());
-
-//# sourceMappingURL=15711518720000-AddDownloadDateColumn.js.map
-
-/***/ }),
-
-/***/ 816:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCompletedDateColumn15713974540000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddCompletedDateColumn15713974540000 = /** @class */ (function () {
-    function AddCompletedDateColumn15713974540000() {
-    }
-    AddCompletedDateColumn15713974540000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN completedDate VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'lang_code' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddCompletedDateColumn15713974540000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddCompletedDateColumn15713974540000;
-}());
-
-//# sourceMappingURL=15713974540000-AddCompletedDateColumn.js.map
-
-/***/ }),
-
-/***/ 817:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZipMapFields15783117210000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddZipMapFields15783117210000 = /** @class */ (function () {
-    function AddZipMapFields15783117210000() {
-    }
-    AddZipMapFields15783117210000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1, e_2, e_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_version VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'map_version' already exists");
-                        return [3 /*break*/, 3];
-                    case 3:
-                        _a.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_filename VARCHAR(50)")];
-                    case 4:
-                        _a.sent();
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_2 = _a.sent();
-                        console.log("column 'map_filename' already exists");
-                        return [3 /*break*/, 6];
-                    case 6:
-                        _a.trys.push([6, 8, , 9]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN map_date VARCHAR(50)")];
-                    case 7:
-                        _a.sent();
-                        return [3 /*break*/, 9];
-                    case 8:
-                        e_3 = _a.sent();
-                        console.log("column 'map_date' already exists");
-                        return [3 /*break*/, 9];
-                    case 9: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddZipMapFields15783117210000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddZipMapFields15783117210000;
-}());
-
-//# sourceMappingURL=15783117210000-AddZipMapFields.js.map
-
-/***/ }),
-
-/***/ 818:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSavedTasks16013795030000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddSavedTasks16013795030000 = /** @class */ (function () {
-    function AddSavedTasks16013795030000() {
-    }
-    AddSavedTasks16013795030000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD COLUMN tasks_saved VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'tasks_saved' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddSavedTasks16013795030000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddSavedTasks16013795030000;
-}());
-
-//# sourceMappingURL=16013795030000-AddSavedTasks.js.map
-
-/***/ }),
-
-/***/ 819:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddSubtasks16026790930000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddSubtasks16026790930000 = /** @class */ (function () {
-    function AddSubtasks16026790930000() {
-    }
-    AddSubtasks16026790930000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN task_id INTEGER")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'task_id' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddSubtasks16026790930000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddSubtasks16026790930000;
-}());
-
-//# sourceMappingURL=16026790930000-AddSubtasks.js.map
-
-/***/ }),
-
-/***/ 820:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPositionField16194302450000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddPositionField16194302450000 = /** @class */ (function () {
-    function AddPositionField16194302450000() {
-    }
-    AddPositionField16194302450000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN position INTEGER")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'position' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddPositionField16194302450000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddPositionField16194302450000;
-}());
-
-//# sourceMappingURL=16194302450000-AddPositionField.js.map
-
-/***/ }),
-
-/***/ 821:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddPathFields16208100470000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddPathFields16208100470000 = /** @class */ (function () {
-    function AddPathFields16208100470000() {
-    }
-    AddPathFields16208100470000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_geojson TEXT")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN path_info TEXT")];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        console.log("columns 'path_geojson' and 'path_info' already exist");
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddPathFields16208100470000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddPathFields16208100470000;
-}());
-
-//# sourceMappingURL=16208100470000-AddPathFields.js.map
-
-/***/ }),
-
-/***/ 822:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddZoom16225449820000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddZoom16225449820000 = /** @class */ (function () {
-    function AddZoom16225449820000() {
-    }
-    AddZoom16225449820000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_route ADD COLUMN min_zoom INTEGER ")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("columns 'min_zoom' already exist");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddZoom16225449820000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddZoom16225449820000;
-}());
-
-//# sourceMappingURL=16225449820000-AddZoom.js.map
-
-/***/ }),
-
-/***/ 823:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddForceSubtaskAndArLink16552845000000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddForceSubtaskAndArLink16552845000000 = /** @class */ (function () {
-    function AddForceSubtaskAndArLink16552845000000() {
-    }
-    AddForceSubtaskAndArLink16552845000000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_rel_route_task ADD COLUMN force_support_tasks INTEGER(1) ")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN ar_link VARCHAR ")];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        console.log("columns 'force_support_tasks' and 'ar_link' already exist");
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddForceSubtaskAndArLink16552845000000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddForceSubtaskAndArLink16552845000000;
-}());
-
-//# sourceMappingURL=16552845000000-AddForceSubtaskAndArLink.js.map
-
-/***/ }),
-
-/***/ 824:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddTaskCode17026521590000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddTaskCode17026521590000 = /** @class */ (function () {
-    function AddTaskCode17026521590000() {
-    }
-    AddTaskCode17026521590000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN code VARCHAR ")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'code' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddTaskCode17026521590000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddTaskCode17026521590000;
-}());
-
-//# sourceMappingURL=17026521590000-AddTaskCode.js.map
-
-/***/ }),
-
-/***/ 825:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RenameParentIdAndAddTaskFormatAndPosition17067919700000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var RenameParentIdAndAddTaskFormatAndPosition17067919700000 = /** @class */ (function () {
-    function RenameParentIdAndAddTaskFormatAndPosition17067919700000() {
-    }
-    RenameParentIdAndAddTaskFormatAndPosition17067919700000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 4, , 5]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task RENAME COLUMN task_id to parent_task_id")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN task_format VARCHAR ")];
-                    case 2:
-                        _a.sent();
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_task ADD COLUMN position_in_parent INTEGER ")];
-                    case 3:
-                        _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_1 = _a.sent();
-                        console.log("columns 'parent_task_id', 'task_format' and 'position_in_parent' already exist");
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    RenameParentIdAndAddTaskFormatAndPosition17067919700000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return RenameParentIdAndAddTaskFormatAndPosition17067919700000;
-}());
-
-//# sourceMappingURL=17067919700000-RenameParentIdAndAddTaskFormatAndPosition.js.map
-
-/***/ }),
-
-/***/ 826:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddGroupsFinished17071440460000; });
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var AddGroupsFinished17071440460000 = /** @class */ (function () {
-    function AddGroupsFinished17071440460000() {
-    }
-    AddGroupsFinished17071440460000.prototype.up = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            var e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, queryRunner.query("ALTER TABLE mcm_score ADD COLUMN groups_finished VARCHAR(50)")];
-                    case 1:
-                        _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_1 = _a.sent();
-                        console.log("column 'groups_finished' already exists");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddGroupsFinished17071440460000.prototype.down = function (queryRunner) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
-            });
-        });
-    };
-    return AddGroupsFinished17071440460000;
-}());
-
-//# sourceMappingURL=17071440460000-AddGroupsFinished.js.map
-
-/***/ }),
-
-/***/ 86:
+/***/ 87:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13586,11 +13243,11 @@ var AddGroupsFinished17071440460000 = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_Helper__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Score__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Task2Route__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Score__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Task2Route__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env_env__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__env_env__ = __webpack_require__(211);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13730,7 +13387,7 @@ var Route = /** @class */ (function () {
                         if (this.task2Routes) {
                             allTasks = this.task2Routes.map(function (t2R) {
                                 return t2R.task;
-                            });
+                            }).filter(function (task) { return !!task; });
                         }
                         if (!allTasks) return [3 /*break*/, 6];
                         tasks = allTasks.filter(function (task) { return task.taskFormat !== __WEBPACK_IMPORTED_MODULE_1__Task__["b" /* TaskFormat */].GROUP; });
@@ -14164,25 +13821,25 @@ var Route = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatAndSessionService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_api_services_session_service__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gps_service__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(432);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_api_services_session_user_service__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_api_services_session_chat_service__ = __webpack_require__(395);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_local_notifications__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ngx_translate_core__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_core__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(435);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(1099);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(1100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__app_api_services_session_event_service__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_api_models_events_add_request__ = __webpack_require__(946);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__app_api_models_event_add_request__ = __webpack_require__(947);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_api_services_session_user_leaderboard_service__ = __webpack_require__(398);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_typescript_collections_dist_lib_arrays__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -15055,6 +14712,349 @@ var ChatAndSessionService = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=chat-and-session-service.js.map
+
+/***/ }),
+
+/***/ 946:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventsAddRequest; });
+var EventsAddRequest = /** @class */ (function () {
+    function EventsAddRequest() {
+    }
+    return EventsAddRequest;
+}());
+
+//# sourceMappingURL=events-add-request.js.map
+
+/***/ }),
+
+/***/ 947:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventAddRequest; });
+/* tslint:disable */
+var EventAddRequest = /** @class */ (function () {
+    function EventAddRequest() {
+    }
+    return EventAddRequest;
+}());
+
+//# sourceMappingURL=event-add-request.js.map
+
+/***/ }),
+
+/***/ 948:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 400,
+	"./af.js": 400,
+	"./ar": 401,
+	"./ar-dz": 402,
+	"./ar-dz.js": 402,
+	"./ar-kw": 403,
+	"./ar-kw.js": 403,
+	"./ar-ly": 404,
+	"./ar-ly.js": 404,
+	"./ar-ma": 405,
+	"./ar-ma.js": 405,
+	"./ar-ps": 406,
+	"./ar-ps.js": 406,
+	"./ar-sa": 407,
+	"./ar-sa.js": 407,
+	"./ar-tn": 408,
+	"./ar-tn.js": 408,
+	"./ar.js": 401,
+	"./az": 409,
+	"./az.js": 409,
+	"./be": 410,
+	"./be.js": 410,
+	"./bg": 411,
+	"./bg.js": 411,
+	"./bm": 412,
+	"./bm.js": 412,
+	"./bn": 413,
+	"./bn-bd": 414,
+	"./bn-bd.js": 414,
+	"./bn.js": 413,
+	"./bo": 415,
+	"./bo.js": 415,
+	"./br": 416,
+	"./br.js": 416,
+	"./bs": 417,
+	"./bs.js": 417,
+	"./ca": 418,
+	"./ca.js": 418,
+	"./cs": 419,
+	"./cs.js": 419,
+	"./cv": 420,
+	"./cv.js": 420,
+	"./cy": 421,
+	"./cy.js": 421,
+	"./da": 422,
+	"./da.js": 422,
+	"./de": 423,
+	"./de-at": 424,
+	"./de-at.js": 424,
+	"./de-ch": 425,
+	"./de-ch.js": 425,
+	"./de.js": 423,
+	"./dv": 426,
+	"./dv.js": 426,
+	"./el": 427,
+	"./el.js": 427,
+	"./en-au": 428,
+	"./en-au.js": 428,
+	"./en-ca": 429,
+	"./en-ca.js": 429,
+	"./en-gb": 430,
+	"./en-gb.js": 430,
+	"./en-ie": 431,
+	"./en-ie.js": 431,
+	"./en-il": 432,
+	"./en-il.js": 432,
+	"./en-in": 433,
+	"./en-in.js": 433,
+	"./en-nz": 434,
+	"./en-nz.js": 434,
+	"./en-sg": 435,
+	"./en-sg.js": 435,
+	"./eo": 436,
+	"./eo.js": 436,
+	"./es": 437,
+	"./es-do": 438,
+	"./es-do.js": 438,
+	"./es-mx": 439,
+	"./es-mx.js": 439,
+	"./es-us": 440,
+	"./es-us.js": 440,
+	"./es.js": 437,
+	"./et": 441,
+	"./et.js": 441,
+	"./eu": 442,
+	"./eu.js": 442,
+	"./fa": 443,
+	"./fa.js": 443,
+	"./fi": 444,
+	"./fi.js": 444,
+	"./fil": 445,
+	"./fil.js": 445,
+	"./fo": 446,
+	"./fo.js": 446,
+	"./fr": 447,
+	"./fr-ca": 448,
+	"./fr-ca.js": 448,
+	"./fr-ch": 449,
+	"./fr-ch.js": 449,
+	"./fr.js": 447,
+	"./fy": 450,
+	"./fy.js": 450,
+	"./ga": 451,
+	"./ga.js": 451,
+	"./gd": 452,
+	"./gd.js": 452,
+	"./gl": 453,
+	"./gl.js": 453,
+	"./gom-deva": 454,
+	"./gom-deva.js": 454,
+	"./gom-latn": 455,
+	"./gom-latn.js": 455,
+	"./gu": 456,
+	"./gu.js": 456,
+	"./he": 457,
+	"./he.js": 457,
+	"./hi": 458,
+	"./hi.js": 458,
+	"./hr": 459,
+	"./hr.js": 459,
+	"./hu": 460,
+	"./hu.js": 460,
+	"./hy-am": 461,
+	"./hy-am.js": 461,
+	"./id": 462,
+	"./id.js": 462,
+	"./is": 463,
+	"./is.js": 463,
+	"./it": 464,
+	"./it-ch": 465,
+	"./it-ch.js": 465,
+	"./it.js": 464,
+	"./ja": 466,
+	"./ja.js": 466,
+	"./jv": 467,
+	"./jv.js": 467,
+	"./ka": 468,
+	"./ka.js": 468,
+	"./kk": 469,
+	"./kk.js": 469,
+	"./km": 470,
+	"./km.js": 470,
+	"./kn": 471,
+	"./kn.js": 471,
+	"./ko": 472,
+	"./ko.js": 472,
+	"./ku": 473,
+	"./ku-kmr": 474,
+	"./ku-kmr.js": 474,
+	"./ku.js": 473,
+	"./ky": 475,
+	"./ky.js": 475,
+	"./lb": 476,
+	"./lb.js": 476,
+	"./lo": 477,
+	"./lo.js": 477,
+	"./lt": 478,
+	"./lt.js": 478,
+	"./lv": 479,
+	"./lv.js": 479,
+	"./me": 480,
+	"./me.js": 480,
+	"./mi": 481,
+	"./mi.js": 481,
+	"./mk": 482,
+	"./mk.js": 482,
+	"./ml": 483,
+	"./ml.js": 483,
+	"./mn": 484,
+	"./mn.js": 484,
+	"./mr": 485,
+	"./mr.js": 485,
+	"./ms": 486,
+	"./ms-my": 487,
+	"./ms-my.js": 487,
+	"./ms.js": 486,
+	"./mt": 488,
+	"./mt.js": 488,
+	"./my": 489,
+	"./my.js": 489,
+	"./nb": 490,
+	"./nb.js": 490,
+	"./ne": 491,
+	"./ne.js": 491,
+	"./nl": 492,
+	"./nl-be": 493,
+	"./nl-be.js": 493,
+	"./nl.js": 492,
+	"./nn": 494,
+	"./nn.js": 494,
+	"./oc-lnc": 495,
+	"./oc-lnc.js": 495,
+	"./pa-in": 496,
+	"./pa-in.js": 496,
+	"./pl": 497,
+	"./pl.js": 497,
+	"./pt": 498,
+	"./pt-br": 499,
+	"./pt-br.js": 499,
+	"./pt.js": 498,
+	"./ro": 500,
+	"./ro.js": 500,
+	"./ru": 501,
+	"./ru.js": 501,
+	"./sd": 502,
+	"./sd.js": 502,
+	"./se": 503,
+	"./se.js": 503,
+	"./si": 504,
+	"./si.js": 504,
+	"./sk": 505,
+	"./sk.js": 505,
+	"./sl": 506,
+	"./sl.js": 506,
+	"./sq": 507,
+	"./sq.js": 507,
+	"./sr": 508,
+	"./sr-cyrl": 509,
+	"./sr-cyrl.js": 509,
+	"./sr.js": 508,
+	"./ss": 510,
+	"./ss.js": 510,
+	"./sv": 511,
+	"./sv.js": 511,
+	"./sw": 512,
+	"./sw.js": 512,
+	"./ta": 513,
+	"./ta.js": 513,
+	"./te": 514,
+	"./te.js": 514,
+	"./tet": 515,
+	"./tet.js": 515,
+	"./tg": 516,
+	"./tg.js": 516,
+	"./th": 517,
+	"./th.js": 517,
+	"./tk": 518,
+	"./tk.js": 518,
+	"./tl-ph": 519,
+	"./tl-ph.js": 519,
+	"./tlh": 520,
+	"./tlh.js": 520,
+	"./tr": 521,
+	"./tr.js": 521,
+	"./tzl": 522,
+	"./tzl.js": 522,
+	"./tzm": 523,
+	"./tzm-latn": 524,
+	"./tzm-latn.js": 524,
+	"./tzm.js": 523,
+	"./ug-cn": 525,
+	"./ug-cn.js": 525,
+	"./uk": 526,
+	"./uk.js": 526,
+	"./ur": 527,
+	"./ur.js": 527,
+	"./uz": 528,
+	"./uz-latn": 529,
+	"./uz-latn.js": 529,
+	"./uz.js": 528,
+	"./vi": 530,
+	"./vi.js": 530,
+	"./x-pseudo": 531,
+	"./x-pseudo.js": 531,
+	"./yo": 532,
+	"./yo.js": 532,
+	"./zh-cn": 533,
+	"./zh-cn.js": 533,
+	"./zh-hk": 534,
+	"./zh-hk.js": 534,
+	"./zh-mo": 535,
+	"./zh-mo.js": 535,
+	"./zh-tw": 536,
+	"./zh-tw.js": 536
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 948;
+
+/***/ }),
+
+/***/ 949:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecordStateEnum; });
+var RecordStateEnum;
+(function (RecordStateEnum) {
+    RecordStateEnum[RecordStateEnum["Idle"] = 1] = "Idle";
+    RecordStateEnum[RecordStateEnum["Record"] = 2] = "Record";
+    RecordStateEnum[RecordStateEnum["Stop"] = 3] = "Stop";
+})(RecordStateEnum || (RecordStateEnum = {}));
+//# sourceMappingURL=recordStateEnum.js.map
 
 /***/ })
 

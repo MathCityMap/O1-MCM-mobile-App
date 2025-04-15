@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 1148:
+/***/ 1151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsPageModule", function() { return SettingsPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__settings__ = __webpack_require__(1162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__settings__ = __webpack_require__(1164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(235);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41,7 +41,7 @@ var SettingsPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 1162:
+/***/ 1164:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52,7 +52,7 @@ var SettingsPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_spinner_dialog__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_orm_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_modals_service__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_language_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_language_service__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_Helper__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -198,7 +198,7 @@ var SettingsPage = /** @class */ (function () {
     };
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-settings',template:/*ion-inline-start:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/settings/settings.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header pattern-bg">\n\n    <div class="card select">\n        <ion-label>{{\'a_settings_language\' | translate}}{{language != \'en\' ? \' / LANGUAGE\' : \'\'}}</ion-label>\n        <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">\n            <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>\n        </ion-select>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round (click)="openOnboarding()">{{\'a_settings_onboarding\' | translate }}</button>\n    </div>\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_expert\' | translate }}</ion-label>\n    </div>\n    <div class="card">\n        <ion-label>{{\'a_settings_editing\' | translate }}</ion-label>\n        <ion-item no-lines no-padding>\n            <p item-content>{{\'a_settings_editing_text\' | translate }}</p>\n            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>\n        </ion-item>\n    </div>\n<!--    <div class="card has-button-on-the-edge">\n        <ion-label>{{\'a_settings_console\' | translate }}</ion-label>\n        <p item-content>{{\'a_settings_console_text\' | translate }}</p>\n        <ion-item>\n            <ion-input type="text" placeholder="######"></ion-input>\n        </ion-item>\n        <button class="on-the-edge" ion-button small round>{{\'a_settings_console_button\' | translate }}</button>\n    </div>-->\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_data\' | translate }}</ion-label>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round color="danger" (click)="deleteAppData()">{{\'a_main_settings_delCache\' | translate }}</button>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/src/pages/settings/settings.html"*/,
+            selector: 'page-settings',template:/*ion-inline-start:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/settings/settings.html"*/'<mcm-header></mcm-header>\n<ion-content class="has-header pattern-bg">\n\n    <div class="card select">\n        <ion-label>{{\'a_settings_language\' | translate}}{{language != \'en\' ? \' / LANGUAGE\' : \'\'}}</ion-label>\n        <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">\n            <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>\n        </ion-select>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round (click)="openOnboarding()">{{\'a_settings_onboarding\' | translate }}</button>\n    </div>\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_expert\' | translate }}</ion-label>\n    </div>\n    <div class="card">\n        <ion-label>{{\'a_settings_editing\' | translate }}</ion-label>\n        <ion-item no-lines no-padding>\n            <p item-content>{{\'a_settings_editing_text\' | translate }}</p>\n            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>\n        </ion-item>\n    </div>\n<!--    <div class="card has-button-on-the-edge">\n        <ion-label>{{\'a_settings_console\' | translate }}</ion-label>\n        <p item-content>{{\'a_settings_console_text\' | translate }}</p>\n        <ion-item>\n            <ion-input type="text" placeholder="######"></ion-input>\n        </ion-item>\n        <button class="on-the-edge" ion-button small round>{{\'a_settings_console_button\' | translate }}</button>\n    </div>-->\n\n    <div class="card transparent divider">\n        <ion-label>{{\'a_settings_data\' | translate }}</ion-label>\n    </div>\n    <div class="card transparent">\n        <button ion-button block default round color="danger" (click)="deleteAppData()">{{\'a_main_settings_delCache\' | translate }}</button>\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/stanislavulyanenkov/Documents/projects/O1-MCM-mobile-App/src/pages/settings/settings.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_spinner_dialog__["a" /* SpinnerDialog */], __WEBPACK_IMPORTED_MODULE_4__services_orm_service__["a" /* OrmService */], __WEBPACK_IMPORTED_MODULE_5__services_modals_service__["a" /* ModalsService */],

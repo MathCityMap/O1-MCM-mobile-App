@@ -16,6 +16,11 @@
 }
 
 @font-face {
+   font-family: 'RobotoBold';
+   src: url('../assets/fonts/Roboto-Bold.ttf')  format('truetype');
+}
+
+@font-face {
     font-family: 'CaveatBrush';
     src: url('../assets/fonts/CaveatBrush-Regular.ttf')  format('truetype');
 }
@@ -76,17 +81,17 @@ svg{
 ion-label,
 ion-label.label-ios,
 ion-label.label-md{
-    font-size: 13px;
+   font-family: "RobotoBold", Arial, sans-serif;
+    font-size: 14px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: color($colors, greygrey);
+    color: color($colors, dark-grey);
     display: block;
-    margin: 0 0 5px 0;
+    margin: 0 0 6px 0;
 }
 span{
     display: block;
-    font-size: 13px;
-    //color: color($colors, dark-grey);
+    font-size: 14px;
 }
 
 @mixin bolder{
