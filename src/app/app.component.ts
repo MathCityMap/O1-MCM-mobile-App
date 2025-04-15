@@ -166,7 +166,9 @@ export class MyApp {
         } else {
             this.rootPage = 'HomePage';
         }
-        (navigator as any).splashscreen.hide();
+        if ((navigator as any).splashscreen) {
+            (navigator as any).splashscreen.hide();
+        }
     }
 }
 

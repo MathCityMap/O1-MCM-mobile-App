@@ -43,6 +43,7 @@ import {
 import {AddTaskCode17026521590000} from "../migration/17026521590000-AddTaskCode";
 import {RenameParentIdAndAddTaskFormatAndPosition17067919700000} from "../migration/17067919700000-RenameParentIdAndAddTaskFormatAndPosition";
 import {AddGroupsFinished17071440460000} from "../migration/17071440460000-AddGroupsFinished";
+import {TranslationService} from "../app/api/services/translation.service";
 
 
 @Injectable()
@@ -53,8 +54,15 @@ export class OrmService {
     private visibleRoutesCache: Route[];
     public eventEmitter = new Subject<String>();
 
-    constructor(private imagesService: ImagesService, private spinner: SpinnerDialog,
-                private translateService: TranslateService, private platform: Platform, private storage: Storage, private alertCtrl: AlertController) {
+    constructor(
+        private imagesService: ImagesService,
+        private spinner: SpinnerDialog,
+        private translateService: TranslateService,
+        private platform: Platform,
+        private storage: Storage,
+        private alertCtrl: AlertController,
+        private translationService: TranslationService
+    ) {
         OrmService.INSTANCE = this;
     }
 
@@ -427,6 +435,7 @@ export class OrmService {
             delete state[route.id];
         }
         this.storage.set("savedMapStateByRoute", state);
+        this.translationService.removeTaskTranslations(route.code);
         route.downloaded = null;
         route.downloadedDate = null;
         route.completed = null;

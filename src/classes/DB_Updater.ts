@@ -9,10 +9,16 @@ import { DB_Handler } from './DB_Handler'
 import { OrmService } from '../services/orm-service';
 import { Route } from "../entity/Route";
 import {ImagesService} from "../services/images-service";
+import {TranslationService} from "../app/api/services/translation.service";
 
 @Injectable()
 export class DB_Updater {
-    constructor(private ormService: OrmService, private helper: Helper, private imageService: ImagesService) {
+    constructor(
+        private ormService: OrmService,
+        private helper: Helper,
+        private imageService: ImagesService,
+        private translationService: TranslationService
+    ) {
     }
 
     /*
@@ -72,6 +78,8 @@ export class DB_Updater {
                     newRoute.unlocked = oldRoute.unlocked;
                     newRoute.completed = oldRoute.completed;
                     alreadyVisitedIds[oldRoute.id] = true;
+                    // Delete local cache of translations for route
+                    await this.translationService.removeTranslations(newRoute.code);
 
                     //Checks if the mapVersion is outdated, if so, downloads the zip file again
                     if(newRoute.downloaded && Number(newRoute.mapVersion)>Number(oldRoute.mapVersion)){

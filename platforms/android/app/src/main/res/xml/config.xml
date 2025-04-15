@@ -111,7 +111,7 @@
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*" />
     <allow-intent href="https://*" />
@@ -131,6 +131,7 @@
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
+    <allow-navigation href="http://localhost:8100" sessionid="4fed9a22" />
     <config-file parent="/manifest" target="AndroidManifest.xml">
         <queries>
             <intent>

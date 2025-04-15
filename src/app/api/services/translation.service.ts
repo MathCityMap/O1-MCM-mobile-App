@@ -81,6 +81,21 @@ export class TranslationService {
         console.log(response.tasks);
         return response.tasks;
     }
+
+    async removeTaskTranslations(routeCode: string) {
+        const storageKey = `${this.translateStorageBaseKey}-${routeCode}`;
+        let storedTranslations: TranslationStorage = await this.storage.get(storageKey);
+        for (let language in storedTranslations) {
+            storedTranslations[language].tasksFetched = false;
+            storedTranslations[language].tasks = undefined;
+        }
+        return this.storage.set(storageKey, storedTranslations);
+    }
+
+    async removeTranslations(routeCode: string) {
+        const storageKey = `${this.translateStorageBaseKey}-${routeCode}`;
+        return this.storage.remove(storageKey);
+    }
 }
 
 
