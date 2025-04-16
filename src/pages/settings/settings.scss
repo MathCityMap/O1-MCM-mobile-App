@@ -2,4 +2,28 @@ page-settings {
     .disabled{
         opacity: 0.4;
     }
+
+   .info{
+      border-top: 2px dotted color($colors, light-grey);
+      margin-top: 20px;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      & > p{
+         color: color($colors, grey);
+         line-height: 1.2;
+         margin: 0;
+      }
+      &:after {
+         content: url("../../assets/icons/info-b.svg");
+         flex-basis: 16px;
+         height: auto;
+      }
+   }
+
+   .item{
+      & ~ .item{
+         margin-top: $global-base-padding;
+      }
+   }
 }
