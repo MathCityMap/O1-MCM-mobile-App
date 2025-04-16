@@ -1,5 +1,7 @@
 export interface TranslationTaskResponse {
     tasks: Array<ResponseTaskTranslation>
+    error?: boolean;
+    response_code?: number;
 }
 
 export interface ResponseTaskTranslation {

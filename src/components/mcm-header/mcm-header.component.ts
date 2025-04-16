@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
 import {ViewController, ModalController, DeepLinker, NavController} from 'ionic-angular';
 import {ModalsService} from "../../services/modals-service";
@@ -13,6 +13,11 @@ export class MCMHeaderComponent{
     showBackButton: boolean = false;
     transparent: boolean = false;
     isOpeningRoute: boolean = false;
+
+    @Input() showTranslate: boolean = false;
+    @Input() translatePage: boolean = false;
+    @Input() translationFetched: boolean = false;
+    @Output() translateClicked: EventEmitter<void> = new EventEmitter();
 
 
     constructor(public navCtrl: NavController,

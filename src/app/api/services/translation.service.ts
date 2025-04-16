@@ -71,14 +71,18 @@ export class TranslationService {
     // TODO handle empty response?
     async fetchRouteTranslation(code: string) {
         const response = await this.http.get<TranslationTrailResponse>(`${this.apiConfig.rootUrl}/translation/trail/by-code/${code}/${this.translateLanguage}`).toPromise();
-        console.log(response.trail);
+        if (response.error) {
+            console.error('trail translation could not be fetched response code: ', response.response_code)
+        }
         return response.trail;
     }
 
     // TODO handle empty response?
     async fetchTaskTranslationsForRoute(code: string) {
         const response = await this.http.get<TranslationTaskResponse>(`${this.apiConfig.rootUrl}/translation/tasks/by-trail-code/${code}/${this.translateLanguage}`).toPromise();
-        console.log(response.tasks);
+        if (response.error) {
+            console.error('task translation could not be fetched response code: ', response.response_code)
+        }
         return response.tasks;
     }
 

@@ -1,5 +1,7 @@
 export interface TranslationTrailResponse {
-    trail: TrailTranslation
+    trail: TrailTranslation;
+    error?: boolean;
+    response_code?: number;
 }
 
 export interface TrailTranslation {

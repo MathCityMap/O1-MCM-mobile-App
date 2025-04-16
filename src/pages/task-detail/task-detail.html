@@ -1,4 +1,4 @@
-<mcm-header [ngClass]="{translated: translatePage}"></mcm-header>
+<mcm-header [showTranslate]="!!translation || !translationFetched" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()" [ngClass]="{translated: translatePage}"></mcm-header>
 <ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
 
    <div class="task-header" [ngClass]="{'gps' : task && task.solutionType=='gps'}">
@@ -180,16 +180,6 @@
                             <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"
                                     *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
                                 <img class="round" src="./assets/icons/icon_skip.svg"/>
-                            </button>
-                            <!-- TODO: move to correct button (temporary translation download) -->
-                            <button class="hint" ion-button icon-only round color="primary" (click)="toggleTranslation()"
-                                    *ngIf="!translation && !translationFetched">
-                                <img class="round" src="./assets/icons/share.svg"/>
-                            </button>
-                            <!-- TODO: move to correct button (temporary translation available) -->
-                            <button class="hint" ion-button icon-only round color="primary" (click)="toggleTranslation()"
-                                    *ngIf="translation" [ngClass]="{translated: translatePage}">
-                                <img class="round" src="./assets/icons/play.svg"/>
                             </button>
                         </ion-col>
                </ion-row>

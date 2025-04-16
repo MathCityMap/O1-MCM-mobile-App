@@ -1,4 +1,4 @@
-<mcm-header></mcm-header>
+<mcm-header [showTranslate]="!!translation || !translationFetched" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()"></mcm-header>
 <ion-content no-bounce class="has-header padding bottom">
     <div class="task-header">
         <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>
@@ -38,11 +38,6 @@
                 <ion-label>{{ "a_taskGroup_score_total" | translate }}</ion-label>
                 <ion-label class="tag score">{{getTotalScoreForGroup()}}</ion-label>
             </div>
-        </div>
-
-        <div class="card transparent skip">
-            <button ion-button block default round color="danger" (click)="toggleTranslation()" *ngIf="!translation && !translationFetched">translate dl</button>
-            <button ion-button block default round color="danger" (click)="toggleTranslation()" *ngIf="translation" [ngClass]="{translated: translatePage}">translate</button>
         </div>
 
         <div *ngIf="!groupIsFinished" class="card transparent skip" >

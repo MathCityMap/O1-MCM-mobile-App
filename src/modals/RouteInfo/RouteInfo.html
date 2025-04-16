@@ -1,4 +1,4 @@
-<mcm-header transparent></mcm-header>
+<mcm-header [showTranslate]="!!translation || !translationFetched" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()" transparent></mcm-header>
 
 <ion-content class="has-header transparent">
    <div class="route-header" *ngIf="route"
@@ -62,14 +62,14 @@
          </ion-grid>
       </div>
 
-      <div class="card text-center transparent">
-        <button *ngIf="!translation && !translationFetched" color="dark" ion-button round (click)="toggleTranslation()">
-            dl translation
-        </button>
-        <button *ngIf="translation" [ngClass]="{translated: translatePage}" color="dark" ion-button round (click)="toggleTranslation()">
-            translate
-        </button>
-    </div>
+<!--      <div class="card text-center transparent">-->
+<!--        <button *ngIf="!translation && !translationFetched" color="dark" ion-button round (click)="toggleTranslation()">-->
+<!--            dl translation-->
+<!--        </button>-->
+<!--        <button *ngIf="translation" [ngClass]="{translated: translatePage}" color="dark" ion-button round (click)="toggleTranslation()">-->
+<!--            translate-->
+<!--        </button>-->
+<!--    </div>-->
 
     <div class="card">
          <ion-label class="title">{{'current_progress' | translate}}</ion-label>
