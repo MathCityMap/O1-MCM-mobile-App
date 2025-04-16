@@ -113,10 +113,10 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "../com-sarriaroman-photoviewer/mathcitymap-photoviewer.gradle"
+apply from: "../cordova-plugin-safariviewcontroller/mathcitymap-SafariViewController-java18.gradle"
 apply from: "../cordova-plugin-badge/mathcitymap-badge.gradle"
 apply from: "../cordova-plugin-local-notification/mathcitymap-localnotification.gradle"
-apply from: "../cordova-plugin-safariviewcontroller/mathcitymap-SafariViewController-java18.gradle"
+apply from: "../com-sarriaroman-photoviewer/mathcitymap-photoviewer.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -341,11 +341,11 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
     implementation "androidx.webkit:webkit:1.4.0"
-    implementation "androidx.core:core:1.6.+"
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "com.google.android.gms:play-services-location:11.+"
     implementation "androidx.browser:browser:1.3.0"
     implementation "androidx.appcompat:appcompat:1.3.1"
+    implementation "androidx.browser:browser:1.3.0"
+    implementation "androidx.core:core:1.6.+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

@@ -1,75 +1,68 @@
 <mcm-header transparent></mcm-header>
+
 <ion-content class="has-header transparent">
-    <div class="card title" *ngIf="route">
-        <p>{{ route.city }}, {{ route.countryCode }}</p>
-        <h1 *ngIf="!translatePage">{{ route.title }}</h1>
-        <h1 *ngIf="translatePage" [ngClass]="{translated: translatePage}">{{ translation.title }}</h1>
-    </div>
+   <div class="route-header" *ngIf="route"
+         [ngClass]="{'narrative' : route.isNarrativeEnabled()}">
+      <div class="title-container">
+         <p class="title-super">{{ route.city }}, {{ route.countryCode }}</p>
+         <h1 *ngIf="!translatePage" class="title">{{ route.title }}</h1>
+          <h1 *ngIf="translatePage" class="title" [ngClass]="{translated: translatePage}">{{ translation.title }}</h1>
+      </div>
+   </div>
 
-    <div class="image-box" *ngIf="route">
-        <ion-grid>
+   <div class="route-content">
+      <div class="image-box" *ngIf="route">
+         <ion-grid>
             <ion-row align-items-center>
-                <ion-col col-4 class="button-container">
-<!--                    <button color="danger" ion-button icon-only small round *ngIf="route.downloaded" (click)="removeRoute()">-->
-<!--                        <img src="./assets/icons/delete.svg"/>-->
-<!--                    </button>-->
-                </ion-col>
-                <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">
-                    <div class="cover">
-                        <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
-                    </div>
-                    <div class="indicator" *ngIf="route.isNarrativeEnabled()">
-                        <h3 no-margin>{{'p_narrative_names_' + route.getNarrativeName() | translate}}</h3>
-                        <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />
-                    </div>
-                </ion-col>
-
-                <!--TODO Sharing coming soon near your area-->
-                <ion-col col-4 class="button-container">
-                    <!--<button ion-button icon-only small round (click)="share(route)">-->
-                        <!--<img src="./assets/icons/share.svg"/>-->
-                    <!--</button>-->
-                </ion-col>
+               <ion-col class="image-container" lazy-load-images [ngClass]="route.getNarrativeName()">
+                  <div class="cover">
+                     <img class="thumb lazy" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
+                  </div>
+<!--                  <div class="indicator" *ngIf="route.isNarrativeEnabled()">-->
+<!--                     <h3 no-margin>{{'p_narrative_names_' + route.getNarrativeName() | translate}}</h3>-->
+<!--                     <img class="background" src="./assets/images/{{route.getNarrativeName()}}/indicator-label.svg" />-->
+<!--                  </div>-->
+               </ion-col>
             </ion-row>
-        </ion-grid>
-    </div>
+         </ion-grid>
+      </div>
 
-    <div class="card text-center basic-info">
-        <ion-grid no-padding>
+      <div class="card text-center basic-info">
+         <ion-grid no-padding>
             <ion-row align-items-center>
-                <ion-col>
-                    <div class="info-item">
-                        <ion-label>{{ "a_t_grade" | translate }}</ion-label>
-                        <span *ngIf="route">{{ route.grade }}</span>
-                    </div>
-                    <div class="info-item border">
-                        <ion-label>{{ "a_t_distance" | translate }}</ion-label>
-                        <span *ngIf="route"> {{route.getDistance() | distance: 'm'}} </span>
-                    </div>
-                </ion-col>
+               <ion-col>
+                  <div class="info-item">
+                     <ion-label>{{ "a_t_grade" | translate }}</ion-label>
+                     <span *ngIf="route">{{ route.grade }}</span>
+                  </div>
+                  <div class="info-item border">
+                     <ion-label>{{ "a_t_distance" | translate }}</ion-label>
+                     <span *ngIf="route"> {{route.getDistance() | distance: 'm'}} </span>
+                  </div>
+               </ion-col>
 
-                <ion-col>
-                    <div class="info-item">
-                        <ion-label>{{ "p_r_duration" | translate }}</ion-label>
-                        <span *ngIf="route">{{ route.duration }}</span>
-                    </div>
-                </ion-col>
+               <ion-col>
+                  <div class="info-item">
+                     <ion-label>{{ "p_r_duration" | translate }}</ion-label>
+                     <span *ngIf="route">{{ route.duration }}</span>
+                  </div>
+               </ion-col>
 
-                <ion-col>
-                    <div class="info-item">
-                        <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>
-                        <span>{{ totalTasks }}</span>
-                    </div>
-                    <div class="info-item border">
-                        <ion-label>{{ "a_r_length" | translate }}</ion-label>
-                        <span *ngIf="route">{{ route.length }}</span>
-                    </div>
-                </ion-col>
+               <ion-col>
+                  <div class="info-item">
+                     <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>
+                     <span>{{ totalTasks }}</span>
+                  </div>
+                  <div class="info-item border">
+                     <ion-label>{{ "a_r_length" | translate }}</ion-label>
+                     <span *ngIf="route">{{ route.length }}</span>
+                  </div>
+               </ion-col>
             </ion-row>
-        </ion-grid>
-    </div>
+         </ion-grid>
+      </div>
 
-    <div class="card text-center transparent">
+      <div class="card text-center transparent">
         <button *ngIf="!translation && !translationFetched" color="dark" ion-button round (click)="toggleTranslation()">
             dl translation
         </button>
@@ -79,95 +72,118 @@
     </div>
 
     <div class="card">
-        <ion-label>{{'current_progress' | translate}}</ion-label>
-        <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>
-        <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">
+         <ion-label class="title">{{'current_progress' | translate}}</ion-label>
+         <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>
+         <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">
             <span class="icon finished">{{route.completedDate}}</span>
             <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">
-                <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
-                <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>
-                <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>
+               <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
+               <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>
+               <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>
             </div>
             <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">
-                <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>
+               <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
 
-    <div class="card">
-        <ion-label>{{ 'p_r_about' | translate }}</ion-label>
-        <p *ngIf="route && !translatePage">{{ route.description }}</p>
+      <div class="card">
+         <ion-label class="title">{{ 'p_r_about' | translate }}</ion-label>
+         <p *ngIf="route && !translatePage">{{ route.description }}</p>
         <p *ngIf="translatePage" [ngClass]="{translated: translatePage}">{{ translation.description }}</p>
 
-        <ion-label>{{ 'a_action_settings' | translate }}</ion-label>
-        <p *ngIf="route">
-            <ion-row *ngIf="route.code">{{'a_trailcode' | translate}}: {{ route.code }}</ion-row>
-            <ion-row>{{ 'p_session_sorting_score' | translate }}: {{route.getSettingStringValue("gamification", translateService)}}</ion-row>
-            <ion-row>{{ 't_samplesolution' | translate }}: {{route.getSettingStringValue("sampleSolution", translateService)}}</ion-row>
-            <ion-row>{{ 'a_hints' | translate }}: {{route.getSettingStringValue("hints", translateService)}}</ion-row>
-            <ion-row>{{ 'p_r_validation' | translate }}: {{route.getSettingStringValue("answerValidation", translateService)}}</ion-row>
-            <ion-row>{{ 'p_r_feedback' | translate }}: {{route.getSettingStringValue("answerFeedback", translateService)}}</ion-row>
-            <ion-row *ngIf="route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_' + route.getNarrativeName() | translate }}</ion-row>
-            <ion-row *ngIf="!route.isNarrativeEnabled()">{{ 'p_narrative' | translate }}: {{ 'p_narrative_names_none' | translate }}</ion-row>
-        </p>
-
-        <div>
-            <ion-label>{{ 'a_r_equip' | translate }}</ion-label>
-            <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>
-        </div>
-
-        <div class="path-info" *ngIf="route && route.getPathInfo()">
-            <ion-label>{{ 'a_r_path' | translate }}</ion-label>
-            <ion-row>
-                <ion-col class="walk">
-                    <ion-icon name="md-walk"></ion-icon>
-                    {{route.getPathInfo()['path_walk']['lengthText']}}
-                </ion-col>
-                <ion-col class="bike">
-                    <ion-icon name="md-bicycle" color="green"></ion-icon>
-                    {{route.getPathInfo()['path_bike']['lengthText']}}
-                </ion-col>
-                <ion-col class="car">
-                    <ion-icon name="md-car" color="red"></ion-icon>
-                    {{route.getPathInfo()['path_car']['lengthText']}}
-                </ion-col>
-                <ion-col class="public">
-                    <ion-icon name="md-train" color="yellow"></ion-icon>
-                    {{route.getPathInfo()['path_public']['lengthText']}}
-                </ion-col>
+         <ion-label class="title">{{ 'a_action_settings' | translate }}</ion-label>
+         <p *ngIf="route" class="settings">
+            <ion-row *ngIf="route.code">
+               <span>{{'a_trailcode' | translate}}</span>
+               <span>{{ route.code }}</span>
             </ion-row>
             <ion-row>
-                <ion-col class="sum-label">{{'a_r_path_sum' | translate}}</ion-col>
-                <ion-col class="sum-data">{{route.getPathInfo()['path_sum']['lengthText']}}</ion-col>
+               <span>{{'p_session_sorting_score' | translate}}</span>
+               <span>{{route.getSettingStringValue("gamification", translateService)}}</span>
             </ion-row>
-        </div>
+            <ion-row>
+               <span>{{'t_samplesolution' | translate}}</span>
+               <span>{{route.getSettingStringValue("sampleSolution", translateService)}}</span>
+            </ion-row>
+            <ion-row>
+               <span>{{'a_hints' | translate}}</span>
+               <span>{{route.getSettingStringValue("hints", translateService)}}</span>
+            </ion-row>
+            <ion-row>
+               <span>{{'p_r_validation' | translate}}</span>
+               <span>{{route.getSettingStringValue("answerValidation", translateService)}}</span>
+            </ion-row>
+            <ion-row>
+               <span>{{'p_r_feedback' | translate}}</span>
+               <span>{{route.getSettingStringValue("answerFeedback", translateService)}}</span>
+            </ion-row>
+            <ion-row *ngIf="route.isNarrativeEnabled()">
+               <span>{{'p_narrative' | translate}}</span>
+               <span>{{ 'p_narrative_names_' + route.getNarrativeName() | translate }}</span>
+            </ion-row>
+            <ion-row *ngIf="!route.isNarrativeEnabled()">
+               <span>{{'p_narrative' | translate}}</span>
+               <span>{{ 'p_narrative_names_none' | translate }}</span>
+            </ion-row>
+         </p>
 
-        <ion-label>{{ 'a_r_tags' | translate }}</ion-label>
-        <p *ngIf="route">{{ route.tags }}</p>
-    </div>
+         <ion-label class="title">{{ 'a_r_equip' | translate }}</ion-label>
+         <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>
 
-    <div class="card text-center transparent">
-        <button color="dark" ion-button round *ngIf="route && route.downloaded" (click)="displayRemoveTrailModal()">  <!--(click)="displayResetTasksModal()"-->
+         <div class="path-info" *ngIf="route && route.getPathInfo()">
+            <ion-label class="title">{{ 'a_r_path' | translate }}</ion-label>
+            <ion-row>
+               <ion-col class="walk">
+                  <ion-icon name="md-walk"></ion-icon>
+                  {{route.getPathInfo()['path_walk']['lengthText']}}
+               </ion-col>
+               <ion-col class="bike">
+                  <ion-icon name="md-bicycle" color="green"></ion-icon>
+                  {{route.getPathInfo()['path_bike']['lengthText']}}
+               </ion-col>
+               <ion-col class="car">
+                  <ion-icon name="md-car" color="red"></ion-icon>
+                  {{route.getPathInfo()['path_car']['lengthText']}}
+               </ion-col>
+               <ion-col class="public">
+                  <ion-icon name="md-train" color="yellow"></ion-icon>
+                  {{route.getPathInfo()['path_public']['lengthText']}}
+               </ion-col>
+            </ion-row>
+            <ion-row>
+               <ion-col class="sum-label">{{'a_r_path_sum' | translate}}</ion-col>
+               <ion-col class="sum-data">{{route.getPathInfo()['path_sum']['lengthText']}}</ion-col>
+            </ion-row>
+         </div>
+
+         <ion-label class="title">{{ 'a_r_tags' | translate }}</ion-label>
+         <p *ngIf="route">{{ route.tags }}</p>
+      </div>
+
+      <div class="card text-center transparent">
+         <button color="dark" ion-button round *ngIf="route && route.downloaded" (click)="displayRemoveTrailModal()">  <!--(click)="displayResetTasksModal()"-->
             {{ 'a_r_remove_trail' | translate }}
-        </button>
-    </div>
+         </button>
+      </div>
+   </div>
 </ion-content>
 
 <ion-footer>
-    <button class="play" ion-button full block no-margin no-padding large
-            *ngIf="route && !route.downloaded"
-            (click)="doDownload(route)">
-        <img content src="./assets/icons/download.svg"> {{ 'a_r_download' | translate }}
-    </button>
-    <button class="play" ion-button full block no-margin no-padding large
-            *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"
-            (click)="showRoute(route)">
-        <img content src="./assets/icons/play.svg"> {{ 'a_r_start' | translate }}
-    </button>
-    <button class="play" ion-button full block no-margin no-padding large
-            *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"
-            (click)="showRoute(route)">
-        <img content src="./assets/icons/play.svg"> {{ 'a_r_continue' | translate }}
-    </button>
+   <button class="play" ion-button full block no-margin no-padding large
+           *ngIf="route && !route.downloaded"
+           (click)="doDownload(route)">
+      {{ 'a_r_download' | translate }}
+   </button>
+   <button class="play" ion-button full block no-margin no-padding large
+           *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"
+           (click)="showRoute(route)">
+      {{ 'a_r_start' | translate }}
+   </button>
+   <button class="play" ion-button full block no-margin no-padding large
+           *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"
+           (click)="showRoute(route)">
+      {{ 'a_r_continue' | translate }}
+   </button>
 </ion-footer>
 

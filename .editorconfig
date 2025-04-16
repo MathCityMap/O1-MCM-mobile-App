@@ -7,6 +7,14 @@ root = true
 indent_style = space
 indent_size = 4
 
+[*.scss]
+indent_style = space
+indent_size = 3
+
+[*.html]
+indent_style = space
+indent_size = 3
+
 # We recommend you to keep these unchanged
 end_of_line = lf
 charset = utf-8
