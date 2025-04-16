@@ -14,6 +14,7 @@ import { LazyLoadImagesDirective } from '../directives/ngx-lazy-load-images.dire
 import { RouteTeaserComponent } from "./route-teaser/route-teaser";
 import {LocalizedDatePipe} from "../app/pipes/localDate.pipe";
 import {LinkHttpsPipe} from '../app/pipes/linkHttps.pipe';
+import { TextToSpeechControlComponent } from './text-to-speech-control/text-to-speech-control';
 
 const components = [
     MCMHeaderComponent,
@@ -27,10 +28,12 @@ const components = [
 ]
 
 @NgModule({
-	declarations: [components, RouteTeaserComponent],
+	declarations: [components, RouteTeaserComponent,
+    TextToSpeechControlComponent],
 	imports: [IonicModule,
         TranslateModule],
-	exports: [components, TranslateModule, RouteTeaserComponent],
+	exports: [components, TranslateModule, RouteTeaserComponent,
+    TextToSpeechControlComponent],
     providers: [PhotoViewer]
 })
 export class ComponentsModule {
