@@ -1,4 +1,4 @@
-<mcm-header [showTranslate]="!!translation || !translationFetched" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()"></mcm-header>
+<mcm-header [showTranslate]="translationService.isEnabled && (!!translation || !translationFetched)" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()"></mcm-header>
 <ion-content no-bounce class="has-header padding bottom">
     <div class="task-header">
         <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>

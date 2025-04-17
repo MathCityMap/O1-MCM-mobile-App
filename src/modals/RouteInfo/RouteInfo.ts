@@ -36,7 +36,7 @@ export class RouteInfo {
                 public navCtrl: NavController,
                 public translateService: TranslateService,
                 private spinnerDialog: SpinnerDialog,
-                private translationService: TranslationService) {
+                protected translationService: TranslationService) {
     }
 
     async ionViewWillEnter() {

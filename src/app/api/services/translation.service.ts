@@ -6,12 +6,21 @@ import {TranslationTaskResponse} from "../models/response-task-translation";
 import {Storage} from "@ionic/storage";
 import {TaskTranslation, TranslationStorage} from "../models/translation-storage";
 
-//TODO Add feedback element to translationStorage entries to signal if and when translations (task and trail separately) have been fetched in language
 @Injectable()
 export class TranslationService {
-    // TODO make this configurable through settings page
-    translateLanguage = "pl"
+    // TODO set Default language properly and persist configured language
+    private _translateLanguage = "de"
     translateStorageBaseKey = "MCMTranslations"
+    isEnabled: boolean = false;
+
+    public set translateLanguage(lang: string) {
+        if (lang.length !== 2) return;
+        this._translateLanguage = lang;
+    }
+
+    public get translateLanguage() {
+        return this._translateLanguage;
+    }
 
     constructor(private http: HttpClient, private apiConfig: ApiConfiguration, private storage: Storage) {
     }

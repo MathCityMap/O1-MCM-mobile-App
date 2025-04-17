@@ -1,4 +1,4 @@
-<mcm-header [showTranslate]="!!translation || !translationFetched" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()" transparent></mcm-header>
+<mcm-header [showTranslate]="translationService.isEnabled && (!!translation || !translationFetched)" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()" transparent></mcm-header>
 
 <ion-content class="has-header transparent">
    <div class="route-header" *ngIf="route"
@@ -89,7 +89,7 @@
 
       <div class="card">
          <ion-label class="title">{{ 'p_r_about' | translate }}</ion-label>
-         <p *ngIf="route && !translatePage">{{ route.description }}</p>
+         <p *ngIf="route && !translatePage" readable>{{ route.description }}</p>
         <p *ngIf="translatePage" [ngClass]="{translated: translatePage}">{{ translation.description }}</p>
 
          <ion-label class="title">{{ 'a_action_settings' | translate }}</ion-label>

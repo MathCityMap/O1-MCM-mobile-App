@@ -115,7 +115,7 @@ export class TaskDetail {
         private imageService: ImagesService,
         private cdRef: ChangeDetectorRef,
         private safariViewController: SafariViewController,
-        private translationService: TranslationService
+        protected translationService: TranslationService
     ) {
     }
 

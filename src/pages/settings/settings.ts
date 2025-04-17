@@ -6,6 +6,7 @@ import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
 import { LanguageService } from '../../services/language-service';
 import {Helper} from "../../classes/Helper";
+import {TranslationService} from "../../app/api/services/translation.service";
 
 @IonicPage()
 @Component({
@@ -19,9 +20,17 @@ export class SettingsPage {
 
     developerMode: boolean = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService,
-                private spinner: SpinnerDialog, private ormService: OrmService, private modalsService: ModalsService,
-                private languageService: LanguageService, private helper: Helper) {
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        private translateService: TranslateService,
+        private spinner: SpinnerDialog,
+        private ormService: OrmService,
+        private modalsService: ModalsService,
+        private languageService: LanguageService,
+        private helper: Helper,
+        protected translationService: TranslationService
+    ) {
         this.availableLanguages = languageService.getAvailableLanguages();
         this.translatedLangs = [];
     }

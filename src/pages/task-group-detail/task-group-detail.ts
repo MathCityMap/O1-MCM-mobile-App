@@ -44,7 +44,7 @@ export class TaskGroupDetail {
         private deepLinker: DeepLinker,
         private photoViewer: PhotoViewer,
         private spinnerDialog: SpinnerDialog,
-        private translationService: TranslationService
+        protected translationService: TranslationService
     ) {}
 
     async ionViewWillEnter() {
