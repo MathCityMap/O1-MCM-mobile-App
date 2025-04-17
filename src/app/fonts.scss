@@ -88,6 +88,11 @@ ion-label.label-md{
     color: color($colors, dark-grey);
     display: block;
     margin: 0 0 6px 0;
+
+   p{
+      margin-top: $global-medium-padding;
+      text-transform: none;
+   }
 }
 span{
     display: block;

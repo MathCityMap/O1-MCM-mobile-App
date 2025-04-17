@@ -1,151 +1,158 @@
 page-dashboard {
-    .content{
-        background: url("../assets/images/pattern-dashboard.svg") center / 133%  repeat color($colors, primary);
-        .stretch-container{
-            padding-left: $global-small-padding;
-            padding-right: $global-small-padding;
-            display: flex;
-            flex-direction: column;
-        }
-    }
-    .logo{
-        margin: $global-base-padding auto $global-small-padding/2 ;
-        padding-left: $global-base-padding;
-        display: block;
-    }
-    .tiles{
-        display: flex;
-        flex-wrap: wrap;
-        flex: 1;
-        align-items: stretch;
-        align-content: center;
-        padding-bottom: $global-small-padding;
-        .tile{
+   .content{
+      background: url("../assets/images/pattern-dashboard.svg") center / 100%  repeat color($colors, primary);
+      .stretch-container{
+         display: flex;
+         flex-direction: column;
+         min-height: 100vmax;
+         padding-bottom: $global-large-padding;
+      }
+   }
+   .head{
+      margin: 3vh 0 $global-base-padding;
+      padding: 0 16px;
+      .logo{
+         width: 100%;
+         margin-inline: auto;
+         padding-inline: 34px $global-base-padding;
+         display: block;
+      }
+   }
+   .tiles{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      flex: 1;
+      align-items: stretch;
+      align-content: center;
+      padding-bottom: $global-small-padding;
+      .tile{
+         padding: 0 $global-medium-padding*2 $global-medium-padding;
+         box-sizing: border-box;
+         .item{
+            height: 100%;
+            padding: $global-medium-padding*2 $global-base-padding;
+            @include transition-fast();
+            border-radius: $border-radius-basic*1.5;
+            .item-inner{
+               padding: 0!important;
+               [item-content]{
+                  display: flex;
+                  flex-direction: column;
+                  height: 100%;
+                  &.title{
+                     letter-spacing: 0;
+                     font-size: 18px;
+                     color: #036d99;
+                     p{
+                        margin-top: 8px;
+                     }
+                  }
+               }
+               .icon{
+                  width: auto;
+                  margin-left: $global-base-padding;
+                  min-height: 66px;
+                  align-self: flex-start;
+               }
+            }
+            &.activated{
+               @include transition-fast();
+               @include box-shadow(0.5);
+               transform: scale(1.1);
+               opacity: 0.3;
+            }
+         }
+         &.disabled{
+            //opacity: 0.3;
+            opacity: 0.4;
+            pointer-events: none;
+         }
+      }
+   }
+   .secondary{
+      text-align: center;
+      display: flex;
+      & > * {
+         flex: 1;
+      }
+   }
+   @media screen and (max-width: 359px) {
+      .content{
+         .scroll-content{
             padding: $global-small-padding;
-            flex-basis: 50%;
+         }
+         .stretch-container{
+            padding-left: 0;
+            padding-right: 0;
+         }
+      }
+      .logo{
+         margin: $global-small-padding auto;
+         width: 75%;
+      }
+      .tiles{
+         .tile{
+            padding: $global-small-padding;
             min-height: 25vh;
-            box-sizing: border-box;
             .item{
-                height: 100%;
-                padding: $global-base-padding;
-                @include transition-fast();
-                border-radius: $border-radius-basic;
-                .item-inner{
-                    padding: 0!important;
-                    .label{
-                        display: none;
-                    }
-                    [item-content]{
-                        justify-content: space-between;
-                        display: flex;
-                        flex-direction: column;
-                        @include size(100%);
-                        .title{
-                            margin-bottom: $global-small-padding;
-                        }
-                        .icon{
-                            margin-top: $global-base-padding;
-                            align-self: flex-end;
-                        }
-                    }
-                }
-                &.activated{
-                    @include transition-fast();
-                    @include box-shadow(0.5);
-                    transform: scale(1.1);
-                    opacity: 0.3;
-                }
+               padding: $global-base-padding*0.75 $global-small-padding;
+               .item-inner{
+                  [item-content]{
+                     .icon{
+                        margin-top: $global-base-padding*0.75;
+                        width: 50%;
+                     }
+                  }
+               }
             }
-            &.disabled{
-                //opacity: 0.3;
-                opacity: 0.4;
-                pointer-events: none;
+         }
+      }
+   }
+   @media screen and (min-width: 376px) {
+      .logo{
+         margin-top: 36px;
+      }
+      .tiles{
+         .tile{
+            .item{
+               .item-inner{
+                  [item-content]{
+                     .title{
+                        font-size: 2rem;
+                     }
+                     p{
+                        font-size: 1.6rem;
+                     }
+                  }
+               }
             }
-        }
-    }
-    .secondary{
-        text-align: center;
-        display: flex;
-        & > * {
-            flex: 1;
-        }
-    }
-    @media screen and (max-width: 359px) {
-        .content{
-            .scroll-content{
-                padding: $global-small-padding;
-            }
-            .stretch-container{
-                padding-left: 0;
-                padding-right: 0;
-            }
-        }
-        .logo{
-            margin: $global-small-padding auto;
-            width: 75%;
-        }
-        .tiles{
-            .tile{
-                padding: $global-small-padding;
-                min-height: 25vh;
-                .item{
-                    padding: $global-base-padding*0.75 $global-small-padding;
-                    .item-inner{
-                        [item-content]{
-                            .icon{
-                                margin-top: $global-base-padding*0.75;
-                                width: 50%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    @media screen and (min-width: 376px) {
-        .logo{
-            margin-top: 36px;
-        }
-        .tiles{
-            .tile{
-                .item{
-                    .item-inner{
-                        [item-content]{
-                            .title{
-                                font-size: 2rem;
-                            }
-                            p{
-                                font-size: 1.6rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+         }
+      }
+   }
 }
 
 
 .soon{
-    position: absolute;
-    color: black;
-    z-index: 140;
-    top: 0;
-    text-align: center;
-    width: 100%;
-    left: 50%;
-    transform: translate(-50%);
-    font-weight: bold;
-    background: rgba(255, 255, 255, 0.7);
-    margin: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px 10px;
-    p{
-        color: color($colors, primary-darker);
-        font-family: 'NunitoExtraBold', Helvetica, sans-serif;
-        transform: rotate(-45deg);
-    }
+   position: absolute;
+   color: black;
+   z-index: 140;
+   top: 0;
+   text-align: center;
+   width: 100%;
+   left: 50%;
+   transform: translate(-50%);
+   font-weight: bold;
+   background: rgba(255, 255, 255, 0.7);
+   margin: 0;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 3px 10px;
+   p{
+      color: color($colors, primary-darker);
+      font-family: 'NunitoExtraBold', Helvetica, sans-serif;
+      transform: rotate(-45deg);
+   }
 }

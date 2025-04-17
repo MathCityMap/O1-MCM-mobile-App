@@ -26,27 +26,27 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:        #036d99,
-  primary-darker: #035f87,
-  secondary:      #f3b100,
-  secondary-dark: #D9A000,
-  danger:         #F35800,
-  error:          #E62B25,
-  success:        #08BB27,
-  light:          #ffffff,
-  dark:           #222222,
-  dark-grey:      #444444,
-  greygrey:       #808080,
-  grey:           #a6a6a6,
-  mid-grey:       #b2b2b2,
-  light-grey:     #e5e5e5,
-  light-grey-tint:#F2F2F2,
-  saved:          #7D3FD4,
+  primary:           #0076A8,
+  primary-darker:    #035f87,
+  secondary:         #f3b100,
+  secondary-dark:    #D9A000,
+  danger:            #F35800,
+  error:             #E62B25,
+  success:           #08BB27,
+  light:             #ffffff,
+  dark:              #222222,
+  dark-grey:         #444444,
+  greygrey:          #808080,
+  grey:              #a6a6a6,
+  mid-grey:          #b2b2b2,
+  light-grey:        #e5e5e5,
+  light-grey-tint:   #F2F2F2,
+  saved:             #7D3FD4,
 
-  fab-color-1:    #034562,
-  fab-color-2:    #036D99,
-  fab-color-3:    #1595C1,
-  fab-color-4:    #29B0E5
+  fab-color-1:       #034562,
+  fab-color-2:       #036D99,
+  fab-color-3:       #1595C1,
+  fab-color-4:       #29B0E5
 );
 
 
@@ -125,7 +125,7 @@ $global-base-padding:      20px;
 $global-base-plus-padding: 24px;
 $global-large-padding:     40px;
 
-$border-radius-basic: 8px;
+$border-radius-basic: 12px;
 
 $size-large: 56px;
 

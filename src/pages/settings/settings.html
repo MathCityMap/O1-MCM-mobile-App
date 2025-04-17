@@ -1,40 +1,110 @@
 <mcm-header></mcm-header>
 <ion-content class="has-header pattern-bg">
 
-    <div class="card select">
-        <ion-label>{{'a_settings_language' | translate}}{{language != 'en' ? ' / LANGUAGE' : ''}}</ion-label>
-        <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">
+   <section class="padding center introduction">
+      <ion-label class="title">For your information</ion-label>
+      <div class="card primary">
+         <div class="container top">
+            <ion-label>
+               What is MCM?
+               <p>What is MathCityMap about and how does it work exactly? Find out in this quick tutorial!</p>
+            </ion-label>
+            <img class="icon" src="../../assets/icons/logo-mathcitymap-symbol.svg"/>
+         </div>
+         <button ion-button block round color="light" (click)="openOnboarding()">{{'a_settings_onboarding' | translate }}</button>
+      </div>
+   </section>
+
+   <div class="card transparent">
+   </div>
+
+   <section class="padding center">
+      <ion-label class="title">{{'a_settings_language' | translate}}</ion-label>
+      <div class="card select">
+         <ion-label>
+            App Language
+   <!--         {{'a_settings_language' | translate}}{{language != 'en' ? ' / LANGUAGE' : ''}}-->
+         </ion-label>
+         <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">
             <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>
-        </ion-select>
-    </div>
-    <div class="card transparent">
-        <button ion-button block default round (click)="openOnboarding()">{{'a_settings_onboarding' | translate }}</button>
-    </div>
+         </ion-select>
+      </div>
+   </section>
 
-    <div class="card transparent divider">
-        <ion-label>{{'a_settings_expert' | translate }}</ion-label>
-    </div>
-    <div class="card">
-        <ion-label>{{'a_settings_editing' | translate }}</ion-label>
-        <ion-item no-lines no-padding>
-            <p item-content>{{'a_settings_editing_text' | translate }}</p>
+   <section class="padding center">
+      <div class="card">
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               Translations
+               <p>Enables the download of automated translations for a specific route</p>
+            </ion-label>
+            <ion-toggle class="devModeToggle" mode="ios"></ion-toggle>
+         </ion-item>
+
+         <div class="item">
+            <ion-label item-content>Language</ion-label>
+            <ion-select>
+               <ion-option>lang</ion-option>
+            </ion-select>
+         </div>
+
+         <div class="info">
+            <p>Download the according translation package in the route info page</p>
+         </div>
+      </div>
+   </section>
+
+   <section class="padding center">
+      <ion-label class="title">Accessibility</ion-label>
+      <div class="card">
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               Text to Speech
+               <p>Enables the option to select text and let it read aloud</p>
+            </ion-label>
+            <ion-toggle class="devModeToggle" mode="ios"></ion-toggle>
+         </ion-item>
+
+         <div class="item">
+            <ion-label item-content>Voice</ion-label>
+            <ion-select>
+               <ion-option>voice</ion-option>
+            </ion-select>
+         </div>
+
+         <div class="info">
+            <p>Press long on a text to activate the speech function</p>
+         </div>
+      </div>
+   </section>
+
+   <section class="padding center">
+      <ion-label class="title">{{'a_settings_expert' | translate }}</ion-label>
+      <div class="card">
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               {{'a_settings_editing' | translate }}
+               <p>{{'a_settings_editing_text' | translate }}</p>
+            </ion-label>
             <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="developerMode" (ionChange)="switchDevMode()"></ion-toggle>
-        </ion-item>
-    </div>
-<!--    <div class="card has-button-on-the-edge">
-        <ion-label>{{'a_settings_console' | translate }}</ion-label>
-        <p item-content>{{'a_settings_console_text' | translate }}</p>
-        <ion-item>
-            <ion-input type="text" placeholder="######"></ion-input>
-        </ion-item>
-        <button class="on-the-edge" ion-button small round>{{'a_settings_console_button' | translate }}</button>
-    </div>-->
+         </ion-item>
+      </div>
+   </section>
 
-    <div class="card transparent divider">
-        <ion-label>{{'a_settings_data' | translate }}</ion-label>
-    </div>
-    <div class="card transparent">
-        <button ion-button block default round color="danger" (click)="deleteAppData()">{{'a_main_settings_delCache' | translate }}</button>
-    </div>
+   <!--    <div class="card has-button-on-the-edge">
+           <ion-label>{{'a_settings_console' | translate }}</ion-label>
+           <p item-content>{{'a_settings_console_text' | translate }}</p>
+           <ion-item>
+               <ion-input type="text" placeholder="######"></ion-input>
+           </ion-item>
+           <button class="on-the-edge" ion-button small round>{{'a_settings_console_button' | translate }}</button>
+       </div>-->
+
+   <section class="padding center">
+      <ion-label class="title">{{'a_settings_data' | translate }}</ion-label>
+   </section>
+   <div class="card transparent">
+      <button ion-button block default round color="danger" (click)="deleteAppData()">{{'a_main_settings_delCache' | translate }}</button>
+   </div>
 
 </ion-content>

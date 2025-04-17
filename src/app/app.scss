@@ -313,6 +313,52 @@ mcm-header{
    }
 }
 
+section{
+   &.padding{
+      margin: $global-base-padding;
+      & ~ section.padding{
+         margin-top: $global-medium-padding*2;
+      }
+      & + section.padding{
+         &:not(:has(.title)){
+            margin-top: $global-base-padding;
+         }
+      }
+
+      .card{
+         margin: 0;
+         display: block;
+         z-index: 2;
+      }
+
+      &-plus {
+         margin: $global-base-plus-padding;
+      }
+   }
+
+
+   & > .card{
+         &.primary{
+         background-color: color($colors, primary);
+         ion-label, ion-label > * {
+            color: color($colors, light);
+         }
+      }
+   }
+
+   &.center{
+      .title{
+         text-align: center;
+         margin-bottom: $global-base-padding;
+      }
+   }
+
+   .title{
+      font-size: 16px!important;
+   }
+
+}
+
 
 
 
@@ -350,6 +396,7 @@ ion-item{
    }
    &.item-toggle{
       .item-inner{
+         align-items: flex-start;
          padding: 0!important;
       }
    }
@@ -368,6 +415,11 @@ ion-item{
       }
       [item-content]{
          margin-right: $global-base-padding;
+      }
+      ion-label{
+         &[item-content]{
+            margin-bottom: 0;
+         }
       }
       .toggle{
          padding: 0;
@@ -988,14 +1040,11 @@ ion-list:not(.vector-input-list){
          }
       }
    }
-   &.select{
-      padding-bottom: $global-small-padding;
-   }
    &.modal {
       z-index: 10000;
    }
    ion-label, ion-label.label-ios, ion-label.label-md{
-      margin-bottom: $global-small-padding*0.8;
+      margin-bottom: $global-base-plus-padding/2;
    }
    & > p:last-of-type{
       margin-bottom: 0;
@@ -1053,7 +1102,13 @@ ion-list:not(.vector-input-list){
       max-width:100%;
       padding-left: 0;
       font-size: 15px;
-
+   }
+   ion-select{
+      position: relative;
+      background-color: color($colors, light-grey-tint);
+      padding-inline: 20px;
+      border-radius: 6px;
+      min-height: 44px;
       .select-icon .select-icon-inner,
       .select-md .select-icon .select-icon-inner{
          border: 0 solid!important;
@@ -1618,7 +1673,7 @@ progress-bar{
          bottom: 2px;
          border-radius: 16px;
          position: absolute;
-         background-color: #fff;
+         background-color: color($colors, light-grey);
          content: "";
          transform: scale3d(1, 1, 1);
          transition: transform 300ms, -webkit-transform 300ms;
@@ -1632,7 +1687,7 @@ progress-bar{
       width: 28px;
       height: 28px;
       background-color: #fff;
-      box-shadow: 0 3px 12px #d6d6d6, 0 3px 1px #e6e6e6;
+      box-shadow: none;
       transition: transform 300ms, width 120ms ease-in-out 80ms, left 110ms ease-in-out 80ms, right 110ms ease-in-out 80ms, -webkit-transform 300ms;
       will-change: transform;
       contain: strict;
