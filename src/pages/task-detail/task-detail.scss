@@ -389,6 +389,11 @@ page-task-detail, page-task-group-detail {
             border-bottom: 1px solid color($colors, dark);
         }
     }
+
+   ion-footer{
+      position: sticky;
+      bottom: 0;
+   }
 }
 
 
@@ -530,7 +535,8 @@ page-task-group-detail {
 
 .mcm-keyboard-open{
     .scroll-content{
-        margin-bottom: 27vh!important;
+       margin-bottom: 244px!important;
+       padding-bottom: 0 !important;
     }
 }
 
