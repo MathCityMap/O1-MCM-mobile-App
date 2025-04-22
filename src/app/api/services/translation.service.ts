@@ -5,16 +5,26 @@ import {TrailTranslation, TranslationTrailResponse} from "../models/trail-transl
 import {TranslationTaskResponse} from "../models/response-task-translation";
 import {Storage} from "@ionic/storage";
 import {TaskTranslation, TranslationStorage} from "../models/translation-storage";
+import {LanguageService} from "../../../services/language-service";
 
 @Injectable()
 export class TranslationService {
-    // TODO set Default language properly and persist configured language
-    private _translateLanguage = "de"
+    private _translateLanguage = "en"
     translateStorageBaseKey = "MCMTranslations"
-    isEnabled: boolean = false;
+    private _isEnabled: boolean = false;
+
+    public set isEnabled(value: boolean) {
+        this.storage.set(`${this.translateStorageBaseKey}-isEnabled`, value);
+        this._isEnabled = value;
+    }
+
+    public get isEnabled() {
+        return this._isEnabled;
+    }
 
     public set translateLanguage(lang: string) {
         if (lang.length !== 2) return;
+        this.storage.set(`${this.translateStorageBaseKey}-language`, lang);
         this._translateLanguage = lang;
     }
 
@@ -22,7 +32,19 @@ export class TranslationService {
         return this._translateLanguage;
     }
 
-    constructor(private http: HttpClient, private apiConfig: ApiConfiguration, private storage: Storage) {
+    constructor(private http: HttpClient, private apiConfig: ApiConfiguration, private storage: Storage, private languageService: LanguageService) {
+    }
+
+    async init() {
+        let storedLanguage = await this.storage.get(`${this.translateStorageBaseKey}-language`);
+        if (!storedLanguage) {
+            storedLanguage = await this.languageService.getDeviceLanguage();
+        }
+        let activeSetting = await this.storage.get(`${this.translateStorageBaseKey}-isEnabled`);
+        if (activeSetting) {
+            this._isEnabled = activeSetting;
+        }
+        this.translateLanguage = storedLanguage;
     }
 
     async getTranslationForRoute(code: string, fetchIfNotAvailable = false): Promise<{translation: TrailTranslation, isFetched: boolean}> {

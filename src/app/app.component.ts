@@ -16,6 +16,7 @@ import {RoutesListPage} from "../pages/home/tabs/RoutesList/RoutesList";
 import {RoutesMapPage} from "../pages/home/tabs/RoutesMap/RoutesMap";
 import {PortalPage} from "../pages/portal/portal";
 import {ZoomService} from "../services/zoom-service";
+import {TranslationService} from "./api/services/translation.service";
 
 
 export enum MCMModalType {
@@ -40,15 +41,23 @@ export class MyApp {
     keysTab: string[];
     isOpeningRoute: boolean = false;
 
-    constructor(platform: Platform, statusBar: StatusBar,
-                languageService: LanguageService, chatService: ChatAndSessionService,
-                events: Events, app: App, alertCtrl: AlertController,
-                translate: TranslateService, screenOrientation: ScreenOrientation, zoom: ZoomService,
-                private storage: Storage, private modalService: ModalsService, private deepLinker: DeepLinker) {
+    constructor(platform: Platform,
+                statusBar: StatusBar,
+                languageService: LanguageService,
+                events: Events,
+                app: App,
+                alertCtrl: AlertController,
+                translate: TranslateService,
+                screenOrientation: ScreenOrientation,
+                translation: TranslationService,
+                private storage: Storage,
+                private modalService: ModalsService,
+                private deepLinker: DeepLinker) {
 
         let that = this;
         platform.ready().then(async () => {
             await languageService.initialize();
+            await translation.init();
             await this.setRootPage();
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.

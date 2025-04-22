@@ -37,29 +37,8 @@ export class LanguageService {
             this.initializeListeners.push(success);
             await this.platform.ready();
             let lang = await this.storage.get(LanguageService.STORAGE_KEY);
-            if (!lang && checkAvailability(Globalization.getPluginRef(), null, Globalization.getPluginName()) === true) {
-                // no previous language found -> get device language
-                try {
-                    let preferredLanguage = await this.globalization.getPreferredLanguage();
-                    if (preferredLanguage && preferredLanguage.value) {
-                        lang = preferredLanguage.value;
-                        if (lang.indexOf('-') > -1) {
-                            lang = lang.split('-')[0];
-                        }
-                        if (lang.indexOf('_') > -1) {
-                            lang = lang.split('_')[0];
-                        }
-                        lang = lang.toLowerCase();
-                        if (this.availableLanguages.indexOf(lang) == -1) {
-                            // detected language is not available
-                            lang = null;
-                        }
-                    }
-                } catch (e) {
-                }
-            }
             if (!lang) {
-                lang = defaultLang;
+                lang = await this.getDeviceLanguage();
             }
             await this.translateService.use(lang);
 
@@ -72,6 +51,31 @@ export class LanguageService {
                 this.initializeListeners = null;
             }, 100);
         });
+    }
+
+    async getDeviceLanguage() {
+        let lang = 'en-US';
+        if (checkAvailability(Globalization.getPluginRef(), null, Globalization.getPluginName()) === true) {
+            // no previous language found -> get device language
+            try {
+                let {value} = await this.globalization.getPreferredLanguage();
+                lang = value;
+            } catch (e) {
+            }
+        } else {
+            lang = navigator.language;
+        }
+        if (lang.indexOf('-') > -1) {
+            lang = lang.split('-')[0];
+        }
+        if (lang.indexOf('_') > -1) {
+            lang = lang.split('_')[0];
+        }
+        lang = lang.toLowerCase();
+        if (this.availableLanguages.indexOf(lang) !== -1) {
+            return lang;
+        }
+        return 'en';
     }
 
     async getLanguage(): Promise<string> {

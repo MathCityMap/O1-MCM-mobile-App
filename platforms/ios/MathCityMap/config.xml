@@ -168,6 +168,7 @@
     <allow-navigation href="http://192.168.12.29:8100" />
     <allow-navigation href="http://192.168.12.252:8100" />
     <allow-navigation href="http://10.0.1.22:8100" />
+    <allow-navigation href="http://localhost:8100" sessionid="35275afb" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
