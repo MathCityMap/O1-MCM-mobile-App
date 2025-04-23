@@ -30,18 +30,11 @@ export class MCMHeaderComponent{
 
     protected currentpage: string = this.viewCtrl.name;
 
-    retriveTitle(): string {
-        //console.log('currentpage ',this.currentpage);
+    retrieveTitle(): string {
         if (this.navParams && this.navParams.data.headerTitle) {
             return this.navParams.data.headerTitle;
         }
-        if (this.currentpage == 'InfoPage') {
-            return 'a_about_mcm_title'
-        }
-        if (this.currentpage == 'SettingsPage') {
-            return 'a_action_settings'
-        }
-        if (this.currentpage == 'ModalCmp') {
+        if (this.currentpage == 'ModalCmp' || this.currentpage == 'TaskDetail') {
             return ''
         }
         return this.currentpage;
@@ -50,6 +43,9 @@ export class MCMHeaderComponent{
     ngOnInit(){
         this.showBackButton = this.navCtrl.canGoBack();
         if(this.currentpage == 'ModalCmp'){
+            this.transparent = true;
+        }
+        if(this.currentpage == 'TaskDetail'){
             this.transparent = true;
         }
     }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AlertController, NavParams } from 'ionic-angular';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {AlertController, ModalController, NavParams} from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
@@ -28,6 +28,8 @@ export class RouteInfo {
     protected translationFetched: boolean;
     protected translatePage: boolean = false;
 
+    @Output() translateClicked: EventEmitter<void> = new EventEmitter();
+
 
     constructor(public navParams: NavParams,
                 private ormService: OrmService,
@@ -36,7 +38,8 @@ export class RouteInfo {
                 public navCtrl: NavController,
                 public translateService: TranslateService,
                 private spinnerDialog: SpinnerDialog,
-                protected translationService: TranslationService) {
+                protected translationService: TranslationService,
+                public modalCtrl: ModalController) {
     }
 
     async ionViewWillEnter() {
@@ -87,5 +90,9 @@ export class RouteInfo {
             this.translationFetched = isFetched;
         }
         this.translatePage = this.translation && !this.translatePage;
+    }
+
+    closeModal() {
+        this.viewCtrl.dismiss(this.modalCtrl);
     }
 }

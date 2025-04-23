@@ -1,4 +1,15 @@
-<mcm-header></mcm-header>
+
+<ion-header>
+   <ion-toolbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="goBack()">
+            <img class="header-icon" src="assets/icons/back.svg"/>
+         </button>
+      </ion-buttons>
+      <ion-title>{{ 'a_action_settings' | translate }}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
 <ion-content class="has-header pattern-bg">
 
    <section class="padding center introduction">

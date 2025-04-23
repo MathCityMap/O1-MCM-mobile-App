@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {DeepLinker, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { OrmService } from '../../services/orm-service';
@@ -29,7 +29,9 @@ export class SettingsPage {
         private modalsService: ModalsService,
         private languageService: LanguageService,
         private helper: Helper,
-        protected translationService: TranslationService
+        protected translationService: TranslationService,
+        public viewCtrl: ViewController,
+        private deepLinker: DeepLinker
     ) {
         this.availableLanguages = languageService.getAvailableLanguages();
         this.translatedLangs = [];
@@ -69,5 +71,11 @@ export class SettingsPage {
 
     async switchDevMode(){
        await this.helper.setDevMode(this.developerMode+'');
+    }
+
+    goBack() {
+        this.navCtrl.pop({}, () => {
+            this.deepLinker.navChange('back');
+        });
     }
 }

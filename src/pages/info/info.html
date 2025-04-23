@@ -1,6 +1,16 @@
-<mcm-header></mcm-header>
-<ion-content class="has-header pattern-bg">
 
+<ion-header>
+   <ion-toolbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="goBack()">
+            <img class="header-icon" src="assets/icons/back.svg"/>
+         </button>
+      </ion-buttons>
+      <ion-title>{{ 'a_about_mcm_title' | translate }}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="has-header pattern-bg">
    <section class="padding-plus center">
         <a href="#" onclick="window.open('https://mathcitymap.eu/de/', '_system', 'location=yes'); return false;">
             <img class="responsive" src="./assets/images/mcm_logo_white.png">

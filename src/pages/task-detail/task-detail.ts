@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Output, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {OrmService} from '../../services/orm-service';
@@ -35,13 +35,6 @@ import {TaskTranslation} from "../../app/api/models/translation-storage";
 
 declare var MathJax;
 
-/**
- * Generated class for the TaskDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage({
     segment: ':routeId/TasksDetail/:taskId'
 })
@@ -53,6 +46,7 @@ export class TaskDetail {
     @ViewChild(Content) content: Content;
 
     @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>
+    @Output() translateClicked: EventEmitter<void> = new EventEmitter();
 
 
     // Keyboard open
@@ -2302,7 +2296,6 @@ export class TaskDetail {
     }
 
     public goBack() {
-        console.log("We goin back boys");
         if (!this.rootTask) {
             this.closeDetails();
         } else {

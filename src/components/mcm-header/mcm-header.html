@@ -8,7 +8,7 @@
                 <img class="header-icon" src="assets/icons/back.svg"/>
             </button>
         </ion-buttons>
-        <ion-title>{{ retriveTitle() | translate }}</ion-title>
+        <ion-title>{{ retrieveTitle() | translate }}</ion-title>
         <ion-buttons end>
 <!--           TODO enable translation button in detailed views-->
            <button *ngIf="showTranslate" ion-button color="light" class="translation" (click)="translateClicked.emit()">

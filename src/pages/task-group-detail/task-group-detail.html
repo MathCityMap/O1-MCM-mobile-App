@@ -1,4 +1,28 @@
-<mcm-header [showTranslate]="translationService.isEnabled && (!!translation || !translationFetched)" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()"></mcm-header>
+<!--TODO Remove after check-up of header/translation functionality-->
+<!--<mcm-header [showTranslate]="translationService.isEnabled && (!!translation || !translationFetched)"-->
+<!--            [translatePage]="translatePage"-->
+<!--            [translationFetched]="translationFetched"-->
+<!--            (translateClicked)="toggleTranslation()">-->
+<!--</mcm-header>-->
+
+<ion-header transparent>
+   <ion-toolbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="goBack()">
+            <img class="header-icon" src="assets/icons/back.svg"/>
+         </button>
+      </ion-buttons>
+      <ion-buttons end>
+         <button ion-button color="light" class="translation" (click)="translateClicked.emit()">
+            <img class="icon" src="assets/icons/translation-download.svg"/>
+            <div *ngIf="!translatePage && !translationFetched">Translation</div>
+            <div *ngIf="!translatePage && translationFetched">Translate</div>
+            <div *ngIf="translatePage">Translated</div>
+         </button>
+      </ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
 <ion-content no-bounce class="has-header padding bottom">
     <div class="task-header">
         <img *ngIf="group && group.image" class="image" [src]="group.getImageURL()" (click)="openInPhotoviewer()"/>

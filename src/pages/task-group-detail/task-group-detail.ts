@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {OrmService} from "../../services/orm-service";
 import {Route} from "../../entity/Route";
@@ -21,6 +21,7 @@ import {TranslationService} from "../../app/api/services/translation.service";
 })
 export class TaskGroupDetail {
     @ViewChild(Content) content: Content;
+    @Output() translateClicked: EventEmitter<void> = new EventEmitter();
 
     protected route: Route;
     private routeId: number;
@@ -212,5 +213,11 @@ export class TaskGroupDetail {
         }
         this.translatePage = this.translation && !this.translatePage;
         this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.group.title;
+    }
+
+    goBack() {
+        this.navCtrl.pop({}, () => {
+            this.deepLinker.navChange('back');
+        });
     }
 }

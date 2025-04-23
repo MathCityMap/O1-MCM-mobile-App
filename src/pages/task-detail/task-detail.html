@@ -1,5 +1,31 @@
-<mcm-header [showTranslate]="translationService.isEnabled && (!!translation || !translationFetched)" [translatePage]="translatePage" [translationFetched]="translationFetched" (translateClicked)="toggleTranslation()" [ngClass]="{translated: translatePage}"></mcm-header>
-<ion-content no-bounce class="has-header padding bottom" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
+<!--TODO Remove after check-up of header/translation functionality-->
+<!--<mcm-header [showTranslate]="translationService.isEnabled && (!!translation || !translationFetched)"-->
+<!--            [translatePage]="translatePage"-->
+<!--            [translationFetched]="translationFetched"-->
+<!--            (translateClicked)="toggleTranslation()"-->
+<!--            [ngClass]="{translated: translatePage}">-->
+<!--   transparent-->
+<!--</mcm-header>-->
+
+<ion-header transparent>
+   <ion-toolbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="goBack()">
+            <img class="header-icon" src="assets/icons/back.svg"/>
+         </button>
+      </ion-buttons>
+      <ion-buttons end>
+         <button ion-button color="light" class="translation" (click)="translateClicked.emit()">
+            <img class="icon" src="assets/icons/translation-download.svg"/>
+            <div *ngIf="!translatePage && !translationFetched">Translation</div>
+            <div *ngIf="!translatePage && translationFetched">Translate</div>
+            <div *ngIf="translatePage">Translated</div>
+         </button>
+      </ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content no-bounce class="has-header transparent padding bottom" [ngClass]="keyboardVisible() ? 'mcm-keyboard-open' : ''">
 
    <div class="task-header" [ngClass]="{'gps' : task && task.solutionType=='gps'}">
       <div *ngIf="task && task.solutionType=='gps'" id="gpsTaskMap">
@@ -14,11 +40,11 @@
    </div>
 
    <div class="task-content" [ngClass]="{'subtask': rootTask}">
-      <div class="transition"></div>
 
-      <div class="card task has-button-on-the-edge">
+      <div class="card task">
          <div class="head">
-            <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>
+            <ion-label class="title" *ngIf="task && !rootTask">{{task.title}}</ion-label>
+<!--            <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>-->
             <ion-label *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.getLegitSubtasks().length} }}</ion-label>
             <ion-label class="tag arLink" *ngIf="task && task.arLink" (click)="openLinkInBrowser(task.arLink)">AR</ion-label>
             <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>
@@ -26,161 +52,162 @@
 
          <p *ngIf="task && (!translatePage || !translation)">{{task.description}}</p>
          <p *ngIf="translation && translatePage" [ngClass]="{translated: translatePage}">{{translation.description}}</p>
+      </div>
 
-         <div class="answer" *ngIf="task && task.solutionType != 'info' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-            <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
+      <div class="card answer" *ngIf="task && task.solutionType != 'info' && task.solutionType!='gps' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+         <ion-label *ngIf ="task && task.solutionType != 'gps' && route.isAnswerValidationEnabled()">{{ "a_task_answer" | translate }}</ion-label>
+         <p *ngIf="task && task.solutionType === 'fraction' && taskDetails && taskDetails.answerMultipleChoice">
+            {{((specialSolution && specialSolution.mixed === 'true') ? 'a_fraction_shorten_mixed' : 'a_fraction_shorten') | translate}}
+         </p>
 
-            <ion-item *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-               <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
-               <ion-input (keyup.enter)="checkResult()"
+<!--         Basic Answer Input-->
+         <ion-item no-lines *ngIf="task && !isSpecialTaskType && route.isAnswerValidationEnabled() && taskDetails && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+            <!-- pattern="-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)" -->
+            <ion-input (keyup.enter)="checkResult()"
+                       type="text"
+                       readonly="true"
+                       [ngModelOptions]="{standalone: true}"
+                       [(ngModel)]="taskDetails.answer"
+                       (focus)="setKeyboardOn(true)"
+                       [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
+                       *ngIf="task.solutionType != 'text'">
+            </ion-input>
+            <ion-input type="text" [(ngModel)]="taskDetails.answer"
+                       *ngIf="task.solutionType == 'text'"
+                       [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+            </ion-input>
+         </ion-item>
+
+<!--         Fraction Input-->
+         <div class="fraction-input-container"
+              [ngClass]="{'hide-number-input': specialSolution && specialSolution.mixed !== 'true'}"
+              *ngIf="task && task.solutionType === 'fraction' && taskDetails && taskDetails.answerMultipleChoice">
+            <ion-item class="number-input-container">
+               <ion-input *ngIf="specialSolution && specialSolution.mixed === 'true'"
                           type="text"
                           readonly="true"
+                          [(ngModel)]="taskDetails.answerMultipleChoice[2].answer"
                           [ngModelOptions]="{standalone: true}"
-                          [(ngModel)]="taskDetails.answer"
-                          (focus)="setKeyboardOn(true)"
-                          [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
-                          *ngIf="task.solutionType != 'text'">
-               </ion-input>
-               <ion-input type="text" [(ngModel)]="taskDetails.answer"
-                          *ngIf="task.solutionType == 'text'"
-                          [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+                          (focus)="setKeyboardOn(true, 2)"
+                          (keyup.enter)="checkResult()">
                </ion-input>
             </ion-item>
 
-            <div class="fraction-input-container"
-                 [ngClass]="{'hide-number-input': specialSolution && specialSolution.mixed !== 'true'}"
-                 *ngIf="task && task.solutionType === 'fraction' && taskDetails && taskDetails.answerMultipleChoice">
-               <ion-item class="number-input-container">
-                  <ion-input *ngIf="specialSolution && specialSolution.mixed === 'true'"
-                             type="text"
-                             readonly="true"
-                             [(ngModel)]="taskDetails.answerMultipleChoice[2].answer"
-                             [ngModelOptions]="{standalone: true}"
-                             (focus)="setKeyboardOn(true, 2)"
-                             (keyup.enter)="checkResult()">
-                  </ion-input>
-               </ion-item>
-               <ion-grid>
-                  <ion-row class="first-row">
-                     <ion-col>
-                        <ion-item>
-                           <ion-input type="text"
-                                      readonly="true"
-                                      [(ngModel)]="taskDetails.answerMultipleChoice[0].answer"
-                                      [ngModelOptions]="{standalone: true}"
-                                      (focus)="setKeyboardOn(true, 0)"
-                                      (keyup.enter)="checkResult()">
-                           </ion-input>
-                        </ion-item>
-                     </ion-col>
-                  </ion-row>
-                  <ion-row>
-                     <ion-col>
-                        <ion-item>
-                           <ion-input type="text"
-                                      readonly="true"
-                                      [(ngModel)]="taskDetails.answerMultipleChoice[1].answer"
-                                      [ngModelOptions]="{standalone: true}"
-                                      (focus)="setKeyboardOn(true, 1)"
-                                      (keyup.enter)="checkResult()">
-                           </ion-input>
-                        </ion-item>
-                     </ion-col>
-                  </ion-row>
-               </ion-grid>
-            </div>
-
-            <p class="text-center"
-               *ngIf="task && task.solutionType === 'fraction' && taskDetails && taskDetails.answerMultipleChoice">
-               {{((specialSolution && specialSolution.mixed === 'true') ? 'a_fraction_shorten_mixed' : 'a_fraction_shorten') | translate}}
-            </p>
-
-            <ion-list class="vector-input-list"
-                      *ngIf="task && (task.solutionType === 'vector_values' || task.solutionType === 'vector_intervals' || task.solutionType === 'set') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-               <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index"
-                         [ngClass]="{'is-focused': answerIndex == i && keyboardVisible()}">
-                  <ion-label *ngIf="task.solutionType !== 'set'" floating>{{answerField.name}}</ion-label>
-                  <ion-label *ngIf="task.solutionType === 'set'" floating>{{'a_task_set_answer' | translate : {index: i + 1} }}</ion-label>
-                  <ion-input (keyup.enter)="checkResult()"
-                             [disabled]="answerField.solved || (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))"
-                             type="text"
-                             (focus)="setKeyboardOn(true, i)"
-                             [ngModelOptions]="{standalone: true}"
-                             readonly="true"
-                             [(ngModel)]="answerField.answer"
-                  >
-                  </ion-input>
-               </ion-item>
-            </ion-list>
-
-            <ion-item *ngIf="task && task.solutionType === 'blanks' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-               <p class="blankContainer" id="blankContainer_{{task.id}}"
-                  [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage}">
-               </p>
-            </ion-item>
-
-            <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-               <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
-                  <ion-checkbox [(ngModel)]="item.userChecked"
-                                [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"></ion-checkbox>
-                  <ion-label class="multi-choice-label" text-wrap tappable>{{translatePage ? translation.getSolutionOptionList(task.solutionType)[i].value : item.value}}</ion-label>
-               </ion-item>
-            </ion-list>
-         </div>
-
-         <div class="on-the-edge-container" *ngIf="taskDetails">
-            <ion-grid no-padding>
-               <ion-row>
-                  <ion-col *ngIf="route.isHintsEnabled() && task && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-                     <button ion-button icon-only round color="primary" class="hint" [disabled]="false" *ngIf="task.hasHintMessage(1)" (click)="showHint(1)">
-                        <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-activated.svg"/>
-                        <img *ngIf="taskDetails.hint1" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>
-                     </button>
-                     <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint1" *ngIf="task.hasHintMessage(2)" (click)="showHint(2)">
-                        <img *ngIf="taskDetails.hint1 && !taskDetails.hint2" class="round" src="./assets/icons/icon_hint-activated.svg"/>
-                        <img *ngIf="taskDetails.hint1 && taskDetails.hint2" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>
-                        <img *ngIf="!taskDetails.hint1" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>
-                     </button>
-                     <button ion-button icon-only round color="primary" class="hint" [disabled]="!taskDetails.hint2" *ngIf="task.hasHintMessage(3)" (click)="showHint(3)">
-                        <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && !taskDetails.hint3" class="round" src="./assets/icons/icon_hint-activated.svg"/>
-                        <img *ngIf="taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3" class="round used" src="./assets/icons/icon_hint-activated-used.svg"/>
-                        <img *ngIf="!taskDetails.hint2" class="round" src="./assets/icons/icon_hint-deactivated.svg"/>
-                     </button>
-                  </ion-col>
-
+            <ion-grid>
+               <ion-row class="first-row">
                   <ion-col>
-                     <button class="hint" ion-button icon-only round color="primary" (click)="showSolutionSample()"
-                             *ngIf="taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed) && route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== 'info'">
-                        <img class="round" src="./assets/icons/icon_show_sample_salution.svg"/>
-                     </button>
-                     <!-- open subtask -->
-                     <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"
-                             *ngIf="task.getLegitSubtasks() && task.getLegitSubtasks().length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
-                        <img class="round" src="./assets/icons/subtask_icon.svg"/>
-                     </button>
-                     <!-- close subtask -->
-                     <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"
-                             *ngIf="rootTask && task">
-                        <img class="round" src="./assets/icons/task_icon.svg"/>
-                     </button>
-                     <!-- skip task -->
-                     <button class="hint" ion-button icon-only round color="danger" (click)="confirmSkippingTask()"
-                             *ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))">
-                        <img class="round" src="./assets/icons/icon_skip.svg"/>
-                     </button>
-                     <!-- show next task -->
-                     <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails(false)"
-                             *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
-                        <img class="round" src="./assets/icons/icon_skip.svg"/>
-                     </button>
-                     <!-- show next subtask -->
-                     <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"
-                             *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
-                        <img class="round" src="./assets/icons/icon_skip.svg"/>
-                     </button>
+                     <ion-item>
+                        <ion-input type="text"
+                                   readonly="true"
+                                   [(ngModel)]="taskDetails.answerMultipleChoice[0].answer"
+                                   [ngModelOptions]="{standalone: true}"
+                                   (focus)="setKeyboardOn(true, 0)"
+                                   (keyup.enter)="checkResult()">
+                        </ion-input>
+                     </ion-item>
+                  </ion-col>
+               </ion-row>
+               <ion-row>
+                  <ion-col>
+                     <ion-item>
+                        <ion-input type="text"
+                                   readonly="true"
+                                   [(ngModel)]="taskDetails.answerMultipleChoice[1].answer"
+                                   [ngModelOptions]="{standalone: true}"
+                                   (focus)="setKeyboardOn(true, 1)"
+                                   (keyup.enter)="checkResult()">
+                        </ion-input>
+                     </ion-item>
                   </ion-col>
                </ion-row>
             </ion-grid>
+         </div>
+
+<!--         Vector Input-->
+         <ion-list class="vector-input-list"
+                   *ngIf="task && (task.solutionType === 'vector_values' || task.solutionType === 'vector_intervals' || task.solutionType === 'set') && taskDetails && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+            <ion-item *ngFor="let answerField of taskDetails.answerMultipleChoice; let i = index"
+                      [ngClass]="{'is-focused': answerIndex == i && keyboardVisible()}">
+               <ion-label *ngIf="task.solutionType !== 'set'" floating>{{answerField.name}}</ion-label>
+               <ion-label *ngIf="task.solutionType === 'set'" floating>{{'a_task_set_answer' | translate : {index: i + 1} }}</ion-label>
+               <ion-input (keyup.enter)="checkResult()"
+                          [disabled]="answerField.solved || (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed))"
+                          type="text"
+                          (focus)="setKeyboardOn(true, i)"
+                          [ngModelOptions]="{standalone: true}"
+                          readonly="true"
+                          [(ngModel)]="answerField.answer"
+               >
+               </ion-input>
+            </ion-item>
+         </ion-list>
+
+<!--         Blank Answer-->
+         <ion-item *ngIf="task && task.solutionType === 'blanks' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+            <p class="blankContainer" id="blankContainer_{{task.id}}"
+               [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage}">
+            </p>
+         </ion-item>
+
+<!--         Multiple Choice-->
+         <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+            <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
+               <ion-checkbox [(ngModel)]="item.userChecked"
+                             [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"></ion-checkbox>
+               <ion-label class="multi-choice-label" text-wrap tappable>{{translatePage ? translation.getSolutionOptionList(task.solutionType)[i].value : item.value}}</ion-label>
+            </ion-item>
+         </ion-list>
+      </div>
+
+      <div class="card support" *ngIf="taskDetails">
+         <ion-label class="title">Support</ion-label>
+         <div class="container buttons">
+            <div class="hints start"
+                  *ngIf="route.isHintsEnabled() && task && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+               <button ion-button icon-only round color="secondary" class="hint" [disabled]="false"
+                       [ngClass]="{'used' : taskDetails.hint1}"
+                       *ngIf="task.hasHintMessage(1)" (click)="showHint(1)">
+                  <img src="./assets/icons/hint.svg"/>
+               </button>
+               <button ion-button icon-only round color="secondary" class="hint" [disabled]="!taskDetails.hint1"
+                       [ngClass]="{'used' : taskDetails.hint1 && taskDetails.hint2}"
+                       *ngIf="task.hasHintMessage(2)" (click)="showHint(2)">
+                  <img src="./assets/icons/hint.svg"/>
+               </button>
+               <button ion-button icon-only round color="secondary" class="hint" [disabled]="!taskDetails.hint2"
+                       [ngClass]="{'used' : taskDetails.hint1 && taskDetails.hint2 && taskDetails.hint3}"
+                       *ngIf="task.hasHintMessage(3)" (click)="showHint(3)">
+                  <img src="./assets/icons/hint.svg"/>
+               </button>
+            </div>
+
+            <div class="end">
+               <button class="hint" ion-button icon-only round color="secondary" (click)="showSolutionSample()"
+                       [disabled]="!taskDetails.solved || !taskDetails.solvedLow || !taskDetails.failed"
+                       *ngIf="taskDetails
+                              && route.isSampleSolutionEnabled()
+                              && route.isAnswerFeedbackEnabled()
+                              && task.solutionType !== 'info'">
+                  <img src="./assets/icons/sample-solution.svg"/>
+               </button>
+
+               <!-- open subtask -->
+               <button class="hint" ion-button icon-only round color="danger" (click)="openSubtask()"
+                       *ngIf="task.getLegitSubtasks() && task.getLegitSubtasks().length !== solvedSubtasks.length && task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)">
+                  <img class="round" src="./assets/icons/subtask_icon.svg"/>
+               </button>
+               <!-- close subtask -->
+               <button class="hint" ion-button icon-only round color="danger" (click)="closeDetails()"
+                       *ngIf="rootTask && task">
+                  <img class="round" src="./assets/icons/task_icon.svg"/>
+               </button>
+
+               <!-- show next subtask -->
+               <button class="hint" ion-button icon-only round color="danger" (click)="goToNextSubtask()"
+                       *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+                  <img class="round" src="./assets/icons/icon_skip.svg"/>
+               </button>
+            </div>
          </div>
       </div>
 
@@ -265,7 +292,7 @@
 
    <ion-footer>
       <div *ngIf="(route && route.isAnswerFeedbackEnabled() && route.isAnswerValidationEnabled()) && (task && task.solutionType != 'info')">
-         <button ion-button full block no-margin no-padding large
+         <button ion-button full block no-margin no-padding large class="primary"
                  *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))"
                  [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !isSpecialTypeAnswered() && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())" (click)="checkResult()">
             {{ "a_btn_check_answer" | translate }}
@@ -273,7 +300,7 @@
       </div>
 
       <div *ngIf="(route && route.isAnswerFeedbackEnabled() && !route.isAnswerValidationEnabled()) || (task && task.solutionType == 'info') && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-         <button ion-button full block no-margin no-padding large
+         <button ion-button full block no-margin no-padding large class="primary"
                  *ngIf="task && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
                  (click)="completeTask()">
             {{ "a_task_complete" | translate }}
@@ -281,11 +308,24 @@
       </div>
 
       <div *ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != 'info') && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-         <button ion-button full block no-margin no-padding large
+         <button ion-button full block no-margin no-padding large class="primary"
                  *ngIf="task && taskDetails"
                  [disabled]="!isDecimal(taskDetails.answer) && (task.solutionType == 'range' || task.solutionType == 'value')  || task.solutionType != 'multiple_choice' && !taskDetails.answer && (task.solutionType != 'gps' || !taskDetailMap?.areAllPointsSet())  && !isSpecialTypeAnswered()" (click)="checkResult()">
             {{ "p_save" | translate }}
          </button>
       </div>
+
+      <!-- show next task -->
+      <button ion-button full block no-margin no-padding large class="primary" (click)="closeDetails(false)"
+              *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
+         Continue
+      </button>
+
+      <!-- skip task -->
+      <button ion-button full block no-margin no-padding large color="danger" class="secondary"
+              *ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))"
+              (click)="confirmSkippingTask()">
+         Skip
+      </button>
    </ion-footer>
 </ion-content>
