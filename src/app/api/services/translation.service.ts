@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ApiConfiguration} from "../api-configuration";
 import {TrailTranslation, TranslationTrailResponse} from "../models/trail-translation";
-import {TranslationTaskResponse} from "../models/response-task-translation";
+import {ResponseTaskTranslation, TranslationTaskResponse} from "../models/response-task-translation";
 import {Storage} from "@ionic/storage";
 import {TaskTranslation, TranslationStorage} from "../models/translation-storage";
 import {LanguageService} from "../../../services/language-service";
+import {API_REQUEST_PASS, API_REQUEST_USER} from "../../../env/env";
 
 @Injectable()
 export class TranslationService {
@@ -100,21 +101,37 @@ export class TranslationService {
     }
 
     // TODO handle empty response?
-    async fetchRouteTranslation(code: string) {
-        const response = await this.http.get<TranslationTrailResponse>(`${this.apiConfig.rootUrl}/translation/trail/by-code/${code}/${this.translateLanguage}`).toPromise();
-        if (response.error) {
-            console.error('trail translation could not be fetched response code: ', response.response_code)
+    async fetchRouteTranslation(code: string): Promise<TrailTranslation|null> {
+        try {
+            const response = await this.http.get<TranslationTrailResponse>(`${this.apiConfig.rootUrl}/app/v1/translation/trail/by-code/${code}/${this.translateLanguage}`, {headers: this.getRequestHeaders()}).toPromise();
+            if (response.error) {
+                console.error('trail translation could not be fetched response code: ', response.response_code)
+            }
+            return response.trail;
+        } catch (e) {
+            console.warn("error fetching task translation", e);
+            return null;
         }
-        return response.trail;
     }
 
     // TODO handle empty response?
-    async fetchTaskTranslationsForRoute(code: string) {
-        const response = await this.http.get<TranslationTaskResponse>(`${this.apiConfig.rootUrl}/translation/tasks/by-trail-code/${code}/${this.translateLanguage}`).toPromise();
-        if (response.error) {
-            console.error('task translation could not be fetched response code: ', response.response_code)
+    async fetchTaskTranslationsForRoute(code: string): Promise<Array<ResponseTaskTranslation>> {
+        try {
+            const response = await this.http.get<TranslationTaskResponse>(`${this.apiConfig.rootUrl}/app/v1/translation/trail/by-code/${code}/${this.translateLanguage}/tasks`, {headers: this.getRequestHeaders()}).toPromise();
+            if (response.error) {
+                console.error('task translation could not be fetched response code: ', response.response_code)
+            }
+            return response.tasks;
+        } catch (e) {
+            console.warn("error fetching task translation", e);
+            return [];
         }
-        return response.tasks;
+    }
+
+    private getRequestHeaders() {
+        let headers = new HttpHeaders();
+        headers.append("Authorization", "Basic " + btoa(`${API_REQUEST_USER}:${API_REQUEST_PASS}`));
+        return headers;
     }
 
     async removeTaskTranslations(routeCode: string) {
