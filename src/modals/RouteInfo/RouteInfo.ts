@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {AlertController, ModalController, NavParams} from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
@@ -27,8 +27,6 @@ export class RouteInfo {
     protected translation: TrailTranslation;
     protected translationFetched: boolean;
     protected translatePage: boolean = false;
-
-    @Output() translateClicked: EventEmitter<void> = new EventEmitter();
 
 
     constructor(public navParams: NavParams,

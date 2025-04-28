@@ -129,9 +129,9 @@ export class TranslationService {
     }
 
     private getRequestHeaders() {
-        let headers = new HttpHeaders();
-        headers.append("Authorization", "Basic " + btoa(`${API_REQUEST_USER}:${API_REQUEST_PASS}`));
-        return headers;
+        return new HttpHeaders({
+            "Authorization": "Basic " + btoa(`${API_REQUEST_USER}:${API_REQUEST_PASS}`)
+        });
     }
 
     async removeTaskTranslations(routeCode: string) {

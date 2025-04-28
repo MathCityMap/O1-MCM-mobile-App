@@ -53,10 +53,14 @@ export class TaskTranslation {
         return task;
     }
 
-    getSolutionOptionList(solutionType: string): Array<any> {
+    getSolutionOptionList(solutionType: string, originalSolution: any): Array<any> {
         if (solutionType == 'multiple_choice') {
             let multipleChoiceSolutionList = [];
             let temp = this.solution;
+
+            if (!temp) {
+                return originalSolution;
+            }
 
             temp[0].forEach(element => {
                 multipleChoiceSolutionList.push({userChecked: false, rightAnswer: false, value: element});
@@ -69,6 +73,10 @@ export class TaskTranslation {
         } else {
             return this.solution;
         }
+    }
+
+    getSolution(originalSolution: any) {
+        return this.solution ?? originalSolution;
     }
 
     getHint(index: number) {

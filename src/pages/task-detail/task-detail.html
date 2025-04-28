@@ -1,12 +1,3 @@
-<!--TODO Remove after check-up of header/translation functionality-->
-<!--<mcm-header [showTranslate]="translationService.isEnabled && (!!translation || !translationFetched)"-->
-<!--            [translatePage]="translatePage"-->
-<!--            [translationFetched]="translationFetched"-->
-<!--            (translateClicked)="toggleTranslation()"-->
-<!--            [ngClass]="{translated: translatePage}">-->
-<!--   transparent-->
-<!--</mcm-header>-->
-
 <ion-header transparent>
    <ion-toolbar>
       <ion-buttons left>
@@ -15,7 +6,7 @@
          </button>
       </ion-buttons>
       <ion-buttons end>
-         <button ion-button color="light" class="translation" (click)="translateClicked.emit()">
+         <button *ngIf="translationService.isEnabled && (!!translation || !translationFetched)" ion-button color="light" class="translation" (click)="toggleTranslation()">
             <img class="icon" src="assets/icons/translation-download.svg"/>
             <div *ngIf="!translatePage && !translationFetched">Translation</div>
             <div *ngIf="!translatePage && translationFetched">Translate</div>
@@ -154,7 +145,7 @@
             <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
                <ion-checkbox [(ngModel)]="item.userChecked"
                              [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"></ion-checkbox>
-               <ion-label class="multi-choice-label" text-wrap tappable>{{translatePage ? translation.getSolutionOptionList(task.solutionType)[i].value : item.value}}</ion-label>
+               <ion-label class="multi-choice-label" text-wrap tappable>{{translatePage ? translation.getSolutionOptionList(task.solutionType, multipleChoiceList)[i].value : item.value}}</ion-label>
             </ion-item>
          </ion-list>
       </div>

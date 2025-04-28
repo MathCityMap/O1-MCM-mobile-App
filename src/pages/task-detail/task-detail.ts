@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Output, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {OrmService} from '../../services/orm-service';
@@ -29,7 +29,6 @@ import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
 import {SafariViewController} from '@ionic-native/safari-view-controller';
 import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
-import {ResponseTaskTranslation} from "../../app/api/models/response-task-translation";
 import {TranslationService} from "../../app/api/services/translation.service";
 import {TaskTranslation} from "../../app/api/models/translation-storage";
 
@@ -45,8 +44,7 @@ declare var MathJax;
 export class TaskDetail {
     @ViewChild(Content) content: Content;
 
-    @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>
-    @Output() translateClicked: EventEmitter<void> = new EventEmitter();
+    @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>;
 
 
     // Keyboard open
@@ -2367,7 +2365,7 @@ export class TaskDetail {
     }
 
     fillBlankSolutionElement() {
-        this.specialSolution = this.translatePage ? this.translation.solution : this.task.getSolution();
+        this.specialSolution = this.translatePage ? this.translation.getSolution(this.task.getSolution()) : this.task.getSolution();
         let blankMatch;
         let blankText: string = this.specialSolution.val
         let placeholderCount = [];

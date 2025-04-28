@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {OrmService} from "../../services/orm-service";
 import {Route} from "../../entity/Route";
@@ -21,7 +21,6 @@ import {TranslationService} from "../../app/api/services/translation.service";
 })
 export class TaskGroupDetail {
     @ViewChild(Content) content: Content;
-    @Output() translateClicked: EventEmitter<void> = new EventEmitter();
 
     protected route: Route;
     private routeId: number;

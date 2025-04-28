@@ -2,7 +2,6 @@ import * as L from 'leaflet';
 import {LatLng, LatLngBounds} from 'leaflet';
 import {checkAvailability} from '@ionic-native/core';
 import {Injectable} from '@angular/core';
-import {Headers, Http, RequestOptions} from '@angular/http';
 import {GpsService} from '../services/gps-service';
 import {Network} from '@ionic-native/network';
 import {Platform} from 'ionic-angular';
@@ -10,7 +9,7 @@ import {Route} from '../entity/Route';
 import {OrmService} from "../services/orm-service";
 import {Storage} from "@ionic/storage";
 import 'leaflet-geometryutil';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MAPBOX_ACCESS_TOKEN, SERVER_REQUEST_PASS} from "../env/env";
 
 export class MapTile {
@@ -260,10 +259,10 @@ export class Helper {
             return new Promise<any>(resolve => resolve())
         }
 
-        let headers = new Headers({
+        let headers = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         })
-        let options = new RequestOptions({headers: headers});
+        let options = {headers: headers};
         let data = "pass=" + encodeURI(Helper.REQUEST_PASS)
             + "&action=" + encodeURI(queryAction)
         if (postparams) {
@@ -279,17 +278,17 @@ export class Helper {
             }, timeoutInSecs * 1000);
             this.http.post(Helper.API_URL, data, options)
                 .toPromise()
-                .then((response) => {
+                .then((response: any) => {
                     if (timeOutTimer) {
                         clearTimeout(timeOutTimer);
                     } else {
                         return;
                     }
-                    console.log('API response: ', response.text().substr(0, 255))
-                    let resText = response.text()
+                    console.log('API response: ', response);
+                    let resText = JSON.stringify(response);
                     if (resText && resText.length > 0) {
-                        let tableRows = response.json()
-                        resolve(tableRows);
+                        // let tableRows = response
+                        resolve(response);
                     } else {
                         reject('no response from server');
                     }

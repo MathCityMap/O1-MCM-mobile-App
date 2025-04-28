@@ -6,9 +6,7 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
 import { Helper } from '../classes/Helper';
 import {Route} from "../entity/Route";
-import {Http} from "@angular/http";
-import {HttpClient} from "@angular/common/http";
-import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {DomSanitizer} from "@angular/platform-browser";
 import {Camera, CameraOptions} from "@ionic-native/camera";
 
 @Injectable()
@@ -27,8 +25,6 @@ export class ImagesService {
         private fileManager: File,
         private platform: Platform,
         private transfer: FileTransfer,
-        private http: Http,
-        private httpClient: HttpClient,
         private sanitizer : DomSanitizer,
         private camera: Camera) {
         ImagesService.INSTANCE = this;
