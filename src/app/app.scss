@@ -218,6 +218,12 @@ ion-header{
    }
 
    &[transparent]{
+      .header-icon {
+         width: 16px;
+         height: 16px;
+         pointer-events: none;
+      }
+
       & ~ ion-content{
          .scroll-content, .fixed-content {
             margin-top: 0!important;
@@ -266,19 +272,16 @@ ion-header{
       border-color: transparent;
    }
    .header-icon {
-      width: 30px;
-      height: 30px;
+      width: 24px;
+      height: 24px;
       pointer-events: none;
    }
    .logo-bar{
       display: flex;
    }
-   .title{
+   .toolbar-title{
       text-align: center;
       position: relative;
-      padding: 0;
-   }
-   .toolbar-title{
       font-family: 'NunitoBold', Helvetica, sans-serif;
       color: color($colors, light);
       font-size: 24px;
@@ -332,7 +335,7 @@ mcm-header{
 
 section{
    &.padding{
-      margin: $global-base-padding;
+      margin: $global-base-plus-padding $global-base-padding $global-base-padding;
       & ~ section.padding{
          margin-top: $global-medium-padding*2;
       }
@@ -364,16 +367,15 @@ section{
    }
 
    &.center{
-      .title{
+      .title.main{
          text-align: center;
-         margin-bottom: $global-base-padding;
       }
    }
 
-   .title{
+   .title.main{
+      margin-bottom: $global-base-padding!important;
       font-size: 16px!important;
    }
-
 }
 
 
@@ -530,7 +532,7 @@ button{
       height: $fab-size;
    }
    &.button-small{
-      height: 30px;
+      height: 34px;
    }
    &.button-large{
       height: $size-large;
@@ -538,6 +540,11 @@ button{
       .button-inner{
          font-size: large;
       }
+   }
+
+   &[auto]{
+      display: block;
+      margin-inline: auto;
    }
 
    //  Properties

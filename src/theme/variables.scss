@@ -26,29 +26,29 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:           #0076A8,
-  primary-tint:      #F5F9FA,
-  primary-darker:    #035f87,
-  secondary:         #f3b100,
-  secondary-dark:    #D9A000,
-  danger:            #F35800,
-  error:             #E62B25,
-  success:           #08BB27,
-  light:             #ffffff,
-  dark:              #222222,
-  dark-grey:         #444444,
-  greygrey:          #808080,
-  grey:              #a6a6a6,
-  mid-grey:          #b2b2b2,
-  light-grey-shade:  #D9D9D9,
-  light-grey:        #e5e5e5,
-  light-grey-tint:   #F2F2F2,
-  saved:             #7D3FD4,
+   primary:           #0076A8,
+   primary-tint:      #F5F9FA,
+   primary-darker:    #035f87,
+   secondary:         #f3b100,
+   secondary-dark:    #D9A000,
+   danger:            #F35800,
+   error:             #E62B25,
+   success:           #08BB27,
+   light:             #ffffff,
+   dark:              #222222,
+   dark-grey:         #444444,
+   greygrey:          #808080,
+   grey:              #a6a6a6,
+   mid-grey:          #b2b2b2,
+   light-grey-shade:  #D9D9D9,
+   light-grey:        #e5e5e5,
+   light-grey-tint:   #F2F2F2,
+   saved:             #7D3FD4,
 
-  fab-color-1:       #034562,
-  fab-color-2:       #036D99,
-  fab-color-3:       #1595C1,
-  fab-color-4:       #29B0E5
+   fab-color-1:       #034562,
+   fab-color-2:       #036D99,
+   fab-color-3:       #1595C1,
+   fab-color-4:       #29B0E5
 );
 
 
@@ -132,17 +132,17 @@ $border-radius-basic: 12px;
 $size-large: 56px;
 
 $tabs:(
-    home browse downloads create
+   home browse downloads create
 );
 
 // Task Rating System
 
 $ratings:(
-    perfect: color($colors, success),
-    good: color($colors, secondary),
-    failed: color($colors, danger),
-    skipped: color($colors, grey),
-    saved: color($colors, saved),
+   perfect: color($colors, success),
+   good: color($colors, secondary),
+   failed: color($colors, danger),
+   skipped: color($colors, grey),
+   saved: color($colors, saved),
 );
 
 
@@ -153,125 +153,125 @@ $ratings:(
 //  Look & Feel
 
 @mixin border-radius($radius) {
-      border-radius: $radius;
+   border-radius: $radius;
 }
 
 @mixin shadow-hard() {
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+   box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
 }
 
 @mixin shadow-hard() {
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+   box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
 }
 
 @mixin box-shadow($opacity) {
-  box-shadow: 0 0 6px 0 rgba(0,0,0,$opacity);
+   box-shadow: 0 0 6px 0 rgba(0,0,0,$opacity);
 }
 
 @mixin border($width, $style, $color) {
-    border: $width $style $color;
+   border: $width $style $color;
 }
 
 @mixin transition($property, $duration, $type) {
-    transition: $property $duration $type;
+   transition: $property $duration $type;
 }
 
 @mixin transition-basic() {
-    transition: all 0.3s ease-in-out;
+   transition: all 0.3s ease-in-out;
 }
 @mixin transition-fast() {
-    transition: all 0.15s ease-in-out;
+   transition: all 0.15s ease-in-out;
 }
 
 
 //  Size & Position
 
 @mixin size($width, $height: null) {
-    @if $height {
-        width: $width;
-        height: $height;
-    } @else {
-        width: $width;
-        height: $width;
-    }
+   @if $height {
+      width: $width;
+      height: $height;
+   } @else {
+      width: $width;
+      height: $width;
+   }
 }
 
 
 .middle-absolute, %middle-absolute {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
 }
 @mixin middle-absolute-v() {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
 }
 @mixin middle-absolute-h() {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
 }
 
 @mixin transform($property) {
-  -webkit-transform: $property;
-  -moz-transform: $property;
-  -ms-transform: $property;
-  transform: $property;
+   -webkit-transform: $property;
+   -moz-transform: $property;
+   -ms-transform: $property;
+   transform: $property;
 }
 
 @mixin on-circle($item-count, $circle-size, $item-size) {
-    position: relative;
-    width:  $circle-size;
-    height: $circle-size;
-    padding: 0;
-    border-radius: 50%;
-    list-style: none;
+   position: relative;
+   width:  $circle-size;
+   height: $circle-size;
+   padding: 0;
+   border-radius: 50%;
+   list-style: none;
 
-    > * {
-        display: block;
-        position: absolute;
-        top:  50%;
-        left: 50%;
-        width:  $item-size;
-        height: $item-size;
-        margin: -($item-size / 2);
+   > * {
+      display: block;
+      position: absolute;
+      top:  50%;
+      left: 50%;
+      width:  $item-size;
+      height: $item-size;
+      margin: -($item-size / 2);
 
-        $angle: (360 / $item-count);
-        $rot: 0;
+      $angle: (360 / $item-count);
+      $rot: 0;
 
-        @for $i from 1 through $item-count {
-            &:nth-of-type(#{$i}) {
-                transform:
-                    rotate($rot * 1deg)
-                    translate($circle-size / 2)
-                    rotate($rot * -1deg);
-            }
+      @for $i from 1 through $item-count {
+         &:nth-of-type(#{$i}) {
+            transform:
+               rotate($rot * 1deg)
+               translate($circle-size / 2)
+               rotate($rot * -1deg);
+         }
 
-            $rot: $rot + $angle;
-        }
-    }
+         $rot: $rot + $angle;
+      }
+   }
 }
 
 @mixin line-clamp($fontSize, $lineHeight, $maxLines) {
-    display: block;
-    display: -webkit-box;
-    overflow: hidden;
-    max-height: $fontSize * $lineHeight * $maxLines;
-    text-overflow: ellipsis;
-    font-size: $fontSize;
-    line-height: $lineHeight;
-    white-space: initial;
-    -webkit-box-orient: vertical;
-    /* autoprefixer: off */
-    -webkit-line-clamp: $maxLines;
+   display: block;
+   display: -webkit-box;
+   overflow: hidden;
+   max-height: $fontSize * $lineHeight * $maxLines;
+   text-overflow: ellipsis;
+   font-size: $fontSize;
+   line-height: $lineHeight;
+   white-space: initial;
+   -webkit-box-orient: vertical;
+   /* autoprefixer: off */
+   -webkit-line-clamp: $maxLines;
 }
 
 
 @mixin ios-scroll-fix(){
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+   -webkit-transform: translate3d(0, 0, 0);
 }
 
 
@@ -286,21 +286,22 @@ $ratings:(
 
 $narrative: pirates;
 
-$c-primary:        #AA2000;
-$c-secondary:      #9D7A5E;
-$c-secondary-dark: #7F6858;
-$c-yellow:         #FFC033;
-$c-success:        #33CC00;
-$c-blue:           #32A4DC;
-$c-danger:         #333333;
-$c-light:          #ffffff;
-$c-text:          $c-danger;
+$c-primary:          #AA2000;
+$c-secondary:        #9D7A5E;
+$c-secondary-shade:  #82634E;
+$c-secondary-dark:   #7F6858;
+$c-yellow:           #FFC033;
+$c-success:          #33CC00;
+$c-blue:             #32A4DC;
+$c-danger:           #333333;
+$c-light:            #ffffff;
+$c-text:             $c-danger;
 
 $fab: (
-    color-1:    #4D2117,
-    color-2:    $c-primary,
-    color-3:    #D9634C,
-    color-4:    #FF8C73
+   color-1:    #4D2117,
+   color-2:    $c-primary,
+   color-3:    #D9634C,
+   color-4:    #FF8C73
 );
 
 
@@ -308,27 +309,30 @@ $image-path: "../assets/images/";
 $icon-path: "../assets/icons/";
 
 @mixin shadow-medium() {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+@mixin shadow-medium-inner() {
+   box-shadow: inset 2px 2px 6px -1px rgba(0, 0, 0, 0.5);
 }
 @mixin shadow-filter-medium() {
-    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
 }
 @mixin shadow-filter-hard() {
-    filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
+   filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.5));
 }
 
 @mixin texture-wood($rotate: false, $dark: false) {
-    background: url("#{$image-path}#{$narrative}/texture-wood.svg") $c-secondary;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    @if $rotate{
-        background-image: url("#{$image-path}#{$narrative}/texture-wood-v.svg");
-    }
-    @if $dark{
-        background-image: url("#{$image-path}#{$narrative}/texture-wood-dark.svg");
-        background-color: $c-secondary-dark;
-    }
+   background: url("#{$image-path}#{$narrative}/texture-wood.svg") $c-secondary;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   @if $rotate{
+      background-image: url("#{$image-path}#{$narrative}/texture-wood-v.svg");
+   }
+   @if $dark{
+      background-image: url("#{$image-path}#{$narrative}/texture-wood-dark.svg");
+      background-color: $c-secondary-dark;
+   }
 }
 
 
@@ -336,553 +340,595 @@ $icon-path: "../assets/icons/";
 // OUTSIDE ROUTE Routes List & Preview / Detail
 
 .image-box{
-    .image-container{
-        &.#{$narrative}{
-            .indicator{
-                &:before, &:after{
-                    content: url("#{$image-path}#{$narrative}/indicator-label-deco.svg");
-                    margin: 5px 5px 0;
-                    width: 16px;
-                }
+   .image-container{
+      &.#{$narrative}{
+         .indicator{
+            &:before, &:after{
+               content: url("#{$image-path}#{$narrative}/indicator-label-deco.svg");
+               margin: 5px 5px 0;
+               width: 16px;
             }
+         }
 
-        }
-    }
+      }
+   }
 }
 
 
 .#{$narrative} {
 
-    .label{
-        color: $c-text;
-        font-family: 'CaveatBrush', Arail, sans-serif;
-        text-transform: capitalize;
-        letter-spacing: 0;
-        font-size: 130%;
-    }
+   .label{
+      color: $c-text;
+      font-family: 'CaveatBrush', Arail, sans-serif;
+      letter-spacing: 0;
+      font-size: 130% !important;
+   }
 
-    h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
-        font-family: 'Pangolin', Arial, sans-serif;
-    }
+   h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
+      font-family: 'Pangolin', Arial, sans-serif;
+   }
 
-    h1{
-        font-family: 'CaveatBrush', Arail, sans-serif!important;
-        letter-spacing: 0;
-        text-transform: none;
-        line-height: 1;
-        font-size: 150%;
-    }
-    h2{
-        font-family: 'CaveatBrush', Arail, sans-serif!important;
-        letter-spacing: 0;
-        text-transform: none;
-        line-height: 1;
-        font-size: 150%;
-    }
+   h1{
+      font-family: 'CaveatBrush', Arail, sans-serif!important;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1;
+      font-size: 150%;
+   }
+   h2{
+      font-family: 'CaveatBrush', Arail, sans-serif!important;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1;
+      font-size: 150%;
+   }
 
-    h3{
-        font-family: 'CaveatBrush', Arail, sans-serif!important;
-        font-size: 18px;
-    }
+   h3{
+      font-family: 'CaveatBrush', Arail, sans-serif!important;
+      font-size: 18px;
+   }
 
-    .button, button{
-        &.button-round-ios.button-small-ios,
-        &.button-round-md.button-small-md,
-        &.fab{
+   .button, button{
+      &.button-round-ios.button-small-ios,
+      &.button-round-md.button-small-md,
+      &.fab{
+         font-family: 'CaveatBrush', Arial, sans-serif;
+         span{
             font-family: 'CaveatBrush', Arial, sans-serif;
-            span{
-                font-family: 'CaveatBrush', Arial, sans-serif;
-                font-size: 130%;
+            font-size: 130%;
+         }
+      }
+   }
+
+
+   // Main UI (Navigation, Form)
+
+   ion-header{
+      &:not([transparent]){
+         ion-toolbar {
+            .toolbar-background {
+               @include texture-wood();
+               background-position: bottom;
             }
-        }
-    }
-
-
-    // Main UI (Navigation, Form)
-
-    ion-header{
-        @include texture-wood();
-        background-position: bottom;
-    }
-    ion-toolbar {
-        .toolbar-background {
-            @include texture-wood();
-            background-position: bottom;
-        }
-        .toolbar-title{
-            font-family: 'CaveatBrush', Arail, sans-serif;
-            font-size: 200%;
-        }
-    }
-
-    .item-input{
-        .item-inner{
-            border-bottom: none!important;
-            box-shadow: none;
-        }
-    }
-
-    .item.item-input, .item.item-checkbox:not(:last-of-type){
-        .input-wrapper{
-            &:after {
-                pointer-events: none;
-                content: url("#{$image-path}#{$narrative}/border-input.svg");
-                position: absolute;
-                bottom: -7px;
-                left: 0;
-                right: 0;
-                display: block;
-                width: 100%;
+            .toolbar-title{
+               font-family: 'CaveatBrush', Arail, sans-serif;
+               font-size: 200%;
             }
-        }
-    }
+         }
+      }
+   }
 
-    .checkbox-md, .checkbox-ios{
-        .checkbox-icon{
-            border-color: $c-danger;
-            background-color: transparent;
-        }
-        .checkbox-checked{
-            border-color: #aa1f00;
-            background-color: #aa1f00;
-        }
-    }
+   .item-input{
+      .item-inner{
+         border-bottom: none!important;
+         box-shadow: none;
+      }
+   }
 
-    button{
-        &.button, &.fab{
-            &:not(.button-clear){
-                background-color: $c-primary;
+   .item.item-input, .item.item-checkbox:not(:last-of-type){
+      .input-wrapper{
+         &:after {
+            pointer-events: none;
+            content: url("#{$image-path}#{$narrative}/border-input.svg");
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            right: 0;
+            display: block;
+            width: 100%;
+         }
+      }
+   }
+
+   .checkbox-md, .checkbox-ios{
+      .checkbox-icon{
+         border-color: $c-danger;
+         background-color: transparent;
+      }
+      .checkbox-checked{
+         border-color: #aa1f00;
+         background-color: #aa1f00;
+      }
+   }
+
+   button{
+      &.button, &.fab{
+         &:not(.button-clear){
+            &:not([disabled]){
+               background-color: $c-primary;
             }
-            &[color="primary"]{
-                background-color: $c-primary;
-                &[disabled]{
-                    background-color: inherit;
-                }
+         }
+         &[color="primary"]{
+            &:not([disabled]){
+               background-color: $c-primary;
             }
-            &[color="danger"]{
-                background-color: $c-danger;
+         }
+         &[color="danger"]{
+            &:not([disabled]){
+               background-color: $c-danger;
             }
-            @for $i from 1 through 4 {
-                &[class*="fab-color-#{$i}"]{
-                    background-color: color($fab, color-#{$i});;
-                }
+         }
+         @for $i from 1 through 4 {
+            &[class*="fab-color-#{$i}"]{
+               background-color: color($fab, color-#{$i});;
             }
-        }
-    }
+         }
+      }
+   }
 
 
-    // Map
+   // Map
 
-    page-tasks-map{
-        .mapboxgl-map{
-            //filter: grayscale(0.2) brightness(0.9) sepia(0.4);
-            filter: sepia(0.4) contrast(0.75) brightness(1.2);
-        }
-        .detail-box{
-            &#details{
-                padding-top: 20px;
-                box-shadow: unset;
-                filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
-                background-color: unset;
-                background-image: url("#{$image-path}#{$narrative}/texture-paper-sheet.svg");
-                background-repeat: no-repeat;
-                background-position: center top;
-                background-size: 105%;
-                .image-container{
-                    border: none;
-                    &:after{
-                        content: url("#{$image-path}#{$narrative}/image-frame.svg");
-                        position: absolute;
-                        top: -#{$global-small-padding/2};
-                        left: -#{$global-small-padding/2};
-                        width: calc(100% + #{$global-small-padding});
-                        height: calc(100% + #{$global-small-padding});
-                    }
-                }
-                .title{
-                    & > span{
-                        color: $c-text;
-                    }
-                }
+   page-tasks-map{
+      .mapboxgl-map{
+         //filter: grayscale(0.2) brightness(0.9) sepia(0.4);
+         filter: sepia(0.4) contrast(0.75) brightness(1.2);
+      }
+      .detail-box{
+         &#details{
+            padding-top: 20px;
+            box-shadow: unset;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+            background-color: unset;
+            background-image: url("#{$image-path}#{$narrative}/texture-paper-sheet.svg");
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: 105%;
+            .image-container{
+               border: none;
+               &:after{
+                  content: url("#{$image-path}#{$narrative}/image-frame.svg");
+                  position: absolute;
+                  top: -#{$global-small-padding/2};
+                  left: -#{$global-small-padding/2};
+                  width: calc(100% + #{$global-small-padding});
+                  height: calc(100% + #{$global-small-padding});
+               }
             }
-            &#ranking {
-                @include texture-wood($dark: true);
-                @include shadow-medium;
-                background-repeat: no-repeat;
-                background-position: bottom;
-                background-size: cover;
-                .col {
-                    ion-label{
-                        color: $c-light;
-                    }
-                    .icon{
-                        filter: brightness(100);
-                    }
-                }
+            .title{
+               & > span{
+                  color: $c-text;
+               }
             }
-        }
-
-        .marker-cluster-small{
-            border-color: $c-primary;
-            div{
-                border-color: $c-primary;
-                background-color: $c-primary;
-                span{
-                    font-family: 'CaveatBrush', Arail, sans-serif;
-                    font-size: 200%;
-                    line-height: 24px;
-                }
-            }
-        }
-        .marker-cluster-medium, .marker-cluster-large{
-            border-color: $c-primary;
-            div{
-                border-color: $c-primary;
-                background-color: $c-primary;
-                span{
-                    font-family: 'CaveatBrush', Arail, sans-serif;
-                    font-size: 200%;
-                    line-height: 24px;
-                }
-            }
-        }
-    }
-
-    .table{
-        .row{
-            position: relative;
-            border: none;
-            padding: 0;
-            margin: 0;
-            &:not(:last-child){
-                &.session, &.finish{
-                    border: none;
-                    &:after{
-                        content: url("../assets/images/#{$narrative}/border-list-dark.svg");
-                        pointer-events: none;
-                        position: absolute;
-                        bottom: -8px;
-                        left: 0;
-                        right: 0;
-                        display: block;
-                        width: 100%;
-                    }
-                }
-                &.finish{
-                    &:after{
-                        content: url("../assets/images/#{$narrative}/border-input.svg");
-                    }
-                }
-            }
-        }
-    }
-
-    .score{
-        padding: 0;
-        &:after{
-            content: url("#{$image-path}#{$narrative}/unit-score.svg");
-            margin-left: 6px;
-            margin-top: 2px;
-            /*@include shadow-filter-hard();*/
-        }
-    }
-
-    // Task
-
-    page-task-detail{
-        .task-content{
-            .transition {
-                background: linear-gradient(to top, $c-blue 60%, rgba(255, 255, 255, 0) 96%);
-            }
-            background: url("#{$image-path}#{$narrative}/texture-water.svg"), linear-gradient(to bottom, rgba(50, 164, 220, 0) 50px, rgba(50, 164, 220, 1) 51px);
+         }
+         &#ranking {
+            @include texture-wood($dark: true);
+            @include shadow-medium;
             background-repeat: no-repeat;
             background-position: bottom;
             background-size: cover;
-            .card{
-                .head{
-                    .score{
-                        height: unset;
-                        background-color: unset;
-                        border: none;
-                        box-shadow: none;
-                        padding: 0;
-                        color: $c-text;
-                        &:after {
-                            content: url("#{$image-path}#{$narrative}/unit-score-l.svg");
-                        }
-                    }
-                }
-                &.task{
-                    &:before{
-                        content: url("#{$image-path}#{$narrative}/texture-paper-scroll-start.svg");
-                        position: absolute;
-                        left: 0;
-                        top: -30px;
-                        display: block;
-                        width: 100%;
-                    }
-                    /*@include shadow-filter-medium;*/
-                    box-shadow: unset;
-                    background-image: url("#{$image-path}#{$narrative}/texture-paper-scroll.png");
-                    background-repeat: no-repeat;
-                    background-position: bottom;
-                    background-size: 100% 100%;
-                    background-color: unset;
-                    padding: 30px 30px 40px;
-                    margin-left: 10px;
-                    margin-right: 10px;
-                    .answer{
-                        .item{
-                            background-color: unset;
-                        }
-                    }
-                }
-                .on-the-edge-container{
-                    bottom: -10px;
-                }
-
-
-                &.evaluation{
-                    .head{
-                        .label, .score{
-                            font-family: 'CaveatBrush', Arail, sans-serif;
-                            text-transform: none;
-                            letter-spacing: 0;
-                            font-size: 150%;
-                            /*@include shadow-filter-hard;*/
-                        }
-                        .score{
-                            color: $c-light;
-                            &:after {
-                                filter: none;
-                            }
-                        }
-                    }
-                    padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
-                    border-radius: 0;
-                    $rating: perfect good failed;
-
-                    @each $item in $rating {
-                        &[class*="#{$item}"] {
-                            background: url("#{$image-path}#{$narrative}/texture-evaluation-#{$item}.svg");
-                            background-repeat: no-repeat;
-                            background-position: bottom;
-                            background-size: 100%;
-                            box-shadow: none;
-                            margin-top: -50px;
-                        }
-                    }
-                }
-
-                &.subtasks {
-                    padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
-                    border-radius: 0;
-                }
-
-                &.secondary {
-                    @include texture-wood($dark: true);
-                    @include shadow-medium;
-                    border: none;
-                    p, .label {
-                        color: $c-light;
-                    }
-                }
+            .col {
+               ion-label{
+                  color: $c-light;
+               }
+               .icon{
+                  filter: brightness(100);
+               }
             }
-        }
-    }
+         }
+      }
 
-    page-chat {
-        .message-wrap {
-            .message {
-                &.right {
-                    .msg-content{
-                        background-color: $c-primary;
-                    }
-                }
+      .marker-cluster-small{
+         border-color: $c-primary;
+         div{
+            border-color: $c-primary;
+            background-color: $c-primary;
+            span{
+               font-family: 'CaveatBrush', Arail, sans-serif;
+               font-size: 200%;
+               line-height: 24px;
             }
-        }
-    }
+         }
+      }
+      .marker-cluster-medium, .marker-cluster-large{
+         border-color: $c-primary;
+         div{
+            border-color: $c-primary;
+            background-color: $c-primary;
+            span{
+               font-family: 'CaveatBrush', Arail, sans-serif;
+               font-size: 200%;
+               line-height: 24px;
+            }
+         }
+      }
+   }
 
-    .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
-        background-image: url("#{$image-path}#{$narrative}/texture-paper-sheet.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 100% 100%;
-        background-color: unset;
-        box-shadow: none;
-        .modal-content{
-            .dotted-border-bottom{
-                border-bottom: none!important;
-                position: relative;
-                &:not(:last-of-type):after{
-                    content: url("../assets/images/#{$narrative}/border-list.svg");
-                    pointer-events: none;
-                    position: absolute;
-                    bottom: -5px;
-                    left: 0;
-                    right: 0;
-                    display: block;
-                    width: 100%;
-                }
+   .table{
+      .row{
+         position: relative;
+         border: none;
+         padding: 0;
+         margin: 0;
+         &:not(:last-child){
+            &.session, &.finish{
+               border: none;
+               &:after{
+                  content: url("../assets/images/#{$narrative}/border-list-dark.svg");
+                  pointer-events: none;
+                  position: absolute;
+                  bottom: -8px;
+                  left: 0;
+                  right: 0;
+                  display: block;
+                  width: 100%;
+               }
             }
-            & > h2{
-                /*@include shadow-filter-hard;*/
-                letter-spacing: 0;
-                text-transform: none;
-                font-size: 180%;
+            &.finish{
+               &:after{
+                  content: url("../assets/images/#{$narrative}/border-input.svg");
+               }
             }
-            .score{
-                &:after{
-                    content: url("#{$image-path}#{$narrative}/unit-score-l.svg");
-                    filter: none;
-                }
+         }
+      }
+   }
+
+   .score{
+      padding: 0;
+      &:after{
+         content: url("#{$image-path}#{$narrative}/unit-score.svg");
+         margin-left: 6px;
+         margin-top: 2px;
+         /*@include shadow-filter-hard();*/
+      }
+   }
+
+   // Task
+
+   page-task-detail{
+      .task-header{
+         .image{
+            filter: grayscale(1) contrast(1.6) brightness(1.2) opacity(0.8);
+         }
+      }
+      .task-content{
+         padding-top: 40px;
+         &:after{
+            @include texture-wood();
+            background-repeat: repeat;
+            background-position: center;
+            background-size: contain;
+         }
+         section{
+            &.actions{
+               box-shadow: unset;
+               background-image: url("#{$image-path}#{$narrative}/texture-paper-sheet.png");
+               background-repeat: no-repeat;
+               background-position: bottom;
+               background-size: 100% 100%;
+               background-color: unset;
+               margin-inline: $global-base-padding;
+               padding-block: $global-small-padding;
+               & > .card{
+                  margin: 0;
+                  background-color: transparent;
+                  box-shadow: none;
+                  &.support{
+                     padding-top: $global-small-padding;
+                  }
+               }
             }
-        }
-        .alert-title {
+         }
+
+         .card{
+            .head{
+               .score{
+                  height: unset;
+                  background-color: unset;
+                  border: none;
+                  box-shadow: none;
+                  padding: 0;
+                  color: $c-text;
+                  &:after {
+                     content: url("#{$image-path}#{$narrative}/unit-score-l.svg");
+                  }
+               }
+            }
+            &.task{
+               box-shadow: unset;
+               background-image: url("#{$image-path}#{$narrative}/texture-paper-scroll.png");
+               background-repeat: no-repeat;
+               background-position: bottom;
+               background-size: 100% 100%;
+               background-color: unset;
+               padding: 30px 30px 40px;
+               margin-left: 10px;
+               margin-right: 10px;
+               &:before{
+                  content: url("#{$image-path}#{$narrative}/texture-paper-scroll-start.svg");
+                  position: absolute;
+                  left: 0;
+                  top: -30px;
+                  display: block;
+                  width: 100%;
+               }
+               & > *{
+                  color: color($colors, dark) !important;
+               }
+               .title {
+                  color: color($colors, dark) !important;
+               }
+            }
+
+            &.answer{
+               &:before{
+                  content: none;
+               }
+               .item{
+                  background-color: unset;
+                  &.item-input{
+                     ion-input{
+                        border: none!important;
+                        background-color: transparent;
+                     }
+                  }
+               }
+            }
+
+
+            &.evaluation{
+               .head{
+                  .label, .score{
+                     font-family: 'CaveatBrush', Arail, sans-serif;
+                     letter-spacing: 0;
+                     font-size: 150%;
+                     /*@include shadow-filter-hard;*/
+                  }
+                  .score{
+                     color: $c-light;
+                     &:after {
+                        filter: none;
+                     }
+                  }
+               }
+               padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
+               border-radius: 0;
+               $rating: perfect good failed;
+
+               @each $item in $rating {
+                  &[class*="#{$item}"] {
+                     background: url("#{$image-path}#{$narrative}/texture-evaluation-#{$item}.svg");
+                     background-repeat: no-repeat;
+                     background-position: bottom;
+                     background-size: 100%;
+                     box-shadow: none;
+                     margin-top: -50px;
+                  }
+               }
+            }
+
+            &.subtasks {
+               padding: 35px $global-large-padding*0.6 $global-large-padding*0.6;
+               border-radius: 0;
+            }
+
+            &.secondary {
+               background-color: $c-secondary-shade;
+               @include shadow-medium-inner;
+               border: none;
+               p, .label {
+                  color: $c-light;
+               }
+               &  > *{
+                  filter: brightness(2);
+               }
+            }
+         }
+      }
+   }
+
+   page-chat {
+      .message-wrap {
+         .message {
+            &.right {
+               .msg-content{
+                  background-color: $c-primary;
+               }
+            }
+         }
+      }
+   }
+
+   .modal.card, &.alert-md .alert-wrapper, &.alert-ios .alert-wrapper{
+      background-image: url("#{$image-path}#{$narrative}/texture-paper-sheet.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      background-color: unset;
+      box-shadow: none;
+      .modal-content{
+         .dotted-border-bottom{
+            border-bottom: none!important;
+            position: relative;
+            &:not(:last-of-type):after{
+               content: url("../assets/images/#{$narrative}/border-list.svg");
+               pointer-events: none;
+               position: absolute;
+               bottom: -5px;
+               left: 0;
+               right: 0;
+               display: block;
+               width: 100%;
+            }
+         }
+         & > h2{
+            /*@include shadow-filter-hard;*/
+            letter-spacing: 0;
+            text-transform: none;
             font-size: 180%;
-        }
-        .alert-message{
-            margin-top: $global-base-padding;
-        }
-        .alert-button{
-            color: $c-primary;
+         }
+         .score{
+            &:after{
+               content: url("#{$image-path}#{$narrative}/unit-score-l.svg");
+               filter: none;
+            }
+         }
+      }
+      .alert-title {
+         font-size: 180%;
+      }
+      .alert-message{
+         margin-top: $global-base-padding;
+      }
+      .alert-button{
+         color: $c-primary;
+         border: none;
+         &.activated{
+            background-color: transparent;
+         }
+      }
+
+      &.icon{
+         padding-top: $global-large-padding!important;
+         margin-top: calc(14vw + 20px);
+         .modal-content{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+         }
+         img.head-icon{
+            position: relative;
+            top: 0;
+            right: unset;
+            transform: none;
             border: none;
-            &.activated{
-                background-color: transparent;
-            }
-        }
+            border-radius: 0;
+            width: 44vw;
+            background-color: transparent;
+            margin: $global-base-padding auto;
+         }
+         h2, p{
+            //color: $c-light!important;
+            margin-bottom: 10px;
+         }
+         h2{
+            color: $c-primary;
+            order: -1;
+            font-size: 250%;
+         }
+      }
 
-        &.icon{
-            padding-top: $global-large-padding!important;
-            margin-top: calc(14vw + 20px);
-            .modal-content{
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-            }
-            img.head-icon{
-                position: relative;
-                top: 0;
-                right: unset;
-                transform: none;
-                border: none;
-                border-radius: 0;
-                width: 44vw;
-                background-color: transparent;
-                margin: $global-base-padding auto;
-            }
-            h2, p{
-                //color: $c-light!important;
-                margin-bottom: 10px;
-            }
-            h2{
-                color: $c-primary;
-                order: -1;
-                font-size: 250%;
-            }
-        }
-
-        &.intro{
-            img.head-icon{
-                border-radius: 0;
-                width: 45vw;
-            }
-        }
+      &.intro{
+         img.head-icon{
+            border-radius: 0;
+            width: 45vw;
+         }
+      }
 
 
-        &.hint{
-            .highlight{
-                color: $c-primary;
+      &.hint{
+         .highlight{
+            color: $c-primary;
+         }
+      }
+      &.perfect{
+         .highlight{
+            color: $c-success;
+         }
+         h2{
+            color: $c-success;
+         }
+         button{
+            background-color: $c-success;
+         }
+      }
+      &.good{
+         .highlight{
+            color: $c-yellow;
+         }
+         button{
+            background-color:$c-yellow;
+         }
+      }
+      &.failed{
+         .highlight{
+            color: $c-danger;
+         }
+         h2{
+            color: $c-danger;
+         }
+         button{
+            background-color: $c-danger;
+         }
+      }
+      &.task-select{
+         h2{
+            margin: 0 0 $global-base-padding;
+         }
+         p{
+            margin-bottom: 15px;
+         }
+         .dotted-border-bottom{
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            span{
+               &.perfect, &.good, &.failed, &.skipped{
+                  &:before{
+                     top: 40%;
+                     transform: translateY(-50%);
+                     @include shadow-filter-hard;
+                  }
+               }
+               &.perfect {
+                  &:before {
+                     background-color: $c-success;
+                  }
+               }
+               &.good {
+                  &:before {
+                     background-color: $c-yellow;
+                  }
+               }
+               &.failed {
+                  &:before {
+                     background-color: $c-danger;
+                  }
+               }
+               &.skipped{
+                  background-color: #B2B2B2;
+               }
             }
-        }
-        &.perfect{
-            .highlight{
-                color: $c-success;
-            }
-            h2{
-                color: $c-success;
-            }
-            button{
-                background-color: $c-success;
-            }
-        }
-        &.good{
-            .highlight{
-                color: $c-yellow;
-            }
-            button{
-                background-color:$c-yellow;
-            }
-        }
-        &.failed{
-            .highlight{
-                color: $c-danger;
-            }
-            h2{
-                color: $c-danger;
-            }
-            button{
-                background-color: $c-danger;
-            }
-        }
-        &.task-select{
-            h2{
-                margin: 0 0 $global-base-padding;
-            }
-            p{
-                margin-bottom: 15px;
-            }
-            .dotted-border-bottom{
-                padding-bottom: 10px;
-                margin-bottom: 10px;
-                span{
-                    &.perfect, &.good, &.failed, &.skipped{
-                        &:before{
-                            top: 40%;
-                            transform: translateY(-50%);
-                            @include shadow-filter-hard;
-                        }
-                    }
-                    &.perfect {
-                        &:before {
-                            background-color: $c-success;
-                        }
-                    }
-                    &.good {
-                        &:before {
-                            background-color: $c-yellow;
-                        }
-                    }
-                    &.failed {
-                        &:before {
-                            background-color: $c-danger;
-                        }
-                    }
-                    &.skipped{
-                        background-color: #B2B2B2;
-                    }
-                }
-            }
-        }
-    }
+         }
+      }
+   }
 
 
-    @media screen and (min-width: 768px) {
-        page-tasks-map {
-            .detail-box {
-                &#details {
-                    padding-top: $global-base-padding*2;
-                }
+   @media screen and (min-width: 768px) {
+      page-tasks-map {
+         .detail-box {
+            &#details {
+               padding-top: $global-base-padding*2;
             }
-        }
-        page-task-detail {
-            .task-content {
-                padding-top: $size-large;
-                background-color: $c-blue;
-                .transition {
-                    //background: linear-gradient(to left, $c-blue 50%, rgba(255, 255, 255, 0) 100%);
-                }
+         }
+      }
+      page-task-detail {
+         .task-content {
+            padding-top: $size-large;
+            background-color: $c-blue;
+            .transition {
+               //background: linear-gradient(to left, $c-blue 50%, rgba(255, 255, 255, 0) 100%);
             }
-        }
-    }
+         }
+      }
+   }
 }

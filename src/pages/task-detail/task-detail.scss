@@ -23,8 +23,10 @@ page-task-detail, page-task-group-detail {
    //  TOP (Header)
 
    $header-height: 66vh;
-   $header-min-height: 44vh;
+   $header-min-height: calc(100vw + #{$global-base-plus-padding});
    $content-edge: 44px;
+
+   $space-push: 34px;
 
    .task{
       &-header {
@@ -34,13 +36,13 @@ page-task-detail, page-task-group-detail {
          width: 100%;
          top: 0;
          left: 0;
-         min-height: $header-min-height;
-         max-height: 88vh;
+         height: $header-min-height;
 
          img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
          }
 
          &.gps{
@@ -164,9 +166,13 @@ page-task-detail, page-task-group-detail {
 
    .card {
       z-index: 2;
+      &:first-of-type{
+         margin-top: 0;
+      }
 
       &.task {
          background-color: color($colors, primary);
+         margin-top: 0;
 
          & > *{
             color: color($colors, light) !important;
@@ -176,6 +182,17 @@ page-task-detail, page-task-group-detail {
             font-size: 16px;
             white-space: pre-line;
             margin-bottom: -2px;
+         }
+
+         &:has(+ .subtasks){
+            z-index: 2;
+         }
+
+         & ~ .subtasks{
+            z-index: 1;
+            margin: -#{$space-push} $global-base-padding $global-base-padding;
+            padding: $space-push $global-base-padding 4px;
+            background-color: color($colors, primary-tint);
          }
       }
 
@@ -229,17 +246,18 @@ page-task-detail, page-task-group-detail {
       }
 
       &.answer {
-         $space-push: 34px;
 
          &:has(+ .support){
             z-index: 2;
          }
 
          & ~ .support{
-            z-index: 1;
-            margin: -#{$space-push} $global-base-padding $global-base-padding;
-            padding: $space-push $global-base-padding $global-base-padding;
-            background-color: color($colors, primary-tint);
+            &:not(.subtask){
+               z-index: 1;
+               margin: -#{$space-push} $global-base-padding $global-base-padding;
+               padding: $space-push $global-base-padding $global-base-padding;
+               background-color: color($colors, primary-tint);
+            }
          }
       }
 
@@ -289,6 +307,119 @@ page-task-detail, page-task-group-detail {
          }
       }
 
+      &.subtasks {
+         .head{
+            margin-bottom: $global-base-plus-padding;
+            .title{
+               font-size: 16px;
+            }
+            button{
+               flex: auto;
+               flex-grow: 0;
+               flex-shrink: 0;
+            }
+         }
+
+         .accordion {
+            margin-top: $global-base-padding;
+            &:not(:last-of-type){
+               border-bottom: 2px dotted color($colors, light-grey);
+            }
+
+            .accordion{
+               &-head {
+                  display: flex;
+                  align-items: baseline;
+
+                  .rating-container {
+                     flex-grow: 1;
+                     .rating {
+                        margin: 5px 0px 0px 5px;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        @each $rating, $color in $ratings {
+                           &.#{$rating} {
+                              background-color: #{nth($color, 1)};
+                           }
+                        }
+                     }
+                  }
+
+                  .title {
+                     max-width: calc(90% - 15px);
+                     overflow: hidden;
+                     white-space: nowrap;
+                     margin-bottom: $global-base-padding;
+                  }
+
+                  .accordion-arrow {
+                     width: 15px;
+                     transform: rotate(-90deg);
+                     transition: all 0.22s ease-in-out;
+                     margin-top: -7px;
+                  }
+               }
+
+               &-content {
+                  display: flex;
+                  flex-wrap: wrap;
+                  max-height: 0;
+                  overflow: hidden;
+                  transition: max-height 0.3s;
+                  color: color($colors, grey);
+
+                  .description {
+                     flex-basis: 100%;
+                     margin: 0;
+                     &.compact {
+                        width: 55%;
+                     }
+                  }
+                  .subtask-inner-arrow {
+                     width: 12px;
+                     transform: rotate(-90deg);
+                     align-self: flex-end;
+                     margin-bottom: 6px;opacity: 0.66;
+                  }
+                  .answer-container {
+                     flex-basis: 90%;
+                     display: flex;
+                     justify-content: space-between;
+                     box-sizing: border-box;
+                     margin: 0;
+                     padding: 20px 20px 0 0;
+                     white-space: normal;
+                     overflow-wrap: break-word;
+                     @media (max-width: 400px) {
+                        font-size: 10px;
+                     }
+                     .answer {
+                        @each $rating, $color in $ratings {
+                           &.#{$rating} {
+                              color: #{nth($color, 1)};
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+
+
+            &.open {
+               transition: all linear 0.3s;
+               .accordion-content {
+                  max-height: 100%;
+                  padding-bottom: $global-base-padding;
+               }
+               .accordion-arrow {
+                  transform: unset;
+               }
+            }
+         }
+      }
+
+      // INFO, FEEDBACK & SECONDARY
 
       &.secondary {
          background-color: transparent;
@@ -356,94 +487,6 @@ page-task-detail, page-task-group-detail {
             }
          }
       }
-
-      &.subtasks {
-         z-index: 1;
-         margin: -34px $global-base-padding*1.3 $global-base-padding;
-         padding: $global-base-padding*1.5 $global-base-padding*0.7 $global-base-padding*0.7;
-         border-top-right-radius: 0;
-         border-top-left-radius: 0;
-         background: #F5F5F5;
-         .accordion {
-            .accordion_title {
-               display: flex;
-               height: 25px;
-
-               .rating_container {
-                  flex-grow: 1;
-                  .rating {
-                     margin: 5px 0px 0px 5px;
-                     width: 10px;
-                     height: 10px;
-                     border-radius: 50%;
-                     @each $rating, $color in $ratings {
-                        &.#{$rating} {
-                           background-color: #{nth($color, 1)};
-                        }
-                     }
-                  }
-               }
-
-               .task_name {
-                  max-width: calc(90% - 15px);
-                  overflow: hidden;
-                  white-space: nowrap;
-                  height: 1.7em;
-               }
-
-               .accordion_arrow {
-                  width: 15px;
-                  transition: transform 0.5s;
-                  transform: rotate(-90deg);
-                  margin-top: -7px;
-               }
-            }
-
-            .accordion_content {
-               display: flex;
-               color: color($colors, grey);
-               max-height: 0;
-               transition: max-height 0.3s;
-               overflow: hidden;
-
-               .description {
-                  width: 70%;
-                  padding-right: 10px;
-                  &.compact {
-                     width: 55%;
-                  }
-               }
-               .subtask-inner-arrow {
-                  max-width: 10px;
-                  transform: rotate(-90deg);
-               }
-               .answer_container {
-                  text-align: center;
-                  white-space: normal;
-                  overflow-wrap: break-word;
-                  @media (max-width: 400px) {
-                     font-size: 10px;
-                  }
-                  .answer {
-                     @each $rating, $color in $ratings {
-                        &.#{$rating} {
-                           color: #{nth($color, 1)};
-                        }
-                     }
-                  }
-               }
-            }
-
-            &.open {
-               .accordion_content {
-                  max-height: 100%;
-               }
-               .accordion_arrow {
-                  transform: unset;
-               }
-            }
-         }
-      }
    }
 
    .fraction-input-container {
@@ -494,29 +537,23 @@ page-task-detail, page-task-group-detail {
 
 page-task-group-detail {
    .task-content {
-   }
-   .card {
-      z-index: 2;
-      &.task {
-         p {
-            margin-bottom: 4px;
+      .card {
+         z-index: 2;
+
+         &.task {
+            p {
+               margin-bottom: 4px;
+            }
          }
       }
 
-      $space-push: 34px;
-
-      &.task-list{
+      .task-list{
          &-head{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: -#{$space-push};
-            padding-bottom: $space-push;
-            padding-top: 24px;
+            padding-inline: $global-base-padding;
             background-color: color($colors, light-grey-tint);
-            & > *{
-               margin: 0;
-            }
             .count{
                font-family: 'NunitoExtraBold', Arial, sans-serif;
                color: color($colors, dark);
@@ -599,8 +636,6 @@ page-task-group-detail {
          }
          &-evaluation{
             background-color: color($colors, primary);
-            margin: -#{$space-push} $global-base-padding $global-base-padding;
-            padding: $space-push $global-base-padding $global-base-padding;
             .score{
                height: 34px;
                padding: 10px 12px;
@@ -613,9 +648,9 @@ page-task-group-detail {
                }
             }
          }
-      }
-      &.skip{
-         padding: $global-base-padding $global-base-padding 0;
+         &.skip{
+            padding: $global-base-padding $global-base-padding 0;
+         }
       }
    }
 }
