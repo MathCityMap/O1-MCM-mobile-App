@@ -139,7 +139,7 @@ export class Helper {
 
     private activateAddRouteModal: boolean = false;
 
-    constructor(private http: Http, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
+    constructor(private http: HttpClient, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
                 private platform: Platform, private ormService: OrmService, private storage: Storage) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
