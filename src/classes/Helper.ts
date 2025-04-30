@@ -1,17 +1,15 @@
 import * as L from 'leaflet';
-import {LatLng, latLngBounds, LatLngBounds} from 'leaflet';
+import {LatLng, LatLngBounds} from 'leaflet';
 import {checkAvailability} from '@ionic-native/core';
 import {Injectable} from '@angular/core';
-import {Headers, Http, RequestOptions, ResponseContentType} from '@angular/http';
 import {GpsService} from '../services/gps-service';
 import {Network} from '@ionic-native/network';
 import {Platform} from 'ionic-angular';
 import {Route} from '../entity/Route';
 import {OrmService} from "../services/orm-service";
 import {Storage} from "@ionic/storage";
-import {File} from "@ionic-native/file";
 import 'leaflet-geometryutil';
-import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MAPBOX_ACCESS_TOKEN, SERVER_REQUEST_PASS} from "../env/env";
 
 export class MapTile {
@@ -92,21 +90,20 @@ export class Helper {
     /*
     GLOBAL VARS #
      */
-    // static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
-    static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
-    // static readonly MEDIASERVER_BASE_URL: string = "https://matismedia.eu"
-    static readonly MEDIASERVER_BASE_URL: string = "https://sb-medienserver.matismedia.eu"
+    static readonly WEBSERVER_URL: string = "https://mathcitymap.eu/"
+    // static readonly WEBSERVER_URL: string = "https://dev.mathcitymap.eu/"
+    static readonly MEDIASERVER_BASE_URL: string = "https://matismedia.eu"
+    // static readonly MEDIASERVER_BASE_URL: string = "https://sb-medienserver.matismedia.eu"
     static readonly MEDIASERVER_IMAGE_URL: string = Helper.MEDIASERVER_BASE_URL + "/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
     // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
     static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
-    // FIXME HIDE FROM PUBLIC REPO
+    // static readonly API_URL: string = "http://192.168.178.28/mcmmock/db_query_post.php"
     static readonly REQUEST_PASS: string = SERVER_REQUEST_PASS
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"
     // public static ProgressDialog updater_dialog = null
     static readonly mapCode: string = "mapbox.streets"
-    // FIXME HIDE FROM PUBLIC REPO
     static readonly mapquestUrl = `https://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}@2x.png?&tilesize=256&access_token=${MAPBOX_ACCESS_TOKEN}`
     static readonly subDomains = ['a', 'b', 'c', 'd'];
 
@@ -142,7 +139,7 @@ export class Helper {
 
     private activateAddRouteModal: boolean = false;
 
-    constructor(private http: Http, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
+    constructor(private http: HttpClient, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
                 private platform: Platform, private ormService: OrmService, private storage: Storage) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
@@ -262,10 +259,10 @@ export class Helper {
             return new Promise<any>(resolve => resolve())
         }
 
-        let headers = new Headers({
+        let headers = new HttpHeaders({
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         })
-        let options = new RequestOptions({headers: headers});
+        let options = {headers: headers};
         let data = "pass=" + encodeURI(Helper.REQUEST_PASS)
             + "&action=" + encodeURI(queryAction)
         if (postparams) {
@@ -281,17 +278,17 @@ export class Helper {
             }, timeoutInSecs * 1000);
             this.http.post(Helper.API_URL, data, options)
                 .toPromise()
-                .then((response) => {
+                .then((response: any) => {
                     if (timeOutTimer) {
                         clearTimeout(timeOutTimer);
                     } else {
                         return;
                     }
-                    console.log('API response: ', response.text().substr(0, 255))
-                    let resText = response.text()
+                    console.log('API response: ', response);
+                    let resText = JSON.stringify(response);
                     if (resText && resText.length > 0) {
-                        let tableRows = response.json()
-                        resolve(tableRows);
+                        // let tableRows = response
+                        resolve(response);
                     } else {
                         reject('no response from server');
                     }

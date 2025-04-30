@@ -26,7 +26,9 @@ export class HomePage {
     this.platform.ready().then(() => {
         this.languageService.initialize().then(() => {
             console.log('Platform is ready!');
-            (navigator as any).splashscreen.hide();
+            if ((navigator as any).splashscreen) {
+                (navigator as any).splashscreen.hide();
+            }
         });
     });
   }

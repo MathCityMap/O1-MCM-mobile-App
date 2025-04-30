@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {DeepLinker, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
 import { LanguageService } from '../../services/language-service';
 import {Helper} from "../../classes/Helper";
+import {TranslationService} from "../../app/api/services/translation.service";
 
 @IonicPage()
 @Component({
@@ -19,9 +20,19 @@ export class SettingsPage {
 
     developerMode: boolean = false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private translateService: TranslateService,
-                private spinner: SpinnerDialog, private ormService: OrmService, private modalsService: ModalsService,
-                private languageService: LanguageService, private helper: Helper) {
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        private translateService: TranslateService,
+        private spinner: SpinnerDialog,
+        private ormService: OrmService,
+        private modalsService: ModalsService,
+        private languageService: LanguageService,
+        private helper: Helper,
+        protected translationService: TranslationService,
+        public viewCtrl: ViewController,
+        private deepLinker: DeepLinker
+    ) {
         this.availableLanguages = languageService.getAvailableLanguages();
         this.translatedLangs = [];
     }
@@ -60,5 +71,11 @@ export class SettingsPage {
 
     async switchDevMode(){
        await this.helper.setDevMode(this.developerMode+'');
+    }
+
+    goBack() {
+        this.navCtrl.pop({}, () => {
+            this.deepLinker.navChange('back');
+        });
     }
 }

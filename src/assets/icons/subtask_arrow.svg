@@ -1,11 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 12.4 5.8" style="enable-background:new 0 0 12.4 5.8;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;stroke:#B2B2B2;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;}
-</style>
-<g id="Gruppe_1448">
-	<path id="Pfad_127" class="st0" d="M11.7,0.7L6.2,5.1L0.7,0.7"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 13 7.5">
+  <!-- Generator: Adobe Illustrator 29.4.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 152)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #444;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <polyline class="st0" points="12 1 6.5 6.5 1 1"/>
 </svg>

@@ -3,6 +3,48 @@ import { DBC } from './DBC'
 import * as Collections from 'typescript-collections'
 import { checkAvailability } from "@ionic-native/core";
 
+// FIXME: Web fallback doesn't work anymore since google removed support for openDatabase
+//  Below is an ai generated example of how it could look like using @sqlite.org/sqlite-wasm: Note typeorm would also need to be adapted to use the same database storage
+// import initSqlite from '@sqlite.org/sqlite-wasm';
+//
+// class SQLiteWasmOPFSObject {
+//     private db: any;
+//
+//     constructor(db: any) {
+//         this.db = db;
+//     }
+//
+//     async executeSql(statement: string, params: any[] = []): Promise<any[]> {
+//         console.debug('SQL:', statement, params);
+//         const stmt = this.db.prepare(statement);
+//         stmt.bind(params);
+//
+//         const results = [];
+//         while (stmt.step()) {
+//             results.push(stmt.getAsObject());
+//         }
+//         stmt.free();
+//
+//         return results;
+//     }
+// }
+//
+// class SQLiteWasmOPFS {
+//     private dbInstance: SQLiteWasmOPFSObject | null = null;
+//
+//     async create(): Promise<SQLiteWasmOPFSObject> {
+//         if (this.dbInstance) return this.dbInstance;
+//
+//         const sqlite3 = await initSqlite();
+//
+//         // Try to open a persistent OPFS-backed database
+//         const db = await sqlite3.oo1.OpfsDb.open('mcm.sqlite3'); // <- magic happens here
+//
+//         this.dbInstance = new SQLiteWasmOPFSObject(db);
+//         return this.dbInstance;
+//     }
+// }
+
 declare var openDatabase: any;
 
 class WebSQLObject extends SQLiteObject {

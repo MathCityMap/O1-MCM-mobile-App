@@ -7,7 +7,6 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {SQLite} from '@ionic-native/sqlite';
 import {IonicStorageModule} from '@ionic/storage';
 import {DB_Updater} from '../classes/DB_Updater';
-import {HttpModule} from '@angular/http';
 import {File} from '@ionic-native/file';
 import {FileTransfer} from '@ionic-native/file-transfer';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
@@ -73,7 +72,6 @@ import {ZoomService} from "../services/zoom-service";
         CustomKeyBoard
     ],
     imports: [
-        HttpModule,
         HttpClientModule,
         BrowserModule,
         IonicModule.forRoot(MyApp, {

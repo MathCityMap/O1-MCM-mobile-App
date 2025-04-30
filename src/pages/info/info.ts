@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import {DeepLinker, IonicPage, NavController, NavParams, Platform, ViewController} from 'ionic-angular';
 import { AppVersion } from '@ionic-native/app-version';
-
-/**
- * Generated class for the InfoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -17,8 +10,13 @@ import { AppVersion } from '@ionic-native/app-version';
 export class InfoPage {
 
   versionNumber: string = 'unknown';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public appVersion: AppVersion,
-              public platform: Platform) {
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      public appVersion: AppVersion,
+      public platform: Platform,
+      public viewCtrl: ViewController,
+      private deepLinker: DeepLinker) {
 
   }
 
@@ -29,4 +27,9 @@ export class InfoPage {
     }
   }
 
+    goBack() {
+        this.navCtrl.pop({}, () => {
+            this.deepLinker.navChange('back');
+        });
+    }
 }

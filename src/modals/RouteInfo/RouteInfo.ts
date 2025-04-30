@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { AlertController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AlertController, ModalController, NavParams} from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { OrmService } from '../../services/orm-service';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
@@ -7,6 +7,8 @@ import { ModalsService } from '../../services/modals-service';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController } from "ionic-angular/navigation/nav-controller";
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
+import {TranslationService} from "../../app/api/services/translation.service";
+import {TrailTranslation} from "../../app/api/models/trail-translation";
 
 declare var MathJax;
 
@@ -16,11 +18,15 @@ declare var MathJax;
     templateUrl: 'RouteInfo.html',
 })
 export class RouteInfo {
-    private route: Route;
+    protected route: Route;
 
 
-    private totalTasks: number;
+    protected totalTasks: number;
     private currentProgress = 0;
+
+    protected translation: TrailTranslation;
+    protected translationFetched: boolean;
+    protected translatePage: boolean = false;
 
 
     constructor(public navParams: NavParams,
@@ -29,7 +35,9 @@ export class RouteInfo {
                 public alertCtrl: AlertController,
                 public navCtrl: NavController,
                 public translateService: TranslateService,
-                private spinnerDialog: SpinnerDialog) {
+                private spinnerDialog: SpinnerDialog,
+                protected translationService: TranslationService,
+                public modalCtrl: ModalController) {
     }
 
     async ionViewWillEnter() {
@@ -41,6 +49,9 @@ export class RouteInfo {
         let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         MathJax.typeset();
+        let {translation, isFetched} = await this.translationService.getTranslationForRoute(this.route.code);
+        this.translation = translation;
+        this.translationFetched = isFetched;
     }
 
     async doDownload(route: Route) {
@@ -68,5 +79,18 @@ export class RouteInfo {
             'yes', async () => {
                 await this.removeRoute();
             });
+    }
+
+    async toggleTranslation() {
+        if (!this.translation) {
+            let {translation, isFetched} = await this.translationService.getTranslationForRoute(this.route.code, true);
+            this.translation = translation;
+            this.translationFetched = isFetched;
+        }
+        this.translatePage = this.translation && !this.translatePage;
+    }
+
+    closeModal() {
+        this.viewCtrl.dismiss(this.modalCtrl);
     }
 }

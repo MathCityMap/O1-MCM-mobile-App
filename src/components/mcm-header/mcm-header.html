@@ -8,14 +8,14 @@
                 <img class="header-icon" src="assets/icons/back.svg"/>
             </button>
         </ion-buttons>
-        <ion-title>{{ retriveTitle() | translate }}</ion-title>
+        <ion-title>{{ retrieveTitle() | translate }}</ion-title>
         <ion-buttons end>
 <!--           TODO enable translation button in detailed views-->
-           <button ion-button color="light" class="translation">
+           <button *ngIf="showTranslate" ion-button color="light" class="translation" (click)="translateClicked.emit()">
               <img class="icon" src="assets/icons/translation-download.svg"/>
-              <div>Translation</div>
-<!--              <div>Translate</div>-->
-<!--              <div>Translated</div>-->
+              <div *ngIf="!translatePage && !translationFetched">Translation</div>
+              <div *ngIf="!translatePage && translationFetched">Translate</div>
+              <div *ngIf="translatePage">Translated</div>
            </button>
         </ion-buttons>
     </ion-toolbar>

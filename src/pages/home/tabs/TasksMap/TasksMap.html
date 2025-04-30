@@ -1,4 +1,16 @@
-<mcm-header></mcm-header>
+
+<ion-header>
+   <ion-toolbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="goBack()">
+            <img class="header-icon" src="assets/icons/back.svg"/>
+         </button>
+      </ion-buttons>
+      <ion-title *ngIf="route">{{route.title}}</ion-title>
+      <ion-buttons end></ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
 <ion-content class="has-header map tasks">
     <div ion-fixed>
         <div id="tasks-map" class="map-view"></div>

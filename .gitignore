@@ -47,3 +47,6 @@ platforms/android/.gradle
 platforms/ios/Pods/Pods.xcodeproj/xcuserdata
 mathcitymap.keystore
 /src/env/env.ts
+
+/platforms/android/app/src/main/assets/www/
+/platforms/ios/www/

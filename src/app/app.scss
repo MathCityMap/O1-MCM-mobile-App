@@ -119,13 +119,6 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
                height: calc(100% - #{#{$prefix}$root-top});
             }
          }
-
-         // Route Info + Onboarding
-         &.transparent{
-            .scroll-content, .fixed-content {
-               margin-top: 0!important;
-            }
-         }
       }
 
       &.fullscreen{
@@ -147,11 +140,23 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
    }
 
    .footer{
+      display: flex;
       min-height: $size-large;
       min-height: calc(#{$size-large} + #{#{$prefix}$root-bottom});
+      & > *:first-child{
+         flex: 1;
+      }
       .button{
          &[large]{
             padding-bottom: #{$prefix}$root-bottom;
+            contain: unset;
+
+            //&:first-of-type{
+            //   flex: 1;
+            //}
+            &.secondary{
+               flex-basis: 33%;
+            }
          }
       }
       &.input{
@@ -182,10 +187,10 @@ ion-header{
    &:after{
       display: none;
    }
-   .toolbar{
-      padding: 10px;
-      min-height: $size-large;
-      &:not([transparent="true"]){
+   &:not([transparent]){
+      ion-toolbar{
+         padding: 10px;
+         min-height: $size-large;
          box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.2);
          .bar-buttons{
             position: absolute;
@@ -198,10 +203,10 @@ ion-header{
             align-items: flex-end;
             bottom: 0;
             &[left]{
-               left: 0;
+               //left: 0;
             }
             &[end]{
-               right: 0;
+               right: $global-small-padding;
             }
             button{
                width: 100%;
@@ -210,7 +215,24 @@ ion-header{
             }
          }
       }
-      &[transparent="true"]{
+   }
+
+   &[transparent]{
+      .header-icon {
+         width: 16px;
+         height: 16px;
+         pointer-events: none;
+      }
+
+      & ~ ion-content{
+         .scroll-content, .fixed-content {
+            margin-top: 0!important;
+         }
+      }
+      ion-toolbar{
+         .toolbar-background{
+            background-color: transparent;
+         }
          button{
             border-radius: 50px;
             background-color: color($colors, light);
@@ -244,24 +266,22 @@ ion-header{
          }
       }
    }
+
    ion-navbar{
       border: none;
       border-color: transparent;
    }
    .header-icon {
-      width: 30px;
-      height: 30px;
+      width: 24px;
+      height: 24px;
       pointer-events: none;
    }
    .logo-bar{
       display: flex;
    }
-   .title{
+   .toolbar-title{
       text-align: center;
       position: relative;
-      padding: 0;
-   }
-   .toolbar-title{
       font-family: 'NunitoBold', Helvetica, sans-serif;
       color: color($colors, light);
       font-size: 24px;
@@ -315,9 +335,14 @@ mcm-header{
 
 section{
    &.padding{
-      margin: $global-base-padding;
+      margin: $global-base-plus-padding $global-base-padding $global-base-padding;
       & ~ section.padding{
          margin-top: $global-medium-padding*2;
+      }
+      & + section.padding{
+         &:not(:has(.title)){
+            margin-top: $global-base-padding;
+         }
       }
 
       .card{
@@ -325,16 +350,30 @@ section{
          display: block;
          z-index: 2;
       }
-   }
 
-   &.center{
-      .title{
-         text-align: center;
-         margin-bottom: $global-base-padding;
+      &-plus {
+         margin: $global-base-plus-padding;
       }
    }
 
-   .title{
+
+   & > .card{
+         &.primary{
+         background-color: color($colors, primary);
+         ion-label, ion-label > * {
+            color: color($colors, light);
+         }
+      }
+   }
+
+   &.center{
+      .title.main{
+         text-align: center;
+      }
+   }
+
+   .title.main{
+      margin-bottom: $global-base-padding!important;
       font-size: 16px!important;
    }
 }
@@ -347,41 +386,69 @@ section{
 // =============================================
 
 
-.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
-.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
-   box-shadow: none;
-   border-bottom-color: color($colors, light-grey);
-}
-.item-md.item-block .item-inner,
-.item-ios.item-block .item-inner{
-   border-bottom-color: color($colors, light-grey);
-   box-shadow: inset 0 0 0 0 color($colors, grey);
-}
-.item-ios.item-input.item-input-has-focus .item-inner,
-.item-ios.item-input.input-has-focus .item-inner {
-   border-bottom-color: color($colors, primary);
-   box-shadow: inset 0 0 0 0 color($colors, primary);
-}
-.item-ios.item-block .item-inner {
-   border-bottom-width: 1px;
-}
-ion-item{
-   &.item-input{
-      min-height: 0;
+//.item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+//.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner{
+//   box-shadow: none;
+//   border-bottom-color: color($colors, light-grey);
+//}
+//.item-md.item-block .item-inner,
+//.item-ios.item-block .item-inner{
+//   border-bottom-color: color($colors, light-grey);
+//   box-shadow: inset 0 0 0 0 color($colors, grey);
+//}
+//.item-ios.item-input.item-input-has-focus .item-inner,
+//.item-ios.item-input.input-has-focus .item-inner {
+//   border-bottom-color: color($colors, primary);
+//   box-shadow: inset 0 0 0 0 color($colors, primary);
+//}
+//.item-ios.item-block .item-inner {
+//   border-bottom-width: 1px;
+//}
+//ion-item{
+//   &.item-input{
+//      min-height: 0;
+//   }
+//   &.item-ios, &.item-md{
+//      .item-inner{
+//         padding: 0;
+//      }
+//   }
+//   &.item-toggle{
+//      .item-inner{
+//         align-items: flex-start;
+//         padding: 0!important;
+//      }
+//   }
+//   [item-content]{
+//      color: color($colors, dark-grey);
+//   }
+//}
+
+.item-input{
+   margin-top: $global-medium-padding;
+   ion-input{
+      height: 100%;
+      background-color: color($colors, light-grey-tint);
+      margin: 0;
+      border-radius: 8px;
+      min-height: 50px;
+      border: none;
+      padding: $global-small-padding $global-medium-padding;
    }
-   &.item-ios, &.item-md{
-      .item-inner{
-         padding: 0;
-      }
+   .item-inner{
+      box-shadow: none!important;
+      border: none!important;
    }
    &.item-toggle{
       .item-inner{
          align-items: flex-start;
          padding: 0!important;
       }
-   }
-   [item-content]{
-      color: color($colors, dark-grey);
+
+   &.item-input-has-focus, &.input-has-focus{
+      ion-input{
+         border: 2px solid color($colors, primary);
+      }
    }
 }
 
@@ -471,7 +538,7 @@ button{
       height: $fab-size;
    }
    &.button-small{
-      height: 30px;
+      height: 34px;
    }
    &.button-large{
       height: $size-large;
@@ -479,6 +546,11 @@ button{
       .button-inner{
          font-size: large;
       }
+   }
+
+   &[auto]{
+      display: block;
+      margin-inline: auto;
    }
 
    //  Properties
@@ -510,9 +582,10 @@ button{
    &[disabled].button-default,
    &[disabled= true].button-default{
       opacity: 1!important;
-      background-color: color($colors, grey);
+      background-color: color($colors, light-grey-shade);
+      color: color($colors, mid-grey);
       img{
-         background-color: color($colors, grey);
+         filter: brightness(0.77);
       }
    }
    &[disabled].button-clear,
@@ -1040,6 +1113,7 @@ ion-list:not(.vector-input-list){
          bottom: -$global-base-padding;
       }
    }
+
    .on-the-edge-container{
       position: absolute;
       right: $global-base-padding;

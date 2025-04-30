@@ -29,15 +29,10 @@ import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
 import {SafariViewController} from '@ionic-native/safari-view-controller';
 import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
+import {TranslationService} from "../../app/api/services/translation.service";
+import {TaskTranslation} from "../../app/api/models/translation-storage";
 
 declare var MathJax;
-
-/**
- * Generated class for the TaskDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage({
     segment: ':routeId/TasksDetail/:taskId'
@@ -49,7 +44,7 @@ declare var MathJax;
 export class TaskDetail {
     @ViewChild(Content) content: Content;
 
-    @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>
+    @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>;
 
 
     // Keyboard open
@@ -93,6 +88,10 @@ export class TaskDetail {
     private inAppBrowser: InAppBrowser = new InAppBrowser();
     private linkHttpsPipeFilter: LinkHttpsPipe = new LinkHttpsPipe();
 
+    protected translation: TaskTranslation;
+    protected translationFetched: boolean;
+    protected translatePage: boolean = false;
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -107,7 +106,8 @@ export class TaskDetail {
         private spinnerDialog: SpinnerDialog,
         private imageService: ImagesService,
         private cdRef: ChangeDetectorRef,
-        private safariViewController: SafariViewController
+        private safariViewController: SafariViewController,
+        protected translationService: TranslationService
     ) {
     }
 
@@ -278,45 +278,46 @@ export class TaskDetail {
             }
         }
         if (this.task.solutionType === 'blanks') {
-            this.specialSolution = this.task.getSolution();
-            let blankMatch;
-            let blankText: string = this.specialSolution.val
-            let placeholderCount = [];
-            while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
-                let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
-                    return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
-                }) : null;
-                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
-                if (!placeholderCount[blankMatch[1]]) {
-                    placeholderCount[blankMatch[1]] = 1;
-                } else {
-                    placeholderCount[blankMatch[1]]++
-                }
-            }
-            let blankContainer = document.getElementById('blankContainer_' + this.task.id);
-            if (blankContainer) {
-                blankContainer.innerHTML = blankText;
-                let inputs = blankContainer.getElementsByClassName('blankInput');
-                if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
-                    let answers = [];
-                    for (let input of Array.from(inputs)) {
-                        if (input instanceof HTMLElement) {
-                            answers.push({id: input.id, answer: "", solved: null, count: input.dataset.count})
-                        }
-                    }
-                    this.taskDetails.answerMultipleChoice = answers;
-                }
-                for (let input of Array.from(inputs)) {
-                    input.addEventListener('input', (event: any) => {
-                        let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
-                            if (input instanceof HTMLElement) {
-                                return answer.id === input.id && answer.count == input.dataset.count
-                            }
-                        });
-                        answerElement.answer = event.currentTarget.innerText;
-                    });
-                }
-            }
+            this.fillBlankSolutionElement();
+            // this.specialSolution = this.task.getSolution();
+            // let blankMatch;
+            // let blankText: string = this.specialSolution.val
+            // let placeholderCount = [];
+            // while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
+            //     let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
+            //         return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
+            //     }) : null;
+            //     blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
+            //     if (!placeholderCount[blankMatch[1]]) {
+            //         placeholderCount[blankMatch[1]] = 1;
+            //     } else {
+            //         placeholderCount[blankMatch[1]]++
+            //     }
+            // }
+            // let blankContainer = document.getElementById('blankContainer_' + this.task.id);
+            // if (blankContainer) {
+            //     blankContainer.innerHTML = blankText;
+            //     let inputs = blankContainer.getElementsByClassName('blankInput');
+            //     if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+            //         let answers = [];
+            //         for (let input of Array.from(inputs)) {
+            //             if (input instanceof HTMLElement) {
+            //                 answers.push({id: input.id, answer: "", solved: null, count: input.dataset.count})
+            //             }
+            //         }
+            //         this.taskDetails.answerMultipleChoice = answers;
+            //     }
+            //     for (let input of Array.from(inputs)) {
+            //         input.addEventListener('input', (event: any) => {
+            //             let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
+            //                 if (input instanceof HTMLElement) {
+            //                     return answer.id === input.id && answer.count == input.dataset.count
+            //                 }
+            //             });
+            //             answerElement.answer = event.currentTarget.innerText;
+            //         });
+            //     }
+            // }
         }
         if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
             this.specialSolution = this.task.getSolution();
@@ -499,6 +500,9 @@ export class TaskDetail {
         if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.subscribeCKEvents();
         }
+        let {translation, isFetched} = await this.translationService.getTranslationForTask(this.taskId, this.route.code);
+        this.translation = translation;
+        this.translationFetched = isFetched;
         MathJax.typeset();
     }
 
@@ -558,8 +562,8 @@ export class TaskDetail {
         let title = "";
         /*     console.log(" ===============================  ", this.task.getImagesForDownload() );
             console.log(" ===============================  ", this.task.getHint(index) ); */
-        let type: string = this.task.getHint(index).type;
-        let message: string = this.task.getHint(index).value;
+        let type: string = this.translatePage ? this.translation.getHint(index).type : this.task.getHint(index).type;
+        let message: string = this.translatePage ? this.translation.getHint(index).value : this.task.getHint(index).value;
         if (this.shownHints.indexOf(index) == -1) {
             this.shownHints.push(index);
         }
@@ -622,7 +626,7 @@ export class TaskDetail {
                 }
             ]
 
-        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: `${this.app.activeNarrative}${this.translatePage ? ' translated' :''}`});
         hintModal.onDidDismiss(click => {
             if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
@@ -992,7 +996,7 @@ export class TaskDetail {
             this.taskDetails.failed = true;
             this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
         }
-        let solutionSample = this.task.getSolutionSample();
+        let solutionSample = this.translatePage ? this.translation.getSolutionSample() : this.task.getSolutionSample();
         let solutionSrc = this.task.getSolutionSampleImgSrc();
         let messages = [];
         if ((!solutionSample || solutionSample.length == 0) && (!solutionSrc || solutionSrc.length == 0)) {
@@ -2290,7 +2294,6 @@ export class TaskDetail {
     }
 
     public goBack() {
-        console.log("We goin back boys");
         if (!this.rootTask) {
             this.closeDetails();
         } else {
@@ -2359,5 +2362,58 @@ export class TaskDetail {
 
         }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
         confirmationModal.present();
+    }
+
+    fillBlankSolutionElement() {
+        this.specialSolution = this.translatePage ? this.translation.getSolution(this.task.getSolution()) : this.task.getSolution();
+        let blankMatch;
+        let blankText: string = this.specialSolution.val
+        let placeholderCount = [];
+        while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
+            let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
+                return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
+            }) : null;
+            blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
+            if (!placeholderCount[blankMatch[1]]) {
+                placeholderCount[blankMatch[1]] = 1;
+            } else {
+                placeholderCount[blankMatch[1]]++
+            }
+        }
+        let blankContainer = document.getElementById('blankContainer_' + this.task.id);
+        if (blankContainer) {
+            blankContainer.innerHTML = blankText;
+            let inputs = blankContainer.getElementsByClassName('blankInput');
+            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                let answers = [];
+                for (let input of Array.from(inputs)) {
+                    if (input instanceof HTMLElement) {
+                        answers.push({id: input.id, answer: "", solved: null, count: input.dataset.count})
+                    }
+                }
+                this.taskDetails.answerMultipleChoice = answers;
+            }
+            for (let input of Array.from(inputs)) {
+                input.addEventListener('input', (event: any) => {
+                    let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
+                        if (input instanceof HTMLElement) {
+                            return answer.id === input.id && answer.count == input.dataset.count
+                        }
+                    });
+                    answerElement.answer = event.currentTarget.innerText;
+                });
+            }
+        }
+    }
+
+    async toggleTranslation() {
+        if (!this.translation) {
+            let {translation, isFetched} = await this.translationService.getTranslationForTask(this.taskId, this.route.code, true);
+            this.translation = translation;
+            this.translationFetched = isFetched;
+        }
+        this.translatePage = this.translation && !this.translatePage;
+        this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.task.title;
+        this.fillBlankSolutionElement();
     }
 }

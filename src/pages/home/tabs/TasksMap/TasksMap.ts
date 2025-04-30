@@ -1308,6 +1308,12 @@ export class TasksMap implements OnDestroy {
         this.scoreTaskList = scoredTasks;
     }
 
+    goBack(){
+        this.navCtrl.pop({}, () => {
+            this.deepLinker.navChange('back');
+        });
+    }
+
 
     protected readonly TaskFormat = TaskFormat;
 }

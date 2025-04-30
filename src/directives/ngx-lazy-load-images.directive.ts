@@ -2,8 +2,6 @@ import {
     Directive, ElementRef, Renderer2, Input, NgZone, Inject, PLATFORM_ID
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
-import 'intersection-observer';
 import { ImagesService } from '../services/images-service';
 
 /**

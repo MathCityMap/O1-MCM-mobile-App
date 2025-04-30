@@ -9,6 +9,7 @@ import {SessionUserService} from './services/session-user.service';
 import {SessionUserLeaderboardService} from './services/session-user-leaderboard.service';
 import {TrailService} from './services/trail.service';
 import {ProblemReportService} from "./services/problem-report.service";
+import {TranslationService} from "./services/translation.service";
 
 /**
  * Module that provides instances for all API services
@@ -29,7 +30,8 @@ import {ProblemReportService} from "./services/problem-report.service";
         SessionUserService,
         SessionUserLeaderboardService,
         TrailService,
-        ProblemReportService
+        ProblemReportService,
+        TranslationService
     ],
 })
 export class ApiModule {

@@ -1,5 +1,5 @@
 page-settings {
-    .disabled{
+    .disabled, [disabled]{
         opacity: 0.4;
     }
 
@@ -18,12 +18,25 @@ page-settings {
          content: url("../../assets/icons/info-b.svg");
          flex-basis: 16px;
          height: auto;
+         margin-left: $global-base-padding;
       }
    }
 
    .item{
       & ~ .item{
          margin-top: $global-base-padding;
+      }
+   }
+
+   .introduction{
+      .container{
+         &.top{
+            display: flex;
+            align-items: flex-start;
+            .icon{
+               margin-left: $global-base-padding;
+            }
+         }
       }
    }
 }

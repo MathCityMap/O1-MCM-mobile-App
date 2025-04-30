@@ -1,12 +1,36 @@
-<mcm-header></mcm-header>
+
+<ion-header>
+   <ion-toolbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="goBack()">
+            <img class="header-icon" src="assets/icons/back.svg"/>
+         </button>
+      </ion-buttons>
+      <ion-title>{{ 'a_action_settings' | translate }}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
 <ion-content class="has-header pattern-bg">
 
+   <section class="padding center introduction">
+      <ion-label class="title main">For your information</ion-label>
+      <div class="card primary">
+         <div class="container top">
+            <ion-label>
+               What is MCM?
+               <p>What is MathCityMap about and how does it work exactly? Find out in this quick tutorial!</p>
+            </ion-label>
+            <img class="icon" src="../../assets/icons/logo-mathcitymap-symbol.svg"/>
+         </div>
+         <button ion-button block round color="light" (click)="openOnboarding()">{{'a_settings_onboarding' | translate }}</button>
+      </div>
+   </section>
+
    <div class="card transparent">
-      <button ion-button block default round (click)="openOnboarding()">{{'a_settings_onboarding' | translate }}</button>
    </div>
 
    <section class="padding center">
-      <ion-label class="title">{{'a_settings_language' | translate}}</ion-label>
+      <ion-label class="title main">{{'a_settings_language' | translate}}</ion-label>
       <div class="card select">
          <ion-label>
             App Language
@@ -16,11 +40,33 @@
             <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>
          </ion-select>
       </div>
-
    </section>
 
    <section class="padding center">
-      <ion-label class="title">Accessibility</ion-label>
+      <div class="card">
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               Translations
+               <p>Enables the download of automated translations for a specific route</p>
+            </ion-label>
+            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="translationService.isEnabled"></ion-toggle>
+         </ion-item>
+
+         <div class="item">
+            <ion-label>{{'WIP_translate_language' | translate}}</ion-label>
+            <ion-select [(ngModel)]="translationService.translateLanguage">
+               <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>
+            </ion-select>
+         </div>
+
+         <div class="info">
+            <p>Download the according translation package in the route info page</p>
+         </div>
+      </div>
+   </section>
+
+   <section class="padding center">
+      <ion-label class="title main">Accessibility</ion-label>
       <div class="card">
          <ion-item no-lines no-padding>
             <ion-label item-content>
@@ -44,7 +90,7 @@
    </section>
 
    <section class="padding center">
-      <ion-label class="title">{{'a_settings_expert' | translate }}</ion-label>
+      <ion-label class="title main">{{'a_settings_expert' | translate }}</ion-label>
       <div class="card">
          <ion-item no-lines no-padding>
             <ion-label item-content>
@@ -66,7 +112,7 @@
        </div>-->
 
    <section class="padding center">
-      <ion-label class="title">{{'a_settings_data' | translate }}</ion-label>
+      <ion-label class="title main">{{'a_settings_data' | translate }}</ion-label>
    </section>
    <div class="card transparent">
       <button ion-button block default round color="danger" (click)="deleteAppData()">{{'a_main_settings_delCache' | translate }}</button>
