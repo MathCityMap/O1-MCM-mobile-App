@@ -17,6 +17,7 @@ import {RoutesMapPage} from "../pages/home/tabs/RoutesMap/RoutesMap";
 import {PortalPage} from "../pages/portal/portal";
 import {ZoomService} from "../services/zoom-service";
 import {TranslationService} from "./api/services/translation.service";
+import {ReadAloudService} from "../services/read-aloud-service";
 
 
 export enum MCMModalType {
@@ -50,6 +51,7 @@ export class MyApp {
                 translate: TranslateService,
                 screenOrientation: ScreenOrientation,
                 translation: TranslationService,
+                readAloud: ReadAloudService,
                 private storage: Storage,
                 private modalService: ModalsService,
                 private deepLinker: DeepLinker) {
@@ -58,6 +60,7 @@ export class MyApp {
         platform.ready().then(async () => {
             await languageService.initialize();
             await translation.init();
+            await readAloud.init(await languageService.getLanguage())
             await this.setRootPage();
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.

@@ -96,8 +96,8 @@ export class Helper {
     // static readonly MEDIASERVER_BASE_URL: string = "https://sb-medienserver.matismedia.eu"
     static readonly MEDIASERVER_IMAGE_URL: string = Helper.MEDIASERVER_BASE_URL + "/storage/MCM/";
     // static readonly API_URL: string = "/mcm-api/db_query_post.php"
-    // static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
-    static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
+    static readonly API_URL: string = "https://mathcitymap.eu/db_query_post.php"
+    // static readonly API_URL: string = "https://dev.mathcitymap.eu/db_query_post.php"
     // static readonly API_URL: string = "http://192.168.178.28/mcmmock/db_query_post.php"
     static readonly REQUEST_PASS: string = SERVER_REQUEST_PASS
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
@@ -139,7 +139,7 @@ export class Helper {
 
     private activateAddRouteModal: boolean = false;
 
-    constructor(private http: HttpClient, private gpsService: GpsService, private network: Network, private httpClient: HttpClient,
+    constructor(private http: HttpClient, private gpsService: GpsService, private network: Network,
                 private platform: Platform, private ormService: OrmService, private storage: Storage) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall

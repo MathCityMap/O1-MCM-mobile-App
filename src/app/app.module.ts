@@ -58,6 +58,7 @@ import {MCMTrailFinishedModal} from "../modals/MCMTrailFinishedModal/MCMTrailFin
 import {DirectivesModule} from "../directives/directives.module";
 import {MCMReportProblemModal} from "../modals/MCMReportProblemModal/MCMReportProblemModal";
 import {ZoomService} from "../services/zoom-service";
+import {ReadAloudService} from "../services/read-aloud-service";
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import {ZoomService} from "../services/zoom-service";
         ModalsService,
         GpsService,
         LanguageService,
+        ReadAloudService,
         Helper,
         ChatAndSessionService,
         LocalNotifications,

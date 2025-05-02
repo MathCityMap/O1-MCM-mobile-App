@@ -1,5 +1,6 @@
-import {Directive, HostListener, ElementRef} from "@angular/core";
+import {Directive, HostListener, ElementRef, Input} from "@angular/core";
 import Timeout = NodeJS.Timeout;
+import {ReadAloudService} from "../services/read-aloud-service";
 
 const TOUCH_HOLD_DURATION_IN_MS = 500;
 
@@ -9,6 +10,7 @@ const TOUCH_HOLD_DURATION_IN_MS = 500;
 export class ReadAloudDirective {
 
     private slideDetectionOffset: number = 100;
+    @Input('readable') language?: string;
 
     touchTimeout: Timeout;
     startPosition: {x: number, y: number};
@@ -21,7 +23,7 @@ export class ReadAloudDirective {
         this.touchTimeout = setTimeout(() => {
             let viewportOffset = this.element.nativeElement.getBoundingClientRect();
             if (this.isInsideSlideThreshhold(this.startPosition, {x: viewportOffset.left, y: viewportOffset.top})) {
-                console.log('Would start reading about now');
+                this.readAloudService.readText(this.element.nativeElement.innerText, this.language);
             } else {
                 console.debug('didScroll');
             }
@@ -37,7 +39,7 @@ export class ReadAloudDirective {
             this.touchTimeout = null;
         }
     }
-    constructor(public element: ElementRef) {
+    constructor(public element: ElementRef, private readAloudService: ReadAloudService) {
     }
     ngOnInit(): void {
     }

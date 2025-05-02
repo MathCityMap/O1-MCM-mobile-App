@@ -337,6 +337,10 @@
             {
               "xml": "<feature name=\"PhotoViewer\"><param name=\"ios-package\" value=\"PhotoViewer\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"TTS\"><param name=\"ios-package\" value=\"CDVTTS\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -428,6 +432,9 @@
     },
     "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-plugin-tts-advanced": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {},
@@ -1014,6 +1021,14 @@
       "clobbers": [
         "PhotoViewer"
       ]
+    },
+    {
+      "id": "cordova-plugin-tts-advanced.tts",
+      "file": "plugins/cordova-plugin-tts-advanced/www/tts.js",
+      "pluginId": "cordova-plugin-tts-advanced",
+      "clobbers": [
+        "TTS"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -1044,6 +1059,7 @@
     "es6-promise-plugin": "4.2.2",
     "cordova-sqlite-storage": "5.1.0",
     "cordova-plugin-ionic-webview": "5.0.0",
-    "com-sarriaroman-photoviewer": "1.1.18"
+    "com-sarriaroman-photoviewer": "1.1.18",
+    "cordova-plugin-tts-advanced": "0.5.2"
   }
 }

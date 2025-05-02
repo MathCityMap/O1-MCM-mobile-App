@@ -7,6 +7,9 @@ import { ModalsService } from '../../services/modals-service';
 import { LanguageService } from '../../services/language-service';
 import {Helper} from "../../classes/Helper";
 import {TranslationService} from "../../app/api/services/translation.service";
+import {ReadAloudService} from "../../services/read-aloud-service";
+import {TTS} from "../../providers/tts";
+import TTSVoice = TTS.TTSVoice;
 
 @IonicPage()
 @Component({
@@ -17,6 +20,30 @@ export class SettingsPage {
     language: string;
     availableLanguages;
     translatedLangs;
+
+    _readAloudConfigureLanguage: string;
+    readAloudVoices: Array<TTSVoice>;
+
+    set readAloudLanguage(lang: string) {
+        this._readAloudConfigureLanguage = lang
+        this.readAloudVoices = this.readAloudService.getAllVoicesForLanguage(this._readAloudConfigureLanguage);
+    }
+
+    get readAloudLanguage(): string {
+        return this._readAloudConfigureLanguage;
+    }
+
+    set readAloudVoice(voiceId: string) {
+        this.readAloudService.setVoiceForLanguage(this._readAloudConfigureLanguage, voiceId);
+    }
+
+    get readAloudVoice(): string {
+        let voice = this.readAloudService.getVoiceForLanguage(this._readAloudConfigureLanguage);
+        if (voice) {
+            return voice.identifier;
+        }
+        return "";
+    }
 
     developerMode: boolean = false;
 
@@ -31,7 +58,8 @@ export class SettingsPage {
         private helper: Helper,
         protected translationService: TranslationService,
         public viewCtrl: ViewController,
-        private deepLinker: DeepLinker
+        private deepLinker: DeepLinker,
+        protected readAloudService: ReadAloudService
     ) {
         this.availableLanguages = languageService.getAvailableLanguages();
         this.translatedLangs = [];
@@ -48,6 +76,7 @@ export class SettingsPage {
             if(a.value < b.value) { return -1; }
             if(a.value > b.value) { return 1; }
             return 0;})
+        this.readAloudLanguage = this.language;
         this.developerMode = this.helper.getDevMode();
     }
 

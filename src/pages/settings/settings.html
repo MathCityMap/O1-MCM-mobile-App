@@ -66,25 +66,39 @@
    </section>
 
    <section class="padding center">
-      <ion-label class="title main">Accessibility</ion-label>
+      <ion-label class="title main">WIP: Accessibility</ion-label>
       <div class="card">
          <ion-item no-lines no-padding>
             <ion-label item-content>
-               Text to Speech
+               WIP: Text to Speech
+               <p>Enables the option to select text and let it read aloud</p>
+            </ion-label>
+            <ion-toggle class="devModeToggle" [(ngModel)]="readAloudService.isEnabled" mode="ios"></ion-toggle>
+         </ion-item>
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               WIP: configure
                <p>Enables the option to select text and let it read aloud</p>
             </ion-label>
             <ion-toggle class="devModeToggle" mode="ios"></ion-toggle>
          </ion-item>
 
          <div class="item">
+            <ion-label item-content>Lang</ion-label>
+            <ion-select [(ngModel)]="readAloudLanguage">
+               <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{ lang.value }}</ion-option>
+            </ion-select>
+         </div>
+
+         <div class="item">
             <ion-label item-content>Voice</ion-label>
-            <ion-select>
-               <ion-option>voice</ion-option>
+            <ion-select [(ngModel)]="readAloudVoice">
+               <ion-option *ngFor="let voice of readAloudVoices" [value]="voice.identifier">{{ voice.name }}</ion-option>
             </ion-select>
          </div>
 
          <div class="info">
-            <p>Press long on a text to activate the speech function</p>
+            <p [readable]="readAloudLanguage">{{readAloudService.getDemoText(readAloudLanguage)}}</p>
          </div>
       </div>
    </section>

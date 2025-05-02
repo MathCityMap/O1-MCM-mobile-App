@@ -102,6 +102,7 @@
         "cordova-plugin-local-notification": "file:plugin-src/cordova-plugin-local-notification",
         "cordova-plugin-media": "git+https://github.com/apache/cordova-plugin-media.git",
         "cordova-plugin-safariviewcontroller": "^2.0.0",
+        "cordova-plugin-tts-advanced": "^0.5.3",
         "cordova-sqlite-storage": "file:plugin-src/cordova-sqlite-storage",
         "cordova.plugins.diagnostic": "^6.0.4",
         "ng-swagger-gen": "0.11.4",
@@ -141,7 +142,8 @@
             "cordova-plugin-media": {},
             "cordova-plugin-file": {},
             "cordova-plugin-ionic-webview": {},
-            "com-sarriaroman-photoviewer": {}
+            "com-sarriaroman-photoviewer": {},
+            "cordova-plugin-tts-advanced": {}
         },
         "platforms": [
             "ios",

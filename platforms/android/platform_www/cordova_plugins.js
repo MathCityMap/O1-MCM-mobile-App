@@ -556,6 +556,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "PhotoViewer"
       ]
+    },
+    {
+      "id": "cordova-plugin-tts-advanced.tts",
+      "file": "plugins/cordova-plugin-tts-advanced/www/tts.js",
+      "pluginId": "cordova-plugin-tts-advanced",
+      "clobbers": [
+        "TTS"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -586,6 +594,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-camera": "6.0.1-dev",
     "cordova-plugin-media": "7.0.0-dev",
     "cordova-plugin-ionic-webview": "5.0.0",
-    "com-sarriaroman-photoviewer": "1.1.18"
+    "com-sarriaroman-photoviewer": "1.1.18",
+    "cordova-plugin-tts-advanced": "0.5.2"
   };
 });

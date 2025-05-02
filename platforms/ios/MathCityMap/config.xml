@@ -303,4 +303,7 @@
     <preference name="Hostname" value="app.mathcitymap.eu" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <feature name="TTS">
+        <param name="ios-package" value="CDVTTS" />
+    </feature>
 </widget>

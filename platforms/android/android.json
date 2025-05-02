@@ -9,7 +9,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:usesCleartextTraffic=\"true\" />",
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
@@ -23,7 +23,7 @@
               }
             },
             {
-              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "xml": "<application android:usesCleartextTraffic=\"true\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
@@ -44,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 65
+              "count": 86
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
@@ -305,6 +305,10 @@
             {
               "xml": "<feature name=\"IonicWebView\"><param name=\"android-package\" value=\"com.ionicframework.cordova.webview.IonicWebView\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"TTS\"><param name=\"android-package\" value=\"com.wordsbaking.cordova.tts.TTS\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -399,6 +403,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-tts-advanced": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
@@ -960,6 +967,14 @@
       "clobbers": [
         "PhotoViewer"
       ]
+    },
+    {
+      "id": "cordova-plugin-tts-advanced.tts",
+      "file": "plugins/cordova-plugin-tts-advanced/www/tts.js",
+      "pluginId": "cordova-plugin-tts-advanced",
+      "clobbers": [
+        "TTS"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -990,6 +1005,7 @@
     "cordova-plugin-camera": "6.0.1-dev",
     "cordova-plugin-media": "7.0.0-dev",
     "cordova-plugin-ionic-webview": "5.0.0",
-    "com-sarriaroman-photoviewer": "1.1.18"
+    "com-sarriaroman-photoviewer": "1.1.18",
+    "cordova-plugin-tts-advanced": "0.5.2"
   }
 }

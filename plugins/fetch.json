@@ -230,5 +230,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-tts-advanced": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-tts-advanced"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
