@@ -62,6 +62,8 @@ export class TaskGroupDetail {
     }
 
     async ionViewWillLeave() {
+        this.translatePage = false;
+        this.translationService.toggleTranslatedClass(false);
         if (this.groupIsFinished) {
             //This guarantees that the state is updated before the map opens and gets the information.
             if (this.navParams.get('goToNextTaskById')) {
@@ -211,6 +213,7 @@ export class TaskGroupDetail {
             this.translationFetched = isFetched;
         }
         this.translatePage = this.translation && !this.translatePage;
+        this.translationService.toggleTranslatedClass(this.translatePage);
         this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.group.title;
     }
 

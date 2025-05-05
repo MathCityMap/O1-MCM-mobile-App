@@ -342,7 +342,7 @@ export class TaskDetail {
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         // Add event of user entering trail when session active
         if (this.sessionInfo != null) {
-            let details = "";
+            let details;
             if (this.rootTask) {
                 details = JSON.stringify({title: this.task.title, parentId: this.rootTask.id});
             } else {
@@ -511,6 +511,8 @@ export class TaskDetail {
         if (CustomKeyBoard.isVisible()) {
             CustomKeyBoard.hide();
         }
+        this.translatePage = false;
+        this.translationService.toggleTranslatedClass(false);
         if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.unsubscribeCKEvents();
         }
@@ -627,7 +629,7 @@ export class TaskDetail {
             ]
 
         }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: `${this.app.activeNarrative}${this.translatePage ? ' translated' :''}`});
-        hintModal.onDidDismiss(click => {
+        hintModal.onDidDismiss(_click => {
             if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
                 this.chatAndSessionService.addUserEvent("event_hint_closed", details, this.task.id.toString());
@@ -750,10 +752,8 @@ export class TaskDetail {
                     break;
 
                 case "linearFx":
-                    this.CalculateLinearFx(this.task.getSolutionGpsValue("point1"), this.task.getSolutionGpsValue("point2"), this.taskDetailMap.pointMarkers[0].getLatLng(), this.taskDetailMap.pointMarkers[1].getLatLng(), this.task.getSolutionGpsValue("slope"), this.task.getSolutionGpsValue("y"));
-
                 default:
-                    // code...
+                    this.CalculateLinearFx(this.task.getSolutionGpsValue("point1"), this.task.getSolutionGpsValue("point2"), this.taskDetailMap.pointMarkers[0].getLatLng(), this.taskDetailMap.pointMarkers[1].getLatLng(), this.task.getSolutionGpsValue("slope"), this.task.getSolutionGpsValue("y"));
                     break;
             }
         } else if (this.task.solutionType == "vector_values") {
@@ -1029,7 +1029,7 @@ export class TaskDetail {
                 }
             ]
         }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-        modal.onDidDismiss(data => {
+        modal.onDidDismiss(_data => {
             if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
                 this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
@@ -1072,7 +1072,7 @@ export class TaskDetail {
             },
             'yes', async () => {
                 if (this.sessionInfo != null) {
-                    let details = "";
+                    let details;
                     if (this.rootTask) {
                         details = JSON.stringify({parentId: this.rootTask.id});
                     } else {
@@ -1265,7 +1265,7 @@ export class TaskDetail {
             });
             modal.present();
             if (this.sessionInfo != null) {
-                let details = "";
+                let details;
                 if (this.rootTask) {
                     details = JSON.stringify({
                         score: this.taskDetails.score,
@@ -1285,7 +1285,7 @@ export class TaskDetail {
 
             this.taskDetails.timeSolved = new Date().getTime();
         } else {
-            let message = "";
+            let message;
             let buttons;
             let tries = this.taskDetails.tries;
             if (this.taskDetails.skipped) {
@@ -1377,7 +1377,7 @@ export class TaskDetail {
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if (that.sessionInfo != null) {
-                                    let details = "";
+                                    let details;
                                     if (that.rootTask) {
                                         details = JSON.stringify({parentId: that.rootTask.id});
                                     } else {
@@ -1394,7 +1394,7 @@ export class TaskDetail {
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if (that.sessionInfo != null) {
-                                    let details = "";
+                                    let details;
                                     if (that.rootTask) {
                                         details = JSON.stringify({parentId: that.rootTask.id});
                                     } else {
@@ -1411,7 +1411,7 @@ export class TaskDetail {
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if (that.sessionInfo != null) {
-                                    let details = "";
+                                    let details;
                                     if (that.rootTask) {
                                         details = JSON.stringify({parentId: that.rootTask.id});
                                     } else {
@@ -1712,19 +1712,19 @@ export class TaskDetail {
         let tempGreen = 10;
         let tempOrange = 20;
 
-        let lenghtSolution = 0;
-        let bearingSolution = 0;
+        let lengthSolution;
+        let bearingSolution;
         let currDistance = (L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]);
         let currBearing = (L as any).GeometryUtil.bearing(pointA.getLatLng(), pointB.getLatLng());
         if (currBearing < 0) currBearing += 360;
 
         //Check Distance
         if (currDistance > (distance - tempGreen) && currDistance < (distance + tempGreen)) {
-            lenghtSolution = 2;
+            lengthSolution = 2;
         } else if (currDistance > (distance - tempOrange) && currDistance < (distance + tempOrange)) {
-            lenghtSolution = 1;
+            lengthSolution = 1;
         } else {
-            lenghtSolution = 0;
+            lengthSolution = 0;
         }
 
         //Check Direction
@@ -1753,7 +1753,7 @@ export class TaskDetail {
         }
 
         let solution = [Math.round(currDistance).toString(), Math.round(currBearing - angle).toString()];
-        if (bearingSolution == 2 && lenghtSolution == 2) {
+        if (bearingSolution == 2 && lengthSolution == 2) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
@@ -1764,7 +1764,7 @@ export class TaskDetail {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        } else if (bearingSolution > 0 && lenghtSolution > 0) {
+        } else if (bearingSolution > 0 && lengthSolution > 0) {
             if (this.taskDetails.tries > 0) {
                 let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
                 this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
@@ -1845,7 +1845,7 @@ export class TaskDetail {
 
         let allGreen = true;
         let allOrange = true;
-        let diagonalSolution = 0;
+        let diagonalSolution;
 
         //check square sides lenght
         for (var i = 0; i < edgesLength.length; i++) {
@@ -2247,7 +2247,7 @@ export class TaskDetail {
                 }
             }
         } else {
-            let orangediff = 0
+            let orangediff;
             if (this.taskDetails.tries > 1) {
                 orangediff = this.maxScore - (this.taskDetails.tries - 1) * this.penalty - taskScore;
             } else {
@@ -2413,6 +2413,7 @@ export class TaskDetail {
             this.translationFetched = isFetched;
         }
         this.translatePage = this.translation && !this.translatePage;
+        this.translationService.toggleTranslatedClass(this.translatePage);
         this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.task.title;
         this.fillBlankSolutionElement();
     }

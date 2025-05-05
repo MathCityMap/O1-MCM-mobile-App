@@ -54,6 +54,11 @@ export class RouteInfo {
         this.translationFetched = isFetched;
     }
 
+    async ionViewWillLeave() {
+        this.translatePage = false;
+        this.translationService.toggleTranslatedClass(false);
+    }
+
     async doDownload(route: Route) {
         // retrieve modalsService via viewCtrl.data to avoid circular dependency
         let modalsService: ModalsService = this.viewCtrl.data.modalsService;
@@ -88,6 +93,7 @@ export class RouteInfo {
             this.translationFetched = isFetched;
         }
         this.translatePage = this.translation && !this.translatePage;
+        this.translationService.toggleTranslatedClass(this.translatePage);
     }
 
     closeModal() {

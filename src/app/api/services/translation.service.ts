@@ -148,6 +148,15 @@ export class TranslationService {
         const storageKey = `${this.translateStorageBaseKey}-${routeCode}`;
         return this.storage.remove(storageKey);
     }
+
+    async toggleTranslatedClass(active: boolean) {
+        const appFrame = document.getElementById("app-frame");
+        if (active) {
+            appFrame.classList.add('translated');
+        } else {
+            appFrame.classList.remove('translated');
+        }
+    }
 }
 
 
