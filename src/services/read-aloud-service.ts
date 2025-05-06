@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {TTS, TtsProvider} from "../providers/tts";
 import TTSVoice = TTS.TTSVoice;
 import {Storage} from "@ionic/storage";
@@ -29,6 +29,7 @@ export class ReadAloudService {
         enabled: false,
         preferredVoices: {}
     };
+    public interfaceTriggerEvent: EventEmitter<void> = new EventEmitter();
 
     get isEnabled(): boolean {
         return this.settings.enabled;
@@ -49,6 +50,7 @@ export class ReadAloudService {
     availableVoices: TTSVoice[] = [];
     preferredVoices: {[key: string]: TTSVoice} = {};
     tts: TtsProvider;
+    lastRead: {lang: string, text: string};
 
     constructor(private storage: Storage) {
     }
@@ -88,8 +90,15 @@ export class ReadAloudService {
     }
 
     readText(text: string, language?: string) {
-        let voice = this.getVoiceForLanguage(language && language.length > 0 ? language : this.language);
+        this.interfaceTriggerEvent.emit();
+        let lang = language && language.length > 0 ? language : this.language;
+        let voice = this.getVoiceForLanguage(lang);
+        this.lastRead = {text, lang};
         this.tts.readAloud(text, voice);
+    }
+
+    repeatLastText() {
+        this.readText(this.lastRead.text, this.lastRead.lang);
     }
 
     stopReading() {

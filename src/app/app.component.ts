@@ -51,7 +51,7 @@ export class MyApp {
                 translate: TranslateService,
                 screenOrientation: ScreenOrientation,
                 translation: TranslationService,
-                readAloud: ReadAloudService,
+                protected readAloud: ReadAloudService,
                 private storage: Storage,
                 private modalService: ModalsService,
                 private deepLinker: DeepLinker) {
