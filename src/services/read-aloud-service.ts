@@ -30,7 +30,7 @@ export class ReadAloudService {
         preferredVoices: {}
     };
     public interfaceTriggerEvent: EventEmitter<void> = new EventEmitter();
-
+    public hideInterfaceEvent: EventEmitter<void> = new EventEmitter();
     get isEnabled(): boolean {
         return this.settings.enabled;
     }
@@ -103,6 +103,15 @@ export class ReadAloudService {
 
     stopReading() {
         this.tts.stopReading();
+    }
+
+    resetHighlighting() {
+        let selection = window.getSelection();
+        let readables = document.querySelectorAll('[readable]');
+        readables.forEach((readable) => {
+            readable.classList.remove('active');
+        })
+        selection.removeAllRanges();
     }
 
     private async persistSettings() {

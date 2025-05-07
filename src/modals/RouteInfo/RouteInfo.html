@@ -21,8 +21,8 @@
          [ngClass]="{'narrative' : route.isNarrativeEnabled()}">
       <div class="title-container">
          <p class="title-super">{{ route.city }}, {{ route.countryCode }}</p>
-         <h1 *ngIf="!translatePage" class="title">{{ route.title }}</h1>
-          <h1 *ngIf="translatePage" class="title" [ngClass]="{translated: translatePage}">{{ translation.title }}</h1>
+         <h1 *ngIf="!translatePage" readable [language]="route.langCode" class="title">{{ route.title }}</h1>
+          <h1 *ngIf="translatePage" readable [language]="translation.language" class="title" [ngClass]="{translated: translatePage}">{{ translation.title }}</h1>
       </div>
    </div>
 
@@ -105,8 +105,8 @@
 
       <div class="card">
          <ion-label class="title">{{ 'p_r_about' | translate }}</ion-label>
-         <p *ngIf="route && !translatePage" [readable]="route.langCode">{{ route.description }}</p>
-        <p *ngIf="translatePage" [ngClass]="{translated: translatePage}">{{ translation.description }}</p>
+         <p *ngIf="route && !translatePage" readable [language]="route.langCode">{{ route.description }}</p>
+        <p *ngIf="translatePage" readable [language]="translation.language" [ngClass]="{translated: translatePage}">{{ translation.description }}</p>
 
          <ion-label class="title">{{ 'a_action_settings' | translate }}</ion-label>
          <p *ngIf="route" class="settings">
@@ -185,7 +185,7 @@
    </div>
 </ion-content>
 
-<!--<text-to-speech-control class="active"></text-to-speech-control>-->
+<text-to-speech-control></text-to-speech-control>
 
 <ion-footer>
    <button class="play" ion-button full block no-margin no-padding large

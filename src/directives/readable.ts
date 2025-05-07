@@ -10,19 +10,21 @@ const TOUCH_HOLD_DURATION_IN_MS = 500;
 export class ReadAloudDirective {
 
     private slideDetectionOffset: number = 100;
-    @Input('readable') language?: string;
+    @Input('language') language?: string;
 
     touchTimeout: Timeout;
     startPosition: {x: number, y: number};
 
     @HostListener("touchstart", ["$event"])
-    onTouchStart(event: TouchEvent): void {
+    onTouchStart(_event: TouchEvent): void {
         let viewportOffset = this.element.nativeElement.getBoundingClientRect();
         this.startPosition = {x: viewportOffset.left, y: viewportOffset.top};
         console.log('Translatable touchstart');
         this.touchTimeout = setTimeout(() => {
             let viewportOffset = this.element.nativeElement.getBoundingClientRect();
             if (this.isInsideSlideThreshhold(this.startPosition, {x: viewportOffset.left, y: viewportOffset.top})) {
+                this.readAloudService.resetHighlighting();
+                this.element.nativeElement.classList.add('active');
                 this.readAloudService.readText(this.element.nativeElement.innerText, this.language);
             } else {
                 console.debug('didScroll');

@@ -7,7 +7,7 @@ $actions-size: 44px;
    user-select: text;
 }
 
-::selection{
+::selection, [readable].active{
    background-color: transparentize(color($colors, secondary), .66);
 }
 

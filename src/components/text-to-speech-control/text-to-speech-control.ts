@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostBinding, Input} from '@angular/core';
+import {Component, HostBinding} from '@angular/core';
 import {ReadAloudService} from "../../services/read-aloud-service";
 
 @Component({
@@ -6,8 +6,6 @@ import {ReadAloudService} from "../../services/read-aloud-service";
   templateUrl: 'text-to-speech-control.html'
 })
 export class TextToSpeechControlComponent {
-    @Input() activator: EventEmitter<void>
-
     @HostBinding('class.active')
     isActive = false;
 
@@ -15,14 +13,18 @@ export class TextToSpeechControlComponent {
   }
 
   ngOnInit() {
-      this.activator.subscribe(() => {
+      this.readAloudService.interfaceTriggerEvent.subscribe(() => {
           this.isActive = true;
-      })
+      });
+      this.readAloudService.hideInterfaceEvent.subscribe(() => {
+          this.isActive = false;
+      });
   }
 
   hide() {
+      this.readAloudService.resetHighlighting();
       this.readAloudService.stopReading();
-      this.isActive = false;
+      this.readAloudService.hideInterfaceEvent.emit();
   }
 
   repeat() {
