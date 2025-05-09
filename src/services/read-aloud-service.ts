@@ -90,6 +90,9 @@ export class ReadAloudService {
     }
 
     readText(text: string, language?: string) {
+        if (!this.settings.enabled) {
+            return;
+        }
         this.interfaceTriggerEvent.emit();
         let lang = language && language.length > 0 ? language : this.language;
         let voice = this.getVoiceForLanguage(lang);

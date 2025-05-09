@@ -25,10 +25,11 @@
 
       <div class="card task">
          <div class="head">
-            <ion-label class="title">{{ "a_taskGroup_task_group" | translate }}</ion-label>
+            <ion-label *ngIf="group && (!translatePage || !translation)" readable [language]="group.langCode" class="title">{{ group.title }}</ion-label>
+            <ion-label *ngIf="translation && translatePage" readable [language]="translation.language" class="title" [ngClass]="{translated: translatePage}">{{ translation.title }}</ion-label>
          </div>
-         <p *ngIf="group && (!translatePage || !translation)">{{group.description}}</p>
-         <p *ngIf="translation && translatePage" [ngClass]="{translated: translatePage}">{{translation.description}}</p>
+         <p *ngIf="group && (!translatePage || !translation)" readable [language]="group.langCode">{{group.description}}</p>
+         <p *ngIf="translation && translatePage" [ngClass]="{translated: translatePage}" readable [language]="translation.language">{{translation.description}}</p>
       </div>
 
       <section class="padding">

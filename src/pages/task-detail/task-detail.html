@@ -41,15 +41,16 @@
       <!--         Main Task-->
       <div class="card task">
          <div class="head">
-            <ion-label class="title" *ngIf="task && !rootTask">{{task.title}}</ion-label>
+            <ion-label readable [language]="task.langCode" class="title" *ngIf="task && !rootTask && (!translatePage || !translation)">{{task.title}}</ion-label>
+            <ion-label readable [language]="translation.language" class="title" *ngIf="task && !rootTask && translation && translatePage" [ngClass]="{translated: translatePage}">{{translation.title}}</ion-label>
 <!--            <ion-label *ngIf="!rootTask">{{ "a_title_activity_task_view" | translate }}</ion-label>-->
             <ion-label class="title" *ngIf="rootTask">{{ "a_title_activity_subtask_view" | translate : {current: subTaskIndex + 1, count: rootTask.getLegitSubtasks().length} }}</ion-label>
             <ion-label class="tag arLink" *ngIf="task && task.arLink" (click)="openLinkInBrowser(task.arLink)">AR</ion-label>
             <ion-label class="tag score" *ngIf="route && route.isAnswerFeedbackEnabled() && (!rootTask || subTasksRequired) && !gamificationIsDisabled" (click)="displayScoreCalculation()">{{possibleScore() | number }}</ion-label>
          </div>
 
-         <p *ngIf="task && (!translatePage || !translation)">{{task.description}}</p>
-         <p *ngIf="translation && translatePage" [ngClass]="{translated: translatePage}">{{translation.description}}</p>
+         <p *ngIf="task && (!translatePage || !translation)" readable [language]="task.langCode">{{task.description}}</p>
+         <p *ngIf="translation && translatePage" readable [language]="translation.language" [ngClass]="{translated: translatePage}">{{translation.description}}</p>
       </div>
 
       <!--         Sub / Support Task-->
@@ -173,14 +174,14 @@
 
             <!--         Blank Answer-->
             <ion-item *ngIf="task && task.solutionType === 'blanks' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-               <p class="blankContainer" id="blankContainer_{{task.id}}"
-                  [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage}">
+               <p class="blankContainer" id="blankContainer_{{task.id}}" readable [language]="translatePage ? translation.language : task.langCode"
+                  [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage, translated: translatePage}">
                </p>
             </ion-item>
 
             <!--         Multiple Choice-->
             <ion-list *ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-               <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index">
+               <ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index" readable [language]="translatePage ? translation.language : task.langCode" [ngClass]="{translated: translatePage}">
                   <ion-checkbox [(ngModel)]="item.userChecked"
                                 [disabled]="route && route.isAnswerFeedbackEnabled() && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"></ion-checkbox>
                   <ion-label class="multi-choice-label" text-wrap tappable>{{translatePage ? translation.getSolutionOptionList(task.solutionType, multipleChoiceList)[i].value : item.value}}</ion-label>
@@ -188,8 +189,7 @@
             </ion-list>
          </div>
 
-<!--         TODO hide when no hints AND no sample solution-->
-         <div class="card support" *ngIf="taskDetails">
+         <div class="card support" *ngIf="task && taskDetails && ((route.isHintsEnabled() && task.hasHintMessage(1)) || (route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== 'info'))">
             <ion-label class="title">Support</ion-label>
             <div class="container buttons">
                <div class="hints start"
@@ -213,7 +213,7 @@
 
                <div class="end">
                   <button class="hint" ion-button icon-only round color="secondary" (click)="showSolutionSample()"
-                          [disabled]="!taskDetails.solved || !taskDetails.solvedLow || !taskDetails.failed"
+                          [disabled]="!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed"
                           *ngIf="taskDetails
                                  && route.isSampleSolutionEnabled()
                                  && route.isAnswerFeedbackEnabled()

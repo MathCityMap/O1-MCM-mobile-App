@@ -21,6 +21,7 @@ export class ReadAloudDirective {
         this.startPosition = {x: viewportOffset.left, y: viewportOffset.top};
         console.log('Translatable touchstart');
         this.touchTimeout = setTimeout(() => {
+            if (!this.readAloudService.isEnabled) return;
             let viewportOffset = this.element.nativeElement.getBoundingClientRect();
             if (this.isInsideSlideThreshhold(this.startPosition, {x: viewportOffset.left, y: viewportOffset.top})) {
                 this.readAloudService.resetHighlighting();

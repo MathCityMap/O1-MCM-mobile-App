@@ -24,14 +24,14 @@
          <h3 class="in-icon-modal score" *ngIf="gamificationEnabled && score && score != '0'" [linkedInnerHtml]=" score | translate: param | linky: linkyOptions "></h3>
 
         <!-- text hint -->
-        <p text-center *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7 || modalType == 9" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
+        <p text-center readable [language]="contentLanguage" *ngIf="modalType == 1 && type == 'text' ||  modalType == 2 ||  modalType == 3 ||  modalType == 5 || modalType == 6 || modalType == 7 || modalType == 9" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions "></p>
 
     </div>
 
     <div class="modal-content" *ngIf="modalType == MCMModalType.sampleSolution">
         <h2>{{title | translate}}</h2>
         <mcm-image class="full-width" *ngIf="imageUrl" [src]="imageUrl" [offline]="true" [fullWidth]="true" [photoViewer]="true"></mcm-image>
-        <p *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>
+        <p readable [language]="contentLanguage" *ngFor="let message of messages" [linkedInnerHtml]=" message | translate: param | linky: linkyOptions"></p>
 
         <div class="feedback" (click)="reportProblem()">
             <ion-label>{{ "a_task_feedback_label" | translate }}</ion-label>
@@ -42,4 +42,6 @@
     <div class="on-the-edge-container">
         <button *ngFor="let button of buttons" [ngClass]="{'col-33': buttons.length > 2}" ion-button small round (click)="button.callback()">{{ button.title | translate }}</button>
     </div>
+
 </div>
+<text-to-speech-control></text-to-speech-control>

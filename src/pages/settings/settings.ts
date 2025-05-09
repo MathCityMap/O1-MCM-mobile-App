@@ -21,6 +21,7 @@ export class SettingsPage {
     availableLanguages;
     translatedLangs;
 
+    showReadAloudConfig: boolean = false;
     _readAloudConfigureLanguage: string;
     readAloudVoices: Array<TTSVoice>;
 

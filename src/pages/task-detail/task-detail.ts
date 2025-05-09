@@ -616,6 +616,7 @@ export class TaskDetail {
             title: title,
             type: type,
             message: message,
+            contentLanguage: this.translatePage ? this.translation.language : this.task.langCode,
             modalType: MCMModalType.hint,
             narrativeEnabled: this.route.isNarrativeEnabled(),
             narrative: this.app.activeNarrative,
@@ -1003,8 +1004,65 @@ export class TaskDetail {
             messages = [
                 'a_msg_no_solutionsample',
                 'p_t_solution',
-                this.task.getSolution()
-            ]
+            ];
+            if (this.task.solutionType === 'blanks' || this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
+                if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
+                    let solutions = this.specialSolution.components
+                    let solutionText = "<table class='solutionTable'>";
+                    for (let i = 0; i < solutions.length; i++) {
+                        let solution = solutions[i];
+                        solutionText += `<tr><td>${solution.name}:</td> <td class="correct">${solution.answer}</td></tr>`;
+                    }
+                    solutionText += "</table>"
+                    messages.push(solutionText);
+                } else if (this.task.solutionType === 'set') {
+                    let solutions = this.specialSolution.components
+                    let solutionText = "<table class='solutionTable'>";
+                    for (let i = 0; i < solutions.length; i++) {
+                        let solution = solutions[i];
+                        solutionText += `<tr><td class="correct">${solution.answer}</td></tr>`;
+                    }
+                    solutionText += "</table>"
+                    messages.push(solutionText);
+                } else if (this.task.solutionType === 'fraction') {
+                    const solution = this.specialSolution;
+                    const displaySolution = '' +
+                        `<span class="fraction-display-container ${solution.mixed !== 'true' ? 'clean-fraction' : ''}">` +
+                        (solution.mixed === "true" ? `<span class="whole-number">${solution.number}</span>` : '') +
+                        '    <ion-grid>' +
+                        '         <ion-row class="first-row">' +
+                        '            <ion-col>' +
+                        `                <span>${solution.numerator}</span>` +
+                        '            </ion-col>' +
+                        '        </ion-row>' +
+                        '        <ion-row>' +
+                        '            <ion-col>' +
+                        `               <span>${solution.denominator}</span>` +
+                        '            </ion-col>' +
+                        '        </ion-row>' +
+                        '    </ion-grid>' +
+                        '</span>';
+                    messages.push(displaySolution);
+                } else if(this.task.solutionType === 'blanks') {
+                    let solutions = this.specialSolution.features;
+                    let blankText: string = this.specialSolution.val;
+                    for (let solutionObject of solutions) {
+                        const escapeRegExp = (text) => {
+                            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+                        }
+                        let answer = solutionObject.answers[0];
+                        let regex = new RegExp('\\*\\*' + escapeRegExp(answer) + '\\*\\*');
+                        let blankMatch = regex.exec(blankText);
+                        blankText = blankText.replace(blankMatch[0], `<span class="blank correct">${answer}</span>`);
+                    }
+                    messages.push(blankText);
+                } else if (this.task.solutionType === 'multiple_choice') {
+                    let solution = [this.task.getSolution()];
+                    messages.push(solution);
+                }
+            } else {
+                messages.push(this.task.getSolution());
+            }
         } else {
             messages.push(solutionSample);
         }
@@ -1017,6 +1075,7 @@ export class TaskDetail {
             modalType: MCMModalType.sampleSolution,
             narrativeEnabled: this.route.isNarrativeEnabled(),
             narrative: this.app.activeNarrative,
+            contentLanguage: this.translatePage ? this.translation.language : this.task.langCode,
             buttons: [
                 {
                     title: 'a_alert_close',
@@ -2414,7 +2473,6 @@ export class TaskDetail {
         }
         this.translatePage = this.translation && !this.translatePage;
         this.translationService.toggleTranslatedClass(this.translatePage);
-        this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.task.title;
         this.fillBlankSolutionElement();
     }
 }

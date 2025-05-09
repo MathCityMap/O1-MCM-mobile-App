@@ -5,6 +5,7 @@ import { TaskDetail } from './task-detail';
 import { ComponentsModule } from '../../components/components.module';
 import {PhotoViewer} from "@ionic-native/photo-viewer";
 import { SafariViewController } from '@ionic-native/safari-view-controller';
+import {DirectivesModule} from "../../directives/directives.module";
 
 
 
@@ -12,11 +13,12 @@ import { SafariViewController } from '@ionic-native/safari-view-controller';
   declarations: [
     TaskDetail,
   ],
-  imports: [
-    IonicPageModule.forChild(TaskDetail),
-    TranslateModule,
-    ComponentsModule,
-  ],
+    imports: [
+        IonicPageModule.forChild(TaskDetail),
+        TranslateModule,
+        ComponentsModule,
+        DirectivesModule,
+    ],
   providers: [PhotoViewer, SafariViewController]
 })
 export class TaskDetailPageModule {}

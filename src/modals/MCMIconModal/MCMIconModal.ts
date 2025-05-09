@@ -31,6 +31,7 @@ export class MCMIconModal{
     narrative: string;
     iconPath: string;
     taskCode: string;
+    contentLanguage: string;
 
     windowWith: number;
     videoWith: number;
@@ -73,6 +74,7 @@ export class MCMIconModal{
             this.messages = params.data.messages;
             this.taskCode = params.data.taskCode;
             this.imageUrl = params.data.imageUrl;
+            this.contentLanguage = params.data.contentLanguage;
             this.type = params.data.type;
             if (this.type == 'video' && this.message) {
                 let parts = this.message.split('v=');

@@ -214,7 +214,6 @@ export class TaskGroupDetail {
         }
         this.translatePage = this.translation && !this.translatePage;
         this.translationService.toggleTranslatedClass(this.translatePage);
-        this.navParams.data.headerTitle = this.translatePage ? this.translation.title : this.group.title;
     }
 
     goBack() {
