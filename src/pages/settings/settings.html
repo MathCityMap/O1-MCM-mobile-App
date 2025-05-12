@@ -1,4 +1,3 @@
-
 <ion-header>
    <ion-toolbar>
       <ion-buttons left>
@@ -13,12 +12,12 @@
 <ion-content class="has-header pattern-bg">
 
    <section class="padding center introduction">
-      <ion-label class="title main">For your information</ion-label>
+      <ion-label class="title main">{{'a_settings_info_label' | translate}}</ion-label>
       <div class="card primary">
          <div class="container top">
             <ion-label>
-               What is MCM?
-               <p>What is MathCityMap about and how does it work exactly? Find out in this quick tutorial!</p>
+               {{'a_settings_info_title' | translate}}
+               <p>{{'a_settings_info_text' | translate}}</p>
             </ion-label>
             <img class="icon" src="../../assets/icons/logo-mathcitymap-symbol.svg"/>
          </div>
@@ -33,7 +32,6 @@
       <ion-label class="title main">{{'a_settings_language' | translate}}</ion-label>
       <div class="card select">
          <ion-label>
-<!--            App Language-->
             {{'a_settings_app_language' | translate}}{{language != 'en' ? ' / LANGUAGE' : ''}}
          </ion-label>
          <ion-select [(ngModel)]="language" (ngModelChange)="onChangeLanguage($event)">
@@ -43,13 +41,12 @@
    </section>
 
    <section class="padding center">
+      <ion-label class="title main">{{'a_settings_accessibility' | translate }}</ion-label>
       <div class="card">
          <ion-item no-lines no-padding>
             <ion-label item-content>
-<!--               Translations-->
                {{'a_settings_translations_title' | translate}}
                <p>{{'a_settings_translations_text' | translate}}</p>
-<!--               <p>Enables the download of automated translations for a specific route</p>-->
             </ion-label>
             <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="translationService.isEnabled"></ion-toggle>
          </ion-item>
@@ -63,35 +60,28 @@
 
          <div class="info">
             <p>{{'a_settings_translations_info' | translate}}</p>
-<!--            <p>Download the according translation package in the route info page</p>-->
          </div>
       </div>
    </section>
 
    <section class="padding center">
-      <ion-label class="title main">{{'a_settings_accessibility' | translate }}</ion-label>
       <div class="card">
          <ion-item no-lines no-padding>
             <ion-label item-content>
-<!--               WIP: Text to Speech-->
                {{'a_settings_text_to_speech_title' | translate}}
                <p>{{'a_settings_text_to_speech_text' | translate}}</p>
-<!--               <p>Enables the option to select text and let it read aloud</p>-->
             </ion-label>
             <ion-toggle class="devModeToggle" [(ngModel)]="readAloudService.isEnabled" mode="ios"></ion-toggle>
          </ion-item>
          <ion-item no-lines no-padding>
             <ion-label item-content>
-<!--               WIP: configure-->
                {{'a_settings_text_to_speech_configure_title' | translate}}
                <p>{{'a_settings_text_to_speech_configure_text' | translate}}</p>
-<!--               <p>Enables the option to select text and let it read aloud</p>-->
             </ion-label>
             <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="showReadAloudConfig"></ion-toggle>
          </ion-item>
 
          <div class="item" *ngIf="showReadAloudConfig">
-<!--            <ion-label item-content>Lang</ion-label>-->
             <ion-label item-content>{{'a_settings_language' | translate}}</ion-label>
             <ion-select [(ngModel)]="readAloudLanguage">
                <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{ lang.value }}</ion-option>
@@ -99,7 +89,6 @@
          </div>
 
          <div class="item" *ngIf="showReadAloudConfig">
-<!--            <ion-label item-content>Voice</ion-label>-->
             <ion-label item-content>{{'a_settings_text_to_speech_voice' | translate}}</ion-label>
             <ion-select [(ngModel)]="readAloudVoice">
                <ion-option *ngFor="let voice of readAloudVoices" [value]="voice.identifier">{{ voice.name }}</ion-option>

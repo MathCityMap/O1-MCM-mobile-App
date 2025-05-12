@@ -1511,5 +1511,6 @@
   "p_public": "publique",
   "p_edit_advanced_settings": "Modifier les préférences avancées",
   "p_task_state": "État de la tâche",
-  "p_uploaded_format_change_settings": "Modifiez le format de vos images pour une compatibilité accrue."
+  "p_uploaded_format_change_settings": "Modifiez le format de vos images pour une compatibilité accrue.",
+  "p_download_as_pdf": "Télécharger en PDF"
 }
