@@ -1,12 +1,12 @@
 <ion-header transparent>
-   <ion-toolbar>
+   <ion-toolbar mode="md">
       <ion-buttons left>
          <button ion-button icon-only (click)="closeModal()">
             <img class="header-icon" src="assets/icons/back.svg"/>
          </button>
       </ion-buttons>
       <ion-buttons end>
-         <button *ngIf="translationService.isEnabled && (!!translation || !translationFetched)" ion-button color="light" class="translation" (click)="toggleTranslation()">
+         <button *ngIf="translationService.isEnabled && (!!translation || !translationFetched)" ion-button color="light" mode="md" class="translation" (click)="toggleTranslation()">
             <img class="icon" src="assets/icons/translation-download.svg"/>
             <div *ngIf="!translatePage && !translationFetched">Translation</div>
             <div *ngIf="!translatePage && translationFetched">Translate</div>
@@ -16,7 +16,7 @@
    </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="bottom">
    <div class="route-header" *ngIf="route"
          [ngClass]="{'narrative' : route.isNarrativeEnabled()}">
       <div class="title-container">
@@ -188,17 +188,17 @@
 <text-to-speech-control></text-to-speech-control>
 
 <ion-footer>
-   <button class="play" ion-button full block no-margin no-padding large
+   <button class="play pad-for-safe-area" ion-button full block no-margin no-padding large
            *ngIf="route && !route.downloaded"
            (click)="doDownload(route)">
       {{ 'a_r_download' | translate }}
    </button>
-   <button class="play" ion-button full block no-margin no-padding large
+   <button class="play pad-for-safe-area" ion-button full block no-margin no-padding large
            *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"
            (click)="showRoute(route)">
       {{ 'a_r_start' | translate }}
    </button>
-   <button class="play" ion-button full block no-margin no-padding large
+   <button class="play pad-for-safe-area" ion-button full block no-margin no-padding large
            *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"
            (click)="showRoute(route)">
       {{ 'a_r_continue' | translate }}

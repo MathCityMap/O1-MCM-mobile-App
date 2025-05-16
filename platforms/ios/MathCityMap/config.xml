@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="30122" id="de.autentek.mathcitymap" ios-CFBundleVersion="1" version="3.1.16" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="30124" id="de.autentek.mathcitymap" ios-CFBundleVersion="4" version="3.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="CDVWebViewEngine">
         <param name="ios-package" value="CDVWebViewEngine" />
     </feature>
@@ -144,6 +144,9 @@
     </feature>
     <feature name="PhotoViewer">
         <param name="ios-package" value="PhotoViewer" />
+    </feature>
+    <feature name="TTS">
+        <param name="ios-package" value="CDVTTS" />
     </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
@@ -303,7 +306,4 @@
     <preference name="Hostname" value="app.mathcitymap.eu" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
-    <feature name="TTS">
-        <param name="ios-package" value="CDVTTS" />
-    </feature>
 </widget>

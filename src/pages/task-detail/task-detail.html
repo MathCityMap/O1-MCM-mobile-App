@@ -1,5 +1,5 @@
 <ion-header transparent>
-   <ion-toolbar>
+   <ion-toolbar mode="md">
       <ion-buttons left>
          <button ion-button icon-only (click)="goBack()"
                  *ngIf="!rootTask">
@@ -12,7 +12,7 @@
          </button>
       </ion-buttons>
       <ion-buttons end>
-         <button *ngIf="translationService.isEnabled && (!!translation || !translationFetched)" ion-button color="light" class="translation" (click)="toggleTranslation()">
+         <button *ngIf="translationService.isEnabled && (!!translation || !translationFetched)" ion-button color="light" class="translation" mode="md" (click)="toggleTranslation()">
             <img class="icon" src="assets/icons/translation-download.svg"/>
             <div *ngIf="!translatePage && !translationFetched">Translation</div>
             <div *ngIf="!translatePage && translationFetched">Translate</div>

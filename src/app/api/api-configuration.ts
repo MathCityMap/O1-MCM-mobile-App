@@ -1,12 +1,12 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
+import {API_URL} from "../../env/env";
 
 /**
  * Contains global configuration for API services
  */
 @Injectable()
 export class ApiConfiguration {
-  rootUrl: string = "https://api.mathcitymap.eu/public/index.php" // http://localhost/;
-  // rootUrl: string = "https://api-dev.mathcitymap.eu/public/index.php";
-  // rootUrl: string = "http://192.168.178.28/mcmapi";
+    //FIXME Refactor users of this variable to use env.ts variable directly
+  rootUrl: string = API_URL;
 }

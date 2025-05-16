@@ -104,7 +104,7 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
          }
          &.bottom{
             .scroll-content {
-               padding-bottom: #{$prefix}$root-bottom;
+               margin-bottom: #{$prefix}$root-bottom;
             }
          }
       }
@@ -142,13 +142,15 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
    .footer{
       display: flex;
       min-height: $size-large;
-      min-height: calc(#{$size-large} + #{#{$prefix}$root-bottom});
+      //min-height: calc(#{$size-large} + #{#{$prefix}$root-bottom});
       & > *:first-child{
          flex: 1;
       }
       .button{
          &[large]{
-            padding-bottom: #{$prefix}$root-bottom;
+            &.pad-for-safe-area{
+               margin-bottom: #{$prefix}$root-bottom;
+            }
             contain: unset;
 
             //&:first-of-type{
