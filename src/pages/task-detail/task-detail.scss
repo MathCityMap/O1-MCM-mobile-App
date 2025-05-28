@@ -259,6 +259,67 @@ page-task-detail, page-task-group-detail {
                background-color: color($colors, primary-tint);
             }
          }
+
+         .image-selection-container{
+            .image{
+               &-list{
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  grid-gap: 16px;
+               }
+
+               &-item{
+                  position: relative;
+                  display: inline-block;
+                  box-sizing: border-box;
+                  padding-top: 100%;
+                  overflow: hidden;
+                  border-radius: 20px;
+                  box-shadow: inset 0 0 0 2px color($colors, light);
+                  outline: 0 solid transparent;
+                  transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.2s;
+
+                  .image, &:after{
+                     z-index: -1;
+                     position: absolute;
+                     top: 50%;
+                     left: 50%;
+                     transform: translate(-50%, -50%);
+                     height: 100%;
+                     width: 100%;
+                     object-fit: cover;
+                  }
+
+                  &:after{
+                     content: '';
+                     z-index: -2;
+                     background-color: color($colors, light-grey-tint);
+                  }
+
+                  button{
+                     z-index: 2;
+                     position: absolute;
+                     bottom: 2px;
+                     right: 2px;
+                     width: 24px;
+                     height: 24px;
+                     margin: 0;
+                     padding: 8px;
+                     box-sizing: content-box;
+                     box-shadow: none;
+                     background: transparent;
+                     .icon{
+                        width: 75%;
+                     }
+                  }
+
+                  &.active{
+                     outline: 4px solid color($colors, primary);
+                     transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.2s;
+                  }
+               }
+            }
+         }
       }
 
       &.support{

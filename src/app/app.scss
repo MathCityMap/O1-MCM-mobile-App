@@ -701,13 +701,36 @@ ion-list:not(.vector-input-list){
    }
 }
 
-.item-ios.item-block.item-checkbox, .item-md.item-block.item-checkbox{
-   min-height: 34px;
-   &:last-of-type{
-      margin-bottom: $global-small-padding;
-   }
-   ion-checkbox{
-      margin: 0 16px 0 0;
+.item{
+   &.item-checkbox{
+      .checkbox{
+         margin: 0 0 0 $global-base-padding;
+         order: 2;
+         .checkbox-icon{
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: none;
+            background-color: color($colors, light-grey-tint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &.checkbox-checked{
+               background-color: color($colors, primary);
+
+               .checkbox-inner{
+                  position: relative;
+                  left: unset;
+                  width: 7px;
+                  height: 14px;
+                  margin-top: -3px;
+                  border-width: 3px;
+                  border-top-width: 0;
+                  border-left-width: 0;
+               }
+            }
+         }
+      }
    }
    .item-inner{
       padding: 0;
@@ -719,6 +742,24 @@ ion-list:not(.vector-input-list){
          color: initial;
          text-transform: none;
          font-size: 16px;
+      }
+   }
+}
+
+ion-list{
+   margin-block: $global-base-padding 0!important;
+   .item {
+      &-md, &-ios {
+         &.item-checkbox {
+            &:not(:first-of-type){
+               border-top: 2px dotted color($colors, light-grey)!important;
+               margin-top: $global-small-padding;
+               padding-top: $global-small-padding;
+            }
+            .item-inner{
+               border: none;
+            }
+         }
       }
    }
 }
