@@ -188,6 +188,7 @@
 					</ion-item>
 				</ion-list>
 
+				<!--         Multiple Choice: Images-->
 <!--				TODO display when task type mc-image-->
 				<div class="image-selection-container"
 					  *ngIf="task && task.solutionType == 'multiple_choice_image' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
@@ -202,6 +203,7 @@
 							</button>
 						</div>
 
+						<!--         Fill-in-the-Blanks-->
 						<!--				TODO toggle active when item clicked-->
 						<div class="image-item active">
 							<img class="image" *ngIf="task && task.image" [src]="task.getImageURL()" alt="image"/>
@@ -210,6 +212,27 @@
 							</button>
 						</div>
 					</ion-list>
+				</div>
+
+				<div class="blanks-container"
+					  *ngIf="task && task.solutionType == 'fill_in_the_blanks' && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+					<div class="blanks-text">
+						<p>
+							<!--				TODO toggle active empty blank is clicked, remove empty when filled, empty agian when filled clicked-->
+							Dolorem beatae aut <span class="blank">BLANK FILLED</span> qunem dolorem aspernatur illo incidunt.
+							Odit qui porro quis ipsam quos <span class="blank empty active">?</span> vel asperiores qui. Et expedita enim eligendi. Quisquam adipisci ducimus ut totam fugiat sit.
+							<span class="blank empty">?</span> et tempore aut ut quia veritatis delectus sequi. Veniam et corrupti voluptatem.
+						</p>
+					</div>
+					<div class="blanks-list">
+						<ion-label>Blank words</ion-label>
+						<ion-list>
+							<!--				TODO remove/hide blanks when used, toggle empty state when all used up? -->
+<!--							<p>All blanks used. Time for a checkup!</p>-->
+							<span class="blank">BLANK WORD</span>
+							<span class="blank">BLANK WORD</span>
+						</ion-list>
+					</div>
 				</div>
 			</div>
 

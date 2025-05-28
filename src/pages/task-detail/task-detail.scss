@@ -320,6 +320,59 @@ page-task-detail, page-task-group-detail {
                }
             }
          }
+
+         .blanks-container{
+            .blanks{
+               &-text, &-list{
+                  margin-top: $global-base-padding;
+                  & > *{
+                     font-size: 16px;
+                  }
+                  .blank, span{
+                     display: inline-block;
+                     min-width: 36%;
+                     border-radius: 50px;
+                     margin-inline: 4px;
+                     padding: 5px $global-medium-padding 4px;
+                     box-shadow: 0 0 3px 1px rgba(0, 0, 0, .11);
+                     text-align: center;
+                     font-family: "Roboto", "Helvetica Neue", sans-serif;
+                     font-weight: 500;
+                     color: color($colors, dark);
+                     background-color: color($colors, light);
+                     box-sizing: border-box;
+                     &.empty{
+                        box-shadow: none;
+                        background-color: color($colors, light-grey-tint);
+                        color: color($colors, mid-grey);
+                        &.active{
+                           text-decoration: underline;
+                           font-weight: 800;
+                           background-color: color($colors, primary-tint);
+                           color: color($colors, primary);
+                        }
+                     }
+                  }
+               }
+               &-text{
+                  p{
+                     line-height: 2;
+                  }
+               }
+               &-list{
+                  border-top: 2px dotted color($colors, light-grey);
+                  margin-top: $global-base-padding;
+                  padding-top: $global-base-padding;
+                  .blank{
+                     padding-block: 10px 9px;
+                     margin-left: 0;
+                     margin-bottom: 8px;
+                     background-color: color($colors, primary);
+                     color: color($colors, light);
+                  }
+               }
+            }
+         }
       }
 
       &.support{
