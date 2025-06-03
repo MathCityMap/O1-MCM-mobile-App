@@ -27,6 +27,17 @@ page-tasks-map {
             width: 24px;
         }
     }
+   // MAPBOX Specific marker styles to replicate leaflet look of clusters
+   .mapboxgl-map{
+      .mapboxgl-marker {
+         position: absolute;
+         left: 0;
+         top: 0;
+         &.marker-cluster div {
+            margin: 2px;
+         }
+      }
+   }
 }
 
 .leaflet-marker-icon.marker.userPosition{

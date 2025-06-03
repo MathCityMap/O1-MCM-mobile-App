@@ -204,7 +204,9 @@ export class Route {
     }
 
     private boundingBoxLatLng: LatLngBounds = null;
+    private boundingBoxLatLngForMapBox: Array<Array<number>> = null;
     private viewBoundingBoxLatLng: LatLngBounds = null;
+    private viewBoundingBoxLatLngForMapBox: Array<Array<number>> = null;
     private centerLatLng: LatLng = null;
     private distance: number = null;
 
@@ -224,8 +226,11 @@ export class Route {
         const north = northWest[0] + padding;
         const west = northWest[1] - padding;
         const east = southEast[1] + padding;
+        const mapBoxExtraPadding = 0.01;
         this.viewBoundingBoxLatLng = new LatLngBounds([northWest[0], southEast[1]], [southEast[0], northWest[1]]);
+        this.viewBoundingBoxLatLngForMapBox = [[northWest[1], southEast[0]], [southEast[1], northWest[0]]]
         this.boundingBoxLatLng = new LatLngBounds([[north, east], [south, west]]);
+        this.boundingBoxLatLngForMapBox = [[west-mapBoxExtraPadding, south-mapBoxExtraPadding], [east+mapBoxExtraPadding, north+mapBoxExtraPadding]]
         this.centerLatLng = new LatLng(jsonCenter[0], jsonCenter[1]);
     }
 
@@ -298,11 +303,25 @@ export class Route {
         return this.boundingBoxLatLng;
     }
 
+    getBoundingBoxLatLngForMapBox(): Array<Array<number>> {
+        if (!this.boundingBoxLatLngForMapBox) {
+            this.calcBoundingBoxAndCenter();
+        }
+        return this.boundingBoxLatLngForMapBox;
+    }
+
     getViewBoundingBoxLatLng(): LatLngBounds {
         if (!this.viewBoundingBoxLatLng) {
             this.calcBoundingBoxAndCenter();
         }
         return this.viewBoundingBoxLatLng;
+    }
+
+    getViewBoundingBoxLatLngForMapBox(): Array<Array<number>> {
+        if (!this.viewBoundingBoxLatLngForMapBox) {
+            this.calcBoundingBoxAndCenter();
+        }
+        return this.viewBoundingBoxLatLngForMapBox;
     }
 
     getCenterLatLng(): LatLng {

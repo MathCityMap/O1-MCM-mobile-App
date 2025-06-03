@@ -259,7 +259,7 @@ export class Helper {
     public invokeApi(queryAction: string, postparams?: string, timeoutInSecs: number = 30): Promise<any> {
         if (!this.isOnline) {
             console.warn("No internet!")
-            return new Promise<any>(resolve => resolve())
+            return new Promise<void>(resolve => resolve())
         }
 
         let headers = new HttpHeaders({

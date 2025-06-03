@@ -34,6 +34,10 @@ import * as moment from 'moment';
 import {Observable} from "rxjs";
 import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
 import {ZoomService} from "../../../../services/zoom-service";
+import mapboxgl from "mapbox-gl";
+import Supercluster from 'supercluster';
+import {MAPBOX_ACCESS_TOKEN} from "../../../../env/env";
+import {featureCollection} from "@turf/helpers";
 
 declare var ConicGradient: any;
 
@@ -50,8 +54,15 @@ export class TasksMap implements OnDestroy {
     private static UPDATE_SESSION_TIME_INTERVAL_IN_SECS: number = 15;
 
     private map: any;
+    private mapboxMap: any;
     private routeId: number;
     protected route: Route;
+    // Mapbox specific variables
+    private isOfflineMap = true;
+    private mapBoxEventsInitialized = false;
+    private taskClicked = false;
+    private cluster: Supercluster;
+    private customClusters = [];
     private mapTaskList: Task[];
     private scoreTaskList: Task[];
 
@@ -69,13 +80,12 @@ export class TasksMap implements OnDestroy {
     private taskToSkip: Task = null;
     protected gamificationIsDisabled = false;
 
-    taskOpenIcon;
-    taskSkippedIcon;
-    taskDoneIcon;
-    taskDonePerfectIcon;
-    taskFailedIcon;
-    taskSavedIcon;
-    taskGroupIcon;
+    private taskOpenIcon;
+    private taskSkippedIcon;
+    private taskDoneIcon;
+    private taskDonePerfectIcon;
+    private taskFailedIcon;
+    private taskSavedIcon;
 
     userPositionIcon;
     userPositionArrow;
@@ -134,7 +144,7 @@ export class TasksMap implements OnDestroy {
             console.log('User has been assigned task with id: ' + taskId);
             this.sessionInfo.sessionUser.assigned_task_id = taskId;
             this.forceStartFromTask(taskId).then(() => {
-                this.redrawMarker();
+                this.redrawMarkers();
             });
         });
     }
@@ -180,9 +190,14 @@ export class TasksMap implements OnDestroy {
         this.updateSession(sessionInfo);
         this.events.publish('narrativeChange', this.route.getNarrativeName());
 
-        this.updateIcons();
 
-        await this.loadMap();
+        // TODO Add logic which map to load from Route
+        if (this.isOfflineMap) {
+            this.updateIcons();
+            await this.loadMap();
+        } else {
+            await this.loadMapboxMap();
+        }
         setTimeout(async () => {
             // adding markers immediately after map initialization caused marker cluster problems -> use timeout
             await this.initializeMap();
@@ -229,7 +244,7 @@ export class TasksMap implements OnDestroy {
                 this.saveMapStateToLocalStorage();
                 this.sessionInfo.started = true;
                 await this.chatAndSessionService.updateSession(this.sessionInfo);
-                await this.redrawMarker();
+                await this.redrawMarkers();
                 return;
             }
         }
@@ -283,7 +298,7 @@ export class TasksMap implements OnDestroy {
                 }
             }
         }
-        await this.redrawMarker();
+        await this.redrawMarkers();
     }
 
     private showGuidedTrailModalWithDelay(delay) {
@@ -337,7 +352,7 @@ export class TasksMap implements OnDestroy {
 
     async initializeMap() {
         this.currentScore = this.score.score;
-        // await this.redrawMarker();
+        await this.redrawMarkers();
         this.gpsService.isLocationOn();
         // This should fix the gray tiles and missing marker issue on android
         if (this.map != null) {
@@ -402,8 +417,16 @@ export class TasksMap implements OnDestroy {
         }
     }
 
+    redrawMarkers() {
+        //TODO replace isOffline with real Variable from route when it's parsed correctly
+        if (this.isOfflineMap) {
+           return this.redrawMarkersForLeaflet();
+        }
+        return this.redrawMarkersForMapBox()
+    }
 
-    async redrawMarker() {
+
+    async redrawMarkersForLeaflet() {
         if (this.redrawingMarkers) {
             return;
         }
@@ -498,7 +521,6 @@ export class TasksMap implements OnDestroy {
             let icon = this.taskOpenIcon;
 
             if (task.taskFormat === TaskFormat.GROUP) {
-                // TODO add proper Logic for task Icon
                 icon = this.getMarkerForGroup(task);
             } else {
                 let removeTaskFromSkippedArray = true;
@@ -564,6 +586,273 @@ export class TasksMap implements OnDestroy {
         console.log("MAP AFTER UPDATE", this.map);
         this.markerGroup = markerGroup;
         this.pathGroup = pathGroup;
+        this.redrawingMarkers = false;
+    }
+
+    async redrawMarkersForMapBox() {
+        console.log('redrawMapboxMarkers', this.redrawingMarkers);
+        if (this.redrawingMarkers) return;
+        this.redrawingMarkers = true;
+
+        const map = this.mapboxMap;
+        if (!map) return;
+
+        // Remove previous layers if they exist
+        for (const layerId of ['unclustered-point']) {
+            if (map.getLayer(layerId)) {
+                map.removeLayer(layerId);
+            }
+        }
+
+        if (map.getSource('tasks')) {
+            map.removeSource('tasks');
+        }
+
+        await this.refreshTaskLists();
+
+        // Build GeoJSON features from task list
+        const features = [];
+
+        for (let task of this.mapTaskList) {
+            if (!this.state.isShowingAllTasks && !this.state.visibleTasks[task.position]) continue;
+
+            let icon = 'taskOpenIcon'; // fallback default
+            let state = 'open';
+            if (task.taskFormat === TaskFormat.GROUP) {
+                const subtasks = task.getSubtasksInOrder();
+                const iconKey = `task-group-${task.id}`;
+                await this.registerGroupMarkerIconForMapBox(this.map, iconKey, subtasks, this.score);
+                icon = iconKey;
+            } else {
+                if (this.score.getTasksSaved().includes(task.id)) {
+                    icon = 'taskSavedIcon';
+                    state = "saved";
+                } else if (this.score.getTasksSolved().includes(task.id)) {
+                    icon = 'taskDonePerfectIcon';
+                    state = "perfect";
+                } else if (this.score.getTasksSolvedLow().includes(task.id)) {
+                    icon = 'taskDoneIcon';
+                    state = "done";
+                } else if (this.score.getTasksFailed().includes(task.id)) {
+                    icon = 'taskFailedIcon';
+                    state = "failed";
+                } else if (this.state.skippedTaskIds.includes(task.id)) {
+                    icon = 'taskSkippedIcon';
+                    state = "skipped";
+                }
+            }
+
+            // Clean up skippedTaskIds if necessary
+            if (!this.state.skippedTaskIds.includes(task.id)) {
+                const index = this.state.skippedTaskIds.indexOf(task.id);
+                if (index > -1) this.state.skippedTaskIds.splice(index, 1);
+            }
+
+            features.push({
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [task.lon, task.lat]
+                },
+                properties: {
+                    id: task.id,
+                    icon: icon,
+                    state: state,
+                    title: task.title
+                }
+            });
+        }
+
+        let tasksGeoJson: any = {
+            type: "FeatureCollection",
+            features
+        };
+
+        let clusterRadius = 30;
+        let clusterMaxZoom = 15;
+
+        this.cluster = new Supercluster({
+            radius: clusterRadius,
+            maxZoom: clusterMaxZoom,
+            map(properties) {
+                return {
+                    open: properties.state === "open" ? 1 : 0,
+                    saved: properties.state === "saved" ? 1 : 0,
+                    perfect: properties.state === "perfect" ? 1 : 0,
+                    done: properties.state === "done" ? 1 : 0,
+                    failed: properties.state === "failed" ? 1 : 0,
+                    skipped: properties.state === "skipped" ? 1 : 0,
+                }
+            },
+            reduce(accumulated, properties) {
+                accumulated.open += properties.open;
+                accumulated.saved += properties.saved;
+                accumulated.perfect += properties.perfect;
+                accumulated.done += properties.done;
+                accumulated.failed += properties.failed;
+                accumulated.skipped += properties.skipped;
+            }
+        });
+
+        this.cluster.load(tasksGeoJson.features);
+        let clusterData;
+        let worldBounds = [-180.0000, -90.0000, 180.0000, 90.0000];
+        let updateClusterData = () => {
+            // @ts-ignore
+            clusterData = featureCollection(this.cluster.getClusters(worldBounds, this.mapboxMap.getZoom()));
+        }
+        updateClusterData();
+
+        map.addSource('tasks', {
+            type: 'geojson',
+            data: clusterData,
+            buffer: 1,
+            maxzoom: clusterMaxZoom
+        });
+
+        // Unclustered points (actual tasks)
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'symbol',
+            source: 'tasks',
+            filter: ['!', ['has', 'point_count']],
+            layout: {
+                'icon-image': ['get', 'icon'],
+                'icon-size': 1,
+                'icon-allow-overlap': true
+            }
+        });
+
+        /**
+         * re-render the custom clusters layer
+         */
+        const updateCustomClusters = () => {
+            // clear existing custom clusters "layer"
+            this.customClusters.forEach(markerObj => markerObj.remove());
+            this.customClusters = [];
+
+            // create a custom icon (HTML element) for each cluster
+            clusterData.features.forEach((c) => {
+                // skip non-cluster points
+                if (!c.properties.cluster || !this.taskOpenIcon) {
+                    return;
+                }
+                console.log('Updating custom cluster');
+
+                const coords = c.geometry.coordinates;
+                const childCount = c.properties.point_count;
+
+                // create a DOM element for the marker
+                const element = document.createElement('div');
+                let classNames = 'marker-cluster marker-cluster-';
+                    if (childCount < 10) {
+                        classNames += 'small';
+                    } else if (childCount < 100) {
+                        classNames += 'medium';
+                    } else {
+                        classNames += 'large';
+                    }
+                    let colorOccurrences = {};
+                    if (c.properties.open > 0) {
+                        colorOccurrences[this.taskOpenIcon.clusterColor] = c.properties.open;
+                    }
+                    if (c.properties.saved > 0) {
+                        colorOccurrences[this.taskSavedIcon.clusterColor] = c.properties.saved;
+                    }
+                    if (c.properties.perfect > 0) {
+                        colorOccurrences[this.taskDonePerfectIcon.clusterColor] = c.properties.perfect;
+                    }
+                    if (c.properties.done > 0) {
+                        colorOccurrences[this.taskDoneIcon.clusterColor] = c.properties.done;
+                    }
+                    if (c.properties.failed > 0) {
+                        colorOccurrences[this.taskFailedIcon.clusterColor] = c.properties.failed;
+                    }
+                    if (c.properties.skipped > 0) {
+                        colorOccurrences[this.taskSkippedIcon.clusterColor] = c.properties.skipped;
+                    }
+                    let style = '';
+                    let img = '';
+                    let colors = Object.keys(colorOccurrences);
+                    if (colors.length == 1) {
+                        style = `background-color: ${colors[0]}`;
+                    } else {
+                        let stops = '';
+                        let alreadyFilledPercentage = 0;
+                        colors.map(color => {
+                            let n = colorOccurrences[color];
+                            let percentage = Math.round(n / childCount * 100);
+                            if (alreadyFilledPercentage > 0) {
+                                stops += ', ';
+                            }
+                            alreadyFilledPercentage += percentage;
+                            stops += `${color} 0 ${alreadyFilledPercentage}%`
+                        });
+
+                        let gradient = new ConicGradient({
+                            stops: stops,
+                            size: 24
+                        });
+                        img = `<img src="${gradient.png}"></img>`;
+                    }
+
+                element.innerHTML = `<div style="${style}">${img}<span>${childCount}</span></div>`;
+                element.classList.add(...classNames.split(" "));
+                element.onclick = (_ev) => {
+                    let zoom = this.cluster.getClusterExpansionZoom(c.properties.cluster_id);
+                    map.easeTo({
+                        center: coords,
+                        zoom: zoom+0.1
+                    });
+                }
+
+                // add marker to map
+                const markerObj = new mapboxgl.Marker(element)
+                    .setLngLat(coords)
+                    .addTo(map);
+
+                this.customClusters.push(markerObj);
+            });
+        };
+        setTimeout(() => {
+            updateCustomClusters();
+        }, 100);
+
+        if (!this.mapBoxEventsInitialized) {
+            this.mapBoxEventsInitialized = true;
+            map.on('data', (e) => {
+                if (e.sourceId !== 'tasks' || !e.isSourceLoaded) return;
+                updateCustomClusters();
+            })
+
+            map.on('moveend', () => {
+                updateClusterData();
+                // update the source for the unclustered points layer
+                map.getSource('tasks').setData(clusterData);
+            })
+
+
+            // Handle clicks on individual tasks
+            map.on('click', 'unclustered-point', (e) => {
+                this.taskClicked = true;
+                const taskId = e.features[0].properties.id;
+                const task = this.mapTaskList.find(t => t.id == taskId);
+                console.log('Task clicked', taskId, task, this.state);
+                if (!task) return;
+
+                if (this.state.selectedTask == task) {
+                    this.gototask(task.id, task.title, task.taskFormat);
+                } else {
+                    console.log('we update state');
+                    if (this.sessionInfo != null) {
+                        let details = JSON.stringify({});
+                        this.chatAndSessionService.addUserEvent("event_task_previewed", details, task.id.toString());
+                    }
+                    this.state.selectedTask = task;
+                    this.centerSelectedTask();
+                }
+            });
+        }
         this.redrawingMarkers = false;
     }
 
@@ -730,6 +1019,167 @@ export class TasksMap implements OnDestroy {
         }
     }
 
+    async loadMapboxMap() {
+        console.log('LOAD MAPBOX ENTRY!!!');
+        if (this.mapboxMap == null) {
+            const mapStyle = this.route.isNarrativeEnabled() ? 'mapbox://styles/igurjanow/ck0ezs4vd02ou1co75ep12pyz' : 'mapbox://styles/mapbox/outdoors-v11';
+            const bounds = this.route.getBoundingBoxLatLngForMapBox(); // [[southWestLat, southWestLng], [northEastLat, northEastLng]]
+
+            mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN; // Replace with your actual token
+
+            this.mapboxMap = new mapboxgl.Map({
+                container: 'tasks-map',
+                style: mapStyle,
+                bounds: bounds,
+                fitBoundsOptions: { padding: 200 },
+                attributionControl: false
+            });
+
+            return new Promise<void>((resolve) => {
+
+                this.mapboxMap.on('load', async () => {
+
+                    // Add navigation controls (zoom, rotate)
+                    this.mapboxMap.addControl(new mapboxgl.NavigationControl({
+                        showCompass: true,
+                        showZoom: true
+                    }), 'bottom-left');
+
+                    // Set max bounds to prevent user from panning outside
+                    this.mapboxMap.setMaxBounds(bounds);
+
+                    await this.addIconsToMapBoxMap();
+
+                    // Center map on current location
+                    try {
+                        const resp = await this.gpsService.getCurrentPosition();
+                        if (resp && resp.coords) {
+                            const {latitude, longitude} = resp.coords;
+                            const lngLat = [longitude, latitude] as [number, number];
+                            const userPosition = new mapboxgl.LngLat(longitude, latitude);
+
+                            // Check if the user is inside the current map bounds
+                            const bounds = this.mapboxMap.getBounds();
+                            const isInside = bounds.contains(userPosition);
+                            // const isInside = true;
+
+                            // Choose correct icon name
+                            const iconName = isInside ? 'userPositionIcon' : 'userPositionArrow';
+
+                            const geoJson = {
+                                type: 'FeatureCollection',
+                                features: [{
+                                    type: 'Feature',
+                                    geometry: {
+                                        type: 'Point',
+                                        coordinates: lngLat
+                                    },
+                                    properties: {
+                                        icon: iconName
+                                    }
+                                }]
+                            };
+
+                            // Update or create the user marker source
+                            if (this.mapboxMap.getSource('user-position')) {
+                                (this.mapboxMap.getSource('user-position') as mapboxgl.GeoJSONSource).setData(geoJson);
+                            } else {
+                                this.mapboxMap.addSource('user-position', {
+                                    type: 'geojson',
+                                    data: geoJson
+                                });
+
+                                this.mapboxMap.addLayer({
+                                    id: 'user-position-layer',
+                                    type: 'symbol',
+                                    source: 'user-position',
+                                    layout: {
+                                        'icon-image': ['get', 'icon'],
+                                        'icon-size': 1,
+                                        'icon-rotate': ['get', 'rotation'],
+                                        'icon-allow-overlap': true
+                                    }
+                                });
+                            }
+
+                            // Save previous position and determine rotation angle if needed
+                            if (!this.prevPos) {
+                                this.prevPos = resp.coords;
+                            } else {
+                                if (!isInside) {
+                                    const angle = Helper.getAngle(this.prevPos, resp.coords);
+                                    geoJson.features[0].properties['rotation'] = angle;
+                                    (this.mapboxMap.getSource('user-position') as mapboxgl.GeoJSONSource).setData(geoJson);
+                                }
+                                this.prevPos = resp.coords;
+                            }
+
+                            this.isUserInsideMap = isInside;
+                        }
+                    } catch (error) {
+                        console.error(`Location error: ${JSON.stringify(error)}`);
+                    }
+
+                    // Watch user position
+                    if (this.watchSubscription) {
+                        this.watchSubscription.unsubscribe();
+                    }
+
+                    this.watchSubscription = this.gpsService.watchPosition().subscribe(position => {
+                        if (position?.coords) {
+                            const {latitude, longitude} = position.coords;
+                            const lngLat = [longitude, latitude];
+
+                            // const isInside = bounds.contains(userPosition);
+                            const isInside = latitude > bounds[0][0] && latitude < bounds[1][0] && longitude > bounds[0][1] && longitude < bounds[1][1];
+
+                            // Choose correct icon name
+                            const iconName = isInside ? 'userPositionIcon' : 'userPositionArrow';
+
+                            // Update user marker logic (can use flyTo, or update existing marker position)
+                            // Add your custom logic for rotation or visibility here
+                            const geoJson = {
+                                type: 'FeatureCollection',
+                                features: [{
+                                    type: 'Feature',
+                                    geometry: {
+                                        type: 'Point',
+                                        coordinates: lngLat
+                                    },
+                                    properties: {
+                                        icon: iconName
+                                    }
+                                }]
+                            };
+
+                            // Update or create the user marker source
+                            if (this.mapboxMap.getSource('user-position')) {
+                                (this.mapboxMap.getSource('user-position') as mapboxgl.GeoJSONSource).setData(geoJson);
+                            }
+                        }
+                    });
+
+                    // Optional: handle clicks to reset selectedTask
+                    this.mapboxMap.on('click', () => {
+                        if (this.taskClicked) {
+                            this.taskClicked = false;
+                            return;
+                        }
+                        this.state.selectedTask = null;
+                    });
+
+                    // If there's a selected task, center on it
+                    if (this.state.selectedTask) {
+                        this.centerSelectedTask(); // Update this to work with Mapbox if needed
+                    }
+                    resolve();
+                })
+
+            })
+        }
+    }
+
+    //TODO NEED ADAPTED VERSION FOR MAPBOX!!!
     /*
     @description: Shows direction arrow pointing towards users geolocation if he isn't inside the current boundaries
     @param userLatLng array - [lat, lng]
@@ -765,7 +1215,11 @@ export class TasksMap implements OnDestroy {
     }
 
     centerSelectedTask() {
-        this.map.panTo([this.state.selectedTask.lat, this.state.selectedTask.lon]);
+        if (this.isOfflineMap) {
+            this.map.panTo([this.state.selectedTask.lat, this.state.selectedTask.lon]);
+        } else {
+            this.mapboxMap.flyTo({ center: [this.state.selectedTask.lon, this.state.selectedTask.lat], zoom: 16 });
+        }
     }
 
     goToNextTaskById(taskId: number, skip?: boolean) {
@@ -799,7 +1253,7 @@ export class TasksMap implements OnDestroy {
             that.state.visibleTasks[selectedTask.position] = true;
             that.state.isShowingAllTasks = false;
             that.centerSelectedTask();
-            that.redrawMarker();
+            that.redrawMarkers();
             if (that.sessionInfo != null) {
                 let details = JSON.stringify({title: that.state.selectedTask.title});
                 that.chatAndSessionService.addUserEvent("event_trail_start_from_task", details, that.state.selectedTask.id.toString());
@@ -809,7 +1263,7 @@ export class TasksMap implements OnDestroy {
 
     showAllTasks() {
         this.state.isShowingAllTasks = true;
-        this.redrawMarker();
+        this.redrawMarkers();
     }
 
     displayResetTasksModal() {
@@ -823,7 +1277,7 @@ export class TasksMap implements OnDestroy {
     }
 
     resetTasks() {
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             this.ormService.deleteUserScore(this.score).then(async () => {
                 this.score = new Score();
                 this.state = this.navParams.data.tasksMapState = {
@@ -845,7 +1299,7 @@ export class TasksMap implements OnDestroy {
                 this.route.completedDate = null;
                 await this.saveMapStateToLocalStorage();
                 await this.ormService.saveAndFireChangedEvent(this.route);
-                await this.redrawMarker();
+                await this.redrawMarkers();
                 resolve();
             });
         });
@@ -1012,8 +1466,8 @@ export class TasksMap implements OnDestroy {
 
     }
 
-    showIntroModal(): Promise<any> {
-        return new Promise<any>(success => {
+    showIntroModal(): Promise<void> {
+        return new Promise<void>(success => {
             let title = 'a_alert_welcome';
             let message = 'a_alert_welcome_msg';
             if (this.route.isNarrativeEnabled()) {
@@ -1150,12 +1604,6 @@ export class TasksMap implements OnDestroy {
                     iconAnchor: [17, 43],
                     className: 'marker'
                 });
-                this.taskGroupIcon = L.icon({
-                    iconUrl: 'assets/icons/map/task-group-open.svg',
-                    iconSize: [34, 48],
-                    iconAnchor: [17, 43],
-                    className: 'marker'
-                });
                 this.taskOpenIcon.clusterColor = '#036D99';
                 this.taskSkippedIcon.clusterColor = '#B2B2B2';
                 this.taskSavedIcon.clusterColor = '#6E38B9';
@@ -1164,6 +1612,173 @@ export class TasksMap implements OnDestroy {
                 this.taskFailedIcon.clusterColor = '#E62B25';
                 break;
         }
+    }
+
+    async addIconsToMapBoxMap() {
+        console.log('add images entered');
+        const addPng = async (map: mapboxgl.Map, url: string, id: string) => {
+            return new Promise<void>((resolve) => {
+                map.loadImage(url, (error, image) => {
+                    if (error) throw error;
+
+                    if (!map.hasImage(id)) {
+                        map.addImage(id, image);
+                    }
+                    resolve();
+                })
+            })
+        }
+        const addSvg = async (map: mapboxgl.Map, url: string, id: string) => {
+            const response = await fetch(url);
+            const svgText = await response.text();
+
+            let width: number,height: number;
+            const match = svgText.match(/viewBox="([\d.]+)[ ,]+([\d.]+)[ ,]+([\d.]+)[ ,]+([\d.]+)"/);
+            if (match) {
+                const [, , , widthStr, heightStr] = match;
+                width = parseFloat(widthStr);
+                height = parseFloat(heightStr);
+            }
+
+            const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+            const urlBlob = URL.createObjectURL(svgBlob);
+
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = width ?? img.width;
+                canvas.height = height ?? img.height;
+                if (ctx) {
+                    ctx.drawImage(img, 0, 0);
+                    if (!map.hasImage(id)) {
+                        map.addImage(id, ctx.getImageData(0, 0, width, height));
+                    }
+                    URL.revokeObjectURL(urlBlob);
+                }
+            };
+            img.src = urlBlob;
+        }
+
+        switch (this.app.activeNarrative) {
+            case 'pirates':
+                await addPng(this.mapboxMap, "assets/icons/pirates/mapposition.png", 'userPositionIcon');
+                await addPng(this.mapboxMap, "assets/icons/userDirection.png", 'userPositionArrow');
+                await addPng(this.mapboxMap, "assets/icons/pirates/marker-task-open.png", 'taskOpenIcon');
+                await addPng(this.mapboxMap, "assets/icons/pirates/marker-task-skipped.png", 'taskSkippedIcon');
+                await addPng(this.mapboxMap, "assets/icons/marker-task-saved.png", 'taskSavedIcon');
+                await addPng(this.mapboxMap, "assets/icons/pirates/marker-task-good.png", 'taskDoneIcon');
+                await addPng(this.mapboxMap, "assets/icons/pirates/marker-task-perfect.png", 'taskDonePerfectIcon');
+                await addPng(this.mapboxMap, "assets/icons/pirates/marker-task-failed.png", 'taskFailedIcon');
+                this.taskOpenIcon = {clusterColor: '#AA2000'};
+                this.taskSkippedIcon = {clusterColor: '#b2b2b2'};
+                this.taskSavedIcon = {clusterColor: '#6E38B9'};
+                this.taskDoneIcon = {clusterColor: '#FFC033'};
+                this.taskDonePerfectIcon = {clusterColor: '#33CC00'};
+                this.taskFailedIcon = {clusterColor: '#333333'};
+                break;
+            default:
+                await addPng(this.mapboxMap, "assets/icons/mapposition.png", 'userPositionIcon');
+                await addPng(this.mapboxMap, "assets/icons/userDirection.png", 'userPositionArrow');
+                await addSvg(this.mapboxMap,"assets/icons/map/task-open.svg", 'taskOpenIcon');
+                await addSvg(this.mapboxMap,"assets/icons/map/task-skipped.svg", 'taskSkippedIcon');
+                await addSvg(this.mapboxMap, "assets/icons/map/task-saved.svg", 'taskSavedIcon');
+                await addSvg(this.mapboxMap, "assets/icons/map/task-good.svg", 'taskDoneIcon');
+                await addSvg(this.mapboxMap, "assets/icons/map/task-perfect.svg", 'taskDonePerfectIcon');
+                await addSvg(this.mapboxMap, "assets/icons/map/task-failed.svg", 'taskFailedIcon');
+                this.taskOpenIcon = {clusterColor: '#036D99'};
+                this.taskSkippedIcon = {clusterColor: '#B2B2B2'};
+                this.taskSavedIcon = {clusterColor: '#6E38B9'};
+                this.taskDoneIcon = {clusterColor: '#F3B100'};
+                this.taskDonePerfectIcon = {clusterColor:'#4CAF50'};
+                this.taskFailedIcon = {clusterColor: '#E62B25'};
+                break;
+        }
+        console.log('Added images');
+    }
+
+
+    async registerGroupMarkerIconForMapBox(map: mapboxgl.Map, iconKey: string, subtasks: Task[], score: any) {
+        const size = 54; // icon pixel size
+        const radius = 22;
+        const center = { x: size / 2, y: size / 2 };
+
+        const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
+            const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+            return {
+                x: centerX + (radius * Math.cos(angleInRadians)),
+                y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        };
+
+        const describeArc = (x, y, radius, startAngle, endAngle) => {
+            const start = polarToCartesian(x, y, radius, endAngle);
+            const end = polarToCartesian(x, y, radius, startAngle);
+            const arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+            return `M${start.x},${start.y} A${radius},${radius} 0 ${arcSweep},0 ${end.x},${end.y}`;
+        };
+
+        const getClassColor = (task: Task) => {
+            if (score.getTasksSaved().includes(task.id)) return '#007bff';    // saved
+            if (score.getTasksSolved().includes(task.id)) return '#28a745';   // perfect
+            if (score.getTasksSolvedLow().includes(task.id)) return '#ffc107'; // good
+            if (score.getTasksFailed().includes(task.id)) return '#dc3545';   // failed
+            if (score.getTaskStateForTask(task.id).skipped) return '#6c757d'; // skipped
+            return '#999999'; // default
+        };
+
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        // draw base pin shape (simple circle fallback)
+        ctx.beginPath();
+        ctx.arc(center.x, center.y, radius + 5, 0, Math.PI * 2, false);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.strokeStyle = '#00000022';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        const count = subtasks.length;
+        if (count === 1) {
+            ctx.beginPath();
+            ctx.arc(center.x, center.y, radius, 0, Math.PI * 2, false);
+            ctx.fillStyle = getClassColor(subtasks[0]);
+            ctx.fill();
+        } else {
+            let prevAngle = 0;
+            for (let i = 0; i < count; i++) {
+                const startAngle = prevAngle;
+                const endAngle = ((i + 1) / count) * 360;
+                prevAngle = endAngle;
+
+                ctx.beginPath();
+                const arcPath = new Path2D(describeArc(center.x, center.y, radius, startAngle, endAngle));
+                ctx.strokeStyle = getClassColor(subtasks[i]);
+                ctx.lineWidth = radius * 2;
+                ctx.stroke(arcPath);
+            }
+        }
+
+        // Add text
+        ctx.fillStyle = '#000';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(count.toString(), center.x, center.y);
+
+        const imageData = ctx.getImageData(0, 0, size, size);
+        const iconImage = {
+            width: imageData.width,
+            height: imageData.height,
+            data: imageData.data
+        };
+
+        // Add to map
+        if (map.hasImage(iconKey)) map.removeImage(iconKey);
+        map.addImage(iconKey, iconImage as any, { pixelRatio: 2 });
     }
 
     getMarkerForGroup(group: Task) {

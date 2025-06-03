@@ -4,16 +4,13 @@ import {File} from '@ionic-native/file';
 import {OnInit} from "@angular/core";
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
-//import 'leaflet-offline';
 import {checkAvailability} from "@ionic-native/core";
 
 import {DB_Updater} from '../../../../classes/DB_Updater';
 import {Helper} from '../../../../classes/Helper';
-import {tilesDb} from '../../../../classes/tilesDb';
 
 import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
-import {geoJSON, LatLngBounds} from 'leaflet';
 import {ModalsService} from '../../../../services/modals-service';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {TranslateService} from '@ngx-translate/core';
@@ -21,17 +18,12 @@ import {TranslateService} from '@ngx-translate/core';
 
 import {GpsService} from '../../../../services/gps-service';
 import 'rxjs/add/operator/filter';
-//import 'leaflet-rotatedmarker';
 import {Subscription} from 'rxjs/Subscription';
 import {LanguageService} from '../../../../services/language-service';
 
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
-import {forEach} from "typescript-collections/dist/lib/arrays";
+import mapboxgl from 'mapbox-gl'
 import {ZoomService} from "../../../../services/zoom-service";
 import {MAPBOX_ACCESS_TOKEN} from "../../../../env/env";
-
-// import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
 
 @IonicPage()
 @Component({

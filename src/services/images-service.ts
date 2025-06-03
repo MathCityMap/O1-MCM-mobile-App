@@ -319,7 +319,7 @@ export class ImagesService {
         }
         if (this.dataDirectory) {
             // we need to check for downloaded files
-            await new Promise(success => {
+            await new Promise<void>(success => {
                 this.downloadURLs([imgPath], false, (alreadyDownloaded, totalDownload, url) => {
                     if (url == imgPath) {
                         success();
@@ -342,7 +342,7 @@ export class ImagesService {
         let downloadRequest: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
         let pathToFileInString  = dataDirectory + route.mapFileName;
-        await new Promise((success, error) => {
+        await new Promise<void>((success, error) => {
             downloadRequest.onProgress((progress) => {
                 if (progress.loaded && progress.total && progress.loaded < progress.total) {
                     if (progress.total > 0) {

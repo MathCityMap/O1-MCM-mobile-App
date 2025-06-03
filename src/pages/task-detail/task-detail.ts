@@ -516,7 +516,7 @@ export class TaskDetail {
         if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
             this.unsubscribeCKEvents();
         }
-        if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed) {
+        if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed || this.taskDetails.skipped || this.taskDetails.saved) {
             //This guarantees that the state is updated before the map opens and gets the information.
             if (this.navParams.get('goToNextTaskById')) {
                 let goToNextTaskById = this.navParams.get('goToNextTaskById');
@@ -1111,9 +1111,11 @@ export class TaskDetail {
             this.taskDetails.skipped = true;
             await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
         }
-        if (this.navParams.get('goToNextTaskById')) {
-            let goToNextTaskById = this.navParams.get('goToNextTaskById');
-            goToNextTaskById(this.task.id, skip);
+        if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed || this.taskDetails.skipped || this.taskDetails.saved) {
+            if (this.navParams.get('goToNextTaskById')) {
+                let goToNextTaskById = this.navParams.get('goToNextTaskById');
+                goToNextTaskById(this.task.id, skip);
+            }
         }
         // necessary because of bug which does not update URL
         this.deepLinker.navChange('back');

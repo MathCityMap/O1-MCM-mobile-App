@@ -29,6 +29,7 @@ import {SessionUserResponse} from "../app/api/models/session-user-response";
 import {SessionUsersResponse} from "../app/api/models/session-users-response";
 import {forEach} from "typescript-collections/dist/lib/arrays";
 import {SessionEventsResponse} from "../app/api/models/session-events-response";
+import {Coordinates} from "@ionic-native/geolocation";
 
 export class ChatMessage {
     messageId: string;

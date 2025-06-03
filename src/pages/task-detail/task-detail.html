@@ -359,16 +359,16 @@
 		</div>
 
 		<!-- show next task -->
-		<button ion-button full block no-margin no-padding large class="secondary" (click)="closeDetails(false)"
+		<button ion-button full block no-margin no-padding large class="primary" (click)="closeDetails(false)"
 				  *ngIf="!rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
-			Continue
+			{{ 'a_alert_continue' | translate }}
 		</button>
 
 		<!-- skip task -->
 		<button ion-button full block no-margin no-padding large color="danger" class="secondary"
 				  *ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))"
 				  (click)="confirmSkippingTask()">
-			Skip
+			{{ 'a_task_skip' | translate }}
 		</button>
 
 
@@ -376,7 +376,7 @@
 		<button class="hint" ion-button block no-margin no-padding large (click)="goToNextSubtask()" class="primary"
 				  *ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)">
 			<!--                     <img class="round" src="./assets/icons/icon_skip.svg"/>-->
-			NEXT
+			{{ 'next' | translate }}
 		</button>
 	</ion-footer>
 </ion-content>

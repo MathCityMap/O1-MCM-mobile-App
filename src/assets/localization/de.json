@@ -12,7 +12,7 @@
   "p_error_remedy": "Beheben Sie folgende Fehler:",
   "p_error_creating_task": "Ein Fehler ist bei der Aufgabenerstellung aufgetreten:",
   "p_error_no_position": "Keine Lat-Lon-Koordinaten vergeben.",
-  "p_error_no_definition": "Keine Aufgabenstellung vergeben.",
+  "p_error_no_definition": "Bitte füge deiner Aufgabe noch eine Aufgabenstellung hinzu. Zum Beispiel: Betrachte das Objekt und fülle den Lückentext aus.",
   "p_error_no_title": "Kein Titel vergeben.",
   "p_t_deleted_error": "Ein Fehler ist aufgetreten. Löschen fehlgeschlagen.",
   "p_t_deleted": "Aufgabe erfolgreich gelöscht.",
@@ -1636,5 +1636,6 @@
   "a_settings_text_to_speech_configure_title": "Konfigurieren",
   "a_settings_text_to_speech_configure_text": "Ermöglicht Sprachkonfigurationsoptionen.",
   "a_settings_text_to_speech_voice": "Vorlesestimme",
-  "a_settings_accessibility": "Barrierefreiheit"
+  "a_settings_accessibility": "Barrierefreiheit",
+  "a_task_skip": "Überspringen"
 }
