@@ -62,9 +62,6 @@
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-plugin-request-location-accuracy": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-safariviewcontroller": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
@@ -88,6 +85,9 @@
     },
     "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     }
   },
   "dependent_plugins": {

@@ -23,9 +23,6 @@
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-request-location-accuracy": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-globalization": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -91,6 +88,10 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-request-location-accuracy": {
+      "PLAY_SERVICES_LOCATION_VERSION": "21.3.0",
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },

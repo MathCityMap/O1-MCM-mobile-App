@@ -418,14 +418,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
-      "file": "plugins/cordova-plugin-request-location-accuracy/www/ios/RequestLocationAccuracy.js",
-      "pluginId": "cordova-plugin-request-location-accuracy",
-      "clobbers": [
-        "cordova.plugins.locationAccuracy"
-      ]
-    },
-    {
       "id": "cordova-plugin-safariviewcontroller.SafariViewController",
       "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
       "pluginId": "cordova-plugin-safariviewcontroller",
@@ -590,6 +582,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "TTS"
       ]
+    },
+    {
+      "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
+      "file": "plugins/cordova-plugin-request-location-accuracy/www/ios/RequestLocationAccuracy.js",
+      "pluginId": "cordova-plugin-request-location-accuracy",
+      "clobbers": [
+        "cordova.plugins.locationAccuracy"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -611,7 +611,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-media": "7.0.0-dev",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
-    "cordova-plugin-request-location-accuracy": "2.2.2",
     "cordova-plugin-safariviewcontroller": "2.0.0",
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-statusbar": "2.2.4-dev",
@@ -621,6 +620,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-sqlite-storage": "5.1.0",
     "cordova-plugin-ionic-webview": "5.0.0",
     "com-sarriaroman-photoviewer": "1.1.18",
-    "cordova-plugin-tts-advanced": "0.5.2"
+    "cordova-plugin-tts-advanced": "0.5.2",
+    "cordova-plugin-request-location-accuracy": "2.3.0"
   };
 });

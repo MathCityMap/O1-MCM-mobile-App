@@ -262,14 +262,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
-      "file": "plugins/cordova-plugin-request-location-accuracy/www/android/RequestLocationAccuracy.js",
-      "pluginId": "cordova-plugin-request-location-accuracy",
-      "clobbers": [
-        "cordova.plugins.locationAccuracy"
-      ]
-    },
-    {
       "id": "cordova-plugin-globalization.GlobalizationError",
       "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
       "pluginId": "cordova-plugin-globalization",
@@ -564,6 +556,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "TTS"
       ]
+    },
+    {
+      "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
+      "file": "plugins/cordova-plugin-request-location-accuracy/www/android/RequestLocationAccuracy.js",
+      "pluginId": "cordova-plugin-request-location-accuracy",
+      "clobbers": [
+        "cordova.plugins.locationAccuracy"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -574,7 +574,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-advanced-http": "1.6.2",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
-    "cordova-plugin-request-location-accuracy": "2.2.2",
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-app-version": "0.1.9",
     "com.jjdltc.cordova.plugin.zip": "1.1.0",
@@ -595,6 +594,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-media": "7.0.0-dev",
     "cordova-plugin-ionic-webview": "5.0.0",
     "com-sarriaroman-photoviewer": "1.1.18",
-    "cordova-plugin-tts-advanced": "0.5.2"
+    "cordova-plugin-tts-advanced": "0.5.2",
+    "cordova-plugin-request-location-accuracy": "2.3.0"
   };
 });

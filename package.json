@@ -64,7 +64,6 @@
         "cordova-plugin-ionic-keyboard": "2.2.0",
         "cordova-plugin-native-spinner": "1.1.3",
         "cordova-plugin-network-information": "1.3.4",
-        "cordova-plugin-request-location-accuracy": "^2.2.2",
         "cordova-plugin-screen-orientation": "3.0.2",
         "cordova-plugin-statusbar": "git+https://github.com/apache/cordova-plugin-statusbar.git",
         "cordova-plugin-wkwebview-inject-cookie": "1.0.6",
@@ -104,6 +103,7 @@
         "cordova-plugin-ionic-webview": "^5.0.1",
         "cordova-plugin-local-notification": "file:plugin-src/cordova-plugin-local-notification",
         "cordova-plugin-media": "git+https://github.com/apache/cordova-plugin-media.git",
+        "cordova-plugin-request-location-accuracy": "^2.3.0",
         "cordova-plugin-safariviewcontroller": "^2.0.0",
         "cordova-plugin-tts-advanced": "^0.5.3",
         "cordova-sqlite-storage": "file:plugin-src/cordova-sqlite-storage",
@@ -119,7 +119,6 @@
             "cordova-plugin-advanced-http": {},
             "cordova-plugin-native-spinner": {},
             "cordova-plugin-network-information": {},
-            "cordova-plugin-request-location-accuracy": {},
             "cordova-plugin-globalization": {},
             "cordova-plugin-app-version": {},
             "com.jjdltc.cordova.plugin.zip": {},
@@ -146,7 +145,10 @@
             "cordova-plugin-file": {},
             "cordova-plugin-ionic-webview": {},
             "com-sarriaroman-photoviewer": {},
-            "cordova-plugin-tts-advanced": {}
+            "cordova-plugin-tts-advanced": {},
+            "cordova-plugin-request-location-accuracy": {
+                "PLAY_SERVICES_LOCATION_VERSION": "21.3.0"
+            }
         },
         "platforms": [
             "ios",

@@ -75,9 +75,6 @@
     <feature name="NetworkStatus">
         <param name="ios-package" value="CDVConnection" />
     </feature>
-    <feature name="RequestLocationAccuracy">
-        <param name="ios-package" value="RequestLocationAccuracy" />
-    </feature>
     <feature name="SafariViewController">
         <param name="ios-package" value="SafariViewController" />
     </feature>
@@ -306,4 +303,7 @@
     <preference name="Hostname" value="app.mathcitymap.eu" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <feature name="RequestLocationAccuracy">
+        <param name="ios-package" value="RequestLocationAccuracy" />
+    </feature>
 </widget>
