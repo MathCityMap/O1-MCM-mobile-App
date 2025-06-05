@@ -93,7 +93,7 @@ export class DB_Updater {
             await repo.save(routesToSave);
             console.log("UPDATED VERSION!", "version_route");
         }
-        // if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
+        if (Number(offlineVersions.getValue("version_rel_route_task")) < Number(onlineVersions.getValue("version_rel_route_task"))) {
             // Relation needs update
             await this.insertJSONinSQLiteDB(await this.helper.invokeApi('getRelations'), DBC.DB_RELROUTETASK);
             // Update local table
@@ -104,7 +104,7 @@ export class DB_Updater {
                     "version_rel_route_task"
                 ]);
             console.log("UPDATED VERSION!", "version_rel_route_task")
-        // }
+        }
     }
 
     /*
@@ -112,9 +112,6 @@ export class DB_Updater {
       Inserts Data from MYSQL online (represented as JSON) into sqlite database of app
     */
     private async insertJSONinSQLiteDB(data: any, table: DBC_Plan) {
-        if(table === DBC.DB_RELROUTETASK) {
-            console.log('Debug here DB_TASK');
-        }
         let sqlInsertQry = `INSERT INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
         let sqlReplaceIntoQry = `REPLACE INTO ${table.getTableName()} ${table.getFieldsInScopes()} VALUES ${table.getFieldsPlaceholders()};`
         let dbh = DB_Handler.getInstance()
@@ -122,85 +119,88 @@ export class DB_Updater {
         if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
             await db.executeSql(`DELETE FROM ${table.getTableName()}`, null)
         }
-        await db.transaction(tr => {
-            let entryCount = table === DBC.DB_TASK ? data.tasks.length : data.length;
-            for (let i = 0; i < entryCount; i++) {
-                let row =  table === DBC.DB_TASK ? data.tasks[i] : data[i]
-                let params = []
-                for (let n = 1; n <= table.fieldsCount; n++) {
-                    // Check which data type is used in table > choose right bind
-                    if (table.fieldsType[n - 1] === "INTEGER") {
-                        // integer
-                        // params.push(n)
-                        params.push(isNaN(Number(row[table.fields[n - 1]])) ? null : Number(row[table.fields[n - 1]]))
-                    } else if (table.fieldsType[n - 1] === "VARCHAR"
-                        || table.fieldsType[n - 1] === "TEXT"
-                        || table.fieldsType[n - 1] === "TIMESTAMP") {
-                        // params.push(n)
-                        params.push(row[table.fields[n - 1]])
+        let base = table === DBC.DB_TASK ? data.tasks : data;
+        while(base.length > 0) {
+            let entries = base.splice(0, base.length > 10000 ? 10000 : base.length)
+            console.log('segmented sqlite insert', base, entries);
+            await db.transaction(tr => {
+                let entryCount = entries.length;
+                for (let i = 0; i < entryCount; i++) {
+                    let row = entries[i];
+                    let params = []
+                    for (let n = 1; n <= table.fieldsCount; n++) {
+                        // Check which data type is used in table > choose right bind
+                        if (table.fieldsType[n - 1] === "INTEGER") {
+                            // integer
+                            // params.push(n)
+                            params.push(isNaN(Number(row[table.fields[n - 1]])) ? null : Number(row[table.fields[n - 1]]))
+                        } else if (table.fieldsType[n - 1] === "VARCHAR"
+                            || table.fieldsType[n - 1] === "TEXT"
+                            || table.fieldsType[n - 1] === "TIMESTAMP") {
+                            // params.push(n)
+                            params.push(row[table.fields[n - 1]])
+                        } else {
+                            console.warn("Caution: Datatype not Integer, Varchar or Text!");
+                        }
+                    }
+                    if (table.getTableName() !== DBC.DATABASE_TABLE_TASK) {
+                        tr.executeSql(sqlInsertQry, params)
                     } else {
-                        console.warn("Caution: Datatype not Integer, Varchar or Text!");
+                        // For tasks: Replace rows when refreshing the trail
+                        tr.executeSql(sqlReplaceIntoQry, params)
                     }
                 }
-                if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
-                    tr.executeSql(sqlInsertQry, params)
-                }
-                else{
-                    // For tasks: Replace rows when refreshing the trail
-                    tr.executeSql(sqlReplaceIntoQry, params)
-                }
-            }
-            if (table === DBC.DB_TASK) {
-                // We add subtasks here;
-                let subCounters = [
-                    {entry: "supporttasks", count: data['supporttasks'].length},
-                    {entry: "subtasksV2", count: data['subtasksV2'].length}
-                ];
-                console.log('Doing the subcounters', subCounters);
-                console.log('For Data', data);
-                for (let counter of subCounters) {
-                    console.log('parsing '+ counter.entry, data[counter.entry]);
-                    for (let i = 0; i < counter.count; i++) {
-                        let row =  data[counter.entry][i];
-                        let params = [];
-                        for (let n = 1; n <= table.fieldsCount; n++) {
-                            // Check which data type is used in table > choose right bind
-                            if (table.fieldsType[n - 1] === "INTEGER") {
-                                // integer
-                                // params.push(n)
-                                if (table.fields[n - 1] === '_id') {
-                                    params.push(Number(row[table.fields[n - 1]]))
-                                } else if (row[table.fields[n - 1]]) {
-                                    params.push(Number(row[table.fields[n - 1]]))
+                if (table === DBC.DB_TASK) {
+                    // We add subtasks here;
+                    let subCounters = [
+                        {entry: "supporttasks", count: data['supporttasks'].length},
+                        {entry: "subtasksV2", count: data['subtasksV2'].length}
+                    ];
+                    console.log('Doing the subcounters', subCounters);
+                    console.log('For Data', data);
+                    for (let counter of subCounters) {
+                        console.log('parsing ' + counter.entry, data[counter.entry]);
+                        for (let i = 0; i < counter.count; i++) {
+                            let row = data[counter.entry][i];
+                            let params = [];
+                            for (let n = 1; n <= table.fieldsCount; n++) {
+                                // Check which data type is used in table > choose right bind
+                                if (table.fieldsType[n - 1] === "INTEGER") {
+                                    // integer
+                                    // params.push(n)
+                                    if (table.fields[n - 1] === '_id') {
+                                        params.push(Number(row[table.fields[n - 1]]))
+                                    } else if (row[table.fields[n - 1]]) {
+                                        params.push(Number(row[table.fields[n - 1]]))
+                                    } else {
+                                        params.push(0);
+                                    }
+                                } else if (table.fieldsType[n - 1] === "VARCHAR"
+                                    || table.fieldsType[n - 1] === "TEXT"
+                                    || table.fieldsType[n - 1] === "TIMESTAMP") {
+                                    // params.push(n)
+                                    if (row[table.fields[n - 1]]) {
+                                        params.push(row[table.fields[n - 1]])
+                                    } else {
+                                        params.push("");
+                                    }
                                 } else {
-                                    params.push(0);
+                                    console.warn("Caution: Datatype not Integer, Varchar or Text!");
                                 }
-                            } else if (table.fieldsType[n - 1] === "VARCHAR"
-                                || table.fieldsType[n - 1] === "TEXT"
-                                || table.fieldsType[n - 1] === "TIMESTAMP") {
-                                // params.push(n)
-                                if (row[table.fields[n - 1]]) {
-                                    params.push(row[table.fields[n - 1]])
-                                } else {
-                                    params.push("");
-                                }
+                            }
+                            if (table.getTableName() !== DBC.DATABASE_TABLE_TASK) {
+                                tr.executeSql(sqlInsertQry, params)
                             } else {
-                                console.warn("Caution: Datatype not Integer, Varchar or Text!");
+                                // For tasks: Replace rows when refreshing the trail
+                                tr.executeSql(sqlReplaceIntoQry, params)
                             }
                         }
-                        if(table.getTableName() !== DBC.DATABASE_TABLE_TASK){
-                            tr.executeSql(sqlInsertQry, params)
-                        }
-                        else{
-                            // For tasks: Replace rows when refreshing the trail
-                            tr.executeSql(sqlReplaceIntoQry, params)
-                        }
                     }
                 }
-            }
-        }).catch(error => {
-            console.error(`Transaction Error: ${error.toString()}`)
-        })
+            }).catch(error => {
+                console.error(`Transaction Error: ${error.toString()}`)
+            })
+        }
     }
 
     /*
