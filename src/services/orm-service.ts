@@ -355,12 +355,18 @@ export class OrmService {
 
             //should be here that we add the download and unzipping.
             if (!route.isNarrativeEnabled()) {
-                await this.imagesService.downloadAndUnzip(route, (done) => {
-                    return statusCallback(done, 100);
-                },
-                    (tile)=>{
-                        alreadyDownloadedUrls.push(tile);
-                    })
+                //TODO Only if route has offlinemap
+                try {
+                    await this.imagesService.downloadAndUnzip(route, (done) => {
+                            return statusCallback(done, 100);
+                        },
+                        (tile)=>{
+                            alreadyDownloadedUrls.push(tile);
+                        })
+                } catch (e) {
+                    //TODO set route to online locally if this happens
+                    console.debug('Map download failed', e);
+                }
             } else {
                 let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
                 await CacheManagerMCM.downloadTiles(route, zoomLevels.min_zoom, zoomLevels.max_zoom, (done, total, url) => {
