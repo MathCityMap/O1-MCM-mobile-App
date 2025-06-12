@@ -1,9 +1,9 @@
-<ion-header>
-    <ion-toolbar hideBackButton [attr.transparent]="true">
+<ion-header transparent>
+    <ion-toolbar hideBackButton mode="md">
         <ion-buttons right>
-            <button ion-button icon-only (click)="goToHomePage()">
-                <img class="header-icon" src="assets/icons/icon_close-modal.svg"/>
-            </button>
+			  <button ion-button icon-only color="danger" (click)="goToHomePage()">
+				  <img class="header-icon" src="assets/icons/close.svg"/>
+			  </button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>

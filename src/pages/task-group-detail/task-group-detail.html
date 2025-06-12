@@ -6,12 +6,19 @@
          </button>
       </ion-buttons>
       <ion-buttons end>
-         <button *ngIf="translationService.isEnabled && (!!translation || !translationFetched)" ion-button color="light" class="translation" mode="md" (click)="toggleTranslation()">
-            <img class="icon" src="assets/icons/translation-download.svg"/>
-            <div *ngIf="!translatePage && !translationFetched">Translation</div>
-            <div *ngIf="!translatePage && translationFetched">Translate</div>
-            <div *ngIf="translatePage">Translated</div>
-         </button>
+			<button ion-button color="light" mode="md" class="translation"
+					  *ngIf="translationService.isEnabled && (!!translation || !translationFetched)"
+					  (click)="toggleTranslation()"
+					  [ngClass]="{'active' : translatePage}">
+				<img class="icon" src="assets/icons/translation-download.svg"
+					  *ngIf="!translatePage && !translationFetched"/>
+				<div *ngIf="!translatePage && !translationFetched">Translation</div>
+
+				<img class="icon" src="assets/icons/translation.svg"
+					  *ngIf="translatePage || translationFetched"/>
+				<div *ngIf="!translatePage && translationFetched">Translate</div>
+				<div *ngIf="translatePage">Translated</div>
+			</button>
       </ion-buttons>
    </ion-toolbar>
 </ion-header>
