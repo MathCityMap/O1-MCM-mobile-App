@@ -800,14 +800,15 @@ page-task-group-detail {
 }
 
 @media screen and (min-width: 768px) and (orientation: landscape){
-   page-task-detail{
-      .content.padding.bottom .scroll-content{
+   page-task-detail, page-task-group-detail{
+      .task-wrapper{
          display: flex;
          padding-bottom: 0!important;
       }
       .task-header{
          flex: 55;
-         max-height: unset;
+         max-height: calc(100vh + 24px);
+         overflow: hidden;
          &.gps{
             #gpsTaskMap{
                position: relative;
@@ -824,14 +825,9 @@ page-task-group-detail {
          flex: 45;
          height: 100%;
          margin-bottom: 0;
-         padding-top: $global-medium-padding*2;
+         margin-top: unset;
          overflow: scroll;
          .transition{
-            //left: -30px;
-            //height: 100%;
-            //width: 35px;
-            //z-index: 1000;
-            //background: linear-gradient(to left, #e5e5e5 0%, rgba(255, 255, 255, 0) 100%);
             display: none;
          }
       }

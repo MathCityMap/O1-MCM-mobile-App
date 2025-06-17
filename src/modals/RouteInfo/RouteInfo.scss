@@ -268,4 +268,13 @@ h1{
 			}
 		}
 	}
+   .route-content{
+      margin-top: calc((15vw + 4px) * -1);
+   }
+}
+
+@media screen and (min-width: 1300px) {
+   .route-content{
+      margin-top: calc((25vw + 4px) * -1);
+   }
 }
