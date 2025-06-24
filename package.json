@@ -158,7 +158,8 @@
     "config": {
         "ionic_webpack": "./config/webpack.config.js",
         "ionic_sass": "./config/sass.js",
-        "ionic_uglifyjs": "./config/uglifyjs.config.js"
+        "ionic_uglifyjs": "./config/uglifyjs.config.js",
+        "ionic_copy": "./config/copy.config.js"
     },
     "volta": {
         "node": "20.17.0"

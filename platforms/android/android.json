@@ -44,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 328
+              "count": 332
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",

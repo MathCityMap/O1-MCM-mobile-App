@@ -10,6 +10,7 @@ import {TaskMapState} from "../TasksMap";
 import {Score} from "../../../../../entity/Score";
 import {Coordinates} from "@ionic-native/geolocation";
 import {Helper} from "../../../../../classes/Helper";
+import 'conic-gradient';
 
 declare var ConicGradient: any;
 
@@ -36,6 +37,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
         return this._mapLoaded;
     }
     constructor(private containerId: string, private route: Route, private narrative: string) {
+        console.log('mapboxMapHandler INIT', this);
     }
 
     async loadMap(initialPosition?: Coordinates) {
@@ -54,15 +56,26 @@ export class MapboxMapHandler implements MapHandlerInterface {
                 attributionControl: false
             });
 
+            this.map.dragRotate.disable();
+            this.map.touchZoomRotate.disableRotation();
+            this.map.keyboard.disableRotation();
+
+            this.map.on('pitch', () => {
+                if (this.map.getPitch() !== 0) {
+                    this.map.setPitch(0);
+                }
+            });
+
+            // Add navigation controls (zoom, rotate)
+            this.map.addControl(new mapboxgl.NavigationControl({
+                showCompass: false,
+                showZoom: true
+            }), 'bottom-left');
+
             return new Promise<void>((resolve) => {
 
                 this.map.on('load', async () => {
-
-                    // Add navigation controls (zoom, rotate)
-                    this.map.addControl(new mapboxgl.NavigationControl({
-                        showCompass: true,
-                        showZoom: true
-                    }), 'bottom-left');
+                    console.log('Map loaded');
 
                     // Set max bounds to prevent user from panning outside
                     this.map.setMaxBounds(bounds);
