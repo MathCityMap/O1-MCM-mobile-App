@@ -22,7 +22,6 @@ import {Subscription} from 'rxjs/Subscription';
 import {LanguageService} from '../../../../services/language-service';
 
 import mapboxgl from 'mapbox-gl'
-import {ZoomService} from "../../../../services/zoom-service";
 import {MAPBOX_ACCESS_TOKEN} from "../../../../env/env";
 
 @IonicPage()
@@ -59,8 +58,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         private gpsService: GpsService,
         public helper: Helper,
         private navParams: NavParams,
-        private languageService: LanguageService,
-        private zoom: ZoomService) {
+        private languageService: LanguageService) {
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
             if (this.map && this.map.getLayer('unclustered-point')) {
                 if (!this.showAllRoutes) this.routes = await this.ormService.getDownloadedRoutes();
@@ -74,7 +72,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
     async ionViewWillEnter() {
         console.log("ionViewWillEnter:");
-        this.zoom.disableZooming();
 
         this.gpsService.isLocationOn();
 
@@ -101,7 +98,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.zoom.enableZooming();
         this.navCtrl.setRoot('RoutesListPage', {showAllRoutes: this.showAllRoutes});        if (this.eventSubscription) {
             this.eventSubscription.unsubscribe();
             this.eventSubscription = null;
@@ -338,9 +334,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             let route = that.routes[index];
             // Routedetails currently is always false since map click triggers first and clears it
             if (that.routeDetails == route) {
-                that.zoom.enableZooming();
                 that.modalsService.showRoute(route, that.navCtrl).then(() => {
-                    that.zoom.disableZooming();
                 });
             } else {
                 if (route.downloaded){
@@ -435,9 +429,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
     showRouteDetail(item: any) {
         console.log("##### ROUTE: ", item);
-        this.zoom.enableZooming();
         this.modalsService.showRoute(item, this.navCtrl).then(async () => {
-            this.zoom.disableZooming();
             await this.reactOnRemovedRoute();
         })
     }

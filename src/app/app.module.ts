@@ -57,7 +57,6 @@ import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {MCMTrailFinishedModal} from "../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
 import {DirectivesModule} from "../directives/directives.module";
 import {MCMReportProblemModal} from "../modals/MCMReportProblemModal/MCMReportProblemModal";
-import {ZoomService} from "../services/zoom-service";
 import {ReadAloudService} from "../services/read-aloud-service";
 
 
@@ -120,7 +119,6 @@ import {ReadAloudService} from "../services/read-aloud-service";
         OrmService,
         ImagesService,
         BroadcastService,
-        ZoomService,
         ModalsService,
         GpsService,
         LanguageService,

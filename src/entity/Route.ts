@@ -84,6 +84,9 @@ export class Route {
     @Column({name: 'path_info'})
     pathInfo: string;
 
+    @Column({name: 'is_offline'})
+    isOffline: boolean;
+
     // TODO: change table's schema
     /*@Column("simple-json")
     narrativeStrings: { welcome: string, welcomeMessage: string, ending: string, aboutObject: string,
@@ -160,7 +163,7 @@ export class Route {
     scores: Score[];
 
     @Column({name: 'min_zoom'})
-    min_zoom: number
+    min_zoom: number;
 
     async getTaskCount(): Promise<number> {
         let allTasks: Task[];
@@ -479,6 +482,10 @@ export class Route {
             return JSON.parse(this.pathInfo);
         }
         return null;
+    }
+
+    isMapAvailableOffline() {
+        return this.isOffline;
     }
 
 }

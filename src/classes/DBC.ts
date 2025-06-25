@@ -182,7 +182,8 @@ export abstract class DBC {
             "map_date",
             "path_geojson",
             "path_info",
-            "min_zoom"
+            "min_zoom",
+            "is_offline"
         ],
         [
             "INTEGER",
@@ -209,6 +210,7 @@ export abstract class DBC {
             "TEXT",
             "TEXT",
             "TEXT",
+            "INTEGER",
             "INTEGER"
         ],
         [
@@ -236,7 +238,8 @@ export abstract class DBC {
             "",
             "",
             "",
-            ""
+            "",
+            "DEFAULT 0"
         ]
     )
 

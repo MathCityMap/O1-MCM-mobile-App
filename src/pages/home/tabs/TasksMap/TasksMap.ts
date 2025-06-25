@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
@@ -21,7 +21,6 @@ import {Subscription} from 'rxjs/Subscription';
 import * as moment from 'moment';
 import {Observable} from "rxjs";
 import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MCMTrailFinishedModal";
-import {ZoomService} from "../../../../services/zoom-service";
 import {MapHandlerInterface} from "./MapHandler/MapHandlerInterface";
 import {MapboxMapHandler} from "./MapHandler/MapboxMapHandler";
 import {LeafletMapHandler} from "./MapHandler/LeafletMapHandler";
@@ -43,7 +42,6 @@ export class TasksMap implements OnDestroy {
     private map: any;
     private routeId: number;
     protected route: Route;
-    private isOfflineMap = true;
     private taskClicked = false;
     private mapTaskList: Task[];
     private scoreTaskList: Task[];
@@ -93,7 +91,6 @@ export class TasksMap implements OnDestroy {
         private modalCtrl: ModalController,
         private app: MyApp,
         protected chatAndSessionService: ChatAndSessionService,
-        private zoom: ZoomService
     ) {
         this.chatAndSessionService.init();
         this.events.subscribe('user:kicked', (user) => {
@@ -144,13 +141,14 @@ export class TasksMap implements OnDestroy {
         modal.present();
     }
 
+    ionViewWillEnter() {
+        this.initView().then().catch(e => {
+            console.error('Initview failed', e);
+        });
+    }
 
-    async ionViewWillEnter() {
-        console.log('TasksMap ionViewWillEnter()');
-        this.zoom.disableZooming();
-        console.log(this.navCtrl);
+    async initView() {
         this.routeId = this.navParams.get('routeId');
-        console.log(this.routeId);
         this.route = await this.ormService.findRouteById(this.routeId);
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
         this.user = await this.ormService.getActiveUser();
@@ -159,26 +157,19 @@ export class TasksMap implements OnDestroy {
         this.updateSession(sessionInfo);
         this.events.publish('narrativeChange', this.route.getNarrativeName());
 
-
         await this.loadMap();
-        console.log('going into timeout');
-        setTimeout(async () => {
-            // adding markers immediately after map initialization caused marker cluster problems -> use timeout
-            await this.initializeMap();
-            this.spinner.hide();
-            if (this.isTrailCompleted() && !this.route.completed) {
-                this.showTrailCompletedAlert();
-            }
-        }, 500);
-    }
+        await new Promise(resolve => {
+            setTimeout(async () => {
+                // adding markers immediately after map initialization caused marker cluster problems -> use timeout
+                await this.initializeMap();
+                this.spinner.hide();
+                if (this.isTrailCompleted() && !this.route.completed) {
+                    this.showTrailCompletedAlert();
+                }
+                resolve();
+            }, 500);
+        });
 
-    async ionViewDidEnter() {
-        console.log('TasksMap ionViewDidEnter()');
-        /*
-        When a session is active and started the first time:
-        Reset all tasks
-        If user was automatically assigned a task, display only that task
-         */
         if (this.sessionInfo != null) {
             // Add event of user entering trail when session active
             let details = JSON.stringify({});
@@ -214,14 +205,12 @@ export class TasksMap implements OnDestroy {
         }
 
         if (this.navParams.data.tasksMapState) {
-            console.log("3");
             this.state = this.navParams.data.tasksMapState;
             if (this.taskToSkip || (this.state.selectedStartTask && (this.score.getTasksSolved().indexOf(this.state.selectedTask.id) > -1 || this.score.getTasksSolvedLow().indexOf(this.state.selectedTask.id) > -1))) {
                 this.goToNextTask(this.state.selectedTask, true);
             }
         } else {
             this.state = await this.getMapStateFromLocalStorage();
-            console.log(this.state);
             if (this.taskToSkip) {
                 this.goToNextTask(this.taskToSkip, true);
                 this.taskToSkip = null;
@@ -321,7 +310,7 @@ export class TasksMap implements OnDestroy {
 
     initializeMapHandler() {
         if (!this.mapHandler) {
-            if (this.isOfflineMap) {
+            if (this.route.isMapAvailableOffline()) {
                 this.mapHandler = new LeafletMapHandler('tasks-map', this.route, this.app.activeNarrative, this.ormService, this.imagesService);
                 return
             }
@@ -385,7 +374,6 @@ export class TasksMap implements OnDestroy {
     }
 
     async ionViewWillLeave() {
-        this.zoom.enableZooming();
         this.saveMapStateToLocalStorage();
     }
 

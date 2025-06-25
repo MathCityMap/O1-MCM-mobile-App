@@ -12,10 +12,8 @@ import {Helper} from "../classes/Helper";
 import {DashboardPage} from "../pages/dashboard/dashboard";
 import {ModalsService} from "../services/modals-service";
 import {HomePage} from "../pages/home/home";
-import {RoutesListPage} from "../pages/home/tabs/RoutesList/RoutesList";
 import {RoutesMapPage} from "../pages/home/tabs/RoutesMap/RoutesMap";
 import {PortalPage} from "../pages/portal/portal";
-import {ZoomService} from "../services/zoom-service";
 import {TranslationService} from "./api/services/translation.service";
 import {ReadAloudService} from "../services/read-aloud-service";
 
