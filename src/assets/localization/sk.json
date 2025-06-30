@@ -1468,5 +1468,6 @@
   "p_task_problem_report_notice_2": "Text, v ktorom odpovedáte na nahlásenie problému, nie je poslaný späť odosielateľovi, ale administrátorom systému MathCityMap, takže môžu vidieť, či bol nahlásený problém vyriešený.",
   "p_note": "Poznámka",
   "p_task_problem_report_notice_1": "Ak zareagujete na nahlásené problémy, predídete tomu, aby vaša úloha bola označená ako riziková, keď bude počet nahlásení dostatočný.",
-  "p_statistics_card_trail_downloads": "Stiahnutia prechádzky"
+  "p_statistics_card_trail_downloads": "Stiahnutia prechádzky",
+  "a_task_skip": "Preskočiť"
 }

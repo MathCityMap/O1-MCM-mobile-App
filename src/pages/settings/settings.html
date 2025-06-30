@@ -40,66 +40,66 @@
       </div>
    </section>
 
-<!--   <section class="padding center">-->
-<!--      <div class="card">-->
-<!--         <ion-item no-lines no-padding>-->
-<!--            <ion-label item-content>-->
-<!--               {{'a_settings_translations_title' | translate}}-->
-<!--               <p>{{'a_settings_translations_text' | translate}}</p>-->
-<!--            </ion-label>-->
-<!--            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="translationService.isEnabled"></ion-toggle>-->
-<!--         </ion-item>-->
+   <section class="padding center">
+      <div class="card">
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               {{'a_settings_translations_title' | translate}}
+               <p>{{'a_settings_translations_text' | translate}}</p>
+            </ion-label>
+            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="translationService.isEnabled"></ion-toggle>
+         </ion-item>
 
-<!--         <div class="item">-->
-<!--            <ion-label>{{'a_settings_translate_language' | translate}}</ion-label>-->
-<!--            <ion-select [(ngModel)]="translationService.translateLanguage">-->
-<!--               <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>-->
-<!--            </ion-select>-->
-<!--         </div>-->
+         <div class="item">
+            <ion-label>{{'a_settings_translate_language' | translate}}</ion-label>
+            <ion-select [(ngModel)]="translationService.translateLanguage">
+               <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{lang.value}}</ion-option>
+            </ion-select>
+         </div>
 
-<!--         <div class="info">-->
-<!--            <p>{{'a_settings_translations_info' | translate}}</p>-->
-<!--         </div>-->
-<!--      </div>-->
-<!--   </section>-->
+         <div class="info">
+            <p>{{'a_settings_translations_info' | translate}}</p>
+         </div>
+      </div>
+   </section>
 
-<!--   <section class="padding center">-->
-<!--      <ion-label class="title main">{{'a_settings_accessibility' | translate }}</ion-label>-->
-<!--      <div class="card">-->
-<!--         <ion-item no-lines no-padding>-->
-<!--            <ion-label item-content>-->
-<!--               {{'a_settings_text_to_speech_title' | translate}}-->
-<!--               <p>{{'a_settings_text_to_speech_text' | translate}}</p>-->
-<!--            </ion-label>-->
-<!--            <ion-toggle class="devModeToggle" [(ngModel)]="readAloudService.isEnabled" mode="ios"></ion-toggle>-->
-<!--         </ion-item>-->
-<!--         <ion-item no-lines no-padding>-->
-<!--            <ion-label item-content>-->
-<!--               {{'a_settings_text_to_speech_configure_title' | translate}}-->
-<!--               <p>{{'a_settings_text_to_speech_configure_text' | translate}}</p>-->
-<!--            </ion-label>-->
-<!--            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="showReadAloudConfig"></ion-toggle>-->
-<!--         </ion-item>-->
+   <section class="padding center">
+      <ion-label class="title main">{{'a_settings_accessibility' | translate }}</ion-label>
+      <div class="card">
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               {{'a_settings_text_to_speech_title' | translate}}
+               <p>{{'a_settings_text_to_speech_text' | translate}}</p>
+            </ion-label>
+            <ion-toggle class="devModeToggle" [(ngModel)]="readAloudService.isEnabled" mode="ios"></ion-toggle>
+         </ion-item>
+         <ion-item no-lines no-padding>
+            <ion-label item-content>
+               {{'a_settings_text_to_speech_configure_title' | translate}}
+               <p>{{'a_settings_text_to_speech_configure_text' | translate}}</p>
+            </ion-label>
+            <ion-toggle class="devModeToggle" mode="ios" [(ngModel)]="showReadAloudConfig"></ion-toggle>
+         </ion-item>
 
-<!--         <div class="item" *ngIf="showReadAloudConfig">-->
-<!--            <ion-label item-content>{{'a_settings_language' | translate}}</ion-label>-->
-<!--            <ion-select [(ngModel)]="readAloudLanguage">-->
-<!--               <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{ lang.value }}</ion-option>-->
-<!--            </ion-select>-->
-<!--         </div>-->
+         <div class="item" *ngIf="showReadAloudConfig">
+            <ion-label item-content>{{'a_settings_language' | translate}}</ion-label>
+            <ion-select [(ngModel)]="readAloudLanguage">
+               <ion-option *ngFor="let lang of translatedLangs" [value]="lang.id">{{ lang.value }}</ion-option>
+            </ion-select>
+         </div>
 
-<!--         <div class="item" *ngIf="showReadAloudConfig">-->
-<!--            <ion-label item-content>{{'a_settings_text_to_speech_voice' | translate}}</ion-label>-->
-<!--            <ion-select [(ngModel)]="readAloudVoice">-->
-<!--               <ion-option *ngFor="let voice of readAloudVoices" [value]="voice.identifier">{{ voice.name }}</ion-option>-->
-<!--            </ion-select>-->
-<!--         </div>-->
+         <div class="item" *ngIf="showReadAloudConfig">
+            <ion-label item-content>{{'a_settings_text_to_speech_voice' | translate}}</ion-label>
+            <ion-select [(ngModel)]="readAloudVoice">
+               <ion-option *ngFor="let voice of readAloudVoices" [value]="voice.identifier">{{ voice.name }}</ion-option>
+            </ion-select>
+         </div>
 
-<!--         <div class="info">-->
-<!--            <p readable [language]="readAloudLanguage">{{readAloudService.getDemoText(readAloudLanguage)}}</p>-->
-<!--         </div>-->
-<!--      </div>-->
-<!--   </section>-->
+         <div class="info">
+            <p readable [language]="readAloudLanguage">{{readAloudService.getDemoText(readAloudLanguage)}}</p>
+         </div>
+      </div>
+   </section>
 
    <section class="padding center">
       <ion-label class="title main">{{'a_settings_expert' | translate }}</ion-label>

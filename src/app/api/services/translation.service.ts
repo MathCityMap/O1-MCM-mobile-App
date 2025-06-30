@@ -7,6 +7,8 @@ import {Storage} from "@ionic/storage";
 import {TaskTranslation, TranslationStorage} from "../models/translation-storage";
 import {LanguageService} from "../../../services/language-service";
 import {API_REQUEST_PASS, API_REQUEST_USER} from "../../../env/env";
+import {TranslateService} from "@ngx-translate/core";
+import {AlertController} from "ionic-angular";
 
 @Injectable()
 export class TranslationService {
@@ -33,7 +35,7 @@ export class TranslationService {
         return this._translateLanguage;
     }
 
-    constructor(private http: HttpClient, private apiConfig: ApiConfiguration, private storage: Storage, private languageService: LanguageService) {
+    constructor(private http: HttpClient, private apiConfig: ApiConfiguration, private storage: Storage, private languageService: LanguageService, private translateService: TranslateService, private alertCtrl: AlertController) {
     }
 
     async init() {
@@ -54,19 +56,24 @@ export class TranslationService {
         let translations: TranslationStorage = await this.storage.get(storageKey);
         if (!translations || !translations[this.translateLanguage] || !translations[this.translateLanguage].trail) {
             if (fetchIfNotAvailable) {
-                let translation = await this.fetchRouteTranslation(code);
-                if (!translations) {
-                    translations = {};
+                try {
+                    let translation = await this.fetchRouteTranslation(code);
+                    if (!translations) {
+                        translations = {};
+                    }
+                    if (!translations[this.translateLanguage]) {
+                        translations[this.translateLanguage] = {trailFetched: false, tasksFetched: false};
+                    }
+                    if (translation) {
+                        trailTranslation = translation;
+                        translations[this.translateLanguage].trail = translation;
+                    }
+                    translations[this.translateLanguage].trailFetched = true;
+                    await this.storage.set(storageKey, translations);
+                } catch (e) {
+                    console.error('Could not fetch translation for route', e)
+                    await this.showTranslationErrorAlert();
                 }
-                if (!translations[this.translateLanguage]) {
-                    translations[this.translateLanguage] = {trailFetched: false, tasksFetched: false};
-                }
-                if (translation) {
-                    trailTranslation = translation;
-                    translations[this.translateLanguage].trail = translation;
-                }
-                translations[this.translateLanguage].trailFetched = true;
-                await this.storage.set(storageKey, translations);
             }
         } else {
             trailTranslation = translations[this.translateLanguage].trail;
@@ -80,19 +87,24 @@ export class TranslationService {
         let storedTranslations: TranslationStorage = await this.storage.get(storageKey);
         if (!storedTranslations || !storedTranslations[this.translateLanguage] || !storedTranslations[this.translateLanguage].tasks) {
             if (fetchIfNotAvailable) {
-                let translations = await this.fetchTaskTranslationsForRoute(routeCode);
-                if (!storedTranslations) {
-                    storedTranslations = {};
+                try {
+                    let translations = await this.fetchTaskTranslationsForRoute(routeCode);
+                    if (!storedTranslations) {
+                        storedTranslations = {};
+                    }
+                    if (!storedTranslations[this.translateLanguage]) {
+                        storedTranslations[this.translateLanguage] = {trailFetched: false, tasksFetched: false};
+                    }
+                    if (translations) {
+                        taskTranslations = translations.map(task => TaskTranslation.FromTranslationResponse(task));
+                        storedTranslations[this.translateLanguage].tasks = taskTranslations;
+                    }
+                    storedTranslations[this.translateLanguage].tasksFetched = true;
+                    await this.storage.set(storageKey, storedTranslations)
+                } catch (e) {
+                    console.error('translation fetch failed', e);
+                    await this.showTranslationErrorAlert();
                 }
-                if (!storedTranslations[this.translateLanguage]) {
-                    storedTranslations[this.translateLanguage] = {trailFetched: false, tasksFetched: false};
-                }
-                if (translations) {
-                    taskTranslations = translations.map(task => TaskTranslation.FromTranslationResponse(task));
-                    storedTranslations[this.translateLanguage].tasks = taskTranslations;
-                }
-                storedTranslations[this.translateLanguage].tasksFetched = true;
-                await this.storage.set(storageKey, storedTranslations)
             }
         } else {
             taskTranslations = storedTranslations[this.translateLanguage].tasks.map(rawTask => new TaskTranslation(rawTask));
@@ -100,31 +112,31 @@ export class TranslationService {
         return {translation: taskTranslations.find(translation => translation.taskId === taskId), isFetched: storedTranslations && storedTranslations[this.translateLanguage] ? storedTranslations[this.translateLanguage].tasksFetched : false};
     }
 
-    // TODO handle empty response?
     async fetchRouteTranslation(code: string): Promise<TrailTranslation|null> {
         try {
             const response = await this.http.get<TranslationTrailResponse>(`${this.apiConfig.rootUrl}/app/v1/translation/trail/by-code/${code}/${this.translateLanguage}`, {headers: this.getRequestHeaders()}).toPromise();
             if (response.error) {
                 console.error('trail translation could not be fetched response code: ', response.response_code)
+                throw response;
             }
             return response.trail;
         } catch (e) {
             console.warn("error fetching task translation", e);
-            return null;
+            throw e;
         }
     }
 
-    // TODO handle empty response?
     async fetchTaskTranslationsForRoute(code: string): Promise<Array<ResponseTaskTranslation>> {
         try {
             const response = await this.http.get<TranslationTaskResponse>(`${this.apiConfig.rootUrl}/app/v1/translation/trail/by-code/${code}/${this.translateLanguage}/tasks`, {headers: this.getRequestHeaders()}).toPromise();
             if (response.error) {
-                console.error('task translation could not be fetched response code: ', response.response_code)
+                console.error('task translation could not be fetched response code: ', response.response_code);
+                throw response;
             }
             return response.tasks;
         } catch (e) {
             console.warn("error fetching task translation", e);
-            return [];
+            throw e;
         }
     }
 
@@ -156,6 +168,17 @@ export class TranslationService {
         } else {
             appFrame.classList.remove('translated');
         }
+    }
+
+    async showTranslationErrorAlert() {
+        const alert = this.alertCtrl.create({
+            title: this.translateService.instant("a_translation_fetch_failed_msg"),
+            buttons: [{
+                text:  this.translateService.instant("a_g_ok"),
+                role: 'cancel'
+            }]
+        });
+        return alert.present();
     }
 }
 

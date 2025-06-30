@@ -1638,6 +1638,7 @@
   "a_settings_text_to_speech_voice": "Reading voice",
   "a_settings_accessibility": "Accessibility",
   "a_task_skip": "Skip",
+  "a_translation_fetch_failed_msg": "The translation could not be downloaded. Please check your internet connection and try again later.",
   "a_chat_recording_message": "Recording...",
   "a_onboarding_slide3_svg": "Start",
   "a_onboarding_slide4_svg": "Check"

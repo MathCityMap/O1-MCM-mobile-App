@@ -1637,5 +1637,6 @@
   "a_settings_text_to_speech_configure_text": "Ermöglicht Sprachkonfigurationsoptionen.",
   "a_settings_text_to_speech_voice": "Vorlesestimme",
   "a_settings_accessibility": "Barrierefreiheit",
-  "a_task_skip": "Überspringen"
+  "a_task_skip": "Überspringen",
+  "a_translation_fetch_failed_msg": "Die Übersetzung konnte nicht heruntergeladen werden. Bitte überprüfe deine Internetverbindung und versuche es später erneut."
 }
