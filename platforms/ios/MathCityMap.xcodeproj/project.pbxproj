@@ -821,7 +821,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.autentek.mathcitymap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MathCityMap App Store";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MathCityMap Hybrid Profile";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_WORKSPACE = NO;
 			};

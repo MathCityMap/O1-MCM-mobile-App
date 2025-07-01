@@ -79,9 +79,9 @@
 				</div>
 
 				<p *ngIf="task && (!translatePage || !translation)" readable
-					[language]="task.langCode">{{ task.description }}</p>
+					[language]="task.langCode" class="description">{{ task.description }}</p>
 				<p *ngIf="translation && translatePage" readable [language]="translation.language"
-					[ngClass]="{translated: translatePage}">{{ translation.description }}</p>
+					[ngClass]="{translated: translatePage}" class="description">{{ translation.description }}</p>
 			</div>
 
 			<!--         Sub / Support Task-->
