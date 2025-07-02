@@ -5,7 +5,7 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {Network} from '@ionic-native/network';
 import {Geolocation} from '@ionic-native/geolocation';
 import {SQLite} from '@ionic-native/sqlite';
-import {IonicStorageModule} from '@ionic/storage';
+import {IonicStorageModule, Storage} from '@ionic/storage';
 import {DB_Updater} from '../classes/DB_Updater';
 import {File} from '@ionic-native/file';
 import {FileTransfer} from '@ionic-native/file-transfer';
@@ -21,7 +21,7 @@ import {MyApp} from './app.component';
 
 /* Translation */
 import {HttpClientModule, HttpClient} from '@angular/common/http';
-import {createTranslateLoader} from '../providers/translate-loader';
+import {createTranslateLoader} from '../providers/translate-loader/translate-loader-factory';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 
 import {OrmService} from '../services/orm-service';
@@ -83,7 +83,7 @@ import {ReadAloudService} from "../services/read-aloud-service";
             loader: {
                 provide: TranslateLoader,
                 useFactory: (createTranslateLoader),
-                deps: [HttpClient],
+                deps: [HttpClient, Storage],
 
             }, useDefaultLang: true
         }),

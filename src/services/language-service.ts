@@ -40,7 +40,7 @@ export class LanguageService {
             if (!lang) {
                 lang = await this.getDeviceLanguage();
             }
-            await this.translateService.use(lang);
+            this.translateService.use(lang);
 
             setTimeout(() => {
                 // use timeout to let language switch propagate

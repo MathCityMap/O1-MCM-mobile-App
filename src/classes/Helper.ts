@@ -15,7 +15,7 @@ import {
     MEDIASERVER_BASE_URL,
     DB_QUERY_URL,
     SERVER_REQUEST_PASS,
-    WEBSERVER_URL
+    WEBSERVER_URL, API_REQUEST_USER, API_REQUEST_PASS
 } from "../env/env";
 
 export class MapTile {
@@ -378,6 +378,12 @@ export class Helper {
             return {min_zoom: 16, max_zoom: 19};
         }
         else return {min_zoom: 15, max_zoom: 18};
+    }
+
+    public static getApiRequestHeaders() {
+        return new HttpHeaders({
+            "Authorization": "Basic " + btoa(`${API_REQUEST_USER}:${API_REQUEST_PASS}`)
+        });
     }
 
 }
