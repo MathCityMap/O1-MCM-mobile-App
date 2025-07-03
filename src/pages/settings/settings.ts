@@ -10,6 +10,8 @@ import {TranslationService} from "../../app/api/services/translation.service";
 import {ReadAloudService} from "../../services/read-aloud-service";
 import {TTS} from "../../providers/tts";
 import TTSVoice = TTS.TTSVoice;
+import {Storage} from "@ionic/storage";
+import {TRANSLATION_CACHE_BASE} from "../../providers/translate-loader/mcmTranslateLoader";
 
 @IonicPage()
 @Component({
@@ -60,7 +62,8 @@ export class SettingsPage {
         protected translationService: TranslationService,
         public viewCtrl: ViewController,
         private deepLinker: DeepLinker,
-        protected readAloudService: ReadAloudService
+        protected readAloudService: ReadAloudService,
+        private storage: Storage
     ) {
         this.availableLanguages = languageService.getAvailableLanguages();
         this.translatedLangs = [];
@@ -101,6 +104,12 @@ export class SettingsPage {
 
     async switchDevMode(){
        await this.helper.setDevMode(this.developerMode+'');
+    }
+
+    async reloadTranslation() {
+        let cacheKey = TRANSLATION_CACHE_BASE+this.language
+        await this.storage.remove(cacheKey);
+        this.translateService.reloadLang(this.language);
     }
 
     goBack() {
