@@ -1,6 +1,7 @@
 routes-list {
     ion-list{
         @include ios-scroll-fix;
+       margin-top: 0!important;
         //perspective: 1000;
         //-webkit-perspective: 1000;
     }

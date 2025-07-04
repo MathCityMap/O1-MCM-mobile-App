@@ -28,14 +28,14 @@ page-onboarding, touch-point {
                         margin: 0 0 15px 0;
                     }
                     p{
-                        font-size: 4vw;
+                       font-size: 1.125rem;
                         line-height: 1.4;
                         margin-bottom: 10px;
                     }
                     .button{
                         margin: $global-small-padding 0;
                         & > *{
-                            font-size: 4.8vw;
+                           font-size: 1.125rem;
                         }
                     }
                 }

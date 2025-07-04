@@ -149,7 +149,7 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
       .button{
          &[large]{
             &.pad-for-safe-area{
-               margin-bottom: #{$prefix}$root-bottom;
+               padding-bottom: #{$prefix}$root-bottom;
             }
             contain: unset;
 
@@ -286,8 +286,8 @@ ion-header{
       position: relative;
       font-family: 'NunitoBold', Helvetica, sans-serif;
       color: color($colors, light);
-      font-size: 24px;
-      font-weight: 500;
+      font-size: 1.5rem;
+      font-weight: 600;
       overflow: hidden;
       margin-top: 2px;
       padding: 0 calc(#{$size-large} - #{$global-small-padding});
@@ -376,7 +376,7 @@ section{
 
    .title.main{
       margin-bottom: $global-base-padding!important;
-      font-size: 16px!important;
+      font-size: 1rem!important;
    }
 }
 
@@ -490,7 +490,7 @@ input{
 textarea{
    box-shadow: none;
    border: none;
-   font-size: 16px;
+   font-size: 1rem;
    color: color($colors, dark);
 }
 
@@ -519,6 +519,7 @@ textarea{
       .searchbar-input{
          background-color: transparent;
          padding: 0 0 0 40px;
+         font-size: 1rem;
       }
    }
 
@@ -532,9 +533,10 @@ textarea{
 
 button{
    .button-inner{
-      font-size: 14px;
+      font-size: 0.875rem;
       text-transform: none;
       font-family: 'RobotoBold', Arial, sans-serif;
+      font-weight: 600;
    }
 
    //  Sizes
@@ -549,7 +551,7 @@ button{
       height: $size-large;
       box-sizing: content-box;
       .button-inner{
-         font-size: large;
+         font-size: 1.125rem;
       }
    }
 
@@ -573,9 +575,11 @@ button{
       text-transform: none;
       min-width: 90px;
       padding: 0 15px;
+      font-weight: 700;
       .button-inner{
          color: #fff;
          font-family: 'NunitoExtrabold', Arial, sans-serif;
+         font-weight: 700;
       }
       &:last-child{
          margin-right: 0;
@@ -741,7 +745,7 @@ ion-list:not(.vector-input-list){
          margin: 0;
          color: initial;
          text-transform: none;
-         font-size: 16px;
+         font-size: 1rem;
       }
    }
 }
@@ -776,6 +780,7 @@ ion-list{
    justify-content: center;
    flex: none;
    font-family: 'NunitoExtrabold', Arial, sans-serif;
+   font-weight: 700;
    &:after{
       //content: url("../assets/icons/score.svg");
       //filter: brightness(0);
@@ -788,7 +793,7 @@ ion-list{
       text-align: center;
       .subscore {
          text-align: center;
-         font-size: 16px;
+         font-size: 1rem;
       }
       &:after{
          content: unset;
@@ -1054,6 +1059,7 @@ ion-list{
                background-color: color($colors, primary);
                span{
                   font: 18px 'NunitoExtrabold', Arial, sans-serif;
+                  font-weight: 700;
                   line-height: 26px;
                }
             }
@@ -1065,6 +1071,7 @@ ion-list{
                background-color: color($colors, primary-darker);
                span{
                   font: 14px 'NunitoExtrabold', Arial, sans-serif;
+                  font-weight: 600;
                   line-height: 26px;
                }
             }
@@ -1093,7 +1100,7 @@ ion-list{
                &-counter{
                   white-space: pre;
                   fill: color($colors, light);
-                  font-size: 18px;
+                  font-size: 1.125rem;
                   text-anchor: middle;
                }
             }
@@ -1135,7 +1142,7 @@ ion-list{
          margin-top: $global-large-padding;
          margin-bottom: -#{$global-small-padding};
          .label{
-            font-size: 15px;
+            font-size: 0.9rem;
          }
       }
    }
@@ -1201,7 +1208,7 @@ ion-list{
       width:100%;
       max-width:100%;
       padding-left: 0;
-      font-size: 15px;
+      font-size: 0.9rem;
    }
    ion-select{
       position: relative;
@@ -1291,13 +1298,14 @@ ion-modal {
       padding-top: 30px;
       h2{
          font-family: 'NunitoExtrabold', Arial, sans-serif;
-         font-size: 18px;
+         font-size: 1.125rem;
+         font-weight: 700;
          letter-spacing: 1px;
          text-transform: uppercase;
          margin: 0 0 $global-base-padding;
       }
       p, .highlight{
-         font-size: 16px;
+         font-size: 1rem;
          line-height: 1.4;
          white-space: pre-line;
          &.progress-files{
@@ -1308,7 +1316,7 @@ ion-modal {
          margin-bottom: 4px;
       }
       .terms{
-         font-size: 14px;
+         font-size: 0.875rem;
          line-height: 1.3;
          max-height: 50vh;
       }
@@ -1362,7 +1370,7 @@ ion-modal {
             text-align: center;
          }
          .score{
-            font-size: 24px;
+            font-size: 1.5rem;
          }
          .solutionTable {
             text-align: center;
@@ -1422,7 +1430,8 @@ ion-modal {
          }
          .highlight{
             display: inline-block;
-            font-family: 'NunitoExtrabold', Arial, sans-serif
+            font-family: 'NunitoExtrabold', Arial, sans-serif;
+            font-weight: 700;
          }
       }
 
@@ -1551,7 +1560,7 @@ ion-modal {
       .fraction-display-container{
          display: inline-flex;
          .whole-number{
-            font-size: 20px;
+            font-size: 1.25rem;
          }
          ion-grid {
             margin-left: 2px;
@@ -1692,8 +1701,9 @@ progress-bar{
    .progress-inner[_ngcontent-c0]{
       min-width: 12%;
       padding: 0;
-      font-size: 12px;
+      font-size: 0.75rem;
       font-family: 'NunitoBold', Helvetica, sans-serif;
+      font-weight: 600;
    }
 }
 
@@ -1812,7 +1822,7 @@ ion-nav {
 }
 
 mjx-math {
-   font-size: 16px;
+   font-size: 1rem;
 }
 
 .app-container {

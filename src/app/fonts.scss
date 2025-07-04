@@ -1,18 +1,18 @@
 @font-face {
-    font-family: 'NunitoSemibold';
-    src: url('../assets/fonts/nunito/nunito-semibold.ttf')  format('truetype');
+   font-family: 'NunitoSemibold';
+   src: url('../assets/fonts/nunito/nunito-semibold.ttf')  format('truetype');
 }
 @font-face {
-    font-family: 'NunitoBold';
-    src: url('../assets/fonts/nunito/nunito-bold.ttf')  format('truetype');
+   font-family: 'NunitoBold';
+   src: url('../assets/fonts/nunito/nunito-bold.ttf')  format('truetype');
 }
 @font-face {
-    font-family: 'NunitoExtrabold';
-    src: url('../assets/fonts/nunito/nunito-extrabold.ttf')  format('truetype');
+   font-family: 'NunitoExtrabold';
+   src: url('../assets/fonts/nunito/nunito-extrabold.ttf')  format('truetype');
 }
 @font-face {
-    font-family: 'NunitoBlack';
-    src: url('../assets/fonts/nunito/nunito-black.ttf')  format('truetype');
+   font-family: 'NunitoBlack';
+   src: url('../assets/fonts/nunito/nunito-black.ttf')  format('truetype');
 }
 
 @font-face {
@@ -21,96 +21,124 @@
 }
 
 @font-face {
-    font-family: 'CaveatBrush';
-    src: url('../assets/fonts/remover.ttf')  format('truetype');
+   font-family: 'CaveatBrush';
+   src: url('../assets/fonts/remover.ttf')  format('truetype');
 }
 
 @font-face {
-    font-family: 'Pangolin';
-    src: url('../assets/fonts/pangolin-regular.ttf')  format('truetype');
+   font-family: 'Pangolin';
+   src: url('../assets/fonts/pangolin-regular.ttf')  format('truetype');
 }
 
+
+html{
+   font-size: 16px;
+   font: -apple-system-body;
+}
 
 
 h1, h2, h3, h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
-    font-family: 'NunitoSemibold', Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    white-space: normal;
-    hyphens: none !important;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+   font-family: 'NunitoSemibold', Arial, sans-serif;
+   -webkit-font-smoothing: antialiased;
+   white-space: normal;
+   hyphens: none !important;
+   overflow-wrap: anywhere;
+   word-break: break-word;
 }
 
 h1{
-    font-family: 'NunitoExtraBold', Arail, sans-serif;
-    font-size: 24px;
-    line-height: 1.2;
-    font-weight: 500;
-    color: color($colors, primary);
+   font-family: 'NunitoExtraBold', Arail, sans-serif;
+   font-size: 1.5rem;
+   line-height: 1.2;
+   font-weight: 700;
+   color: color($colors, primary);
 }
 h2{
-    font-family: 'NunitoExtraBold', Arail, sans-serif;
-    font-size: 18px;
-    line-height: 1.2;
-    font-weight: 500;
-    color: color($colors, primary);
+   font-family: 'NunitoExtraBold', Arail, sans-serif;
+   font-size: 1.125rem;
+   line-height: 1.2;
+   font-weight: 700;
+   color: color($colors, primary);
+}
+h3{
+   font-family: 'NunitoExtraBold', Arail, sans-serif;
+   font-size: 1.1rem;
+   line-height: 1.2;
+   font-weight: 700;
+}
+h4{
+   font-family: 'NunitoExtraBold', Arail, sans-serif;
+   font-size: 1rem;
+   line-height: 1.2;
+   font-weight: 700;
 }
 p{
-    font-size: 14px;
-    line-height: 1.6;
-    font-weight: 500;
-    color: color($colors, dark-grey);
+   font-size: 0.875rem;
+   line-height: 1.44;
+   font-weight: 500;
+   color: color($colors, dark-grey);
 }
 
 svg{
-    text{
-        font-family: 'NunitoBlack', Arail, sans-serif;
-    }
+   text{
+      font-family: 'NunitoBlack', Arail, sans-serif;
+      font-weight: 900;
+   }
 }
 .alert-md,
 .alert-ios {
-    .alert-message,
-    .alert-input-group{
-        font-size: 16px;
-    }
-    .alert-button .button-inner,
-    button span{
-        font-size: 18px;
-    }
+   .alert-message,
+   .alert-input-group{
+      font-size: 1rem;
+   }
+   .alert-button .button-inner,
+   button span{
+      font-size: 1.125rem;
+   }
 }
+
 ion-label,
 ion-label.label-ios,
 ion-label.label-md{
    font-family: "RobotoBold", Arial, sans-serif;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: color($colors, dark-grey);
-    display: block;
-    margin: 0 0 6px 0;
+   font-weight: 600;
+   font-size: 0.875rem;
+   letter-spacing: 0.5px;
+   text-transform: uppercase;
+   color: color($colors, dark-grey);
+   display: block;
+   margin: 0 0 6px 0;
 
    p{
       margin-top: $global-medium-padding;
       text-transform: none;
    }
 }
+
+.item{
+   p{
+      font-size: 0.875rem;
+      line-height: 1.44;
+      font-weight: 500;
+      color: color($colors, dark-grey);
+   }
+}
+
 span{
-    display: block;
-    font-size: 14px;
+   display: block;
+   font-size: 0.875rem;
 }
 
 @mixin bolder{
-    font-family: 'NunitoExtraBold', Arial, sans-serif;
+   font-family: 'NunitoExtraBold', Arial, sans-serif;
 }
 
 input{
-    &.text-input-ios,
-    &.text-input-md{
-        //font-size: 13px;
-        line-height: 1.4;
-        font-weight: 500;
-        //color: color($colors, dark-grey);
-    }
+   &.text-input-ios,
+   &.text-input-md{
+      line-height: 1.4;
+      font-weight: 500;
+   }
 }
 
 
@@ -121,22 +149,19 @@ input{
 
 
 .pirates {
-    h1{
-        color: $c-primary;
-    }
-    h2{
-        color: $c-primary;
-    }
-    p{
-        color: $c-danger;
-    }
+   h1{
+      color: $c-primary;
+   }
+   h2{
+      color: $c-primary;
+   }
+   p{
+      color: $c-danger;
+   }
 }
 
 @media screen and (min-width: 768px) {
-    //html{
-    //    font-size: 100%;
-    //}
-    h2{
-        font-size: 20px;
-    }
+   h2{
+      font-size: 1.25rem;
+   }
 }

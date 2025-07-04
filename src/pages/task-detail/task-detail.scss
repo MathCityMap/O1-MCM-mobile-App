@@ -23,12 +23,15 @@ page-task-detail, page-task-group-detail {
    //  TOP (Header)
 
    $header-height: 66vh;
-   $header-min-height: calc(100vw + #{$global-base-plus-padding});
+   $header-min-height: calc(100vw + #{$global-base-plus-padding} + env(safe-area-inset-top, 0px));
    $content-edge: 44px;
 
    $space-push: 34px;
 
    .task{
+      &-wrapper{
+         transform: translateY(calc(env(safe-area-inset-top, 0px) * -1));
+      }
       &-header {
          position: sticky;
          display: block;
@@ -66,8 +69,9 @@ page-task-detail, page-task-group-detail {
                      span, span .icon{
                         color: #ffffff;
                         font-family: 'NunitoExtrabold', Arial, sans-serif;
+                        font-weight: 700;
                         line-height: 1;
-                        font-size: 20px;
+                        font-size: 1.25rem;
                      }
                   }
                }
@@ -182,7 +186,7 @@ page-task-detail, page-task-group-detail {
          }
          .title {
             color: color($colors, light) !important;
-            font-size: 16px;
+            font-size: 1rem;
             white-space: pre-line;
             margin-bottom: -2px;
          }
@@ -329,7 +333,7 @@ page-task-detail, page-task-group-detail {
                &-text, &-list{
                   margin-top: $global-base-padding;
                   & > *{
-                     font-size: 16px;
+                     font-size: 1rem;
                   }
                   .blank, span{
                      display: inline-block;
@@ -428,7 +432,7 @@ page-task-detail, page-task-group-detail {
          .head{
             margin-bottom: $global-base-plus-padding;
             .title{
-               font-size: 16px;
+               font-size: 1rem;
             }
             button{
                flex: auto;
@@ -509,7 +513,7 @@ page-task-detail, page-task-group-detail {
                      white-space: normal;
                      overflow-wrap: break-word;
                      @media (max-width: 400px) {
-                        font-size: 10px;
+                        font-size: 0.625rem;
                      }
                      .answer {
                         @each $rating, $color in $ratings {
@@ -587,10 +591,12 @@ page-task-detail, page-task-group-detail {
             text-transform: uppercase;
             color: #ffffff;
             letter-spacing: 1px;
+            font-weight: 600;
             padding-right: 5px;
          }
          .score {
             font-family: 'NunitoExtrabold', Arial, sans-serif;
+            font-weight: 700;
             background-color: #ffffff;
             box-shadow: 0 0 1px 1px #ffffff;
          }
@@ -673,6 +679,7 @@ page-task-group-detail {
             background-color: color($colors, light-grey-tint);
             .count{
                font-family: 'NunitoExtraBold', Arial, sans-serif;
+               font-weight: 700;
                color: color($colors, dark);
                margin-right: 8px;
                font-size: 106%;

@@ -24,7 +24,7 @@ page-chat {
                 flex-direction: column;
                 p {
                     margin: 0;
-                    font-size: 15px;
+                   font-size: 0.9rem;
                     line-height: 1.3;
                 }
                 .msg-content {
@@ -54,7 +54,7 @@ page-chat {
                     float: right;
                     margin: 5px 5px 0px;
                     p {
-                        font-size: .8em;
+                        font-size: 0.8rem;
                         color: color($colors, grey);
                     }
                 }
@@ -131,7 +131,7 @@ page-chat {
             resize: none;
             padding: 18px 10px 0 0;
             border: 0;
-            font-size: 15px;
+            font-size: 0.9rem;
             line-height: 1.3;
         }
         .message-input-buttons {

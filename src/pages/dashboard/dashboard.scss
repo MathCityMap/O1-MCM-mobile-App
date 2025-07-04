@@ -42,8 +42,7 @@ page-dashboard {
                   height: 100%;
                   &.title{
                      letter-spacing: 0;
-                     font-size: 18px;
-                     //font-size: 1rem;
+                     font-size: 1.125rem;
                      color: #036d99;
                      p{
                         margin-top: 8px;
@@ -120,10 +119,10 @@ page-dashboard {
                .item-inner{
                   [item-content]{
                      .title{
-                        font-size: 2rem;
+                        font-size: 1.125rem;
                      }
                      p{
-                        font-size: 1.6rem;
+                        font-size: 1rem;
                      }
                   }
                }
@@ -154,6 +153,7 @@ page-dashboard {
    p{
       color: color($colors, primary-darker);
       font-family: 'NunitoExtraBold', Helvetica, sans-serif;
+      font-weight: 700;
       transform: rotate(-45deg);
    }
 }

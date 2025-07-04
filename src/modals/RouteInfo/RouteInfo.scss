@@ -1,7 +1,7 @@
 //  Image & Actions
 
 $header-height: 50vh;
-$header-space-top: 66px;
+$header-space-top: 26px;
 $image-size: 56vw;
 $content-edge: 4px;
 
@@ -17,7 +17,7 @@ $content-edge: 4px;
       height: $header-height;
       background: url("../../assets/icons/bg-pattern.svg") center /100% 100% no-repeat color($colors, primary);
       text-align: center;
-      padding: $header-space-top 20px 0;
+      padding: calc(#{$header-space-top} + env(safe-area-inset-top)) 20px 0;
       box-sizing: border-box;
       .title{
          &-container{
@@ -32,7 +32,7 @@ $content-edge: 4px;
             }
          }
 
-         font-size: 28px;
+         font-size: 1.75rem;
          line-height: 1.1;
          &-super{
             margin-bottom: 8px;
