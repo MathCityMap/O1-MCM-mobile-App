@@ -114,9 +114,9 @@ $root-bottom: unquote("(safe-area-inset-bottom, 0px)");
       &.has-header{
          .scroll-content, .fixed-content {
             margin-top: $size-large;
-            padding-top: #{$prefix}$root-top;
+            //padding-top: #{$prefix}$root-top;
             [ion-fixed]{
-               height: calc(100% - #{#{$prefix}$root-top});
+               //height: calc(100% - #{#{$prefix}$root-top});
             }
          }
       }

@@ -73,7 +73,7 @@ export class RouteInfo {
 
     async removeRoute() {
         this.spinnerDialog.show();
-        await this.ormService.removeDownloadedRoute(this.route, true);
+        await this.ormService.removeDownloadedRoute(this.route, this.route.isMapAvailableOffline());
         this.spinnerDialog.hide();
     }
 

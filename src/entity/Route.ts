@@ -229,7 +229,7 @@ export class Route {
         const north = northWest[0] + padding;
         const west = northWest[1] - padding;
         const east = southEast[1] + padding;
-        const mapBoxExtraPadding = 0.01;
+        const mapBoxExtraPadding = 0.05;
         this.viewBoundingBoxLatLng = new LatLngBounds([northWest[0], southEast[1]], [southEast[0], northWest[1]]);
         this.viewBoundingBoxLatLngForMapBox = [[northWest[1], southEast[0]], [southEast[1], northWest[0]]]
         this.boundingBoxLatLng = new LatLngBounds([[north, east], [south, west]]);

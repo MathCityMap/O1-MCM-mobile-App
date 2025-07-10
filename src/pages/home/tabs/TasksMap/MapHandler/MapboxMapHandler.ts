@@ -110,7 +110,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
                             source: 'user-position',
                             layout: {
                                 'icon-image': ['get', 'icon'],
-                                'icon-size': 0.3,
+                                'icon-size': 0.5,
                                 'icon-rotate': ['get', 'rotation'],
                                 'icon-allow-overlap': true
                             }

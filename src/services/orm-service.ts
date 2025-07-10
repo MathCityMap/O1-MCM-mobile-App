@@ -311,9 +311,6 @@ export class OrmService {
             }
         });
 
-        result = result.filter((route) => {
-            return route.mapVersion != '0'
-        });
         if (compareFn) {
             result.sort(compareFn);
         }
@@ -328,9 +325,6 @@ export class OrmService {
             }
         });
 
-        result = result.filter((route) => {
-            return route.mapVersion != '0'
-        });
         return result;
     }
 
@@ -342,9 +336,6 @@ export class OrmService {
             }
         });
 
-        result = result.filter((route) => {
-            return route.mapVersion != '0'
-        });
         return result;
     }
 
@@ -471,7 +462,7 @@ export class OrmService {
     async removeAllDownloadedData() {
         let routes = await this.getDownloadedRoutes();
         for (let route of routes) {
-            await this.removeDownloadedRoute(route, true);
+            await this.removeDownloadedRoute(route, route.isMapAvailableOffline());
         }
         this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
     }
