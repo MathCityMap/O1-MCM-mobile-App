@@ -5,12 +5,13 @@ import Supercluster from 'supercluster';
 import {featureCollection} from "@turf/helpers";
 import {EventEmitter} from "@angular/core";
 import {MapHandlerInterface} from "./MapHandlerInterface";
-import {Task, TaskFormat} from "../../../../../entity/Task";
+import {Task} from "../../../../../entity/Task";
 import {TaskMapState} from "../TasksMap";
 import {Score} from "../../../../../entity/Score";
 import {Coordinates} from "@ionic-native/geolocation";
 import {Helper} from "../../../../../classes/Helper";
 import 'conic-gradient';
+import {TaskFormat} from "../../../../../services/ApiResponseDefinition/TaskFormat";
 
 declare var ConicGradient: any;
 

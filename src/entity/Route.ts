@@ -1,5 +1,5 @@
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Task, TaskFormat} from './Task';
+import {Task} from './Task';
 import {Helper} from '../classes/Helper';
 import {LatLng, LatLngBounds} from 'leaflet';
 import {Score} from "./Score";
@@ -9,6 +9,8 @@ import {TranslateService} from '@ngx-translate/core';
 import {OrmService} from '../services/orm-service';
 import {GpsService} from '../services/gps-service';
 import {MAPBOX_ACCESS_TOKEN} from "../env/env";
+import {RouteApiResponse} from "../services/ApiResponseDefinition/RouteApiResponse";
+import {TaskFormat} from "../services/ApiResponseDefinition/TaskFormat";
 
 @Entity('mcm_route')
 export class Route {
@@ -164,6 +166,54 @@ export class Route {
 
     @Column({name: 'min_zoom'})
     min_zoom: number;
+
+    static fromRouteResponse(routeResponse: RouteApiResponse): Route {
+        let route = new Route();
+        route.id = routeResponse._id;
+        route.userId = routeResponse.user_id;
+        route.public = routeResponse.public;
+        route.title = routeResponse.title;
+        route.countryCode = routeResponse.country_code;
+        route.city = routeResponse.city;
+        route.image = routeResponse.image;
+        route.code = routeResponse.code;
+        route.grade = routeResponse.grade;
+        route.tags = routeResponse.tags;
+        route.duration = routeResponse.duration;
+        route.length = routeResponse.length;
+        route.boundingBox = routeResponse.bounding_box;
+        route.center = routeResponse.center;
+        route.timestamp = routeResponse.timestamp;
+        route.description = routeResponse.description;
+        route.createDate = routeResponse.create_date;
+        route.attr = routeResponse.attr;
+        route.mapVersion = String(routeResponse.map_version);
+        route.mapFileName = routeResponse.map_filename;
+        route.mapDate = String(routeResponse.map_date);
+        route.isOffline = !!routeResponse.is_offline;
+        route.distance = routeResponse.distance * 1000 // App expects distances in metres, here we get a distance in kilometres
+        return route;
+    }
+
+    static convertGenericsToRouteArray(data: Array<any>) {
+        return data.map(rD => this.fromGenericRoute(rD));
+    }
+
+    static fromGenericRoute(data: any): Route {
+        let route = new Route();
+        Object.assign(route, data);
+        return route;
+    }
+
+    static async getTrueTaskCount(taskList: Array<Task>) {
+        let tasks = taskList.filter(task => {return task.taskFormat !== TaskFormat.GROUP});
+        let groups = taskList.filter(task => {return task.taskFormat === TaskFormat.GROUP});
+        let count = tasks.length;
+        for (let group of groups) {
+            count += group.getLegitSubtasks().length;
+        }
+        return count;
+    }
 
     async getTaskCount(): Promise<number> {
         let allTasks: Task[];

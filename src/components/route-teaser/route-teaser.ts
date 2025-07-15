@@ -1,10 +1,9 @@
 import {EventEmitter, Component, Input, Output} from '@angular/core';
 import {Route} from "../../entity/Route";
 import {ModalsService} from "../../services/modals-service";
-import {OrmService} from "../../services/orm-service";
 import {Helper} from "../../classes/Helper";
-import {DB_Updater} from "../../classes/DB_Updater";
-import {TranslateService} from "@ngx-translate/core";
+import {RouteApiService} from "../../services/route-api.service";
+import {RouteInfos} from "../../services/ApiResponseDefinition/RouteInfos";
 
 
 @Component({
@@ -26,23 +25,23 @@ export class RouteTeaserComponent {
     @Output()
     removeRoute = new EventEmitter<any>();
 
-    private currentProgress: number = 0;
-    private total: number = 0;
+    private routeDetails: RouteInfos;
+    protected currentProgress: number = 0;
+    protected total: number = 0;
 
     private completedRadius: number = 339.292;
 
     constructor( private modalsService: ModalsService,
-                 private ormService: OrmService,
                  private helper: Helper,
-                 private dbUpdater: DB_Updater,
-                 private translateService: TranslateService) {
+                 private routeApiService: RouteApiService) {
     }
 
     async ngOnChanges(){
         if(this.route && this.route.downloaded) {
-            this.total = await this.route.getTaskCount();
+            this.routeDetails = await this.routeApiService.getDetailsForRoute(this.route);
+            this.total = await Route.getTrueTaskCount(this.routeDetails.tasks);
             if(this.route.scores) {
-                let data = await this.helper.calculateProgress(this.route);
+                let data = await this.helper.calculateProgress(this.route, this.routeDetails);
                 this.currentProgress = data.currentProgress;
                 this.completedRadius = this.calculatePercentage();
             }
@@ -64,7 +63,7 @@ export class RouteTeaserComponent {
 
     async deleteRoute(event, route: Route) {
         event.stopPropagation();
-        if(await this.ormService.removeDownloadedRoute(route, route.isMapAvailableOffline())){
+        if (await this.routeApiService.removeDownloadedRoute(route)) {
             this.removeRoute.emit();
         }
     }

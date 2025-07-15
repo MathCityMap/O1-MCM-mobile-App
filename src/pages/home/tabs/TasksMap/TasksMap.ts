@@ -2,7 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
-import {Task, TaskFormat} from '../../../../entity/Task';
+import {Task} from '../../../../entity/Task';
 import {Score} from '../../../../entity/Score';
 import {DeepLinker} from 'ionic-angular/navigation/deep-linker';
 import {GpsService} from '../../../../services/gps-service';
@@ -24,6 +24,7 @@ import {MCMTrailFinishedModal} from "../../../../modals/MCMTrailFinishedModal/MC
 import {MapHandlerInterface} from "./MapHandler/MapHandlerInterface";
 import {MapboxMapHandler} from "./MapHandler/MapboxMapHandler";
 import {LeafletMapHandler} from "./MapHandler/LeafletMapHandler";
+import {TaskFormat} from "../../../../services/ApiResponseDefinition/TaskFormat";
 
 @IonicPage({
     segment: 'TasksMap/:routeId'

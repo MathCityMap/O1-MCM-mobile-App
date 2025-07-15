@@ -15,6 +15,7 @@ import {TaskMapState} from "../pages/home/tabs/TasksMap/TasksMap";
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {ConnectionQuality, Helper} from '../classes/Helper';
 import {DB_Updater} from "../classes/DB_Updater";
+import {RouteApiService} from "./route-api.service";
 
 
 @Injectable()
@@ -27,7 +28,8 @@ export class ModalsService {
                 public translateService: TranslateService,
                 private spinner: SpinnerDialog,
                 private dbUpdater: DB_Updater,
-                private helper: Helper) {
+                private helper: Helper,
+                private routeApiService: RouteApiService) {
     }
 
     async doDownload(route: Route): Promise<boolean> {
@@ -51,7 +53,7 @@ export class ModalsService {
             enableBackdropDismiss: false
         });
         downloadModal.present();
-        await this.ormService.downloadRoute(route, function (doneDownload, totalDownload, titleKey) {
+        const callbackFn = function (doneDownload, totalDownload, titleKey) {
             data.total = totalDownload;
             data.currentProgress = doneDownload;
             if (titleKey) {
@@ -63,7 +65,9 @@ export class ModalsService {
             }
             // make sure that updated values are bound to DOM
             return cancelHasBeenClicked;
-        }, this.dbUpdater);
+        }
+        await this.routeApiService.downloadRoute(route, callbackFn);
+        // await this.ormService.downloadRoute(route, callbackFn, this.dbUpdater);
         downloadModal.dismiss();
         return !cancelHasBeenClicked;
     }

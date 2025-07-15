@@ -9,6 +9,7 @@ import { NavController } from "ionic-angular/navigation/nav-controller";
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {TranslationService} from "../../app/api/services/translation.service";
 import {TrailTranslation} from "../../app/api/models/trail-translation";
+import {RouteApiService} from "../../services/route-api.service";
 
 declare var MathJax;
 
@@ -37,7 +38,8 @@ export class RouteInfo {
                 public translateService: TranslateService,
                 private spinnerDialog: SpinnerDialog,
                 protected translationService: TranslationService,
-                public modalCtrl: ModalController) {
+                public modalCtrl: ModalController,
+                private routeApiService: RouteApiService) {
     }
 
     async ionViewWillEnter() {
@@ -73,7 +75,8 @@ export class RouteInfo {
 
     async removeRoute() {
         this.spinnerDialog.show();
-        await this.ormService.removeDownloadedRoute(this.route, this.route.isMapAvailableOffline());
+        // await this.ormService.removeDownloadedRoute(this.route, this.route.isMapAvailableOffline());
+        await this.routeApiService.removeDownloadedRoute(this.route);
         this.spinnerDialog.hide();
     }
 

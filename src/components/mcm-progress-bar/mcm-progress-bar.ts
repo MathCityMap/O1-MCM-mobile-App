@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Route} from "../../entity/Route";
 import {Helper} from "../../classes/Helper";
+import {RouteApiService} from "../../services/route-api.service";
 
 @Component({
     selector: 'mcm-progress-bar',
@@ -17,14 +18,15 @@ export class MCMProgressBarComponent {
     @Input() total: number;
     progressWidth: number;
 
-    constructor(private helper: Helper) {
+    constructor(private helper: Helper, private routeApiService: RouteApiService) {
 
     }
 
     async ngOnChanges() {
-        if (this.route && this.route.scores) {
+        let routeDetails = await this.routeApiService.getDetailsForRoute(this.route);
+        if (this.route && routeDetails.score) {
             try {
-                let data = await this.helper.calculateProgress(this.route);
+                let data = await this.helper.calculateProgress(this.route, routeDetails);
                 this.currentProgress = data.currentProgress;
                 this.total = data.totalTasks;
                 this.progressWidth = (100 / this.total) * this.currentProgress;

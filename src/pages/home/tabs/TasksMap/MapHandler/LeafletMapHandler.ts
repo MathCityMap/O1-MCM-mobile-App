@@ -1,7 +1,7 @@
 import {MapHandlerInterface} from "./MapHandlerInterface";
 import {EventEmitter} from "@angular/core";
 import {Coordinates} from "@ionic-native/geolocation";
-import {Task, TaskFormat} from "../../../../../entity/Task";
+import {Task} from "../../../../../entity/Task";
 import {Score} from "../../../../../entity/Score";
 import {tilesDb} from "../../../../../classes/tilesDb";
 import {Helper} from "../../../../../classes/Helper";
@@ -14,6 +14,7 @@ import 'leaflet-rotatedmarker';
 import {OrmService} from "../../../../../services/orm-service";
 import {ImagesService} from "../../../../../services/images-service";
 import {TaskMapState} from "../TasksMap";
+import {TaskFormat} from "../../../../../services/ApiResponseDefinition/TaskFormat";
 
 declare var ConicGradient: any;
 

@@ -1,16 +1,11 @@
 import {Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import { Route } from "./Route";
-import { Helper } from '../classes/Helper';
-import { Task2Route } from './Task2Route';
-import { ImagesService } from '../services/images-service';
-import {OrmService} from "../services/orm-service";
-
-export enum TaskFormat {
-    DEFAULT = "default",
-    GROUP = "taskgroup",
-    SUBTASK = "subtask",
-    SUPPORT = "supporttask"
-}
+import {Route} from "./Route";
+import {Helper} from '../classes/Helper';
+import {Task2Route} from './Task2Route';
+import {ImagesService} from '../services/images-service';
+import {RouteDetailApiResponse} from "../services/ApiResponseDefinition/RouteDetailApiResponse";
+import {ChildTaskApiResponse, TaskApiResponse} from "../services/ApiResponseDefinition/TaskApiResponse";
+import {TaskFormat} from "../services/ApiResponseDefinition/TaskFormat";
 
 @Entity('mcm_task')
 export class Task {
@@ -122,6 +117,69 @@ export class Task {
      */
     @OneToMany(type => Task, task => task.task_id)
     private subtasks: Task[];
+
+    static createTaskListFromRouteDetailResponse(response: RouteDetailApiResponse): Array<Task> {
+        let tasks = [];
+        for (let rTask of response.tasks) {
+            let task = Task.fromTaskApiResponse(rTask);
+            if (task.taskFormat === TaskFormat.GROUP) {
+                task.subtasks = Task.getChildTasksFromResponsePool(task, response.subTasks);
+            } else {
+                task.subtasks = Task.getChildTasksFromResponsePool(task, response.supportTasks);
+            }
+            tasks.push(task);
+        }
+        return tasks;
+    }
+
+    static getChildTasksFromResponsePool(task: Task, pool: Array<ChildTaskApiResponse>) {
+        return pool.filter(rTask => rTask.parent_task_id === task.id).map(rTask => {
+            let childTask = Task.fromTaskApiResponse(rTask);
+            childTask.positionInParent = rTask.position_in_parent;
+            return childTask;
+        });
+    }
+
+    static fromTaskApiResponse(rTask: TaskApiResponse): Task {
+        let task = new Task();
+        task.id = rTask._id;
+        task.userId = rTask.user_id;
+        task.public = rTask.public;
+        task.lat = +rTask.lat;
+        task.lon = +rTask.lon;
+        task.title = rTask.title;
+        task.description = rTask.description;
+        task.image = rTask.image;
+        task.solutionType = rTask.solution_type;
+        task.solution = rTask.solution;
+        task.hint1 = rTask.hint1;
+        task.hint2 = rTask.hint2;
+        task.hint3 = rTask.hint3;
+        task.assistiveEquipment = rTask.assistive_equipment;
+        task.author = rTask.author;
+        task.mail = rTask.mail;
+        task.grade = rTask.grade;
+        task.tags = rTask.tags;
+        task.createDate = rTask.create_Date;
+        task.timestamp = rTask.timestamp;
+        task.attr = rTask.attr;
+        task.solutionSample = rTask.solutionsample;
+        task.langCode = rTask.lang_code;
+        task.arLink = rTask.ar_link;
+        task.code = rTask.code;
+        task.taskFormat = rTask.task_format;
+        return task;
+    }
+
+    static convertGenericsToTaskArray(data: Array<any>) {
+        return data.map(rT => this.fromGenericTask(rT));
+    }
+
+    static fromGenericTask(data: any): Task {
+        let task = new Task();
+        Object.assign(task, data);
+        return task;
+    }
 
     getImageURL(asRawString: boolean = false): string {
         return ImagesService.INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);

@@ -15,6 +15,7 @@ import {GpsService} from '../../../../services/gps-service';
 import {ChatAndSessionService} from "../../../../services/chat-and-session-service";
 import {MyApp} from "../../../../app/app.component";
 import {SearchPipe} from "../../../../app/pipes/search.pipe";
+import {RouteApiService} from "../../../../services/route-api.service";
 
 @IonicPage()
 @Component({
@@ -55,6 +56,7 @@ export class RoutesListPage implements OnDestroy {
                 private chatAndSessionService: ChatAndSessionService,
                 private app: MyApp,
                 private navParams: NavParams,
+                protected routeApiService: RouteApiService
     ) {
 
         this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
@@ -79,52 +81,53 @@ export class RoutesListPage implements OnDestroy {
         if(this.navParams.data && this.navParams.data.showAllRoutes != null) {
             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
         }
-        let activeUser = await this.ormService.getActiveUser();
-        if (!activeUser) {
-            // initial app start
-            let online = await this.modalsService.showNoInternetModalIfOffline();
-            if (online) {
-                this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-                try {
-                    await this.dbUpdater.checkForUpdates();
-                } catch (e) {
-                    console.error('caught error while checking for updates:');
-                    console.error(e);
-                }
-                await this.ormService.setNewActiveUser('Me');
-            }
-        } else {
-            // we need to check for updates
-            let quality = await this.helper.checkConnection();
-            if (quality == ConnectionQuality.FAST || quality == ConnectionQuality.SLOW) {
-                this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-                try {
-                    await this.dbUpdater.checkForUpdates();
-                } catch (e) {
-                    console.error('caught error while checking for updates:');
-                    console.error(e);
-                }
-            }
-        }
-        if (!this.gpsService.getLastPosition()) {
-            // try to get position
-            try {
-                await timeout(this.gpsService.getCurrentPosition().catch(err => {
-                    console.error("Error loading GPS data", err)
-                }), 2000);
-            } catch (e) {
-                console.log("could not obtain position: " + e.message);
-                // make position check async
-                this.gpsService.getCurrentPosition().then((position) => {
-                    if (position && position.coords) {
-                    }
-                }, err => {
-                    console.error("Error loading GPS data", err)
-                });
-            }
-        }
-        this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
-        this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
+        // let activeUser = await this.ormService.getActiveUser();
+        // if (!activeUser) {
+        //     // initial app start
+        //     let online = await this.modalsService.showNoInternetModalIfOffline();
+        //     if (online) {
+        //         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+        //         try {
+        //             await this.dbUpdater.checkForUpdates();
+        //         } catch (e) {
+        //             console.error('caught error while checking for updates:');
+        //             console.error(e);
+        //         }
+        //         await this.ormService.setNewActiveUser('Me');
+        //     }
+        // } else {
+        //     // we need to check for updates
+        //     let quality = await this.helper.checkConnection();
+        //     if (quality == ConnectionQuality.FAST || quality == ConnectionQuality.SLOW) {
+        //         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+        //         try {
+        //             await this.dbUpdater.checkForUpdates();
+        //         } catch (e) {
+        //             console.error('caught error while checking for updates:');
+        //             console.error(e);
+        //         }
+        //     }
+        // }
+        // if (!this.gpsService.getLastPosition()) {
+        //     // try to get position
+        //     try {
+        //         await timeout(this.gpsService.getCurrentPosition().catch(err => {
+        //             console.error("Error loading GPS data", err)
+        //         }), 2000);
+        //     } catch (e) {
+        //         console.log("could not obtain position: " + e.message);
+        //         // make position check async
+        //         this.gpsService.getCurrentPosition().then((position) => {
+        //             if (position && position.coords) {
+        //             }
+        //         }, err => {
+        //             console.error("Error loading GPS data", err)
+        //         });
+        //     }
+        // }
+        await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+        // this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
+        // this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
         this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
         this.filterItems();
 
@@ -151,20 +154,20 @@ export class RoutesListPage implements OnDestroy {
 
     async addRouteByCode() {
         let route = await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
-        if (route) {
-            let alreadyAdded = false;
-            for (let i = 0; !alreadyAdded && i < this.items.length; i++) {
-                if (this.items[i].id == route.id) {
-                    // route has been added twice
-                    alreadyAdded = true;
-                }
-            }
-            if (!alreadyAdded) {
-                this.items.push(route);
-                this.sortAndRebuildFilteredItems();
-            }
-            this.scrollTo(route);
-        }
+        // if (route) {
+        //     let alreadyAdded = false;
+        //     for (let i = 0; !alreadyAdded && i < this.items.length; i++) {
+        //         if (this.items[i].id == route.id) {
+        //             // route has been added twice
+        //             alreadyAdded = true;
+        //         }
+        //     }
+        //     if (!alreadyAdded) {
+        //         this.items.push(route);
+        //         this.sortAndRebuildFilteredItems();
+        //     }
+        //     this.scrollTo(route);
+        // }
     }
 
     private compareFunction(a: Route, b: Route) {
@@ -179,28 +182,34 @@ export class RoutesListPage implements OnDestroy {
     }
 
 
-    scrollTo(route: Route) {
-        let that = this;
-        setTimeout(function () {
-            let element = document.getElementById('route-item-' + route.id);
-            if (element) {
-                that.content.scrollTo(0, element.offsetTop);
-            }
+    // scrollTo(route: Route) {
+    //     let that = this;
+    //     setTimeout(function () {
+    //         let element = document.getElementById('route-item-' + route.id);
+    //         if (element) {
+    //             that.content.scrollTo(0, element.offsetTop);
+    //         }
+    //
+    //     }, 300);
+    // }
 
-        }, 300);
-    }
+    // doInfinite(infiniteScroll) {
+    //     if (this.items.length > this.filteredItems.length) {
+    //         console.info(`Add ${this.infiniteScrollBlockSize} list items ...`);
+    //         let itemsToAdd = this.items.slice(this.filteredItems.length, this.filteredItems.length + this.infiniteScrollBlockSize);
+    //         itemsToAdd.forEach(item => this.filteredItems.push(item));
+    //     } else {
+    //         console.info('End of list reached');
+    //     }
+    //     setTimeout(() => {
+    //         infiniteScroll.complete();
+    //     }, 2000);
+    // }
 
-    doInfinite(infiniteScroll) {
-        if (this.items.length > this.filteredItems.length) {
-            console.info(`Add ${this.infiniteScrollBlockSize} list items ...`);
-            let itemsToAdd = this.items.slice(this.filteredItems.length, this.filteredItems.length + this.infiniteScrollBlockSize);
-            itemsToAdd.forEach(item => this.filteredItems.push(item));
-        } else {
-            console.info('End of list reached');
-        }
-        setTimeout(() => {
-            infiniteScroll.complete();
-        }, 2000);
+    fetchMoreRoutes(infiniteScroll) {
+        this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize).then(() => {
+           infiniteScroll.complete();
+        });
     }
 
     private sortAndRebuildFilteredItems() {
@@ -240,5 +249,4 @@ export class RoutesListPage implements OnDestroy {
         this.filteredResult = this.pipe.transform(value, 'title,city,code', this.routesListSearch)
 
     }
-
 }

@@ -17,6 +17,7 @@ import {
     SERVER_REQUEST_PASS,
     WEBSERVER_URL, API_REQUEST_USER, API_REQUEST_PASS
 } from "../env/env";
+import {RouteInfos} from "../services/ApiResponseDefinition/RouteInfos";
 
 export class MapTile {
     constructor(private pZoomLevel: number, private pX: number, private pY: number
@@ -346,9 +347,9 @@ export class Helper {
         return this.activateAddRouteModal;
     }
 
-    public async calculateProgress(route: Route) {
-        let totalTasks = await route.getTaskCount();
-        let score = route.getScoreForUser(await this.ormService.getActiveUser());
+    public async calculateProgress(route: Route, routeDetails: RouteInfos) {
+        let totalTasks = await Route.getTrueTaskCount(routeDetails.tasks);
+        let score = routeDetails.score;
         let currentProgress = 0;
         if (route.isAnswerFeedbackEnabled()) {
             currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;

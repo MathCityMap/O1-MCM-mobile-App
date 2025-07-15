@@ -1,0 +1,252 @@
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {API_URL} from "../env/env";
+import {map} from "rxjs/operators/map";
+import {Route} from "../entity/Route";
+import {Helper} from "../classes/Helper";
+import {RouteListApiResponse} from "./ApiResponseDefinition/RouteListApiResponse";
+import {GpsService} from "./gps-service";
+import {Storage} from "@ionic/storage";
+import {RouteDetailApiResponse} from "./ApiResponseDefinition/RouteDetailApiResponse";
+import { Task } from "../entity/Task";
+import {Score} from "../entity/Score";
+import {CacheManagerMCM} from "../classes/CacheManagerMCM";
+import {ImagesService} from "./images-service";
+import {AlertController} from "ionic-angular";
+import {TranslateService} from "@ngx-translate/core";
+import {TranslationService} from "../app/api/services/translation.service";
+import {RouteInfos} from "./ApiResponseDefinition/RouteInfos";
+
+const DOWNLOADED_ROUTES_KEY = "MCM_ROUTES_DOWNLOADED"
+const DOWNLOADED_ROUTE_INFOS_PREFIX = "MCM_DOWNLOADED_ROUTE_INFOS_"
+
+@Injectable()
+export class RouteApiService {
+
+    totalRoutes: number;
+    nextOffset: number = 0;
+    position: {latitude: number, longitude: number};
+    private _publicRoutes: Route[] = [];
+    private _downloadedRoutes: Route[];
+
+    get publicRoutes() {
+        return this._publicRoutes;
+    }
+
+    get downloadedRoutes() {
+        return this._downloadedRoutes;
+    }
+
+    constructor(
+        private http: HttpClient,
+        private gpsService: GpsService,
+        private storage: Storage,
+        private imagesService: ImagesService,
+        private alertCtrl: AlertController,
+        private translateService: TranslateService,
+        private translationService: TranslationService
+    ) {
+    }
+
+    async fetchPublicRoutes(count = 20) {
+        if (this.nextOffset === this.totalRoutes) {
+            return;
+        }
+        if (!this.position) {
+            let lastPosition: {coords: {latitude: number, longitude: number}} = this.gpsService.getLastPosition();
+            if (!lastPosition) {
+                lastPosition = await this.gpsService.getCurrentPosition();
+                if (!lastPosition) {
+                    console.debug('Could not determine position, using Frankfurt am Main as fallback');
+                    lastPosition = {coords: {longitude: 8.684708439135116, latitude: 50.11099446102349}}
+                }
+            }
+            this.position = lastPosition.coords;
+        }
+        let newRoutes = await this.internalfetchRoutesForPosition(this.position.latitude, this.position.longitude, this.nextOffset, count);
+        this.nextOffset += newRoutes.length;
+        this._publicRoutes.push(...newRoutes);
+    }
+
+    async getDownloadedRoutes(): Promise<Array<Route>> {
+        if (this._downloadedRoutes) {
+            return this._downloadedRoutes;
+        }
+        let routes = await this.storage.get(DOWNLOADED_ROUTES_KEY);
+        if (routes) {
+            routes = Route.convertGenericsToRouteArray(routes);
+            this._downloadedRoutes = routes;
+            return routes;
+        }
+        return [];
+    }
+
+    async getDetailsForRoute(route: Route): Promise<RouteInfos> {
+        let details: RouteInfos = await this.storage.get(DOWNLOADED_ROUTE_INFOS_PREFIX+route.code);
+        if (!details) {
+            return {tasks: [], score: new Score()};
+        }
+        return {tasks: Task.convertGenericsToTaskArray(details.tasks), score: Score.fromGenericScore(details.score)};
+    }
+
+    async downloadRoute(route: Route, statusCallback: (done: number, total: number, title?: string) => boolean) {
+        let alreadyDownloadedUrls = [];
+
+        try {
+            let tasks = await this.internalFetchDetailsForRoute(route.code);
+            console.log("Tasks for route", tasks);
+            let routeInfo = {tasks: tasks, score: new Score()}
+            await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX + route.code, routeInfo);
+
+            if (!route.isNarrativeEnabled()) {
+                if (route.isMapAvailableOffline()) {
+                    statusCallback(0, 100, 'a_rdl_title_map');
+                    try {
+                        await this.imagesService.downloadAndUnzip(route, (done) => {
+                                return statusCallback(done, 100);
+                            },
+                            (tile) => {
+                                alreadyDownloadedUrls.push(tile);
+                            })
+                    } catch (e) {
+                        console.debug('Map download failed', e);
+                        route.isOffline = false;
+                    }
+                }
+            } else {
+                let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
+                await CacheManagerMCM.downloadTiles(route, zoomLevels.min_zoom, zoomLevels.max_zoom, (done, total, url) => {
+                    alreadyDownloadedUrls.push(url);
+                    return statusCallback(done, total);
+                });
+            }
+            let downloadImages = this.getDownloadImagesForTasks(tasks);
+            statusCallback(0, downloadImages.length, 'a_rdl_title_img');
+            await this.imagesService.downloadURLs(downloadImages, false, (done, total, url) => {
+                alreadyDownloadedUrls.push(url);
+                return statusCallback(done, total);
+            });
+            await this.addRouteToDownloadedList(route)
+        } catch (e) {
+            console.log("download failed or was aborted");
+            if (e.message) {
+                console.log(e.message);
+            }
+            if(e.http_status && e.http_status === 404){
+                const alert = this.alertCtrl.create({
+                    title: this.translateService.instant("a_missing_map_data_error_msg"),
+                    buttons: [{
+                        text:  this.translateService.instant("a_g_ok"),
+                        role: 'cancel'
+                    }]
+                });
+                alert.present();
+                let postparams = "&route_id=" + route.id;
+                Helper.INSTANCE.invokeApi('downloadTrailFailed', postparams)
+            }
+            console.log(e);
+            await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
+        }
+    }
+
+    async removeDownloadedRoute(route: Route) {
+        // Reset route before removing
+        if (route.isMapAvailableOffline()) {
+            await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
+        }
+
+        let routeInfos: RouteInfos = await this.storage.get(DOWNLOADED_ROUTE_INFOS_PREFIX+route.code);
+
+        if (routeInfos) {
+            this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(routeInfos.tasks), false);
+        }
+
+        let state = await this.storage.get("savedMapStateByRoute");
+        if (state && state[route.id]) {
+            delete state[route.id];
+        }
+        this.storage.set("savedMapStateByRoute", state);
+        this.translationService.removeTaskTranslations(route.code);
+
+        this.removeRouteFromDownloadedList(route);
+        return route;
+    }
+
+    private async addRouteToDownloadedList(route: Route) {
+        route.downloaded = true;
+        route.downloadedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+
+        let downloadedRoutes = await this.getDownloadedRoutes();
+        downloadedRoutes.push(route);
+        this._downloadedRoutes = downloadedRoutes;
+        await this.storage.set(DOWNLOADED_ROUTES_KEY, downloadedRoutes);
+        this.updateRouteInPublicList(route);
+    }
+
+    private async removeRouteFromDownloadedList(route: Route) {
+        route.downloaded = null;
+        route.downloadedDate = null;
+        route.completed = null;
+        route.completedDate = null;
+        this.storage.remove(DOWNLOADED_ROUTE_INFOS_PREFIX+route.code);
+
+        let downloadedRoutes = await this.getDownloadedRoutes();
+        downloadedRoutes.filter(dRoute => dRoute.id !== route.id);
+        this._downloadedRoutes = downloadedRoutes;
+        await this.storage.set(DOWNLOADED_ROUTES_KEY, downloadedRoutes);
+        this.updateRouteInPublicList(route);
+    }
+
+    private getDownloadImagesForTasks(tasks: Task[]) {
+        let result = [];
+        tasks.map(task => task.getImagesForDownload()).map(images => {
+            result = result.concat(images);
+        });
+        return result;
+    }
+
+    private getTileURLs(route: Route) {
+        let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
+        return CacheManagerMCM.getTileURLs(route, zoomLevels.min_zoom, zoomLevels.max_zoom);
+    }
+
+    private async internalfetchRoutesForPosition(lat: number, lon: number, offset = 0, limit = 20): Promise<Route[]> {
+        const downloadedRoutes = await this.getDownloadedRoutes();
+        return this.http.get<RouteListApiResponse>(`${API_URL}/app/v1/trails?offset=${offset}&limit=${limit}&lat=${lat}&lon=${lon}`, {headers: Helper.getApiRequestHeaders()}).pipe(
+            map(value => {
+                this.totalRoutes = value.total;
+                return value.items.map(routeResponse => {
+                    let downloadedRoute = downloadedRoutes.find(dRoute => routeResponse._id === dRoute.id);
+                    if (downloadedRoute) {
+                        return downloadedRoute;
+                    }
+                    return Route.fromRouteResponse(routeResponse);
+                })
+            })
+        ).toPromise();
+    }
+
+    private async internalFetchDetailsForRoute(code: string): Promise<Array<Task>> {
+        const body = {
+            "userId": "0",
+            "langCode": "de",
+            "isUpdate": false
+        }
+        return this.http.post<RouteDetailApiResponse>(`${API_URL}/app/v1/trails/${code}`, body, {headers: Helper.getApiRequestHeaders()}).pipe(
+            map(value => {
+                console.log('Trail download result', value);
+                return Task.createTaskListFromRouteDetailResponse(value);
+            })
+        ).toPromise();
+    }
+
+    private updateRouteInPublicList(routeToUpdate: Route) {
+        if (this._publicRoutes) {
+            let index = this._publicRoutes.findIndex((route) => route.id === routeToUpdate.id);
+            if (index) {
+                this._publicRoutes[index] = routeToUpdate;
+            }
+        }
+    }
+
+}

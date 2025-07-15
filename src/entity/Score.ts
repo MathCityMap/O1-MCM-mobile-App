@@ -41,7 +41,11 @@ export class Score {
     @Column()
     distance: number;
 
-
+    static fromGenericScore(data: any): Score {
+        let score = new Score();
+        Object.assign(score, data);
+        return score;
+    }
 
 
     setTasksSolved(taskIds: Array<number>){
