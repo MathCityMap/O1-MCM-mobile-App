@@ -97,15 +97,15 @@
     <div class="card">
          <ion-label class="title">{{'current_progress' | translate}}</ion-label>
          <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>
-         <div class="evaluation" *ngIf="route?.completed && route?.scores.length > 0">
-            <span class="icon finished">{{route.completedDate}}</span>
+         <div class="evaluation" *ngIf="route?.completed && routeInfos.score">
+            <span class="icon finished">{{route.completedDate}}</span>q
             <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">
-               <div class="rating perfect"><p>{{route.scores[0].getTasksSolved().length}}</p></div>
-               <div class="rating good"><p>{{route.scores[0].getTasksSolvedLow().length}}</p></div>
-               <div class="rating failed"><p>{{route.scores[0].getTasksFailed().length}}</p></div>
+               <div class="rating perfect"><p>{{routeInfos.score.getTasksSolved().length}}</p></div>
+               <div class="rating good"><p>{{routeInfos.score.getTasksSolvedLow().length}}</p></div>
+               <div class="rating failed"><p>{{routeInfos.score.getTasksFailed().length}}</p></div>
             </div>
             <div *ngIf="!route.isAnswerFeedbackEnabled()" class="ratings">
-               <div class="rating saved"><p>{{route.scores[0].getTasksSaved().length}}</p></div>
+               <div class="rating saved"><p>{{routeInfos.score.getTasksSaved().length}}</p></div>
             </div>
          </div>
       </div>

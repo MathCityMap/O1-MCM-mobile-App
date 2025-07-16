@@ -10,6 +10,7 @@ import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {TranslationService} from "../../app/api/services/translation.service";
 import {TrailTranslation} from "../../app/api/models/trail-translation";
 import {RouteApiService} from "../../services/route-api.service";
+import {RouteInfos} from "../../services/ApiResponseDefinition/RouteInfos";
 
 declare var MathJax;
 
@@ -20,6 +21,7 @@ declare var MathJax;
 })
 export class RouteInfo {
     protected route: Route;
+    protected routeInfos: RouteInfos;
 
 
     protected totalTasks: number;
@@ -44,11 +46,14 @@ export class RouteInfo {
 
     async ionViewWillEnter() {
         let routeId = this.navParams.get('routeId');
-        this.route = this.viewCtrl.data.route = await this.ormService.findRouteById(routeId);
+        // this.route = this.viewCtrl.data.route = await this.ormService.findRouteById(routeId);
+        this.route = this.viewCtrl.data.route = await this.routeApiService.getRouteFromId(routeId);
+        this.routeInfos = await this.routeApiService.getDetailsForRoute(this.route);
         //Fetch tasks in Route so Tools of tasks can be shown properly
-        await this.route.getTasks();
-        this.totalTasks = await this.route.getTaskCount();
-        let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
+        // await this.route.getTasks();
+        this.totalTasks = await Route.getTrueTaskCount(this.routeInfos.tasks);
+        let score = this.routeInfos.score;
+        // let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         MathJax.typeset();
         let {translation, isFetched} = await this.translationService.getTranslationForRoute(this.route.code);

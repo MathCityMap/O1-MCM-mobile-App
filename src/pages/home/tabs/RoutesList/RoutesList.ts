@@ -1,7 +1,6 @@
 import {Component, OnDestroy, ViewChild} from '@angular/core';
 import {Content, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
-import {ConnectionQuality, Helper} from '../../../../classes/Helper';
-import {timeout} from 'promise-timeout';
+import {Helper} from '../../../../classes/Helper';
 
 import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
@@ -24,17 +23,17 @@ import {RouteApiService} from "../../../../services/route-api.service";
 })
 export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
-    public items: Route[] = [];
+    // public items: Route[] = [];
     public downloadedItems: Route[] = [];
     public filteredItems: Route[] = [];
-    private routesListSearch: string = "";
+    protected routesListSearch: string = "";
 
     private isOpeningRoute: boolean = false;
     private pipe: SearchPipe;
 
-    private filteredResult: Route[];
+    protected filteredResult: Route[];
 
-    private showAllRoutes: boolean = true;
+    protected showAllRoutes: boolean = true;
 
     modal: any;
     private eventSubscription: Subscription;
@@ -59,12 +58,15 @@ export class RoutesListPage implements OnDestroy {
                 protected routeApiService: RouteApiService
     ) {
 
-        this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
-            this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
-            this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
-            this.sortAndRebuildFilteredItems();
-            this.filterItems();
-
+        // this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
+        //     this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
+        //     this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
+        //     this.sortAndRebuildFilteredItems();
+        //     this.filterItems();
+        // });
+        this.eventSubscription = this.routeApiService.routesUpdated.subscribe(() => {
+           // this.items = this.routeApiService.publicRoutes;
+           this.filterItems();
         });
     }
 
@@ -73,7 +75,7 @@ export class RoutesListPage implements OnDestroy {
     }
 
     public getRoutesList() {
-        return this.routesListSearch.length > 2 ? this.items : this.filteredItems;
+        return this.routesListSearch.length > 2 ? this.routeApiService.publicRoutes : this.filteredItems;
     }
 
     async ionViewWillEnter() {
@@ -126,9 +128,9 @@ export class RoutesListPage implements OnDestroy {
         //     }
         // }
         await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+        // this.items = this.routeApiService.publicRoutes;
         // this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
         // this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
-        this.filteredItems = this.items.slice(0, this.infiniteScrollBlockSize);
         this.filterItems();
 
         if(this.helper.getActivateAddRoute()){
@@ -141,13 +143,14 @@ export class RoutesListPage implements OnDestroy {
     async doRefresh(refresher) {
         let online = await this.modalsService.showNoInternetModalIfOffline();
         if (online) {
-            try {
-                await this.dbUpdater.checkForUpdates();
-            } catch (e) {
-                console.error('caught error while checking for updates:', e);
-            }
-            this.items = await this.ormService.getVisibleRoutes(false, null, true);
-            this.sortAndRebuildFilteredItems();
+            // TODO need to refresh here
+            // try {
+            //     await this.dbUpdater.checkForUpdates();
+            // } catch (e) {
+            //     console.error('caught error while checking for updates:', e);
+            // }
+            // this.items = await this.ormService.getVisibleRoutes(false, null, true);
+            // this.sortAndRebuildFilteredItems();
         }
         refresher.complete();
     }
@@ -212,9 +215,9 @@ export class RoutesListPage implements OnDestroy {
         });
     }
 
-    private sortAndRebuildFilteredItems() {
-        this.filteredItems = this.items.slice(0, this.filteredItems.length);
-    }
+    // private sortAndRebuildFilteredItems() {
+    //     this.filteredItems = this.items.slice(0, this.filteredItems.length);
+    // }
 
 /*    async reactOnDownloadedRoute(event) {
         if (event && event.route) {
@@ -244,9 +247,8 @@ export class RoutesListPage implements OnDestroy {
 
     filterItems(){
         let value;
-        if(this.showAllRoutes) value = this.getRoutesList();
-        else value = this.downloadedItems;
+        if(this.showAllRoutes) value = this.routeApiService.publicRoutes;
+        else value = this.routeApiService.downloadedRoutes;
         this.filteredResult = this.pipe.transform(value, 'title,city,code', this.routesListSearch)
-
     }
 }

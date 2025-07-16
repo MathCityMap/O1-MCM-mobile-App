@@ -75,7 +75,7 @@ export class ModalsService {
     async showRoute(route: Route, navCtrl: NavController, startRoute: boolean = false, selectedTask: Task = null) {
         if (route.downloaded) {
             // 15.05.18 - Perform dataset refresh of related tasks of the route if online
-            await this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))
+            // await this.dbUpdater.updateRouteTasksData(route, this.translateService.instant("a_language_code"))
             if(startRoute){
                 this.navigateToRoute(route, navCtrl, null);
                 return;

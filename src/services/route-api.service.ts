@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {API_URL} from "../env/env";
 import {map} from "rxjs/operators/map";
@@ -26,6 +26,7 @@ export class RouteApiService {
     totalRoutes: number;
     nextOffset: number = 0;
     position: {latitude: number, longitude: number};
+    routesUpdated: EventEmitter<void> = new EventEmitter();
     private _publicRoutes: Route[] = [];
     private _downloadedRoutes: Route[];
 
@@ -66,6 +67,7 @@ export class RouteApiService {
         let newRoutes = await this.internalfetchRoutesForPosition(this.position.latitude, this.position.longitude, this.nextOffset, count);
         this.nextOffset += newRoutes.length;
         this._publicRoutes.push(...newRoutes);
+        this.routesUpdated.emit();
     }
 
     async getDownloadedRoutes(): Promise<Array<Route>> {
@@ -79,6 +81,15 @@ export class RouteApiService {
             return routes;
         }
         return [];
+    }
+
+    async getRouteFromId(id: number): Promise<Route|undefined> {
+        let downloaded = await this.getDownloadedRoutes();
+        let route = downloaded.find(dRoute => dRoute.id === id);
+        if (!route) {
+            route = this._publicRoutes.find(pRoute => pRoute.id === id);
+        }
+        return route;
     }
 
     async getDetailsForRoute(route: Route): Promise<RouteInfos> {
@@ -155,7 +166,7 @@ export class RouteApiService {
             await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
         }
 
-        let routeInfos: RouteInfos = await this.storage.get(DOWNLOADED_ROUTE_INFOS_PREFIX+route.code);
+        let routeInfos: RouteInfos = await this.getDetailsForRoute(route);
 
         if (routeInfos) {
             this.imagesService.removeDownloadedURLs(this.getDownloadImagesForTasks(routeInfos.tasks), false);
@@ -191,7 +202,7 @@ export class RouteApiService {
         this.storage.remove(DOWNLOADED_ROUTE_INFOS_PREFIX+route.code);
 
         let downloadedRoutes = await this.getDownloadedRoutes();
-        downloadedRoutes.filter(dRoute => dRoute.id !== route.id);
+        downloadedRoutes = downloadedRoutes.filter(dRoute => dRoute.id !== route.id);
         this._downloadedRoutes = downloadedRoutes;
         await this.storage.set(DOWNLOADED_ROUTES_KEY, downloadedRoutes);
         this.updateRouteInPublicList(route);

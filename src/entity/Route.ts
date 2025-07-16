@@ -307,6 +307,26 @@ export class Route {
         return equipment;
     }
 
+    static getAssistiveEquipment(tasks: Task[], translateService: TranslateService): string {
+        let equipment = "";
+        if (tasks) {
+            for (let i = 0; i < tasks.length; i++) {
+                let equipmentArray = tasks[i].getAssistiveEquipment();
+                for (let j = 0; j < equipmentArray.length; j++) {
+                    let translation = translateService.instant(equipmentArray[j]);
+                    if (equipment.indexOf(translation) == -1) {
+                        if (equipment != "") {
+                            equipment = equipment + ", ";
+                        }
+                        equipment = equipment + translation;
+                    }
+                }
+            }
+        }
+
+        return equipment;
+    }
+
     getSettingValue(key: string): boolean{
         if(this.isSettingAvailable(key)){
             let attr = this.getAttributes();
@@ -353,6 +373,10 @@ export class Route {
         if (!this.boundingBoxLatLng) {
             this.calcBoundingBoxAndCenter();
         }
+        if (!this.boundingBoxLatLng.getSouthWest) {
+            // sometimes bounds loses it's methods and turns into just a generic object so we rebuild it into a new LatLngBounds
+            this.boundingBoxLatLng = new LatLngBounds([this.boundingBoxLatLng._northEast.lat, this.boundingBoxLatLng._northEast.lng], [this.boundingBoxLatLng._southWest.lat, this.boundingBoxLatLng._southWest.lng]);
+        }
         return this.boundingBoxLatLng;
     }
 
@@ -366,6 +390,10 @@ export class Route {
     getViewBoundingBoxLatLng(): LatLngBounds {
         if (!this.viewBoundingBoxLatLng) {
             this.calcBoundingBoxAndCenter();
+        }
+        if (!this.viewBoundingBoxLatLng.getSouthWest) {
+            // sometimes bounds loses it's methods and turns into just a generic object so we rebuild it into a new LatLngBounds
+            this.viewBoundingBoxLatLng = new LatLngBounds([this.viewBoundingBoxLatLng._northEast.lat, this.viewBoundingBoxLatLng._northEast.lng], [this.viewBoundingBoxLatLng._southWest.lat, this.viewBoundingBoxLatLng._southWest.lng]);
         }
         return this.viewBoundingBoxLatLng;
     }
