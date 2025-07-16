@@ -42,8 +42,15 @@ page-dashboard {
                   height: 100%;
                   &.title{
                      letter-spacing: 0;
-                     font-size: 1.125rem;
+                     font-size: 1.058824rem;
                      color: #036d99;
+                     h4{
+                        font-family: 'RobotoBold', Arial, sans-serif;
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                        line-height: 1.2;
+                        text-transform: uppercase;
+                     }
                      p{
                         margin-top: 8px;
                      }
@@ -119,10 +126,10 @@ page-dashboard {
                .item-inner{
                   [item-content]{
                      .title{
-                        font-size: 1.125rem;
+                        font-size: 1.058824rem;
                      }
                      p{
-                        font-size: 1rem;
+                        font-size: 0.941176rem;
                      }
                   }
                }

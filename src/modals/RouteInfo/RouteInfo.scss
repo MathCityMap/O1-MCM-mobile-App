@@ -26,13 +26,14 @@ $content-edge: 4px;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            margin-top: $global-small-padding;
 
             & > *{
                color: color($colors, light)!important;
             }
          }
 
-         font-size: 1.75rem;
+         font-size: 1.647059rem;
          line-height: 1.1;
          &-super{
             margin-bottom: 8px;

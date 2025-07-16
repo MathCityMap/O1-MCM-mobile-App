@@ -71,7 +71,7 @@ page-task-detail, page-task-group-detail {
                         font-family: 'NunitoExtrabold', Arial, sans-serif;
                         font-weight: 700;
                         line-height: 1;
-                        font-size: 1.25rem;
+                        font-size: 1.1764705882rem;
                      }
                   }
                }
@@ -164,6 +164,7 @@ page-task-detail, page-task-group-detail {
             line-height: 1;
          }
          .description {
+            font-size: 0.92rem;
             white-space: pre-line;
          }
       }
@@ -186,7 +187,7 @@ page-task-detail, page-task-group-detail {
          }
          .title {
             color: color($colors, light) !important;
-            font-size: 1rem;
+            font-size: 0.941176rem;
             white-space: pre-line;
             margin-bottom: -2px;
          }
@@ -333,7 +334,7 @@ page-task-detail, page-task-group-detail {
                &-text, &-list{
                   margin-top: $global-base-padding;
                   & > *{
-                     font-size: 1rem;
+                     font-size: 0.941176rem;
                   }
                   .blank, span{
                      display: inline-block;
@@ -432,7 +433,7 @@ page-task-detail, page-task-group-detail {
          .head{
             margin-bottom: $global-base-plus-padding;
             .title{
-               font-size: 1rem;
+               font-size: 0.941176rem;
             }
             button{
                flex: auto;

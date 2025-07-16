@@ -17,7 +17,7 @@
            <div class="tile">
               <ion-item tappable no-lines (click)="switchTab(1)">
                  <ion-label item-content class="title">
-                    {{'a_dashboard_browse_title' | translate }}
+						  <h4>{{'a_dashboard_browse_title' | translate }}</h4>
                     <p>{{'a_dashboard_browse_text' | translate }}</p>
                  </ion-label>
                  <img item-content class="icon" src="./assets/icons/dashboard/browse.svg">
@@ -26,7 +26,7 @@
             <div class="tile">
                 <ion-item tappable no-lines (click)="switchTab(2, true)">
                    <ion-label item-content class="title">
-                      {{'a_dashboard_add_title' | translate }}
+							 <h4>{{'a_dashboard_add_title' | translate }}</h4>
                       <p>{{'a_dashboard_add_text' | translate }}</p>
                    </ion-label>
                    <img item-content class="icon" src="./assets/icons/dashboard/add.svg">
@@ -35,7 +35,7 @@
             <div class="tile">
                 <ion-item tappable no-lines (click)="switchTab(2)">
                    <ion-label item-content class="title">
-                      {{'a_dashboard_downloads_title' | translate }}
+							 <h4>{{'a_dashboard_downloads_title' | translate }}</h4>
                       <p>{{'a_dashboard_downloads_text' | translate }}</p>
                    </ion-label>
                    <img item-content class="icon" src="./assets/icons/dashboard/downloads.svg">
@@ -44,7 +44,7 @@
             <div class="tile" [ngClass]="{'disabled' : !devMode}">
                 <ion-item tappable no-lines (click)="switchTab(3)">
                    <ion-label item-content class="title">
-                      {{'a_dashboard_create_title' | translate }}
+							 <h4>{{'a_dashboard_create_title' | translate }}</h4>
                       <p>{{'a_dashboard_create_text' | translate }}</p>
                    </ion-label>
                    <img item-content class="icon" src="./assets/icons/dashboard/create.svg">

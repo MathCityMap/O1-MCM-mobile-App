@@ -32,7 +32,7 @@
 
 
 html{
-   font-size: 16px;
+   font-size: 17px;
    font: -apple-system-body;
 }
 
@@ -47,33 +47,33 @@ h1, h2, h3, h4, h5, h6, p, span, body, ion-app.ios, ion-app.md{
 }
 
 h1{
-   font-family: 'NunitoExtraBold', Arail, sans-serif;
-   font-size: 1.5rem;
+   font-family: 'NunitoExtraBold', Arial, sans-serif;
+   font-size: 1.411765rem;
    line-height: 1.2;
-   font-weight: 700;
+   font-weight: 500;
    color: color($colors, primary);
 }
 h2{
-   font-family: 'NunitoExtraBold', Arail, sans-serif;
-   font-size: 1.125rem;
+   font-family: 'NunitoBold', Arial, sans-serif;
+   font-size: 1.058824rem;
    line-height: 1.2;
-   font-weight: 700;
+   font-weight: 600;
    color: color($colors, primary);
 }
 h3{
-   font-family: 'NunitoExtraBold', Arail, sans-serif;
-   font-size: 1.1rem;
+   font-family: 'NunitoExtraBold', Arial, sans-serif;
+   font-size: 1.035294rem;
    line-height: 1.2;
-   font-weight: 700;
+   font-weight: 600;
 }
 h4{
-   font-family: 'NunitoExtraBold', Arail, sans-serif;
-   font-size: 1rem;
+   font-family: 'NunitoExtraBold', Arial, sans-serif;
+   font-size: 0.941176rem;
    line-height: 1.2;
-   font-weight: 700;
+   font-weight: 600;
 }
 p{
-   font-size: 0.875rem;
+   font-size: 0.823529rem;
    line-height: 1.44;
    font-weight: 500;
    color: color($colors, dark-grey);
@@ -81,7 +81,7 @@ p{
 
 svg{
    text{
-      font-family: 'NunitoBlack', Arail, sans-serif;
+      font-family: 'NunitoBlack', Arial, sans-serif;
       font-weight: 900;
    }
 }
@@ -89,11 +89,11 @@ svg{
 .alert-ios {
    .alert-message,
    .alert-input-group{
-      font-size: 1rem;
+      font-size: 0.941176rem;
    }
    .alert-button .button-inner,
    button span{
-      font-size: 1.125rem;
+      font-size: 1.058824rem;
    }
 }
 
@@ -102,7 +102,7 @@ ion-label.label-ios,
 ion-label.label-md{
    font-family: "RobotoBold", Arial, sans-serif;
    font-weight: 600;
-   font-size: 0.875rem;
+   font-size: 0.823529rem;
    letter-spacing: 0.5px;
    text-transform: uppercase;
    color: color($colors, dark-grey);
@@ -117,7 +117,7 @@ ion-label.label-md{
 
 .item{
    p{
-      font-size: 0.875rem;
+      font-size: 0.823529rem;
       line-height: 1.44;
       font-weight: 500;
       color: color($colors, dark-grey);
@@ -126,7 +126,7 @@ ion-label.label-md{
 
 span{
    display: block;
-   font-size: 0.875rem;
+   font-size: 0.823529rem;
 }
 
 @mixin bolder{
@@ -162,6 +162,6 @@ input{
 
 @media screen and (min-width: 768px) {
    h2{
-      font-size: 1.25rem;
+      font-size: 1.1764705882rem;
    }
 }

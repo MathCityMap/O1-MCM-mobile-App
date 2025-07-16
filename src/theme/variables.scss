@@ -359,7 +359,7 @@ $icon-path: "../assets/icons/";
 
    .label{
       color: $c-text;
-      font-family: 'CaveatBrush', Arail, sans-serif;
+      font-family: 'CaveatBrush', Arial, sans-serif;
       letter-spacing: 0;
       font-size: 130% !important;
    }
@@ -369,14 +369,14 @@ $icon-path: "../assets/icons/";
    }
 
    h1{
-      font-family: 'CaveatBrush', Arail, sans-serif!important;
+      font-family: 'CaveatBrush', Arial, sans-serif!important;
       letter-spacing: 0;
       text-transform: none;
       line-height: 1;
       font-size: 150%;
    }
    h2{
-      font-family: 'CaveatBrush', Arail, sans-serif!important;
+      font-family: 'CaveatBrush', Arial, sans-serif!important;
       letter-spacing: 0;
       text-transform: none;
       line-height: 1;
@@ -384,8 +384,8 @@ $icon-path: "../assets/icons/";
    }
 
    h3{
-      font-family: 'CaveatBrush', Arail, sans-serif!important;
-      font-size: 1.125rem;
+      font-family: 'CaveatBrush', Arial, sans-serif!important;
+      font-size: 1.058824rem;
    }
 
    .button, button{
@@ -411,7 +411,7 @@ $icon-path: "../assets/icons/";
                background-position: bottom;
             }
             .toolbar-title{
-               font-family: 'CaveatBrush', Arail, sans-serif;
+               font-family: 'CaveatBrush', Arial, sans-serif;
                font-size: 200%;
             }
          }
@@ -534,7 +534,7 @@ $icon-path: "../assets/icons/";
             border-color: $c-primary;
             background-color: $c-primary;
             span{
-               font-family: 'CaveatBrush', Arail, sans-serif;
+               font-family: 'CaveatBrush', Arial, sans-serif;
                font-size: 200%;
                line-height: 24px;
             }
@@ -546,7 +546,7 @@ $icon-path: "../assets/icons/";
             border-color: $c-primary;
             background-color: $c-primary;
             span{
-               font-family: 'CaveatBrush', Arail, sans-serif;
+               font-family: 'CaveatBrush', Arial, sans-serif;
                font-size: 200%;
                line-height: 24px;
             }
@@ -689,7 +689,7 @@ $icon-path: "../assets/icons/";
             &.evaluation{
                .head{
                   .label, .score{
-                     font-family: 'CaveatBrush', Arail, sans-serif;
+                     font-family: 'CaveatBrush', Arial, sans-serif;
                      letter-spacing: 0;
                      font-size: 150%;
                      /*@include shadow-filter-hard;*/
