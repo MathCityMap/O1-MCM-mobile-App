@@ -21,6 +21,7 @@ import { Subscription } from 'rxjs/Subscription';
 import {MyApp} from "../../app/app.component";
 import {OrmService} from "../../services/orm-service";
 import {ImagesService} from "../../services/images-service";
+import {RouteApiService} from "../../services/route-api.service";
 
 // import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js';
@@ -64,7 +65,8 @@ export class TaskDetailMap implements OnDestroy {
         private route: Route,
         private gpsService: GpsService,
         private app: MyApp,
-        private ormService: OrmService,
+        // private ormService: OrmService,
+        private routeApiService: RouteApiService,
         private imagesService: ImagesService
     ) {
         this.updateIcons();
@@ -377,7 +379,7 @@ export class TaskDetailMap implements OnDestroy {
                     bounds: this.route.getBoundingBoxLatLng()
                 });
 
-                const tiles = this.ormService.getTileURLsAsObject(this.route);
+                const tiles = this.routeApiService.getTileURLsAsObject(this.route);
                 const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
                 let that = this;
                 offlineLayer.getTileUrl = function (coords) {

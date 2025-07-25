@@ -42,7 +42,7 @@ export class CenteredTask{
   	this.route = this.navParams.get('route');
   	this.score = this.navParams.get('score');
   	//this.state = this.navParams.get('state');
-  	this.tasks = await this.route.getTasks();
+  	this.tasks = this.navParams.get('tasks');
 /*     console.log('-------------------', this.totalTasks); */
   }
 

@@ -5,14 +5,9 @@ import {Helper} from '../../../../classes/Helper';
 import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
 import {ModalsService} from '../../../../services/modals-service';
-import {DB_Updater} from '../../../../classes/DB_Updater';
 import {Subscription} from 'rxjs/Subscription';
-import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {TranslateService} from '@ngx-translate/core';
 import {MCMRouteByCodeModal} from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
-import {GpsService} from '../../../../services/gps-service';
-import {ChatAndSessionService} from "../../../../services/chat-and-session-service";
-import {MyApp} from "../../../../app/app.component";
 import {SearchPipe} from "../../../../app/pipes/search.pipe";
 import {RouteApiService} from "../../../../services/route-api.service";
 
@@ -23,7 +18,6 @@ import {RouteApiService} from "../../../../services/route-api.service";
 })
 export class RoutesListPage implements OnDestroy {
     @ViewChild(Content) content: Content;
-    // public items: Route[] = [];
     public downloadedItems: Route[] = [];
     public filteredItems: Route[] = [];
     protected routesListSearch: string = "";
@@ -47,13 +41,8 @@ export class RoutesListPage implements OnDestroy {
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
                 private modalCtrl: ModalController,
-                private spinner: SpinnerDialog,
                 private translateService: TranslateService,
-                private dbUpdater: DB_Updater,
                 public helper: Helper,
-                private gpsService: GpsService,
-                private chatAndSessionService: ChatAndSessionService,
-                private app: MyApp,
                 private navParams: NavParams,
                 protected routeApiService: RouteApiService
     ) {

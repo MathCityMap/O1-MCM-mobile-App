@@ -11,10 +11,10 @@ import 'conic-gradient';
 import 'leaflet.markercluster';
 import 'leaflet-offline';
 import 'leaflet-rotatedmarker';
-import {OrmService} from "../../../../../services/orm-service";
 import {ImagesService} from "../../../../../services/images-service";
 import {TaskMapState} from "../TasksMap";
 import {TaskFormat} from "../../../../../services/ApiResponseDefinition/TaskFormat";
+import {RouteApiService} from "../../../../../services/route-api.service";
 
 declare var ConicGradient: any;
 
@@ -44,7 +44,12 @@ export class LeafletMapHandler implements MapHandlerInterface {
         return this._mapLoaded;
     }
 
-    constructor(private containerId: string, private route: Route, private narrative: string, private ormService: OrmService, private imagesService: ImagesService) {
+    constructor(
+        private containerId: string,
+        private route: Route,
+        private narrative: string,
+        private routeApiService: RouteApiService,
+        private imagesService: ImagesService) {
         this.updateIcons()
     }
 
@@ -100,7 +105,7 @@ export class LeafletMapHandler implements MapHandlerInterface {
                     this.userMarker.addTo(this.map);
             }
 
-            const tiles = this.ormService.getTileURLsAsObject(this.route);
+            const tiles = this.routeApiService.getTileURLsAsObject(this.route);
             const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
             let that = this;
             offlineLayer.getTileUrl = function (coords) {

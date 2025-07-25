@@ -11,6 +11,7 @@ import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {TaskTranslation} from "../../app/api/models/translation-storage";
 import {TranslationService} from "../../app/api/services/translation.service";
+import {RouteApiService} from "../../services/route-api.service";
 
 @IonicPage({
     segment: ':routeId/TasksGroupDetail/:taskId'
@@ -38,21 +39,23 @@ export class TaskGroupDetail {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public ormService: OrmService,
+        // public ormService: OrmService,
         private modalsService: ModalsService,
         private chatAndSessionService: ChatAndSessionService,
         private deepLinker: DeepLinker,
         private photoViewer: PhotoViewer,
         private spinnerDialog: SpinnerDialog,
-        protected translationService: TranslationService
+        protected translationService: TranslationService,
+        private routeApiService: RouteApiService
     ) {}
 
     async ionViewWillEnter() {
         this.routeId = this.navParams.get('routeId');
-        this.route = await this.ormService.findRouteById(this.routeId);
+        this.route = await this.routeApiService.getRouteFromId(this.routeId);
         this.groupId = this.navParams.get('groupId');
-        this.group = await this.ormService.findTaskById(this.groupId);
-        this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
+        let taskAndScore = await this.routeApiService.getTaskDetails(this.route.code, this.groupId);
+        this.group = taskAndScore.task;
+        this.score = taskAndScore.score;
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         this.subtasks = this.group.getSubtasksInOrder();
         this.groupIsFinished = this.checkIfGroupIsFinished();
@@ -166,7 +169,7 @@ export class TaskGroupDetail {
                         this.chatAndSessionService.addUserEvent("event_task_skipped", "{}", this.groupId.toString());
                     }
                     taskDetails.skipped = true;
-                    await this.ormService.insertOrUpdateTaskState(this.score, taskDetails);
+                    await this.routeApiService.insertOrUpdateTaskState(this.score, taskDetails, this.route.code);
                 }
                 if (this.navParams.get('goToNextTaskById')) {
                     let goToNextTaskById = this.navParams.get('goToNextTaskById');

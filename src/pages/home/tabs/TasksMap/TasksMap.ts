@@ -25,6 +25,7 @@ import {MapHandlerInterface} from "./MapHandler/MapHandlerInterface";
 import {MapboxMapHandler} from "./MapHandler/MapboxMapHandler";
 import {LeafletMapHandler} from "./MapHandler/LeafletMapHandler";
 import {TaskFormat} from "../../../../services/ApiResponseDefinition/TaskFormat";
+import {RouteApiService} from "../../../../services/route-api.service";
 
 @IonicPage({
     segment: 'TasksMap/:routeId'
@@ -82,7 +83,7 @@ export class TasksMap implements OnDestroy {
         public navCtrl: NavController,
         public navParams: NavParams,
         public events: Events,
-        private ormService: OrmService,
+        // private ormService: OrmService,
         private deepLinker: DeepLinker,
         private gpsService: GpsService,
         private modalsService: ModalsService,
@@ -92,6 +93,7 @@ export class TasksMap implements OnDestroy {
         private modalCtrl: ModalController,
         private app: MyApp,
         protected chatAndSessionService: ChatAndSessionService,
+        private routeApiService: RouteApiService
     ) {
         this.chatAndSessionService.init();
         this.events.subscribe('user:kicked', (user) => {
@@ -132,10 +134,11 @@ export class TasksMap implements OnDestroy {
                 tasks: this.scoreTaskList,
                 narrative: this.app.activeNarrative,
                 callback: function () {
-                    modal.dismiss().then(() => {
+                    modal.dismiss().then(async () => {
                         that.route.completed = true;
                         that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-                        that.ormService.saveAndFireChangedEvent(that.route);
+                        // that.ormService.saveAndFireChangedEvent(that.route);
+                        await that.routeApiService.updateDownloadedRoute(that.route);
                     });
                 }
             }, {cssClass: this.app.activeNarrative});
@@ -150,9 +153,9 @@ export class TasksMap implements OnDestroy {
 
     async initView() {
         this.routeId = this.navParams.get('routeId');
-        this.route = await this.ormService.findRouteById(this.routeId);
+        this.route = await this.routeApiService.getRouteFromId(this.routeId);
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
-        this.user = await this.ormService.getActiveUser();
+        // this.user = await this.ormService.getActiveUser();
         this.score = this.route.getScoreForUser(this.user);
         let sessionInfo = this.chatAndSessionService.getSessionInfo();
         this.updateSession(sessionInfo);
@@ -312,7 +315,7 @@ export class TasksMap implements OnDestroy {
     initializeMapHandler() {
         if (!this.mapHandler) {
             if (this.route.isMapAvailableOffline()) {
-                this.mapHandler = new LeafletMapHandler('tasks-map', this.route, this.app.activeNarrative, this.ormService, this.imagesService);
+                this.mapHandler = new LeafletMapHandler('tasks-map', this.route, this.app.activeNarrative, this.routeApiService, this.imagesService);
                 return
             }
             this.mapHandler = new MapboxMapHandler('tasks-map', this.route, this.app.activeNarrative);
@@ -500,7 +503,7 @@ export class TasksMap implements OnDestroy {
 
     resetTasks() {
         return new Promise<void>(resolve => {
-            this.ormService.deleteUserScore(this.score).then(async () => {
+            this.routeApiService.resetScoreForRoute(this.route.code).then(async () => {
                 this.score = new Score();
                 this.state = this.navParams.data.tasksMapState = {
                     selectedTask: null,
@@ -520,7 +523,8 @@ export class TasksMap implements OnDestroy {
                 this.route.completed = false;
                 this.route.completedDate = null;
                 await this.saveMapStateToLocalStorage();
-                await this.ormService.saveAndFireChangedEvent(this.route);
+                // await this.ormService.saveAndFireChangedEvent(this.route);
+                await this.routeApiService.updateDownloadedRoute(this.route);
                 await this.redrawMarkers();
                 resolve();
             });
@@ -757,7 +761,7 @@ export class TasksMap implements OnDestroy {
     }
 
     async refreshTaskLists() {
-        this.mapTaskList = await this.route.getTasks();
+        this.mapTaskList = (await this.routeApiService.getDetailsForRoute(this.route)).tasks;
         let scoredTasks = this.mapTaskList.filter(task => {return task.taskFormat !== TaskFormat.GROUP});
         const groups = this.mapTaskList.filter(task => {return task.taskFormat === TaskFormat.GROUP});
         for (let group of groups) {

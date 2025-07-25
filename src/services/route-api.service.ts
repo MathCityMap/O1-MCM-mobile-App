@@ -16,6 +16,7 @@ import {AlertController} from "ionic-angular";
 import {TranslateService} from "@ngx-translate/core";
 import {TranslationService} from "../app/api/services/translation.service";
 import {RouteInfos} from "./ApiResponseDefinition/RouteInfos";
+import {TaskState} from "../entity/TaskState";
 
 const DOWNLOADED_ROUTES_KEY = "MCM_ROUTES_DOWNLOADED"
 const DOWNLOADED_ROUTE_INFOS_PREFIX = "MCM_DOWNLOADED_ROUTE_INFOS_"
@@ -98,6 +99,12 @@ export class RouteApiService {
             return {tasks: [], score: new Score()};
         }
         return {tasks: Task.convertGenericsToTaskArray(details.tasks), score: Score.fromGenericScore(details.score)};
+    }
+
+    async getTaskDetails(routeCode: string, taskId: number): Promise<{task: Task, score: Score}> {
+        let details: RouteInfos = await this.storage.get(DOWNLOADED_ROUTE_INFOS_PREFIX+routeCode);
+        let task = details.tasks.find(dTask => dTask.id === taskId);
+        return {task: Task.fromGenericTask(task), score: Score.fromGenericScore(details.score)};
     }
 
     async downloadRoute(route: Route, statusCallback: (done: number, total: number, title?: string) => boolean) {
@@ -194,6 +201,31 @@ export class RouteApiService {
         this.updateRouteInPublicList(route);
     }
 
+    public async updateDownloadedRoute(route: Route) {
+        let downloadedRoutes = await this.getDownloadedRoutes();
+        let indexToPatch = downloadedRoutes.findIndex(dRoute => dRoute.id === route.id);
+        if (indexToPatch !== -1) {
+            downloadedRoutes[indexToPatch] = route;
+        }
+        await this.storage.set(DOWNLOADED_ROUTES_KEY, downloadedRoutes);
+    }
+
+    public async resetScoreForRoute(routeCode: string) {
+        return this.updateScoreForRoute(new Score(), routeCode);
+    }
+
+    public async updateScoreForRoute(score: Score, routeCode: string) {
+        let stats: RouteInfos = await this.storage.get(DOWNLOADED_ROUTE_INFOS_PREFIX+routeCode);
+        stats.score = score;
+        await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX+routeCode, stats);
+        return Score.fromGenericScore(stats.score);
+    }
+
+    async insertOrUpdateTaskState(score: Score, detailsToSave: TaskState, routeCode: string) {
+        score.addTaskStateForTask(score.getTaskState(), detailsToSave);
+        return this.updateScoreForRoute(score, routeCode);
+    }
+
     private async removeRouteFromDownloadedList(route: Route) {
         route.downloaded = null;
         route.downloadedDate = null;
@@ -219,6 +251,15 @@ export class RouteApiService {
     private getTileURLs(route: Route) {
         let zoomLevels = Helper.calculateZoom(route.getViewBoundingBoxLatLng());
         return CacheManagerMCM.getTileURLs(route, zoomLevels.min_zoom, zoomLevels.max_zoom);
+    }
+
+    getTileURLsAsObject(route: Route) {
+        let tiles = this.getTileURLs(route);
+        let result = {};
+        for (let tile of tiles) {
+            result[tile] = true;
+        }
+        return result;
     }
 
     private async internalfetchRoutesForPosition(lat: number, lon: number, offset = 0, limit = 20): Promise<Route[]> {
@@ -258,6 +299,7 @@ export class RouteApiService {
                 this._publicRoutes[index] = routeToUpdate;
             }
         }
+        this.routesUpdated.emit();
     }
 
 }

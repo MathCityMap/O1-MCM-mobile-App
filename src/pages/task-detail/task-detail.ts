@@ -31,6 +31,7 @@ import {SafariViewController} from '@ionic-native/safari-view-controller';
 import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
 import {TranslationService} from "../../app/api/services/translation.service";
 import {TaskTranslation} from "../../app/api/models/translation-storage";
+import {RouteApiService} from "../../services/route-api.service";
 
 declare var MathJax;
 
@@ -95,7 +96,7 @@ export class TaskDetail {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        private ormService: OrmService,
+        // private ormService: OrmService,
         private modalCtrl: ModalController,
         private deepLinker: DeepLinker,
         private modalsService: ModalsService,
@@ -107,7 +108,8 @@ export class TaskDetail {
         private imageService: ImagesService,
         private cdRef: ChangeDetectorRef,
         private safariViewController: SafariViewController,
-        protected translationService: TranslationService
+        protected translationService: TranslationService,
+        private routeApiService: RouteApiService
     ) {
     }
 
@@ -200,10 +202,13 @@ export class TaskDetail {
     async ionViewWillEnter() {
         console.log('TasksMap ionViewWillEnter()');
         this.routeId = this.navParams.get('routeId');
-        this.route = await this.ormService.findRouteById(this.routeId);
+        // this.route = await this.ormService.findRouteById(this.routeId);
+        this.route = await this.routeApiService.getRouteFromId(this.routeId);
         this.taskId = this.navParams.get('taskId');
         this.subTaskIndex = this.navParams.get('subTaskIndex');
-        this.task = await this.ormService.findTaskById(this.taskId);
+        let taskAndScore = await this.routeApiService.getTaskDetails(this.route.code, this.taskId);
+        // this.task = await this.ormService.findTaskById(this.taskId);
+        this.task = taskAndScore.task;
         if (this.subTaskIndex || this.subTaskIndex === 0) {
             this.rootTask = this.task;
             this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex]
@@ -212,7 +217,8 @@ export class TaskDetail {
 
         console.log("Opened Task: ", this.task);
         this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks' || this.task.solutionType === 'fraction');
-        this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
+        // this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
+        this.score = taskAndScore.score;
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         if (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
             this.solvedSubtasks = [];
@@ -439,7 +445,7 @@ export class TaskDetail {
 
         if (this.taskDetails.timeFirstOpen == 0) {
             this.taskDetails.timeFirstOpen = new Date().getTime();
-            this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+            this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
         }
         if (this.task.solutionType == 'multiple_choice') {
             this.multipleChoiceView.changes.subscribe(data => {
@@ -454,7 +460,7 @@ export class TaskDetail {
         }
         // Init task detail map, if task is gps task
         if (this.task.solutionType == "gps") {
-            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app, this.ormService, this.imageService);
+            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app, this.routeApiService, this.imageService);
             this.taskDetailMap.loadMap();
             // Insert predefined points / axis
             let gpsType = this.task.getSolutionGpsValue("task");
@@ -609,7 +615,7 @@ export class TaskDetail {
                 break;
         }
         if (needUpdate) {
-            this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+            this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
         }
 
         let hintModal = this.modalCtrl.create(MCMIconModal, {
@@ -995,7 +1001,7 @@ export class TaskDetail {
             this.taskDetails.score = 0;
             this.taskDetails.skipped = false;
             this.taskDetails.failed = true;
-            this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+            this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
         }
         let solutionSample = this.translatePage ? this.translation.getSolutionSample() : this.task.getSolutionSample();
         let solutionSrc = this.task.getSolutionSampleImgSrc();
@@ -1102,14 +1108,14 @@ export class TaskDetail {
         if (this.rootTask) {
             if (skip) {
                 this.taskDetails.skipped = true;
-                await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+                await this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
                 return this.goToNextSubtask();
             }
         }
         //This guarantees that the state is updated before the map opens and gets the information.
         if (skip) {
             this.taskDetails.skipped = true;
-            await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+            await this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
         }
         if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed || this.taskDetails.skipped || this.taskDetails.saved) {
             if (this.navParams.get('goToNextTaskById')) {
@@ -1481,7 +1487,7 @@ export class TaskDetail {
                                     that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
                                 }
                                 that.taskDetails.failed = true;
-                                that.ormService.insertOrUpdateTaskState(that.score, that.taskDetails).then(() => {
+                                that.routeApiService.insertOrUpdateTaskState(that.score, that.taskDetails, this.route.code).then(() => {
                                     if (!that.rootTask) {
                                         that.closeDetails();
                                     } else {
@@ -1554,7 +1560,7 @@ export class TaskDetail {
             }
             modal.present();
         }
-        await this.ormService.insertOrUpdateTaskState(this.score, this.taskDetails);
+        await this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
     }
 
     CalculateScore(solutionType: string, solved: string) {

@@ -173,7 +173,7 @@ export class ModalsService {
             route: route,
             score: score,
             state: state,
-            tasks: await route.getTasks(),
+            tasks: (await this.routeApiService.getDetailsForRoute(route)).tasks,
             modalsService: this
         }, {cssClass: narrative});
         testModal.onDidDismiss(data => {

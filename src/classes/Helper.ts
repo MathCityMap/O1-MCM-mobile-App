@@ -6,7 +6,6 @@ import {GpsService} from '../services/gps-service';
 import {Network} from '@ionic-native/network';
 import {Platform} from 'ionic-angular';
 import {Route} from '../entity/Route';
-import {OrmService} from "../services/orm-service";
 import {Storage} from "@ionic/storage";
 import 'leaflet-geometryutil';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -144,7 +143,7 @@ export class Helper {
     private activateAddRouteModal: boolean = false;
 
     constructor(private http: HttpClient, private gpsService: GpsService, private network: Network,
-                private platform: Platform, private ormService: OrmService, private storage: Storage) {
+                private platform: Platform, private storage: Storage) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();
