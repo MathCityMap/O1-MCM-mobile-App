@@ -1,5 +1,4 @@
 import {NavController, ModalController} from "ionic-angular";
-import {OrmService} from './orm-service';
 import {DeepLinker} from "ionic-angular/navigation/deep-linker";
 import {Route} from '../entity/Route';
 import {Score} from "../entity/Score";
@@ -22,7 +21,6 @@ import {RouteApiService} from "./route-api.service";
 export class ModalsService {
 
     constructor(public modalCtrl: ModalController,
-                public ormService: OrmService,
                 public alertCtrl: AlertController,
                 public deepLinker: DeepLinker,
                 public translateService: TranslateService,

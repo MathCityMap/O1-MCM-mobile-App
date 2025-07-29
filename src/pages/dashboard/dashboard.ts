@@ -8,8 +8,8 @@ import {timeout} from 'promise-timeout';
 import {MCMIconModal} from '../../modals/MCMIconModal/MCMIconModal';
 import {MCMModalType} from '../../app/app.component';
 import {ChatAndSessionService} from '../../services/chat-and-session-service';
-import {OrmService} from '../../services/orm-service';
 import {ModalsService} from '../../services/modals-service';
+import {RouteApiService} from "../../services/route-api.service";
 
 @IonicPage()
 @Component({
@@ -27,9 +27,9 @@ export class DashboardPage {
                 private storage: Storage,
                 private gpsService: GpsService,
                 private chatAndSessionService: ChatAndSessionService,
-                private ormService: OrmService,
                 private modalCtrl: ModalController,
-                private modalsService: ModalsService) {
+                private modalsService: ModalsService,
+                private routeApiService: RouteApiService) {
                 this.tabBarElement = document.querySelector('.tabbar');
     }
 
@@ -63,7 +63,7 @@ export class DashboardPage {
         if (activeSession != null) {
             console.log('active session found');
             let that = this;
-            let route = await this.ormService.findRouteById(activeSession.session.trail_id);
+            let route = await this.routeApiService.findRouteByCode(activeSession.session.trail_code);
             let modal = this.modalCtrl.create(MCMIconModal, {
                 title: 'a_session_return_title',
                 message: 'a_session_return_text',

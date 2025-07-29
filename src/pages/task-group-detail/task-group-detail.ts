@@ -1,6 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {OrmService} from "../../services/orm-service";
 import {Route} from "../../entity/Route";
 import {Task} from "../../entity/Task";
 import {Score} from "../../entity/Score";
@@ -39,7 +38,6 @@ export class TaskGroupDetail {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        // public ormService: OrmService,
         private modalsService: ModalsService,
         private chatAndSessionService: ChatAndSessionService,
         private deepLinker: DeepLinker,
@@ -151,7 +149,8 @@ export class TaskGroupDetail {
         return this.navCtrl.push("TaskDetail", {
             taskId: task.id,
             routeId: this.routeId,
-            headerTitle: task.title
+            headerTitle: task.title,
+            parentId: this.groupId
         });
     }
 

@@ -178,6 +178,13 @@ export class Task {
     static fromGenericTask(data: any): Task {
         let task = new Task();
         Object.assign(task, data);
+        if (task.subtasks) {
+            let subtasks = [];
+            for (let subtask of task.subtasks) {
+                subtasks.push(Task.fromGenericTask(subtask));
+            }
+            task.subtasks = subtasks;
+        }
         return task;
     }
 

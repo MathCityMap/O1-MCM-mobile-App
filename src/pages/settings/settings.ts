@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {DeepLinker, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
-import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
 import { LanguageService } from '../../services/language-service';
 import {Helper} from "../../classes/Helper";
@@ -12,6 +11,7 @@ import {TTS} from "../../providers/tts";
 import TTSVoice = TTS.TTSVoice;
 import {Storage} from "@ionic/storage";
 import {TRANSLATION_CACHE_BASE} from "../../providers/translate-loader/mcmTranslateLoader";
+import {RouteApiService} from "../../services/route-api.service";
 
 @IonicPage()
 @Component({
@@ -55,7 +55,6 @@ export class SettingsPage {
         public navParams: NavParams,
         private translateService: TranslateService,
         private spinner: SpinnerDialog,
-        private ormService: OrmService,
         private modalsService: ModalsService,
         private languageService: LanguageService,
         private helper: Helper,
@@ -63,7 +62,8 @@ export class SettingsPage {
         public viewCtrl: ViewController,
         private deepLinker: DeepLinker,
         protected readAloudService: ReadAloudService,
-        private storage: Storage
+        private storage: Storage,
+        private routeApiService: RouteApiService
     ) {
         this.availableLanguages = languageService.getAvailableLanguages();
         this.translatedLangs = [];
@@ -97,7 +97,7 @@ export class SettingsPage {
             'no', () => {},
             'yes', async () => {
                 this.spinner.show(null, this.translateService.instant('a_main_settings_delCache'), true);
-                await this.ormService.removeAllDownloadedData();
+                await this.routeApiService.removeDownloadedData();
                 this.spinner.hide();
         });
     }

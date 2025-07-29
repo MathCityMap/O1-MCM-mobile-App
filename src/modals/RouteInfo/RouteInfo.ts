@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {AlertController, ModalController, NavParams} from 'ionic-angular';
 import { Route } from '../../entity/Route';
-import { OrmService } from '../../services/orm-service';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ModalsService } from '../../services/modals-service';
 import { TranslateService } from '@ngx-translate/core';
@@ -33,7 +32,6 @@ export class RouteInfo {
 
 
     constructor(public navParams: NavParams,
-                private ormService: OrmService,
                 private viewCtrl: ViewController,
                 public alertCtrl: AlertController,
                 public navCtrl: NavController,

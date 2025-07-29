@@ -542,6 +542,7 @@ export class Route {
     }
 
     isSubtaskRequired(taskId) {
+        if (!this.task2Routes) return false;
         const task2Route =  this.task2Routes.find(task2Route => {
             return task2Route.task.id == taskId;
         });

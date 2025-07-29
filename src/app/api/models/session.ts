@@ -10,6 +10,7 @@ export class Session {
     starts_at?: string;
     ends_at?: string;
     trail_id?: number;
+    trail_code?: string;
     assign_tasks?: boolean;
     assign_tasks_order?: string;
     welcome_message?: string;

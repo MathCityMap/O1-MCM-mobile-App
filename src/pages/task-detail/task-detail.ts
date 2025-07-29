@@ -1,7 +1,5 @@
 import {ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
-
-import {OrmService} from '../../services/orm-service';
 import {Route} from '../../entity/Route';
 import {Task} from '../../entity/Task';
 import {ModalController} from 'ionic-angular/components/modal/modal-controller';
@@ -53,6 +51,7 @@ export class TaskDetail {
     protected route: Route;
     private routeId: number;
     private taskId: number;
+    private parentId: number;
     protected task: Task;
     protected solvedSubtasks = [];
     protected activeAccordions = [];
@@ -206,13 +205,15 @@ export class TaskDetail {
         this.route = await this.routeApiService.getRouteFromId(this.routeId);
         this.taskId = this.navParams.get('taskId');
         this.subTaskIndex = this.navParams.get('subTaskIndex');
-        let taskAndScore = await this.routeApiService.getTaskDetails(this.route.code, this.taskId);
+        this.parentId = this.navParams.get('parentId');
+        let taskAndScore = await this.routeApiService.getTaskDetails(this.route.code, this.taskId, this.parentId);
         // this.task = await this.ormService.findTaskById(this.taskId);
         this.task = taskAndScore.task;
         if (this.subTaskIndex || this.subTaskIndex === 0) {
             this.rootTask = this.task;
             this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex]
         }
+        // TODO Replace this with information fetched from task directly after api has been updated probably
         this.subTasksRequired = this.route.isSubtaskRequired(this.taskId);
 
         console.log("Opened Task: ", this.task);

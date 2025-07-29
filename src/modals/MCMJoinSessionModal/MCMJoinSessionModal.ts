@@ -2,9 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import {NavController, NavParams} from 'ionic-angular';
 import { Session } from '../../app/api/models/session';
-import { OrmService } from '../../services/orm-service';
 import { ModalsService } from '../../services/modals-service';
 import { ChatAndSessionService } from '../../services/chat-and-session-service';
+import {RouteApiService} from "../../services/route-api.service";
 
 @Component({
     selector: 'mcm-join-session-modal',
@@ -21,8 +21,12 @@ export class MCMJoinSessionModal {
     session: Session;
     navCtrl: NavController;
 
-    constructor(private viewCtrl: ViewController, private navParams: NavParams, private ormService: OrmService,
-                private modalsService: ModalsService, private sessionService: ChatAndSessionService) {
+    constructor(private viewCtrl: ViewController,
+                private navParams: NavParams,
+                private modalsService: ModalsService,
+                private sessionService: ChatAndSessionService,
+                private routeApiService: RouteApiService
+    ) {
         this.session = navParams.data.session;
         this.navCtrl = navParams.data.navCtrl;
     }
@@ -42,11 +46,11 @@ export class MCMJoinSessionModal {
             this.teamMemberArray.push(this.teamMemberNames);
             this.teamMemberNames = "";
         }
-        let route = await this.ormService.findRouteById(this.session.trail_id);
+        let route = await this.routeApiService.findRouteByCode(this.session.trail_code);
         try{
             await this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
             this.cancel();
-            await this.ormService.unlockRoute(route);
+            this.routeApiService.unlockRoute(route);
             this.modalsService.showRoute(route, this.navCtrl)
         }
         catch(e){

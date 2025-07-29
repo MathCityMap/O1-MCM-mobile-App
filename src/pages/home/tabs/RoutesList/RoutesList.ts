@@ -1,8 +1,6 @@
 import {Component, OnDestroy, ViewChild} from '@angular/core';
 import {Content, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Helper} from '../../../../classes/Helper';
-
-import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
 import {ModalsService} from '../../../../services/modals-service';
 import {Subscription} from 'rxjs/Subscription';
@@ -37,14 +35,15 @@ export class RoutesListPage implements OnDestroy {
      */
     private infiniteScrollBlockSize = 20;
 
-    constructor(private ormService: OrmService,
+    constructor(
+        // private ormService: OrmService,
                 public navCtrl: NavController,
                 public modalsService: ModalsService,
                 private modalCtrl: ModalController,
                 private translateService: TranslateService,
                 public helper: Helper,
                 private navParams: NavParams,
-                protected routeApiService: RouteApiService
+                protected routeApiService: RouteApiService,
     ) {
 
         // this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
@@ -220,7 +219,7 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async updateRoutes() {
-        this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
+        this.downloadedItems = await this.routeApiService.downloadedRoutes;
     }
 
     showRouteDetail(item: any) {

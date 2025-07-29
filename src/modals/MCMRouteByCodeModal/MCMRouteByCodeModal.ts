@@ -2,11 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { MCMTermsAndConditionsModal } from "../MCMTermsAndConditionsModal/MCMTermsAndConditionsModal";
 import { SessionService } from '../../app/api/services/session.service';
-import { OrmService } from '../../services/orm-service';
 import {ModalController, NavController, NavParams} from 'ionic-angular';
 import { Route } from '../../entity/Route';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalsService } from '../../services/modals-service';
+import {RouteApiService} from "../../services/route-api.service";
 
 
 
@@ -22,8 +22,13 @@ export class MCMRouteByCodeModal {
     showError: boolean;
     navCtrl: NavController;
 
-    constructor(private ormService: OrmService, public modalCtrl: ModalController, private viewCtrl: ViewController,
-                private sessionService: SessionService, private navParams: NavParams) {
+    constructor(
+        public modalCtrl: ModalController,
+        private viewCtrl: ViewController,
+        private sessionService: SessionService,
+        private navParams: NavParams,
+        private routeApiService: RouteApiService
+    ) {
         this.navCtrl = navParams.data.navCtrl;
     }
 
@@ -46,7 +51,7 @@ export class MCMRouteByCodeModal {
     }
 
     async addTrailOrSessionByCode() {
-        let route = await this.ormService.findRouteByCode(this.code);
+        let route = await this.routeApiService.findRouteByCode(this.code);
         if (!route) {
             let session;
             try {
@@ -54,6 +59,7 @@ export class MCMRouteByCodeModal {
             } catch (e) {
             }
             if (session) {
+                console.log('WE HAVE A SESSION', session);
                 let modal = this.modalCtrl.create(MCMTermsAndConditionsModal, {
                     session: session,
                     navCtrl: this.navCtrl
@@ -64,7 +70,7 @@ export class MCMRouteByCodeModal {
                 this.showError = true;
             }
         } else {
-            await this.ormService.unlockRoute(route);
+            this.routeApiService.unlockRoute(route);
             this.viewCtrl.dismiss(route);
         }
     }

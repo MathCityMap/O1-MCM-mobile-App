@@ -17,6 +17,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {TranslationService} from "../app/api/services/translation.service";
 import {RouteInfos} from "./ApiResponseDefinition/RouteInfos";
 import {TaskState} from "../entity/TaskState";
+import {RouteApiResponse} from "./ApiResponseDefinition/RouteApiResponse";
 
 const DOWNLOADED_ROUTES_KEY = "MCM_ROUTES_DOWNLOADED"
 const DOWNLOADED_ROUTE_INFOS_PREFIX = "MCM_DOWNLOADED_ROUTE_INFOS_"
@@ -30,6 +31,8 @@ export class RouteApiService {
     routesUpdated: EventEmitter<void> = new EventEmitter();
     private _publicRoutes: Route[] = [];
     private _downloadedRoutes: Route[];
+    //Holds routes which have been added using code during this session in memory to enable showing their information
+    private _unlockedRoutes: Route[] = [];
 
     get publicRoutes() {
         return this._publicRoutes;
@@ -84,11 +87,45 @@ export class RouteApiService {
         return [];
     }
 
+    async findRouteByCode(code: string): Promise<Route> {
+        let downloaded = await this.getDownloadedRoutes();
+        let route = downloaded.find(dRoute => dRoute.code === code);
+        if (!route) {
+            route = this._publicRoutes.find(pRoute => pRoute.code === code);
+            if (!route) {
+                route = this._unlockedRoutes.find(uRoute => uRoute.code === code);
+                if (!route) {
+                    try {
+                        route = await this.http.get<RouteApiResponse>(`${API_URL}/app/v1/trails/${code}/unlock`, {headers: Helper.getApiRequestHeaders()}).pipe(
+                            map(response => {
+                                return Route.fromRouteResponse(response);
+                            })
+                        ).toPromise();
+                    } catch (e) {
+                        console.warn("No Route found for Code: ", code);
+                        route = undefined;
+                    }
+                }
+            }
+        }
+        return route;
+    }
+
+    unlockRoute(route: Route) {
+        let index = this._unlockedRoutes.findIndex(uRoute => uRoute.id === route.id);
+        if (index === -1) {
+            this._unlockedRoutes.push(route);
+        }
+    }
+
     async getRouteFromId(id: number): Promise<Route|undefined> {
         let downloaded = await this.getDownloadedRoutes();
         let route = downloaded.find(dRoute => dRoute.id === id);
         if (!route) {
             route = this._publicRoutes.find(pRoute => pRoute.id === id);
+            if (!route) {
+                route = this._unlockedRoutes.find(uRoute => uRoute.id === id);
+            }
         }
         return route;
     }
@@ -101,9 +138,13 @@ export class RouteApiService {
         return {tasks: Task.convertGenericsToTaskArray(details.tasks), score: Score.fromGenericScore(details.score)};
     }
 
-    async getTaskDetails(routeCode: string, taskId: number): Promise<{task: Task, score: Score}> {
+    async getTaskDetails(routeCode: string, taskId: number, parentId?: number): Promise<{task: Task, score: Score}> {
         let details: RouteInfos = await this.storage.get(DOWNLOADED_ROUTE_INFOS_PREFIX+routeCode);
-        let task = details.tasks.find(dTask => dTask.id === taskId);
+        let parent;
+        if (parentId) {
+            parent = details.tasks.find(dTask => dTask.id === parentId);
+        }
+        let task = (parent ? parent.subtasks : details.tasks).find(dTask => dTask.id === taskId);
         return {task: Task.fromGenericTask(task), score: Score.fromGenericScore(details.score)};
     }
 
@@ -164,6 +205,13 @@ export class RouteApiService {
             }
             console.log(e);
             await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
+        }
+    }
+
+    async removeDownloadedData() {
+        let routes = await this.getDownloadedRoutes();
+        for (let route of routes) {
+            await this.removeDownloadedRoute(route);
         }
     }
 

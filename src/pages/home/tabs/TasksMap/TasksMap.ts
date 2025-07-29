@@ -1,6 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
 import {Task} from '../../../../entity/Task';
 import {Score} from '../../../../entity/Score';
@@ -63,7 +62,6 @@ export class TasksMap implements OnDestroy {
     protected gamificationIsDisabled = false;
 
     currentScore: any;
-    user = null;
     protected sessionInfo: SessionInfo;
     private sessionSubscription: Subscription;
     private watchSubscription: Subscription;
@@ -83,7 +81,6 @@ export class TasksMap implements OnDestroy {
         public navCtrl: NavController,
         public navParams: NavParams,
         public events: Events,
-        // private ormService: OrmService,
         private deepLinker: DeepLinker,
         private gpsService: GpsService,
         private modalsService: ModalsService,
@@ -155,8 +152,7 @@ export class TasksMap implements OnDestroy {
         this.routeId = this.navParams.get('routeId');
         this.route = await this.routeApiService.getRouteFromId(this.routeId);
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
-        // this.user = await this.ormService.getActiveUser();
-        this.score = this.route.getScoreForUser(this.user);
+        this.score = (await this.routeApiService.getDetailsForRoute(this.route)).score;
         let sessionInfo = this.chatAndSessionService.getSessionInfo();
         this.updateSession(sessionInfo);
         this.events.publish('narrativeChange', this.route.getNarrativeName());

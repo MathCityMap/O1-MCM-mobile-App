@@ -19,7 +19,6 @@ import 'rxjs/add/operator/filter';
 import 'leaflet-rotatedmarker';
 import { Subscription } from 'rxjs/Subscription';
 import {MyApp} from "../../app/app.component";
-import {OrmService} from "../../services/orm-service";
 import {ImagesService} from "../../services/images-service";
 import {RouteApiService} from "../../services/route-api.service";
 

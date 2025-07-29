@@ -8,8 +8,6 @@ import {checkAvailability} from "@ionic-native/core";
 
 import {DB_Updater} from '../../../../classes/DB_Updater';
 import {Helper} from '../../../../classes/Helper';
-
-import {OrmService} from '../../../../services/orm-service';
 import {Route} from '../../../../entity/Route';
 import {ModalsService} from '../../../../services/modals-service';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
@@ -23,6 +21,7 @@ import {LanguageService} from '../../../../services/language-service';
 
 import mapboxgl from 'mapbox-gl'
 import {MAPBOX_ACCESS_TOKEN} from "../../../../env/env";
+import {RouteApiService} from "../../../../services/route-api.service";
 
 @IonicPage()
 @Component({
@@ -50,7 +49,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
     constructor(
         private updater: DB_Updater,
-        private ormService: OrmService,
+        // private ormService: OrmService,
         public modalsService: ModalsService,
         public navCtrl: NavController,
         private spinner: SpinnerDialog,
@@ -58,10 +57,12 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         private gpsService: GpsService,
         public helper: Helper,
         private navParams: NavParams,
-        private languageService: LanguageService) {
-        this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
+        private languageService: LanguageService,
+        private routeApiService: RouteApiService
+    ) {
+        this.eventSubscription = this.routeApiService.routesUpdated.subscribe(async (event) => {
             if (this.map && this.map.getLayer('unclustered-point')) {
-                if (!this.showAllRoutes) this.routes = await this.ormService.getDownloadedRoutes();
+                if (!this.showAllRoutes) this.routes = this.routeApiService.downloadedRoutes;
                 this.redrawMapBoxMarker()
                 console.log("REDRAWED")
                 this.routeDetails = null;
@@ -76,8 +77,8 @@ export class RoutesMapPage implements OnInit, OnDestroy {
         this.gpsService.isLocationOn();
 
         if (this.map && this.map.getLayer('unclustered-point')) {
-            if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
-            else this.routes = await this.ormService.getDownloadedRoutes();
+            if (this.showAllRoutes) this.routes = this.routeApiService.publicRoutes;
+            else this.routes = await this.routeApiService.downloadedRoutes;
             this.redrawMapBoxMarker()
         }
     }
@@ -113,21 +114,21 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     merkerMapBoxGroup: any = null;
 
     async initializeMap() {
-        let activeUser = await this.ormService.getActiveUser();
-        if (!activeUser) {
-            let online = await this.modalsService.showNoInternetModalIfOffline();
-            if (online) {
-                this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-                try {
-                    await this.updater.checkForUpdates();
-                } catch (e) {
-                    console.error('caught error while checking for updates:');
-                    console.error(e);
-                }
-            }
-        }
-        if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
-        else this.routes = await this.ormService.getDownloadedRoutes();
+        // let activeUser = await this.ormService.getActiveUser();
+        // if (!activeUser) {
+        //     let online = await this.modalsService.showNoInternetModalIfOffline();
+        //     if (online) {
+        //         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
+        //         try {
+        //             await this.updater.checkForUpdates();
+        //         } catch (e) {
+        //             console.error('caught error while checking for updates:');
+        //             console.error(e);
+        //         }
+        //     }
+        // }
+        if (this.showAllRoutes) this.routes = this.routeApiService.publicRoutes;
+        else this.routes = this.routeApiService.downloadedRoutes;
         this.map.on('load', () => {
             const waiting = () => {
                 if (!this.map.isStyleLoaded()) {
@@ -340,7 +341,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
                 if (route.downloaded){
                     that.isRouteDownloaded = 'downloaded';
                     console.log("THIS.ROUTE: ", route);
-                    that.routeDetails = await that.ormService.findRouteByCode(route.code);
+                    that.routeDetails = await that.routeApiService.findRouteByCode(route.code);
                 }
                 else {
                     that.routeDetails = route;
@@ -439,8 +440,8 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     }
 
     async reactOnRemovedRoute() {
-        if (this.showAllRoutes) this.routes = await this.ormService.getVisibleRoutes();
-        else this.routes = await this.ormService.getDownloadedRoutes();
+        if (this.showAllRoutes) this.routes = this.routeApiService.publicRoutes;
+        else this.routes = this.routeApiService.downloadedRoutes;
         this.redrawMapBoxMarker()
     }
 

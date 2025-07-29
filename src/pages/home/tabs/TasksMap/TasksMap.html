@@ -32,7 +32,7 @@
                 </ion-row>
                 <ion-row class="current" *ngIf="route.isAnswerFeedbackEnabled() && !gamificationIsDisabled && currentScore && currentScore > 0 && (sessionInfo==null || !sessionInfo.session.has_leaderboard)">
                     <ion-col>
-                        <ion-label *ngIf="!sessionInfo">{{user.name}}</ion-label>
+                        <ion-label *ngIf="!sessionInfo">{{"a_taskGroup_score_total" | translate}}</ion-label>
                         <ion-label *ngIf="sessionInfo">{{sessionInfo.sessionUser.team_name}}</ion-label>
                     </ion-col>
                     <ion-col>
