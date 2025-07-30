@@ -50,7 +50,7 @@
 	</ion-list>
 
     <div class="user-feedback">
-        <div class="download-empty" *ngIf="!showAllRoutes && routeApiService.downloadedRoutes.length == 0">
+        <div class="download-empty" *ngIf="!showAllRoutes && (!routeApiService.downloadedRoutes || routeApiService.downloadedRoutes.length == 0)">
             <img src="assets/icons/download-empty.svg"/>
             <h4 class="message">{{ "a_list_noDownloads" | translate}}</h4>
         </div>
@@ -58,13 +58,13 @@
             <img src="assets/icons/search-empty.svg"/>
             <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
         </div>
-        <div class="search-empty d" *ngIf="!showAllRoutes && filteredResult?.length == 0 && routeApiService.downloadedRoutes.length != 0">
+        <div class="search-empty d" *ngIf="!showAllRoutes && filteredResult?.length == 0 && routeApiService.downloadedRoutes && routeApiService.downloadedRoutes.length != 0">
             <img src="assets/icons/search-empty.svg"/>
             <h4 class="message">{{ "p_review_no_elements" | translate }}</h4>
         </div>
     </div>
 
-    <ion-fab right bottom *ngIf="showAllRoutes || !showAllRoutes && downloadedItems.length != 0">
+    <ion-fab right bottom *ngIf="showAllRoutes || (!showAllRoutes && routeApiService.downloadedRoutes && routeApiService.downloadedRoutes.length != 0)">
         <button ion-fab color="primary" (click)="switchToMap()">
             <img src="assets/icons/map.svg"/>
         </button>

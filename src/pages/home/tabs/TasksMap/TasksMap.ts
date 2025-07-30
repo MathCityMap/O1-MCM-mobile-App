@@ -134,7 +134,6 @@ export class TasksMap implements OnDestroy {
                     modal.dismiss().then(async () => {
                         that.route.completed = true;
                         that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-                        // that.ormService.saveAndFireChangedEvent(that.route);
                         await that.routeApiService.updateDownloadedRoute(that.route);
                     });
                 }
@@ -519,7 +518,6 @@ export class TasksMap implements OnDestroy {
                 this.route.completed = false;
                 this.route.completedDate = null;
                 await this.saveMapStateToLocalStorage();
-                // await this.ormService.saveAndFireChangedEvent(this.route);
                 await this.routeApiService.updateDownloadedRoute(this.route);
                 await this.redrawMarkers();
                 resolve();

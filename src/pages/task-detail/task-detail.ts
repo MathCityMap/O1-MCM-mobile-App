@@ -95,7 +95,6 @@ export class TaskDetail {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        // private ormService: OrmService,
         private modalCtrl: ModalController,
         private deepLinker: DeepLinker,
         private modalsService: ModalsService,
@@ -201,13 +200,11 @@ export class TaskDetail {
     async ionViewWillEnter() {
         console.log('TasksMap ionViewWillEnter()');
         this.routeId = this.navParams.get('routeId');
-        // this.route = await this.ormService.findRouteById(this.routeId);
         this.route = await this.routeApiService.getRouteFromId(this.routeId);
         this.taskId = this.navParams.get('taskId');
         this.subTaskIndex = this.navParams.get('subTaskIndex');
         this.parentId = this.navParams.get('parentId');
         let taskAndScore = await this.routeApiService.getTaskDetails(this.route.code, this.taskId, this.parentId);
-        // this.task = await this.ormService.findTaskById(this.taskId);
         this.task = taskAndScore.task;
         if (this.subTaskIndex || this.subTaskIndex === 0) {
             this.rootTask = this.task;
@@ -218,7 +215,6 @@ export class TaskDetail {
 
         console.log("Opened Task: ", this.task);
         this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks' || this.task.solutionType === 'fraction');
-        // this.score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.score = taskAndScore.score;
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
         if (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
@@ -286,45 +282,6 @@ export class TaskDetail {
         }
         if (this.task.solutionType === 'blanks') {
             this.fillBlankSolutionElement();
-            // this.specialSolution = this.task.getSolution();
-            // let blankMatch;
-            // let blankText: string = this.specialSolution.val
-            // let placeholderCount = [];
-            // while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
-            //     let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
-            //         return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
-            //     }) : null;
-            //     blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
-            //     if (!placeholderCount[blankMatch[1]]) {
-            //         placeholderCount[blankMatch[1]] = 1;
-            //     } else {
-            //         placeholderCount[blankMatch[1]]++
-            //     }
-            // }
-            // let blankContainer = document.getElementById('blankContainer_' + this.task.id);
-            // if (blankContainer) {
-            //     blankContainer.innerHTML = blankText;
-            //     let inputs = blankContainer.getElementsByClassName('blankInput');
-            //     if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
-            //         let answers = [];
-            //         for (let input of Array.from(inputs)) {
-            //             if (input instanceof HTMLElement) {
-            //                 answers.push({id: input.id, answer: "", solved: null, count: input.dataset.count})
-            //             }
-            //         }
-            //         this.taskDetails.answerMultipleChoice = answers;
-            //     }
-            //     for (let input of Array.from(inputs)) {
-            //         input.addEventListener('input', (event: any) => {
-            //             let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
-            //                 if (input instanceof HTMLElement) {
-            //                     return answer.id === input.id && answer.count == input.dataset.count
-            //                 }
-            //             });
-            //             answerElement.answer = event.currentTarget.innerText;
-            //         });
-            //     }
-            // }
         }
         if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
             this.specialSolution = this.task.getSolution();
@@ -367,7 +324,7 @@ export class TaskDetail {
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
         if (!this.rootTask && this.route.isAnswerFeedbackEnabled() && this.task.solutionType != 'info') {
-            // Logic used to get different max scores for different task formats which has been sospended for now
+            // Logic used to get different max scores for different task formats which has been suspended for now
             // if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
             //     this.maxScore = 40 * this.specialSolution.components.length;
             //     if (this.maxScore > 200) {

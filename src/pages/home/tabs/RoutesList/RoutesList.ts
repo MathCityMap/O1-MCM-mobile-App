@@ -36,24 +36,16 @@ export class RoutesListPage implements OnDestroy {
     private infiniteScrollBlockSize = 20;
 
     constructor(
-        // private ormService: OrmService,
-                public navCtrl: NavController,
-                public modalsService: ModalsService,
-                private modalCtrl: ModalController,
-                private translateService: TranslateService,
-                public helper: Helper,
-                private navParams: NavParams,
-                protected routeApiService: RouteApiService,
+            public navCtrl: NavController,
+            public modalsService: ModalsService,
+            private modalCtrl: ModalController,
+            private translateService: TranslateService,
+            public helper: Helper,
+            private navParams: NavParams,
+            protected routeApiService: RouteApiService,
     ) {
 
-        // this.eventSubscription = this.ormService.eventEmitter.subscribe(async (event) => {
-        //     this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
-        //     this.items = await this.ormService.getVisibleRoutes(false, this.compareFunction);
-        //     this.sortAndRebuildFilteredItems();
-        //     this.filterItems();
-        // });
         this.eventSubscription = this.routeApiService.routesUpdated.subscribe(() => {
-           // this.items = this.routeApiService.publicRoutes;
            this.filterItems();
         });
     }
@@ -71,54 +63,7 @@ export class RoutesListPage implements OnDestroy {
         if(this.navParams.data && this.navParams.data.showAllRoutes != null) {
             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
         }
-        // let activeUser = await this.ormService.getActiveUser();
-        // if (!activeUser) {
-        //     // initial app start
-        //     let online = await this.modalsService.showNoInternetModalIfOffline();
-        //     if (online) {
-        //         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-        //         try {
-        //             await this.dbUpdater.checkForUpdates();
-        //         } catch (e) {
-        //             console.error('caught error while checking for updates:');
-        //             console.error(e);
-        //         }
-        //         await this.ormService.setNewActiveUser('Me');
-        //     }
-        // } else {
-        //     // we need to check for updates
-        //     let quality = await this.helper.checkConnection();
-        //     if (quality == ConnectionQuality.FAST || quality == ConnectionQuality.SLOW) {
-        //         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-        //         try {
-        //             await this.dbUpdater.checkForUpdates();
-        //         } catch (e) {
-        //             console.error('caught error while checking for updates:');
-        //             console.error(e);
-        //         }
-        //     }
-        // }
-        // if (!this.gpsService.getLastPosition()) {
-        //     // try to get position
-        //     try {
-        //         await timeout(this.gpsService.getCurrentPosition().catch(err => {
-        //             console.error("Error loading GPS data", err)
-        //         }), 2000);
-        //     } catch (e) {
-        //         console.log("could not obtain position: " + e.message);
-        //         // make position check async
-        //         this.gpsService.getCurrentPosition().then((position) => {
-        //             if (position && position.coords) {
-        //             }
-        //         }, err => {
-        //             console.error("Error loading GPS data", err)
-        //         });
-        //     }
-        // }
         await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
-        // this.items = this.routeApiService.publicRoutes;
-        // this.items = await this.ormService.getVisibleRoutes(true, this.compareFunction);
-        // this.downloadedItems = await this.ormService.getDownloadedRoutes(this.compareFunction);
         this.filterItems();
 
         if(this.helper.getActivateAddRoute()){
@@ -144,58 +89,8 @@ export class RoutesListPage implements OnDestroy {
     }
 
     async addRouteByCode() {
-        let route = await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
-        // if (route) {
-        //     let alreadyAdded = false;
-        //     for (let i = 0; !alreadyAdded && i < this.items.length; i++) {
-        //         if (this.items[i].id == route.id) {
-        //             // route has been added twice
-        //             alreadyAdded = true;
-        //         }
-        //     }
-        //     if (!alreadyAdded) {
-        //         this.items.push(route);
-        //         this.sortAndRebuildFilteredItems();
-        //     }
-        //     this.scrollTo(route);
-        // }
+        await MCMRouteByCodeModal.show(this.navCtrl, this.modalCtrl, this.translateService, this.modalsService);
     }
-
-    private compareFunction(a: Route, b: Route) {
-        const distA = a.getDistance();
-        const distB = b.getDistance();
-        if (distA > distB) {
-            return 1;
-        } else if (distA < distB) {
-            return -1;
-        }
-        return a.title.localeCompare(b.title);
-    }
-
-
-    // scrollTo(route: Route) {
-    //     let that = this;
-    //     setTimeout(function () {
-    //         let element = document.getElementById('route-item-' + route.id);
-    //         if (element) {
-    //             that.content.scrollTo(0, element.offsetTop);
-    //         }
-    //
-    //     }, 300);
-    // }
-
-    // doInfinite(infiniteScroll) {
-    //     if (this.items.length > this.filteredItems.length) {
-    //         console.info(`Add ${this.infiniteScrollBlockSize} list items ...`);
-    //         let itemsToAdd = this.items.slice(this.filteredItems.length, this.filteredItems.length + this.infiniteScrollBlockSize);
-    //         itemsToAdd.forEach(item => this.filteredItems.push(item));
-    //     } else {
-    //         console.info('End of list reached');
-    //     }
-    //     setTimeout(() => {
-    //         infiniteScroll.complete();
-    //     }, 2000);
-    // }
 
     fetchMoreRoutes(infiniteScroll) {
         this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize).then(() => {
@@ -203,18 +98,7 @@ export class RoutesListPage implements OnDestroy {
         });
     }
 
-    // private sortAndRebuildFilteredItems() {
-    //     this.filteredItems = this.items.slice(0, this.filteredItems.length);
-    // }
-
-/*    async reactOnDownloadedRoute(event) {
-        if (event && event.route) {
-            //this.modalsService.showRoute(event.route, this.navCtrl);
-        }
-    }*/
-
     async switchToMap() {
-        //this.events.publish('changeViewType', (false));
         this.navCtrl.setRoot('RoutesMapPage', {showAllRoutes: this.showAllRoutes});
     }
 

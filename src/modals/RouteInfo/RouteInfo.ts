@@ -44,14 +44,11 @@ export class RouteInfo {
 
     async ionViewWillEnter() {
         let routeId = this.navParams.get('routeId');
-        // this.route = this.viewCtrl.data.route = await this.ormService.findRouteById(routeId);
         this.route = this.viewCtrl.data.route = await this.routeApiService.getRouteFromId(routeId);
         this.routeInfos = await this.routeApiService.getDetailsForRoute(this.route);
         //Fetch tasks in Route so Tools of tasks can be shown properly
-        // await this.route.getTasks();
         this.totalTasks = await Route.getTrueTaskCount(this.routeInfos.tasks);
         let score = this.routeInfos.score;
-        // let score = this.route.getScoreForUser(await this.ormService.getActiveUser());
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
         MathJax.typeset();
         let {translation, isFetched} = await this.translationService.getTranslationForRoute(this.route.code);
@@ -67,7 +64,12 @@ export class RouteInfo {
     async doDownload(route: Route) {
         // retrieve modalsService via viewCtrl.data to avoid circular dependency
         let modalsService: ModalsService = this.viewCtrl.data.modalsService;
-        modalsService.doDownload(route);
+        await modalsService.doDownload(route);
+        this.route = await this.routeApiService.getRouteFromId(route.id);
+        this.routeInfos = await this.routeApiService.getDetailsForRoute(this.route);
+        this.totalTasks = await Route.getTrueTaskCount(this.routeInfos.tasks);
+        let score = this.routeInfos.score;
+        this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
     }
 
     showRoute(route: Route) {
@@ -78,8 +80,10 @@ export class RouteInfo {
 
     async removeRoute() {
         this.spinnerDialog.show();
-        // await this.ormService.removeDownloadedRoute(this.route, this.route.isMapAvailableOffline());
-        await this.routeApiService.removeDownloadedRoute(this.route);
+        this.route = await this.routeApiService.removeDownloadedRoute(this.route);
+        this.routeInfos = undefined;
+        this.totalTasks = 0;
+        this.currentProgress = 0;
         this.spinnerDialog.hide();
     }
 

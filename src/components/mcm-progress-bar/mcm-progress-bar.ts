@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Route} from "../../entity/Route";
 import {Helper} from "../../classes/Helper";
-import {RouteApiService} from "../../services/route-api.service";
+import { RouteInfos } from '../../services/ApiResponseDefinition/RouteInfos';
 
 @Component({
     selector: 'mcm-progress-bar',
@@ -9,6 +9,7 @@ import {RouteApiService} from "../../services/route-api.service";
 })
 export class MCMProgressBarComponent {
     @Input() route?: Route;
+    @Input() routeDetails?: RouteInfos;
 
 
     @Input() isAudioPlaying?: boolean;
@@ -18,22 +19,27 @@ export class MCMProgressBarComponent {
     @Input() total: number;
     progressWidth: number;
 
-    constructor(private helper: Helper, private routeApiService: RouteApiService) {
+    constructor(private helper: Helper) {
 
     }
 
     async ngOnChanges() {
-        let routeDetails = await this.routeApiService.getDetailsForRoute(this.route);
-        if (this.route && routeDetails.score) {
-            try {
-                let data = await this.helper.calculateProgress(this.route, routeDetails);
-                this.currentProgress = data.currentProgress;
-                this.total = data.totalTasks;
-                this.progressWidth = (100 / this.total) * this.currentProgress;
-            } catch (e) {
-                console.log(e);
+        if (this.route) {
+            if (this.routeDetails) {
+                try {
+                    let data = await this.helper.calculateProgress(this.route, this.routeDetails);
+                    this.currentProgress = data.currentProgress;
+                    this.total = data.totalTasks;
+                    this.progressWidth = (100 / this.total) * this.currentProgress;
+                } catch (e) {
+                    console.log(e);
+                }
+            } else {
+                this.currentProgress = 0;
+                this.total = 0;
+                this.progressWidth = 0;
             }
-        }else if(this.total && this.currentProgress){
+        } else if(this.total && this.currentProgress){
             this.progressWidth = (100 / this.total) * this.currentProgress;
         }
     }

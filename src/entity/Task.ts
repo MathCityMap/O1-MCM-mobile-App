@@ -120,8 +120,8 @@ export class Task {
 
     static createTaskListFromRouteDetailResponse(response: RouteDetailApiResponse): Array<Task> {
         let tasks = [];
-        for (let rTask of response.tasks) {
-            let task = Task.fromTaskApiResponse(rTask);
+        for (let [index, rTask] of response.tasks.entries()) {
+            let task = Task.fromTaskApiResponse(rTask, index+1);
             if (task.taskFormat === TaskFormat.GROUP) {
                 task.subtasks = Task.getChildTasksFromResponsePool(task, response.subTasks);
             } else {
@@ -133,14 +133,14 @@ export class Task {
     }
 
     static getChildTasksFromResponsePool(task: Task, pool: Array<ChildTaskApiResponse>) {
-        return pool.filter(rTask => rTask.parent_task_id === task.id).map(rTask => {
-            let childTask = Task.fromTaskApiResponse(rTask);
+        return pool.filter(rTask => rTask.parent_task_id === task.id).map((rTask, index) => {
+            let childTask = Task.fromTaskApiResponse(rTask, index+1);
             childTask.positionInParent = rTask.position_in_parent;
             return childTask;
         });
     }
 
-    static fromTaskApiResponse(rTask: TaskApiResponse): Task {
+    static fromTaskApiResponse(rTask: TaskApiResponse, position: number): Task {
         let task = new Task();
         task.id = rTask._id;
         task.userId = rTask.user_id;
@@ -168,6 +168,7 @@ export class Task {
         task.arLink = rTask.ar_link;
         task.code = rTask.code;
         task.taskFormat = rTask.task_format;
+        task.position = position;
         return task;
     }
 

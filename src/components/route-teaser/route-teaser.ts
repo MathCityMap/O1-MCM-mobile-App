@@ -25,7 +25,7 @@ export class RouteTeaserComponent {
     @Output()
     removeRoute = new EventEmitter<any>();
 
-    private routeDetails: RouteInfos;
+    protected routeDetails: RouteInfos;
     protected currentProgress: number = 0;
     protected total: number = 0;
 
@@ -40,7 +40,7 @@ export class RouteTeaserComponent {
         if(this.route && this.route.downloaded) {
             this.routeDetails = await this.routeApiService.getDetailsForRoute(this.route);
             this.total = await Route.getTrueTaskCount(this.routeDetails.tasks);
-            if(this.route.scores) {
+            if(this.routeDetails.score) {
                 let data = await this.helper.calculateProgress(this.route, this.routeDetails);
                 this.currentProgress = data.currentProgress;
                 this.completedRadius = this.calculatePercentage();

@@ -6,12 +6,10 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import {checkAvailability} from "@ionic-native/core";
 
-import {DB_Updater} from '../../../../classes/DB_Updater';
 import {Helper} from '../../../../classes/Helper';
 import {Route} from '../../../../entity/Route';
 import {ModalsService} from '../../../../services/modals-service';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
-import {TranslateService} from '@ngx-translate/core';
 
 
 import {GpsService} from '../../../../services/gps-service';
@@ -48,12 +46,9 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     isRouteDownloaded: string;
 
     constructor(
-        private updater: DB_Updater,
-        // private ormService: OrmService,
         public modalsService: ModalsService,
         public navCtrl: NavController,
         private spinner: SpinnerDialog,
-        private translateService: TranslateService,
         private gpsService: GpsService,
         public helper: Helper,
         private navParams: NavParams,
@@ -114,19 +109,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     merkerMapBoxGroup: any = null;
 
     async initializeMap() {
-        // let activeUser = await this.ormService.getActiveUser();
-        // if (!activeUser) {
-        //     let online = await this.modalsService.showNoInternetModalIfOffline();
-        //     if (online) {
-        //         this.spinner.show(null, this.translateService.instant('a_toast_update_start'), true);
-        //         try {
-        //             await this.updater.checkForUpdates();
-        //         } catch (e) {
-        //             console.error('caught error while checking for updates:');
-        //             console.error(e);
-        //         }
-        //     }
-        // }
         if (this.showAllRoutes) this.routes = this.routeApiService.publicRoutes;
         else this.routes = this.routeApiService.downloadedRoutes;
         this.map.on('load', () => {

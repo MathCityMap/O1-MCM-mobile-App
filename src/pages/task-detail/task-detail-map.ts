@@ -64,7 +64,6 @@ export class TaskDetailMap implements OnDestroy {
         private route: Route,
         private gpsService: GpsService,
         private app: MyApp,
-        // private ormService: OrmService,
         private routeApiService: RouteApiService,
         private imagesService: ImagesService
     ) {

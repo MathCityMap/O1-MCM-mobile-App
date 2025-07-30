@@ -96,8 +96,8 @@
 
     <div class="card">
          <ion-label class="title">{{'current_progress' | translate}}</ion-label>
-         <mcm-progress-bar *ngIf="route && !route.completed" [route]="route"></mcm-progress-bar>
-         <div class="evaluation" *ngIf="route?.completed && routeInfos.score">
+         <mcm-progress-bar *ngIf="route && !route.completed" [route]="route" [routeDetails]="routeInfos"></mcm-progress-bar>
+         <div class="evaluation" *ngIf="route?.completed && routeInfos && routeInfos.score">
             <span class="icon finished">{{route.completedDate}}</span>q
             <div *ngIf="route.isAnswerFeedbackEnabled()" class="ratings">
                <div class="rating perfect"><p>{{routeInfos.score.getTasksSolved().length}}</p></div>
@@ -201,12 +201,12 @@
       {{ 'a_r_download' | translate }}
    </button>
    <button class="play pad-for-safe-area" ion-button full block no-margin no-padding large
-           *ngIf="route && route.downloaded && (!route.scores || route.scores.length === 0)"
+           *ngIf="route && route.downloaded && (!routeInfos.score)"
            (click)="showRoute(route)">
       {{ 'a_r_start' | translate }}
    </button>
    <button class="play pad-for-safe-area" ion-button full block no-margin no-padding large
-           *ngIf="route && route.downloaded && (route.scores && route.scores.length > 0)"
+           *ngIf="route && route.downloaded && (routeInfos.score)"
            (click)="showRoute(route)">
       {{ 'a_r_continue' | translate }}
    </button>
