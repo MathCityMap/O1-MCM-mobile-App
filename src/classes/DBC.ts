@@ -2,6 +2,9 @@
 import * as Collections from 'typescript-collections'
 import { DBC_Plan } from './DBC_Plan'
 
+/**
+ * @deprecated SQlite storage and all classes linked to it are deprecated in favor of RouteApiService
+ */
 export abstract class DBC {
     static readonly DATABASE_NAME: string = "mcm_app"
     static readonly DATABASE_VERSION: number = 32

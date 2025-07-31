@@ -11,6 +11,9 @@ import { Route } from "../entity/Route";
 import {ImagesService} from "../services/images-service";
 import {TranslationService} from "../app/api/services/translation.service";
 
+/**
+ * @deprecated Will be removed in future version use RouteApiService for storage management instead
+ */
 @Injectable()
 export class DB_Updater {
     constructor(

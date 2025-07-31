@@ -1,4 +1,7 @@
 
+/**
+ * @deprecated SQlite storage and all classes linked to it are deprecated in favor of RouteApiService
+ */
 export class DBC_Plan {
     tableName: string
     fields: string[]

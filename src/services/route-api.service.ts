@@ -18,6 +18,7 @@ import {TranslationService} from "../app/api/services/translation.service";
 import {RouteInfos} from "./ApiResponseDefinition/RouteInfos";
 import {TaskState} from "../entity/TaskState";
 import {RouteApiResponse} from "./ApiResponseDefinition/RouteApiResponse";
+import {OrmService} from "./orm-service";
 
 const DOWNLOADED_ROUTES_KEY = "MCM_ROUTES_DOWNLOADED"
 const DOWNLOADED_ROUTE_INFOS_PREFIX = "MCM_DOWNLOADED_ROUTE_INFOS_"
@@ -49,7 +50,8 @@ export class RouteApiService {
         private imagesService: ImagesService,
         private alertCtrl: AlertController,
         private translateService: TranslateService,
-        private translationService: TranslationService
+        private translationService: TranslationService,
+        private ormService: OrmService
     ) {
     }
 
@@ -350,4 +352,26 @@ export class RouteApiService {
         this.routesUpdated.emit();
     }
 
+    public async migrateDataFromSQLiteStorage() {
+        let key = 'MCM_DidMigrateFromSqLiteStorage'
+        let didMigrate = await this.storage.get(key);
+        if (didMigrate) return;
+
+        let routes = await this.ormService.getDownloadedRoutes();
+        let user = await this.ormService.getActiveUser();
+        for (let route of routes) {
+            let tasks = (await route.getTasks()).map(task => {
+                task.forceSupportTask = Boolean(route.isSubtaskRequired(task.id));
+                return task;
+            });
+            let score = route.getScoreForUser(user);
+            let routeInfo = {tasks: tasks, score: score};
+
+            await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX + route.code, routeInfo);
+            await this.addRouteToDownloadedList(route);
+        }
+
+        await this.ormService.removeAllSqLiteData();
+        await this.storage.set(key, true);
+    }
 }

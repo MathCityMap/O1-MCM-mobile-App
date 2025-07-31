@@ -541,6 +541,10 @@ export class Route {
         return newString? newString : $mcmKey;
     }
 
+    /**
+     * @deprecated doesn't work with new data structure, use task.forceSupportTask instead
+     * @param taskId
+     */
     isSubtaskRequired(taskId) {
         if (!this.task2Routes) return false;
         const task2Route =  this.task2Routes.find(task2Route => {

@@ -47,6 +47,9 @@ import {TranslationService} from "../app/api/services/translation.service";
 import {AddRouteIsOffline17507732160000} from "../migration/17507732160000-AddRouteIsOffline";
 
 
+/**
+ * @deprecated Will be removed in future version, only used to migrate storage in current one,  use RouteApiService for storage management instead
+ */
 @Injectable()
 export class OrmService {
     connection: Connection;
@@ -465,6 +468,22 @@ export class OrmService {
             await this.removeDownloadedRoute(route, route.isMapAvailableOffline());
         }
         this.eventEmitter.next(OrmService.EVENT_ROUTES_CHANGED);
+    }
+
+    async removeAllSqLiteData() {
+        let connection = await this.getConnection();
+        const routeRepo = await this.getRouteRepository();
+        const scoreRepo = await this.getScoreRepository();
+        const stateRepo = await this.getStateRepository();
+        const taskRepo = await this.getTaskRepository();
+        const userRepo = await this.getUserRepository();
+        const t2rRepo = connection.getRepository(Task2Route);
+        await scoreRepo.clear();
+        await stateRepo.clear();
+        await taskRepo.clear();
+        await routeRepo.clear();
+        await userRepo.clear();
+        await t2rRepo.clear();
     }
 
     private updateRouteInCache(routeToUpdate: Route) {

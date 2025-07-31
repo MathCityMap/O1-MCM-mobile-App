@@ -4,7 +4,6 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {CustomKeyBoard} from '../components/customKeyBoard/custom-keyboard';
 
 import {LanguageService} from '../services/language-service';
-import {ChatAndSessionService} from '../services/chat-and-session-service';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {TranslateService} from "@ngx-translate/core";
 import {Storage} from "@ionic/storage";
@@ -16,6 +15,7 @@ import {RoutesMapPage} from "../pages/home/tabs/RoutesMap/RoutesMap";
 import {PortalPage} from "../pages/portal/portal";
 import {TranslationService} from "./api/services/translation.service";
 import {ReadAloudService} from "../services/read-aloud-service";
+import {RouteApiService} from "../services/route-api.service";
 
 
 export enum MCMModalType {
@@ -49,6 +49,7 @@ export class MyApp {
                 translate: TranslateService,
                 screenOrientation: ScreenOrientation,
                 translation: TranslationService,
+                routeApiService: RouteApiService,
                 protected readAloud: ReadAloudService,
                 private storage: Storage,
                 private modalService: ModalsService,
@@ -56,6 +57,7 @@ export class MyApp {
 
         let that = this;
         platform.ready().then(async () => {
+            await routeApiService.migrateDataFromSQLiteStorage();
             await languageService.initialize();
             await translation.init();
             await readAloud.init(await languageService.getLanguage())

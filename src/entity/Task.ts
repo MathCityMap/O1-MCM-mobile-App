@@ -118,6 +118,8 @@ export class Task {
     @OneToMany(type => Task, task => task.task_id)
     private subtasks: Task[];
 
+    forceSupportTask: boolean;
+
     static createTaskListFromRouteDetailResponse(response: RouteDetailApiResponse): Array<Task> {
         let tasks = [];
         for (let [index, rTask] of response.tasks.entries()) {
@@ -169,6 +171,7 @@ export class Task {
         task.code = rTask.code;
         task.taskFormat = rTask.task_format;
         task.position = position;
+        task.forceSupportTask = Boolean(rTask.force_support_tasks);
         return task;
     }
 

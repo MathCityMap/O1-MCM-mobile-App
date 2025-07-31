@@ -355,7 +355,6 @@ export class Helper {
         } else {
             currentProgress = score.getTasksSaved().length;
         }
-        console.log('Helper calculate progress', route, routeDetails, currentProgress);
         return {totalTasks: totalTasks, currentProgress: currentProgress};
     }
 
