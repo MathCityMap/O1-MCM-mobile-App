@@ -1518,5 +1518,6 @@
   "p_gps_def_points_info": "Dla tego zadania należy zdefiniować powiązane punkty.",
   "p_lights_t_title": "Kontrolki zadań",
   "p_lights_t_info": "Kontrolki zadań podają informacje o statusie zadania. \nDo recenzji mogą być zgłaszane tylko zadania, które spełniają wszystkie wymagania techniczne. Zadania te są oznaczone zielonym światłem.",
-  "p_lights_orange": "Kryteria - kolor pomarańczowy"
+  "p_lights_orange": "Kryteria - kolor pomarańczowy",
+  "a_settings_app_language": "Język aplikacji"
 }

@@ -1028,6 +1028,13 @@ ion-list{
          transform: translateY(0%);
          box-shadow: 0 0 6px 3px rgba(0,0,0,0.2);
       }
+      .load-more {
+         transform: translate(-50%);
+         top: -#{$fab-size + $global-small-padding};
+         position: absolute;
+         left: 50%;
+         margin: 0;
+      }
       & > ion-fab{
          top: -#{$fab-size + $global-small-padding};
       }

@@ -210,8 +210,7 @@ export class TaskDetail {
             this.rootTask = this.task;
             this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex]
         }
-        // TODO Replace this with information fetched from task directly after api has been updated probably
-        this.subTasksRequired = this.route.isSubtaskRequired(this.taskId);
+        this.subTasksRequired = this.task.forceSupportTask;
 
         console.log("Opened Task: ", this.task);
         this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks' || this.task.solutionType === 'fraction');

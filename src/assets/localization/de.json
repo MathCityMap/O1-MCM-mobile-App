@@ -1638,5 +1638,17 @@
   "a_settings_text_to_speech_voice": "Vorlesestimme",
   "a_settings_accessibility": "Barrierefreiheit",
   "a_task_skip": "Überspringen",
-  "a_translation_fetch_failed_msg": "Die Übersetzung konnte nicht heruntergeladen werden. Bitte überprüfe deine Internetverbindung und versuche es später erneut."
+  "a_translation_fetch_failed_msg": "Die Übersetzung konnte nicht heruntergeladen werden. Bitte überprüfe deine Internetverbindung und versuche es später erneut.",
+  "p_trail_availability_mode": "Trail Verfügbarkeits-Modus",
+  "p_trail_availability_mode_info_1": "Bitte wählen Sie, ob Sie diesen Trail offline oder online nutzen möchten.",
+  "p_trail_availability_mode_info_2": "Diese Auswahl bestimmt, wie die Karte in der App geladen wird.",
+  "p_online_map": "Online Karte",
+  "p_reccomended": "empfohlen",
+  "p_online_map_info": "Deutlich bessere Erfahrung, allerdings ist eine aktive Internetverbindung während der Nutzung der App erforderlich.",
+  "p_offline_map": "Offline Karte",
+  "p_offline_map_info": "Begrenzte Karten- und Zoomstufen, aber die Karte kann auch ohne aktive Internetverbindung genutzt werden, sobald der Trail heruntergeladen wurde.",
+  "p_trail_availability_mode_info_3": "Wir empfehlen Ihnen nachdrücklich, die Online-Karten zu verwenden, solange Sie die Offline-Funktion nicht unbedingt benötigen.",
+  "p_use_offline": "offline verwenden",
+  "p_r_help_use_offline": "Die App kann eine Offline- oder Online-Karte verwenden.",
+  "a_routesmap_load_more": "mehr laden"
 }

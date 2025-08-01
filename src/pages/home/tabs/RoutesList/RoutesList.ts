@@ -8,6 +8,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {MCMRouteByCodeModal} from '../../../../modals/MCMRouteByCodeModal/MCMRouteByCodeModal';
 import {SearchPipe} from "../../../../app/pipes/search.pipe";
 import {RouteApiService} from "../../../../services/route-api.service";
+import {Network} from "@ionic-native/network";
 
 @IonicPage()
 @Component({
@@ -29,6 +30,7 @@ export class RoutesListPage implements OnDestroy {
 
     modal: any;
     private eventSubscription: Subscription;
+    private offlineSubscription: Subscription;
     /**
      * How many elements shall be loaded each time the list is scrolled to the end.
      * @type {number}
@@ -43,15 +45,24 @@ export class RoutesListPage implements OnDestroy {
             public helper: Helper,
             private navParams: NavParams,
             protected routeApiService: RouteApiService,
+            private network: Network
     ) {
 
         this.eventSubscription = this.routeApiService.routesUpdated.subscribe(() => {
            this.filterItems();
         });
+
+        this.offlineSubscription = this.network.onConnect().subscribe(async () => {
+            if (this.routeApiService.publicRoutes.length === 0) {
+                await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+                this.filterItems();
+            }
+        })
     }
 
     ngOnDestroy() {
         this.eventSubscription.unsubscribe();
+        this.offlineSubscription.unsubscribe();
     }
 
     public getRoutesList() {
@@ -76,14 +87,9 @@ export class RoutesListPage implements OnDestroy {
     async doRefresh(refresher) {
         let online = await this.modalsService.showNoInternetModalIfOffline();
         if (online) {
-            // TODO need to refresh here
-            // try {
-            //     await this.dbUpdater.checkForUpdates();
-            // } catch (e) {
-            //     console.error('caught error while checking for updates:', e);
-            // }
-            // this.items = await this.ormService.getVisibleRoutes(false, null, true);
-            // this.sortAndRebuildFilteredItems();
+            this.routeApiService.reset();
+            await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+            this.filterItems();
         }
         refresher.complete();
     }

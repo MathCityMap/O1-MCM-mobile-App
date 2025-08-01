@@ -70,10 +70,22 @@ export class RouteApiService {
             }
             this.position = lastPosition.coords;
         }
-        let newRoutes = await this.internalfetchRoutesForPosition(this.position.latitude, this.position.longitude, this.nextOffset, count);
+        let newRoutes = [];
+        try {
+            newRoutes = await this.internalfetchRoutesForPosition(this.position.latitude, this.position.longitude, this.nextOffset, count);
+        } catch (e) {
+            console.error("Fetching routes failed");
+
+        }
         this.nextOffset += newRoutes.length;
         this._publicRoutes.push(...newRoutes);
         this.routesUpdated.emit();
+    }
+
+    reset() {
+        this.position = undefined;
+        this._publicRoutes = [];
+        this.nextOffset = 0;
     }
 
     async getDownloadedRoutes(): Promise<Array<Route>> {

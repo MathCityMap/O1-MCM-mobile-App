@@ -59,7 +59,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             if (this.map && this.map.getLayer('unclustered-point')) {
                 if (!this.showAllRoutes) this.routes = this.routeApiService.downloadedRoutes;
                 this.redrawMapBoxMarker()
-                console.log("REDRAWED")
                 this.routeDetails = null;
             }
         });
@@ -102,6 +101,10 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             this.watchSubscription.unsubscribe();
             this.watchSubscription = null;
         }
+    }
+
+    loadMore() {
+        return this.routeApiService.fetchPublicRoutes();
     }
 
 

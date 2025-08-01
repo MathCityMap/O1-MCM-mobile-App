@@ -9,6 +9,7 @@
                 <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>
             </ion-fab>
 
+		   <button *ngIf="showAllRoutes" ion-button round class="load-more" (click)="loadMore()">{{ 'a_routesmap_load_more' | translate}}</button>
             <route-teaser *ngIf="routeDetails" [class]="isRouteDownloaded" [route]="routeDetails"
                           [isOnline]="helper.isOnline" tappable (click)="showRouteDetail(routeDetails)"
             ></route-teaser>
