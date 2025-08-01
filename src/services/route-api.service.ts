@@ -377,6 +377,10 @@ export class RouteApiService {
                 return task;
             });
             let score = route.getScoreForUser(user);
+            score.route = undefined;
+            route.scores = undefined;
+            route.tasks = undefined;
+            route.task2Routes = undefined;
             let routeInfo = {tasks: tasks, score: score};
 
             await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX + route.code, routeInfo);
