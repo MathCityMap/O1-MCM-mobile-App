@@ -28,7 +28,7 @@
 <!--    <ion-infinite-scroll  *ngIf="showAllRoutes" (ionInfinite)="doInfinite($event)" threshold="50%">-->
 <!--        <ion-infinite-scroll-content></ion-infinite-scroll-content>-->
 <!--    </ion-infinite-scroll>-->
-	<ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="showAllRoutes">
+	<ion-list no-margin no-padding lazy-load-images *ngIf="showAllRoutes">
 		<route-teaser *ngFor="let item of filteredResult"
 						  tappable (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
 		></route-teaser>
@@ -43,7 +43,7 @@
 <!--                      tappable (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"-->
 <!--                      ></route-teaser>-->
 <!--    </ion-list>-->
-	<ion-list no-margin no-padding lazy-load-images image-size="s" *ngIf="!showAllRoutes">
+	<ion-list no-margin no-padding lazy-load-images *ngIf="!showAllRoutes">
 		<route-teaser class=downloaded *ngFor="let item of filteredResult"
 						  tappable (click)="showRouteDetail(item)" [route]="item" [isOnline]="helper.isOnline"
 		></route-teaser>

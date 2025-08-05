@@ -306,14 +306,9 @@ export class ImagesService {
     /**
      *
      * @param {string} imgPath
-     * @param {string} imageSize 's', 'thumb', 'xl' or 'xxl'
      * @returns {Promise<string>}
      */
-    async getAsyncImageURL(imgPath: string, imageSize: string): Promise<string> {
-        if (imageSize) {
-            let lastSlashIndex = imgPath.lastIndexOf('/');
-            imgPath = imgPath.substring(0, lastSlashIndex) + '/' + imageSize + imgPath.substring(lastSlashIndex);
-        }
+    async getAsyncImageURL(imgPath: string): Promise<string> {
         if (this.lazyLoadedImagesCache[imgPath]) {
             return this.lazyLoadedImagesCache[imgPath];
         }
@@ -338,10 +333,10 @@ export class ImagesService {
             return;
         }
 
-        let url = Helper.MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName;
+        let url = route.getMapTilesURL();
         let downloadRequest: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
-        let pathToFileInString  = dataDirectory + route.mapFileName;
+        let pathToFileInString  = dataDirectory + route.getMapFileName();
         await new Promise<void>((success, error) => {
             downloadRequest.onProgress((progress) => {
                 if (progress.loaded && progress.total && progress.loaded < progress.total) {

@@ -5,7 +5,7 @@
             <circle class="progress__value" cx="60" cy="60" r="54" stroke-width="12" [ngStyle]="{'stroke-dasharray': 339.292, 'stroke-dashoffset': completedRadius}"></circle>
         </svg>
         <div class="cover">
-            <img class="thumb" [attr.data-async-src]="route.getImageURL()" onerror="this.style.opacity='0'" />
+            <img class="thumb" [attr.data-async-src]="route.getSmallImageURL()" onerror="this.style.opacity='0'" />
         </div>
         <img *ngIf="route.isNarrativeEnabled()" class="indicator" src="./assets/images/{{route.getNarrativeName()}}/indicator-badge.svg"/>
     </div>

@@ -6,6 +6,7 @@ import {ImagesService} from '../services/images-service';
 import {RouteDetailApiResponse} from "../services/ApiResponseDefinition/RouteDetailApiResponse";
 import {ChildTaskApiResponse, TaskApiResponse} from "../services/ApiResponseDefinition/TaskApiResponse";
 import {TaskFormat} from "../services/ApiResponseDefinition/TaskFormat";
+import {s3Media} from "../services/ApiResponseDefinition/s3Media";
 
 @Entity('mcm_task')
 export class Task {
@@ -120,6 +121,8 @@ export class Task {
 
     forceSupportTask: boolean;
 
+    s3Media: s3Media;
+
     static createTaskListFromRouteDetailResponse(response: RouteDetailApiResponse): Array<Task> {
         let tasks = [];
         for (let [index, rTask] of response.tasks.entries()) {
@@ -172,6 +175,7 @@ export class Task {
         task.taskFormat = rTask.task_format;
         task.position = position;
         task.forceSupportTask = Boolean(rTask.force_support_tasks);
+        task.s3Media = rTask.s3_media;
         return task;
     }
 
@@ -193,18 +197,14 @@ export class Task {
     }
 
     getImageURL(asRawString: boolean = false): string {
-        return ImagesService.INSTANCE.getOfflineURL(this.image, undefined, undefined, asRawString);
-    }
-
-    getSingleQuotedImageURL(): string {
-        return `'${this.getImageURL()}'`;
+        return ImagesService.INSTANCE.getOfflineURL(this.s3Media.image.details.largeUrl, undefined, undefined, asRawString);
     }
 
     getImagesForDownload(): string[] {
         let result = [];
         // Add title image
-        if (this.image) {
-            result.push(this.image);
+        if (this.s3Media.image) {
+            result.push(this.s3Media.image.details.largeUrl);
         }
         // Add sample solution image if available
         let sampleSolutionImg = this.getSolutionSampleImgSrc();
@@ -219,7 +219,7 @@ export class Task {
         // Add hint images
         return result.concat(this.getHints().filter(hint =>
             hint.type == 'image' && hint.value && hint.value.trim()
-        ).map(hint => hint.value.trim()));
+        ).map(hint => this.s3Media['hint'+hint.index].details.largeUrl));
     }
 
     getSolutionOptionList(): Array<any> {
@@ -304,11 +304,8 @@ export class Task {
     Returns the src of sample solution image if provided, empty string if not
      */
     getSolutionSampleImgSrc(): string {
-        if(this.solutionSample){
-            let sample = Helper.safeJsonDecode(this.solutionSample);
-            if(sample.length > 0){
-                return (sample[1] != null) ? sample[1] : "";
-            }
+        if(this.s3Media.solutionsample) {
+            return this.s3Media.solutionsample.details.largeUrl;
         }
         else{
             return "";
@@ -362,7 +359,8 @@ export class Task {
             if (array.length >= 2) {
                 return {
                     type: array[0],
-                    value: array[1]
+                    value: array[1],
+                    index: index
                 }
             }
         }
@@ -449,5 +447,6 @@ export class Task {
 
 export interface Hint {
     type: string,
-    value: string
+    value: string,
+    index: number
 }

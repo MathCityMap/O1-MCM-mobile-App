@@ -44,9 +44,9 @@
 					</button>
 				</ion-fab>
 			</div>
-			<img class="image" *ngIf="task && task.solutionType!='gps' && task.image" [src]="task.getImageURL()"
+			<img class="image" *ngIf="task && task.solutionType!='gps' && task.s3Media.image" [src]="task.getImageURL()"
 				  (click)="openInPhotoviewer()"/>
-			<img class="image" *ngIf="task && !task.image && rootTask && rootTask.image && task.solutionType !='gps'"
+			<img class="image" *ngIf="task && !task.s3Media.image && rootTask && rootTask.s3Media.image && task.solutionType !='gps'"
 				  [src]="rootTask.getImageURL()" (click)="openInPhotoviewer(true)"/>
 		</div>
 
@@ -245,7 +245,7 @@
 							<!--				TODO generate image items-->
 							<div class="image-item">
 								<!--				TODO load image-->
-								<img class="image" *ngIf="task && task.image" [src]="task.getImageURL()" alt="image"/>
+								<img class="image" *ngIf="task && task.s3Media.image" [src]="task.getImageURL()" alt="image"/>
 								<!--				TODO display image in viewer-->
 								<button ion-button icon-only color="transparent" (click)="openInPhotoviewer()">
 									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>
@@ -255,7 +255,7 @@
 							<!--         Fill-in-the-Blanks-->
 							<!--				TODO toggle active when item clicked-->
 							<div class="image-item active">
-								<img class="image" *ngIf="task && task.image" [src]="task.getImageURL()" alt="image"/>
+								<img class="image" *ngIf="task && task.s3Media.image" [src]="task.getImageURL()" alt="image"/>
 								<button ion-button icon-only round color="transparent" (click)="openInPhotoviewer()">
 									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>
 								</button>

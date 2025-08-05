@@ -1,4 +1,4 @@
-import {s3MediaResponse} from "./s3MediaResponse";
+import {s3Media} from "./s3Media";
 
 export interface RouteApiResponse {
     _id: number;
@@ -25,7 +25,7 @@ export interface RouteApiResponse {
     map_version: number;
     map_filename: string;
     map_date: number;
-    s3_media: s3MediaResponse
+    s3_media: s3Media
     is_offline: number;
     distance: number;
 }

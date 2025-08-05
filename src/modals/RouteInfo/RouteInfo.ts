@@ -45,11 +45,7 @@ export class RouteInfo {
     async ionViewWillEnter() {
         let routeId = this.navParams.get('routeId');
         this.route = this.viewCtrl.data.route = await this.routeApiService.getRouteFromId(routeId);
-        this.routeInfos = await this.routeApiService.getDetailsForRoute(this.route);
-        //Fetch tasks in Route so Tools of tasks can be shown properly
-        this.totalTasks = await Route.getTrueTaskCount(this.routeInfos.tasks);
-        let score = this.routeInfos.score;
-        this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+        await this.collectDetails();
         MathJax.typeset();
         let {translation, isFetched} = await this.translationService.getTranslationForRoute(this.route.code);
         this.translation = translation;
@@ -66,7 +62,12 @@ export class RouteInfo {
         let modalsService: ModalsService = this.viewCtrl.data.modalsService;
         await modalsService.doDownload(route);
         this.route = await this.routeApiService.getRouteFromId(route.id);
+        await this.collectDetails();
+    }
+
+    async collectDetails() {
         this.routeInfos = await this.routeApiService.getDetailsForRoute(this.route);
+        //Fetch tasks in Route so Tools of tasks can be shown properly
         this.totalTasks = await Route.getTrueTaskCount(this.routeInfos.tasks);
         let score = this.routeInfos.score;
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;

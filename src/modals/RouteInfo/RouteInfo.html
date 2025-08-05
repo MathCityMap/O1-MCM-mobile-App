@@ -201,12 +201,12 @@
       {{ 'a_r_download' | translate }}
    </button>
    <button class="play pad-for-safe-area" ion-button full block no-margin no-padding large
-           *ngIf="route && route.downloaded && (!routeInfos.score)"
+           *ngIf="route && route.downloaded && (!routeInfos || !routeInfos.score || routeInfos.score.isEmpty())"
            (click)="showRoute(route)">
       {{ 'a_r_start' | translate }}
    </button>
    <button class="play pad-for-safe-area" ion-button full block no-margin no-padding large
-           *ngIf="route && route.downloaded && (routeInfos.score)"
+           *ngIf="route && route.downloaded && (routeInfos && routeInfos.score && !routeInfos.score.isEmpty())"
            (click)="showRoute(route)">
       {{ 'a_r_continue' | translate }}
    </button>

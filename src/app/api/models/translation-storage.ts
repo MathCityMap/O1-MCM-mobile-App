@@ -103,7 +103,8 @@ export class TaskTranslation {
         if (hint.length >= 2) {
             return {
                 type: hint[0],
-                value: hint[1]
+                value: hint[1],
+                index: index
             }
         }
         return null;

@@ -8,7 +8,7 @@ import {RouteListApiResponse} from "./ApiResponseDefinition/RouteListApiResponse
 import {GpsService} from "./gps-service";
 import {Storage} from "@ionic/storage";
 import {RouteDetailApiResponse} from "./ApiResponseDefinition/RouteDetailApiResponse";
-import { Task } from "../entity/Task";
+import {Task} from "../entity/Task";
 import {Score} from "../entity/Score";
 import {CacheManagerMCM} from "../classes/CacheManagerMCM";
 import {ImagesService} from "./images-service";
@@ -19,6 +19,7 @@ import {RouteInfos} from "./ApiResponseDefinition/RouteInfos";
 import {TaskState} from "../entity/TaskState";
 import {RouteApiResponse} from "./ApiResponseDefinition/RouteApiResponse";
 import {OrmService} from "./orm-service";
+import {s3MediaType} from "./ApiResponseDefinition/s3Media";
 
 const DOWNLOADED_ROUTES_KEY = "MCM_ROUTES_DOWNLOADED"
 const DOWNLOADED_ROUTE_INFOS_PREFIX = "MCM_DOWNLOADED_ROUTE_INFOS_"
@@ -167,7 +168,6 @@ export class RouteApiService {
 
         try {
             let tasks = await this.internalFetchDetailsForRoute(route.code);
-            console.log("Tasks for route", tasks);
             let routeInfo = {tasks: tasks, score: new Score()}
             await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX + route.code, routeInfo);
 
@@ -201,9 +201,8 @@ export class RouteApiService {
             });
             await this.addRouteToDownloadedList(route)
         } catch (e) {
-            console.log("download failed or was aborted");
             if (e.message) {
-                console.log(e.message);
+                console.debug(e.message);
             }
             if(e.http_status && e.http_status === 404){
                 const alert = this.alertCtrl.create({
@@ -217,7 +216,6 @@ export class RouteApiService {
                 let postparams = "&route_id=" + route.id;
                 Helper.INSTANCE.invokeApi('downloadTrailFailed', postparams)
             }
-            console.log(e);
             await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
         }
     }
@@ -348,7 +346,6 @@ export class RouteApiService {
         }
         return this.http.post<RouteDetailApiResponse>(`${API_URL}/app/v1/trails/${code}`, body, {headers: Helper.getApiRequestHeaders()}).pipe(
             map(value => {
-                console.log('Trail download result', value);
                 return Task.createTaskListFromRouteDetailResponse(value);
             })
         ).toPromise();
@@ -374,11 +371,37 @@ export class RouteApiService {
         for (let route of routes) {
             let tasks = (await route.getTasks()).map(task => {
                 task.forceSupportTask = Boolean(route.isSubtaskRequired(task.id));
+                task.s3Media = {
+                    image: RouteApiService.createS3ImageMediaForUrl(task.image)
+                };
+                if (task.getHint(1).type === "image") {
+                    task.s3Media.hint1 = RouteApiService.createS3ImageMediaForUrl(task.getHint(1).value);
+                }
+                if (task.getHint(2).type === "image") {
+                    task.s3Media.hint2 = RouteApiService.createS3ImageMediaForUrl(task.getHint(2).value);
+                }
+                if (task.getHint(3).type === "image") {
+                    task.s3Media.hint3 = RouteApiService.createS3ImageMediaForUrl(task.getHint(3).value);
+                }
+                if (task.getSolutionSampleImgSrc() !== "") {
+                    task.s3Media.solutionsample = RouteApiService.createS3ImageMediaForUrl(task.getSolutionSampleImgSrc());
+                }
                 return task;
             });
             let score = route.getScoreForUser(user);
             score.route = undefined;
             route.scores = undefined;
+
+            route.s3Media = {
+                mapFilename: {
+                    mimeType: "archive/zip",
+                    details: {
+                        url: Helper.MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName
+                    },
+                    type: s3MediaType.ZIP
+                },
+                image: RouteApiService.createS3ImageMediaForUrl(route.image)
+            }
             route.tasks = undefined;
             route.task2Routes = undefined;
             let routeInfo = {tasks: tasks, score: score};
@@ -389,5 +412,19 @@ export class RouteApiService {
 
         await this.ormService.removeAllSqLiteData();
         await this.storage.set(key, true);
+    }
+
+    private static createS3ImageMediaForUrl(url: string) {
+        let imageUrlSegments = url.split('/');
+        let frontParts = imageUrlSegments.splice(0, imageUrlSegments.length - 1);
+        return {mimeType: "image/*",
+            type: s3MediaType.IMAGE,
+            details: {
+            thumbUrl: `${Helper.MEDIASERVER_IMAGE_URL}${frontParts.join('/')}/thumb/${imageUrlSegments.join('/')}`,
+                smallUrl: `${Helper.MEDIASERVER_IMAGE_URL}${frontParts.join('/')}/s/${imageUrlSegments.join('/')}`,
+                mediumUrl: `${Helper.MEDIASERVER_IMAGE_URL}${frontParts.join('/')}/m/${imageUrlSegments.join('/')}`,
+                largeUrl: `${Helper.MEDIASERVER_IMAGE_URL}${frontParts.join('/')}/l/${imageUrlSegments.join('/')}`
+        }
+        }
     }
 }

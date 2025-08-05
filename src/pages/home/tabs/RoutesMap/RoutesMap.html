@@ -4,7 +4,7 @@
         <div *ngIf="showAllRoutes" id="map" class="map-view"></div>
         <div *ngIf="!showAllRoutes" id="mapDownloaded" class="map-view"></div>
 
-        <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images image-size="s">
+        <div id="details" class="detail-box" [ngClass]="{'open': routeDetails != null}" lazy-load-images>
             <ion-fab right top>
                 <button ion-fab color="primary" (click)="switchToList()"><img src="assets/icons/list.svg"/></button>
             </ion-fab>

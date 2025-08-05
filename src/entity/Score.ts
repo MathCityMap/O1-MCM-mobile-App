@@ -47,6 +47,10 @@ export class Score {
         return score;
     }
 
+    isEmpty(): boolean {
+        return !this.taskDetails || this.taskDetails === "[]" || this.taskDetails === "";
+    }
+
 
     setTasksSolved(taskIds: Array<number>){
         this.tasksSolved = JSON.stringify(taskIds);

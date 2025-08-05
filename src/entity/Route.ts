@@ -11,6 +11,7 @@ import {GpsService} from '../services/gps-service';
 import {MAPBOX_ACCESS_TOKEN} from "../env/env";
 import {RouteApiResponse} from "../services/ApiResponseDefinition/RouteApiResponse";
 import {TaskFormat} from "../services/ApiResponseDefinition/TaskFormat";
+import {s3Media} from "../services/ApiResponseDefinition/s3Media";
 
 @Entity('mcm_route')
 export class Route {
@@ -35,6 +36,9 @@ export class Route {
     @Column()
     city: string;
 
+    /**
+     * @deprecated use s3Media.image instead for Trail image
+     */
     @Column()
     image: string;
 
@@ -74,6 +78,9 @@ export class Route {
     @Column({name: 'map_version'})
     mapVersion: string;
 
+    /**
+     * @deprecated use s3Media.mapFilename instead for Trail image
+     */
     @Column({name: 'map_filename'})
     mapFileName: string;
 
@@ -167,6 +174,8 @@ export class Route {
     @Column({name: 'min_zoom'})
     min_zoom: number;
 
+    s3Media: s3Media;
+
     static fromRouteResponse(routeResponse: RouteApiResponse): Route {
         let route = new Route();
         route.id = routeResponse._id;
@@ -192,6 +201,7 @@ export class Route {
         route.mapDate = String(routeResponse.map_date);
         route.isOffline = !!routeResponse.is_offline;
         route.distance = routeResponse.distance * 1000 // App expects distances in metres, here we get a distance in kilometres
+        route.s3Media = routeResponse.s3_media;
         return route;
     }
 
@@ -252,8 +262,28 @@ export class Route {
         return score;
     }
 
+    getThumbImageURL(): string {
+        return this.s3Media.image.details.thumbUrl;
+    }
+
+    getSmallImageURL(): string {
+        return this.s3Media.image.details.smallUrl;
+    }
+
     getImageURL(): string {
-        return this.image;
+        return this.s3Media.image.details.mediumUrl;
+    }
+
+    getLargeImageURL(): string {
+        return this.s3Media.image.details.largeUrl;
+    }
+
+    getMapTilesURL(): string {
+        return this.s3Media.mapFilename.details.url;
+    }
+
+    getMapFileName(): string {
+        return this.s3Media.mapFilename.details.url.split('/').pop();
     }
 
     private boundingBoxLatLng: LatLngBounds = null;

@@ -529,6 +529,9 @@ export class TaskDetail {
             console.log(" ===============================  ", this.task.getHint(index) ); */
         let type: string = this.translatePage ? this.translation.getHint(index).type : this.task.getHint(index).type;
         let message: string = this.translatePage ? this.translation.getHint(index).value : this.task.getHint(index).value;
+        if (type === 'image') {
+            message = this.task.s3Media["hint"+index].details.largeUrl;
+        }
         if (this.shownHints.indexOf(index) == -1) {
             this.shownHints.push(index);
         }

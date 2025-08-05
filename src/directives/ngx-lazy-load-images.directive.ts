@@ -17,7 +17,6 @@ import { ImagesService } from '../services/images-service';
 export class LazyLoadImagesDirective {
 
     @Input('lazy-load-images') intersectionObserverConfig: Object;
-    @Input('image-size') imageSize: string;
 
     intersectionObserver: IntersectionObserver;
     rootElement: HTMLElement;
@@ -102,7 +101,7 @@ export class LazyLoadImagesDirective {
 
     onImageAppearsInViewport(image: any) {
         if (image.dataset.asyncSrc) {
-            this.imagesService.getAsyncImageURL(image.dataset.asyncSrc, this.imageSize).then((asyncSrc) => {
+            this.imagesService.getAsyncImageURL(image.dataset.asyncSrc).then((asyncSrc) => {
                 this.renderer.setAttribute(image, 'src', asyncSrc);
             });
             this.renderer.removeAttribute(image, 'data-async-src');
@@ -118,7 +117,7 @@ export class LazyLoadImagesDirective {
         }
 
         if (image.dataset.asyncBackgroundSrc) {
-            this.imagesService.getAsyncImageURL(image.dataset.asyncBackgroundSrc, this.imageSize).then((asyncSrc) => {
+            this.imagesService.getAsyncImageURL(image.dataset.asyncBackgroundSrc).then((asyncSrc) => {
                 this.renderer.setStyle(image, 'background-image', `url(${asyncSrc})`);
             });
             this.renderer.removeAttribute(image, 'data-async-background-src');

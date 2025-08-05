@@ -1,4 +1,4 @@
-import {s3MediaResponse} from "./s3MediaResponse";
+import {s3Media} from "./s3Media";
 import {TaskFormat} from "./TaskFormat";
 
 export interface TaskApiResponse {
@@ -35,7 +35,7 @@ export interface TaskApiResponse {
     ar_link: string;
     potential_problem: number;
     inactive: number;
-    s3_media: s3MediaResponse;
+    s3_media: s3Media;
     force_support_tasks: number;
 }
 
