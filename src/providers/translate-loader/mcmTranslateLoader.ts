@@ -38,10 +38,16 @@ export class McmTranslateLoader implements TranslateLoader {
                 ).subscribe({
                     next: (val) => {
                         const key = TRANSLATION_BASE_KEY+lang
-                        this.storage.set(key, val);
+                        // replace all ###*.### with {{*.}} in every entry of val here
+                        let parsedVal = {};
+                        Object.keys(val).map(key => {
+                            let translation = val[key];
+                            parsedVal[key] = translation.replace(/\\(')/g, '$1').replace(/\\n/g, '\n').replace(/###([^#]*)###/g, '{{$1}}');
+                        });
+                        this.storage.set(key, parsedVal);
                         timestamp = Date.now();
                         this.storage.set(cacheKey, timestamp);
-                        subscriber.next(val)
+                        subscriber.next(parsedVal)
                     },
                     error: (err) => subscriber.error(err),  // Should not be reached due to catchError
                     complete: () => subscriber.complete()
