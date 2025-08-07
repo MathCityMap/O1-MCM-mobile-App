@@ -456,7 +456,13 @@ export class TasksMap implements OnDestroy {
             this.state.skippedTaskIds.push(task.id);
         }
         console.debug("goToNextTask");
-        this.state.selectedTask = this.mapTaskList[task.position % this.mapTaskList.length];
+        const nextTask = this.mapTaskList[task.position % this.mapTaskList.length];
+        if (nextTask.inactive) {
+            return this.goToNextTask(nextTask);
+        }
+        // Save selected task in navParams as well so refreshing state from local storage doesn't reset it
+        this.navParams.data.selectedTask = nextTask;
+        this.state.selectedTask = nextTask;
         this.state.visibleTasks[this.state.selectedTask.position] = true;
         this.centerSelectedTask();
         this.saveMapStateToLocalStorage();
@@ -761,6 +767,7 @@ export class TasksMap implements OnDestroy {
         for (let group of groups) {
             scoredTasks = scoredTasks.concat(group.getLegitSubtasks());
         }
+        scoredTasks = scoredTasks.filter(task => {return !task.inactive});
         this.scoreTaskList = scoredTasks;
     }
 

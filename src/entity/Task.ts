@@ -121,6 +121,8 @@ export class Task {
 
     forceSupportTask: boolean;
 
+    inactive: boolean;
+
     s3Media: s3Media;
 
     static createTaskListFromRouteDetailResponse(response: RouteDetailApiResponse): Array<Task> {
@@ -176,6 +178,7 @@ export class Task {
         task.position = position;
         task.forceSupportTask = Boolean(rTask.force_support_tasks);
         task.s3Media = rTask.s3_media;
+        task.inactive = Boolean(rTask.inactive);
         return task;
     }
 
@@ -197,6 +200,9 @@ export class Task {
     }
 
     getImageURL(asRawString: boolean = false): string {
+        if (!this.s3Media.image) {
+            return ImagesService.INSTANCE.getOfflineURL("", undefined, undefined, asRawString);
+        }
         return ImagesService.INSTANCE.getOfflineURL(this.s3Media.image.details.largeUrl, undefined, undefined, asRawString);
     }
 

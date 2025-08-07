@@ -26,7 +26,8 @@ export class MapboxMapHandler implements MapHandlerInterface {
         taskSavedIcon: '#6E38B9',
         taskDoneIcon: '#F3B100',
         taskDonePerfectIcon:'#4CAF50',
-        taskFailedIcon: '#E62B25'
+        taskFailedIcon: '#E62B25',
+        taskDisabledIcon: '#B2B2B2'
     }
     private redrawingMarkers: boolean = false;
     private prevPos: any;
@@ -166,7 +167,10 @@ export class MapboxMapHandler implements MapHandlerInterface {
                 await this.registerGroupMarkerIcon(iconKey, subtasks, score);
                 icon = iconKey;
             } else {
-                if (score.getTasksSaved().includes(task.id)) {
+                if (task.inactive) {
+                    icon = 'taskDisabledIcon';
+                    clusterState = 'disabled';
+                } else if (score.getTasksSaved().includes(task.id)) {
                     icon = 'taskSavedIcon';
                     clusterState = "saved";
                 } else if (score.getTasksSolved().includes(task.id)) {
@@ -218,6 +222,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
             map(properties) {
                 return {
                     open: properties.state === "open" ? 1 : 0,
+                    disabled: properties.state === "disabled" ? 1 : 0,
                     saved: properties.state === "saved" ? 1 : 0,
                     perfect: properties.state === "perfect" ? 1 : 0,
                     done: properties.state === "done" ? 1 : 0,
@@ -295,6 +300,9 @@ export class MapboxMapHandler implements MapHandlerInterface {
                 let colorOccurrences = {};
                 if (c.properties.open > 0) {
                     colorOccurrences[this.clusterColors.taskOpenIcon] = c.properties.open;
+                }
+                if (c.properties.disabled > 0) {
+                    colorOccurrences[this.clusterColors.taskDisabledIcon] = c.properties.disabled;
                 }
                 if (c.properties.saved > 0) {
                     colorOccurrences[this.clusterColors.taskSavedIcon] = c.properties.saved;
@@ -377,6 +385,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
 
             // Handle clicks on individual tasks
             map.on('click', 'unclustered-point', (e: any) => {
+                if (e.features[0].properties.state === 'disabled') return;
                 this.taskClickedEvent.emit(e.features[0].properties.id);
             });
         }
@@ -637,13 +646,15 @@ export class MapboxMapHandler implements MapHandlerInterface {
                 await addPng(this.map, "assets/icons/pirates/marker-task-good.png", 'taskDoneIcon');
                 await addPng(this.map, "assets/icons/pirates/marker-task-perfect.png", 'taskDonePerfectIcon');
                 await addPng(this.map, "assets/icons/pirates/marker-task-failed.png", 'taskFailedIcon');
+                await addSvg(this.map, "assets/icons/map/task-disabled.svg", 'taskDisabledIcon');
                 this.clusterColors =  {
                     taskOpenIcon: '#AA2000',
                     taskSkippedIcon: '#b2b2b2',
                     taskSavedIcon: '#6E38B9',
                     taskDoneIcon: '#FFC033',
                     taskDonePerfectIcon:'#33CC00',
-                    taskFailedIcon: '#333333'
+                    taskFailedIcon: '#333333',
+                    taskDisabledIcon: '#B2B2B2'
                 }
                 break;
             default:
@@ -655,13 +666,15 @@ export class MapboxMapHandler implements MapHandlerInterface {
                 await addSvg(this.map, "assets/icons/map/task-good.svg", 'taskDoneIcon');
                 await addSvg(this.map, "assets/icons/map/task-perfect.svg", 'taskDonePerfectIcon');
                 await addSvg(this.map, "assets/icons/map/task-failed.svg", 'taskFailedIcon');
+                await addSvg(this.map, "assets/icons/map/task-disabled.svg", 'taskDisabledIcon');
                 this.clusterColors = {
                     taskOpenIcon: '#036D99',
                     taskSkippedIcon: '#B2B2B2',
                     taskSavedIcon: '#6E38B9',
                     taskDoneIcon: '#F3B100',
                     taskDonePerfectIcon:'#4CAF50',
-                    taskFailedIcon: '#E62B25'
+                    taskFailedIcon: '#E62B25',
+                    taskDisabledIcon: '#B2B2B2'
                 };
                 break;
         }

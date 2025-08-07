@@ -27,6 +27,7 @@ export class LeafletMapHandler implements MapHandlerInterface {
     private taskDonePerfectIcon;
     private taskFailedIcon;
     private taskSavedIcon;
+    private taskDisabledIcon;
     private userPositionIcon;
     private userPositionArrow;
     private prevPos: any;
@@ -263,7 +264,9 @@ export class LeafletMapHandler implements MapHandlerInterface {
                 icon = this.getMarkerForGroup(task, score);
             } else {
                 let removeTaskFromSkippedArray = true;
-                if (score.getTasksSaved().indexOf(task.id) > -1) {
+                if (task.inactive) {
+                    icon = this.taskDisabledIcon;
+                } else if (score.getTasksSaved().indexOf(task.id) > -1) {
                     icon = this.taskSavedIcon;
                 } else if (score.getTasksSolved().indexOf(task.id) > -1) {
                     icon = this.taskDonePerfectIcon;
@@ -307,6 +310,7 @@ export class LeafletMapHandler implements MapHandlerInterface {
                 }
             }
             markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
+                if (task.inactive) return;
                 this.taskClickedEvent.emit(task.id);
             }));
         }
@@ -518,13 +522,19 @@ export class LeafletMapHandler implements MapHandlerInterface {
                     iconAnchor: [25, 25],
                     className: 'marker'
                 });
-
+                this.taskDisabledIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-disabled.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
                 this.taskOpenIcon.clusterColor = '#AA2000';
                 this.taskSkippedIcon.clusterColor = '#b2b2b2';
                 this.taskSavedIcon.clusterColor = '#6E38B9';
                 this.taskDoneIcon.clusterColor = '#FFC033';
                 this.taskDonePerfectIcon.clusterColor = '#33CC00';
                 this.taskFailedIcon.clusterColor = '#333333';
+                this.taskDisabledIcon.clusterColor = '#B2B2B2';
                 break;
             default:
                 this.userPositionIcon = L.icon({
@@ -575,12 +585,19 @@ export class LeafletMapHandler implements MapHandlerInterface {
                     iconAnchor: [17, 43],
                     className: 'marker'
                 });
+                this.taskDisabledIcon = L.icon({
+                    iconUrl: 'assets/icons/map/task-disabled.svg',
+                    iconSize: [34, 48],
+                    iconAnchor: [17, 43],
+                    className: 'marker'
+                });
                 this.taskOpenIcon.clusterColor = '#036D99';
                 this.taskSkippedIcon.clusterColor = '#B2B2B2';
                 this.taskSavedIcon.clusterColor = '#6E38B9';
                 this.taskDoneIcon.clusterColor = '#F3B100';
                 this.taskDonePerfectIcon.clusterColor = '#4CAF50';
                 this.taskFailedIcon.clusterColor = '#E62B25';
+                this.taskDisabledIcon.clusterColor = '#B2B2B2';
                 break;
         }
     }
