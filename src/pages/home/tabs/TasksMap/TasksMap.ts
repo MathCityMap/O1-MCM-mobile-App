@@ -273,9 +273,15 @@ export class TasksMap implements OnDestroy {
         }
         console.log('Force Start From Task', this.mapTaskList);
         let selectedTask = this.mapTaskList.filter(x => x.id == taskId).pop();
+        this.state.visibleTasks = {};
+        if (selectedTask.inactive) {
+            this.state.visibleTasks[selectedTask.position] = true;
+            let index = this.mapTaskList.findIndex(task => selectedTask.id === task.id);
+            let nextTaskIndex = index+1 < this.mapTaskList.length ? index+1 : 0;
+            selectedTask = this.mapTaskList[nextTaskIndex];
+        }
         this.state.selectedTask = selectedTask;
         console.debug("forceStartFromTask");
-        this.state.visibleTasks = {};
         this.state.visibleTasks[selectedTask.position] = true;
         this.state.isShowingAllTasks = false;
         this.state.showGuidedTrailModal = false;
@@ -458,6 +464,7 @@ export class TasksMap implements OnDestroy {
         console.debug("goToNextTask");
         const nextTask = this.mapTaskList[task.position % this.mapTaskList.length];
         if (nextTask.inactive) {
+            this.state.visibleTasks[nextTask.position] = true;
             return this.goToNextTask(nextTask);
         }
         // Save selected task in navParams as well so refreshing state from local storage doesn't reset it

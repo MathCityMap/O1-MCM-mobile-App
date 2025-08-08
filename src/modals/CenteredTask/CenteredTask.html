@@ -3,7 +3,7 @@
     <div class="modal-content">
         <h2 *ngIf="route">{{route.title}}</h2>
         <p *ngIf="route"><b>{{ 'a_startAt' | translate}}</b></p>
-        <div tappable class="dotted-border-bottom"
+        <div tappable class="dotted-border-bottom" [class.disabled]="(item.inactive)"
              *ngFor="let item of tasks" (click) = "showRoute(route, item)">
             <!--#{{item.position}} {{item.title}}-->
             <!--&lt;!&ndash; green &ndash;&gt;<span *ngIf="score.getTasksSolved().indexOf(item.id) > -1" style="color: #4CAF50">#{{item.position}} {{item.title}}</span>-->
@@ -12,9 +12,9 @@
             <!--&lt;!&ndash;alles andere&ndash;&gt;<span *ngIf="!(score.getTasksSolved().indexOf(item.id) > -1) && !(score.getTasksFailed().indexOf(item.id) > -1) && !(score.getTasksSolvedLow().indexOf(item.id) > -1)" style="color: black">#{{item.position}} {{item.title}}</span>-->
             <!-- grau für skipped fehlt noch -->
             <span
-                    [class.perfect]="(score.getTasksSolved().indexOf(item.id) > -1)"
-                    [class.failed]="(score.getTasksFailed().indexOf(item.id) > -1)"
-                    [class.good]="(score.getTasksSolvedLow().indexOf(item.id) > -1)">
+					[class.perfect]="(score.getTasksSolved().indexOf(item.id) > -1)"
+					[class.failed]="(score.getTasksFailed().indexOf(item.id) > -1)"
+					[class.good]="(score.getTasksSolvedLow().indexOf(item.id) > -1)">
                     <!--[class.tasksSkippedColor]="(state.skippedTaskIds.indexOf(item.id) > -1)"-->
                 #{{item.position}} {{item.title}}
             </span>

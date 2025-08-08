@@ -1506,6 +1506,20 @@ ion-modal {
                   }
                }
             }
+            &.disabled {
+               color: color($colors, grey);
+               span:before{
+                     content: '';
+                     width: 12px;
+                     height: 12px;
+                     border-radius: 50%;
+                     background-color: color($colors, grey);
+                     position: absolute;
+                     top: 50%;
+                     right: 0;
+                     transform: translateY(-50%);
+               }
+            }
          }
       }
 

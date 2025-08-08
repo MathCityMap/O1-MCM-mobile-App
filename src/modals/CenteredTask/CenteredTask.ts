@@ -35,6 +35,7 @@ export class CenteredTask{
 
 
   showRoute(route: Route, selectedTask: Task) {
+      if (selectedTask.inactive) return;
     this.viewCtrl.dismiss({route: route, selectedTask: selectedTask});
   }
 

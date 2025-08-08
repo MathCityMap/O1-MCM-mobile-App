@@ -3,22 +3,19 @@
     <style>
       .cls-1 {
         fill: #b2b2b2;
+        opacity: 0.4;
       }
 
       .cls-2 {
+        opacity: 0.4;
         fill: #fff;
         stroke-miterlimit: 10;
       }
 
-      .cls-2, .cls-3 {
+      .cls-2 {
         stroke: #fff;
         stroke-linecap: round;
         stroke-width: 3px;
-      }
-
-      .cls-3 {
-        fill: none;
-        stroke-linejoin: round;
       }
 
       .cls-4 {
