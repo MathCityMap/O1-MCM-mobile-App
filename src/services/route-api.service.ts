@@ -30,7 +30,7 @@ export class RouteApiService {
     totalRoutes: number;
     nextOffset: number = 0;
     position: {latitude: number, longitude: number};
-    routesUpdated: EventEmitter<void> = new EventEmitter();
+    routesUpdated: EventEmitter<string|undefined> = new EventEmitter();
     private searchTerm: string = "";
     private _publicRoutes: Route[] = [];
     private _downloadedRoutes: Route[];
@@ -285,6 +285,7 @@ export class RouteApiService {
         let stats: RouteInfos = await this.storage.get(DOWNLOADED_ROUTE_INFOS_PREFIX+routeCode);
         stats.score = score;
         await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX+routeCode, stats);
+        this.routesUpdated.emit(routeCode);
         return Score.fromGenericScore(stats.score);
     }
 

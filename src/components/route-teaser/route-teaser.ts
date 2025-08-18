@@ -4,6 +4,7 @@ import {ModalsService} from "../../services/modals-service";
 import {Helper} from "../../classes/Helper";
 import {RouteApiService} from "../../services/route-api.service";
 import {RouteInfos} from "../../services/ApiResponseDefinition/RouteInfos";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -34,9 +35,18 @@ export class RouteTeaserComponent {
     constructor( private modalsService: ModalsService,
                  private helper: Helper,
                  private routeApiService: RouteApiService) {
+        this.routeApiService.routesUpdated.subscribe((routeCode: string) => {
+            if (routeCode === this.route.code) {
+                this.updateDetails();
+            }
+        })
     }
 
-    async ngOnChanges(){
+    ngOnChanges(){
+        this.updateDetails();
+    }
+
+    async updateDetails() {
         if(this.route && this.route.downloaded) {
             this.routeDetails = await this.routeApiService.getDetailsForRoute(this.route);
             this.total = await Route.getTrueTaskCount(this.routeDetails.tasks);
