@@ -227,6 +227,27 @@ export class RouteApiService {
         }
     }
 
+    async updateRouteInfos(route: Route) {
+        let alreadyDownloadedUrls = [];
+
+        try {
+            let tasks = await this.internalFetchDetailsForRoute(route.code, true);
+            let routeInfo = await this.getDetailsForRoute(route);
+            routeInfo.tasks = tasks;
+            await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX + route.code, routeInfo);
+
+            let downloadImages = this.getDownloadImagesForTasks(tasks);
+            // statusCallback(0, downloadImages.length, 'a_rdl_title_img');
+            await this.imagesService.downloadURLs(downloadImages, false, (done, total, url) => {
+                alreadyDownloadedUrls.push(url);
+                return true;
+                // return statusCallback(done, total);
+            });
+        } catch (e) {
+            console.warn('Updating trail infos failed');
+        }
+    }
+
     async removeDownloadedData() {
         let routes = await this.getDownloadedRoutes();
         for (let route of routes) {
@@ -346,11 +367,11 @@ export class RouteApiService {
         ).toPromise();
     }
 
-    private async internalFetchDetailsForRoute(code: string): Promise<Array<Task>> {
+    private async internalFetchDetailsForRoute(code: string, isUpdate: boolean = false): Promise<Array<Task>> {
         const body = {
             "userId": "0",
             "langCode": "de",
-            "isUpdate": false
+            "isUpdate": isUpdate
         }
         return this.http.post<RouteDetailApiResponse>(`${API_URL}/app/v1/trails/${code}`, body, {headers: Helper.getApiRequestHeaders()}).pipe(
             map(value => {

@@ -73,8 +73,9 @@ export class RouteInfo {
         this.currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
     }
 
-    showRoute(route: Route) {
+    async showRoute(route: Route) {
         if (route.downloaded) {
+            await this.routeApiService.updateRouteInfos(route);
             this.viewCtrl.dismiss({showRoute: true, route: route});
         }
     }
