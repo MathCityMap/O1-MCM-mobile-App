@@ -31,6 +31,7 @@ export class RouteApiService {
     nextOffset: number = 0;
     position: {latitude: number, longitude: number};
     routesUpdated: EventEmitter<void> = new EventEmitter();
+    private searchTerm: string = "";
     private _publicRoutes: Route[] = [];
     private _downloadedRoutes: Route[];
     //Holds routes which have been added using code during this session in memory to enable showing their information
@@ -83,10 +84,16 @@ export class RouteApiService {
         this.routesUpdated.emit();
     }
 
+    updateSearchTerm(term: string) {
+        this.reset();
+        this.searchTerm = term;
+    }
+
     reset() {
         this.position = undefined;
         this._publicRoutes = [];
         this.nextOffset = 0;
+        this.searchTerm = "";
     }
 
     async getDownloadedRoutes(): Promise<Array<Route>> {
@@ -324,7 +331,7 @@ export class RouteApiService {
 
     private async internalfetchRoutesForPosition(lat: number, lon: number, offset = 0, limit = 20): Promise<Route[]> {
         const downloadedRoutes = await this.getDownloadedRoutes();
-        return this.http.get<RouteListApiResponse>(`${API_URL}/app/v1/trails?offset=${offset}&limit=${limit}&lat=${lat}&lon=${lon}`, {headers: Helper.getApiRequestHeaders()}).pipe(
+        return this.http.get<RouteListApiResponse>(`${API_URL}/app/v1/trails?offset=${offset}&limit=${limit}&lat=${lat}&lon=${lon}&searchTerm=${this.searchTerm}`, {headers: Helper.getApiRequestHeaders()}).pipe(
             map(value => {
                 this.totalRoutes = value.total;
                 return value.items.map(routeResponse => {

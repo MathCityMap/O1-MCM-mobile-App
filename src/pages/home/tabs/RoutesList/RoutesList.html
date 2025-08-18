@@ -3,7 +3,7 @@
         <ion-searchbar type="text"
                        [ngClass]="{'disabled' : !showAllRoutes && downloadedItems.length == 0}"
                        [(ngModel)]="routesListSearch"
-                       (ngModelChange)="filterItems()"
+                       (ngModelChange)="reactToSearchTermChange()"
                        placeholder="{{ 'a_search_trails' | translate }}"
                        debounce="500"></ion-searchbar>
         <ion-buttons end>

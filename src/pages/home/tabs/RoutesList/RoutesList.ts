@@ -36,6 +36,7 @@ export class RoutesListPage implements OnDestroy {
      * @type {number}
      */
     private infiniteScrollBlockSize = 20;
+    private searchTimeout: NodeJS.Timeout;
 
     constructor(
             public navCtrl: NavController,
@@ -49,13 +50,13 @@ export class RoutesListPage implements OnDestroy {
     ) {
 
         this.eventSubscription = this.routeApiService.routesUpdated.subscribe(() => {
-           this.filterItems();
+           this.filterLocalItems();
         });
 
         this.offlineSubscription = this.network.onConnect().subscribe(async () => {
             if (this.routeApiService.publicRoutes.length === 0) {
                 await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
-                this.filterItems();
+                this.filterLocalItems();
             }
         })
     }
@@ -75,7 +76,7 @@ export class RoutesListPage implements OnDestroy {
             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
         }
         await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
-        this.filterItems();
+        this.filterLocalItems();
 
         if(this.helper.getActivateAddRoute()){
             this.addRouteByCode();
@@ -87,9 +88,10 @@ export class RoutesListPage implements OnDestroy {
     async doRefresh(refresher) {
         let online = await this.modalsService.showNoInternetModalIfOffline();
         if (online) {
+            this.routesListSearch = "";
             this.routeApiService.reset();
             await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
-            this.filterItems();
+            this.filterLocalItems();
         }
         refresher.complete();
     }
@@ -120,13 +122,24 @@ export class RoutesListPage implements OnDestroy {
                 await this.updateRoutes();
             })
         }
-
     }
 
-    filterItems(){
-        let value;
-        if(this.showAllRoutes) value = this.routeApiService.publicRoutes;
-        else value = this.routeApiService.downloadedRoutes;
-        this.filteredResult = this.pipe.transform(value, 'title,city,code', this.routesListSearch)
+    reactToSearchTermChange() {
+        // Do timeout shenanigans to only execute search if there was no change in search term for some time (prevents rapid fire of requests during typing)
+        if (this.searchTimeout) {
+            clearTimeout(this.searchTimeout);
+        }
+        this.searchTimeout = setTimeout(async () => {
+            if (this.showAllRoutes) {
+                this.routeApiService.updateSearchTerm(this.routesListSearch);
+                await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+            }
+            this.filterLocalItems();
+        }, 500);
+    }
+
+    filterLocalItems() {
+        if(this.showAllRoutes) this.filteredResult = this.routeApiService.publicRoutes;
+        else this.filteredResult = this.pipe.transform(this.routeApiService.downloadedRoutes, 'title,city,code', this.routesListSearch)
     }
 }
