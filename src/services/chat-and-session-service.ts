@@ -212,7 +212,9 @@ export class ChatAndSessionService {
         };
         return this.sessionChatService.getNewMessages(params).map(
             (newMessages: SessionChatMessageResponse[]): ChatMessage[] => {
-                this.newMsgNumber += newMessages.length;
+                if (!this.userSeesNewMessages) {
+                    this.newMsgNumber += newMessages.length;
+                }
                 let chatMessages: ChatMessage[] = [];
                 newMessages.forEach((msg: SessionChatMessageResponse) => {
                     chatMessages.push(this.getChatMessage(msg, sessionInfo.sessionUser));

@@ -109,6 +109,21 @@ export class RouteApiService {
         return [];
     }
 
+    async updateDownloadedRoutes(): Promise<void> {
+        let downloaded = await this.getDownloadedRoutes();
+        for (let route of downloaded) {
+            try {
+                let updatedRoute = await this.internalFetchRouteForUnlock(route.code);
+                updatedRoute.downloaded = true;
+                updatedRoute.downloadedDate = route.downloadedDate;
+                await this.updateDownloadedRoute(updatedRoute);
+            } catch (e) {
+                console.warn("failed to update route", e);
+            }
+        }
+        return;
+    }
+
     async findRouteByCode(code: string): Promise<Route> {
         let downloaded = await this.getDownloadedRoutes();
         let route = downloaded.find(dRoute => dRoute.code === code);
@@ -118,11 +133,7 @@ export class RouteApiService {
                 route = this._unlockedRoutes.find(uRoute => uRoute.code === code);
                 if (!route) {
                     try {
-                        route = await this.http.get<RouteApiResponse>(`${API_URL}/app/v1/trails/${code}/unlock`, {headers: Helper.getApiRequestHeaders()}).pipe(
-                            map(response => {
-                                return Route.fromRouteResponse(response);
-                            })
-                        ).toPromise();
+                        route = await this.internalFetchRouteForUnlock(code);
                     } catch (e) {
                         console.warn("No Route found for Code: ", code);
                         route = undefined;
@@ -359,10 +370,22 @@ export class RouteApiService {
                 return value.items.map(routeResponse => {
                     let downloadedRoute = downloadedRoutes.find(dRoute => routeResponse._id === dRoute.id);
                     if (downloadedRoute) {
-                        return downloadedRoute;
+                        let updatedRoute = Route.fromRouteResponse(routeResponse);
+                        updatedRoute.downloaded = true;
+                        updatedRoute.downloadedDate = downloadedRoute.downloadedDate;
+                        this.updateDownloadedRoute(updatedRoute);
+                        return updatedRoute;
                     }
                     return Route.fromRouteResponse(routeResponse);
                 })
+            })
+        ).toPromise();
+    }
+
+    private async internalFetchRouteForUnlock(code: string) {
+        return this.http.get<RouteApiResponse>(`${API_URL}/app/v1/trails/${code}/unlock`, {headers: Helper.getApiRequestHeaders()}).pipe(
+            map(response => {
+                return Route.fromRouteResponse(response);
             })
         ).toPromise();
     }

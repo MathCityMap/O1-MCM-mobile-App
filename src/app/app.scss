@@ -433,11 +433,10 @@ section{
    margin-top: $global-medium-padding;
 
    ion-input {
-      height: 100%;
       background-color: color($colors, light-grey-tint);
       margin: 0;
       border-radius: 8px;
-      min-height: 50px;
+      min-height: 0.9rem;
       border: none;
       padding: $global-small-padding $global-medium-padding;
    }

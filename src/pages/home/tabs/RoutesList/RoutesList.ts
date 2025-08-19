@@ -56,6 +56,7 @@ export class RoutesListPage implements OnDestroy {
         this.offlineSubscription = this.network.onConnect().subscribe(async () => {
             if (this.routeApiService.publicRoutes.length === 0) {
                 await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+                await this.routeApiService.updateDownloadedRoutes();
                 this.filterLocalItems();
             }
         })
@@ -76,6 +77,7 @@ export class RoutesListPage implements OnDestroy {
             this.showAllRoutes = this.navParams.data && this.navParams.data.showAllRoutes;
         }
         await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+        await this.routeApiService.updateDownloadedRoutes();
         this.filterLocalItems();
 
         if(this.helper.getActivateAddRoute()){
@@ -91,6 +93,7 @@ export class RoutesListPage implements OnDestroy {
             this.routesListSearch = "";
             this.routeApiService.reset();
             await this.routeApiService.fetchPublicRoutes(this.infiniteScrollBlockSize);
+            await this.routeApiService.updateDownloadedRoutes();
             this.filterLocalItems();
         }
         refresher.complete();

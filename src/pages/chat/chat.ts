@@ -34,27 +34,27 @@ export class ChatPage {
 
     private scrollEndSubscription: any;
 
-    private localPath: string = null;
+    protected localPath: string = null;
     private audioFilePath: string = null;
     private fileDirectory: string = null;
 
     private audio: MediaObject;
-    private audioIndex: number = null;
-    private canPlayback: boolean = true;
-    private showTextArea: boolean = true;
+    protected audioIndex: number = null;
+    protected canPlayback: boolean = true;
+    protected showTextArea: boolean = true;
     private audioPlaying: boolean = false;
-    private showAudioButtons: boolean = true;
-    private showPictureButtons: boolean = true;
+    protected showAudioButtons: boolean = true;
+    protected showPictureButtons: boolean = true;
     private startAudioRecord: number = 0;
     private startAudioPlaying: number = 0;
-    private audioDuration: number = 0;
-    private currentPosition: number = 0;
+    protected audioDuration: number = 0;
+    protected currentPosition: number = 0;
     private durationInterval;
     private positionInterval;
     private durCheckInterval;
-    private timeZoneOpposite: number = 0;
+    protected timeZoneOpposite: number = 0;
 
-    private recordState: RecordStateEnum = RecordStateEnum.Idle;
+    protected recordState: RecordStateEnum = RecordStateEnum.Idle;
 
     constructor(navParams: NavParams,
                 protected file: File,

@@ -5,6 +5,35 @@ import { Globalization } from '@ionic-native/globalization';
 import { checkAvailability } from '@ionic-native/core';
 import { Storage } from '@ionic/storage';
 
+// import locales for date pipes (yes this has to be done for each language manually...)
+import {registerLocaleData} from "@angular/common";
+import localeDe from "@angular/common/locales/de";
+import localeIt from "@angular/common/locales/it";
+import localeFr from "@angular/common/locales/fr";
+import localeEs from "@angular/common/locales/es";
+import localePl from "@angular/common/locales/pl";
+import localePt from "@angular/common/locales/pt";
+import localeSk from "@angular/common/locales/sk";
+import localeTr from "@angular/common/locales/tr";
+import localeZh from "@angular/common/locales/zh";
+import localeEl from "@angular/common/locales/el";
+import localeId from "@angular/common/locales/id";
+import localeEt from "@angular/common/locales/et";
+import localeIs from "@angular/common/locales/is";
+registerLocaleData(localeDe);
+registerLocaleData(localeIt);
+registerLocaleData(localeFr);
+registerLocaleData(localeEs);
+registerLocaleData(localePl);
+registerLocaleData(localePt);
+registerLocaleData(localeSk);
+registerLocaleData(localeTr);
+registerLocaleData(localeZh);
+registerLocaleData(localeEl);
+registerLocaleData(localeId);
+registerLocaleData(localeEt);
+registerLocaleData(localeIs);
+
 @Injectable()
 export class LanguageService {
     private isInitialized = false;
