@@ -96,7 +96,7 @@
   "p_right_border": "límit dret",
   "p_left_border": "límit esquerre",
   "a_subtaskinfo_required_message": "Per resoldre aquesta tasca primer has de completar totes les subtasques. Comença prement <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
-  "a_subtaskinfo_message": "Aquesta tasca conté subtasques a les que pots accedir prement el botó <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
+  "a_subtaskinfo_message": "Aquesta tasca conté subtasques.",
   "a_alert_blanks_false_answer_1": "Torna a provar-ho.\n-La teva resposta '{{L}}' té errors.",
   "a_alert_set_false_answer_1": "Torna a provar-ho.\n-La teva resposta '{{L}}' té errors.",
   "p_session_info_exclusive_initial_task": "Tasca inicial exclusiva",

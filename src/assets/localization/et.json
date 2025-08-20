@@ -1089,7 +1089,7 @@
   "tex_tooltip": "Kuvab vastused TeX-vormingus (kui seda kasutatakse).",
   "tex_parse": "Parsi TeX",
   "a_subtaskinfo_title": "Alamülesanded",
-  "a_subtaskinfo_message": "See ülesanne sisaldab alamülesandeid, millele pääsete juurde nupu <img class = \"inline_image round\" src = \"./ varad / ikoonid / alamülesanne_icon.svg\" /> abil.",
+  "a_subtaskinfo_message": "See ülesanne sisaldab alamülesandeid.",
   "p_blanks_check_explanation_description": "Kontrolli tüüp määrab, kui palju rakenduse kasutaja sisend võib etteantud lahendusest erineda, et seda ikkagi õigeks loetaks. Lubatud erinevuse arvutamiseks kasutame Levensteini kaugust.",
   "p_task_info_description": "Selle ülesandetüübi eesmärk on kasutajale mingi objekti või asukoha kohta teavet jagada. Kasutaja ei pea ülesande täitmiseks tegema ühtegi toimingut.",
   "p_task_info": "Infopunkt",

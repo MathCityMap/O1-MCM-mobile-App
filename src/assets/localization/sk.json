@@ -1051,7 +1051,7 @@
   "tex_headline": "Zobrazenie MathJax",
   "tex_tooltip": "Zobrazuje odpovede vo formáte TeX (ak bol použitý).",
   "tex_parse": "Preložiť TeX",
-  "a_subtaskinfo_message": "Táto úloha obsahuje čiastkové úlohy. Čiastkové úlohy sa zobrazia tu <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>",
+  "a_subtaskinfo_message": "Táto úloha obsahuje čiastkové úlohy.",
   "a_subtaskinfo_title": "Čiastkové úlohy!",
   "a_alert_blanks_false_answer_2": "Použite nápovedu.\n Vo vašej odpovedi '{{L}}' je chyba.",
   "a_alert_set_false_answer_2": "Použite nápovedu.\n Vo vašej odpovedi je chyba.: {{L}}",

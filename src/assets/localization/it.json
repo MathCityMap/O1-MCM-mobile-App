@@ -981,7 +981,7 @@
   "a_subtaskinfo_required_message": "Per risolvere questa attività, devi prima completare tutte le sotto-attività. Inizia toccando <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
   "a_t_show_subtask": "Apri sotto-attività",
   "tex_headline": "Anteprima di MathJax (se usato)",
-  "a_subtaskinfo_message": "Questa attività contiene sotto-attività a cui puoi accedere usando il pulsante <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
+  "a_subtaskinfo_message": "Questa attività contiene sotto-attività.",
   "a_subtaskinfo_title": "Sotto-attività!",
   "page_navigation": "Navigazione della pagina",
   "p_session_info_exclusive_initial_task": "Attività iniziale obbligatoria",

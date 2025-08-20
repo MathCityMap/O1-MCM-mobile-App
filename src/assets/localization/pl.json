@@ -1268,7 +1268,7 @@
   "p_left_border": "lewy narożnik",
   "p_right_border": "prawy narożnik",
   "fts_no_results_warning": "Sprawdź pisownię i/lub dostosuj zaawansowane parametry wyszukiwania i spróbuj ponownie.",
-  "a_subtaskinfo_message": "To zadanie zawiera zadania podrzędne, do których możesz uzyskać dostęp za pomocą przycisku <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
+  "a_subtaskinfo_message": "To zadanie zawiera zadania podrzędne.",
   "a_subtaskinfo_required_message": "Zadanie obejmuje zadania podrzędne. Zacznij od kliknięcia <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
   "a_subtaskinfo_required_progress_message": "Nie wszystkie zadania podrzędne wchodzące w skład tego zadania zostały rozwiązane. Kliknij <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>, aby ukończyć pozostałe zadania.",
   "p_cw_follow_sub": "{{USER1}} obserwuje {{USER2}}.",

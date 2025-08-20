@@ -1040,7 +1040,7 @@
   "tex_headline": "Vista previa de MathJax (cuando se utiliza)",
   "tex_tooltip": "Muestra las respuestas en formato TeX (cuando se utiliza).",
   "tex_parse": "Analiza TeX",
-  "a_subtaskinfo_message": "Esta tarea contiene subtareas a las que puedes acceder utilizando el botón <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
+  "a_subtaskinfo_message": "Esta tarea contiene subtareas.",
   "a_subtaskinfo_title": "¡Subtareas!",
   "a_alert_set_false_answer_2": "Intenta tomar una pista.\n-Tu respuesta '{{L}}' contiene errores.",
   "a_alert_blanks_false_answer_2": "Intenta tomar una pista.\n-Tu respuesta '{{L}}' contiene errores.",

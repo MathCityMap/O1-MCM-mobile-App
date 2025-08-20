@@ -945,7 +945,7 @@
   "tex_headline": "Formules MathJax (optionnel)",
   "tex_tooltip": "Les réponses contiennent du TeX (optionnel).",
   "tex_parse": "Remplacer les formules TeX",
-  "a_subtaskinfo_message": "Cette épreuve contient des sous-tâches auxquelles vous accédez ici: <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>",
+  "a_subtaskinfo_message": "Cette épreuve contient des sous-tâches.",
   "a_subtaskinfo_title": "Sous-tâches",
   "a_alert_blanks_false_answer_2": "Essayez un indice.\n Votre réponse  '{{L}}' contient des erreurs.",
   "a_alert_set_false_answer_2": "Essayez un indice.\n Votre réponse  contient des erreurs: {{L}}",

@@ -1092,7 +1092,7 @@
   "a_alert_set_false_answer_2": "Prófaðu að skoða vísbendingu.\n Svarið þitt inniheldur villur:  {{L}}",
   "a_alert_blanks_false_answer_2": "Prófaðu að skoða vísbendingu.  Svarið þitt  '{{L}}' inniheldur villur.",
   "a_subtaskinfo_title": "Undirverkefni!",
-  "a_subtaskinfo_message": "Þetta verkefni inniheldur undirverkefni sem nálgast má með því að nota <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/> hnappinn.",
+  "a_subtaskinfo_message": "Þetta verkefni inniheldur undirverkefni.",
   "tex_parse": "Nota TeX",
   "tex_tooltip": "Sýna svör á TeX formi (ef við á).",
   "tex_headline": "MathJax forsýning (ef við á)",

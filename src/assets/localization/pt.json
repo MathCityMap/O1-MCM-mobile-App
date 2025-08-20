@@ -1024,7 +1024,7 @@
   "tex_headline": "MathJax Preview (quando usada)",
   "tex_tooltip": "Exibe as respostas no formato TeX (quando usado).",
   "tex_parse": "Analisar TeX",
-  "a_subtaskinfo_message": "Esta tarefa contém subtarefas às quais podes aceder usando o botão <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/>.",
+  "a_subtaskinfo_message": "Esta tarefa contém subtarefas.",
   "a_subtaskinfo_title": "Subtarefas!",
   "a_alert_blanks_false_answer_2": "Tenta usar uma sugestãot.\n A tua resposta '{{L}}' contém erros.",
   "a_alert_set_false_answer_2": "Tenta usar uma sugestãot.\n A tua resposta contém erros: {{L}}",

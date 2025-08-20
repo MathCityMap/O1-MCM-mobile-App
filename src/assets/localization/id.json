@@ -950,7 +950,7 @@
   "tex_headline": "Pratinjau MathJax (saat digunakan)",
   "tex_tooltip": "Menampilkan jawaban dalam format TeX (saat digunakan).",
   "tex_parse": "Mengurai TeX",
-  "a_subtaskinfo_message": "Tugas ini berisi subtugas yang dapat Anda akses menggunakan <img class=\"inline_image round\" src=\"./assets/icons/subtask_icon.svg\"/> button.",
+  "a_subtaskinfo_message": "Tugas ini berisi subtugas.",
   "a_subtaskinfo_title": "Subtugas!",
   "a_alert_blanks_false_answer_2": "Cobalah untuk menggunakan petunjuk.\n Jawaban Anda '{{L}}' mengandung kesalahan.",
   "a_alert_set_false_answer_2": "Cobalah untuk menggunakan petunjuk.\\ n Jawaban Anda mengandung kesalahan: {{L}}",
