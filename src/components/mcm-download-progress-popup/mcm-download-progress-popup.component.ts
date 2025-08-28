@@ -18,6 +18,10 @@ export class MCMDownloadProgressPopupComponent{
         }
     }
 
+    ionViewWillLeave() {
+        this.data.updateView = null;
+    }
+
     onCancelClick() {
         if (this.viewCtrl.data.cancelCallback) {
             this.viewCtrl.data.cancelCallback();

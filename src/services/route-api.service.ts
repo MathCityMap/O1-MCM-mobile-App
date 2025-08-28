@@ -231,8 +231,6 @@ export class RouteApiService {
                     }]
                 });
                 alert.present();
-                let postparams = "&route_id=" + route.id;
-                Helper.INSTANCE.invokeApi('downloadTrailFailed', postparams)
             }
             await this.imagesService.removeDownloadedURLs(alreadyDownloadedUrls, false);
         }

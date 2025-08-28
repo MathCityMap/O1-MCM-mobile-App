@@ -93,7 +93,7 @@
         "@ionic/cli": "6.19.0",
         "@types/supercluster": "^7.1.3",
         "com-sarriaroman-photoviewer": "file:plugin-src/com-sarriaroman-photoviewer",
-        "cordova-android": "^13.0.0",
+        "cordova-android": "^14.0.1",
         "cordova-ios": "^6.2.0",
         "cordova-plugin-badge": "file:plugin-src/cordova-plugin-badge",
         "cordova-plugin-camera": "git+https://github.com/jalios/cordova-plugin-camera.git",
@@ -105,7 +105,7 @@
         "cordova-plugin-request-location-accuracy": "^2.3.0",
         "cordova-plugin-safariviewcontroller": "^2.0.0",
         "cordova-plugin-tts-advanced": "^0.5.3",
-        "cordova-sqlite-storage": "file:plugin-src/cordova-sqlite-storage",
+        "cordova-sqlite-storage": "^7.0.0",
         "cordova.plugins.diagnostic": "^6.0.4",
         "ng-swagger-gen": "0.11.4",
         "typescript": "3.9.10"
@@ -133,9 +133,7 @@
                 "ANDROIDX_APPCOMPAT_VERSION": "1.3.1"
             },
             "cordova-plugin-file-transfer": {},
-            "cordova-sqlite-storage": {},
             "cordova-plugin-safariviewcontroller": {},
-            "cordova-plugin-local-notification": {},
             "cordova-plugin-badge": {},
             "cordova-plugin-camera": {
                 "ANDROIDX_CORE_VERSION": "1.6.+"
@@ -143,11 +141,13 @@
             "cordova-plugin-media": {},
             "cordova-plugin-file": {},
             "cordova-plugin-ionic-webview": {},
-            "com-sarriaroman-photoviewer": {},
             "cordova-plugin-tts-advanced": {},
             "cordova-plugin-request-location-accuracy": {
                 "PLAY_SERVICES_LOCATION_VERSION": "21.3.0"
-            }
+            },
+            "cordova-sqlite-storage": {},
+            "cordova-plugin-local-notification": {},
+            "com-sarriaroman-photoviewer": {}
         },
         "platforms": [
             "ios",

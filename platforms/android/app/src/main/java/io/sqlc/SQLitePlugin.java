@@ -11,9 +11,9 @@ import android.util.Log;
 import java.io.File;
 
 import java.lang.IllegalArgumentException;
-import java.lang.Number;
 
 import java.util.Map;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -313,8 +313,7 @@ public class SQLitePlugin extends CordovaPlugin {
 
         DBRunner(final String dbname, JSONObject options, CallbackContext cbc) {
             this.dbname = dbname;
-//             this.oldImpl = options.has("androidOldDatabaseImplementation");
-            this.oldImpl = true;
+            this.oldImpl = options.has("androidOldDatabaseImplementation");
             Log.v(SQLitePlugin.class.getSimpleName(), "Android db implementation: built-in android.database.sqlite package");
             this.bugWorkaround = this.oldImpl && options.has("androidBugWorkaround");
             if (this.bugWorkaround)

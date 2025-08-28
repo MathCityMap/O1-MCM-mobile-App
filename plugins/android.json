@@ -61,13 +61,7 @@
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-safariviewcontroller": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-badge": {
@@ -87,11 +81,20 @@
     "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "com-sarriaroman-photoviewer": {
+    "cordova-plugin-tts-advanced": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-request-location-accuracy": {
       "PLAY_SERVICES_LOCATION_VERSION": "21.3.0",
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },

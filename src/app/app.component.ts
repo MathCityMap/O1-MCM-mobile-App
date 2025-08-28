@@ -70,13 +70,15 @@ export class MyApp {
                 if ((<any>window).wkWebView) {
                     (<any>window).wkWebView.injectCookie(Helper.WEBSERVER_URL);
                 }
-                if (platform.is('tablet')) {
-                    //force landscape mode on tablets
-                    screenOrientation.lock(screenOrientation.ORIENTATIONS.LANDSCAPE);
-                } else {
-                    //force portrait mode on phones
-                    screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
-                }
+                // if (platform.is('tablet')) {
+                //     //force landscape mode on tablets
+                //     screenOrientation.lock(screenOrientation.ORIENTATIONS.LANDSCAPE);
+                // } else {
+                //     //force portrait mode on phones
+                //     screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
+                // }
+                console.log(platform._platforms);
+                screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT);
             }
         });
 

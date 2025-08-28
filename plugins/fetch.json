@@ -151,26 +151,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-sqlite-storage": {
-    "source": {
-      "type": "local",
-      "path": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/node_modules/cordova-sqlite-storage"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-safariviewcontroller": {
     "source": {
       "type": "registry",
       "id": "cordova-plugin-safariviewcontroller"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-local-notification": {
-    "source": {
-      "type": "local",
-      "path": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App/node_modules/cordova-plugin-local-notification"
     },
     "is_top_level": true,
     "variables": {}
@@ -215,14 +199,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "com-sarriaroman-photoviewer": {
-    "source": {
-      "type": "local",
-      "path": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/node_modules/com-sarriaroman-photoviewer"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-tts-advanced": {
     "source": {
       "type": "registry",
@@ -240,5 +216,29 @@
     "variables": {
       "PLAY_SERVICES_LOCATION_VERSION": "21.3.0"
     }
+  },
+  "cordova-sqlite-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-sqlite-storage"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-local-notification": {
+    "source": {
+      "type": "local",
+      "path": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/node_modules/cordova-plugin-local-notification"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "com-sarriaroman-photoviewer": {
+    "source": {
+      "type": "local",
+      "path": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/node_modules/com-sarriaroman-photoviewer"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
