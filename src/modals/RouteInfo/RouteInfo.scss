@@ -163,6 +163,9 @@ $content-edge: 4px;
 		}
 		.col{
 			width: unset;
+         .label {
+            text-wrap: auto;
+         }
 			&:nth-of-type(even){
 				align-self: flex-end;
 				margin: 0 $global-small-padding;
@@ -186,7 +189,7 @@ $content-edge: 4px;
 			}
 			&:nth-of-type(odd){
 				flex-grow: 0;
-				flex-basis: 28%;
+				flex-basis: 30%;
 			}
 			&:first-of-type{
 				.info-item{

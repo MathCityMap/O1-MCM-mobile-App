@@ -2408,6 +2408,13 @@ export class TaskDetail {
             }
         }
         let blankContainer = document.getElementById('blankContainer_' + this.task.id);
+        if (!blankContainer) {
+            setTimeout(() => {
+                console.log('Blank container was not loaded yet, try again')
+                this.fillBlankSolutionElement();
+            }, 50)
+            return;
+        }
         if (blankContainer) {
             blankContainer.innerHTML = blankText;
             let inputs = blankContainer.getElementsByClassName('blankInput');
