@@ -404,7 +404,7 @@ export class RouteApiService {
     private updateRouteInPublicList(routeToUpdate: Route) {
         if (this._publicRoutes) {
             let index = this._publicRoutes.findIndex((route) => route.id === routeToUpdate.id);
-            if (index) {
+            if (index !== -1) {
                 this._publicRoutes[index] = routeToUpdate;
             }
         }

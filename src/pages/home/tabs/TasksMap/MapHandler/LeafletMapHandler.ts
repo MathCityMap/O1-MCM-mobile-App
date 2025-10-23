@@ -99,11 +99,7 @@ export class LeafletMapHandler implements MapHandlerInterface {
             if (initialPosition) {
                     console.debug('found you');
 
-                    this.userMarker = L.marker([initialPosition.latitude, initialPosition.longitude], {icon: this.userPositionIcon}).on('click', () => {
-                        // alert('Marker clicked');
-                    });
-                    this.userMarker.setRotationOrigin('center center');
-                    this.userMarker.addTo(this.map);
+                    this.addUserMarker(initialPosition);
             }
 
             const tiles = this.routeApiService.getTileURLsAsObject(this.route);
@@ -160,6 +156,14 @@ export class LeafletMapHandler implements MapHandlerInterface {
                 console.error('Error when removing tiles: ' + err);
             });
         }
+    }
+
+    addUserMarker(initialPosition: {latitude: number, longitude: number}) {
+        this.userMarker = L.marker([initialPosition.latitude, initialPosition.longitude], {icon: this.userPositionIcon}).on('click', () => {
+            // alert('Marker clicked');
+        });
+        this.userMarker.setRotationOrigin('center center');
+        this.userMarker.addTo(this.map);
     }
 
     moveTo(lat: number, lon: number): void {
@@ -325,6 +329,9 @@ export class LeafletMapHandler implements MapHandlerInterface {
     updateUserPosition(lat: number, lng: number): void {
         const lanlng = new L.LatLng(lat, lng);
         let bBox = this.map.getBounds();
+        if (!this.userMarker) {
+            this.addUserMarker(lanlng);
+        }
         if (bBox.contains(lanlng)) {
             // User entered visible map bounding box -> Change Icon
             if (!this.isUserInsideMap) {
@@ -351,6 +358,9 @@ export class LeafletMapHandler implements MapHandlerInterface {
     private updateUserLocationArrow(userLatLng) {
         if (!userLatLng) {
             return;
+        }
+        if (!this.userMarker) {
+            this.addUserMarker(userLatLng);
         }
         let bBox = this.map.getBounds();
         let alpha = (L as any).GeometryUtil.bearing(this.map.getCenter(), userLatLng);

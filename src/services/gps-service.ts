@@ -35,6 +35,7 @@ export class GpsService {
     private subject = new CustomReplaySubject<Geoposition>(1);
     private geolocationSubscription: Subscription;
     private lastPosition: Geoposition;
+    private didTryToEnableLocation = false;
 
 
     public async isLocationOn() {
@@ -42,13 +43,13 @@ export class GpsService {
         console.log("platform: " + this.platform.platforms());
 
         //if the platform is not browser
-        if (this.platform.is("android") &&
-            checkAvailability(LocationAccuracy.getPluginRef(), null, LocationAccuracy.getPluginName()) === true)
-            this.diagnostic.isLocationEnabled().then(async (enabled) => {
-                //if the location is off
-                console.log("LOCATION##: ", enabled);
-                if (!enabled) await this.turnLocationOn();
-            })
+        if (this.platform.is("cordova") &&
+            checkAvailability(LocationAccuracy.getPluginRef(), null, LocationAccuracy.getPluginName()) === true) {
+            let enabled = await this.diagnostic.isLocationEnabled()
+            //if the location is off
+            console.log("LOCATION##: ", enabled);
+            if (!enabled) await this.turnLocationOn();
+        }
     }
 
 
@@ -76,15 +77,16 @@ export class GpsService {
 
 
     async turnLocationOn() {
-        this.locationAcc.canRequest().then((can) => {
-            if (can) this.locationAcc.request(this.locationAcc.REQUEST_PRIORITY_HIGH_ACCURACY).then(function (suc) {
+        const canRequest = await this.locationAcc.canRequest()
+        if (canRequest && !this.didTryToEnableLocation) {
+            this.didTryToEnableLocation = true;
+            try {
+                await this.locationAcc.request(this.locationAcc.REQUEST_PRIORITY_HIGH_ACCURACY);
                 console.log("Device Location is now turned ON");
-            }, function (rip) {
-                console.log("Device Location is still OFF ");
-            })
-
-        })
-
+            } catch (e) {
+                console.log("Device Location is still OFF ", e);
+            }
+        }
     }
 
     /**
@@ -133,7 +135,8 @@ export class GpsService {
     async getCurrentPosition(options?: GeolocationOptions): Promise<Geoposition> {
         if (!options) {
             options = {
-                enableHighAccuracy: true
+                enableHighAccuracy: true,
+                timeout: 2000
             }
         }
         try {
