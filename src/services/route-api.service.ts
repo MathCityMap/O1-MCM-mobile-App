@@ -416,51 +416,55 @@ export class RouteApiService {
         let didMigrate = await this.storage.get(key);
         if (didMigrate) return;
 
-        let routes = await this.ormService.getDownloadedRoutes();
-        let user = await this.ormService.getActiveUser();
-        for (let route of routes) {
-            let tasks = (await route.getTasks()).map(task => {
-                task.forceSupportTask = Boolean(route.isSubtaskRequired(task.id));
-                task.s3Media = {
-                    image: RouteApiService.createS3ImageMediaForUrl(task.image)
-                };
-                if (task.getHint(1).type === "image") {
-                    task.s3Media.hint1 = RouteApiService.createS3ImageMediaForUrl(task.getHint(1).value);
-                }
-                if (task.getHint(2).type === "image") {
-                    task.s3Media.hint2 = RouteApiService.createS3ImageMediaForUrl(task.getHint(2).value);
-                }
-                if (task.getHint(3).type === "image") {
-                    task.s3Media.hint3 = RouteApiService.createS3ImageMediaForUrl(task.getHint(3).value);
-                }
-                if (task.getSolutionSampleImgSrc() !== "") {
-                    task.s3Media.solutionsample = RouteApiService.createS3ImageMediaForUrl(task.getSolutionSampleImgSrc());
-                }
-                return task;
-            });
-            let score = route.getScoreForUser(user);
-            score.route = undefined;
-            route.scores = undefined;
+        try {
+            let routes = await this.ormService.getDownloadedRoutes();
+            let user = await this.ormService.getActiveUser();
+            for (let route of routes) {
+                let tasks = (await route.getTasks()).map(task => {
+                    task.forceSupportTask = Boolean(route.isSubtaskRequired(task.id));
+                    task.s3Media = {
+                        image: RouteApiService.createS3ImageMediaForUrl(task.image)
+                    };
+                    if (task.getHint(1).type === "image") {
+                        task.s3Media.hint1 = RouteApiService.createS3ImageMediaForUrl(task.getHint(1).value);
+                    }
+                    if (task.getHint(2).type === "image") {
+                        task.s3Media.hint2 = RouteApiService.createS3ImageMediaForUrl(task.getHint(2).value);
+                    }
+                    if (task.getHint(3).type === "image") {
+                        task.s3Media.hint3 = RouteApiService.createS3ImageMediaForUrl(task.getHint(3).value);
+                    }
+                    if (task.getSolutionSampleImgSrc() !== "") {
+                        task.s3Media.solutionsample = RouteApiService.createS3ImageMediaForUrl(task.getSolutionSampleImgSrc());
+                    }
+                    return task;
+                });
+                let score = route.getScoreForUser(user);
+                score.route = undefined;
+                route.scores = undefined;
 
-            route.s3Media = {
-                mapFilename: {
-                    mimeType: "archive/zip",
-                    details: {
-                        url: Helper.MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName
+                route.s3Media = {
+                    mapFilename: {
+                        mimeType: "archive/zip",
+                        details: {
+                            url: Helper.MEDIASERVER_IMAGE_URL + 'mcm_maps/' + route.mapFileName
+                        },
+                        type: s3MediaType.ZIP
                     },
-                    type: s3MediaType.ZIP
-                },
-                image: RouteApiService.createS3ImageMediaForUrl(route.image)
-            }
-            route.tasks = undefined;
-            route.task2Routes = undefined;
-            let routeInfo = {tasks: tasks, score: score};
+                    image: RouteApiService.createS3ImageMediaForUrl(route.image)
+                }
+                route.tasks = undefined;
+                route.task2Routes = undefined;
+                let routeInfo = {tasks: tasks, score: score};
 
-            await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX + route.code, routeInfo);
-            await this.addRouteToDownloadedList(route);
+                await this.storage.set(DOWNLOADED_ROUTE_INFOS_PREFIX + route.code, routeInfo);
+                await this.addRouteToDownloadedList(route);
+            }
+        } catch (e) {
+            console.warn('Migration of old data failed, probably because there was no data', e);
         }
 
-        await this.ormService.removeAllSqLiteData();
+        await this.ormService.removeAllSqLiteData().catch(e => console.warn('failed to delete old sqlite data', e));
         await this.storage.set(key, true);
     }
 

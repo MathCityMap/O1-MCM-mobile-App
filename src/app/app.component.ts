@@ -57,11 +57,15 @@ export class MyApp {
 
         let that = this;
         platform.ready().then(async () => {
-            await routeApiService.migrateDataFromSQLiteStorage();
-            await languageService.initialize();
-            await translation.init();
-            await readAloud.init(await languageService.getLanguage())
-            await this.setRootPage();
+            await routeApiService.migrateDataFromSQLiteStorage().catch(e => console.error("old data migration failed", e));
+            await languageService.initialize().catch(e => console.error("language service init failed", e));
+            await translation.init().catch(e => console.error("translation init failed", e));
+            try {
+                await readAloud.init(await languageService.getLanguage())
+            } catch (e) {
+                console.error('Failed to init read aloud', e);
+            }
+            await this.setRootPage().catch(e => console.error('failed to set rootPage', e));
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             // statusBar.styleDefault();
