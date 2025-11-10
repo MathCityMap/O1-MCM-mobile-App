@@ -9,7 +9,7 @@ export class DistancePipe implements PipeTransform {
   transform(value: number, unit: string): string {
 /*     console.log('value', value); */
     if( value > 0 && value < 1000 ){
-        return value+' '+unit;
+        return Math.round(value * 100) / 100+' '+unit;
     }else if( value > 1000){
         return (Math.round(value / 100)/10)+' km';
     }else if( value <= 0 ){

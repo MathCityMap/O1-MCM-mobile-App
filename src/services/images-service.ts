@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { checkAvailability } from "@ionic-native/core";
 import { DirectoryEntry, File} from '@ionic-native/file';
 import {Platform} from 'ionic-angular';
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import async from 'async'
 import { Helper } from '../classes/Helper';
 import {Route} from "../entity/Route";
@@ -24,7 +23,6 @@ export class ImagesService {
     constructor(
         private fileManager: File,
         private platform: Platform,
-        private transfer: FileTransfer,
         private sanitizer : DomSanitizer,
         private camera: Camera) {
         ImagesService.INSTANCE = this;
@@ -99,7 +97,6 @@ export class ImagesService {
             return;
         }
         let promiseError = null;
-        const fileTransfer: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
         let fileManager = this.fileManager;
         let resizedataURL = this.resizedataURL;
@@ -127,7 +124,7 @@ export class ImagesService {
             console.log('Starting download task for ' + task.outputName);
             let url = task.imgFileName.indexOf('http') === 0 ? task.imgFileName
                 : Helper.MEDIASERVER_IMAGE_URL + that.makeDownloadUrlLegit(encodeURI(task.imgFileName));
-            setTimeout(()=>{fileTransfer.download(url, dataDirectory + task.outputName)
+            setTimeout(()=>{that.xhrDownload(url, dataDirectory, task.outputName)
                 .then(() => {
                     if (!createThumbs) {
                         callback();
@@ -181,7 +178,6 @@ export class ImagesService {
                     if (file.size <= 0) {
                         // Path not empty and file does not exist - download from url
                         this.downloadQueue.push({
-                            fileTransfer: fileTransfer,
                             imgFileName: imgFileName,
                             outputName: outputName,
                             callback: urls.length == 1 ? progressCallback : null
@@ -198,7 +194,6 @@ export class ImagesService {
                 }, error => {
                     // file could not be read
                     this.downloadQueue.push({
-                        fileTransfer: fileTransfer,
                         imgFileName: imgFileName,
                         outputName: outputName,
                         callback: urls.length == 1 ? progressCallback : null
@@ -210,7 +205,6 @@ export class ImagesService {
                 // Path not empty and file does not exist - download from url
                 console.log(`Adding to download queue: ${outputName}`);
                 this.downloadQueue.push({
-                    fileTransfer: fileTransfer,
                     imgFileName: imgFileName,
                     outputName: outputName,
                     callback: urls.length == 1 ? progressCallback : null
@@ -334,23 +328,22 @@ export class ImagesService {
         }
 
         let url = route.getMapTilesURL();
-        let downloadRequest: FileTransferObject = this.transfer.create();
         let dataDirectory = this.fileManager.dataDirectory;
         let pathToFileInString  = dataDirectory + route.getMapFileName();
         await new Promise<void>((success, error) => {
-            downloadRequest.onProgress((progress) => {
+
+            let progressMethod = function (this: XMLHttpRequest, progress: ProgressEvent) {
                 if (progress.loaded && progress.total && progress.loaded < progress.total) {
                     if (progress.total > 0) {
                         if (progressCallback(Math.round(100 * (progress.loaded / progress.total)))) {
                             error('download was canceled');
-                            downloadRequest.abort();
+                            this.abort();
                         }
                     }
                 }
-            });
+            };
 
-
-            downloadRequest.download(url, pathToFileInString).then((result) => {
+            this.xhrDownload(url, dataDirectory, route.getMapFileName(), progressMethod).then(() => {
                 (<any>window).JJzip.unzip(pathToFileInString, {target: dataDirectory + '/tiles'}, function (data) {
                     /* Wow everything goes good, but just in case verify data.success */
                     console.log("victory");
@@ -401,6 +394,32 @@ export class ImagesService {
         } catch (err) {
             throw err;
         }
+    }
+
+    xhrDownload(url: string, path: string, fileName: string, onProgress?: (this: XMLHttpRequest, ev: ProgressEvent) => void) {
+        return new Promise((resolve, reject) => {
+            let oReq = new XMLHttpRequest();
+
+            oReq.open("GET", url, true);
+            oReq.responseType = "blob";
+            if (onProgress) {
+                oReq.onprogress = onProgress;
+            }
+            oReq.onload = async (oEvent) => {
+                let blob: Blob = oReq.response;
+                if (blob) {
+                    try {
+                        await this.fileManager.writeFile(path, fileName, blob);
+                        resolve();
+                    } catch (e) {
+                        reject();
+                    }
+                } else {
+                    reject();
+                }
+            }
+            oReq.send(null);
+        });
     }
 
 }

@@ -8,7 +8,6 @@ import {SQLite} from '@ionic-native/sqlite';
 import {IonicStorageModule, Storage} from '@ionic/storage';
 import {DB_Updater} from '../classes/DB_Updater';
 import {File} from '@ionic-native/file';
-import {FileTransfer} from '@ionic-native/file-transfer';
 import {SpinnerDialog} from '@ionic-native/spinner-dialog';
 import {Diagnostic} from '@ionic-native/diagnostic';
 import {ModalsService} from '../services/modals-service';
@@ -114,7 +113,6 @@ import {RouteApiService} from "../services/route-api.service";
         LocationAccuracy,
         SQLite,
         File,
-        FileTransfer,
         DB_Updater,
         SpinnerDialog,
         OrmService,

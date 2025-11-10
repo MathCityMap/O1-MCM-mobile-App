@@ -18,7 +18,7 @@ cordova.define("cordova-plugin-geolocation.PositionError", function(require, exp
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /**
  * Position error object
@@ -27,7 +27,7 @@ cordova.define("cordova-plugin-geolocation.PositionError", function(require, exp
  * @param code
  * @param message
  */
-var PositionError = function (code, message) {
+const PositionError = function (code, message) {
     this.code = code || null;
     this.message = message || '';
 };

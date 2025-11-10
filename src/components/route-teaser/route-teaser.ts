@@ -4,7 +4,6 @@ import {ModalsService} from "../../services/modals-service";
 import {Helper} from "../../classes/Helper";
 import {RouteApiService} from "../../services/route-api.service";
 import {RouteInfos} from "../../services/ApiResponseDefinition/RouteInfos";
-import {Subscription} from "rxjs/Subscription";
 
 
 @Component({

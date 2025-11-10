@@ -18,7 +18,7 @@ cordova.define("cordova-plugin-geolocation.Coordinates", function(require, expor
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /**
  * This class contains position information.
@@ -31,7 +31,7 @@ cordova.define("cordova-plugin-geolocation.Coordinates", function(require, expor
  * @param {Object} altacc
  * @constructor
  */
-var Coordinates = function (lat, lng, alt, acc, head, vel, altacc) {
+const Coordinates = function (lat, lng, alt, acc, head, vel, altacc) {
     /**
      * The latitude of the position.
      */
@@ -47,15 +47,15 @@ var Coordinates = function (lat, lng, alt, acc, head, vel, altacc) {
     /**
      * The altitude of the position.
      */
-    this.altitude = (alt !== undefined ? alt : null);
+    this.altitude = alt !== undefined ? alt : null;
     /**
      * The direction the device is moving at the position.
      */
-    this.heading = (head !== undefined ? head : null);
+    this.heading = (typeof head === 'number' && head >= 0 && head <= 360 ? head : null);
     /**
      * The velocity with which the device is moving at the position.
      */
-    this.speed = (vel !== undefined ? vel : null);
+    this.speed = (typeof vel === 'number' && vel >= 0 ? vel : null);
 
     if (this.speed === 0 || this.speed === null) {
         this.heading = NaN;
@@ -64,7 +64,7 @@ var Coordinates = function (lat, lng, alt, acc, head, vel, altacc) {
     /**
      * The altitude accuracy of the position.
      */
-    this.altitudeAccuracy = (altacc !== undefined) ? altacc : null;
+    this.altitudeAccuracy = altacc !== undefined ? altacc : null;
 };
 
 module.exports = Coordinates;

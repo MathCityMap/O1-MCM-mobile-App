@@ -21,12 +21,12 @@
         "@angular/http": "5.2.11",
         "@angular/platform-browser": "5.2.11",
         "@angular/platform-browser-dynamic": "5.2.11",
+        "@capacitor/core": "7.4.4",
         "@ionic-native/app-version": "4.20.0",
         "@ionic-native/camera": "4.20.0",
         "@ionic-native/core": "4.20.0",
         "@ionic-native/diagnostic": "4.20.0",
         "@ionic-native/file": "4.20.0",
-        "@ionic-native/file-transfer": "4.20.0",
         "@ionic-native/geolocation": "4.20.0",
         "@ionic-native/globalization": "4.20.0",
         "@ionic-native/in-app-browser": "4.20.0",
@@ -57,7 +57,6 @@
         "cordova-plugin-androidx-adapter": "1.1.1",
         "cordova-plugin-app-version": "~0.1.9",
         "cordova-plugin-device": "1.1.4",
-        "cordova-plugin-geolocation": "4.0.2",
         "cordova-plugin-globalization": "~1.0.9",
         "cordova-plugin-inappbrowser": "4.0.0",
         "cordova-plugin-ionic-keyboard": "2.2.0",
@@ -96,9 +95,9 @@
         "cordova-android": "^14.0.1",
         "cordova-ios": "^6.2.0",
         "cordova-plugin-badge": "file:plugin-src/cordova-plugin-badge",
-        "cordova-plugin-camera": "git+https://github.com/jalios/cordova-plugin-camera.git",
+        "cordova-plugin-camera": "github:apache/cordova-plugin-camera",
         "cordova-plugin-file": "^8.0.0",
-        "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer.git",
+        "cordova-plugin-geolocation": "github:apache/cordova-plugin-geolocation",
         "cordova-plugin-ionic-webview": "^5.0.1",
         "cordova-plugin-local-notification": "file:plugin-src/cordova-plugin-local-notification",
         "cordova-plugin-media": "git+https://github.com/apache/cordova-plugin-media.git",
@@ -124,7 +123,6 @@
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-screen-orientation": {},
             "cordova-custom-config": {},
-            "cordova-plugin-geolocation": {},
             "cordova-plugin-androidx-adapter": {},
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-wkwebview-inject-cookie": {},
@@ -132,12 +130,8 @@
                 "ANDROIDX_VERSION": "1.0.0",
                 "ANDROIDX_APPCOMPAT_VERSION": "1.3.1"
             },
-            "cordova-plugin-file-transfer": {},
             "cordova-plugin-safariviewcontroller": {},
             "cordova-plugin-badge": {},
-            "cordova-plugin-camera": {
-                "ANDROIDX_CORE_VERSION": "1.6.+"
-            },
             "cordova-plugin-media": {},
             "cordova-plugin-file": {},
             "cordova-plugin-ionic-webview": {},
@@ -147,7 +141,13 @@
             },
             "cordova-sqlite-storage": {},
             "cordova-plugin-local-notification": {},
-            "com-sarriaroman-photoviewer": {}
+            "cordova-plugin-camera": {
+                "ANDROIDX_CORE_VERSION": "1.6.+"
+            },
+            "com-sarriaroman-photoviewer": {},
+            "cordova-plugin-geolocation": {
+                "GPS_REQUIRED": "false"
+            }
         },
         "platforms": [
             "ios",

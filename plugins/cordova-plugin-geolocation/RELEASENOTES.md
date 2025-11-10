@@ -20,6 +20,43 @@
 -->
 # Release Notes
 
+### 5.0.0 (Sep 16, 2023)
+* [GH-270](https://github.com/apache/cordova-plugin-geolocation/pull/270) fix: heading speed w3c spec (#270)
+* [GH-269](https://github.com/apache/cordova-plugin-geolocation/pull/269) test(windows): Remove window platform references from tests (#269)
+* [GH-265](https://github.com/apache/cordova-plugin-geolocation/pull/265) chore: package-lock (#265)
+* [GH-267](https://github.com/apache/cordova-plugin-geolocation/pull/267) chore(windows)!: Remove **Windows** platform (#267)
+* [GH-268](https://github.com/apache/cordova-plugin-geolocation/pull/268) ci(gh-action): Sync with paramedic configs (#268)
+* [GH-261](https://github.com/apache/cordova-plugin-geolocation/pull/261) ci: Sync with paramedic. Removed API 22 & 31, added API 24 & API 33 (#261)
+* [GH-260](https://github.com/apache/cordova-plugin-geolocation/pull/260) chore(eslint): config upgrade to 5.0.0 (#260)
+* [GH-250](https://github.com/apache/cordova-plugin-geolocation/pull/250) (android) fix: respect requested location accuracy when checking/requesting permissions on **Android** 12+ Handle bug on API < 32 when requesting COARSE permission results in TIMEOUT error.
+* [GH-251](https://github.com/apache/cordova-plugin-geolocation/pull/251) ci: sync workflow with paramedic (#251)
+* [GH-249](https://github.com/apache/cordova-plugin-geolocation/pull/249) dep(npm): bump package-lock v2 w/ rebuild (#249)
+* [GH-231](https://github.com/apache/cordova-plugin-geolocation/pull/231) (ios) fix: Check NSDictionary constructed from native CLLocation data is valid for conversion to JSON before attempting conversion. Prevents crashes due to values invalid for JSON conversion such as INFINITY.
+* [GH-247](https://github.com/apache/cordova-plugin-geolocation/pull/247) ci(android): update java requirement for `cordova-android`@11 (#247)
+* [GH-241](https://github.com/apache/cordova-plugin-geolocation/pull/241) ci(ios): update workflow w/ **iOS** 15 (#241)
+* [GH-239](https://github.com/apache/cordova-plugin-geolocation/pull/239) ci: add action-badge (#239)
+* [GH-238](https://github.com/apache/cordova-plugin-geolocation/pull/238) ci: remove travis & appveyor (#238)
+* [GH-236](https://github.com/apache/cordova-plugin-geolocation/pull/236) chore: npmrc (#236)
+* [GH-234](https://github.com/apache/cordova-plugin-geolocation/pull/234) ci: add gh-actions workflows (#234)
+* [GH-217](https://github.com/apache/cordova-plugin-geolocation/pull/217) ci: add node-14.x to workflow (#217)
+
+### 4.1.0 (Nov 06, 2020)
+
+* [GH-214](https://github.com/apache/cordova-plugin-geolocation/pull/214) chore(npm): rebuild `package-lock.json`
+* [GH-209](https://github.com/apache/cordova-plugin-geolocation/pull/209) ci(travis): update osx xcode image
+* ci(travis): updates **Android** API level
+* [GH-202](https://github.com/apache/cordova-plugin-geolocation/pull/202) chore: adds `package-lock` file
+* [GH-200](https://github.com/apache/cordova-plugin-geolocation/pull/200) refactor(`eslint`): use `cordova-eslint` /w fix
+* [GH-201](https://github.com/apache/cordova-plugin-geolocation/pull/201) chore(npm): use short notation in `package.json`
+* chore(asf): update git notification settings
+* chore: update `CONTRIBUTING.md`
+* [GH-194](https://github.com/apache/cordova-plugin-geolocation/pull/194) docs: Removed misleading text
+* [GH-181](https://github.com/apache/cordova-plugin-geolocation/pull/181) Add missing information for **iOS**
+* [GH-193](https://github.com/apache/cordova-plugin-geolocation/pull/193) ci: updates Node.js versions
+* [GH-192](https://github.com/apache/cordova-plugin-geolocation/pull/192) chore(npm): improve ignore list
+* [GH-189](https://github.com/apache/cordova-plugin-geolocation/pull/189) Variable for Require GPS Hardware
+* ci(travis): upgrade to node8
+
 ### 4.0.2 (Jun 27, 2019)
 
 -   chore: fix repo and issue urls and license in package.json and plugin.xml ([`4d2e901`](https://github.com/apache/cordova-plugin-geolocation/commit/4d2e901))
@@ -30,9 +67,9 @@
 -   docs: remove JIRA link ([`2fc992b`](https://github.com/apache/cordova-plugin-geolocation/commit/2fc992b))
 -   docs: Remove outdated docs translations ([#117](https://github.com/apache/cordova-plugin-geolocation/issues/117)) ([`9408fdd`](https://github.com/apache/cordova-plugin-geolocation/commit/9408fdd))
 -   ci(travis): add android-27 to `android update sdk -u --filter` ([`3b1f63a`](https://github.com/apache/cordova-plugin-geolocation/commit/3b1f63a))
--   fix(ios): CB-14020: (ios) Fix "Collection was mutated while being enumerated" crash ([#104](https://github.com/apache/cordova-plugin-geolocation/issues/104)) ([`ba45595`](https://github.com/apache/cordova-plugin-geolocation/commit/ba45595))
+-   fix(ios): [CB-14020](https://issues.apache.org/jira/browse/CB-14020) (ios) Fix "Collection was mutated while being enumerated" crash ([#104](https://github.com/apache/cordova-plugin-geolocation/issues/104)) ([`ba45595`](https://github.com/apache/cordova-plugin-geolocation/commit/ba45595))
 -   docs: Add Apache Cordova issue tracker link to Readme ([#107](https://github.com/apache/cordova-plugin-geolocation/issues/107)) ([`91c7313`](https://github.com/apache/cordova-plugin-geolocation/commit/91c7313))
--   ci(travis): CB-13748: Add build-tools-26.0.2 to travis ([#103](https://github.com/apache/cordova-plugin-geolocation/issues/103)) ([`a6cbe40`](https://github.com/apache/cordova-plugin-geolocation/commit/a6cbe40), [`e74c87a`](https://github.com/apache/cordova-plugin-geolocation/commit/e74c87a))
+-   ci(travis): [CB-13748](https://issues.apache.org/jira/browse/CB-13748) Add build-tools-26.0.2 to travis ([#103](https://github.com/apache/cordova-plugin-geolocation/issues/103)) ([`a6cbe40`](https://github.com/apache/cordova-plugin-geolocation/commit/a6cbe40), [`e74c87a`](https://github.com/apache/cordova-plugin-geolocation/commit/e74c87a))
 -   docs: Fix release notes ([#102](https://github.com/apache/cordova-plugin-geolocation/issues/102)) ([`e679a5d`](https://github.com/apache/cordova-plugin-geolocation/commit/e679a5d))
 
 

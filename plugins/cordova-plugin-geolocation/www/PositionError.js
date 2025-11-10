@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /**
  * Position error object
@@ -26,7 +26,7 @@
  * @param code
  * @param message
  */
-var PositionError = function (code, message) {
+const PositionError = function (code, message) {
     this.code = code || null;
     this.message = message || '';
 };

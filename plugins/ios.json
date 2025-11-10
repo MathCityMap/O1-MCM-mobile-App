@@ -25,19 +25,10 @@
     "cordova-plugin-badge": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
-    "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
     "cordova-plugin-globalization": {
@@ -86,8 +77,15 @@
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+    },
     "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
+    },
+    "cordova-plugin-geolocation": {
+      "GPS_REQUIRED": "false",
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {

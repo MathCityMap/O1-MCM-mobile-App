@@ -2,7 +2,6 @@
     "libz.tbd": 2,
     "Security.framework": 1,
     "SystemConfiguration.framework": 2,
-    "ImageIO.framework": 1,
     "CoreLocation.framework": 5,
     "AVFoundation.framework": 3,
     "UserNotifications.framework": 2,
@@ -14,5 +13,6 @@
     "AddressBook.framework": 1,
     "EventKit.framework": 2,
     "CoreMotion.framework": 1,
-    "WebKit.framework": 1
+    "WebKit.framework": 1,
+    "ImageIO.framework": 1
 }

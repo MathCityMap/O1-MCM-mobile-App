@@ -22,7 +22,7 @@
 xmlns:rim="http://www.blackberry.com/ns/widgets"
 xmlns:android="http://schemas.android.com/apk/res/android"
            id="cordova-plugin-geolocation"
-      version="4.0.2">
+      version="5.0.1-dev">
 
     <name>Geolocation</name>
     <description>Cordova Geolocation Plugin</description>
@@ -32,8 +32,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <issue>https://github.com/apache/cordova-plugin-geolocation/issues</issue>
 
     <engines>
-        <engine name="cordova-android" version=">=6.3.0" />
+        <engine name="cordova-android" version=">=10.0.0" />
+        <engine name="cordova-ios" version=">=6.0.0" />
     </engines>
+    <preference name="GPS_REQUIRED" default="true"/>
 
     <!-- android -->
     <platform name="android">
@@ -41,7 +43,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
             <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-            <uses-feature android:name="android.hardware.location.gps" />
+            <uses-feature android:name="android.hardware.location.gps" android:required="$GPS_REQUIRED" />
         </config-file>
 
         <config-file target="res/xml/config.xml" parent="/*">
@@ -91,32 +93,5 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <source-file src="src/ios/CDVLocation.m" />
         <framework src="CoreLocation.framework" />
 
-    </platform>
-
-    <!-- windows universal apps (Windows 8.1, Windows Phone 8.1, Windows 8.0) -->
-    <platform name="windows">
-        <config-file target="package.appxmanifest" parent="/Package/Capabilities">
-            <DeviceCapability Name="location" />
-        </config-file>
-
-        <js-module src="src/windows/GeolocationProxy.js" name="GeolocationProxy">
-            <runs />
-        </js-module>
-
-        <js-module src="www/Coordinates.js" name="Coordinates">
-            <clobbers target="Coordinates" />
-        </js-module>
-
-        <js-module src="www/PositionError.js" name="PositionError">
-            <clobbers target="PositionError" />
-        </js-module>
-
-        <js-module src="www/Position.js" name="Position">
-            <clobbers target="Position" />
-        </js-module>
-
-        <js-module src="www/geolocation.js" name="geolocation">
-            <clobbers target="navigator.geolocation" />
-        </js-module>
     </platform>
 </plugin>
