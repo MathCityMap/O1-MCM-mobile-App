@@ -271,22 +271,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-media.MediaError",
-      "file": "plugins/cordova-plugin-media/www/MediaError.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.MediaError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.Media",
-      "file": "plugins/cordova-plugin-media/www/Media.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.Media"
-      ]
-    },
-    {
       "id": "cordova-plugin-native-spinner.SpinnerDialog",
       "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
       "pluginId": "cordova-plugin-native-spinner",
@@ -574,6 +558,22 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "navigator.geolocation"
       ]
+    },
+    {
+      "id": "cordova-plugin-media.MediaError",
+      "file": "plugins/cordova-plugin-media/www/MediaError.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.MediaError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.Media",
+      "file": "plugins/cordova-plugin-media/www/Media.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.Media"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -588,7 +588,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-inappbrowser": "4.0.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-media": "7.0.0-dev",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-safariviewcontroller": "2.0.0",
@@ -604,6 +603,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-camera": "8.0.1-dev",
     "com-sarriaroman-photoviewer": "1.1.18",
-    "cordova-plugin-geolocation": "5.0.1-dev"
+    "cordova-plugin-geolocation": "5.0.1-dev",
+    "cordova-plugin-media": "7.0.0-dev"
   };
 });

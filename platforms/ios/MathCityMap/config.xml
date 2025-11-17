@@ -54,9 +54,6 @@
     <feature name="CDVIonicKeyboard">
         <param name="ios-package" onload="true" value="CDVIonicKeyboard" />
     </feature>
-    <feature name="Media">
-        <param name="ios-package" value="CDVSound" />
-    </feature>
     <feature name="SpinnerDialog">
         <param name="ios-package" value="CDVSpinnerDialog" />
     </feature>
@@ -284,7 +281,6 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
-    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="deployment-target" value="11.0" />
@@ -303,4 +299,8 @@
     <preference name="Hostname" value="app.mathcitymap.eu" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
+    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
 </widget>

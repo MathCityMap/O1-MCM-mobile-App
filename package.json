@@ -100,7 +100,7 @@
         "cordova-plugin-geolocation": "github:apache/cordova-plugin-geolocation",
         "cordova-plugin-ionic-webview": "^5.0.1",
         "cordova-plugin-local-notification": "file:plugin-src/cordova-plugin-local-notification",
-        "cordova-plugin-media": "git+https://github.com/apache/cordova-plugin-media.git",
+        "cordova-plugin-media": "file:plugin-src/cordova-plugin-media",
         "cordova-plugin-request-location-accuracy": "^2.3.0",
         "cordova-plugin-safariviewcontroller": "^2.0.0",
         "cordova-plugin-tts-advanced": "^0.5.3",
@@ -132,7 +132,6 @@
             },
             "cordova-plugin-safariviewcontroller": {},
             "cordova-plugin-badge": {},
-            "cordova-plugin-media": {},
             "cordova-plugin-file": {},
             "cordova-plugin-ionic-webview": {},
             "cordova-plugin-tts-advanced": {},
@@ -147,6 +146,9 @@
             "com-sarriaroman-photoviewer": {},
             "cordova-plugin-geolocation": {
                 "GPS_REQUIRED": "false"
+            },
+            "cordova-plugin-media": {
+                "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
             }
         },
         "platforms": [

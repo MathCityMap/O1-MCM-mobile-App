@@ -61,9 +61,6 @@
     "cordova-plugin-badge": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-media": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-file": {
       "ANDROIDX_WEBKIT_VERSION": "1.4.0",
       "PACKAGE_NAME": "de.autentek.mathcitymap"
@@ -93,6 +90,9 @@
     },
     "cordova-plugin-geolocation": {
       "GPS_REQUIRED": "false",
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-media": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },

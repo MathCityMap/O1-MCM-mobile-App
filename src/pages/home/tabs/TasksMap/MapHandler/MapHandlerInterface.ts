@@ -12,4 +12,5 @@ export interface MapHandlerInterface {
     redrawMarkers(tasks: Array<Task>, mapState: TaskMapState, score: Score): Promise<void>
     updateUserPosition(lat: number, lng: number): void
     moveTo(lat: number, lon: number): void;
+    resizeToContainer(): void;
 }

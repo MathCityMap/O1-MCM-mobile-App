@@ -355,6 +355,10 @@ export class LeafletMapHandler implements MapHandlerInterface {
         this.prevPos = {latitude: lat, longitude: lng};
     }
 
+    resizeToContainer() {
+        this.map.invalidateSize();
+    }
+
     private updateUserLocationArrow(userLatLng) {
         if (!userLatLng) {
             return;

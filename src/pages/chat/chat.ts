@@ -12,6 +12,7 @@ import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
 
+//FIXME Replace cordova media plugin with html5 audio for recording + playback
 @IonicPage()
 @Component({
     selector: 'page-chat',
@@ -51,7 +52,6 @@ export class ChatPage {
     protected currentPosition: number = 0;
     private durationInterval;
     private positionInterval;
-    private durCheckInterval;
     protected timeZoneOpposite: number = 0;
 
     protected recordState: RecordStateEnum = RecordStateEnum.Idle;
@@ -200,7 +200,12 @@ export class ChatPage {
         //If we are sending an image
         if (this.editorImg) {
             this.localPath = null;
-            let blob = new Blob([this.editorImg], {type: 'image/jpeg'});
+            let imgDataUrl = this.editorImg;
+            const stringToRemove = 'data:image/jpeg;base64,';
+            if (imgDataUrl.startsWith(stringToRemove)) {
+                imgDataUrl = imgDataUrl.slice(stringToRemove.length);
+            }
+            let blob = new Blob([imgDataUrl], {type: 'image/jpeg'});
             let myFormData = new FormData();
             myFormData.append('media', blob, 'image.jpeg');
             let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
@@ -372,6 +377,7 @@ export class ChatPage {
                 this.showTextArea = true;
                 this.showPictureButtons = true;
                 this.pauseAudio();
+                this.clearAudio();
                 break;
             default:
                 this.recordState = RecordStateEnum.Record;
@@ -421,8 +427,10 @@ export class ChatPage {
             this.fileDirectory = this.file.documentsDirectory;
         }
         this.file.createFile(this.fileDirectory, filename, true).then(filePath => {
+            if (this.audio) {
+                this.clearAudio();
+            }
             this.audio = this.media.create(this.fileDirectory.replace(/^file:\/\//, '') + filename);
-            //this.audio.release();
             this.startAudioRecord = new Date().getTime();
             this.audio.startRecord();
             this.updateAudioDuration();
@@ -449,40 +457,46 @@ export class ChatPage {
             this.durationInterval = null;
         }
         //if (this.platform.is('ios')) {
-            this.audio.setVolume(0);
-            this.audio.play();
-            this.audioDuration = await this.getAudioDuration();
-            this.audio.pause();
-            this.audio.setVolume(1);
-            this.audio.seekTo(0);
+        //     this.audio.setVolume(0);
+        //     this.audio.play();
+        //     this.audioDuration = await this.getAudioDuration();
+        //     if (this.audio) {
+        //         this.audio.pause();
+        //         this.audio.setVolume(1);
+        //         this.audio.seekTo(0);
+        //     }
         //} else {
         //    this.audioDuration = await this.getAudioDuration();
         //}
         this.startAudioRecord = 0;
-        this.canPlayback = true;
+        this.canPlayback = !!this.audio;
+        this.clearAudio();
     }
 
-    async getAudioDuration (): Promise<number> {
+    async getAudioDuration (timeout: number = 3100): Promise<number> {
         return new Promise<number>((resolve) => {
-            this.durCheckInterval = window.setInterval(() => {
+            let interval = window.setInterval(() => {
                 console.log("Looking for File Duration");
                 if (!this.audio) {
-                    this.clearAudioDurationInterval();
+                    this.clearAudioDurationInterval(interval);
                     resolve(0);
+                    return;
                 }
                 if (this.audio.getDuration() != -1) {
                     // this.currentAudioFile.setVolume(1.0);
-                    this.clearAudioDurationInterval();
+                    this.clearAudioDurationInterval(interval);
                     resolve(this.audio.getDuration() * 1000);
                 }
             }, 1000);
+            setTimeout(() => {
+                clearInterval(interval)
+            }, timeout);
         });
     }
 
-    private clearAudioDurationInterval () {
-        if (this.durCheckInterval) {
-            clearInterval(this.durCheckInterval);
-            this.durCheckInterval = null;
+    private clearAudioDurationInterval (interval: number) {
+        if (interval) {
+            clearInterval(interval);
         }
     }
 
@@ -542,6 +556,13 @@ export class ChatPage {
         if (this.audio) {
           this.audio.pause();
           this.canPlayback = true;
+        }
+    }
+
+    clearAudio() {
+        if (this.audio) {
+            this.audio.release();
+            this.audio = null;
         }
     }
 

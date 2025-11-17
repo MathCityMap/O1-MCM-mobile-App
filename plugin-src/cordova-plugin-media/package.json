@@ -1,28 +1,25 @@
 {
-  "_from": "cordova-plugin-media@5.0.3",
-  "_id": "cordova-plugin-media@5.0.3",
+  "_from": "git+https://github.com/apache/cordova-plugin-media.git",
+  "_id": "cordova-plugin-media@7.0.0-dev",
   "_inBundle": false,
-  "_integrity": "sha512-UQPFlpk1zL4BY44zGi8RVmYCvcKBCN4Dyf8ovxqGYCC8zR1yhbTRWYDdO9vJdERwbfgWV7+z7FMWiSUfqWm9bQ==",
+  "_integrity": "",
   "_location": "/cordova-plugin-media",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "cordova-plugin-media@5.0.3",
-    "name": "cordova-plugin-media",
-    "escapedName": "cordova-plugin-media",
-    "rawSpec": "5.0.3",
-    "saveSpec": null,
-    "fetchSpec": "5.0.3"
+    "type": "git",
+    "raw": "https://github.com/apache/cordova-plugin-media",
+    "rawSpec": "https://github.com/apache/cordova-plugin-media",
+    "saveSpec": "git+https://github.com/apache/cordova-plugin-media.git",
+    "fetchSpec": "https://github.com/apache/cordova-plugin-media.git",
+    "gitCommittish": null
   },
   "_requiredBy": [
-    "#USER",
-    "/"
+    "#DEV:/",
+    "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-media/-/cordova-plugin-media-5.0.3.tgz",
-  "_shasum": "366188bd4f8472651c1e8304be649af6333b0e36",
-  "_spec": "cordova-plugin-media@5.0.3",
-  "_where": "/Users/damian.scheerer/Documents/web/O1-MCM-mobile-App",
+  "_resolved": "git+https://github.com/apache/cordova-plugin-media.git#957249b6b3f160416c8713a6fd331189052b6c72",
+  "_spec": "https://github.com/apache/cordova-plugin-media",
+  "_where": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App",
   "author": {
     "name": "Apache Software Foundation"
   },
@@ -42,7 +39,7 @@
   "deprecated": false,
   "description": "Cordova Media Plugin",
   "devDependencies": {
-    "jshint": "^2.6.0"
+    "@cordova/eslint-config": "^5.0.0"
   },
   "engines": {
     "cordovaDependencies": {
@@ -53,6 +50,12 @@
         "cordova-android": ">=6.3.0"
       },
       "6.0.0": {
+        "cordova-android": ">=10.0.0"
+      },
+      "7.0.0": {
+        "cordova-android": ">=12.0.0"
+      },
+      "8.0.0": {
         "cordova": ">100"
       }
     }
@@ -74,9 +77,9 @@
     "url": "git+https://github.com/apache/cordova-plugin-media.git"
   },
   "scripts": {
-    "jshint": "jshint www && jshint src && jshint tests",
-    "test": "npm run jshint"
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
   "types": "./types/index.d.ts",
-  "version": "5.0.3"
+  "version": "7.0.0-dev"
 }

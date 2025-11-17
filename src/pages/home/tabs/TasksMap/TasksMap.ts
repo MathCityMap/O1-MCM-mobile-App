@@ -394,7 +394,10 @@ export class TasksMap implements OnDestroy {
         if (!this.mapHandler) {
             this.initializeMapHandler();
         }
-        if (this.mapHandler.mapLoaded) return;
+        if (this.mapHandler.mapLoaded) {
+            this.mapHandler.resizeToContainer();
+            return;
+        }
         const resp = await this.gpsService.getCurrentPosition();
         await this.mapHandler.loadMap(resp ? resp.coords : undefined);
         this.mapClickSubscription = this.mapHandler.mapClickedEvent.subscribe(() => {
@@ -461,7 +464,9 @@ export class TasksMap implements OnDestroy {
         if (skip) {
             this.state.skippedTaskIds.push(task.id);
         }
-        console.debug("goToNextTask");
+        console.debug("goToNextTask", task);
+        console.debug("goToNextTask next task index", task.position % this.mapTaskList.length);
+        console.debug("goToNextTask next task", this.mapTaskList[task.position % this.mapTaskList.length]);
         const nextTask = this.mapTaskList[task.position % this.mapTaskList.length];
         if (nextTask.inactive) {
             this.state.visibleTasks[nextTask.position] = true;

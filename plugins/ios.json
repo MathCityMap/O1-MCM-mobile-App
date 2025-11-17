@@ -40,10 +40,6 @@
     "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
-    "cordova-plugin-media": {
-      "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
-      "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
-    },
     "cordova-plugin-native-spinner": {
       "PACKAGE_NAME": "de.uni_frankfurt.mathcitymap"
     },
@@ -86,6 +82,10 @@
     "cordova-plugin-geolocation": {
       "GPS_REQUIRED": "false",
       "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-media": {
+      "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO",
+      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     }
   },
   "dependent_plugins": {

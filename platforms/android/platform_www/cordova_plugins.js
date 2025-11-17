@@ -422,22 +422,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-media.MediaError",
-      "file": "plugins/cordova-plugin-media/www/MediaError.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.MediaError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-media.Media",
-      "file": "plugins/cordova-plugin-media/www/Media.js",
-      "pluginId": "cordova-plugin-media",
-      "clobbers": [
-        "window.Media"
-      ]
-    },
-    {
       "id": "cordova-plugin-ionic-webview.IonicWebView",
       "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
       "pluginId": "cordova-plugin-ionic-webview",
@@ -548,6 +532,22 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
       "pluginId": "cordova-plugin-geolocation",
       "runs": true
+    },
+    {
+      "id": "cordova-plugin-media.MediaError",
+      "file": "plugins/cordova-plugin-media/www/MediaError.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.MediaError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-media.Media",
+      "file": "plugins/cordova-plugin-media/www/Media.js",
+      "pluginId": "cordova-plugin-media",
+      "clobbers": [
+        "window.Media"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -570,7 +570,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova.plugins.diagnostic": "6.0.4",
     "cordova-plugin-safariviewcontroller": "2.0.0",
     "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-media": "7.0.0-dev",
     "cordova-plugin-ionic-webview": "5.0.0",
     "cordova-plugin-tts-advanced": "0.5.2",
     "cordova-plugin-request-location-accuracy": "2.3.0",
@@ -578,6 +577,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-camera": "8.0.1-dev",
     "com-sarriaroman-photoviewer": "1.1.18",
-    "cordova-plugin-geolocation": "5.0.1-dev"
+    "cordova-plugin-geolocation": "5.0.1-dev",
+    "cordova-plugin-media": "7.0.0-dev"
   };
 });

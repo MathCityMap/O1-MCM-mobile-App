@@ -371,7 +371,7 @@ export class ImagesService {
         };
         try {
             const imageData = await this.camera.getPicture(options)
-            return {imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData};
+            return {imageData: imageData, base64: imageData.startsWith('data:image/jpeg;base64,') ? imageData : 'data:image/jpeg;base64,' + imageData};
         } catch (err) {
             throw err;
         }
@@ -390,7 +390,7 @@ export class ImagesService {
 
         try {
             const imageData = await this.camera.getPicture(options);
-            return {imageData: imageData, base64: 'data:image/jpeg;base64,' + imageData};
+            return {imageData: imageData, base64: imageData.startsWith('data:image/jpeg;base64,') ? imageData : 'data:image/jpeg;base64,' + imageData};
         } catch (err) {
             throw err;
         }

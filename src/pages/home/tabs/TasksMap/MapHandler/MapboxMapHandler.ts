@@ -377,7 +377,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
                 updateClusterData();
                 // update the source for the unclustered points layer
                 map.getSource('tasks').setData(clusterData);
-                if (!this.isUserInsideMap) {
+                if (!this.isUserInsideMap && this.prevPos) {
                     this.updateUserLocationArrow(this.prevPos.latitude, this.prevPos.longitude);
                 }
             })
@@ -404,7 +404,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
         if (this.map.getSource('user-position')) {
             if (this.isUserInsideMap) {
                 let angle = 1;
-                if (this.prevPos != null) {
+                if (this.prevPos) {
                     angle = Helper.getAngle(this.prevPos, {latitude: lat, longitude: lng});
                 }
                 const geojson = {
@@ -432,6 +432,10 @@ export class MapboxMapHandler implements MapHandlerInterface {
 
     moveTo(lat: number, lon: number) {
         this.map.flyTo({ center: [lon, lat], zoom: 16 });
+    }
+
+    resizeToContainer() {
+        this.map.resize();
     }
 
     private updateUserLocationArrow(lat: number, lng: number) {
