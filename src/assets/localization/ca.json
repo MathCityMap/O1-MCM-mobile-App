@@ -117,5 +117,9 @@
   "p_trail_form": "Formulari de la ruta",
   "p_hint_img_label": "Imatge de la pista",
   "p_hint_text_label": "Text de la pista",
-  "p_hint_type": "Tipus de pista"
+  "p_hint_type": "Tipus de pista",
+  "p_survey_details_sub": "Veure els resultats de l'enquesta",
+  "p_you_are_awesome": "Ets increïble!",
+  "p_thank_you": "Gràcies",
+  "p_survey_results": "Resultats de l'enquesta"
 }

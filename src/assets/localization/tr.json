@@ -416,5 +416,6 @@
   "p_session_info_click_to_add": "Başlangıç ​​görevi olarak eklemek için bir göreve tıklayın.",
   "p_drag_drop": "Sürükle ve bırak yöntemiyle sıralamanızı değiştirin.",
   "p_session_info_user_defined": "Tanımlı kullanıcı",
-  "p_session_info_assign_mode": "Ödev modu"
+  "p_session_info_assign_mode": "Ödev modu",
+  "a_onboarding_slide3_svg": "Start"
 }

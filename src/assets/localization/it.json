@@ -1300,5 +1300,6 @@
   "p_task_no_support_task_consider_creating": "Questa attività non contiene ancora attività di supporto. Le attività di supporto possono aiutare a suddividere le attività più complesse in attività di supporto gestibili. A tale scopo, create il problema complesso come attività principale e utilizzate le attività di supporto per suddividere il processo di soluzione previsto in diverse fasi di supporto.",
   "p_upload_img_support_task": "Caricare un'immagine rappresentativa per l'attività di supporto. Se non viene fornita alcuna immagine, verrà utilizzata quella dell'attività principale.",
   "p_support_task_create": "Creare un'attività di supporto per",
-  "p_error_frac_non_numeric": "Non è stato inserito un numero valido per l'intero: controlla se è al denominatore o al numeratore!"
+  "p_error_frac_non_numeric": "Non è stato inserito un numero valido per l'intero: controlla se è al denominatore o al numeratore!",
+  "a_onboarding_slide3_svg": "inizio"
 }

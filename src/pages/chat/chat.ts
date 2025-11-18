@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
-import {Content, Events, IonicPage, NavParams, Platform} from 'ionic-angular';
+import {Content, Events, IonicPage, Platform} from 'ionic-angular';
 import {ChatAndSessionService, ChatMessage, SessionInfo, UserInfo} from "../../services/chat-and-session-service";
 import {SessionUser} from "../../app/api/models/session-user";
 import {Session} from "../../app/api/models/session";
@@ -11,6 +11,7 @@ import {PhotoViewer} from "@ionic-native/photo-viewer";
 import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
+import {TranslateService} from "@ngx-translate/core";
 
 //FIXME Replace cordova media plugin with html5 audio for recording + playback
 @IonicPage()
@@ -37,6 +38,7 @@ export class ChatPage {
 
     protected localPath: string = null;
     private audioFilePath: string = null;
+    private webAudioFilePath: string = null;
     private fileDirectory: string = null;
 
     private audio: MediaObject;
@@ -56,8 +58,7 @@ export class ChatPage {
 
     protected recordState: RecordStateEnum = RecordStateEnum.Idle;
 
-    constructor(navParams: NavParams,
-                protected file: File,
+    constructor(protected file: File,
                 protected media: Media,
                 protected platform: Platform,
                 private chatService: ChatAndSessionService,
@@ -66,7 +67,8 @@ export class ChatPage {
                 private chatAndSessionService: ChatAndSessionService,
                 private photoViewer: PhotoViewer,
                 private spinnerDialog: SpinnerDialog,
-                private imageService: ImagesService) {
+                private imageService: ImagesService,
+                private translate: TranslateService) {
 
         this.chatService.getUserInfo()
             .then((res) => {
@@ -108,7 +110,7 @@ export class ChatPage {
 
     ionViewDidEnter() {
         let timezoneOffset = new Date().getTimezoneOffset();
-        this.timeZoneOpposite = (timezoneOffset * 60000)
+        // this.timeZoneOpposite = (timezoneOffset * 60000)
         //get message list
         this.getMsg();
 
@@ -244,7 +246,7 @@ export class ChatPage {
                     let details = JSON.stringify({'message': resultPath});
                     this.chatAndSessionService.addUserEvent("event_trail_chat_msg_send", details, "0");
                 } else {
-                    console.log("ERROR: unnable to send media");
+                    console.log("ERROR: unable to send media");
                     return;
                 }
             }).catch(err => {
@@ -437,7 +439,8 @@ export class ChatPage {
             this.durationInterval = window.setInterval(() => {
                 this.updateAudioDuration();
             }, 1000);
-            this.audioFilePath = filePath.toInternalURL();
+            this.audioFilePath = this.fileDirectory.replace(/^file:\/\//, '') + filename;
+            this.webAudioFilePath = filePath.toURL();
 
         }).catch(err => {console.log("creation file error:", err)});
 
@@ -456,18 +459,11 @@ export class ChatPage {
             clearInterval(this.durationInterval);
             this.durationInterval = null;
         }
-        //if (this.platform.is('ios')) {
-        //     this.audio.setVolume(0);
-        //     this.audio.play();
-        //     this.audioDuration = await this.getAudioDuration();
-        //     if (this.audio) {
-        //         this.audio.pause();
-        //         this.audio.setVolume(1);
-        //         this.audio.seekTo(0);
-        //     }
-        //} else {
-        //    this.audioDuration = await this.getAudioDuration();
-        //}
+        let audioElement = new Audio();
+        audioElement.src = (<any> window).Ionic.WebView.convertFileSrc(this.webAudioFilePath);
+        audioElement.ondurationchange = () => {
+            this.audioDuration = audioElement.duration * 1000;
+        }
         this.startAudioRecord = 0;
         this.canPlayback = !!this.audio;
         this.clearAudio();
@@ -531,7 +527,9 @@ export class ChatPage {
                     if (!isNaN(index)) this.audioIndex = null;
                     else this.canPlayback = true;
 
-                    this.audio.release();
+                    if (this.audio) {
+                        this.audio.release();
+                    }
                     this.audioPlaying = false;
                     this.clearPositionInterval(message);
                     break;
