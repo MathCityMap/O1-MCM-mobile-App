@@ -586,6 +586,8 @@ export class ChatAndSessionService {
     }
 
     public addUserEvent(title: string, details: string, task_id: string) {
+        // If we have no position subscription we are not currently in a session so we ignore the event
+        if (!this.positionSubscription) return;
         let eventAddRequest = new EventAddRequest();
         eventAddRequest.title = title;
         eventAddRequest.details = details;
