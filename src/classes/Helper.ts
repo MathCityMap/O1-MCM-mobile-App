@@ -178,8 +178,8 @@ export class Helper {
         let distance = -1;
         let location = this.gpsService.getLastPosition();
         if (location && location.coords) {
-            let lat1 = new Number(location.coords.latitude).valueOf();
-            let lon1 = new Number(location.coords.longitude).valueOf();
+            let lat1 = Number(location.coords.latitude).valueOf();
+            let lon1 = Number(location.coords.longitude).valueOf();
             let R = 6371e3; // metres
             let p = Math.PI / 180;
             let φ1 = lat1 * p;
