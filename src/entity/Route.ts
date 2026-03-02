@@ -443,7 +443,7 @@ export class Route {
     }
 
     getDistance(): number {
-        if (GpsService.INSTANCE.getLastPosition() && this.distance == null) {
+        if (GpsService.INSTANCE.getLastPosition() && (this.distance == null || isNaN(this.distance))) {
             this.distance = Helper.INSTANCE.getDistanceToCenterByLatLng(this.getCenterLatLng());
         }
         return this.distance;
@@ -556,7 +556,7 @@ export class Route {
         let key = this.matchingStrings[$mcmKey];
         let newString = this.narrativeStrings[key];
 
-        return newString? true : false;
+        return !!newString;
     }
 
     getNarrativeString($mcmKey) {

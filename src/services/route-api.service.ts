@@ -100,10 +100,12 @@ export class RouteApiService {
         if (this._downloadedRoutes) {
             return this._downloadedRoutes;
         }
-        let routes = await this.storage.get(DOWNLOADED_ROUTES_KEY);
+        let routes: Array<any> = await this.storage.get(DOWNLOADED_ROUTES_KEY);
         if (routes) {
             routes = Route.convertGenericsToRouteArray(routes);
-            this._downloadedRoutes = routes;
+            this._downloadedRoutes = routes.sort((a: Route, b: Route) => {
+                return a.getDistance() - b.getDistance();
+            });
             return routes;
         }
         return [];
@@ -290,10 +292,12 @@ export class RouteApiService {
     private async addRouteToDownloadedList(route: Route) {
         route.downloaded = true;
         route.downloadedDate = new Date().toDateString().split(' ').slice(1).join(' ');
-
+        console.log('route', route);
         let downloadedRoutes = await this.getDownloadedRoutes();
         downloadedRoutes.push(route);
-        this._downloadedRoutes = downloadedRoutes;
+        this._downloadedRoutes = downloadedRoutes.sort((a: Route, b: Route) => {
+            return a.getDistance() - b.getDistance();
+        });
         await this.storage.set(DOWNLOADED_ROUTES_KEY, downloadedRoutes);
         this.updateRouteInPublicList(route);
     }
