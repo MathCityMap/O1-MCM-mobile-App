@@ -219,6 +219,24 @@ export class Helper {
         return angle;
     }
 
+    private static getPowerOfTenBase(N: number) {
+        if (N <= 0) return null;
+        const exponent = Math.floor(Math.log10(N));
+        return (N / Math.pow(10, exponent)) * 10;
+    }
+
+
+    public static isOffByPowerOfTen(value: number, min: number, max: number) {
+        const baseValue = Helper.getPowerOfTenBase(value);
+        const baseMin = Helper.getPowerOfTenBase(min);
+        const baseMax = Helper.getPowerOfTenBase(max);
+
+        const lower = Math.min(baseMin, baseMax);
+        const upper = Math.max(baseMin, baseMax);
+
+        return baseValue >= lower && baseValue <= upper;
+    }
+
     /*public static followUser(bounds: L.Bounds, userPoint: L.Point, zoom: number){
       let center = bounds.getCenter();
 

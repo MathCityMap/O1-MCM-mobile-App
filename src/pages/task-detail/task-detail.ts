@@ -681,11 +681,19 @@ export class TaskDetail {
                         if (this.sessionInfo != null) {
                             this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
                         }
+                        // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
+                        if (Helper.isOffByPowerOfTen(answer, vonLow, bisLow)) {
+                            this.taskSolved('offByTen', ['']);
+                        }
                         this.taskSolved('', ['']);
                     }
                 } else {
                     if (this.sessionInfo != null) {
                         this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    }
+                    // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
+                    if (Helper.isOffByPowerOfTen(answer, von, bis)) {
+                        this.taskSolved('offByTen', ['']);
                     }
                     this.taskSolved('', ['']);
                 }
@@ -776,6 +784,19 @@ export class TaskDetail {
                 if (this.sessionInfo != null) {
                     details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
                     this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                }
+                // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
+                let isOffByTen = false;
+                for (let i = 0; i < answers.length; i++) {
+                    let answer = answers[i];
+                    let checkAnswer = parseFloat(answer.answer.replace(",", "."));
+                    let solution = solutions[i];
+                    if (Helper.isOffByPowerOfTen(checkAnswer, solution.low, solution.high)) {
+                        isOffByTen = true;
+                    }
+                }
+                if (isOffByTen) {
+                    this.taskSolved('offByTen', [solutionText]);
                 }
                 this.taskSolved('', [solutionText]);
             }
@@ -1475,6 +1496,9 @@ export class TaskDetail {
                 this.taskDetails.newTries++;
             }
             let title = "a_alert_false_answer_title";
+            if (solved === 'offByTen') {
+                message = "a_alert_false_answer_offByTen";
+            }
             if (this.route.isNarrativeEnabled()) {
                 title = this.route.getNarrativeString(title);
                 message = this.route.getNarrativeString(message);
