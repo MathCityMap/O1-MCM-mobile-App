@@ -684,6 +684,7 @@ export class TaskDetail {
                         // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                         if (Helper.isOffByPowerOfTen(answer, vonLow, bisLow)) {
                             this.taskSolved('offByTen', ['']);
+                            return
                         }
                         this.taskSolved('', ['']);
                     }
@@ -694,6 +695,7 @@ export class TaskDetail {
                     // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                     if (Helper.isOffByPowerOfTen(answer, von, bis)) {
                         this.taskSolved('offByTen', ['']);
+                        return
                     }
                     this.taskSolved('', ['']);
                 }
@@ -797,6 +799,7 @@ export class TaskDetail {
                 }
                 if (isOffByTen) {
                     this.taskSolved('offByTen', [solutionText]);
+                    return;
                 }
                 this.taskSolved('', [solutionText]);
             }
