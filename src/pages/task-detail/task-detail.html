@@ -225,7 +225,7 @@
 
 					<!--         Multiple Choice-->
 					<ion-list
-						*ngIf="task && task.solutionType == 'multiple_choice' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+						*ngIf="task && task.solutionType == 'multiple_choice' && !task.isImageMultipleChoice() &&  multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
 						<ion-item #multipleChoiceAnswers *ngFor="let item of multipleChoiceList; let i = index" readable
 									 [language]="translatePage ? translation.language : task.langCode"
 									 [ngClass]="{translated: translatePage}">
@@ -240,26 +240,26 @@
 					<!--         Multiple Choice: Images-->
 					<!--				TODO display when task type mc-image-->
 					<div class="image-selection-container"
-						  *ngIf="task && task.solutionType == 'multiple_choice_image' && multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+						  *ngIf="task && task.solutionType == 'multiple_choice' && task.isImageMultipleChoice() &&  multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
 						<ion-list class="image-list">
 							<!--				TODO generate image items-->
-							<div class="image-item">
+							<div class="image-item" *ngFor="let item of multipleChoiceList" (click)="item.userChecked = !item.userChecked" [ngClass]="{'active': item.userChecked}">
 								<!--				TODO load image-->
-								<img class="image" *ngIf="task && task.s3Media.image" [src]="task.getImageURL()" alt="image"/>
+								<img class="image" [src]="item.value" alt="image"/>
 								<!--				TODO display image in viewer-->
-								<button ion-button icon-only color="transparent" (click)="openInPhotoviewer()">
+								<button ion-button icon-only color="transparent" (click)="openInPhotoviewer(false, item.value, $event)">
 									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>
 								</button>
 							</div>
 
 							<!--         Fill-in-the-Blanks-->
 							<!--				TODO toggle active when item clicked-->
-							<div class="image-item active">
-								<img class="image" *ngIf="task && task.s3Media.image" [src]="task.getImageURL()" alt="image"/>
-								<button ion-button icon-only round color="transparent" (click)="openInPhotoviewer()">
-									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>
-								</button>
-							</div>
+<!--							<div class="image-item active">-->
+<!--								<img class="image" *ngIf="task && task.s3Media.image" [src]="task.getImageURL()" alt="image"/>-->
+<!--								<button ion-button icon-only round color="transparent" (click)="openInPhotoviewer()">-->
+<!--									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>-->
+<!--								</button>-->
+<!--							</div>-->
 						</ion-list>
 					</div>
 

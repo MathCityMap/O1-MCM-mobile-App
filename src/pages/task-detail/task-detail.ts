@@ -2153,12 +2153,17 @@ export class TaskDetail {
         return result;
     }
 
-    openInPhotoviewer(useRoot = false) {
+    openInPhotoviewer(useRoot = false, urlOverride?: string, event?: any) {
+        if (event) event.stopPropagation();
         if (Helper.isPluginAvailable(PhotoViewer)) {
             this.spinnerDialog.show();
             setTimeout(() => {
+                let url = useRoot ? this.rootTask.getImageURL(true) : this.task.getImageURL(true);
+                if (urlOverride) {
+                    url = urlOverride;
+                }
                 // use short timeout to let spinner dialog appear
-                this.photoViewer.show(useRoot ? this.rootTask.getImageURL(true) : this.task.getImageURL(true));
+                this.photoViewer.show(url);
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();
@@ -2477,4 +2482,6 @@ export class TaskDetail {
         this.translationService.toggleTranslatedClass(this.translatePage);
         this.fillBlankSolutionElement();
     }
+
+    protected readonly event = event;
 }

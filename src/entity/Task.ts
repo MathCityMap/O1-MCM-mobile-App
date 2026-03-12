@@ -7,6 +7,7 @@ import {RouteDetailApiResponse} from "../services/ApiResponseDefinition/RouteDet
 import {ChildTaskApiResponse, TaskApiResponse} from "../services/ApiResponseDefinition/TaskApiResponse";
 import {TaskFormat} from "../services/ApiResponseDefinition/TaskFormat";
 import {s3Media} from "../services/ApiResponseDefinition/s3Media";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Entity('mcm_task')
 export class Task {
@@ -206,6 +207,7 @@ export class Task {
         return ImagesService.INSTANCE.getOfflineURL(this.s3Media.image.details.largeUrl, undefined, undefined, asRawString);
     }
 
+    //TODO extend to downloading the image for multipleChoiceImageTasks as well if present
     getImagesForDownload(): string[] {
         let result = [];
         // Add title image
@@ -228,10 +230,31 @@ export class Task {
         ).map(hint => this.s3Media['hint'+hint.index].details.largeUrl));
     }
 
+    isImageMultipleChoice() {
+        if (this.solutionType !== 'multiple_choice') return false;
+        let decodedSolution = Helper.safeJsonDecode(this.solution);
+        return decodedSolution.settings && decodedSolution.settings.image_mode === 1;
+    }
+
+    isSelectionBlank() {
+        if (this.solutionType == 'blanks') return false;
+        let decodedSolution = Helper.safeJsonDecode(this.solution);
+        return decodedSolution.settings && decodedSolution.settings.selection_guide === true;
+    }
+
+    //TODO adapt to respect solution settings
     getSolutionOptionList(): Array<any> {
         if (this.solutionType == 'multiple_choice') {
             let multipleChoiceSolutionList = [];
             let temp = Helper.safeJsonDecode(this.solution);
+            if (this.isImageMultipleChoice()) {
+                let rawContents = temp.components;
+                rawContents.forEach((element: { checked: any; image_url: any; }) => {
+                    multipleChoiceSolutionList.push({userChecked: false, rightAnswer: element.checked, value: element.image_url});
+                })
+                console.log('ImageMultiChoice', multipleChoiceSolutionList);
+                return multipleChoiceSolutionList;
+            }
 
             temp[0].forEach(element => {
                 multipleChoiceSolutionList.push({userChecked: false, rightAnswer: false, value: element});
@@ -246,6 +269,7 @@ export class Task {
         }
     }
 
+    //TODO adapt to work properly with new blanks and multiple choice data
     getSolution(): string {
         let solution = Helper.safeJsonDecode(this.solution);
         if (this.solutionType === "vector_values" || this.solutionType === "vector_intervals" || this.solutionType === 'set' || this.solutionType === 'blanks' || this.solutionType === 'fraction') {
