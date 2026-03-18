@@ -199,7 +199,7 @@ export class Helper {
     }
 
     public static safeJsonDecode(str: string): any {
-        return JSON.parse(str.replace(/(?:\r\n|\r|\n)/g, '\\n'));
+        return JSON.parse(str.replace(/(?:\r\n|\r|\n)/g, '\n'));
     }
 
     // public static JSONArray getJSONArray(String arrString){

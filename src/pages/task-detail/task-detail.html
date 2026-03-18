@@ -238,15 +238,13 @@
 					</ion-list>
 
 					<!--         Multiple Choice: Images-->
-					<!--				TODO display when task type mc-image-->
 					<div class="image-selection-container"
 						  *ngIf="task && task.solutionType == 'multiple_choice' && task.isImageMultipleChoice() &&  multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
 						<ion-list class="image-list">
 							<!--				TODO generate image items-->
 							<div class="image-item" *ngFor="let item of multipleChoiceList" (click)="item.userChecked = !item.userChecked" [ngClass]="{'active': item.userChecked}">
 								<!--				TODO load image-->
-								<img class="image" [src]="item.value" alt="image"/>
-								<!--				TODO display image in viewer-->
+								<img class="image" [src]="imageService.getOfflineURL(item.value)" alt="image"/>
 								<button ion-button icon-only color="transparent" (click)="openInPhotoviewer(false, item.value, $event)">
 									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>
 								</button>

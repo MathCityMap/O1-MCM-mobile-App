@@ -103,11 +103,11 @@ export class TaskDetail {
         private app: MyApp,
         private photoViewer: PhotoViewer,
         private spinnerDialog: SpinnerDialog,
-        private imageService: ImagesService,
         private cdRef: ChangeDetectorRef,
         private safariViewController: SafariViewController,
+        private routeApiService: RouteApiService,
         protected translationService: TranslationService,
-        private routeApiService: RouteApiService
+        protected imageService: ImagesService
     ) {
     }
 
@@ -636,8 +636,6 @@ export class TaskDetail {
             checkedByUser = checkedByUser.map(item => item.value);
             for (let i = 0; i < this.multipleChoiceList.length; i++) {
                 let item = this.multipleChoiceList[i];
-                console.log(item);
-                console.log(item.userChecked != item.rightAnswer);
                 if (item.userChecked != item.rightAnswer) {
                     taskSuccess = false;
                     console.log('found wrong answer');
@@ -647,6 +645,18 @@ export class TaskDetail {
             this.taskDetails.answerMultipleChoice = this.multipleChoiceList;
             console.log(taskSuccess);
             let solution = [this.task.getSolution()]
+            // TODO create img tags for each correct entry
+            if (this.task.isImageMultipleChoice()) {
+                let solutionText = "<span>";
+                for (let i = 0; i < this.multipleChoiceList.length; i++) {
+                    let item = this.multipleChoiceList[i];
+                    if (item.userChecked && item.rightAnswer) {
+                        solutionText += `<img class="image" style="max-height: 80px; display: inline;" src="${this.imageService.getOfflineURL(item.value)}" alt="image"/>`;
+                    }
+                }
+                solutionText += "</span>"
+                solution = [solutionText];
+            }
             if (taskSuccess) {
                 this.CalculateScore("multiple_choice", "solved");
                 this.taskSolved('solved', solution);
@@ -2160,8 +2170,9 @@ export class TaskDetail {
             setTimeout(() => {
                 let url = useRoot ? this.rootTask.getImageURL(true) : this.task.getImageURL(true);
                 if (urlOverride) {
-                    url = urlOverride;
+                    url = this.imageService.getOfflineURL(urlOverride, false, false, true);
                 }
+                console.log('Showing photoviewer for URL', url);
                 // use short timeout to let spinner dialog appear
                 this.photoViewer.show(url);
                 setTimeout(() => {

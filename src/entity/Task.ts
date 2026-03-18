@@ -207,12 +207,17 @@ export class Task {
         return ImagesService.INSTANCE.getOfflineURL(this.s3Media.image.details.largeUrl, undefined, undefined, asRawString);
     }
 
-    //TODO extend to downloading the image for multipleChoiceImageTasks as well if present
     getImagesForDownload(): string[] {
         let result = [];
         // Add title image
         if (this.s3Media.image) {
             result.push(this.s3Media.image.details.largeUrl);
+        }
+        if (this.isImageMultipleChoice()) {
+            let solution = this.getSolutionOptionList();
+            for (let entry of solution) {
+                result.push(entry.value);
+            }
         }
         // Add sample solution image if available
         let sampleSolutionImg = this.getSolutionSampleImgSrc();
@@ -250,7 +255,7 @@ export class Task {
             if (this.isImageMultipleChoice()) {
                 let rawContents = temp.components;
                 rawContents.forEach((element: { checked: any; image_url: any; }) => {
-                    multipleChoiceSolutionList.push({userChecked: false, rightAnswer: element.checked, value: element.image_url});
+                    multipleChoiceSolutionList.push({userChecked: false, rightAnswer: element.checked === 'true', value: element.image_url});
                 })
                 console.log('ImageMultiChoice', multipleChoiceSolutionList);
                 return multipleChoiceSolutionList;
