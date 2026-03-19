@@ -645,7 +645,6 @@ export class TaskDetail {
             this.taskDetails.answerMultipleChoice = this.multipleChoiceList;
             console.log(taskSuccess);
             let solution = [this.task.getSolution()]
-            // TODO create img tags for each correct entry
             if (this.task.isImageMultipleChoice()) {
                 let solutionText = "<span>";
                 for (let i = 0; i < this.multipleChoiceList.length; i++) {

@@ -7,7 +7,6 @@ import {RouteDetailApiResponse} from "../services/ApiResponseDefinition/RouteDet
 import {ChildTaskApiResponse, TaskApiResponse} from "../services/ApiResponseDefinition/TaskApiResponse";
 import {TaskFormat} from "../services/ApiResponseDefinition/TaskFormat";
 import {s3Media} from "../services/ApiResponseDefinition/s3Media";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Entity('mcm_task')
 export class Task {
@@ -257,14 +256,34 @@ export class Task {
                 rawContents.forEach((element: { checked: any; image_url: any; }) => {
                     multipleChoiceSolutionList.push({userChecked: false, rightAnswer: element.checked === 'true', value: element.image_url});
                 })
-                console.log('ImageMultiChoice', multipleChoiceSolutionList);
+                if (temp.settings.shuffle_components) {
+                    let shuffle = function shuffle(array) {
+                        let currentIndex = array.length;
+
+                        // While there remain elements to shuffle...
+                        while (currentIndex != 0) {
+
+                            // Pick a remaining element...
+                            let randomIndex = Math.floor(Math.random() * currentIndex);
+                            currentIndex--;
+
+                            // And swap it with the current element.
+                            [array[currentIndex], array[randomIndex]] = [
+                                array[randomIndex], array[currentIndex]];
+                        }
+                    }
+                    shuffle(multipleChoiceSolutionList);
+                }
                 return multipleChoiceSolutionList;
             }
-
-            temp[0].forEach(element => {
+            let components = temp;
+            if (temp.settings) {
+                components = temp.components;
+            }
+            components[0].forEach(element => {
                 multipleChoiceSolutionList.push({userChecked: false, rightAnswer: false, value: element});
             });
-            temp[1].forEach(element => {
+            components[1].forEach(element => {
                 multipleChoiceSolutionList[element].rightAnswer = true;
             });
             console.log(multipleChoiceSolutionList);
