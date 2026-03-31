@@ -330,6 +330,12 @@ page-task-detail, page-task-group-detail {
          }
 
          .blanks-container{
+            &.disabled {
+               .blank {
+                  pointer-events: none;
+                  color: color($colors, grey);
+               }
+            }
             .blanks{
                &-text, &-list{
                   margin-top: $global-base-padding;
@@ -359,6 +365,10 @@ page-task-detail, page-task-group-detail {
                            background-color: color($colors, primary-tint);
                            color: color($colors, primary);
                         }
+                     }
+                     &.disabled {
+                        pointer-events: none;
+                        color: color($colors, grey);
                      }
                   }
                }

@@ -216,7 +216,7 @@
 
 					<!--         Blank Answer-->
 					<ion-item
-						*ngIf="task && task.solutionType === 'blanks' && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+						*ngIf="task && task.solutionType === 'blanks' && !task.isSelectionBlank() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
 						<p class="blankContainer" id="blankContainer_{{task.id}}" readable
 							[language]="translatePage ? translation.language : task.langCode"
 							[ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage, translated: translatePage}">
@@ -241,46 +241,27 @@
 					<div class="image-selection-container"
 						  *ngIf="task && task.solutionType == 'multiple_choice' && task.isImageMultipleChoice() &&  multipleChoiceList && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
 						<ion-list class="image-list">
-							<!--				TODO generate image items-->
 							<div class="image-item" *ngFor="let item of multipleChoiceList" (click)="item.userChecked = !item.userChecked" [ngClass]="{'active': item.userChecked}">
-								<!--				TODO load image-->
 								<img class="image" [src]="imageService.getOfflineURL(item.value)" alt="image"/>
 								<button ion-button icon-only color="transparent" (click)="openInPhotoviewer(false, item.value, $event)">
 									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>
 								</button>
 							</div>
-
-							<!--         Fill-in-the-Blanks-->
-							<!--				TODO toggle active when item clicked-->
-<!--							<div class="image-item active">-->
-<!--								<img class="image" *ngIf="task && task.s3Media.image" [src]="task.getImageURL()" alt="image"/>-->
-<!--								<button ion-button icon-only round color="transparent" (click)="openInPhotoviewer()">-->
-<!--									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>-->
-<!--								</button>-->
-<!--							</div>-->
 						</ion-list>
 					</div>
 
+					<!-- Fill-in-the-Blanks with given words-->
 					<div class="blanks-container"
-						  *ngIf="task && task.solutionType == 'fill_in_the_blanks' && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
-						<div class="blanks-text">
-							<p>
-								<!--				TODO toggle active empty blank is clicked, remove empty when filled, empty agian when filled clicked-->
-								Dolorem beatae aut <span class="blank">BLANK FILLED</span> qunem dolorem aspernatur illo
-								incidunt.
-								Odit qui porro quis ipsam quos <span class="blank empty active">?</span> vel asperiores qui. Et
-								expedita enim eligendi. Quisquam adipisci ducimus ut totam fugiat sit.
-								<span class="blank empty">?</span> et tempore aut ut quia veritatis delectus sequi. Veniam et
-								corrupti voluptatem.
-							</p>
+						  *ngIf="task && task.solutionType == 'blanks' && task.isSelectionBlank() && route.isAnswerValidationEnabled() && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">
+						<div class="blanks-text" id="blankText_{{task.id}}" readable
+						     [language]="translatePage ? translation.language : task.langCode"
+						     [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage, translated: translatePage}">
 						</div>
 						<div class="blanks-list">
 							<ion-label>Blank words</ion-label>
 							<ion-list>
-								<!--				TODO remove/hide blanks when used, toggle empty state when all used up? -->
-								<!--							<p>All blanks used. Time for a checkup!</p>-->
-								<span class="blank">BLANK WORD</span>
-								<span class="blank">BLANK WORD</span>
+								<span *ngFor="let selectable of blankSelectables" (click)="fillActiveBlank(selectable)" class="blank">{{selectable}}</span>
+								<p *ngIf="blankSelectables.length === 0">All blanks used. Time for a checkup!</p>
 							</ion-list>
 						</div>
 					</div>

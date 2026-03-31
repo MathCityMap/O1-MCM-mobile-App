@@ -241,7 +241,7 @@ export class Task {
     }
 
     isSelectionBlank() {
-        if (this.solutionType == 'blanks') return false;
+        if (this.solutionType !== 'blanks') return false;
         let decodedSolution = Helper.safeJsonDecode(this.solution);
         return decodedSolution.settings && decodedSolution.settings.selection_guide === true;
     }
@@ -257,22 +257,7 @@ export class Task {
                     multipleChoiceSolutionList.push({userChecked: false, rightAnswer: element.checked === 'true', value: element.image_url});
                 })
                 if (temp.settings.shuffle_components) {
-                    let shuffle = function shuffle(array) {
-                        let currentIndex = array.length;
-
-                        // While there remain elements to shuffle...
-                        while (currentIndex != 0) {
-
-                            // Pick a remaining element...
-                            let randomIndex = Math.floor(Math.random() * currentIndex);
-                            currentIndex--;
-
-                            // And swap it with the current element.
-                            [array[currentIndex], array[randomIndex]] = [
-                                array[randomIndex], array[currentIndex]];
-                        }
-                    }
-                    shuffle(multipleChoiceSolutionList);
+                    Helper.shuffleArray(multipleChoiceSolutionList);
                 }
                 return multipleChoiceSolutionList;
             }

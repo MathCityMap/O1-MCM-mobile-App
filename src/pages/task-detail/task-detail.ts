@@ -71,6 +71,8 @@ export class TaskDetail {
     protected specialSolution: any;
     protected answerIndex: any = null;
     private blankRegex = /\*\*([^*]+)\*\*/g;
+    private selectionBlankRegex = /\$\$([^$]+)\$\$/g;
+    protected blankSelectables: Array<string> = [];
 
     protected multipleChoiceList: Array<any> = [];
 
@@ -280,7 +282,11 @@ export class TaskDetail {
             }
         }
         if (this.task.solutionType === 'blanks') {
-            this.fillBlankSolutionElement();
+            if (!this.task.isSelectionBlank()) {
+                this.fillBlankSolutionElement();
+            } else {
+                this.prepareSelectionBlank();
+            }
         }
         if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
             this.specialSolution = this.task.getSolution();
@@ -878,10 +884,11 @@ export class TaskDetail {
             let precision = this.specialSolution.settings.check_type === 'strict' ? 0 : (this.specialSolution.settings.check_type === 'normal' ? 0.2 : 0.4);
             let solvedTask = true;
             let detailSolutions = [];
+            let blankSeparator = this.task.isSelectionBlank() ? "$$" : "**"
             let blankText: string = this.specialSolution.val;
             for (let answer of this.taskDetails.answerMultipleChoice) {
                 let solutionObject = solutions.find(sol => {
-                    return sol.blank === '**' + answer.id + '**';
+                    return sol.blank === blankSeparator + answer.id + blankSeparator;
                 })
                 let answerPrecision = 1;
                 for (let solution of solutionObject.answers) {
@@ -903,7 +910,8 @@ export class TaskDetail {
                 const escapeRegExp = (text) => {
                     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
                 }
-                let regex = new RegExp('\\*\\*' + escapeRegExp(answer.id) + '\\*\\*');
+
+                let regex = this.task.isSelectionBlank() ? new RegExp('\\$\\$' + escapeRegExp(answer.id) + '\\$\\$') : new RegExp('\\*\\*' + escapeRegExp(answer.id) + '\\*\\*');
                 let blankMatch = regex.exec(blankText);
                 blankText = blankText.replace(blankMatch[0], `<span class="blank ${answer.solved ? 'correct' : 'false'}">${answer.answer}</span>`);
                 detailSolutions.push(answer.answer);
@@ -2431,6 +2439,122 @@ export class TaskDetail {
 
         }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
         confirmationModal.present();
+    }
+
+    prepareSelectionBlank() {
+        this.specialSolution = this.translatePage ? this.translation.getSolution(this.task.getSolution()) : this.task.getSolution();
+        let blankMatch;
+        let blankText: string = "<p>" + this.specialSolution.val + "</p>";
+        let placeholderCount = [];
+        while ((blankMatch = this.selectionBlankRegex.exec(blankText)) !== null) {
+            let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
+                return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
+            }) : null;
+            if (savedAnswer) {
+                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blank ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}">${savedAnswer.answer}</span>`);
+            } else {
+                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blank empty">?</span>`);
+            }
+            if (!placeholderCount[blankMatch[1]]) {
+                placeholderCount[blankMatch[1]] = 1;
+            } else {
+                placeholderCount[blankMatch[1]]++
+            }
+        }
+        let blankContainer = document.getElementById('blankText_' + this.task.id);
+        if (!blankContainer) {
+            setTimeout(() => {
+                console.log('Blank container was not loaded yet, try again')
+                this.prepareSelectionBlank();
+            }, 50)
+            return;
+        }
+        if (blankContainer) {
+            blankContainer.innerHTML = blankText;
+            let blanks = blankContainer.getElementsByClassName('blank');
+            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+                let answers = [];
+                for (let blank of Array.from(blanks)) {
+                    if (blank instanceof HTMLElement) {
+                        answers.push({id: blank.id, answer: "", solved: null, count: blank.dataset.count})
+                    }
+                }
+                this.taskDetails.answerMultipleChoice = answers;
+
+            }
+            let selectables = [];
+            for (let answer of this.taskDetails.answerMultipleChoice) {
+                if (answer.answer !== answer.id) {
+                    selectables.push(answer.id);
+                }
+            }
+            let distractors = this.specialSolution.distractors;
+            for (let distractor of distractors) {
+                let matchingAnswer = this.taskDetails.answerMultipleChoice.find(answer => {
+                    return answer.answer === distractor;
+                });
+                if (!matchingAnswer) {
+                    selectables.push(distractor);
+                }
+            }
+            this.blankSelectables = Helper.shuffleArray(selectables);
+            for (let blank of Array.from(blanks)) {
+                blank.addEventListener("click", (event: any) => {
+                    console.log(event);
+                    let element = event.currentTarget as HTMLElement;
+                    let isActive = element.classList.contains('active');
+                    let isEmpty = element.classList.contains('empty');
+                    if (!isEmpty) {
+                        let text = element.innerText;
+                        let answerObject = this.taskDetails.answerMultipleChoice.find(item => {
+                            return item.id === element.id;
+                        })
+                        answerObject.answer = "";
+                        element.classList.add('empty');
+                        this.blankSelectables.unshift(text);
+                        element.innerText = "?";
+                        this.setActiveOnBlank(element);
+                        return;
+                    }
+                    if (isEmpty && !isActive) {
+                        // We find active elements clear them and then set this one as active
+                        this.setActiveOnBlank(element);
+                        return;
+                    }
+                    //we clicked on an already active blank so we ignore it
+                });
+            }
+            this.setActiveOnFirstEmptyBlank();
+        }
+    }
+
+    setActiveOnFirstEmptyBlank() {
+        let emptyBlanks = document.getElementsByClassName('blank empty');
+        if (emptyBlanks.length === 0) return;
+        this.setActiveOnBlank(emptyBlanks[0]);
+    }
+
+    setActiveOnBlank(element: Element) {
+        let activeElements = document.getElementsByClassName('blank active');
+        // this should always be 1 element only, but we clear all just to be sure
+        for (let activeElement of Array.from(activeElements)) {
+            activeElement.classList.remove('active');
+        }
+        element.classList.add('active');
+    }
+
+    fillActiveBlank(value: string) {
+        let activeElements = document.getElementsByClassName('blank active');
+        if (activeElements.length === 0) return;
+        let activeElement = activeElements[0];
+        let answerObject = this.taskDetails.answerMultipleChoice.find(item => {
+            return item.id === activeElement.id;
+        })
+        activeElement.classList.remove('empty');
+        answerObject.answer = value;
+        activeElement.innerHTML = value;
+        this.blankSelectables = this.blankSelectables.filter(el => {return el !== value});
+        this.setActiveOnFirstEmptyBlank();
     }
 
     fillBlankSolutionElement() {
