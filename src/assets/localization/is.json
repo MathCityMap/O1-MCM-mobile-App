@@ -1303,5 +1303,6 @@
   "p_t_sub_task_add": "Nýtt undirverkefni",
   "p_blanks_instructions_example_2_explanation": "Ef margar flóknar segðir eru notaðar, vinsamlega veldu \"einfalt\" eða \"venjulegt\" sniðmát.",
   "p_blanks_instructions_example_2": "**Jafnhliða** þríhyrningur hefur þrjú jafnstór horn. Hvert horn er 60 **gráður**.",
-  "p_blanks_instructions_example_explanation": "Notaðar eru grunnsegðir, stakir bókstafir eða tölur, vinsamlega notaðu \"strangt\" sniðmát."
+  "p_blanks_instructions_example_explanation": "Notaðar eru grunnsegðir, stakir bókstafir eða tölur, vinsamlega notaðu \"strangt\" sniðmát.",
+  "dev_re": "test"
 }

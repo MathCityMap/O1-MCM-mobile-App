@@ -258,10 +258,10 @@
 						     [ngClass]="{'disabled': (taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)) || translatePage, translated: translatePage}">
 						</div>
 						<div class="blanks-list">
-							<ion-label>Blank words</ion-label>
+							<ion-label>{{'a_task_blankWords' | translate }}</ion-label>
 							<ion-list>
 								<span *ngFor="let selectable of blankSelectables" (click)="fillActiveBlank(selectable)" class="blank">{{selectable}}</span>
-								<p *ngIf="blankSelectables.length === 0">All blanks used. Time for a checkup!</p>
+								<p *ngIf="blankSelectables.length === 0">{{ 'a_task_blankWords_empty' | translate }}</p>
 							</ion-list>
 						</div>
 					</div>
@@ -269,7 +269,7 @@
 
 				<div class="card support"
 					  *ngIf="task && taskDetails && ((route.isHintsEnabled() && task.hasHintMessage(1)) || (route.isSampleSolutionEnabled() && route.isAnswerFeedbackEnabled() && task.solutionType !== 'info'))">
-					<ion-label class="title">Support</ion-label>
+					<ion-label class="title">{{'a_task_support' | translate}}</ion-label>
 					<div class="container buttons">
 						<div class="hints start"
 							  *ngIf="route.isHintsEnabled() && task && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))">

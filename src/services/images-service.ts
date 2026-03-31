@@ -263,10 +263,6 @@ export class ImagesService {
     fixUrlForWebview(url) {
         if (!this.platform.is('cordova')) return url;
         let fixedUrl = (<any>window).Ionic.WebView.convertFileSrc(url);
-        //FIXME: needs a more reliable check if url can be used as is or needs a security trust bypass
-        if (fixedUrl.includes('mcm_images_tasks')) {
-            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
-        }
         return fixedUrl;
     }
 
