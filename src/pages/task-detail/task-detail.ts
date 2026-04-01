@@ -656,7 +656,7 @@ export class TaskDetail {
                 for (let i = 0; i < this.multipleChoiceList.length; i++) {
                     let item = this.multipleChoiceList[i];
                     if (item.userChecked && item.rightAnswer) {
-                        solutionText += `<img class="image" style="max-height: 80px; display: inline;" src="${this.imageService.getOfflineURL(item.value)}" alt="image"/>`;
+                        solutionText += `<img class="image" style="max-height: 80px; display: inline;" src="${(<any>window).Ionic.WebView.convertFileSrc(this.imageService.getOfflineURL(item.value, false, false, true))}" alt="image"/>`;
                     }
                 }
                 solutionText += "</span>"

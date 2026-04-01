@@ -260,9 +260,12 @@ export class ImagesService {
         return imgPath.indexOf('http') !== 0 ? Helper.MEDIASERVER_IMAGE_URL + imgPath : imgPath;
     }
 
-    fixUrlForWebview(url) {
+    fixUrlForWebview(url: string) {
         if (!this.platform.is('cordova')) return url;
         let fixedUrl = (<any>window).Ionic.WebView.convertFileSrc(url);
+        if (fixedUrl.includes('mcm_images_tasks')) {
+            fixedUrl = this.sanitizer.bypassSecurityTrustUrl(fixedUrl);
+        }
         return fixedUrl;
     }
 
