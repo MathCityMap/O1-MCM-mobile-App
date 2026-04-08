@@ -25,6 +25,7 @@ import {MapboxMapHandler} from "./MapHandler/MapboxMapHandler";
 import {LeafletMapHandler} from "./MapHandler/LeafletMapHandler";
 import {TaskFormat} from "../../../../services/ApiResponseDefinition/TaskFormat";
 import {RouteApiService} from "../../../../services/route-api.service";
+import {ProgressCounter, ProgressService} from "../../../../services/progress-service";
 
 @IonicPage({
     segment: 'TasksMap/:routeId'
@@ -90,7 +91,8 @@ export class TasksMap implements OnDestroy {
         private modalCtrl: ModalController,
         private app: MyApp,
         protected chatAndSessionService: ChatAndSessionService,
-        private routeApiService: RouteApiService
+        private routeApiService: RouteApiService,
+        private progressService: ProgressService
     ) {
         this.chatAndSessionService.init();
         this.events.subscribe('user:kicked', (user) => {
@@ -134,6 +136,8 @@ export class TasksMap implements OnDestroy {
                     modal.dismiss().then(async () => {
                         that.route.completed = true;
                         that.route.completedDate = new Date().toDateString().split(' ').slice(1).join(' ');
+                        let regex = /.*(\d+.\d{1,2})/gm
+                        await that.progressService.increaseProgressCounter(ProgressCounter.DISTANCE, parseFloat(regex.exec(that.route.length)[1]));
                         await that.routeApiService.updateDownloadedRoute(that.route);
                     });
                 }

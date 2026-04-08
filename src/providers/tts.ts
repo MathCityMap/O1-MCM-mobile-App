@@ -57,15 +57,16 @@ export class TtsProvider {
     this.tts = (<any>window).TTS;
   }
 
-  async getVoices(): Promise<TTSVoice[]> {
+  async getVoices(attempts = 20): Promise<TTSVoice[]> {
     try {
       return await this.tts.getVoices();
     } catch (e) {
+        if (attempts === 0) return [];
       console.warn("Fetching voices failed, trying again");
       await new Promise((resolve) => {
         setTimeout(resolve, 10000);
       });
-      return this.getVoices();
+      return this.getVoices(attempts - 1);
     }
   }
 

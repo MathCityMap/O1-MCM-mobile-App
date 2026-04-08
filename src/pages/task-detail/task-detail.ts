@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {Content, DeepLinker, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Content, DeepLinker, IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 import {Route} from '../../entity/Route';
 import {Task} from '../../entity/Task';
 import {ModalController} from 'ionic-angular/components/modal/modal-controller';
@@ -11,6 +11,7 @@ import {TaskDetailMap} from './task-detail-map';
 import {CustomKeyBoard} from '../../components/customKeyBoard/custom-keyboard';
 
 import * as L from 'leaflet';
+import {Util} from 'leaflet';
 import 'leaflet-geometryutil';
 import {ModalsService} from '../../services/modals-service';
 import {GpsService} from '../../services/gps-service';
@@ -21,8 +22,6 @@ import {Helper} from "../../classes/Helper";
 import {SpinnerDialog} from "@ionic-native/spinner-dialog";
 import {ImagesService} from "../../services/images-service";
 import * as Levenstein from 'js-levenshtein';
-import {Util} from "leaflet";
-import trim = Util.trim;
 import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
 import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
 import {SafariViewController} from '@ionic-native/safari-view-controller';
@@ -30,6 +29,8 @@ import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMRepor
 import {TranslationService} from "../../app/api/services/translation.service";
 import {TaskTranslation} from "../../app/api/models/translation-storage";
 import {RouteApiService} from "../../services/route-api.service";
+import {ProgressCounter, ProgressService} from "../../services/progress-service";
+import trim = Util.trim;
 
 declare var MathJax;
 
@@ -108,8 +109,10 @@ export class TaskDetail {
         private cdRef: ChangeDetectorRef,
         private safariViewController: SafariViewController,
         private routeApiService: RouteApiService,
+        private platform: Platform,
+        private progressService: ProgressService,
         protected translationService: TranslationService,
-        protected imageService: ImagesService
+        protected imageService: ImagesService,
     ) {
     }
 
@@ -212,7 +215,7 @@ export class TaskDetail {
             this.rootTask = this.task;
             this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex]
         }
-        this.subTasksRequired = this.task.forceSupportTask;
+        this.subTasksRequired = this.rootTask ? this.rootTask.forceSupportTask : this.task.forceSupportTask;
 
         console.log("Opened Task: ", this.task);
         this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks' || this.task.solutionType === 'fraction');
@@ -656,7 +659,11 @@ export class TaskDetail {
                 for (let i = 0; i < this.multipleChoiceList.length; i++) {
                     let item = this.multipleChoiceList[i];
                     if (item.userChecked && item.rightAnswer) {
-                        solutionText += `<img class="image" style="max-height: 80px; display: inline;" src="${(<any>window).Ionic.WebView.convertFileSrc(this.imageService.getOfflineURL(item.value, false, false, true))}" alt="image"/>`;
+                        let url = this.imageService.getOfflineURL(item.value, false, false, true)
+                        if (this.platform.is('cordova')) {
+                            url = (<any>window).Ionic.WebView.convertFileSrc(url);
+                        }
+                        solutionText += `<img class="image" style="max-height: 80px; display: inline;" src="${url}" alt="image"/>`;
                     }
                 }
                 solutionText += "</span>"
@@ -1336,7 +1343,7 @@ export class TaskDetail {
                 let details;
                 if (this.rootTask) {
                     details = JSON.stringify({
-                        score: this.taskDetails.score,
+                        score: 0, // we send score 0 because the score gets added to the main task upon completion, this is how score addition works outside the classroom as well
                         solution: eventSolution ? eventSolution : solution,
                         quality: solved,
                         parentId: this.rootTask.id
@@ -1350,7 +1357,10 @@ export class TaskDetail {
                 }
                 this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
             }
-
+            await this.progressService.increaseProgressCounter(ProgressCounter.TASKS, 1);
+            if (!this.rootTask) {
+                await this.progressService.increaseProgressCounter(ProgressCounter.POINTS, this.taskDetails.score);
+            }
             this.taskDetails.timeSolved = new Date().getTime();
         } else {
             let message;

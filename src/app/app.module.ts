@@ -58,6 +58,7 @@ import {DirectivesModule} from "../directives/directives.module";
 import {MCMReportProblemModal} from "../modals/MCMReportProblemModal/MCMReportProblemModal";
 import {ReadAloudService} from "../services/read-aloud-service";
 import {RouteApiService} from "../services/route-api.service";
+import {ProgressService} from "../services/progress-service";
 
 
 @NgModule({
@@ -133,7 +134,8 @@ import {RouteApiService} from "../services/route-api.service";
         ScreenOrientation,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {provide: HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig},
-        RouteApiService
+        RouteApiService,
+        ProgressService
     ]
 })
 export class AppModule {
