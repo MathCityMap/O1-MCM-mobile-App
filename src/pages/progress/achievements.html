@@ -27,21 +27,21 @@
 					<ion-col>
 						<div class="info-item border">
 							<ion-label>{{ "p_tb_tasks" | translate }}</ion-label>
-							<span>##</span>
+							<span>{{progress.getCurrentProgressForCounter(ProgressCounter.TASKS)}}</span>
 						</div>
 					</ion-col>
 
 					<ion-col>
 						<div class="info-item">
 							<ion-label>{{ "a_t_distance" | translate }}</ion-label>
-							<span>##</span>
+							<span>{{progress.getCurrentProgressForCounter(ProgressCounter.DISTANCE)}}</span>
 						</div>
 					</ion-col>
 
 					<ion-col>
 						<div class="info-item border">
 							<ion-label>{{ "a_achievements_totalNumbers_points" | translate }}</ion-label>
-							<span>##</span>
+							<span>{{progress.getCurrentProgressForCounter(ProgressCounter.POINTS)}}</span>
 						</div>
 					</ion-col>
 				</ion-row>
@@ -51,13 +51,13 @@
 		<section class="padding center">
 			<ion-label class="text-center title main">{{ "a_achievements_progress" | translate }}</ion-label>
 
-			<div *ngFor="let milestone of milestones" class="card">
+			<div *ngFor="let achievement of achievements" class="card">
 				<div class="cover">
-					<img class="thumb" [src]="milestone.icon" />
+					<img class="thumb" [src]="achievement.icon" />
 				</div>
 				<div class="progress">
-					<ion-label class="title">{{'progress.milestone.'+milestone.name | translate}} level {{milestone.level}}</ion-label>
-					<mcm-progress-bar [total]="milestone.threshold" [currentProgress]="milestone.count" [invertOrder]="true"></mcm-progress-bar>
+					<ion-label class="title">{{'a_achievements_milestone_'+achievement.name | translate}} level {{achievement.level}}</ion-label>
+					<mcm-progress-bar [total]="achievement.threshold" [currentProgress]="achievement.count" [invertOrder]="true"></mcm-progress-bar>
 				</div>
 			</div>
 		</section>

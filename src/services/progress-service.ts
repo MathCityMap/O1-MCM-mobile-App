@@ -43,6 +43,7 @@ export class ProgressService {
     }
 
     getCurrentProgressForCounter(counter: ProgressCounter) {
+        if (!this.progress) return 0;
         return this.progress[counter];
     }
 

@@ -9,8 +9,7 @@ import {PROGRESS_MILESTONES, ProgressCounter, ProgressService} from "../../servi
   templateUrl: 'achievements.html',
 })
 export class AchievementsPage {
-    protected milestones: Array<DisplayMilestone> = [];
-    protected counters: Array<CounterInfo> = [];
+    protected achievements: Array<DisplayAchievement> = [];
 
   constructor(
       public navCtrl: NavController,
@@ -19,7 +18,7 @@ export class AchievementsPage {
       public platform: Platform,
       public viewCtrl: ViewController,
       private deepLinker: DeepLinker,
-      private progress: ProgressService
+      protected progress: ProgressService
   ) {
 
   }
@@ -34,8 +33,7 @@ export class AchievementsPage {
         if (milestoneIndex > 0) {
             previousThreshold = PROGRESS_MILESTONES[counter][milestoneIndex-1].threshold;
         }
-        this.counters.push({name: counter, count: currentCount});
-        this.milestones.push({...milestone, name: counter, count: currentCount - previousThreshold, level: milestoneIndex+1});
+        this.achievements.push({...milestone, name: counter, count: currentCount - previousThreshold, level: milestoneIndex+1});
     }
   }
 
@@ -44,14 +42,11 @@ export class AchievementsPage {
             this.deepLinker.navChange('back');
         });
     }
+
+    protected readonly ProgressCounter = ProgressCounter;
 }
 
-type CounterInfo = {
-    name: ProgressCounter,
-    count: number
-}
-
-type DisplayMilestone = {
+type DisplayAchievement = {
     name: ProgressCounter,
     count: number,
     icon: string,
