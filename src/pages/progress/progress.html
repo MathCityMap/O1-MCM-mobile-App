@@ -1,0 +1,29 @@
+
+<ion-header>
+   <ion-toolbar>
+      <ion-buttons left>
+         <button ion-button icon-only (click)="goBack()">
+            <img class="header-icon" src="assets/icons/back.svg"/>
+         </button>
+      </ion-buttons>
+      <ion-title>{{ 'a_about_mcm_title' | translate }}</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content class="has-header pattern-bg">
+   <section class="padding-plus center">
+        <a href="#" onclick="window.open('https://mathcitymap.eu/de/', '_system', 'location=yes'); return false;">
+            <img class="responsive" src="./assets/images/mcm_logo_white.png">
+        </a>
+        <ion-label>PROGRESS WILL BE HERE</ion-label>
+        <p>
+            {{'a_about_mcm_project' | translate}}<br><br>
+            {{ 'a_about_mcm_portal' | translate}}
+        </p>
+        <ion-label>{{ 'a_about_mcm_responsibility_title' | translate}}</ion-label>
+        <p [innerHtml]=" 'a_about_mcm_responsibility' | translate "></p>
+        <ion-label>{{ 'a_about_version' | translate}}</ion-label>
+        <p>{{versionNumber}}</p>
+   </section>
+
+</ion-content>
