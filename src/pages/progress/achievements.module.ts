@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ProgressPage } from './progress';
+import { AchievementsPage } from './achievements';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    ProgressPage,
+    AchievementsPage,
   ],
   imports: [
-    IonicPageModule.forChild(ProgressPage),
+    IonicPageModule.forChild(AchievementsPage),
     ComponentsModule,
   ],
 })

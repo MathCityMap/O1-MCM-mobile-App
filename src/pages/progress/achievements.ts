@@ -5,10 +5,10 @@ import {PROGRESS_MILESTONES, ProgressCounter, ProgressService} from "../../servi
 
 @IonicPage()
 @Component({
-  selector: 'page-progress',
-  templateUrl: 'progress.html',
+  selector: 'page-achievements',
+  templateUrl: 'achievements.html',
 })
-export class ProgressPage {
+export class AchievementsPage {
     protected milestones: Array<DisplayMilestone> = [];
     protected counters: Array<CounterInfo> = [];
 
@@ -25,7 +25,7 @@ export class ProgressPage {
   }
 
   async ionViewWillEnter() {
-    console.log('ionViewWillEnter ProgressPage');
+    console.log('ionViewWillEnter AchievementsPage');
     for (let counter of Object.values(ProgressCounter)) {
         let milestoneIndex = this.progress.getActiveMilestoneIndexForCounter(counter);
         let milestone = PROGRESS_MILESTONES[counter][milestoneIndex];

@@ -105,8 +105,8 @@ export class DashboardPage {
     pushInfoPage() {
         this.navCtrl.push('InfoPage');
     }
-    pushProgressPage() {
-        this.navCtrl.push('ProgressPage');
+    pushAchievementsPage() {
+        this.navCtrl.push('AchievementsPage');
     }
 
     switchTab(index: number, addRoute = false){
