@@ -41,6 +41,15 @@
                    <img item-content class="icon" src="./assets/icons/dashboard/downloads.svg">
                 </ion-item>
             </div>
+			  <div class="tile">
+				  <ion-item tappable no-lines (click)="pushProgressPage()">
+					  <ion-label item-content class="title">
+						  <h4>{{'a_dashboard_progress_title' | translate }}</h4>
+						  <p>{{'a_dashboard_progress_text' | translate }}</p>
+					  </ion-label>
+					  <img item-content class="icon" src="./assets/icons/dashboard/create.svg">
+				  </ion-item>
+			  </div>
             <div class="tile" [ngClass]="{'disabled' : !devMode}">
                 <ion-item tappable no-lines (click)="switchTab(3)">
                    <ion-label item-content class="title">
