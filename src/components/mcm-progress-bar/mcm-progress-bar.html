@@ -1,7 +1,8 @@
-<span *ngIf="!isAudio">{{ currentProgress }} / {{ total }}</span>
+<span *ngIf="!isAudio && !invertOrder">{{ currentProgress }} / {{ total }}</span>
 <div class="container progress-vertical route">
     <div class="bar" [ngStyle]="{'width': ((100/total)*currentProgress) +'%'}"></div>
 </div>
+<span *ngIf="invertOrder">{{ currentProgress }} / {{ total }}</span>
 <!-- +900 to display 00:00 remaining only a short time-->
 <span *ngIf="isAudio && isAudioPlaying" class="audio">{{ (total - currentProgress)+900 | date: 'mm:ss' }} </span>
 <span *ngIf="isAudio && !isAudioPlaying" class="audio">{{ total | date: 'mm:ss' }} </span>

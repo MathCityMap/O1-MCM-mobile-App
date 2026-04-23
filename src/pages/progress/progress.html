@@ -11,19 +11,14 @@
 </ion-header>
 
 <ion-content class="has-header pattern-bg">
-   <section class="padding-plus center">
-        <a href="#" onclick="window.open('https://mathcitymap.eu/de/', '_system', 'location=yes'); return false;">
-            <img class="responsive" src="./assets/images/mcm_logo_white.png">
-        </a>
-        <ion-label>PROGRESS WILL BE HERE</ion-label>
-        <p>
-            {{'a_about_mcm_project' | translate}}<br><br>
-            {{ 'a_about_mcm_portal' | translate}}
-        </p>
-        <ion-label>{{ 'a_about_mcm_responsibility_title' | translate}}</ion-label>
-        <p [innerHtml]=" 'a_about_mcm_responsibility' | translate "></p>
-        <ion-label>{{ 'a_about_version' | translate}}</ion-label>
-        <p>{{versionNumber}}</p>
-   </section>
+	<div *ngFor="let milestone of milestones" class="card">
+		<div class="cover">
+			<img class="thumb" [src]="milestone.icon" />
+		</div>
+		<div class="progress">
+		<ion-label class="title">{{'progress.milestone.'+milestone.name | translate}} level {{milestone.level}}</ion-label>
+		<mcm-progress-bar [total]="milestone.threshold" [currentProgress]="milestone.count" [invertOrder]="true"></mcm-progress-bar>
+		</div>
+	</div>
 
 </ion-content>

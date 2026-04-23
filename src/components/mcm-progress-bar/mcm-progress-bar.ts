@@ -17,6 +17,7 @@ export class MCMProgressBarComponent {
     @Input() remainingTime?: number;
     @Input() currentProgress: number;
     @Input() total: number;
+    @Input() invertOrder: boolean = false;
     progressWidth: number;
 
     constructor(private helper: Helper) {

@@ -2,21 +2,21 @@ import {Injectable} from "@angular/core";
 import {Storage} from "@ionic/storage";
 
 const PROGRESS_KEY = "MCM_PROGRESS"
-const PROGRESS_MILESTONES: ProgressMilestones = {
+export const PROGRESS_MILESTONES: ProgressMilestones = {
     distance: [
-        {icon: "", threshold: 10},
-        {icon: "", threshold: 25},
-        {icon: "", threshold: 50}
+        {icon: "./assets/icons/achievement-distance.svg", threshold: 3},
+        {icon: "./assets/icons/achievement-distance.svg", threshold: 15},
+        {icon: "./assets/icons/achievement-distance.svg", threshold: 40}
     ],
     points: [
-        {icon: "", threshold: 10000},
-        {icon: "", threshold: 25000},
-        {icon: "", threshold: 50000}
+        {icon: "./assets/icons/achievement-points.svg", threshold: 2000},
+        {icon: "./assets/icons/achievement-points.svg", threshold: 10000},
+        {icon: "./assets/icons/achievement-points.svg", threshold: 25000}
     ],
     tasks: [
-        {icon: "", threshold: 100},
-        {icon: "", threshold: 250},
-        {icon: "", threshold: 500}
+        {icon: "./assets/icons/achievement-tasks.svg", threshold: 20},
+        {icon: "./assets/icons/achievement-tasks.svg", threshold: 100},
+        {icon: "./assets/icons/achievement-tasks.svg", threshold: 250}
     ]}
 
 @Injectable()
@@ -40,6 +40,18 @@ export class ProgressService {
     async increaseProgressCounter(counter: ProgressCounter, amount: number) {
         this.progress[counter] += amount;
         await this.storage.set(PROGRESS_KEY, this.progress);
+    }
+
+    getCurrentProgressForCounter(counter: ProgressCounter) {
+        return this.progress[counter];
+    }
+
+    getActiveMilestoneIndexForCounter(counter: ProgressCounter) {
+        let milestones = PROGRESS_MILESTONES[counter];
+        let currentMilestone = milestones.findIndex(milestone => {
+            return milestone.threshold > this.getCurrentProgressForCounter(counter);
+        });
+        return currentMilestone > -1 ? currentMilestone : milestones.length -1
     }
 
 }

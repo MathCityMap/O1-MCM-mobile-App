@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {DeepLinker, IonicPage, NavController, NavParams, Platform, ViewController} from 'ionic-angular';
 import { AppVersion } from '@ionic-native/app-version';
+import {PROGRESS_MILESTONES, ProgressCounter, ProgressService} from "../../services/progress-service";
 
 @IonicPage()
 @Component({
@@ -8,22 +9,33 @@ import { AppVersion } from '@ionic-native/app-version';
   templateUrl: 'progress.html',
 })
 export class ProgressPage {
+    protected milestones: Array<DisplayMilestone> = [];
+    protected counters: Array<CounterInfo> = [];
 
-  versionNumber: string = 'unknown';
   constructor(
       public navCtrl: NavController,
       public navParams: NavParams,
       public appVersion: AppVersion,
       public platform: Platform,
       public viewCtrl: ViewController,
-      private deepLinker: DeepLinker) {
+      private deepLinker: DeepLinker,
+      private progress: ProgressService
+  ) {
 
   }
 
-  async ionViewDidLoad() {
-    console.log('ionViewDidLoad InfoPage');
-    if (this.platform.is('cordova')) {
-        this.versionNumber = await this.appVersion.getVersionNumber();
+  async ionViewWillEnter() {
+    console.log('ionViewWillEnter ProgressPage');
+    for (let counter of Object.values(ProgressCounter)) {
+        let milestoneIndex = this.progress.getActiveMilestoneIndexForCounter(counter);
+        let milestone = PROGRESS_MILESTONES[counter][milestoneIndex];
+        let currentCount = this.progress.getCurrentProgressForCounter(counter);
+        let previousThreshold = 0;
+        if (milestoneIndex > 0) {
+            previousThreshold = PROGRESS_MILESTONES[counter][milestoneIndex-1].threshold;
+        }
+        this.counters.push({name: counter, count: currentCount});
+        this.milestones.push({...milestone, name: counter, count: currentCount - previousThreshold, level: milestoneIndex+1});
     }
   }
 
@@ -32,4 +44,17 @@ export class ProgressPage {
             this.deepLinker.navChange('back');
         });
     }
+}
+
+type CounterInfo = {
+    name: ProgressCounter,
+    count: number
+}
+
+type DisplayMilestone = {
+    name: ProgressCounter,
+    count: number,
+    icon: string,
+    threshold: number,
+    level: number
 }

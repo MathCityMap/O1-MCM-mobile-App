@@ -1,8 +1,38 @@
-page-info {
-    img{
-        max-width: 333px;
-        margin: 30px 0;
-        display: block;
-        width: 100%;
-    }
+page-progress {
+   //FIXME This is temporary and needs to be done properly :D
+   .card {
+      display: flex;
+      .cover {
+         width: 16vw;
+         height: 16vw;
+         position: relative;
+         border-radius: 50%;
+         -webkit-box-sizing: border-box;
+         box-sizing: border-box;
+         overflow: hidden;
+         background: blue;
+         -webkit-box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.3);
+         box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.3);
+         :before {
+            content: '';
+            display: block;
+            width: 100%;
+            padding-top: 100%;
+         }
+
+         .thumb {
+            position: absolute;
+            height: calc(65% + 2px);
+            width: calc(65% + 2px);
+            top: 10px;
+            left: 10px;
+            max-width: none;
+            max-height: none;
+         }
+      }
+      .progress {
+         max-width: 80%;
+         display: block;
+      }
+   }
 }
