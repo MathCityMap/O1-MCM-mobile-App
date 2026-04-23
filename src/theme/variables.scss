@@ -29,6 +29,12 @@ $colors: (
    primary:           #0076A8,
    primary-tint:      #F2F7FA,
    primary-darker:    #035f87,
+
+   primary-shade-1:   #5ACDFD,
+   primary-shade-2:   #1595C1,
+   primary-shade-3:   #0076A8,
+   primary-shade-4:   #034562,
+
    secondary:         #f3b100,
    secondary-dark:    #D9A000,
    danger:            #F35800,
@@ -45,10 +51,6 @@ $colors: (
    light-grey-tint:   #F2F2F2,
    saved:             #7D3FD4,
 
-   fab-color-1:       #034562,
-   fab-color-2:       #036D99,
-   fab-color-3:       #1595C1,
-   fab-color-4:       #29B0E5
 );
 
 
@@ -128,6 +130,8 @@ $global-base-plus-padding: 24px;
 $global-large-padding:     40px;
 
 $border-radius-basic: 12px;
+$border-radius-medium: 16px;
+$border-radius-large: 20px;
 
 $size-large: 56px;
 
@@ -469,7 +473,7 @@ $icon-path: "../assets/icons/";
             }
          }
          @for $i from 1 through 4 {
-            &[class*="fab-color-#{$i}"]{
+            &[class*="primary-shade-#{$i}"]{
                background-color: color($fab, color-#{$i});;
             }
          }

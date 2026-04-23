@@ -2141,7 +2141,7 @@ export class TaskDetail {
     }
 
     setFabColor(index) {
-        return 'fab-color-' + (index + 1);
+        return 'primary-shade-' + (index + 1);
     }
 
     SetMessage(type: string) {

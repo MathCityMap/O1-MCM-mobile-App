@@ -1,0 +1,182 @@
+page-achievements {
+   $header-height: 50vh;
+   $header-space-top: 26px;
+   $content-edge: 100px;
+
+   .achievement{
+      &-header {
+         position: sticky;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         z-index: 0;
+         width: 100%;
+         top: 0;
+         left: 0;
+         height: $header-height;
+         background: url("../../assets/icons/bg-pattern.svg") center /100% 100% no-repeat color($colors, primary);
+         text-align: center;
+         padding: calc(#{$header-space-top} + env(safe-area-inset-top)) 20px 0;
+         box-sizing: border-box;
+         .title{
+            font-size: 2rem;
+            line-height: 1.1;
+
+            &-container{
+               min-height: 100px;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               justify-content: center;
+               margin-top: $global-small-padding;
+
+               & > *{
+                  color: color($colors, light)!important;
+               }
+            }
+
+         }
+      }
+
+      &-content {
+         position: relative;
+         display: block;
+         z-index: 2;
+         transform: translateY(-#{$content-edge});
+
+         .title{
+            &.main{
+               &.light{
+                  color: color($colors, light);
+               }
+            }
+         }
+
+         &:after{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            z-index: -2;
+            width: 100%;
+            height: calc(100% - #{$content-edge});
+            background: color($colors, light-grey-tint);
+         }
+
+         .card{
+            border-radius: $border-radius-medium;
+            &.total{
+               text-align: center;
+               min-height: 100px;
+               display: flex;
+               align-items: center;
+            }
+            .progress {
+               max-width: 80%;
+               display: block;
+            }
+         }
+      }
+
+      &-item{
+         &.card{
+            display: flex;
+            align-items: center;
+            border-radius: $border-radius-medium;
+         }
+
+         &-list{
+            & > [class*="item"]{
+               &:not(:first-of-type){
+                  margin-top: $global-medium-padding;
+               }
+            }
+         }
+         &-info{
+            flex: 1;
+            padding-inline-start: $global-base-padding;
+            .title{
+               font-size: 1rem;
+               margin-bottom: 0;
+            }
+            .text{
+               margin-bottom: 2px;
+            }
+         }
+
+         @for $i from 1 through 4 {
+            &.level-#{$i}{
+               .achievement{
+                  &-item{
+                     &-image{
+                        background-color: color($colors, primary-shade-#{$i});;
+                        &-container{
+                           &:after{
+                              content: "#{$i}";
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+
+         &-image{
+            width: 16vw;
+            height: 16vw;
+            position: relative;
+            border-radius: 50%;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: hidden;
+            -webkit-box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.3);
+            background-color: color($colors, primary-shade-1);
+            &:before {
+               content: '';
+               display: block;
+               width: 100%;
+               padding-top: 100%;
+            }
+
+            .icon {
+               position: absolute;
+               height: 44%;
+               width: 44%;
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+               max-width: none;
+               max-height: none;
+            }
+
+            &-container{
+               position: relative;
+               &:after{
+                  content: "1";
+                  color: color($colors, light);
+                  font-size: 0.75rem;
+                  width: 24px;
+                  height: 24px;
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  border-radius: 50%;
+                  font-family: "RobotoBold", Arial, sans-serif;
+                  font-weight: 600;
+                  text-align: center;
+                  line-height: 1.33rem;
+                  box-shadow: 0 0 2px 0 rgba(0,0,0,0.22);
+                  background-color: color($colors, secondary);
+               }
+            }
+         }
+         &-progress{
+            .progress-vertical{
+               margin-inline: 0 $global-base-padding;
+            }
+         }
+      }
+   }
+}
+
+

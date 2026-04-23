@@ -51,15 +51,21 @@
 		<section class="padding center">
 			<ion-label class="text-center title main">{{ "a_achievements_progress" | translate }}</ion-label>
 
-			<div *ngFor="let achievement of achievements" class="card">
-				<div class="cover">
-					<img class="thumb" [src]="achievement.icon" />
-				</div>
-				<div class="progress">
-					<ion-label class="title">{{'a_achievements_milestone_'+achievement.name | translate}} level {{achievement.level}}</ion-label>
-					<mcm-progress-bar [total]="achievement.threshold" [currentProgress]="achievement.count" [invertOrder]="true"></mcm-progress-bar>
+			<div class="achievement-item-list">
+				<div *ngFor="let achievement of achievements" class="card achievement-item level-{{achievement.level}}">
+					<div class="achievement-item-image-container">
+						<div class="achievement-item-image cover">
+							<img class="icon" [src]="achievement.icon" />
+						</div>
+					</div>
+					<div class="achievement-item-info">
+						<ion-label class="title">{{'a_achievements_'+achievement.name+'_title' | translate}}</ion-label>
+						<p class="text">{{'a_achievements_'+achievement.name+'_text' | translate}} XX unit</p>
+						<mcm-progress-bar class="achievement-item-progress" [total]="achievement.threshold" [currentProgress]="achievement.count" [invertOrder]="true"></mcm-progress-bar>
+					</div>
 				</div>
 			</div>
+
 		</section>
 	</div>
 
