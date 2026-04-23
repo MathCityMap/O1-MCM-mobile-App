@@ -115,6 +115,11 @@ page-achievements {
                            }
                         }
                      }
+                     &-progress{
+                        .progress-vertical > .bar{
+                           background-color: color($colors, primary-shade-#{$i});;
+                        }
+                     }
                   }
                }
             }
@@ -173,6 +178,9 @@ page-achievements {
          &-progress{
             .progress-vertical{
                margin-inline: 0 $global-base-padding;
+            }
+            .progress-vertical, .bar{
+               height: 8px;
             }
          }
       }

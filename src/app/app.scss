@@ -1701,7 +1701,7 @@ $progress-height: 6px;
 .progress-vertical{
    background-color: color($colors, light-grey);
    height: $progress-height;
-   @include border-radius($progress-height/2);
+   border-radius: 100px;
    flex: 1;
    & > .bar{
       width: 0;
@@ -1710,7 +1710,7 @@ $progress-height: 6px;
       //prevent initial bug of full progress bar
       background-color: color($colors, primary);
       height: $progress-height;
-      @include border-radius($progress-height/2);
+      border-radius: 100px;
    }
 
    &.route{
