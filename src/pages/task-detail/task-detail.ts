@@ -71,8 +71,7 @@ export class TaskDetail {
     protected isSpecialTaskType: boolean;
     protected specialSolution: any;
     protected answerIndex: any = null;
-    private blankRegex = /\*\*([^*]+)\*\*/g;
-    private selectionBlankRegex = /\$\$([^$]+)\$\$/g;
+    private blankRegex = /[*$]{2}([^*$]+)[*$]{2}/g;
     protected blankSelectables: Array<string> = [];
 
     protected multipleChoiceList: Array<any> = [];
@@ -891,11 +890,10 @@ export class TaskDetail {
             let precision = this.specialSolution.settings.check_type === 'strict' ? 0 : (this.specialSolution.settings.check_type === 'normal' ? 0.2 : 0.4);
             let solvedTask = true;
             let detailSolutions = [];
-            let blankSeparator = this.task.isSelectionBlank() ? "$$" : "**"
             let blankText: string = this.specialSolution.val;
             for (let answer of this.taskDetails.answerMultipleChoice) {
                 let solutionObject = solutions.find(sol => {
-                    return sol.blank === blankSeparator + answer.id + blankSeparator;
+                    return sol.blank === "$$" + answer.id + "$$" || sol.blank === "**" + answer.id + "**";
                 })
                 let answerPrecision = 1;
                 for (let solution of solutionObject.answers) {
@@ -918,7 +916,7 @@ export class TaskDetail {
                     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
                 }
 
-                let regex = this.task.isSelectionBlank() ? new RegExp('\\$\\$' + escapeRegExp(answer.id) + '\\$\\$') : new RegExp('\\*\\*' + escapeRegExp(answer.id) + '\\*\\*');
+                let regex = new RegExp('[$*]{2}' + escapeRegExp(answer.id) + '[$*]{2}');
                 let blankMatch = regex.exec(blankText);
                 blankText = blankText.replace(blankMatch[0], `<span class="blank ${answer.solved ? 'correct' : 'false'}">${answer.answer}</span>`);
                 detailSolutions.push(answer.answer);
@@ -2456,7 +2454,7 @@ export class TaskDetail {
         let blankMatch;
         let blankText: string = "<p>" + this.specialSolution.val + "</p>";
         let placeholderCount = [];
-        while ((blankMatch = this.selectionBlankRegex.exec(blankText)) !== null) {
+        while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
             let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
                 return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
             }) : null;
@@ -2569,6 +2567,7 @@ export class TaskDetail {
 
     fillBlankSolutionElement() {
         this.specialSolution = this.translatePage ? this.translation.getSolution(this.task.getSolution()) : this.task.getSolution();
+        console.log('fillBlankSolutionElement', this.specialSolution.val);
         let blankMatch;
         let blankText: string = this.specialSolution.val
         let placeholderCount = [];
@@ -2576,6 +2575,7 @@ export class TaskDetail {
             let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
                 return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
             }) : null;
+            console.log('SavedAnswer for Blank', blankMatch[1], savedAnswer);
             blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
             if (!placeholderCount[blankMatch[1]]) {
                 placeholderCount[blankMatch[1]] = 1;
