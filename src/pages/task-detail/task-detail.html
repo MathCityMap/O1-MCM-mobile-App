@@ -244,7 +244,7 @@
 							<div class="image-item" *ngFor="let item of multipleChoiceList" (click)="item.userChecked = !item.userChecked" [ngClass]="{'active': item.userChecked}">
 								<img class="image" [src]="imageService.getOfflineURL(item.value)" alt="image"/>
 								<button ion-button icon-only color="transparent" (click)="openInPhotoviewer(false, item.value, $event)">
-									<img class="icon" src="../../assets/icons/search.svg" alt="zoom"/>
+									<img class="icon" src="../../assets/icons/enlarge.svg" alt="zoom"/>
 								</button>
 							</div>
 						</ion-list>
