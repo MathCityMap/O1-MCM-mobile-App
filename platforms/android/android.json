@@ -44,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 96
+              "count": 98
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
@@ -214,6 +214,10 @@
             },
             {
               "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"NativeSettings\"><param name=\"android-package\" value=\"com.phonegap.plugins.nativesettings.NativeSettings\" /></feature>",
               "count": 1
             }
           ]
@@ -389,6 +393,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-media": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-open-native-settings": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
@@ -942,6 +949,14 @@
       "clobbers": [
         "window.Media"
       ]
+    },
+    {
+      "id": "cordova-open-native-settings.Settings",
+      "file": "plugins/cordova-open-native-settings/www/settings.js",
+      "pluginId": "cordova-open-native-settings",
+      "clobbers": [
+        "cordova.plugins.settings"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -972,6 +987,7 @@
     "cordova-plugin-camera": "8.0.1-dev",
     "com-sarriaroman-photoviewer": "1.1.18",
     "cordova-plugin-geolocation": "5.0.1-dev",
-    "cordova-plugin-media": "7.0.0-dev"
+    "cordova-plugin-media": "7.0.0-dev",
+    "cordova-open-native-settings": "1.5.5"
   }
 }

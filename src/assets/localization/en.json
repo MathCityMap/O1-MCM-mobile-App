@@ -1818,5 +1818,8 @@
   "p_sort_created_at": "Created at",
   "p_sort_updated_at": "Updated at",
   "p_sort_starts_at": "Starts at",
+  "a_settings_accessibility_more_title": "More Accessibility Options",
+  "a_settings_accessibility_more_text": "Additional features like zoom and display scaling are available in your device’s system settings. Open Accessibility settings to customize them.",
+  "a_settings_accessibility_more_button": "Open Accessibility Settings",
   "a_onboarding_slide4_svg": "Check"
 }

@@ -94,6 +94,9 @@
     },
     "cordova-plugin-media": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-open-native-settings": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {

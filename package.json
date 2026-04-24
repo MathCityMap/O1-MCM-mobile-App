@@ -94,6 +94,7 @@
         "com-sarriaroman-photoviewer": "file:plugin-src/com-sarriaroman-photoviewer",
         "cordova-android": "^14.0.1",
         "cordova-ios": "^6.2.0",
+        "cordova-open-native-settings": "file:plugin-src/cordova-open-native-settings",
         "cordova-plugin-badge": "file:plugin-src/cordova-plugin-badge",
         "cordova-plugin-camera": "github:apache/cordova-plugin-camera",
         "cordova-plugin-file": "^8.0.0",
@@ -149,7 +150,8 @@
             },
             "cordova-plugin-media": {
                 "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
-            }
+            },
+            "cordova-open-native-settings": {}
         },
         "platforms": [
             "ios",

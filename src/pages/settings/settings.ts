@@ -88,6 +88,22 @@ export class SettingsPage {
         this.languageService.setLanguage(language);
     }
 
+    openAccessibilitySettings() {
+        let anyWindow = (window as any);
+        if (anyWindow.cordova && anyWindow.cordova.plugins.settings) {
+            anyWindow.cordova.plugins.settings.open("accessibility", function() {
+                    console.log('opened settings');
+                },
+                function () {
+                    console.log('failed to open settings');
+                }
+            );
+        } else {
+            console.log('Native settings plugin not available');
+        }
+
+    }
+
     openOnboarding(){
         this.navCtrl.push('OnboardingPage');
     }

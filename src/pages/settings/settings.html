@@ -101,6 +101,18 @@
       </div>
    </section>
 
+	<section class="padding center">
+		<div class="card">
+			<div class="container top">
+				<ion-label>
+					{{'a_settings_accessibility_more_title' | translate}}
+					<p>{{'a_settings_accessibility_more_text' | translate}}</p>
+				</ion-label>
+			</div>
+			<button ion-button block round (click)="openAccessibilitySettings()">{{'a_settings_accessibility_more_button' | translate }}</button>
+		</div>
+	</section>
+
    <section class="padding center">
       <ion-label class="title main">{{'a_settings_expert' | translate }}</ion-label>
       <div class="card">

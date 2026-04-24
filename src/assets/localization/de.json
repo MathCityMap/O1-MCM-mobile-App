@@ -1817,5 +1817,8 @@
   "p_filter_num_selected": "{{COUNT}} ausgewählt",
   "p_sort_created_at": "Erstellungszeitpunkt",
   "p_sort_updated_at": "Zuletzt aktualisiert",
-  "p_sort_starts_at": "Startzeitpunkt"
+  "p_sort_starts_at": "Startzeitpunkt",
+  "a_settings_accessibility_more_title": "Weitere Barrierefreiheitsoptionen",
+  "a_settings_accessibility_more_text": "Zusätzliche Funktionen wie Zoom und Bildschirmvergrößerung findest du in den Systemeinstellungen deines Geräts. Öffne die Barrierefreiheitseinstellungen, um sie anzupassen.",
+  "a_settings_accessibility_more_button": "Barrierefreiheitseinstellungen öffnen"
 }

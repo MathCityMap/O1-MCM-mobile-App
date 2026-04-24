@@ -548,6 +548,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.Media"
       ]
+    },
+    {
+      "id": "cordova-open-native-settings.Settings",
+      "file": "plugins/cordova-open-native-settings/www/settings.js",
+      "pluginId": "cordova-open-native-settings",
+      "clobbers": [
+        "cordova.plugins.settings"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -578,6 +586,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-camera": "8.0.1-dev",
     "com-sarriaroman-photoviewer": "1.1.18",
     "cordova-plugin-geolocation": "5.0.1-dev",
-    "cordova-plugin-media": "7.0.0-dev"
+    "cordova-plugin-media": "7.0.0-dev",
+    "cordova-open-native-settings": "1.5.5"
   };
 });

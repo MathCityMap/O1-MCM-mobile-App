@@ -234,5 +234,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-open-native-settings": {
+    "source": {
+      "type": "local",
+      "path": "/Users/damianscheerer/Documents/Projects/O1-MCM-mobile-App/node_modules/cordova-open-native-settings"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
