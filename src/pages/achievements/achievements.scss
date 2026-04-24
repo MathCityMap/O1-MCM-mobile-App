@@ -92,6 +92,7 @@ page-achievements {
             }
          }
          &-info{
+            overflow: hidden;
             flex: 1;
             padding-inline-start: $global-base-padding;
             .title{
