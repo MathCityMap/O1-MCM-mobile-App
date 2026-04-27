@@ -79,7 +79,12 @@ export class MCMIconModal{
             if (this.type == 'video' && this.message) {
                 let parts = this.message.split('v=');
                 if (parts.length == 2) {
-                    this.videoId = parts[1];
+                    let id = parts[1];
+                    // If there is more than the id of the video we cut off all other parameters
+                    if (id.includes("&")) {
+                        id = id.split("&")[0];
+                    }
+                    this.videoId = id;
                 }
             }
         }

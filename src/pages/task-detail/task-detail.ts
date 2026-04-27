@@ -2458,7 +2458,7 @@ export class TaskDetail {
             let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
                 return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
             }) : null;
-            if (savedAnswer) {
+            if (savedAnswer && savedAnswer.answer !== "") {
                 blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blank ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}">${savedAnswer.answer}</span>`);
             } else {
                 blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blank empty">?</span>`);
