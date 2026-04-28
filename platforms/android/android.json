@@ -9,13 +9,13 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "xml": "<application android:usesCleartextTraffic=\"true\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
               "oldAttrib": {
                 "android:hardwareAccelerated": "true",
-                "android:icon": "@mipmap/ic_launcher",
+                "android:icon": "@mipmap/ic_launcher_new",
                 "android:label": "@string/app_name",
                 "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
@@ -23,13 +23,13 @@
               }
             },
             {
-              "xml": "<application android:usesCleartextTraffic=\"true\" />",
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
               "oldAttrib": {
                 "android:hardwareAccelerated": "true",
-                "android:icon": "@mipmap/ic_launcher",
+                "android:icon": "@mipmap/ic_launcher_new",
                 "android:label": "@string/app_name",
                 "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
@@ -44,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 100
+              "count": 101
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
