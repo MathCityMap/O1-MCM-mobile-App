@@ -15,7 +15,7 @@
               "id": "config.xml",
               "oldAttrib": {
                 "android:hardwareAccelerated": "true",
-                "android:icon": "@mipmap/ic_launcher_new",
+                "android:icon": "@mipmap/ic_launcher",
                 "android:label": "@string/app_name",
                 "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
@@ -29,7 +29,7 @@
               "id": "config.xml",
               "oldAttrib": {
                 "android:hardwareAccelerated": "true",
-                "android:icon": "@mipmap/ic_launcher_new",
+                "android:icon": "@mipmap/ic_launcher",
                 "android:label": "@string/app_name",
                 "android:requestLegacyExternalStorage": "true",
                 "android:supportsRtl": "true",
@@ -44,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 101
+              "count": 7
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
