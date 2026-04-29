@@ -195,7 +195,8 @@ android {
 
     defaultConfig {
         versionCode cdvVersionCode ?: new BigInteger("" + privateHelpers.extractIntFromManifest("versionCode"))
-        applicationId cordovaConfig.PACKAGE_NAMESPACE
+//        applicationId cordovaConfig.PACKAGE_NAMESPACE
+        applicationId "de.uni_frankfurt.mathcitymap"
 
         minSdkVersion cordovaConfig.MIN_SDK_VERSION
         if (cordovaConfig.MAX_SDK_VERSION != null) {
