@@ -1,0 +1,41 @@
+###########################################################
+# Set Environment Variables
+###########################################################
+[env]
+_.path = ['{{config_root}}/node_modules/.bin']
+
+# Use the project name derived from the current directory
+PROJECT_NAME = "{{ config_root | basename }}"
+
+# Set up the path for node module binaries
+BIN_PATH = "{{ config_root }}/node_modules/.bin"
+
+NODE_ENV = "{{ env.NODE_ENV | default(value='development') }}"
+
+NPM_CONFIG_PYTHON = "python3"
+PYTHON = "python3"
+
+###########################################################
+# Install Tools
+###########################################################
+[tools]
+# Install specific nodejs version
+node = "20.17.0"
+python = "3.9.6"
+
+# Install needed global npm packages
+"npm:@angular/cli" = "20.1.3"
+"npm:@angular/language-server" = "20.1.1"
+"npm:@ionic/cli" = "7.2.1"
+"npm:cordova" = "12.0.0"
+
+###########################################################
+# Defined tasks
+###########################################################
+# Tasks to show info about the project
+[tasks.info]
+description = "Print project information"
+run = '''
+echo "Project: $PROJECT_NAME"
+echo "NODE_ENV: $NODE_ENV"
+'''
