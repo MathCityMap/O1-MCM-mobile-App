@@ -1,21 +1,22 @@
-.platform-ios{
-   page-task-detail{
-      ion-content{
+.platform-ios {
+   page-task-detail {
+      ion-content {
          background-position: 0 74px;
       }
    }
 }
-.platform-android, .md{
-   page-task-detail{
-      ion-content{
+.platform-android,
+.md {
+   page-task-detail {
+      ion-content {
          background-position: 0 54px;
       }
    }
 }
 
-
-page-task-detail, page-task-group-detail {
-   ion-content{
+page-task-detail,
+page-task-group-detail {
+   ion-content {
       background-size: 100% auto;
       background-repeat: no-repeat;
    }
@@ -23,13 +24,15 @@ page-task-detail, page-task-group-detail {
    //  TOP (Header)
 
    $header-height: 66vh;
-   $header-min-height: calc(100vw + #{$global-base-plus-padding} + env(safe-area-inset-top, 0px));
+   $header-min-height: calc(
+      100vw + #{$global-base-plus-padding} + env(safe-area-inset-top, 0px)
+   );
    $content-edge: 44px;
 
    $space-push: 34px;
 
-   .task{
-      &-wrapper{
+   .task {
+      &-wrapper {
          transform: translateY(calc(env(safe-area-inset-top, 0px) * -1));
       }
       &-header {
@@ -48,9 +51,9 @@ page-task-detail, page-task-group-detail {
             object-position: center;
          }
 
-         &.gps{
+         &.gps {
             min-height: $header-height;
-            #gpsTaskMap{
+            #gpsTaskMap {
                position: fixed;
                @include size(100%, $header-height);
                ion-fab {
@@ -62,20 +65,21 @@ page-task-detail, page-task-group-detail {
                   bottom: $global-large-padding;
                   right: $global-base-padding;
                   button {
-                     &:not(:first-of-type){
+                     &:not(:first-of-type) {
                         margin-bottom: $global-small-padding;
                      }
                      padding-top: 5px;
-                     span, span .icon{
+                     span,
+                     span .icon {
                         color: #ffffff;
-                        font-family: 'NunitoExtrabold', Arial, sans-serif;
+                        font-family: "NunitoExtrabold", Arial, sans-serif;
                         font-weight: 700;
                         line-height: 1;
                         font-size: 1.1764705882rem;
                      }
                   }
                }
-               .leaflet-bottom.leaflet-right{
+               .leaflet-bottom.leaflet-right {
                   transform: rotate(270deg) translate(-50%, 100%);
                   top: 50%;
                   bottom: unset;
@@ -95,8 +99,8 @@ page-task-detail, page-task-group-detail {
          //background: linear-gradient(to bottom, rgba(229, 229, 229, 0) 50px, rgba(229, 229, 229, 1) 51px);
          @include ios-scroll-fix;
          margin-top: calc((#{$content-edge}) * -1);
-         &:after{
-            content: '';
+         &:after {
+            content: "";
             position: absolute;
             bottom: 0;
             z-index: -1;
@@ -106,21 +110,28 @@ page-task-detail, page-task-group-detail {
          }
 
          .vector-input-list {
-            .item-block:first-child{
+            .item-block:first-child {
                border-top: none;
             }
-            ion-label{
+            ion-label {
                text-transform: none;
             }
             .input-has-value .label {
                margin: 0;
             }
-            &.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+            &.list-md
+               .item-input.ng-valid.input-has-value:not(.input-has-focus):not(
+                  .item-input-has-focus
+               ):last-child {
                box-shadow: none;
                border-bottom-color: color($colors, light-grey);
             }
             //&.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus).is-focused,
-            &.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus).is-focused .item-inner{
+            &.list-md
+               .item-input.ng-valid.input-has-value:not(.input-has-focus):not(
+                  .item-input-has-focus
+               ).is-focused
+               .item-inner {
                border-bottom: 1px solid color($colors, primary);
                box-shadow: inset 0 -1px 0 0 color($colors, primary);
                ion-label {
@@ -155,9 +166,17 @@ page-task-detail, page-task-group-detail {
             }
          }
          &.subtask {
-            background: linear-gradient(to bottom, rgba(220, 235, 240, 0) 50px, #DCEBF0 51px);
+            background: linear-gradient(
+               to bottom,
+               rgba(220, 235, 240, 0) 50px,
+               #dcebf0 51px
+            );
             .transition {
-               background: linear-gradient(to top, #dcebf0 60%, rgba(255, 255, 255, 0) 96%);
+               background: linear-gradient(
+                  to top,
+                  #dcebf0 60%,
+                  rgba(255, 255, 255, 0) 96%
+               );
             }
          }
          .multi-choice-label {
@@ -170,11 +189,9 @@ page-task-detail, page-task-group-detail {
       }
    }
 
-
-
    .card {
       z-index: 2;
-      &:first-of-type{
+      &:first-of-type {
          margin-top: 0;
       }
 
@@ -182,7 +199,7 @@ page-task-detail, page-task-group-detail {
          background-color: color($colors, primary);
          margin-top: 0;
 
-         & > *{
+         & > * {
             color: color($colors, light) !important;
          }
          .title {
@@ -192,11 +209,11 @@ page-task-detail, page-task-group-detail {
             margin-bottom: -2px;
          }
 
-         &:has(+ .subtasks){
+         &:has(+ .subtasks) {
             z-index: 2;
          }
 
-         & ~ .subtasks{
+         & ~ .subtasks {
             z-index: 1;
             margin: -#{$space-push} $global-base-padding $global-base-padding;
             padding: $space-push $global-base-padding 4px;
@@ -207,11 +224,11 @@ page-task-detail, page-task-group-detail {
       .head {
          display: flex;
          align-items: center;
-         margin-bottom: $global-base-padding*0.75;
+         margin-bottom: $global-base-padding * 0.75;
          ion-label {
             margin: 0;
          }
-         & > *:not(.tag){
+         & > *:not(.tag) {
             flex: 1;
          }
          .tag {
@@ -224,7 +241,7 @@ page-task-detail, page-task-group-detail {
             &.score {
                border-style: solid;
                letter-spacing: 0;
-               &:after{
+               &:after {
                   //opacity: 0.22;
                }
             }
@@ -254,13 +271,12 @@ page-task-detail, page-task-group-detail {
       }
 
       &.answer {
-
-         &:has(+ .support){
+         &:has(+ .support) {
             z-index: 2;
          }
 
-         & ~ .support{
-            &:not(.subtask){
+         & ~ .support {
+            &:not(.subtask) {
                z-index: 1;
                margin: -#{$space-push} $global-base-padding $global-base-padding;
                padding: $space-push $global-base-padding $global-base-padding;
@@ -268,15 +284,15 @@ page-task-detail, page-task-group-detail {
             }
          }
 
-         .image-selection-container{
-            .image{
-               &-list{
+         .image-selection-container {
+            .image {
+               &-list {
                   display: grid;
                   grid-template-columns: 1fr 1fr;
                   grid-gap: 16px;
                }
 
-               &-item{
+               &-item {
                   position: relative;
                   display: inline-block;
                   box-sizing: border-box;
@@ -287,7 +303,8 @@ page-task-detail, page-task-group-detail {
                   outline: 0 solid transparent;
                   transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.2s;
 
-                  .image, &:after{
+                  .image,
+                  &:after {
                      z-index: -1;
                      position: absolute;
                      top: 50%;
@@ -298,13 +315,13 @@ page-task-detail, page-task-group-detail {
                      object-fit: cover;
                   }
 
-                  &:after{
-                     content: '';
+                  &:after {
+                     content: "";
                      z-index: -2;
                      background-color: color($colors, light-grey-tint);
                   }
 
-                  button{
+                  button {
                      z-index: 2;
                      position: absolute;
                      bottom: 2px;
@@ -316,13 +333,13 @@ page-task-detail, page-task-group-detail {
                      box-sizing: content-box;
                      box-shadow: none;
                      background: transparent;
-                     .icon{
+                     .icon {
                         filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
                         width: 75%;
                      }
                   }
 
-                  &.active{
+                  &.active {
                      outline: 4px solid color($colors, primary);
                      transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 0.2s;
                   }
@@ -330,37 +347,39 @@ page-task-detail, page-task-group-detail {
             }
          }
 
-         .blanks-container{
+         .blanks-container {
             &.disabled {
                .blank {
                   pointer-events: none;
                   color: color($colors, grey);
                }
             }
-            .blanks{
-               &-text, &-list{
+            .blanks {
+               &-text,
+               &-list {
                   margin-top: $global-base-padding;
-                  & > *{
+                  & > * {
                      font-size: 0.941176rem;
                   }
-                  .blank, span{
+                  .blank,
+                  span {
                      display: inline-block;
                      min-width: 36%;
                      border-radius: 50px;
                      margin-inline: 4px;
                      padding: 5px $global-medium-padding 4px;
-                     box-shadow: 0 0 3px 1px rgba(0, 0, 0, .11);
+                     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.11);
                      text-align: center;
                      font-family: "Roboto", "Helvetica Neue", sans-serif;
                      font-weight: 500;
                      color: color($colors, dark);
                      background-color: color($colors, light);
                      box-sizing: border-box;
-                     &.empty{
+                     &.empty {
                         box-shadow: none;
                         background-color: color($colors, light-grey-tint);
                         color: color($colors, mid-grey);
-                        &.active{
+                        &.active {
                            text-decoration: underline;
                            font-weight: 800;
                            background-color: color($colors, primary-tint);
@@ -373,16 +392,16 @@ page-task-detail, page-task-group-detail {
                      }
                   }
                }
-               &-text{
-                  p{
+               &-text {
+                  p {
                      line-height: 2;
                   }
                }
-               &-list{
+               &-list {
                   border-top: 2px dotted color($colors, light-grey);
                   margin-top: $global-base-padding;
                   padding-top: $global-base-padding;
-                  .blank{
+                  .blank {
                      padding-block: 10px 9px;
                      margin-left: 0;
                      margin-bottom: 8px;
@@ -392,42 +411,57 @@ page-task-detail, page-task-group-detail {
                }
             }
          }
+
+         .submission-container {
+            .image {
+               .remove {
+                  display: flex;
+               }
+               .image-file {
+                  transform: translate(-50%, -50%);
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+               }
+            }
+         }
       }
 
-      &.support{
+      &.support {
          display: flex;
          justify-content: space-between;
          align-items: center;
-         .title{
+         .title {
             margin: 0;
             flex: 0 0 auto;
          }
-         .container{
-            &.buttons{
+         .container {
+            &.buttons {
                flex: 1;
                display: flex;
                justify-content: flex-end;
-               .start, .end{
-                  button{
+               .start,
+               .end {
+                  button {
                      width: 34px;
                      height: 34px;
                      margin: 0 4px;
                      padding: 3px;
                      box-shadow: none;
 
-                     &.hint{
-                        &.used{
+                     &.hint {
+                        &.used {
                            opacity: 0.33;
                         }
                      }
                   }
                }
-               .end{
+               .end {
                   position: relative;
                   padding-left: $global-small-padding;
                   margin-left: $global-small-padding;
                   &:before {
-                     content: '';
+                     content: "";
                      position: absolute;
                      top: 50%;
                      left: 0;
@@ -441,12 +475,12 @@ page-task-detail, page-task-group-detail {
       }
 
       &.subtasks {
-         .head{
+         .head {
             margin-bottom: $global-base-plus-padding;
-            .title{
+            .title {
                font-size: 0.941176rem;
             }
-            button{
+            button {
                flex: auto;
                flex-grow: 0;
                flex-shrink: 0;
@@ -455,11 +489,11 @@ page-task-detail, page-task-group-detail {
 
          .accordion {
             margin-top: $global-base-padding;
-            &:not(:last-of-type){
+            &:not(:last-of-type) {
                border-bottom: 2px dotted color($colors, light-grey);
             }
 
-            .accordion{
+            .accordion {
                &-head {
                   display: flex;
                   align-items: baseline;
@@ -513,7 +547,8 @@ page-task-detail, page-task-group-detail {
                      width: 12px;
                      transform: rotate(-90deg);
                      align-self: flex-end;
-                     margin-bottom: 6px;opacity: 0.66;
+                     margin-bottom: 6px;
+                     opacity: 0.66;
                   }
                   .answer-container {
                      flex-basis: 90%;
@@ -538,7 +573,6 @@ page-task-detail, page-task-group-detail {
                }
             }
 
-
             &.open {
                transition: all linear 0.3s;
                .accordion-content {
@@ -559,7 +593,8 @@ page-task-detail, page-task-group-detail {
          border: 2px dotted;
          border-color: color($colors, grey);
          box-shadow: none;
-         p, .label{
+         p,
+         .label {
             color: color($colors, greygrey);
          }
          p {
@@ -567,13 +602,13 @@ page-task-detail, page-task-group-detail {
             line-height: 1.33;
          }
 
-         .feedback{
-            &:not(:first-child){
+         .feedback {
+            &:not(:first-child) {
                border-top: 2px dotted #a6a6a6;
                margin-top: 20px;
                padding-top: 20px;
             }
-            .label{
+            .label {
                display: flex;
                justify-content: space-between;
                &:after {
@@ -599,7 +634,7 @@ page-task-detail, page-task-group-detail {
             width: 100%;
          }
          ion-label {
-            font-family: 'NunitoBold', Arial, sans-serif;
+            font-family: "NunitoBold", Arial, sans-serif;
             text-transform: uppercase;
             color: #ffffff;
             letter-spacing: 1px;
@@ -607,7 +642,7 @@ page-task-detail, page-task-group-detail {
             padding-right: 5px;
          }
          .score {
-            font-family: 'NunitoExtrabold', Arial, sans-serif;
+            font-family: "NunitoExtrabold", Arial, sans-serif;
             font-weight: 700;
             background-color: #ffffff;
             box-shadow: 0 0 1px 1px #ffffff;
@@ -625,7 +660,7 @@ page-task-detail, page-task-group-detail {
    }
 
    .fraction-input-container {
-      input{
+      input {
          text-align: center;
       }
       &.hide-number-input {
@@ -662,13 +697,11 @@ page-task-detail, page-task-group-detail {
       }
    }
 
-   ion-footer{
+   ion-footer {
       position: sticky;
       bottom: 0;
    }
 }
-
-
 
 page-task-group-detail {
    .task-content {
@@ -682,38 +715,38 @@ page-task-group-detail {
          }
       }
 
-      .task-list{
-         &-head{
+      .task-list {
+         &-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding-inline: $global-base-padding;
             background-color: color($colors, light-grey-tint);
-            .count{
-               font-family: 'NunitoExtraBold', Arial, sans-serif;
+            .count {
+               font-family: "NunitoExtraBold", Arial, sans-serif;
                font-weight: 700;
                color: color($colors, dark);
                margin-right: 8px;
                font-size: 106%;
             }
          }
-         .task-list-item{
-            &.detail-box{
+         .task-list-item {
+            &.detail-box {
                padding: 0;
-               &:not(:first-of-type){
+               &:not(:first-of-type) {
                   padding-top: $global-base-padding;
                   border-top: 2px dotted color($colors, light-grey);
                   margin-top: $global-base-padding;
                }
-               &:not(.solved){
-                  .score{
+               &:not(.solved) {
+                  .score {
                      opacity: 0.44;
                   }
                }
                @each $rating, $color in $ratings {
                   &.#{$rating} {
-                     .image-container{
-                        .cover{
+                     .image-container {
+                        .cover {
                            &:after {
                               content: url("../assets/icons/solution/#{$rating}.svg");
                               background-color: #{nth($color, 1)};
@@ -722,7 +755,7 @@ page-task-group-detail {
                      }
                   }
                }
-               &.#{nth(map-keys($ratings), 1)}{
+               &.#{nth(map-keys($ratings), 1)} {
                   .image-container {
                      .cover {
                         &:after {
@@ -732,11 +765,11 @@ page-task-group-detail {
                   }
                }
 
-               .image-container{
+               .image-container {
                   $circle-size: 14vw;
                   width: $circle-size;
                   height: $circle-size;
-                  .cover{
+                  .cover {
                      &:after {
                         position: absolute;
                         z-index: 2;
@@ -748,14 +781,14 @@ page-task-group-detail {
                      }
                   }
                }
-               .text-container{
+               .text-container {
                   display: flex;
-                  h2{
+                  h2 {
                      margin-top: 1%;
                      color: color($colors, dark);
                   }
                }
-               .score{
+               .score {
                   flex: none;
                   border-width: 1px;
                   border-radius: 50px;
@@ -764,97 +797,89 @@ page-task-group-detail {
                   color: color($colors, dark);
                   background-color: color($colors, light-grey);
                   margin: 2px 0 0 4px;
-                  &:after{
+                  &:after {
                      transform: scale(0.8) translateY(5%);
                   }
                }
             }
          }
-         &-evaluation{
+         &-evaluation {
             background-color: color($colors, primary);
-            .score{
+            .score {
                height: 34px;
                padding: 10px 12px;
                border-radius: 50px;
                border-width: 1px;
                border-color: color($colors, primary);
                color: color($colors, primary);
-               &:after{
+               &:after {
                   filter: none;
                }
             }
          }
-         &.skip{
+         &.skip {
             padding: $global-base-padding $global-base-padding 0;
          }
       }
    }
 }
 
-
-
-
-
-
-
-
-.mcm-keyboard-open{
-   .scroll-content{
-      margin-bottom: 244px!important;
+.mcm-keyboard-open {
+   .scroll-content {
+      margin-bottom: 244px !important;
       padding-bottom: 0 !important;
    }
 }
 
-
-
-@media screen and (min-width: 768px) and (orientation: portrait){
-   page-task-detail{
+@media screen and (min-width: 768px) and (orientation: portrait) {
+   page-task-detail {
       .task-header {
          max-height: 95vh;
          overflow: hidden;
       }
-      .card{
-         &.task{
+      .card {
+         &.task {
             margin-top: -6%;
          }
       }
    }
 }
 
-@media screen and (min-width: 768px) and (orientation: landscape){
-   page-task-detail, page-task-group-detail{
-      .task-wrapper{
+@media screen and (min-width: 768px) and (orientation: landscape) {
+   page-task-detail,
+   page-task-group-detail {
+      .task-wrapper {
          display: flex;
-         padding-bottom: 0!important;
+         padding-bottom: 0 !important;
       }
-      .task-header{
+      .task-header {
          flex: 55;
          max-height: calc(100vh + 24px);
          overflow: hidden;
-         &.gps{
-            #gpsTaskMap{
+         &.gps {
+            #gpsTaskMap {
                position: relative;
                height: 100%;
-               ion-fab{
+               ion-fab {
                   bottom: $global-large-padding;
-                  right: $global-base-padding!important;
+                  right: $global-base-padding !important;
                   left: unset;
                }
             }
          }
       }
-      .task-content{
+      .task-content {
          flex: 45;
          height: 100%;
          margin-bottom: 0;
          margin-top: unset;
          overflow: scroll;
-         .transition{
+         .transition {
             display: none;
          }
       }
-      .card{
-         &.task{
+      .card {
+         &.task {
             margin-top: 0;
          }
       }

@@ -1,9 +1,5 @@
-
-export class TaskState{
-
-    constructor(){
-
-    }
+export class TaskState {
+    constructor() {}
 
     taskId: number;
     saved: boolean = false;
@@ -22,8 +18,9 @@ export class TaskState{
     timeSolved: number = 0;
     score: number = 0;
     penalty: number = 0;
+    imageUrl: string | undefined = undefined;
 
-    public getTaskDetailAsJSON() : string{
+    public getTaskDetailAsJSON(): string {
         return JSON.stringify({
             taskId: +this.taskId, //use '+' to parse to number
             saved: this.saved,
@@ -41,33 +38,35 @@ export class TaskState{
             timeFirstOpen: +this.timeFirstOpen, //use '+' to parse to number
             timeSolved: +this.timeSolved, //use '+' to parse to number
             score: +this.score, //use '+' to parse to number
-            penalty: this.penalty
+            penalty: this.penalty,
         });
     }
 
-    public static getTaskStateAsJSONArray(taskDetails: Array<TaskState>) : string{
+    public static getTaskStateAsJSONArray(
+        taskDetails: Array<TaskState>,
+    ): string {
         let result: Array<any> = [];
-        taskDetails.forEach(details => {
+        taskDetails.forEach((details) => {
             result.push(details.getTaskDetailAsJSON());
-        })
+        });
         return JSON.stringify(result);
     }
 
-    public getAllTaskState(jsonArray: string) : Array<TaskState>{
+    public getAllTaskState(jsonArray: string): Array<TaskState> {
         let flags = JSON.parse(jsonArray);
         let taskDetails: Array<TaskState> = [];
-        for(let i = 0; i < flags.length; i++){
+        for (let i = 0; i < flags.length; i++) {
             taskDetails.push(this.getTaskStateByTask(flags[i]));
         }
         return taskDetails;
     }
 
-    public findDetailsForTask(taskId: number, jsonArray: string) : TaskState{
+    public findDetailsForTask(taskId: number, jsonArray: string): TaskState {
         let flags = JSON.parse(jsonArray);
 
-        for(let i = 0; i < flags.length; i++){
+        for (let i = 0; i < flags.length; i++) {
             let detail = this.getTaskStateByTask(flags[i]);
-            if(detail.taskId == taskId){
+            if (detail.taskId == taskId) {
                 return detail;
             }
         }
@@ -76,11 +75,7 @@ export class TaskState{
         return detail;
     }
 
-
-
-
-
-    public getTaskStateByTask(jsonObject: string) : TaskState{
+    public getTaskStateByTask(jsonObject: string): TaskState {
         let flags = JSON.parse(jsonObject);
         let taskState = new TaskState();
         taskState.taskId = flags.taskId;
