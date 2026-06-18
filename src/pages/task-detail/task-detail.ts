@@ -1,51 +1,72 @@
-import {ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {Content, DeepLinker, IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
-import {Route} from '../../entity/Route';
-import {Task} from '../../entity/Task';
-import {ModalController} from 'ionic-angular/components/modal/modal-controller';
-import {MCMIconModal} from '../../modals/MCMIconModal/MCMIconModal';
-import {MCMModalType, MyApp} from '../../app/app.component';
-import {TaskState} from '../../entity/TaskState';
-import {Score} from '../../entity/Score';
-import {TaskDetailMap} from './task-detail-map';
-import {CustomKeyBoard} from '../../components/customKeyBoard/custom-keyboard';
+import {
+    ChangeDetectorRef,
+    Component,
+    QueryList,
+    ViewChild,
+    ViewChildren,
+} from "@angular/core";
+import {
+    Content,
+    DeepLinker,
+    IonicPage,
+    NavController,
+    NavParams,
+    Platform,
+} from "ionic-angular";
+import { Route } from "../../entity/Route";
+import { Task } from "../../entity/Task";
+import { ModalController } from "ionic-angular/components/modal/modal-controller";
+import { MCMIconModal } from "../../modals/MCMIconModal/MCMIconModal";
+import { MCMModalType, MyApp } from "../../app/app.component";
+import { TaskState } from "../../entity/TaskState";
+import { Score } from "../../entity/Score";
+import { TaskDetailMap } from "./task-detail-map";
+import { CustomKeyBoard } from "../../components/customKeyBoard/custom-keyboard";
 
-import * as L from 'leaflet';
-import {Util} from 'leaflet';
-import 'leaflet-geometryutil';
-import {ModalsService} from '../../services/modals-service';
-import {GpsService} from '../../services/gps-service';
-import {Subscription} from "rxjs/Subscription";
-import {ChatAndSessionService, SessionInfo} from "../../services/chat-and-session-service";
-import {PhotoViewer} from "@ionic-native/photo-viewer";
-import {Helper} from "../../classes/Helper";
-import {SpinnerDialog} from "@ionic-native/spinner-dialog";
-import {ImagesService} from "../../services/images-service";
-import * as Levenstein from 'js-levenshtein';
-import {InAppBrowser, InAppBrowserOptions} from '@ionic-native/in-app-browser';
-import {LinkHttpsPipe} from '../../app/pipes/linkHttps.pipe';
-import {SafariViewController} from '@ionic-native/safari-view-controller';
-import {MCMReportProblemModal} from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
-import {TranslationService} from "../../app/api/services/translation.service";
-import {TaskTranslation} from "../../app/api/models/translation-storage";
-import {RouteApiService} from "../../services/route-api.service";
-import {ProgressCounter, ProgressService} from "../../services/progress-service";
+import * as L from "leaflet";
+import { Util } from "leaflet";
+import "leaflet-geometryutil";
+import { ModalsService } from "../../services/modals-service";
+import { GpsService } from "../../services/gps-service";
+import { Subscription } from "rxjs/Subscription";
+import {
+    ChatAndSessionService,
+    SessionInfo,
+} from "../../services/chat-and-session-service";
+import { PhotoViewer } from "@ionic-native/photo-viewer";
+import { Helper } from "../../classes/Helper";
+import { SpinnerDialog } from "@ionic-native/spinner-dialog";
+import { ImagesService } from "../../services/images-service";
+import * as Levenstein from "js-levenshtein";
+import {
+    InAppBrowser,
+    InAppBrowserOptions,
+} from "@ionic-native/in-app-browser";
+import { LinkHttpsPipe } from "../../app/pipes/linkHttps.pipe";
+import { SafariViewController } from "@ionic-native/safari-view-controller";
+import { MCMReportProblemModal } from "../../modals/MCMReportProblemModal/MCMReportProblemModal";
+import { TranslationService } from "../../app/api/services/translation.service";
+import { TaskTranslation } from "../../app/api/models/translation-storage";
+import { RouteApiService } from "../../services/route-api.service";
+import {
+    ProgressCounter,
+    ProgressService,
+} from "../../services/progress-service";
 import trim = Util.trim;
 
 declare var MathJax;
 
 @IonicPage({
-    segment: ':routeId/TasksDetail/:taskId'
+    segment: ":routeId/TasksDetail/:taskId",
 })
 @Component({
-    selector: 'page-task-detail',
-    templateUrl: 'task-detail.html',
+    selector: "page-task-detail",
+    templateUrl: "task-detail.html",
 })
 export class TaskDetail {
     @ViewChild(Content) content: Content;
 
-    @ViewChildren('multipleChoiceAnswers') multipleChoiceView: QueryList<any>;
-
+    @ViewChildren("multipleChoiceAnswers") multipleChoiceView: QueryList<any>;
 
     // Keyboard open
     //private keyboardOpen;
@@ -76,7 +97,7 @@ export class TaskDetail {
 
     protected multipleChoiceList: Array<any> = [];
 
-    private sessionInfo: SessionInfo;
+    protected sessionInfo: SessionInfo;
 
     // For GPS - tasks
     protected taskDetailMap: TaskDetailMap;
@@ -112,8 +133,7 @@ export class TaskDetail {
         private progressService: ProgressService,
         protected translationService: TranslationService,
         protected imageService: ImagesService,
-    ) {
-    }
+    ) {}
 
     /*
       Custom Keyboard subscribe
@@ -125,34 +145,43 @@ export class TaskDetail {
         // Subscribe to the click event observable
         // Here we add the clicked key value to the string
         this.keyboardSubscriptions.add(
-            CustomKeyBoard.onCKClick.subscribe((key) => {
-                    if ((this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) || !this.route.isAnswerFeedbackEnabled()) {
+            CustomKeyBoard.onCKClick.subscribe(
+                (key) => {
+                    if (
+                        (this.taskDetails.timeSolved == 0 &&
+                            !this.taskDetails.failed) ||
+                        !this.route.isAnswerFeedbackEnabled()
+                    ) {
                         if (key === "C") {
                             if (this.answerIndex != null) {
-                                this.taskDetails.answerMultipleChoice[this.answerIndex].answer = "";
+                                this.taskDetails.answerMultipleChoice[
+                                    this.answerIndex
+                                ].answer = "";
                             } else {
                                 this.taskDetails.answer = "";
                             }
-                        } else if (key === "✔") { // ✔
+                        } else if (key === "✔") {
+                            // ✔
                             this.checkResult();
                         } else {
                             if (this.answerIndex != null) {
-                                this.taskDetails.answerMultipleChoice[this.answerIndex].answer += key;
+                                this.taskDetails.answerMultipleChoice[
+                                    this.answerIndex
+                                ].answer += key;
                             } else {
                                 this.taskDetails.answer += key;
                             }
                         }
                     }
                 },
-                err => {
+                (err) => {
                     console.log(err);
                 },
                 () => {
-                    console.log('onCKClick subscribed.');
-                }
-            )
+                    console.log("onCKClick subscribed.");
+                },
+            ),
         );
-
 
         // Subscribe to the delete event observable
         // Here we delete the last character of the string
@@ -160,18 +189,30 @@ export class TaskDetail {
             CustomKeyBoard.onDeleteClick.subscribe(
                 () => {
                     if (this.answerIndex != null) {
-                        this.taskDetails.answerMultipleChoice[this.answerIndex].answer = this.taskDetails.answerMultipleChoice[this.answerIndex].answer.slice(0, this.taskDetails.answerMultipleChoice[this.answerIndex].answer.length - 1);
+                        this.taskDetails.answerMultipleChoice[
+                            this.answerIndex
+                        ].answer = this.taskDetails.answerMultipleChoice[
+                            this.answerIndex
+                        ].answer.slice(
+                            0,
+                            this.taskDetails.answerMultipleChoice[
+                                this.answerIndex
+                            ].answer.length - 1,
+                        );
                     } else {
-                        this.taskDetails.answer = this.taskDetails.answer.slice(0, this.taskDetails.answer.length - 1);
+                        this.taskDetails.answer = this.taskDetails.answer.slice(
+                            0,
+                            this.taskDetails.answer.length - 1,
+                        );
                     }
                 },
-                err => {
-                    console.log(err)
+                (err) => {
+                    console.log(err);
                 },
                 () => {
-                    console.log('onDeleteClick subscribed.');
-                }
-            )
+                    console.log("onDeleteClick subscribed.");
+                },
+            ),
         );
 
         this.keyboardSubscriptions.add(
@@ -179,13 +220,13 @@ export class TaskDetail {
                 () => {
                     this.setKeyboardOn(false);
                 },
-                err => {
-                    console.log(err)
+                (err) => {
+                    console.log(err);
                 },
                 () => {
-                    console.log('onCKHide subscribed.');
-                }
-            )
+                    console.log("onCKHide subscribed.");
+                },
+            ),
         );
     }
 
@@ -197,115 +238,180 @@ export class TaskDetail {
     }
 
     async ionViewDidEnter() {
-        console.log('TaskDetail ionViewDidEnter()');
+        console.log("TaskDetail ionViewDidEnter()");
         MathJax.typeset();
     }
 
     async ionViewWillEnter() {
-        console.log('TasksMap ionViewWillEnter()');
-        this.routeId = this.navParams.get('routeId');
+        console.log("TasksMap ionViewWillEnter()");
+        this.routeId = this.navParams.get("routeId");
         this.route = await this.routeApiService.getRouteFromId(this.routeId);
-        this.taskId = this.navParams.get('taskId');
-        this.subTaskIndex = this.navParams.get('subTaskIndex');
-        this.parentId = this.navParams.get('parentId');
-        let taskAndScore = await this.routeApiService.getTaskDetails(this.route.code, this.taskId, this.parentId);
+        this.taskId = this.navParams.get("taskId");
+        this.subTaskIndex = this.navParams.get("subTaskIndex");
+        this.parentId = this.navParams.get("parentId");
+        let taskAndScore = await this.routeApiService.getTaskDetails(
+            this.route.code,
+            this.taskId,
+            this.parentId,
+        );
         this.task = taskAndScore.task;
         if (this.subTaskIndex || this.subTaskIndex === 0) {
             this.rootTask = this.task;
-            this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex]
+            this.task = this.rootTask.getSubtasksInOrder()[this.subTaskIndex];
         }
-        this.subTasksRequired = this.rootTask ? this.rootTask.forceSupportTask : this.task.forceSupportTask;
+        this.subTasksRequired = this.rootTask
+            ? this.rootTask.forceSupportTask
+            : this.task.forceSupportTask;
 
         console.log("Opened Task: ", this.task);
-        this.isSpecialTaskType = (this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'gps' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'blanks' || this.task.solutionType === 'fraction');
+        this.isSpecialTaskType =
+            this.task.solutionType === "multiple_choice" ||
+            this.task.solutionType === "gps" ||
+            this.task.solutionType === "vector_values" ||
+            this.task.solutionType === "vector_intervals" ||
+            this.task.solutionType === "set" ||
+            this.task.solutionType === "blanks" ||
+            this.task.solutionType === "fraction";
         this.score = taskAndScore.score;
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
-        if (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
+        if (
+            this.task.getLegitSubtasks() &&
+            this.task.getLegitSubtasks().length > 0
+        ) {
             this.solvedSubtasks = [];
             for (let task of this.task.getSubtasksInOrder()) {
                 let subtaskDetails = this.score.getTaskStateForTask(task.id);
-                if (subtaskDetails.solved || subtaskDetails.failed || subtaskDetails.solvedLow || subtaskDetails.saved || subtaskDetails.skipped) {
+                if (
+                    subtaskDetails.solved ||
+                    subtaskDetails.failed ||
+                    subtaskDetails.solvedLow ||
+                    subtaskDetails.saved ||
+                    subtaskDetails.skipped
+                ) {
                     this.solvedSubtasks.push(subtaskDetails);
                 }
             }
-            if (this.subTasksRequired && !this.subTaskModalShown && this.solvedSubtasks.length !== this.task.getLegitSubtasks().length) {
-                let subtaskModal = this.modalCtrl.create(MCMIconModal, {
-                    type: 'text',
-                    message: this.solvedSubtasks.length == 0 ? 'a_subtaskinfo_required_message' : 'a_subtaskinfo_required_progress_message',
-                    modalType: MCMModalType.subtask,
-                    narrativeEnabled: this.route.isNarrativeEnabled(),
-                    narrative: this.app.activeNarrative,
-                    buttons: [
-                        {
-                            title: 'a_subtaskinfo_required_letsgo',
-                            callback: function () {
-                                subtaskModal.dismiss();
-                            }
-                        }
-                    ]
-
-                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+            if (
+                this.subTasksRequired &&
+                !this.subTaskModalShown &&
+                this.solvedSubtasks.length !==
+                    this.task.getLegitSubtasks().length
+            ) {
+                let subtaskModal = this.modalCtrl.create(
+                    MCMIconModal,
+                    {
+                        type: "text",
+                        message:
+                            this.solvedSubtasks.length == 0
+                                ? "a_subtaskinfo_required_message"
+                                : "a_subtaskinfo_required_progress_message",
+                        modalType: MCMModalType.subtask,
+                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                        narrative: this.app.activeNarrative,
+                        buttons: [
+                            {
+                                title: "a_subtaskinfo_required_letsgo",
+                                callback: function () {
+                                    subtaskModal.dismiss();
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        showBackdrop: true,
+                        enableBackdropDismiss: true,
+                        cssClass: this.app.activeNarrative,
+                    },
+                );
 
                 subtaskModal.present();
                 this.subTaskModalShown = true;
             } else if (this.taskDetails.timeFirstOpen === 0) {
-                let subtaskModal = this.modalCtrl.create(MCMIconModal, {
-                    title: 'a_subtaskinfo_title',
-                    type: 'text',
-                    message: 'a_subtaskinfo_message',
-                    modalType: MCMModalType.subtask,
-                    narrativeEnabled: this.route.isNarrativeEnabled(),
-                    narrative: this.app.activeNarrative,
-                    buttons: [
-                        {
-                            title: 'a_alert_close',
-                            callback: function () {
-                                subtaskModal.dismiss();
-                            }
-                        }
-                    ]
-
-                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+                let subtaskModal = this.modalCtrl.create(
+                    MCMIconModal,
+                    {
+                        title: "a_subtaskinfo_title",
+                        type: "text",
+                        message: "a_subtaskinfo_message",
+                        modalType: MCMModalType.subtask,
+                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                        narrative: this.app.activeNarrative,
+                        buttons: [
+                            {
+                                title: "a_alert_close",
+                                callback: function () {
+                                    subtaskModal.dismiss();
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        showBackdrop: true,
+                        enableBackdropDismiss: true,
+                        cssClass: this.app.activeNarrative,
+                    },
+                );
 
                 subtaskModal.present();
             }
             //Force template to reload so blankContainer exists when it should.
             this.cdRef.detectChanges();
         }
-        if (this.task.solutionType === 'fraction') {
+        if (this.task.solutionType === "fraction") {
             this.specialSolution = this.task.getSolution();
             console.log("Fraction solution", this.specialSolution);
-            if (!this.taskDetails.answerMultipleChoice || !this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
-                const answerArray = [{answer: ''}, {answer: ''}];
+            if (
+                !this.taskDetails.answerMultipleChoice ||
+                !this.taskDetails.answerMultipleChoice ||
+                this.taskDetails.answerMultipleChoice.length == 0
+            ) {
+                const answerArray = [{ answer: "" }, { answer: "" }];
                 if (this.specialSolution.mixed === "true") {
-                    answerArray.push({answer: ''});
+                    answerArray.push({ answer: "" });
                 }
                 this.taskDetails.answerMultipleChoice = answerArray;
             }
         }
-        if (this.task.solutionType === 'blanks') {
+        if (this.task.solutionType === "blanks") {
             if (!this.task.isSelectionBlank()) {
                 this.fillBlankSolutionElement();
             } else {
                 this.prepareSelectionBlank();
             }
         }
-        if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
+        if (
+            this.task.solutionType === "vector_values" ||
+            this.task.solutionType === "vector_intervals"
+        ) {
             this.specialSolution = this.task.getSolution();
-            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+            if (
+                !this.taskDetails.answerMultipleChoice ||
+                this.taskDetails.answerMultipleChoice.length == 0
+            ) {
                 let answerArray = [];
-                for (let i = 0; i < this.specialSolution.components.length; i++) {
+                for (
+                    let i = 0;
+                    i < this.specialSolution.components.length;
+                    i++
+                ) {
                     let component = this.specialSolution.components[i];
-                    answerArray.push({name: component.name, answer: '', solved: null});
+                    answerArray.push({
+                        name: component.name,
+                        answer: "",
+                        solved: null,
+                    });
                 }
                 this.taskDetails.answerMultipleChoice = answerArray;
             }
-        } else if (this.task.solutionType === 'set') {
+        } else if (this.task.solutionType === "set") {
             this.specialSolution = this.task.getSolution();
-            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+            if (
+                !this.taskDetails.answerMultipleChoice ||
+                this.taskDetails.answerMultipleChoice.length == 0
+            ) {
                 let answerArray = [];
                 for (let i = 0; i < this.specialSolution.length; i++) {
-                    answerArray.push({answer: '', solved: null});
+                    answerArray.push({ answer: "", solved: null });
                 }
                 this.taskDetails.answerMultipleChoice = answerArray;
             }
@@ -313,13 +419,25 @@ export class TaskDetail {
         this.sessionInfo = await this.chatAndSessionService.getActiveSession();
         // Add event of user entering trail when session active
         if (this.sessionInfo != null) {
+            // if we have a session only than submission task should be processed
+            if (this.task.solutionType === "submission") {
+                // TODO@Fabian initialize data for submission task
+            }
+
             let details;
             if (this.rootTask) {
-                details = JSON.stringify({title: this.task.title, parentId: this.rootTask.id});
+                details = JSON.stringify({
+                    title: this.task.title,
+                    parentId: this.rootTask.id,
+                });
             } else {
-                details = JSON.stringify({title: this.task.title});
+                details = JSON.stringify({ title: this.task.title });
             }
-            this.chatAndSessionService.addUserEvent("event_task_opened", details, this.task.id.toString());
+            this.chatAndSessionService.addUserEvent(
+                "event_task_opened",
+                details,
+                this.task.id.toString(),
+            );
         }
 
         if (this.taskDetails.timeSolved == 0 && !this.taskDetails.failed) {
@@ -330,7 +448,11 @@ export class TaskDetail {
         this.gamificationIsDisabled = this.route.isGamificationDisabled();
 
         //Temporary attribution of the scores, later they should come from the server, associated with each task
-        if (!this.rootTask && this.route.isAnswerFeedbackEnabled() && this.task.solutionType != 'info') {
+        if (
+            !this.rootTask &&
+            this.route.isAnswerFeedbackEnabled() &&
+            this.task.solutionType != "info"
+        ) {
             // Logic used to get different max scores for different task formats which has been suspended for now
             // if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
             //     this.maxScore = 40 * this.specialSolution.components.length;
@@ -364,42 +486,56 @@ export class TaskDetail {
         }
 
         if (this.task.getLegitSubtasks() && this.subTasksRequired) {
-            let scorableTaskCount = this.task.solutionType === 'info' ? 0 : 1;
+            let scorableTaskCount = this.task.solutionType === "info" ? 0 : 1;
             for (let task of this.task.getLegitSubtasks()) {
-                if (task.solutionType != 'info') {
+                if (task.solutionType != "info") {
                     scorableTaskCount++;
                 }
             }
             this.subTaskScore = Math.floor(100 / scorableTaskCount);
-            if (this.task.solutionType === 'info') {
+            if (this.task.solutionType === "info") {
                 this.maxScore = 0;
-                if ((this.maxScore - this.subTaskScore * scorableTaskCount) > 0) {
-                    this.lastSubtaskBonus = (this.maxScore - this.subTaskScore * scorableTaskCount);
+                if (this.maxScore - this.subTaskScore * scorableTaskCount > 0) {
+                    this.lastSubtaskBonus =
+                        this.maxScore - this.subTaskScore * scorableTaskCount;
                 }
             } else {
-                this.maxScore = this.subTaskScore + (this.maxScore - this.subTaskScore * scorableTaskCount);
+                this.maxScore =
+                    this.subTaskScore +
+                    (this.maxScore - this.subTaskScore * scorableTaskCount);
             }
             this.penalty = Math.floor(this.maxScore) * 0.15;
             this.minScore = Math.floor(this.maxScore) / 10;
         }
 
-        if (this.rootTask && this.subTasksRequired && this.task.solutionType !== 'info') {
-            let scorableTaskCount = this.rootTask.solutionType === 'info' ? 0 : 1;
+        if (
+            this.rootTask &&
+            this.subTasksRequired &&
+            this.task.solutionType !== "info"
+        ) {
+            let scorableTaskCount =
+                this.rootTask.solutionType === "info" ? 0 : 1;
             for (let task of this.rootTask.getLegitSubtasks()) {
-                if (task.solutionType != 'info') {
+                if (task.solutionType != "info") {
                     scorableTaskCount++;
                 }
             }
             this.subTaskScore = Math.floor(100 / scorableTaskCount);
-            if (this.task.solutionType === 'info') {
+            if (this.task.solutionType === "info") {
                 this.maxScore = 0;
             } else {
-                if (this.rootTask.solutionType === 'info') {
-                    if ((100 - this.subTaskScore * scorableTaskCount) > 0) {
-                        this.lastSubtaskBonus = (100 - this.subTaskScore * scorableTaskCount);
+                if (this.rootTask.solutionType === "info") {
+                    if (100 - this.subTaskScore * scorableTaskCount > 0) {
+                        this.lastSubtaskBonus =
+                            100 - this.subTaskScore * scorableTaskCount;
                     }
                 }
-                this.maxScore = this.subTaskScore + (this.subTaskIndex === this.rootTask.getLegitSubtasks().length - 1 ? this.lastSubtaskBonus : 0);
+                this.maxScore =
+                    this.subTaskScore +
+                    (this.subTaskIndex ===
+                    this.rootTask.getLegitSubtasks().length - 1
+                        ? this.lastSubtaskBonus
+                        : 0);
             }
             this.orangeScore = this.maxScore / 2;
             this.penalty = Math.floor(this.maxScore) * 0.15;
@@ -410,13 +546,17 @@ export class TaskDetail {
 
         if (this.taskDetails.timeFirstOpen == 0) {
             this.taskDetails.timeFirstOpen = new Date().getTime();
-            this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
+            this.routeApiService.insertOrUpdateTaskState(
+                this.score,
+                this.taskDetails,
+                this.route.code,
+            );
         }
-        if (this.task.solutionType == 'multiple_choice') {
-            this.multipleChoiceView.changes.subscribe(data => {
+        if (this.task.solutionType == "multiple_choice") {
+            this.multipleChoiceView.changes.subscribe((data) => {
                 console.log("MultipleChoiceChildData", data);
                 MathJax.typeset();
-            })
+            });
             if (this.taskDetails.solved || this.taskDetails.solvedLow) {
                 this.multipleChoiceList = this.taskDetails.answerMultipleChoice;
             } else {
@@ -425,7 +565,14 @@ export class TaskDetail {
         }
         // Init task detail map, if task is gps task
         if (this.task.solutionType == "gps") {
-            this.taskDetailMap = new TaskDetailMap(this.task, this.route, this.gpsService, this.app, this.routeApiService, this.imageService);
+            this.taskDetailMap = new TaskDetailMap(
+                this.task,
+                this.route,
+                this.gpsService,
+                this.app,
+                this.routeApiService,
+                this.imageService,
+            );
             this.taskDetailMap.loadMap();
             // Insert predefined points / axis
             let gpsType = this.task.getSolutionGpsValue("task");
@@ -434,21 +581,24 @@ export class TaskDetail {
                 if (gpsType == "centerTwo") {
                     points = [
                         this.task.getSolutionGpsValue("point1"),
-                        this.task.getSolutionGpsValue("point2")
+                        this.task.getSolutionGpsValue("point2"),
                     ];
                 }
                 if (gpsType == "centerThree") {
                     points = [
                         this.task.getSolutionGpsValue("point1"),
                         this.task.getSolutionGpsValue("point2"),
-                        this.task.getSolutionGpsValue("point3")
+                        this.task.getSolutionGpsValue("point3"),
                     ];
                 }
                 if (points.length > 0) {
                     this.taskDetailMap.insertPreDefinedPoints(points);
                 }
                 if (gpsType == "linearFx") {
-                    this.taskDetailMap.insertAxis(this.task.getSolutionGpsValue("point1"), this.task.getSolutionGpsValue("point2"));
+                    this.taskDetailMap.insertAxis(
+                        this.task.getSolutionGpsValue("point1"),
+                        this.task.getSolutionGpsValue("point2"),
+                    );
                 }
             }
 
@@ -461,17 +611,30 @@ export class TaskDetail {
             }
             let startCharCode = "A".charCodeAt(0);
             for (let i = 0; i < buttonCount; i++) {
-                this.gpsTaskButtonLabels[i] = String.fromCharCode(startCharCode + i);
+                this.gpsTaskButtonLabels[i] = String.fromCharCode(
+                    startCharCode + i,
+                );
             }
         }
 
         if (this.taskDetails.skipped) {
             this.taskDetails.newTries = 0;
         }
-        if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
+        if (
+            this.task.solutionType == "range" ||
+            this.task.solutionType == "value" ||
+            this.task.solutionType == "vector_values" ||
+            this.task.solutionType == "vector_intervals" ||
+            this.task.solutionType === "set" ||
+            this.task.solutionType === "fraction"
+        ) {
             this.subscribeCKEvents();
         }
-        let {translation, isFetched} = await this.translationService.getTranslationForTask(this.taskId, this.route.code);
+        let { translation, isFetched } =
+            await this.translationService.getTranslationForTask(
+                this.taskId,
+                this.route.code,
+            );
         this.translation = translation;
         this.translationFetched = isFetched;
         MathJax.typeset();
@@ -484,13 +647,26 @@ export class TaskDetail {
         }
         this.translatePage = false;
         this.translationService.toggleTranslatedClass(false);
-        if (this.task.solutionType == 'range' || this.task.solutionType == 'value' || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
+        if (
+            this.task.solutionType == "range" ||
+            this.task.solutionType == "value" ||
+            this.task.solutionType == "vector_values" ||
+            this.task.solutionType == "vector_intervals" ||
+            this.task.solutionType === "set" ||
+            this.task.solutionType === "fraction"
+        ) {
             this.unsubscribeCKEvents();
         }
-        if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed || this.taskDetails.skipped || this.taskDetails.saved) {
+        if (
+            this.taskDetails.solved ||
+            this.taskDetails.solvedLow ||
+            this.taskDetails.failed ||
+            this.taskDetails.skipped ||
+            this.taskDetails.saved
+        ) {
             //This guarantees that the state is updated before the map opens and gets the information.
-            if (this.navParams.get('goToNextTaskById')) {
-                let goToNextTaskById = this.navParams.get('goToNextTaskById');
+            if (this.navParams.get("goToNextTaskById")) {
+                let goToNextTaskById = this.navParams.get("goToNextTaskById");
                 goToNextTaskById(this.task.id, false);
             }
         }
@@ -504,9 +680,16 @@ export class TaskDetail {
             CustomKeyBoard.show(function () {
                 // Scroll input field into view (may happen that the field is hidden by keyboard)
                 if (!that.rootTask) {
-                    that.content.scrollTo(0, document.getElementById('keyboard-anchor').offsetTop);
+                    that.content.scrollTo(
+                        0,
+                        document.getElementById("keyboard-anchor").offsetTop,
+                    );
                 } else {
-                    that.content.scrollTo(0, document.getElementById('snd-keyboard-anchor').offsetTop);
+                    that.content.scrollTo(
+                        0,
+                        document.getElementById("snd-keyboard-anchor")
+                            .offsetTop,
+                    );
                 }
             });
         }
@@ -526,7 +709,9 @@ export class TaskDetail {
     Checks if entered answer is valid decimal number
      */
     isDecimal(s: string): boolean {
-        let match = s.match(/^-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)/g);
+        let match = s.match(
+            /^-?(0(([.,])[0-9]+)?|[1-9]{1}[0-9]*(([.,])[0-9]+)?)/g,
+        );
         return match !== null ? match[0] === s : false;
     }
 
@@ -535,10 +720,14 @@ export class TaskDetail {
         let title = "";
         /*     console.log(" ===============================  ", this.task.getImagesForDownload() );
             console.log(" ===============================  ", this.task.getHint(index) ); */
-        let type: string = this.translatePage ? this.translation.getHint(index).type : this.task.getHint(index).type;
-        let message: string = this.translatePage ? this.translation.getHint(index).value : this.task.getHint(index).value;
-        if (type === 'image') {
-            message = this.task.s3Media["hint"+index].details.largeUrl;
+        let type: string = this.translatePage
+            ? this.translation.getHint(index).type
+            : this.task.getHint(index).type;
+        let message: string = this.translatePage
+            ? this.translation.getHint(index).value
+            : this.task.getHint(index).value;
+        if (type === "image") {
+            message = this.task.s3Media["hint" + index].details.largeUrl;
         }
         if (this.shownHints.indexOf(index) == -1) {
             this.shownHints.push(index);
@@ -546,137 +735,205 @@ export class TaskDetail {
 
         switch (index) {
             case 1:
-                if (!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed) {
+                if (
+                    !this.taskDetails.solved &&
+                    !this.taskDetails.solvedLow &&
+                    !this.taskDetails.failed
+                ) {
                     //only update if task is not solved
                     this.taskDetails.hint1 = true;
                     needUpdate = true;
                 }
-                title = 'a_btn_hint1';
+                title = "a_btn_hint1";
                 if (this.sessionInfo != null) {
                     let details = JSON.stringify({});
-                    this.chatAndSessionService.addUserEvent("event_took_hint1", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent(
+                        "event_took_hint1",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
                 break;
             case 2:
-                if (!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed) {
+                if (
+                    !this.taskDetails.solved &&
+                    !this.taskDetails.solvedLow &&
+                    !this.taskDetails.failed
+                ) {
                     //only update if task is not solved
                     this.taskDetails.hint2 = true;
                     needUpdate = true;
                 }
-                title = 'a_btn_hint2';
+                title = "a_btn_hint2";
                 if (this.sessionInfo != null) {
                     let details = JSON.stringify({});
-                    this.chatAndSessionService.addUserEvent("event_took_hint2", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent(
+                        "event_took_hint2",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
                 break;
             case 3:
-                if (!this.taskDetails.solved && !this.taskDetails.solvedLow && !this.taskDetails.failed) {
+                if (
+                    !this.taskDetails.solved &&
+                    !this.taskDetails.solvedLow &&
+                    !this.taskDetails.failed
+                ) {
                     //only update if task is not solved
                     this.taskDetails.hint3 = true;
                     if (this.sessionInfo != null) {
                         let details = JSON.stringify({});
-                        this.chatAndSessionService.addUserEvent("event_took_hint3", details, this.task.id.toString());
+                        this.chatAndSessionService.addUserEvent(
+                            "event_took_hint3",
+                            details,
+                            this.task.id.toString(),
+                        );
                     }
                     needUpdate = true;
                 }
-                title = 'a_btn_hint3';
+                title = "a_btn_hint3";
                 break;
         }
         if (needUpdate) {
-            this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
+            this.routeApiService.insertOrUpdateTaskState(
+                this.score,
+                this.taskDetails,
+                this.route.code,
+            );
         }
 
-        let hintModal = this.modalCtrl.create(MCMIconModal, {
-            title: title,
-            type: type,
-            message: message,
-            contentLanguage: this.translatePage ? this.translation.language : this.task.langCode,
-            modalType: MCMModalType.hint,
-            narrativeEnabled: this.route.isNarrativeEnabled(),
-            narrative: this.app.activeNarrative,
-            buttons: [
-                {
-                    title: 'a_alert_close',
-                    callback: function () {
-                        hintModal.dismiss();
-                    }
-                }
-            ]
-
-        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: `${this.app.activeNarrative}${this.translatePage ? ' translated' :''}`});
-        hintModal.onDidDismiss(_click => {
+        let hintModal = this.modalCtrl.create(
+            MCMIconModal,
+            {
+                title: title,
+                type: type,
+                message: message,
+                contentLanguage: this.translatePage
+                    ? this.translation.language
+                    : this.task.langCode,
+                modalType: MCMModalType.hint,
+                narrativeEnabled: this.route.isNarrativeEnabled(),
+                narrative: this.app.activeNarrative,
+                buttons: [
+                    {
+                        title: "a_alert_close",
+                        callback: function () {
+                            hintModal.dismiss();
+                        },
+                    },
+                ],
+            },
+            {
+                showBackdrop: true,
+                enableBackdropDismiss: true,
+                cssClass: `${this.app.activeNarrative}${this.translatePage ? " translated" : ""}`,
+            },
+        );
+        hintModal.onDidDismiss((_click) => {
             if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
-                this.chatAndSessionService.addUserEvent("event_hint_closed", details, this.task.id.toString());
+                this.chatAndSessionService.addUserEvent(
+                    "event_hint_closed",
+                    details,
+                    this.task.id.toString(),
+                );
             }
         });
         hintModal.present();
     }
 
     async checkResult() {
-        if ((this.task.solutionType == 'range' || this.task.solutionType == 'value') && !this.isDecimal(this.taskDetails.answer) || !this.isSpecialTypeAnswered()) {
+        if (
+            ((this.task.solutionType === "range" ||
+                this.task.solutionType === "submission" ||
+                this.task.solutionType === "value") &&
+                !this.isDecimal(this.taskDetails.answer)) ||
+            !this.isSpecialTypeAnswered()
+        ) {
             return;
         }
         console.log(this.task.solutionType);
         let solution = [this.taskDetails.answer];
         let answer = this.taskDetails.answer.replace(",", ".");
         //details for wrong answer event
-        let details = JSON.stringify({solution: solution, solutionType: this.task.solutionType});
+        let details = JSON.stringify({
+            solution: solution,
+            solutionType: this.task.solutionType,
+        });
 
         if (this.task.solutionType == "value") {
             let f_answer = parseFloat(answer);
             let f_solution = parseFloat(this.task.getSolution());
             if (f_answer.toString() == f_solution.toString()) {
                 this.CalculateScore("value", "solved");
-                this.taskSolved('solved', solution);
+                this.taskSolved("solved", solution);
             } else {
                 if (this.sessionInfo != null) {
-                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent(
+                        "event_entered_wrong_answer",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
-                this.taskSolved('', solution);
+                this.taskSolved("", solution);
             }
         } else if (this.task.solutionType == "multiple_choice") {
             console.log(this.multipleChoiceList);
             let taskSuccess = true;
-            let checkedByUser = this.multipleChoiceList.filter(item => {
+            let checkedByUser = this.multipleChoiceList.filter((item) => {
                 return item.userChecked == true;
             });
-            checkedByUser = checkedByUser.map(item => item.value);
+            checkedByUser = checkedByUser.map((item) => item.value);
             for (let i = 0; i < this.multipleChoiceList.length; i++) {
                 let item = this.multipleChoiceList[i];
                 if (item.userChecked != item.rightAnswer) {
                     taskSuccess = false;
-                    console.log('found wrong answer');
+                    console.log("found wrong answer");
                     break;
                 }
             }
             this.taskDetails.answerMultipleChoice = this.multipleChoiceList;
             console.log(taskSuccess);
-            let solution = [this.task.getSolution()]
+            let solution = [this.task.getSolution()];
             if (this.task.isImageMultipleChoice()) {
                 let solutionText = "<span>";
                 for (let i = 0; i < this.multipleChoiceList.length; i++) {
                     let item = this.multipleChoiceList[i];
                     if (item.userChecked && item.rightAnswer) {
-                        let url = this.imageService.getOfflineURL(item.value, false, false, true)
-                        if (this.platform.is('cordova')) {
-                            url = (<any>window).Ionic.WebView.convertFileSrc(url);
+                        let url = this.imageService.getOfflineURL(
+                            item.value,
+                            false,
+                            false,
+                            true,
+                        );
+                        if (this.platform.is("cordova")) {
+                            url = (<any>window).Ionic.WebView.convertFileSrc(
+                                url,
+                            );
                         }
                         solutionText += `<img class="image" style="max-height: 80px; display: inline;" src="${url}" alt="image"/>`;
                     }
                 }
-                solutionText += "</span>"
+                solutionText += "</span>";
                 solution = [solutionText];
             }
             if (taskSuccess) {
                 this.CalculateScore("multiple_choice", "solved");
-                this.taskSolved('solved', solution);
+                this.taskSolved("solved", solution);
             } else {
                 if (this.sessionInfo != null) {
-                    details = JSON.stringify({solution: checkedByUser, solutionType: this.task.solutionType});
-                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    details = JSON.stringify({
+                        solution: checkedByUser,
+                        solutionType: this.task.solutionType,
+                    });
+                    this.chatAndSessionService.addUserEvent(
+                        "event_entered_wrong_answer",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
-                this.taskSolved('', ['']);
+                this.taskSolved("", [""]);
             }
         } else if (this.task.solutionType == "range") {
             let solutionList = this.task.getSolutionList();
@@ -688,7 +945,7 @@ export class TaskDetail {
             if (answer >= von && answer <= bis) {
                 this.CalculateScore("range", "solved");
                 //DEBUG:LOG PAREI AQUI
-                this.taskSolved('solved', solution);
+                this.taskSolved("solved", solution);
             } else {
                 if (solutionList.length == 4) {
                     //oranges intervall (solvedLow)
@@ -697,28 +954,36 @@ export class TaskDetail {
                     let solution = [this.taskDetails.answer];
                     if (answer >= vonLow && answer <= bisLow) {
                         this.CalculateScore("range", "solved_low");
-                        this.taskSolved('solved_low', solution);
+                        this.taskSolved("solved_low", solution);
                     } else {
                         if (this.sessionInfo != null) {
-                            this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                            this.chatAndSessionService.addUserEvent(
+                                "event_entered_wrong_answer",
+                                details,
+                                this.task.id.toString(),
+                            );
                         }
                         // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                         if (Helper.isOffByPowerOfTen(answer, vonLow, bisLow)) {
-                            this.taskSolved('offByTen', ['']);
-                            return
+                            this.taskSolved("offByTen", [""]);
+                            return;
                         }
-                        this.taskSolved('', ['']);
+                        this.taskSolved("", [""]);
                     }
                 } else {
                     if (this.sessionInfo != null) {
-                        this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                        this.chatAndSessionService.addUserEvent(
+                            "event_entered_wrong_answer",
+                            details,
+                            this.task.id.toString(),
+                        );
                     }
                     // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                     if (Helper.isOffByPowerOfTen(answer, von, bis)) {
-                        this.taskSolved('offByTen', ['']);
-                        return
+                        this.taskSolved("offByTen", [""]);
+                        return;
                     }
-                    this.taskSolved('', ['']);
+                    this.taskSolved("", [""]);
                 }
             }
         } else if (this.task.solutionType == "gps") {
@@ -726,32 +991,68 @@ export class TaskDetail {
             console.log(gpsType);
             switch (gpsType) {
                 case "lineNoDirection":
-                    this.CalculateLine(this.taskDetailMap.pointMarkers[0], this.taskDetailMap.pointMarkers[1], +this.task.getSolutionGpsValue("length"));
+                    this.CalculateLine(
+                        this.taskDetailMap.pointMarkers[0],
+                        this.taskDetailMap.pointMarkers[1],
+                        +this.task.getSolutionGpsValue("length"),
+                    );
                     break;
 
                 case "line":
-                    this.CalculateLineDirection(this.taskDetailMap.pointMarkers[0], this.taskDetailMap.pointMarkers[1], +this.task.getSolutionGpsValue("length"), +this.task.getSolutionGpsValue("direction"));
+                    this.CalculateLineDirection(
+                        this.taskDetailMap.pointMarkers[0],
+                        this.taskDetailMap.pointMarkers[1],
+                        +this.task.getSolutionGpsValue("length"),
+                        +this.task.getSolutionGpsValue("direction"),
+                    );
                     break;
 
                 case "triangle":
-                    this.CalculateTriangle(this.taskDetailMap.pointMarkers[0], this.taskDetailMap.pointMarkers[1], this.taskDetailMap.pointMarkers[2], +this.task.getSolutionGpsValue("length"));
+                    this.CalculateTriangle(
+                        this.taskDetailMap.pointMarkers[0],
+                        this.taskDetailMap.pointMarkers[1],
+                        this.taskDetailMap.pointMarkers[2],
+                        +this.task.getSolutionGpsValue("length"),
+                    );
                     break;
 
                 case "square":
-                    this.CalculateSquare(this.taskDetailMap.pointMarkers[0], this.taskDetailMap.pointMarkers[1], this.taskDetailMap.pointMarkers[2], this.taskDetailMap.pointMarkers[3], +this.task.getSolutionGpsValue("length"));
+                    this.CalculateSquare(
+                        this.taskDetailMap.pointMarkers[0],
+                        this.taskDetailMap.pointMarkers[1],
+                        this.taskDetailMap.pointMarkers[2],
+                        this.taskDetailMap.pointMarkers[3],
+                        +this.task.getSolutionGpsValue("length"),
+                    );
                     break;
 
                 case "centerTwo":
-                    this.CalculateCenterTwoP(this.task.getSolutionGpsValue("point1"), this.task.getSolutionGpsValue("point2"), this.taskDetailMap.pointMarkers[0]);
+                    this.CalculateCenterTwoP(
+                        this.task.getSolutionGpsValue("point1"),
+                        this.task.getSolutionGpsValue("point2"),
+                        this.taskDetailMap.pointMarkers[0],
+                    );
                     break;
 
                 case "centerThree":
-                    this.CalculateCenterThreeP(this.task.getSolutionGpsValue("point1"), this.task.getSolutionGpsValue("point2"), this.task.getSolutionGpsValue("point3"), this.taskDetailMap.pointMarkers[0]);
+                    this.CalculateCenterThreeP(
+                        this.task.getSolutionGpsValue("point1"),
+                        this.task.getSolutionGpsValue("point2"),
+                        this.task.getSolutionGpsValue("point3"),
+                        this.taskDetailMap.pointMarkers[0],
+                    );
                     break;
 
                 case "linearFx":
                 default:
-                    this.CalculateLinearFx(this.task.getSolutionGpsValue("point1"), this.task.getSolutionGpsValue("point2"), this.taskDetailMap.pointMarkers[0].getLatLng(), this.taskDetailMap.pointMarkers[1].getLatLng(), this.task.getSolutionGpsValue("slope"), this.task.getSolutionGpsValue("y"));
+                    this.CalculateLinearFx(
+                        this.task.getSolutionGpsValue("point1"),
+                        this.task.getSolutionGpsValue("point2"),
+                        this.taskDetailMap.pointMarkers[0].getLatLng(),
+                        this.taskDetailMap.pointMarkers[1].getLatLng(),
+                        this.task.getSolutionGpsValue("slope"),
+                        this.task.getSolutionGpsValue("y"),
+                    );
                     break;
             }
         } else if (this.task.solutionType == "vector_values") {
@@ -764,23 +1065,35 @@ export class TaskDetail {
                 let answer = answers[i];
                 let checkAnswer = parseFloat(answer.answer.replace(",", "."));
                 let solution = solutions[i];
-                detailSolutions.push({name: solution.name, answer: answer.answer});
-                answer.solved = checkAnswer > +solution.val - 0.0001 && checkAnswer < +solution.val + 0.0001;
+                detailSolutions.push({
+                    name: solution.name,
+                    answer: answer.answer,
+                });
+                answer.solved =
+                    checkAnswer > +solution.val - 0.0001 &&
+                    checkAnswer < +solution.val + 0.0001;
                 if (!answer.solved) {
                     solvedTask = false;
                 }
-                solutionText += `<tr><td>${answer.name}:</td> <td class="${answer.solved ? 'correct' : 'false'}">${answer.answer}</td></tr>`;
+                solutionText += `<tr><td>${answer.name}:</td> <td class="${answer.solved ? "correct" : "false"}">${answer.answer}</td></tr>`;
             }
-            solutionText += "</table>"
+            solutionText += "</table>";
             if (solvedTask) {
                 this.CalculateScore("vector_values", "solved");
-                this.taskSolved('solved', [solutionText]);
+                this.taskSolved("solved", [solutionText]);
             } else {
                 if (this.sessionInfo != null) {
-                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
-                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    details = JSON.stringify({
+                        solution: detailSolutions,
+                        solutionType: this.task.solutionType,
+                    });
+                    this.chatAndSessionService.addUserEvent(
+                        "event_entered_wrong_answer",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
-                this.taskSolved('', [solutionText]);
+                this.taskSolved("", [solutionText]);
             }
         } else if (this.task.solutionType == "vector_intervals") {
             let answers = this.taskDetails.answerMultipleChoice;
@@ -792,42 +1105,65 @@ export class TaskDetail {
                 let answer = answers[i];
                 let checkAnswer = parseFloat(answer.answer.replace(",", "."));
                 let solution = solutions[i];
-                detailSolutions.push({name: solution.name, answer: answer.answer});
-                answer.solved = checkAnswer >= +solution.low && checkAnswer <= +solution.high;
+                detailSolutions.push({
+                    name: solution.name,
+                    answer: answer.answer,
+                });
+                answer.solved =
+                    checkAnswer >= +solution.low &&
+                    checkAnswer <= +solution.high;
                 if (!answer.solved) {
                     solvedTask = false;
                 }
-                solutionText += `<tr><td>${answer.name}:</td> <td class="${answer.solved ? 'correct' : 'false'}">${answer.answer}</td></tr>`;
+                solutionText += `<tr><td>${answer.name}:</td> <td class="${answer.solved ? "correct" : "false"}">${answer.answer}</td></tr>`;
             }
-            solutionText += "</table>"
+            solutionText += "</table>";
             if (solvedTask) {
                 this.CalculateScore("vector_intervals", "solved");
-                this.taskSolved('solved', [solutionText]);
+                this.taskSolved("solved", [solutionText]);
             } else {
                 if (this.sessionInfo != null) {
-                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
-                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    details = JSON.stringify({
+                        solution: detailSolutions,
+                        solutionType: this.task.solutionType,
+                    });
+                    this.chatAndSessionService.addUserEvent(
+                        "event_entered_wrong_answer",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
                 // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                 let isOffByTen = false;
                 for (let i = 0; i < answers.length; i++) {
                     let answer = answers[i];
-                    let checkAnswer = parseFloat(answer.answer.replace(",", "."));
+                    let checkAnswer = parseFloat(
+                        answer.answer.replace(",", "."),
+                    );
                     let solution = solutions[i];
-                    if (Helper.isOffByPowerOfTen(checkAnswer, solution.low, solution.high)) {
+                    if (
+                        Helper.isOffByPowerOfTen(
+                            checkAnswer,
+                            solution.low,
+                            solution.high,
+                        )
+                    ) {
                         isOffByTen = true;
                     }
                 }
                 if (isOffByTen) {
-                    this.taskSolved('offByTen', [solutionText]);
+                    this.taskSolved("offByTen", [solutionText]);
                     return;
                 }
-                this.taskSolved('', [solutionText]);
+                this.taskSolved("", [solutionText]);
             }
         } else if (this.task.solutionType === "set") {
             let answers = [];
             for (let index in this.taskDetails.answerMultipleChoice) {
-                let answer = {answer: this.taskDetails.answerMultipleChoice[index].answer, originalIndex: index};
+                let answer = {
+                    answer: this.taskDetails.answerMultipleChoice[index].answer,
+                    originalIndex: index,
+                };
                 answers.push(answer);
             }
             answers.sort((a, b) => {
@@ -855,11 +1191,15 @@ export class TaskDetail {
             for (let i = 0; i < answers.length; i++) {
                 let answer = answers[i];
                 let checkAnswer = parseFloat(answer.answer.replace(",", "."));
-                let originalAnswer = this.taskDetails.answerMultipleChoice[answer.originalIndex];
+                let originalAnswer =
+                    this.taskDetails.answerMultipleChoice[answer.originalIndex];
                 for (let solutionIndex in solutions) {
                     if (solutionsUsed.indexOf(solutionIndex) === -1) {
                         solution = solutions[solutionIndex];
-                        if (checkAnswer > +solution - 0.0001 && checkAnswer < +solution + 0.0001) {
+                        if (
+                            checkAnswer > +solution - 0.0001 &&
+                            checkAnswer < +solution + 0.0001
+                        ) {
                             solutionsUsed.push(solutionIndex);
                             originalAnswer.solved = true;
                             break;
@@ -872,33 +1212,51 @@ export class TaskDetail {
                 if (!originalAnswer.solved) {
                     solvedTask = false;
                 }
-                solutionText += `<tr><td class="${originalAnswer.solved ? 'correct' : 'false'}">${answer.answer}</td></tr>`;
+                solutionText += `<tr><td class="${originalAnswer.solved ? "correct" : "false"}">${answer.answer}</td></tr>`;
             }
-            solutionText += "</table>"
+            solutionText += "</table>";
             if (solvedTask) {
                 this.CalculateScore("set", "solved");
-                this.taskSolved('solved', [solutionText]);
+                this.taskSolved("solved", [solutionText]);
             } else {
                 if (this.sessionInfo != null) {
-                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
-                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    details = JSON.stringify({
+                        solution: detailSolutions,
+                        solutionType: this.task.solutionType,
+                    });
+                    this.chatAndSessionService.addUserEvent(
+                        "event_entered_wrong_answer",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
-                this.taskSolved('', [solutionText]);
+                this.taskSolved("", [solutionText]);
             }
         } else if (this.task.solutionType === "blanks") {
             let solutions = this.specialSolution.features;
-            let precision = this.specialSolution.settings.check_type === 'strict' ? 0 : (this.specialSolution.settings.check_type === 'normal' ? 0.2 : 0.4);
+            let precision =
+                this.specialSolution.settings.check_type === "strict"
+                    ? 0
+                    : this.specialSolution.settings.check_type === "normal"
+                      ? 0.2
+                      : 0.4;
             let solvedTask = true;
             let detailSolutions = [];
             let blankText: string = this.specialSolution.val;
             for (let answer of this.taskDetails.answerMultipleChoice) {
-                let solutionObject = solutions.find(sol => {
-                    return sol.blank === "$$" + answer.id + "$$" || sol.blank === "**" + answer.id + "**";
-                })
+                let solutionObject = solutions.find((sol) => {
+                    return (
+                        sol.blank === "$$" + answer.id + "$$" ||
+                        sol.blank === "**" + answer.id + "**"
+                    );
+                });
                 let answerPrecision = 1;
                 for (let solution of solutionObject.answers) {
                     answer.answer = trim(answer.answer);
-                    let absoluteDistance = Levenstein(solution.toLowerCase(), answer.answer.toLowerCase());
+                    let absoluteDistance = Levenstein(
+                        solution.toLowerCase(),
+                        answer.answer.toLowerCase(),
+                    );
                     let relativeDistance = absoluteDistance / solution.length;
                     if (relativeDistance < answerPrecision) {
                         answerPrecision = relativeDistance;
@@ -909,75 +1267,112 @@ export class TaskDetail {
                     solvedTask = false;
                 } else {
                     let htmlElement = document.getElementById(answer.id);
-                    htmlElement.classList.add('disabled');
+                    htmlElement.classList.add("disabled");
                 }
 
                 const escapeRegExp = (text) => {
-                    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-                }
+                    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+                };
 
-                let regex = new RegExp('[$*]{2}' + escapeRegExp(answer.id) + '[$*]{2}');
+                let regex = new RegExp(
+                    "[$*]{2}" + escapeRegExp(answer.id) + "[$*]{2}",
+                );
                 let blankMatch = regex.exec(blankText);
-                blankText = blankText.replace(blankMatch[0], `<span class="blank ${answer.solved ? 'correct' : 'false'}">${answer.answer}</span>`);
+                blankText = blankText.replace(
+                    blankMatch[0],
+                    `<span class="blank ${answer.solved ? "correct" : "false"}">${answer.answer}</span>`,
+                );
                 detailSolutions.push(answer.answer);
-
             }
             if (solvedTask) {
                 this.CalculateScore("blanks", "solved");
-                this.taskSolved('solved', [blankText]);
+                this.taskSolved("solved", [blankText]);
             } else {
                 if (this.sessionInfo != null) {
-                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
-                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    details = JSON.stringify({
+                        solution: detailSolutions,
+                        solutionType: this.task.solutionType,
+                    });
+                    this.chatAndSessionService.addUserEvent(
+                        "event_entered_wrong_answer",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
-                this.taskSolved('', [blankText]);
+                this.taskSolved("", [blankText]);
             }
-        } else if (this.task.solutionType === 'fraction') {
+        } else if (this.task.solutionType === "fraction") {
             const answers = this.taskDetails.answerMultipleChoice;
             const solution = this.specialSolution;
             let solvedLow = false;
             //Check if task was solved exactly
-            let solvedTask = +solution.numerator === +answers[0].answer && +solution.denominator === +answers[1].answer && (solution.mixed === "true" ? +solution.number === +answers[2].answer : true);
+            let solvedTask =
+                +solution.numerator === +answers[0].answer &&
+                +solution.denominator === +answers[1].answer &&
+                (solution.mixed === "true"
+                    ? +solution.number === +answers[2].answer
+                    : true);
             if (!solvedTask) {
-                solvedTask = +solution.numerator / +solution.denominator === +answers[0].answer / +answers[1].answer && (solution.mixed === "true" ? +solution.number === +answers[2].answer : true);
+                solvedTask =
+                    +solution.numerator / +solution.denominator ===
+                        +answers[0].answer / +answers[1].answer &&
+                    (solution.mixed === "true"
+                        ? +solution.number === +answers[2].answer
+                        : true);
                 if (solvedTask) {
                     solvedLow = true;
                 }
             }
-            const detailSolutions = [{
-                number: answers[2] ? +answers[2].answer : 0,
-                numerator: +answers[0].answer,
-                denominator: +answers[1].answer,
-                mixed: solution.mixed === "true",
-            }];
-            const displaySolution = '' +
-                `<span class="fraction-display-container ${solution.mixed !== 'true' ? 'clean-fraction' : ''}">` +
-                (solution.mixed === "true" ? `<span class="whole-number">${solution.number}</span>` : '') +
-                '    <ion-grid>' +
+            const detailSolutions = [
+                {
+                    number: answers[2] ? +answers[2].answer : 0,
+                    numerator: +answers[0].answer,
+                    denominator: +answers[1].answer,
+                    mixed: solution.mixed === "true",
+                },
+            ];
+            const displaySolution =
+                "" +
+                `<span class="fraction-display-container ${solution.mixed !== "true" ? "clean-fraction" : ""}">` +
+                (solution.mixed === "true"
+                    ? `<span class="whole-number">${solution.number}</span>`
+                    : "") +
+                "    <ion-grid>" +
                 '         <ion-row class="first-row">' +
-                '            <ion-col>' +
+                "            <ion-col>" +
                 `                <span>${solution.numerator}</span>` +
-                '            </ion-col>' +
-                '        </ion-row>' +
-                '        <ion-row>' +
-                '            <ion-col>' +
+                "            </ion-col>" +
+                "        </ion-row>" +
+                "        <ion-row>" +
+                "            <ion-col>" +
                 `               <span>${solution.denominator}</span>` +
-                '            </ion-col>' +
-                '        </ion-row>' +
-                '    </ion-grid>' +
-                '</span>';
+                "            </ion-col>" +
+                "        </ion-row>" +
+                "    </ion-grid>" +
+                "</span>";
 
-            console.log("DISPLAY SOLUTION FOR FRACTION", displaySolution)
+            console.log("DISPLAY SOLUTION FOR FRACTION", displaySolution);
 
             if (solvedTask) {
                 this.CalculateScore("fraction", "solved");
-                this.taskSolved(solvedLow ? 'solved_low' : 'solved', [displaySolution], detailSolutions);
+                this.taskSolved(
+                    solvedLow ? "solved_low" : "solved",
+                    [displaySolution],
+                    detailSolutions,
+                );
             } else {
                 if (this.sessionInfo != null) {
-                    details = JSON.stringify({solution: detailSolutions, solutionType: this.task.solutionType});
-                    this.chatAndSessionService.addUserEvent("event_entered_wrong_answer", details, this.task.id.toString());
+                    details = JSON.stringify({
+                        solution: detailSolutions,
+                        solutionType: this.task.solutionType,
+                    });
+                    this.chatAndSessionService.addUserEvent(
+                        "event_entered_wrong_answer",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
-                this.taskSolved('', [displaySolution], detailSolutions);
+                this.taskSolved("", [displaySolution], detailSolutions);
             }
         }
     }
@@ -988,8 +1383,12 @@ export class TaskDetail {
     In session mode where the users are force assigned a task, it allows to continue with the next task
      */
     async completeTask() {
-        if (this.task.solutionType === 'info' && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
-            this.CalculateScore('info', 'solved')
+        if (
+            this.task.solutionType === "info" &&
+            this.task.getLegitSubtasks() &&
+            this.task.getLegitSubtasks().length > 0
+        ) {
+            this.CalculateScore("info", "solved");
         } else {
             this.taskDetails.score = this.maxScore;
             if (!this.rootTask) {
@@ -1007,68 +1406,95 @@ export class TaskDetail {
             this.taskDetails.score = 0;
             this.taskDetails.skipped = false;
             this.taskDetails.failed = true;
-            this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
+            this.routeApiService.insertOrUpdateTaskState(
+                this.score,
+                this.taskDetails,
+                this.route.code,
+            );
         }
-        let solutionSample = this.translatePage ? this.translation.getSolutionSample() : this.task.getSolutionSample();
+        let solutionSample = this.translatePage
+            ? this.translation.getSolutionSample()
+            : this.task.getSolutionSample();
         let solutionSrc = this.task.getSolutionSampleImgSrc();
         let messages = [];
-        if ((!solutionSample || solutionSample.length == 0) && (!solutionSrc || solutionSrc.length == 0)) {
-            messages = [
-                'a_msg_no_solutionsample',
-                'p_t_solution',
-            ];
-            if (this.task.solutionType === 'blanks' || this.task.solutionType === 'multiple_choice' || this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals' || this.task.solutionType === 'set' || this.task.solutionType === 'fraction') {
-                if (this.task.solutionType === 'vector_values' || this.task.solutionType === 'vector_intervals') {
-                    let solutions = this.specialSolution.components
+        if (
+            (!solutionSample || solutionSample.length == 0) &&
+            (!solutionSrc || solutionSrc.length == 0)
+        ) {
+            messages = ["a_msg_no_solutionsample", "p_t_solution"];
+            if (
+                this.task.solutionType === "blanks" ||
+                this.task.solutionType === "multiple_choice" ||
+                this.task.solutionType === "vector_values" ||
+                this.task.solutionType === "vector_intervals" ||
+                this.task.solutionType === "set" ||
+                this.task.solutionType === "fraction"
+            ) {
+                if (
+                    this.task.solutionType === "vector_values" ||
+                    this.task.solutionType === "vector_intervals"
+                ) {
+                    let solutions = this.specialSolution.components;
                     let solutionText = "<table class='solutionTable'>";
                     for (let i = 0; i < solutions.length; i++) {
                         let solution = solutions[i];
                         solutionText += `<tr><td>${solution.name}:</td> <td class="correct">${solution.answer}</td></tr>`;
                     }
-                    solutionText += "</table>"
+                    solutionText += "</table>";
                     messages.push(solutionText);
-                } else if (this.task.solutionType === 'set') {
-                    let solutions = this.specialSolution.components
+                } else if (this.task.solutionType === "set") {
+                    let solutions = this.specialSolution.components;
                     let solutionText = "<table class='solutionTable'>";
                     for (let i = 0; i < solutions.length; i++) {
                         let solution = solutions[i];
                         solutionText += `<tr><td class="correct">${solution.answer}</td></tr>`;
                     }
-                    solutionText += "</table>"
+                    solutionText += "</table>";
                     messages.push(solutionText);
-                } else if (this.task.solutionType === 'fraction') {
+                } else if (this.task.solutionType === "fraction") {
                     const solution = this.specialSolution;
-                    const displaySolution = '' +
-                        `<span class="fraction-display-container ${solution.mixed !== 'true' ? 'clean-fraction' : ''}">` +
-                        (solution.mixed === "true" ? `<span class="whole-number">${solution.number}</span>` : '') +
-                        '    <ion-grid>' +
+                    const displaySolution =
+                        "" +
+                        `<span class="fraction-display-container ${solution.mixed !== "true" ? "clean-fraction" : ""}">` +
+                        (solution.mixed === "true"
+                            ? `<span class="whole-number">${solution.number}</span>`
+                            : "") +
+                        "    <ion-grid>" +
                         '         <ion-row class="first-row">' +
-                        '            <ion-col>' +
+                        "            <ion-col>" +
                         `                <span>${solution.numerator}</span>` +
-                        '            </ion-col>' +
-                        '        </ion-row>' +
-                        '        <ion-row>' +
-                        '            <ion-col>' +
+                        "            </ion-col>" +
+                        "        </ion-row>" +
+                        "        <ion-row>" +
+                        "            <ion-col>" +
                         `               <span>${solution.denominator}</span>` +
-                        '            </ion-col>' +
-                        '        </ion-row>' +
-                        '    </ion-grid>' +
-                        '</span>';
+                        "            </ion-col>" +
+                        "        </ion-row>" +
+                        "    </ion-grid>" +
+                        "</span>";
                     messages.push(displaySolution);
-                } else if(this.task.solutionType === 'blanks') {
+                } else if (this.task.solutionType === "blanks") {
                     let solutions = this.specialSolution.features;
                     let blankText: string = this.specialSolution.val;
                     for (let solutionObject of solutions) {
                         const escapeRegExp = (text) => {
-                            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-                        }
+                            return text.replace(
+                                /[-[\]{}()*+?.,\\^$|#\s]/g,
+                                "\\$&",
+                            );
+                        };
                         let answer = solutionObject.answers[0];
-                        let regex = new RegExp('\\*\\*' + escapeRegExp(answer) + '\\*\\*');
+                        let regex = new RegExp(
+                            "\\*\\*" + escapeRegExp(answer) + "\\*\\*",
+                        );
                         let blankMatch = regex.exec(blankText);
-                        blankText = blankText.replace(blankMatch[0], `<span class="blank correct">${answer}</span>`);
+                        blankText = blankText.replace(
+                            blankMatch[0],
+                            `<span class="blank correct">${answer}</span>`,
+                        );
                     }
                     messages.push(blankText);
-                } else if (this.task.solutionType === 'multiple_choice') {
+                } else if (this.task.solutionType === "multiple_choice") {
                     let solution = [this.task.getSolution()];
                     messages.push(solution);
                 }
@@ -1079,99 +1505,146 @@ export class TaskDetail {
             messages.push(solutionSample);
         }
         let that = this;
-        let modal = this.modalCtrl.create(MCMIconModal, {
-            title: 't_samplesolution',
-            imageUrl: this.task.getSolutionSampleImgSrc(),
-            messages: messages,
-            taskCode: this.task.code,
-            modalType: MCMModalType.sampleSolution,
-            narrativeEnabled: this.route.isNarrativeEnabled(),
-            narrative: this.app.activeNarrative,
-            contentLanguage: this.translatePage ? this.translation.language : this.task.langCode,
-            buttons: [
-                {
-                    title: 'a_alert_close',
-                    callback: function () {
-                        modal.dismiss();
-                        if (that.rootTask && nextSubtaskOnClose) {
-                            that.goToNextSubtask();
-                        }
-                    }
-                }
-            ]
-        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
-        modal.onDidDismiss(_data => {
+        let modal = this.modalCtrl.create(
+            MCMIconModal,
+            {
+                title: "t_samplesolution",
+                imageUrl: this.task.getSolutionSampleImgSrc(),
+                messages: messages,
+                taskCode: this.task.code,
+                modalType: MCMModalType.sampleSolution,
+                narrativeEnabled: this.route.isNarrativeEnabled(),
+                narrative: this.app.activeNarrative,
+                contentLanguage: this.translatePage
+                    ? this.translation.language
+                    : this.task.langCode,
+                buttons: [
+                    {
+                        title: "a_alert_close",
+                        callback: function () {
+                            modal.dismiss();
+                            if (that.rootTask && nextSubtaskOnClose) {
+                                that.goToNextSubtask();
+                            }
+                        },
+                    },
+                ],
+            },
+            {
+                showBackdrop: true,
+                enableBackdropDismiss: true,
+                cssClass: this.app.activeNarrative,
+            },
+        );
+        modal.onDidDismiss((_data) => {
             if (this.sessionInfo != null) {
                 let details = JSON.stringify({});
-                this.chatAndSessionService.addUserEvent("event_viewed_sample_solution", details, this.task.id.toString());
+                this.chatAndSessionService.addUserEvent(
+                    "event_viewed_sample_solution",
+                    details,
+                    this.task.id.toString(),
+                );
             }
         });
         modal.present();
     }
 
-
-    async closeDetails(skip?: boolean,) {
+    async closeDetails(skip?: boolean) {
         if (this.rootTask) {
             if (skip) {
                 this.taskDetails.skipped = true;
-                await this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
+                await this.routeApiService.insertOrUpdateTaskState(
+                    this.score,
+                    this.taskDetails,
+                    this.route.code,
+                );
                 return this.goToNextSubtask();
             }
         }
         //This guarantees that the state is updated before the map opens and gets the information.
         if (skip) {
             this.taskDetails.skipped = true;
-            await this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
+            await this.routeApiService.insertOrUpdateTaskState(
+                this.score,
+                this.taskDetails,
+                this.route.code,
+            );
         }
-        if (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed || this.taskDetails.skipped || this.taskDetails.saved) {
-            if (this.navParams.get('goToNextTaskById')) {
-                let goToNextTaskById = this.navParams.get('goToNextTaskById');
+        if (
+            this.taskDetails.solved ||
+            this.taskDetails.solvedLow ||
+            this.taskDetails.failed ||
+            this.taskDetails.skipped ||
+            this.taskDetails.saved
+        ) {
+            if (this.navParams.get("goToNextTaskById")) {
+                let goToNextTaskById = this.navParams.get("goToNextTaskById");
                 goToNextTaskById(this.task.id, skip);
             }
         }
         // necessary because of bug which does not update URL
-        this.deepLinker.navChange('back');
-        this.navCtrl.pop({}, () => {
-        });
+        this.deepLinker.navChange("back");
+        this.navCtrl.pop({}, () => {});
     }
 
     confirmSkippingTask() {
-        let skipText = 'a_skipTask_confirm';
+        let skipText = "a_skipTask_confirm";
         if (this.route.isNarrativeEnabled()) {
             skipText = this.route.getNarrativeString(skipText);
         }
-        this.modalsService.showDialog('a_skipTask', skipText,
-            'no', () => {
-            },
-            'yes', async () => {
+        this.modalsService.showDialog(
+            "a_skipTask",
+            skipText,
+            "no",
+            () => {},
+            "yes",
+            async () => {
                 if (this.sessionInfo != null) {
                     let details;
                     if (this.rootTask) {
-                        details = JSON.stringify({parentId: this.rootTask.id});
+                        details = JSON.stringify({
+                            parentId: this.rootTask.id,
+                        });
                     } else {
                         details = JSON.stringify({});
                     }
-                    this.chatAndSessionService.addUserEvent("event_task_skipped", details, this.task.id.toString());
+                    this.chatAndSessionService.addUserEvent(
+                        "event_task_skipped",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
                 this.closeDetails(true);
-            }, this.app.activeNarrative);
+            },
+            this.app.activeNarrative,
+        );
     }
 
     getNextAvailableHint() {
-
-        if (this.shownHints.indexOf(1) == -1 && this.task.hasHintMessage(1) || !this.task.hasHintMessage(2)) {
+        if (
+            (this.shownHints.indexOf(1) == -1 && this.task.hasHintMessage(1)) ||
+            !this.task.hasHintMessage(2)
+        ) {
             return 1;
-        } else if (this.shownHints.indexOf(2) == -1 && this.task.hasHintMessage(2) || !this.task.hasHintMessage(3)) {
+        } else if (
+            (this.shownHints.indexOf(2) == -1 && this.task.hasHintMessage(2)) ||
+            !this.task.hasHintMessage(3)
+        ) {
             return 2;
-        } else if (this.shownHints.indexOf(3) == -1 && this.task.hasHintMessage(3)) {
+        } else if (
+            this.shownHints.indexOf(3) == -1 &&
+            this.task.hasHintMessage(3)
+        ) {
             return 3;
         }
         return 4;
-
     }
 
-
-    async taskSolved(solved: string, solution: string[], eventSolution?: any[]) {
+    async taskSolved(
+        solved: string,
+        solution: string[],
+        eventSolution?: any[],
+    ) {
         let that = this;
         // Add event of user entering trail when session active
         if (!this.route.isAnswerFeedbackEnabled()) {
@@ -1180,117 +1653,188 @@ export class TaskDetail {
                 this.score.addSavedTask(this.task.id);
             }
         }
-        if (solved == 'solved' || solved == 'solved_low') {
+        if (solved == "solved" || solved == "solved_low") {
             this.taskDetails.skipped = false;
             let message = "";
             let title = "";
-            if (solved == 'solved') {
-                title = 'a_alert_right_answer_title';
+            if (solved == "solved") {
+                title = "a_alert_right_answer_title";
                 this.taskDetails.solved = true;
                 if (!this.rootTask) {
                     this.score.addSolvedTask(this.task.id);
                 }
                 if (this.rootTask && !this.subTasksRequired) {
                     if (this.taskDetails.tries == 0) {
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        else if (this.task.solutionType == "info") message = "a_info_task_finished_message";
-                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1';
-                        else message = 'a_alert_subtask_right_answer_flawless';
+                        if (this.task.solutionType == "gps")
+                            message = this.SetMessage(
+                                this.task.getSolutionGpsValue("task"),
+                            );
+                        else if (this.task.solutionType == "info")
+                            message = "a_info_task_finished_message";
+                        else if (
+                            this.task.solutionType == "set" ||
+                            this.task.solutionType == "vector_values" ||
+                            this.task.solutionType == "vector_intervals"
+                        )
+                            message = "a_alert_set_right_answer_1";
+                        else message = "a_alert_subtask_right_answer_flawless";
                     } else {
-                        message = 'a_alert_subtask_right_answer';
+                        message = "a_alert_subtask_right_answer";
                     }
                 } else {
                     switch (this.taskDetails.tries) {
                         case 0:
-                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "info") message = "a_info_task_finished_message";
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1';
-                            else message = 'a_alert_right_answer_1';
+                            if (this.task.solutionType == "gps")
+                                message = this.SetMessage(
+                                    this.task.getSolutionGpsValue("task"),
+                                );
+                            else if (this.task.solutionType == "info")
+                                message = "a_info_task_finished_message";
+                            else if (
+                                this.task.solutionType == "set" ||
+                                this.task.solutionType == "vector_values" ||
+                                this.task.solutionType == "vector_intervals"
+                            )
+                                message = "a_alert_set_right_answer_1";
+                            else message = "a_alert_right_answer_1";
                             break;
                         case 1:
                         case 2:
                         case 3:
                         case 4:
-                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "info") message = "";
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_2';
-                            else message = 'a_alert_right_answer_2';
+                            if (this.task.solutionType == "gps")
+                                message = this.SetMessage(
+                                    this.task.getSolutionGpsValue("task"),
+                                );
+                            else if (this.task.solutionType == "info")
+                                message = "";
+                            else if (
+                                this.task.solutionType == "set" ||
+                                this.task.solutionType == "vector_values" ||
+                                this.task.solutionType == "vector_intervals"
+                            )
+                                message = "a_alert_set_right_answer_2";
+                            else message = "a_alert_right_answer_2";
                             break;
                         case 5:
-                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "info") message = "";
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_3';
-                            else message = 'a_alert_right_answer_3';
+                            if (this.task.solutionType == "gps")
+                                message = this.SetMessage(
+                                    this.task.getSolutionGpsValue("task"),
+                                );
+                            else if (this.task.solutionType == "info")
+                                message = "";
+                            else if (
+                                this.task.solutionType == "set" ||
+                                this.task.solutionType == "vector_values" ||
+                                this.task.solutionType == "vector_intervals"
+                            )
+                                message = "a_alert_set_right_answer_3";
+                            else message = "a_alert_right_answer_3";
                             break;
-
                     }
                 }
             }
-            if (solved == 'solved_low') {
-                title = 'a_alert_right_answer_title_low';
+            if (solved == "solved_low") {
+                title = "a_alert_right_answer_title_low";
                 this.taskDetails.solvedLow = true;
                 if (!this.rootTask) {
                     this.score.addSolvedTaskLow(this.task.id);
                 }
                 if (this.rootTask && !this.subTasksRequired) {
                     if (this.taskDetails.tries == 0) {
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
-                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1_low';
-                        else message = 'a_alert_right_answer_1_low';
+                        if (this.task.solutionType == "gps")
+                            message = this.SetMessage(
+                                this.task.getSolutionGpsValue("task"),
+                            );
+                        else if (this.task.solutionType == "fraction")
+                            message = "a_alert_fraction_low";
+                        else if (
+                            this.task.solutionType == "set" ||
+                            this.task.solutionType == "vector_values" ||
+                            this.task.solutionType == "vector_intervals"
+                        )
+                            message = "a_alert_set_right_answer_1_low";
+                        else message = "a_alert_right_answer_1_low";
                     } else {
-                        message = 'a_alert_subtask_right_answer_low';
+                        message = "a_alert_subtask_right_answer_low";
                     }
                 } else {
                     switch (this.taskDetails.tries) {
                         case 0:
-                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_1_low';
-                            else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
-                            else message = 'a_alert_right_answer_1_low';
+                            if (this.task.solutionType == "gps")
+                                message = this.SetMessage(
+                                    this.task.getSolutionGpsValue("task"),
+                                );
+                            else if (
+                                this.task.solutionType == "set" ||
+                                this.task.solutionType == "vector_values" ||
+                                this.task.solutionType == "vector_intervals"
+                            )
+                                message = "a_alert_set_right_answer_1_low";
+                            else if (this.task.solutionType == "fraction")
+                                message = "a_alert_fraction_low";
+                            else message = "a_alert_right_answer_1_low";
                             break;
                         case 1:
                         case 2:
                         case 3:
                         case 4:
-                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_2_low';
-                            else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
-                            else message = 'a_alert_right_answer_2_low';
+                            if (this.task.solutionType == "gps")
+                                message = this.SetMessage(
+                                    this.task.getSolutionGpsValue("task"),
+                                );
+                            else if (
+                                this.task.solutionType == "set" ||
+                                this.task.solutionType == "vector_values" ||
+                                this.task.solutionType == "vector_intervals"
+                            )
+                                message = "a_alert_set_right_answer_2_low";
+                            else if (this.task.solutionType == "fraction")
+                                message = "a_alert_fraction_low";
+                            else message = "a_alert_right_answer_2_low";
                             break;
                         case 5:
-                            if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_right_answer_3_low';
-                            else if (this.task.solutionType == 'fraction') message = 'a_alert_fraction_low';
-                            else message = 'a_alert_right_answer_3_low';
+                            if (this.task.solutionType == "gps")
+                                message = this.SetMessage(
+                                    this.task.getSolutionGpsValue("task"),
+                                );
+                            else if (
+                                this.task.solutionType == "set" ||
+                                this.task.solutionType == "vector_values" ||
+                                this.task.solutionType == "vector_intervals"
+                            )
+                                message = "a_alert_set_right_answer_3_low";
+                            else if (this.task.solutionType == "fraction")
+                                message = "a_alert_fraction_low";
+                            else message = "a_alert_right_answer_3_low";
                             break;
                     }
                 }
             }
             let that = this;
             let bSampleSolution = {
-                title: 't_samplesolution',
+                title: "t_samplesolution",
                 callback: function () {
                     modal.dismiss().then(() => {
                         that.showSolutionSample(true);
                     });
-                }
+                },
             };
             let subTaskOkay = {
-                title: 'okay',
+                title: "okay",
                 callback: function () {
                     modal.dismiss().then(() => {
                         that.goToNextSubtask();
                     });
-                }
-            }
+                },
+            };
             let bNextTask = {
-                title: 'pdf_next_task',
+                title: "pdf_next_task",
                 callback: function () {
                     modal.dismiss().then(() => {
                         that.closeDetails(false);
                     });
-                }
+                },
             };
             if (this.route.isNarrativeEnabled()) {
                 title = this.route.getNarrativeString(title);
@@ -1299,35 +1843,66 @@ export class TaskDetail {
             let modal;
             if (this.route.isAnswerFeedbackEnabled()) {
                 let data = {
-                    title: this.task.solutionType === 'info' ? 'hide' : title,
+                    title: this.task.solutionType === "info" ? "hide" : title,
                     message: message,
-                    solution: this.task.solutionType === 'info' ? undefined : solution,
-                    modalType: solved == 'solved_low' ? MCMModalType.solvedLow : MCMModalType.solved,
+                    solution:
+                        this.task.solutionType === "info"
+                            ? undefined
+                            : solution,
+                    modalType:
+                        solved == "solved_low"
+                            ? MCMModalType.solvedLow
+                            : MCMModalType.solved,
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    param: {tries: this.taskDetails.tries + 1},
-                    buttons: this.rootTask ? [subTaskOkay] : (this.route.isSampleSolutionEnabled() && this.task.solutionType !== 'info' ? [bSampleSolution, bNextTask] : [bNextTask])
+                    param: { tries: this.taskDetails.tries + 1 },
+                    buttons: this.rootTask
+                        ? [subTaskOkay]
+                        : this.route.isSampleSolutionEnabled() &&
+                            this.task.solutionType !== "info"
+                          ? [bSampleSolution, bNextTask]
+                          : [bNextTask],
                 };
-                if ((this.task.solutionType !== 'info' && (!this.task.getLegitSubtasks() || !(this.task.getLegitSubtasks().length > 0))) && (!this.rootTask || (this.rootTask && this.subTasksRequired))) {
-                    data['score'] = '+' + this.taskDetails.score + 'MP/' + this.bestPossibleScore() + 'MP<span class="subscore">' + this.generateSubtaskScoreCalculationString(solved) + '</span>';
+                if (
+                    this.task.solutionType !== "info" &&
+                    (!this.task.getLegitSubtasks() ||
+                        !(this.task.getLegitSubtasks().length > 0)) &&
+                    (!this.rootTask || (this.rootTask && this.subTasksRequired))
+                ) {
+                    data["score"] =
+                        "+" +
+                        this.taskDetails.score +
+                        "MP/" +
+                        this.bestPossibleScore() +
+                        'MP<span class="subscore">' +
+                        this.generateSubtaskScoreCalculationString(solved) +
+                        "</span>";
                 }
                 console.log(data);
                 modal = this.modalCtrl.create(MCMIconModal, data, {
                     showBackdrop: true,
                     enableBackdropDismiss: true,
-                    cssClass: this.app.activeNarrative
+                    cssClass: this.app.activeNarrative,
                 });
             } else {
-                modal = this.modalCtrl.create(MCMIconModal, {
-                    title: 'a_alert_saved_answer_title',
-                    message: 'a_alert_saved_answer_message',
-                    modalType: MCMModalType.saved,
-                    gamificationEnabled: !this.gamificationIsDisabled,
-                    narrativeEnabled: this.route.isNarrativeEnabled(),
-                    narrative: this.app.activeNarrative,
-                    buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
-                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+                modal = this.modalCtrl.create(
+                    MCMIconModal,
+                    {
+                        title: "a_alert_saved_answer_title",
+                        message: "a_alert_saved_answer_message",
+                        modalType: MCMModalType.saved,
+                        gamificationEnabled: !this.gamificationIsDisabled,
+                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                        narrative: this.app.activeNarrative,
+                        buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
+                    },
+                    {
+                        showBackdrop: true,
+                        enableBackdropDismiss: true,
+                        cssClass: this.app.activeNarrative,
+                    },
+                );
             }
             modal.onDidDismiss((data) => {
                 console.log(data);
@@ -1344,20 +1919,30 @@ export class TaskDetail {
                         score: 0, // we send score 0 because the score gets added to the main task upon completion, this is how score addition works outside the classroom as well
                         solution: eventSolution ? eventSolution : solution,
                         quality: solved,
-                        parentId: this.rootTask.id
+                        parentId: this.rootTask.id,
                     });
                 } else {
                     details = JSON.stringify({
                         score: this.taskDetails.score,
                         solution: eventSolution ? eventSolution : solution,
-                        quality: solved
+                        quality: solved,
                     });
                 }
-                this.chatAndSessionService.addUserEvent("event_task_completed", details, this.task.id.toString());
+                this.chatAndSessionService.addUserEvent(
+                    "event_task_completed",
+                    details,
+                    this.task.id.toString(),
+                );
             }
-            await this.progressService.increaseProgressCounter(ProgressCounter.TASKS, 1);
+            await this.progressService.increaseProgressCounter(
+                ProgressCounter.TASKS,
+                1,
+            );
             if (!this.rootTask) {
-                await this.progressService.increaseProgressCounter(ProgressCounter.POINTS, this.taskDetails.score);
+                await this.progressService.increaseProgressCounter(
+                    ProgressCounter.POINTS,
+                    this.taskDetails.score,
+                );
             }
             this.taskDetails.timeSolved = new Date().getTime();
         } else {
@@ -1370,18 +1955,32 @@ export class TaskDetail {
             switch (tries) {
                 case 0:
                 case 1:
-                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 2 === tries)) {
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
-                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
-                        else message = 'a_alert_false_answer_1';
+                    if (
+                        !(
+                            this.task.solutionType === "multiple_choice" &&
+                            this.multipleChoiceList.length - 2 === tries
+                        )
+                    ) {
+                        if (this.task.solutionType == "gps")
+                            message = this.SetMessage(
+                                this.task.getSolutionGpsValue("task"),
+                            );
+                        else if (this.task.solutionType == "blanks")
+                            message = "a_alert_blanks_false_answer_1";
+                        else if (
+                            this.task.solutionType == "set" ||
+                            this.task.solutionType == "vector_values" ||
+                            this.task.solutionType == "vector_intervals"
+                        )
+                            message = "a_alert_set_false_answer_1";
+                        else message = "a_alert_false_answer_1";
                         buttons = [
                             {
-                                title: 'a_alert_close',
+                                title: "a_alert_close",
                                 callback: function () {
                                     modal.dismiss();
-                                }
-                            }
+                                },
+                            },
                         ];
                         break;
                     }
@@ -1390,18 +1989,38 @@ export class TaskDetail {
                 case 4:
                 case 5:
                 case 6:
-                    if (!(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 2 === tries)) {
-                        if (this.task.solutionType == "gps") message = this.SetMessage(this.task.getSolutionGpsValue("task"));
-                        else if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_2';
-                        else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_2';
-                        else message = 'a_alert_false_answer_2';
+                    if (
+                        !(
+                            this.task.solutionType === "multiple_choice" &&
+                            this.multipleChoiceList.length - 2 === tries
+                        )
+                    ) {
+                        if (this.task.solutionType == "gps")
+                            message = this.SetMessage(
+                                this.task.getSolutionGpsValue("task"),
+                            );
+                        else if (this.task.solutionType == "blanks")
+                            message = "a_alert_blanks_false_answer_2";
+                        else if (
+                            this.task.solutionType == "set" ||
+                            this.task.solutionType == "vector_values" ||
+                            this.task.solutionType == "vector_intervals"
+                        )
+                            message = "a_alert_set_false_answer_2";
+                        else message = "a_alert_false_answer_2";
                         if (!this.route.isHintsEnabled() || this.rootTask) {
-                            if (this.task.solutionType == "blanks") message = 'a_alert_blanks_false_answer_1';
-                            else if (this.task.solutionType == "set" || this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') message = 'a_alert_set_false_answer_1';
-                            else message = 'a_alert_false_answer_1';
+                            if (this.task.solutionType == "blanks")
+                                message = "a_alert_blanks_false_answer_1";
+                            else if (
+                                this.task.solutionType == "set" ||
+                                this.task.solutionType == "vector_values" ||
+                                this.task.solutionType == "vector_intervals"
+                            )
+                                message = "a_alert_set_false_answer_1";
+                            else message = "a_alert_false_answer_1";
                         }
                         let bShowHint = {
-                            title: 'a_t_show_hint',
+                            title: "a_t_show_hint",
                             callback: function () {
                                 modal.dismiss().then(() => {
                                     let index = 1;
@@ -1417,28 +2036,42 @@ export class TaskDetail {
                                     }
                                     that.showHint(index);
                                 });
-                            }
+                            },
                         };
                         let thiss = this;
                         let bShowSubtask = {
-                            title: 'a_t_show_subtask',
+                            title: "a_t_show_subtask",
                             callback: function () {
                                 modal.dismiss().then(() => {
-                                    thiss.openSubtask()
-                                })
-                            }
-                        }
+                                    thiss.openSubtask();
+                                });
+                            },
+                        };
                         let bClose = {
-                            title: 'a_alert_close',
+                            title: "a_alert_close",
                             callback: function () {
                                 modal.dismiss();
-                            }
+                            },
                         };
-                        if (this.route.isHintsEnabled() && (this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0 && this.task.getLegitSubtasks().length !== this.solvedSubtasks.length)) {
+                        if (
+                            this.route.isHintsEnabled() &&
+                            this.task.getLegitSubtasks() &&
+                            this.task.getLegitSubtasks().length > 0 &&
+                            this.task.getLegitSubtasks().length !==
+                                this.solvedSubtasks.length
+                        ) {
                             buttons = [bShowSubtask, bShowHint, bClose];
-                        } else if (this.route.isHintsEnabled() && !this.rootTask) {
+                        } else if (
+                            this.route.isHintsEnabled() &&
+                            !this.rootTask
+                        ) {
                             buttons = [bShowHint, bClose];
-                        } else if ((this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0 && this.task.getLegitSubtasks().length !== this.solvedSubtasks.length)) {
+                        } else if (
+                            this.task.getLegitSubtasks() &&
+                            this.task.getLegitSubtasks().length > 0 &&
+                            this.task.getLegitSubtasks().length !==
+                                this.solvedSubtasks.length
+                        ) {
                             buttons = [bShowSubtask, bClose];
                         } else {
                             buttons = [bClose];
@@ -1447,64 +2080,88 @@ export class TaskDetail {
                         break;
                     }
                 default:
-                    message = 'a_t_skip_msg';
+                    message = "a_t_skip_msg";
                     let bSampleSolution = {
-                        title: 't_samplesolution',
+                        title: "t_samplesolution",
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if (that.sessionInfo != null) {
                                     let details;
                                     if (that.rootTask) {
-                                        details = JSON.stringify({parentId: that.rootTask.id});
+                                        details = JSON.stringify({
+                                            parentId: that.rootTask.id,
+                                        });
                                     } else {
                                         details = JSON.stringify({});
                                     }
-                                    that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
+                                    that.chatAndSessionService.addUserEvent(
+                                        "event_task_failed",
+                                        details,
+                                        that.task.id.toString(),
+                                    );
                                 }
                                 that.showSolutionSample(true);
                             });
-                        }
+                        },
                     };
                     let bSkipTask = {
-                        title: 'a_skipTask',
+                        title: "a_skipTask",
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if (that.sessionInfo != null) {
                                     let details;
                                     if (that.rootTask) {
-                                        details = JSON.stringify({parentId: that.rootTask.id});
+                                        details = JSON.stringify({
+                                            parentId: that.rootTask.id,
+                                        });
                                     } else {
                                         details = JSON.stringify({});
                                     }
-                                    that.chatAndSessionService.addUserEvent("event_task_skipped", details, that.task.id.toString());
+                                    that.chatAndSessionService.addUserEvent(
+                                        "event_task_skipped",
+                                        details,
+                                        that.task.id.toString(),
+                                    );
                                 }
                                 that.closeDetails(true);
                             });
-                        }
+                        },
                     };
                     let bFailTask = {
-                        title: 'okay',
+                        title: "okay",
                         callback: function () {
                             modal.dismiss().then(() => {
                                 if (that.sessionInfo != null) {
                                     let details;
                                     if (that.rootTask) {
-                                        details = JSON.stringify({parentId: that.rootTask.id});
+                                        details = JSON.stringify({
+                                            parentId: that.rootTask.id,
+                                        });
                                     } else {
                                         details = JSON.stringify({});
                                     }
-                                    that.chatAndSessionService.addUserEvent("event_task_failed", details, that.task.id.toString());
+                                    that.chatAndSessionService.addUserEvent(
+                                        "event_task_failed",
+                                        details,
+                                        that.task.id.toString(),
+                                    );
                                 }
                                 that.taskDetails.failed = true;
-                                that.routeApiService.insertOrUpdateTaskState(that.score, that.taskDetails, this.route.code).then(() => {
-                                    if (!that.rootTask) {
-                                        that.closeDetails();
-                                    } else {
-                                        that.goToNextSubtask();
-                                    }
-                                });
+                                that.routeApiService
+                                    .insertOrUpdateTaskState(
+                                        that.score,
+                                        that.taskDetails,
+                                        this.route.code,
+                                    )
+                                    .then(() => {
+                                        if (!that.rootTask) {
+                                            that.closeDetails();
+                                        } else {
+                                            that.goToNextSubtask();
+                                        }
+                                    });
                             });
-                        }
+                        },
                     };
                     if (this.rootTask && this.route.isSampleSolutionEnabled()) {
                         buttons = [bSampleSolution, bFailTask];
@@ -1516,7 +2173,6 @@ export class TaskDetail {
                         buttons = [bSkipTask];
                     }
 
-
                     break;
             }
             this.taskDetails.tries++;
@@ -1524,7 +2180,7 @@ export class TaskDetail {
                 this.taskDetails.newTries++;
             }
             let title = "a_alert_false_answer_title";
-            if (solved === 'offByTen') {
+            if (solved === "offByTen") {
                 message = "a_alert_false_answer_offByTen";
             }
             if (this.route.isNarrativeEnabled()) {
@@ -1541,51 +2197,88 @@ export class TaskDetail {
                     gamificationEnabled: !this.gamificationIsDisabled,
                     narrativeEnabled: this.route.isNarrativeEnabled(),
                     narrative: this.app.activeNarrative,
-                    buttons: buttons
-                }
-                if (!this.rootTask || (this.rootTask && this.subTasksRequired) && !(this.task.solutionType === 'multiple_choice' && this.multipleChoiceList.length - 1 === tries)) {
-                    data['score'] = this.taskDetails.tries > 1 ? '-' + this.penalty : '0';
+                    buttons: buttons,
+                };
+                if (
+                    !this.rootTask ||
+                    (this.rootTask &&
+                        this.subTasksRequired &&
+                        !(
+                            this.task.solutionType === "multiple_choice" &&
+                            this.multipleChoiceList.length - 1 === tries
+                        ))
+                ) {
+                    data["score"] =
+                        this.taskDetails.tries > 1 ? "-" + this.penalty : "0";
                 }
                 modal = this.modalCtrl.create(MCMIconModal, data, {
                     showBackdrop: true,
                     enableBackdropDismiss: true,
-                    cssClass: this.app.activeNarrative
+                    cssClass: this.app.activeNarrative,
                 });
             } else {
                 let bNextTask = {
-                    title: 'pdf_next_task',
+                    title: "pdf_next_task",
                     callback: function () {
                         modal.dismiss().then(() => {
                             that.closeDetails(false);
                         });
-                    }
+                    },
                 };
-                modal = this.modalCtrl.create(MCMIconModal, {
-                    title: 'a_alert_saved_answer_title',
-                    message: 'a_alert_saved_answer_message',
-                    modalType: MCMModalType.saved,
-                    gamificationEnabled: !this.gamificationIsDisabled,
-                    narrativeEnabled: this.route.isNarrativeEnabled(),
-                    narrative: this.app.activeNarrative,
-                    buttons: [bNextTask],
-                }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+                modal = this.modalCtrl.create(
+                    MCMIconModal,
+                    {
+                        title: "a_alert_saved_answer_title",
+                        message: "a_alert_saved_answer_message",
+                        modalType: MCMModalType.saved,
+                        gamificationEnabled: !this.gamificationIsDisabled,
+                        narrativeEnabled: this.route.isNarrativeEnabled(),
+                        narrative: this.app.activeNarrative,
+                        buttons: [bNextTask],
+                    },
+                    {
+                        showBackdrop: true,
+                        enableBackdropDismiss: true,
+                        cssClass: this.app.activeNarrative,
+                    },
+                );
             }
             modal.present();
         }
-        await this.routeApiService.insertOrUpdateTaskState(this.score, this.taskDetails, this.route.code);
+        await this.routeApiService.insertOrUpdateTaskState(
+            this.score,
+            this.taskDetails,
+            this.route.code,
+        );
     }
 
     CalculateScore(solutionType: string, solved: string) {
         if (solutionType == "value") {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
+                if (
+                    !this.rootTask &&
+                    !(
+                        this.subTasksRequired &&
+                        this.task.getLegitSubtasks() &&
+                        this.task.getLegitSubtasks().length > 0
+                    )
+                ) {
                     this.score.score += this.taskDetails.score;
                 }
             } else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                if (
+                    !this.rootTask &&
+                    !(
+                        this.subTasksRequired &&
+                        this.task.getLegitSubtasks() &&
+                        this.task.getLegitSubtasks().length > 0
+                    )
+                ) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -1593,14 +2286,30 @@ export class TaskDetail {
 
         if (solutionType == "multiple_choice") {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
+                if (
+                    !this.rootTask &&
+                    !(
+                        this.subTasksRequired &&
+                        this.task.getLegitSubtasks() &&
+                        this.task.getLegitSubtasks().length > 0
+                    )
+                ) {
                     this.score.score += this.taskDetails.score;
                 }
             } else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                if (
+                    !this.rootTask &&
+                    !(
+                        this.subTasksRequired &&
+                        this.task.getLegitSubtasks() &&
+                        this.task.getLegitSubtasks().length > 0
+                    )
+                ) {
                     this.score.score += this.taskDetails.score;
                 }
             }
@@ -1609,14 +2318,31 @@ export class TaskDetail {
         if (solutionType == "range") {
             if (solved == "solved") {
                 if (this.taskDetails.tries > 0) {
-                    let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                    this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                    if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                    let tempScore =
+                        this.maxScore -
+                        (this.taskDetails.tries - 1) * this.penalty;
+                    this.taskDetails.score =
+                        tempScore > this.minScore ? tempScore : this.minScore;
+                    if (
+                        !this.rootTask &&
+                        !(
+                            this.subTasksRequired &&
+                            this.task.getLegitSubtasks() &&
+                            this.task.getLegitSubtasks().length > 0
+                        )
+                    ) {
                         this.score.score += this.taskDetails.score;
                     }
                 } else {
                     this.taskDetails.score = this.maxScore;
-                    if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                    if (
+                        !this.rootTask &&
+                        !(
+                            this.subTasksRequired &&
+                            this.task.getLegitSubtasks() &&
+                            this.task.getLegitSubtasks().length > 0
+                        )
+                    ) {
                         this.score.score += this.taskDetails.score;
                     }
                 }
@@ -1624,30 +2350,88 @@ export class TaskDetail {
                 let solutionList = this.task.getSolutionList();
 
                 //if the orange interval is below the green
-                let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                let dotAnswer = parseFloat(
+                    this.taskDetails.answer.replace(",", "."),
+                ); // Fix ',' decimals by converting to '.' decimals
                 if (dotAnswer < solutionList[0]) {
                     if (this.taskDetails.tries > 0) {
-                        let tempScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
-                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                        let tempScore = this.CalculateOrangeScore(
+                            solutionList[2],
+                            solutionList[0],
+                            dotAnswer,
+                            this.maxScore -
+                                (this.taskDetails.tries - 1) * this.penalty,
+                        );
+                        this.taskDetails.score =
+                            tempScore > this.minScore
+                                ? tempScore
+                                : this.minScore;
+                        if (
+                            !this.rootTask &&
+                            !(
+                                this.subTasksRequired &&
+                                this.task.getLegitSubtasks() &&
+                                this.task.getLegitSubtasks().length > 0
+                            )
+                        ) {
                             this.score.score += this.taskDetails.score;
                         }
                     } else {
-                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                        this.taskDetails.score = this.CalculateOrangeScore(
+                            solutionList[2],
+                            solutionList[0],
+                            dotAnswer,
+                            this.maxScore,
+                        );
+                        if (
+                            !this.rootTask &&
+                            !(
+                                this.subTasksRequired &&
+                                this.task.getLegitSubtasks() &&
+                                this.task.getLegitSubtasks().length > 0
+                            )
+                        ) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
                 } else {
                     if (this.taskDetails.tries > 0) {
-                        let tempScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
-                        this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                        let tempScore = this.CalculateOrangeScore(
+                            solutionList[3],
+                            solutionList[1],
+                            dotAnswer,
+                            this.maxScore -
+                                (this.taskDetails.tries - 1) * this.penalty,
+                        );
+                        this.taskDetails.score =
+                            tempScore > this.minScore
+                                ? tempScore
+                                : this.minScore;
+                        if (
+                            !this.rootTask &&
+                            !(
+                                this.subTasksRequired &&
+                                this.task.getLegitSubtasks() &&
+                                this.task.getLegitSubtasks().length > 0
+                            )
+                        ) {
                             this.score.score += this.taskDetails.score;
                         }
                     } else {
-                        this.taskDetails.score = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
-                        if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                        this.taskDetails.score = this.CalculateOrangeScore(
+                            solutionList[3],
+                            solutionList[1],
+                            dotAnswer,
+                            this.maxScore,
+                        );
+                        if (
+                            !this.rootTask &&
+                            !(
+                                this.subTasksRequired &&
+                                this.task.getLegitSubtasks() &&
+                                this.task.getLegitSubtasks().length > 0
+                            )
+                        ) {
                             this.score.score += this.taskDetails.score;
                         }
                     }
@@ -1655,31 +2439,58 @@ export class TaskDetail {
             }
         }
 
-        if (solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks' || solutionType === 'fraction') {
+        if (
+            solutionType == "vector_values" ||
+            solutionType == "vector_intervals" ||
+            solutionType == "set" ||
+            solutionType === "blanks" ||
+            solutionType === "fraction"
+        ) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
-                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
+                if (
+                    !this.rootTask &&
+                    !(
+                        this.subTasksRequired &&
+                        this.task.getLegitSubtasks() &&
+                        this.task.getLegitSubtasks().length > 0
+                    )
+                ) {
                     this.score.score += this.taskDetails.score;
                 }
             } else {
                 this.taskDetails.score = this.maxScore;
-                if (!this.rootTask && !(this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0)) {
+                if (
+                    !this.rootTask &&
+                    !(
+                        this.subTasksRequired &&
+                        this.task.getLegitSubtasks() &&
+                        this.task.getLegitSubtasks().length > 0
+                    )
+                ) {
                     this.score.score += this.taskDetails.score;
                 }
             }
         }
 
-        if (solutionType === 'info') {
+        if (solutionType === "info") {
             this.taskDetails.score = 0;
         }
 
-        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
+        if (
+            this.subTasksRequired &&
+            this.task.getLegitSubtasks() &&
+            this.task.getLegitSubtasks().length > 0
+        ) {
             let tempScore = this.taskDetails.score;
             for (let task of this.solvedSubtasks) {
-                tempScore += task.score
+                tempScore += task.score;
             }
-            this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+            this.taskDetails.score =
+                tempScore > this.minScore ? tempScore : this.minScore;
             if (!this.rootTask) {
                 this.score.score += this.taskDetails.score;
             }
@@ -1687,10 +2498,18 @@ export class TaskDetail {
         console.log("FinalScore: " + this.score.score);
     }
 
-    CalculateOrangeScore(borderLeft: number, borderRight: number, value: number, possibleScore: number): number {
+    CalculateOrangeScore(
+        borderLeft: number,
+        borderRight: number,
+        value: number,
+        possibleScore: number,
+    ): number {
         let intervalLenght = Math.abs(borderRight - borderLeft);
-        console.log("borderRight " + borderRight + "  BorderLeft " + borderLeft);
-        let xVal = (Math.abs(value - borderLeft) / intervalLenght) * possibleScore;
+        console.log(
+            "borderRight " + borderRight + "  BorderLeft " + borderLeft,
+        );
+        let xVal =
+            (Math.abs(value - borderLeft) / intervalLenght) * possibleScore;
         let score = Math.round(xVal);
 
         if (score < this.minScore) return this.minScore;
@@ -1706,35 +2525,52 @@ export class TaskDetail {
 
     protected possibleScore() {
         if (this.taskDetails) {
-            if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
+            if (
+                this.subTasksRequired &&
+                this.task.getLegitSubtasks() &&
+                this.task.getLegitSubtasks().length > 0
+            ) {
                 let tempScore = 0;
                 for (let task of this.solvedSubtasks) {
-                    tempScore += task.score
+                    tempScore += task.score;
                 }
                 if (this.taskDetails.tries == 0) {
                     tempScore += this.maxScore;
                 } else {
-                    tempScore += this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+                    tempScore +=
+                        this.maxScore -
+                            (this.taskDetails.tries - 1) * this.penalty >
+                        this.minScore
+                            ? this.maxScore -
+                              (this.taskDetails.tries - 1) * this.penalty
+                            : this.minScore;
                 }
-                if (this.solvedSubtasks.length < this.task.getLegitSubtasks().length) {
+                if (
+                    this.solvedSubtasks.length <
+                    this.task.getLegitSubtasks().length
+                ) {
                     let subtaskCount = 0;
                     for (let subtask of this.task.getLegitSubtasks()) {
-                        if (subtask.solutionType !== 'info') {
-                            subtaskCount++
+                        if (subtask.solutionType !== "info") {
+                            subtaskCount++;
                         }
                     }
                     let solvedSubtaskCount = 0;
                     for (let subtask of this.solvedSubtasks) {
-                        let actualTask = this.task.getLegitSubtasks().find(
-                            task => {
-                                return task.id === subtask.taskId
-                            }
-                        );
-                        if (actualTask.solutionType !== 'info') {
-                            solvedSubtaskCount++
+                        let actualTask = this.task
+                            .getLegitSubtasks()
+                            .find((task) => {
+                                return task.id === subtask.taskId;
+                            });
+                        if (actualTask.solutionType !== "info") {
+                            solvedSubtaskCount++;
                         }
                     }
-                    for (let i = 0; i < subtaskCount - solvedSubtaskCount; i++) {
+                    for (
+                        let i = 0;
+                        i < subtaskCount - solvedSubtaskCount;
+                        i++
+                    ) {
                         tempScore += this.subTaskScore;
                     }
                 }
@@ -1743,27 +2579,38 @@ export class TaskDetail {
             if (this.taskDetails.tries == 0) {
                 return this.maxScore;
             } else {
-                return this.maxScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+                return this.maxScore -
+                    (this.taskDetails.tries - 1) * this.penalty >
+                    this.minScore
+                    ? this.maxScore -
+                          (this.taskDetails.tries - 1) * this.penalty
+                    : this.minScore;
             }
         } else {
-            return this.maxScore
+            return this.maxScore;
         }
     }
 
-
-//TODO: Confirm if there are information that needs to be stored or displayed (like distance walked).
-//      Check if there is the need to put tries on these tasks
+    //TODO: Confirm if there are information that needs to be stored or displayed (like distance walked).
+    //      Check if there is the need to put tries on these tasks
     CalculateLine(pointA: L.Marker, pointB: L.Marker, distance: number) {
-        let currDistance = (L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]);
+        let currDistance = (L as any).GeometryUtil.length([
+            pointA.getLatLng(),
+            pointB.getLatLng(),
+        ]);
         let solution = [Math.round(currDistance).toString()];
         let tempGreen = 10;
         let tempOrange = 20;
 
-        if (currDistance > (distance - tempGreen) && currDistance < (distance + tempGreen)) {
-
+        if (
+            currDistance > distance - tempGreen &&
+            currDistance < distance + tempGreen
+        ) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.maxScore;
             }
@@ -1771,10 +2618,16 @@ export class TaskDetail {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved", solution);
-        } else if (currDistance > (distance - tempOrange) && currDistance < (distance + tempOrange)) {
+        } else if (
+            currDistance > distance - tempOrange &&
+            currDistance < distance + tempOrange
+        ) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.orangeScore -
+                    (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.orangeScore;
             }
@@ -1783,24 +2636,41 @@ export class TaskDetail {
             }
             this.taskSolved("solved_low", solution);
         } else {
-            this.taskSolved('', solution);
+            this.taskSolved("", solution);
         }
     }
 
-    CalculateLineDirection(pointA: L.Marker, pointB: L.Marker, distance: number, angle: number) {
+    CalculateLineDirection(
+        pointA: L.Marker,
+        pointB: L.Marker,
+        distance: number,
+        angle: number,
+    ) {
         let tempGreen = 10;
         let tempOrange = 20;
 
         let lengthSolution;
         let bearingSolution;
-        let currDistance = (L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]);
-        let currBearing = (L as any).GeometryUtil.bearing(pointA.getLatLng(), pointB.getLatLng());
+        let currDistance = (L as any).GeometryUtil.length([
+            pointA.getLatLng(),
+            pointB.getLatLng(),
+        ]);
+        let currBearing = (L as any).GeometryUtil.bearing(
+            pointA.getLatLng(),
+            pointB.getLatLng(),
+        );
         if (currBearing < 0) currBearing += 360;
 
         //Check Distance
-        if (currDistance > (distance - tempGreen) && currDistance < (distance + tempGreen)) {
+        if (
+            currDistance > distance - tempGreen &&
+            currDistance < distance + tempGreen
+        ) {
             lengthSolution = 2;
-        } else if (currDistance > (distance - tempOrange) && currDistance < (distance + tempOrange)) {
+        } else if (
+            currDistance > distance - tempOrange &&
+            currDistance < distance + tempOrange
+        ) {
             lengthSolution = 1;
         } else {
             lengthSolution = 0;
@@ -1822,20 +2692,35 @@ export class TaskDetail {
         }
 
         if (!reverse) {
-            if (currBearing > leftGreen && currBearing < (angle + tempGreen)) bearingSolution = 2;
-            else if (currBearing > leftOrange && currBearing < (angle + tempOrange)) bearingSolution = 1;
+            if (currBearing > leftGreen && currBearing < angle + tempGreen)
+                bearingSolution = 2;
+            else if (
+                currBearing > leftOrange &&
+                currBearing < angle + tempOrange
+            )
+                bearingSolution = 1;
             else bearingSolution = 0;
         } else {
-            if (currBearing > leftGreen || currBearing < (angle + tempGreen)) bearingSolution = 2;
-            else if (currBearing > leftOrange || currBearing < (angle + tempOrange)) bearingSolution = 1;
+            if (currBearing > leftGreen || currBearing < angle + tempGreen)
+                bearingSolution = 2;
+            else if (
+                currBearing > leftOrange ||
+                currBearing < angle + tempOrange
+            )
+                bearingSolution = 1;
             else bearingSolution = 0;
         }
 
-        let solution = [Math.round(currDistance).toString(), Math.round(currBearing - angle).toString()];
+        let solution = [
+            Math.round(currDistance).toString(),
+            Math.round(currBearing - angle).toString(),
+        ];
         if (bearingSolution == 2 && lengthSolution == 2) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.maxScore;
             }
@@ -1845,8 +2730,11 @@ export class TaskDetail {
             this.taskSolved("solved", solution);
         } else if (bearingSolution > 0 && lengthSolution > 0) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.orangeScore -
+                    (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.orangeScore;
             }
@@ -1855,15 +2743,30 @@ export class TaskDetail {
             }
             this.taskSolved("solved_low", solution);
         } else {
-            this.taskSolved('', solution);
+            this.taskSolved("", solution);
         }
     }
 
-    CalculateTriangle(pointA: L.Marker, pointB: L.Marker, pointC: L.Marker, distance: number) {
-
-        let edgesLength = [(L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]),
-            (L as any).GeometryUtil.length([pointB.getLatLng(), pointC.getLatLng()]),
-            (L as any).GeometryUtil.length([pointC.getLatLng(), pointA.getLatLng()])];
+    CalculateTriangle(
+        pointA: L.Marker,
+        pointB: L.Marker,
+        pointC: L.Marker,
+        distance: number,
+    ) {
+        let edgesLength = [
+            (L as any).GeometryUtil.length([
+                pointA.getLatLng(),
+                pointB.getLatLng(),
+            ]),
+            (L as any).GeometryUtil.length([
+                pointB.getLatLng(),
+                pointC.getLatLng(),
+            ]),
+            (L as any).GeometryUtil.length([
+                pointC.getLatLng(),
+                pointA.getLatLng(),
+            ]),
+        ];
 
         let tempGreen = 10;
         let tempOrange = 20;
@@ -1874,20 +2777,30 @@ export class TaskDetail {
         for (var i = 0; i < edgesLength.length; i++) {
             let lenght = edgesLength[i];
 
-            if (lenght > distance - tempGreen && lenght < distance + tempGreen) {
-            } else if (lenght > distance - tempOrange && lenght < +tempOrange) allGreen = false;
+            if (
+                lenght > distance - tempGreen &&
+                lenght < distance + tempGreen
+            ) {
+            } else if (lenght > distance - tempOrange && lenght < +tempOrange)
+                allGreen = false;
             else {
                 allOrange = false;
                 allGreen = false;
             }
         }
 
-        let solution = [Math.round(edgesLength[0]).toString(), Math.round(edgesLength[1]).toString(), Math.round(edgesLength[2]).toString()];
+        let solution = [
+            Math.round(edgesLength[0]).toString(),
+            Math.round(edgesLength[1]).toString(),
+            Math.round(edgesLength[2]).toString(),
+        ];
         //check conditions
         if (allGreen) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.maxScore;
             }
@@ -1897,8 +2810,11 @@ export class TaskDetail {
             this.taskSolved("solved", solution);
         } else if (allOrange) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.orangeScore -
+                    (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.orangeScore;
             }
@@ -1906,18 +2822,43 @@ export class TaskDetail {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        } else this.taskSolved('', solution);
+        } else this.taskSolved("", solution);
     }
 
-    CalculateSquare(pointA: L.Marker, pointB: L.Marker, pointC: L.Marker, pointD: L.Marker, distance: number) {
-        let edgesLength = [(L as any).GeometryUtil.length([pointA.getLatLng(), pointB.getLatLng()]),
-            (L as any).GeometryUtil.length([pointB.getLatLng(), pointC.getLatLng()]),
-            (L as any).GeometryUtil.length([pointC.getLatLng(), pointD.getLatLng()]),
-            (L as any).GeometryUtil.length([pointD.getLatLng(), pointA.getLatLng()])];
+    CalculateSquare(
+        pointA: L.Marker,
+        pointB: L.Marker,
+        pointC: L.Marker,
+        pointD: L.Marker,
+        distance: number,
+    ) {
+        let edgesLength = [
+            (L as any).GeometryUtil.length([
+                pointA.getLatLng(),
+                pointB.getLatLng(),
+            ]),
+            (L as any).GeometryUtil.length([
+                pointB.getLatLng(),
+                pointC.getLatLng(),
+            ]),
+            (L as any).GeometryUtil.length([
+                pointC.getLatLng(),
+                pointD.getLatLng(),
+            ]),
+            (L as any).GeometryUtil.length([
+                pointD.getLatLng(),
+                pointA.getLatLng(),
+            ]),
+        ];
 
-        let diag1 = (L as any).GeometryUtil.length([pointA.getLatLng(), pointC.getLatLng()]);
-        let diag2 = (L as any).GeometryUtil.length([pointB.getLatLng(), pointD.getLatLng()]);
-
+        let diag1 = (L as any).GeometryUtil.length([
+            pointA.getLatLng(),
+            pointC.getLatLng(),
+        ]);
+        let diag2 = (L as any).GeometryUtil.length([
+            pointB.getLatLng(),
+            pointD.getLatLng(),
+        ]);
 
         let tempGreen = 10;
         let tempOrange = 20;
@@ -1930,27 +2871,36 @@ export class TaskDetail {
         for (var i = 0; i < edgesLength.length; i++) {
             let lenght = edgesLength[i];
 
-            if (lenght > distance - tempGreen && lenght < distance + tempGreen) {
-            } else if (lenght > distance - tempOrange && lenght < +tempOrange) allGreen = false;
+            if (
+                lenght > distance - tempGreen &&
+                lenght < distance + tempGreen
+            ) {
+            } else if (lenght > distance - tempOrange && lenght < +tempOrange)
+                allGreen = false;
             else {
                 allOrange = false;
                 allGreen = false;
             }
         }
 
-
         //check square diagonals
         if (Math.abs(diag1 - diag2) < tempGreen) diagonalSolution = 2;
         else if (Math.abs(diag1 - diag2) < tempOrange) diagonalSolution = 1;
         else diagonalSolution = 0;
 
-        let solution = [Math.round(edgesLength[0]).toString(), Math.round(edgesLength[1]).toString(),
-            Math.round(edgesLength[2]).toString(), Math.round(edgesLength[3]).toString()];
+        let solution = [
+            Math.round(edgesLength[0]).toString(),
+            Math.round(edgesLength[1]).toString(),
+            Math.round(edgesLength[2]).toString(),
+            Math.round(edgesLength[3]).toString(),
+        ];
         //check conditions
         if (allGreen && diagonalSolution == 2) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.maxScore;
             }
@@ -1960,8 +2910,11 @@ export class TaskDetail {
             this.taskSolved("solved", solution);
         } else if (allOrange && diagonalSolution > 0) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.orangeScore -
+                    (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.orangeScore;
             }
@@ -1969,25 +2922,40 @@ export class TaskDetail {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        } else this.taskSolved('', solution);
+        } else this.taskSolved("", solution);
     }
 
-    CalculateCenterTwoP(pointA: L.LatLng, pointB: L.LatLng, currPosition: L.Marker) {
+    CalculateCenterTwoP(
+        pointA: L.LatLng,
+        pointB: L.LatLng,
+        currPosition: L.Marker,
+    ) {
         pointA = L.latLng(pointA[0], pointA[1]);
         pointB = L.latLng(pointB[0], pointB[1]);
         console.log(currPosition.getLatLng());
-        let distanceA = (L as any).GeometryUtil.length([pointA, currPosition.getLatLng()]);
-        let distanceB = (L as any).GeometryUtil.length([pointB, currPosition.getLatLng()]);
+        let distanceA = (L as any).GeometryUtil.length([
+            pointA,
+            currPosition.getLatLng(),
+        ]);
+        let distanceB = (L as any).GeometryUtil.length([
+            pointB,
+            currPosition.getLatLng(),
+        ]);
         let delta = Math.abs(distanceA - distanceB);
 
         let tempGreen = 5;
         let tempOrange = 10;
 
-        let solution = [Math.round(distanceA).toString(), Math.round(distanceB).toString()];
+        let solution = [
+            Math.round(distanceA).toString(),
+            Math.round(distanceB).toString(),
+        ];
         if (delta < tempGreen) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.maxScore;
             }
@@ -1997,8 +2965,11 @@ export class TaskDetail {
             this.taskSolved("solved", solution);
         } else if (delta < tempOrange) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.orangeScore -
+                    (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.orangeScore;
             }
@@ -2006,29 +2977,48 @@ export class TaskDetail {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        } else this.taskSolved('', solution);
+        } else this.taskSolved("", solution);
     }
 
-
-    CalculateCenterThreeP(pointA: L.LatLng, pointB: L.LatLng, pointC: L.LatLng, currPosition: L.Marker) {
+    CalculateCenterThreeP(
+        pointA: L.LatLng,
+        pointB: L.LatLng,
+        pointC: L.LatLng,
+        currPosition: L.Marker,
+    ) {
         pointA = L.latLng(pointA[0], pointA[1]);
         pointB = L.latLng(pointB[0], pointB[1]);
         pointC = L.latLng(pointC[0], pointC[1]);
 
-        let distanceA = (L as any).GeometryUtil.length([pointA, currPosition.getLatLng()]);
-        let distanceB = (L as any).GeometryUtil.length([pointB, currPosition.getLatLng()]);
-        let distanceC = (L as any).GeometryUtil.length([pointC, currPosition.getLatLng()]);
+        let distanceA = (L as any).GeometryUtil.length([
+            pointA,
+            currPosition.getLatLng(),
+        ]);
+        let distanceB = (L as any).GeometryUtil.length([
+            pointB,
+            currPosition.getLatLng(),
+        ]);
+        let distanceC = (L as any).GeometryUtil.length([
+            pointC,
+            currPosition.getLatLng(),
+        ]);
         let deltaAB = Math.abs(distanceA - distanceB);
         let deltaBC = Math.abs(distanceB - distanceC);
 
         let tempGreen = 5;
         let tempOrange = 10;
 
-        let solution = [Math.round(distanceA).toString(), Math.round(distanceB).toString(), Math.round(distanceC).toString()]
+        let solution = [
+            Math.round(distanceA).toString(),
+            Math.round(distanceB).toString(),
+            Math.round(distanceC).toString(),
+        ];
         if (deltaAB < tempGreen && deltaBC < tempGreen) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.maxScore;
             }
@@ -2038,8 +3028,11 @@ export class TaskDetail {
             this.taskSolved("solved", solution);
         } else if (deltaAB < tempOrange && deltaBC < tempOrange) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.orangeScore -
+                    (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.orangeScore;
             }
@@ -2047,20 +3040,29 @@ export class TaskDetail {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        } else this.taskSolved('', solution);
+        } else this.taskSolved("", solution);
     }
 
-
-    CalculateLinearFx(c0: L.LatLng, c1: L.LatLng, a: L.LatLng, b: L.LatLng, slope: number, yValue: number) {
-
+    CalculateLinearFx(
+        c0: L.LatLng,
+        c1: L.LatLng,
+        a: L.LatLng,
+        b: L.LatLng,
+        slope: number,
+        yValue: number,
+    ) {
         c0 = L.latLng(c0[0], c0[1]);
         c1 = L.latLng(c1[0], c1[1]);
-
 
         let AxisLenght = 100;
 
         //TODO: Confirm
-        if ((L as any).GeometryUtil.length([c0, c1]) < AxisLenght) c1 = (L as any).GeometryUtil.destination(c0, (L as any).GeometryUtil.bearing(c0, c1), AxisLenght);
+        if ((L as any).GeometryUtil.length([c0, c1]) < AxisLenght)
+            c1 = (L as any).GeometryUtil.destination(
+                c0,
+                (L as any).GeometryUtil.bearing(c0, c1),
+                AxisLenght,
+            );
 
         let yAngle = (L as any).GeometryUtil.bearing(c0, c1) - 90;
         if (yAngle < 0) yAngle += 360;
@@ -2095,19 +3097,33 @@ export class TaskDetail {
         let solutionSlope = 0;
         let solutionY = 0;
 
-        let solution = [Math.round(m).toString(), Math.round(yValue).toString()];
-        let solutionFail = [m.toFixed(2).toString(), Math.round(yInMeters).toString()];
+        let solution = [
+            Math.round(m).toString(),
+            Math.round(yValue).toString(),
+        ];
+        let solutionFail = [
+            m.toFixed(2).toString(),
+            Math.round(yInMeters).toString(),
+        ];
 
         if (m > slope - tempMGreen && m < slope + tempMGreen) solutionSlope = 2;
-        else if (m > slope - tempMOrange && m < slope + tempMOrange) solutionSlope = 1;
+        else if (m > slope - tempMOrange && m < slope + tempMOrange)
+            solutionSlope = 1;
 
-        if (yInMeters > yValue - tempYGreen && yInMeters < yValue + tempYGreen) solutionY = 2;
-        else if (yInMeters > yValue - tempYOrange && yInMeters < yValue + tempYOrange) solutionY = 1;
+        if (yInMeters > yValue - tempYGreen && yInMeters < yValue + tempYGreen)
+            solutionY = 2;
+        else if (
+            yInMeters > yValue - tempYOrange &&
+            yInMeters < yValue + tempYOrange
+        )
+            solutionY = 1;
 
         if (solutionSlope == 2 && solutionY == 2) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.maxScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.maxScore - (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.maxScore;
             }
@@ -2117,8 +3133,11 @@ export class TaskDetail {
             this.taskSolved("solved", solution);
         } else if (solutionSlope > 0 && solutionY > 0) {
             if (this.taskDetails.tries > 0) {
-                let tempScore = this.orangeScore - ((this.taskDetails.tries - 1) * this.penalty);
-                this.taskDetails.score = (tempScore > this.minScore ? tempScore : this.minScore);
+                let tempScore =
+                    this.orangeScore -
+                    (this.taskDetails.tries - 1) * this.penalty;
+                this.taskDetails.score =
+                    tempScore > this.minScore ? tempScore : this.minScore;
             } else {
                 this.taskDetails.score = this.orangeScore;
             }
@@ -2126,14 +3145,19 @@ export class TaskDetail {
                 this.score.score += this.taskDetails.score;
             }
             this.taskSolved("solved_low", solution);
-        } else this.taskSolved('', solutionFail);
+        } else this.taskSolved("", solutionFail);
     }
 
     //Possibly add this to the MyMath class
     getDistanceToLine(p: L.LatLng, start: L.LatLng, final: L.LatLng): number {
         let map = this.taskDetailMap.getMap();
         if (map != null) {
-            let closestOnLine = (L as any).GeometryUtil.closestOnSegment(map, p, start, final);
+            let closestOnLine = (L as any).GeometryUtil.closestOnSegment(
+                map,
+                p,
+                start,
+                final,
+            );
             return (L as any).GeometryUtil.length([p, closestOnLine]);
         } else {
             return 0;
@@ -2141,7 +3165,7 @@ export class TaskDetail {
     }
 
     setFabColor(index) {
-        return 'primary-shade-' + (index + 1);
+        return "primary-shade-" + (index + 1);
     }
 
     SetMessage(type: string) {
@@ -2183,42 +3207,56 @@ export class TaskDetail {
         if (Helper.isPluginAvailable(PhotoViewer)) {
             this.spinnerDialog.show();
             setTimeout(() => {
-                let url = useRoot ? this.rootTask.getImageURL(true) : this.task.getImageURL(true);
+                let url = useRoot
+                    ? this.rootTask.getImageURL(true)
+                    : this.task.getImageURL(true);
                 if (urlOverride) {
-                    url = this.imageService.getOfflineURL(urlOverride, false, false, true);
+                    url = this.imageService.getOfflineURL(
+                        urlOverride,
+                        false,
+                        false,
+                        true,
+                    );
                 }
-                console.log('Showing photoviewer for URL', url);
+                console.log("Showing photoviewer for URL", url);
                 // use short timeout to let spinner dialog appear
                 this.photoViewer.show(url);
                 setTimeout(() => {
                     // photoviewer doesn't have callback when user closes it => hide spinner in background
                     this.spinnerDialog.hide();
                 }, 1000);
-            }, 100)
+            }, 100);
         }
     }
 
     openSubtask(index?) {
-        console.log('we opening a subtask');
+        console.log("we opening a subtask");
         let rootTask = this.rootTask ? this.rootTask : this.task;
-        if (!index && index !== 0 && this.solvedSubtasks.length === rootTask.getLegitSubtasks().length) return;
+        if (
+            !index &&
+            index !== 0 &&
+            this.solvedSubtasks.length === rootTask.getLegitSubtasks().length
+        )
+            return;
         if (!index && index !== 0) {
-            index = this.solvedSubtasks.length
+            index = this.solvedSubtasks.length;
         }
         return this.navCtrl.push(TaskDetail, {
             taskId: this.taskId,
             routeId: this.routeId,
             headerTitle: rootTask.getSubtasksInOrder()[index].title,
-            subTaskIndex: index
+            subTaskIndex: index,
         });
     }
 
     changeSubtaskAccordionState(subtask) {
-        let activeAccordion = this.activeAccordions.find(entry => entry === subtask);
+        let activeAccordion = this.activeAccordions.find(
+            (entry) => entry === subtask,
+        );
         if (activeAccordion) {
-            this.activeAccordions = this.activeAccordions.filter(entry => {
+            this.activeAccordions = this.activeAccordions.filter((entry) => {
                 return entry != subtask;
-            })
+            });
         } else {
             this.activeAccordions.push(subtask);
         }
@@ -2230,7 +3268,7 @@ export class TaskDetail {
         if (this.subTaskIndex + 1 !== this.rootTask.getLegitSubtasks().length) {
             this.openSubtask(this.subTaskIndex + 1).then(() => {
                 this.navCtrl.remove(index);
-            })
+            });
         } else {
             this.closeDetails();
         }
@@ -2241,7 +3279,7 @@ export class TaskDetail {
         if (this.subTaskIndex - 1 >= 0) {
             this.openSubtask(this.subTaskIndex - 1).then(() => {
                 this.navCtrl.remove(index);
-            })
+            });
         } else {
             this.closeDetails();
         }
@@ -2252,7 +3290,13 @@ export class TaskDetail {
         if (!this.isSpecialTaskType) {
             return isAnswered;
         }
-        if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals' || this.task.solutionType == 'set' || this.task.solutionType == 'blanks' || this.task.solutionType === 'fraction') {
+        if (
+            this.task.solutionType == "vector_values" ||
+            this.task.solutionType == "vector_intervals" ||
+            this.task.solutionType == "set" ||
+            this.task.solutionType == "blanks" ||
+            this.task.solutionType === "fraction"
+        ) {
             for (let answerObject of this.taskDetails.answerMultipleChoice) {
                 if (answerObject.answer === "") {
                     isAnswered = false;
@@ -2265,7 +3309,14 @@ export class TaskDetail {
     generateSubtaskScoreCalculationString(solved) {
         let taskScore;
         let solutionType = this.task.solutionType;
-        if (solutionType == "value" || solutionType == "multiple_choice" || solutionType == 'vector_values' || solutionType == 'vector_intervals' || solutionType == 'set' || solutionType === 'blanks') {
+        if (
+            solutionType == "value" ||
+            solutionType == "multiple_choice" ||
+            solutionType == "vector_values" ||
+            solutionType == "vector_intervals" ||
+            solutionType == "set" ||
+            solutionType === "blanks"
+        ) {
             taskScore = this.maxScore;
         }
 
@@ -2280,24 +3331,52 @@ export class TaskDetail {
                 let solutionList = this.task.getSolutionList();
 
                 //if the orange interval is below the green
-                let dotAnswer = parseFloat(this.taskDetails.answer.replace(",", ".")); // Fix ',' decimals by converting to '.' decimals
+                let dotAnswer = parseFloat(
+                    this.taskDetails.answer.replace(",", "."),
+                ); // Fix ',' decimals by converting to '.' decimals
                 if (dotAnswer < solutionList[0]) {
                     if (this.taskDetails.tries > 0) {
-                        taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
+                        taskScore = this.CalculateOrangeScore(
+                            solutionList[2],
+                            solutionList[0],
+                            dotAnswer,
+                            this.maxScore -
+                                (this.taskDetails.tries - 1) * this.penalty,
+                        );
                     } else {
-                        taskScore = this.CalculateOrangeScore(solutionList[2], solutionList[0], dotAnswer, this.maxScore);
+                        taskScore = this.CalculateOrangeScore(
+                            solutionList[2],
+                            solutionList[0],
+                            dotAnswer,
+                            this.maxScore,
+                        );
                     }
                 } else {
                     if (this.taskDetails.tries > 0) {
-                        taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore - ((this.taskDetails.tries - 1) * this.penalty));
+                        taskScore = this.CalculateOrangeScore(
+                            solutionList[3],
+                            solutionList[1],
+                            dotAnswer,
+                            this.maxScore -
+                                (this.taskDetails.tries - 1) * this.penalty,
+                        );
                     } else {
-                        taskScore = this.CalculateOrangeScore(solutionList[3], solutionList[1], dotAnswer, this.maxScore);
+                        taskScore = this.CalculateOrangeScore(
+                            solutionList[3],
+                            solutionList[1],
+                            dotAnswer,
+                            this.maxScore,
+                        );
                     }
                 }
             }
         }
         let calculation = "";
-        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
+        if (
+            this.subTasksRequired &&
+            this.task.getLegitSubtasks() &&
+            this.task.getLegitSubtasks().length > 0
+        ) {
             let numbersArray = [];
             for (let task of this.solvedSubtasks) {
                 if (!numbersArray[task.score]) {
@@ -2313,66 +3392,96 @@ export class TaskDetail {
                     numbersArray[taskScore]++;
                 }
             } else {
-                let tempScore = taskScore - (this.taskDetails.tries - 1) * this.penalty > this.minScore ? this.maxScore - (this.taskDetails.tries - 1) * this.penalty : this.minScore;
+                let tempScore =
+                    taskScore - (this.taskDetails.tries - 1) * this.penalty >
+                    this.minScore
+                        ? this.maxScore -
+                          (this.taskDetails.tries - 1) * this.penalty
+                        : this.minScore;
                 if (!numbersArray[tempScore]) {
                     numbersArray[tempScore] = 1;
                 } else {
                     numbersArray[tempScore]++;
                 }
-
             }
             for (let score in numbersArray) {
                 if (calculation != "") {
-                    calculation += ' + '
+                    calculation += " + ";
                 }
                 if (numbersArray[score] == 1 && score != "0") {
-                    calculation += score + 'MP';
+                    calculation += score + "MP";
                 } else if (score != "0") {
-                    calculation += numbersArray[score] + ' x ' + (score ? score + 'MP' : '');
+                    calculation +=
+                        numbersArray[score] +
+                        " x " +
+                        (score ? score + "MP" : "");
                 }
             }
         } else {
             let orangediff;
             if (this.taskDetails.tries > 1) {
-                orangediff = this.maxScore - (this.taskDetails.tries - 1) * this.penalty - taskScore;
+                orangediff =
+                    this.maxScore -
+                    (this.taskDetails.tries - 1) * this.penalty -
+                    taskScore;
             } else {
                 orangediff = this.maxScore - taskScore;
             }
             if (this.taskDetails.tries > 1) {
                 if (this.taskDetails.tries > 2) {
-                    calculation = this.maxScore + 'MP - ' + (this.taskDetails.tries - 1) + ' x ' + this.penalty + 'MP';
+                    calculation =
+                        this.maxScore +
+                        "MP - " +
+                        (this.taskDetails.tries - 1) +
+                        " x " +
+                        this.penalty +
+                        "MP";
                 } else {
-                    calculation = this.maxScore + 'MP - ' + this.penalty + 'MP'
+                    calculation = this.maxScore + "MP - " + this.penalty + "MP";
                 }
                 if (orangediff > 0) {
-                    calculation += ' -' + orangediff + 'MP';
+                    calculation += " -" + orangediff + "MP";
                 }
             } else if (orangediff > 0) {
-                calculation = this.maxScore + 'MP - ' + orangediff + 'MP';
+                calculation = this.maxScore + "MP - " + orangediff + "MP";
             }
         }
         return calculation;
     }
 
     displayScoreCalculation() {
-        if (this.subTasksRequired && this.task.getLegitSubtasks() && this.task.getLegitSubtasks().length > 0) {
-            let scoreModal = this.modalCtrl.create(MCMIconModal, {
-                type: 'text',
-                score: '(' + this.generateSubtaskScoreCalculationString('solved') + ')',
-                gamificationEnabled: !this.gamificationIsDisabled,
-                modalType: MCMModalType.calculation,
-                narrativeEnabled: this.route.isNarrativeEnabled(),
-                narrative: this.app.activeNarrative,
-                buttons: [
-                    {
-                        title: 'a_alert_close',
-                        callback: function () {
-                            scoreModal.dismiss();
-                        }
-                    }
-                ]
-
-            }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+        if (
+            this.subTasksRequired &&
+            this.task.getLegitSubtasks() &&
+            this.task.getLegitSubtasks().length > 0
+        ) {
+            let scoreModal = this.modalCtrl.create(
+                MCMIconModal,
+                {
+                    type: "text",
+                    score:
+                        "(" +
+                        this.generateSubtaskScoreCalculationString("solved") +
+                        ")",
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    modalType: MCMModalType.calculation,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: [
+                        {
+                            title: "a_alert_close",
+                            callback: function () {
+                                scoreModal.dismiss();
+                            },
+                        },
+                    ],
+                },
+                {
+                    showBackdrop: true,
+                    enableBackdropDismiss: true,
+                    cssClass: this.app.activeNarrative,
+                },
+            );
 
             scoreModal.present();
         }
@@ -2387,108 +3496,149 @@ export class TaskDetail {
     }
 
     openLinkInBrowser(url: string) {
-        this.safariViewController.isAvailable()
-            .then((available) => {
-                const saveUrl = this.linkHttpsPipeFilter.transform(url);
-                if (available) {
-                    this.safariViewController.show({
+        this.safariViewController.isAvailable().then((available) => {
+            const saveUrl = this.linkHttpsPipeFilter.transform(url);
+            if (available) {
+                this.safariViewController
+                    .show({
                         url: saveUrl,
                         animated: false,
                         enterReaderModeIfAvailable: false,
-                        tintColor: '#ffffff',
-                        barColor: '#036d99',
-                        controlTintColor: '#ffffff'
+                        tintColor: "#ffffff",
+                        barColor: "#036d99",
+                        controlTintColor: "#ffffff",
                     })
-                        .subscribe((result: any) => {
-                                if (result.event === 'opened') console.log('Opened');
-                                else if (result.event === 'loaded') console.log('Loaded');
-                                else if (result.event === 'closed') console.log('Closed');
-                            },
-                            (error: any) => console.error(error)
-                        );
-                } else {
-                    const options: InAppBrowserOptions = {
-                        zoom: 'no'
-                    }
-                    this.inAppBrowser.create(saveUrl, '_system', options);
-                }
-            })
+                    .subscribe(
+                        (result: any) => {
+                            if (result.event === "opened")
+                                console.log("Opened");
+                            else if (result.event === "loaded")
+                                console.log("Loaded");
+                            else if (result.event === "closed")
+                                console.log("Closed");
+                        },
+                        (error: any) => console.error(error),
+                    );
+            } else {
+                const options: InAppBrowserOptions = {
+                    zoom: "no",
+                };
+                this.inAppBrowser.create(saveUrl, "_system", options);
+            }
+        });
     }
 
     reportProblem() {
         const feedbackOpenFunction = () => {
-            const problemReportModal = this.modalCtrl.create(MCMReportProblemModal, {
-                taskCode: this.task.code
-            });
+            const problemReportModal = this.modalCtrl.create(
+                MCMReportProblemModal,
+                {
+                    taskCode: this.task.code,
+                },
+            );
             problemReportModal.present();
         };
-        const confirmationModal = this.modalCtrl.create(MCMIconModal, {
-            type: 'text',
-            title: "a_task_feedback_alert_title",
-            message: "a_task_feedback_alert_text",
-            modalType: MCMModalType.general,
-            narrativeEnabled: this.route.isNarrativeEnabled(),
-            narrative: this.app.activeNarrative,
-            buttons: [
-                {
-                    title: 'a_alert_cancel',
-                    callback: () => {
-                        confirmationModal.dismiss();
-                    }
-                },
-                {
-                    title: 'a_alert_continue',
-                    callback: () => {
-                        feedbackOpenFunction();
-                        confirmationModal.dismiss();
-                    }
-                }
-            ]
-
-        }, {showBackdrop: true, enableBackdropDismiss: true, cssClass: this.app.activeNarrative});
+        const confirmationModal = this.modalCtrl.create(
+            MCMIconModal,
+            {
+                type: "text",
+                title: "a_task_feedback_alert_title",
+                message: "a_task_feedback_alert_text",
+                modalType: MCMModalType.general,
+                narrativeEnabled: this.route.isNarrativeEnabled(),
+                narrative: this.app.activeNarrative,
+                buttons: [
+                    {
+                        title: "a_alert_cancel",
+                        callback: () => {
+                            confirmationModal.dismiss();
+                        },
+                    },
+                    {
+                        title: "a_alert_continue",
+                        callback: () => {
+                            feedbackOpenFunction();
+                            confirmationModal.dismiss();
+                        },
+                    },
+                ],
+            },
+            {
+                showBackdrop: true,
+                enableBackdropDismiss: true,
+                cssClass: this.app.activeNarrative,
+            },
+        );
         confirmationModal.present();
     }
 
     prepareSelectionBlank() {
-        this.specialSolution = this.translatePage ? this.translation.getSolution(this.task.getSolution()) : this.task.getSolution();
+        this.specialSolution = this.translatePage
+            ? this.translation.getSolution(this.task.getSolution())
+            : this.task.getSolution();
         let blankMatch;
         let blankText: string = "<p>" + this.specialSolution.val + "</p>";
         let placeholderCount = [];
         while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
-            let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
-                return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
-            }) : null;
+            let savedAnswer =
+                this.taskDetails.answerMultipleChoice &&
+                this.taskDetails.answerMultipleChoice.length > 0
+                    ? this.taskDetails.answerMultipleChoice.find((answer) => {
+                          return (
+                              answer.id === blankMatch[1] &&
+                              answer.count ==
+                                  (placeholderCount[blankMatch[1]]
+                                      ? placeholderCount[blankMatch[1]]
+                                      : 0)
+                          );
+                      })
+                    : null;
             if (savedAnswer && savedAnswer.answer !== "") {
-                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blank ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}">${savedAnswer.answer}</span>`);
+                blankText = blankText.replace(
+                    blankMatch[0],
+                    `<span id="${blankMatch[1]}" data-count="${placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : "0"}" class="blank ${(savedAnswer && savedAnswer.solved) || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed)) ? "disabled" : ""}">${savedAnswer.answer}</span>`,
+                );
             } else {
-                blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blank empty">?</span>`);
+                blankText = blankText.replace(
+                    blankMatch[0],
+                    `<span id="${blankMatch[1]}" data-count="${placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : "0"}" class="blank empty">?</span>`,
+                );
             }
             if (!placeholderCount[blankMatch[1]]) {
                 placeholderCount[blankMatch[1]] = 1;
             } else {
-                placeholderCount[blankMatch[1]]++
+                placeholderCount[blankMatch[1]]++;
             }
         }
-        let blankContainer = document.getElementById('blankText_' + this.task.id);
+        let blankContainer = document.getElementById(
+            "blankText_" + this.task.id,
+        );
         if (!blankContainer) {
             setTimeout(() => {
-                console.log('Blank container was not loaded yet, try again')
+                console.log("Blank container was not loaded yet, try again");
                 this.prepareSelectionBlank();
-            }, 50)
+            }, 50);
             return;
         }
         if (blankContainer) {
             blankContainer.innerHTML = blankText;
-            let blanks = blankContainer.getElementsByClassName('blank');
-            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+            let blanks = blankContainer.getElementsByClassName("blank");
+            if (
+                !this.taskDetails.answerMultipleChoice ||
+                this.taskDetails.answerMultipleChoice.length == 0
+            ) {
                 let answers = [];
                 for (let blank of Array.from(blanks)) {
                     if (blank instanceof HTMLElement) {
-                        answers.push({id: blank.id, answer: "", solved: null, count: blank.dataset.count})
+                        answers.push({
+                            id: blank.id,
+                            answer: "",
+                            solved: null,
+                            count: blank.dataset.count,
+                        });
                     }
                 }
                 this.taskDetails.answerMultipleChoice = answers;
-
             }
             let selectables = [];
             for (let answer of this.taskDetails.answerMultipleChoice) {
@@ -2498,9 +3648,11 @@ export class TaskDetail {
             }
             let distractors = this.specialSolution.distractors;
             for (let distractor of distractors) {
-                let matchingAnswer = this.taskDetails.answerMultipleChoice.find(answer => {
-                    return answer.answer === distractor;
-                });
+                let matchingAnswer = this.taskDetails.answerMultipleChoice.find(
+                    (answer) => {
+                        return answer.answer === distractor;
+                    },
+                );
                 if (!matchingAnswer) {
                     selectables.push(distractor);
                 }
@@ -2510,15 +3662,18 @@ export class TaskDetail {
                 blank.addEventListener("click", (event: any) => {
                     console.log(event);
                     let element = event.currentTarget as HTMLElement;
-                    let isActive = element.classList.contains('active');
-                    let isEmpty = element.classList.contains('empty');
+                    let isActive = element.classList.contains("active");
+                    let isEmpty = element.classList.contains("empty");
                     if (!isEmpty) {
                         let text = element.innerText;
-                        let answerObject = this.taskDetails.answerMultipleChoice.find(item => {
-                            return item.id === element.id;
-                        })
+                        let answerObject =
+                            this.taskDetails.answerMultipleChoice.find(
+                                (item) => {
+                                    return item.id === element.id;
+                                },
+                            );
                         answerObject.answer = "";
-                        element.classList.add('empty');
+                        element.classList.add("empty");
                         this.blankSelectables.unshift(text);
                         element.innerText = "?";
                         this.setActiveOnBlank(element);
@@ -2537,79 +3692,112 @@ export class TaskDetail {
     }
 
     setActiveOnFirstEmptyBlank() {
-        let emptyBlanks = document.getElementsByClassName('blank empty');
+        let emptyBlanks = document.getElementsByClassName("blank empty");
         if (emptyBlanks.length === 0) return;
         this.setActiveOnBlank(emptyBlanks[0]);
     }
 
     setActiveOnBlank(element: Element) {
-        let activeElements = document.getElementsByClassName('blank active');
+        let activeElements = document.getElementsByClassName("blank active");
         // this should always be 1 element only, but we clear all just to be sure
         for (let activeElement of Array.from(activeElements)) {
-            activeElement.classList.remove('active');
+            activeElement.classList.remove("active");
         }
-        element.classList.add('active');
+        element.classList.add("active");
     }
 
     fillActiveBlank(value: string) {
-        let activeElements = document.getElementsByClassName('blank active');
+        let activeElements = document.getElementsByClassName("blank active");
         if (activeElements.length === 0) return;
         let activeElement = activeElements[0];
-        let answerObject = this.taskDetails.answerMultipleChoice.find(item => {
-            return item.id === activeElement.id;
-        })
-        activeElement.classList.remove('empty');
+        let answerObject = this.taskDetails.answerMultipleChoice.find(
+            (item) => {
+                return item.id === activeElement.id;
+            },
+        );
+        activeElement.classList.remove("empty");
         answerObject.answer = value;
         activeElement.innerHTML = value;
-        this.blankSelectables = this.blankSelectables.filter(el => {return el !== value});
+        this.blankSelectables = this.blankSelectables.filter((el) => {
+            return el !== value;
+        });
         this.setActiveOnFirstEmptyBlank();
     }
 
     fillBlankSolutionElement() {
-        this.specialSolution = this.translatePage ? this.translation.getSolution(this.task.getSolution()) : this.task.getSolution();
-        console.log('fillBlankSolutionElement', this.specialSolution.val);
+        this.specialSolution = this.translatePage
+            ? this.translation.getSolution(this.task.getSolution())
+            : this.task.getSolution();
+        console.log("fillBlankSolutionElement", this.specialSolution.val);
         let blankMatch;
-        let blankText: string = this.specialSolution.val
+        let blankText: string = this.specialSolution.val;
         let placeholderCount = [];
         while ((blankMatch = this.blankRegex.exec(blankText)) !== null) {
-            let savedAnswer = this.taskDetails.answerMultipleChoice && this.taskDetails.answerMultipleChoice.length > 0 ? this.taskDetails.answerMultipleChoice.find(answer => {
-                return answer.id === blankMatch[1] && answer.count == (placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : 0)
-            }) : null;
-            console.log('SavedAnswer for Blank', blankMatch[1], savedAnswer);
-            blankText = blankText.replace(blankMatch[0], `<span id="${blankMatch[1]}" data-count="${(placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : '0')}" class="blankInput ${(savedAnswer && savedAnswer.solved || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed))) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`);
+            let savedAnswer =
+                this.taskDetails.answerMultipleChoice &&
+                this.taskDetails.answerMultipleChoice.length > 0
+                    ? this.taskDetails.answerMultipleChoice.find((answer) => {
+                          return (
+                              answer.id === blankMatch[1] &&
+                              answer.count ==
+                                  (placeholderCount[blankMatch[1]]
+                                      ? placeholderCount[blankMatch[1]]
+                                      : 0)
+                          );
+                      })
+                    : null;
+            console.log("SavedAnswer for Blank", blankMatch[1], savedAnswer);
+            blankText = blankText.replace(
+                blankMatch[0],
+                `<span id="${blankMatch[1]}" data-count="${placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : "0"}" class="blankInput ${(savedAnswer && savedAnswer.solved) || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed)) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`,
+            );
             if (!placeholderCount[blankMatch[1]]) {
                 placeholderCount[blankMatch[1]] = 1;
             } else {
-                placeholderCount[blankMatch[1]]++
+                placeholderCount[blankMatch[1]]++;
             }
         }
-        let blankContainer = document.getElementById('blankContainer_' + this.task.id);
+        let blankContainer = document.getElementById(
+            "blankContainer_" + this.task.id,
+        );
         if (!blankContainer) {
             setTimeout(() => {
-                console.log('Blank container was not loaded yet, try again')
+                console.log("Blank container was not loaded yet, try again");
                 this.fillBlankSolutionElement();
-            }, 50)
+            }, 50);
             return;
         }
         if (blankContainer) {
             blankContainer.innerHTML = blankText;
-            let inputs = blankContainer.getElementsByClassName('blankInput');
-            if (!this.taskDetails.answerMultipleChoice || this.taskDetails.answerMultipleChoice.length == 0) {
+            let inputs = blankContainer.getElementsByClassName("blankInput");
+            if (
+                !this.taskDetails.answerMultipleChoice ||
+                this.taskDetails.answerMultipleChoice.length == 0
+            ) {
                 let answers = [];
                 for (let input of Array.from(inputs)) {
                     if (input instanceof HTMLElement) {
-                        answers.push({id: input.id, answer: "", solved: null, count: input.dataset.count})
+                        answers.push({
+                            id: input.id,
+                            answer: "",
+                            solved: null,
+                            count: input.dataset.count,
+                        });
                     }
                 }
                 this.taskDetails.answerMultipleChoice = answers;
             }
             for (let input of Array.from(inputs)) {
-                input.addEventListener('input', (event: any) => {
-                    let answerElement = this.taskDetails.answerMultipleChoice.find((answer) => {
-                        if (input instanceof HTMLElement) {
-                            return answer.id === input.id && answer.count == input.dataset.count
-                        }
-                    });
+                input.addEventListener("input", (event: any) => {
+                    let answerElement =
+                        this.taskDetails.answerMultipleChoice.find((answer) => {
+                            if (input instanceof HTMLElement) {
+                                return (
+                                    answer.id === input.id &&
+                                    answer.count == input.dataset.count
+                                );
+                            }
+                        });
                     answerElement.answer = event.currentTarget.innerText;
                 });
             }
@@ -2618,13 +3806,42 @@ export class TaskDetail {
 
     async toggleTranslation() {
         if (!this.translation) {
-            let {translation, isFetched} = await this.translationService.getTranslationForTask(this.taskId, this.route.code, true);
+            let { translation, isFetched } =
+                await this.translationService.getTranslationForTask(
+                    this.taskId,
+                    this.route.code,
+                    true,
+                );
             this.translation = translation;
             this.translationFetched = isFetched;
         }
         this.translatePage = this.translation && !this.translatePage;
         this.translationService.toggleTranslatedClass(this.translatePage);
         this.fillBlankSolutionElement();
+    }
+
+    async submissionTaskSave() {}
+
+    async getImageFromGallery() {
+        if (this.taskDetails) {
+            this.taskDetails.imageUrl = await (
+                await this.imageService.getImageFromUserGallery()
+            ).base64;
+        }
+    }
+
+    async getImageFromCamera() {
+        if (this.taskDetails) {
+            this.taskDetails.imageUrl = await (
+                await this.imageService.getImageFromCamera()
+            ).base64;
+        }
+    }
+
+    resetImage() {
+        if (this.taskDetails) {
+            this.taskDetails.imageUrl = undefined;
+        }
     }
 
     protected readonly event = event;
