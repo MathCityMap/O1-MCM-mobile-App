@@ -414,14 +414,50 @@ page-task-group-detail {
 
          .submission-container {
             .image {
-               .remove {
-                  display: flex;
+               .item-inner {
+                  padding-right: 0;
                }
+
+               .input-wrapper {
+                  flex-wrap: wrap;
+                  align-items: center;
+               }
+
+               .preview-row {
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  flex-basis: 100%;
+                  margin: 8px 0 4px;
+               }
+
                .image-file {
-                  transform: translate(-50%, -50%);
-                  height: 100%;
-                  width: 100%;
-                  object-fit: cover;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 4px;
+                  border-radius: 6px;
+                  background-color: color($colors, light-grey-tint);
+
+                  img {
+                     display: block;
+                     max-height: 96px;
+                     max-width: 140px;
+                     width: auto;
+                     height: auto;
+                     object-fit: contain;
+                     border-radius: 4px;
+                  }
+               }
+
+               .button {
+                  &.remove {
+                     display: flex;
+                     margin: 0;
+                     .icon {
+                        filter: brightness(0.3);
+                     }
+                  }
                }
             }
          }

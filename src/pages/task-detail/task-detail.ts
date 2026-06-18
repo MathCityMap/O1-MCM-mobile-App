@@ -66,6 +66,10 @@ declare var MathJax;
 export class TaskDetail {
     @ViewChild(Content) content: Content;
 
+    @ViewChild("galleryFileInput") galleryFileInput;
+
+    @ViewChild("cameraFileInput") cameraFileInput;
+
     @ViewChildren("multipleChoiceAnswers") multipleChoiceView: QueryList<any>;
 
     // Keyboard open
@@ -3824,6 +3828,10 @@ export class TaskDetail {
 
     async getImageFromGallery() {
         if (this.taskDetails) {
+            if (!this.platform.is("cordova")) {
+                this.openWebImagePicker(false);
+                return;
+            }
             this.taskDetails.imageUrl = await (
                 await this.imageService.getImageFromUserGallery()
             ).base64;
@@ -3832,9 +3840,54 @@ export class TaskDetail {
 
     async getImageFromCamera() {
         if (this.taskDetails) {
+            if (!this.platform.is("cordova")) {
+                this.openWebImagePicker(true);
+                return;
+            }
             this.taskDetails.imageUrl = await (
                 await this.imageService.getImageFromCamera()
             ).base64;
+        }
+    }
+
+    onWebImageSelected(event: Event) {
+        if (!this.taskDetails) {
+            return;
+        }
+
+        const input = event.target as HTMLInputElement;
+        const file = input && input.files && input.files.length > 0
+            ? input.files[0]
+            : null;
+
+        if (!file) {
+            if (input) {
+                input.value = "";
+            }
+            return;
+        }
+
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+            if (typeof fileReader.result === "string") {
+                this.taskDetails.imageUrl = fileReader.result;
+            }
+            input.value = "";
+        };
+        fileReader.onerror = () => {
+            input.value = "";
+        };
+        fileReader.readAsDataURL(file);
+    }
+
+    private openWebImagePicker(useCameraCapture: boolean) {
+        const input = useCameraCapture
+            ? this.cameraFileInput?.nativeElement
+            : this.galleryFileInput?.nativeElement;
+
+        if (input) {
+            input.value = "";
+            input.click();
         }
     }
 

@@ -469,27 +469,42 @@
 							>
 								<ion-icon name="md-camera"></ion-icon>
 							</button>
-							<button
-								*ngIf="taskDetails.imageUrl"
-								ion-button
-								clear
-								icon-only
-								round
-								end
-								item-content
-								class="remove"
-								(click)="resetImage()"
-							>
-								<ion-icon name="md-close"></ion-icon>
-							</button>
 							<div
 								*ngIf="taskDetails.imageUrl"
 								item-content
-								class="image-file"
+								class="preview-row"
 							>
-								<img [src]="taskDetails.imageUrl" alt="image-preview" />
+								<div class="image-file">
+									<img [src]="taskDetails.imageUrl" alt="image-preview" />
+								</div>
+								<button
+									ion-button
+									clear
+									icon-only
+									round
+									class="remove"
+									(click)="resetImage()"
+								>
+									<ion-icon name="md-close"></ion-icon>
+								</button>
 							</div>
 						</ion-item>
+
+						<input
+							#galleryFileInput
+							type="file"
+							accept="image/*"
+							style="display: none"
+							(change)="onWebImageSelected($event)"
+						/>
+						<input
+							#cameraFileInput
+							type="file"
+							accept="image/*"
+							capture="environment"
+							style="display: none"
+							(change)="onWebImageSelected($event)"
+						/>
 					</div>
 				</div>
 
