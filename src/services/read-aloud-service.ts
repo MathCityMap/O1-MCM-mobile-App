@@ -2,6 +2,7 @@ import {EventEmitter, Injectable} from "@angular/core";
 import {TTS, TtsProvider} from "../providers/tts";
 import TTSVoice = TTS.TTSVoice;
 import {Storage} from "@ionic/storage";
+import {ChatAndSessionService} from "./chat-and-session-service";
 
 const READ_ALOUD_STORAGE_KEY = "MCMReadAloudSettings"
 
@@ -52,7 +53,7 @@ export class ReadAloudService {
     tts: TtsProvider;
     lastRead: {lang: string, text: string};
 
-    constructor(private storage: Storage) {
+    constructor(private storage: Storage, private chatAndSessionService: ChatAndSessionService) {
     }
 
     async init(lang: string) {
@@ -97,6 +98,8 @@ export class ReadAloudService {
         let lang = language && language.length > 0 ? language : this.language;
         let voice = this.getVoiceForLanguage(lang);
         this.lastRead = {text, lang};
+        // send Event to classroom
+        this.chatAndSessionService.addUserEvent("event_text_read_aloud", text, "0");
         this.tts.readAloud(text, voice);
     }
 
