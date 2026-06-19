@@ -42,7 +42,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
         console.log('mapboxMapHandler INIT', this);
     }
 
-    async loadMap(initialPosition?: Coordinates) {
+    async loadMap(initialPosition?: Coordinates | {latitude: number, longitude: number} | {lat: number, lng: number}) {
         if (this.map == null) {
             this._mapLoaded = true;
             const mapStyle = this.route.isNarrativeEnabled() ? 'mapbox://styles/igurjanow/ck0ezs4vd02ou1co75ep12pyz' : 'mapbox://styles/mapbox/outdoors-v11';
@@ -86,39 +86,44 @@ export class MapboxMapHandler implements MapHandlerInterface {
 
                     // set initial position of user
                     if (initialPosition) {
+                        const normalizedPosition = this.normalizePosition(initialPosition);
+                        if (!normalizedPosition) {
+                            console.warn('Could not set initial user position: invalid position', initialPosition);
+                        } else {
 
-                        const geojson = {
-                            type: 'FeatureCollection',
-                            features: [{
-                                type: 'Feature',
-                                geometry: {
-                                    type: 'Point',
-                                    coordinates: [initialPosition.longitude, initialPosition.latitude]
-                                },
-                                properties: {
-                                    icon: 'userPositionIcon'
+                            const geojson = {
+                                type: 'FeatureCollection',
+                                features: [{
+                                    type: 'Feature',
+                                    geometry: {
+                                        type: 'Point',
+                                        coordinates: [normalizedPosition.longitude, normalizedPosition.latitude]
+                                    },
+                                    properties: {
+                                        icon: 'userPositionIcon'
+                                    }
+                                }]
+                            };
+
+                            this.map.addSource('user-position', {
+                                type: 'geojson',
+                                data: geojson
+                            });
+
+                            this.map.addLayer({
+                                id: 'user-position-layer',
+                                type: 'symbol',
+                                source: 'user-position',
+                                layout: {
+                                    'icon-image': ['get', 'icon'],
+                                    'icon-size': 0.5,
+                                    'icon-rotate': ['get', 'rotation'],
+                                    'icon-allow-overlap': true
                                 }
-                            }]
-                        };
+                            });
 
-                        this.map.addSource('user-position', {
-                            type: 'geojson',
-                            data: geojson
-                        });
-
-                        this.map.addLayer({
-                            id: 'user-position-layer',
-                            type: 'symbol',
-                            source: 'user-position',
-                            layout: {
-                                'icon-image': ['get', 'icon'],
-                                'icon-size': 0.5,
-                                'icon-rotate': ['get', 'rotation'],
-                                'icon-allow-overlap': true
-                            }
-                        });
-
-                        this.updateUserPosition(initialPosition.latitude, initialPosition.longitude);
+                            this.updateUserPosition(normalizedPosition.latitude, normalizedPosition.longitude);
+                        }
                     }
 
                     // Optional: handle clicks to reset selectedTask
@@ -436,6 +441,18 @@ export class MapboxMapHandler implements MapHandlerInterface {
 
     resizeToContainer() {
         this.map.resize();
+    }
+
+    private normalizePosition(position: any): {latitude: number, longitude: number} | null {
+        if (!position) {
+            return null;
+        }
+        const latitude = typeof position.latitude === 'number' ? position.latitude : position.lat;
+        const longitude = typeof position.longitude === 'number' ? position.longitude : position.lng;
+        if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+            return null;
+        }
+        return {latitude: latitude, longitude: longitude};
     }
 
     private updateUserLocationArrow(lat: number, lng: number) {
