@@ -3832,7 +3832,7 @@ export class TaskDetail {
                 this.openWebImagePicker(false);
                 return;
             }
-            this.taskDetails.imageUrl = await (
+            this.taskDetails.imageUrl = (
                 await this.imageService.getImageFromUserGallery()
             ).base64;
         }
@@ -3844,7 +3844,7 @@ export class TaskDetail {
                 this.openWebImagePicker(true);
                 return;
             }
-            this.taskDetails.imageUrl = await (
+            this.taskDetails.imageUrl = (
                 await this.imageService.getImageFromCamera()
             ).base64;
         }
@@ -3856,9 +3856,10 @@ export class TaskDetail {
         }
 
         const input = event.target as HTMLInputElement;
-        const file = input && input.files && input.files.length > 0
-            ? input.files[0]
-            : null;
+        const file =
+            input && input.files && input.files.length > 0
+                ? input.files[0]
+                : null;
 
         if (!file) {
             if (input) {

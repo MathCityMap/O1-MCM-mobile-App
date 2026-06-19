@@ -158,8 +158,13 @@ export class LeafletMapHandler implements MapHandlerInterface {
         }
     }
 
-    addUserMarker(initialPosition: {latitude: number, longitude: number}) {
-        this.userMarker = L.marker([initialPosition.latitude, initialPosition.longitude], {icon: this.userPositionIcon}).on('click', () => {
+    addUserMarker(initialPosition: Coordinates | {latitude: number, longitude: number} | {lat: number, lng: number}) {
+        const normalizedPosition = this.normalizePosition(initialPosition);
+        if (!normalizedPosition) {
+            console.warn('Could not add user marker: invalid position', initialPosition);
+            return;
+        }
+        this.userMarker = L.marker([normalizedPosition.latitude, normalizedPosition.longitude], {icon: this.userPositionIcon}).on('click', () => {
             // alert('Marker clicked');
         });
         this.userMarker.setRotationOrigin('center center');
@@ -357,6 +362,18 @@ export class LeafletMapHandler implements MapHandlerInterface {
 
     resizeToContainer() {
         this.map.invalidateSize();
+    }
+
+    private normalizePosition(position: any): {latitude: number, longitude: number} | null {
+        if (!position) {
+            return null;
+        }
+        const latitude = typeof position.latitude === 'number' ? position.latitude : position.lat;
+        const longitude = typeof position.longitude === 'number' ? position.longitude : position.lng;
+        if (typeof latitude !== 'number' || typeof longitude !== 'number') {
+            return null;
+        }
+        return {latitude: latitude, longitude: longitude};
     }
 
     private updateUserLocationArrow(userLatLng) {
