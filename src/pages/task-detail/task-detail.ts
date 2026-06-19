@@ -118,6 +118,8 @@ export class TaskDetail {
     protected translation: TaskTranslation;
     protected translationFetched: boolean;
     protected translatePage: boolean = false;
+    public isSubmissionSaving: boolean = false;
+    public submissionPreviewUrl: string | undefined = undefined;
 
     constructor(
         public navCtrl: NavController,
@@ -278,6 +280,9 @@ export class TaskDetail {
             this.task.solutionType === "fraction";
         this.score = taskAndScore.score;
         this.taskDetails = this.score.getTaskStateForTask(this.task.id);
+        this.submissionPreviewUrl = this.taskDetails
+            ? this.taskDetails.imageUrl
+            : undefined;
         if (
             this.task.getLegitSubtasks() &&
             this.task.getLegitSubtasks().length > 0
@@ -850,7 +855,6 @@ export class TaskDetail {
     async checkResult() {
         if (
             ((this.task.solutionType === "range" ||
-                this.task.solutionType === "submission" ||
                 this.task.solutionType === "value") &&
                 !this.isDecimal(this.taskDetails.answer)) ||
             !this.isSpecialTypeAnswered()
@@ -3824,7 +3828,87 @@ export class TaskDetail {
         this.fillBlankSolutionElement();
     }
 
-    async submissionTaskSave() {}
+    async submissionTaskSave() {
+        if (
+            this.isSubmissionSaving ||
+            !this.task ||
+            !this.taskDetails ||
+            !this.sessionInfo ||
+            !this.sessionInfo.session
+        ) {
+            return;
+        }
+
+        this.isSubmissionSaving = true;
+        try {
+            const currentPreviewUrl =
+                this.submissionPreviewUrl || this.taskDetails.imageUrl;
+            const uploadedImage = await this.imageService.submissionImageUpload(
+                this.taskDetails.imageUrl,
+                this.sessionInfo.session.code,
+                this.task.code,
+            );
+            const imageUrl = uploadedImage.imageUrl;
+            const fallbackImageUrl = uploadedImage.fallbackImageUrl;
+
+            const details = {
+                submission_text: this.taskDetails.answer ?? "",
+                submission_image: imageUrl ?? "",
+            };
+
+            this.chatAndSessionService.addUserEvent(
+                "event_task_submission",
+                JSON.stringify(details),
+                `${this.task.id}`,
+            );
+
+            this.taskDetails.imageUrl = imageUrl || undefined;
+            this.taskDetails.fallbackImageUrl = fallbackImageUrl || undefined;
+            this.submissionPreviewUrl =
+                currentPreviewUrl || this.taskDetails.imageUrl;
+            this.ensureSubmissionImagePreview(
+                this.taskDetails.imageUrl,
+                this.taskDetails.fallbackImageUrl,
+            );
+
+            this.taskDetails.solved = true;
+            this.taskDetails.solvedLow = false;
+            this.taskDetails.failed = false;
+            this.taskDetails.skipped = false;
+            this.taskDetails.saved = false;
+            this.taskDetails.timeSolved = new Date().getTime();
+
+            if (!this.rootTask) {
+                this.score.addSolvedTask(this.task.id);
+                this.score.setTasksSaved(
+                    this.score
+                        .getTasksSaved()
+                        .filter((taskId) => taskId !== this.task.id),
+                );
+                this.score.setTasksFailed(
+                    this.score
+                        .getTasksFailed()
+                        .filter((taskId) => taskId !== this.task.id),
+                );
+                this.score.setTasksSolvedLow(
+                    this.score
+                        .getTasksSolvedLow()
+                        .filter((taskId) => taskId !== this.task.id),
+                );
+            }
+
+            await this.routeApiService.insertOrUpdateTaskState(
+                this.score,
+                this.taskDetails,
+                this.route.code,
+            );
+            this.cdRef.detectChanges();
+        } catch (error) {
+            console.error("Failed to save submission task", error);
+        } finally {
+            this.isSubmissionSaving = false;
+        }
+    }
 
     async getImageFromGallery() {
         if (this.taskDetails) {
@@ -3835,6 +3919,8 @@ export class TaskDetail {
             this.taskDetails.imageUrl = (
                 await this.imageService.getImageFromUserGallery()
             ).base64;
+            this.taskDetails.fallbackImageUrl = undefined;
+            this.submissionPreviewUrl = this.taskDetails.imageUrl;
         }
     }
 
@@ -3847,6 +3933,8 @@ export class TaskDetail {
             this.taskDetails.imageUrl = (
                 await this.imageService.getImageFromCamera()
             ).base64;
+            this.taskDetails.fallbackImageUrl = undefined;
+            this.submissionPreviewUrl = this.taskDetails.imageUrl;
         }
     }
 
@@ -3872,6 +3960,8 @@ export class TaskDetail {
         fileReader.onload = () => {
             if (typeof fileReader.result === "string") {
                 this.taskDetails.imageUrl = fileReader.result;
+                this.taskDetails.fallbackImageUrl = undefined;
+                this.submissionPreviewUrl = this.taskDetails.imageUrl;
             }
             input.value = "";
         };
@@ -3895,7 +3985,90 @@ export class TaskDetail {
     resetImage() {
         if (this.taskDetails) {
             this.taskDetails.imageUrl = undefined;
+            this.taskDetails.fallbackImageUrl = undefined;
+            this.submissionPreviewUrl = undefined;
         }
+    }
+
+    onSubmissionImageError() {
+        if (!this.taskDetails) {
+            return;
+        }
+
+        const currentImageUrl =
+            this.submissionPreviewUrl || this.taskDetails.imageUrl;
+        const fallbackImageUrl = this.taskDetails.fallbackImageUrl;
+
+        if (!fallbackImageUrl || fallbackImageUrl === currentImageUrl) {
+            return;
+        }
+
+        this.submissionPreviewUrl = fallbackImageUrl;
+        this.taskDetails.imageUrl = fallbackImageUrl;
+        this.taskDetails.fallbackImageUrl = currentImageUrl || undefined;
+        this.routeApiService.insertOrUpdateTaskState(
+            this.score,
+            this.taskDetails,
+            this.route.code,
+        );
+        this.cdRef.detectChanges();
+    }
+
+    private ensureSubmissionImagePreview(
+        uploadedUrl: string | undefined,
+        fallbackUrl: string | undefined,
+    ) {
+        if (!uploadedUrl) {
+            return;
+        }
+
+        this.waitForImageAvailability(uploadedUrl, 5, 1000).then((available) => {
+            if (available) {
+                this.submissionPreviewUrl = uploadedUrl;
+                this.cdRef.detectChanges();
+                return;
+            }
+
+            if (!fallbackUrl || fallbackUrl === uploadedUrl) {
+                return;
+            }
+
+            this.waitForImageAvailability(fallbackUrl, 2, 500).then(
+                (fallbackAvailable) => {
+                    if (!fallbackAvailable) {
+                        return;
+                    }
+
+                    this.submissionPreviewUrl = fallbackUrl;
+                    this.cdRef.detectChanges();
+                },
+            );
+        });
+    }
+
+    private waitForImageAvailability(
+        imageUrl: string,
+        attempts: number,
+        delayMs: number,
+    ): Promise<boolean> {
+        return new Promise<boolean>((resolve) => {
+            const tryLoad = (remainingAttempts: number) => {
+                const image = new Image();
+                image.onload = () => resolve(true);
+                image.onerror = () => {
+                    if (remainingAttempts <= 1) {
+                        resolve(false);
+                        return;
+                    }
+                    setTimeout(() => {
+                        tryLoad(remainingAttempts - 1);
+                    }, delayMs);
+                };
+                image.src = imageUrl;
+            };
+
+            tryLoad(attempts);
+        });
     }
 
     protected readonly event = event;

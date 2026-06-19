@@ -470,14 +470,15 @@
 								<ion-icon name="md-camera"></ion-icon>
 							</button>
 							<div
-								*ngIf="taskDetails.imageUrl"
+								*ngIf="submissionPreviewUrl || taskDetails.imageUrl"
 								item-content
 								class="preview-row"
 							>
 								<div class="image-file">
 									<img
-										[src]="taskDetails.imageUrl"
+										[src]="submissionPreviewUrl || taskDetails.imageUrl"
 										alt="image-preview"
+										(error)="onSubmissionImageError()"
 									/>
 								</div>
 								<button
@@ -742,7 +743,7 @@
 		</div>
 
 		<div
-			*ngIf="(route && route.isAnswerFeedbackEnabled()) && (task && task.solutionType == 'submission')"
+			*ngIf="(route && route.isAnswerFeedbackEnabled()) && (task && task.solutionType == 'submission') && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
 		>
 			<button
 				ion-button
@@ -752,7 +753,7 @@
 				no-padding
 				large
 				class="primary"
-				[disabled]="taskDetails.imageUrl === undefined && taskDetails.answer.length < 1"
+				[disabled]="isSubmissionSaving || (taskDetails.imageUrl === undefined && taskDetails.answer.length < 1)"
 				(click)="submissionTaskSave()"
 			>
 				{{ "p_save" | translate }}

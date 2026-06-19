@@ -16,6 +16,10 @@
     {
       "path": "/mcm_maps",
       "proxyUrl": "https://mathcitymap.eu/mcm_maps/*"
+    },
+    {
+      "path": "/upload-image",
+      "proxyUrl": "https://api-dev.mathcitymap.eu/public/index.php/app/v1/upload-image"
     }
   ]
 }

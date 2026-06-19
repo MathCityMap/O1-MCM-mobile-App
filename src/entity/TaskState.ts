@@ -19,6 +19,7 @@ export class TaskState {
     score: number = 0;
     penalty: number = 0;
     imageUrl: string | undefined = undefined;
+    fallbackImageUrl: string | undefined = undefined;
 
     public getTaskDetailAsJSON(): string {
         return JSON.stringify({
@@ -39,6 +40,8 @@ export class TaskState {
             timeSolved: +this.timeSolved, //use '+' to parse to number
             score: +this.score, //use '+' to parse to number
             penalty: this.penalty,
+            imageUrl: this.imageUrl,
+            fallbackImageUrl: this.fallbackImageUrl,
         });
     }
 
@@ -95,6 +98,8 @@ export class TaskState {
         taskState.timeSolved = flags.timeSolved;
         taskState.score = flags.score;
         taskState.penalty = flags.penalty;
+        taskState.imageUrl = flags.imageUrl;
+        taskState.fallbackImageUrl = flags.fallbackImageUrl;
         return taskState;
     }
 }
