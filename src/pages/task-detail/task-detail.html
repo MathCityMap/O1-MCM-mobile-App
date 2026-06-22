@@ -590,11 +590,11 @@
 			<div
 				class="card evaluation"
 				*ngIf="route && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails?.failed || taskDetails?.saved)"
-				[ngClass]="{'saved' : taskDetails?.saved, 'perfect' : taskDetails?.solved && route.isAnswerFeedbackEnabled(), 'good': taskDetails?.solvedLow && route.isAnswerFeedbackEnabled(), 'failed' : taskDetails?.failed && route.isAnswerFeedbackEnabled() }"
+				[ngClass]="{'saved' : taskDetails?.saved, 'perfect' : taskDetails?.solved, 'good': taskDetails?.solvedLow, 'failed' : taskDetails?.failed }"
 			>
 				<div class="head" *ngIf="task.solutionType !== 'info'">
 					<div
-						*ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && route.isAnswerFeedbackEnabled() && task && task.solutionType !== 'info'"
+						*ngIf="(taskDetails?.solved || taskDetails?.solvedLow) && task && task.solutionType !== 'info'"
 					>
 						<div
 							*ngIf='route.isNarrativeEnabled() && route.hasNarrativeString("a_alert_congrats"); else elseBlock'
@@ -611,7 +611,7 @@
 						</ng-template>
 					</div>
 					<div
-						*ngIf="taskDetails?.failed && route.isAnswerFeedbackEnabled() && task && task.solutionType !== 'info'"
+						*ngIf="taskDetails?.failed && task && task.solutionType !== 'info'"
 					>
 						<div
 							*ngIf='route.isNarrativeEnabled() && route.hasNarrativeString("good_luck_next_time"); else elseBlock'
@@ -628,7 +628,7 @@
 						</ng-template>
 					</div>
 					<div
-						*ngIf="taskDetails.saved && !route.isAnswerFeedbackEnabled() && task && task.solutionType !== 'info'"
+						*ngIf="taskDetails.saved && task && task.solutionType !== 'info'"
 					>
 						<div
 							*ngIf='route.isNarrativeEnabled() && route.hasNarrativeString("a_alert_congrats"); else elseBlock'
@@ -724,7 +724,7 @@
 		</div>
 
 		<div
-			*ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != 'info') && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))"
+			*ngIf="(route && !route.isAnswerFeedbackEnabled()) && (task && task.solutionType != 'info' && task.solutionType != 'submission') && (!subTasksRequired || !task.getLegitSubtasks() || rootTask || (task.getLegitSubtasks().length === solvedSubtasks.length))"
 		>
 			<button
 				ion-button
@@ -743,7 +743,7 @@
 		</div>
 
 		<div
-			*ngIf="(route && route.isAnswerFeedbackEnabled()) && (task && task.solutionType == 'submission') && taskDetails && (!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed)"
+			*ngIf="route  && task && task.solutionType == 'submission' && taskDetails"
 		>
 			<button
 				ion-button
@@ -785,7 +785,7 @@
 			large
 			color="danger"
 			class="secondary"
-			*ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))"
+			*ngIf="task && taskDetails && task.solutionType !== 'info' &&(!taskDetails.saved && !taskDetails.solved && !taskDetails.solvedLow && !taskDetails.failed) && ((!rootTask || !subTasksRequired) || (rootTask && subTasksRequired && taskDetails.tries >= 2))"
 			(click)="confirmSkippingTask()"
 		>
 			{{ 'a_task_skip' | translate }}
@@ -801,7 +801,7 @@
 			large
 			(click)="goToNextSubtask()"
 			class="primary"
-			*ngIf="rootTask && taskDetails && (taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
+			*ngIf="rootTask && taskDetails && (taskDetails.saved || taskDetails.solved || taskDetails.solvedLow || taskDetails.failed)"
 		>
 			<!--                     <img class="round" src="./assets/icons/icon_skip.svg"/>-->
 			{{ 'next' | translate }}

@@ -460,7 +460,8 @@ export class TaskDetail {
         if (
             !this.rootTask &&
             this.route.isAnswerFeedbackEnabled() &&
-            this.task.solutionType != "info"
+            this.task.solutionType != "info" &&
+            this.task.solutionType != "submission"
         ) {
             // Logic used to get different max scores for different task formats which has been suspended for now
             // if (this.task.solutionType == 'vector_values' || this.task.solutionType == 'vector_intervals') {
@@ -3871,30 +3872,15 @@ export class TaskDetail {
                 this.taskDetails.fallbackImageUrl,
             );
 
-            this.taskDetails.solved = true;
+            this.taskDetails.solved = false;
             this.taskDetails.solvedLow = false;
             this.taskDetails.failed = false;
             this.taskDetails.skipped = false;
-            this.taskDetails.saved = false;
+            this.taskDetails.saved = true;
             this.taskDetails.timeSolved = new Date().getTime();
 
             if (!this.rootTask) {
-                this.score.addSolvedTask(this.task.id);
-                this.score.setTasksSaved(
-                    this.score
-                        .getTasksSaved()
-                        .filter((taskId) => taskId !== this.task.id),
-                );
-                this.score.setTasksFailed(
-                    this.score
-                        .getTasksFailed()
-                        .filter((taskId) => taskId !== this.task.id),
-                );
-                this.score.setTasksSolvedLow(
-                    this.score
-                        .getTasksSolvedLow()
-                        .filter((taskId) => taskId !== this.task.id),
-                );
+                this.score.addSavedTask(this.task.id);
             }
 
             await this.routeApiService.insertOrUpdateTaskState(
@@ -3902,6 +3888,49 @@ export class TaskDetail {
                 this.taskDetails,
                 this.route.code,
             );
+
+            let subTaskOkay = {
+                title: "okay",
+                callback: () => {
+                    modal.dismiss().then(() => {
+                        this.goToNextSubtask();
+                    });
+                },
+            };
+            let bNextTask = {
+                title: "pdf_next_task",
+                callback: () => {
+                    modal.dismiss().then(() => {
+                        this.closeDetails(false);
+                    });
+                },
+            };
+
+            const modal = this.modalCtrl.create(
+                MCMIconModal,
+                {
+                    title: "a_alert_saved_answer_title",
+                    message: "a_alert_saved_answer_message",
+                    modalType: MCMModalType.saved,
+                    gamificationEnabled: !this.gamificationIsDisabled,
+                    narrativeEnabled: this.route.isNarrativeEnabled(),
+                    narrative: this.app.activeNarrative,
+                    buttons: this.rootTask ? [subTaskOkay] : [bNextTask],
+                },
+                {
+                    showBackdrop: true,
+                    enableBackdropDismiss: true,
+                    cssClass: this.app.activeNarrative,
+                },
+            );
+            modal.onDidDismiss((data) => {
+                console.log(data);
+                if (data && data.showMap) {
+                    /*                 let currentTaskIndex = this.route.tasks.indexOf(this.task); */
+                    this.navCtrl.pop();
+                }
+            });
+            modal.present();
             this.cdRef.detectChanges();
         } catch (error) {
             console.error("Failed to save submission task", error);
@@ -4022,28 +4051,30 @@ export class TaskDetail {
             return;
         }
 
-        this.waitForImageAvailability(uploadedUrl, 5, 1000).then((available) => {
-            if (available) {
-                this.submissionPreviewUrl = uploadedUrl;
-                this.cdRef.detectChanges();
-                return;
-            }
-
-            if (!fallbackUrl || fallbackUrl === uploadedUrl) {
-                return;
-            }
-
-            this.waitForImageAvailability(fallbackUrl, 2, 500).then(
-                (fallbackAvailable) => {
-                    if (!fallbackAvailable) {
-                        return;
-                    }
-
-                    this.submissionPreviewUrl = fallbackUrl;
+        this.waitForImageAvailability(uploadedUrl, 5, 1000).then(
+            (available) => {
+                if (available) {
+                    this.submissionPreviewUrl = uploadedUrl;
                     this.cdRef.detectChanges();
-                },
-            );
-        });
+                    return;
+                }
+
+                if (!fallbackUrl || fallbackUrl === uploadedUrl) {
+                    return;
+                }
+
+                this.waitForImageAvailability(fallbackUrl, 2, 500).then(
+                    (fallbackAvailable) => {
+                        if (!fallbackAvailable) {
+                            return;
+                        }
+
+                        this.submissionPreviewUrl = fallbackUrl;
+                        this.cdRef.detectChanges();
+                    },
+                );
+            },
+        );
     }
 
     private waitForImageAvailability(
