@@ -414,49 +414,64 @@ page-task-group-detail {
          }
 
          .submission-container {
+            .label{
+               margin-bottom: 0;
+            }
+            .item-inner {
+               padding-right: 0;
+            }
+
             .image {
-               .item-inner {
-                  padding-right: 0;
-               }
+               &-section{
+                  border: 2px dotted color($colors, light-grey);
+                  border-radius: 8px;
+                  padding: $global-small-padding $global-medium-padding;
 
-               .input-wrapper {
-                  flex-wrap: wrap;
-                  align-items: center;
-               }
-
-               .preview-row {
-                  display: flex;
-                  align-items: center;
-                  gap: 8px;
-                  flex-basis: 100%;
-                  margin: 8px 0 4px;
-               }
-
-               .image-file {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  padding: 4px;
-                  border-radius: 6px;
-                  background-color: color($colors, light-grey-tint);
-
-                  img {
-                     display: block;
-                     max-height: 96px;
-                     max-width: 140px;
-                     width: auto;
-                     height: auto;
-                     object-fit: contain;
-                     border-radius: 4px;
+                  & ~ .item{
+                     margin-top: 0;
                   }
                }
 
-               .button {
-                  &.remove {
-                     display: flex;
+               &-upload, &-preview{
+                  display: flex;
+                  align-items: center;
+                  .label{
+                     line-height: 1;
+                  }
+                  .button{
+                     width: 34px;
+                     height: 34px;
                      margin: 0;
-                     .icon {
-                        filter: brightness(0.3);
+                     padding: 1px;
+                     &-container{
+                        gap: calc(#{$global-base-plus-padding} / 2);
+                        display: flex;
+                     }
+                  }
+               }
+
+               &-preview{
+                  display: flex;
+                  align-items: center;
+                  flex-wrap: wrap;
+                  gap: 8px;
+                  flex-basis: 100%;
+                  margin: 8px 0 4px;
+                  .image-file {
+                     flex-basis: 100%;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     margin-top: $global-small-padding;
+                     padding: 4px;
+                     border-radius: 6px;
+                     background-color: color($colors, light-grey-tint);
+                     img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                        object-fit: contain;
+                        border-radius: 4px;
                      }
                   }
                }

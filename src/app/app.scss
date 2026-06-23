@@ -212,7 +212,7 @@ ion-header{
             }
             button{
                width: 100%;
-               min-height: $size-large;
+               min-height: calc(#{$size-large} + 10px);
                margin: 0 auto;
             }
          }

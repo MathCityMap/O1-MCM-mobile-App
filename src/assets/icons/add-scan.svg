@@ -1,14 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="26.985" height="27.237" viewBox="0 0 26.985 27.237">
-  <g id="Komponente_60_2" data-name="Komponente 60 – 2" transform="translate(1.5 1.5)">
-    <g id="Gruppe_373" data-name="Gruppe 373">
-      <path id="Pfad_254" data-name="Pfad 254" d="M-8416.807,87.172h-2.566a2.526,2.526,0,0,1-2.525-2.526V82.08" transform="translate(8421.898 -62.935)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-      <path id="Pfad_255" data-name="Pfad 255" d="M-8421.9,48.858V46.292a2.526,2.526,0,0,1,2.525-2.525h2.566" transform="translate(8421.898 -43.767)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-      <path id="Pfad_256" data-name="Pfad 256" d="M-8384.088,43.767h2.566A2.526,2.526,0,0,1-8379,46.292v2.566" transform="translate(8402.981 -43.767)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-      <path id="Pfad_257" data-name="Pfad 257" d="M-8379,82.08v2.566a2.526,2.526,0,0,1-2.525,2.526h-2.566" transform="translate(8402.981 -62.935)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-    </g>
-    <g id="Gruppe_374" data-name="Gruppe 374" transform="translate(8.231 8.357)">
-      <line id="Linie_133" data-name="Linie 133" y2="7.523" transform="translate(3.761)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-      <line id="Linie_134" data-name="Linie 134" x2="7.523" transform="translate(0 3.761)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-    </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 27 27.3">
+  <!-- Generator: Adobe Illustrator 30.5.1, SVG Export Plug-In . SVG Version: 2.1.4 Build 3)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+
+      .st1 {
+        opacity: 0;
+      }
+    </style>
+  </defs>
+  <g id="Gruppe_373" class="st1">
+    <path id="Pfad_254" class="st0" d="M6.6,25.8h-2.6c-1.4,0-2.5-1.1-2.5-2.5v-2.6"/>
+    <path id="Pfad_255" class="st0" d="M1.5,6.6v-2.6c0-1.4,1.1-2.5,2.5-2.5h2.6"/>
+    <path id="Pfad_256" class="st0" d="M20.4,1.5h2.6c1.4,0,2.5,1.1,2.5,2.5v2.6"/>
+    <path id="Pfad_257" class="st0" d="M25.5,20.7v2.6c0,1.4-1.1,2.5-2.5,2.5h-2.6"/>
+  </g>
+  <g id="Gruppe_374">
+    <line id="Linie_133" class="st0" x1="13.5" y1="1.6" x2="13.5" y2="25.6"/>
+    <line id="Linie_134" class="st0" x1="1.5" y1="13.6" x2="25.5" y2="13.6"/>
   </g>
 </svg>

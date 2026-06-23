@@ -437,51 +437,50 @@
 						class="submission-container"
 						*ngIf="task && task.solutionType === 'submission' && sessionInfo != null"
 					>
-						<ion-item no-lines>
-							<ion-input type="text" [(ngModel)]="taskDetails.answer">
-							</ion-input>
-						</ion-item>
+						<p class="description">
+							To complete this task upload your results and/or add an explanatory text answer. Finally don’t forget to save!
+						</p>
+						<div class="image-section">
+							<div class="image-upload" *ngIf="!taskDetails.imageUrl">
+								<ion-label
+									>
+	<!--								{{ "a_task_popup_image" | translate }}-->
+									Attach image
+								</ion-label>
+								<div class="button-container">
+									<button
+										*ngIf="!taskDetails.imageUrl"
+										ion-button
+										clear
+										icon-only
+										end
+										(click)="getImageFromGallery()"
+									>
+										<img class="icon" src="./assets/icons/photos.svg"/>
+									</button>
+									<button
+										*ngIf="!taskDetails.imageUrl"
+										ion-button
+										clear
+										icon-only
+										end
+										(click)="getImageFromCamera()"
+									>
+										<img class="icon" src="./assets/icons/camera.svg"/>
+									</button>
+								</div>
+							</div>
 
-						<ion-item class="image">
-							<ion-label
-								>{{ "a_task_popup_image" | translate }}</ion-label
-							>
-							<button
-								*ngIf="!taskDetails.imageUrl"
-								ion-button
-								clear
-								icon-only
-								round
-								end
-								item-content
-								(click)="getImageFromGallery()"
-							>
-								<ion-icon name="md-image"></ion-icon>
-							</button>
-							<button
-								*ngIf="!taskDetails.imageUrl"
-								ion-button
-								clear
-								icon-only
-								round
-								end
-								item-content
-								(click)="getImageFromCamera()"
-							>
-								<ion-icon name="md-camera"></ion-icon>
-							</button>
 							<div
 								*ngIf="submissionPreviewUrl || taskDetails.imageUrl"
 								item-content
-								class="preview-row"
+								class="image-preview"
 							>
-								<div class="image-file">
-									<img
-										[src]="submissionPreviewUrl || taskDetails.imageUrl"
-										alt="image-preview"
-										(error)="onSubmissionImageError()"
-									/>
-								</div>
+								<ion-label
+								>
+									<!--								{{ "a_task_popup_image" | translate }}-->
+									Attached image
+								</ion-label>
 								<button
 									ion-button
 									clear
@@ -490,9 +489,21 @@
 									class="remove"
 									(click)="resetImage()"
 								>
-									<ion-icon name="md-close"></ion-icon>
+									<img class="icon" src="./assets/icons/remove-b.svg"/>
 								</button>
+								<div class="image-file">
+									<img
+										[src]="submissionPreviewUrl || taskDetails.imageUrl"
+										alt="image-preview"
+										(error)="onSubmissionImageError()"
+									/>
+								</div>
 							</div>
+						</div>
+
+						<ion-item no-lines>
+							<ion-input type="text" [(ngModel)]="taskDetails.answer">
+							</ion-input>
 						</ion-item>
 
 						<input
