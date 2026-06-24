@@ -432,20 +432,19 @@
 						</div>
 					</div>
 
-					<!-- Submission Task only shown when we are in a session -->
+					<!-- Submission Task – Session only -->
 					<div
 						class="submission-container"
 						*ngIf="task && task.solutionType === 'submission' && sessionInfo != null"
 					>
 						<p class="description">
-							To complete this task upload your results and/or add an explanatory text answer. Finally don’t forget to save!
+							{{ "a_task_submission_text" | translate }}
 						</p>
 						<div class="image-section">
 							<div class="image-upload" *ngIf="!taskDetails.imageUrl">
 								<ion-label
 									>
-	<!--								{{ "a_task_popup_image" | translate }}-->
-									Attach image
+									{{ "a_task_submission_image_attach" | translate }}
 								</ion-label>
 								<div class="button-container">
 									<button
@@ -478,8 +477,7 @@
 							>
 								<ion-label
 								>
-									<!--								{{ "a_task_popup_image" | translate }}-->
-									Attached image
+									{{ "a_task_submission_image_attached" | translate }}
 								</ion-label>
 								<button
 									ion-button
