@@ -143,6 +143,9 @@ export class RoutesListPage implements OnDestroy {
 
     filterLocalItems() {
         if(this.showAllRoutes) this.filteredResult = this.routeApiService.publicRoutes;
-        else this.filteredResult = this.pipe.transform(this.routeApiService.downloadedRoutes, 'title,city,code', this.routesListSearch)
+        else {
+            this.downloadedItems = this.routeApiService.downloadedRoutes || [];
+            this.filteredResult = this.pipe.transform(this.downloadedItems, 'title,city,code', this.routesListSearch)
+        }
     }
 }

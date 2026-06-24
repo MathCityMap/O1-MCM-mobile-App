@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { API_URL } from "../env/env";
 import { map } from "rxjs/operators/map";
 import { Route } from "../entity/Route";
@@ -479,11 +479,17 @@ export class RouteApiService {
         limit = 20,
     ): Promise<Route[]> {
         const downloadedRoutes = await this.getDownloadedRoutes();
+        const params = new HttpParams()
+            .set("offset", String(offset))
+            .set("limit", String(limit))
+            .set("lat", String(lat))
+            .set("lon", String(lon))
+            .set("searchTerm", this.searchTerm || "");
         return this.http
-            .get<RouteListApiResponse>(
-                `${API_URL}/app/v1/trails?offset=${offset}&limit=${limit}&lat=${lat}&lon=${lon}&searchTerm=${this.searchTerm}`,
-                { headers: Helper.getApiRequestHeaders() },
-            )
+            .get<RouteListApiResponse>(`${API_URL}/app/v1/trails`, {
+                headers: Helper.getApiRequestHeaders(),
+                params,
+            })
             .pipe(
                 map((value) => {
                     this.totalRoutes = value.total;
@@ -508,10 +514,14 @@ export class RouteApiService {
     }
 
     private async internalFetchRouteForUnlock(code: string) {
+        const encodedCode = encodeURIComponent(code);
         return this.http
-            .get<RouteApiResponse>(`${API_URL}/app/v1/trails/${code}/unlock`, {
-                headers: Helper.getApiRequestHeaders(),
-            })
+            .get<RouteApiResponse>(
+                `${API_URL}/app/v1/trails/${encodedCode}/unlock`,
+                {
+                    headers: Helper.getApiRequestHeaders(),
+                },
+            )
             .pipe(
                 map((response) => {
                     return Route.fromRouteResponse(response);
@@ -524,6 +534,7 @@ export class RouteApiService {
         code: string,
         isUpdate: boolean = false,
     ): Promise<Array<Task>> {
+        const encodedCode = encodeURIComponent(code);
         const body = {
             userId: "0",
             langCode: "de",
@@ -531,7 +542,7 @@ export class RouteApiService {
         };
         return this.http
             .post<RouteDetailApiResponse>(
-                `${API_URL}/app/v1/trails/${code}`,
+                `${API_URL}/app/v1/trails/${encodedCode}`,
                 body,
                 { headers: Helper.getApiRequestHeaders() },
             )

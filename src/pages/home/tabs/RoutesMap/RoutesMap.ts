@@ -57,7 +57,9 @@ export class RoutesMapPage implements OnInit, OnDestroy {
     ) {
         this.eventSubscription = this.routeApiService.routesUpdated.subscribe(async (event) => {
             if (this.map && this.map.getLayer('unclustered-point')) {
-                if (!this.showAllRoutes) this.routes = this.routeApiService.downloadedRoutes;
+                if (!this.showAllRoutes) {
+                    this.routes = await this.routeApiService.getDownloadedRoutes();
+                }
                 this.redrawMapBoxMarker()
                 this.routeDetails = null;
             }
@@ -72,7 +74,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
         if (this.map && this.map.getLayer('unclustered-point')) {
             if (this.showAllRoutes) this.routes = this.routeApiService.publicRoutes;
-            else this.routes = await this.routeApiService.downloadedRoutes;
+            else this.routes = await this.routeApiService.getDownloadedRoutes();
             this.redrawMapBoxMarker()
         }
     }
@@ -113,7 +115,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
     async initializeMap() {
         if (this.showAllRoutes) this.routes = this.routeApiService.publicRoutes;
-        else this.routes = this.routeApiService.downloadedRoutes;
+        else this.routes = await this.routeApiService.getDownloadedRoutes();
         this.map.on('load', () => {
             const waiting = () => {
                 if (!this.map.isStyleLoaded()) {
@@ -286,7 +288,12 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
 
         this.map.on('click', e => {
-            //check if details open and reset content. for now just reset content
+            let clickedFeature = this.map.queryRenderedFeatures(e.point, {
+                layers: ['unclustered-point', 'clusters']
+            });
+            if (clickedFeature && clickedFeature.length > 0) {
+                return;
+            }
             this.routeDetails = null;
             console.log('cleared route details');
         });
@@ -318,7 +325,6 @@ export class RoutesMapPage implements OnInit, OnDestroy {
             });
             let index = features[0].properties.routeIndex;
             let route = that.routes[index];
-            // Routedetails currently is always false since map click triggers first and clears it
             if (that.routeDetails == route) {
                 that.modalsService.showRoute(route, that.navCtrl).then(() => {
                 });
@@ -426,7 +432,7 @@ export class RoutesMapPage implements OnInit, OnDestroy {
 
     async reactOnRemovedRoute() {
         if (this.showAllRoutes) this.routes = this.routeApiService.publicRoutes;
-        else this.routes = this.routeApiService.downloadedRoutes;
+        else this.routes = await this.routeApiService.getDownloadedRoutes();
         this.redrawMapBoxMarker()
     }
 

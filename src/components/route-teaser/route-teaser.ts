@@ -1,4 +1,12 @@
-import {EventEmitter, Component, Input, Output} from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    Output,
+} from '@angular/core';
+import {Subscription} from 'rxjs/Subscription';
 import {Route} from "../../entity/Route";
 import {ModalsService} from "../../services/modals-service";
 import {Helper} from "../../classes/Helper";
@@ -11,7 +19,7 @@ import {RouteInfos} from "../../services/ApiResponseDefinition/RouteInfos";
     templateUrl: 'route-teaser.html',
     //changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RouteTeaserComponent {
+export class RouteTeaserComponent implements OnChanges, OnDestroy {
 
     @Input()
     route: Route;
@@ -29,20 +37,28 @@ export class RouteTeaserComponent {
     protected currentProgress: number = 0;
     protected total: number = 0;
 
-    private completedRadius: number = 339.292;
+    protected completedRadius: number = 339.292;
+    private routesUpdatedSubscription: Subscription;
 
     constructor( private modalsService: ModalsService,
                  private helper: Helper,
                  private routeApiService: RouteApiService) {
-        this.routeApiService.routesUpdated.subscribe((routeCode: string) => {
-            if (routeCode === this.route.code) {
+        this.routesUpdatedSubscription = this.routeApiService.routesUpdated.subscribe((routeCode?: string) => {
+            if (this.route && (!routeCode || routeCode === this.route.code)) {
                 this.updateDetails();
             }
-        })
+        });
     }
 
-    ngOnChanges(){
+    ngOnChanges() {
         this.updateDetails();
+    }
+
+    ngOnDestroy() {
+        if (this.routesUpdatedSubscription) {
+            this.routesUpdatedSubscription.unsubscribe();
+            this.routesUpdatedSubscription = null;
+        }
     }
 
     async updateDetails() {
@@ -57,10 +73,13 @@ export class RouteTeaserComponent {
         }
     }
 
-    calculatePercentage(){
+    calculatePercentage() {
         let c = 2 * Math.PI * 54;
-        let completedPercentage = (1/this.total) *this.currentProgress;
-        return c * (1-completedPercentage);
+        if (!this.total) {
+            return c;
+        }
+        let completedPercentage = (1 / this.total) * this.currentProgress;
+        return c * (1 - completedPercentage);
     }
 
     async doDownload(event, route: Route) {

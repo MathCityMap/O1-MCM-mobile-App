@@ -6,10 +6,42 @@ import {Helper} from "../../classes/Helper";
 })
 export class SearchPipe implements PipeTransform {
     public transform(value, keys: string, term: string) {
-        if (!term) return value;
-        let result = (value || []).filter(item => keys.split(',').some(key => item.hasOwnProperty(key) && new RegExp(term, 'gi').test(item[key])));
+        const values = value || [];
+        if (!term) {
+            Helper.searchResults = values.length;
+            return values;
+        }
+
+        const searchKeys = (keys || "")
+            .split(",")
+            .map((key) => key.trim())
+            .filter((key) => key.length > 0);
+
+        let regex: RegExp;
+        try {
+            regex = new RegExp(term, "i");
+        } catch (e) {
+            regex = new RegExp(this.escapeRegExp(term), "i");
+        }
+
+        let result = values.filter((item) =>
+            searchKeys.some((key) => {
+                if (!item || !Object.prototype.hasOwnProperty.call(item, key)) {
+                    return false;
+                }
+                const fieldValue = item[key];
+                if (fieldValue === null || fieldValue === undefined) {
+                    return false;
+                }
+                return regex.test(String(fieldValue));
+            }),
+        );
         Helper.searchResults = result.length;
         console.log("searchResults", Helper.searchResults);
         return result;
+    }
+
+    private escapeRegExp(text: string): string {
+        return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     }
 }

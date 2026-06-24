@@ -77,6 +77,9 @@ export class ChatPage {
 
         // TODO Does chat.ts need access to all session objects? refactor!
         this.chatService.getActiveSession().then((res: SessionInfo) => {
+            if (!res) {
+                return;
+            }
             this.sessionUser = res.sessionUser;
             this.session = res.session;
             this.sessionInfo = res;
@@ -84,12 +87,7 @@ export class ChatPage {
             // teams, which are *not* admin of a session, get as receiver the admin
             // the admin of a sessionget as recivers *all* users from a session
             // TODO gui should have an option to select a team as active receiver.
-            let defaultReceiver: SessionUserResponse = this.chatService.getReceivers()[0];
-            this.toUser = {
-                id: defaultReceiver.id,
-                name: defaultReceiver.team_name,
-                token: defaultReceiver.token
-            };
+            this.ensureReceiver();
         });
     }
 
@@ -109,7 +107,7 @@ export class ChatPage {
     }
 
     ionViewDidEnter() {
-        let timezoneOffset = new Date().getTimezoneOffset();
+        this.ensureReceiver();
         // this.timeZoneOpposite = (timezoneOffset * 60000)
         //get message list
         this.getMsg();
@@ -154,6 +152,9 @@ export class ChatPage {
      * @returns {Promise<ChatMessage[]>}
      */
     getMsg() {
+        if (!this.sessionInfo) {
+            return;
+        }
         let chatMsgs: Array<any> = [];
         this.chatService.getReceivers().forEach(receiver => {
             chatMsgs.push(this.chatService
@@ -176,6 +177,10 @@ export class ChatPage {
      */
     async sendMsg() {
         this.setInputWrapButtons(true);
+
+        if (!this.ensureReceiver() || !this.user || !this.sessionInfo) {
+            return;
+        }
 
         //does not allow sending empty messages
         if(this.editorMsg.trim() == '' && !this.editorImg && this.recordState != RecordStateEnum.Stop) return;
@@ -585,6 +590,23 @@ export class ChatPage {
         this.showPictureButtons = setValue;
     }
 
+    private ensureReceiver(): boolean {
+        if (this.toUser && this.toUser.token) {
+            return true;
+        }
+        const receivers: SessionUserResponse[] = this.chatService.getReceivers() || [];
+        if (receivers.length === 0) {
+            return false;
+        }
+        const defaultReceiver = receivers[0];
+        this.toUser = {
+            id: defaultReceiver.id,
+            name: defaultReceiver.team_name,
+            token: defaultReceiver.token,
+        };
+        return true;
+    }
+
     openInPhotoviewer(image) {
         if (Helper.isPluginAvailable(PhotoViewer)) {
             this.spinnerDialog.show();
@@ -599,5 +621,3 @@ export class ChatPage {
         }
     }
 }
-
-
