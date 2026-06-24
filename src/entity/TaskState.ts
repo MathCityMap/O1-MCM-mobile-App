@@ -56,22 +56,29 @@ export class TaskState {
     }
 
     public getAllTaskState(jsonArray: string): Array<TaskState> {
-        let flags = JSON.parse(jsonArray);
         let taskDetails: Array<TaskState> = [];
-        for (let i = 0; i < flags.length; i++) {
-            taskDetails.push(this.getTaskStateByTask(flags[i]));
+        try {
+            let flags = JSON.parse(jsonArray);
+            for (let i = 0; i < flags.length; i++) {
+                taskDetails.push(this.getTaskStateByTask(flags[i]));
+            }
+        } catch (e) {
+            console.warn('TaskState.getAllTaskState: invalid JSON', e);
         }
         return taskDetails;
     }
 
     public findDetailsForTask(taskId: number, jsonArray: string): TaskState {
-        let flags = JSON.parse(jsonArray);
-
-        for (let i = 0; i < flags.length; i++) {
-            let detail = this.getTaskStateByTask(flags[i]);
-            if (detail.taskId == taskId) {
-                return detail;
+        try {
+            let flags = JSON.parse(jsonArray);
+            for (let i = 0; i < flags.length; i++) {
+                let detail = this.getTaskStateByTask(flags[i]);
+                if (detail.taskId == taskId) {
+                    return detail;
+                }
             }
+        } catch (e) {
+            console.warn('TaskState.findDetailsForTask: invalid JSON', e);
         }
         let detail = new TaskState();
         detail.taskId = taskId;
@@ -79,27 +86,32 @@ export class TaskState {
     }
 
     public getTaskStateByTask(jsonObject: string): TaskState {
-        let flags = JSON.parse(jsonObject);
-        let taskState = new TaskState();
-        taskState.taskId = flags.taskId;
-        taskState.saved = flags.saved;
-        taskState.solved = flags.solved;
-        taskState.solvedLow = flags.solvedLow;
-        taskState.skipped = flags.skipped;
-        taskState.failed = flags.failed;
-        taskState.hint1 = flags.hint1;
-        taskState.hint2 = flags.hint2;
-        taskState.hint3 = flags.hint3;
-        taskState.tries = flags.tries;
-        taskState.newTries = flags.newTries;
-        taskState.answer = flags.answer;
-        taskState.answerMultipleChoice = flags.answerMultipleChoice;
-        taskState.timeFirstOpen = flags.timeFirstOpen;
-        taskState.timeSolved = flags.timeSolved;
-        taskState.score = flags.score;
-        taskState.penalty = flags.penalty;
-        taskState.imageUrl = flags.imageUrl;
-        taskState.fallbackImageUrl = flags.fallbackImageUrl;
-        return taskState;
+        try {
+            let flags = JSON.parse(jsonObject);
+            let taskState = new TaskState();
+            taskState.taskId = flags.taskId;
+            taskState.saved = flags.saved;
+            taskState.solved = flags.solved;
+            taskState.solvedLow = flags.solvedLow;
+            taskState.skipped = flags.skipped;
+            taskState.failed = flags.failed;
+            taskState.hint1 = flags.hint1;
+            taskState.hint2 = flags.hint2;
+            taskState.hint3 = flags.hint3;
+            taskState.tries = flags.tries;
+            taskState.newTries = flags.newTries;
+            taskState.answer = flags.answer;
+            taskState.answerMultipleChoice = flags.answerMultipleChoice;
+            taskState.timeFirstOpen = flags.timeFirstOpen;
+            taskState.timeSolved = flags.timeSolved;
+            taskState.score = flags.score;
+            taskState.penalty = flags.penalty;
+            taskState.imageUrl = flags.imageUrl;
+            taskState.fallbackImageUrl = flags.fallbackImageUrl;
+            return taskState;
+        } catch (e) {
+            console.warn('TaskState.getTaskStateByTask: invalid JSON', e);
+            return new TaskState();
+        }
     }
 }

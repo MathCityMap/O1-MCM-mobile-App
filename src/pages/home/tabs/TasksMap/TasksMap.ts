@@ -269,8 +269,12 @@ export class TasksMap implements OnDestroy {
             }
             if (!this.state) {
                 // attach state to navParams so that state is restored when moving back in history (from task detail view)
+                let selectedTask = this.navParams.get("selectedTask");
+                if (selectedTask) {
+                    selectedTask = Task.fromGenericTask(selectedTask);
+                }
                 this.state = this.navParams.data.tasksMapState = {
-                    selectedTask: this.navParams.get("selectedTask"),
+                    selectedTask: selectedTask,
                     isShowingAllTasks: false,
                     visibleTasks: {},
                     skippedTaskIds: [],
@@ -439,8 +443,13 @@ export class TasksMap implements OnDestroy {
         let mapState = await this.storage.get(this.stateKey);
         if (mapState && mapState[this.routeId]) {
             let state = mapState[this.routeId];
-            console.log(this.navParams);
-            state.selectedTask = this.navParams.get("selectedTask");
+            if (state.selectedTask) {
+                state.selectedTask = Task.fromGenericTask(state.selectedTask);
+            }
+            const navSelectedTask = this.navParams.get("selectedTask");
+            if (navSelectedTask) {
+                state.selectedTask = Task.fromGenericTask(navSelectedTask);
+            }
             return state;
         }
         return null;
@@ -542,41 +551,35 @@ export class TasksMap implements OnDestroy {
         );
     }
     centerSelectedTask() {
+        const task = this.state.selectedTask;
+        if (!task) return;
         this.mapHandler.moveTo(
-            this.state.selectedTask.lat,
-            this.state.selectedTask.lon,
+            task.lat,
+            task.lon,
         );
     }
 
     goToNextTaskById(taskId: number, skip?: boolean) {
-        this.mapTaskList.forEach((task) => {
+        for (let task of this.mapTaskList) {
             if (task.id == taskId) {
                 this.goToNextTask(task, skip);
                 return;
             }
-        });
+        }
     }
 
     goToNextTask(task: Task, skip?: boolean) {
+        if (!this.mapTaskList || this.mapTaskList.length === 0) return;
         if (skip) {
             this.state.skippedTaskIds.push(task.id);
         }
-        console.debug("goToNextTask", task);
-        console.debug(
-            "goToNextTask next task index",
-            task.position % this.mapTaskList.length,
-        );
-        console.debug(
-            "goToNextTask next task",
-            this.mapTaskList[task.position % this.mapTaskList.length],
-        );
-        const nextTask =
-            this.mapTaskList[task.position % this.mapTaskList.length];
+        const nextIndex = task.position % this.mapTaskList.length;
+        const nextTask = this.mapTaskList[nextIndex];
+        if (!nextTask) return;
         if (nextTask.inactive) {
             this.state.visibleTasks[nextTask.position] = true;
             return this.goToNextTask(nextTask);
         }
-        // Save selected task in navParams as well so refreshing state from local storage doesn't reset it
         this.navParams.data.selectedTask = nextTask;
         this.state.selectedTask = nextTask;
         this.state.visibleTasks[this.state.selectedTask.position] = true;

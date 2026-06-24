@@ -1,38 +1,42 @@
-import * as L from 'leaflet';
-import {LatLng, LatLngBounds} from 'leaflet';
-import {checkAvailability} from '@ionic-native/core';
-import {Injectable} from '@angular/core';
-import {GpsService} from '../services/gps-service';
-import {Network} from '@ionic-native/network';
-import {Platform} from 'ionic-angular';
-import {Route} from '../entity/Route';
-import {Storage} from "@ionic/storage";
-import 'leaflet-geometryutil';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import * as L from "leaflet";
+import { LatLng, LatLngBounds } from "leaflet";
+import { checkAvailability } from "@ionic-native/core";
+import { Injectable } from "@angular/core";
+import { GpsService } from "../services/gps-service";
+import { Network } from "@ionic-native/network";
+import { Platform } from "ionic-angular";
+import { Route } from "../entity/Route";
+import { Storage } from "@ionic/storage";
+import "leaflet-geometryutil";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {
     MAPBOX_ACCESS_TOKEN,
     MEDIASERVER_BASE_URL,
     DB_QUERY_URL,
     SERVER_REQUEST_PASS,
-    WEBSERVER_URL, API_REQUEST_USER, API_REQUEST_PASS
+    WEBSERVER_URL,
+    API_REQUEST_USER,
+    API_REQUEST_PASS,
 } from "../env/env";
-import {RouteInfos} from "../services/ApiResponseDefinition/RouteInfos";
+import { RouteInfos } from "../services/ApiResponseDefinition/RouteInfos";
 
 export class MapTile {
-    constructor(private pZoomLevel: number, private pX: number, private pY: number
-    ) {
-    }
+    constructor(
+        private pZoomLevel: number,
+        private pX: number,
+        private pY: number,
+    ) {}
 
     get x(): number {
-        return this.pX
+        return this.pX;
     }
 
     get y(): number {
-        return this.pY
+        return this.pY;
     }
 
     get zoomLevel(): number {
-        return this.pZoomLevel
+        return this.pZoomLevel;
     }
 }
 
@@ -40,9 +44,8 @@ export enum ConnectionQuality {
     FAST = 1,
     SLOW,
     BAD,
-    NONE
+    NONE,
 }
-
 
 // FIXME CLEANUP UNUSED CODE AND VARIABLES
 @Injectable()
@@ -51,64 +54,65 @@ export class Helper {
     /*
       Intents #
        */
-    static readonly MCM_PASS_TASK: string = "mathcitymap.showTask"
-    static readonly MCM_PARENT_ROUTELIST: string = "mathcitymap.parentRouteList"
-    static readonly MCM_ROUTELIST_PUBLIC: string = "mathcitymap.parentRouteListPublic"
-    static readonly MCM_OSM_LASTCENTER: string = "mathcitymap.lastKnownCenterPoint"
-    static readonly MCM_OSM_LASTZOOM: string = "mathcitymap.lastZoom"
-    static readonly MCM_OSM_GUIDESTATE: string = "mathcitymap.osmGuideState"
-    static readonly MCM_OSM_ONLINE: string = "mathcitymap.osmOnlineMap"
+    static readonly MCM_PASS_TASK: string = "mathcitymap.showTask";
+    static readonly MCM_PARENT_ROUTELIST: string =
+        "mathcitymap.parentRouteList";
+    static readonly MCM_ROUTELIST_PUBLIC: string =
+        "mathcitymap.parentRouteListPublic";
+    static readonly MCM_OSM_LASTCENTER: string =
+        "mathcitymap.lastKnownCenterPoint";
+    static readonly MCM_OSM_LASTZOOM: string = "mathcitymap.lastZoom";
+    static readonly MCM_OSM_GUIDESTATE: string = "mathcitymap.osmGuideState";
+    static readonly MCM_OSM_ONLINE: string = "mathcitymap.osmOnlineMap";
     /*
     INTENTS END ###
      */
 
-
     /*
     SETTINGS #
      */
-    static readonly NEAREST_DEFINTION: number = 10000 // in Meters
-    static readonly DISTANCE_TASK_DISPLAY: number = 50 // in Meters, the max distance to display the task
-    static readonly DISTANCE_TASKS_MULTIPLE: number = 15 // in Meters, if tapped on marker, look for near markers in max 10m distance, display multiple select box
-    static readonly ENABLE_DISTANCE_CHECK: boolean = false
-    static readonly routeImageUpdate: number = 0
-    static readonly gamification: number = 0 // 0 -> Keine, 1 -> Score, 2 -> Leaderbord, 3 -> Badges
-    static readonly max_score: number = 100
-    static readonly max_score_mc: number = 75
-    static readonly max_score_l: number = 99
-    static readonly min_score_l: number = 40
-    static readonly min_score_cap: number = 10
-    static readonly first_try_bonus: number = 10
-    static readonly first_start_bonus: number = 10
-    static readonly distance_bonus: number = 15
-    static readonly p_second_try: number = 5
-    static readonly p_third_try: number = 10
-    static readonly studie: boolean = false
-    static readonly updated_once: boolean = false
+    static readonly NEAREST_DEFINTION: number = 10000; // in Meters
+    static readonly DISTANCE_TASK_DISPLAY: number = 50; // in Meters, the max distance to display the task
+    static readonly DISTANCE_TASKS_MULTIPLE: number = 15; // in Meters, if tapped on marker, look for near markers in max 10m distance, display multiple select box
+    static readonly ENABLE_DISTANCE_CHECK: boolean = false;
+    static readonly routeImageUpdate: number = 0;
+    static readonly gamification: number = 0; // 0 -> Keine, 1 -> Score, 2 -> Leaderbord, 3 -> Badges
+    static readonly max_score: number = 100;
+    static readonly max_score_mc: number = 75;
+    static readonly max_score_l: number = 99;
+    static readonly min_score_l: number = 40;
+    static readonly min_score_cap: number = 10;
+    static readonly first_try_bonus: number = 10;
+    static readonly first_start_bonus: number = 10;
+    static readonly distance_bonus: number = 15;
+    static readonly p_second_try: number = 5;
+    static readonly p_third_try: number = 10;
+    static readonly studie: boolean = false;
+    static readonly updated_once: boolean = false;
     // Map Settings (also which tiles to download)
-    static readonly min_zoom: number = 15
-    static readonly max_zoom: number = 19
+    static readonly min_zoom: number = 15;
+    static readonly max_zoom: number = 19;
 
     /*
     SETTINGS END ###
      */
-
 
     /*
     GLOBAL VARS #
      */
     //FIXME refactor the locations using these vars to use env.ts constants directly
     static readonly WEBSERVER_URL: string = WEBSERVER_URL;
-    static readonly MEDIASERVER_BASE_URL: string = MEDIASERVER_BASE_URL
-    static readonly MEDIASERVER_IMAGE_URL: string = Helper.MEDIASERVER_BASE_URL + "/storage/MCM/";
-    static readonly API_URL: string = DB_QUERY_URL
+    static readonly MEDIASERVER_BASE_URL: string = MEDIASERVER_BASE_URL;
+    static readonly MEDIASERVER_IMAGE_URL: string =
+        Helper.MEDIASERVER_BASE_URL + "/storage/MCM/";
+    static readonly API_URL: string = DB_QUERY_URL;
 
-    static readonly REQUEST_PASS: string = SERVER_REQUEST_PASS
-    static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/"
-    static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/"
+    static readonly REQUEST_PASS: string = SERVER_REQUEST_PASS;
+    static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/";
+    static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/";
     // public static ProgressDialog updater_dialog = null
-    static readonly mapCode: string = "mapbox.streets"
-    static readonly mapquestUrl = `https://{s}.tiles.mapbox.com/v4/${Helper.mapCode}/{z}/{x}/{y}@2x.png?&tilesize=256&access_token=${MAPBOX_ACCESS_TOKEN}`
-    static readonly subDomains = ['a', 'b', 'c', 'd'];
+    static readonly mapquestUrl = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${MAPBOX_ACCESS_TOKEN}`;
+    static readonly subDomains = [""];
 
     // public static OnlineTileSourceBase mbTileSource = new XYTileSource("MapBoxSatelliteLabelled",
     //         2, 20, 256, ".png", new String[]{
@@ -126,43 +130,48 @@ export class Helper {
     // public static User user = null
     // public static Map<String, String> aiNamesMap = new HashMap<String, String>()
     // public static Map<String, ArrayList<Integer>> oldScoreMap = new HashMap<String, ArrayList<Integer>>()
-    static readonly phone_id: string = ""
-    static readonly phone_name: string = ""
+    static readonly phone_id: string = "";
+    static readonly phone_name: string = "";
     // public static Location myLocation = null
     public static testLocation: any = null;
-    static readonly myAzimuth: number = 0.0
+    static readonly myAzimuth: number = 0.0;
     // public static HashMap<String, int[]> routeStates = new HashMap<String, int[]>()
     // public static GoogleApiClient googleApiClient
-    static readonly REQUEST_LOCATION: number = 199
+    static readonly REQUEST_LOCATION: number = 199;
     public isOnline: boolean = false;
     public devModeEnabled: boolean = false;
-    static windowWidth: number = 0
-    static windowHeight: number = 0
-    static searchResults: number = 999
+    static windowWidth: number = 0;
+    static windowHeight: number = 0;
+    static searchResults: number = 999;
 
     private activateAddRouteModal: boolean = false;
 
-    constructor(private http: HttpClient, private gpsService: GpsService, private network: Network,
-                private platform: Platform, private storage: Storage) {
+    constructor(
+        private http: HttpClient,
+        private gpsService: GpsService,
+        private network: Network,
+        private platform: Platform,
+        private storage: Storage,
+    ) {
         Helper.INSTANCE = this;
         // noinspection JSIgnoredPromiseFromCall
         this.init();
     }
 
     private async init() {
-        this.devModeEnabled = (await this.storage.get('devMode') === 'true');
+        this.devModeEnabled = (await this.storage.get("devMode")) === "true";
         await this.platform.ready();
         this.isOnline = navigator.onLine;
         console.info(`Connection status: ${this.isOnline}`);
         Helper.windowWidth = this.platform.width();
         Helper.windowHeight = this.platform.height();
         this.network.onDisconnect().subscribe(() => {
-            console.info('Network disconnected!');
+            console.info("Network disconnected!");
             this.isOnline = false;
         });
 
         this.network.onConnect().subscribe(() => {
-            console.info('Network connected!');
+            console.info("Network connected!");
             this.isOnline = true;
         });
     }
@@ -187,9 +196,12 @@ export class Helper {
             let Δφ = (lat2 - lat1) * p;
             let Δλ = (lon2 - lon1) * p;
 
-            let a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                Math.cos(φ1) * Math.cos(φ2) *
-                Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+            let a =
+                Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                Math.cos(φ1) *
+                    Math.cos(φ2) *
+                    Math.sin(Δλ / 2) *
+                    Math.sin(Δλ / 2);
             let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
             distance = Math.round(R * c);
@@ -199,7 +211,12 @@ export class Helper {
     }
 
     public static safeJsonDecode(str: string): any {
-        return JSON.parse(str.replace(/(?:\r\n|\r|\n)/g, '\n'));
+        try {
+            return JSON.parse(str.replace(/(?:\r\n|\r|\n)/g, "\n"));
+        } catch (e) {
+            console.warn("Helper.safeJsonDecode: invalid JSON", str, e);
+            return null;
+        }
     }
 
     // public static JSONArray getJSONArray(String arrString){
@@ -215,7 +232,14 @@ export class Helper {
 
     public static getAngle(prev: any, curr: any) {
         // angle in degrees
-        let angle = Math.atan2(curr.latitude - prev.latitude, prev.longitude - curr.longitude) * 180 / Math.PI + 270;
+        let angle =
+            (Math.atan2(
+                curr.latitude - prev.latitude,
+                prev.longitude - curr.longitude,
+            ) *
+                180) /
+                Math.PI +
+            270;
         return angle;
     }
 
@@ -224,7 +248,6 @@ export class Helper {
         const exponent = Math.floor(Math.log10(N));
         return (N / Math.pow(10, exponent)) * 10;
     }
-
 
     public static isOffByPowerOfTen(value: number, min: number, max: number) {
         const baseValue = Helper.getPowerOfTenBase(value);
@@ -271,33 +294,44 @@ export class Helper {
       }
       */
     public static isPluginAvailable(plugin: any) {
-        return !!checkAvailability(plugin.getPluginRef(), null, plugin.getPluginName());
+        return !!checkAvailability(
+            plugin.getPluginRef(),
+            null,
+            plugin.getPluginName(),
+        );
     }
 
-    public invokeApi(queryAction: string, postparams?: string, timeoutInSecs: number = 30): Promise<any> {
+    public invokeApi(
+        queryAction: string,
+        postparams?: string,
+        timeoutInSecs: number = 30,
+    ): Promise<any> {
         if (!this.isOnline) {
-            console.warn("No internet!")
-            return new Promise<void>(resolve => resolve())
+            console.warn("No internet!");
+            return new Promise<void>((resolve) => resolve());
         }
 
         let headers = new HttpHeaders({
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        })
-        let options = {headers: headers};
-        let data = "pass=" + encodeURI(Helper.REQUEST_PASS)
-            + "&action=" + encodeURI(queryAction)
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        });
+        let options = { headers: headers };
+        let data =
+            "pass=" +
+            encodeURI(Helper.REQUEST_PASS) +
+            "&action=" +
+            encodeURI(queryAction);
         if (postparams) {
             data += postparams;
         }
 
         return new Promise<any>((resolve, reject) => {
-
             let timeOutTimer = setTimeout(() => {
                 timeOutTimer = null;
                 console.log(`server query ${queryAction} timed out`);
-                reject('timeout')
+                reject("timeout");
             }, timeoutInSecs * 1000);
-            this.http.post(Helper.API_URL, data, options)
+            this.http
+                .post(Helper.API_URL, data, options)
                 .toPromise()
                 .then((response: any) => {
                     if (timeOutTimer) {
@@ -305,13 +339,13 @@ export class Helper {
                     } else {
                         return;
                     }
-                    console.log('API response: ', response);
+                    console.log("API response: ", response);
                     let resText = JSON.stringify(response);
                     if (resText && resText.length > 0) {
                         // let tableRows = response
                         resolve(response);
                     } else {
-                        reject('no response from server');
+                        reject("no response from server");
                     }
                 })
                 .catch((error) => {
@@ -320,12 +354,12 @@ export class Helper {
                     } else {
                         return;
                     }
-                    console.error('API error(status): ', error.status)
-                    console.error('API error: ', JSON.stringify(error))
+                    console.error("API error(status): ", error.status);
+                    console.error("API error: ", JSON.stringify(error));
 
-                    reject(JSON.stringify(error))
-                })
-        })
+                    reject(JSON.stringify(error));
+                });
+        });
     }
 
     public async checkConnection(): Promise<ConnectionQuality> {
@@ -334,7 +368,7 @@ export class Helper {
         }
         try {
             let before = new Date();
-            await this.invokeApi('getVersionsV2', null, 2);
+            await this.invokeApi("getVersionsV2", null, 2);
             let after = new Date();
             let diff = after.getTime() - before.getTime();
             if (diff < 1000) {
@@ -348,8 +382,8 @@ export class Helper {
     }
 
     public async setDevMode(value: string) {
-        await this.storage.set('devMode', value);
-        this.devModeEnabled = (value === 'true')
+        await this.storage.set("devMode", value);
+        this.devModeEnabled = value === "true";
     }
 
     public getDevMode() {
@@ -369,38 +403,44 @@ export class Helper {
         let score = routeDetails.score;
         let currentProgress = 0;
         if (route.isAnswerFeedbackEnabled()) {
-            currentProgress = score.getTasksSolved().length + score.getTasksSolvedLow().length + score.getTasksFailed().length;
+            currentProgress =
+                score.getTasksSolved().length +
+                score.getTasksSolvedLow().length +
+                score.getTasksFailed().length;
         } else {
             currentProgress = score.getTasksSaved().length;
         }
-        return {totalTasks: totalTasks, currentProgress: currentProgress};
+        return { totalTasks: totalTasks, currentProgress: currentProgress };
     }
 
-    public static calculateZoom(bounds: LatLngBounds){
-
+    public static calculateZoom(bounds: LatLngBounds) {
         if (!bounds) {
-            return {min_zoom: 15, max_zoom: 18};
+            return { min_zoom: 15, max_zoom: 18 };
         }
-        let width = (L as any).GeometryUtil.length([bounds.getSouthWest(), bounds.getSouthEast()]);
-        let height = (L as any).GeometryUtil.length([bounds.getNorthWest(), bounds.getSouthWest()]);
+        let width = (L as any).GeometryUtil.length([
+            bounds.getSouthWest(),
+            bounds.getSouthEast(),
+        ]);
+        let height = (L as any).GeometryUtil.length([
+            bounds.getNorthWest(),
+            bounds.getSouthWest(),
+        ]);
 
-        let area = (width/1000) * (height/1000);
+        let area = (width / 1000) * (height / 1000);
 
-        console.log("####Area = ", width/1000, height/1000, area);
+        console.log("####Area = ", width / 1000, height / 1000, area);
 
-
-        if(area <= 0.4) {
-            return {min_zoom: 16, max_zoom: 20};
-        }
-        else if(area <= 1.5) {
-            return {min_zoom: 16, max_zoom: 19};
-        }
-        else return {min_zoom: 15, max_zoom: 18};
+        if (area <= 0.4) {
+            return { min_zoom: 16, max_zoom: 20 };
+        } else if (area <= 1.5) {
+            return { min_zoom: 16, max_zoom: 19 };
+        } else return { min_zoom: 15, max_zoom: 18 };
     }
 
     public static getApiRequestHeaders() {
         return new HttpHeaders({
-            "Authorization": "Basic " + btoa(`${API_REQUEST_USER}:${API_REQUEST_PASS}`)
+            Authorization:
+                "Basic " + btoa(`${API_REQUEST_USER}:${API_REQUEST_PASS}`),
         });
     }
     public static shuffleArray(array: Array<any>) {
@@ -408,16 +448,16 @@ export class Helper {
 
         // While there remain elements to shuffle...
         while (currentIndex != 0) {
-
             // Pick a remaining element...
             let randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
 
             // And swap it with the current element.
             [array[currentIndex], array[randomIndex]] = [
-                array[randomIndex], array[currentIndex]];
+                array[randomIndex],
+                array[currentIndex],
+            ];
         }
         return array;
     }
-
 }

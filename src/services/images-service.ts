@@ -355,7 +355,7 @@ export class ImagesService {
             }
         }
         return isMapTile
-            ? "tiles/" + imgPath.replace("v4/mapbox.streets/", "")
+            ? "tiles/" + imgPath.replace("styles/v1/mapbox/streets-v11/tiles/256/", "")
             : imgPath.replace(/\/| |@/g, "_");
     }
 
@@ -396,6 +396,20 @@ export class ImagesService {
                         this.getLocalFileName(imgPath, isMapTile)
                       : this.getOnlineURL(imgPath)),
               );
+    }
+
+    async getOfflineTileURL(imgPath: string): Promise<string> {
+        if (!this.nativeBaseURL) {
+            return this.getOnlineURL(imgPath);
+        }
+        const outputName = this.getLocalFileName(imgPath, true);
+        const exists = await this.fileManager
+            .getFile(this.dataDirectory, outputName, { create: false })
+            .then(() => true, () => false);
+        if (exists) {
+            return this.fixUrlForWebview(this.nativeBaseURL + outputName);
+        }
+        return this.getOnlineURL(imgPath);
     }
 
     getOnlineURL(imgPath: string) {

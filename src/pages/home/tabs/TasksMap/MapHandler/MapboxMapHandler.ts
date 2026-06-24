@@ -140,261 +140,247 @@ export class MapboxMapHandler implements MapHandlerInterface {
     async redrawMarkers(tasks: Array<Task>, mapState: TaskMapState, score: Score) {
         if (this.redrawingMarkers) return;
         this.redrawingMarkers = true;
-
-        const map = this.map;
-        if (!map) {
-            this.redrawingMarkers = false;
-            return;
-        }
-
-        // Remove previous layers if they exist
-        for (const layerId of ['unclustered-point']) {
-            if (map.getLayer(layerId)) {
-                map.removeLayer(layerId);
+        try {
+            const map = this.map;
+            if (!map) {
+                return;
             }
-        }
 
-        if (map.getSource('tasks')) {
-            map.removeSource('tasks');
-        }
-
-        // Build GeoJSON features from task list
-        const features = [];
-
-        for (let task of tasks) {
-            if (!mapState.isShowingAllTasks && !mapState.visibleTasks[task.position]) continue;
-
-            let icon = 'taskOpenIcon'; // fallback default
-            let clusterState = 'open';
-            if (task.taskFormat === TaskFormat.GROUP) {
-                const subtasks = task.getSubtasksInOrder();
-                const iconKey = `task-group-${task.id}`;
-                await this.registerGroupMarkerIcon(iconKey, subtasks, score);
-                icon = iconKey;
-            } else {
-                if (task.inactive) {
-                    icon = 'taskDisabledIcon';
-                    clusterState = 'disabled';
-                } else if (score.getTasksSaved().includes(task.id)) {
-                    icon = 'taskSavedIcon';
-                    clusterState = "saved";
-                } else if (score.getTasksSolved().includes(task.id)) {
-                    icon = 'taskDonePerfectIcon';
-                    clusterState = "perfect";
-                } else if (score.getTasksSolvedLow().includes(task.id)) {
-                    icon = 'taskDoneIcon';
-                    clusterState = "done";
-                } else if (score.getTasksFailed().includes(task.id)) {
-                    icon = 'taskFailedIcon';
-                    clusterState = "failed";
-                } else if (mapState.skippedTaskIds.includes(task.id)) {
-                    icon = 'taskSkippedIcon';
-                    clusterState = "skipped";
+            for (const layerId of ['unclustered-point']) {
+                if (map.getLayer(layerId)) {
+                    map.removeLayer(layerId);
                 }
             }
 
-            // Clean up skippedTaskIds if necessary
-            if (!mapState.skippedTaskIds.includes(task.id)) {
-                const index = mapState.skippedTaskIds.indexOf(task.id);
-                if (index > -1) mapState.skippedTaskIds.splice(index, 1);
+            if (map.getSource('tasks')) {
+                map.removeSource('tasks');
             }
 
-            features.push({
-                type: "Feature",
-                geometry: {
-                    type: "Point",
-                    coordinates: [task.lon, task.lat]
+            const features = [];
+
+            for (let task of tasks) {
+                if (!mapState.isShowingAllTasks && !mapState.visibleTasks[task.position]) continue;
+
+                let icon = 'taskOpenIcon';
+                let clusterState = 'open';
+                if (task.taskFormat === TaskFormat.GROUP) {
+                    const subtasks = task.getSubtasksInOrder();
+                    const iconKey = `task-group-${task.id}`;
+                    await this.registerGroupMarkerIcon(iconKey, subtasks, score);
+                    icon = iconKey;
+                } else {
+                    if (task.inactive) {
+                        icon = 'taskDisabledIcon';
+                        clusterState = 'disabled';
+                    } else if (score.getTasksSaved().includes(task.id)) {
+                        icon = 'taskSavedIcon';
+                        clusterState = "saved";
+                    } else if (score.getTasksSolved().includes(task.id)) {
+                        icon = 'taskDonePerfectIcon';
+                        clusterState = "perfect";
+                    } else if (score.getTasksSolvedLow().includes(task.id)) {
+                        icon = 'taskDoneIcon';
+                        clusterState = "done";
+                    } else if (score.getTasksFailed().includes(task.id)) {
+                        icon = 'taskFailedIcon';
+                        clusterState = "failed";
+                    } else if (mapState.skippedTaskIds.includes(task.id)) {
+                        icon = 'taskSkippedIcon';
+                        clusterState = "skipped";
+                    }
+                }
+
+                if (!mapState.skippedTaskIds.includes(task.id)) {
+                    const index = mapState.skippedTaskIds.indexOf(task.id);
+                    if (index > -1) mapState.skippedTaskIds.splice(index, 1);
+                }
+
+                features.push({
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [task.lon, task.lat]
+                    },
+                    properties: {
+                        id: task.id,
+                        icon: icon,
+                        state: clusterState,
+                        title: task.title
+                    }
+                });
+            }
+            let tasksGeoJson: any = {
+                type: "FeatureCollection",
+                features
+            };
+
+            let clusterRadius = 30;
+            let clusterMaxZoom = 15;
+
+            this.cluster = new Supercluster({
+                radius: clusterRadius,
+                maxZoom: clusterMaxZoom,
+                map(properties) {
+                    return {
+                        open: properties.state === "open" ? 1 : 0,
+                        disabled: properties.state === "disabled" ? 1 : 0,
+                        saved: properties.state === "saved" ? 1 : 0,
+                        perfect: properties.state === "perfect" ? 1 : 0,
+                        done: properties.state === "done" ? 1 : 0,
+                        failed: properties.state === "failed" ? 1 : 0,
+                        skipped: properties.state === "skipped" ? 1 : 0,
+                    }
                 },
-                properties: {
-                    id: task.id,
-                    icon: icon,
-                    state: clusterState,
-                    title: task.title
+                reduce(accumulated, properties) {
+                    accumulated.open += properties.open;
+                    accumulated.saved += properties.saved;
+                    accumulated.perfect += properties.perfect;
+                    accumulated.done += properties.done;
+                    accumulated.failed += properties.failed;
+                    accumulated.skipped += properties.skipped;
                 }
             });
-        }
-        let tasksGeoJson: any = {
-            type: "FeatureCollection",
-            features
-        };
 
-        let clusterRadius = 30;
-        let clusterMaxZoom = 15;
-
-        this.cluster = new Supercluster({
-            radius: clusterRadius,
-            maxZoom: clusterMaxZoom,
-            map(properties) {
-                return {
-                    open: properties.state === "open" ? 1 : 0,
-                    disabled: properties.state === "disabled" ? 1 : 0,
-                    saved: properties.state === "saved" ? 1 : 0,
-                    perfect: properties.state === "perfect" ? 1 : 0,
-                    done: properties.state === "done" ? 1 : 0,
-                    failed: properties.state === "failed" ? 1 : 0,
-                    skipped: properties.state === "skipped" ? 1 : 0,
-                }
-            },
-            reduce(accumulated, properties) {
-                accumulated.open += properties.open;
-                accumulated.saved += properties.saved;
-                accumulated.perfect += properties.perfect;
-                accumulated.done += properties.done;
-                accumulated.failed += properties.failed;
-                accumulated.skipped += properties.skipped;
+            this.cluster.load(tasksGeoJson.features);
+            let clusterData;
+            let worldBounds = [-180.0000, -90.0000, 180.0000, 90.0000];
+            let updateClusterData = () => {
+                // @ts-ignore
+                clusterData = featureCollection(this.cluster.getClusters(worldBounds, this.map.getZoom()));
             }
-        });
+            updateClusterData();
 
-        this.cluster.load(tasksGeoJson.features);
-        let clusterData;
-        let worldBounds = [-180.0000, -90.0000, 180.0000, 90.0000];
-        let updateClusterData = () => {
-            // @ts-ignore
-            clusterData = featureCollection(this.cluster.getClusters(worldBounds, this.map.getZoom()));
-        }
-        updateClusterData();
-
-        map.addSource('tasks', {
-            type: 'geojson',
-            data: clusterData,
-            buffer: 1,
-            maxzoom: clusterMaxZoom
-        });
-
-        // Unclustered points (actual tasks)
-        map.addLayer({
-            id: 'unclustered-point',
-            type: 'symbol',
-            source: 'tasks',
-            filter: ['!', ['has', 'point_count']],
-            layout: {
-                'icon-image': ['get', 'icon'],
-                'icon-size': 1,
-                'icon-allow-overlap': true
-            }
-        });
-
-        /**
-         * re-render the custom clusters layer
-         */
-        const updateCustomClusters = () => {
-            // clear existing custom clusters "layer"
-            this.customClusters.forEach(markerObj => markerObj.remove());
-            this.customClusters = [];
-
-            // create a custom icon (HTML element) for each cluster
-            clusterData.features.forEach((c) => {
-                // skip non-cluster points
-                if (!c.properties.cluster) {
-                    return;
-                }
-
-                const coords = c.geometry.coordinates;
-                const childCount = c.properties.point_count;
-
-                // create a DOM element for the marker
-                const element = document.createElement('div');
-                let classNames = 'marker-cluster marker-cluster-';
-                if (childCount < 10) {
-                    classNames += 'small';
-                } else if (childCount < 100) {
-                    classNames += 'medium';
-                } else {
-                    classNames += 'large';
-                }
-                let colorOccurrences = {};
-                if (c.properties.open > 0) {
-                    colorOccurrences[this.clusterColors.taskOpenIcon] = c.properties.open;
-                }
-                if (c.properties.disabled > 0) {
-                    colorOccurrences[this.clusterColors.taskDisabledIcon] = c.properties.disabled;
-                }
-                if (c.properties.saved > 0) {
-                    colorOccurrences[this.clusterColors.taskSavedIcon] = c.properties.saved;
-                }
-                if (c.properties.perfect > 0) {
-                    colorOccurrences[this.clusterColors.taskDonePerfectIcon] = c.properties.perfect;
-                }
-                if (c.properties.done > 0) {
-                    colorOccurrences[this.clusterColors.taskDoneIcon] = c.properties.done;
-                }
-                if (c.properties.failed > 0) {
-                    colorOccurrences[this.clusterColors.taskFailedIcon] = c.properties.failed;
-                }
-                if (c.properties.skipped > 0) {
-                    colorOccurrences[this.clusterColors.taskSkippedIcon] = c.properties.skipped;
-                }
-                let style = '';
-                let img = '';
-                let colors = Object.keys(colorOccurrences);
-                if (colors.length == 1) {
-                    style = `background-color: ${colors[0]}`;
-                } else {
-                    let stops = '';
-                    let alreadyFilledPercentage = 0;
-                    colors.map(color => {
-                        let n = colorOccurrences[color];
-                        let percentage = Math.round(n / childCount * 100);
-                        if (alreadyFilledPercentage > 0) {
-                            stops += ', ';
-                        }
-                        alreadyFilledPercentage += percentage;
-                        stops += `${color} 0 ${alreadyFilledPercentage}%`
-                    });
-
-                    let gradient = new ConicGradient({
-                        stops: stops,
-                        size: 24
-                    });
-                    img = `<img src="${gradient.png}"></img>`;
-                }
-
-                element.innerHTML = `<div style="${style}">${img}<span>${childCount}</span></div>`;
-                element.classList.add(...classNames.split(" "));
-                element.onclick = (_ev) => {
-                    let zoom = this.cluster.getClusterExpansionZoom(c.properties.cluster_id);
-                    map.easeTo({
-                        center: coords,
-                        zoom: zoom+0.1
-                    });
-                }
-
-                // add marker to map
-                const markerObj = new mapboxgl.Marker(element)
-                    .setLngLat(coords)
-                    .addTo(map);
-
-                this.customClusters.push(markerObj);
+            map.addSource('tasks', {
+                type: 'geojson',
+                data: clusterData,
+                buffer: 1,
+                maxzoom: clusterMaxZoom
             });
-        };
-        setTimeout(() => {
-            updateCustomClusters();
-        }, 100);
 
-        if (!this.markerEventsInitialized) {
-            this.markerEventsInitialized = true;
-            map.on('data', (e) => {
-                if (e.sourceId !== 'tasks') return;
+            map.addLayer({
+                id: 'unclustered-point',
+                type: 'symbol',
+                source: 'tasks',
+                filter: ['!', ['has', 'point_count']],
+                layout: {
+                    'icon-image': ['get', 'icon'],
+                    'icon-size': 1,
+                    'icon-allow-overlap': true
+                }
+            });
+
+            const updateCustomClusters = () => {
+                this.customClusters.forEach(markerObj => markerObj.remove());
+                this.customClusters = [];
+
+                clusterData.features.forEach((c) => {
+                    if (!c.properties.cluster) {
+                        return;
+                    }
+
+                    const coords = c.geometry.coordinates;
+                    const childCount = c.properties.point_count;
+
+                    const element = document.createElement('div');
+                    let classNames = 'marker-cluster marker-cluster-';
+                    if (childCount < 10) {
+                        classNames += 'small';
+                    } else if (childCount < 100) {
+                        classNames += 'medium';
+                    } else {
+                        classNames += 'large';
+                    }
+                    let colorOccurrences = {};
+                    if (c.properties.open > 0) {
+                        colorOccurrences[this.clusterColors.taskOpenIcon] = c.properties.open;
+                    }
+                    if (c.properties.disabled > 0) {
+                        colorOccurrences[this.clusterColors.taskDisabledIcon] = c.properties.disabled;
+                    }
+                    if (c.properties.saved > 0) {
+                        colorOccurrences[this.clusterColors.taskSavedIcon] = c.properties.saved;
+                    }
+                    if (c.properties.perfect > 0) {
+                        colorOccurrences[this.clusterColors.taskDonePerfectIcon] = c.properties.perfect;
+                    }
+                    if (c.properties.done > 0) {
+                        colorOccurrences[this.clusterColors.taskDoneIcon] = c.properties.done;
+                    }
+                    if (c.properties.failed > 0) {
+                        colorOccurrences[this.clusterColors.taskFailedIcon] = c.properties.failed;
+                    }
+                    if (c.properties.skipped > 0) {
+                        colorOccurrences[this.clusterColors.taskSkippedIcon] = c.properties.skipped;
+                    }
+                    let style = '';
+                    let img = '';
+                    let colors = Object.keys(colorOccurrences);
+                    if (colors.length == 1) {
+                        style = `background-color: ${colors[0]}`;
+                    } else {
+                        let stops = '';
+                        let alreadyFilledPercentage = 0;
+                        colors.map(color => {
+                            let n = colorOccurrences[color];
+                            let percentage = Math.round(n / childCount * 100);
+                            if (alreadyFilledPercentage > 0) {
+                                stops += ', ';
+                            }
+                            alreadyFilledPercentage += percentage;
+                            stops += `${color} 0 ${alreadyFilledPercentage}%`
+                        });
+
+                        let gradient = new ConicGradient({
+                            stops: stops,
+                            size: 24
+                        });
+                        img = `<img src="${gradient.png}"></img>`;
+                    }
+
+                    element.innerHTML = `<div style="${style}">${img}<span>${childCount}</span></div>`;
+                    element.classList.add(...classNames.split(" "));
+                    element.onclick = (_ev) => {
+                        let zoom = this.cluster.getClusterExpansionZoom(c.properties.cluster_id);
+                        map.easeTo({
+                            center: coords,
+                            zoom: zoom+0.1
+                        });
+                    }
+
+                    const markerObj = new mapboxgl.Marker(element)
+                        .setLngLat(coords)
+                        .addTo(map);
+
+                    this.customClusters.push(markerObj);
+                });
+            };
+            setTimeout(() => {
                 updateCustomClusters();
-            })
+            }, 100);
 
-            map.on('moveend', (e) => {
-                updateClusterData();
-                // update the source for the unclustered points layer
-                map.getSource('tasks').setData(clusterData);
-                if (!this.isUserInsideMap && this.prevPos) {
-                    this.updateUserLocationArrow(this.prevPos.latitude, this.prevPos.longitude);
-                }
-            })
+            if (!this.markerEventsInitialized) {
+                this.markerEventsInitialized = true;
+                map.on('data', (e) => {
+                    if (e.sourceId !== 'tasks') return;
+                    updateCustomClusters();
+                })
 
+                map.on('moveend', (e) => {
+                    updateClusterData();
+                    map.getSource('tasks').setData(clusterData);
+                    if (!this.isUserInsideMap && this.prevPos) {
+                        this.updateUserLocationArrow(this.prevPos.latitude, this.prevPos.longitude);
+                    }
+                })
 
-            // Handle clicks on individual tasks
-            map.on('click', 'unclustered-point', (e: any) => {
-                if (e.features[0].properties.state === 'disabled') return;
-                this.taskClickedEvent.emit(e.features[0].properties.id);
-            });
+                map.on('click', 'unclustered-point', (e: any) => {
+                    if (e.features[0].properties.state === 'disabled') return;
+                    this.taskClickedEvent.emit(e.features[0].properties.id);
+                });
+            }
+        } finally {
+            this.redrawingMarkers = false;
         }
-        this.redrawingMarkers = false;
     }
 
     updateUserPosition(lat: number, lng: number) {

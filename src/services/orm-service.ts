@@ -428,7 +428,10 @@ export class OrmService {
     async removeDownloadedRoute(route: Route, removeTiles = false): Promise<Route> {
         // Reset route before removing
         let user = await this.getActiveUser();
-        await this.deleteUserScore((await this.findRouteById(route.id)).getScoreForUser(user));
+        let routeEntity = await this.findRouteById(route.id);
+        if (routeEntity) {
+            await this.deleteUserScore(routeEntity.getScoreForUser(user));
+        }
         if (removeTiles) {
             await this.imagesService.removeDownloadedURLs(this.getTileURLs(route), false);
         }

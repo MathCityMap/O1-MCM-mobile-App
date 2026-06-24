@@ -1,26 +1,30 @@
 import { Injectable } from "@angular/core";
-import { Diagnostic } from '@ionic-native/diagnostic';
-import { Platform } from 'ionic-angular';
-import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { Diagnostic } from "@ionic-native/diagnostic";
+import { Platform } from "ionic-angular";
+import { LocationAccuracy } from "@ionic-native/location-accuracy";
 import { checkAvailability } from "@ionic-native/core";
 
-
-import { AlertController } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Subscription } from 'rxjs/Subscription';
-import { Subscriber } from 'rxjs/Subscriber';
-import { Geolocation, GeolocationOptions, Geoposition } from '@ionic-native/geolocation';
+import { AlertController } from "ionic-angular";
+import { ReplaySubject } from "rxjs/ReplaySubject";
+import { Subscription } from "rxjs/Subscription";
+import { Subscriber } from "rxjs/Subscriber";
+import {
+    Geolocation,
+    GeolocationOptions,
+    Geoposition,
+} from "@ionic-native/geolocation";
 
 @Injectable()
 export class GpsService {
     public static INSTANCE: GpsService;
 
-    constructor(private diagnostic: Diagnostic,
-                private alertCtrl: AlertController,
-                public platform: Platform,
-                private locationAcc: LocationAccuracy,
-                private geolocation: Geolocation) {
+    constructor(
+        private diagnostic: Diagnostic,
+        private alertCtrl: AlertController,
+        public platform: Platform,
+        private locationAcc: LocationAccuracy,
+        private geolocation: Geolocation,
+    ) {
         GpsService.INSTANCE = this;
         this.subject.emptyCallback = () => {
             if (this.geolocationSubscription) {
@@ -29,7 +33,7 @@ export class GpsService {
                 this.geolocationSubscription = null;
                 console.log("unsubscribing from geolocation.watchPosition()");
             }
-        }
+        };
     }
 
     private subject = new CustomReplaySubject<Geoposition>(1);
@@ -37,51 +41,56 @@ export class GpsService {
     private lastPosition: Geoposition;
     private didTryToEnableLocation = false;
 
-
     public async isLocationOn() {
         await this.platform.ready();
         console.log("platform: " + this.platform.platforms());
 
         //if the platform is not browser
-        if (this.platform.is("cordova") &&
-            checkAvailability(LocationAccuracy.getPluginRef(), null, LocationAccuracy.getPluginName()) === true) {
-            let enabled = await this.diagnostic.isLocationEnabled()
+        if (
+            this.platform.is("cordova") &&
+            checkAvailability(
+                LocationAccuracy.getPluginRef(),
+                null,
+                LocationAccuracy.getPluginName(),
+            ) === true
+        ) {
+            let enabled = await this.diagnostic.isLocationEnabled();
             //if the location is off
             console.log("LOCATION##: ", enabled);
             if (!enabled) await this.turnLocationOn();
         }
     }
 
-
     async locationAlert() {
         let confirm = this.alertCtrl.create({
-            title: 'Location Off',
-            message: 'Do you want to turn on your device location?',
+            title: "Location Off",
+            message: "Do you want to turn on your device location?",
             buttons: [
                 {
-                    text: 'NO',
+                    text: "NO",
                     handler: () => {
-                        console.log('Disagree clicked');
-                    }
+                        console.log("Disagree clicked");
+                    },
                 },
                 {
-                    text: 'YES',
+                    text: "YES",
                     handler: () => {
                         this.turnLocationOn();
-                    }
-                }
-            ]
+                    },
+                },
+            ],
         });
         confirm.present();
     }
 
-
     async turnLocationOn() {
-        const canRequest = await this.locationAcc.canRequest()
+        const canRequest = await this.locationAcc.canRequest();
         if (canRequest && !this.didTryToEnableLocation) {
             this.didTryToEnableLocation = true;
             try {
-                await this.locationAcc.request(this.locationAcc.REQUEST_PRIORITY_HIGH_ACCURACY);
+                await this.locationAcc.request(
+                    this.locationAcc.REQUEST_PRIORITY_HIGH_ACCURACY,
+                );
                 console.log("Device Location is now turned ON");
             } catch (e) {
                 console.log("Device Location is still OFF ", e);
@@ -107,21 +116,27 @@ export class GpsService {
      * @param {GeolocationOptions} options  The [geolocation options](https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions).
      * @returns {Observable<Geoposition>} Returns an Observable that notifies with the [position](https://developer.mozilla.org/en-US/docs/Web/API/Position) of the device, or errors.
      */
-    watchPosition(options?: GeolocationOptions): CustomReplaySubject<Geoposition> {
+    watchPosition(
+        options?: GeolocationOptions,
+    ): CustomReplaySubject<Geoposition> {
         if (!this.geolocationSubscription) {
             console.log("subscribing to geolocation.watchPosition()");
             if (!options) {
                 options = {
-                    enableHighAccuracy: true
-                }
+                    enableHighAccuracy: true,
+                };
             }
-            this.geolocationSubscription = this.geolocation.watchPosition(options).subscribe(next => {
-                this.subject.next(next);
-                if (next && next.coords) {
-                    console.debug(`watchPosition: ${next.coords.latitude}, ${next.coords.longitude}`);
-                    this.lastPosition = next;
-                }
-            });
+            this.geolocationSubscription = this.geolocation
+                .watchPosition(options)
+                .subscribe((next) => {
+                    this.subject.next(next);
+                    if (next && next.coords) {
+                        console.debug(
+                            `watchPosition: ${next.coords.latitude}, ${next.coords.longitude}`,
+                        );
+                        this.lastPosition = next;
+                    }
+                });
         }
         return this.subject;
     }
@@ -132,23 +147,30 @@ export class GpsService {
      * @param {GeolocationOptions} options  The [geolocation options](https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions).
      * @returns {Promise<Geoposition>} Returns a Promise that resolves with the [position](https://developer.mozilla.org/en-US/docs/Web/API/Position) of the device, or rejects with an error.
      */
-    async getCurrentPosition(options?: GeolocationOptions): Promise<Geoposition> {
+    async getCurrentPosition(
+        options?: GeolocationOptions,
+    ): Promise<Geoposition> {
         if (!options) {
             options = {
                 enableHighAccuracy: true,
-                timeout: 2000
-            }
+                timeout: 2000,
+            };
         }
         try {
             let position = await this.geolocation.getCurrentPosition(options);
             this.subject.next(position);
             if (position && position.coords) {
-                console.debug(`getCurrentPosition: ${position.coords.latitude}, ${position.coords.longitude}`);
+                console.debug(
+                    `getCurrentPosition: ${position.coords.latitude}, ${position.coords.longitude}`,
+                );
                 this.lastPosition = position;
             }
-            return  position;
+            return position;
         } catch (e) {
-            console.log('gps-service.ts: getCurrentPosition() caught exception', e);
+            console.log(
+                "gps-service.ts: getCurrentPosition() caught exception",
+                e,
+            );
             return null;
         }
     }

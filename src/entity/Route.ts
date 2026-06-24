@@ -295,11 +295,18 @@ export class Route {
 
     private calcBoundingBoxAndCenter() {
         const padding: number = 0.0015;
-        if (!this.boundingBox) {
+        if (!this.boundingBox || !this.center) {
             return;
         }
-        const jsonBB = JSON.parse(this.boundingBox);
-        const jsonCenter = JSON.parse(this.center);
+        let jsonBB;
+        let jsonCenter;
+        try {
+            jsonBB = JSON.parse(this.boundingBox);
+            jsonCenter = JSON.parse(this.center);
+        } catch (e) {
+            console.warn('Route.calcBoundingBoxAndCenter: invalid JSON', e);
+            return;
+        }
         if (!jsonBB) {
             return;
         }
@@ -395,7 +402,6 @@ export class Route {
         if (!attr.answerFeedback) {
             attr.answerFeedback = "true";
         }
-        this.attr = JSON.stringify(attr);
         return attr.hasOwnProperty(key);
     }
 
@@ -545,7 +551,11 @@ export class Route {
     setNarrativeStrings() {
         let strings = this.getAttributes().narrativeStrings;
         if (strings != null) {
-            this.narrativeStrings = JSON.parse(strings);
+            try {
+                this.narrativeStrings = JSON.parse(strings);
+            } catch (e) {
+                console.warn('Route.setNarrativeStrings: invalid JSON', e);
+            }
         }
     }
 
@@ -585,14 +595,24 @@ export class Route {
 
     getPathGeoJson() {
         if (this.pathGeojson && this.pathInfo !== 'undefined') {
-            return JSON.parse(this.pathGeojson);
+            try {
+                return JSON.parse(this.pathGeojson);
+            } catch (e) {
+                console.warn('Route.getPathGeoJson: invalid JSON', e);
+                return null;
+            }
         }
         return null;
     }
 
     getPathInfo() {
         if (this.pathInfo && this.pathInfo !== 'undefined') {
-            return JSON.parse(this.pathInfo);
+            try {
+                return JSON.parse(this.pathInfo);
+            } catch (e) {
+                console.warn('Route.getPathInfo: invalid JSON', e);
+                return null;
+            }
         }
         return null;
     }

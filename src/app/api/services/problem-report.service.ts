@@ -40,33 +40,34 @@ export class ProblemReportService extends BaseService{
         console.log('REQUEST BODY', body);
         console.log('REQUEST HEADER', headers);
 
-        return this.http.post<ImageUrlResponse>(Helper.MEDIASERVER_BASE_URL + "/mcm/uploadImage", body, {headers: headers}).toPromise();
+        return this.http.post<ImageUrlResponse>(Helper.MEDIASERVER_BASE_URL + "/mcm/uploadImage", body, {headers: headers}).toPromise()
+            .catch(err => {
+                console.warn('ProblemReportService: uploadImage failed', err);
+                return null;
+            });
     }
 
     public sendReports(taskCode: string, problemType: string, text: string, imageUrl: string) {
-        return this.http.post(this.rootUrl + "/problem-reports/tasks/new", {taskCode, problemType, text, imageUrl}).toPromise();
+        return this.http.post(this.rootUrl + "/problem-reports/tasks/new", {taskCode, problemType, text, imageUrl}).toPromise()
+            .catch(err => {
+                console.warn('sendReports failed', err);
+                return null;
+            });
     }
 
     public convertDataUriToBlob(dataURI) {
-        // convert base64 to raw binary data held in a string
-        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-        let byteString = atob(dataURI.split(',')[1]);
-
-        // separate out the mime component
-        let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
-
-        // write the bytes of the string to an ArrayBuffer
-        let ab = new ArrayBuffer(byteString.length);
-
-        // create a view into the buffer
-        let ia = new Uint8Array(ab);
-
-        // set the bytes of the buffer to the correct values
-        for (let i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
+        try {
+            let byteString = atob(dataURI.split(',')[1]);
+            let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+            let ab = new ArrayBuffer(byteString.length);
+            let ia = new Uint8Array(ab);
+            for (let i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([ab], {type: mimeString});
+        } catch (e) {
+            console.warn('convertDataUriToBlob: invalid data URI', e);
+            return null;
         }
-
-        // write the ArrayBuffer to a blob, and you're done
-        return new Blob([ab], {type: mimeString});
     }
 }

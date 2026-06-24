@@ -243,6 +243,9 @@ export class ChatAndSessionService {
                 chatMessage: msg // FIXME ChatMessage convert to SessionChatMessageRequest (msg = string)
             }).toPromise().then((msg: SessionChatMessageResponse) => {
                 return this.getChatMessage(msg, sessionInfo.sessionUser);
+            }).catch(err => {
+                console.warn("ChatAndSessionService: sendMsg failed", err);
+                return null;
             }));
         });
 
@@ -278,10 +281,16 @@ export class ChatAndSessionService {
 
     async setActiveSession(session: Session, teamName: string, teamMembers: string[]) {
         console.log("Joining session.");
-        let sessionUser = await this.sessionService.joinSession({
-            sessionCode: session.code,
-            request: {teamName: teamName, teamMembers: teamMembers}
-        }).toPromise();
+        let sessionUser: SessionUser;
+        try {
+            sessionUser = await this.sessionService.joinSession({
+                sessionCode: session.code,
+                request: {teamName: teamName, teamMembers: teamMembers}
+            }).toPromise();
+        } catch (e) {
+            console.warn("ChatAndSessionService: joinSession failed", e);
+            return;
+        }
         if (sessionUser) {
             console.log("Successfully joined. Storing active session");
             let sessionInfo = {
@@ -328,10 +337,14 @@ export class ChatAndSessionService {
         await this.storage.remove(ChatAndSessionService.STORAGE_KEY_SESSION);
         this.subscribeForAndSendEvents(null);
         if (this.transientActiveSession != null) {
-            await this.sessionUserService.leaveSession({
-                userToken: this.transientActiveSession.sessionUser.token,
-                sessionCode: this.transientActiveSession.session.code
-            }).toPromise();
+            try {
+                await this.sessionUserService.leaveSession({
+                    userToken: this.transientActiveSession.sessionUser.token,
+                    sessionCode: this.transientActiveSession.session.code
+                }).toPromise();
+            } catch (e) {
+                console.warn("ChatAndSessionService: leaveSession failed", e);
+            }
         }
         // Reset watch parameters
         this.receivers = [];
@@ -475,8 +488,13 @@ export class ChatAndSessionService {
     public async checkForNewMessages(sessionInfo: SessionInfo) {
         console.log("check for new msgs ...");
         this.receivers.forEach(async receiver => {
-            let messages = await this.getNewMsgs(sessionInfo, receiver.token).toPromise();
-            // foreach msg -> publish new event
+            let messages: ChatMessage[];
+            try {
+                messages = await this.getNewMsgs(sessionInfo, receiver.token).toPromise();
+            } catch (e) {
+                console.warn("ChatAndSessionService: getNewMsgs failed", e);
+                return;
+            }
             messages.forEach((msg: ChatMessage) => {
                 // console.log("chat msgs received: ", msg);
                 this.events.publish('chat:received', msg);
@@ -518,25 +536,31 @@ export class ChatAndSessionService {
         let receivers: SessionUserResponse[] = [];
         if (!sessionInfo.sessionUser.wp_user_id || sessionInfo.sessionUser.wp_user_id <= 0) {
 
-            let admin: SessionUserResponse = await this.sessionService.getSessionAdmin({
-                sessionCode: sessionInfo.session.code,
-                userToken: sessionInfo.sessionUser.token
-            }).toPromise().then(res => {
-                return res;
-            });
-            receivers.push(admin);
+            try {
+                let admin: SessionUserResponse = await this.sessionService.getSessionAdmin({
+                    sessionCode: sessionInfo.session.code,
+                    userToken: sessionInfo.sessionUser.token
+                }).toPromise();
+                receivers.push(admin);
+            } catch (e) {
+                console.warn("ChatAndSessionService: getSessionAdmin failed", e);
+            }
         } else {
-            let users: SessionUserResponse[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)
-                .toPromise()
-                .then((users: SessionUsersResponse) => {
-                    return users.users;
-                });
+            try {
+                let users: SessionUserResponse[] = await this.sessionService.getSessionUsers(sessionInfo.session.code)
+                    .toPromise()
+                    .then((users: SessionUsersResponse) => {
+                        return users.users;
+                    });
 
-            users.filter((user: SessionUserResponse) => {
-                return !(user.id === sessionInfo.sessionUser.id)
-            })
+                users = users.filter((user: SessionUserResponse) => {
+                    return !(user.id === sessionInfo.sessionUser.id)
+                })
 
-            receivers = users;
+                receivers = users;
+            } catch (e) {
+                console.warn("ChatAndSessionService: getSessionUsers failed", e);
+            }
         }
 
         return Promise.all(receivers);
@@ -559,29 +583,33 @@ export class ChatAndSessionService {
     Was haben Krokodile und Italiener gemeinsam?
      */
     private async sendUserEvents() {
-        let sessionInfo = this.transientActiveSession;
-        console.log('send user events');
-        if (sessionInfo) {
-            if (ChatAndSessionService.USER_EVENTS.length > 0) {
-                let position = this.gpsService.getLastPosition();
-                if(position && position.coords){
-                    console.log(position.coords);
-                    ChatAndSessionService.USER_EVENTS.forEach(event => {
-                        event.lat = position.coords.latitude.toString();
-                        event.lon = position.coords.longitude.toString();
-                    });
+        try {
+            let sessionInfo = this.transientActiveSession;
+            console.log('send user events');
+            if (sessionInfo) {
+                if (ChatAndSessionService.USER_EVENTS.length > 0) {
+                    let position = this.gpsService.getLastPosition();
+                    if(position && position.coords){
+                        console.log(position.coords);
+                        ChatAndSessionService.USER_EVENTS.forEach(event => {
+                            event.lat = position.coords.latitude.toString();
+                            event.lon = position.coords.longitude.toString();
+                        });
+                    }
+                    let eventsAddRequest = new EventsAddRequest();
+                    eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;
+                    let params = {
+                        events: eventsAddRequest,
+                        sessionCode: sessionInfo.session.code,
+                        userToken: sessionInfo.sessionUser.token
+                    };
+                    let sessionEventsResponse = await this.sessionEventService.addEvents(params).toPromise();
+                    console.log(ChatAndSessionService.USER_EVENTS);
+                    ChatAndSessionService.USER_EVENTS = [];
                 }
-                let eventsAddRequest = new EventsAddRequest();
-                eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;
-                let params = {
-                    events: eventsAddRequest,
-                    sessionCode: sessionInfo.session.code,
-                    userToken: sessionInfo.sessionUser.token
-                };
-                let sessionEventsResponse = await this.sessionEventService.addEvents(params).toPromise();
-                console.log(ChatAndSessionService.USER_EVENTS);
-                ChatAndSessionService.USER_EVENTS = [];
             }
+        } catch (e) {
+            console.warn("ChatAndSessionService: sendUserEvents failed", e);
         }
     }
 
@@ -598,41 +626,49 @@ export class ChatAndSessionService {
     }
 
     private async fetchLeaderboard() {
-        let sessionInfo = this.transientActiveSession;
-        if (sessionInfo) {
-            if (sessionInfo.session.has_leaderboard) {
-                let params = new class implements SessionUserLeaderboardService.GetLeaderboardParams {
-                    sessionCode: string;
-                    userToken: string;
-                };
-                params.sessionCode = sessionInfo.session.code;
-                params.userToken = sessionInfo.sessionUser.token;
-                let leaderboard = await this.leaderBoardService.getLeaderboard(params).toPromise();
-                console.log(leaderboard);
-                this.leaderBoard = leaderboard;
+        try {
+            let sessionInfo = this.transientActiveSession;
+            if (sessionInfo) {
+                if (sessionInfo.session.has_leaderboard) {
+                    let params = new class implements SessionUserLeaderboardService.GetLeaderboardParams {
+                        sessionCode: string;
+                        userToken: string;
+                    };
+                    params.sessionCode = sessionInfo.session.code;
+                    params.userToken = sessionInfo.sessionUser.token;
+                    let leaderboard = await this.leaderBoardService.getLeaderboard(params).toPromise();
+                    console.log(leaderboard);
+                    this.leaderBoard = leaderboard;
+                }
             }
+        } catch (e) {
+            console.warn("ChatAndSessionService: fetchLeaderboard failed", e);
         }
     }
 
     private async fetchAuthorEvents() {
-        let sessionInfo = this.transientActiveSession;
-        if (sessionInfo) {
-            let params = new class implements SessionEventService.GetAuthorEventsParams {
-                sessionCode: string;
-                userToken: string;
-                unixTime: string
-            };
-            params.sessionCode = sessionInfo.session.code;
-            params.userToken = sessionInfo.sessionUser.token;
-            params.unixTime = sessionInfo.authorEvents_lastPull.toString();
-            let authorEvents = await this.sessionEventService.getAuthorEvents(params).toPromise();
-            console.log(authorEvents);
+        try {
+            let sessionInfo = this.transientActiveSession;
+            if (sessionInfo) {
+                let params = new class implements SessionEventService.GetAuthorEventsParams {
+                    sessionCode: string;
+                    userToken: string;
+                    unixTime: string
+                };
+                params.sessionCode = sessionInfo.session.code;
+                params.userToken = sessionInfo.sessionUser.token;
+                params.unixTime = sessionInfo.authorEvents_lastPull.toString();
+                let authorEvents = await this.sessionEventService.getAuthorEvents(params).toPromise();
+                console.log(authorEvents);
 
-            // Update this sessions last update info
-            sessionInfo.authorEvents_lastPull = moment().unix();
-            this.transientActiveSession = sessionInfo;
-            await this.updateSession(sessionInfo);
-            this.parseAuthorEvents(authorEvents);
+                // Update this sessions last update info
+                sessionInfo.authorEvents_lastPull = moment().unix();
+                this.transientActiveSession = sessionInfo;
+                await this.updateSession(sessionInfo);
+                this.parseAuthorEvents(authorEvents);
+            }
+        } catch (e) {
+            console.warn("ChatAndSessionService: fetchAuthorEvents failed", e);
         }
     }
 
@@ -661,6 +697,8 @@ export class ChatAndSessionService {
                     that.transientActiveSession.session = session;
                     await that.updateSession(that.transientActiveSession);
                     that.events.publish('session:updated', that.transientActiveSession);
+                }).catch(err => {
+                    console.warn("ChatAndSessionService: getSessionByCode failed", err);
                 });
             }
             else if (event.title === SessionEventTitle.AUTHOR_ASSIGN_TASK) {

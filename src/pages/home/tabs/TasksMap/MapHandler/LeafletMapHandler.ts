@@ -103,14 +103,13 @@ export class LeafletMapHandler implements MapHandlerInterface {
             }
 
             const tiles = this.routeApiService.getTileURLsAsObject(this.route);
-            const resolveOfflineURLsAsTiles = !this.route.isNarrativeEnabled();
             let that = this;
             offlineLayer.getTileUrl = function (coords) {
                 var url = (L.TileLayer.prototype as any).getTileUrl.call(this, coords);
                 var dbStorageKey = this._getStorageKey(url);
 
                 if (tiles[dbStorageKey]) {
-                    return Promise.resolve(that.imagesService.getOfflineURL(dbStorageKey, false, resolveOfflineURLsAsTiles));
+                    return that.imagesService.getOfflineTileURL(dbStorageKey);
                 }
                 return Promise.resolve(url);
 
@@ -184,151 +183,139 @@ export class LeafletMapHandler implements MapHandlerInterface {
             return;
         }
         this.redrawingMarkers = true;
-        console.log('LEAFLET ACTUALLY REDRAWING');
-        if (this.markerGroup != null) {
-            console.warn('removing markerGroup');
-            this.map.removeLayer(this.markerGroup);
-            this.markerGroup = null;
-        }
-        if (this.pathGroup != null) {
-            console.warn('removing pathGroup');
-            for (let layer of this.pathGroup) {
-                this.map.removeLayer(layer);
+        try {
+            console.log('LEAFLET ACTUALLY REDRAWING');
+            if (this.markerGroup != null) {
+                console.warn('removing markerGroup');
+                this.map.removeLayer(this.markerGroup);
+                this.markerGroup = null;
             }
-            this.pathGroup = null;
-        }
-        // this.map.eachLayer(layer => {
-        //     if ((layer instanceof L.Polyline) || (layer instanceof L.Marker)) {
-        //         this.map.removeLayer(layer);
-        //     }
-        // })
-        let markerGroup = (L as any).markerClusterGroup({
-            maxClusterRadius: 30,
-            iconCreateFunction: function (cluster) {
-                let childCount = cluster.getChildCount();
-                let markers = cluster.getAllChildMarkers();
-                let className = 'marker-cluster marker-cluster-';
-                if (childCount < 10) {
-                    className += 'small';
-                } else if (childCount < 100) {
-                    className += 'medium';
-                } else {
-                    className += 'large';
+            if (this.pathGroup != null) {
+                console.warn('removing pathGroup');
+                for (let layer of this.pathGroup) {
+                    this.map.removeLayer(layer);
                 }
-                let colorOccurrences = {};
-                let numberOfColoredMarkers = 0;
-                markers.map(marker => {
-                    if (marker.options.icon.clusterColor) {
-                        numberOfColoredMarkers++;
-                        if (colorOccurrences[marker.options.icon.clusterColor]) {
-                            colorOccurrences[marker.options.icon.clusterColor] += 1;
-                        } else {
-                            colorOccurrences[marker.options.icon.clusterColor] = 1;
-                        }
+                this.pathGroup = null;
+            }
+            let markerGroup = (L as any).markerClusterGroup({
+                maxClusterRadius: 30,
+                iconCreateFunction: function (cluster) {
+                    let childCount = cluster.getChildCount();
+                    let markers = cluster.getAllChildMarkers();
+                    let className = 'marker-cluster marker-cluster-';
+                    if (childCount < 10) {
+                        className += 'small';
+                    } else if (childCount < 100) {
+                        className += 'medium';
+                    } else {
+                        className += 'large';
                     }
-                });
-                let style = '';
-                let img = '';
-                let colors = Object.keys(colorOccurrences);
-                if (colors.length == 1) {
-                    style = `background-color: ${colors[0]}`;
-                } else {
-                    let stops = '';
-                    let alreadyFilledPercentage = 0;
-                    colors.map(color => {
-                        let n = colorOccurrences[color];
-                        let percentage = Math.round(n / numberOfColoredMarkers * 100);
-                        if (alreadyFilledPercentage > 0) {
-                            stops += ', ';
-                        }
-                        alreadyFilledPercentage += percentage;
-                        stops += `${color} 0 ${alreadyFilledPercentage}%`
-                    });
-
-                    let gradient = new ConicGradient({
-                        stops: stops,
-                        size: 24
-                    });
-                    img = `<img src="${gradient.png}"></img>`;
-                }
-                return new L.DivIcon({
-                    html: `<div style="${style}">${img}<span>${childCount}</span></div>`,
-                    className: className,
-                    iconSize: new L.Point(40, 40)
-                });
-            },
-        });
-
-        let geoJSON = this.route.getPathGeoJson();
-        let pathGroup = [];
-
-        for (let i = 0; i < tasks.length; i++) {
-            let task: Task = tasks[i];
-            if (!mapState.isShowingAllTasks && !mapState.visibleTasks[task.position]) {
-                continue;
-            }
-            let icon = this.taskOpenIcon;
-
-            if (task.taskFormat === TaskFormat.GROUP) {
-                icon = this.getMarkerForGroup(task, score);
-            } else {
-                let removeTaskFromSkippedArray = true;
-                if (task.inactive) {
-                    icon = this.taskDisabledIcon;
-                } else if (score.getTasksSaved().indexOf(task.id) > -1) {
-                    icon = this.taskSavedIcon;
-                } else if (score.getTasksSolved().indexOf(task.id) > -1) {
-                    icon = this.taskDonePerfectIcon;
-                } else if (score.getTasksSolvedLow().indexOf(task.id) > -1) {
-                    icon = this.taskDoneIcon;
-                } else if (score.getTasksFailed().indexOf(task.id) > -1) {
-                    icon = this.taskFailedIcon;
-                } else if (mapState.skippedTaskIds.indexOf(task.id) > -1) {
-                    icon = this.taskSkippedIcon;
-                    removeTaskFromSkippedArray = false;
-                }
-
-                if (removeTaskFromSkippedArray && mapState.skippedTaskIds.indexOf(task.id) > -1) {
-                    // remove task from skipped array
-                    mapState.skippedTaskIds.splice(mapState.skippedTaskIds.indexOf(task.id), 1);
-                }
-            }
-            if (geoJSON) {
-                let taskGeoJsons = geoJSON.data.features.filter(data => {
-                    //don't match types because some are string and some are numbers for some reason
-                    return data.properties.task_id == task.id;
-                });
-                console.log("GEO JSON", taskGeoJsons, task);
-                if (taskGeoJsons) {
-                    for (let taskGeoJson of taskGeoJsons) {
-                        // for (let coordinateArray of taskGeoJson.geometry.coordinates) {
-                        //     coordinateArray = coordinateArray.reverse();
-                        // }
-                        let GeoJsonLayer = L.geoJSON(taskGeoJson, {
-                            style: function (feature) {
-                                return {color: feature.properties.color, dashArray: "10 10"};
+                    let colorOccurrences = {};
+                    let numberOfColoredMarkers = 0;
+                    markers.map(marker => {
+                        if (marker.options.icon.clusterColor) {
+                            numberOfColoredMarkers++;
+                            if (colorOccurrences[marker.options.icon.clusterColor]) {
+                                colorOccurrences[marker.options.icon.clusterColor] += 1;
+                            } else {
+                                colorOccurrences[marker.options.icon.clusterColor] = 1;
                             }
+                        }
+                    });
+                    let style = '';
+                    let img = '';
+                    let colors = Object.keys(colorOccurrences);
+                    if (colors.length == 1) {
+                        style = `background-color: ${colors[0]}`;
+                    } else {
+                        let stops = '';
+                        let alreadyFilledPercentage = 0;
+                        colors.map(color => {
+                            let n = colorOccurrences[color];
+                            let percentage = Math.round(n / numberOfColoredMarkers * 100);
+                            if (alreadyFilledPercentage > 0) {
+                                stops += ', ';
+                            }
+                            alreadyFilledPercentage += percentage;
+                            stops += `${color} 0 ${alreadyFilledPercentage}%`
                         });
-                        // let polyline = new L.Polyline(taskGeoJson.geometry.coordinates, {
-                        //     color: taskGeoJson.properties.color,
-                        //     dashArray: "10 10"
-                        // });
-                        this.map.addLayer(GeoJsonLayer);
-                        pathGroup.push(GeoJsonLayer);
+
+                        let gradient = new ConicGradient({
+                            stops: stops,
+                            size: 24
+                        });
+                        img = `<img src="${gradient.png}"></img>`;
+                    }
+                    return new L.DivIcon({
+                        html: `<div style="${style}">${img}<span>${childCount}</span></div>`,
+                        className: className,
+                        iconSize: new L.Point(40, 40)
+                    });
+                },
+            });
+
+            let geoJSON = this.route.getPathGeoJson();
+            let pathGroup = [];
+
+            for (let i = 0; i < tasks.length; i++) {
+                let task: Task = tasks[i];
+                if (!mapState.isShowingAllTasks && !mapState.visibleTasks[task.position]) {
+                    continue;
+                }
+                let icon = this.taskOpenIcon;
+
+                if (task.taskFormat === TaskFormat.GROUP) {
+                    icon = this.getMarkerForGroup(task, score);
+                } else {
+                    let removeTaskFromSkippedArray = true;
+                    if (task.inactive) {
+                        icon = this.taskDisabledIcon;
+                    } else if (score.getTasksSaved().indexOf(task.id) > -1) {
+                        icon = this.taskSavedIcon;
+                    } else if (score.getTasksSolved().indexOf(task.id) > -1) {
+                        icon = this.taskDonePerfectIcon;
+                    } else if (score.getTasksSolvedLow().indexOf(task.id) > -1) {
+                        icon = this.taskDoneIcon;
+                    } else if (score.getTasksFailed().indexOf(task.id) > -1) {
+                        icon = this.taskFailedIcon;
+                    } else if (mapState.skippedTaskIds.indexOf(task.id) > -1) {
+                        icon = this.taskSkippedIcon;
+                        removeTaskFromSkippedArray = false;
+                    }
+
+                    if (removeTaskFromSkippedArray && mapState.skippedTaskIds.indexOf(task.id) > -1) {
+                        mapState.skippedTaskIds.splice(mapState.skippedTaskIds.indexOf(task.id), 1);
                     }
                 }
+                if (geoJSON) {
+                    let taskGeoJsons = geoJSON.data.features.filter(data => {
+                        return data.properties.task_id == task.id;
+                    });
+                    console.log("GEO JSON", taskGeoJsons, task);
+                    if (taskGeoJsons) {
+                        for (let taskGeoJson of taskGeoJsons) {
+                            let GeoJsonLayer = L.geoJSON(taskGeoJson, {
+                                style: function (feature) {
+                                    return {color: feature.properties.color, dashArray: "10 10"};
+                                }
+                            });
+                            this.map.addLayer(GeoJsonLayer);
+                            pathGroup.push(GeoJsonLayer);
+                        }
+                    }
+                }
+                markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
+                    if (task.inactive) return;
+                    this.taskClickedEvent.emit(task.id);
+                }));
             }
-            markerGroup.addLayer(L.marker([task.lat, task.lon], {icon: icon}).on('click', () => {
-                if (task.inactive) return;
-                this.taskClickedEvent.emit(task.id);
-            }));
+            this.map.addLayer(markerGroup);
+            console.log("MAP AFTER UPDATE", this.map);
+            this.markerGroup = markerGroup;
+            this.pathGroup = pathGroup;
+        } finally {
+            this.redrawingMarkers = false;
         }
-        // this.map.addLayer(pathGroup);
-        this.map.addLayer(markerGroup);
-        console.log("MAP AFTER UPDATE", this.map);
-        this.markerGroup = markerGroup;
-        this.pathGroup = pathGroup;
-        this.redrawingMarkers = false;
     }
 
     updateUserPosition(lat: number, lng: number): void {

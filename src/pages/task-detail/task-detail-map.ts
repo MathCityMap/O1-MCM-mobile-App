@@ -643,8 +643,6 @@ export class TaskDetailMap implements OnDestroy {
                 const tiles = this.routeApiService.getTileURLsAsObject(
                     this.route,
                 );
-                const resolveOfflineURLsAsTiles =
-                    !this.route.isNarrativeEnabled();
                 let that = this;
                 offlineLayer.getTileUrl = function (coords) {
                     var url = (L.TileLayer.prototype as any).getTileUrl.call(
@@ -654,13 +652,7 @@ export class TaskDetailMap implements OnDestroy {
                     var dbStorageKey = this._getStorageKey(url);
 
                     if (tiles[dbStorageKey]) {
-                        return Promise.resolve(
-                            that.imagesService.getOfflineURL(
-                                dbStorageKey,
-                                false,
-                                resolveOfflineURLsAsTiles,
-                            ),
-                        );
+                        return that.imagesService.getOfflineTileURL(dbStorageKey);
                     }
                     return Promise.resolve(url);
                 };

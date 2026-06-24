@@ -66,10 +66,14 @@ export class Score {
 
     getTasksSolved() : Array<number>{
         let ids: Array<number> = [];
-        let jsonIds = JSON.parse(this.tasksSolved);
-        jsonIds.forEach(id => {
-            ids.push(+id);
-        });
+        try {
+            let jsonIds = JSON.parse(this.tasksSolved);
+            jsonIds.forEach(id => {
+                ids.push(+id);
+            });
+        } catch (e) {
+            console.warn('Score.getTasksSolved: invalid JSON', e);
+        }
         return ids;
     }
 
@@ -87,10 +91,14 @@ export class Score {
 
     getTasksFailed() : Array<number>{
         let ids: Array<number> = [];
-        let jsonIds = JSON.parse(this.tasksFailed);
-        jsonIds.forEach(id => {
-            ids.push(+id);
-        });
+        try {
+            let jsonIds = JSON.parse(this.tasksFailed);
+            jsonIds.forEach(id => {
+                ids.push(+id);
+            });
+        } catch (e) {
+            console.warn('Score.getTasksFailed: invalid JSON', e);
+        }
         return ids;
     }
 
@@ -108,10 +116,14 @@ export class Score {
 
     getTasksSolvedLow() : Array<number>{
         let ids: Array<number> = [];
-        let jsonIds = JSON.parse(this.tasksSolvedLow);
-        jsonIds.forEach(id => {
-            ids.push(+id);
-        });
+        try {
+            let jsonIds = JSON.parse(this.tasksSolvedLow);
+            jsonIds.forEach(id => {
+                ids.push(+id);
+            });
+        } catch (e) {
+            console.warn('Score.getTasksSolvedLow: invalid JSON', e);
+        }
         return ids;
     }
 
@@ -129,10 +141,14 @@ export class Score {
 
     getTasksSaved() : Array<number>{
         let ids: Array<number> = [];
-        let jsonIds = JSON.parse(this.tasksSaved);
-        jsonIds.forEach(id => {
-            ids.push(+id);
-        });
+        try {
+            let jsonIds = JSON.parse(this.tasksSaved);
+            jsonIds.forEach(id => {
+                ids.push(+id);
+            });
+        } catch (e) {
+            console.warn('Score.getTasksSaved: invalid JSON', e);
+        }
         return ids;
     }
 
@@ -150,14 +166,17 @@ export class Score {
 
     getGroupsFinished() : Array<number>{
         let ids: Array<number> = [];
-        let jsonIds = JSON.parse(this.groupsFinished);
-        // Fallback for Scores created before this field existed
-        if (!jsonIds) {
-            return ids;
+        try {
+            let jsonIds = JSON.parse(this.groupsFinished);
+            if (!jsonIds) {
+                return ids;
+            }
+            jsonIds.forEach(id => {
+                ids.push(+id);
+            });
+        } catch (e) {
+            console.warn('Score.getGroupsFinished: invalid JSON', e);
         }
-        jsonIds.forEach(id => {
-            ids.push(+id);
-        });
         return ids;
     }
 

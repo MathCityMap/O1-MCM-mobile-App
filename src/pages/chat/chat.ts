@@ -161,6 +161,8 @@ export class ChatPage {
                 .then(res => {
                     this.msgList = res;
                     this.scrollToBottom();
+                }).catch(err => {
+                    console.warn("Chat: getMsgList failed", err);
                 }));
         });
 

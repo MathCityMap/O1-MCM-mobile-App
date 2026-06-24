@@ -312,8 +312,8 @@ export class SessionChatService extends BaseService {
 
     postMedia(file: FormData, session: string, sender: string): any {
         let __headers = new HttpHeaders();
-        __headers.append('Content-Type', 'multipart/form-data');
-        __headers.append('Accept', 'application/json');
+        __headers = __headers.append('Content-Type', 'multipart/form-data');
+        __headers = __headers.append('Accept', 'application/json');
 
 
 

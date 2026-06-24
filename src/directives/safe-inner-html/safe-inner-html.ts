@@ -18,17 +18,23 @@ export class SafeInnerHtmlDirective {
   }
 
     ngOnInit() {
-      this.el.nativeElement.innerHTML = this.test;
-      let childLinks = this.el.nativeElement.querySelector('a')
-      if (childLinks) {
-          childLinks.addEventListener('click', (e) => {
+      const temp = document.createElement('div');
+      temp.innerHTML = this.test;
+      const unsafeTags = temp.querySelectorAll('script, iframe, object, embed, [onclick], [onload], [onerror], [onmouseover], [onfocus], [onchange], [onsubmit], [onkeydown], [onkeyup], [onkeypress]');
+      for (let i = 0; i < unsafeTags.length; i++) {
+          unsafeTags[i].remove();
+      }
+      this.el.nativeElement.innerHTML = temp.innerHTML;
+      const childLinks = this.el.nativeElement.querySelectorAll('a');
+      for (let i = 0; i < childLinks.length; i++) {
+          childLinks[i].addEventListener('click', (e) => {
               e.stopPropagation();
               e.preventDefault();
-              let link = e.srcElement.href;
-
-              this.iab.create(link, '_system');
-              console.log('EventListenerClick', e.srcElement);
-          })
+              const href = e.currentTarget.getAttribute('href');
+              if (href && href.match(/^https?:\/\//i)) {
+                  this.iab.create(href, '_system');
+              }
+          });
       }
     }
 
