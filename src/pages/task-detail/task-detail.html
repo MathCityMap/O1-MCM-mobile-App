@@ -442,8 +442,7 @@
 						</p>
 						<div class="image-section">
 							<div class="image-upload" *ngIf="!taskDetails.imageUrl">
-								<ion-label
-									>
+								<ion-label>
 									{{ "a_task_submission_image_attach" | translate }}
 								</ion-label>
 								<div class="button-container">
@@ -455,7 +454,10 @@
 										end
 										(click)="getImageFromGallery()"
 									>
-										<img class="icon" src="./assets/icons/photos.svg"/>
+										<img
+											class="icon"
+											src="./assets/icons/photos.svg"
+										/>
 									</button>
 									<button
 										*ngIf="!taskDetails.imageUrl"
@@ -465,7 +467,10 @@
 										end
 										(click)="getImageFromCamera()"
 									>
-										<img class="icon" src="./assets/icons/camera.svg"/>
+										<img
+											class="icon"
+											src="./assets/icons/camera.svg"
+										/>
 									</button>
 								</div>
 							</div>
@@ -475,8 +480,7 @@
 								item-content
 								class="image-preview"
 							>
-								<ion-label
-								>
+								<ion-label>
 									{{ "a_task_submission_image_attached" | translate }}
 								</ion-label>
 								<button
@@ -487,7 +491,10 @@
 									class="remove"
 									(click)="resetImage()"
 								>
-									<img class="icon" src="./assets/icons/remove-b.svg"/>
+									<img
+										class="icon"
+										src="./assets/icons/remove-b.svg"
+									/>
 								</button>
 								<div class="image-file">
 									<img
@@ -766,7 +773,7 @@
 				[disabled]="isSubmissionSaving || (taskDetails.imageUrl === undefined && taskDetails.answer.length < 1)"
 				(click)="submissionTaskSave()"
 			>
-				{{ "p_save" | translate }}
+				{{ "p_task_submission_btn" | translate }}
 			</button>
 		</div>
 

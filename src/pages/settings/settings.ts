@@ -10,7 +10,7 @@ import {ReadAloudService} from "../../services/read-aloud-service";
 import {TTS} from "../../providers/tts";
 import TTSVoice = TTS.TTSVoice;
 import {Storage} from "@ionic/storage";
-import {TRANSLATION_CACHE_BASE} from "../../providers/translate-loader/mcmTranslateLoader";
+import {TRANSLATION_BASE_KEY, TRANSLATION_CACHE_BASE} from "../../providers/translate-loader/mcmTranslateLoader";
 import {RouteApiService} from "../../services/route-api.service";
 
 @IonicPage()
@@ -123,8 +123,8 @@ export class SettingsPage {
     }
 
     async reloadTranslation() {
-        let cacheKey = TRANSLATION_CACHE_BASE+this.language
-        await this.storage.remove(cacheKey);
+        await Promise.all(this.availableLanguages.map(lang => this.storage.remove(TRANSLATION_CACHE_BASE + lang)));
+        await Promise.all(this.availableLanguages.map(lang => this.storage.remove(TRANSLATION_BASE_KEY + lang)));
         this.translateService.reloadLang(this.language);
     }
 

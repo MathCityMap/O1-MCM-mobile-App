@@ -16,6 +16,8 @@ import {PortalPage} from "../pages/portal/portal";
 import {TranslationService} from "./api/services/translation.service";
 import {ReadAloudService} from "../services/read-aloud-service";
 import {RouteApiService} from "../services/route-api.service";
+import {AppVersion} from '@ionic-native/app-version';
+import {TRANSLATION_CACHE_BASE} from "../providers/translate-loader/mcmTranslateLoader";
 
 
 export enum MCMModalType {
@@ -34,6 +36,8 @@ export enum MCMModalType {
     templateUrl: 'app.html'
 })
 export class MyApp {
+    private static APP_VERSION_STORAGE_KEY = "MCM_LAST_APP_VERSION";
+
     rootPage: string = 'HomePage';
 
     public activeNarrative: string = 'default';
@@ -50,6 +54,7 @@ export class MyApp {
                 screenOrientation: ScreenOrientation,
                 translation: TranslationService,
                 routeApiService: RouteApiService,
+                private appVersion: AppVersion,
                 protected readAloud: ReadAloudService,
                 private storage: Storage,
                 private modalService: ModalsService,
@@ -58,6 +63,7 @@ export class MyApp {
         let that = this;
         platform.ready().then(async () => {
             await routeApiService.migrateDataFromSQLiteStorage().catch(e => console.error("old data migration failed", e));
+            await this.refreshTranslationCacheOnAppUpdate(platform, languageService).catch(e => console.error("translation cache refresh check failed", e));
             await languageService.initialize().catch(e => console.error("language service init failed", e));
             await translation.init().catch(e => console.error("translation init failed", e));
             try {
@@ -165,6 +171,32 @@ export class MyApp {
         CustomKeyBoard.hide();
     }
 
+    private async refreshTranslationCacheOnAppUpdate(platform: Platform, languageService: LanguageService) {
+        if (!platform.is('cordova')) {
+            return;
+        }
+        let currentVersion: string;
+        try {
+            currentVersion = await this.appVersion.getVersionNumber();
+        } catch (e) {
+            console.warn('could not read app version - skipping translation cache refresh check', e);
+            return;
+        }
+
+        if (!currentVersion) {
+            return;
+        }
+
+        const storedVersion = await this.storage.get(MyApp.APP_VERSION_STORAGE_KEY);
+        if (storedVersion === currentVersion) {
+            return;
+        }
+
+        const availableLanguages = languageService.getAvailableLanguages();
+        await Promise.all(availableLanguages.map(lang => this.storage.remove(TRANSLATION_CACHE_BASE + lang)));
+        await this.storage.set(MyApp.APP_VERSION_STORAGE_KEY, currentVersion);
+    }
+
     // Event emitter
     keyClick(k: string) {
         console.log('Event emitter - key: ', k);
@@ -189,4 +221,3 @@ export class MyApp {
         }
     }
 }
-

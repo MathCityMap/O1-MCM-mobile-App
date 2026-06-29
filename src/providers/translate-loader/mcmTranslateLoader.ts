@@ -6,7 +6,7 @@ import {Helper} from "../../classes/Helper";
 import {API_URL} from "../../env/env";
 import {catchError} from "rxjs/operators";
 
-const TRANSLATION_BASE_KEY = "MCM_TRANSLATION_STRINGS_"
+export const TRANSLATION_BASE_KEY = "MCM_TRANSLATION_STRINGS_"
 export const TRANSLATION_CACHE_BASE = "MCM_TRANSLATION_UPDATE_"
 
 export class McmTranslateLoader implements TranslateLoader {
@@ -38,19 +38,20 @@ export class McmTranslateLoader implements TranslateLoader {
                 ).subscribe({
                     next: (val) => {
                         const key = TRANSLATION_BASE_KEY+lang
-                        // replace all ###*.### with {{*.}} in every entry of val here
-                        let parsedVal = {};
-                        Object.keys(val).map(key => {
-                            let translation = val[key];
-                            parsedVal[key] = translation.replace(/\\(')/g, '$1').replace(/\\n/g, '\n').replace(/###([^#]*)###/g, '{{$1}}');
+                        const parsedVal = this.normalizeTranslations(val);
+                        this.getMergedWithLocalFallback(lang, parsedVal).subscribe({
+                            next: (mergedTranslations) => {
+                                this.storage.set(key, mergedTranslations);
+                                timestamp = Date.now();
+                                this.storage.set(cacheKey, timestamp);
+                                subscriber.next(mergedTranslations);
+                            },
+                            error: (err) => subscriber.error(err),
+                            complete: () => subscriber.complete()
                         });
-                        this.storage.set(key, parsedVal);
-                        timestamp = Date.now();
-                        this.storage.set(cacheKey, timestamp);
-                        subscriber.next(parsedVal)
                     },
                     error: (err) => subscriber.error(err),  // Should not be reached due to catchError
-                    complete: () => subscriber.complete()
+                    complete: () => {}
                 })
             });
         })
@@ -61,14 +62,17 @@ export class McmTranslateLoader implements TranslateLoader {
            const key = TRANSLATION_BASE_KEY+lang
            this.storage.get(key).then( (result) => {
                if (result) {
-                   subscriber.next(result);
-                   subscriber.complete();
+                   this.getMergedWithLocalFallback(lang, result).subscribe({
+                       next: (mergedTranslations) => subscriber.next(mergedTranslations),
+                       error: (err) => subscriber.error(err),
+                       complete: () => subscriber.complete()
+                   });
                    return;
                }
                // nothing in cache use local translation as fallback
                this.fetchLocalTranslation(lang).subscribe({
-                   next: (val) => subscriber.next(val),
-                   error: (err) => subscriber.error(err),
+                    next: (val) => subscriber.next(val),
+                    error: (err) => subscriber.error(err),
                    complete: () => subscriber.complete()
                    }
                )
@@ -78,5 +82,35 @@ export class McmTranslateLoader implements TranslateLoader {
 
     fetchLocalTranslation(lang: string): Observable<any> {
         return this.httpClient.get(`./assets/localization/${lang}.json`);
+    }
+
+    private normalizeTranslations(rawTranslations: any): any {
+        let parsedTranslations = {};
+        Object.keys(rawTranslations || {}).map(key => {
+            let translation = rawTranslations[key];
+            if (typeof translation !== 'string') {
+                parsedTranslations[key] = translation;
+                return;
+            }
+            parsedTranslations[key] = translation.replace(/\\(')/g, '$1').replace(/\\n/g, '\n').replace(/###([^#]*)###/g, '{{$1}}');
+        });
+        return parsedTranslations;
+    }
+
+    private getMergedWithLocalFallback(lang: string, preferredTranslations: any): Observable<any> {
+        return new Observable(subscriber => {
+            this.fetchLocalTranslation(lang).pipe(
+                catchError(_err => new Observable<any>(fallbackSubscriber => {
+                    fallbackSubscriber.next({});
+                    fallbackSubscriber.complete();
+                }))
+            ).subscribe({
+                next: (localTranslations) => {
+                    subscriber.next(Object.assign({}, localTranslations || {}, preferredTranslations || {}));
+                },
+                error: (err) => subscriber.error(err),
+                complete: () => subscriber.complete()
+            })
+        });
     }
 }
