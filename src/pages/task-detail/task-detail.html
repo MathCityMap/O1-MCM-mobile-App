@@ -423,7 +423,7 @@
 									*ngFor="let selectable of blankSelectables"
 									(click)="fillActiveBlank(selectable)"
 									class="blank"
-									>{{selectable}}</span
+									>{{selectable.text}}</span
 								>
 								<p *ngIf="blankSelectables.length === 0">
 									{{ 'a_task_blankWords_empty' | translate }}

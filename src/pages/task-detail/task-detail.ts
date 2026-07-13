@@ -97,7 +97,7 @@ export class TaskDetail {
     protected specialSolution: any;
     protected answerIndex: any = null;
     private blankRegex = /[*$]{2}([^*$]+)[*$]{2}/g;
-    protected blankSelectables: Array<string> = [];
+    protected blankSelectables: Array<{text: string, count: number}> = [];
 
     protected multipleChoiceList: Array<any> = [];
 
@@ -972,7 +972,6 @@ export class TaskDetail {
                                 this.task.id.toString(),
                             );
                         }
-                        // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                         if (Helper.isOffByPowerOfTen(answer, vonLow, bisLow)) {
                             this.taskSolved("offByTen", [""]);
                             return;
@@ -987,7 +986,6 @@ export class TaskDetail {
                             this.task.id.toString(),
                         );
                     }
-                    // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                     if (Helper.isOffByPowerOfTen(answer, von, bis)) {
                         this.taskSolved("offByTen", [""]);
                         return;
@@ -1142,14 +1140,15 @@ export class TaskDetail {
                         this.task.id.toString(),
                     );
                 }
-                // TODO MCM-708 Check if we are off by a power of ten and mark adaptive if we are
                 let isOffByTen = false;
                 for (let i = 0; i < answers.length; i++) {
                     let answer = answers[i];
+                    if (answer.solved) continue;
                     let checkAnswer = parseFloat(
                         answer.answer.replace(",", "."),
                     );
                     let solution = solutions[i];
+                    console.log('IsOffByTen', checkAnswer, solution.low, solution.high, Helper.isOffByPowerOfTen(checkAnswer, solution.low, solution.high,));
                     if (
                         Helper.isOffByPowerOfTen(
                             checkAnswer,
@@ -1253,6 +1252,7 @@ export class TaskDetail {
             let detailSolutions = [];
             let blankText: string = this.specialSolution.val;
             for (let answer of this.taskDetails.answerMultipleChoice) {
+                let answerText = typeof answer.answer === "string" ? answer.answer : answer.answer.text;
                 let solutionObject = solutions.find((sol) => {
                     return (
                         sol.blank === "$$" + answer.id + "$$" ||
@@ -1261,10 +1261,10 @@ export class TaskDetail {
                 });
                 let answerPrecision = 1;
                 for (let solution of solutionObject.answers) {
-                    answer.answer = trim(answer.answer);
+                    answerText = trim(answerText);
                     let absoluteDistance = Levenstein(
                         solution.toLowerCase(),
-                        answer.answer.toLowerCase(),
+                        answerText.toLowerCase(),
                     );
                     let relativeDistance = absoluteDistance / solution.length;
                     if (relativeDistance < answerPrecision) {
@@ -1289,9 +1289,9 @@ export class TaskDetail {
                 let blankMatch = regex.exec(blankText);
                 blankText = blankText.replace(
                     blankMatch[0],
-                    `<span class="blank ${answer.solved ? "correct" : "false"}">${answer.answer}</span>`,
+                    `<span class="blank ${answer.solved ? "correct" : "false"}">${answerText}</span>`,
                 );
-                detailSolutions.push(answer.answer);
+                detailSolutions.push(answerText);
             }
             if (solvedTask) {
                 this.CalculateScore("blanks", "solved");
@@ -3605,7 +3605,7 @@ export class TaskDetail {
             if (savedAnswer && savedAnswer.answer !== "") {
                 blankText = blankText.replace(
                     blankMatch[0],
-                    `<span id="${blankMatch[1]}" data-count="${placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : "0"}" class="blank ${(savedAnswer && savedAnswer.solved) || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed)) ? "disabled" : ""}">${savedAnswer.answer}</span>`,
+                    `<span id="${blankMatch[1]}" data-count="${placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : "0"}" class="blank ${(savedAnswer && savedAnswer.solved) || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed)) ? "disabled" : ""}">${savedAnswer.answer.text}</span>`,
                 );
             } else {
                 blankText = blankText.replace(
@@ -3649,23 +3649,39 @@ export class TaskDetail {
                 }
                 this.taskDetails.answerMultipleChoice = answers;
             }
-            let selectables = [];
-            for (let answer of this.taskDetails.answerMultipleChoice) {
-                if (answer.answer !== answer.id) {
-                    selectables.push(answer.id);
+            let selectables: Array<{text: string, count: number}> = [];
+            let matchedAnswers = [];
+            for (let solutionObject of this.specialSolution.features) {
+                let expectedAnswers = solutionObject.answers;
+                for (let expectedAnswer of expectedAnswers) {
+                    let matchingAnswer = this.taskDetails.answerMultipleChoice.find(
+                        (answer) => {
+                            let previouslyMatched = matchedAnswers.find(mAnswer => mAnswer.id === answer.id && mAnswer.count === answer.count);
+                            return answer.answer.text === expectedAnswer && !previouslyMatched;
+                        },
+                    );
+                    if (!matchingAnswer) {
+                        selectables.push({text: expectedAnswer, count: selectables.filter(selectable => selectable.text === expectedAnswer).length});
+                        continue;
+                    }
+                    matchedAnswers.push(matchingAnswer);
                 }
             }
             let distractors = this.specialSolution.distractors;
             for (let distractor of distractors) {
                 let matchingAnswer = this.taskDetails.answerMultipleChoice.find(
                     (answer) => {
-                        return answer.answer === distractor;
+                        let previouslyMatched = matchedAnswers.find(mAnswer => mAnswer.id === answer.id && mAnswer.count === answer.count);
+                        return answer.answer.text === distractor && !previouslyMatched;
                     },
                 );
                 if (!matchingAnswer) {
-                    selectables.push(distractor);
+                    selectables.push({text: distractor, count: selectables.filter(selectable => selectable.text === distractor).length});
+                    continue;
                 }
+                matchedAnswers.push(matchingAnswer);
             }
+            console.log('Matched answers', matchedAnswers);
             this.blankSelectables = Helper.shuffleArray(selectables);
             for (let blank of Array.from(blanks)) {
                 blank.addEventListener("click", (event: any) => {
@@ -3674,16 +3690,18 @@ export class TaskDetail {
                     let isActive = element.classList.contains("active");
                     let isEmpty = element.classList.contains("empty");
                     if (!isEmpty) {
-                        let text = element.innerText;
+                        console.log('finding answer object for element', element, this.taskDetails.answerMultipleChoice);
                         let answerObject =
                             this.taskDetails.answerMultipleChoice.find(
                                 (item) => {
-                                    return item.id === element.id;
+                                    return item.id === element.id && item.count === element.dataset.count;
                                 },
                             );
-                        answerObject.answer = "";
+                        let previousAnswer = {...answerObject.answer};
+                        console.log('CLicked on answeraa', previousAnswer);
+                        answerObject.answer = undefined;
                         element.classList.add("empty");
-                        this.blankSelectables.unshift(text);
+                        this.blankSelectables.unshift(previousAnswer);
                         element.innerText = "?";
                         this.setActiveOnBlank(element);
                         return;
@@ -3715,20 +3733,20 @@ export class TaskDetail {
         element.classList.add("active");
     }
 
-    fillActiveBlank(value: string) {
+    fillActiveBlank(value: { text: string, count: number }) {
         let activeElements = document.getElementsByClassName("blank active");
         if (activeElements.length === 0) return;
-        let activeElement = activeElements[0];
+        let activeElement = activeElements[0] as HTMLElement;
         let answerObject = this.taskDetails.answerMultipleChoice.find(
             (item) => {
-                return item.id === activeElement.id;
+                return item.id === activeElement.id && item.count === activeElement.dataset.count;
             },
         );
         activeElement.classList.remove("empty");
         answerObject.answer = value;
-        activeElement.innerHTML = value;
+        activeElement.innerHTML = value.text;
         this.blankSelectables = this.blankSelectables.filter((el) => {
-            return el !== value;
+            return !(el.text === value.text && el.count === value.count);
         });
         this.setActiveOnFirstEmptyBlank();
     }

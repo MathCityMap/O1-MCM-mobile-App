@@ -210,11 +210,13 @@ export class ChatPage {
         if (this.editorImg) {
             this.localPath = null;
             let imgDataUrl = this.editorImg;
-            const stringToRemove = 'data:image/jpeg;base64,';
-            if (imgDataUrl.startsWith(stringToRemove)) {
-                imgDataUrl = imgDataUrl.slice(stringToRemove.length);
-            }
-            let blob = new Blob([imgDataUrl], {type: 'image/jpeg'});
+            console.log('Uploading image', imgDataUrl);
+            const blob = await (await fetch(imgDataUrl)).blob();
+            // const stringToRemove = 'data:image/jpeg;base64,';
+            // if (imgDataUrl.startsWith(stringToRemove)) {
+            //     imgDataUrl = imgDataUrl.slice(stringToRemove.length);
+            // }
+            // let blob = new Blob([imgDataUrl], {type: 'image/jpeg'});
             let myFormData = new FormData();
             myFormData.append('media', blob, 'image.jpeg');
             let resultPath = await this.chatAndSessionService.postMedia(myFormData, this.sessionInfo);
