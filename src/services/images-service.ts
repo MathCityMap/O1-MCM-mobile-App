@@ -400,16 +400,10 @@ export class ImagesService {
 
     async getOfflineTileURL(imgPath: string): Promise<string> {
         if (!this.nativeBaseURL) {
-            return this.getOnlineURL(imgPath);
+            return ""
         }
         const outputName = this.getLocalFileName(imgPath, true);
-        const exists = await this.fileManager
-            .getFile(this.dataDirectory, outputName, { create: false })
-            .then(() => true, () => false);
-        if (exists) {
-            return this.fixUrlForWebview(this.nativeBaseURL + outputName);
-        }
-        return this.getOnlineURL(imgPath);
+        return this.fixUrlForWebview(this.nativeBaseURL + outputName);
     }
 
     getOnlineURL(imgPath: string) {

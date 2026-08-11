@@ -79,7 +79,7 @@ export class Route {
     mapVersion: string;
 
     /**
-     * @deprecated use s3Media.mapFilename instead for Trail image
+     * @deprecated use s3Media.mapFilename instead for mapfilename
      */
     @Column({name: 'map_filename'})
     mapFileName: string;
@@ -483,7 +483,7 @@ export class Route {
                     return 'https://api.mapbox.com/styles/v1/igurjanow/ck0ezs4vd02ou1co75ep12pyz/tiles/256/{z}/{x}/{y}@2x?access_token='+MAPBOX_ACCESS_TOKEN
                 default:
                     // return 'mapbox://styles/mapbox/outdoors-v11';
-                    return Helper.mapquestUrl
+                    return "{z}/{x}/{y}@2x.png"
 
             }
         }
@@ -497,7 +497,7 @@ export class Route {
                 case 'pirates':
                     return ['a', 'b'];
                 default:
-                    return Helper.subDomains;
+                    return [""];
             }
         }
     }
@@ -618,6 +618,7 @@ export class Route {
     }
 
     isMapAvailableOffline() {
+        console.log("Map is offline for", this.title, this.isOffline);
         return this.isOffline;
     }
 

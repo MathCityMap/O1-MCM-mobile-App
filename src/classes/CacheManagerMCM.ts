@@ -66,8 +66,7 @@ export class CacheManagerMCM {
         const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
         await tilesDb.initialize();
         let tilesUrls = tiles.map(tile => {
-            let domain = route.getTilesServerSubdomains(route.getNarrativeName())[Math.floor(Math.random() * route.getTilesServerSubdomains(route.getNarrativeName()).length)];
-            return route.getTilesMap(route.getNarrativeName()).replace('{s}', domain).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
+            return route.getTilesMap(route.getNarrativeName()).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y));
         });
         try {
             await ImagesService.INSTANCE.downloadURLs(tilesUrls, false, callback, true);
@@ -85,6 +84,6 @@ export class CacheManagerMCM {
 
     static getTileURLs(route: Route, pZoomMin: number, pZoomMax: number) {
         const tiles = CacheManagerMCM.getTilesCoverageMinMaxZoom(route.getBoundingBoxLatLng(), pZoomMin, pZoomMax);
-        return tiles.map(tile => route.getTilesMap(route.getNarrativeName()).replace('{s}', Helper.subDomains[0]).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)));
+        return tiles.map(tile => route.getTilesMap(route.getNarrativeName()).replace('{z}', String(tile.zoomLevel)).replace('{x}', String(tile.x)).replace('{y}', String(tile.y)));
     }
 }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="30141" id="de.autentek.mathcitymap" ios-CFBundleVersion="1" version="3.2.11" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="30142" id="de.autentek.mathcitymap" ios-CFBundleVersion="3" version="3.2.12" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MathCityMap</name>
     <description>MathCityMap</description>
     <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
@@ -50,6 +50,7 @@
         <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.DeviceDefault" />
     </platform>
     <platform name="ios">
+        <preference name="deployment-target" value="15.6" />
         <preference name="WKWebViewOnly" value="true" />
         <feature name="CDVWKWebViewEngine">
             <param name="ios-package" value="CDVWKWebViewEngine" />
@@ -91,6 +92,12 @@
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
         <config-file parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
             <string>MathCityMap would like to know your position to show distance to available routes.</string>
+        </config-file>
+        <config-file parent="NSLocationAlwaysUsageDescription" platform="ios" target="*-Info.plist">
+            <string>MathCityMap would like to know your position in order to show your position on route and task maps.</string>
+        </config-file>
+        <config-file parent="NSLocationAlwaysAndWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
+            <string>MathCityMap would like to know your position in order to show your position on route and task maps.</string>
         </config-file>
         <config-file parent="NSBluetoothAlwaysUsageDescription" platform="ios" target="*-Info.plist">
             <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>

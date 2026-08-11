@@ -111,8 +111,6 @@ export class Helper {
     static readonly REPLACE_TASK_IMAGE_PATH: string = "mcm_images/tasks/";
     static readonly REPLACE_ROUTE_IMAGE_PATH: string = "mcm_images/routes/";
     // public static ProgressDialog updater_dialog = null
-    static readonly mapquestUrl = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${MAPBOX_ACCESS_TOKEN}`;
-    static readonly subDomains = [""];
 
     // public static OnlineTileSourceBase mbTileSource = new XYTileSource("MapBoxSatelliteLabelled",
     //         2, 20, 256, ".png", new String[]{

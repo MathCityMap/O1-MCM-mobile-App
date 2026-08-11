@@ -34,11 +34,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.11</string>
+	<string>3.2.12</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -114,9 +114,9 @@
 	<key>NSCrossWebsiteTrackingUsageDescription</key>
 	<string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+	<string>MathCityMap would like to know your position in order to show your position on route and task maps.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
+	<string>MathCityMap would like to know your position in order to show your position on route and task maps.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>MathCityMap would like to know your position to show distance to available routes.</string>
 	<key>NSMainNibFile</key>
