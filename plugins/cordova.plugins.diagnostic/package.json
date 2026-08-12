@@ -42,7 +42,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "elementtree": "^0.1.6",
-    "minimist": "1.2.0"
+    "minimist": "1.2.6"
   },
   "deprecated": false,
   "description": "Cordova/Phonegap plugin to check the state of Location/WiFi/Camera/Bluetooth device settings.",
