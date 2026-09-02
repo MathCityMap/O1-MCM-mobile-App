@@ -39,7 +39,7 @@ export class RouteInfo {
                 private spinnerDialog: SpinnerDialog,
                 protected translationService: TranslationService,
                 public modalCtrl: ModalController,
-                private routeApiService: RouteApiService) {
+                protected routeApiService: RouteApiService) {
     }
 
     async ionViewWillEnter() {
@@ -110,5 +110,26 @@ export class RouteInfo {
 
     closeModal() {
         this.viewCtrl.dismiss(this.modalCtrl);
+    }
+
+    getAssistiveEquipmentForRoute() {
+        let equipment = "";
+        const details = this.routeInfos;
+        if (details && details.tasks) {
+            for (let i = 0; i < details.tasks.length; i++) {
+                let equipmentArray = details.tasks[i].getAssistiveEquipment();
+                for (let j = 0; j < equipmentArray.length; j++) {
+                    let translation = this.translateService.instant(equipmentArray[j]);
+                    if (equipment.indexOf(translation) == -1) {
+                        if (equipment != "") {
+                            equipment = equipment + ", ";
+                        }
+                        equipment = equipment + translation;
+                    }
+                }
+            }
+        }
+
+        return equipment;
     }
 }

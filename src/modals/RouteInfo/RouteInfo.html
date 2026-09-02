@@ -74,7 +74,7 @@
                <ion-col>
                   <div class="info-item">
                      <ion-label>{{ "p_tb_tasks" | translate }}</ion-label>
-                     <span>{{ totalTasks }}</span>
+                     <span *ngIf="route">{{ route.taskCount }}</span>
                   </div>
                   <div class="info-item border">
                      <ion-label>{{ "a_r_length" | translate }}</ion-label>
@@ -149,10 +149,14 @@
                <span>{{'p_narrative' | translate}}</span>
                <span>{{ 'p_narrative_names_none' | translate }}</span>
             </ion-row>
+				<ion-row *ngIf="route.isEasyLang">
+					<span>{{'p_num_of_easy_lang_tasks' | translate}} </span>
+					<span class="easy-language">{{route.easyLangTaskCount + '/' + route.taskCount}}</span>
+				</ion-row>
          </p>
 
          <ion-label class="title">{{ 'a_r_equip' | translate }}</ion-label>
-         <p *ngIf="route">{{route.getAssistiveEquipment(translateService)}}</p>
+         <p *ngIf="route">{{getAssistiveEquipmentForRoute()}}</p>
 
          <div class="path-info" *ngIf="route && route.getPathInfo()">
             <ion-label class="title">{{ 'a_r_path' | translate }}</ion-label>

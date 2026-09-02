@@ -37,6 +37,7 @@ export interface TaskApiResponse {
     inactive: number;
     s3_media: s3Media;
     force_support_tasks: number;
+    easy_lang: boolean;
 }
 
 export interface ChildTaskApiResponse extends TaskApiResponse {

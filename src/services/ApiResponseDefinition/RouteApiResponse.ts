@@ -28,4 +28,7 @@ export interface RouteApiResponse {
     s3_media: s3Media
     is_offline: number;
     distance: number;
+    task_count: number;
+    easy_lang_task_count: number;
+    easy_lang: boolean;
 }

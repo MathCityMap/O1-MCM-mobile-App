@@ -631,6 +631,9 @@ export class RouteApiService {
                 };
                 route.tasks = undefined;
                 route.task2Routes = undefined;
+                route.taskCount = tasks.length;
+                route.isEasyLang = false;
+                route.easyLangTaskCount = 0;
                 let routeInfo = { tasks: tasks, score: score };
 
                 await this.storage.set(
@@ -669,4 +672,5 @@ export class RouteApiService {
             },
         };
     }
+
 }

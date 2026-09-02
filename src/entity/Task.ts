@@ -124,6 +124,7 @@ export class Task {
     inactive: boolean;
 
     s3Media: s3Media;
+    easyLang: boolean;
 
     static createTaskListFromRouteDetailResponse(response: RouteDetailApiResponse): Array<Task> {
         let tasks = [];
@@ -179,6 +180,7 @@ export class Task {
         task.forceSupportTask = Boolean(rTask.force_support_tasks);
         task.s3Media = rTask.s3_media;
         task.inactive = Boolean(rTask.inactive);
+        task.easyLang = rTask.easy_lang;
         return task;
     }
 

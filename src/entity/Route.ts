@@ -175,6 +175,9 @@ export class Route {
     min_zoom: number;
 
     s3Media: s3Media;
+    taskCount: number;
+    easyLangTaskCount: number;
+    isEasyLang: boolean;
 
     static fromRouteResponse(routeResponse: RouteApiResponse): Route {
         let route = new Route();
@@ -202,6 +205,9 @@ export class Route {
         route.isOffline = !!routeResponse.is_offline;
         route.distance = routeResponse.distance * 1000 // App expects distances in metres, here we get a distance in kilometres
         route.s3Media = routeResponse.s3_media;
+        route.taskCount = routeResponse.task_count;
+        route.easyLangTaskCount = routeResponse.easy_lang_task_count;
+        route.isEasyLang = routeResponse.easy_lang;
         return route;
     }
 

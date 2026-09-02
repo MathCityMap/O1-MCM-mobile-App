@@ -1866,3 +1866,16 @@ mjx-math {
 #app-frame {
    transform-origin: 0 0;
 }
+
+.easy-language{
+   &:after{
+      content: '';
+      display: inline-block;
+      width: 0.823529rem;
+      height: 0.823529rem;
+      background-image: url("../../assets/icons/ez_language_feather.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      vertical-align: middle;
+   }
+}
