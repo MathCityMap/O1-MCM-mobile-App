@@ -130,9 +130,6 @@
     <feature name="SQLitePlugin">
         <param name="ios-package" value="SQLitePlugin" />
     </feature>
-    <feature name="LocalNotification">
-        <param name="ios-package" value="APPLocalNotification" />
-    </feature>
     <feature name="Camera">
         <param name="ios-package" value="CDVCamera" />
     </feature>
@@ -312,4 +309,7 @@
     <preference name="Hostname" value="app.mathcitymap.eu" />
     <preference name="WKWebViewOnly" value="true" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+    <feature name="LocalNotification">
+        <param name="ios-package" value="APPLocalNotification" />
+    </feature>
 </widget>

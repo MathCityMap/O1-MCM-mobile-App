@@ -487,15 +487,15 @@ export class ChatAndSessionService {
 
     public async checkForNewMessages(sessionInfo: SessionInfo) {
         console.log("check for new msgs ...");
-        this.receivers.forEach(async receiver => {
+        for (const receiver of this.receivers) {
             let messages: ChatMessage[];
             try {
                 messages = await this.getNewMsgs(sessionInfo, receiver.token).toPromise();
             } catch (e) {
                 console.warn("ChatAndSessionService: getNewMsgs failed", e);
-                return;
+                continue;
             }
-            messages.forEach((msg: ChatMessage) => {
+            for (const msg of messages) {
                 // console.log("chat msgs received: ", msg);
                 this.events.publish('chat:received', msg);
                 let alreadySeen = this.alreadySeenMessages[msg.messageId];
@@ -521,15 +521,15 @@ export class ChatAndSessionService {
 
                         });
                         this.localNotifications.schedule(notification);
-                        this.toast.create({
+                        await this.toast.create({
                             message: `${msg.userName}: ${msg.message}`,
                             duration: 3000,
                             position: 'bottom'
                         }).present();
                     }
                 }
-            });
-        });
+            }
+        }
     }
 
     public async determineDefaultReceivers(sessionInfo: SessionInfo): Promise<SessionUserResponse[]> {

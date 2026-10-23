@@ -38,6 +38,7 @@ import java.util.Random;
 import de.appplant.cordova.plugin.notification.action.Action;
 
 import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
+import static android.app.PendingIntent.FLAG_MUTABLE;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static de.appplant.cordova.plugin.notification.Notification.EXTRA_UPDATE;
 
@@ -321,7 +322,7 @@ public final class Builder {
         int reqCode = random.nextInt();
 
         PendingIntent deleteIntent = PendingIntent.getBroadcast(
-                context, reqCode, intent, FLAG_UPDATE_CURRENT);
+                context, reqCode, intent, FLAG_UPDATE_CURRENT | FLAG_MUTABLE);
 
         builder.setDeleteIntent(deleteIntent);
     }
@@ -347,7 +348,7 @@ public final class Builder {
         int reqCode = random.nextInt();
 
         PendingIntent contentIntent = PendingIntent.getActivity(
-                context, reqCode, intent, FLAG_UPDATE_CURRENT);
+                context, reqCode, intent, FLAG_UPDATE_CURRENT | FLAG_MUTABLE);
 
         builder.setContentIntent(contentIntent);
     }
@@ -394,7 +395,7 @@ public final class Builder {
         int reqCode = random.nextInt();
 
         return PendingIntent.getActivity(
-                context, reqCode, intent, FLAG_CANCEL_CURRENT);
+                context, reqCode, intent, FLAG_CANCEL_CURRENT | FLAG_MUTABLE);
     }
 
     /**

@@ -9,7 +9,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "xml": "<application android:usesCleartextTraffic=\"true\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
@@ -23,7 +23,7 @@
               }
             },
             {
-              "xml": "<application android:usesCleartextTraffic=\"true\" />",
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
@@ -44,15 +44,11 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 76
+              "count": 79
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
               "count": 2
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
-              "count": 1
             },
             {
               "xml": "<uses-permission android:maxSdkVersion=\"29\" android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
@@ -60,6 +56,14 @@
             },
             {
               "xml": "<uses-permission android:maxSdkVersion=\"32\" android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.POST_NOTIFICATIONS\" />",
               "count": 1
             }
           ],
@@ -95,6 +99,10 @@
           ],
           "/manifest/application": [
             {
+              "xml": "<activity android:name=\"com.sarriaroman.PhotoViewer.PhotoActivity\" android:theme=\"@android:style/Theme.Holo.NoActionBar.Fullscreen\" />",
+              "count": 1
+            },
+            {
               "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.appplant.cordova.plugin.notification.util.AssetProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/localnotification_provider_paths\" /></provider>",
               "count": 1
             },
@@ -108,10 +116,6 @@
             },
             {
               "xml": "<activity android:exported=\"false\" android:launchMode=\"singleInstance\" android:name=\"de.appplant.cordova.plugin.localnotification.ClickReceiver\" android:theme=\"@android:style/Theme.Translucent\" />",
-              "count": 1
-            },
-            {
-              "xml": "<activity android:name=\"com.sarriaroman.PhotoViewer.PhotoActivity\" android:theme=\"@android:style/Theme.Holo.NoActionBar.Fullscreen\" />",
               "count": 1
             }
           ],
@@ -197,10 +201,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
               "count": 1
             },
@@ -218,6 +218,10 @@
             },
             {
               "xml": "<feature name=\"NativeSettings\"><param name=\"android-package\" value=\"com.phonegap.plugins.nativesettings.NativeSettings\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
               "count": 1
             }
           ]
@@ -378,9 +382,6 @@
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-camera": {
       "ANDROIDX_CORE_VERSION": "1.6.+",
       "PACKAGE_NAME": "de.autentek.mathcitymap"
@@ -396,6 +397,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-open-native-settings": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
@@ -855,32 +859,6 @@
       ]
     },
     {
-      "id": "cordova-plugin-local-notification.LocalNotification",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "clobbers": [
-        "cordova.plugins.notification.local"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification.Core",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "clobbers": [
-        "cordova.plugins.notification.local.core",
-        "plugin.notification.local.core"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification.Util",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "merges": [
-        "cordova.plugins.notification.local.core",
-        "plugin.notification.local.core"
-      ]
-    },
-    {
       "id": "cordova-plugin-camera.Camera",
       "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
       "pluginId": "cordova-plugin-camera",
@@ -957,6 +935,32 @@
       "clobbers": [
         "cordova.plugins.settings"
       ]
+    },
+    {
+      "id": "cordova-plugin-local-notification.LocalNotification",
+      "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+      "pluginId": "cordova-plugin-local-notification",
+      "clobbers": [
+        "cordova.plugins.notification.local"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification.LocalNotification.Core",
+      "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
+      "pluginId": "cordova-plugin-local-notification",
+      "clobbers": [
+        "cordova.plugins.notification.local.core",
+        "plugin.notification.local.core"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification.LocalNotification.Util",
+      "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
+      "pluginId": "cordova-plugin-local-notification",
+      "merges": [
+        "cordova.plugins.notification.local.core",
+        "plugin.notification.local.core"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -983,11 +987,11 @@
     "cordova-plugin-tts-advanced": "0.5.2",
     "cordova-plugin-request-location-accuracy": "2.3.0",
     "cordova-sqlite-storage": "7.0.0",
-    "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-camera": "8.0.1-dev",
     "com-sarriaroman-photoviewer": "1.1.18",
     "cordova-plugin-geolocation": "5.0.1-dev",
     "cordova-plugin-media": "7.0.0-dev",
-    "cordova-open-native-settings": "1.5.5"
+    "cordova-open-native-settings": "1.5.5",
+    "cordova-plugin-local-notification": "0.9.0-beta.2"
   }
 }

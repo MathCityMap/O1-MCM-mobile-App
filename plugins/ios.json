@@ -70,9 +70,6 @@
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
-    },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
@@ -88,6 +85,9 @@
       "PACKAGE_NAME": "de.unifrankfurt.mathcitymap"
     },
     "cordova-open-native-settings": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },

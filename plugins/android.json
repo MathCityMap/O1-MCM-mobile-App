@@ -78,9 +78,6 @@
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-camera": {
       "ANDROIDX_CORE_VERSION": "1.6.+",
       "PACKAGE_NAME": "de.autentek.mathcitymap"
@@ -96,6 +93,9 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-open-native-settings": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
