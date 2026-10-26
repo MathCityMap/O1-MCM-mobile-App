@@ -289,7 +289,19 @@ export class ChatAndSessionService {
             }).toPromise();
         } catch (e) {
             console.warn("ChatAndSessionService: joinSession failed", e);
-            return;
+            if (e.status !== 408) return;
+
+            // if joining timed out we double check if the team has been created and use it if it has
+            let sessionUsers = await this.sessionService.getSessionUsers(session.code).toPromise();
+            let validUser = sessionUsers.users.find(user => {
+                return user.events.length === 0 &&
+                    user.team_name === teamName &&
+                    user.team_members_array.length === teamMembers.length &&
+                    user.team_members_array.every(member => teamMembers.includes(member));
+            });
+            if (validUser) {
+                sessionUser = SessionUser.fromResponse(validUser);
+            }
         }
         if (sessionUser) {
             console.log("Successfully joined. Storing active session");
