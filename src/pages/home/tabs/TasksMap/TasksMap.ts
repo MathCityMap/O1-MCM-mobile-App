@@ -428,7 +428,7 @@ export class TasksMap implements OnDestroy {
                 }
                 this.sessionTime();
                 this.sessionTimeSubscription = this.sessionTimeTimer.subscribe(
-                    (tick) => {
+                    (_tick) => {
                         this.sessionTime();
                     },
                 );
@@ -714,7 +714,6 @@ export class TasksMap implements OnDestroy {
     }
 
     async sessionKicked() {
-        let that = this;
         let modal = this.modalCtrl.create(
             MCMIconModal,
             {
@@ -728,14 +727,14 @@ export class TasksMap implements OnDestroy {
                 buttons: [
                     {
                         title: "a_g_ok",
-                        callback: function () {
+                        callback: () => {
                             modal.dismiss();
-                            let finishedModal = that.modalCtrl.create(
+                            let finishedModal = this.modalCtrl.create(
                                 MCMSessionFinishedModal,
                                 {
-                                    session: that.sessionInfo.session,
-                                    score: that.score,
-                                    tasks: that.mapTaskList,
+                                    session: this.sessionInfo.session,
+                                    score: this.score,
+                                    tasks: this.mapTaskList,
                                     narrative: this.app.activeNarrative,
                                 },
                                 {
@@ -743,11 +742,11 @@ export class TasksMap implements OnDestroy {
                                     enableBackdropDismiss: false,
                                 },
                             );
-                            if (that.sessionInfo != null) {
-                                that.chatAndSessionService.exitActiveSession();
+                            if (this.sessionInfo != null) {
+                                this.chatAndSessionService.exitActiveSession();
                             }
-                            if (that.sessionTimeSubscription) {
-                                that.sessionTimeSubscription.unsubscribe();
+                            if (this.sessionTimeSubscription) {
+                                this.sessionTimeSubscription.unsubscribe();
                             }
                             finishedModal.present();
                         },
@@ -990,9 +989,15 @@ export class TasksMap implements OnDestroy {
     }
 
     goBack() {
-        this.navCtrl.pop({}, () => {
-            this.deepLinker.navChange("back");
-        });
+        if(this.sessionInfo != null){
+            console.log('go back from active session');
+            console.log(this.route.id);
+            this.sessionFinished();
+        } else {
+            this.navCtrl.pop({}, () => {
+                this.deepLinker.navChange("back");
+            });
+        }
     }
 
     protected readonly TaskFormat = TaskFormat;
