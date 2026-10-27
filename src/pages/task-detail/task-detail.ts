@@ -726,7 +726,6 @@ export class TaskDetail {
     }
 
     async showHint(index: number) {
-        let needUpdate: boolean = false;
         let title = "";
         /*     console.log(" ===============================  ", this.task.getImagesForDownload() );
             console.log(" ===============================  ", this.task.getHint(index) ); */
@@ -745,15 +744,7 @@ export class TaskDetail {
 
         switch (index) {
             case 1:
-                if (
-                    !this.taskDetails.solved &&
-                    !this.taskDetails.solvedLow &&
-                    !this.taskDetails.failed
-                ) {
-                    //only update if task is not solved
-                    this.taskDetails.hint1 = true;
-                    needUpdate = true;
-                }
+                this.taskDetails.hint1 = true;
                 title = "a_btn_hint1";
                 if (this.sessionInfo != null) {
                     let details = JSON.stringify({});
@@ -765,15 +756,7 @@ export class TaskDetail {
                 }
                 break;
             case 2:
-                if (
-                    !this.taskDetails.solved &&
-                    !this.taskDetails.solvedLow &&
-                    !this.taskDetails.failed
-                ) {
-                    //only update if task is not solved
-                    this.taskDetails.hint2 = true;
-                    needUpdate = true;
-                }
+                this.taskDetails.hint2 = true;
                 title = "a_btn_hint2";
                 if (this.sessionInfo != null) {
                     let details = JSON.stringify({});
@@ -785,33 +768,24 @@ export class TaskDetail {
                 }
                 break;
             case 3:
-                if (
-                    !this.taskDetails.solved &&
-                    !this.taskDetails.solvedLow &&
-                    !this.taskDetails.failed
-                ) {
-                    //only update if task is not solved
-                    this.taskDetails.hint3 = true;
-                    if (this.sessionInfo != null) {
-                        let details = JSON.stringify({});
-                        this.chatAndSessionService.addUserEvent(
-                            "event_took_hint3",
-                            details,
-                            this.task.id.toString(),
-                        );
-                    }
-                    needUpdate = true;
+                this.taskDetails.hint3 = true;
+                if (this.sessionInfo != null) {
+                    let details = JSON.stringify({});
+                    this.chatAndSessionService.addUserEvent(
+                        "event_took_hint3",
+                        details,
+                        this.task.id.toString(),
+                    );
                 }
                 title = "a_btn_hint3";
                 break;
         }
-        if (needUpdate) {
-            this.routeApiService.insertOrUpdateTaskState(
-                this.score,
-                this.taskDetails,
-                this.route.code,
-            );
-        }
+
+        this.routeApiService.insertOrUpdateTaskState(
+            this.score,
+            this.taskDetails,
+            this.route.code,
+        );
 
         let hintModal = this.modalCtrl.create(
             MCMIconModal,
@@ -2160,7 +2134,7 @@ export class TaskDetail {
                                     .insertOrUpdateTaskState(
                                         that.score,
                                         that.taskDetails,
-                                        this.route.code,
+                                        that.route.code,
                                     )
                                     .then(() => {
                                         if (!that.rootTask) {
