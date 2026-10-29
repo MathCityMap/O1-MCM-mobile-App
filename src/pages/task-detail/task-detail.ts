@@ -368,7 +368,6 @@ export class TaskDetail {
         }
         if (this.task.solutionType === "fraction") {
             this.specialSolution = this.task.getSolution();
-            console.log("Fraction solution", this.specialSolution);
             if (
                 !this.taskDetails.answerMultipleChoice ||
                 !this.taskDetails.answerMultipleChoice ||
@@ -563,8 +562,7 @@ export class TaskDetail {
             );
         }
         if (this.task.solutionType == "multiple_choice") {
-            this.multipleChoiceView.changes.subscribe((data) => {
-                console.log("MultipleChoiceChildData", data);
+            this.multipleChoiceView.changes.subscribe((_data) => {
                 MathJax.typeset();
             });
             if (this.taskDetails.solved || this.taskDetails.solvedLow) {
@@ -3729,7 +3727,9 @@ export class TaskDetail {
         this.specialSolution = this.translatePage
             ? this.translation.getSolution(this.task.getSolution())
             : this.task.getSolution();
-        console.log("fillBlankSolutionElement", this.specialSolution.val);
+        // If the conditions to show the blank container are not met we return without doing anything
+        if (!(!this.subTasksRequired || !this.task.getLegitSubtasks() || this.rootTask || (this.task.getLegitSubtasks().length === this.solvedSubtasks.length))) return;
+
         let blankMatch;
         let blankText: string = this.specialSolution.val;
         let placeholderCount = [];
@@ -3747,7 +3747,6 @@ export class TaskDetail {
                           );
                       })
                     : null;
-            console.log("SavedAnswer for Blank", blankMatch[1], savedAnswer);
             blankText = blankText.replace(
                 blankMatch[0],
                 `<span id="${blankMatch[1]}" data-count="${placeholderCount[blankMatch[1]] ? placeholderCount[blankMatch[1]] : "0"}" class="blankInput ${(savedAnswer && savedAnswer.solved) || (this.taskDetails && (this.taskDetails.solved || this.taskDetails.solvedLow || this.taskDetails.failed)) ? "disabled" : ""}" role="textbox" contenteditable>${savedAnswer ? savedAnswer.answer : ""}</span>`,
