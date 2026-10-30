@@ -90,38 +90,6 @@ export class MapboxMapHandler implements MapHandlerInterface {
                         if (!normalizedPosition) {
                             console.warn('Could not set initial user position: invalid position', initialPosition);
                         } else {
-
-                            const geojson = {
-                                type: 'FeatureCollection',
-                                features: [{
-                                    type: 'Feature',
-                                    geometry: {
-                                        type: 'Point',
-                                        coordinates: [normalizedPosition.longitude, normalizedPosition.latitude]
-                                    },
-                                    properties: {
-                                        icon: 'userPositionIcon'
-                                    }
-                                }]
-                            };
-
-                            this.map.addSource('user-position', {
-                                type: 'geojson',
-                                data: geojson
-                            });
-
-                            this.map.addLayer({
-                                id: 'user-position-layer',
-                                type: 'symbol',
-                                source: 'user-position',
-                                layout: {
-                                    'icon-image': ['get', 'icon'],
-                                    'icon-size': 0.5,
-                                    'icon-rotate': ['get', 'rotation'],
-                                    'icon-allow-overlap': true
-                                }
-                            });
-
                             this.updateUserPosition(normalizedPosition.latitude, normalizedPosition.longitude);
                         }
                     }
@@ -334,7 +302,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
                             stops: stops,
                             size: 24
                         });
-                        img = `<img src="${gradient.png}"></img>`;
+                        img = `<img src="${gradient.png}" alt="Clustergradient"/>`;
                     }
 
                     element.innerHTML = `<div style="${style}">${img}<span>${childCount}</span></div>`;
@@ -365,7 +333,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
                     updateCustomClusters();
                 })
 
-                map.on('moveend', (e) => {
+                map.on('moveend', (_e) => {
                     updateClusterData();
                     map.getSource('tasks').setData(clusterData);
                     if (!this.isUserInsideMap && this.prevPos) {
@@ -383,42 +351,76 @@ export class MapboxMapHandler implements MapHandlerInterface {
         }
     }
 
+    createUserPositionLayer(position: {longitude: number, latitude: number}) {
+        const geojson = {
+            type: 'FeatureCollection',
+            features: [{
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [position.longitude, position.latitude]
+                },
+                properties: {
+                    icon: 'userPositionIcon'
+                }
+            }]
+        };
+
+        this.map.addSource('user-position', {
+            type: 'geojson',
+            data: geojson
+        });
+
+        this.map.addLayer({
+            id: 'user-position-layer',
+            type: 'symbol',
+            source: 'user-position',
+            layout: {
+                'icon-image': ['get', 'icon'],
+                'icon-size': 0.5,
+                'icon-rotate': ['get', 'rotation'],
+                'icon-allow-overlap': true
+            }
+        });
+
+        console.log('Added user-position source', this.map.getSource('user-position') as mapboxgl.GeoJSONSource);
+    }
+
     updateUserPosition(lat: number, lng: number) {
         const bounds = this.map.getBounds();
         const userPosition = new mapboxgl.LngLat(lng, lat);
         this.isUserInsideMap = bounds.contains(userPosition);
         console.log('updateUserPosition', this.isUserInsideMap);
 
-
-
-        // Update or create the user marker source
-        if (this.map.getSource('user-position')) {
-            if (this.isUserInsideMap) {
-                let angle = 1;
-                if (this.prevPos) {
-                    angle = Helper.getAngle(this.prevPos, {latitude: lat, longitude: lng});
-                }
-                const geojson = {
-                    type: 'FeatureCollection',
-                    features: [{
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [lng, lat]
-                        },
-                        properties: {
-                            rotation: angle,
-                            icon: 'userPositionIcon'
-                        }
-                    }]
-                };
-
-                this.map.getSource('user-position').setData(geojson);
-            } else {
-                this.updateUserLocationArrow(lat, lng);
-            }
-            this.prevPos = {latitude: lat, longitude: lng}
+        if (!this.map.getSource('user-position')) {
+            this.createUserPositionLayer({latitude: lat, longitude: lng});
         }
+
+        if (this.isUserInsideMap) {
+            let angle = 1;
+            if (this.prevPos) {
+                angle = Helper.getAngle(this.prevPos, {latitude: lat, longitude: lng});
+            }
+            const geojson = {
+                type: 'FeatureCollection',
+                features: [{
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [lng, lat]
+                    },
+                    properties: {
+                        rotation: angle,
+                        icon: 'userPositionIcon'
+                    }
+                }]
+            };
+
+            this.map.getSource('user-position').setData(geojson);
+        } else {
+            this.updateUserLocationArrow(lat, lng);
+        }
+        this.prevPos = {latitude: lat, longitude: lng}
     }
 
     moveTo(lat: number, lon: number) {
@@ -459,7 +461,7 @@ export class MapboxMapHandler implements MapHandlerInterface {
 
         if (alpha < 0) alpha += 360;
 
-        let length = 0;
+        let length: number;
         if (
             (alpha >= beta && alpha <= (180 - beta)) ||
             (alpha >= (180 + beta) && alpha <= (360 - beta))
@@ -501,12 +503,11 @@ export class MapboxMapHandler implements MapHandlerInterface {
         const describeArc = (x, y, radius, startAngle, endAngle) => {
             var start = polarToCartesian(x, y, radius, endAngle),
                 end = polarToCartesian(x, y, radius, startAngle),
-                arcSweep = endAngle - startAngle <= 180 ? '0' : '1',
-                d = [
-                    'M', start.x, start.y,
-                    'A', radius, radius, 0, arcSweep, 0, end.x, end.y
-                ].join(' ');
-            return d;
+                arcSweep = endAngle - startAngle <= 180 ? '0' : '1';
+            return [
+                'M', start.x, start.y,
+                'A', radius, radius, 0, arcSweep, 0, end.x, end.y
+            ].join(' ');
         };
 
         const getClassStringForSubtask = (task: Task) => {

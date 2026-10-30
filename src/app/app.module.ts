@@ -59,6 +59,7 @@ import {MCMReportProblemModal} from "../modals/MCMReportProblemModal/MCMReportPr
 import {ReadAloudService} from "../services/read-aloud-service";
 import {RouteApiService} from "../services/route-api.service";
 import {ProgressService} from "../services/progress-service";
+import {GpsSmoothingService} from "../services/gps-smoothing.service";
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import {ProgressService} from "../services/progress-service";
         BroadcastService,
         ModalsService,
         GpsService,
+        GpsSmoothingService,
         LanguageService,
         ReadAloudService,
         Helper,

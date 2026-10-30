@@ -13,6 +13,7 @@ import {
     GeolocationOptions,
     Geoposition,
 } from "@ionic-native/geolocation";
+import {GpsSmoothingService} from "./gps-smoothing.service";
 
 @Injectable()
 export class GpsService {
@@ -24,6 +25,7 @@ export class GpsService {
         public platform: Platform,
         private locationAcc: LocationAccuracy,
         private geolocation: Geolocation,
+        private gpsSmoothing: GpsSmoothingService
     ) {
         GpsService.INSTANCE = this;
         this.subject.emptyCallback = () => {
@@ -132,9 +134,37 @@ export class GpsService {
                     this.subject.next(next);
                     if (next && next.coords) {
                         console.debug(
-                            `watchPosition: ${next.coords.latitude}, ${next.coords.longitude}`,
+                            `Raw GPS: ${next.coords.latitude}, ${next.coords.longitude}`
                         );
-                        this.lastPosition = next;
+
+                        const smoothed = this.gpsSmoothing.smooth({
+                            latitude: next.coords.latitude,
+                            longitude: next.coords.longitude,
+                            accuracy: next.coords.accuracy,
+                            timestamp: next.timestamp
+                        });
+
+                        if (smoothed) {
+                            // Preserve the original Geoposition structure
+                            const filteredPosition: Geoposition = {
+                                ...next,
+                                coords: {
+                                    ...next.coords,
+                                    latitude: smoothed.latitude,
+                                    longitude: smoothed.longitude
+                                }
+                            };
+
+                            this.subject.next(filteredPosition);
+                            this.lastPosition = filteredPosition;
+
+                            console.debug(
+                                `Smoothed GPS: ${smoothed.latitude}, ${smoothed.longitude}`
+                            );
+                        }
+                    } else {
+                        // Preserve errors or unavailable-position results
+                        this.subject.next(next);
                     }
                 });
         }
