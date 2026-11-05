@@ -1,21 +1,22 @@
-/*
-       Licensed to the Apache Software Foundation (ASF) under one
-       or more contributor license agreements.  See the NOTICE file
-       distributed with this work for additional information
-       regarding copyright ownership.  The ASF licenses this file
-       to you under the Apache License, Version 2.0 (the
-       "License"); you may not use this file except in compliance
-       with the License.  You may obtain a copy of the License at
+/**
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
 
-         http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-       Unless required by applicable law or agreed to in writing,
-       software distributed under the License is distributed on an
-       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-       KIND, either express or implied.  See the License for the
-       specific language governing permissions and limitations
-       under the License.
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
 */
+
 package org.apache.cordova.inappbrowser;
 
 import org.apache.cordova.CordovaWebView;
@@ -24,12 +25,17 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.os.Message;
 import android.webkit.JsPromptResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.GeolocationPermissions.Callback;
+import android.webkit.PermissionRequest;
 
 public class InAppChromeClient extends WebChromeClient {
 
@@ -41,6 +47,13 @@ public class InAppChromeClient extends WebChromeClient {
         super();
         this.webView = webView;
     }
+    
+    public void onPermissionRequest(final PermissionRequest request) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            request.grant(request.getResources());
+        }
+    }
+
     /**
      * Handle database quota exceeded notification.
      *
@@ -135,4 +148,44 @@ public class InAppChromeClient extends WebChromeClient {
         return false;
     }
 
+    /**
+     * The InAppWebBrowser WebView is configured to MultipleWindow mode to mitigate a security
+     * bug found in Chromium prior to version 83.0.4103.106.
+     * See https://bugs.chromium.org/p/chromium/issues/detail?id=1083819
+     *
+     * Valid Urls set to open in new window will be routed back to load in the original WebView.
+     *
+     * @param view
+     * @param isDialog
+     * @param isUserGesture
+     * @param resultMsg
+     * @return
+     */
+    @Override
+    public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
+        WebView inAppWebView = view;
+        final WebViewClient webViewClient =
+                new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                        inAppWebView.loadUrl(request.getUrl().toString());
+                        return true;
+                    }
+
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        inAppWebView.loadUrl(url);
+                        return true;
+                    }
+                };
+
+        final WebView newWebView = new WebView(view.getContext());
+        newWebView.setWebViewClient(webViewClient);
+
+        final WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+        transport.setWebView(newWebView);
+        resultMsg.sendToTarget();
+
+        return true;
+    }
 }

@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="30143" id="de.autentek.mathcitymap" ios-CFBundleVersion="1" version="3.2.13" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="CDVWebViewEngine">
+        <param name="ios-package" value="CDVWebViewEngine" />
+    </feature>
+    <feature name="LaunchScreen">
+        <param name="ios-package" value="CDVLaunchScreen" />
+    </feature>
+    <feature name="LocalStorage">
+        <param name="ios-package" value="CDVLocalStorage" />
+    </feature>
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="HandleOpenUrl">
+        <param name="ios-package" value="CDVHandleOpenURL" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IntentAndNavigationFilter">
+        <param name="ios-package" value="CDVIntentAndNavigationFilter" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="GestureHandler">
+        <param name="ios-package" value="CDVGestureHandler" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBarInternal">
+        <param name="ios-package" value="CDVStatusBarInternal" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SpinnerDialog">
+        <param name="ios-package" value="CDVSpinnerDialog" />
+    </feature>
+    <feature name="Globalization">
+        <param name="ios-package" value="CDVGlobalization" />
+    </feature>
+    <feature name="AppVersion">
+        <param name="ios-package" value="AppVersion" />
+    </feature>
+    <feature name="CDVIonicKeyboard">
+        <param name="ios-package" onload="true" value="CDVIonicKeyboard" />
+    </feature>
+    <feature name="CDVOrientation">
+        <param name="ios-package" value="CDVOrientation" />
+    </feature>
+    <feature name="WKWebViewInjectCookie">
+        <param name="ios-package" value="WKWebViewInjectCookie" />
+    </feature>
+    <feature name="Diagnostic">
+        <param name="ios-package" value="Diagnostic" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Location">
+        <param name="ios-package" value="Diagnostic_Location" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Bluetooth">
+        <param name="ios-package" value="Diagnostic_Bluetooth" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Wifi">
+        <param name="ios-package" value="Diagnostic_Wifi" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Camera">
+        <param name="ios-package" value="Diagnostic_Camera" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Notifications">
+        <param name="ios-package" value="Diagnostic_Notifications" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Microphone">
+        <param name="ios-package" value="Diagnostic_Microphone" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Contacts">
+        <param name="ios-package" value="Diagnostic_Contacts" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Calendar">
+        <param name="ios-package" value="Diagnostic_Calendar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Reminders">
+        <param name="ios-package" value="Diagnostic_Reminders" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Diagnostic_Motion">
+        <param name="ios-package" value="Diagnostic_Motion" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SafariViewController">
+        <param name="ios-package" value="SafariViewController" />
+    </feature>
+    <feature name="Badge">
+        <param name="ios-package" value="APPBadge" />
+    </feature>
+    <feature name="TTS">
+        <param name="ios-package" value="CDVTTS" />
+    </feature>
+    <feature name="RequestLocationAccuracy">
+        <param name="ios-package" value="RequestLocationAccuracy" />
+    </feature>
+    <feature name="SQLitePlugin">
+        <param name="ios-package" value="SQLitePlugin" />
+    </feature>
+    <feature name="Camera">
+        <param name="ios-package" value="CDVCamera" />
+    </feature>
+    <feature name="PhotoViewer">
+        <param name="ios-package" value="PhotoViewer" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
+    <feature name="NativeSettings">
+        <param name="ios-package" value="NativeSettings" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="ios-package" value="APPLocalNotification" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
+    <allow-navigation href="ionic://*" />
+    <feature name="IonicWebView">
+        <param name="ios-package" value="CDVWKWebViewEngine" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVWKInAppBrowser" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="JJzip">
+        <param name="ios-package" value="JJzip" />
+    </feature>
+    <feature name="File">
+        <param name="ios-package" value="CDVFile" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>MathCityMap</name>
+    <description>MathCityMap</description>
+    <author email="developer@autentek.de" href="http://autentek.de/">Autentek GmbH</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*" />
+    <allow-intent href="https://*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="file://*/*" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://10.0.1.51:8100" />
+    <allow-navigation href="http://192.168.1.66:8100" />
+    <allow-navigation href="http://194.210.221.147:8100" />
+    <allow-navigation href="http://194.210.223.55:8100" />
+    <allow-navigation href="http://194.210.223.30:8100" />
+    <allow-navigation href="http://194.210.223.59:8100" />
+    <allow-navigation href="http://192.168.12.29:8101" />
+    <allow-navigation href="http://192.168.12.29:8100" />
+    <allow-navigation href="http://192.168.12.252:8100" />
+    <allow-navigation href="http://10.0.1.22:8100" />
+    <allow-navigation href="http://localhost:8100" sessionid="35275afb" />
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
+    <icon height="57" src="resources/ios/icon/icon.png" width="57" />
+    <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
+    <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
+    <icon height="80" src="resources/ios/icon/icon-40@2x.png" width="80" />
+    <icon height="120" src="resources/ios/icon/icon-40@3x.png" width="120" />
+    <icon height="50" src="resources/ios/icon/icon-50.png" width="50" />
+    <icon height="100" src="resources/ios/icon/icon-50@2x.png" width="100" />
+    <icon height="60" src="resources/ios/icon/icon-60.png" width="60" />
+    <icon height="120" src="resources/ios/icon/icon-60@2x.png" width="120" />
+    <icon height="180" src="resources/ios/icon/icon-60@3x.png" width="180" />
+    <icon height="72" src="resources/ios/icon/icon-72.png" width="72" />
+    <icon height="144" src="resources/ios/icon/icon-72@2x.png" width="144" />
+    <icon height="76" src="resources/ios/icon/icon-76.png" width="76" />
+    <icon height="152" src="resources/ios/icon/icon-76@2x.png" width="152" />
+    <icon height="167" src="resources/ios/icon/icon-83.5@2x.png" width="167" />
+    <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />
+    <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
+    <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
+    <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
+    <splash height="1136" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" />
+    <splash height="1334" src="resources/ios/splash/Default-667h.png" width="750" />
+    <splash height="2208" src="resources/ios/splash/Default-736h.png" width="1242" />
+    <splash height="1242" src="resources/ios/splash/Default-Landscape-736h.png" width="2208" />
+    <splash height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" />
+    <splash height="2048" src="resources/ios/splash/Default-Landscape@~ipadpro.png" width="2732" />
+    <splash height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
+    <splash height="2048" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" />
+    <splash height="2732" src="resources/ios/splash/Default-Portrait@~ipadpro.png" width="2048" />
+    <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
+    <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
+    <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
+    <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
+    <config-file parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
+        <string>MathCityMap would like to know your position to show distance to available routes.</string>
+    </config-file>
+    <config-file parent="NSLocationAlwaysUsageDescription" platform="ios" target="*-Info.plist">
+        <string>MathCityMap would like to know your position in order to show your position on route and task maps.</string>
+    </config-file>
+    <config-file parent="NSLocationAlwaysAndWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
+        <string>MathCityMap would like to know your position in order to show your position on route and task maps.</string>
+    </config-file>
+    <config-file parent="NSBluetoothAlwaysUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>
+    </config-file>
+    <config-file parent="NSBluetoothPeripheralUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to bluetooth.</string>
+    </config-file>
+    <config-file parent="NSCalendarsUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to calendar.</string>
+    </config-file>
+    <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to camera.</string>
+    </config-file>
+    <config-file parent="NSContactsUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to contacts.</string>
+    </config-file>
+    <config-file parent="NSMicrophoneUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to microphone.</string>
+    </config-file>
+    <config-file parent="NSMotionUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to motion detection.</string>
+    </config-file>
+    <config-file parent="NSPhotoLibraryUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to photo library.</string>
+    </config-file>
+    <config-file parent="NSRemindersUsageDescription" platform="ios" target="*-Info.plist">
+        <string>We use the Cordova Diagnostic Plugin to manage the device settings. However, the app itself does not need access to reminders.</string>
+    </config-file>
+    <config-file parent="ITSAppUsesNonExemptEncryption" platform="ios" target="*-Info.plist">
+        <false />
+    </config-file>
+    <config-file parent="UISupportedInterfaceOrientations" platform="ios" target="*-Info.plist">
+        <array>
+            <string>UIInterfaceOrientationPortrait</string>
+            <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        </array>
+    </config-file>
+    <config-file parent="UISupportedInterfaceOrientations~ipad" platform="ios" target="*-Info.plist">
+        <array>
+            <string>UIInterfaceOrientationPortrait</string>
+            <string>UIInterfaceOrientationPortraitUpsideDown</string>
+            <string>UIInterfaceOrientationLandscapeLeft</string>
+            <string>UIInterfaceOrientationLandscapeRight</string>
+        </array>
+    </config-file>
+    <config-file parent="CFBundleLocalizations" platform="ios" target="*-Info.plist">
+        <array>
+            <string>de</string>
+            <string>en</string>
+            <string>ar</string>
+            <string>el</string>
+            <string>es</string>
+            <string>et</string>
+            <string>fa</string>
+            <string>fr</string>
+            <string>id</string>
+            <string>it</string>
+            <string>pt</string>
+            <string>sk</string>
+            <string>tr</string>
+            <string>zh</string>
+        </array>
+    </config-file>
+    <config-file parent="NSCrossWebsiteTrackingUsageDescription" target="*-Info.plist">
+        <string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
+    </config-file>
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="MediaPermissionGrantType" value="grantIfSameHostElsePrompt" />
+    <preference name="MediaTypesRequiringUserActionForPlayback" value="none" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="false" />
+    <preference name="Suppresses3DTouchGesture" value="false" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="CameraUsesGeolocation" value="false" />
+    <preference name="KeepAVAudioSessionAlwaysActive" value="NO" />
+    <preference name="ScrollEnabled" value="false" />
+    <preference name="android-minSdkVersion" value="23" />
+    <preference name="android-targetSdkVersion" value="36" />
+    <preference name="android-compileSdkVersion" value="36" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="Scheme" value="https" />
+    <preference name="Hostname" value="app.mathcitymap.eu" />
+    <preference name="deployment-target" value="15.6" />
+    <preference name="WKWebViewOnly" value="true" />
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+</widget>

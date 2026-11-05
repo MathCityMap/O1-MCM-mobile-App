@@ -7,28 +7,14 @@
         <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="File">
-        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
-        <param name="onload" value="true" />
-    </feature>
-    <allow-navigation href="cdvfile:*" />
-    <feature name="CordovaHttpPlugin">
-        <param name="android-package" value="com.synconset.cordovahttp.CordovaHttpPlugin" />
-    </feature>
     <feature name="SpinnerDialog">
         <param name="android-package" value="com.greybax.spinnerdialog.SpinnerDialog" />
-    </feature>
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
     <feature name="Globalization">
         <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
     </feature>
     <feature name="AppVersion">
         <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
-    </feature>
-    <feature name="JJzip">
-        <param name="android-package" value="com.jjdltc.cordova.plugin.zip.JJzip" />
     </feature>
     <feature name="CDVOrientation">
         <param name="android-package" value="cordova.plugins.screenorientation.CDVOrientation" />
@@ -48,6 +34,11 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
     <feature name="Media">
         <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
     </feature>
@@ -56,6 +47,12 @@
     </feature>
     <feature name="LocalNotification">
         <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="JJzip">
+        <param name="android-package" value="com.jjdltc.cordova.plugin.zip.JJzip" />
     </feature>
     <feature name="CDVIonicKeyboard">
         <param name="android-package" onload="true" value="io.ionic.keyboard.CDVIonicKeyboard" />
@@ -99,18 +96,18 @@
     <feature name="Badge">
         <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
     </feature>
-    <allow-navigation href="http://localhost/*" />
-    <allow-navigation href="https://localhost/*" />
-    <allow-navigation href="ionic://*" />
-    <feature name="IonicWebView">
-        <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />
-    </feature>
     <feature name="TTS">
         <param name="android-package" value="com.wordsbaking.cordova.tts.TTS" />
         <param name="onload" value="true" />
     </feature>
     <feature name="RequestLocationAccuracy">
         <param name="android-package" value="cordova.plugin.RequestLocationAccuracy" />
+    </feature>
+    <allow-navigation href="http://localhost/*" />
+    <allow-navigation href="https://localhost/*" />
+    <allow-navigation href="ionic://*" />
+    <feature name="IonicWebView">
+        <param name="android-package" value="com.ionicframework.cordova.webview.IonicWebView" />
     </feature>
     <name>MathCityMap</name>
     <description>MathCityMap</description>
@@ -148,7 +145,7 @@
         <application android:requestLegacyExternalStorage="true" />
     </edit-config>
     <allow-intent href="market:*" />
-    <resource-file src="resources/android/values/colors.xml" target="/app/src/main/res/values/colors.xml" />
+    <resource-file src="resources/android/values/colors.xml" target="/app/src/main/res/values/cdv_colors.xml" />
     <icon background="@color/icon_background" density="mdpi" foreground="resources/android/icon/ic_launcher_foreground-mdpi.png" />
     <icon background="@color/icon_background" density="hdpi" foreground="resources/android/icon/ic_launcher_foreground-hdpi.png" />
     <icon background="@color/icon_background" density="xhdpi" foreground="resources/android/icon/ic_launcher_foreground-xhdpi.png" />

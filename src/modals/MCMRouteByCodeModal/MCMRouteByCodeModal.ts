@@ -7,6 +7,7 @@ import { Route } from '../../entity/Route';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalsService } from '../../services/modals-service';
 import {RouteApiService} from "../../services/route-api.service";
+import * as moment from "moment/moment";
 
 
 
@@ -60,6 +61,13 @@ export class MCMRouteByCodeModal {
             }
             if (session) {
                 console.log('WE HAVE A SESSION', session);
+                // Show error instead of joining if session has expired already
+                const currentTimeUnix = moment().unix();
+                const endTimeInUnix = moment(session.ends_at).unix();
+                if (currentTimeUnix > endTimeInUnix) {
+                    this.showError = true;
+                    return;
+                }
                 let modal = this.modalCtrl.create(MCMTermsAndConditionsModal, {
                     session: session,
                     navCtrl: this.navCtrl

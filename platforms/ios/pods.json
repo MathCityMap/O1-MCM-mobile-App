@@ -1,11 +1,15 @@
 {
-    "declarations": {},
+    "declarations": {
+        "use_frameworks!": {
+            "declaration": "use_frameworks!",
+            "count": 1
+        }
+    },
     "sources": {},
     "libraries": {
         "SSZipArchive": {
             "name": "SSZipArchive",
-            "type": "podspec",
-            "spec": "~> 2.1.4",
+            "spec": "~> 2.6.0",
             "count": 1
         }
     }

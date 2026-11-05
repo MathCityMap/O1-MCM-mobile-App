@@ -23,6 +23,244 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-native-spinner.SpinnerDialog",
+      "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
+      "pluginId": "cordova-plugin-native-spinner",
+      "clobbers": [
+        "SpinnerDialog"
+      ]
+    },
+    {
+      "id": "cordova-plugin-globalization.GlobalizationError",
+      "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+      "pluginId": "cordova-plugin-globalization",
+      "clobbers": [
+        "window.GlobalizationError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-globalization.globalization",
+      "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+      "pluginId": "cordova-plugin-globalization",
+      "clobbers": [
+        "navigator.globalization"
+      ]
+    },
+    {
+      "id": "cordova-plugin-app-version.AppVersionPlugin",
+      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
+      "pluginId": "cordova-plugin-app-version",
+      "clobbers": [
+        "cordova.getAppVersion"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic-keyboard.keyboard",
+      "file": "plugins/cordova-plugin-ionic-keyboard/www/android/keyboard.js",
+      "pluginId": "cordova-plugin-ionic-keyboard",
+      "clobbers": [
+        "window.Keyboard"
+      ]
+    },
+    {
+      "id": "cordova-plugin-screen-orientation.screenorientation",
+      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+      "pluginId": "cordova-plugin-screen-orientation",
+      "clobbers": [
+        "cordova.plugins.screenorientation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Location",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.location.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.location"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Bluetooth",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.bluetooth.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.bluetooth"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Wifi",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.wifi.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.wifi"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Camera",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.camera.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.camera"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Notifications",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.notifications.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.notifications"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Microphone",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.microphone.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.microphone"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Contacts",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.contacts.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.contacts"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_Calendar",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.calendar.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.calendar"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_NFC",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.nfc.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.nfc"
+      ]
+    },
+    {
+      "id": "cordova.plugins.diagnostic.Diagnostic_External_Storage",
+      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.external_storage.js",
+      "pluginId": "cordova.plugins.diagnostic",
+      "merges": [
+        "cordova.plugins.diagnostic.external_storage"
+      ]
+    },
+    {
+      "id": "cordova-plugin-safariviewcontroller.SafariViewController",
+      "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
+      "pluginId": "cordova-plugin-safariviewcontroller",
+      "clobbers": [
+        "SafariViewController"
+      ]
+    },
+    {
+      "id": "cordova-plugin-badge.Badge",
+      "file": "plugins/cordova-plugin-badge/www/badge.js",
+      "pluginId": "cordova-plugin-badge",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
+      "id": "cordova-plugin-tts-advanced.tts",
+      "file": "plugins/cordova-plugin-tts-advanced/www/tts.js",
+      "pluginId": "cordova-plugin-tts-advanced",
+      "clobbers": [
+        "TTS"
+      ]
+    },
+    {
+      "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
+      "file": "plugins/cordova-plugin-request-location-accuracy/www/android/RequestLocationAccuracy.js",
+      "pluginId": "cordova-plugin-request-location-accuracy",
+      "clobbers": [
+        "cordova.plugins.locationAccuracy"
+      ]
+    },
+    {
+      "id": "cordova-sqlite-storage.SQLitePlugin",
+      "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+      "pluginId": "cordova-sqlite-storage",
+      "clobbers": [
+        "SQLitePlugin"
+      ]
+    },
+    {
+      "id": "cordova-plugin-camera.Camera",
+      "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
+      "pluginId": "cordova-plugin-camera",
+      "clobbers": [
+        "Camera"
+      ]
+    },
+    {
+      "id": "cordova-plugin-camera.CameraPopoverOptions",
+      "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
+      "pluginId": "cordova-plugin-camera",
+      "clobbers": [
+        "CameraPopoverOptions"
+      ]
+    },
+    {
+      "id": "cordova-plugin-camera.camera",
+      "file": "plugins/cordova-plugin-camera/www/Camera.js",
+      "pluginId": "cordova-plugin-camera",
+      "clobbers": [
+        "navigator.camera"
+      ]
+    },
+    {
+      "id": "cordova-plugin-camera.CameraPopoverHandle",
+      "file": "plugins/cordova-plugin-camera/www/CameraPopoverHandle.js",
+      "pluginId": "cordova-plugin-camera",
+      "clobbers": [
+        "CameraPopoverHandle"
+      ]
+    },
+    {
+      "id": "com-sarriaroman-photoviewer.PhotoViewer",
+      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+      "pluginId": "com-sarriaroman-photoviewer",
+      "clobbers": [
+        "PhotoViewer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-geolocation.geolocation",
+      "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+      "pluginId": "cordova-plugin-geolocation",
+      "clobbers": [
+        "navigator.geolocation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-geolocation.PositionError",
+      "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+      "pluginId": "cordova-plugin-geolocation",
+      "runs": true
+    },
+    {
       "id": "cordova-plugin-file.DirectoryEntry",
       "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
       "pluginId": "cordova-plugin-file",
@@ -204,310 +442,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
-      "id": "cordova-plugin-advanced-http.lodash",
-      "file": "plugins/cordova-plugin-advanced-http/www/lodash.js",
-      "pluginId": "cordova-plugin-advanced-http"
-    },
-    {
-      "id": "cordova-plugin-advanced-http.tough-cookie",
-      "file": "plugins/cordova-plugin-advanced-http/www/umd-tough-cookie.js",
-      "pluginId": "cordova-plugin-advanced-http"
-    },
-    {
-      "id": "cordova-plugin-advanced-http.local-storage-store",
-      "file": "plugins/cordova-plugin-advanced-http/www/local-storage-store.js",
-      "pluginId": "cordova-plugin-advanced-http"
-    },
-    {
-      "id": "cordova-plugin-advanced-http.cookie-handler",
-      "file": "plugins/cordova-plugin-advanced-http/www/cookie-handler.js",
-      "pluginId": "cordova-plugin-advanced-http"
-    },
-    {
-      "id": "cordova-plugin-advanced-http.angular-integration",
-      "file": "plugins/cordova-plugin-advanced-http/www/angular-integration.js",
-      "pluginId": "cordova-plugin-advanced-http"
-    },
-    {
-      "id": "cordova-plugin-advanced-http.http",
-      "file": "plugins/cordova-plugin-advanced-http/www/advanced-http.js",
-      "pluginId": "cordova-plugin-advanced-http",
-      "clobbers": [
-        "cordova.plugin.http"
-      ]
-    },
-    {
-      "id": "cordova-plugin-native-spinner.SpinnerDialog",
-      "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
-      "pluginId": "cordova-plugin-native-spinner",
-      "clobbers": [
-        "SpinnerDialog"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.network",
-      "file": "plugins/cordova-plugin-network-information/www/network.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.Connection",
-      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "Connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-globalization.GlobalizationError",
-      "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
-      "pluginId": "cordova-plugin-globalization",
-      "clobbers": [
-        "window.GlobalizationError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-globalization.globalization",
-      "file": "plugins/cordova-plugin-globalization/www/globalization.js",
-      "pluginId": "cordova-plugin-globalization",
-      "clobbers": [
-        "navigator.globalization"
-      ]
-    },
-    {
-      "id": "cordova-plugin-app-version.AppVersionPlugin",
-      "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-      "pluginId": "cordova-plugin-app-version",
-      "clobbers": [
-        "cordova.getAppVersion"
-      ]
-    },
-    {
-      "id": "com.jjdltc.cordova.plugin.zip.JJzip",
-      "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
-      "pluginId": "com.jjdltc.cordova.plugin.zip",
-      "clobbers": [
-        "JJzip"
-      ]
-    },
-    {
-      "id": "cordova-plugin-ionic-keyboard.keyboard",
-      "file": "plugins/cordova-plugin-ionic-keyboard/www/android/keyboard.js",
-      "pluginId": "cordova-plugin-ionic-keyboard",
-      "clobbers": [
-        "window.Keyboard"
-      ]
-    },
-    {
-      "id": "cordova-plugin-screen-orientation.screenorientation",
-      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
-      "pluginId": "cordova-plugin-screen-orientation",
-      "clobbers": [
-        "cordova.plugins.screenorientation"
-      ]
-    },
-    {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Location",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.location.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.location"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Bluetooth",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.bluetooth.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.bluetooth"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Wifi",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.wifi.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.wifi"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Camera",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.camera.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.camera"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Notifications",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.notifications.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.notifications"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Microphone",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.microphone.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.microphone"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Contacts",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.contacts.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.contacts"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_Calendar",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.calendar.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.calendar"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_NFC",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.nfc.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.nfc"
-      ]
-    },
-    {
-      "id": "cordova.plugins.diagnostic.Diagnostic_External_Storage",
-      "file": "plugins/cordova.plugins.diagnostic/www/android/diagnostic.external_storage.js",
-      "pluginId": "cordova.plugins.diagnostic",
-      "merges": [
-        "cordova.plugins.diagnostic.external_storage"
-      ]
-    },
-    {
-      "id": "cordova-plugin-safariviewcontroller.SafariViewController",
-      "file": "plugins/cordova-plugin-safariviewcontroller/www/SafariViewController.js",
-      "pluginId": "cordova-plugin-safariviewcontroller",
-      "clobbers": [
-        "SafariViewController"
-      ]
-    },
-    {
-      "id": "cordova-plugin-badge.Badge",
-      "file": "plugins/cordova-plugin-badge/www/badge.js",
-      "pluginId": "cordova-plugin-badge",
-      "clobbers": [
-        "cordova.plugins.notification.badge"
-      ]
-    },
-    {
-      "id": "cordova-plugin-ionic-webview.IonicWebView",
-      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
-      "pluginId": "cordova-plugin-ionic-webview",
-      "clobbers": [
-        "Ionic.WebView"
-      ]
-    },
-    {
-      "id": "cordova-plugin-tts-advanced.tts",
-      "file": "plugins/cordova-plugin-tts-advanced/www/tts.js",
-      "pluginId": "cordova-plugin-tts-advanced",
-      "clobbers": [
-        "TTS"
-      ]
-    },
-    {
-      "id": "cordova-plugin-request-location-accuracy.RequestLocationAccuracy",
-      "file": "plugins/cordova-plugin-request-location-accuracy/www/android/RequestLocationAccuracy.js",
-      "pluginId": "cordova-plugin-request-location-accuracy",
-      "clobbers": [
-        "cordova.plugins.locationAccuracy"
-      ]
-    },
-    {
-      "id": "cordova-sqlite-storage.SQLitePlugin",
-      "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
-      "pluginId": "cordova-sqlite-storage",
-      "clobbers": [
-        "SQLitePlugin"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.Camera",
-      "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "Camera"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.CameraPopoverOptions",
-      "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "CameraPopoverOptions"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.camera",
-      "file": "plugins/cordova-plugin-camera/www/Camera.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "navigator.camera"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.CameraPopoverHandle",
-      "file": "plugins/cordova-plugin-camera/www/CameraPopoverHandle.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "CameraPopoverHandle"
-      ]
-    },
-    {
-      "id": "com-sarriaroman-photoviewer.PhotoViewer",
-      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
-      "pluginId": "com-sarriaroman-photoviewer",
-      "clobbers": [
-        "PhotoViewer"
-      ]
-    },
-    {
-      "id": "cordova-plugin-geolocation.geolocation",
-      "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
-      "pluginId": "cordova-plugin-geolocation",
-      "clobbers": [
-        "navigator.geolocation"
-      ]
-    },
-    {
-      "id": "cordova-plugin-geolocation.PositionError",
-      "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
-      "pluginId": "cordova-plugin-geolocation",
-      "runs": true
-    },
-    {
       "id": "cordova-plugin-media.MediaError",
       "file": "plugins/cordova-plugin-media/www/MediaError.js",
       "pluginId": "cordova-plugin-media",
@@ -556,37 +490,67 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
+    },
+    {
+      "id": "cordova-plugin-network-information.network",
+      "file": "plugins/cordova-plugin-network-information/www/network.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "navigator.connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.Connection",
+      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "Connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic-webview.IonicWebView",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+      "pluginId": "cordova-plugin-ionic-webview",
+      "clobbers": [
+        "Ionic.WebView"
+      ]
+    },
+    {
+      "id": "com.jjdltc.cordova.plugin.zip.JJzip",
+      "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
+      "pluginId": "com.jjdltc.cordova.plugin.zip",
+      "clobbers": [
+        "JJzip"
+      ]
     }
   ];
   module.exports.metadata = {
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-statusbar": "2.2.4-dev",
-    "cordova-plugin-file": "8.0.0",
-    "cordova-plugin-advanced-http": "1.6.2",
     "cordova-plugin-native-spinner": "1.1.3",
-    "cordova-plugin-network-information": "1.3.4",
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-app-version": "0.1.9",
-    "com.jjdltc.cordova.plugin.zip": "1.1.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-screen-orientation": "3.0.2",
-    "cordova-custom-config": "5.1.0",
     "cordova-plugin-androidx-adapter": "1.1.1",
-    "cordova-plugin-inappbrowser": "4.0.0",
+    "cordova-plugin-inappbrowser": "7.0.0",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
     "cordova.plugins.diagnostic": "6.0.4",
     "cordova-plugin-safariviewcontroller": "2.0.0",
     "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-ionic-webview": "5.0.0",
     "cordova-plugin-tts-advanced": "0.5.2",
     "cordova-plugin-request-location-accuracy": "2.3.0",
     "cordova-sqlite-storage": "7.0.0",
     "cordova-plugin-camera": "8.0.1-dev",
     "com-sarriaroman-photoviewer": "1.1.18",
     "cordova-plugin-geolocation": "5.0.1-dev",
+    "cordova-plugin-file": "8.1.3",
     "cordova-plugin-media": "7.0.0-dev",
     "cordova-open-native-settings": "1.5.5",
-    "cordova-plugin-local-notification": "0.9.0-beta.2"
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-network-information": "3.1.0",
+    "cordova-plugin-ionic-webview": "5.0.0",
+    "com.jjdltc.cordova.plugin.zip": "1.1.0"
   };
 });

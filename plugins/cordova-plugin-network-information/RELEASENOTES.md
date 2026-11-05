@@ -7,18 +7,98 @@
 # to you under the Apache License, Version 2.0 (the
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
-# 
-# http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
 # Unless required by applicable law or agreed to in writing,
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-#  KIND, either express or implied.  See the License for the
+# KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
 #
 -->
+
 # Release Notes
+
+### 3.1.0
+
+**Features:**
+
+* feat(android): add 5g check and test ([#172](https://github.com/apache/cordova-plugin-network-information/pull/172)) [[0a86a7b](https://github.com/apache/cordova-plugin-network-information/commit/0a86a7b)]
+* feat(ios): add 5G check ([#159](https://github.com/apache/cordova-plugin-network-information/pull/159)) [[d88517d](https://github.com/apache/cordova-plugin-network-information/commit/d88517d)]
+
+**Fixes:**
+
+* fix(ios): fix deprecation warnings for iOS 12+ ([#169](https://github.com/apache/cordova-plugin-network-information/pull/169)) [[a76687b](https://github.com/apache/cordova-plugin-network-information/commit/a76687b)]
+* fix(ios): Remove redundant `#import <netinet6/in6.h> for Xcode 26.4 compatibility ([#166](https://github.com/apache/cordova-plugin-network-information/pull/166)) [[291328e](https://github.com/apache/cordova-plugin-network-information/commit/291328e)]
+
+**Other:**
+
+* chore: various updates ([#177](https://github.com/apache/cordova-plugin-network-information/pull/177)) [[3148e76](https://github.com/apache/cordova-plugin-network-information/commit/3148e76)]
+* chore: bump minor version to 3.1.0-dev ([#173](https://github.com/apache/cordova-plugin-network-information/pull/173)) [[78de889](https://github.com/apache/cordova-plugin-network-information/commit/78de889)]
+* chore: update asf config ([#161](https://github.com/apache/cordova-plugin-network-information/pull/161)) [[c9a7b0b](https://github.com/apache/cordova-plugin-network-information/commit/c9a7b0b)]
+* chore(ci): draft release ([#174](https://github.com/apache/cordova-plugin-network-information/pull/174)) [[84f119b](https://github.com/apache/cordova-plugin-network-information/commit/84f119b)]
+* chore(dev-dep): bump @cordova/eslint-config to 6.0.1 w/ fixes ([#171](https://github.com/apache/cordova-plugin-network-information/pull/171)) [[952bd51](https://github.com/apache/cordova-plugin-network-information/commit/952bd51)]
+* chore(npm): bump package-lock v2 w/ rebuild ([#153](https://github.com/apache/cordova-plugin-network-information/pull/153)) [[cd9d84b](https://github.com/apache/cordova-plugin-network-information/commit/cd9d84b)]
+* chore(workflow): update upload to atr action ([#180](https://github.com/apache/cordova-plugin-network-information/pull/180)) [[dfe1df3](https://github.com/apache/cordova-plugin-network-information/commit/dfe1df3)]
+* chore(workflow): fix verify target release version for plugins ([#179](https://github.com/apache/cordova-plugin-network-information/pull/179)) [[e7a6e9e](https://github.com/apache/cordova-plugin-network-information/commit/e7a6e9e)]
+* chore(workflow): add release-audit w/ supporting files & fixes ([#170](https://github.com/apache/cordova-plugin-network-information/pull/170)) [[16b5d8d](https://github.com/apache/cordova-plugin-network-information/commit/16b5d8d)]
+* chore(workflow): Update workflows from cordova-paramedic ([#168](https://github.com/apache/cordova-plugin-network-information/pull/168)) [[b758e31](https://github.com/apache/cordova-plugin-network-information/commit/b758e31)]
+* ci: sync workflow w/ paramedic ([#164](https://github.com/apache/cordova-plugin-network-information/pull/164)) [[71718b8](https://github.com/apache/cordova-plugin-network-information/commit/71718b8)]
+* ci: sync workflow with paramedic ([#154](https://github.com/apache/cordova-plugin-network-information/pull/154)) [[6fe954d](https://github.com/apache/cordova-plugin-network-information/commit/6fe954d)]
+* ci: add action-badge ([#139](https://github.com/apache/cordova-plugin-network-information/pull/139)) [[17b96f5](https://github.com/apache/cordova-plugin-network-information/commit/17b96f5)]
+* ci: remove travis & appveyor ([#138](https://github.com/apache/cordova-plugin-network-information/pull/138)) [[e53014f](https://github.com/apache/cordova-plugin-network-information/commit/e53014f)]
+* ci: add gh-actions workflows ([#137](https://github.com/apache/cordova-plugin-network-information/pull/137)) [[d4005b7](https://github.com/apache/cordova-plugin-network-information/commit/d4005b7)]
+* ci(android): update java requirement for cordova-android@11 ([#148](https://github.com/apache/cordova-plugin-network-information/pull/148)) [[2c29cf9](https://github.com/apache/cordova-plugin-network-information/commit/2c29cf9)]
+* ci(gh-action): sync with paramedic configs ([#160](https://github.com/apache/cordova-plugin-network-information/pull/160)) [[c93032f](https://github.com/apache/cordova-plugin-network-information/commit/c93032f)]
+* ci(ios): update workflow w/ iOS 15 ([#141](https://github.com/apache/cordova-plugin-network-information/pull/141)) [[a18c3b7](https://github.com/apache/cordova-plugin-network-information/commit/a18c3b7)]
+* doc(readme): improve badges ([#175](https://github.com/apache/cordova-plugin-network-information/pull/175)) [[73091ba](https://github.com/apache/cordova-plugin-network-information/commit/73091ba)]
+* Incremented plugin version. (cordova-plugin-network-information20210603) [[fcec956](https://github.com/apache/cordova-plugin-network-information/commit/fcec956)]
+
+### 3.0.0 (Jun 03, 2021)
+-   release 3.0.0 audit fix
+-   ci: add node-14.x to workflow
+-   ci(travis): update osx xcode image
+-   ci(travis): updates **Android** API level
+-   **Android** - Fixes bug onConnect does not work as expected [#110](https://github.com/apache/cordova-plugin-network-information/issues/110)
+-   chore(npm): use short notation in `package.json`
+-   chore: adds package-lock file
+-   chore: bumps version to 3.0.0-dev in test files
+-   refactor: Removed all references of deprecated navigator.network
+-   docs: Replaced FileTransfer example with a XHR example
+-   docs: Note on background usage
+-   docs: Removed apache issue tracker link
+-   docs: Removed **iOS** 7 quirk
+-   refactor(eslint): use cordova-eslint
+-   chore(asf): update git notification settings
+-   Update CONTRIBUTING.md
+-   chore(npm): improve ignore list
+-   ci: updates Node.js versions
+-   ci(appveyor): remove node 6, add node 12
+-   ci(travis): upgrade to node 8
+
+### 2.0.2 (Jun 19, 2019)
+
+-   fix(android): Fix bug [cordova-plugin-network-information] connection info is not reliable on Android 6 ([#74](https://github.com/apache/cordova-plugin-network-information/issues/74)) ([`db0d4b5`](https://github.com/apache/cordova-plugin-network-information/commit/db0d4b5), [`9a45d63`](https://github.com/apache/cordova-plugin-network-information/commit/9a45d63), [`60ab69f`](https://github.com/apache/cordova-plugin-network-information/commit/60ab69f), [`acc02f2`](https://github.com/apache/cordova-plugin-network-information/commit/acc02f2), [`0869800`](https://github.com/apache/cordova-plugin-network-information/commit/0869800), [`394452a`](https://github.com/apache/cordova-plugin-network-information/commit/394452a), [`cafdd67`](https://github.com/apache/cordova-plugin-network-information/commit/cafdd67))
+-   chore(release): fix repo and issue link ([`9ec1e21`](https://github.com/apache/cordova-plugin-network-information/commit/9ec1e21))
+-   docs: remove outdated translations ([`24e50f8`](https://github.com/apache/cordova-plugin-network-information/commit/24e50f8))
+-   build: add .npmignore to remove unneeded files from npm package ([`d31e135`](https://github.com/apache/cordova-plugin-network-information/commit/d31e135))
+-   build: add .gitattributes to force LF (instead of possible CRLF on Windows) ([`f35341e`](https://github.com/apache/cordova-plugin-network-information/commit/f35341e))
+-   ci(travis): Update Travis CI configuration for new paramedic ([#89](https://github.com/apache/cordova-plugin-network-information/issues/89)) ([`102f757`](https://github.com/apache/cordova-plugin-network-information/commit/102f757))
+-   ci(travis): add android-28 ([`27b0e39`](https://github.com/apache/cordova-plugin-network-information/commit/27b0e39))
+-   ci: drop Node.js v4 support ([#87](https://github.com/apache/cordova-plugin-network-information/issues/87)) ([`5158556`](https://github.com/apache/cordova-plugin-network-information/commit/5158556))
+-   chore(github): Add or update GitHub pull request and issue template ([`0cd2771`](https://github.com/apache/cordova-plugin-network-information/commit/0cd2771))
+-   docs: remove JIRA link ([`0796cf9`](https://github.com/apache/cordova-plugin-network-information/commit/0796cf9))
+-   ci: also accept terms for android sdk `android-27` ([`2cde33a`](https://github.com/apache/cordova-plugin-network-information/commit/2cde33a))
+-   ci(travis): [CB-13757](https://issues.apache.org/jira/browse/CB-13757) Add build-tools-26.0.2 to travis ([`5b0933d`](https://github.com/apache/cordova-plugin-network-information/commit/5b0933d), [`e816db4`](https://github.com/apache/cordova-plugin-network-information/commit/e816db4))
+-   chore: Fix release notes ([#61](https://github.com/apache/cordova-plugin-network-information/issues/61)) ([`629a6ab`](https://github.com/apache/cordova-plugin-network-information/commit/629a6ab))
+
+### 2.0.1 (Dec 27, 2017)
+* [CB-13708](https://issues.apache.org/jira/browse/CB-13708) Fix to allow 2.0.0 version install (#60)
+
+### 2.0.0 (Dec 15, 2017)
+* [CB-13663](https://issues.apache.org/jira/browse/CB-13663) : Removed deprecated platforms
 
 ### 1.3.4 (Nov 06, 2017)
 * [CB-12751](https://issues.apache.org/jira/browse/CB-12751) (ios) Fix connection type when airplane mode is on

@@ -48,6 +48,7 @@ export class MCMJoinSessionModal {
         }
         let route = await this.routeApiService.findRouteByCode(this.session.trail_code);
         try{
+            if (!route) throw "no Route found";
             await this.sessionService.setActiveSession(this.session, this.teamName, this.teamMemberArray);
             this.cancel();
             this.routeApiService.unlockRoute(route);

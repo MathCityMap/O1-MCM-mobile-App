@@ -78,7 +78,7 @@ export class ChatAndSessionService {
     private static EVENTS_POST_INTERVAL_IN_SECS = 10;
     private static CHAT_PULL_INTERVAL_USER_SEES_MESSAGES_IN_SECS = 2;
     private static STORAGE_KEY_SESSION = 'ChatAndSessionService.activeSession';
-    private static USER_EVENTS = [];
+    private static USER_EVENTS: Set<EventAddRequest> = new Set<EventAddRequest>();
     private static DEFAULT_LAT = 999;
     private static DEFAULT_LON = 999;
 
@@ -597,19 +597,20 @@ export class ChatAndSessionService {
     private async sendUserEvents() {
         try {
             let sessionInfo = this.transientActiveSession;
-            console.log('send user events');
+            console.log('send user events', ChatAndSessionService.USER_EVENTS.size);
             if (sessionInfo) {
-                if (ChatAndSessionService.USER_EVENTS.length > 0) {
+                if (ChatAndSessionService.USER_EVENTS.size > 0) {
+                    let events = [...ChatAndSessionService.USER_EVENTS];
                     let position = this.gpsService.getLastPosition();
                     if(position && position.coords){
                         console.log(position.coords);
-                        ChatAndSessionService.USER_EVENTS.forEach(event => {
+                        events.forEach(event => {
                             event.lat = position.coords.latitude.toString();
                             event.lon = position.coords.longitude.toString();
                         });
                     }
                     let eventsAddRequest = new EventsAddRequest();
-                    eventsAddRequest.events = ChatAndSessionService.USER_EVENTS;
+                    eventsAddRequest.events = events;
                     let params = {
                         events: eventsAddRequest,
                         sessionCode: sessionInfo.session.code,
@@ -617,7 +618,9 @@ export class ChatAndSessionService {
                     };
                     let sessionEventsResponse = await this.sessionEventService.addEvents(params).toPromise();
                     console.log(ChatAndSessionService.USER_EVENTS);
-                    ChatAndSessionService.USER_EVENTS = [];
+                    for (const event of events) {
+                        ChatAndSessionService.USER_EVENTS.delete(event);
+                    }
                 }
             }
         } catch (e) {
@@ -626,6 +629,7 @@ export class ChatAndSessionService {
     }
 
     public addUserEvent(title: string, details: string, task_id: string) {
+        console.log('Adduserevent');
         // If we have no position subscription we are not currently in a session so we ignore the event
         if (!this.positionSubscription) return;
         let eventAddRequest = new EventAddRequest();
@@ -634,7 +638,7 @@ export class ChatAndSessionService {
         eventAddRequest.task_id = task_id;
         eventAddRequest.lat = ""+ChatAndSessionService.DEFAULT_LAT;
         eventAddRequest.lon = ""+ChatAndSessionService.DEFAULT_LON;
-        ChatAndSessionService.USER_EVENTS.push(eventAddRequest)
+        ChatAndSessionService.USER_EVENTS.add(eventAddRequest)
     }
 
     private async fetchLeaderboard() {
