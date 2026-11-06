@@ -185,6 +185,8 @@ page-task-group-detail {
          .description {
             font-size: 0.92rem;
             white-space: pre-line;
+            overflow-x: scroll;
+            overflow-y: hidden;
          }
       }
    }

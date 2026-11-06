@@ -2,6 +2,102 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>de</string>
+		<string>en</string>
+		<string>ar</string>
+		<string>el</string>
+		<string>es</string>
+		<string>et</string>
+		<string>fa</string>
+		<string>fr</string>
+		<string>id</string>
+		<string>it</string>
+		<string>pt</string>
+		<string>sk</string>
+		<string>tr</string>
+		<string>zh</string>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>10.0.1.22</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>10.0.1.51</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>192.168.1.66</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>192.168.12.252</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>192.168.12.29</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>194.210.221.147</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>194.210.223.30</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>194.210.223.55</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>194.210.223.59</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSCrossWebsiteTrackingUsageDescription</key>
+	<string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -22,139 +118,5 @@
 			</dict>
 		</dict>
 	</array>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
-		<dict>
-			<key>UIWindowSceneSessionRoleApplication</key>
-			<array>
-				<dict>
-					<key>UISceneConfigurationName</key>
-					<string>Default Configuration</string>
-					<key>UISceneDelegateClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
-				</dict>
-			</array>
-		</dict>
-	</dict>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>10.0.1.51</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>192.168.1.66</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>194.210.221.147</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>194.210.223.55</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>194.210.223.30</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>194.210.223.59</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>192.168.12.29</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>192.168.12.252</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>10.0.1.22</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
-	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app requires access to your location when the screen is on and the app is displayed.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app requires constant access to your location in order to track your position, even when the screen is off or the app is in the background.</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>This app requires constant Bluetooth access to function properly.</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>This app requires Bluetooth access to function properly.</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>This app requires calendar access to function properly.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app requires camera access to function properly.</string>
-	<key>NSContactsUsageDescription</key>
-	<string>This app requires contacts access to function properly.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app requires microphone access to function properly.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>This app requires motion detection access to function properly.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires photo library access to function properly.</string>
-	<key>NSRemindersUsageDescription</key>
-	<string>This app requires reminders access to function properly.</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>CFBundleLocalizations</key>
-	<array>
-		<string>de</string>
-		<string>en</string>
-		<string>ar</string>
-		<string>el</string>
-		<string>es</string>
-		<string>et</string>
-		<string>fa</string>
-		<string>fr</string>
-		<string>id</string>
-		<string>it</string>
-		<string>pt</string>
-		<string>sk</string>
-		<string>tr</string>
-		<string>zh</string>
-	</array>
-	<key>NSCrossWebsiteTrackingUsageDescription</key>
-	<string>We need access to Cross Website Tracking in order to for the Login of the Web-Portal to work.</string>
 </dict>
 </plist>
