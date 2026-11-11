@@ -60,7 +60,6 @@ export class MyApp {
                 private modalService: ModalsService,
                 private deepLinker: DeepLinker) {
 
-        let that = this;
         platform.ready().then(async () => {
             await routeApiService.migrateDataFromSQLiteStorage().catch(e => console.error("old data migration failed", e));
             await this.refreshTranslationCacheOnAppUpdate(platform, languageService).catch(e => console.error("translation cache refresh check failed", e));

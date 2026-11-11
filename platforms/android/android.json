@@ -9,7 +9,7 @@
         "parents": {
           "/manifest/application": [
             {
-              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
+              "xml": "<application android:usesCleartextTraffic=\"true\" />",
               "count": 2,
               "mode": "merge",
               "id": "config.xml",
@@ -23,7 +23,7 @@
               }
             },
             {
-              "xml": "<application android:usesCleartextTraffic=\"true\" />",
+              "xml": "<application android:requestLegacyExternalStorage=\"true\" />",
               "count": 1,
               "mode": "merge",
               "id": "config.xml",
@@ -44,7 +44,7 @@
           "/manifest": [
             {
               "xml": "<queries><intent><action android:name=\"android.support.customtabs.action.CustomTabsService\" /></intent></queries>",
-              "count": 10
+              "count": 11
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
@@ -169,10 +169,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"CDVOrientation\"><param name=\"android-package\" value=\"cordova.plugins.screenorientation.CDVOrientation\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
               "count": 1
             },
@@ -219,6 +215,10 @@
             {
               "xml": "<feature name=\"JJzip\"><param name=\"android-package\" value=\"com.jjdltc.cordova.plugin.zip.JJzip\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"CDVOrientation\"><param name=\"android-package\" value=\"cordova.plugins.screenorientation.CDVOrientation\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -226,10 +226,6 @@
       "config.xml": {
         "parents": {
           "/*": [
-            {
-              "xml": "<feature name=\"CDVIonicKeyboard\"><param name=\"android-package\" onload=\"true\" value=\"io.ionic.keyboard.CDVIonicKeyboard\" /></feature>",
-              "count": 1
-            },
             {
               "xml": "<feature name=\"Diagnostic\"><param name=\"android-package\" value=\"cordova.plugins.Diagnostic\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
@@ -304,9 +300,6 @@
     }
   },
   "installed_plugins": {
-    "es6-promise-plugin": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
     "cordova-plugin-device": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
@@ -320,12 +313,6 @@
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "de.autentek.mathcitymap"
-    },
-    "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
     "cordova-plugin-androidx-adapter": {
@@ -386,21 +373,21 @@
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "cordova-plugin-ionic-webview": {
+    "com.jjdltc.cordova.plugin.zip": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     },
-    "com.jjdltc.cordova.plugin.zip": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "de.autentek.mathcitymap"
+    },
+    "cordova-plugin-ionic-webview": {
       "PACKAGE_NAME": "de.autentek.mathcitymap"
     }
   },
   "dependent_plugins": {},
   "modules": [
-    {
-      "id": "es6-promise-plugin.Promise",
-      "file": "plugins/es6-promise-plugin/www/promise.js",
-      "pluginId": "es6-promise-plugin",
-      "runs": true
-    },
     {
       "id": "cordova-plugin-device.device",
       "file": "plugins/cordova-plugin-device/www/device.js",
@@ -447,22 +434,6 @@
       "pluginId": "cordova-plugin-app-version",
       "clobbers": [
         "cordova.getAppVersion"
-      ]
-    },
-    {
-      "id": "cordova-plugin-ionic-keyboard.keyboard",
-      "file": "plugins/cordova-plugin-ionic-keyboard/www/android/keyboard.js",
-      "pluginId": "cordova-plugin-ionic-keyboard",
-      "clobbers": [
-        "window.Keyboard"
-      ]
-    },
-    {
-      "id": "cordova-plugin-screen-orientation.screenorientation",
-      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
-      "pluginId": "cordova-plugin-screen-orientation",
-      "clobbers": [
-        "cordova.plugins.screenorientation"
       ]
     },
     {
@@ -903,31 +874,43 @@
       ]
     },
     {
-      "id": "cordova-plugin-ionic-webview.IonicWebView",
-      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
-      "pluginId": "cordova-plugin-ionic-webview",
-      "clobbers": [
-        "Ionic.WebView"
-      ]
-    },
-    {
       "id": "com.jjdltc.cordova.plugin.zip.JJzip",
       "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
       "pluginId": "com.jjdltc.cordova.plugin.zip",
       "clobbers": [
         "JJzip"
       ]
+    },
+    {
+      "id": "es6-promise-plugin.Promise",
+      "file": "plugins/es6-promise-plugin/www/promise.js",
+      "pluginId": "es6-promise-plugin",
+      "runs": true
+    },
+    {
+      "id": "cordova-plugin-screen-orientation.screenorientation",
+      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+      "pluginId": "cordova-plugin-screen-orientation",
+      "clobbers": [
+        "cordova.plugins.screenorientation",
+        "screen.orientation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic-webview.IonicWebView",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+      "pluginId": "cordova-plugin-ionic-webview",
+      "clobbers": [
+        "Ionic.WebView"
+      ]
     }
   ],
   "plugin_metadata": {
-    "es6-promise-plugin": "4.2.2",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-app-version": "0.1.9",
-    "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-androidx-adapter": "1.1.1",
     "cordova-plugin-inappbrowser": "7.0.0",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
@@ -945,7 +928,9 @@
     "cordova-open-native-settings": "1.5.5",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-network-information": "3.1.0",
-    "cordova-plugin-ionic-webview": "5.0.0",
-    "com.jjdltc.cordova.plugin.zip": "1.1.0"
+    "com.jjdltc.cordova.plugin.zip": "1.1.0",
+    "es6-promise-plugin": "4.2.2",
+    "cordova-plugin-screen-orientation": "3.0.4",
+    "cordova-plugin-ionic-webview": "5.0.0"
   }
 }

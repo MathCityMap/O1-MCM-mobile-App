@@ -91,7 +91,6 @@
         "cordova-plugin-geolocation": "github:apache/cordova-plugin-geolocation",
         "cordova-plugin-globalization": "~1.0.9",
         "cordova-plugin-inappbrowser": "^7.0.0",
-        "cordova-plugin-ionic-keyboard": "2.2.0",
         "cordova-plugin-ionic-webview": "file:plugin-src/cordova-plugin-ionic-webview",
         "cordova-plugin-local-notification": "file:plugin-src/cordova-plugin-local-notification",
         "cordova-plugin-media": "file:plugin-src/cordova-plugin-media",
@@ -99,7 +98,7 @@
         "cordova-plugin-network-information": "^3.1.0",
         "cordova-plugin-request-location-accuracy": "^2.3.0",
         "cordova-plugin-safariviewcontroller": "^2.0.0",
-        "cordova-plugin-screen-orientation": "3.0.2",
+        "cordova-plugin-screen-orientation": "^3.0.4",
         "cordova-plugin-statusbar": "git+https://github.com/apache/cordova-plugin-statusbar.git",
         "cordova-plugin-tts-advanced": "^0.5.3",
         "cordova-plugin-wkwebview-inject-cookie": "1.0.6",
@@ -117,8 +116,6 @@
             "cordova-plugin-native-spinner": {},
             "cordova-plugin-globalization": {},
             "cordova-plugin-app-version": {},
-            "cordova-plugin-ionic-keyboard": {},
-            "cordova-plugin-screen-orientation": {},
             "cordova-plugin-androidx-adapter": {},
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-wkwebview-inject-cookie": {},
@@ -146,11 +143,12 @@
             "cordova-open-native-settings": {},
             "cordova-plugin-local-notification": {},
             "cordova-plugin-network-information": {},
-            "cordova-plugin-ionic-webview": {},
             "com.jjdltc.cordova.plugin.zip": {},
             "cordova-plugin-file": {
                 "ANDROIDX_WEBKIT_VERSION": "1.4.0"
-            }
+            },
+            "cordova-plugin-screen-orientation": {},
+            "cordova-plugin-ionic-webview": {}
         },
         "platforms": [
             "ios",

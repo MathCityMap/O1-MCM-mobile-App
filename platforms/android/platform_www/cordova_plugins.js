@@ -1,12 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
-      "id": "es6-promise-plugin.Promise",
-      "file": "plugins/es6-promise-plugin/www/promise.js",
-      "pluginId": "es6-promise-plugin",
-      "runs": true
-    },
-    {
       "id": "cordova-plugin-device.device",
       "file": "plugins/cordova-plugin-device/www/device.js",
       "pluginId": "cordova-plugin-device",
@@ -52,22 +46,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "cordova-plugin-app-version",
       "clobbers": [
         "cordova.getAppVersion"
-      ]
-    },
-    {
-      "id": "cordova-plugin-ionic-keyboard.keyboard",
-      "file": "plugins/cordova-plugin-ionic-keyboard/www/android/keyboard.js",
-      "pluginId": "cordova-plugin-ionic-keyboard",
-      "clobbers": [
-        "window.Keyboard"
-      ]
-    },
-    {
-      "id": "cordova-plugin-screen-orientation.screenorientation",
-      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
-      "pluginId": "cordova-plugin-screen-orientation",
-      "clobbers": [
-        "cordova.plugins.screenorientation"
       ]
     },
     {
@@ -508,31 +486,43 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-ionic-webview.IonicWebView",
-      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
-      "pluginId": "cordova-plugin-ionic-webview",
-      "clobbers": [
-        "Ionic.WebView"
-      ]
-    },
-    {
       "id": "com.jjdltc.cordova.plugin.zip.JJzip",
       "file": "plugins/com.jjdltc.cordova.plugin.zip/www/JJzip.js",
       "pluginId": "com.jjdltc.cordova.plugin.zip",
       "clobbers": [
         "JJzip"
       ]
+    },
+    {
+      "id": "es6-promise-plugin.Promise",
+      "file": "plugins/es6-promise-plugin/www/promise.js",
+      "pluginId": "es6-promise-plugin",
+      "runs": true
+    },
+    {
+      "id": "cordova-plugin-screen-orientation.screenorientation",
+      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+      "pluginId": "cordova-plugin-screen-orientation",
+      "clobbers": [
+        "cordova.plugins.screenorientation",
+        "screen.orientation"
+      ]
+    },
+    {
+      "id": "cordova-plugin-ionic-webview.IonicWebView",
+      "file": "plugins/cordova-plugin-ionic-webview/src/www/util.js",
+      "pluginId": "cordova-plugin-ionic-webview",
+      "clobbers": [
+        "Ionic.WebView"
+      ]
     }
   ];
   module.exports.metadata = {
-    "es6-promise-plugin": "4.2.2",
     "cordova-plugin-device": "1.1.6",
     "cordova-plugin-statusbar": "2.2.4-dev",
     "cordova-plugin-native-spinner": "1.1.3",
     "cordova-plugin-globalization": "1.0.9",
     "cordova-plugin-app-version": "0.1.9",
-    "cordova-plugin-ionic-keyboard": "2.2.0",
-    "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-androidx-adapter": "1.1.1",
     "cordova-plugin-inappbrowser": "7.0.0",
     "cordova-plugin-wkwebview-inject-cookie": "1.0.2",
@@ -550,7 +540,9 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-open-native-settings": "1.5.5",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
     "cordova-plugin-network-information": "3.1.0",
-    "cordova-plugin-ionic-webview": "5.0.0",
-    "com.jjdltc.cordova.plugin.zip": "1.1.0"
+    "com.jjdltc.cordova.plugin.zip": "1.1.0",
+    "es6-promise-plugin": "4.2.2",
+    "cordova-plugin-screen-orientation": "3.0.4",
+    "cordova-plugin-ionic-webview": "5.0.0"
   };
 });
